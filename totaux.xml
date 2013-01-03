@@ -1,0 +1,109 @@
+<NODE desc="Revenu disponible" shortname="Rev. disp." code="revdisp" color="0,0,255" typevar='2' >
+  <NODE desc="Revenu du travail" shortname="Rev. travail" code="rev_trav" color = "0,155,204">
+    <NODE desc="Salaires nets" shortname="Sal. nets" code="salnet" color = "0,138,201">
+      <NODE desc="Salaires imposables" shortname="Sal. impos." code="sal" color= "0,115,170">
+        <NODE desc="Salaires bruts" shortname="Sal. bruts" code="salbrut" color = "0,99,143">
+          <NODE desc= "Salaires super bruts" shortname="Coût travail" code= "salsuperbrut" color = "0,66,92" />
+       		<NODE desc= "Cotisations sociales patronales" shortname="Cotsoc pat" code= "cotpat" color = "249,208,211"/>
+       		<NODE desc= "Allègement sur les bas salaires" shortname="Allèg. sal." code= "alleg_fillon"/>
+          </NODE>
+        <NODE desc= "Cotisations sociales salariées" shortname="Cotsoc sal" code= "cotsal" color = "243,166,171"/>
+        <NODE desc= "CSG déductible (salaires)" shortname="CSG deduc" code= "csgsald" color = "235,114,118"/>
+        <NODE desc= "Heures supplémentaires éxonérées" shortname="Heures sup" code= "mhsup" color = "0,115,170"/>
+      </NODE>
+      <NODE desc= "CSG non déductible (salaires)" shortname="CSG imp. sal." code= "csgsali" color = "235,114,118"/>
+      <NODE desc= "CRDS (salaires)" shortname="CRDS sal." code= "crdssal" color = "229,48,56"/>
+      <NODE desc= "Heures supplémentaires" shortname="Heures sup" code= "hsup" color = "0,115,170"/>
+    </NODE>
+    <NODE desc= "Revenus agricoles" shortname="Rev. agric." code= "rag"/>
+    <NODE desc= "Revenus industriels et commerciaux" shortname="R. ind. comm." code= "ric"/>
+    <NODE desc= "Revenus non commerciaux" shortname="R. non comm." code= "rnc"/>
+  </NODE>
+  <NODE desc="Pensions" shortname="Pensions" code="pen" color="97,75,150">
+    <NODE desc= "Chômage net" shortname="Chômage net" code = "chonet" color = "136,120,178">
+      <NODE desc= "Chômage" shortname="Chômage decl." code = "cho">
+        <NODE desc= "Chômage brut" shortname="Chômage brut" code = "chobrut"/>
+        <NODE desc= "CSG déductible (chômage)" shortname="CSG déd. chôm." code= "csgchod" color = "235,114,118"/>
+      </NODE>
+      <NODE desc= "CSG non déductible (chômage)" shortname="CSG imp. chôm." code= "csgchoi" color = "235,114,118"/>
+      <NODE desc= "CRDS (chômage)" shortname="CRDS chôm." code= "crdscho" color = "229,48,56"/>
+    </NODE>
+    <NODE desc= "Retraites nettes" shortname="Retraites nettes" code = "rstnet" color = "87,88,138">
+      <NODE desc= "Retraites" shortname="Retr. décl." code = "rst">
+        <NODE desc= "Retraites brutes" shortname="Retr. brutes" code = "rstbrut"/>
+        <NODE desc= "CSG déductible (retraite)" shortname="CSG déd. ret." code= "csgrstd" color = "235,114,118"/>
+      </NODE>
+      <NODE desc= "CSG non déductible (pensions)" shortname="CSG imp. pens." code= "csgrsti" color = "235,114,118"/>
+      <NODE desc= "CRDS (pensions)" shortname="CRDS (pens.)" code= "crdsrst" color = "229,48,56"/>
+    </NODE>
+    <NODE desc= "Pensions alimentaires reçues" shortname="P. alim. reç." code = "alr" color = "136,120,178"/>
+    <NODE desc= "Pensions alimentaires versée" shortname="P. alim. vers." code = "alv" color = "136,120,178"/>
+    <NODE desc= "Rentes viagères" shortname="Rentes viag." code= "rto" color = "125,185,86"/>
+  </NODE>
+  <NODE desc= "Revenus du capital net" shortname="Rev. cap. net" code = "rev_cap_net" color= "255,222,48">
+    <NODE desc= "Revenus du capital brut" shortname="Rev. cap. brut" code = "rev_cap_brut" color= "255,222,48">
+      <NODE desc= "Revenus fonciers" shortname="Rev. fonciers" code='fon' color = "255,245,155"/>
+      <NODE desc= "Revenus du capital soumis au barème" shortname="Rev cap bar" code='rev_cap_bar' color = "255,239,103"/>
+      <NODE desc= "Revenus du capital soumis au prélèvement libératoire" shortname="Rev cap lib" code='rev_cap_lib' color = "255,233,28"/>
+	  <NODE desc= "Revenus accessoires" shortname="Rev. accesoires" code='rac' color="247,221,0"/>    
+    </NODE>
+    <NODE desc= "Cotisations sociales sur les revenus du capital" shortname="Cotsoc. capital" code = "cotsoc_cap" color= "243,166,171">
+      <NODE desc= "Prélèvement social sur les revenus du capital" shortname="Pr. s. cap." code= "prelsoc_cap" color = "243,166,171">
+        <NODE desc= "Prélèvement social sur les revenus du capital soumis au barème" shortname="Pr. s. cap. bar." code= "prelsoc_cap_bar" color = "243,166,171"/>
+        <NODE desc= "Prélèvement social sur les revenus du capital soumis au prélèvement libératoire" shortname="Prel. soc. (lib.)" code= "prelsoc_cap_lib" color = "243,166,171"/>
+      </NODE>
+      <NODE desc= "CSG des revenus du capital" shortname="CSG cap." code= "csg_cap" color = "235,114,118">
+        <NODE desc= "CSG (revenus du capital au barème)" shortname="CSG cap. bar." code= "csg_cap_bar" color = "235,114,118"/>
+        <NODE desc= "CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." code= "csg_cap_lib" color = "235,114,118"/>
+      </NODE>
+      <NODE desc= "CRDS" shortname="CRDS cap." code= "crds_cap" color ="229,48,56">      
+        <NODE desc= "CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." code= "crds_cap_bar" color ="229,48,56"/>
+        <NODE desc= "CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." code= "crds_cap_lib" color = "229,48,56"/>
+      </NODE>    
+    </NODE>
+    <NODE desc= "Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." code = "imp_lib" color = "232,79,95"/>
+  </NODE>
+  <NODE desc= "Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" code = "ir_lps" color = "232,79,95"/>
+  <NODE desc= "Prestations sociales" shortname="Prest. soc." code= "psoc" color = "255,102,63">
+    <NODE desc= "Prestations familiales" shortname="Prest. fam." code = "pfam" color = "83,170,49">
+      <NODE desc= "Allocations familiales" shortname="Alloc. fam." code='af' color = "181,213,154"/>
+      <NODE desc= "Complément familial" shortname="Compl. fam." code='cf' color = "125,185,86"/>
+      <NODE desc= "Allocation de rentrée scolaire" shortname="ARS" code="ars" color = "91,172,38"/>
+      <NODE desc= "Allocation d'éducation de l'enfant handicapé" shortname="AEEH" code='aeeh' color = "80,160,38"/>
+      <NODE desc= "Prestation d'accueil du jeune enfant" shortname="PAJE" code= "paje" color = "77,144,34">
+        <NODE desc= "Paje - Allocation de base" shortname="PAJE" code='paje_base'/>
+        <NODE desc= "Paje - Prime de naissance" shortname="Prime naiss." code='paje_nais'/>
+        <NODE desc= "Paje - Complément de libre choix d'activité" shortname="CLCA" code='paje_clca'/>
+        <NODE desc= "Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" code ="paje_colca"/>
+        <NODE desc= "Paje - Complément de libre choix du mode de garde" shortname="CLCMG" code='paje_clmg'/>
+      </NODE>
+      <NODE desc= "Allocation de soutien familial" shortname="ASF" code="asf" color = "77,144,34"/>
+      <NODE desc= "CRDS (prestations familiales)" shortname="CRDS fam." code="crds_pfam" color = "229,48,56"/>
+    </NODE>
+    <NODE desc= "Minima sociaux" shortname="Min. sociaux" code = "mini" color = "240,138,76">
+      <NODE desc= "Minimum vieillesse" shortname="Min. viellesse" code='aspa' color = "249,193,148"/>
+      <NODE desc= "Allocation adulte handicapé" shortname="AAH" code='aah' color = "244,160,80"/>
+      <NODE desc= "Complément de l'allocation adulte handicapé" shortname="CAAH" code='caah' color = "244,160,80"/>
+      <NODE desc= "Allocation supplémentaire d'invalidité" shortname="ASI" code='asi' color = "244,160,80"/>
+      <NODE desc= "Revenu de solidarité active" shortname="RSA" code='rsa' color = "239,130,19"/>
+      <NODE desc= "Aide exceptionelle de fin d'année" shortname="AEFA" code='aefa' color = "237,119,3"/>
+      <NODE desc= "Allocation parent isolé" shortname="API" code='api' color = "208,112,4"/>
+    </NODE>
+    <NODE desc= "Prestations logement" shortname="Prest. logement" code="logt" color="255,222,48">
+      <NODE desc= "Aide personalisée au logement" shortname="APL" code= 'apl' color="255,245,155" />
+      <NODE desc= "Allocation logement social" shortname="ALS" code= 'als' color="255,239,103"/>
+      <NODE desc= "Allocation de logement familiale" shortname="ALF" code= 'alf' color="255,233,28"/>
+      <NODE desc= "Allocation logement étudiant" shortname="AL étudiant" code='alset' color="247,221,0" />
+      <NODE desc= "CRDS (allocation logement)" shortname="CRDS log." code="crds_lgtm" color = "229,48,56"/>
+    </NODE>
+  </NODE>
+  <NODE desc= "Prime pour l'emploi" shortname="PPE" code = "ppe" color = "182,34,131"/>
+  <NODE desc= "Impôts directs" shortname="Impôts directs" code = "impo" color = "232,79,95">
+    <NODE desc= "Impôt sur le revenu" shortname="IRPP" code = "irpp" color = "232,79,95"/>
+    <NODE desc= "ISF net" shortname="ISF net" code = "isf net" color="182,34,131">
+      <NODE desc= "Impôt de solidarité sur la fortune" shortname="ISF" code = "isf_tot" color="232,79,95"/>
+      <NODE desc= "Bouclier fiscal" shortname="Bouclier fiscal" code = "bouclier_fiscal" color="182,34,131"/>
+    </NODE>	
+    <NODE desc= "Taxe d'habitation" shortname="TH" code = "tax_hab" color = "232,79,95"/>
+  </NODE>	
+</NODE> 

@@ -1,0 +1,331 @@
+<NODE datesim="2010-01-01">
+    <NODE description="Contribution sociale généralisée (CSG)" code="csg">
+        <NODE description="Revenus d'activité" code="act">
+            <BAREME description="CSG déductible" code="deduc">
+                <TRANCHE code="tranche0">
+                    <SEUIL>
+                        <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                    </SEUIL>
+                    <TAUX>
+                        <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                    </TAUX>
+                </TRANCHE>
+            </BAREME>
+            <BAREME description="CSG imposable" code="impos">
+                <TRANCHE code="tranche0">
+                    <SEUIL>
+                        <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                    </SEUIL>
+                    <TAUX>
+                        <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                    </TAUX>
+                </TRANCHE>
+            </BAREME>
+        </NODE>
+        <NODE description="Retraites et pensions d'invalidité" code="retraite">
+            <NODE description="Taux réduit" code="reduit">
+                <BAREME description="CSG déductible" code="deduc">
+                    <TRANCHE code="tranche0">
+                        <SEUIL>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </SEUIL>
+                        <TAUX>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </TAUX>
+                    </TRANCHE>
+                </BAREME>
+            </NODE>
+            <NODE description="Taux plein" code="plein">
+                <BAREME description="CSG déductible" code="deduc">
+                    <TRANCHE code="tranche0">
+                        <SEUIL>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </SEUIL>
+                        <TAUX>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </TAUX>
+                    </TRANCHE>
+                </BAREME>
+                <BAREME description="CSG non déductible" code="impos">
+                    <TRANCHE code="tranche0">
+                        <SEUIL>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </SEUIL>
+                        <TAUX>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </TAUX>
+                    </TRANCHE>
+                </BAREME>
+            </NODE>
+        </NODE>
+        <NODE description="Chômage et préretraites" code="chom">
+            <NODE description="Taux réduit" code="reduit">
+                <BAREME description="CSG déductible" code="deduc">
+                    <TRANCHE code="tranche0">
+                        <SEUIL>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </SEUIL>
+                        <TAUX>
+                            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                        </TAUX>
+                    </TRANCHE>
+                </BAREME>
+            </NODE>
+        </NODE>
+        <NODE description="Revenus du capital" code="capital">
+            <CODE description="Taux global" code="glob">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="dont CSG déductible" code="deduc">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+        </NODE>
+    </NODE>
+    <NODE description="Contribution au remboursement de la dette sociale (CRDS)" code="crds">
+        <BAREME description="Revenus d'activité, du chômage et des préretraites" code="act">
+            <TRANCHE code="tranche0">
+                <SEUIL>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+        </BAREME>
+        <BAREME description="Retraites et pensions d'invalidité" code="rst">
+            <TRANCHE code="tranche0">
+                <SEUIL>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+        </BAREME>
+        <CODE description="Revenus du capital" code="capital">
+            <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+        </CODE>
+    </NODE>
+    <NODE description="Fusion IR - CSG (à la Landais, Piketty, Saez)" code="lps">
+        <BAREME description="Barème appliqué à l'assiette de la CSG" code="bareme">
+            <TRANCHE code="tranche0">
+                <SEUIL>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.020000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche1">
+                <SEUIL>
+                    <VALUE valeur="13200.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.180000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche2">
+                <SEUIL>
+                    <VALUE valeur="26400.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.153571" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche3">
+                <SEUIL>
+                    <VALUE valeur="60000.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.370000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche4">
+                <SEUIL>
+                    <VALUE valeur="120000.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.583333" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche5">
+                <SEUIL>
+                    <VALUE valeur="480000.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.666667" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche6">
+                <SEUIL>
+                    <VALUE valeur="1200000.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.600000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+        </BAREME>
+        <CODE description="Crédit d'impôt forfaitaire par enfant" code="credit_enfant">
+            <VALUE valeur="750.000000" fin="2010-01-01" deb="2010-01-01"/>
+        </CODE>
+    </NODE>
+    <NODE description="Impôt sur le revenu" code="ir">
+        <BAREME description="Tranches de l'IR" code="bareme">
+            <TRANCHE code="tranche0">
+                <SEUIL>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </SEUIL>
+                <TAUX>
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </TAUX>
+            </TRANCHE>
+        </BAREME>
+        <NODE description="Revenus des valeurs et capitaux mobiliers" code="rvcm">
+            <NODE description="Prélèvement libératoire" code="prelevement_liberatoire">
+                <CODE description="Revenus des actions et parts soumis au prélèvement libératoire de 18% (case DA)" code="action">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Produits des contrats d'assurance vie (case DH)" code="assvie">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Autres produits de placement (case EE)" code="autre">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <CODE description="Abattement produits des contrats d'assurance vie" code="abat_assvie">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="Abatement capitaux mobiliers - Taux" code="abatmob_taux">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="Abatement capitaux mobiliers - Max" code="abatmob">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="majoraration case GO" code="majGO">
+                <VALUE valeur="1.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+        </NODE>
+        <NODE description="Crédits d'impôts" code="credits_impots">
+            <NODE description="Acquisition de biens culturels" code="accult">
+                <CODE description="Taux" code="taux">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <NODE description="Dépenses en faveur de l'aide aux personnes" code="aidper">
+                <CODE description="Plafond" code="max">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Majoration du plafond pour le 1er enfant" code="pac1">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WI)" code="taux_wi">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WJ)" code="taux_wj">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WL)" code="taux_wl">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (SF)" code="taux_sf">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <NODE description="Dépenses en faveur des économies d'énergies" code="quaenv">
+                <CODE description="Plafond" code="max">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Majoration du plafond pour le 1er enfant" code="pac1">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WF)" code="taux_wf">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WH)" code="taux_wh">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WK)" code="taux_wk">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (WQ)" code="taux_wq">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (SB)" code="taux_sb">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (SD)" code="taux_sd">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (SE)" code="taux_se">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux (SH)" code="taux_sh">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <NODE description="Frais de garde des enfants à l'extérieur du domicile" code="garext">
+                <CODE description="Taux" code="taux">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Plafond" code="max">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <NODE description="Souscription de prêts étudiants" code="preetu">
+                <CODE description="Taux" code="taux">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Plafond" code="max">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <NODE description="Primes d'assurances pour loyers impayés" code="assloy">
+                <CODE description="Taux" code="taux">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+            <NODE description="Intérêts des emprunts pour l'habitation principale" code="inthab">
+                <CODE description="Taux 1" code="taux1">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux 2" code="taux2">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Taux 3" code="taux3">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Plafond" code="max">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+                <CODE description="Par enfant à charge" code="add">
+                    <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+                </CODE>
+            </NODE>
+        </NODE>
+        <NODE description="Impôt sur les plus values à taux forfaitaires" code="plus_values">
+            <CODE description="Plus value de cession (RPNS) 16%" code="pvce">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="Capital risque (VL)" code="caprisque">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="16% puis 18%" code="taux1">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="Clôture PEA avant 2 ans (3VM)" code="pea">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="Actions gratuites 30%" code="taux3">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+            <CODE description="Actions gratuites 40%" code="taux4">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+        </NODE>
+        <NODE description="Variables pour scénario de réforme" code="autre">
+            <CODE description="Exonération des heures supplémentaires" code="hsup_exo">
+                <VALUE valeur="0.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+        </NODE>
+    </NODE>
+</NODE>

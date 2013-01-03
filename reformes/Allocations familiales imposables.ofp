@@ -1,0 +1,9 @@
+<NODE datesim="2010-01-01">
+    <NODE description="Impot sur le revenu" code="ir">
+        <NODE description="variables pour scénario de réforme" code="autre">
+            <CODE description="Allocation familiales imposables" code="alloc_imp">
+                <VALUE valeur="1.000000" fin="2010-01-01" deb="2010-01-01"/>
+            </CODE>
+        </NODE>
+    </NODE>
+</NODE>
