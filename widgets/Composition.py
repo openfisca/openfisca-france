@@ -7,6 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 
+
 from datetime import date
 import pickle
 import os
@@ -14,8 +15,10 @@ import os
 from src.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox, 
                           QDoubleSpinBox, QPushButton, QApplication, QFileDialog, QMessageBox, 
                           QDialogButtonBox, QDockWidget)
+
 from src.qt.QtCore import QObject, SIGNAL, SLOT, QDate, Qt, Signal
 from src.qt.compat import to_qvariant
+
 
 from src.views.ui_composition import Ui_Menage
 from src.views.ui_logement import Ui_Logement
