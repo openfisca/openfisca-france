@@ -100,10 +100,10 @@ def _rev_sal(sal, cho):
     return sal + cho
 
 def _sal_net(rev_sal, cho_ld, fra, _P):
-    '''
+    """
     Salaires après abattements
     'ind'
-    '''
+    """
     P = _P.ir.tspr.abatpro
     amin = P.min*not_(cho_ld) + P.min2*cho_ld
     abatfor = round(min_(max_(P.taux*rev_sal, amin),P.max))
@@ -111,17 +111,17 @@ def _sal_net(rev_sal, cho_ld, fra, _P):
          + (fra <= abatfor)*max_(0,rev_sal - abatfor)
 
 def _rev_pen(alr, rst):
-    '''
+    """
     Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)
     'ind'
-    '''
+    """
     return alr + rst
 
 def _pen_net(rev_pen, _P):
-    '''
+    """
     Pensions après abattements
     'ind'
-    '''
+    """
     P = _P.ir.tspr.abatpen
 #    problème car les pensions sont majorées au niveau du foyer
 #    d11 = ( AS + BS + CS + DS + ES + 
@@ -132,24 +132,24 @@ def _pen_net(rev_pen, _P):
     return max_(0, rev_pen - round(max_(P.taux*rev_pen , P.min)))
 
 def _abat_sal_pen(sal_net, pen_net, _P):
-    '''
+    """
     Abattement de 20% sur les salaires
     'ind'
-    '''
+    """
     P = _P.ir.tspr.abatsalpen
     return min_(P.taux*max_(sal_net + pen_net, 0), P.max)
 
 def _sal_pen_net(sal_net, pen_net, abat_sal_pen):
-    '''
+    """
     Salaires et pensions après abattement de 20% sur les salaires
     'ind'
-    '''
+    """
     return sal_net + pen_net - abat_sal_pen
 
 def _rto(f1aw, f1bw, f1cw, f1dw):
-    '''
+    """
     Rentes viagères à titre onéreux (avant abattements)
-    '''
+    """
     return f1aw + f1bw + f1cw + f1dw
 
 def _rto_net(f1aw, f1bw, f1cw, f1dw, _P):
@@ -853,23 +853,24 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi,  nrag_defi,
     return RPNS
 
 def _abat_spe(age, caseP, caseF, rng, nbN, _P, _option = {'age': [VOUS, CONJ]}):
-    '''
+    """
     Abattements spéciaux 
-    - pour personnes âges ou invalides : âgé(e) de plus de 65 ans
-      ou invalide (titulaire d’une pension d’invalidité militaire ou d’accident 
-      du travail d’au moins 40 % ou titulaire de la carte d’invalidité), 
-      abattement de 2 172 € si rng du foyer fiscal inférieur à 13 370 € 
-                    1 086 € si rng  compris entre 13 370 € et 21 570 €. 
-      Abattement doublé si conjoint remplit également ces conditions 
-      d’âge ou d’invalidité. 
-    - pour enfants à charge ayant fondé un foyer distinct : Si  rattachement 
-      enfants mariés ou pacsés ou enfants  célibataires, veufs, divorcés, séparés, chargés de famille, 
-      abattement 5 495 € par personne ainsi rattachée. 
-      Si l’enfant de la personne rattachée est réputé à charge de 
-      l’un et l’autre de ses parents (garde alternée), cet abattement est divisé 
-      par deux soit 2 748€. Exemple : 10 990 € pour un jeune ménage et 8 243 €
-      pour un célibataire avec un jeune enfant en résidence alternée.
-    '''
+    """
+#    - pour personnes âges ou invalides : âgé(e) de plus de 65 ans
+#      ou invalide (titulaire d’une pension d’invalidité militaire ou d’accident 
+#      du travail d’au moins 40 % ou titulaire de la carte d’invalidité), 
+#      abattement de 2 172 € si rng du foyer fiscal inférieur à 13 370 € 
+#                    1 086 € si rng  compris entre 13 370 € et 21 570 €. 
+#      Abattement doublé si conjoint remplit également ces conditions 
+#      d’âge ou d’invalidité. 
+#    - pour enfants à charge ayant fondé un foyer distinct : Si  rattachement 
+#      enfants mariés ou pacsés ou enfants  célibataires, veufs, divorcés, séparés, chargés de famille, 
+#      abattement 5 495 € par personne ainsi rattachée. 
+#      Si l’enfant de la personne rattachée est réputé à charge de 
+#      l’un et l’autre de ses parents (garde alternée), cet abattement est divisé 
+#      par deux soit 2 748€. Exemple : 10 990 € pour un jeune ménage et 8 243 €
+#      pour un célibataire avec un jeune enfant en résidence alternée.
+
     ageV, ageC = age[VOUS], age[CONJ]
     invV, invC = caseP, caseF
     P = _P.ir.abattements_speciaux

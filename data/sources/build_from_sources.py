@@ -4,7 +4,7 @@ Created on Sep 19, 2012
 @author: benjello
 '''
 
-from pandas import  HDFStore, read_csv, ExcelFile, concat
+from pandas import  HDFStore, read_csv, ExcelFile, concat, DataFrame
 
     
 def csv2hdf5(csv_name, h5_name, dfname):
@@ -24,13 +24,17 @@ def test(h5_name):
 def build_totals():
     h5_name = "../amounts.h5"
     store = HDFStore(h5_name)
-    files = ['logement_tous_regime', 'openfisca_pfam_tous_regimes', 'minima_sociaux_tous_regimes', 'IRPP_PPE' ]
+    files = ['logement_tous_regime', 'openfisca_pfam_tous_regimes', 
+             'minima_sociaux_tous_regimes', 'IRPP_PPE', 'cotisations_RegimeGeneral' ]
     first = True
     for xlsfile in files:
         xls = ExcelFile(xlsfile + '.xlsx')
         df_a = xls.parse('amounts', na_values=['NA'])
-        df_b   = xls.parse('benef', na_values=['NA']) 
-        
+        try:
+            df_b   = xls.parse('benef', na_values=['NA']) 
+        except:
+            df_b = DataFrame()
+
         if first:
             amounts_df = df_a
             benef_df =  df_b
