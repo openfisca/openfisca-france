@@ -36,7 +36,7 @@ class InputTable(ModelDescription):
     sali = IntCol(label="Salaire imposable", val_type="monetary") #(f1aj, f1bj, f1cj, f1dj, f1ej)
     choi = IntCol(label=u"Chômage imposable", val_type="monetary") # (f1ap, f1bp, f1cp, f1dp, f1ep)
     rsti = IntCol(label="Retraite imposable", val_type="monetary") # (f1as, f1bs, f1cs, f1ds, f1es)
-    fra  = IntCol( val_type="monetary") # (f1ak, f1bk, f1ck, f1dk, f1ek)
+    fra  = IntCol(val_type="monetary") # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
     alr  = IntCol(label = u"Pension alimentaire reçue", val_type="monetary") # (f1ao, f1bo, f1co, f1do, f1eo)
     
@@ -55,7 +55,7 @@ class InputTable(ModelDescription):
     zone_apl = EnumCol(label = u"zone apl", default = 2, unit= 'menage')
     loyer = IntCol(unit='men', val_type="monetary") # Loyer mensuel
     so = EnumCol(label = u"Statut d'occupation",
-                 unit='men',
+                 unit ='men',
                  enum = Enum([u"Non renseigné",
                               u"Accédant à la propriété",
                               u"Propriétaire (non accédant) du logement",
