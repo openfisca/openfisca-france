@@ -131,7 +131,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         widget = self.xaxis_box
         if isinstance(widget, QComboBox):
             data  = widget.itemData(widget.currentIndex())
-            xaxis = unicode(data.toString())
+            xaxis = unicode(data)
             self.scenario.xaxis = xaxis
             self.set_option('xaxis', xaxis)
         self.emit(SIGNAL('compoChanged()'))
