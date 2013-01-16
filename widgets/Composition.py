@@ -148,12 +148,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.emit(SIGNAL('compoChanged()'))
 
     def changed(self):
-#        self.disconnectAll()
+        self.disconnectAll()
         self.scenario.genNbEnf()
         self.populate()
         self.action_compute.setEnabled(True)
-#        self.emit(SIGNAL('changed()'))
-#        self.connectAll()
+        self.emit(SIGNAL('changed()'))
+        self.connectAll()
         
     def nbRow(self):
         return self.scenario.nbIndiv()
@@ -362,6 +362,9 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.emit(SIGNAL('compoChanged()'))
         
     def openDeclaration(self):
+        """
+        Open the declaration widget
+        """
         noi = int(self.sender().objectName()[3])
         self.scenario.genNbEnf()
         msg = self.scenario.check_consistency()
