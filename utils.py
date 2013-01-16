@@ -482,7 +482,16 @@ XAXIS_PROPERTIES = { 'sali': {
                              'name' : 'alr',
                              'col_name' : 'alr',
                              'typ_tot' : {'pen': "Pensions"},
-                             'typ_tot_default' : 'pension_brut'}}
+                             'typ_tot_default' : 'pen'},
+                    'f6gu' : {
+                             'name' : 'f6gu',
+                             'col_name' : 'f6gu',
+                             'typ_tot' : {'pen': "Pensions"},
+                             'typ_tot_default' : 'pen'},
+                    
+                    }
+
+
 
 class Xaxis(object):
     def __init__(self, col_name = None, country = None):
@@ -513,75 +522,6 @@ class Xaxis(object):
         self.typ_tot = XAXIS_PROPERTIES[col_name]['typ_tot']
         self.typ_tot_default = XAXIS_PROPERTIES[col_name]['typ_tot_default'] 
         
-    def set2(self, col_name):
-        '''
-        Sets xaxis
-        '''
-        if col_name == 'sali':
-            self.name = 'sal'
-            self.col_name = 'sali' 
-            self.typ_tot = {'salsuperbrut' : 'Salaire super brut',
-                            'salbrut': 'Salaire brut',
-                            'sal':  'Salaire imposable',
-                            'salnet': 'Salaire net'}
-            self.typ_tot_default = 'sal'
-        
-        elif col_name == 'choi':
-            self.name = 'cho'
-            self.col_name = 'choi' 
-            self.typ_tot = {'chobrut': u"Chômage brut",
-                            'cho':     u"Chômage",
-                            'chonet':  u"Chômage net"}
-            self.typ_tot_default = 'cho'
-            
-        elif col_name == 'rsti':
-            self.name ='rst'
-            self.col_name = 'rsti' 
-            self.typ_tot = {'rstbrut': u"Retraite brut",
-                            'rst':     u"Retraite",
-                            'rstnet':  u"Retraite net"}
-            self.typ_tot_default = 'rst'
-            
-        elif col_name == 'f2da':
-            self.name = 'divpfl'
-            self.col_name = 'f2da' 
-            self.typ_tot = {'rev_cap_brut': "Revenus des capitaux", 
-                            'rev_cap_net': "Revenus des capitaux nets",
-                            }
-            self.typ_tot_default = 'rev_cap_brut'
-            
-        elif col_name == 'f2ee':
-            self.name = 'intpfl'
-            self.col_name = 'f2ee' 
-            self.typ_tot = {'rev_cap_brut': "Revenus des capitaux", 
-                            'rev_cap_net': "Revenus des capitaux nets",
-                            }
-            self.typ_tot_default = 'rev_cap_brut'
-            
-        elif col_name == 'f2dc':
-            self.name = 'divb'
-            self.col_name = 'f2dc' 
-            self.typ_tot = {'rev_cap_brut': "Revenus des capitaux", 
-                            'rev_cap_net': "Revenus des capitaux nets",
-                            }
-            self.typ_tot_default = 'rev_cap_brut'
-            
-        elif col_name == 'f2tr':
-            self.name = 'intb'
-            self.col_name = 'f2tr' 
-            self.typ_tot = {'rev_cap_brut': "Revenus des capitaux", 
-                            'rev_cap_net': "Revenus des capitaux nets",
-                            }
-            self.typ_tot_default = 'rev_cap_brut'
-
-        elif col_name == 'alr':
-            self.name = 'alr'
-            self.col_name = 'alr' 
-            self.typ_tot = {'pension_brut': "Pensions", 
-                            'pension_net': "Pensions nettes",
-                            }
-            self.typ_tot_default = 'pension_brut'
-
 
 
 
@@ -590,7 +530,7 @@ def build_axes(country):
     from src.core.utils_old import of_import
     Xaxis = of_import('utils','Xaxis', country)
     axes = []
-    for col_name in ['sali', 'choi', 'rsti', 'f2da', 'f2ee', 'f2dc', 'f2tr' ]:
+    for col_name in XAXIS_PROPERTIES: #['sali', 'choi', 'rsti', 'f2da', 'f2ee', 'f2dc', 'f2tr' ]:
         axe = Xaxis(col_name, country)
         axes.append(axe)
     del axe
