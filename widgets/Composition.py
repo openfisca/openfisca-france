@@ -7,7 +7,6 @@
 # (see openfisca/__init__.py for details)
 
 
-
 from datetime import date
 import pickle
 import os
@@ -18,7 +17,6 @@ from src.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox,
 
 from src.qt.QtCore import QObject, SIGNAL, SLOT, QDate, Qt, Signal
 from src.qt.compat import to_qvariant
-
 
 from src.views.ui_composition import Ui_Menage
 from src.views.ui_logement import Ui_Logement
@@ -32,6 +30,7 @@ from src.core.utils_old import of_import
 from src.core.baseconfig import get_translation
 _ = get_translation('src')
 
+from src.countries.france import CURRENCY
 
 class S:
     name = 0
@@ -67,7 +66,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 
         self.setLayout(self.verticalLayout)
         # Initialize xaxes
-        country = CONF.get('parameters','country')
+        country = 'france'
         build_axes = of_import('utils','build_axes', country)
         axes = build_axes(country)
         xaxis = self.get_option('xaxis')
@@ -83,7 +82,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.maxrev_box.setMinimum(0)
         self.maxrev_box.setMaximum(100000000)
         self.maxrev_box.setSingleStep(1000)
-        self.maxrev_box.setSuffix(u"€")
+        self.maxrev_box.setSuffix(CURRENCY)
         maxrev = self.get_option('maxrev')
         self.maxrev_box.setValue(maxrev)
 
@@ -294,7 +293,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.addRow()
         if noi == 1: self.scenario.addIndiv(noi, birth = date(1975,1,1), quifoy = 'conj', quifam = 'part')
         else:        self.scenario.addIndiv(noi, birth = date(2000,1,1), quifoy = 'pac' , quifam = 'enf')
-        
         self.emit(SIGNAL('compoChanged()'))
             
     def addRow(self):

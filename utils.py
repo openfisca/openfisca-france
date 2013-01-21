@@ -321,7 +321,6 @@ class Scenario(object):
         inputFile.close()
         self.indiv = S['indiv']
         self.declar = S['declar']
-        self.famille = S['famille']
         self.menage = S['menage']
 
 
