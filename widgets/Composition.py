@@ -538,7 +538,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         Note: these actions will be enabled when plugin's dockwidget is visible
               and they will be disabled when it's hidden
         """
-        print 'get_plugin actions compo'
+
         # File menu actions and shortcuts
         self.open_action = create_action(self, _("&Open..."),
                 icon='fileopen.png', tip=_("Open composition file"),
