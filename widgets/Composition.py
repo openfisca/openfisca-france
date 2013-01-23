@@ -623,7 +623,7 @@ def get_zone(code, filename = None):
     Gets commune name and zone apl from postal code
     '''
     if filename is None:
-        code_file = open('france/data/code_apl', 'r')
+        code_file = open('countries/france/data/code_apl', 'r')
     else:
         code_file = open(filename, 'r')
     code_dict = pickle.load(code_file)
