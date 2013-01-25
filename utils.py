@@ -265,9 +265,10 @@ class Scenario(object):
         for vals in self.indiv.itervalues():
             if (vals['noidec']==noidec) and (vals['quifoy'][:3]=='pac'):
                 n += 1
-                if (self.year - vals['birth'].year >= 18) and vals['inv'] == 0: out['nbJ'] += 1
+                if (self.year - vals['birth'].year >= 18) and vals['inv'] == 0: 
+                    out['nbJ'] += 1
                 else:
-                    if   vals['alt'] == 0: 
+                    if vals['alt'] == 0: 
                         out['nbF'] += 1
                         if vals['inv'] == 1 : out['nbG'] +=1
                     elif vals['alt'] == 1: 
@@ -292,8 +293,11 @@ class Scenario(object):
             if   noi == 0: quimen = 'pref'
             elif noi == 1: quimen = 'cref'
             else:  quimen = 'enf%d' % (noi-1)
-            people[noi].update({'quimen': quimen,
-                                'noipref': 0})
+            if 'quimen' not in people[noi].keys():
+                people[noi].update({'quimen': quimen,
+                                    'noipref': 0})
+            else:
+                people[noi].update({'noipref': 0})
 
     def __repr__(self):
         outstr = "INDIV" + '\n'
