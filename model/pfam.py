@@ -195,7 +195,8 @@ def _cf(age, br_pf, isol, biact, smic55, _P, _option={'age': ENFS, 'smic55': ENF
 def _asf_elig(caseT, caseL):
     return caseT | caseL
 
-def _asf(age, rst, isol, asf_elig, smic55, _P, _option={'rst': [CHEF, PART], 'age': ENFS, 'smic55': ENFS}):
+def _asf(age, rst, isol, asf_elig, smic55, alr, _P, 
+         _option={'rst': [CHEF, PART], 'age': ENFS, 'smic55': ENFS, 'alr': [CHEF, PART] + ENFS}):
     '''
     Allocation de soutien familial
     '''
@@ -217,18 +218,22 @@ def _asf(age, rst, isol, asf_elig, smic55, _P, _option={'rst': [CHEF, PART], 'ag
     asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1 
                                         - rst[CHEF] - rst[PART]), 2)    
     #asf_m    = round(isol*asf_elig*max_(0,asf_nbenf*P.af.bmaf*P.asf.taux1 - rst_fam/12.0),2)
-
-    return asf_brut
+    
+    res = None
+    for alr in alr.itervalues():
+        if res is None: res = zeros(len(alr))  
+        res += alr
+    no_alr = not_(res > 0)
+    return asf_brut*no_alr
 
 def _ars(age, smic55, br_pf, _P, _option={'age': ENFS, 'smic55': ENFS}):
     '''
     Allocation de rentrée scolaire
     '''
-    # TODO convention sur la mensualisation
+    # TODO: convention sur la mensualisation
     # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive 
     # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée. 
     
-    # TODO à partir de 2008, les taux sont différenciés suivant l'âge.
     P = _P.fam
     bmaf = P.af.bmaf
     # On prend l'âge en septembre
