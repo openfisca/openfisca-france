@@ -10,18 +10,25 @@ from numpy.random import randn
 
 
 def test():
-    store = HDFStore('survey_old.h5')
+    store = HDFStore('survey.h5')
     print store
     df = store['survey_2006']
     density = dict()
-    df2 = df.to_sparse(fill_value=0)
-    print df2.density
-#    for col in df.columns:
-#        print col
-#        x = DataFrame(df[col])
-#        x = x.to_sparse(fill_value=0)
-#        print x
-#        print x.density
+#    print df.dtypes
+#    df2 = df.to_sparse(fill_value=0)
+#    print df2.density
+    n = 0
+    for col in df.columns:
+        try:
+            print col
+            x = DataFrame(df[col])
+            x = x.to_sparse(fill_value=0)
+            print x
+            print x.density
+            n += (x.density < .0001) 
+        except:
+            pass
+    print n
     store.close()
 
 def test_doc():

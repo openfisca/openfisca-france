@@ -5,12 +5,16 @@ Created on Sep 19, 2012
 '''
 
 from pandas import  HDFStore, read_csv, ExcelFile, concat, DataFrame
+import os
 
-    
+DATA_DIR = 'C:/Users/Utilisateur/Documents/Data/'
+
+
 def csv2hdf5(csv_name, h5_name, dfname):
     table = read_csv(csv_name)
     store = HDFStore(h5_name)
     store[dfname] = table
+    print table
     store.close() 
 
 def test(h5_name):
@@ -109,10 +113,19 @@ def build_actualisation_groups():
     build_actualisation_group_names_h5()
 
 
+def get_csv_file_name(year):
+    
+    os.path.dirname(DATA_DIR)
+    R_DIR = os.path.join(os.path.dirname(DATA_DIR),'R','openfisca', str(year))
+    yr = str(year)[2:]
+    fname = os.path.join(R_DIR,"final"+ yr + ".csv")
+    return fname
+
+
 def build_survey(year):
     h5_name = '../survey.h5'    
     dfname = 'survey_' + str(year)
-    csv_name = "final" + str(year)[2:4] + ".csv"
+    csv_name = get_csv_file_name(year)
     print("Using " + csv_name + " to build " + h5_name)
     csv2hdf5(csv_name, h5_name, dfname)
 
@@ -120,12 +133,14 @@ def build_all_surveys():
     for year in range(2006,2010):
         build_survey(year)
         
-    
+def rebuild_all():    
+    build_actualisation_group_amounts_h5()
+    build_totals()
+    build_all_surveys()
 
 if __name__ == '__main__':
     
-#    test('../survey.h5')
-#    build_actualisation_group_amounts_h5()
-    build_totals()
-#    build_survey(2006)
+    test('../survey.h5')
+
+    build_survey(2008)
 #   test('../survey.h5')
