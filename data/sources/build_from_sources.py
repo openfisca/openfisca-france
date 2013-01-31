@@ -142,5 +142,4 @@ if __name__ == '__main__':
     
     test('../survey.h5')
 
-    build_survey(2008)
-#   test('../survey.h5')
+    build_all_surveys()
