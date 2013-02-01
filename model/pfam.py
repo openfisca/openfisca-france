@@ -206,17 +206,20 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
     # Vous avez au moins un enfant à votre charge. Vous êtes son père ou sa mère et vous vivez seul(e),
     # ou vous avez recueilli cet enfant et vous vivez seul ou en couple.
     
-    # Voir http://www.caf.fr/catalogueasf/bas.htm        
+#    http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
     # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
     # action devant le TGI pour complêter l'éligibilité               
 
-    # TODO la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année   
+    # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année   
     P = _P.fam
     asf_nbenf = nb_enf(age, smic55, P.af.age1, P.af.age2)
-    # TODO : gérer la mensualisation de l'ASF: pb de la pension alimentaire
+    # TODO : gérer la mensualisation de l'ASF: pb de la pension alimentaire ? 
     asf_nbenfa = asf_nbenf
-    asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1 
-                                        - rst[CHEF] - rst[PART]), 2)    
+
+    asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1), 2)
+    
+#    asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1 
+#                                        - rst[CHEF] - rst[PART]), 2)    
     #asf_m    = round(isol*asf_elig*max_(0,asf_nbenf*P.af.bmaf*P.asf.taux1 - rst_fam/12.0),2)
     
     res = None
