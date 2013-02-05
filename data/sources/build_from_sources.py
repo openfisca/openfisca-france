@@ -122,6 +122,16 @@ def get_csv_file_name(year):
     return fname
 
 
+def build_survey_psl():
+    year = 2006
+    h5_name = '../survey_psl.h5'    
+    dfname = 'survey_' + str(year)
+    os.path.dirname(DATA_DIR)
+    PSL_DIR = os.path.join(os.path.dirname(DATA_DIR),'PSL')
+    csv_name = os.path.join(PSL_DIR,"psl_"+ str(year) + ".csv")
+    print("Using " + csv_name + " to build " + h5_name)
+    csv2hdf5(csv_name, h5_name, dfname)
+
 def build_survey(year):
     h5_name = '../survey.h5'    
     dfname = 'survey_' + str(year)
@@ -140,6 +150,8 @@ def rebuild_all():
 
 if __name__ == '__main__':
     
-    test('../survey.h5')
 
-    build_all_surveys()
+#    build_all_surveys()
+#    test('../survey.h5')
+#    build_survey_psl()
+    test('../survey_psl.h5')
