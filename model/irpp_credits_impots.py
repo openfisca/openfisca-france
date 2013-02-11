@@ -42,7 +42,7 @@ def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
     elif _P.datesim.year == 2011:
         niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
                   quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + 
-                  autent)    # TODO check because totally unchecked
+                  autent)    # TODO: check because totally unchecked
     
         
     return niches
@@ -87,7 +87,7 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
     elif _P.datesim.year == 2010:
         return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
-    elif _P.datesim.year == 2011: # TODO check because totally unchecked
+    elif _P.datesim.year == 2011: # TODO: check because totally unchecked
         return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
 def _divide(marpac, f2dc, f2gr, _P):

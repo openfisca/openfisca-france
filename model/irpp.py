@@ -322,7 +322,7 @@ def _ir_plaf_qf(ir_brut, rni, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celd
     B1 = P.plafond_qf.celib_enf*aa1 + P.plafond_qf.marpac*aa2
     # tous les autres
     B2 = P.plafond_qf.marpac*aa0                 #si autre
-    # celdiv, veufs (non jveuf) vivants seuls et autres conditions TODO année codéee en dur
+    # celdiv, veufs (non jveuf) vivants seuls et autres conditions
     # TODO: année en dur... pour caseH
     condition63 = (celdiv | (veuf & not_(jveuf))) & not_(caseN) & (nb_pac==0) & (caseK | caseE) & (caseH<1981)
     B3 = P.plafond_qf.celib
@@ -357,7 +357,7 @@ def _ir_plaf_qf(ir_brut, rni, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celd
     Fo = D*(D<=E) + E*(E<D)
     IP1 = IP0-Fo
 
-    # TODO :6.3 Cas particulier: Contribuables domiciliés dans les DOM.    
+    # TODO: 6.3 Cas particulier: Contribuables domiciliés dans les DOM.    
     # conditionGuadMarReu =
     # conditionGuyane=
     # conitionDOM = conditionGuadMarReu | conditionGuyane
