@@ -153,5 +153,5 @@ if __name__ == '__main__':
 
 #    build_all_surveys()
 #    test('../survey.h5')
-    build_survey_psl()
+#    build_survey_psl()
     test('../survey_psl.h5')
