@@ -356,7 +356,7 @@ def _rmi_nbp(age, smic55, nb_par , _P, _option = {'age': ENFS, 'smic55': ENFS}):
     Nombre de personne à charge au sens du Rmi ou du Rsa
     'fam'
     '''
-    return nb_par + nb_enf(age, smic55, 0, 24)  # TODO limite d'âge dans paramètres
+    return nb_par + nb_enf(age, smic55, 0, 24)  # TODO: limite d'âge dans paramètres
 
 def _forf_log(so, rmi_nbp, _P):
     '''

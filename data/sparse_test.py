@@ -10,61 +10,65 @@ from numpy.random import randn
 
 
 def test():
+    import gc
+    gc.collect()
+    from pandas import concat
     store = HDFStore('survey.h5')
-    print store
-    df = store['survey_2006']
-#    density = dict()
-#    print df.dtypes
-#    df2 = df.to_sparse(fill_value=0)
-#    print df2.density
-    n = 0
-    for col in df.columns:
-        try:
-            #print type(df[col])
-            x = DataFrame(df[col])
-            x = x.to_sparse(fill_value=0)
-            if (x.density < .001):
-                n +=1  
-                df[col] = df[col].to_sparse(fill_value=0)
-                print col
-                print df[col].density
-                DataFrame().to
-        except:
-            pass
-    print n
-#    for col in df.columns:
-#        x = df[col]
-#        print x
+    print store.root.survey_2006.table
+    df = store.select('survey_2006', columns = 'sali')
+
+    #print DataFrame(df.dtypes).describe()
+    sparsified = None
+    other = None
+    i = 0
+    print df.columns
+    columns = df.columns.copy()
+#    print columns
+    return
+    
+    for colname in columns:
+        if i > 10:
+            break
+        print colname
+        col =  df.pop(colname)
+        if col.dtype.kind in ['i', 'f']:
+            sparsified_col = DataFrame(col).to_sparse(fill_value=0)
+            if sparsified_col.density < .1:
+                if sparsified is not None:
+                    sparsified = concat([sparsified, sparsified_col])
+                else:
+                    sparsified = sparsified_col
+            else:
+                if other is not None:
+                    other = concat([other, DataFrame(col)], axis = 1)
+                else:
+                    other = DataFrame(col)
+        else:
+            if other is not None:
+                other = concat([other, DataFrame(col)], axis = 1)
+            else:
+                other = DataFrame(col)
+        gc.collect()
+        print i
+        i += 1
+
+#    print sparsified.describe()
+#
+#    print other.describe()
     store.close()
 
 
+def test2():
+    import gc
+    gc.collect()
+    print 'starting'
+    store = HDFStore('survey.h5','r')
+    print store
+    df = store.select('survey_2006', columns = ['sali'])
+    print df
+    store.close()
 
-def test_doc():
-    
-    ts = Series(randn(10))
-    ts[2:-2] = nan
-    sts = ts.to_sparse()
-    print sts
-    print sts.density
-
-def test_doc2():
-
-    df = DataFrame(randn(10000, 4))
-    df.ix[:9998] = 0
-    sdf = df.to_sparse(fill_value=0)
-    print sdf
-    print sdf.index
-    print sdf[1].density
-
-    ts = Series({'x' :randn(10)})
-    ts[2:-2] = nan
-    sts = ts.fillna(0).to_sparse(fill_value=0)
-    print sts.index
-    sts = sts.reindex()
-    print sts.density
-    print sts._sparse
-    
 if __name__ == '__main__':
-    from pandas import version
-    print version.version
-    test_doc2()
+#    from pandas import version
+#    print version.version
+    test2()

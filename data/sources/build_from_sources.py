@@ -10,11 +10,29 @@ import os
 DATA_DIR = 'C:/Users/Utilisateur/Documents/Data/'
 
 
-def csv2hdf5(csv_name, h5_name, dfname):
+def csv2hdf5(csv_name, h5_name, dfname, option='frame'):
     table = read_csv(csv_name)
     store = HDFStore(h5_name)
-    store[dfname] = table
-    print table
+    
+    if option == 'frame':
+        store.put(dfname, table)
+    
+    elif option == 'table': # for frame_table à la pytables
+        object_cols =  table.dtypes[ table.dtypes == 'object']
+        print object_cols.index
+        try:
+            store.append(dfname,table)
+        except:
+            print table.get_dtype_counts()
+            object_cols =  table.dtypes[ table.dtypes == 'object']
+            
+            for col in object_cols.index:
+                print 'removing object column :', col 
+                del table[col] 
+        
+            store.append(dfname,table)
+           
+    print store
     store.close() 
 
 def test(h5_name):
@@ -132,26 +150,53 @@ def build_survey_psl():
     print("Using " + csv_name + " to build " + h5_name)
     csv2hdf5(csv_name, h5_name, dfname)
 
-def build_survey(year):
-    h5_name = '../survey.h5'    
+def build_survey(year, option='frame'):
+    h5_name = '../survey.h5'
     dfname = 'survey_' + str(year)
     csv_name = get_csv_file_name(year)
     print("Using " + csv_name + " to build " + h5_name)
-    csv2hdf5(csv_name, h5_name, dfname)
+    csv2hdf5(csv_name, h5_name, dfname, option=option)
 
-def build_all_surveys():    
+def build_all_surveys( option = 'frame'):
+    h5_name = '../survey.h5'    
+    try:
+        os.remove(h5_name)
+    except:
+        pass
     for year in range(2006,2010):
-        build_survey(year)
+        build_survey(year, option=option)
         
 def rebuild_all():    
     build_actualisation_group_amounts_h5()
     build_totals()
     build_all_surveys()
 
-if __name__ == '__main__':
-    
 
-#    build_all_surveys()
+def debug():
+    year = 2008
+    h5_name = '../toto.h5'
+    dfname = 'survey_2008'
+    csv_name = get_csv_file_name(year)
+    table = read_csv(csv_name)
+    
+    object_cols =  table.dtypes[ table.dtypes == 'object']
+    
+    print table.get_dtype_counts()
+    
+    for col in object_cols.index:
+        del table[col] 
+    
+    print table.get_dtype_counts()
+
+#    store = HDFStore(h5_name)
+#    store.append(dfname,table)
+#    print store
+
+if __name__ == '__main__':
+    import tables
+    print tables.__version__
+    #debug()
+    build_all_surveys()
 #    test('../survey.h5')
 #    build_survey_psl()
-    test('../survey_psl.h5')
+#    test('../survey_psl.h5')
