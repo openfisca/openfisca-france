@@ -509,8 +509,8 @@ class Xaxis(object):
             self.typ_tot_default = None
                  
     def set_label(self, country):
-        from src.core.utils_old import of_import
-        from src.core.datatable import Description
+        from src.lib.utils import of_import
+        from src.lib.datatable import Description
         InputTable = of_import('model.data', 'InputTable', country)
         description = Description(InputTable().columns)
         label2var, var2label, var2enum = description.builds_dicts()
@@ -530,7 +530,7 @@ class Xaxis(object):
 
 def build_axes(country):
     # TODO: should be in __init__.py of france
-    from src.core.utils_old import of_import
+    from src.lib.utils import of_import
     Xaxis = of_import('utils','Xaxis', country)
     axes = []
     for col_name in XAXIS_PROPERTIES: #['sali', 'choi', 'rsti', 'f2da', 'f2ee', 'f2dc', 'f2tr' ]:

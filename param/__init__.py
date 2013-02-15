@@ -1,4 +1,4 @@
-from src.core.config import CONF
+from src.gui.config import CONF
 
 def get_config(widget):
     '''

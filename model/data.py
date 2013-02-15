@@ -7,9 +7,9 @@
 # (see openfisca/__init__.py for details)
 
 
-from src.core.description import ModelDescription
-from src.core.columns import IntCol, EnumCol, BoolCol, AgesCol, FloatCol
-from src.core.utils_old import Enum
+from src.lib.description import ModelDescription
+from src.lib.columns import IntCol, EnumCol, BoolCol, AgesCol, FloatCol
+from src.lib.utils import Enum
 
 QUIFOY = Enum(['vous', 'conj', 'pac1','pac2','pac3','pac4','pac5','pac6','pac7','pac8','pac9'])
 QUIFAM = Enum(['chef', 'part', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])

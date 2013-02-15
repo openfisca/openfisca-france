@@ -11,23 +11,23 @@ from datetime import date
 import pickle
 import os
 
-from src.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox, 
+from src.gui.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox, 
                           QDoubleSpinBox, QPushButton, QApplication, QFileDialog, QMessageBox, 
                           QDialogButtonBox, QDockWidget)
 
-from src.qt.QtCore import QObject, SIGNAL, SLOT, QDate, Qt, Signal
-from src.qt.compat import to_qvariant
+from src.gui.qt.QtCore import QObject, SIGNAL, SLOT, QDate, Qt, Signal
+from src.gui.qt.compat import to_qvariant
 
-from src.views.ui_composition import Ui_Menage
-from src.views.ui_logement import Ui_Logement
+from src.gui.views.ui_composition import Ui_Menage
+from src.gui.views.ui_logement import Ui_Logement
 from src.widgets.InfoComp import InfoComp
 from src.widgets.Declaration import Declaration
 
-from src.core.utils.qthelpers import create_action
-from src.core.config import CONF, get_icon
+from src.gui.utils.qthelpers import create_action
+from src.gui.config import CONF, get_icon
 from src.plugins import OpenfiscaPluginWidget
-from src.core.utils_old import of_import
-from src.core.baseconfig import get_translation
+from src.lib.utils import of_import
+from src.gui.baseconfig import get_translation
 _ = get_translation('src')
 
 from src.countries.france import CURRENCY

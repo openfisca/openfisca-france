@@ -8,9 +8,9 @@
 
 
 from datetime import date
-from src.core.utils_old import Enum
-from src.core.description import ModelDescription
-from src.core.columns import Prestation, BoolPresta, IntPresta, EnumPresta
+from src.lib.utils import Enum
+from src.lib.description import ModelDescription
+from src.lib.columns import Prestation, BoolPresta, IntPresta, EnumPresta
 import src.countries.france.model.cotsoc as cs
 import src.countries.france.model.irpp as ir
 import src.countries.france.model.irpp_charges_deductibles as cd

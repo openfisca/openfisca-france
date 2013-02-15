@@ -10,7 +10,7 @@
 from __future__ import division
 from src.countries.france.model.data import CAT
 from numpy import maximum as max_, minimum as min_, logical_not as not_, zeros, ones
-from src.core.utils_old import  scaleBaremes, combineBaremes, BaremeDict
+from src.lib.utils import  scaleBaremes, combineBaremes, BaremeDict
 
 
                 

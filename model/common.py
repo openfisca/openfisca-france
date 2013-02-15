@@ -240,7 +240,7 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib, prelsoc_cap_lib, pr
     '''
     return cotpat_noncontrib + cotsal_noncontrib + prelsoc_cap_lib + prelsoc_cap_bar
 
-from src.core.utils_old import mark_weighted_percentiles
+from src.lib.utils import mark_weighted_percentiles
 
 def _decile(nivvie, champm, wprm):
     '''
