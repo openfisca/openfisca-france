@@ -541,14 +541,22 @@ def build_axes(country):
 
 
 def preproc_inputs(datatable):
-    '''
+    """
     Preprocess inputs table: country specific manipulations 
-    '''
+    
+    Parameters
+    ----------
+    datatable : a DataTable object
+                the DataTable containing the input variables of the model
+    
+    """
+    
     datatable.propagate_to_members( 'foy', 'rfr_n_2')
     datatable.propagate_to_members( 'foy', 'nbptr_n_2')
 
 
-
+def check_consistency(datatable):
+    NotImplementedError
     
 
 
