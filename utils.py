@@ -557,6 +557,3 @@ def preproc_inputs(datatable):
 
 def check_consistency(datatable):
     NotImplementedError
-    
-
-

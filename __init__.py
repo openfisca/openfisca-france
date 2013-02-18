@@ -10,6 +10,11 @@
 # Some variables needed bu the test case
 
 ENTITIES_INDEX = ['men', 'fam', 'foy']
+
+
+WEIGHT = "wprm"
+WEIGHT_INI = "wprm_init"
+
 CURRENCY = u"€"
 
 REVENUES_CATEGORIES = {'superbrut' : ['salsuperbrut', 'chobrut', 'rstbrut', 'alr', 'alv',
