@@ -105,7 +105,7 @@ def _percvm(f3vv, _P):
     Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
     2010-
     '''
-    # TODO check 2011
+    # TODO: check 2011
     if _P.datesim.year == 2011:
         return 0*f3vv
     return _P.ir.credits_impot.percvm.taux*f3vv
@@ -326,27 +326,27 @@ def _inthab(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P)
     if _P.datesim.year == 2007:
         return 0*nb  # TODO
     if _P.datesim.year == 2008:  
-        max1 = min_(max0 - f7vy, 0)
+        max1 = max_(max0 - f7vy, 0)
         return (P.taux1*min_(f7vy, max0) + 
                 P.taux3*min_(f7vz, max1) )
     if _P.datesim.year == 2009:
-        max1 = min_(max0 - f7vx, 0)
-        max2 = min_(max1 - f7vy, 0)
+        max1 = max_(max0 - f7vx, 0)
+        max2 = max_(max1 - f7vy, 0)
         return (P.taux1*min_(f7vx, max0) + 
                 P.taux1*min_(f7vy, max1) + 
                 P.taux3*min_(f7vz, max2) )
     if _P.datesim.year == 2010:
-        max1 = min_(max0 - f7vx, 0)
-        max2 = min_(max1 - f7vy, 0)
-        max3 = min_(max2 - f7vw, 0)
+        max1 = max_(max0 - f7vx, 0)
+        max2 = max_(max1 - f7vy, 0)
+        max3 = max_(max2 - f7vw, 0)
         return (P.taux1*min_(f7vx, max0) + 
                 P.taux1*min_(f7vy, max1) + 
                 P.taux2*min_(f7vw, max2) + 
                 P.taux3*min_(f7vz, max3) )
-    if _P.datesim.year == 2011:  # TODO formula parmaters are set
-        max1 = min_(max0 - f7vx, 0)
-        max2 = min_(max1 - f7vy, 0)
-        max3 = min_(max2 - f7vw, 0)
+    if _P.datesim.year == 2011:  # TODO: formula parameters are set
+        max1 = max_(max0 - f7vx, 0)
+        max2 = max_(max1 - f7vy, 0)
+        max3 = max_(max2 - f7vw, 0)
         return (P.taux1*min_(f7vx, max0) + 
                 P.taux1*min_(f7vy, max1) + 
                 P.taux2*min_(f7vw, max2) + 
