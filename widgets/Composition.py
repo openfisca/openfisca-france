@@ -530,7 +530,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         """
         Return plugin icon (QIcon instance)
         Note: this is required for plugins creating a main window
-              (see SpyderPluginMixin.create_mainwindow)
+              (see OpenfiscaPluginMixin.create_mainwindow)
               and for configuration dialog widgets creation
         """
         return get_icon('OpenFisca22.png')
@@ -609,7 +609,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         return True
 
 #
-#        SpyderPluginWidget.visibility_changed(self, enable)
+#        OpenfiscaPluginWidget.visibility_changed(self, enable)
 #        if self.dockwidget.isWindow():
 #            self.dock_toolbar.show()
 #        else:
