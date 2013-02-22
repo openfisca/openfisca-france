@@ -254,19 +254,19 @@ def _drbail(f4tq, _P):
     P = _P.ir.credits_impot.drbail
     return P.taux*f4tq
 
-def _ci_garext(f4ga, f4gb, f4gc, f4ge, f4gf, f4gg, _P):
+def _ci_garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
     '''
     Frais de garde des enfants à l’extérieur du domicile (cases 7GA à 7GC et 7GE à 7GG)
     2005-
     '''
     P = _P.ir.credits_impot.garext
     max1 = P.max
-    return P.taux*(min_(f4ga, max1) + 
-                          min_(f4gb, max1) +
-                          min_(f4gc, max1) +
-                          min_(f4ge, max1/2) +
-                          min_(f4gf, max1/2) +
-                          min_(f4gg, max1/2))
+    return P.taux*(min_(f7ga, max1) + 
+                          min_(f7gb, max1) +
+                          min_(f7gc, max1) +
+                          min_(f7ge, max1/2) +
+                          min_(f7gf, max1/2) +
+                          min_(f7gg, max1/2))
 
 def _preetu(f7uk, f7vo, f7td, _P):
     '''
