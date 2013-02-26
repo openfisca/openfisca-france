@@ -550,7 +550,10 @@ def preproc_inputs(datatable):
                 the DataTable containing the input variables of the model
     
     """
-    
+    from src.lib.utils import of_import
+    country = 'france'
+    WEIGHT = of_import("","WEIGHT", country)
+    datatable.propagate_to_members('men', WEIGHT)
     datatable.propagate_to_members( 'foy', 'rfr_n_2')
     datatable.propagate_to_members( 'foy', 'nbptr_n_2')
 

@@ -3204,7 +3204,7 @@
       </CODE>
     </NODE>
     <NODE description="Allocation de rentrée scolaire" code="ars">
-      <CODE description="Âge d'entrée à l'école primaire" code="agep" format='integer' type="monetary">
+      <CODE description="Âge d'entrée à l'école primaire" code="agep" format='integer' type="age">
 	<VALUE valeur="6" deb="2002-01-01" fin="2011-12-31"/>            
       </CODE>
       <CODE description="Âge d'entrée au collège" code="agec" format = 'integer' type="age">

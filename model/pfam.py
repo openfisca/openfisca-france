@@ -48,7 +48,7 @@ def _etu(activite):
     ''' 
     return activite == 2
 
-def _smic55(sal, _P):
+def _smic55(salbrut, _P):
     '''
     Indicatrice individuelle d'un salaire supérieur à 55% du smic
     'ind'
@@ -56,7 +56,7 @@ def _smic55(sal, _P):
     # TODO: ne pas comparer un salaire net à un smic brut
     nbh_travaillees = 151.67 * 12
     smic_annuel = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-    return sal >= _P.fam.af.seuil_rev_taux * smic_annuel
+    return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel
 
 def _br_pf_i(tspr, hsup, rpns):
     '''
@@ -108,7 +108,7 @@ def _af_base(af_nbenf, _P):
     '''
     P = _P.fam
     bmaf = P.af.bmaf    
-    # prestations familliales (brutes de crds)
+    # prestations familiales (brutes de crds)
     af_1enf = round(bmaf * P.af.taux.enf1, 2)
     af_2enf = round(bmaf * P.af.taux.enf2, 2)
     af_enf_supp = round(bmaf * P.af.taux.enf3, 2)
@@ -120,7 +120,7 @@ def _af_majo(age, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
     Allocations familiales - majoration pour âge
     'fam'
     '''
-    # Date d'entrée en vigueur de la nouvelle majoration
+    # TODO: Date d'entrée en vigueur de la nouvelle majoration
     # enfants nés après le "1997-04-30"       
     bmaf = _P.fam.af.bmaf    
     P_af = _P.fam.af
@@ -213,7 +213,6 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
     # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année   
     P = _P.fam
     asf_nbenf = nb_enf(age, smic55, P.af.age1, P.af.age2)
-    # TODO : gérer la mensualisation de l'ASF: pb de la pension alimentaire ? 
     asf_nbenfa = asf_nbenf
 
     asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1), 2)
@@ -239,9 +238,9 @@ def _ars(age, smic55, br_pf, _P, _option={'age': ENFS, 'smic55': ENFS}):
     
     P = _P.fam
     bmaf = P.af.bmaf
-    # On prend l'âge en septembre
-    # enf_05 = nb_enf(age, smic55, P.ars.agep - 1, P.ars.agep - 1)  # 6 ans avant le 31 décembre
-    enf_05 = 0
+    # On doit prendre l'âge en septembre
+    enf_05 = nb_enf(age, smic55, P.ars.agep - 1, P.ars.agep - 1)  # 6 ans avant le 31 décembre
+    #enf_05 = 0
     # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans 
     # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il 
     # soit inscrit à l'école primaire. Il faudra alors présenter un 
@@ -707,7 +706,7 @@ def age_aine(ages, ag1, ag2):
         isaine = ispacaf & (age > ageaine)
         ageaine = isaine * age + not_(isaine) * ageaine
     return ageaine
-    # TODO smic55
+    # TODO: smic55
 
 def age_en_mois_benjamin(agems):
     '''
