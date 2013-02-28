@@ -1,8 +1,11 @@
-'''
-Created on Sep 19, 2012
+# -*- coding:utf-8 -*-
+# Created on 27 févr. 2013
+# This file is part of OpenFisca.
+# OpenFisca is a socio-fiscal microsimulation software
+# Copyright © 2013 Clément Schaff, Mahdi Ben Jelloul
+# Licensed under the terms of the GVPLv3 or later license
+# (see openfisca/__init__.py for details)
 
-@author: benjello
-'''
 
 from pandas import  HDFStore, read_csv, ExcelFile, concat, DataFrame
 import os
@@ -192,11 +195,16 @@ def debug():
 #    store.append(dfname,table)
 #    print store
 
+
 if __name__ == '__main__':
-    import tables
-    print tables.__version__
-    #debug()
-    build_all_surveys()
-#    test('../survey.h5')
-#    build_survey_psl()
-#    test('../survey_psl.h5')
+
+#    R_USER = os.getenv("R_USER")
+#    print R_USER
+#    if R_USER is None:
+#        import win32api
+#        R_USER = win32api.GetUserName()
+#        print R_USER
+#    R_HOME = (os.environ["R_HOME"])
+#    print R_HOME 
+
+    toto()
