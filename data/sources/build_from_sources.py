@@ -198,13 +198,4 @@ def debug():
 
 if __name__ == '__main__':
 
-#    R_USER = os.getenv("R_USER")
-#    print R_USER
-#    if R_USER is None:
-#        import win32api
-#        R_USER = win32api.GetUserName()
-#        print R_USER
-#    R_HOME = (os.environ["R_HOME"])
-#    print R_HOME 
-
-    toto()
+    build_all_surveys()
