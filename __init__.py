@@ -18,9 +18,7 @@ ENTITIES_INDEX = ['men', 'fam', 'foy']
 WEIGHT = "wprm"
 WEIGHT_INI = "wprm_init"
 
-
 DATA_SOURCES_DIR = os.path.join(SRC_PATH,"countries","france","data","sources")
-
 
 # Some variables needed by the test case plugins
 
