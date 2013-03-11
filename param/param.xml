@@ -57,7 +57,7 @@
 		</TRANCHE>
       </BAREME>
     </NODE>
-    <NODE description="Accesoires du salaire (intéressement etc)" code="int" >
+    <NODE description="Accessoires du salaire (intéressement etc)" code="int" >
       <BAREME description="CSG déductible" code="deduc">
         <TRANCHE code="tranche0">
 	  	  <SEUIL>
