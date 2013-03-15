@@ -396,26 +396,19 @@ def _iaidrdi(ip_net, reductions):
     '''
     return ip_net - reductions
 
-def _cont_rev_loc(f4bl):
+def _cont_rev_loc(f4bl, _P):
     '''
     Contribution sur les revenus locatifs
     '''
-    loyf_taux = 0.025
-    loyf_seuil = 0
-    return round(loyf_taux *(f4bl >= loyf_seuil)*f4bl)
+    P = _P.ir.crl
+    return round(P.taux *(f4bl >= P.seuil)*f4bl)
 
-def _teicaa(f5qm, f5rm):
+def _teicaa(f5qm, f5rm, _P):
     '''
     Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
     '''
-    #     H90_a1 = 0*max_(0,min_(f5qm,23000))
-    H90_a2 = .04*max_(0,min_(f5qm - 23000,107000))
-    H90_a3 = .026*max_(0,f5qm - 107000)
-    #     H90_b1 = 0*max_(0,min_(f5rm,23000))
-    H90_b2 = .04*max_(0,min_(f5qm-23000,107000))
-    H90_b3 = .026*max_(0,f5qm - 107000)
-    
-    return H90_a2 + H90_a3 + H90_b2 + H90_b3
+    bareme = _P.ir.teicaa
+    return bareme.calc(f5qm) + bareme.calc(f5rm)
 
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
     P = _P.ir.plus_values

@@ -217,10 +217,6 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
 
     asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1), 2)
     
-#    asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1 
-#                                        - rst[CHEF] - rst[PART]), 2)    
-    #asf_m    = round(isol*asf_elig*max_(0,asf_nbenf*P.af.bmaf*P.asf.taux1 - rst_fam/12.0),2)
-    
     res = None
     for alr in alr.itervalues():
         if res is None: res = zeros(len(alr))  

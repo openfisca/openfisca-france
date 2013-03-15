@@ -186,7 +186,7 @@ class ModelSF(ModelDescription):
     reductions  = Prestation(ri._reductions, 'foy')
     iaidrdi     = Prestation(ir._iaidrdi, 'foy')
     teicaa      = Prestation(ir._teicaa, 'foy')
-    cont_rev_loc = Prestation(ir._cont_rev_loc, 'foy')
+    cont_rev_loc = Prestation(ir._cont_rev_loc, 'foy', start=date(2001,1,1))
     iai = Prestation(ir._iai, 'foy')
     cehr = Prestation(ir._cehr, 'foy')
     cesthra =  Prestation(ir._cesthra, 'foy')

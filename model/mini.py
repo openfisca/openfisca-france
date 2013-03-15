@@ -254,7 +254,7 @@ def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P
     'ind'
     """
     P = _P.minim
-    if _P.datesim.year < 2004:
+    if _P.datesim.year < 2004: # taking care of the existence of the paje/ape/apje
         out =  P.rmi.pfInBRrmi*(af_base + cf + asf + apje + ape)    
     else: 
         out =  P.rmi.pfInBRrmi*(af_base + cf + asf + paje_base + paje_clca + paje_colca)
@@ -420,12 +420,26 @@ def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds*rsa_act
         
 def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = {'age': ENFS, 'agem': ENFS, 'smic55': ENFS}):
-    '''
+    """
     Allocation de parent isolé
-    '''
+    """
     P = _P
-    bmaf = P.fam.af.bmaf;
+    bmaf = P.fam.af.bmaf
     # TODO
+    
+#    Majoration pour isolement
+#    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants à charge ou enceinte, le montant forfaitaire garanti est majoré.
+#    Ce montant forfaitaire majoré est accordé à partir du mois au cours duquel survient l'un des événements suivants :
+#    - déclaration de grossesse,
+#    - naissance d'un enfant,
+#    - prise en charge d'un enfant,
+#    - séparation, veuvage,
+#    - dépôt de la demande si l’événement est antérieur.
+#
+#    Le montant forfaitaire majoré peut être accordé pendant 12 mois, continus ou discontinus, au cours d’une période de 18 mois suivant l’événement.
+#    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé jusqu'à ses 3 ans.
+#    
+    
     benjamin = age_en_mois_benjamin(agem)  
     enceinte = (benjamin<0)*(benjamin>-6)
     # TODO quel mois mettre ?
