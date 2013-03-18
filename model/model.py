@@ -425,17 +425,17 @@ class ModelSF(ModelDescription):
     # Catégories
     ############################################################
     
-    typ_men = IntPresta(cm._typ_men, unit = 'men', label = u"Type de ménage")
-    nb_ageq0 = IntPresta(cl._nb_ageq0, unit = 'men', label = u"Effectifs des tranches d'âge quiquennal")
-    nbindebis = IntPresta(cl._nbinde, unit = 'men', label = u"Nombre d'individus dans le ménage")
-    cplx = BoolPresta(cl._cplx, unit = 'men', label = u"Indicatrice de ménage complexe")
+    typ_men = IntPresta(cm._typ_men, entity = 'men', label = u"Type de ménage")
+    nb_ageq0 = IntPresta(cl._nb_ageq0, entity = 'men', label = u"Effectifs des tranches d'âge quiquennal")
+    nbindebis = IntPresta(cl._nbinde, entity = 'men', label = u"Nombre d'individus dans le ménage")
+    cplx = BoolPresta(cl._cplx, entity = 'men', label = u"Indicatrice de ménage complexe")
     
-    act_cpl = IntPresta(cl._act_cpl, unit = 'men', label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint")
-    cohab   = BoolPresta(cl._cohab, unit = 'men', label = u"Vie en couple")
-    act_enf = IntPresta(cl._act_enf, unit = 'men', label = u"Nombre d'enfants actifs")
+    act_cpl = IntPresta(cl._act_cpl, entity = 'men', label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint")
+    cohab   = BoolPresta(cl._cohab, entity = 'men', label = u"Vie en couple")
+    act_enf = IntPresta(cl._act_enf, entity = 'men', label = u"Nombre d'enfants actifs")
 
     typmen15bis = EnumPresta(cl._typmen15, label = u"Type de ménage",
-                          unit = 'men',
+                          entity = 'men',
                           enum = Enum([u"Personne seule active",
                                        u"Personne seule inactive",
                                        u"Familles monoparentales, parent actif",
@@ -452,7 +452,7 @@ class ModelSF(ModelDescription):
                                         u"Autres ménages, 2 actifs ou plus",
                                         u"Autres ménages, tous inactifs"],start=1))
 
-    decile = EnumPresta(cm._decile, unit = 'men',
+    decile = EnumPresta(cm._decile, entity = 'men',
                         label = u"Décile de niveau de vie disponible",
                         enum = Enum([u"Hors champ"
                                      u"1er décile",
@@ -466,7 +466,7 @@ class ModelSF(ModelDescription):
                                      u"9e décile",
                                      u"10e décile"]))
     
-    decile_net = EnumPresta(cm._decile_net, unit = 'men',
+    decile_net = EnumPresta(cm._decile_net, entity = 'men',
                         label = u"Décile de niveau de vie net",
                         enum = Enum([u"Hors champ"
                                      u"1er décile",
@@ -481,12 +481,12 @@ class ModelSF(ModelDescription):
                                      u"10e décile"]))
     
     
-    pauvre50 = EnumPresta(cm._pauvre50, unit = 'men',
+    pauvre50 = EnumPresta(cm._pauvre50, entity = 'men',
                         label = u"Pauvreté monétaire au seuil de 50%",
                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
                                      u"Ménage en dessous du seuil de pauvreté à 50%"]))
 
-    pauvre60 = EnumPresta(cm._pauvre60, unit = 'men',
+    pauvre60 = EnumPresta(cm._pauvre60, entity = 'men',
                         label = u"Pauvreté monétaire au seuil de 60%",
                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
                                      u"Ménage en dessous du seuil de pauvreté à 50%"]))
