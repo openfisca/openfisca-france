@@ -326,10 +326,24 @@ def _paje_nais(agem, age, af_nbenf, br_pf, isol, biact, _P, _option={'age': ENFS
     return nais_brut  
     
 def _paje_clca(agem, af_nbenf, paje_base, inactif, partiel1, partiel2, _P, _option={'agem': ENFS}):
-    '''
+    """
     Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
     'fam'
-    '''
+    
+    Parameters:
+    -----------
+    
+    age :  âge en mois
+    af_nbenf : nombre d'enfants aus sens des allocations familiales
+    paje_base : allocation de base de la PAJE
+    inactif : indicatrice d'inactivité
+    partiel1 : Salarié: Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise pour les salariés
+               VRP ou non salarié travaillant à temps partiel: Temps de travail ne dépassant pas 76 heures par mois 
+                  et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %) 
+    partiel2 :  Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
+                VRP ou non salarié travaillant à temps partiel: Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
+                                                                (smic_8.27*169*136 %)
+    """
     
     # http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
     paje = paje_base >= 0
@@ -347,17 +361,6 @@ def _paje_clca(agem, af_nbenf, paje_base, inactif, partiel1, partiel2, _P, _opti
     age_benjamin = floor(age_m_benjamin / 12)
     condition2 = (age_benjamin <= (P.paje.base.age - 1))            
     condition = (af_nbenf >= 2) * condition2 + condition1
-    # Temps partiel 1
-    # Salarié: 
-    # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise
-    # VRP ou non salarié travaillant à temps partiel:
-    # Temps de travail ne dépassant pas 76 heures par mois et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
-    
-    # Temps partiel 2
-    # Salarié:
-    # Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
-    # Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
-    #  (smic_8.27*169*136 %)
     paje_clca = (condition * P.af.bmaf) * (
                 (not_(paje)) * (inactif * P.paje.clca.sansab_tx_inactif + 
                             partiel1 * P.paje.clca.sansab_tx_partiel1 + 
