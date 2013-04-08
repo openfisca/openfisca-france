@@ -12,7 +12,7 @@ import os
 from src.lib.simulation import SurveySimulation
 from src.plugins.survey.aggregates import Aggregates
 
-from src.countries.france.data.sources.config import DATA_DIR
+
 
 def build_totals():
     h5_name = "../amounts.h5"
@@ -44,86 +44,7 @@ def build_totals():
     store.close
     
 
-def build_erf_aggregates():
-    """
-    Fetch the relevant aggregates from erf data
-    """
-#    Uses rpy2.
-#    On MS Windows, The environment variable R_HOME and R_USER should be set
-    import pandas.rpy.common as com 
-    import rpy2.rpy_classic as rpy
-    rpy.set_default_mode(rpy.NO_CONVERSION)
-    
-    country = 'france'
-    for year in range(2006,2007):
-        menageXX = "menage" + str(year)[2:]
-        menageRdata = menageXX + ".Rdata"
-        filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), menageRdata)
-        yr = str(year)
-        simu = SurveySimulation()
-        simu.set_config(year = yr, country = country)
-        simu.set_param()
-    
-        agg = Aggregates()
-        agg.set_simulation(simu)
-        # print agg.varlist
-        rpy.r.load(filename)
 
-        menage = com.load_data(menageXX)
-        print menage.columns
-        cols = []
-        print year
-
-        of2erf = get_of2erf()
-        for col in agg.varlist:
-            try:
-                erf_var = of2erf[col]
-            except:
-                erf_var = None
-            if erf_var in menage.columns:
-                print col, erf_var
-                cols += [erf_var]
-            else:
-                print col + " not found"
-            
-        df = menage[cols]
-        wprm = menage["wprm"]
-        for col in df.columns:
-            
-            tot = (df[col]*wprm).sum()/1e9
-            print col, tot
-    
-    
-def get_of2erf(year=None):
-    of2erf = dict()
-    of2erf["csg"] = "csgim"  # imposable, et "csgdm", déductible 
-    of2erf["crds"] = "crdsm"
-    of2erf["irpp"] = "zimpom"
-    of2erf["ppe"] = "m_ppem"
-    of2erf["af"] =  "m_afm"
-#af_base
-#af_majo
-#af_forf
-    of2erf["cf"] = "m_cfm"
-    of2erf["paje_base"] = "m_pajem"
-    of2erf["paje_nais"] = "m_naism"
-    of2erf["paje_colca"] = ""
-    of2erf["paje_clmg"] = ""
-    of2erf["ars"] = "m_arsm"
-    of2erf["aeeh"] = "m_aesm" # allocation d'éducation spéciale
-    of2erf["asf"] = "m_asfm"
-    of2erf["aspa"] = "m_minvm"
-    of2erf["aah"] = "m_aahm"
-    of2erf["caah"] = "m_caahm"
-    of2erf["rsa"] = "m_rmim"
-    of2erf["rsa_act"] = ""
-    of2erf["aefa"] = "m_crmim"
-    of2erf["api"] = "m_apim"
-    of2erf["logt"] = "logtm"
-    of2erf["alf"] = "m_alfm"
-    of2erf["als"] = "m_alsm"
-    of2erf["apl"] = "m_aplm"
-    return of2erf
     
 def test():
     country = "france"
@@ -141,5 +62,4 @@ def test():
             print col
 
 if __name__ == '__main__':
-#    test()
-    build_erf_aggregates()
+    test()

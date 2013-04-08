@@ -13,10 +13,10 @@ from src import SRC_PATH
 # Model parameters
 ENTITIES_INDEX = ['men', 'fam', 'foy']
 
-
 # Data
 WEIGHT = "wprm"
 WEIGHT_INI = "wprm_init"
+FILTERING_VARS = ["champm"]
 
 DATA_SOURCES_DIR = os.path.join(SRC_PATH,"countries","france","data","sources")
 
