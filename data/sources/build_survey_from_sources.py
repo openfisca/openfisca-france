@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 from src.countries.france.data.sources.config import DATA_DIR
-from src.countries.france.data.sources.utils import cvs2hdf5
+from src.countries.france.data.sources.utils import csv2hdf5
 import os
 
 
