@@ -55,7 +55,7 @@ def build_erf_aggregates():
     rpy.set_default_mode(rpy.NO_CONVERSION)
     
     country = 'france'
-    for year in range(2006,2010):
+    for year in range(2006,2008):
         menageXX = "menage" + str(year)[2:]
         menageRdata = menageXX + ".Rdata"
         filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), menageRdata)
