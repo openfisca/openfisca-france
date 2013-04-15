@@ -17,7 +17,7 @@ from src.plugins.survey.aggregates import Aggregates
 def build_totals():
     h5_name = "../amounts.h5"
     store = HDFStore(h5_name)
-    files = ['logement_tous_regime', 'openfisca_pfam_tous_regimes', 
+    files = ['logement_tous_regime', 'pfam_tous_regimes', 
              'minima_sociaux_tous_regimes', 'IRPP_PPE', 'cotisations_RegimeGeneral' ]
     first = True
     for xlsfile in files:
