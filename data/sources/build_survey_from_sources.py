@@ -43,7 +43,7 @@ def build_all_surveys( option = 'frame'):
         os.remove(h5_name)
     except:
         pass
-    for year in range(2006,2008):
+    for year in range(2006,2010):
         build_survey(year, option=option)
         
 
