@@ -13,7 +13,7 @@ from src.lib.simulation import SurveySimulation
 from src.plugins.survey.aggregates import Aggregates
 
 def test_h5():
-    store = HDFStore("amounts_g.h5")
+    store = HDFStore("amounts.h5")
     df_a = store['amounts']
     df_b = store['benef']
     
