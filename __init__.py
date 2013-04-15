@@ -38,7 +38,7 @@ REVENUES_CATEGORIES = {'superbrut' : ['salsuperbrut', 'chobrut', 'rstbrut', 'alr
 AGGREGATES_DEFAULT_VARS = ['cotsoc_noncontrib', 'csg', 'crds',
             'irpp', 'ppe',
             'af', 'af_base', 'af_majo','af_forf', 'cf',
-            'paje_base', 'paje_nais', 'paje_colca', 'paje_clmg',
+            'paje_base', 'paje_nais', 'paje_clca', 'paje_clmg',
             'ars', 'aeeh', 'asf', 'aspa',
             'aah', 'caah', 
             'rsa', 'rsa_act', 'aefa', 'api',
