@@ -51,7 +51,7 @@ def build_totals():
     
 def test():
     country = "france"
-    for year in range(2006,2008):
+    for year in range(2006,2010):
  
         yr = str(year)
         simu = SurveySimulation()
