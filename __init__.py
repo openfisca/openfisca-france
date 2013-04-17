@@ -43,3 +43,4 @@ AGGREGATES_DEFAULT_VARS = ['cotsoc_noncontrib', 'csg', 'crds',
             'aah', 'caah', 
             'rsa', 'rsa_act', 'aefa', 'api',
             'logt', 'alf', 'als', 'apl']
+#ajouter csgd pour le calcul des agrégats erfs

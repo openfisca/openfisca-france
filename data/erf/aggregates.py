@@ -21,7 +21,7 @@ def build_erf_aggregates():
     rpy.set_default_mode(rpy.NO_CONVERSION)
     
     country = 'france'
-    for year in range(2006,2007):
+    for year in range(2006,2010):
 
         yr = str(year)
         simu = SurveySimulation()
@@ -61,7 +61,8 @@ def build_erf_aggregates():
     
 def get_of2erf(year=None):
     of2erf = dict()
-    of2erf["csg"] = "csgim"  # imposable, et "csgdm", déductible 
+    of2erf["csg"] = "csgim"  # imposable, et "csgdm", déductible
+    #of2erf["csgd"] = "csgdm" 
     of2erf["crds"] = "crdsm"
     of2erf["irpp"] = "zimpom"
     of2erf["ppe"] = "m_ppem"
@@ -72,7 +73,7 @@ def get_of2erf(year=None):
     of2erf["cf"] = "m_cfm"
     of2erf["paje_base"] = "m_pajem"
     of2erf["paje_nais"] = "m_naism"
-    of2erf["paje_colca"] = ""
+    of2erf["paje_clca"] = ""
     of2erf["paje_clmg"] = ""
     of2erf["ars"] = "m_arsm"
     of2erf["aeeh"] = "m_aesm" # allocation d'éducation spéciale
