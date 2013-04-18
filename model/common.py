@@ -259,6 +259,7 @@ def _decile(nivvie, champm, wprm):
 #    print (nivvie*(decile==1)*champm*wprm).sum()/( ((decile==1)*champm*wprm).sum() )
     return decile*champm
 
+
 def _decile_net(nivvie_net, champm, wprm):
     '''
     Décile de niveau de vie net
@@ -269,6 +270,17 @@ def _decile_net(nivvie_net, champm, wprm):
     decile, values = mark_weighted_percentiles(nivvie_net, labels, wprm*champm, method, return_quantiles=True)
     return decile*champm
 
+
+def _pauvre40(nivvie, champm, wprm):
+    '''
+    Indicatrice de pauvreté à 50% du niveau de vie median
+    'men'
+    '''
+    labels = arange(1,3)
+    method = 2
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True) 
+    threshold = .4*values[1]
+    return (nivvie <= threshold)*champm 
 
 
 def _pauvre50(nivvie, champm, wprm):
