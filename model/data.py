@@ -880,5 +880,10 @@ class InputTable(ModelDescription):
     m_colcam  = IntCol()
     m_mgamm   = IntCol()
     m_mgdomm  = IntCol()
-    zthabm    = IntCol()  # Devrait être renommée tax
+    zthabm    = IntCol()  
+    
+    adoption    = BoolCol(entity="ind",
+                        label=u"Enfant adopté")
+    
+    # Devrait être renommée tax
     # tax_hab= IntCol()    
