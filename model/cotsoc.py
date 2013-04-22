@@ -13,7 +13,6 @@ from numpy import maximum as max_, minimum as min_, logical_not as not_, zeros, 
 from src.lib.utils import  scaleBaremes, combineBaremes, BaremeDict
 
 
-                
 # TODO: CHECK la csg déductible en 2006 est case GH
 # TODO:  la revenus soumis aux csg déductible et imposable sont en CG et BH en 2010 
 
@@ -46,6 +45,9 @@ from src.lib.utils import  scaleBaremes, combineBaremes, BaremeDict
 #
 #a = {'sal':sal, 'pat':pat, 'csg':csg, 'crds':crds, 'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps, 'ir': P.ir, 'prelsoc': P.prelsoc}
 #return Dicts2Object(**a)
+
+
+DEBUG = True
 
 def _mhsup(hsup):
     """
@@ -258,8 +260,10 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
     cotpat = zeros(len(salbrut))
     for categ in CAT:
         iscat = (type_sal == categ[1])
-        for bar in pat[categ[0]].itervalues(): 
+        for bar in pat[categ[0]].itervalues():
             is_noncontrib = (bar.option == "noncontrib")
+            if DEBUG:
+                is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
             temp = - (iscat*bar.calc(salbrut))*is_noncontrib
             cotpat += temp
     return cotpat
@@ -345,7 +349,8 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, _P):
         for bar in sal[categ[0]].itervalues():
             is_noncontrib = (bar.option == "noncontrib")
             is_exempt_fds = (categ[0] in ['etat_t', 'colloc_t'])*(bar._name == 'solidarite')*( (salbrut-hsup) <= seuil_assuj_fds)   #TODO: check assiette voir IPP
-            
+            if DEBUG:
+                is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
             temp = - (iscat*bar.calc(salbrut-hsup))*is_noncontrib*not_(is_exempt_fds)
             cotsal += temp
     return cotsal
