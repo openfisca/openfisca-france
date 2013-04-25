@@ -913,7 +913,7 @@
 	    </TAUX>
 	  </TRANCHE>  
 	</BAREME>      
-	<BAREME description="Invalidité, décès" code="invdec">
+	<BAREME description="Invalidité, décès" code="invdec" option="noncontrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
 	      <VALUE valeur="0" deb="2003-01-01" fin="2011-12-31"/>
@@ -970,7 +970,7 @@
       </NODE>
       <NODE description="Spécifiques à la fonction publique" code="fonc" >
       	<NODE description="Commune à toutes les fonctions publiques" code="commun" >
-      	  <BAREME description="Contribution exceptionelle de solidarité (seuil d'assujetissment variable)" code="solidarite">
+      	  <BAREME description="Contribution exceptionelle de solidarité (seuil d'assujetissment variable)" code="solidarite" option="noncontrib">
 	        <TRANCHE code="tranche0">	            
 	          <SEUIL>
 	            <VALUE valeur="0" deb="2003-01-01" fin="2020-12-31"/>
@@ -1048,7 +1048,7 @@
 		  </BAREME>
 		</NODE>
 		<NODE description="Collectivités locales - Fonction publique hospitalière" code="colloc" >
-		  <BAREME description="Retraites des agents des collectivités locales (taux hors NBI)" code="cnracl1">
+		  <BAREME description="Retraites des agents des collectivités locales (taux hors NBI)" code="cnracl1" option="noncontrib">
 		    <TRANCHE code="tranche0">
 			  <SEUIL>
 			    <VALUE valeur="0" deb="1984-01-01" fin="2011-12-31"/>
@@ -1060,7 +1060,7 @@
 			  </TAUX>
 		    </TRANCHE>
 		  </BAREME>
-		  <BAREME description="Retraites des agents des collectivités locales (taux NBI)" code="cnracl2">
+		  <BAREME description="Retraites des agents des collectivités locales (taux NBI)" code="cnracl2" option="noncontrib">
 		    <TRANCHE code="tranche0">
 			  <SEUIL>
 			    <VALUE valeur="0" deb="1984-01-01" fin="2011-12-31"/>
@@ -1128,7 +1128,7 @@
 	    </TAUX>
           </TRANCHE>
         </BAREME>
-	<BAREME description="Contribution solidarité autonomie (dépendance)" code="csa">
+	<BAREME description="Contribution solidarité autonomie (dépendance)" code="csa" option="noncontrib">
           <TRANCHE code="tranche0">	            
 	    <SEUIL>
 	      <VALUE valeur="0" deb="2004-07-01" fin="2011-12-31"/>
@@ -1177,7 +1177,7 @@
 	    </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, tout employeur)" code="fnal1">
+        <BAREME description="Fonds national action logement (FNAL, tout employeur)" code="fnal1" option="noncontrib">
           <TRANCHE code="tranche0">	            
 	    <SEUIL>
 	      <VALUE valeur="0" deb="1993-07-01" fin="2010-12-31"/>
@@ -1195,7 +1195,7 @@
 	    </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" taille="plusde20" code="fnal2">
+        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" taille="plusde20" code="fnal2" option="noncontrib">
           <TRANCHE code="tranche0">
 	    <SEUIL>
 	      <VALUE valeur="0" deb="1993-01-01" fin="2011-12-31"/>
@@ -1309,7 +1309,7 @@
 	    </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Effort à la construction (plus de 20 salariés)" taille="plusde20" code="construction">
+        <BAREME description="Effort à la construction (plus de 20 salariés)" taille="plusde20" code="construction" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="2003-01-01" fin="2011-12-31"/>
@@ -1319,7 +1319,7 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Transport (valeur non différenciée selon la localité)" code="construction">
+        <BAREME description="Transport (valeur non différenciée selon la localité)" code="construction" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="2003-01-01" fin="2011-12-31"/>
@@ -1559,7 +1559,7 @@
 	          </TAUX>
             </TRANCHE>
           </BAREME>
-          <BAREME description="Allocations temporaires d'invalidité (ATI)" code="ati">
+          <BAREME description="Allocations temporaires d'invalidité (ATI)" code="ati" option="noncontrib">
 	        <TRANCHE code="tranche0">	            
 	          <SEUIL>
 	            <VALUE valeur="0" deb="2003-01-01" fin="2020-12-31"/>
@@ -1609,7 +1609,7 @@
 	          </TAUX>
             </TRANCHE>
           </BAREME>
-          <BAREME description="Allocations temporaires d'invalidité (hors NBI)" code="atiacl">
+          <BAREME description="Allocations temporaires d'invalidité (hors NBI)" code="atiacl" option="noncontrib">
 	        <TRANCHE code="tranche0">	            
 	          <SEUIL>
 	            <VALUE valeur="0" deb="2003-01-01" fin="2020-12-31"/>
