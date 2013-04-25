@@ -732,7 +732,7 @@
 	</BAREME>
       </NODE>
       <NODE description="Non salariés: artisans" code="arti" >
-	<BAREME description="Cotisation Famille" code="fami" option="noncontrib">
+	<BAREME description="Cotisation Famille" code="famille" option="noncontrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
 	      <VALUE valeur="0" deb="2003-01-01" fin="2011-12-31"/>
@@ -860,7 +860,7 @@
 	</BAREME>        
       </NODE>   
       <NODE description="Non salariés: commerçants et industriels" code="comind" >
-	<BAREME description="Famille" code="fami" option="noncontrib">
+	<BAREME description="Famille" code="famille" option="noncontrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
 	      <VALUE valeur="0" deb="2003-01-01" fin="2011-12-31"/>
