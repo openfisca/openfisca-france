@@ -469,7 +469,7 @@ def _paje_colca(af_nbenf, agem, opt_colca, paje_base, _P, _option={'agem': ENFS}
 
 def _paje_cumul(paje_base_temp, cf_temp):
     '''
-    L'allocation de base de la paje n'est pas cummulable avec le complément familial
+    L'allocation de base de la paje n'est pas cumulable avec le complément familial
     '''
     # On regarde ce qui est le plus intéressant pour la famille, chaque mois
     paje_base = (paje_base_temp >= cf_temp) * paje_base_temp
@@ -477,7 +477,7 @@ def _paje_cumul(paje_base_temp, cf_temp):
     
 def _cf_cumul(paje_base_temp, apje_temp, ape_temp, cf_temp):
     '''
-    L'allocation de base de la paje n'est pas cummulable avec le complément familial
+    L'allocation de base de la paje n'est pas cumulable avec le complément familial
     '''
     cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) *cf_temp
     return round(cf_brut, 2)
@@ -601,14 +601,14 @@ def _apje(br_pf, age, smic55, isol, biact, _P, _option={'age': ENFS, 'smic55': E
 
 def _ape_cumul(apje_temp, ape_temp, cf_temp):
     '''
-    L'allocation de base de la paje n'est pas cummulable avec le complément familial
+    L'allocation de base de la paje n'est pas cumulable avec le complément familial
     '''
     ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
     return round(ape, 2)
 
 def _apje_cumul(apje_temp, ape_temp, cf_temp):
     '''
-    L'APJE n'est pas cummulable avec le complément familial et l'APE
+    L'APJE n'est pas cumulable avec le complément familial et l'APE
     '''
     apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
     return round(apje, 2)

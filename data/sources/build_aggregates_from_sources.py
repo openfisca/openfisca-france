@@ -19,7 +19,7 @@ def build_totals():
     store = HDFStore(h5_name)
 
     files = ['logement_tous_regime', 'pfam_tous_regimes', 
-             'minima_sociaux_tous_regimes', 'IRPP_PPE', 'cotisations_RegimeGeneral' ]
+             'minima_sociaux_tous_regimes', 'IRPP_PPE', 'cotisations_TousRegimes' ]
 
     first = True
     for xlsfile in files:
