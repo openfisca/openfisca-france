@@ -410,14 +410,61 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     RSA = max_(0,rsa_socle + P.pente*(ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
     rsa = (RSA>=P.rsa_nv)*RSA
     return rsa
+
+
+def _psa(age, smic55, af_nbenf, nb_par, ass ,aer, api, rsa, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+    '''
+    Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
+    '''
+    P = _P
     
+    dummy_api = api > 0
+    dummy_rmi = rsa > 0
+    # dummy_apl = apl > 0
+
+    # Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié en janvier, 
+    # février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour les ex-bénéficiaires du Rmi ou de l’Api), 
+    # de la prime forfaitaire mensuelle au titre du Rmi ou de l’Api 
+    # ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et d’être âgé de plus de 25 ans 
+    # ou d’avoir au moins un enfant à charge). 
+    # La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.  
+    
+    maj = 0  # TODO
+    
+    condition = (dummy_api+dummy_rmi > 0)
+    
+    if hasattr(P.fam.af,"age3"): nbPAC = nb_enf(age, smic55, P.fam.af.age1,P.fam.af.age3)
+    else: nbPAC = af_nbenf
+    # TODO check nombre de PAC pour une famille
+    P = _P.minim
+    psa = condition*P.psa.mon_seul*(1 + (nb_par==2)*P.psa.tx_2p
+              + nbPAC*P.psa.tx_supp*(nb_par<=2)
+              + nbPAC*P.psa.tx_3pac*max_(nbPAC-2,0))
+    
+               
+    psa = max_(psa) + 200  
+    return psa 
+
+   
 def _rsa_act(rsa, rmi):
+    '''
+    Calcule le montant du RSA activité
+    '''
     res = max_(rsa - rmi, 0)
     return res 
 
 
 def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds*rsa_act
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = {'age': ENFS, 'agem': ENFS, 'smic55': ENFS}):
     """
