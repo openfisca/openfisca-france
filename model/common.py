@@ -203,11 +203,11 @@ def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     '''
     return af + cf + ars + aeeh + paje + asf + crds_pfam
 
-def _mini(aspa, aah, caah, asi, rsa, aefa, api, ass, psa):
+def _mini(aspa, aah, caah, asi, rsa, aefa, api, ass):
     '''
     Minima sociaux
     '''
-    return aspa + aah + caah + asi + rsa + aefa + api + ass +psa
+    return aspa + aah + caah + asi + rsa + aefa + api + ass
 
 def _logt(apl, als, alf, crds_lgtm):
     '''
@@ -234,12 +234,11 @@ def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csg_cap_lib, csg_cap_bar):
     return csgsali + csgsald + csgchoi + csgchod + csgrsti + csg_cap_lib
 
 
-def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
+def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib, prelsoc_cap_lib, prelsoc_cap_bar):
     '''
-    Cotisations sociales non contributives , prelsoc_cap_lib, prelsoc_cap_bar
-    + prelsoc_cap_lib + prelsoc_cap_bar
+    Cotisations sociales non contributives
     '''
-    return cotpat_noncontrib + cotsal_noncontrib 
+    return cotpat_noncontrib + cotsal_noncontrib + prelsoc_cap_lib + prelsoc_cap_bar
 
 from src.lib.utils import mark_weighted_percentiles
 

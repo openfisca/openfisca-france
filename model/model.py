@@ -377,7 +377,6 @@ class ModelSF(ModelDescription):
     rmi  = Prestation(ms._rmi, 'fam', label = u"Revenu de solidarité active - socle")
     rsa  = Prestation(ms._rsa, 'fam', label = u"Revenu de solidarité active")
     rsa_act = Prestation(ms._rsa_act, 'fam', label = u"Revenu de solidarité active - activité", start = date(2009, 7, 1))
-    psa = Prestation(ms._psa, 'fam', label = u"Prime de solidarité active", start = date(2009, 1, 1), end=date(2009, 12,31))
     api  = Prestation(ms._api, 'fam', end = date(2009, 7, 1), label = u"Allocation de parent isolé" )
     crds_mini = Prestation(ms._crds_mini, 'fam', start = date(2009, 7, 1))
     aefa = Prestation(ms._aefa, 'fam', label = u"Allocation exceptionelle de fin d'année")
