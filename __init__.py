@@ -10,6 +10,11 @@ from src import SRC_PATH
 
 ## France 
 
+
+## Debugging parameters
+
+DEBUG_COTSOC = True
+
 # Model parameters
 ENTITIES_INDEX = ['men', 'fam', 'foy']
 

@@ -46,8 +46,9 @@ from src.lib.utils import  scaleBaremes, combineBaremes, BaremeDict
 #a = {'sal':sal, 'pat':pat, 'csg':csg, 'crds':crds, 'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps, 'ir': P.ir, 'prelsoc': P.prelsoc}
 #return Dicts2Object(**a)
 
+from src.countries.france import DEBUG_COTSOC
 
-DEBUG = True
+DEBUG = DEBUG_COTSOC
 
 def _mhsup(hsup):
     """
@@ -76,6 +77,8 @@ def _prelsoc_cap_bar(rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
+    if DEBUG:
+        return - rev_cap_bar*0
     P = _P.prelsoc
     if _P.datesim.year < 2006:
         total = P.base 
@@ -102,6 +105,8 @@ def _prelsoc_cap_lib(rev_cap_lib, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire
     '''
+    if DEBUG:
+        return - rev_cap_lib*0
     P = _P.prelsoc
     if _P.datesim.year < 2006:
         total = P.base 
