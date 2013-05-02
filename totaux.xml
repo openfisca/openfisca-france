@@ -86,6 +86,7 @@
       <NODE desc= "Complément de l'allocation adulte handicapé" shortname="CAAH" code='caah' color = "244,160,80"/>
       <NODE desc= "Allocation supplémentaire d'invalidité" shortname="ASI" code='asi' color = "244,160,80"/>
       <NODE desc= "Revenu de solidarité active" shortname="RSA" code='rsa' color = "239,130,19"/>
+      <NODE desc= "Prime de solidarité active" shortname="PSA" code='psa' color = "239,130,19"/>
       <NODE desc= "Aide exceptionelle de fin d'année" shortname="AEFA" code='aefa' color = "237,119,3"/>
       <NODE desc= "Allocation parent isolé" shortname="API" code='api' color = "208,112,4"/>
     </NODE>

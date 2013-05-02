@@ -7,5 +7,5 @@ def get_config(widget):
     country = CONF.get('simulation', 'country')
     if country == 'france':
         if isinstance(widget, AggregateOutputWidget):
-            widget.varlist = ['irpp', 'ppe', 'af', 'cf', 'ars', 'aeeh', 'asf', 'aspa', 'aah', 'caah', 'rsa', 'aefa', 'api', 'logt']
+            widget.varlist = ['irpp', 'ppe', 'af', 'cf', 'ars', 'aeeh', 'asf', 'aspa', 'aah', 'caah', 'rsa', 'psa', 'aefa', 'api', 'logt']
             widget.selected_vars = set(['revdisp', 'nivvie'])
