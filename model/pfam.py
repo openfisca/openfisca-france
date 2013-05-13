@@ -592,12 +592,15 @@ def _apje(br_pf, age, smic55, isol, biact, _P, _option={'age': ENFS, 'smic55': E
 
     apje = (nbenf >= 1) * ((br_pf <= plaf) * base 
                             + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
-    # Non cummul APE APJE CF  
+
+    # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
+    # Cette allocation est verséE du 5ème mois de grossesse jusqu’au mois précédant le 3ème anniversaire de l’enfant.
+     
+    # Non cumul APE APJE CF  
     #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes. 
     #    L’APJE est alors versée du 5ème mois de grossesse jusqu’à la naissance de l’enfant.
     #  - Le CF
     return 12*apje  # annualisé
-
 
 def _ape_cumul(apje_temp, ape_temp, cf_temp):
     '''
@@ -621,8 +624,14 @@ def _aged(age, smic55, br_pf, ape_taux_partiel, dep_trim, _P, _option={'age': EN
     Allocation garde d'enfant à domicile
     '''
     # TODO: trimestrialiser 
-    # les deux conjoints actif et revenu min requis
-    # A complêter
+    # les deux conjoints actif et revenu min requis, jusqu'aux 6 ans de l'enfant né avant le 01/01/2004, emploi d'une garde A DOMICILE
+    # cette allocation consiste en une prise en charge partielle des charges sociales inhérentes à l'emploi d'une personne à domicile.
+    # Si vous avez au moins un enfant  de moins de 3 ans gardé au domicile, 2 cas :
+    # Revenus 2005 > 37 241  € : la CAF prend en charge 50% des charges sociales (plafonné à 1 106 € par trimestre),
+    # Revenus 2005 < 37 341  € : la CAF prend en charge 75% des charges sociales (plafonné à 1 659 € par trimestre).
+    # Si vous avez un enfant de plus de 3 ans gardé au domicile (1 seul cas, sans condition de ressources) :
+    # la CAF prend en charge 50% des charges sociales (plafonné à 553 € par trimestre)
+
 
     P = _P.fam    
     nbenf = nb_enf(age, smic55, 0, P.aged.age1 - 1)
@@ -646,13 +655,13 @@ def _afeama(age, smic55, ape, af_nbenf, br_pf, _P, _option={'age': ENFS, 'smic55
     P = _P.fam
     
     elig = not_(ape) # assistante maternelle agréee
-# Vous devez:
-#    faire garder votre enfant de moins de 6 ans par une assistante maternelle agréée dont vous êtes l'employeur
-#    déclarer son embauche à l'Urssaf
-#    lui verser un salaire ne dépassant pas par jour de garde et par enfant 5 fois le montant horaire du Smic, soit au max_ 42,20 €
-#
-#Si vous cessez de travailler et bénéficiez de l'allocation parentale d'éducation, vous ne recevrez plus l'Afeama.
-#Vos enfants doivent être nés avant le 1er janvier 2004.
+    # Vous devez:
+    #    faire garder votre enfant de moins de 6 ans par une assistante maternelle agréée dont vous êtes l'employeur
+    #    déclarer son embauche à l'Urssaf
+    #    lui verser un salaire ne dépassant pas par jour de garde et par enfant 5 fois le montant horaire du Smic, soit au max_ 42,20 €
+    #
+    #Si vous cessez de travailler et bénéficiez de l'allocation parentale d'éducation, vous ne recevrez plus l'Afeama.
+    #Vos enfants doivent être nés avant le 1er janvier 2004.
 
     # TODO calcul des cotisations urssaf
     # 
@@ -668,6 +677,21 @@ def _afeama(age, smic55, ape, af_nbenf, br_pf, _P, _option={'age': ENFS, 'smic55
             ((br_pf >= seuil1) & (br_pf < seuil2)) * P.afeama.taux_median + 
             (br_pf >= seuil2) * P.afeama.taux_maxi)
     return 12 * afeama # annualisé
+
+    # L'AFEAMA comporte 2 volets complémentaires: l'AFEAMA proprement dit qui consiste à prendre en charge les cotisations sociales sur les salaires, d'une part, 
+    # et une allocation complémentaire versée aux parents, la majoration AFEAMA, d'autre part. 
+    # Le système de majoration AFEAMA a été modifié au 1er janvier 2001 : 
+    # Jusqu'en décembre 2000, son montant ne dépendait que de l'âge de l'enfant. 
+    # Depuis janvier 2001, il dépend également de la catégorie de revenus des parents employeurs (fonction de leur base ressources et du nombre d'enfants qu'ils ont à charge).
+    # Parallélement, son plafonnement a été ramené de 100 % à 85 % du salaire net versé à l'assistante maternelle (sauf si ces 85 % sont inférieurs au montant de la majoration la moins élevée, compte tenu de l'âge de l'enfant). 
+    # La catégorie de revenus des parents employeurs est déterminée par la CAF en fonction de la base ressources du ménage. 
+    # Le tableau suivant récapitule les montants pris en compte depuis le 1er juillet 2007 pour la détermination du montant maximal de la majoration AFEAMA selon les catégories de revenus :
+    # Base ressources du ménage
+    #                 1 enfant                      2 enfants             par enfant suppémentaire
+    # revenus    inférieurs à 17 593 €             inférieurs à 21 653 €          4060 €
+    #            inférieurs à 24 190 €             inférieurs à 29 773 €          5583 €
+    #            supérieurs à 24 190 €             supérieurs à 29 773 €          5583 €
+    # Montant base ressources 2006, au 1er juillet 2007
 
 def _crds_pfam(af, cf, asf, ars, paje, ape, apje, _P):
     '''

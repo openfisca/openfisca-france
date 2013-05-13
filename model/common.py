@@ -207,7 +207,7 @@ def _mini(aspa, aah, caah, asi, rsa, aefa, api, ass, psa):
     '''
     Minima sociaux
     '''
-    return aspa + aah + caah + asi + rsa + aefa + api + ass +psa
+    return aspa + aah + caah + asi + rsa + aefa + api + ass + psa
 
 def _logt(apl, als, alf, crds_lgtm):
     '''
