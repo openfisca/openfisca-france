@@ -401,6 +401,7 @@ def _rmi(rsa_socle, forf_log, br_rmi):
     rmi = max_(0, rsa_socle  - forf_log - br_rmi)
     return rmi
 
+
 def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PART]}): 
     ''' 
     Cacule le montant du RSA
@@ -408,16 +409,15 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     '''
     P = _P.minim.rmi 
     RSA = max_(0,rsa_socle + P.pente*(ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
-    rsa = (RSA>=P.rsa_nv)*RSA
+    rsa = (RSA>=P.rsa_nv)*RSA 
     return rsa
 
 
-def _psa(age, smic55, af_nbenf, nb_par, ass ,aer, api, rsa, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _psa(api, rsa, _P):
     '''
     Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
     '''
-    P = _P
-    
+        
     dummy_api = api > 0
     dummy_rmi = rsa > 0
     # dummy_apl = apl > 0
@@ -429,20 +429,15 @@ def _psa(age, smic55, af_nbenf, nb_par, ass ,aer, api, rsa, _P, _option = {'age'
     # ou d’avoir au moins un enfant à charge). 
     # La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.  
     
-    maj = 0  # TODO
     
     condition = (dummy_api+dummy_rmi > 0)
     
-    if hasattr(P.fam.af,"age3"): nbPAC = nb_enf(age, smic55, P.fam.af.age1,P.fam.af.age3)
-    else: nbPAC = af_nbenf
+    #if hasattr(P.fam.af,"age3"): nbPAC = nb_enf(age, smic55, P.fam.af.age1,P.fam.af.age3)
+    #else: nbPAC = af_nbenf
     # TODO check nombre de PAC pour une famille
-    P = _P.minim
-    psa = condition*P.psa.mon_seul*(1 + (nb_par==2)*P.psa.tx_2p
-              + nbPAC*P.psa.tx_supp*(nb_par<=2)
-              + nbPAC*P.psa.tx_3pac*max_(nbPAC-2,0))
-    
+    P = _P.minim.rmi
+    psa = condition*P.psa
                
-    psa = max_(psa) + 200  
     return psa 
 
    

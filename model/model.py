@@ -342,8 +342,7 @@ class ModelSF(ModelDescription):
     crds_pfam      = Prestation(pf._crds_pfam, 'fam', label = u"CRDS (prestations familiales)")
     
     # En fait en vigueur pour les enfants nés avant 2004 ...        
-    # TODO Gestion du cumul apje ape 
-
+    # TODO Gestion du cumul apje ape
     ############################################################
     # Allocations logement
     ############################################################

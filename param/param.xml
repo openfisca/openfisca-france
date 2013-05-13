@@ -4025,6 +4025,9 @@
 	<VALUE valeur="460.09" deb="2010-01-01" fin="2010-12-31"/>
 	<VALUE valeur="466.99" deb="2011-01-01" fin="2011-12-31"/>
       </CODE>
+      <CODE description="Prime de solidarité active" code="psa" format='integer' type="monetary">
+      <VALUE valeur="200" deb="2009-01-01" fin="2009-12-31"/>
+      </CODE>    
       <CODE description="Taux pour une 2nde personne" code="txp2"  format = 'percent'>
 	<VALUE valeur="0.5" deb="2002-01-01" fin="2011-12-31"/>
       </CODE>

@@ -1078,6 +1078,7 @@ def _ppe(ppe_brute, rsa_act, _option = {'rsa_act': [VOUS, CONJ]} ):
     PPE effectivement versé
     """
 #   On retranche le RSA activité de la PPE
+#   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
     ppe = max_(ppe_brute - rsa_act[VOUS] - rsa_act[CONJ],0)
     return ppe 
     

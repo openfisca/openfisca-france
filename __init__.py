@@ -41,7 +41,7 @@ REVENUES_CATEGORIES = {'superbrut' : ['salsuperbrut', 'chobrut', 'rstbrut', 'alr
 # Some variables used by other plugins
 
 AGGREGATES_DEFAULT_VARS = ['cotsoc_noncontrib', 'csg', 'crds',
-            'irpp', 'ppe',
+            'irpp', 'ppe','ppe_brute',
             'af', 'af_base', 'af_majo','af_forf', 'cf',
             'paje_base', 'paje_nais', 'paje_clca', 'paje_clmg',
             'ars', 'aeeh', 'asf', 'aspa',
