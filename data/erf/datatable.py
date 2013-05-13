@@ -148,5 +148,17 @@ def test():
     df = erf.get_values( ["typmen15", "nbinde", "af"], "menage")
     print df
     
+def build_foyer():
+    from src.lib.simulation import SurveySimulation
+    country = "france"
+    yr = 2006
+    simulation = SurveySimulation()
+    simulation.set_config(year=yr, country = country)
+    input_table = simulation.InputTable
+    for col in input_table.columns:
+        print col.name
+        print col.entity
+    
 if __name__ == '__main__':
-    test()
+    # test()
+    build_foyer()
