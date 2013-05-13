@@ -428,14 +428,22 @@ class ModelSF(ModelDescription):
     
     typ_men = IntPresta(cm._typ_men, entity = 'men', label = u"Type de ménage")
     nb_ageq0 = IntPresta(cl._nb_ageq0, entity = 'men', label = u"Effectifs des tranches d'âge quiquennal")
-    nbindebis = IntPresta(cl._nbinde, entity = 'men', label = u"Nombre d'individus dans le ménage")
+    nbinde = EnumPresta(cl._nbinde, label = u"Nombre d'individus dans le ménage",
+                          entity = 'men', 
+                          enum = Enum([u"Une personne",
+                                       u"Deux personnes",
+                                       u"Trois personnes",
+                                       u"Quatre personnes",
+                                       u"Cinq personnes",
+                                       u"Six personnes et plus"], start=1))
+    
     cplx = BoolPresta(cl._cplx, entity = 'men', label = u"Indicatrice de ménage complexe")
     
     act_cpl = IntPresta(cl._act_cpl, entity = 'men', label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint")
     cohab   = BoolPresta(cl._cohab, entity = 'men', label = u"Vie en couple")
     act_enf = IntPresta(cl._act_enf, entity = 'men', label = u"Nombre d'enfants actifs")
 
-    typmen15bis = EnumPresta(cl._typmen15, label = u"Type de ménage",
+    typmen15 = EnumPresta(cl._typmen15, label = u"Type de ménage",
                           entity = 'men',
                           enum = Enum([u"Personne seule active",
                                        u"Personne seule inactive",

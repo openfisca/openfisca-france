@@ -744,23 +744,23 @@ class InputTable(ModelDescription):
                                    u"Autres activités de services"],start=-1)) # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
     
     
-    typmen15 = EnumCol(label = u"Type de ménage",
-                       entity= 'men',
-                       enum = Enum([u"Personne seule active",
-                                    u"Personne seule inactive",
-                                    u"Familles monoparentales, parent actif",
-                                    u"Familles monoparentales, parent inactif et au moins un enfant actif",
-                                    u"Familles monoparentales, tous inactifs",
-                                    u"Couples sans enfant, 1 actif",
-                                    u"Couples sans enfant, 2 actifs",
-                                    u"Couples sans enfant, tous inactifs",
-                                    u"Couples avec enfant, 1 membre du couple actif",
-                                    u"Couples avec enfant, 2 membres du couple actif",
-                                    u"Couples avec enfant, couple inactif et au moins un enfant actif",
-                                    u"Couples avec enfant, tous inactifs",
-                                    u"Autres ménages, 1 actif",
-                                    u"Autres ménages, 2 actifs ou plus",
-                                    u"Autres ménages, tous inactifs"],start=1))
+#    typmen15 = EnumCol(label = u"Type de ménage",
+#                       entity= 'men',
+#                       enum = Enum([u"Personne seule active",
+#                                    u"Personne seule inactive",
+#                                    u"Familles monoparentales, parent actif",
+#                                    u"Familles monoparentales, parent inactif et au moins un enfant actif",
+#                                    u"Familles monoparentales, tous inactifs",
+#                                    u"Couples sans enfant, 1 actif",
+#                                    u"Couples sans enfant, 2 actifs",
+#                                    u"Couples sans enfant, tous inactifs",
+#                                    u"Couples avec enfant, 1 membre du couple actif",
+#                                    u"Couples avec enfant, 2 membres du couple actif",
+#                                    u"Couples avec enfant, couple inactif et au moins un enfant actif",
+#                                    u"Couples avec enfant, tous inactifs",
+#                                    u"Autres ménages, 1 actif",
+#                                    u"Autres ménages, 2 actifs ou plus",
+#                                    u"Autres ménages, tous inactifs"],start=1))
     
     ageq  = EnumCol(label = u"âge quinquennal de la personne de référence",
                     entity= 'men',
@@ -779,14 +779,14 @@ class InputTable(ModelDescription):
                                  u"80 ans et plus"]))
 
                                  
-    nbinde = EnumCol(label = u"taille du ménage",
-                     entity= 'men',
-                     enum = Enum([u"Une personne",
-                                  u"Deux personnes",
-                                  u"Trois personnes",
-                                  u"Quatre personnes",
-                                  u"Cinq personnes",
-                                  u"Six personnes et plus"], start=1))
+#    nbinde = EnumCol(label = u"taille du ménage",
+#                     entity= 'men',
+#                     enum = Enum([u"Une personne",
+#                                  u"Deux personnes",
+#                                  u"Trois personnes",
+#                                  u"Quatre personnes",
+#                                  u"Cinq personnes",
+#                                  u"Six personnes et plus"], start=1))
 
     ddipl = EnumCol(label = u"diplôme de la personne de référence",
                     entity= 'men',

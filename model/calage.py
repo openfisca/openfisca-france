@@ -16,17 +16,15 @@ CREF = QUIMEN['cref']
 ENFS = [QUIMEN['enf1'], QUIMEN['enf2'], QUIMEN['enf3'], QUIMEN['enf4'], QUIMEN['enf5'], QUIMEN['enf6'], QUIMEN['enf7'], QUIMEN['enf8'], QUIMEN['enf9'], ]
 
 def _nbinde(agem, _option = {'agem' : ALL_MEN}):
-    '''
+    """
     Number of household members
     'men'
     Values range between 1 and 6 for 6 members or more
-    '''
+    """
     n1 = 0
     for ind in agem.iterkeys():
         n1 += 1*(floor(agem[ind]) >= 0) 
-    
     n2 = where( n1 >=6, 6, n1)
-    
     return n2
 
 
@@ -97,25 +95,26 @@ def _nb_act(act_cpl, act_enf):
     '''
     return act_cpl + act_enf
 
-def _cplx(typmen15):
-#def _cplx(quifam, quimen, _option = {'quifam': ENFS, 'quimen': ENFS}):
-    '''
+#def _cplx(typmen15):
+def _cplx(quifam, quimen, age, _option = {'quifam': ENFS, 'quimen': ENFS, 'age': ENFS}):
+    """
     Indicatrice de ménage complexe
     'men'
-    '''
+    """
     # ménage complexe si les personnes autres que la personne de référence ou son conjoint
     # ne sont pas enfants
     # TODO problème avec les ENFS qui n'existent pas: leur quifam = 0
     # On contourne en utilisant le fait que leur quimen = 0 également
-#    res = 0
-#    from itertools import izip
-#    for quif, quim in izip(quifam.itervalues(), quimen.itervalues()):         
-#        res += 1*(quif <= 1)*(quim != 0)
-#    return (res > 0.5)
-    # En fait on ne peut pas car on n'a les enfants qu'au sens des allocations familiales ...
-    return (typmen15 > 12)
+    res = 0
+    from itertools import izip
+    for quif, quim, age_i in izip(quifam.itervalues(), quimen.itervalues(), age.itervalues()):         
+        res += 1*(quif == 0)*(quim != 0) + age_i > 25
     
-def _typmen15(typmen15, nbindebis, cohab, act_cpl, cplx, act_enf):
+    return (res > 0.5)
+    # En fait on ne peut pas car on n'a les enfants qu'au sens des allocations familiales ...
+    # return (typmen15 > 12)
+    
+def _typmen15(nbinde, cohab, act_cpl, cplx, act_enf):
     '''
     Type de ménage en 15 modalités
     1 Personne seule active
@@ -136,24 +135,24 @@ def _typmen15(typmen15, nbindebis, cohab, act_cpl, cplx, act_enf):
     'men'
     '''
     res = 0 + (cplx == 0 )*(
-            1 * ( (nbindebis == 1) & (cohab == 0) & (act_cpl == 1)) + #  Personne seule active 
-            2 * ( (nbindebis == 1) & (cohab == 0) & (act_cpl == 0)) + # Personne seule inactive
-            3 * ( (nbindebis > 1)  & (cohab == 0) & (act_cpl == 1)) + # Familles monoparentales, parent actif
-            4 * ( (nbindebis > 1)  & (cohab == 0) & (act_cpl == 0) & (act_enf >= 1) ) + # Familles monoparentales, parent inactif et au moins un enfant actif
-            5 * ( (nbindebis > 1)  & (cohab == 0) & (act_cpl == 0) & (act_enf == 0) ) + # Familles monoparentales, tous inactifs
-            6 * ( (nbindebis == 2) & (cohab == 1) & (act_cpl == 1) ) +   # Couples sans enfant, 1 actif
-            7 * ( (nbindebis == 2) & (cohab == 1) & (act_cpl == 2) ) +   # Couples sans enfant, 2 actifs
-            8 * ( (nbindebis == 2)  & (cohab == 1) & (act_cpl == 0) ) +   # Couples sans enfant, tous inactifs
-            9 * ( (nbindebis > 2)  & (cohab == 1) & (act_cpl == 1) ) +   # Couples avec enfant, 1 membre du couple actif
-            10 * ( (nbindebis > 2)  & (cohab == 1) & (act_cpl == 2) ) +  # Couples avec enfant, 2 membres du couple actif
-            11 * ( (nbindebis > 2)  & (cohab == 1) & (act_cpl == 0) & (act_enf >= 1)) + # Couples avec enfant, couple inactif et au moins un enfant actif
-            12 * ( (nbindebis > 2)  & (cohab == 1) & (act_cpl == 0) & (act_enf == 0))  # Couples avec enfant, tous inactifs
+            1 * ( (nbinde == 1) & (cohab == 0) & (act_cpl == 1)) + #  Personne seule active 
+            2 * ( (nbinde == 1) & (cohab == 0) & (act_cpl == 0)) + # Personne seule inactive
+            3 * ( (nbinde > 1)  & (cohab == 0) & (act_cpl == 1)) + # Familles monoparentales, parent actif
+            4 * ( (nbinde > 1)  & (cohab == 0) & (act_cpl == 0) & (act_enf >= 1) ) + # Familles monoparentales, parent inactif et au moins un enfant actif
+            5 * ( (nbinde > 1)  & (cohab == 0) & (act_cpl == 0) & (act_enf == 0) ) + # Familles monoparentales, tous inactifs
+            6 * ( (nbinde == 2) & (cohab == 1) & (act_cpl == 1) ) +   # Couples sans enfant, 1 actif
+            7 * ( (nbinde == 2) & (cohab == 1) & (act_cpl == 2) ) +   # Couples sans enfant, 2 actifs
+            8 * ( (nbinde == 2)  & (cohab == 1) & (act_cpl == 0) ) +   # Couples sans enfant, tous inactifs
+            9 * ( (nbinde > 2)  & (cohab == 1) & (act_cpl == 1) ) +   # Couples avec enfant, 1 membre du couple actif
+            10 * ( (nbinde > 2)  & (cohab == 1) & (act_cpl == 2) ) +  # Couples avec enfant, 2 membres du couple actif
+            11 * ( (nbinde > 2)  & (cohab == 1) & (act_cpl == 0) & (act_enf >= 1)) + # Couples avec enfant, couple inactif et au moins un enfant actif
+            12 * ( (nbinde > 2)  & (cohab == 1) & (act_cpl == 0) & (act_enf == 0))  # Couples avec enfant, tous inactifs
                            ) +  (cplx == 1 )*(
             13 * (  ( (act_cpl + act_enf) == 1) ) +      # Autres ménages, 1 actif
             14 * (  ( (act_cpl + act_enf) >  1) ) +     # Autres ménages, 2 actifs ou plus
             15 * (  ( (act_cpl + act_enf) == 0) )  )     # Autres ménages, tous inactifs
     
-    ratio = (( (typmen15!=res)).sum())/((typmen15!=0).sum())
+#    ratio = (( (typmen15!=res)).sum())/((typmen15!=0).sum())
     # print ratio  2.7 % d'erreurs enfant non nés et erreur d'enfants  
     return res
 

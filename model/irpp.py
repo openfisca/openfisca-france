@@ -1070,12 +1070,13 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     ppe_pac3 = ppe_elig*(ppe3*coef(coef_tp3))
     
     ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 +  maj_pac
-    
     ppe_tot = (ppe_tot!=0)*max_(P.versmin, ppe_tot)
-    
     return ppe_tot
 
 def _ppe(ppe_brute, rsa_act, _option = {'rsa_act': [VOUS, CONJ]} ):
+    """
+    PPE effectivement versé
+    """
 #   On retranche le RSA activité de la PPE
     ppe = max_(ppe_brute - rsa_act[VOUS] - rsa_act[CONJ],0)
     return ppe 
