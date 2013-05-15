@@ -128,7 +128,7 @@ def _af_majo(age, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
     af_maj1 = round(bmaf * P.taux1, 2)
     af_maj2 = round(bmaf * P.taux2, 2)
 
-    ageaine = age_aine(age, P_af.age1, P_af.age2)
+    ageaine = age_aine(age, smic55, P_af.age1, P_af.age2)
 
     def age_sf_aine(age, ag1, ag2, ageaine):
         dum = (ag1 <= ageaine) & (ageaine <= ag2)
@@ -163,7 +163,7 @@ def _af(af_base, af_majo, af_forf):
 ############################################################################
 
 def _cf(age, br_pf, isol, biact, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
-    '''
+    """
     Complément familial
     Vous avez au moins 3 enfants à charge tous âgés de plus de 3 ans. 
     Vos ressources ne dépassent pas certaines limites. 
@@ -174,7 +174,7 @@ def _cf(age, br_pf, isol, biact, smic55, _P, _option={'age': ENFS, 'smic55': ENF
     # En théorie, il faut comparer les revenus de l'année n-2 à la bmaf de
     # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
     # pouvoir déflater les revenus de l'année courante pour en tenir compte. 
-    '''
+    """
     P = _P.fam
     bmaf = P.af.bmaf;
     bmaf2 = P.af.bmaf_n_2;
@@ -704,9 +704,9 @@ def _crds_pfam(af, cf, asf, ars, paje, ape, apje, _P):
 ############################################################################
 
 def nb_enf(ages, smic55, ag1, ag2):
-    '''
+    """
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
-    '''
+    """
 #        Les allocations sont dues à compter du mois civil qui suit la naissance 
 #        ag1==0 ou suivant les anniversaires ag1>0.  
 #        Un enfant est reconnu à charge pour le versement des prestations 
@@ -718,18 +718,17 @@ def nb_enf(ages, smic55, ag1, ag2):
         res += ((ag1 <= age) & (age <= ag2)) * not_(smic55[key])
     return res
 
-def age_aine(ages, ag1, ag2):
+def age_aine(ages, smic55, ag1, ag2):
     '''
     renvoi un vecteur avec l'âge de l'ainé (au sens des allocations 
     familiales) de chaque famille
     '''
     ageaine = -9999
-    for age in ages.itervalues():
-        ispacaf = (ag1 <= age) & (age <= ag2)
+    for key, age in ages.iteritems():
+        ispacaf = ((ag1 <= age) & (age <= ag2)) * not_(smic55[key])
         isaine = ispacaf & (age > ageaine)
         ageaine = isaine * age + not_(isaine) * ageaine
     return ageaine
-    # TODO: smic55
 
 def age_en_mois_benjamin(agems):
     '''

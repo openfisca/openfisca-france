@@ -35,12 +35,15 @@ class ErfsDataTable(object):
         ----------
         year : int, default None
                year of the survey
+               
+               
+        TODO: load table in memory only if needed and incrmentaly BUT pb with variable names 
         """
         for key, val in kwargs.iteritems():
             if key == "year":
                 self.year = val
                 
-        if self.year is None:        
+        if self.year is not None:        
             year = self.year
             menageXX = "menage" + str(year)[2:]
             erf_menageRdata = menageXX + ".Rdata"
@@ -129,6 +132,7 @@ class ErfsDataTable(object):
             print "varname not found in any tables"
             df = None
         else:
+            variables = list( set(variables).intersection(self.tables[table].columns))
             df = self.tables[table][variables]
         
         # rename variables according to their name in openfisca
