@@ -115,7 +115,7 @@ def _af_base(af_nbenf, _P):
     af_base = (af_nbenf >= 1)*af_1enf + (af_nbenf >= 2)*af_2enf + max_(af_nbenf - 2, 0)*af_enf_supp
     return 12 * af_base  # annualisé
     
-def _af_majo(age, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
+def _af_majo(age, smic55, af_nbenf, _P, _option={'age': ENFS, 'smic55': ENFS}):
     '''
     Allocations familiales - majoration pour âge
     'fam'
@@ -134,10 +134,14 @@ def _af_majo(age, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
         dum = (ag1 <= ageaine) & (ageaine <= ag2)
         return nb_enf(age, smic55, ag1, ag2) - dum * 1
 
-    nbenf_maj1 = age_sf_aine(age, P.age1, P.age2 - 1, ageaine)
-    nbenf_maj2 = age_sf_aine(age, P.age2, P_af.age2, ageaine)
 
+    nbenf_maj1 = ( (af_nbenf == 2)*age_sf_aine(age, P.age1, P.age2 - 1, ageaine)
+                   + nb_enf(age, smic55, P.age1, P.age2 - 1)*(af_nbenf >= 3)  )
+    nbenf_maj2 = ( (af_nbenf == 2)*age_sf_aine(age, P.age2, P_af.age2, ageaine) 
+                   + nb_enf(age, smic55, P.age2, P_af.age2)*(af_nbenf >= 3)  )
+        
     af_majo = nbenf_maj1 * af_maj1 + nbenf_maj2 * af_maj2
+    
     return 12*af_majo # annualisé
 
 def _af_forf(age, af_nbenf, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
