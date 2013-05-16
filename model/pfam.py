@@ -180,8 +180,8 @@ def _cf(age, br_pf, isol, biact, smic55, _P, _option={'age': ENFS, 'smic55': ENF
     # pouvoir déflater les revenus de l'année courante pour en tenir compte. 
     """
     P = _P.fam
-    bmaf = P.af.bmaf;
-    bmaf2 = P.af.bmaf_n_2;
+    bmaf = P.af.bmaf
+    bmaf2 = P.af.bmaf_n_2
     cf_nbenf = nb_enf(age, smic55, P.cf.age1, P.cf.age2)
             
     cf_base_n_2 = P.cf.tx * bmaf2
