@@ -50,6 +50,7 @@ class ErfsDataTable(object):
             erf_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), erf_menageRdata)
             rpy.r.load(erf_filename)
             erf_menage = com.load_data(menageXX)
+            tables["erf_menage"] = erf_menage
             
             yr = str(year)[2:]
             eec_df_name = "mrf" + yr + "e" + yr + "t4"
@@ -57,6 +58,8 @@ class ErfsDataTable(object):
             eec_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), eec_menageRdata)
             rpy.r.load(eec_filename)
             eec_menage = com.load_data(eec_df_name)
+            tables["eec_menage"] = eec_menage
+            
             tables["menage"] = erf_menage.merge(eec_menage) 
             
             foyerXX = "foyer" + str(year)[2:]
@@ -76,6 +79,7 @@ class ErfsDataTable(object):
                         
             store = HDFStore(self.hdf5_filename)
             for table in tables:
+                print table
                 store[str(self.year)+"/"+table] = tables[table]
             
             
@@ -104,14 +108,14 @@ class ErfsDataTable(object):
             table = table_path[6:]
             self.tables[table] = store[table_path] 
         
-    def get_values(self, variables, table=None):
+    def get_values(self, variables=None, table=None):
         """
         Get values
         
         Parameters
         ----------
-        variables : list of strings
-                  list of variables names
+        variables : list of strings, default None
+                  list of variables names, if None return the whole table
         table : string, default None          
                 name of the table where to get the variables
         Returns
@@ -119,9 +123,15 @@ class ErfsDataTable(object):
         df : DataFrame, default None 
              A DataFrame containing the variables
         """
-        
+        # First of all, se the tables if they are not set
         if not self.tables:
             self.set_tables()
+
+        # If no variables read the whole table
+        if variables is None:
+            df = self.tables[table]
+            return df
+        
         from src.countries.france.data.erf import get_erf2of, get_of2erf
         of2erf = get_of2erf()
         to_be_renamed_variables = set(of2erf.keys()).intersection(variables)
