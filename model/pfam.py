@@ -107,7 +107,7 @@ def _af_base(af_nbenf, _P):
     'fam'
     '''
     P = _P.fam
-    bmaf = P.af.bmaf    
+    bmaf = P.af.bmaf
     # prestations familiales (brutes de crds)
     af_1enf = round(bmaf * P.af.taux.enf1, 2)
     af_2enf = round(bmaf * P.af.taux.enf2, 2)
@@ -204,6 +204,8 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
     '''
     Allocation de soutien familial
     '''
+    # TODO: what is rst doing here ?
+    
     # L’ASF permet d’aider le conjoint survivant ou le parent isolé ayant la garde 
     # d’un enfant et les familles ayant à la charge effective et permanente un enfant 
     # orphelin.
