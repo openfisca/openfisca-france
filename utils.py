@@ -25,6 +25,7 @@ from __future__ import division
 from src import __version__ as VERSION
 import pickle
 from datetime import datetime
+from src.lib.utils import of_import
 
 from src.countries.france import ENTITIES_INDEX
 
@@ -435,66 +436,8 @@ class Scenario(object):
                 
             datatable._isPopulated = True
         
-
-XAXIS_PROPERTIES = { 'sali': {
-                              'name' : 'sal',
-                              'typ_tot' : {'salsuperbrut' : 'Salaire super brut',
-                                           'salbrut': 'Salaire brut',
-                                           'sal':  'Salaire imposable',
-                                           'salnet': 'Salaire net'},
-                              'typ_tot_default' : 'sal'},
-                    'choi': {
-                             'name' : 'cho',
-                             'col_name' : 'choi', 
-                             'typ_tot' : {'chobrut': u"Chômage brut",
-                                          'cho':     u"Chômage",
-                                          'chonet':  u"Chômage net"},
-                             'typ_tot_default' : 'cho' },
-                    'rsti': {
-                             'name' : 'rst',
-                             'col_name' : 'rsti', 
-                             'typ_tot' : {'rstbrut': u"Retraite brut",
-                                          'rst':     u"Retraite",
-                                          'rstnet':  u"Retraite net"},
-                             'typ_tot_default' : 'rst'},
-                    'f2da': {
-                             'name': 'divpfl',
-                             'col_name' : 'f2da', 
-                             'typ_tot' : {'rev_cap_brut': u"Revenus des capitaux", 
-                                          'rev_cap_net': u"Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'f2ee': {
-                             'name' : 'intpfl',
-                             'col_name' : 'f2ee', 
-                             'typ_tot' : {'rev_cap_brut': "Revenus des capitaux", 
-                                          'rev_cap_net': "Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'f2dc': {
-                             'name' : 'divb',
-                             'col_name' : 'f2dc',
-                             'typ_tot' : {'rev_cap_brut': "Revenus des capitaux", 
-                                          'rev_cap_net': "Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'f2tr': {
-                             'name' : 'intb',
-                             'col_name' : 'f2tr', 
-                             'typ_tot' : {'rev_cap_brut': "Revenus des capitaux", 
-                                          'rev_cap_net': "Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'alr' : {
-                             'name' : 'alr',
-                             'col_name' : 'alr',
-                             'typ_tot' : {'pen': "Pensions"},
-                             'typ_tot_default' : 'pen'},
-                    'f6gu' : {
-                             'name' : 'f6gu',
-                             'col_name' : 'f6gu',
-                             'typ_tot' : {'pen': "Pensions"},
-                             'typ_tot_default' : 'pen'},
-                    
-                    }
-
-
+country = "france"
+XAXIS_PROPERTIES =  of_import('','XAXIS_PROPERTIES', country)
 
 class Xaxis(object):
     def __init__(self, col_name = None, country = None):
@@ -530,10 +473,10 @@ class Xaxis(object):
 
 def build_axes(country):
     # TODO: should be in __init__.py of france
-    from src.lib.utils import of_import
+
     Xaxis = of_import('utils','Xaxis', country)
     axes = []
-    for col_name in XAXIS_PROPERTIES: #['sali', 'choi', 'rsti', 'f2da', 'f2ee', 'f2dc', 'f2tr' ]:
+    for col_name in XAXIS_PROPERTIES:
         axe = Xaxis(col_name, country)
         axes.append(axe)
     del axe
@@ -550,7 +493,6 @@ def preproc_inputs(datatable):
                 the DataTable containing the input variables of the model
     
     """
-    from src.lib.utils import of_import
     country = 'france'
     WEIGHT = of_import("","WEIGHT", country)
     datatable.propagate_to_members('men', WEIGHT)

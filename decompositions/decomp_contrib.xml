@@ -4,12 +4,18 @@
       <NODE desc="Salaires imposables" shortname="Sal. impos." code="sal" color= "0,115,170">
         <NODE desc="Salaires bruts" shortname="Sal. bruts" code="salbrut" color = "0,99,143">
           <NODE desc= "Salaires super bruts" shortname="Coût travail" code= "salsuperbrut" color = "0,66,92" />
-       <NODE desc= "Cotisations sociales patronales" shortname="Cotsoc pat" code= "cotpat" color = "249,208,211"/>
-       <NODE desc= "Allègement sur les bas salaires" shortname="Allèg. sal." code= "alleg_fillon"/>
+       	  <NODE desc= "Cotisations sociales patronales" shortname="Cotsoc pat" code= "cotpat" color = "249,208,211">
+       	    <NODE desc= "Cotisations sociales patronales contributtives" shortname="Cotsoc pat cont." code= "cotpat_contrib" color = "249,208,211"/>
+       	    <NODE desc= "Cotisations sociales patronales non contributives" shortname="Cotsoc pat noncont." code= "cotpat_noncontrib" color = "249,208,211"/>
+       	  </NODE>
+       	  <NODE desc= "Allègement sur les bas salaires" shortname="Allèg. sal." code= "alleg_fillon"/>
         </NODE>
-        <NODE desc= "Cotisations sociales salariées" shortname="Cotsoc sal" code= "cotsal" color = "243,166,171"/>
+        <NODE desc= "Cotisations sociales salariées" shortname="Cotsoc sal" code= "cotsal" color = "243,166,171">
+       	    <NODE desc= "Cotisations sociales salariales contributtives" shortname="Cotsoc sal cont." code= "cotsal_contrib" color = "243,166,171"/>
+       	    <NODE desc= "Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncont." code= "cotsal_noncontrib" color = "243,166,171"/>
+       	  </NODE>
         <NODE desc= "CSG déductible (salaires)" shortname="CSG deduc" code= "csgsald" color = "235,114,118"/>
-        <NODE desc= "Heures supplémentaires" shortname="Heures sup" code= "mhsup" color = "0,115,170"/>
+        <NODE desc= "Heures supplémentaires éxonérées" shortname="Heures sup" code= "mhsup" color = "0,115,170"/>
       </NODE>
       <NODE desc= "CSG non déductible (salaires)" shortname="CSG imp. sal." code= "csgsali" color = "235,114,118"/>
       <NODE desc= "CRDS (salaires)" shortname="CRDS sal." code= "crdssal" color = "229,48,56"/>
@@ -48,16 +54,18 @@
 	  <NODE desc= "Revenus accessoires" shortname="Rev. accesoires" code='rac' color="247,221,0"/>    
     </NODE>
     <NODE desc= "Cotisations sociales sur les revenus du capital" shortname="Cotsoc. capital" code = "cotsoc_cap" color= "243,166,171">
-      <NODE desc= "Cotisations sociales sur les revenus du capital imposés au barème" shortname="Cotsoc cap bar" code= "cotsoc_bar" color = "243,166,171">
-        <NODE desc= "CSG (revenus du capital au barème)" shortname="CSG cap. bar." code= "csg_cap_bar" color = "243,166,171"/>
-        <NODE desc= "Prélèvement social sur les revenus du capital au barème" shortname="Pr. s. cap. bar." code= "prelsoc_cap_bar" color = "243,166,171"/>
-        <NODE desc= "CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." code= "crds_cap_bar" color ="229,48,56"/>
-      </NODE>  
-      <NODE desc= "Cotisations sociales des revenus du patrimoine soumis au prélèvement libératoire" shortname="Cotsoc cap lib" code = "cotsoc_lib" color = "243,166,171">
-        <NODE desc= "CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." code= "csg_cap_lib" color = "235,114,118"/>
+      <NODE desc= "Prélèvement social sur les revenus du capital" shortname="Pr. s. cap." code= "prelsoc_cap" color = "243,166,171">
+        <NODE desc= "Prélèvement social sur les revenus du capital soumis au barème" shortname="Pr. s. cap. bar." code= "prelsoc_cap_bar" color = "243,166,171"/>
         <NODE desc= "Prélèvement social sur les revenus du capital soumis au prélèvement libératoire" shortname="Prel. soc. (lib.)" code= "prelsoc_cap_lib" color = "243,166,171"/>
-        <NODE desc= "CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." code= "crds_cap_lib" color = "229,48,56"/>
       </NODE>
+      <NODE desc= "CSG des revenus du capital" shortname="CSG cap." code= "csg_cap" color = "235,114,118">
+        <NODE desc= "CSG (revenus du capital au barème)" shortname="CSG cap. bar." code= "csg_cap_bar" color = "235,114,118"/>
+        <NODE desc= "CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." code= "csg_cap_lib" color = "235,114,118"/>
+      </NODE>
+      <NODE desc= "CRDS" shortname="CRDS cap." code= "crds_cap" color ="229,48,56">      
+        <NODE desc= "CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." code= "crds_cap_bar" color ="229,48,56"/>
+        <NODE desc= "CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." code= "crds_cap_lib" color = "229,48,56"/>
+      </NODE>    
     </NODE>
     <NODE desc= "Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." code = "imp_lib" color = "232,79,95"/>
   </NODE>
@@ -84,6 +92,7 @@
       <NODE desc= "Complément de l'allocation adulte handicapé" shortname="CAAH" code='caah' color = "244,160,80"/>
       <NODE desc= "Allocation supplémentaire d'invalidité" shortname="ASI" code='asi' color = "244,160,80"/>
       <NODE desc= "Revenu de solidarité active" shortname="RSA" code='rsa' color = "239,130,19"/>
+      <NODE desc= "Prime de solidarité active" shortname="PSA" code='psa' color = "239,130,19"/>
       <NODE desc= "Aide exceptionelle de fin d'année" shortname="AEFA" code='aefa' color = "237,119,3"/>
       <NODE desc= "Allocation parent isolé" shortname="API" code='api' color = "208,112,4"/>
     </NODE>
@@ -98,9 +107,10 @@
   <NODE desc= "Prime pour l'emploi" shortname="PPE" code = "ppe" color = "182,34,131"/>
   <NODE desc= "Impôts directs" shortname="Impôts directs" code = "impo" color = "232,79,95">
     <NODE desc= "Impôt sur le revenu" shortname="IRPP" code = "irpp" color = "232,79,95"/>
-   <NODE desc= "ISF net" shortname="ISF net" code = "isf net" color="182,34,131">
+    <NODE desc= "ISF net" shortname="ISF net" code = "isf net" color="182,34,131">
       <NODE desc= "Impôt de solidarité sur la fortune" shortname="ISF" code = "isf_tot" color="232,79,95"/>
       <NODE desc= "Bouclier fiscal" shortname="Bouclier fiscal" code = "bouclier_fiscal" color="182,34,131"/>
     </NODE>	
+    <NODE desc= "Taxe d'habitation" shortname="TH" code = "tax_hab" color = "232,79,95"/>
   </NODE>	
 </NODE> 

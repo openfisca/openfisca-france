@@ -15,17 +15,20 @@ import rpy2.rpy_classic as rpy
 rpy.set_default_mode(rpy.NO_CONVERSION)
 
 from src.countries.france.data.sources.config import DATA_DIR
+from src import SRC_PATH
+from pandas import HDFStore
 
+ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH,'countries','france','data', 'erf')
 
 class ErfsDataTable(object):
     """
     An object to acces variables int the ERFS datatables
     """
-    def __init__(self):
+    def __init__(self, year = 2006):
         super(ErfsDataTable, self).__init__()
-        self.year = None # year of the collected data
+        self.year = year # year of the collected data
         self.tables = {}
-    
+        self.hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
     
     def set_config(self, **kwargs):
         """
@@ -36,12 +39,9 @@ class ErfsDataTable(object):
         year : int, default None
                year of the survey
                
-               
-        TODO: load table in memory only if needed and incrmentaly BUT pb with variable names 
         """
-        for key, val in kwargs.iteritems():
-            if key == "year":
-                self.year = val
+        tables = {}
+
                 
         if self.year is not None:        
             year = self.year
@@ -50,6 +50,7 @@ class ErfsDataTable(object):
             erf_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), erf_menageRdata)
             rpy.r.load(erf_filename)
             erf_menage = com.load_data(menageXX)
+            tables["erf_menage"] = erf_menage
             
             yr = str(year)[2:]
             eec_df_name = "mrf" + yr + "e" + yr + "t4"
@@ -57,23 +58,29 @@ class ErfsDataTable(object):
             eec_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), eec_menageRdata)
             rpy.r.load(eec_filename)
             eec_menage = com.load_data(eec_df_name)
-            self.tables["menage"] = erf_menage.merge(eec_menage) 
+            tables["eec_menage"] = eec_menage
+            
+            tables["menage"] = erf_menage.merge(eec_menage) 
             
             foyerXX = "foyer" + str(year)[2:]
             erf_foyerRdata = foyerXX + ".Rdata"
             erf_foyer_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), erf_foyerRdata)
             rpy.r.load(erf_foyer_filename)
             erf_foyer = com.load_data(foyerXX)
-            self.tables["foyer"] = erf_foyer
+            tables["foyer"] = erf_foyer
             
             indiviXX = "indivi" + str(year)[2:]
             erf_indiviRdata = indiviXX + ".Rdata"
             erf_indivi_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), erf_indiviRdata)
             rpy.r.load(erf_indivi_filename)
             erf_indivi = com.load_data(indiviXX)
-            self.tables["indivi"] = erf_indivi
-            
-            
+            tables["indivi"] = erf_indivi
+
+                        
+            store = HDFStore(self.hdf5_filename)
+            for table in tables:
+                print table
+                store[str(self.year)+"/"+table] = tables[table]
             
             
 
@@ -95,14 +102,20 @@ class ErfsDataTable(object):
         df = self.get_values([variable], table)
         return df
         
-    def get_values(self, variables, table=None):
+    def set_tables(self):
+        store = HDFStore(self.hdf5_filename)
+        for table_path in store.keys():
+            table = table_path[6:]
+            self.tables[table] = store[table_path] 
+        
+    def get_values(self, variables=None, table=None):
         """
         Get values
         
         Parameters
         ----------
-        variables : list of strings
-                  list of variables names
+        variables : list of strings, default None
+                  list of variables names, if None return the whole table
         table : string, default None          
                 name of the table where to get the variables
         Returns
@@ -110,6 +123,15 @@ class ErfsDataTable(object):
         df : DataFrame, default None 
              A DataFrame containing the variables
         """
+        # First of all, se the tables if they are not set
+        if not self.tables:
+            self.set_tables()
+
+        # If no variables read the whole table
+        if variables is None:
+            df = self.tables[table]
+            return df
+        
         from src.countries.france.data.erf import get_erf2of, get_of2erf
         of2erf = get_of2erf()
         to_be_renamed_variables = set(of2erf.keys()).intersection(variables)
@@ -144,13 +166,13 @@ class ErfsDataTable(object):
         return df 
 
 def test():
-    
     erf = ErfsDataTable()
-    erf.set_config(year=2006)
-#    df = erf.get_value("wprm", "menage")
-#    print df
-    df = erf.get_values( ["typmen15", "nbinde", "af"], "menage")
+    # erf.set_config(year=2006)
+    erf.set_tables() 
+    df = erf.get_value("wprm", "menage")
     print df
+    df = erf.get_values( ["typmen15", "nbinde", "af"], "menage")
+    print df.head()
     
 def build_foyer():
     from src.lib.simulation import SurveySimulation
@@ -164,5 +186,5 @@ def build_foyer():
         print col.entity
     
 if __name__ == '__main__':
-    # test()
-    build_foyer()
+    test()
+    # build_foyer()

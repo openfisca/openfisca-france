@@ -225,7 +225,7 @@ class InputTable(ModelDescription):
     f3vv = IntCol(entity= 'foy', val_type="monetary")
 
     # Revenu foncier
-    f4ba = IntCol(entity= 'foy', val_type="monetary")
+    f4ba = IntCol(entity= 'foy', label="Revenus fonciers", val_type="monetary")
     f4bb = IntCol(entity= 'foy', val_type="monetary")
     f4bc = IntCol(entity= 'foy', val_type="monetary")
     f4bd = IntCol(entity= 'foy', val_type="monetary")
