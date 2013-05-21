@@ -221,25 +221,30 @@ def _impo(irpp, tax_hab):
     '''
     return irpp + tax_hab
 
-def _crds(crdssal, crdsrst, crdscho, crds_cap_bar, crds_cap_lib, crds_pfam, crds_lgtm, crds_mini):
+def _crds(crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_pfam, crds_lgtm, crds_mini):
     '''
-    Contribution au remboursemetn de la dette sociale
+    Contribution au remboursement de la dette sociale
     '''
-    return crdssal + crdsrst + crdscho + crds_cap_bar + crds_cap_lib + crds_pfam + crds_lgtm + crds_mini
+    return crdssal + crdsrst + crdscho + crds_fon + crds_cap_bar + crds_cap_lib + crds_pfam + crds_lgtm + crds_mini
         
-def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csg_cap_lib, csg_cap_bar):
+def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csg_fon, csg_cap_lib, csg_cap_bar):
     '''
     Contribution sociale généralisée
     '''
-    return csgsali + csgsald + csgchoi + csgchod + csgrsti + csg_cap_lib
+    return csgsali + csgsald + csgchoi + csgchod + csgrsti + csg_fon + csg_cap_lib
 
 
 def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     '''
-    Cotisations sociales non contributives , prelsoc_cap_lib, prelsoc_cap_bar
-    + prelsoc_cap_lib + prelsoc_cap_bar
+    Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar) 
     '''
     return cotpat_noncontrib + cotsal_noncontrib 
+
+def _prelsoc_cap(prel_soc_fon, prelsoc_cap_lib, prelsoc_cap_bar):
+    """
+    Prélèvements sociaux sur les revenus du capital
+    """
+    return prel_soc_fon + prelsoc_cap_lib + prelsoc_cap_bar 
 
 from src.lib.utils import mark_weighted_percentiles
 
