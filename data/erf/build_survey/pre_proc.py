@@ -17,6 +17,9 @@ print('Entering 01_pre_proc')
 ## Menages et Individus
 #
 from src.countries.france.data.erf.datatable import ErfsDataTable
+from pandas import DataFrame
+from numpy import array
+
 year = 2006
 df = ErfsDataTable(year=year)
 #df.set_config()
@@ -36,59 +39,89 @@ print eecmen["locataire"].describe()
 #
 #erfind <- LoadIn(erfIndFil)
 #eecind <- LoadIn(eecIndFil)
+erfind = df.get_values(table="erf_individu")
+eecind = df.get_values(table="eec_individu")
+
 #
 #transfert <- subset(eecind, lpr==1, select=c("ident","ddipl"))
-#
+transfert = eecind.loc(array(eecind.index.get_level_values(1) == 1), ['ident', 'ddipl']) #TODO: soumettre à Mahdi pour vérification
+
 #noappar_i <- eecind[!eecind$noindiv %in%  erfind$noindiv,]
 #noappar_i <- noappar_i[!duplicated(noappar_i$ident),]
-#
-## Vérification que les non-appariés sont les mêmes pour les tables individus 
-## et les tables ménages
+noappar_i = array([x in erfind['noindiv'] for x in eecind['noindiv']])
+noappar_i = noappar_i.delete() #How do you do the removal of duplicated elements ??
+
+
+# Vérification que les non-appariés sont les mêmes pour les tables individus 
+# et les tables ménages
 #dif <- setdiff(noappar_i$ident,noappar_m$ident)
 #int <- intersect(noappar_i$ident,noappar_m$ident)
+dif = set(noappar_i.ident).symmetric_difference(noappar_m.ident)
+int = set(noappar_i.ident) & set(noappar_m.ident)
+
+
 #str(dif);str(int)
+str(dif) ; str(int)
 #rm(noappar_i,noappar_m,dif,int)
-#gc()
-#
+#rm(noappar_i, noappar_m, dif, int) #TODO: What do your want to remove
+
+#gc() # TODO : do we have garbage collection ?
+
+
 #menagem <- merge(erfmen,eecmen)
 #menagem <- merge(menagem,transfert)
-#save(menagem,file=menm)
+menagem = erfmen.merge(eecmen)
+menagem  = menagem.merge(transfert)
+
+#save(menagem,file=menm) #TODO: Save in h5 ?
+
 #rm(erfmen,eecmen,menagem,transfert)
 #message('menagem saved')
 #gc()
 #
 #
-#int <- intersect(names(erfind),names(eecind))
-#print(int)
+# int = intersect(names(erfind),names(eecind))
+int = erfind.columns & eecind.columns
+print int
+
 ## Uncomparable tu99 in 2009 ! TODO remove tu99 in one of them 
 #if (year == 2009){
 #  erfind$tu99 <- NULL
 #  eecind$tu99 <- as.numeric(eecind$tu99)
 #}
 #indivim <- merge(eecind,erfind, by = c("noindiv","ident","noi"))
+indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'])
 #
-### On recode l'activité de la semaine de référence'
-### actrec:
-###   1: actif occupé non salarié
-###   2: salarié pour une durée non limitée
-###   3: contrat à durée déterminée, intérim, apprentissage, saisonnier
-###   4: chômeur
-###   5: élève, étudiant, stagiaire non rémunéré
-###   6:
-###   7: retraité, préretraité, retiré des affaires
-###   8: autre inactif
-###   9: non renseign?
-### Voir guide m?thodo ERFS 2006 page 84
-### TODO 2003 voir guide m?thodo page 170 
+# On recode l'activité de la semaine de référence'
+# actrec:
+#   1: actif occupé non salarié
+#   2: salarié pour une durée non limitée
+#   3: contrat à durée déterminée, intérim, apprentissage, saisonnier
+#   4: chômeur
+#   5: élève, étudiant, stagiaire non rémunéré
+#   6:
+#   7: retraité, préretraité, retiré des affaires
+#   8: autre inactif
+#   9: non renseign?
+# Voir guide méthodo ERFS 2006 page 84
+# TODO 2003 voir guide méthodo page 170 
 #
 #var_list <- c("acteu", "stc", "contra", "titc", "forter", "mrec", "rstg", "retrai","lien",
 #              "noicon", "noiper", "noimer", "naia", "cohab", "agepr","statut","txtppb",'encadr','prosa')
-#
+
+var_list = (['acteu', 'stc', 'contra', 'titc', 'forter', 'mrec', 'rstg', 'retrai', 'lien', 'noicon', 
+             'noiper', 'noimer', 'naia', 'cohab', 'agepr', 'statut', 'txtppb', 'encadr', 'prosa'])
+
 #for (var in var_list) {
 #  print(var)
 #  indivim[,var] <- as.numeric(indivim[,var])
 #}
-#
+
+for var in var_list:
+    print var
+    indivim[var] = float(indivim[var])
+
+#TODO: est_ce une boucle ou autre-chose
 #indivim <- within(indivim,{
 #  actrec <- 0
 #  actrec[which(acteu==1)]             <- 3
