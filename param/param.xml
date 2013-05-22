@@ -322,10 +322,10 @@
     <CODE description="Contribution additionnelle" code="add" format="percent">
       <VALUE valeur=".003" deb="2006-01-01" fin="2011-12-31"/>
     </CODE>  
-    <CODE description="Contribution au financement du revenu de solidarité active (revenus des produits de placement)" code="rsa" format="percent">
+    <CODE description="Contribution au financement du revenu de solidarité active (revenus des produits de placement)" code="rsa_plac" format="percent">
       <VALUE valeur=".011" deb="2009-01-01" fin="2012-12-31"/>
     </CODE>
-     <CODE description="Contribution au financement du revenu de solidarité active (revenus de patrimoine)" code="rsa" format="percent">
+     <CODE description="Contribution au financement du revenu de solidarité active (revenus de patrimoine)" code="rsa_pat" format="percent">
       <VALUE valeur=".011" deb="2009-01-01" fin="2011-12-31"/>
     </CODE>
     <CODE description="Prélèvement de solidarité sur les produits de placement" code="pds_placement" format="percent">
