@@ -67,15 +67,21 @@ class ModelSF(ModelDescription):
     crdsrst = Prestation(cs._crdsrst)
     rst = Prestation(cs._rst)
     
-    # Revenu du capital soumis au prélèvement libératoire
-    csg_cap_lib = Prestation(cs._csg_cap_lib)
-    crds_cap_lib = Prestation(cs._crds_cap_lib)
-    prelsoc_cap_lib = Prestation(cs._prelsoc_cap_lib)
+    # Revenus du capital soumis au prélèvement libératoire
+    csg_cap_lib = Prestation(cs._csg_cap_lib, label=u"CSG sur les revenus du capital soumis au prélèvement libératoire")
+    crds_cap_lib = Prestation(cs._crds_cap_lib, label=u"CRDS sur les revenus du capital soumis au prélèvement libératoire")
+    prelsoc_cap_lib = Prestation(cs._prelsoc_cap_lib, label=u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire")
 
-    # Revenu du capital soumis au barème
-    csg_cap_bar = Prestation(cs._csg_cap_bar)
-    crds_cap_bar = Prestation(cs._crds_cap_bar)
-    prelsoc_cap_bar = Prestation(cs._prelsoc_cap_bar)
+    # Revenus du capital soumis au barème
+    csg_cap_bar = Prestation(cs._csg_cap_bar, label=u"CSG sur les revenus du capital soumis au barème")
+    crds_cap_bar = Prestation(cs._crds_cap_bar, label=u"CRDS sur les revenus du capital soumis au barème")
+    prelsoc_cap_bar = Prestation(cs._prelsoc_cap_bar, label=u"Prélèvements sociaux sur les revenus du capital soumis au barème")
+
+    # Revenus fonciers (sur les foyers)
+    csg_fon = Prestation(cs._csg_fon, "foy", label=u"CSG sur les revenus fonciers")
+    crds_fon = Prestation(cs._crds_fon, "foy", label=u"CRDS sur les revenus fonciers")
+    prelsoc_fon = Prestation(cs._prelsoc_fon, "foy", label=u"Prélèvements sociaux sur les revenus fonciers")
+    
 
     base_csg = Prestation(cs._base_csg)    
     ir_lps = Prestation(cs._ir_lps, start=date(2010, 1, 1))

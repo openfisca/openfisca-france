@@ -540,12 +540,11 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
               and they will be disabled when it's hidden
         """
         
-        
         for index, (qobject, context, name, default) in enumerate(self.main.shortcut_data):
             if context == "Composer":
                 self.main.shortcut_data.pop(index)
                 qobject.deleteLater()
-
+                del name, default
         
         # File menu actions and shortcuts
                         
