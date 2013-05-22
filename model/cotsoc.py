@@ -88,6 +88,33 @@ def _prelsoc_cap_bar(rev_cap_bar, _P):
         total = P.base + P.add + P.rsa
     return - rev_cap_bar*total
 
+
+# revenus fonciers 
+def _csg_fon(f4ba, _P):
+    '''
+    Calcule la CSG sur les revenus fonciers
+    '''
+    return - f4ba*_P.csg.capital.glob
+
+def _crds_fon(f4ba, _P):
+    '''
+    Calcule la CRDS sur les revenus fonciers
+    '''
+    return - f4ba*_P.crds.capital
+
+def _prelsoc_fon(f4ba, _P):
+    '''
+    Calcule le prélèvement social sur les revenus fonciers
+    '''
+    P = _P.prelsoc
+    if _P.datesim.year < 2006:
+        total = P.base 
+    elif _P.datesim.year < 2009:    
+        total = P.base + P.add
+    else:    
+        total = P.base + P.add + P.rsa
+    return - f4ba*total
+
 # revenus du capital soumis au prélèvement libératoire
 def _csg_cap_lib(rev_cap_lib, _P):
     '''
