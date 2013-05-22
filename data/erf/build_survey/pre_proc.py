@@ -22,7 +22,7 @@ from numpy import array
 
 year = 2006
 df = ErfsDataTable(year=year)
-#df.set_config()
+df.set_config()
 #erfmen <- LoadIn(erfMenFil)
 erfmen = df.get_values(table="erf_menage")
 
@@ -40,15 +40,16 @@ print eecmen["locataire"].describe()
 #erfind <- LoadIn(erfIndFil)
 #eecind <- LoadIn(eecIndFil)
 erfind = df.get_values(table="erf_individu")
+print erfind
 eecind = df.get_values(table="eec_individu")
-
+print eecind
 #
 #transfert <- subset(eecind, lpr==1, select=c("ident","ddipl"))
 transfert = eecind.loc(array(eecind.index.get_level_values(1) == 1), ['ident', 'ddipl']) #TODO: soumettre à Mahdi pour vérification
 
 #noappar_i <- eecind[!eecind$noindiv %in%  erfind$noindiv,]
 #noappar_i <- noappar_i[!duplicated(noappar_i$ident),]
-noappar_i = array([x in erfind['noindiv'] for x in eecind['noindiv']])
+noappar_i = array([x not in erfind['noindiv'] for x in eecind['noindiv']])
 noappar_i = noappar_i.delete() #How do you do the removal of duplicated elements ??
 
 
