@@ -18,6 +18,7 @@
 #
 
 from src.countries.france.data.erf.datatable import ErfsDataTable
+from pandas.tools.pivot import pivot_table
 year = 2006
 df = ErfsDataTable(year=year)
 
@@ -31,7 +32,6 @@ print u"05_foyer: extraction des données foyer"
 vars = ["noindiv", 'sif', "nbptr", "mnrvka", "rbg", "tsrvbg"]
 #sif <- LoadIn(erfFoyFil, vars)
 sif = df.get_values(variables=vars, table="foyer" )
-
 #sif$statmarit <- 0
 sif['statmarit'] = 0
 
@@ -245,9 +245,13 @@ del sif["sif"], sif["stamar"]
 print sif["statmarit"].value_counts()
 print "nombre d'individu différents :", len(sif["noindiv"].value_counts())
 #print(length(table(sif$noindiv)))
+print len(pivot_table(sif['noindiv']))
+
 #dup <- duplicated(sif$noindiv)
 #table(dup)
+dup = sif.noindiv.duplicated
 #sif <- sif[!dup,]
+sif = sif["dup"] == False
 #print(length(table(sif$noindiv)))
 #
 #saveTmp(sif, file = 'sif.Rdata')
