@@ -52,6 +52,7 @@ class ErfsDataTable(object):
             erf_menage = com.load_data(menageXX)
             tables["erf_menage"] = erf_menage
             
+            
             yr = str(year)[2:]
             eec_df_name = "mrf" + yr + "e" + yr + "t4"
             eec_menageRdata = eec_df_name + ".Rdata" 
@@ -74,7 +75,7 @@ class ErfsDataTable(object):
             erf_indivi_filename = os.path.join(os.path.dirname(DATA_DIR),'R','erf', str(year), erf_indiviRdata)
             rpy.r.load(erf_indivi_filename)
             erf_indivi = com.load_data(indiviXX)
-            tables["indivi"] = erf_indivi
+            tables["erf_indivi"] = erf_indivi
 
                         
             store = HDFStore(self.hdf5_filename)
