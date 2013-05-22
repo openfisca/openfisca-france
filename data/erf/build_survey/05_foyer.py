@@ -83,29 +83,41 @@ print sif
 #print sif["rbg"].describe()
 
 #  stamar <- substr(sif,5,5)
+
 sif["stamar"] = sif["sif"].apply(lambda x: str(x)[4:5])
-print sif["sif"].head()
-print sif["stamar"].head()
-from pandas import DataFrame
 
-print sif["sif"].astype(str).describe()
-#print sif["stamar"].describe()
-#print sif["stamar"].value_counts()
-
+# Converting marital status
 
 #  statmarit[stamar =="M"] <- 1
 #  statmarit[stamar =="C"] <- 2
 #  statmarit[stamar =="D"] <- 3
 #  statmarit[stamar =="V"] <- 4
 #  statmarit[stamar =="O"] <- 5
+
+statmarit_dict = {"M": 1, "C" : 2, "D" : 3, "V" : 4, "O": 5}
+for key , val in statmarit_dict.iteritems():
+    sif["statmarit"][ sif.stamar == key] = val 
+    
 #  birthvous <- as.numeric(substr(sif,6,9))
 #  birthconj <- as.numeric(substr(sif,11,14))
 #
+
+sif["birthvous"] = sif["sif"].apply(lambda x: str(x)[5:9])
+sif["birthconj"] = sif["sif"].apply(lambda x: str(x)[10:14])
+
 #  caseE <- as.numeric(substr(sif,16,16)=='E')
 #  caseF <- as.numeric(substr(sif,17,17)=='F')
 #  caseG <- as.numeric(substr(sif,18,18)=='G')
 #  caseK <- as.numeric(substr(sif,19,19)=='K')
+
+sif["caseE"] = sif["sif"].apply(lambda x: str(x)[15:16]) == "E"
+sif["caseF"] = sif["sif"].apply(lambda x: str(x)[16:17]) == "F"
+sif["caseG"] = sif["sif"].apply(lambda x: str(x)[17:18]) == "G"
+sif["caseK"] = sif["sif"].apply(lambda x: str(x)[18:19]) == "K"
+## TODO: dtype conversion
+
 #  d = 0
+d = 0
 #
 #  if (year %in% c(2006,2007)){   
 #    caseL <- as.numeric(substr(sif,20,20)=='L')
@@ -116,6 +128,15 @@ print sif["sif"].astype(str).describe()
 #    caseH <- as.numeric(substr(sif,25,28))
 #    caseT <- as.numeric(substr(sif,29,29) == 'T')
 #  }
+
+if year in [2006,2007]:
+    sif["caseL"] = sif["sif"].apply(lambda x: str(x)[19:20]) == "L"
+    sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20:21]) == "P"
+    sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21:22]) == "S"
+    sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22:23]) == "W"
+    sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23:24]) == "N"
+    sif["caseH"] = sif["sif"].apply(lambda x: str(x)[24:28])
+    sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28:29]) == "T"
 #  
 #  if (year == 2008){
 #    d = - 1 # fin de la case L
@@ -127,6 +148,15 @@ print sif["sif"].astype(str).describe()
 #    caseT <- as.numeric(substr(sif,29+d,29+d)=='T')
 #  }
 #  
+if year in [2008]:
+    d = - 1 # fin de la case L
+    sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20+d:21+d]) == "P"
+    sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21+d:22+d]) == "S"
+    sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22+d:23+d]) == "W"
+    sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23+d:24+d]) == "N"
+    sif["caseH"] = sif["sif"].apply(lambda x: str(x)[24+d:28+d])
+    sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28+d:29+d]) == "T"
+
 #  if (year == 2009){
 #    # retour de la case L par rapport à 2008 (donc on retrouve 2006)    
 #    caseL <- as.numeric(substr(sif,20,20)=='L')
@@ -139,17 +169,47 @@ print sif["sif"].astype(str).describe()
 #    d = -4
 #    caseT <- as.numeric(substr(sif,29+d,29+d)=='T')
 #  }
+
+if year in [2009]:
+    sif["caseL"] = sif["sif"].apply(lambda x: str(x)[19:20]) == "L"
+    sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20:21]) == "P"
+    sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21:22]) == "S"
+    sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22:23]) == "W"
+    sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23:24]) == "N"
+    # caseH en moins par rapport à 2008 (mais case en L en plus)
+    # donc décalage par rapport à 2006
+    d = -4
+    sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28+d:29+d]) == "T"
+
+
 #
 #  caseX <- as.numeric(substr(sif,34+d,34+d)=='X')
 #  dateX <- as.Date(substr(sif,35+d,42+d),'%d%m%Y')
 #  caseY <- as.numeric(substr(sif,43+d,43+d)== 'Y')
 #  dateY <- as.Date(substr(sif,44+d,51+d),'%d%m%Y')
 #  caseZ <- as.numeric(substr(sif,52+d,53+d)== 'Z')
-#  dateZ <- as.Date(substr(sif,53+d,60+d),'%d%m%Y')
+#  dateZ <- as.Date(substr(sif,53+d,60+d),'%d%m%Y')  # ERROR 54+d
 #  causeXYZ <- substr(sif,61+d,61+d)
 #
+
+sif["caseX"] = sif["sif"].apply(lambda x: str(x)[33+d:34+d]) == "X"
+sif["dateX"] = sif["sif"].apply(lambda x: str(x)[34+d:42+d])
+sif["caseY"] = sif["sif"].apply(lambda x: str(x)[42+d:43+d]) == "Y"
+sif["dateY"] = sif["sif"].apply(lambda x: str(x)[43+d:51+d]) 
+sif["caseZ"] = sif["sif"].apply(lambda x: str(x)[51+d:53+d]) == "Z"
+sif["dateZ"] = sif["sif"].apply(lambda x: str(x)[53+d:60+d]) 
+sif["causeXYZ"] = sif["sif"].apply(lambda x: str(x)[60+d:61+d])
+
+# TODO: convert dateWYZ to appropraite date in pandas
+# print sif["dateY"].unique()
+
+#print sif.describe()
 #  nbptr <- nbptr/100
 #  rfr_n_2 <- mnrvka
+
+sif["nbptr"] =  sif["nbptr"]/100
+sif["rfr_n_2"] = sif["mnrvka"]
+
 #  nbF <- as.numeric(substr(sif,65+d,66+d))
 #  nbG <- as.numeric(substr(sif,68+d,69+d))
 #  nbR <- as.numeric(substr(sif,71+d,72+d))
@@ -157,14 +217,33 @@ print sif["sif"].astype(str).describe()
 #  nbN <- as.numeric(substr(sif,77+d,78+d))
 #  nbH <- as.numeric(substr(sif,80+d,81+d))
 #  nbI <- as.numeric(substr(sif,83+d,84+d))
+
+sif["nbF"] = sif["sif"].apply(lambda x: str(x)[64+d:66+d])
+sif["nbG"] = sif["sif"].apply(lambda x: str(x)[67+d:69+d])
+sif["nbR"] = sif["sif"].apply(lambda x: str(x)[70+d:72+d])
+sif["nbJ"] = sif["sif"].apply(lambda x: str(x)[73+d:75+d])
+sif["nbN"] = sif["sif"].apply(lambda x: str(x)[76+d:78+d])
+sif["nbH"] = sif["sif"].apply(lambda x: str(x)[79+d:81+d])
+sif["nbI"] = sif["sif"].apply(lambda x: str(x)[82+d:84+d])
+
 #  if (year != 2009){
 #  nbP <- as.numeric(substr(sif,86+d,87+d))
 #  }
 #})
+
+if (year != 2009):
+    sif["nbP"] = sif["sif"].apply(lambda x: str(x)[85+d:87+d])
+
 #sif$sif <- NULL
 #sif$stamar <- NULL
 #
+
+del sif["sif"], sif["stamar"]
+
+# RESTART HERE
 #table(sif$statmarit)
+print sif["statmarit"].value_counts()
+print "nombre d'individu différents :", len(sif["noindiv"].value_counts())
 #print(length(table(sif$noindiv)))
 #dup <- duplicated(sif$noindiv)
 #table(dup)
