@@ -102,7 +102,8 @@ class ErfsDataTable(object):
         store = HDFStore(self.hdf5_filename)
         for table_path in store.keys():
             table = table_path[6:]
-            self.tables[table] = store[table_path] 
+            self.tables[table] = store[table_path]
+        store.close() 
         
     def get_values(self, variables=None, table=None):
         """
