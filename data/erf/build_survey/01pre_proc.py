@@ -198,7 +198,6 @@ def run():
     
     filter5 = and_(indivim['acteu'] == 2, (indivim.retrai.isin([1,2])))
     indivim['actrec'] = where(filter5 is True, 7, indivim['actrec'])
-    
     indivim['actrec'] = where(indivim['acteu'] is None, 9, indivim['actrec'])
 
     #save(indivim,file=indm)
@@ -256,7 +255,7 @@ def run():
     enfnn['declar1'] = ''
     enfnn['noidec'] = 0
     enfnn['ztsai'] = 0
-    enfnn['year'] = float(enfnn['year'])
+    enfnn['year'] = enfnn['year'].astype("float32")
     enfnn['agepf'] = where(enfnn['naim'] < 7, enfnn['year'] - enfnn['naia'], 
                            enfnn['year'] - enfnn['naia'] - 1) 
     enfnn['actrec'] = 9
