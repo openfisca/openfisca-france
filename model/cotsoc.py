@@ -77,15 +77,15 @@ def _prelsoc_cap_bar(rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
-    if DEBUG:
-        return - rev_cap_bar*0
+#    if DEBUG:
+#        return - rev_cap_bar*0
     P = _P.prelsoc
     if _P.datesim.year < 2006:
-        total = P.base 
+        total = P.base_pat 
     elif _P.datesim.year < 2009:    
-        total = P.base + P.add
+        total = P.base_pat + P.add
     else:    
-        total = P.base + P.add + P.rsa
+        total = P.base_pat + P.add + P.rsa
     return - rev_cap_bar*total
 
 
@@ -108,11 +108,11 @@ def _prelsoc_fon(f4ba, _P):
     '''
     P = _P.prelsoc
     if _P.datesim.year < 2006:
-        total = P.base 
+        total = P.base_pat 
     elif _P.datesim.year < 2009:    
-        total = P.base + P.add
+        total = P.base_pat + P.add
     else:    
-        total = P.base + P.add + P.rsa
+        total = P.base_pat + P.add + P.rsa
     return - f4ba*total
 
 # revenus du capital soumis au prélèvement libératoire
@@ -132,15 +132,15 @@ def _prelsoc_cap_lib(rev_cap_lib, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire
     '''
-    if DEBUG:
-        return - rev_cap_lib*0
+#    if DEBUG:
+#        return - rev_cap_lib*0
     P = _P.prelsoc
     if _P.datesim.year < 2006:
-        total = P.base 
+        total = P.base_pat 
     elif _P.datesim.year < 2009:    
-        total = P.base + P.add
+        total = P.base_pat + P.add
     else:    
-        total = P.base + P.add + P.rsa
+        total = P.base_pat + P.add + P.rsa
     return - rev_cap_lib*total
 
 
