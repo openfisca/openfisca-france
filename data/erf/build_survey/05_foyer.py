@@ -16,9 +16,10 @@
 #message('05_foyer: extraction des données foyer')
 ###***********************************************************************/
 #
-
+import gc
 from src.countries.france.data.erf.datatable import ErfsDataTable
 from pandas.tools.pivot import pivot_table
+from pandas import HDFStore
 year = 2006
 df = ErfsDataTable(year=year)
 
@@ -257,6 +258,10 @@ sif = sif["dup"] == False
 #saveTmp(sif, file = 'sif.Rdata')
 #rm(sif)
 #gc()
+saveTmp = HDFStore.put(sif) #TODO ask how you specify the name of the file.
+del sif
+gc.collect()
+
 ##################################################################
 ## On ajoute les cases de la déclaration
 #foyer_all <- LoadIn(erfFoyFil)
