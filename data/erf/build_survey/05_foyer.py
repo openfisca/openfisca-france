@@ -16,9 +16,11 @@
 #message('05_foyer: extraction des données foyer')
 ###***********************************************************************/
 #
+
 import numpy as np
 import re
 from src.countries.france.data.erf.datatable import ErfsDataTable
+
 
 year = 2006
 df = ErfsDataTable(year=year)
@@ -296,8 +298,6 @@ def foyer_all():
     gc.collect()
     
     #
-    
-
     ## On aggrège les déclarations dans le cas où un individu a fait plusieurs déclarations
     #foyer <- aggregate(foyer, by = noindiv, FUN = 'sum')
     #print foyer.describe()["f1aj"].to_string()
@@ -419,6 +419,7 @@ def foyer_all():
                'nbnc_pvce': ['f5qj', 'f5rj', 'f5sj'],
                'demenage' : ['f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er']}  # (déménagement) uniquement en 2006
    
+
 #
 #varlist = list(list('sali', c('f1aj', 'f1bj', 'f1cj', 'f1dj', 'f1ej')),
 #                list('choi', c('f1ap', 'f1bp', 'f1cp', 'f1dp', 'f1ep')),
@@ -551,11 +552,6 @@ def foyer_all():
 
 #        selection = selection.reset_index()
         
-        print selection.head()
-
-    print err    
-    print err_vars
-
 
 #not_first <- FALSE
 #allvars = c()
