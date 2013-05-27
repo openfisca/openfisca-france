@@ -60,11 +60,13 @@ class ErfsDataTable(object):
         eec_indiviXX = "irf" + yr + "e" + yr + "t4"
         
         
-        tables_to_process = {"erf_menage" : menageXX,
-                             "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                             "foyer" : foyerXX,
-                             "erf_indivi" : indiviXX,
-                             "eec_indivi" : eec_indiviXX}
+        tables_to_process = {
+#                              "erf_menage" : menageXX,
+#                              "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+#                              "foyer" : foyerXX,
+#                              "erf_indivi" : indiviXX,
+                              "eec_indivi" : eec_indiviXX,
+                             }
         
         for destination_table_name, R_table_name in tables_to_process.iteritems(): 
             
@@ -74,7 +76,7 @@ class ErfsDataTable(object):
             rpy.r.load(filename)
             stored_table = com.load_data(R_table_name)
             store = HDFStore(self.hdf5_filename)
-            store[str(self.year)+"/"+"destination_table_name"] = stored_table
+            store[str(self.year)+"/"+destination_table_name] = stored_table
             store.close()
             del stored_table
             gc.collect()
