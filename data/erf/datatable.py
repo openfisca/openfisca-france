@@ -108,7 +108,6 @@ class ErfsDataTable(object):
         ----------
         year : int, default None
                year of the survey
-               
         """
         tables = {}
         if self.year is not None:        
@@ -127,12 +126,17 @@ class ErfsDataTable(object):
             else:
                 return year
 
-        self.get_survey_list(year)
+
+        survey_list = self.get_survey_list(year)
+        store = HDFStore(self.hdf5_filename)
+        print store
+
 
         for survey in survey_list:    
             survey_name = survey["name"]
             data_dir = survey["data_dir"]
             tables_to_process = survey["tables_to_process"]
+            
             
             for destination_table_name, R_table_name in tables_to_process.iteritems(): 
                 
@@ -140,16 +144,15 @@ class ErfsDataTable(object):
                 table_Rdata = R_table_name + ".Rdata"
                 filename = os.path.join(data_dir, str(get_survey_year(survey_name, year)), table_Rdata)
                 if not os.path.isfile(filename):
-                    print "DO NOT EXISTS : ", filename
-#                else:
-#                    print filename +" exists" 
-#                rpy.r.load(filename)
-#                stored_table = com.load_data(R_table_name)
-#                store = HDFStore(self.hdf5_filename)
-#                store[str(self.year)+"/"+"destination_table_name"] = stored_table
-#                store.close()
-#                del stored_table
-#                gc.collect()
+                    raise Exception("filename do  not exists")
+                
+                rpy.r.load(filename)
+                stored_table = com.load_data(R_table_name)
+                store = HDFStore(self.hdf5_filename)
+                store[str(self.year)+"/"+destination_table_name] = stored_table
+                store.close()
+                del stored_table
+                gc.collect()
 
 
     def get_value(self, variable, table=None):
@@ -245,7 +248,7 @@ def test():
     
 
 def test_set_config():
-    for year in range(2006,2010):
+    for year in range(2008,2010):
         erf = ErfsDataTable(year=year)
         erf.set_config()
         del erf
