@@ -2,7 +2,7 @@
 # Created on 16 mai 2013
 # This file is part of OpenFisca.
 # OpenFisca is a socio-fiscal microsimulation software
-# Copyright © #2013 Clément Schaff, Mahdi Ben Jelloul
+# Copyright ©2013 Clément Schaff, Mahdi Ben Jelloul
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
 ## OpenFisca
@@ -22,18 +22,19 @@ from numpy import array, where #, float32
 from pandas import  HDFStore
 import gc
 import os
+from numpy import logical_not as not_
+from numpy import logical_and as and_
+from numpy import logical_or as or_
+
 from src import SRC_PATH
+from src.countries.france.data.erf.build_survey import save_temp
 
+    
+year = 2006
+df = ErfsDataTable(year=year)
 
-def run():
-    
-    from numpy import logical_not as not_
-    from numpy import logical_and as and_
-    from numpy import logical_or as or_
-    
-    year = 2006
-    df = ErfsDataTable(year=year)
-    
+def run_1():
+        
     #Test on the .h5 file itself
 #     country = "france"    
 #     ERF_HDF5_DATA = os.path.join(SRC_PATH, 'countries', country, 'data', 'erf', 'erf.h5')
@@ -97,7 +98,6 @@ def run():
     print dif, int
     
     #str(dif);str(int)
-    str(dif) ; str(int)
     #rm(noappar_i,noappar_m,dif,int)
     #rm(noappar_i, noappar_m, dif, int)
     del noappar_i, noappar_m, dif, int
@@ -204,29 +204,32 @@ def run():
     #rm(erfind,eecind,indivim)
     #message('indivim saved')
     #gc()
-    store2 = HDFStore('indm.h5')
-    store2.put('indivim', indivim)
+    
+    save_temp(indivim, name="indivim", year=year)
+#    store2 = HDFStore('indm.h5')
+#    store2.put('indivim', indivim)
     del erfind, eecind, indivim
     print 'indivim saved'
     gc.collect()
-    return
 
+
+def run_2():
     ### Enfant à naître (NN pour nouveaux nés)
 
     #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien','acteu','stc','contra','titc','mrec',
     #           'forter','rstg','retrai','lpr','cohab','sexe','agepr','rga')
-    indVar = (['noi', 'noicon', 'noindiv', 'noiper', 'noimer', 'ident', 'naia', 'naim', 'lien', 
+    individual_vars = ['noi', 'noicon', 'noindiv', 'noiper', 'noimer', 'ident', 'naia', 'naim', 'lien', 
                'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
-               'agepr','rga'])
+               'agepr','rga']
     
     #eeccmp1 <- LoadIn(eecCmp1Fil,indVar)
     #eeccmp2 <- LoadIn(eecCmp2Fil,indVar)
     #eeccmp3 <- LoadIn(eecCmp3Fil,indVar)
     #enfnn <- rbind(eeccmp1,eeccmp2,eeccmp3)
     
-    eeccmp1 = df.get_values(table=["eecCmp1Fil", "indVar"])
-    eeccmp2 = df.get_values(table=["eecCmp2Fil", "indVar"])
-    eeccmp3 = df.get_values(table=["eecCmp3Fil", "indVar"])
+    eeccmp1 = df.get_values(table="eec_cmp_1", variables=individual_vars)
+    eeccmp2 = df.get_values(table="eec_cmp_2", variables=individual_vars)
+    eeccmp3 = df.get_values(table="eec_cmp_3", variables=individual_vars)
     tmp = eeccmp1.merge(eeccmp2)
     enfnn = tmp.merge(eeccmp3)
 
@@ -235,11 +238,11 @@ def run():
     #  enfnn[,var] <- as.numeric(enfnn[,var])
     #}
 
-    for var in indVar:
+    for var in individual_vars:
         print var
         enfnn[var] = float(enfnn[var])
     #rm(eeccmp1,eeccmp2,eeccmp3,var_list)
-    del eeccmp1, eeccmp2, eeccmp3, var_list
+    del eeccmp1, eeccmp2, eeccmp3, individual_vars
     
     #enfnn <- within(enfnn,{
     #  declar1 <- ''
@@ -270,11 +273,13 @@ def run():
     #rm(enfnn)
     #message('enfnnm saved')
     #gc()
-    store_enfnnm = HDFStore('enfnnm.h5')
-    store_enfnnm.put('enfnnm.h5', enfnn)
+    save_temp(enfnn, name="enfnn", year=year)
+#    store_enfnnm = HDFStore('enfnnm.h5')
+#    store_enfnnm.put('enfnnm.h5', enfnn)
     del enfnn
     print "enfnnm saved"
     gc.collect()
     
 if __name__ == '__main__':
-    run()
+    # run_1()
+    run_2()
