@@ -35,25 +35,17 @@ class ErfsDataTable(object):
         """
         Return a list of survey information stored in a dictionary
         """
-        yr = str(year)[2:] 
-        ## ERF       
+        yr = str(year)[2:]
+        yr1 = str(year+1)[2:]
         
-        # erf menage
-        menageXX = "menage" + yr
-        # eec menage
-        eec_df_name = "mrf" + yr + "e" + yr + "t4"
-        # foyer
-        foyerXX = "foyer" + yr
-        # erf_indivi
-        indiviXX = "indivi" + yr
-        # eec_indivi
-        eec_indiviXX = "irf" + yr + "e" + yr + "t4"
-        
-        erf_tables_to_process = {"erf_menage" : menageXX,
-                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                                 "foyer" : foyerXX,
-                                 "erf_indivi" : indiviXX,
-                                 "eec_indivi" : eec_indiviXX,
+        erf_tables_to_process = {#"erf_menage" : "menage" + yr,
+#                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+#                                 "foyer" : "foyer" + yr,
+#                                 "erf_indivi" : "indivi" + yr,
+#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
+                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
+#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
+#                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
                                  }
        
         erf = {"name" : "erf",
@@ -95,7 +87,7 @@ class ErfsDataTable(object):
                "data_dir" : os.path.join(os.path.dirname(DATA_DIR),'R','patrimoine'),
                "tables_to_process" : pat_tables_to_process}
         
-        survey_list = [ erf, lgt]  # TODO: prepare RData files for patrimoine
+        survey_list = [ erf] #, lgt]  # TODO: prepare RData files for patrimoine
         
         return survey_list
 
@@ -115,6 +107,33 @@ class ErfsDataTable(object):
         else:
             raise Exception("year should be defined")
         
+        survey_list = self.get_survey_list(year)
+        store = HDFStore(self.hdf5_filename)
+        print store
+        for survey in survey_list:
+            survey_name = survey["name"]
+            data_dir = survey["data_dir"]
+            tables_to_process = survey["tables_to_process"]
+            for destination_table_name, R_table_name in tables_to_process.iteritems(): 
+                self.store_survey(survey_name, R_table_name, destination_table_name, data_dir)
+
+    def store_survey(self, survey_name, R_table_name, destination_table_name, data_dir, force_recreation=True):
+        """
+        Store a R data table in an HDF5 file
+        
+        Parameters
+        ----------
+
+        survey_name : string
+                       the name of the survey 
+        R_table_name : string
+                       the name of the R data table
+        destination_table_name : string
+                                 the name of the table in the HDFStore
+        data_dir : 
+        """
+
+        year = self.year
         def get_survey_year(survey_name, year):
             if survey_name == "logement":
                 if year == 2003:
@@ -125,34 +144,29 @@ class ErfsDataTable(object):
                 return 2004
             else:
                 return year
-
-
-        survey_list = self.get_survey_list(year)
+            
+        print "creating %s" %(destination_table_name) 
+        table_Rdata = R_table_name + ".Rdata"
+        filename = os.path.join(data_dir, str(get_survey_year(survey_name, year)), table_Rdata)
+        print filename
+        if not os.path.isfile(filename):
+            raise Exception("filename do  not exists")
+        
+        rpy.r.load(filename)
+        stored_table = com.load_data(R_table_name)
         store = HDFStore(self.hdf5_filename)
-        print store
-
-
-        for survey in survey_list:    
-            survey_name = survey["name"]
-            data_dir = survey["data_dir"]
-            tables_to_process = survey["tables_to_process"]
-            
-            
-            for destination_table_name, R_table_name in tables_to_process.iteritems(): 
-                
-                print "creating %s" %(destination_table_name) 
-                table_Rdata = R_table_name + ".Rdata"
-                filename = os.path.join(data_dir, str(get_survey_year(survey_name, year)), table_Rdata)
-                if not os.path.isfile(filename):
-                    raise Exception("filename do  not exists")
-                
-                rpy.r.load(filename)
-                stored_table = com.load_data(R_table_name)
-                store = HDFStore(self.hdf5_filename)
-                store[str(self.year)+"/"+destination_table_name] = stored_table
+        store_path = str(self.year)+"/"+destination_table_name
+        
+        if store_path in store:
+            if force_recreation is not True:
+                print store_path + "already exists, do not re-create and exit"
                 store.close()
-                del stored_table
-                gc.collect()
+            return
+  
+        store[store_path] = stored_table
+        store.close()
+        del stored_table
+        gc.collect()
 
 
     def get_value(self, variable, table=None):
@@ -195,14 +209,13 @@ class ErfsDataTable(object):
         df : DataFrame, default None 
              A DataFrame containing the variables
         """
-        # First of all, se the tables if they are not set
-        if not self.tables:
-            self.set_tables()
 
+        store = HDFStore(self.hdf5_filename)
+        df = store[str(self.year)+"/"+table]
         # If no variables read the whole table
         if variables is None:
-            df = self.tables[table]
             return df
+            
         
         from src.countries.france.data.erf import get_erf2of, get_of2erf
         of2erf = get_of2erf()
@@ -215,19 +228,19 @@ class ErfsDataTable(object):
         if renamed_variables:
             variables = list( set(variables).difference(to_be_renamed_variables)) + renamed_variables 
         
-        if table is None:
-            for test_table in self.tables.keys:
-                if set(variables) < set(self.tables[test_table].columns):
-                    table = test_table
-                    print "using guessed table :", table
-                    break
-                
-        if table is None:
-            print "varname not found in any tables"
-            df = None
-        else:
-            variables = list( set(variables).intersection(self.tables[table].columns))
-            df = self.tables[table][variables]
+#        if table is None:
+#            for test_table in self.tables.keys:
+#                if set(variables) < set(self.tables[test_table].columns):
+#                    table = test_table
+#                    print "using guessed table :", table
+#                    break
+#                
+#        if table is None:
+#            print "varname not found in any tables"
+#            df = None
+#        else:
+        variables = list( set(variables).intersection(df.columns))
+        df = df[variables]
         
         # rename variables according to their name in openfisca
         erf2of = get_erf2of()
@@ -248,11 +261,20 @@ def test():
     
 
 def test_set_config():
-    for year in range(2008,2010):
+    for year in range(2006,2007):
         erf = ErfsDataTable(year=year)
         erf.set_config()
         del erf
     
+    
+def test_reading_stata_tables():
+    from pandas.io.stata import StataReader, read_stata # TODO: wait for the next release ...
+
+    filename = os.path.join(DATA_DIR,"erf","2006","Tables complémentaires","icomprf06e07t1.dta")
+    reader = StataReader(filename)
+    print reader.data()
+    
 if __name__ == '__main__':
-    test_set_config()
+    # test_set_config()
     # build_foyer()
+    test_reading_stata_tables()

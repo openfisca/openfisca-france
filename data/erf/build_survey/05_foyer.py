@@ -17,16 +17,14 @@
 ###***********************************************************************/
 #
 
-import numpy as np
+import numpy
 import re
 from src.countries.france.data.erf.datatable import ErfsDataTable
-
 
 year = 2006
 df = ErfsDataTable(year=year)
 
 def sif():
-    
     print u"05_foyer: extraction des données foyer"
     ## TODO Comment choisir le rfr n -2 pour éxonération de TH ?
     ## mnrvka  Revenu TH n-2
@@ -301,7 +299,7 @@ def foyer_all():
     ## On aggrège les déclarations dans le cas où un individu a fait plusieurs déclarations
     #foyer <- aggregate(foyer, by = noindiv, FUN = 'sum')
     #print foyer.describe()["f1aj"].to_string()
-    foyer = foyer.groupby("noindiv", as_index=False).aggregate(np.sum)
+    foyer = foyer.groupby("noindiv", as_index=False).aggregate(numpy.sum)
     #
     #print foyer.describe()["f1aj"].to_string()
     #print foyer.describe()["noindiv"].to_string()
@@ -549,6 +547,7 @@ def foyer_all():
         selection.columns.name = "quifoy"
         selection = selection.stack()
         selection.name = individual_var
+        print selection
 
 #        selection = selection.reset_index()
         
