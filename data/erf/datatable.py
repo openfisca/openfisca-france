@@ -21,6 +21,26 @@ from pandas import HDFStore
 
 ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH,'countries','france','data', 'erf')
 
+
+class SurveyDescription(object):
+    """
+    An object to describe syrvey data
+    """
+    def __init__(self):
+        self.survey_year = None
+        self.tables = dict()
+
+
+    def insert_table(self, name=None, **kwargs):
+        """
+        Insert a table in the SurveyDescription
+        """
+        self.tables[name] = dict()
+        for key, val in kwargs:
+            if key in ["RData_dir", "RData_filename", "variables"]:
+                self.tables[name][key] = val 
+        
+
 class ErfsDataTable(object):
     """
     An object to acces variables int the ERFS datatables
@@ -38,6 +58,9 @@ class ErfsDataTable(object):
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
         
+        erf = SurveyDescription()
+        
+        
         erf_tables_to_process = {#"erf_menage" : "menage" + yr,
 #                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
 #                                 "foyer" : "foyer" + yr,
@@ -48,20 +71,28 @@ class ErfsDataTable(object):
 #                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
                                  }
        
+        vars = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic',
+                       'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','ztsai','sexe',
+                       'persfip','agepr','rga','actrec']
+        erf_variables_to_fetch = {"erf_indivi": vars,
+                                  "eec_indivi": vars,
+                                  "eec_cmp_1" : vars,
+                                  "eec_cmp_2" : vars,
+                                  "eec_cmp_3" : vars}
+       
         erf = {"name" : "erf",
                "data_dir" : os.path.join(os.path.dirname(DATA_DIR),'R','erf'),
-               "tables_to_process" : erf_tables_to_process} 
+               "tables_to_process" : erf_tables_to_process,
+               "variables_to_fetch" : erf_variables_to_fetch} 
         
         ## LOGEMENT
         lgt_data_dir = os.path.join(os.path.dirname(DATA_DIR),'R','logement')
         if yr=="03":
-            year_lgt = 2003
             lgt_men = "menage"
             lgt_logt = None
             renameidlgt  = dict(ident='ident')
             
         elif yr in ["06","07","08","09"]:
-            year_lgt = 2006
             lgt_men = "menage1"
             lgt_lgt = "logement"
             renameidlgt = dict(idlog='ident')
@@ -101,7 +132,6 @@ class ErfsDataTable(object):
         year : int, default None
                year of the survey
         """
-        tables = {}
         if self.year is not None:        
             year = self.year
         else:
