@@ -31,6 +31,75 @@ class ErfsDataTable(object):
         self.tables = {}
         self.hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
     
+    def get_survey_list(self, year):
+        """
+        Return a list of survey information stored in a dictionary
+        """
+        yr = str(year)[2:] 
+        ## ERF       
+        
+        # erf menage
+        menageXX = "menage" + yr
+        # eec menage
+        eec_df_name = "mrf" + yr + "e" + yr + "t4"
+        # foyer
+        foyerXX = "foyer" + yr
+        # erf_indivi
+        indiviXX = "indivi" + yr
+        # eec_indivi
+        eec_indiviXX = "irf" + yr + "e" + yr + "t4"
+        
+        erf_tables_to_process = {"erf_menage" : menageXX,
+                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+                                 "foyer" : foyerXX,
+                                 "erf_indivi" : indiviXX,
+                                 "eec_indivi" : eec_indiviXX,
+                                 }
+       
+        erf = {"name" : "erf",
+               "data_dir" : os.path.join(os.path.dirname(DATA_DIR),'R','erf'),
+               "tables_to_process" : erf_tables_to_process} 
+        
+        ## LOGEMENT
+        lgt_data_dir = os.path.join(os.path.dirname(DATA_DIR),'R','logement')
+        if yr=="03":
+            year_lgt = 2003
+            lgt_men = "menage"
+            lgt_logt = None
+            renameidlgt  = dict(ident='ident')
+            
+        elif yr in ["06","07","08","09"]:
+            year_lgt = 2006
+            lgt_men = "menage1"
+            lgt_lgt = "logement"
+            renameidlgt = dict(idlog='ident')
+        
+        lgt_tables_to_process = {"adresse" : "adresse",
+                                 "lgt_menage" : lgt_men,
+                                 "lgt_logt" : lgt_lgt,
+                                 }
+        
+        lgt = {"name" : "logement", 
+               "data_dir" : lgt_data_dir,
+               "tables_to_process" : lgt_tables_to_process}
+
+        # Enquête Patrimoine
+        pat_tables_to_process = {"pat_individu" : "individu",
+                                 "pat_menage" : "meange",
+                                 "pat_produit" : "produit",
+                                 "pat_transmission" : "transm"}
+       
+        pat_data_dir = os.path.join(os.path.dirname(DATA_DIR),'R','patrimoine')       
+       
+        pat = {"name" : "patrimoine",
+               "data_dir" : os.path.join(os.path.dirname(DATA_DIR),'R','patrimoine'),
+               "tables_to_process" : pat_tables_to_process}
+        
+        survey_list = [ erf, lgt]  # TODO: prepare RData files for patrimoine
+        
+        return survey_list
+
+    
     def set_config(self, **kwargs):
         """
         Set configuration parameters
@@ -39,7 +108,6 @@ class ErfsDataTable(object):
         ----------
         year : int, default None
                year of the survey
-               
         """
         tables = {}
         if self.year is not None:        
@@ -61,10 +129,10 @@ class ErfsDataTable(object):
         
         
         tables_to_process = {
-#                              "erf_menage" : menageXX,
-#                              "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-#                              "foyer" : foyerXX,
-#                              "erf_indivi" : indiviXX,
+                            "erf_menage" : menageXX,
+                            "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+                            "foyer" : foyerXX,
+                            "erf_indivi" : indiviXX,
                               "eec_indivi" : eec_indiviXX,
                              }
         
@@ -80,6 +148,7 @@ class ErfsDataTable(object):
             store.close()
             del stored_table
             gc.collect()
+
 
 
     def get_value(self, variable, table=None):
@@ -104,7 +173,8 @@ class ErfsDataTable(object):
         store = HDFStore(self.hdf5_filename)
         for table_path in store.keys():
             table = table_path[6:]
-            self.tables[table] = store[table_path] 
+            self.tables[table] = store[table_path]
+        store.close() 
         
     def get_values(self, variables=None, table=None):
         """
@@ -172,17 +242,13 @@ def test():
     df = erf.get_values( ["typmen15", "nbinde", "af"], "menage")
     print df.head()
     
-def build_foyer():
-    from src.lib.simulation import SurveySimulation
-    country = "france"
-    yr = 2006
-    simulation = SurveySimulation()
-    simulation.set_config(year=yr, country = country)
-    input_table = simulation.InputTable
-    for col in input_table.columns:
-        print col.name
-        print col.entity
+
+def test_set_config():
+    for year in range(2008,2010):
+        erf = ErfsDataTable(year=year)
+        erf.set_config()
+        del erf
     
 if __name__ == '__main__':
-    test()
+    test_set_config()
     # build_foyer()
