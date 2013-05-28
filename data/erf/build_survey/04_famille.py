@@ -76,7 +76,7 @@ def famille():
 #
 
 
-    indivi["noidec"]  as.numeric(substr(declar1,1,2))
+#    indivi["noidec"] = as.numeric(substr(declar1,1,2))
 #          agepf <- ifelse(naim < 7, year-naia ,year-naia-1)
 
 

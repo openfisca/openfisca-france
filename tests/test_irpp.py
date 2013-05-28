@@ -16,16 +16,14 @@ from datetime import datetime
 ''' test pour un célibataire ayant un revenu salarial (1AJ) de 20 000 € '''
 
 
-irpp = {2010: 1181, 2011 : 1181}
+irpp = {2010: -1181, 2011 : -1181}
 
 def test_irpp_20000():
     country = 'france'
     for yr in range(2010,2012):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, country = country, 
-                        nmen = 2, minrev=20000, maxrev = 350000, xaxis = 'sali')
-        # Adding a husband/wife on the same tax sheet (foyer)
-#        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
+        simulation.set_config(year = yr, country = country, nmen = 1)
+
         simulation.set_param()
         test_case = simulation.scenario  
         test_case.indiv[0].update({"sali":20000})
@@ -45,8 +43,10 @@ def test_irpp_20000():
         print test_case.indiv[0]
 #        print test_case.declar[0]
 #        print irpp[yr]
-#        print abs(df.loc["irpp"][0] - irpp[yr]) < 1e-3        
-        assert abs(df.loc["irpp"][0] - irpp[yr]) < 1e-3 
+#        print abs(df.loc["irpp"][0] - irpp[yr]) < 1e-3
+        print  df.loc["irpp"][0]
+        print  irpp[yr]      
+        assert abs(df.loc["irpp"][0] - irpp[yr]) < 1 
 #       montant de l'irpp
 
 

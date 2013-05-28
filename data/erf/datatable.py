@@ -38,7 +38,7 @@ class SurveyDescription(object):
         self.tables[name] = dict()
         for key, val in kwargs:
             if key in ["RData_dir", "RData_filename", "variables"]:
-                self.tables[name][key] = val 
+                    self.tables[name][key] = val 
         
 
 class ErfsDataTable(object):
