@@ -107,6 +107,7 @@ class ErfsDataTable(object):
         else:
             raise Exception("year should be defined")
         
+
         survey_list = self.get_survey_list(year)
         store = HDFStore(self.hdf5_filename)
         print store
