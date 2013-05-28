@@ -23,10 +23,9 @@ def test_irpp_20000():
     for yr in range(2010,2012):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, country = country, 
-                        nmen = 2, maxrev = 350000, xaxis = 'sali')
+                        nmen = 2, minrev=20000, maxrev = 350000, xaxis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        #simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
-#        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
+#        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.set_param()
         test_case = simulation.scenario  
         test_case.indiv[0].update({"sali":20000})
@@ -42,6 +41,7 @@ def test_irpp_20000():
 
         print df.loc["irpp"][0]
 #        print test_case
+        print df.to_string()
         print test_case.indiv[0]
 #        print test_case.declar[0]
 #        print irpp[yr]
