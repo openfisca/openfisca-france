@@ -215,13 +215,13 @@ def run():
     tmp_pac2 = pac.loc[ :, ['noindiv', 'key2', 'naia']]
     tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac']]
     
-    pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on='key1', right_on = 'key')
-    pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key')
+    pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on='key1', right_on = 'key', how='outer')
+    pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='outer')
     print pacInd1
     print "----------------------------"
     print pacInd2
     print "pacInd1&2 créés-----------------------------------"
-    return
+
 # table(duplicated(pacInd1))
 # table(duplicated(pacInd2))
 
@@ -249,14 +249,14 @@ def run():
         print "Warning : pacInd2 is an empty data frame"
         pacInd = pacInd1
     else:
-        pacInd = concat([pacInd2, pacInd1]) #TODO: BUG IL NE PEUT PAS JOINDRE DEUX DF VIDES O_o
+        pacInd = concat([pacInd2, pacInd1]) 
     print 'pacInd created ----------------------------'
     
 # table(duplicated(pacInd[,c("noindiv","typ")]))
 # table(duplicated(pacInd$noindiv))
 
-    pacInd.duplicated(['noindiv', 'type_pac']).value_count()
-    pacInd.noindiv.duplicated.value_count()
+    pacInd.duplicated(['noindiv', 'type_pac']).value_counts()
+    pacInd.duplicated('noindiv').value_counts()
 
 # pacIndiv <- pacInd[!duplicated(pacInd$noindiv),]
 # saveTmp(pacIndiv,file="pacIndiv.Rdata")
