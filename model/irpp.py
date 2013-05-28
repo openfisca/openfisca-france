@@ -129,7 +129,7 @@ def _pen_net(rev_pen, _P):
 #    penv2 = (d11-f11> P.abatpen.max)*(penv + (d11-f11-P.abatpen.max)) + (d11-f11<= P.abatpen.max)*penv   
 #    Plus d'abatement de 20% en 2006
 
-    return max_(0, rev_pen - round(max_(P.taux*rev_pen , P.min)))
+    return max_(0, rev_pen - min_(round(max_(P.taux*rev_pen , P.min)), P.max))
 
 def _abat_sal_pen(sal_net, pen_net, _P):
     """
