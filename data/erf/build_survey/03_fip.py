@@ -4,11 +4,11 @@
 # # We add them to ensure consistency between concepts.
 # # Creates a 'fipDat' table containing all these 'fip individuals'
 # 
-from src.countries.france.data.erf.datatable import ErfsDataTable
+from src.countries.france.data.erf.datatable import DataCollection
+from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from pandas import DataFrame
-from numpy import array, where, dtype, NaN #, float32
-from pandas import  HDFStore, melt, concat
-import gc
+from numpy import array, where, NaN
+from pandas import concat
 # import os
 # from src import SRC_PATH
 
@@ -21,7 +21,7 @@ def run():
 # message('03_fip')
 
     year = 2006
-    df = ErfsDataTable(year=year)
+    df = DataCollection(year=year)
     
     print '03_fip'
 # # anaisenf: année de naissance des PAC
@@ -166,10 +166,11 @@ def run():
 # indVar <- c('ident','noi','declar1','declar2','persfip','persfipd','naia','rga','lpr','noindiv','ztsai','ztsao','wprm')
 # indivi <- LoadIn(indm,indVar)
 
-    indvar = ['ident','noi','declar1','declar2','persfip','persfipd','naia','rga','lpr',
-              'noindiv','ztsai','ztsao','wprm']
-    erf_indivi = df.get_values(variables = indvar, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
-    eec_indivi = df.get_values(variables = indvar, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
+    indvar_erf = ['ident','noi','declar1','declar2','persfip','persfipd', 'noindiv','ztsai',
+                  'ztsao','wprm']
+    indvar_eec = ['ident','noi','naia','rga','lpr', 'noindiv']
+    erf_indivi = df.get_values(variables = indvar_erf, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
+    eec_indivi = df.get_values(variables = indvar_eec, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
     indivi = erf_indivi.merge(eec_indivi)
     
 # indivi$noidec <- as.numeric(substr(indivi$declar1,1,2))
@@ -249,10 +250,8 @@ def run():
 # rm(pacInd,pacIndiv)
     
     pacIndiv = pacInd[not_(pacInd.duplicated('noindiv'))]
-    save_tmp = HDFStore('save_tmp.h5')
-    save_tmp.put('save_tmp.h5', fip)
-    del pacInd, pacIndiv
-    gc.collect()
+    save_temp(pacIndiv, name="pacIndiv", year=year)
+
     print "save_tmp ------------------------------------" 
  
 # # We keep the fip in the menage of their parents because it is used in to
@@ -398,10 +397,8 @@ def run():
     
 # save(fip,file=fipDat)
 # rm(fip,fip1,individec1,indivifip,indivi,pac)
-    store_fip = HDFStore('fipDat.h5')
-    store_fip.put('enfnnm.h5', fip)
-    del fip, fip1, individec1, indivifip, indivi, pac
-    gc.collect()
+    save_temp(fip, name="fipDat", year=year)
+
     print 'rm(fip2,individec2)-----------------------'
 
 if __name__ == '__main__':
