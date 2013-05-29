@@ -16,22 +16,20 @@ print('Entering 01_pre_proc')
 #
 ## Menages et Individus
 #
-from src.countries.france.data.erf.datatable import ErfsDataTable
-from pandas import DataFrame
-from numpy import array, where #, float32
-from pandas import  HDFStore
+from src.countries.france.data.erf.datatable import DataCollection
+
+from numpy import where
 import gc
-import os
+
 from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
 
-from src import SRC_PATH
 from src.countries.france.data.erf.build_survey import save_temp
 
     
 year = 2006
-df = ErfsDataTable(year=year)
+data = DataCollection(year=year)
 
 def run_1():
         
@@ -45,10 +43,10 @@ def run_1():
 
 
     #erfmen <- LoadIn(erfMenFil)
-    erfmen = df.get_values(table="erf_menage")
+    erfmen = data.get_values(table="erf_menage")
     
     #eecmen <- LoadIn(eecMenFil)
-    eecmen = df.get_values(table="eec_menage")
+    eecmen = data.get_values(table="eec_menage")
     #
     #eecmen$locataire <- ifelse(eecmen$so %in% c(3,4,5),1,0)
     eecmen["locataire"] = eecmen["so"].isin([3,4,5])
@@ -65,10 +63,10 @@ def run_1():
     #
     #erfind <- LoadIn(erfIndFil)
     #eecind <- LoadIn(eecIndFil)
-    erfind = df.get_values(table="erf_indivi")
+    erfind = data.get_values(table="erf_indivi")
     print 'describe erfind & eecind'
 #     print erfind.columns
-    eecind = df.get_values(table="eec_indivi")
+    eecind = data.get_values(table="eec_indivi")
 #     print eecind.columns
 
     #transfert <- subset(eecind, lpr==1, select=c("ident","ddipl"))
@@ -139,7 +137,8 @@ def run_1():
     #indivim <- merge(eecind,erfind, by = c("noindiv","ident","noi"))
     indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'])
     
-    
+    import pdb
+    pdb.set_trace()
     # On recode l'activité de la semaine de référence'
     # actrec:
     #   1: actif occupé non salarié
@@ -164,9 +163,10 @@ def run_1():
     #  indivim[,var] <- as.numeric(indivim[,var])
     #}
     for var in var_list:
-        print var
-        indivim[var] = indivim[var].astype("float32")
-    
+        try:
+            indivim[var] = indivim[var].astype("float32")
+        except:
+            print "%s is missing" %var
     #indivim <- within(indivim,{
     #  actrec <- 0
     #  actrec[which(acteu==1)]             <- 3
@@ -227,9 +227,9 @@ def run_2():
     #eeccmp3 <- LoadIn(eecCmp3Fil,indVar)
     #enfnn <- rbind(eeccmp1,eeccmp2,eeccmp3)
     
-    eeccmp1 = df.get_values(table="eec_cmp_1", variables=individual_vars)
-    eeccmp2 = df.get_values(table="eec_cmp_2", variables=individual_vars)
-    eeccmp3 = df.get_values(table="eec_cmp_3", variables=individual_vars)
+    eeccmp1 = data.get_values(table="eec_cmp_1", variables=individual_vars)
+    eeccmp2 = data.get_values(table="eec_cmp_2", variables=individual_vars)
+    eeccmp3 = data.get_values(table="eec_cmp_3", variables=individual_vars)
     tmp = eeccmp1.merge(eeccmp2)
     enfnn = tmp.merge(eeccmp3)
 
@@ -281,5 +281,5 @@ def run_2():
     gc.collect()
     
 if __name__ == '__main__':
-    # run_1()
-    run_2()
+    run_1()
+#    run_2()
