@@ -10,6 +10,7 @@ from numpy import where
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 import pdb
+from pandas import concat
 
 # OpenFisca
 # Retreives the families 
@@ -80,33 +81,46 @@ def famille():
 #indivi <- indivi[!indivi$noindiv %in% indivi2$noindiv,]
 #rm(indivi2)
     from numpy import logical_not as not_
-    indivi = indivi[ not_((indivi.lien==6 & indivi.agepf<16 & "quelfic"=="EE"))]  
+    indivi = indivi[ not_((indivi.lien==6 & indivi.agepf<16 & "quelfic"=="EE"))]
 #
 ### Enfant à naître (NN pour nouveaux nés)
 #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
 #           'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec',
 #           "agepf","noidec","year")
 #
-    
+    indVar = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien',
+              'quelfic','acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr',
+              'cohab','ztsai','sexe','persfip','agepr','rga','actrec',"agepf","noidec","year"]
 
 #enfnn <- LoadIn(enfnnm,indVar)
+    enfnn = data.get_value(enfnnm, indVar)
+    
 ### Remove duplicated  noindiv because some rga are different
 #enfnn <- enfnn[!duplicated(enfnn[,"noindiv"]),]
+    enfnn = enfnn.loc[not_(enfnn.noindiv.duplicated()), :]
+    
 ### On enlève les enfants à naitre qui ne sont pas les enfants de la personne de référence
 #enfnn <- subset(enfnn,lpr==3)
 #enfnn <- enfnn[(!enfnn$noindiv %in% indivi$noindiv),]
-#
+    enfnn = enfnn[enfnn['lpr']==3]
+    enfnn = enfnn[not_(enfnn.noindiv.isin(indivi.noindiv.values))]
+    
 ## PB with vars "agepf"  "noidec" "year"  
 #base <- rbind(indivi,enfnn)
 #setdiff(names(indivi),names(enfnn))
-#
+
+    base = concat(indivi, enfnn)
+    diff = set(indivi.names).symmetric_difference(set(enfnn.names))
+
 #table(base$quelfic)
 #
 #dup <- duplicated(base[,c("noindiv")])
 ##dup <- duplicated(base)
 #table(dup)
-#
+    dup = base.duplicated(cols='noindiv')
+    # dup = base.duplicated()
 #str(base)
+    str(base)
 #
 #base <- within(base,{
 #  noindiv<- 100*ident + noi
@@ -117,30 +131,54 @@ def famille():
 #  smic55 <- (ztsai>= smic*12*0.55)   ##55% du smic mensuel brut */
 #  famille <- 0
 #  kid <- FALSE})
-#
+    base['noindiv'] = 100*base['ident'] + base['noi']
+    base['m15'] = (base['agepf']<16)
+    base['p16m20'] = ((base['agepf>=16']) & (base['agepf']<=20))
+    base['p21'] = (base['agepf']>=21)
+    base['ztsai'] = where(base['ztsai'] is None, 0, base['ztsai'])
+    base['smic55'] = (base['ztsai']>= base['smic']*12*0.55) ##55% du smic mensuel brut
+    base['famille'] = 0
+    base['kid'] = False
+    
 #
 ###******************************************************************************************************************/
-#message('Etape 1: On cherche les enfants ayant père et/ou mère')
+    print 'Etape 1: On cherche les enfants ayant père et/ou mère'
 #pr <- subset(base,lpr==1,c('ident','noi'))
 #pr$noifam <- 100*pr$ident + pr$noi
 #pr <- pr[c('ident','noifam')]
-#
+    pr = base[base['lpr']==1]
+    pr = pr.loc[:, ['ident', 'noi']]
+    pr['noifam'] = 100*pr['ident'] + pr['noi']
+    pr = pr.loc[:, ['ident', 'noifam']]
+    
 #nof01 <- subset(base,(lpr %in% c(1,2) )|(lpr==3 & m15) | (lpr==3 & (p16m20 & !smic55) )) 
 #nof01 <- merge(pr,nof01,by ='ident')
 #nof01 <- within(nof01,{
 #  famille <- 10
 #  kid <-(lpr==3 & m15) | (lpr==3 & (p16m20 & !smic55 ) )
 #  })
+    nof01 = base[(base.lpr.isin([1,2]) )|(base['lpr'] == 3 & base['m15']) 
+                 | (base['lpr'] == 3 & (base['p16m20'] & not_(base['smic55'])) )]
+    nof01 = nof01.merge(pr, on='ident')
+    nof01['famille'] = 10
+    nof01['kid'] = ((nof01['lpr']==3 & nof01['m15']) | (nof01['lpr']==3 & (nof01['p16m20'] & not_(nof01['smic55'])))
+    
 #famille <- nof01
 #table(famille$famille,useNA='ifany')
 #rm(nof01)
+    famille = nof01
+    del nof01
+    
 ###******************************************************************************************************************/
-#message('Etape 2a')
+    print 'Etape 2a'
+    
 ### l'identifiant est le noi de l'homme
 ### cohab=1  vit en couple
 ### cohab=2 ou cohab=0 ne vit pas en couple
 #hcouple <- base[(!base$noindiv %in% famille$noindiv),] 
 #hcouple <- subset(hcouple,(cohab==1) & (lpr>=3) & (sexe==1))
+    hcouple = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    hcouple = hcouple[(hcouple['cohab']==1) & (hcouple['lpr']>=3) & (hcouple['sexe']==1)]
 #hcouple <- within(hcouple,{
 #  noifam=100*ident + noi ## l'identifiant est la personne de référence du ménage  */
 #	famille = 21 })
