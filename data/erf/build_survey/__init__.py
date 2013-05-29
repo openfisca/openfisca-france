@@ -57,3 +57,8 @@ def load_temp(name=None, year=None):
     store.close()
     return dataframe 
     
+    
+def show_temp():
+    store = HDFStore(os.path.join(ERF_HDF5_DATA_DIR,'temp.h5'))
+    print store
+    store.close()

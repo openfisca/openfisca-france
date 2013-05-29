@@ -6,8 +6,10 @@
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
 
-
-from src.countries.france.data.erf.datatable import ErfsDataTable 
+from numpy import where
+from src.countries.france.data.erf.datatable import DataCollection
+from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+import pdb
 
 # OpenFisca
 # Retreives the families 
@@ -35,7 +37,7 @@ def famille():
 #
 
     year = 2006
-    df = ErfsDataTable(year=year)
+    data = DataCollection(year=year)
     
     if year == 2006: 
         smic = 1254
@@ -60,39 +62,33 @@ def famille():
 #
 #indivi <- LoadIn(indm,indVar)
 
-    erf_indivi = df.get_values(variables=individual_vars, table="erf_indivi" )
-    eec_indivi = df.get_values(variables=individual_vars, table="eec_indivi" )
-    print erf_indivi
-    print eec_indivi
     
-    indivi = erf_indivi.merge(eec_indivi)
-#    
+#    indivi = erf_indivi.merge(eec_indivi)
+    indivi = load_temp(name="indivim", year=year)
 #
 #indivi <- within(indivi,{
 #          year <- as.numeric(year)
 #          noidec <- as.numeric(substr(declar1,1,2))
 #          agepf <- ifelse(naim < 7, year-naia ,year-naia-1)
 #          })
-#
-
-
-#    indivi["noidec"] = as.numeric(substr(declar1,1,2))
-#          agepf <- ifelse(naim < 7, year-naia ,year-naia-1)
-
-
+    indivi["noidec"] =   indivi["declar1"].apply(lambda x: str(x)[0:2])
+    indivi["agepf"] = where(indivi.naim < 7, indivi.year-indivi.naia ,indivi.year-indivi.naia-1)
 #table(indivi$acteu)
 #
-###on enlève les enfants en nourrice...*/
+### On enlève les enfants en nourrice...*/
 #indivi2 <- subset(indivi,lien==6 & agepf <  16 & quelfic=='EE','noindiv')
 #indivi <- indivi[!indivi$noindiv %in% indivi2$noindiv,]
 #rm(indivi2)
-#
+    from numpy import logical_not as not_
+    indivi = indivi[ not_((indivi.lien==6 & indivi.agepf<16 & "quelfic"=="EE"))]  
 #
 ### Enfant à naître (NN pour nouveaux nés)
 #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
 #           'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec',
 #           "agepf","noidec","year")
 #
+    
+
 #enfnn <- LoadIn(enfnnm,indVar)
 ### Remove duplicated  noindiv because some rga are different
 #enfnn <- enfnn[!duplicated(enfnn[,"noindiv"]),]

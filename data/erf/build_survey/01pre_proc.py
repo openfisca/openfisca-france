@@ -33,14 +33,6 @@ data = DataCollection(year=year)
 
 def run_1():
         
-    #Test on the .h5 file itself
-#     country = "france"    
-#     ERF_HDF5_DATA = os.path.join(SRC_PATH, 'countries', country, 'data', 'erf', 'erf.h5')
-#     erf_file = HDFStore(ERF_HDF5_DATA)
-#     
-#     print erf_file
-#     df.set_config()
-
 
     #erfmen <- LoadIn(erfMenFil)
     erfmen = data.get_values(table="erf_menage")
@@ -51,14 +43,14 @@ def run_1():
     #eecmen$locataire <- ifelse(eecmen$so %in% c(3,4,5),1,0)
     eecmen["locataire"] = eecmen["so"].isin([3,4,5])
     eecmen["locataire"] = eecmen["locataire"].astype("int32")
-    print eecmen["locataire"].dtype
-    print eecmen["locataire"].describe()
+#    print eecmen["locataire"].dtype
+#    print eecmen["locataire"].describe()
     
 
     #noappar_m <- eecmen[!eecmen$ident %in%  erfmen$ident,]
     noappar_m = eecmen[ not_(eecmen.ident.isin( erfmen.ident.values))]
     print 'describe noappar_m'
-    print noappar_m.head() 
+    print noappar_m.describe() 
 
     #
     #erfind <- LoadIn(erfIndFil)
@@ -104,22 +96,21 @@ def run_1():
     #TODO: Forget not to uncomment 'dat
 #     #menagem <- merge(erfmen,eecmen)
 #     #menagem <- merge(menagem,transfert)
-#     menagem = erfmen.merge(eecmen)
-#     menagem  = menagem.merge(transfert)
-#     print "#################################################"
-#     print menagem
+    menagem = erfmen.merge(eecmen)
+    menagem  = menagem.merge(transfert)
+    print "#################################################"
+    print menagem
 #     
 # 
 #     #save(menagem,file=menm)
-#     store = HDFStore('menm.h5')
-#     store.put('menagem', menagem)
-#     print store
+    save_temp(menagem, name="menagem", year=year)
+    
 #     #rm(erfmen,eecmen,menagem,transfert)
 #     #message('menagem saved')
 #     #gc()
-#     del erfmen, eecmen, menagem, transfert
-#     print 'menagem saved'
-#     gc.collect()
+    del erfmen, eecmen, menagem, transfert
+    print 'menagem saved'
+    gc.collect()
     
     # int = intersect(names(erfind),names(eecind))
 #     int = erfind.columns & eecind.columns
@@ -135,10 +126,9 @@ def run_1():
         eecind['tu99'] = float(eecind['tu99'])
     
     #indivim <- merge(eecind,erfind, by = c("noindiv","ident","noi"))
-    indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'])
+    indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="outer")
     
-    import pdb
-    pdb.set_trace()
+
     # On recode l'activité de la semaine de référence'
     # actrec:
     #   1: actif occupé non salarié
@@ -281,5 +271,5 @@ def run_2():
     gc.collect()
     
 if __name__ == '__main__':
-    run_1()
-#    run_2()
+#    run_1()
+    run_2()
