@@ -36,10 +36,10 @@ def run():
  
  
 # #***********************************************************************************************************
-    print "message('Step 1 : on recupere les personnes à charge des foyers')"
+    print "Step 1 : on recupere les personnes à charge des foyers"
 # #**********************************************************************************************************
 # # On traite les cas de declarations multiples pour ne pas créer de doublon de pac
-# # TODO:
+# # TODO: ON FAIT QUOI LA ?
 # 
 # # anaisenf is a string containing letter code of pac (F,G,H,I,J,N,R) and year of birth (example: 'F1990H1992')
 # # when a child is invalid, he appears twice in anaisenf (example: F1900G1900 is a single invalid child born in 1990)
@@ -65,20 +65,18 @@ def run():
 
 #    Separating the string coding the pac of each HH. Creating a list containing the new variables.
 
-    fip_varlist = []
+#     fip_varlist = []
     for i in range(1,L+1):
         fip[('declaration', str(i))] = fip[('declar', 'subtype')]
-        fip_varlist.append(('type_pac', str(i)))
+#         fip_varlist.append(('type_pac', str(i)))
         fip[('type_pac', str(i))] = foyer['anaisenf'].str[5*(i-1)]
-        fip_varlist.append(('naia', str(i)))
+#         fip_varlist.append(('naia', str(i)))
         fip[('naia', str(i))] = foyer['anaisenf'].str[5*(i-1)+1:5*(i-1)+5]
         
     del fip[('declar', 'subtype')]
 
     print "separating data of column anaisenf-------------"
-    print fip_varlist
-    print fip.head()
-
+    print fip.head(10)
 
 # fip <- fip[!is.na(fip$typ.1),]
 # fip <- reshape(fip,direction ='long', varying=2:17, sep=".")
@@ -86,9 +84,12 @@ def run():
 # fip <- fip[order(fip$declar,-rank(fip$typ),fip$naia),c('declar','naia','typ')]
 # fip$N <- row(fip)[,1]
 # str(fip$N)
-    print "elimination des foyers fiscaux sans pac--------------------------"
+
     fip = fip[fip[('type_pac', str(1))] != 'n']
     fip = fip.stack()
+    print fip.head(10)
+    fip = fip[fip['type_pac'] != NaN]
+    print "elimination des foyers fiscaux sans pac--------------------------"
 
 #     fip['declar'] = fip['value']
 #     del fip['variable'], fip['value']
@@ -102,8 +103,6 @@ def run():
 #     fip['nb_row'] = fip['nb_row'].astype('str')
 #     fip['type_pac'] = fip['type_pac'].astype('str')
 #     fip.set_index(keys=['nb_row'])
-    print fip.head(10)
-    print fip.columns
 
 # library(plyr)
 # # on enlève les F pour lesquels il y a un G ;
@@ -116,7 +115,7 @@ def run():
     tyF = fip[fip['type_pac'] == 'F']
     tyG = fip[fip['type_pac'] == 'G']
     del tyF['type_pac'], tyG['type_pac']
-    
+
 # # There are situations where twins are F and G (ERF2009) !
 # tyG['dup'] <- FALSE
 # tyG['dup'] <- duplicated(tyG[,c("declar","naia")])
@@ -126,7 +125,6 @@ def run():
     tyG['dup'] = False
     tyF.drop_duplicates(cols=('declaration', 'naia'))
     tyG.drop_duplicates(cols=('declaration', 'naia'))
-    print tyF.head()
     print '----------------------------------------------------'
 
 # tyFG <- join(tyF,tyG, by = c('declar','naia','dup'),type = 'right',match = 'first')
@@ -135,7 +133,6 @@ def run():
     tyFG = tyF.merge(tyG, on=['declaration', 'naia', 'dup'])
     iden = tyFG
     del tyF, tyG, tyFG
-    print iden.head()
     print "merging done ------------------------------------------"
     
 # # on enlève les H pour lesquels il y a un I ;
@@ -149,13 +146,10 @@ def run():
 
     tyH = fip[fip['type_pac'] == 'H']
     tyI = fip[fip['type_pac'] == 'I']
-    tyHI = tyH.merge(tyI, on=['declaration', 'naia'])
+    tyHI = tyH.merge(tyI, on=['declaration', 'naia'], how='outer')
     iden_ = [iden, tyHI['nb_row_x']]
     
-    print iden
-    print "------------------"
-    print tyHI.head()
-    print "tyHI done"
+    print "tyHI done-----------------------------"
 
 # indivifip <- fip[!fip$N %in% iden,c(1:3)];
 # rm(foyer,fip)
@@ -180,7 +174,6 @@ def run():
     
 # indivi$noidec <- as.numeric(substr(indivi$declar1,1,2))
     indivi['noidec'] = indivi['declar1'].str[0:2].astype('float16')
-    print indivi.head()
     print "------------------------------------"
 
 # pac <- indivi[!is.na(indivi$persfip) & indivi$persfip == 'pac',]
@@ -199,7 +192,6 @@ def run():
     
     fip = indivifip[not_(indivifip.key.isin(pac.key1.values))]
     fip = fip[not_(fip.key.isin(pac.key2.values))]
-    print indivifip
     print "new fip created ---------------------------"
 
 # We build a dataframe to link the pac to their type and noindiv
@@ -217,9 +209,6 @@ def run():
     
     pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on='key1', right_on = 'key', how='outer')
     pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='outer')
-    print pacInd1
-    print "----------------------------"
-    print pacInd2
     print "pacInd1&2 créés-----------------------------------"
 
 # table(duplicated(pacInd1))
@@ -235,9 +224,6 @@ def run():
 
     pacInd1.rename(columns={'key1':'key'}, inplace=True)
     pacInd2.rename(columns={'key2':'key'}, inplace=True)
-    print pacInd1.head()
-    print "-----------------------------"
-    print pacInd2.head()
     
     if pacInd1.index == []:
         if pacInd2.index == []:
@@ -278,12 +264,14 @@ def run():
 # individec1 <- upData(individec1,rename=c(declar1="declar"))
 # fip1       <- merge(fip,individec1)
 
-    individec1 = indivi[and_(indivi.declar1.isin(fip.declar.values), indivi['persfip']=="vous")]
+    individec1 = indivi[and_(indivi.declar1.isin(fip.declaration.values), indivi['persfip']=="vous")]
     individec1 = individec1.loc[:, ["declar1","noidec","ident","rga","ztsai","ztsao"]]
-    individec1.rename({'declar1':'declar'}, inplace=True)
-    fip1 = fip.merge(individec1)
+    individec1 = individec1.rename(columns={'declar1':'declaration'})
+    fip1 = fip.merge(individec1, on='declaration')
     print 'fip1 created --------------------------------'
-    return
+
+    print individec1.head()
+    print fip1.head()
 
 # # TODO: On ne s'occupe pas des declar2 pour l'instant
 # # individec2 <- subset(indivi, (declar2 %in% fip$declar) & (persfip=="vous"))
@@ -291,9 +279,10 @@ def run():
 # # individec2 <- upData(individec2,rename=c(declar2="declar"))
 # # fip2 <-merge(fip,individec2)
 
-    individec2 = indivi[and_(indivi.declar2.isin(fip.declar.values), indivi['persfip']=="vous")]
-    individec2 = individec1.loc[:, ["declar2","noidec","ident","rga","ztsai","ztsao"]]
-    individec2.rename({'declar2':'declar'}, inplace=True)
+    individec2 = indivi[and_(indivi.declar2.isin(fip.declaration.values), indivi['persfip']=="vous")]
+    individec2 = individec2.loc[:, ["declar2","noidec","ident","rga","ztsai","ztsao"]]
+    individec2.rename(columns={'declar2':'declaration'}, inplace=True)
+    print individec2.head()
     fip2 = fip.merge(individec2)
     print 'fip2 created --------------------------------'
 
@@ -301,16 +290,16 @@ def run():
 # # table(duplicated(fip1))
 # # table(duplicated(fip2))
 
-    fip1.duplicated().count_values()
-    fip2.duplicated().count_values()
- 
+    fip1.duplicated().value_counts()
+    fip2.duplicated().value_counts()
+    
 # #fip <- rbind(fip1,fip2)
 # fip <- fip1
 # table(fip$typ)
     
-    fip = fip1.concat(fip2)
-    fip = fip1
-    fip.typ.value_counts()
+    fip = concat([fip1, fip2])
+#     fip = fip1 #TODO: Pourquoi cette ligne
+    fip.type_pac.value_counts()
  
 # # On crée des variables pour mettre les fip dans les familles 99, 98, 97
 # fip <- within(fip,{
@@ -321,13 +310,13 @@ def run():
 #   noindiv <- declar
 #   noiper   <- NA
 #   noimer   <- NA
-#   declar1  <- declar  # TODO: declar ?
+#   declar1  <- declar  # TODO declar ?
 #   naim     <- 99 
 #   lien     <- NA
 #   quelfic  <- "FIP"
 #   acteu    <- NA   
 #   agepf    <- year - naia - 1
-#   lpr      <- ifelse(agepf<=20,3,4)  # TODO: pas très propre 
+#   lpr      <- ifelse(agepf<=20,3,4)  # TODO pas très propre 
 #   stc      <- NA
 #   contra   <- NA
 #   titc     <- NA
@@ -340,21 +329,22 @@ def run():
 #   persfip  <- "pac"
 #   agepr    <- NA 
 #   actrec   <- ifelse(agepf<=15,9,5)})
-
+    print fip.columns
     fip['persfip'] = 'pac'
-    fip['year'] = fip['year'].astype('float')
+    fip['year'] = 0
+    fip['year'] = fip['year'].astype('float') # BUG; pas de colonne année dans la DF
     fip['noi'] = 99
     fip['noicon'] = None
-    fip['noindiv'] = fip['declar'] #TODO: refine
+    fip['noindiv'] = fip['declaration'] 
     fip['noiper'] = None
     fip['noimer'] = None
-    fip['declar1'] = fip['declar'] #TODO: refine
+    fip['declar1'] = fip['declaration'] #TODO declar ?
     fip['naim'] = 99
     fip['lien'] = None
     fip['quelfic'] = 'FIP'
     fip['acteu'] = None
-    fip['agepf'] = fip['year'] - fip['naia'] - 1
-    fip['lpr'] = where(fip['agepf'] <=20, 3, 4) # TODO: pas très propre d'après Mahdi/Clément
+    fip['agepf'] = fip['year'] - fip['naia'].astype('float') - 1
+    fip['lpr'] = where(fip['agepf'] <=20, 3, 4) # TODO pas très propre d'après Mahdi/Clément
     fip['stc'] = None
     fip['contra'] = None
     fip['titc'] = None
@@ -370,18 +360,30 @@ def run():
  
 ## TODO: probleme actrec des enfants fip entre 16 et 20 ans : on ne sait pas s'ils sont étudiants ou salariés */
 ## TODO problème avec les mois des enfants FIP : voir si on ne peut pas remonter à ces valeurs
- 
-    print 'On gére les noi des jumeaux et des triplés des fip'
-# 
+
+# Reassigning noi for fip children if they are more than one per foyer fiscal 
 # while ( any(duplicated( fip[,c("noi","ident")]) ) ) {
 #   dup <- duplicated( fip[, c("noi","ident")])
 #   tmp <- fip[dup,"noi"]
-#   fip[dup, "noi"] <- (tmp-1)    #TODO: j'ai rien compris
+#   fip[dup, "noi"] <- (tmp-1)
 # }
+    #TODO: Le vecteur dup est-il correct
+    fip["noi"] = fip["noi"].astype("int64")
+    fip["ident"] = fip["ident"].astype("int64")
     
+    fip_tmp = fip.loc[:, ['noi', 'ident']]
+    print "------------------"
+    print fip_tmp.head()
+    print "_________________________________"
+
     while any(fip.duplicated(cols=['noi', 'ident'])):
-        fip['dup'] = fip.duplicated(cols=['noi', 'ident'])
-        pass
+        fip_tmp = fip.loc[:, ['noi', 'ident']]
+        dup = fip_tmp.duplicated()
+        tmp = fip.loc[dup, 'noi']
+        print len(tmp)
+        fip.loc[dup, 'noi'] = tmp.astype('int64') - 1
+        print fip.noi.head()
+
 
 # fip$idfoy   <- 100*fip$ident + fip$noidec
 # fip$noindiv <- 100*fip$ident + fip$noi
@@ -400,7 +402,7 @@ def run():
     store_fip.put('enfnnm.h5', fip)
     del fip, fip1, individec1, indivifip, indivi, pac
     gc.collect()
-print 'rm(fip2,individec2)-----------------------'
+    print 'rm(fip2,individec2)-----------------------'
 
 if __name__ == '__main__':
     run()
