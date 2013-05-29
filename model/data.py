@@ -224,6 +224,9 @@ class InputTable(ModelDescription):
     f3vu = IntCol(entity= 'foy', val_type="monetary")
     f3vv = IntCol(entity= 'foy', val_type="monetary")
 
+    f3vz = IntCol(entity= 'foy', label="Plus-values imposables de cession d’immeubles ou de biens meubles", val_type="monetary") # Revenus 2011
+
+
     # Revenu foncier
     f4ba = IntCol(entity= 'foy', label="Revenus fonciers", val_type="monetary")
     f4bb = IntCol(entity= 'foy', val_type="monetary")

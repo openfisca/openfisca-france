@@ -127,9 +127,10 @@ class ModelSF(ModelDescription):
     sal_net = Prestation(ir._sal_net)
     rev_pen = Prestation(ir._rev_pen)
     pen_net = Prestation(ir._pen_net)
+    indu_plaf_abat_pen = Prestation(ir._indu_plaf_abat_pen, 'foy')
     abat_sal_pen = Prestation(ir._abat_sal_pen, start=date(2002,1,1), end = date(2005,12,31))
     sal_pen_net = Prestation(ir._sal_pen_net)
-    rto     = Prestation(ir._rto,     label = u'Rentes viagères (rentes à titre onéreux)')
+    rto     = Prestation(ir._rto, label = u'Rentes viagères (rentes à titre onéreux)')
     rto_net = Prestation(ir._rto_net, label = u'Rentes viagères après abattements')
     tspr    = Prestation(ir._tspr)
 
