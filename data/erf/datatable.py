@@ -35,58 +35,83 @@ class SurveyDescription(object):
         """
         Insert a table in the SurveyDescription
         """
-        self.tables[name] = dict()
-        for key, val in kwargs:
+        if name not in self.tables.keys():
+            self.tables[name] = dict()
+        
+        for key, val in kwargs.iteritems():
             if key in ["RData_dir", "RData_filename", "variables"]:
                     self.tables[name][key] = val 
         
 
-class ErfsDataTable(object):
+class DataCollection(object):
     """
-    An object to acces variables int the ERFS datatables
+    An object to access variables in a collection of surveys
     """
     def __init__(self, year = 2006):
-        super(ErfsDataTable, self).__init__()
+        super(DataCollection, self).__init__()
         self.year = year # year of the collected data
-        self.tables = {}
+        self.surveys = {}
         self.hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
     
-    def get_survey_list(self, year):
+    
+    def initialize(self):
         """
-        Return a list of survey information stored in a dictionary
+        Initialize survey data 
         """
+        self.initialize_erf()
+        self.initialize_logement()
+        
+    def initialize_erf(self):
+        """
+        """
+        year = self.year
+        erf = SurveyDescription()
+        yr = str(year)[2:]
+        yr1 = str(year+1)[2:]
+        erf_tables_to_process = {"erf_menage" : "menage" + yr,
+                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+                                 "foyer" : "foyer" + yr,
+                                 "erf_indivi" : "indivi" + yr,
+                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
+                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
+                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
+                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
+                                 }
+        
+        RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
+        
+        for name, RData_filename in erf_tables_to_process.iteritems():
+            erf.insert_table(name=name, 
+                             RData_filename=RData_filename,
+                             RData_dir=RData_dir)
+        
+        variables = ['noi','noindiv','ident','declar1','quelfic','ztsai','persfip']
+        
+        variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
+                       'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
+                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa']
+        
+        erf_variables_to_fetch = {"erf_indivi": variables,
+                                  "eec_indivi": variables_eec,
+                                  "eec_cmp_1" : variables_eec,
+                                  "eec_cmp_2" : variables_eec,
+                                  "eec_cmp_3" : variables_eec}
+       
+        for name, variables in erf_variables_to_fetch.iteritems():
+            erf.insert_table(name=name,variables=variables)
+        
+        self.surveys["erf"] = erf
+        
+        
+    def initialize_logement(self):
+        """
+        """
+        year = self.year
+        lgt = SurveyDescription()
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
         
-        erf = SurveyDescription()
-        
-        
-        erf_tables_to_process = {#"erf_menage" : "menage" + yr,
-#                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-#                                 "foyer" : "foyer" + yr,
-#                                 "erf_indivi" : "indivi" + yr,
-#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
-                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
-#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
-#                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
-                                 }
-       
-        vars = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic',
-                       'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','ztsai','sexe',
-                       'persfip','agepr','rga','actrec']
-        erf_variables_to_fetch = {"erf_indivi": vars,
-                                  "eec_indivi": vars,
-                                  "eec_cmp_1" : vars,
-                                  "eec_cmp_2" : vars,
-                                  "eec_cmp_3" : vars}
-       
-        erf = {"name" : "erf",
-               "data_dir" : os.path.join(os.path.dirname(DATA_DIR),'R','erf'),
-               "tables_to_process" : erf_tables_to_process,
-               "variables_to_fetch" : erf_variables_to_fetch} 
-        
-        ## LOGEMENT
-        lgt_data_dir = os.path.join(os.path.dirname(DATA_DIR),'R','logement')
+
         if yr=="03":
             lgt_men = "menage"
             lgt_logt = None
@@ -101,12 +126,19 @@ class ErfsDataTable(object):
                                  "lgt_menage" : lgt_men,
                                  "lgt_logt" : lgt_lgt,
                                  }
-        
-        lgt = {"name" : "logement", 
-               "data_dir" : lgt_data_dir,
-               "tables_to_process" : lgt_tables_to_process}
-
-        # Enquête Patrimoine
+        RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','logement')        
+        for name, RData_filename in lgt_tables_to_process.iteritems():
+            lgt.insert_table(name=name, 
+                             RData_filename=RData_filename,
+                             RData_dir=RData_dir)
+    
+        self.surveys["lgt"] = lgt
+    
+    
+    def initialize_patrimoine(self, year):
+        """
+        TODO
+        """
         pat_tables_to_process = {"pat_individu" : "individu",
                                  "pat_menage" : "meange",
                                  "pat_produit" : "produit",
@@ -117,10 +149,7 @@ class ErfsDataTable(object):
         pat = {"name" : "patrimoine",
                "data_dir" : os.path.join(os.path.dirname(DATA_DIR),'R','patrimoine'),
                "tables_to_process" : pat_tables_to_process}
-        
-        survey_list = [ erf] #, lgt]  # TODO: prepare RData files for patrimoine
-        
-        return survey_list
+       
 
     
     def set_config(self, **kwargs):
@@ -137,18 +166,22 @@ class ErfsDataTable(object):
         else:
             raise Exception("year should be defined")
         
-
-        survey_list = self.get_survey_list(year)
         store = HDFStore(self.hdf5_filename)
         print store
-        for survey in survey_list:
-            survey_name = survey["name"]
-            data_dir = survey["data_dir"]
-            tables_to_process = survey["tables_to_process"]
-            for destination_table_name, R_table_name in tables_to_process.iteritems(): 
-                self.store_survey(survey_name, R_table_name, destination_table_name, data_dir)
+        
+        
+        for survey_name, description in self.surveys.iteritems():
+            for destination_table_name, tables in description.tables.iteritems():
+                data_dir = tables["RData_dir"]
+                R_table_name = tables["RData_filename"]
+                try:
+                    variables = tables["variables"]
+                except:
+                    variables = None
+                    
+                self.store_survey(survey_name, R_table_name, destination_table_name, data_dir, variables)
 
-    def store_survey(self, survey_name, R_table_name, destination_table_name, data_dir, force_recreation=True):
+    def store_survey(self, survey_name, R_table_name, destination_table_name, data_dir, variables=None, force_recreation=True):
         """
         Store a R data table in an HDF5 file
         
@@ -161,9 +194,13 @@ class ErfsDataTable(object):
                        the name of the R data table
         destination_table_name : string
                                  the name of the table in the HDFStore
-        data_dir : 
-        """
-
+        data_dir : path
+                   the directory where to find the RData file
+        
+        variables : list of string, default None
+                    When not None, list of the variables to keep
+        """         
+        gc.collect()
         year = self.year
         def get_survey_year(survey_name, year):
             if survey_name == "logement":
@@ -193,8 +230,11 @@ class ErfsDataTable(object):
                 print store_path + "already exists, do not re-create and exit"
                 store.close()
             return
-  
-        store[store_path] = stored_table
+        
+        if variables is not None:
+            store[store_path] = stored_table[variables]
+        else:
+            store[store_path] = stored_table
         store.close()
         del stored_table
         gc.collect()
@@ -217,15 +257,58 @@ class ErfsDataTable(object):
         """
         df = self.get_values([variable], table)
         return df
-        
-    def set_tables(self):
-        store = HDFStore(self.hdf5_filename)
-        for table_path in store.keys():
-            table = table_path[6:]
-            self.tables[table] = store[table_path]
-        store.close() 
-        
+
     def get_values(self, variables=None, table=None):
+        """
+        Get values
+        
+        Parameters
+        ----------
+        variables : list of strings, default None
+                  list of variables names, if None return the whole table
+        table : string, default None          
+                name of the table where to get the variables
+        Returns
+        -------
+        df : DataFrame, default None 
+             A DataFrame containing the variables
+        """
+
+        store = HDFStore(self.hdf5_filename)
+        df = store[str(self.year)+"/"+table]
+        # If no variables read the whole table
+        if variables is None:
+            return df
+        
+        diff = set(variables) - set(df.columns)
+        if diff:
+            raise Exception("The following variable(s) %s are missing" %diff)
+        variables = list( set(variables).intersection(df.columns))
+        df = df[variables]
+        
+        return df
+
+
+    def get_of_value(self, variable, table=None):
+        """
+        Get value
+        
+        Parameters
+        ----------
+        variable : string
+                  name of the variable
+        table : string, default None          
+                name of the table where to get variable
+        Returns
+        -------
+        df : DataFrame, default None 
+             A DataFrame containing the variable
+        """
+        df = self.get_of_values([variable], table)
+        return df
+        
+        
+    def get_of_values(self, variables=None, table=None):
         """
         Get values
         
@@ -279,24 +362,24 @@ class ErfsDataTable(object):
         if to_be_renamed_variables:
             for var in to_be_renamed_variables:
                 df.rename(columns = {var: erf2of[var]}, inplace=True)
-        return df 
+        return df
 
 def test():
-    erf = ErfsDataTable()
+    erf = DataCollection()
     # erf.set_config(year=2006)
-    erf.set_tables() 
-    df = erf.get_value("wprm", "menage")
+    df = erf.get_value("wprm", "erf_menage")
     print df
-    df = erf.get_values( ["typmen15", "nbinde", "af"], "menage")
+    df = erf.get_values( ["typmen15", "nbinde", "af"], "eec_menage")
     print df.head()
     
 
-def test_set_config():
+def test_init():
     for year in range(2006,2007):
-        erf = ErfsDataTable(year=year)
-        erf.set_config()
-        del erf
-    
+        data = DataCollection(year=year)
+        data.initialize()
+#        print data.surveys["erf"].tables
+#        print data.surveys["lgt"].tables
+        data.set_config()
     
 def test_reading_stata_tables():
     from pandas.io.stata import StataReader, read_stata # TODO: wait for the next release ...
@@ -306,6 +389,7 @@ def test_reading_stata_tables():
     print reader.data()
     
 if __name__ == '__main__':
-    # test_set_config()
+    test()
     # build_foyer()
-    test_reading_stata_tables()
+    #test_reading_stata_tables()
+    # test_init()
