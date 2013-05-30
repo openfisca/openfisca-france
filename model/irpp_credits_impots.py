@@ -131,13 +131,13 @@ def _mecena(f7us):
     '''
     return f7us
 
-def _prlire(f2dh, _P):
+def _prlire(f2dh, f2ch, marpac, _P):
     '''
     Prélèvement libératoire à restituer (case 2DH)
     2002-
-    TODO check formula and parameters 
     '''
-    return _P.ir.credits_impot.prlire.taux*f2dh
+    plaf_resid = max_(_P.ir.rvcm.abat_assvie-f2ch,0)
+    return _P.ir.credits_impot.prlire.taux*min_(f2dh, plaf_resid) 
 
 def _quaenv(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, f7wg, f7sc, _P):
     '''

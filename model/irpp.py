@@ -128,8 +128,25 @@ def _pen_net(rev_pen, _P):
 #            AO + BO + CO + DO + EO ) 
 #    penv2 = (d11-f11> P.abatpen.max)*(penv + (d11-f11-P.abatpen.max)) + (d11-f11<= P.abatpen.max)*penv   
 #    Plus d'abatement de 20% en 2006
+    return max_(0, rev_pen - round(max_(P.taux*rev_pen , P.min))) 
+#    return max_(0, rev_pen - min_(round(max_(P.taux*rev_pen , P.min)), P.max))  le max se met au niveau du foyer
 
-    return max_(0, rev_pen - min_(round(max_(P.taux*rev_pen , P.min)), P.max))
+def _indu_plaf_abat_pen(rev_pen, pen_net, _P, _option = {'rev_pen': ALL, 'pen_net': ALL}):
+    """
+    Plafonnement de l'abattement de 10% sur les pensions du foyer
+    'foy' 
+    """
+    P = _P.ir.tspr.abatpen
+    rev_pen_foy = 0
+    for rev_pen_qui in rev_pen.itervalues():
+        rev_pen_foy += rev_pen_qui
+
+    pen_net_foy = 0
+    for pen_net_qui in pen_net.itervalues():
+        pen_net_foy += pen_net_qui
+        
+    abat = rev_pen_foy - pen_net_foy
+    return abat - min_(abat, P.max)   
 
 def _abat_sal_pen(sal_net, pen_net, _P):
     """
@@ -166,7 +183,7 @@ def _tspr(sal_pen_net, rto_net):
     '''
     return sal_pen_net + rto_net
 
-def _rev_cat_tspr(tspr, _option = {'tspr': ALL}):
+def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
     '''
     Traitemens salaires pensions et rentes
     'foy'
@@ -174,8 +191,8 @@ def _rev_cat_tspr(tspr, _option = {'tspr': ALL}):
     out = 0
     for qui in tspr.itervalues():
         out += qui
-    
-    return out
+
+    return out + indu_plaf_abat_pen
 
 def _deficit_rcm(f2aa, f2al, f2am, f2an):
     return f2aa + f2al + f2am + f2an
@@ -469,11 +486,11 @@ def _alv(f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     '''
     return - (f6gi + f6gj + f6el + f6em + f6gp + f6gu)
 
-def _rfr(rni, alloc, f3va, f3vg, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib):
+def _rfr(rni, alloc, f3va, f3vg, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
     '''
-    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vg
+    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vg + f3vz
  
 def _glo(f1tv, f1tw, f1tx, f1uv, f1uw, f1ux, f3vf, f3vi, f3vj, f3vk):
     '''
