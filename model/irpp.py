@@ -421,13 +421,17 @@ def _cont_rev_loc(f4bl, _P):
     return round(P.taux *(f4bl >= P.seuil)*f4bl)
 
 def _teicaa(f5qm, f5rm, _P):
-    '''
+    """
     Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
-    '''
+    """
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
+    """
+    Taxation des plus value
+    """
+        
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
     rdp = max_(0,f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
@@ -1099,4 +1103,3 @@ def _ppe(ppe_brute, rsa_act, _option = {'rsa_act': [VOUS, CONJ]} ):
     ppe = max_(ppe_brute - rsa_act[VOUS] - rsa_act[CONJ],0)
     return ppe 
     
-

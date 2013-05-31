@@ -169,10 +169,14 @@ def run():
     indvar_erf = ['ident','noi','declar1','declar2','persfip','persfipd', 'noindiv','ztsai',
                   'ztsao','wprm']
     indvar_eec = ['ident','noi','naia','rga','lpr', 'noindiv']
-    print df.get_values(table = 'eec_indivi')
+    
+    print df.get_values(table = 'erf_indivi')
     erf_indivi = df.get_values(variables = indvar_erf, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
     eec_indivi = df.get_values(variables = indvar_eec, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
     indivi = erf_indivi.merge(eec_indivi, how='outer')
+
+#    indivi = load_temp(name="indivim", year=year) TODO USE THIS INSTEAD OF PREVIOUS LINES 
+#    print list(indivi.columns)
     
 # indivi$noidec <- as.numeric(substr(indivi$declar1,1,2))
     indivi['noidec'] = indivi['declar1'].str[0:2].astype('float16')

@@ -141,7 +141,7 @@
 	    </BAREME>   		
       </NODE>
       <CODE description="Revenu minimum imposable (en multiple du smic annuel brut)" code="min_exo">
-	    <VALUE valeur="1" deb="2002-01-01" fin="2011-12-31" />
+	    <VALUE valeur="1" deb="2002-01-01" fin="2012-12-31" />
       </CODE> 
     </NODE>
     <NODE description="Pensions de retraites et d'invalidité" code="retraite" >
@@ -1666,13 +1666,13 @@
     <NODE description="Exonération sur les bas salaires" code="exo_fillon">
       <CODE description="Taux maximum (plus de 20 salariés)" taille="plusde20" code="tx_max" format="percent">
     	<VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31" />
-    	<VALUE valeur=".26" deb="2005-01-01" fin="2011-12-31" />
+    	<VALUE valeur=".26" deb="2005-01-01" fin="2012-12-31" />
       </CODE>
       <CODE description="Taux maximum (moins de 20 salariés)" taille="moinsde20" code="tx_max2" format="percent" >
 	<VALUE valeur=".281" deb="2007-07-01" fin="2011-12-31" />
       </CODE>
       <CODE description="Point de sortie (en smic)" code="seuil" format="percent" >
-    	<VALUE valeur="1.6" deb="2002-01-01" fin="2011-12-31" />
+    	<VALUE valeur="1.6" deb="2002-01-01" fin="2012-12-31" />
       </CODE>		
     </NODE>
   </NODE>
@@ -3156,6 +3156,27 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
+    <NODE code = "pv_immo" description="Plus-values immobilières">
+	  <CODE description="Nombre d'années pleines de détentions minimale (1er seuil)" code="ann_det1" format = 'integer'>
+		<VALUE valeur="5" deb="2011-01-01" fin="2012-01-31"/>
+	  </CODE>    
+	  <CODE description="Pas annuel du taux (après seuil 1)" code="taux1" format = 'percent'>
+		<VALUE valeur=".1" deb="2011-01-01" fin="2012-01-31"/>
+		<VALUE valeur=".02" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>
+	  <CODE description="Nombre d'années pleines de détentions 2e seuil" code="ann_det2" format = 'integer'>
+		<VALUE valeur="17" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>    
+	  <CODE description="Pas annuel du taux (après seuil 2)" code="taux2" format = 'percent'>
+		<VALUE valeur=".04" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>
+	  <CODE description="Nombre d'années pleines de détentions 3e seuil" code="ann_det3" format = 'integer'>
+		<VALUE valeur="24" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>    
+	  <CODE description="Pas annuel du taux (après seuil 3)" code="taux3" format = 'percent'>
+		<VALUE valeur=".08" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>
+    </NODE>
   </NODE>
   <NODE description="Prestations familiales" code="fam" >
     <NODE description="Allocations familiales" code="af" >
