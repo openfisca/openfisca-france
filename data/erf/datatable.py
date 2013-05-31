@@ -85,7 +85,7 @@ class DataCollection(object):
                              RData_filename=RData_filename,
                              RData_dir=RData_dir)
         
-        variables = ['noi','noindiv','ident','declar1','quelfic','ztsai','persfip']
+        variables = ['noi','noindiv','ident','declar1','quelfic','ztsai','persfip','declar2','persfipd','ztsao','wprm']
         
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
@@ -389,7 +389,7 @@ def test_reading_stata_tables():
     print reader.data()
     
 if __name__ == '__main__':
-    test()
+    # test()
     # build_foyer()
     #test_reading_stata_tables()
-    # test_init()
+    test_init()

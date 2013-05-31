@@ -130,7 +130,7 @@ def run():
 # tyFG <- join(tyF,tyG, by = c('declar','naia','dup'),type = 'right',match = 'first')
 # iden <- tyFG$N
 # rm(tyF,tyG,tyFG)
-    tyFG = tyF.merge(tyG, on=['declaration', 'naia', 'dup'])
+    tyFG = tyF.merge(tyG, on=['declaration', 'naia', 'dup'], how='outer')
     iden = tyFG
     del tyF, tyG, tyFG
     print "merging done ------------------------------------------"
@@ -169,9 +169,10 @@ def run():
     indvar_erf = ['ident','noi','declar1','declar2','persfip','persfipd', 'noindiv','ztsai',
                   'ztsao','wprm']
     indvar_eec = ['ident','noi','naia','rga','lpr', 'noindiv']
+    print df.get_values(table = 'eec_indivi')
     erf_indivi = df.get_values(variables = indvar_erf, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
     eec_indivi = df.get_values(variables = indvar_eec, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
-    indivi = erf_indivi.merge(eec_indivi)
+    indivi = erf_indivi.merge(eec_indivi, how='outer')
     
 # indivi$noidec <- as.numeric(substr(indivi$declar1,1,2))
     indivi['noidec'] = indivi['declar1'].str[0:2].astype('float16')
