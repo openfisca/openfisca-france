@@ -507,9 +507,12 @@ def famille():
 #
 #fip <- fip[c(indVar,'actrec','agepf','noidec','year')]
     indVar = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien',
-              'quelfic','acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab'
+              'quelfic','acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab',
               'ztsai','sexe','persfip','agepr','rga']
-    fip = fip.loc[:, [indVar, 'actrec','agepf','noidec','year']]
+    print fip.columns
+    fip = fip.loc[:, ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien',
+                      'quelfic','acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab',
+                      'ztsai','sexe','actrec','agepf','noidec','year']]
     
 #table(duplicated(fip$noindiv))
 #
@@ -530,29 +533,41 @@ def famille():
     fip['m15'] = (fip['agepf']<16)
     fip['p16m20'] = ((fip['agepf']>=16) & (fip['agepf']<=20))
     fip['p21'] = (fip['agepf']>=21)
-    fip['ztsai'][fip['ztsai'] is None] = 0
+#     fip['ztsai'][fip['ztsai'] is None] = 0 there are alrdy zeros
     fip['smic55'] = (fip['ztsai'] >= smic*12*0.55)
     fip['famille'] = 0
     fip['kid'] = False
     
-    print fip['ztsai']
-    return
 #dup<-duplicated(fip$noindiv)
 #table(dup)
 #
 #base <- rbind(base,fip)
 #table(base$quelfic)
-#
+    base = concat([base, fip])
 #enfant_fip <- base[(!base$noindiv %in% famille$noindiv),] 
 #enfant_fip <- subset(enfant_fip, (quelfic=="FIP") & (( (agepf %in% c(19,20)) & !smic55 ) | (naia==year & rga=='6')) )  # TODO check year ou year-1 !
-#
+    enfant_fip = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    enfant_fip = enfant_fip[(enfant_fip['quelfic']=="FIP") & (((enfant_fip.agepf.isin([19,20])) & 
+                            not_(enfant_fip['smic55'])) | 
+                            ((enfant_fip['naia']==enfant_fip['year']) & (enfant_fip['rga']==6)) )]
+    print enfant_fip
+    print '______________________'
+
 #enfant_fip <- within(enfant_fip,{
 #                     noifam=100*ident+noidec
 #                     famille=50
 #                     kid=TRUE})
-##                     ident=NA}) # TODO : je ne sais pas quoi mettre un NA fausse les manips suivantes 
+##                     ident=NA}) # TODO : je ne sais pas quoi mettre, un NA fausse les manips suivantes 
 #famille <- rbind(famille,enfant_fip)
-#
+    enfant_fip['noifam'] = 100*enfant_fip['ident'] + enfant_fip['noidec']
+    enfant_fip['famille'] = 50
+    enfant_fip['kid'] = True
+    enfant_fip['ident'] = None
+    print famille
+    if enfant_fip.index == []: #Maybe move this prior to the calculation of enfant_fip ?
+        famille = concat(famille, enfant_fip) 
+
+    
 ## TODO: En 2006 on peut faire ce qui suit car tous les parents fip sont déjà dans une famille
 #parent_fip <- famille[famille$noindiv %in% enfant_fip$noifam,]
 #any(enfant_fip$noifam %in% parent_fip$noindiv)
@@ -561,65 +576,117 @@ def famille():
 #                     famille <- 51
 #                     kid <- FALSE})
 #famille[famille$noindiv %in% enfant_fip$noifam,] <- parent_fip
+    parent_fip = famille[famille.noindiv.isin(enfant_fip.noifam.values)] #Note: génère une df vide
+    ##### TODO: fill this line with python
+    parent_fip['noifam'] = parent_fip['noindiv']
+    parent_fip['famille'] = 51
+    parent_fip['kid'] = False
+    print famille
+    print '_______________________'
+    print parent_fip['noifam'] 
+    famille = concat([famille[famille.noindiv.isin(enfant_fip.noifam.values)], parent_fip]) #TODO: check relevance
+    
 ## TODO: quid du conjoint ?
 #dup <- duplicated(famille$noindiv)
 #table(dup)
-#
+    dup = famille.duplicated('noindiv')
+    
 #table(famille$famille,useNA='ifany')
 #rm(enfant_fip,fip,parent_fip)
+    del enfant_fip,fip,parent_fip
+    print famille
+    
 #  
 ###******************************************************************************************************************/
 #message('Etape 6 : non attribué')
+    print 'Etape 6 : non attribué'
 #non_attribue1 <- base[(!base$noindiv %in% famille$noindiv),] 
 #non_attribue1 <- subset(non_attribue1,
 #                        (quelfic!="FIP") & (m15 | (p16m20&(lien %in% c(1,2,3,4) & agepr>=35)))
 #                        )
 ## On rattache les moins de 15 ans avec la PR (on a déjà éliminé les enfants en nourrice)                         
 #non_attribue1 <- merge(pr,non_attribue1)
+    non_attribue1 = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    non_attribue1 = non_attribue1[not_(non_attribue1['quelfic'] != 'FIP') & (non_attribue1['m15'] | 
+                                    (non_attribue1['p16m20'] & (non_attribue1.lien.isin(range(1,5))) & 
+                                     (non_attribue1['agepr']>=35)))]
+    
 #non_attribue1 <- within(non_attribue1,{
 #  famille <- ifelse(m15,61,62)
 #	kid <- TRUE })
-#
+    non_attribue1['famille'] = where(non_attribue1['m15'], 61, 62)
+    non_attribue1['kid'] = True
+    
 #rm(pr)
 #famille <- rbind(famille,non_attribue1)
 #dup <- duplicated(famille$noindiv)
 #table(dup)
 #rm(non_attribue1)
 #table(famille$famille, useNA="ifany")
-#
+    del pr
+    print len(famille.index) #La df est vide
+    print len(non_attribue1.index)
+#     if len(famille.index) == 0:
+#         famille = non_attribue1
+#     elif len(non_attribue1.index)==0:
+#         famille = famille
+#     else:
+#         famille = concat([famille, non_attribue1])
+    
+    famille = concat([famille, non_attribue1])
+            
+    dup = famille.duplicated('noindiv')
+    del non_attribue1
+    print famille
+    return
+
 #non_attribue2 <- base[(!base$noindiv %in% famille$noindiv) & (base$quelfic!="FIP"),] 
 #non_attribue2 <- within(non_attribue2,{
 #  noifam <- 100*ident+noi # l'identifiant est celui du jeune */
 #	kid<-FALSE
 #	famille<-63})
-#
+    non_attribue2 = base[not_(base.noindiv.isin(famille.noindiv.values)) & (base['quelfic']=="FIP")]
+    non_attribue2['noifam'] = 100*non_attribue2['ident'] + non_attribue2['noi']
+    non_attribue2['kid'] = False
+    non_attribue2['famille'] = 63
+    
 #famille <- rbind(famille,non_attribue2)
+    famille = concat([famille, non_attribue2])
 #dup <- duplicated(famille$noindiv)
 #table(dup)
 #rm(non_attribue2)
+    del non_attribue2
 #table(famille$famille, useNA="ifany")
 #rm(base)
+    del base
 #table(duplicated(famille$noifam))
 #
 ###******************************************************************************************************************/
 ### Sauvegarde de la table famille */  
-#
+    print 'Sauvegarde de la table famille'
 ## TODO nettoyer les champs qui ne servent plus à rien
 #
 #famille <- within(famille,{
 #  idec <- paste(substr(declar1,4,11),substr(declar1,1,2),sep = '-') # TODO remove me ?
 #	chef <- (noifam == ident*100+noi)
 #})
+    famille['idec'] = famille['declar1'].str([4,11])
+    famille['chef'] = (famille['noifam']==famille['ident']*100+famille['noi'])
+    
 #table(famille$chef,useNA="ifany")
 ## On a bien autant de famille que de chef de famille 
 #
 #famille$kid <- as.numeric(famille$kid)
-#
+    famille['kid'] = famille['kid'].astype('int')
+    
 #famille <- famille[order(famille$noifam,famille$kid,!famille$chef,famille$naia,famille$naim),]
 #famille$chef <- as.numeric(famille$chef)
-#
+    #TODO: pourquoi on réordonne
+    famille['chef'] = famille['chef'].astype('int')
+    
 #famille$rang = unsplit(lapply(split(famille$kid,famille$noifam),cumsum),famille$noifam)
-#
+#     famille['rang']
+
 #dup <- duplicated(famille$noindiv)
 #table(dup)
 #
