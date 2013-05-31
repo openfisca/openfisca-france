@@ -422,7 +422,7 @@ def _cont_rev_loc(f4bl, _P):
 
 def _teicaa(f5qm, f5rm, _P):
     '''
-    Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
+    Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance
     '''
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
