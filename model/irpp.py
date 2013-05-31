@@ -198,9 +198,9 @@ def _deficit_rcm(f2aa, f2al, f2am, f2an):
     return f2aa + f2al + f2am + f2an
 
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P):
-    ''' 
+    """
     REVENUS DES VALEURS ET CAPITAUX MOBILIERS 
-    '''
+    """
     P = _P.ir.rvcm
     if _P.datesim.year > 2004: f2gr = 0
 
@@ -421,6 +421,7 @@ def _cont_rev_loc(f4bl, _P):
     return round(P.taux *(f4bl >= P.seuil)*f4bl)
 
 def _teicaa(f5qm, f5rm, _P):
+
     """
     Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
     """
@@ -430,8 +431,8 @@ def _teicaa(f5qm, f5rm, _P):
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
     """
     Taxation des plus value
+    TODO: f3vt
     """
-        
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
     rdp = max_(0,f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf

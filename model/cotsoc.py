@@ -88,6 +88,34 @@ def _prelsoc_cap_bar(rev_cap_bar, _P):
         total = P.base_pat + P.add + P.rsa
     return - rev_cap_bar*total
 
+# plus-values immobilières
+
+def _csg_pv_immo(f3vz, _P):
+    """
+    Calcule la CSG sur les plus-values de cession immibilière
+    """
+    return - f3vz*_P.csg.capital.glob
+
+
+def _crds_pv_immo(f3vz, _P):
+    """
+    Calcule la CRDS sur les plus-values de cession immibilière
+    """
+    return - f3vz*_P.crds.capital
+
+def _prelsoc_pv_immo(f3vz, _P):
+    """
+    Calcule le prélèvement social sur les plus-values de cession immibilière
+    """
+    P = _P.prelsoc
+    if _P.datesim.year < 2006:
+        total = P.base_pat 
+    elif _P.datesim.year < 2009:    
+        total = P.base_pat + P.add
+    else:    
+        total = P.base_pat + P.add + P.rsa
+    return - f3vz*total
+    
 
 # revenus fonciers 
 def _csg_fon(f4ba, _P):

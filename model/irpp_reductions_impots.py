@@ -99,6 +99,7 @@ def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
     max1 = P.max*rbg_int
     return P.taux*min_(base, max1)
     # TODO: note de bas de page
+    # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
 def _cotsyn(f7ac, f7ae, f7ag, sal, cho, rst, _P, _option= {'sal':ALL, 'cho':ALL, 'rst':ALL}):
     '''

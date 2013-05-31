@@ -7,6 +7,8 @@
 # (see openfisca/__init__.py for details)
 
 
+from numpy import ( maximum as max_, minimum as min_) 
+
 
 ########################################################################
 #  Calcul de l'impôt sur les plus-values immobilières 
@@ -43,23 +45,56 @@ def _plus_value_brute(prix_pv_immo, charges_pv_immo, frais_pv_immo, prix_acqu_im
     return prix_cess_corr-valeur_venale
 
 
-def _plus_value_nette(dur_det_immo, ):
+def _plus_value_nette(plus_value_brute, dur_det_immo, _P):
     """
     Calcul de la plus value immobilière nette
     """
-    40. ABATTEMENT POUR DUREE DE DETENTION
-41. NOMBRE D’ANNEES DE DETENTION AU-DELA DE LA 5EME ANNEE
-42. TAUX DE LA REDUCTION (VOIR TABLEAU EN PAGE 6) %
-43. MONTANT DE LA REDUCTION (LIGNE 30 X LIGNE 42) - €
-44. PLUS-VALUE IMPOSABLE (LIGNE 30 – LIGNE 43) = €
-45. MONTANT DE LA PLUS-VALUE BENEFICIANT, SOUS CONDITIONS, DE L’EXONERATION AU TITRE DE LA
-PREMIERE CESSION D’UN LOGEMENT EN VUE DE L’ACQUISITION DE LA RESIDENCE PRINCIPALE
-(CGI, 1° BIS DU II DE L’ARTICLE 150 U)
-= €
-46. PLUS-VALUE NETTE IMPOSABLE [LIGNE 44 OU (LIGNE 44 – LIGNE 45)] = €
-50. PLUS-VALUE NETTE IMPOSABLE GLOBALE =
-(LIGNE 46 OU TOTAL DES LIGNES 46 SI PLUSIEURS 2048-IMM-SD PAGE 2)
-= €
-Lorsqu’une même cession porte sur des biens pour lesquels sont prévues des règles différentes (acquisitions successives de fractions divises ou indivises notamment),
-il convient de remplir les lignes 10 à 46 pour chacune des fractions (utiliser plusieurs 2048-IMM-SD page 2).
+    # 40. ABATTEMENT POUR DUREE DE DETENTION
+    # 41. NOMBRE D’ANNEES DE DETENTION AU-DELA DE LA 5EME ANNEE
+    P = _P.irpp.pv_immo
     
+    if P.datesim: # TODO:
+        taux_reduc = max_(dur_det_immo - P.ann_det1, 0)*P.taux1
+    else:
+        taux_reduc = ( max_(dur_det_immo - P.ann_det3, 0)*P.taux3 +
+                       max_( min_(dur_det_immo, P.ann_det3) - P.ann_det2, 0)*P.taux2  +
+                       max_( min_(dur_det_immo, P.ann_det2) - P.ann_det1, 0)*P.taux1 )
+                       
+    taux_reduc = min_(taux_reduc, 1.0)
+    pv_impos = (1-taux_reduc)*plus_value_brute
+
+
+#    45. MONTANT DE LA PLUS-VALUE BENEFICIANT, SOUS CONDITIONS, DE L’EXONERATION AU TITRE DE LA
+#    PREMIERE CESSION D’UN LOGEMENT EN VUE DE L’ACQUISITION DE LA RESIDENCE PRINCIPALE
+#    (CGI, 1° BIS DU II DE L’ARTICLE 150 U) TODO: 
+    exo = 0
+
+    pv_net_impos = max_(pv_impos - exo,0) #46. PLUS-VALUE NETTE IMPOSABLE [LIGNE 44 OU (LIGNE 44 – LIGNE 45)] = €
+    # 50. PLUS-VALUE NETTE IMPOSABLE GLOBALE =
+    # (LIGNE 46 OU TOTAL DES LIGNES 46 SI PLUSIEURS 2048-IMM-SD PAGE 2)
+
+#Lorsqu’une même cession porte sur des biens pour lesquels sont prévues des règles différentes (acquisitions successives de fractions divises ou indivises notamment),
+#il convient de remplir les lignes 10 à 46 pour chacune des fractions (utiliser plusieurs 2048-IMM-SD page 2).
+    return pv_net_impos
+
+def _ir_pv_immo(f3vz, _P):
+    """
+    Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
+    """
+    
+    P = _P.ir.pv_immo
+    # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
+    # (VOIR TABLEAU PAGE 3).
+    # if resident
+    impo = P.taux*f3vz 
+#    62. MONTANT DU PAR LES AUTRES NON-RESIDENTS (VOIR TABLEAU PAGE 3 ET REMPLIR PAGE 4 SI NECESSAIRE)
+#    IMPOSITION A 33,1/3% DES PERSONNES PHYSIQUES [(LIGNE 50 OU LIGNE 53) X 33,1/3%] = = €
+#    IMPOSITION A 15% OU 19% OU 33,1/3% DES PERSONNES MORALES NON ASSUJETTIES A L’IR, ETABLIES DANS UN ETAT
+#    MEMBRE DE L’EEE(1) (LIGNE 300 X 15% OU 19% OU 33,1/3%) = = €
+#IMPOSITION A 50% DES PERSONNES PHYSIQUES OU MORALES RESIDENTES D’UN ETNC(2)
+#[(LIGNE 50 OU (LIGNE 54 + LIGNE 300)) X 50%] = = €
+
+#63. ABATTEMENT REPRESENTATIF DU FORFAIT FORESTIER (SI LE CEDANT EST UNE PERSONNE PHYSIQUE RESIDENTE) - €
+#64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
+#(POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
+    return -impo

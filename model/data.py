@@ -211,16 +211,16 @@ class InputTable(ModelDescription):
     
     f3vl = IntCol(entity= 'foy', val_type="monetary")
     f3vi = IntCol(entity= 'foy', val_type="monetary")
-    f3vm = IntCol(entity= 'foy', val_type="monetary")
+    f3vm = IntCol(entity= 'foy', label = "Clôture du PEA : avant l'expiration de la 2e année", val_type="monetary")
     
     f3vj = IntCol(entity= 'foy', val_type="monetary")
     f3vk = IntCol(entity= 'foy', val_type="monetary")
     f3va = IntCol(entity= 'foy', val_type="monetary")
     
-    # Plus values et gains taxables à 18%
+    # Plus values et gains taxables à des taux forfaitaires
     f3vg = IntCol(entity= 'foy', val_type="monetary")
     f3vh = IntCol(entity= 'foy', val_type="monetary")
-    f3vt = IntCol(entity= 'foy', val_type="monetary")
+    f3vt = IntCol(entity= 'foy', label = "Clôture du PEA : entre la 2e et la 5e année", val_type="monetary")
     f3vu = IntCol(entity= 'foy', val_type="monetary")
     f3vv = IntCol(entity= 'foy', val_type="monetary")
 

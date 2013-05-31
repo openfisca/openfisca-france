@@ -16,6 +16,7 @@ import src.countries.france.model.irpp as ir
 import src.countries.france.model.irpp_charges_deductibles as cd
 import src.countries.france.model.irpp_reductions_impots as ri
 import src.countries.france.model.irpp_credits_impots as ci
+import src.countries.france.model.irpp_plus_values_immo as immo
 import src.countries.france.model.isf as isf
 import src.countries.france.model.pfam as pf
 import src.countries.france.model.mini as ms
@@ -23,6 +24,7 @@ import src.countries.france.model.lgtm as lg
 import src.countries.france.model.common as cm
 import src.countries.france.model.calage as cl
 import src.countries.france.model.th as th
+
 
 class ModelSF(ModelDescription):
     
@@ -82,6 +84,10 @@ class ModelSF(ModelDescription):
     crds_fon = Prestation(cs._crds_fon, "foy", label=u"CRDS sur les revenus fonciers")
     prelsoc_fon = Prestation(cs._prelsoc_fon, "foy", label=u"Prélèvements sociaux sur les revenus fonciers")
     
+    # Plus-values immobilières
+    csg_pv_immo = Prestation(cs._csg_pv_immo, "foy", label=u"CSG sur les plus-values immobilières")
+    crds_pv_immo = Prestation(cs._crds_pv_immo, "foy", label=u"CRDS sur les plus-values immobilières")
+    prelsoc_pv_immo = Prestation(cs._prelsoc_pv_immo, "foy", label=u"Prélèvements sociaux sur les plus-values immobilières")
 
     base_csg = Prestation(cs._base_csg)    
     ir_lps = Prestation(cs._ir_lps, start=date(2010, 1, 1))
@@ -258,6 +264,12 @@ class ModelSF(ModelDescription):
     rev_cap_bar = Prestation(ir._rev_cap_bar, 'foy')
     rev_cap_lib = Prestation(ir._rev_cap_lib, 'foy')
     avf = Prestation(ir._avf, 'foy')
+    
+    ###########################################################
+    # Impôt sur le revenu afférent à la plus-value immobilière
+    ###########################################################
+    
+    ir_pv_immo = Prestation(immo._ir_pv_immo, 'foy', label = "Impôt sur le revenu afférent à la plus-value immobilière")
     
     ############################################################
     # Impôt de solidarité sur la fortune

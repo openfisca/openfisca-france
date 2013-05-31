@@ -385,12 +385,12 @@ def test_init():
 #        print data.surveys["lgt"].tables
         data.set_config()
     
-def test_reading_stata_tables():
-    from pandas.io.stata import StataReader, read_stata # TODO: wait for the next release ...
-
-    filename = os.path.join(DATA_DIR,"erf","2006","Tables complémentaires","icomprf06e07t1.dta")
-    reader = StataReader(filename)
-    print reader.data()
+#def test_reading_stata_tables():
+#    from pandas.io.stata import StataReader, read_stata # TODO: wait for the next release ...
+#
+#    filename = os.path.join(DATA_DIR,"erf","2006","Tables complémentaires","icomprf06e07t1.dta")
+#    reader = StataReader(filename)
+#    print reader.data()
     
 if __name__ == '__main__':
     # test()
