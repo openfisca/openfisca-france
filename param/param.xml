@@ -2323,10 +2323,10 @@
       <NODE code = "cotsyn" description="Cotisations syndicales">
 	<CODE description="Cotisations syndicales" code="taux" format = 'percent'>
 	  <VALUE valeur="0.50" deb="2002-01-01" fin="2004-12-31"/>
-	  <VALUE valeur="0.66" deb="2005-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.66" deb="2005-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Seuil" code="seuil" format = 'percent'>
-	  <VALUE valeur="0.01" deb="2002-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.01" deb="2002-01-01" fin="2012-12-31"/>
 	</CODE>
       </NODE>
       <NODE code = "resimm" description="Travaux de restauration immobilière">
@@ -2476,10 +2476,10 @@
 	</CODE>
 	<CODE description="Seuil" code="seuil" format="integer" type="monetary">
 	  <VALUE valeur= "6000" deb="2002-01-01" fin="2002-12-31"/>
-	  <VALUE valeur="20000" deb="2003-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="20000" deb="2003-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Seuil TPE" code="seuil_tpe" format="integer" type="monetary">
-	  <VALUE valeur="50000" deb="2009-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="50000" deb="2009-01-01" fin="2012-12-31"/>
 	</CODE>
       </NODE>
       <NODE code = "intcon" description="Intérêts des prêts à la consommation (UH)">

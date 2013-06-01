@@ -65,13 +65,14 @@ def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, 
         total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr + 
                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + 
                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + 
-                locmeu + doment + domsoc) # TODO check (sees checked) and report in Niches.xls         
+                locmeu + doment + domsoc) # TODO: check (sees checked) and report in Niches.xls         
     elif _P.datesim.year == 2011:
         total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr + 
                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + 
                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + 
-                locmeu + doment + domsoc)   # TODO Check because totally uncecked
-        
+                locmeu + doment + domsoc)   # TODO: Check because totally unchecked 2011
+    else:
+        return ip_net*0
     return min_(ip_net,total)    
 
 def _donapd(f7ud, _P):
@@ -138,10 +139,12 @@ def _patnat(f7ka, _P):
     return P.taux*min_(f7ka, max1)
 
 def _sofipe(marpac, rbg_int, f7gs, _P):
-    '''
+    """
     Souscription au capital d’une SOFIPECHE (case 7GS)
-    2009-
-    '''
+    2009-2011
+    """
+    if _P.datesim.year >= 2011:
+        return rbg_int*0 
     P = _P.ir.reductions_impots.sofipe
     max1 = min_(P.max*(marpac+1), P.base*rbg_int) # page3 ligne 18
     return P.taux*min_(f7gs, max1)
@@ -192,7 +195,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
             
-    elif _P.datesim.year in (2009, 2010, 2011):  # TODO Check 2011
+    elif _P.datesim.year in (2009, 2010, 2011, 2012):  # TODO Check 2011 and 2012
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1*not_(annee1) + P.max1_1ereAnnee*annee1
@@ -254,7 +257,8 @@ def _spfcpi(marpac, f7gq, f7fq, f7fm, f7fl, _P):
                 P.taux1*min_(f7fq, max1) +
                 P.taux2*min_(f7fm, max1) +
                 P.taux3*min_(f7fl, max1))
-
+    else:
+        return f7gq*0 # TODO:
 
 def _mohist(f7nz, _P):
     '''
@@ -294,9 +298,10 @@ def _cappme(marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P):
         return P.taux*(min_(base,seuil)+min_(f7cu, seuil_tpe))
     elif _P.datesim.year <= 2011:
         seuil_tpe = P.seuil_tpe*(marpac + 1)
-        return P.taux*(min_(base,seuil)+min_(f7cu, seuil_tpe))  # TODO Modify and add f7cq
+        return P.taux*(min_(base,seuil)+min_(f7cu, seuil_tpe))  # TODO: Modify and add f7cq, check taux
+    else:
+        return f7cu*0
     
-
 def _intemp(nb_pac, f7wg, _P):
     '''
     Intérêts d'emprunts
