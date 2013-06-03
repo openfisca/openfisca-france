@@ -84,6 +84,11 @@ class ModelSF(ModelDescription):
     crds_fon = Prestation(cs._crds_fon, "foy", label=u"CRDS sur les revenus fonciers")
     prelsoc_fon = Prestation(cs._prelsoc_fon, "foy", label=u"Prélèvements sociaux sur les revenus fonciers")
     
+    # Plus values de cessions de valeurs mobilières
+    csg_pv_mo = Prestation(cs._csg_pv_mo, "foy", label=u"CSG sur les plus-values de cession de valeurs mobilières")
+    crds_pv_mo = Prestation(cs._crds_pv_mo, "foy", label=u"CRDS sur les plus-values de cession de valeurs mobilières")
+    prelsoc_pv_mo = Prestation(cs._prelsoc_pv_mo, "foy", label=u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières")
+        
     # Plus-values immobilières
     csg_pv_immo = Prestation(cs._csg_pv_immo, "foy", label=u"CSG sur les plus-values immobilières")
     crds_pv_immo = Prestation(cs._crds_pv_immo, "foy", label=u"CRDS sur les plus-values immobilières")

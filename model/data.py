@@ -179,7 +179,7 @@ class InputTable(ModelDescription):
     # RVCM
     # revenus au prélèvement libératoire
     f2da = IntCol(entity= 'foy', label = u"Revenus des actions et parts soumis au prélèvement libératoire", val_type="monetary")
-    f2dh = IntCol(entity= 'foy', val_type="monetary")
+    f2dh = IntCol(entity= 'foy', label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire", val_type="monetary")
     f2ee = IntCol(entity= 'foy', label = u"Revenus au prélèvement libératoire hors actions et assurance-vie", val_type="monetary")
 
     # revenus ouvrant droit à abattement
@@ -188,7 +188,7 @@ class InputTable(ModelDescription):
     f2ch = IntCol(entity= 'foy', val_type="monetary")
     
     # Revenus n'ouvrant pas droit à abattement
-    f2ts = IntCol(entity= 'foy', val_type="monetary")
+    f2ts = IntCol(entity= 'foy', label=u"Revenus de valeurs mobilières et distributions", val_type="monetary")
     f2go = IntCol(entity= 'foy', val_type="monetary")
     f2tr = IntCol(entity= 'foy', label = u"Intérêts et autres revenus assimilés", val_type="monetary")
     
@@ -211,20 +211,20 @@ class InputTable(ModelDescription):
     
     f3vl = IntCol(entity= 'foy', val_type="monetary")
     f3vi = IntCol(entity= 'foy', val_type="monetary")
-    f3vm = IntCol(entity= 'foy', label = "Clôture du PEA : avant l'expiration de la 2e année", val_type="monetary")
+    f3vm = IntCol(entity= 'foy', label = u"Clôture du PEA : avant l'expiration de la 2e année", val_type="monetary")
     
     f3vj = IntCol(entity= 'foy', val_type="monetary")
     f3vk = IntCol(entity= 'foy', val_type="monetary")
     f3va = IntCol(entity= 'foy', val_type="monetary")
     
     # Plus values et gains taxables à des taux forfaitaires
-    f3vg = IntCol(entity= 'foy', val_type="monetary")
+    f3vg = IntCol(entity= 'foy', label=u"Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés", val_type="monetary")
     f3vh = IntCol(entity= 'foy', val_type="monetary")
-    f3vt = IntCol(entity= 'foy', label = "Clôture du PEA : entre la 2e et la 5e année", val_type="monetary")
+    f3vt = IntCol(entity= 'foy', label = u"Clôture du PEA : entre la 2e et la 5e année", val_type="monetary")
     f3vu = IntCol(entity= 'foy', val_type="monetary")
     f3vv = IntCol(entity= 'foy', val_type="monetary")
 
-    f3vz = IntCol(entity= 'foy', label="Plus-values imposables de cession d’immeubles ou de biens meubles", val_type="monetary") # Revenus 2011
+    f3vz = IntCol(entity= 'foy', label=u"Plus-values imposables de cession d’immeubles ou de biens meubles", val_type="monetary") # Revenus 2011
 
 
     # Revenu foncier

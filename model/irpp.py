@@ -254,9 +254,9 @@ def _rfr_rvcm(f2dc, f2fu, f2da, _P):
     return max_((1-P.abatmob_taux)*(f2dc_bis + f2fu) - i121, 0)
 
 def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
-    '''
-    REVENUS FONCIERS
-    '''    
+    """
+    Revenus fonciers
+    """    
     P = _P.ir.microfoncier
     ## Calcul du revenu catégoriel
     a13 = f4ba + f4be - P.taux*f4be*(f4be <= P.max)
@@ -431,7 +431,7 @@ def _teicaa(f5qm, f5rm, _P):
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
     """
     Taxation des plus value
-    TODO: f3vt
+    TODO: f3vt, 2013 f"Vg au barème
     """
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
@@ -505,9 +505,9 @@ def _glo(f1tv, f1tw, f1tx, f1uv, f1uw, f1ux, f3vf, f3vi, f3vj, f3vk):
     return f1tv + f1tw + f1tx + f1uv + f1uw + f1ux + f3vf + f3vi + f3vj + f3vk                   
 
 def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
-    '''
-    revenus du capital imposés au barème
-    '''
+    """
+    Revenus du capital imposés au barème
+    """
 #    if _P.datesim.year <= 2011:
 #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
 #    elif _P.datesim.year > 2011:
@@ -540,7 +540,6 @@ def _imp_lib(f2da, f2dh, f2ee, _P):
         out = - (P.assvie*f2dh + P.autre*f2ee )
     else:
         out = - (P.action*f2da  + P.autre*f2ee)*not_(_P.ir.autre.finpfl) - P.assvie*f2dh
-    
     return out
 
 def _fon(f4ba, f4bb, f4bc, f4bd, f4be, _P):

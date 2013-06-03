@@ -43,6 +43,7 @@
   <NODE desc= "Revenus du capital net" shortname="Rev. cap. net" code = "rev_cap_net" color= "255,222,48">
     <NODE desc= "Revenus du capital brut" shortname="Rev. cap. brut" code = "rev_cap_brut" color= "255,222,48">
       <NODE desc= "Revenus fonciers" shortname="Rev. fonciers" code='fon' color = "255,245,155"/>
+      <NODE desc= "Plus-values de cessions de valeurs mobilières" shortname="Plus.-values mo." code='f3vg' color = "255,245,155"/>
       <NODE desc= "Plus-values immobilières" shortname="Plus.-values immo." code='f3vz' color = "255,245,155"/>
       <NODE desc= "Revenus du capital soumis au barème" shortname="Rev cap bar" code='rev_cap_bar' color = "255,239,103"/>
       <NODE desc= "Revenus du capital soumis au prélèvement libératoire" shortname="Rev cap lib" code='rev_cap_lib' color = "255,233,28"/>
@@ -51,18 +52,21 @@
     <NODE desc= "Cotisations sociales sur les revenus du capital" shortname="Cotsoc. capital" code = "cotsoc_cap" color= "243,166,171">
       <NODE desc= "Prélèvement social sur les revenus du capital" shortname="Pr. s. cap." code= "prelsoc_cap" color = "243,166,171">
         <NODE desc= "Prélèvement social sur les revenus fonciers" shortname="Pr. s. foncier" code= "prelsoc_fon" color = "243,166,171"/>
+		<NODE desc= "Prélèvement social sur les plus-values de cessions de valeurs mobilières" shortname="Prel. soc. p.-v. mo." code= "prelsoc_pv_mo" color = "243,166,171"/>        
         <NODE desc= "Prélèvement social sur les plus-values immobilières" shortname="Prel. soc. p.-v." code= "prelsoc_pv_immo" color = "243,166,171"/>
         <NODE desc= "Prélèvement social sur les revenus du capital soumis au barème" shortname="Pr. s. cap. bar." code= "prelsoc_cap_bar" color = "243,166,171"/>
         <NODE desc= "Prélèvement social sur les revenus du capital soumis au prélèvement libératoire" shortname="Prel. soc. lib." code= "prelsoc_cap_lib" color = "243,166,171"/>
       </NODE>
       <NODE desc= "CSG des revenus du capital" shortname="CSG cap." code= "csg_cap" color = "235,114,118">
         <NODE desc= "CSG (revenus fonciers)" shortname="CSG foncier" code= "csg_fon" color = "235,114,118"/>
+        <NODE desc= "CSG (plus-values de cessions de valeurs mobilières)" shortname="CSG p.-v. mo." code= "csg_pv_mo" color = "235,114,118"/>
         <NODE desc= "CSG (plus-values immobilières)" shortname="CSG p.-v. immo." code= "csg_pv_immo" color = "235,114,118"/>
         <NODE desc= "CSG (revenus du capital au barème)" shortname="CSG cap. bar." code= "csg_cap_bar" color = "235,114,118"/>
         <NODE desc= "CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." code= "csg_cap_lib" color = "235,114,118"/>
       </NODE>
       <NODE desc= "CRDS" shortname="CRDS cap." code= "crds_cap" color ="229,48,56">      
         <NODE desc= "CRDS (revenus fonciers)" shortname="CRDS foncier" code= "crds_fon" color ="229,48,56"/>
+        <NODE desc= "CRDS (plus-values de cessions de valeurs mobilières)" shortname="CRDS p.-v. mo." code= "crds_pv_mo" color = "229,48,56"/>
         <NODE desc= "CRDS (plus-values immobilières)" shortname="CRDS p.-v. immo." code= "crds_pv_immo" color = "229,48,56"/>
         <NODE desc= "CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." code= "crds_cap_bar" color ="229,48,56"/>
         <NODE desc= "CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." code= "crds_cap_lib" color = "229,48,56"/>

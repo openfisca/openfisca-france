@@ -308,11 +308,17 @@
   </NODE>
   <NODE description="Prélèvement social et contributions additionnelles" code = 'prelsoc'>
     <CODE description="Prélèvement social (revenus des produits de placement)" code="base_plac" format="percent">     
-      <VALUE valeur=".02"  deb="2002-01-01" fin="2010-12-31"/>
-      <VALUE valeur=".022" deb="2011-01-01" fin="2011-09-30"/>
-      <VALUE valeur=".034" deb="2011-10-01" fin="2012-06-30"/>
-      <VALUE valeur=".054" deb="2012-07-01" fin="2012-12-31"/>
-      <VALUE valeur=".045" deb="2013-01-01" fin="2013-12-31"/>  
+      <VALUE valeur=".02"  deb="2002-01-01" fin="2009-12-31"/>
+      <VALUE valeur=".022" deb="2010-01-01" fin="2010-12-31"/>
+      <!--
+      		  <VALUE valeur=".02"  deb="2002-01-01" fin="2010-12-31"/>
+		      <VALUE valeur=".022" deb="2011-01-01" fin="2011-09-30"/>
+      	      <VALUE valeur=".034" deb="2011-10-01" fin="2012-06-30"/>
+        	  <VALUE valeur=".054" deb="2012-07-01" fin="2012-12-31"/>
+      		  <VALUE valeur=".045" deb="2013-01-01" fin="2013-12-31"/>
+      -->
+      <VALUE valeur=".034" deb="2011-01-01" fin="2011-12-31"/>
+      <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/>
     </CODE> 
     <CODE description="Prélèvement social (revenus du patrimoine)" code="base_pat" format="percent">     
       <VALUE valeur=".02"  deb="2002-01-01" fin="2009-12-31"/>
@@ -324,8 +330,8 @@
       <VALUE valeur=".003" deb="2006-01-01" fin="2013-12-31"/>
     </CODE>  
     <CODE description="Contribution au financement du revenu de solidarité active" code="rsa" format="percent">
-      <VALUE valeur=".011" deb="2009-01-01" fin="2012-12-31"/>
-      <VALUE valeur=".02" deb="2013-01-01" fin="2013-12-31"/>
+      <VALUE valeur=".011" deb="2009-01-01" fin="2011-12-31"/>
+      <VALUE valeur=".02" deb="2012-01-01" fin="2013-12-31"/>
     </CODE>
   </NODE>
   <NODE description="Fusion IR - CSG (à la Landais, Piketty, Saez)" code = 'lps'>
