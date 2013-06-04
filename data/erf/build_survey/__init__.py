@@ -33,6 +33,8 @@ def save_temp(dataframe, name=None, year=None):
     if name is None:
         raise Exception("year is needed")
     store = HDFStore(os.path.join(ERF_HDF5_DATA_DIR,'temp.h5'))
+    if str(year)+"/"+name in store.keys():
+        del store[str(year)+"/"+name]
     store[str(year)+"/"+name] = dataframe
     store.close()
     return True 

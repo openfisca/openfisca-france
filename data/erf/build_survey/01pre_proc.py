@@ -57,9 +57,9 @@ def run_1():
     #eecind <- LoadIn(eecIndFil)
     erfind = data.get_values(table="erf_indivi")
     print 'describe erfind & eecind'
-#     print erfind.columns
+    print erfind.columns
     eecind = data.get_values(table="eec_indivi")
-#     print eecind.columns
+    print eecind.columns
 
     #transfert <- subset(eecind, lpr==1, select=c("ident","ddipl"))
     transfert = eecind[eecind['lpr'] == 1]
@@ -274,5 +274,5 @@ def run_2():
     gc.collect()
     
 if __name__ == '__main__':
-    # run_1()
+    run_1()
     run_2()

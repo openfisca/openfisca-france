@@ -86,7 +86,9 @@ class DataCollection(object):
                              RData_filename=RData_filename,
                              RData_dir=RData_dir)
         
-        variables = ['noi','noindiv','ident','declar1','quelfic','ztsai','persfip','declar2','persfipd','ztsao','wprm']
+        variables = ['noi','noindiv','ident','declar1','quelfic','persfip','declar2','persfipd','wprm',
+                     "zsali","zchoi","ztsai","zreti","zperi","zrsti","zalri","zrtoi","zragi","zrici","zrnci",
+                     "zsalo","zchoo","ztsao","zreto","zpero","zrsto","zalro","zrtoo","zrago","zrico","zrnco"]
         
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
