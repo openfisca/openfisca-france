@@ -191,7 +191,7 @@ def run_1():
     indivim['actrec'] = where(indivim['acteu'] is None, 9, indivim['actrec'])
 
     #save(indivim,file=indm)
-    #rm(erfind,eecind,indivim)
+    #rm(erfind,eecind,indivim)    
     #message('indivim saved')
     #gc()
     

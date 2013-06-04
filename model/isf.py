@@ -46,7 +46,7 @@ def _isf_actions_sal(b1cl, _P): ## non présent en 2005##
     Parts ou actions détenues par les salariés et mandataires sociaux
     '''
     P = _P.isf.droits_soc
-    return  b1cl*P.taux1  
+    return  b1cl*P.taux1
 
 def _isf_droits_sociaux(isf_actions_sal, b1cb, b1cd, b1ce, b1cf, b1cg, _P):
     P = _P.isf.droits_soc

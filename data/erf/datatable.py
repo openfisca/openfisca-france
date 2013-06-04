@@ -59,7 +59,7 @@ class DataCollection(object):
         Initialize survey data 
         """
         self.initialize_erf()
-        self.initialize_logement()
+#        self.initialize_logement()
         
     def initialize_erf(self):
         """
@@ -68,14 +68,15 @@ class DataCollection(object):
         erf = SurveyDescription()
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
-        erf_tables_to_process = {"erf_menage" : "menage" + yr,
-                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                                 "foyer" : "foyer" + yr,
+        erf_tables_to_process = {
+#                                 "erf_menage" : "menage" + yr,
+#                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+#                                 "foyer" : "foyer" + yr,
                                  "erf_indivi" : "indivi" + yr,
-                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
-                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
-                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
-                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
+#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
+#                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
+#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
+#                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
                                  }
         
         RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
@@ -92,13 +93,14 @@ class DataCollection(object):
                        'agepr','rga','statut', 'txtppb', 'encadr', 'prosa']
         
         erf_variables_to_fetch = {"erf_indivi": variables,
-                                  "eec_indivi": variables_eec,
-                                  "eec_cmp_1" : variables_eec,
-                                  "eec_cmp_2" : variables_eec,
-                                  "eec_cmp_3" : variables_eec}
+#                                  "eec_indivi": variables_eec,
+#                                  "eec_cmp_1" : variables_eec,
+#                                  "eec_cmp_2" : variables_eec,
+#                                  "eec_cmp_3" : variables_eec,
+                                    }
        
-        for name, variables in erf_variables_to_fetch.iteritems():
-            erf.insert_table(name=name,variables=variables)
+        for name, vars in erf_variables_to_fetch.iteritems():
+            erf.insert_table(name=name,variables=vars)
         
         self.surveys["erf"] = erf
         
@@ -178,7 +180,7 @@ class DataCollection(object):
                     variables = tables["variables"]
                 except:
                     variables = None
-                    
+                print variables
                 self.store_survey(survey_name, R_table_name, destination_table_name, data_dir, variables)
 
     def store_survey(self, survey_name, R_table_name, destination_table_name, data_dir, variables=None, force_recreation=True):
@@ -229,9 +231,11 @@ class DataCollection(object):
             if force_recreation is not True:
                 print store_path + "already exists, do not re-create and exit"
                 store.close()
-            return
-        
+                return
+
         if variables is not None:
+            print variables
+            print stored_table.describe()
             store[store_path] = stored_table[variables]
         else:
             store[store_path] = stored_table
@@ -381,12 +385,12 @@ def test_init():
 #        print data.surveys["lgt"].tables
         data.set_config()
     
-def test_reading_stata_tables():
-    from pandas.io.stata import StataReader, read_stata # TODO: wait for the next release ...
-
-    filename = os.path.join(DATA_DIR,"erf","2006","Tables complémentaires","icomprf06e07t1.dta")
-    reader = StataReader(filename)
-    print reader.data()
+#def test_reading_stata_tables():
+#    from pandas.io.stata import StataReader, read_stata # TODO: wait for the next release ...
+#
+#    filename = os.path.join(DATA_DIR,"erf","2006","Tables complémentaires","icomprf06e07t1.dta")
+#    reader = StataReader(filename)
+#    print reader.data()
     
 if __name__ == '__main__':
     # test()

@@ -13,8 +13,8 @@ from datetime import datetime
 
 
 def test_irpp():
-    """ 
-    test pour un célibataire pour un revenu de 20 000 €, 50 000 € et 150 000 € 
+    """
+    test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 € 
     et des revenus de différentes origines 
     """
     country = 'france'
@@ -141,9 +141,9 @@ def test_irpp():
 if __name__ == '__main__':
    
 
-    test_irpp()
+#    test_irpp()
     
-#    nose.core.runmodule(argv=[__file__, '-v', '-i test_*.py'])
+    nose.core.runmodule(argv=[__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 
 
