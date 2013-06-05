@@ -321,7 +321,7 @@
       <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/> 
     </CODE>
     <CODE description="Contribution additionnelle" code="add" format="percent">
-      <VALUE valeur=".003" deb="2006-01-01" fin="2011-12-31"/>
+      <VALUE valeur=".003" deb="2006-01-01" fin="2012-12-31"/>
     </CODE>  
     <CODE description="Contribution au financement du revenu de solidarité active" code="rsa" format="percent">
       <VALUE valeur=".011" deb="2009-01-01" fin="2012-12-31"/>
@@ -332,27 +332,27 @@
     <BAREME description="Barème appliqué à l'assiette de la CSG" code="bareme" type = "monetary">
       <TRANCHE code="tranche0">	            
         <SEUIL>
-          <VALUE valeur="0" deb="2010-01-01" fin="2011-12-31"/>
+          <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-          <VALUE valeur=".00" deb="2010-01-01" fin="2011-12-31"/>
+          <VALUE valeur=".00" deb="2010-01-01" fin="2012-12-31"/>
 	</TAUX>
       </TRANCHE>
     </BAREME>
     <CODE description="Crédit d'impôt forfaitaire par enfant" code="credit_enfant" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2011-12-31"/>
+      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
     </CODE>    
     <CODE description="Réduction d'impôt forfaitaire par enfant" code="reduc_enfant" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2011-12-31"/>
+      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
     </CODE>    
     <CODE description="Abattement forfaitaire sur le revenu par enfant" code="abatt_enfant" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2011-12-31"/>
+      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
     </CODE>    
     <CODE description="Réduction d'impôt forfaitaire si conjoint" code="reduc_conj" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2011-12-31"/>
+      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
     </CODE>    
     <CODE description="Abattement forfaitaire sur le revenu si conjoint" code="abatt_conj" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2011-12-31"/>
+      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
     </CODE>    
   </NODE>
   <NODE description="Cotisations sociales" code="cotsoc" >
