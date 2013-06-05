@@ -149,6 +149,8 @@ def famille():
         print 'longueur de la dataframe après opération', len(dataframe.index)
         dup = dataframe.duplicated(cols='noindiv')
         print 'contrôle des doublons =>', any(dup==True) #dup.describe()
+        print 'contrôle des colonnes ->', len(dataframe.columns)
+        print 'nombre de familles différentes', len(set(famille.noifam.values))
         if len(dataframe.index) > len(base.index): raise Exception('too many rows compared to base')
     
 # # ##******************************************************************************************************************/
@@ -236,7 +238,7 @@ def famille():
     fcouple = fcouple.merge(famcom) #NOTE : faire un inner merge sinon présence de doublons
     print 'longueur fcouple après fusion', len(fcouple.index)
 
-    famille = concat([famille, hcouple, fcouple])
+    famille = concat([famille, hcouple, fcouple], join='inner')
     control(famille)
 
 # # ##******************************************************************************************************************/
@@ -503,7 +505,13 @@ def famille():
     decid = DataFrame(avec_dec['noifam']) ; decid.columns = ['noindiv']
     decid = decid.drop_duplicates()
     dec = base.merge(decid, how='inner')
-    control(dec)
+    dec['noifam'] = 100*dec['ident'] + dec['noi']
+    dec['famille'] = 48
+    
+    famille = famille[not_(famille.noindiv.isin(dec.noindiv.values))]
+    famille = concat([famille, avec_dec, dec])
+    del dec, decid, avec_dec
+    control(famille)
     
 # # 
 # # ##******************************************************************************************************************/
@@ -545,9 +553,9 @@ def famille():
             'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec','agepf','noidec','year']
     fip = fip.loc[:, indVar_fip]
 
-## Variables auxilaires présentes dans base qu'il faut rajouter aux fip'
-## WARNING les noindiv des fip sont construits sur les ident des déclarants
-## pas d'orvelap possible avec les autres noindiv car on a des noi =99, 98, 97 ,...'
+    # Variables auxilaires présentes dans base qu'il faut rajouter aux fip'
+    # WARNING les noindiv des fip sont construits sur les ident des déclarants
+    # pas d'orvelap possible avec les autres noindiv car on a des noi =99, 98, 97 ,...'
     fip['m15'] = (fip['agepf']<16)
     fip['p16m20'] = ((fip['agepf']>=16) & (fip['agepf']<=20))
     fip['p21'] = (fip['agepf']>=21)
@@ -556,14 +564,12 @@ def famille():
     fip['famille'] = 0
     fip['kid'] = False
     print equal(fip['ztsai'], array(None)).describe()
-    return
 
 # # base <- rbind(base,fip)
 # # table(base$quelfic)
 
 # # enfant_fip <- base[(!base$noindiv %in% famille$noindiv),] 
 # # enfant_fip <- subset(enfant_fip, (quelfic=="FIP") & (( (agepf %in% c(19,20)) & !smic55 ) | (naia==year & rga=='6')) )  # TODO check year ou year-1 !
-# # 
 # # enfant_fip <- within(enfant_fip,{
 # #                      noifam=100*ident+noidec
 # #                      famille=50
@@ -579,13 +585,51 @@ def famille():
 # #                      famille <- 51
 # #                      kid <- FALSE})
 # # famille[famille$noindiv %in% enfant_fip$noifam,] <- parent_fip
-# # # TODO: quid du conjoint ?
+# # # TODO quid du conjoint ?
 # # dup <- duplicated(famille$noindiv)
 # # table(dup)
 # # 
 # # table(famille$famille,useNA='ifany')
 # # rm(enfant_fip,fip,parent_fip)
-# #   
+    
+    print "extension de base"
+    base = concat([base, fip])
+    print len(base.index)
+    
+    enfant_fip = subset_base()
+    control(enfant_fip)
+    print enfant_fip.ix[enfant_fip['quelfic']=="FIP","agepf"].describe()
+    
+    enfant_fip = enfant_fip[(enfant_fip['quelfic']=="FIP") &
+                            ((enfant_fip.agepf.isin([19,20]) & not_(enfant_fip['smic55'])) | 
+                            ((enfant_fip['naia']==enfant_fip['year']-1) & (enfant_fip['rga'].astype('int')==6)))]
+    
+    enfant_fip['noifam'] = 100*enfant_fip['ident'] + enfant_fip['noidec']
+    enfant_fip['famille'] = 50
+    enfant_fip['kid'] = True
+    enfant_fip['ident'] = None
+    famille = concat([famille, enfant_fip])
+
+    parent_fip = famille[famille.noindiv.isin(enfant_fip.noifam.values)]
+    if any(enfant_fip.noifam.isin(parent_fip.noindiv.values)): print "Doublons entre enfant_fip et parent fip !"
+    parent_fip['noifam'] = parent_fip['noindiv']
+    parent_fip['famille'] = 51
+    parent_fip['kid'] = False
+    control(parent_fip)
+    
+    print 'famille defore merge and clearing'
+    control(famille)
+    print set(famille.famille.values)
+    
+    famille = famille.merge(parent_fip, how='outer'); famille['famille'] = famille['famille'].astype('int')
+    famille = famille.drop_duplicates(cols='noindiv', take_last=True)
+    
+    print 'famille after merge and clearing'
+    print set(famille.famille.values)
+    control(famille)
+    print famille.loc[famille.noindiv.isin(enfant_fip.noifam), 'famille'].describe()
+    del enfant_fip, fip, parent_fip
+    
 # # ##******************************************************************************************************************/
 # # message('Etape 6 : non attribué')
 # # non_attribue1 <- base[(!base$noindiv %in% famille$noindiv),] 
@@ -618,7 +662,32 @@ def famille():
 # # table(famille$famille, useNA="ifany")
 # # rm(base)
 # # table(duplicated(famille$noifam))
-# # 
+    print 'Etape 6 : gestion des non attribués'
+    print '    6.1 : non attribués type 1'
+    non_attribue1 = subset_base()
+    non_attribue1 = non_attribue1[not_(non_attribue1['quelfic'] != 'FIP') & (non_attribue1['m15'] | 
+                                    (non_attribue1['p16m20'] & (non_attribue1.lien.isin(range(1,5))) & 
+                                     (non_attribue1['agepr']>=35)))]
+    # On rattache les moins de 15 ans avec la PR (on a déjà éliminé les enfants en nourrice) 
+    non_attribue1 = pr.merge(non_attribue1)
+    control(non_attribue1)
+    non_attribue1['famille'] = where(non_attribue1['m15'], 61, 62)
+    non_attribue1['kid'] = True
+    
+    famille = concat([famille, non_attribue1])
+    control(famille)
+    del pr, non_attribue1
+
+    print '    6.2 : non attribué type 2'
+    non_attribue2 = base[(not_(base.noindiv.isin(famille.noindiv.values)) & (base['quelfic']!="FIP"))]
+    non_attribue2['noifam'] = 100*non_attribue2['ident'] + non_attribue2['noi']
+    non_attribue2['kid'] = False
+    non_attribue2['famille'] = 63
+    
+    famille = concat([famille, non_attribue2])
+    control(famille)
+    del non_attribue2
+    
 # # ##******************************************************************************************************************/
 # # ## Sauvegarde de la table famille */  
 # # 
@@ -660,7 +729,18 @@ def famille():
 # # save(famille,file=famc)
 # # rm(famille, indivi, enfnn)
 # # gc()
-
+    print 'Sauvegarde de la table famille'
+    famille['idec'] = famille['declar1'].str[3] + famille['declar1'].str[10]
+    print equal(famille['declar1'], array('')).describe()
+    return
+    famille['idec'].apply(lambda x: x+'-')
+    famille['idec'] += famille['declar1'].str[0,1].astype('str')
+    famille['chef'] = (famille['noifam'] == famille['ident']*100+famille['noi'])
+    print 
+    
+    # On vérifie qu'on a bien autant de familles que de chefs de famille 
+    print len(famille.loc[famille['chef'], :]), len(set(famille.noifam.values))
+    return
 
 
 if __name__ == '__main__':
