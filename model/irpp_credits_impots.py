@@ -39,11 +39,10 @@ def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
         niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
                   quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + 
                   autent)
-    elif _P.datesim.year == 2011:
+    elif _P.datesim.year >= 2011:
         niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
                   quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + 
                   autent)    # TODO: check because totally unchecked
-    
         
     return niches
 
@@ -89,7 +88,9 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
 
     elif _P.datesim.year == 2011: # TODO: check because totally unchecked
         return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
-
+    else:
+        return f2ab*0 # TODO: 2012
+        
 def _divide(marpac, f2dc, f2gr, _P):
     '''
     Crédit d'impôt dividendes
@@ -106,7 +107,7 @@ def _percvm(f3vv, _P):
     2010-
     '''
     # TODO: check 2011
-    if _P.datesim.year == 2011:
+    if _P.datesim.year >= 2011:
         return 0*f3vv
     return _P.ir.credits_impot.percvm.taux*f3vv
 
@@ -187,7 +188,7 @@ def _quaenv(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, f7w
                 P.taux_wh*min_(f7wh, max6) +
                 P.taux_sb*min_(f7sb, max7) )
 
-    elif _P.datesim.year >= 2010:  # TODO Check 2011 formula and plaf in param 
+    elif _P.datesim.year == 2010:  # TODO: Check 2011 formula and plaf in param 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
         max3 = max_(0, max2 - f7wk)
@@ -203,6 +204,9 @@ def _quaenv(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, f7w
                 P.taux_sb*min_(f7sb, max5) +
                 P.taux_wq*min_(f7wq, max6) +
                 P.taux_sh*min_(f7sh, max7) )
+    else:
+        return f7wf*0
+        
 
 def _aidper(marpac, nb_pac2, f7wf, f7wi, f7wj, f7wl, f7sf, f7si, _P):
     '''
@@ -306,8 +310,8 @@ def _saldom2(nb_pac2, f7db, f7dg, f7dl, f7dq, _P):
         maxNonInv = min_(maxBase + P.pac*nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
 
-    elif _P.datesim.year == 2011:
-        # TODO
+    elif _P.datesim.year >= 2011:
+        # TODO:
         maxEffectif = 0
         
     return P.taux*min_(f7db, maxEffectif)
@@ -325,17 +329,17 @@ def _inthab(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P)
 
     if _P.datesim.year == 2007:
         return 0*nb  # TODO
-    if _P.datesim.year == 2008:  
+    elif _P.datesim.year == 2008:  
         max1 = max_(max0 - f7vy, 0)
         return (P.taux1*min_(f7vy, max0) + 
                 P.taux3*min_(f7vz, max1) )
-    if _P.datesim.year == 2009:
+    elif _P.datesim.year == 2009:
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         return (P.taux1*min_(f7vx, max0) + 
                 P.taux1*min_(f7vy, max1) + 
                 P.taux3*min_(f7vz, max2) )
-    if _P.datesim.year == 2010:
+    elif _P.datesim.year == 2010:
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
@@ -343,7 +347,7 @@ def _inthab(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P)
                 P.taux1*min_(f7vy, max1) + 
                 P.taux2*min_(f7vw, max2) + 
                 P.taux3*min_(f7vz, max3) )
-    if _P.datesim.year == 2011:  # TODO: formula parameters are set
+    elif _P.datesim.year == 2011:  # TODO: formula parameters are set
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
@@ -351,7 +355,8 @@ def _inthab(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P)
                 P.taux1*min_(f7vy, max1) + 
                 P.taux2*min_(f7vw, max2) + 
                 P.taux3*min_(f7vz, max3) )
-        
+    else:
+        return f7vx*0
 
 def _assloy(f4bf, _P):
     '''

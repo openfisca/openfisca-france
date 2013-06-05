@@ -308,11 +308,17 @@
   </NODE>
   <NODE description="Prélèvement social et contributions additionnelles" code = 'prelsoc'>
     <CODE description="Prélèvement social (revenus des produits de placement)" code="base_plac" format="percent">     
-      <VALUE valeur=".02"  deb="2002-01-01" fin="2010-12-31"/>
-      <VALUE valeur=".022" deb="2011-01-01" fin="2011-09-30"/>
-      <VALUE valeur=".034" deb="2011-10-01" fin="2012-06-30"/>
-      <VALUE valeur=".054" deb="2012-07-01" fin="2012-12-31"/>
-      <VALUE valeur=".045" deb="2013-01-01" fin="2013-12-31"/>  
+      <VALUE valeur=".02"  deb="2002-01-01" fin="2009-12-31"/>
+      <VALUE valeur=".022" deb="2010-01-01" fin="2010-12-31"/>
+      <!--
+      		  <VALUE valeur=".02"  deb="2002-01-01" fin="2010-12-31"/>
+		      <VALUE valeur=".022" deb="2011-01-01" fin="2011-09-30"/>
+      	      <VALUE valeur=".034" deb="2011-10-01" fin="2012-06-30"/>
+        	  <VALUE valeur=".054" deb="2012-07-01" fin="2012-12-31"/>
+      		  <VALUE valeur=".045" deb="2013-01-01" fin="2013-12-31"/>
+      -->
+      <VALUE valeur=".034" deb="2011-01-01" fin="2011-12-31"/>
+      <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/>
     </CODE> 
     <CODE description="Prélèvement social (revenus du patrimoine)" code="base_pat" format="percent">     
       <VALUE valeur=".02"  deb="2002-01-01" fin="2009-12-31"/>
@@ -320,26 +326,39 @@
       <VALUE valeur=".034" deb="2011-01-01" fin="2011-12-31"/>
       <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/> 
     </CODE>
+<<<<<<< HEAD
     <CODE description="Contribution additionnelle" code="add" format="percent">
       <VALUE valeur=".003" deb="2006-01-01" fin="2012-12-31"/>
+=======
+    <CODE description="Contribution additionnelle solidarité autonomie" code="add" format="percent">
+      <VALUE valeur=".003" deb="2006-01-01" fin="2013-12-31"/>
+>>>>>>> a0f36ad7cae8f3627a99ddc07610d90a2aeb5f51
     </CODE>  
     <CODE description="Contribution au financement du revenu de solidarité active" code="rsa" format="percent">
-      <VALUE valeur=".011" deb="2009-01-01" fin="2012-12-31"/>
-      <VALUE valeur=".02" deb="2013-01-01" fin="2013-12-31"/>
+      <VALUE valeur=".011" deb="2009-01-01" fin="2011-12-31"/>
+      <VALUE valeur=".02" deb="2012-01-01" fin="2013-12-31"/>
     </CODE>
   </NODE>
   <NODE description="Fusion IR - CSG (à la Landais, Piketty, Saez)" code = 'lps'>
     <BAREME description="Barème appliqué à l'assiette de la CSG" code="bareme" type = "monetary">
       <TRANCHE code="tranche0">	            
         <SEUIL>
+<<<<<<< HEAD
           <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
           <VALUE valeur=".00" deb="2010-01-01" fin="2012-12-31"/>
+=======
+          <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
+        </SEUIL>
+        <TAUX>
+          <VALUE valeur=".00" deb="2010-01-01" fin="2013-12-31"/>
+>>>>>>> a0f36ad7cae8f3627a99ddc07610d90a2aeb5f51
 	</TAUX>
       </TRANCHE>
     </BAREME>
     <CODE description="Crédit d'impôt forfaitaire par enfant" code="credit_enfant" format="integer" type="monetary">
+<<<<<<< HEAD
       <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
     </CODE>    
     <CODE description="Réduction d'impôt forfaitaire par enfant" code="reduc_enfant" format="integer" type="monetary">
@@ -353,6 +372,21 @@
     </CODE>    
     <CODE description="Abattement forfaitaire sur le revenu si conjoint" code="abatt_conj" format="integer" type="monetary">
       <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
+=======
+      <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
+    </CODE>    
+    <CODE description="Réduction d'impôt forfaitaire par enfant" code="reduc_enfant" format="integer" type="monetary">
+      <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
+    </CODE>    
+    <CODE description="Abattement forfaitaire sur le revenu par enfant" code="abatt_enfant" format="integer" type="monetary">
+      <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
+    </CODE>    
+    <CODE description="Réduction d'impôt forfaitaire si conjoint" code="reduc_conj" format="integer" type="monetary">
+      <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
+    </CODE>    
+    <CODE description="Abattement forfaitaire sur le revenu si conjoint" code="abatt_conj" format="integer" type="monetary">
+      <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
+>>>>>>> a0f36ad7cae8f3627a99ddc07610d90a2aeb5f51
     </CODE>    
   </NODE>
   <NODE description="Cotisations sociales" code="cotsoc" >
@@ -1953,6 +1987,7 @@
       <CODE description="Abattement capitaux mobiliers - Max" code="abatmob"  format="integer" type="monetary">
         <VALUE valeur="1220" deb="2002-01-01" fin="2005-12-31" code="abatmob"/>
         <VALUE valeur="1525" deb="2006-01-01" fin="2011-12-31" code="abatmob"/>
+        <VALUE valeur="0"    deb="2012-01-01" fin="2012-12-31" code="abatmob"/>
       </CODE>
       <CODE description="majoration case GO" code="majGO"  format = 'percent'>
         <VALUE valeur="1" deb="2002-01-01" fin="2005-12-31" code="majGO"/>
@@ -2315,14 +2350,17 @@
 	  <VALUE valeur="0.10" deb="2002-01-01" fin="2002-12-31"/>
 	  <VALUE valeur="0.20" deb="2003-01-01" fin="2012-12-31"/>
 	</CODE>
+	<CODE description="Plafond en niveau" code="max_niv" format = 'integer'>
+	  <VALUE valeur="15000" deb="2012-01-01" fin="2012-12-31"/>
+	</CODE>
       </NODE>
       <NODE code = "cotsyn" description="Cotisations syndicales">
 	<CODE description="Cotisations syndicales" code="taux" format = 'percent'>
 	  <VALUE valeur="0.50" deb="2002-01-01" fin="2004-12-31"/>
-	  <VALUE valeur="0.66" deb="2005-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.66" deb="2005-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Seuil" code="seuil" format = 'percent'>
-	  <VALUE valeur="0.01" deb="2002-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.01" deb="2002-01-01" fin="2012-12-31"/>
 	</CODE>
       </NODE>
       <NODE code = "resimm" description="Travaux de restauration immobilière">
@@ -2472,10 +2510,10 @@
 	</CODE>
 	<CODE description="Seuil" code="seuil" format="integer" type="monetary">
 	  <VALUE valeur= "6000" deb="2002-01-01" fin="2002-12-31"/>
-	  <VALUE valeur="20000" deb="2003-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="20000" deb="2003-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Seuil TPE" code="seuil_tpe" format="integer" type="monetary">
-	  <VALUE valeur="50000" deb="2009-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="50000" deb="2009-01-01" fin="2012-12-31"/>
 	</CODE>
       </NODE>
       <NODE code = "intcon" description="Intérêts des prêts à la consommation (UH)">
@@ -3121,13 +3159,15 @@
       </CODE>
       <CODE description="Capital risque (VL)" code="caprisque" format = 'percent'>
 	<VALUE valeur="0.16" deb="2002-01-01" fin="2007-12-31"/>
-	<VALUE valeur="0.18" deb="2008-01-01" fin="2011-12-31"/>
-	<VALUE valeur="0.19" deb="2012-01-01" fin="2012-12-31"/>
+	<VALUE valeur="0.18" deb="2008-01-01" fin="2010-12-31"/>
+	<VALUE valeur="0.19" deb="2011-01-01" fin="2011-12-31"/>
+	<VALUE valeur="0.24" deb="2012-01-01" fin="2012-12-31"/>
       </CODE>
-      <CODE description="16% puis 18%" code="taux1" format = 'percent'>
+    <CODE description="Plus values de cession de valeurs mobilières" code="taux1" format = 'percent'>
 	<VALUE valeur="0.16" deb="2002-01-01" fin="2007-12-31"/>
 	<VALUE valeur="0.18" deb="2008-01-01" fin="2010-12-31"/>
-    <VALUE valeur="0.19" deb="2008-01-01" fin="2012-12-31"/>
+    <VALUE valeur="0.19" deb="2008-01-01" fin="2011-12-31"/>
+    <VALUE valeur="0.24" deb="2012-01-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Clôture PEA avant 2 ans (3VM)" code="pea" format = 'percent'>
 	<VALUE valeur="0.225" deb="2002-01-01" fin="2012-12-31"/>
@@ -3149,6 +3189,7 @@
       <CODE description="Exonération des heures supplémentaires" code="hsup_exo" format = 'bool'>
 	    <VALUE valeur="0" deb="2002-01-01" fin="2006-12-31"/>
 	    <VALUE valeur="1" deb="2007-01-01" fin="2012-12-31"/>
+	    <VALUE valeur="0" deb="2012-01-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Indicatrice pour imposition des revenus du capital au barème" code="finpfl" format = 'bool'>
 	    <VALUE valeur="0" deb="2001-01-01" fin="2012-12-31"/>
@@ -3160,7 +3201,7 @@
           <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-		  <VALUE valeur="0.0" deb="2011-01-01" fin="2012-12-31"/>
+		  <VALUE valeur="0.0" deb="2010-01-01" fin="2012-12-31"/>
         </TAUX>
       </TRANCHE>
       <TRANCHE>
@@ -3168,7 +3209,7 @@
           <VALUE valeur="250000" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-	      <VALUE valeur="0.0" deb="2010-01-01" fin="2011-12-31"/>
+	      <VALUE valeur="0.0" deb="2010-01-01" fin="2010-12-31"/>
 		  <VALUE valeur="0.03" deb="2011-01-01" fin="2012-12-31"/>
         </TAUX>
       </TRANCHE>
@@ -3177,7 +3218,7 @@
           <VALUE valeur="500000" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-          <VALUE valeur="0.0" deb="2010-01-01" fin="2011-12-31"/>
+          <VALUE valeur="0.0" deb="2010-01-01" fin="2010-12-31"/>
           <VALUE valeur="0.04" deb="2011-01-01" fin="2012-12-31"/>
         </TAUX>
       </TRANCHE>
@@ -3200,6 +3241,33 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
+    <NODE code = "pv_immo" description="Plus-values immobilières">
+	  <CODE description="Nombre d'années pleines de détentions minimale (1er seuil)" code="ann_det1" format = 'integer'>
+		<VALUE valeur="5" deb="2011-01-01" fin="2012-01-31"/>
+	  </CODE>    
+	  <CODE description="Pas annuel du taux (après seuil 1)" code="taux1" format = 'percent'>
+		<VALUE valeur=".1" deb="2011-01-01" fin="2012-01-31"/>
+		<VALUE valeur=".02" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>
+	  <CODE description="Nombre d'années pleines de détentions 2e seuil" code="ann_det2" format = 'integer'>
+		<VALUE valeur="17" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>    
+	  <CODE description="Pas annuel du taux (après seuil 2)" code="taux2" format = 'percent'>
+		<VALUE valeur=".04" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>
+	  <CODE description="Nombre d'années pleines de détentions 3e seuil" code="ann_det3" format = 'integer'>
+		<VALUE valeur="24" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>    
+	  <CODE description="Pas annuel du taux (après seuil 3)" code="taux3" format = 'percent'>
+		<VALUE valeur=".08" deb="2012-02-01" fin="2013-12-31"/>
+	  </CODE>
+	  <CODE description="Taux d'imposition" code="taux" format = 'percent'>
+		<VALUE valeur=".19" deb="2012-01-01" fin="2013-12-31"/>
+		<VALUE valeur=".17" deb="2011-01-01" fin="2013-12-31"/>
+		<VALUE valeur=".16" deb="2005-01-01" fin="2010-12-31"/>
+	  </CODE>
+	  
+    </NODE>
   </NODE>
   <NODE description="Prestations familiales" code="fam" >
     <NODE description="Allocations familiales" code="af" >

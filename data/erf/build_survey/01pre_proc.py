@@ -25,7 +25,7 @@ from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
 
-from src.countries.france.data.erf.build_survey import save_temp
+from src.countries.france.data.erf.build_survey import save_temp, load_temp
 
     
 year = 2006
@@ -191,7 +191,7 @@ def run_1():
     indivim['actrec'] = where(indivim['acteu'] is None, 9, indivim['actrec'])
 
     #save(indivim,file=indm)
-    #rm(erfind,eecind,indivim)
+    #rm(erfind,eecind,indivim)    
     #message('indivim saved')
     #gc()
     
@@ -220,8 +220,8 @@ def run_2():
     eeccmp1 = data.get_values(table="eec_cmp_1", variables=individual_vars)
     eeccmp2 = data.get_values(table="eec_cmp_2", variables=individual_vars)
     eeccmp3 = data.get_values(table="eec_cmp_3", variables=individual_vars)
-    tmp = eeccmp1.merge(eeccmp2)
-    enfnn = tmp.merge(eeccmp3)
+    tmp = eeccmp1.merge(eeccmp2, how="outer")
+    enfnn = tmp.merge(eeccmp3, how="outer")
 
     #for (var in indVar) {
     #  print(var)
@@ -230,7 +230,7 @@ def run_2():
 
     for var in individual_vars:
         print var
-        enfnn[var] = float(enfnn[var])
+        enfnn[var] = enfnn[var].astype('float')
     #rm(eeccmp1,eeccmp2,eeccmp3,var_list)
     del eeccmp1, eeccmp2, eeccmp3, individual_vars
     
@@ -245,9 +245,11 @@ def run_2():
     #  persfip <- ""
     #})
 
+    print enfnn.describe()
     enfnn['declar1'] = ''
     enfnn['noidec'] = 0
     enfnn['ztsai'] = 0
+    enfnn['year'] = year
     enfnn['year'] = enfnn['year'].astype("float32")
     enfnn['agepf'] = where(enfnn['naim'] < 7, enfnn['year'] - enfnn['naia'], 
                            enfnn['year'] - enfnn['naia'] - 1) 
@@ -258,12 +260,13 @@ def run_2():
     #enfnn <- enfnn[(enfnn$naia==enfnn$year & enfnn$naim>=10) | (enfnn$naia==enfnn$year+1 & enfnn$naim<=5),]
     enfnn = enfnn[or_(and_(enfnn['naia'] == enfnn['year'], enfnn['naim'] >= 10), 
                       and_(enfnn['naia'] == enfnn['year'] + 1, enfnn['naim'] <= 5) )]
-    
+    print enfnn.describe()
     #save(enfnn,file=enfnnm)
     #rm(enfnn)
     #message('enfnnm saved')
     #gc()
     save_temp(enfnn, name="enfnn", year=year)
+
 #    store_enfnnm = HDFStore('enfnnm.h5')
 #    store_enfnnm.put('enfnnm.h5', enfnn)
     del enfnn
@@ -271,5 +274,5 @@ def run_2():
     gc.collect()
     
 if __name__ == '__main__':
-#    run_1()
+    # run_1()
     run_2()
