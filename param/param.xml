@@ -308,17 +308,11 @@
   </NODE>
   <NODE description="Prélèvement social et contributions additionnelles" code = 'prelsoc'>
     <CODE description="Prélèvement social (revenus des produits de placement)" code="base_plac" format="percent">     
-      <VALUE valeur=".02"  deb="2002-01-01" fin="2009-12-31"/>
-      <VALUE valeur=".022" deb="2010-01-01" fin="2010-12-31"/>
-      <!--
-      		  <VALUE valeur=".02"  deb="2002-01-01" fin="2010-12-31"/>
-		      <VALUE valeur=".022" deb="2011-01-01" fin="2011-09-30"/>
-      	      <VALUE valeur=".034" deb="2011-10-01" fin="2012-06-30"/>
-        	  <VALUE valeur=".054" deb="2012-07-01" fin="2012-12-31"/>
-      		  <VALUE valeur=".045" deb="2013-01-01" fin="2013-12-31"/>
-      -->
-      <VALUE valeur=".034" deb="2011-01-01" fin="2011-12-31"/>
-      <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/>
+      <VALUE valeur=".02"  deb="2002-01-01" fin="2010-12-31"/>
+	  <VALUE valeur=".022" deb="2011-01-01" fin="2011-09-30"/>
+      <VALUE valeur=".034" deb="2011-10-01" fin="2012-06-30"/>
+  	  <VALUE valeur=".054" deb="2012-07-01" fin="2012-12-31"/>
+      <VALUE valeur=".045" deb="2013-01-01" fin="2013-12-31"/>    
     </CODE> 
     <CODE description="Prélèvement social (revenus du patrimoine)" code="base_pat" format="percent">     
       <VALUE valeur=".02"  deb="2002-01-01" fin="2009-12-31"/>
@@ -326,13 +320,8 @@
       <VALUE valeur=".034" deb="2011-01-01" fin="2011-12-31"/>
       <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/> 
     </CODE>
-<<<<<<< HEAD
-    <CODE description="Contribution additionnelle" code="add" format="percent">
-      <VALUE valeur=".003" deb="2006-01-01" fin="2012-12-31"/>
-=======
     <CODE description="Contribution additionnelle solidarité autonomie" code="add" format="percent">
       <VALUE valeur=".003" deb="2006-01-01" fin="2013-12-31"/>
->>>>>>> a0f36ad7cae8f3627a99ddc07610d90a2aeb5f51
     </CODE>  
     <CODE description="Contribution au financement du revenu de solidarité active" code="rsa" format="percent">
       <VALUE valeur=".011" deb="2009-01-01" fin="2011-12-31"/>
@@ -343,36 +332,14 @@
     <BAREME description="Barème appliqué à l'assiette de la CSG" code="bareme" type = "monetary">
       <TRANCHE code="tranche0">	            
         <SEUIL>
-<<<<<<< HEAD
-          <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
-        </SEUIL>
-        <TAUX>
-          <VALUE valeur=".00" deb="2010-01-01" fin="2012-12-31"/>
-=======
           <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
         </SEUIL>
         <TAUX>
           <VALUE valeur=".00" deb="2010-01-01" fin="2013-12-31"/>
->>>>>>> a0f36ad7cae8f3627a99ddc07610d90a2aeb5f51
 	</TAUX>
       </TRANCHE>
     </BAREME>
     <CODE description="Crédit d'impôt forfaitaire par enfant" code="credit_enfant" format="integer" type="monetary">
-<<<<<<< HEAD
-      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
-    </CODE>    
-    <CODE description="Réduction d'impôt forfaitaire par enfant" code="reduc_enfant" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
-    </CODE>    
-    <CODE description="Abattement forfaitaire sur le revenu par enfant" code="abatt_enfant" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
-    </CODE>    
-    <CODE description="Réduction d'impôt forfaitaire si conjoint" code="reduc_conj" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
-    </CODE>    
-    <CODE description="Abattement forfaitaire sur le revenu si conjoint" code="abatt_conj" format="integer" type="monetary">
-      <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
-=======
       <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
     </CODE>    
     <CODE description="Réduction d'impôt forfaitaire par enfant" code="reduc_enfant" format="integer" type="monetary">
@@ -386,7 +353,6 @@
     </CODE>    
     <CODE description="Abattement forfaitaire sur le revenu si conjoint" code="abatt_conj" format="integer" type="monetary">
       <VALUE valeur="0" deb="2010-01-01" fin="2013-12-31"/>
->>>>>>> a0f36ad7cae8f3627a99ddc07610d90a2aeb5f51
     </CODE>    
   </NODE>
   <NODE description="Cotisations sociales" code="cotsoc" >
@@ -3265,8 +3231,7 @@
 		<VALUE valeur=".19" deb="2012-01-01" fin="2013-12-31"/>
 		<VALUE valeur=".17" deb="2011-01-01" fin="2013-12-31"/>
 		<VALUE valeur=".16" deb="2005-01-01" fin="2010-12-31"/>
-	  </CODE>
-	  
+	  </CODE>	  
     </NODE>
   </NODE>
   <NODE description="Prestations familiales" code="fam" >
