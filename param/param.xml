@@ -3173,7 +3173,7 @@
           <VALUE valeur="0" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-		  <VALUE valeur="0.0" deb="2011-01-01" fin="2012-12-31"/>
+		  <VALUE valeur="0.0" deb="2010-01-01" fin="2012-12-31"/>
         </TAUX>
       </TRANCHE>
       <TRANCHE>
@@ -3181,7 +3181,7 @@
           <VALUE valeur="250000" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-	      <VALUE valeur="0.0" deb="2010-01-01" fin="2011-12-31"/>
+	      <VALUE valeur="0.0" deb="2010-01-01" fin="2010-12-31"/>
 		  <VALUE valeur="0.03" deb="2011-01-01" fin="2012-12-31"/>
         </TAUX>
       </TRANCHE>
@@ -3190,7 +3190,7 @@
           <VALUE valeur="500000" deb="2010-01-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
-          <VALUE valeur="0.0" deb="2010-01-01" fin="2011-12-31"/>
+          <VALUE valeur="0.0" deb="2010-01-01" fin="2010-12-31"/>
           <VALUE valeur="0.04" deb="2011-01-01" fin="2012-12-31"/>
         </TAUX>
       </TRANCHE>

@@ -431,7 +431,7 @@ def _teicaa(f5qm, f5rm, _P):
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
     """
     Taxation des plus value
-    TODO: f3vt, 2013 f"Vg au barème
+    TODO: f3vt, 2013 f3vg au barème
     """
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
