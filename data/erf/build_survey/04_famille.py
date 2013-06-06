@@ -6,9 +6,12 @@
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
 
-from numpy import where, array, equal
+from numpy import where, array, NaN
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from numpy import logical_not as not_
+from numpy import logical_and as and_
+from numpy import logical_or as or_
 import pdb
 from pandas import concat, DataFrame
 
@@ -19,6 +22,14 @@ from pandas import concat, DataFrame
 ##***********************************************************************/
 print('04_famille: construction de la table famille')
 ##***********************************************************************/
+
+def subset_base(base,famille):
+    """
+    generates a dataframe containing the values of base that are not already in famille
+    """
+    print "base", len(base.index)
+    tmp = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    return tmp
 
 
 def famille():
@@ -83,7 +94,7 @@ def famille():
 #indivi2 <- subset(indivi,lien==6 & agepf <  16 & quelfic=='EE','noindiv')
 #indivi <- indivi[!indivi$noindiv %in% indivi2$noindiv,]
 #rm(indivi2)
-    from numpy import logical_not as not_
+
     indivi = indivi[ not_((indivi['lien']==6) & (indivi['agepf']<16) & ("quelfic"=="EE"))]
 
 # # ## Enfant à naître (NN pour nouveaux nés)
@@ -146,11 +157,12 @@ def famille():
     print base.head()
     
     def control(dataframe):
-        print 'longueur de la dataframe après opération', len(dataframe.index)
+        print 'longueur de la dataframe après opération =', len(dataframe.index)
         dup = dataframe.duplicated(cols='noindiv')
         print 'contrôle des doublons =>', any(dup==True) #dup.describe()
         print 'contrôle des colonnes ->', len(dataframe.columns)
         print 'nombre de familles différentes', len(set(famille.noifam.values))
+        print 'contrôle noifam is null:', len(dataframe[dataframe['noifam'].isnull()])
         if len(dataframe.index) > len(base.index): raise Exception('too many rows compared to base')
     
 # # ##******************************************************************************************************************/
@@ -187,12 +199,7 @@ def famille():
     del nof01
     control(famille)
 
-    def subset_base():
-        """
-        generates a dataframe containing the values of base that are not already in famille
-        """
-        tmp = base[not_(base.noindiv.isin(famille.noindiv.values))]
-        return tmp
+
     
 # # message('Etape 2a')
 # # ## l'identifiant est le noi de l'homme
@@ -205,7 +212,7 @@ def famille():
 # #     famille = 21 })
     print 'Etape 2a : identification des couples------------------------'
     # l'ID est le noi de l'homme
-    hcouple = subset_base()
+    hcouple = subset_base(base,famille)
     hcouple = hcouple[(hcouple['cohab']==1) & (hcouple['lpr']>=3) & (hcouple['sexe']==1)]
     hcouple['noifam'] = 100*hcouple['ident'] + hcouple['noi']
     hcouple['famille'] = 21
@@ -289,7 +296,7 @@ def famille():
 # # dup <- duplicated(famille$noindiv)
 # # table(dup)
     print '    3.3 personnes seules de type 3'
-    seul3 = subset_base()
+    seul3 = subset_base(base,famille)
     seul3 = seul3[(seul3.lpr.isin([3,4])) & seul3['p21'] & (seul3['cohab'] != 1)]
     seul3['noifam'] = 100*seul3['ident'] + seul3['noi']
     seul3['famille'] = 33
@@ -312,7 +319,7 @@ def famille():
 # # table(famille$famille,useNA='ifany')
 # # rm(seul1,seul2,seul3,seul4)
     print '    3.4 : personnes seules de type 4'
-    seul4 = subset_base()
+    seul4 = subset_base(base,famille)
     seul4 = seul4[(seul4['lpr']==4) & seul4['p16m20'] & not_(seul4['smic55']) & (seul4['noimer']==0) &
                   (seul4['persfip']=='vous')]
     
@@ -347,7 +354,7 @@ def famille():
 # # 
     print 'Etape 4 : traitement des enfants'
     print '    4.1 : enfant avec mère'
-    avec_mere = subset_base()
+    avec_mere = subset_base(base,famille)
     avec_mere =  avec_mere[((avec_mere['lpr']==4) & ((avec_mere['p16m20']==1) | (avec_mere['m15']==1)) &
                            (avec_mere['noimer'] != 0))]
     avec_mere['noifam'] = 100*avec_mere['ident'] + avec_mere['noimer']
@@ -359,13 +366,12 @@ def famille():
     mereid.columns = ['noindiv']
     mereid = mereid.drop_duplicates()
     
-    mere = mereid.merge(base)
-    print 'contrôle df mère'
-    control(mere)
-    
+    mere = mereid.merge(base)   
     mere['noifam'] = 100*mere['ident'] + mere['noi']
     mere['famille'] = 42 #H2G2 nous voilà
     avec_mere = avec_mere[avec_mere.noifam.isin(mere.noifam.values)]
+    print 'contrôle df mère'
+    control(mere)
     
 # # conj_mere <- merge(conj_mereid,base)
 # # conj_mere$famille <- 43
@@ -437,12 +443,18 @@ def famille():
 # # dup <- duplicated(famille$noindiv)
 # # table(dup)
     print '    4.2 : enfants avec père'
-    avec_pere = subset_base()
-    avec_pere = avec_pere[(avec_pere['lpr']==4) & 
-                          ((avec_pere['p16m20']==1) | (avec_pere['m15']==1)) & (avec_pere['noiper']!=0)]
+    avec_pere = subset_base(base,famille)
+#     avec_pere = avec_pere[and_(avec_pere['lpr']==4,
+#                           and_(or_((avec_pere['p16m20']==1), (avec_pere['m15']==1)), 
+#                           avec_pere['noiper'].notnull()))]
+    avec_pere = avec_pere[(avec_pere['lpr']==4) &
+                          or_((avec_pere['p16m20']==1), (avec_pere['m15']==1)) & 
+                          (avec_pere['noiper'].notnull())]
     avec_pere['noifam'] = 100*avec_pere['ident'] + avec_pere['noiper']
     avec_pere['famille'] = 44
     avec_pere['kid'] = True
+    print 'check of presence of NaN in avec_pere',len(avec_pere[avec_pere['noifam'].isnull()].index)
+
 
     pereid = DataFrame(avec_pere['noifam']); pereid.columns = ['noindiv']
     pereid = pereid.drop_duplicates()
@@ -464,7 +476,7 @@ def famille():
     famille = famille[not_(famille.noindiv.isin(conj_pere.noindiv.values))]
     famille = concat([famille, avec_pere, pere, conj_pere])
     control(famille)
-
+    
 # # 
 # # table(famille$famille,useNA='ifany')
 # # rm(avec_pere,pere,pereid,conj_pere,conj_pereid)
@@ -493,14 +505,14 @@ def famille():
 # # table(famille$famille,useNA='ifany')
 # # rm(dec,decid,avec_dec)
     print '    4.3 : enfants avec déclarant'
-    avec_dec = subset_base()
+    avec_dec = subset_base(base,famille)
     avec_dec = avec_dec[(avec_dec['persfip']=="pac") & (avec_dec['lpr']==4) &
                     ( (avec_dec['p16m20'] & not_(avec_dec['smic55'])) | (avec_dec['m15']==1 ))]
-    control(avec_dec)
-    avec_dec['noifam'] = 100*avec_dec['ident'] + avec_dec['noidec']
+    avec_dec['noifam'] = 100*avec_dec['ident'] + avec_dec['noidec'].astype('float')
     avec_dec['famille'] = 47
     avec_dec['kid'] = True
-
+    control(avec_dec)
+    
     #on récupère les déclarants pour leur attribuer une famille propre
     decid = DataFrame(avec_dec['noifam']) ; decid.columns = ['noindiv']
     decid = decid.drop_duplicates()
@@ -563,7 +575,7 @@ def famille():
     fip['smic55'] = (fip['ztsai'] >= smic*12*0.55)
     fip['famille'] = 0
     fip['kid'] = False
-    print equal(fip['ztsai'], array(None)).describe()
+    print fip['ztsai'].isnull().describe()
 
 # # base <- rbind(base,fip)
 # # table(base$quelfic)
@@ -593,11 +605,11 @@ def famille():
 # # rm(enfant_fip,fip,parent_fip)
     
     print "extension de base"
-    base = concat([base, fip])
+    print fip.describe()
+    base_ = concat([base, fip])
     print len(base.index)
     
-    enfant_fip = subset_base()
-    control(enfant_fip)
+    enfant_fip = subset_base(base_, famille)
     print enfant_fip.ix[enfant_fip['quelfic']=="FIP","agepf"].describe()
     
     enfant_fip = enfant_fip[(enfant_fip['quelfic']=="FIP") &
@@ -608,7 +620,9 @@ def famille():
     enfant_fip['famille'] = 50
     enfant_fip['kid'] = True
     enfant_fip['ident'] = None
+    control(enfant_fip)
     famille = concat([famille, enfant_fip])
+    base = concat([base, enfant_fip])
 
     parent_fip = famille[famille.noindiv.isin(enfant_fip.noifam.values)]
     if any(enfant_fip.noifam.isin(parent_fip.noindiv.values)): print "Doublons entre enfant_fip et parent fip !"
@@ -664,7 +678,7 @@ def famille():
 # # table(duplicated(famille$noifam))
     print 'Etape 6 : gestion des non attribués'
     print '    6.1 : non attribués type 1'
-    non_attribue1 = subset_base()
+    non_attribue1 = subset_base(base,famille)
     non_attribue1 = non_attribue1[not_(non_attribue1['quelfic'] != 'FIP') & (non_attribue1['m15'] | 
                                     (non_attribue1['p16m20'] & (non_attribue1.lien.isin(range(1,5))) & 
                                      (non_attribue1['agepr']>=35)))]
@@ -681,10 +695,11 @@ def famille():
     print '    6.2 : non attribué type 2'
     non_attribue2 = base[(not_(base.noindiv.isin(famille.noindiv.values)) & (base['quelfic']!="FIP"))]
     non_attribue2['noifam'] = 100*non_attribue2['ident'] + non_attribue2['noi']
+    non_attribue2['noifam'] = non_attribue2['noifam'].astype('int')
     non_attribue2['kid'] = False
     non_attribue2['famille'] = 63
     
-    famille = concat([famille, non_attribue2])
+    famille = concat([famille, non_attribue2], join='inner')
     control(famille)
     del non_attribue2
     
@@ -729,19 +744,48 @@ def famille():
 # # save(famille,file=famc)
 # # rm(famille, indivi, enfnn)
 # # gc()
+
     print 'Sauvegarde de la table famille'
-    famille['idec'] = famille['declar1'].str[3] + famille['declar1'].str[10]
-    print equal(famille['declar1'], array('')).describe()
-    return
-    famille['idec'].apply(lambda x: x+'-')
-    famille['idec'] += famille['declar1'].str[0,1].astype('str')
+    print '    Mise en forme finale'
+    famille['idec'] = famille['declar1'].str[3:11]
+    print famille['declar1'].notnull().describe()
+    famille['idec'].apply(lambda x: str(x)+'-')
+    famille['idec'] += famille['declar1'].str[0:2]
     famille['chef'] = (famille['noifam'] == famille['ident']*100+famille['noi'])
-    print 
+    famille.reset_index(inplace=True)
+#     print equal(famille['declar1'], array("")).describe()
+#     print equal(famille['declar1'], array('')).isnull().describe()
+    print famille['idec'].isnull().describe()
     
-    # On vérifie qu'on a bien autant de familles que de chefs de famille 
-    print len(famille.loc[famille['chef'], :]), len(set(famille.noifam.values))
-    return
-
-
+    control(famille)
+    
+    print 'création de la colonne rang'  
+    famille['rang'] = famille['kid'].astype('int')  
+    while any(famille[(famille['rang']!=0)].duplicated(cols=['rang', 'noifam'])):
+        famille["rang"][famille['rang']!=0] = where(
+                                    famille[famille['rang']!=0].duplicated(cols=["rang", 'noifam']),
+                                    famille["rang"][famille['rang']!=0] + 1,
+                                    famille["rang"][famille['rang']!=0])
+        print "nb de rangs différents", len(set(famille.rang.values))
+            
+    print 'création de la colonne quifam et troncature'
+    famille['quifam'] = NaN
+    famille['quifam'][famille['chef']==1] = 0
+    famille['quifam'][(famille['chef']==0) & (famille['kid']==0)] = 1
+    famille['quifam'][famille['kid']==1] = 1 + famille['rang'][famille['kid']==1]
+    famille['noifam'] = famille['noifam'].astype('int')
+    famille_check = famille
+    famille = famille.loc[:, ['noindiv', 'quifam', 'noifam']]
+    famille.columns = ['noindiv', 'quifam', 'idfam']
+    print famille.head()
+    
+    print 'Vérifications sur famille'
+    assert len(famille_check.loc[famille_check['chef'], :]) == len(set(famille.idfam.values)), 'the number of family chiefs is different from the number of families'
+    assert not(any(famille.duplicated(cols=['idfam', 'quifam']))), 'there are duplicates of quifam inside a family'
+    
+    print 'Sauvegarde'
+    save_temp(famille, name="famc", year=year)
+    del famille_check, indivi, enfnn
+    
 if __name__ == '__main__':
     famille()
