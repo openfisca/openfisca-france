@@ -288,44 +288,6 @@ def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns):
 #    AUTRE = TSPR + RVCM + RFON
     return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns
 
-
-#TODO
-
-    '''Revenus des auto-entrepreneurs ayant opté pour le versement libératoire de l'impôt sur le revenu (régime micro-fiscal) '''
-    
-    """
-    Pour pouvoir bénéficier du régime micro-social, il faut que le rfr 2011 de l'auto-entrepreneur soit < à 26 420 €
-    Dans ce cas, les revenus déclarés en 5ta 5tb et 5te ne sont pas soumis à l'irpp (puisque l'auto-entrepreneur à choisit le
-    prélèvement libératoire) mais ils sont pris en compte dans le calcul du montant de revenu fiscal de référence qui déterminera
-    le taux d'imposition des autres revenus déclarés.
-    Ces revenus sont soumis à abattement, 71 % pour la case 5ta, 50 % pour la 5tb et 34 % pour la 5te.
-    De plus, la part de ses revenus restante aprés abattement peut faire l'objet d'une ppe (si rev < à 17 451€). 
-    Les taux de cotisations sociales et de l'impôt sont (sur le montant réellement encaissé):
-    
-    vente de marchandises: 14 % + 1 %
-    prestation de services: 24.6 % + 1.7 %
-    professions libérales relevant du RSI: 24.6 % +2.2 %
-    professions libérales relevant de la CIPAV: 21.3 % + 2.2 % 
-    
-    """
-
-#TODO
-
-    '''Revenus des auto-entrepreneurs ayant opté pour le régime de micro-entreprise'''
-    
-    """
-    Ces revenus sont soumis à abattement:
-    -71 % du chiffre d'affaire pour les activités d'achat/revente et les activités de fourniture de logement 
-    -50 % du CA pour les autres activités relevant des bénéfices industriels et commerciaux 
-    -34 % du CA pour les bénéfices non commerciaux
-    Ensuite ils sont soumis au barême normal de l'irpp
-    """
-
-
-
-
-
-
 ###############################################################################
 ## Déroulé du calcul de l'irpp
 ###############################################################################
