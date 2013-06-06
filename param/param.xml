@@ -5,8 +5,8 @@
         <TRANCHE code="tranche0">	            
 		  <ASSIETTE>
 	    	<VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>	
-	    	<VALUE valeur=".97" deb="2005-01-01" fin="2010-12-31"/>
-	    	<VALUE valeur=".9825" deb="2011-01-01" fin="2012-12-31"/>
+	    	<VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
+	    	<VALUE valeur=".9825" deb="2012-01-01" fin="2012-12-31"/>
 	  	  </ASSIETTE>
 	  	  <SEUIL>
 	    	<VALUE valeur="0" deb="1991-02-01" fin="2012-12-31"/>
@@ -18,8 +18,8 @@
 		<TRANCHE code="tranche1">	            
 	  	  <ASSIETTE>
 	    	<VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>		
-	    	<VALUE valeur=".97" deb="2005-01-01" fin="2010-12-31"/>	
-	    	<VALUE valeur="1" deb="2011-01-01" fin="2012-12-31"/>
+	    	<VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>	
+	    	<VALUE valeur="1" deb="2012-01-01" fin="2012-12-31"/>
 	  	  </ASSIETTE>
 	  	  <SEUIL>
 	        <VALUE valeur="4" deb="1991-02-01" fin="2012-12-31"/>
@@ -33,7 +33,8 @@
 		<TRANCHE code="tranche0">	            
 	  	  <ASSIETTE>
 	    	<VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>		
-	    	<VALUE valeur=".97" deb="2005-01-01" fin="2012-12-31"/>
+	    	<VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
+	    	<VALUE valeur=".9825" deb="2012-01-01" fin="2012-12-31"/>
 	      </ASSIETTE>
 	      <SEUIL>
 	        <VALUE valeur="0" deb="1991-02-01" fin="2012-12-31"/>
@@ -44,8 +45,8 @@
 		</TRANCHE>
 		<TRANCHE code="tranche1">	            
 	  	  <ASSIETTE>
-	    	<VALUE valeur="1" deb="2011-01-01" fin="2012-12-31"/>
-	    	<VALUE valeur=".97" deb="2005-01-01" fin="2010-12-31"/>
+	    	<VALUE valeur="1" deb="2012-01-01" fin="2012-12-31"/>
+	    	<VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
 	    	<VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>			
 	  	  </ASSIETTE>
 	  	  <SEUIL>
@@ -87,7 +88,8 @@
 	          <VALUE valeur="0" deb="1991-02-01" fin="2012-12-31"/>
             </SEUIL>
             <ASSIETTE>
-	          <VALUE valeur=".97" deb="2005-01-01" fin="2012-12-31"/>
+              <VALUE valeur=".9825" deb="2012-01-01" fin="2012-12-31"/>	
+	          <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
 	          <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>		
 	        </ASSIETTE>
 	        <TAUX>
@@ -101,7 +103,8 @@
 	          <VALUE valeur="0" deb="1991-02-01" fin="2012-12-31"/>
             </SEUIL>
             <ASSIETTE>
-	          <VALUE valeur=".97" deb="2005-01-01" fin="2012-12-31"/>
+              <VALUE valeur=".9825" deb="2012-01-01" fin="2012-12-31"/>	
+	          <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
 	          <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>		
 	        </ASSIETTE>
 	        <TAUX>
@@ -114,7 +117,8 @@
 	    <BAREME description="CSG déductible" code="deduc" >
 	      <TRANCHE code="tranche0">
 	        <ASSIETTE>
-	          <VALUE valeur=".97" deb="2005-01-01" fin="2012-12-31"/>
+	          <VALUE valeur=".9825" deb="2012-01-01" fin="2012-12-31"/>	
+	          <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
 	          <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>		
 	        </ASSIETTE>
             <SEUIL>
@@ -128,7 +132,8 @@
 	    <BAREME description="CSG non déductible" code="impos" >
 	      <TRANCHE code="tranche0">
 	        <ASSIETTE>
-	          <VALUE valeur=".97" deb="2005-01-01" fin="2012-12-31"/>
+	          <VALUE valeur=".9825" deb="2012-01-01" fin="2012-12-31"/>	
+	          <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
 	          <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>		         
 	        </ASSIETTE>
             <SEUIL>
@@ -233,8 +238,8 @@
 	      	  <VALUE valeur="0" deb="1997-01-01" fin="2012-12-31"/>
             </SEUIL>
 	    	<TAUX>
-	    	  <VALUE valeur=".033" deb="2008-01-01" fin="2012-12-31"/>
-	      	  <VALUE valeur=".024" deb="1998-01-01" fin="2007-12-31"/>
+	    	  <VALUE valeur=".033" deb="2007-10-11" fin="2012-12-31"/>
+	      	  <VALUE valeur=".024" deb="1998-01-01" fin="2007-10-10"/>
             </TAUX>
 	  	  </TRANCHE>
 		</BAREME>   		
@@ -271,8 +276,9 @@
         <VALUE valeur="0.082" deb="2004-01-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="dont CSG déductible" code="deduc" format="percent">
-        <VALUE valeur=".051" deb="2000-01-01" fin="2003-12-31"/>
-        <VALUE valeur=".058" deb="2004-01-01" fin="2012-12-31"/>
+      	<VALUE valeur=".051" deb="2012-01-01" fin="2012-12-31"/>
+        <VALUE valeur=".058" deb="2004-01-01" fin="2011-12-31"/>
+        <VALUE valeur=".051" deb="2000-01-01" fin="2003-12-31"/>        
       </CODE>
     </NODE>
   </NODE>
@@ -509,7 +515,7 @@
 	          <VALUE valeur="0" deb="2004-07-01" fin="2012-12-31"/>
     	    </SEUIL>
 	        <TAUX>
-	          <VALUE valeur=".001" deb="2012-12-31" fin="2004-06-30"/>
+	          <VALUE valeur=".001" deb="2004-06-30" fin="2012-12-31"/>
     	    </TAUX>
 	      </TRANCHE>
     	</BAREME>
@@ -804,11 +810,11 @@
 	<BAREME description="Invalidité, décès" code="invdec" >
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".016" deb="2012-01-01" fin="2012-12-31"/>
-	      <VALUE valeur=".018" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur=".016" deb="2013-01-01" fin="2013-12-31"/>
+	      <VALUE valeur=".018" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
@@ -823,10 +829,10 @@
 	<BAREME description="Formation professionnelle" code="forprof" >
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".0029" deb="2012-01-01" fin="2012-12-31" code="seuil" />	
+	      <VALUE valeur=".0029" deb="2012-01-01" fin="2013-12-31" code="seuil" />	
 	      <VALUE valeur=".0015" deb="2003-01-01" fin="2011-12-31" code="seuil" />
 	    </TAUX>
 	  </TRANCHE>    	
@@ -834,11 +840,11 @@
 	<BAREME description="Retraite de base" code="retrbase" option="contrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".1685" deb="2012-01-01" fin="2012-12-31"/>
-	      <VALUE valeur=".1665" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur=".1685" deb="2013-01-01" fin="2013-12-31"/>
+	      <VALUE valeur=".1665" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
@@ -853,20 +859,20 @@
 	<BAREME description="Retraite complémentaire" code="retrcompl" option="contrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".070" deb="2012-01-01" fin="2012-12-31"/>	
-	      <VALUE valeur=".072" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur=".070" deb="2013-01-01" fin="2013-12-31"/>	
+	      <VALUE valeur=".072" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
 	    <SEUIL>
-	      <VALUE valeur="1" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="1" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur="0.080" deb="2012-01-01" fin="2012-12-31"/>	
-	      <VALUE valeur="0.076" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur="0.080" deb="2013-01-01" fin="2013-12-31"/>	
+	      <VALUE valeur="0.076" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche2">	            
@@ -894,10 +900,11 @@
 	<BAREME description="Sécurité sociale/ Maladie, maternité" code="maladie" option="noncontrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".065" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur=".060" deb="2012-01-01" fin="2013-12-31"/>	
+	      <VALUE valeur=".065" deb="2003-01-01" fin="2011-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
@@ -920,58 +927,59 @@
 	<BAREME description="Sécurité sociale/ Indemnités journalières" code="indjour" option="contrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".007" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur=".007" deb="2003-01-01" fin="2013-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
 	    <SEUIL>
-	      <VALUE valeur="5" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="5" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>	
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </TAUX>
 	  </TRANCHE>  
 	</BAREME>      
 	<BAREME description="Invalidité, décès" code="invdec" option="noncontrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".011" deb="2012-01-01" fin="2012-12-31"/>	
+	      <VALUE valeur=".011" deb="2013-01-01" fin="2013-12-31"/>	
 	      <VALUE valeur=".013" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
 	    <SEUIL>
-	      <VALUE valeur="1" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="1" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </TAUX>
 	  </TRANCHE>    	
 	</BAREME>
 	<BAREME description="Formation professionnelle" code="forprofcom" >
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2012-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2012-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".0025" deb="2012-01-01" fin="2012-12-31" code="seuil" />	
+	     <VALUE valeur=".0015" deb="2012-01-01" fin="2012-12-31" code="seuil" />	
+	      <VALUE valeur=".0025" deb="2013-01-01" fin="2013-12-31" code="seuil" />	
 	    </TAUX>
 	  </TRANCHE>    	
 	</BAREME>
 	<BAREME description="Retraite de base" code="retrbase" option="contrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	      <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".1685" deb="2012-01-01" fin="2012-12-31"/>	
-	      <VALUE valeur=".1665" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur=".1685" deb="2013-01-01" fin="2013-12-31"/>	
+	      <VALUE valeur=".1665" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
@@ -986,20 +994,20 @@
 	<BAREME description="Retraite complémentaire" code="retrcompl" option="contrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
-	    <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	    <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".07" deb="2012-01-01" fin="2012-12-31"/>	
-	      <VALUE valeur=".065" deb="2003-01-01" fin="2011-12-31"/>
+	      <VALUE valeur=".07" deb="2013-01-01" fin="2013-12-31"/>
+	      <VALUE valeur=".065" deb="2003-01-01" fin="2012-12-31"/>
 	    </TAUX>	 	
 	  </TRANCHE>
 	  <TRANCHE code="tranche1">	            
 	    <SEUIL>
-	      <VALUE valeur="1" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="1" deb="2003-01-01" fin="2013-12-31"/>
 	    </SEUIL>
-	    <TAUX>
-	      <VALUE valeur="0.080" deb="2012-01-01" fin="2012-12-31"/>	
-	      <VALUE valeur="0.076" deb="2003-01-01" fin="2011-12-31"/>
+	    <TAUX>    		    		    		    	
+	      <VALUE valeur="0.080" deb="2013-01-01" fin="2013-12-31"/>	
+	      <VALUE valeur="0.076" deb="2003-01-01" fin="2012-12-31"/>	      
 	    </TAUX>
 	  </TRANCHE>
 	  <TRANCHE code="tranche2">	            
@@ -1014,13 +1022,13 @@
       </NODE>     	
       <NODE description="Spécifiques à la fonction publique" code="fonc" >
       	<NODE description="Commune à toutes les fonctions publiques" code="commun" >
-      	  <BAREME description="Contribution exceptionelle de solidarité (seuil d'assujetissment variable)" code="solidarite" option="noncontrib">
+      	  <BAREME description="Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)" code="solidarite" option="noncontrib">
 	        <TRANCHE code="tranche0">	            
 	          <SEUIL>
 	            <VALUE valeur="0" deb="2003-01-01" fin="2020-12-31"/>
 	    	  </SEUIL>
 	          <TAUX>
-	            <VALUE valeur="0.01" deb="2002-01-01" fin="2012-12-31"/>      
+	            <VALUE valeur="0.01" deb="2002-01-01" fin="2013-12-31"/>      
 	          </TAUX>
 	        </TRANCHE>
 	        <TRANCHE code="tranche0">	            
@@ -1028,7 +1036,7 @@
 	            <VALUE valeur="4" deb="2003-01-01" fin="2020-12-31"/>
 	    	  </SEUIL>
 	          <TAUX>
-	            <VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>      
+	            <VALUE valeur="0" deb="2002-01-01" fin="2013-12-31"/>      
 	          </TAUX>
 	        </TRANCHE>
 	      </BAREME>
@@ -1049,6 +1057,7 @@
             <VALUE valeur="51.8174" deb="2002-01-01" fin="2002-02-28" />          
           </CODE>
           <CODE description="Indice majoré de référence" code="ind_maj_ref" format="integer" type="monetary">
+            <VALUE valeur="309" deb="2013-01-01" fin="2013-12-31" />
             <VALUE valeur="302" deb="2012-01-01" fin="2012-12-31" />
             <VALUE valeur="295" deb="2011-01-01" fin="2011-12-31" />
             <VALUE valeur="292" deb="2009-07-01" fin="2010-12-31" />
@@ -1073,7 +1082,7 @@
 		        <VALUE valeur="0.0947" deb="2016-01-01" fin="2016-12-31"/>
 		        <VALUE valeur="0.0920" deb="2015-01-01" fin="2015-12-31"/>
 		        <VALUE valeur="0.0893" deb="2014-01-01" fin="2014-12-31"/>
-		        <VALUE valeur="0.0866" deb="2013-01-01" fin="2013-12-31"/>
+		        <VALUE valeur="0.0876" deb="2013-01-01" fin="2013-12-31"/>
 	  	        <VALUE valeur="0.0839" deb="2012-01-01" fin="2012-12-31"/>
 		        <VALUE valeur="0.0812" deb="2011-01-01" fin="2011-12-31"/>
 		        <VALUE valeur="0.0785" deb="2003-01-01" fin="2010-12-31"/>
@@ -1188,8 +1197,8 @@
 	      <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur=".084" deb="2012-01-01" fin="2012-12-31"/>	
-	      <VALUE valeur=".083" deb="2006-01-01" fin="2011-12-31"/>
+	      <VALUE valeur=".084" deb="2013-01-01" fin="2013-12-31"/>	
+	      <VALUE valeur=".083" deb="2006-01-01" fin="2012-12-31"/>
 	      <VALUE valeur=".082" deb="1993-07-01" fin="2005-12-31"/>
 	    </TAUX>
           </TRANCHE>
@@ -1256,7 +1265,7 @@
 	      <VALUE valeur="1" deb="2003-01-01" fin="2012-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur="0.005" deb="2003-01-01" fin="2012-12-31"/>
+	      <VALUE valeur="0.005" deb="2003-01-01" fin="2011-12-31"/>
 	    </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1266,8 +1275,7 @@
 	      <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
 	    </SEUIL>
 	    <TAUX>
-	      <VALUE valeur="0.003"  deb="2011-04-01" fin="2012-08-31"/>
-	      <VALUE valeur="0.004"  deb="2009-11-01" fin="2011-03-31"/>
+	      <VALUE valeur="0.004"  deb="2009-11-01" fin="2012-03-31"/>
 	      <VALUE valeur="0.003"  deb="2009-08-01" fin="2009-10-31"/>
 	      <VALUE valeur="0.0015" deb="2006-07-01" fin="2009-07-31"/>
 	      <VALUE valeur="0.0025" deb="2006-01-01" fin="2006-06-30"/>
@@ -1371,8 +1379,8 @@
               <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur="0.027" deb="2012-01-01" fin="2012-12-31"/>	
-              <VALUE valeur="0.026" deb="2003-01-01" fin="2011-12-31"/>
+              <VALUE valeur="0.027" deb="2013-01-01" fin="2013-12-31"/>	
+              <VALUE valeur="0.026" deb="2003-01-01" fin="2012-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1544,7 +1552,7 @@
 	    </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Cotisation exceptionelle temporaire" code="cet" option="contrib">
+        <BAREME description="Cotisation exceptionnelle temporaire" code="cet" option="contrib">
 	  <TRANCHE code="tranche0">	            
 	    <SEUIL>
 	      <VALUE valeur="0" deb="1997-01-01" fin="2012-12-31"/>
@@ -1585,6 +1593,7 @@
                 <VALUE valeur="0" deb="1993-01-01" fin="2012-12-31"/>
 	          </SEUIL>
 	          <TAUX>
+	          	<VALUE valeur="0.7428" deb="2013-01-01" fin="2013-12-31"/>
 	            <VALUE valeur="0.6859" deb="2012-01-01" fin="2012-12-31"/>
 	            <VALUE valeur="0.6539" deb="2011-01-01" fin="2011-12-31"/>	      
 	            <VALUE valeur="0.6214" deb="2010-01-01" fin="2010-12-31"/>
@@ -1612,6 +1621,7 @@
 	            <VALUE valeur="0" deb="2003-01-01" fin="2020-12-31"/>
 	    	  </SEUIL>
 	          <TAUX>
+	          	<VALUE valeur="0.0032" deb="2013-01-01" fin="2013-12-31"/>
 	            <VALUE valeur="0.0033" deb="2010-01-01" fin="2012-12-31"/>
 	            <VALUE valeur="0.0032" deb="2009-01-01" fin="2009-12-31"/>
 	            <VALUE valeur="0.0031" deb="2007-01-01" fin="2008-12-31"/>
@@ -1667,7 +1677,7 @@
 	        </TRANCHE>
 	      </BAREME>
         </NODE>
-		<NODE description="Agents non titualaires" code="contract" >      	  	
+		<NODE description="Agents non titulaires" code="contract" >      	  	
           <BAREME description="IRCANTEC" code="ircantec" option="contrib">
             <TRANCHE code="tranche0">
 	          <ASSIETTE>
@@ -3247,7 +3257,8 @@
         <VALUE valeur="377.86" deb="2008-01-01" fin="2008-12-31"/>
         <VALUE valeur="389.20" deb="2009-01-01" fin="2009-12-31"/>
         <VALUE valeur="389.20" deb="2010-01-01" fin="2010-12-31"/>
-        <VALUE valeur="395.04" deb="2011-01-01" fin="2011-12-31"/>
+        <VALUE valeur="395.04" deb="2011-01-01" fin="2012-03-31"/>
+        <VALUE valeur="403.79" deb="2012-04-01" fin="2013-03-31"/>
       </CODE>
       <CODE description="Bmaf de l'année n-2" code="bmaf_n_2" format='float' type="monetary">
 	<VALUE valeur="327.27" deb="2001-01-01" fin="2001-12-31"/>
@@ -3261,44 +3272,47 @@
 	<VALUE valeur="374.12" deb="2009-01-01" fin="2009-12-31"/>
 	<VALUE valeur="377.86" deb="2010-01-01" fin="2010-12-31"/>
 	<VALUE valeur="389.20" deb="2011-01-01" fin="2011-12-31"/>
+	<VALUE valeur="389.20" deb="2012-01-01" fin="2012-12-31"/>
+	<VALUE valeur="395.04" deb="2013-01-01" fin="2013-12-31"/>
+	<VALUE valeur="403.79" deb="2014-01-01" fin="2014-12-31"/>
       </CODE>
       <CODE description="Taux de crds" code="crds" format = 'percent'>
-	<VALUE valeur="0.005" deb="2002-01-01" fin="2011-12-31"/>
+	<VALUE valeur="0.005" deb="2002-01-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Âge mininimal pour toucher les AF" code="age1" format = 'integer' type="age">
-	<VALUE valeur="0" deb="2002-01-01" fin="2011-12-31"/>
+	<VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Âge maximal pour toucher les AF (hors forfait)" code="age2" format = 'integer' type="age">
-	<VALUE valeur="19" deb="2002-01-01" fin="2011-12-31"/>
+	<VALUE valeur="19" deb="2002-01-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Âge maximal pour toucher les AF (forfait datant de 2003-07-01 inclus )" code="age3" format = 'integer' type="age">
-	<VALUE valeur="20" deb="2003-07-01" fin="2011-12-31"/>
+	<VALUE valeur="20" deb="2003-07-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Seuil de revenu pour être considéré comme enfant à charge (en smic)" code="seuil_rev_taux" format ="percent">
-	<VALUE valeur=".55" deb="2001-07-01" fin="2011-12-31"/>
+	<VALUE valeur=".55" deb="2001-07-01" fin="2012-12-31"/>
       </CODE>
       <NODE description="Taux (% de la BMAF)" code = "taux">
 	<CODE description="Premier enfant à charge" code="enf1" format = 'percent'>
-	  <VALUE valeur="0" deb="2002-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Deuxième enfant à charge" code="enf2" format = 'percent'>
-	  <VALUE valeur="0.32" deb="2002-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.32" deb="2002-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Troisième enfant à charge et suivants" code="enf3" format = 'percent'>
-	  <VALUE valeur="0.41" deb="2002-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.41" deb="2002-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Allocation forfaitaire par enfant de 20 ans" code="forfait" format = 'percent'>
 	  <VALUE valeur="0"       deb="2000-01-01" fin="2003-06-30"/>
-	  <VALUE valeur="0.20234" deb="2003-07-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.20234" deb="2003-07-01" fin="2012-12-31"/>
 	</CODE>
       </NODE>
       <NODE code = "maj_age" description="Majorations pour âge" format = 'percent'>
 	<CODE description="1ère majoration pour âge" code="taux1" format = 'percent'>
 	  <VALUE valeur="0.09" deb="2002-01-01" fin="2008-04-30"/>
-	  <VALUE valeur="0.00" deb="2008-05-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.00" deb="2008-05-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)" code="taux2" format = 'percent'>
-	  <VALUE valeur="0.16" deb="2002-01-01" fin="2011-12-31"/>
+	  <VALUE valeur="0.16" deb="2002-01-01" fin="2012-12-31"/>
 	</CODE>
 	<CODE description="Âge de début de la 1ere majoration" code="age1" format = 'integer' type="age">
 	  <VALUE valeur="11" deb="2002-01-01" fin="2011-12-31"/>
