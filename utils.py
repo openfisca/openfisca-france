@@ -377,30 +377,30 @@ class Scenario(object):
             if not name in datatable.table:
                 datatable.table[name] = datatable.description.get_col(name)._default
             
-        index = datatable.index['men']
-        nb = index['nb']
+        entity = 'men'
+        nb = datatable.index[entity]['nb']
         for noi, dct in scenario.indiv.iteritems():
             for var, val in dct.iteritems():
                 if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'): 
                     continue
-                if not index[noi] is None:
-                    datatable.set_value(var, np.ones(nb)*val, index, noi)
+                if not datatable.index[entity][noi] is None:
+                    datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
             
-        index = datatable.index['foy']
-        nb = index['nb']
+        entity = 'foy'
+        nb = datatable.index[entity]['nb']
         for noi, dct in scenario.declar.iteritems():
             for var, val in dct.iteritems():
-                if not index[noi] is None:
-                    datatable.set_value(var, np.ones(nb)*val, index, noi)
+                if not datatable.index[entity][noi] is None:
+                    datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
             
-        index = datatable.index['men']
-        nb = index['nb']
+        entity = 'men'
+        nb = datatable.index[entity]['nb']
         for noi, dct in scenario.menage.iteritems():
             for var, val in dct.iteritems():
-                if not index[noi] is None:
-                    datatable.set_value(var, np.ones(nb)*val, index, noi)
+                if not datatable.index[entity][noi] is None:
+                    datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
     
 
@@ -428,12 +428,13 @@ class Scenario(object):
                         
             vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:
-                index_men = datatable.index['men']
-                datatable.set_value(var, 0.5*vls, index_men, opt = 0)
-                datatable.set_value(var, 0.5*vls, index_men, opt = 1)
+                entity = 'men'
+                datatable.set_value(var, 0.5*vls, entity, opt = 0)
+                datatable.set_value(var, 0.5*vls, entity, opt = 1)
             else:
-                datatable.set_value(var, vls, {0:{'idxIndi': index[0]['idxIndi'], 'idxUnit': index[0]['idxIndi']}})
-                
+#                TODO
+#                datatable.set_value(var, vls, {0:{'idxIndi': index[0]['idxIndi'], 'idxUnit': index[0]['idxIndi']}})
+                pass
             datatable._isPopulated = True
         
 country = "france"
@@ -495,9 +496,10 @@ def preproc_inputs(datatable):
     """
     country = 'france'
     WEIGHT = of_import("","WEIGHT", country)
-#     datatable.propagate_to_members(WEIGHT, 'ind')
-#     datatable.propagate_to_members('rfr_n_2', 'ind')
-#     datatable.propagate_to_members('nbptr_n_2', 'ind')
+    datatable.propagate_to_members(WEIGHT, 'ind')
+#    datatable.propagate_to_members('rfr_n_2', 'ind')
+#    datatable.propagate_to_members('nbptr_n_2', 'ind')
+
 
 def check_consistency(datatable):
     
