@@ -214,7 +214,7 @@ class ModelSF(ModelDescription):
     
     
     # Prime pour l'emploi
-    ppe_coef    = Prestation(ir._ppe_coef)
+    ppe_coef    = Prestation(ir._ppe_coef, 'foy')
     ppe_base    = Prestation(ir._ppe_base)
     ppe_coef_tp = Prestation(ir._ppe_coef_tp)
     ppe_elig    = BoolPresta(ir._ppe_elig, 'foy')
