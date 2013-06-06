@@ -321,14 +321,21 @@ def _ir_brut(nbptr, rni, _P):
     bar.t_x()
 #    bar._linear_taux_moy = True
     return nbptr*bar.calc(rni/nbptr) # TODO : partir d'ici, petite différence avec Matlab
-
-def _ir_plaf_qf(ir_brut, rni, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, _P):
-    ''' Impôt après plafonnement du quotient familial et réduction complémentaire '''
+def _ir_ss_qf(ir_brut, rni, nb_adult, _P):
+    ''' Impôt sans quotient familial '''
     P = _P.ir
     I = ir_brut
     A = P.bareme.calc(rni/nb_adult)
-    A = nb_adult*A    
+    return nb_adult*A    
+    
 
+def _ir_plaf_qf(ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, _P):
+    ''' Impôt après plafonnement du quotient familial et réduction complémentaire '''
+
+    A = ir_ss_qf
+    I = ir_brut
+    P = _P.ir
+    
     aa0 = (nbptr-nb_adult)*2           #nombre de demi part excédant nbadult
     # on dirait que les impôts font une erreur sur aa1 (je suis obligé de
     # diviser par 2)
@@ -385,6 +392,8 @@ def _ir_plaf_qf(ir_brut, rni, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celd
     # Récapitulatif
     return condition62a*IP0 + condition62b*IP1 # IP2 si DOM
 
+def _avantage_qf(ir_ss_qf, ir_plaf_qf):
+    return ir_ss_qf - ir_plaf_qf
 def _decote(ir_plaf_qf, _P):
     '''
     Décote

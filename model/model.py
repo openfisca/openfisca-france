@@ -159,7 +159,9 @@ class ModelSF(ModelDescription):
     ir_brut     = Prestation(ir._ir_brut, 'foy')
     nb_pac      = Prestation(ir._nb_pac, 'foy')
     nb_adult    = Prestation(ir._nb_adult, 'foy')
+    ir_ss_qf    = Prestation(ir._ir_ss_qf, 'foy')
     ir_plaf_qf  = Prestation(ir._ir_plaf_qf, 'foy')
+    avantage_qf = Prestation(ir._avantage_qf, 'foy')
     nat_imp     = Prestation(ir._nat_imp, 'foy')
     decote      = Prestation(ir._decote, 'foy')
     
