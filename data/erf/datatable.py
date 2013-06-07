@@ -73,10 +73,10 @@ class DataCollection(object):
 #                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
 #                                 "foyer" : "foyer" + yr,
                                  "erf_indivi" : "indivi" + yr,
-#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
-#                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
-#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
-#                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
+                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
+                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
+                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
+                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
                                  }
         
         RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
@@ -92,13 +92,13 @@ class DataCollection(object):
         
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
-                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa']
-        
+                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub"]
+     
         erf_variables_to_fetch = {"erf_indivi": variables,
-#                                  "eec_indivi": variables_eec,
-#                                  "eec_cmp_1" : variables_eec,
-#                                  "eec_cmp_2" : variables_eec,
-#                                  "eec_cmp_3" : variables_eec,
+                                  "eec_indivi": variables_eec,
+                                  "eec_cmp_1" : variables_eec,
+                                  "eec_cmp_2" : variables_eec,
+                                  "eec_cmp_3" : variables_eec,
                                     }
        
         for name, vars in erf_variables_to_fetch.iteritems():
