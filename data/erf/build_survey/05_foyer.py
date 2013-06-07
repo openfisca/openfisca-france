@@ -19,10 +19,11 @@
 
 import numpy
 import re
-from src.countries.france.data.erf.datatable import ErfsDataTable
+from src.countries.france.data.erf.datatable import DataCollection
+from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 
 year = 2006
-df = ErfsDataTable(year=year)
+data = DataCollection(year=year)
 
 def sif():
     print u"05_foyer: extraction des données foyer"
@@ -34,7 +35,7 @@ def sif():
     #vars <- c("noindiv", 'sif', "nbptr", "mnrvka")
     vars = ["noindiv", 'sif', "nbptr", "mnrvka", "rbg", "tsrvbg"]
     #sif <- LoadIn(erfFoyFil, vars)
-    sif = df.get_values(variables=vars, table="foyer" )
+    sif = data.get_values(variables=vars, table="foyer" )
     #sif$statmarit <- 0
     sif['statmarit'] = 0
     
@@ -81,13 +82,13 @@ def sif():
     #
     #sif <- within(sif,{
     ##  rbg = rbg*((tsrvbg =='+')-(tsrvbg =='-'))
-    #print sif["rbg"].describe()
-    #sif["rbg"] = sif["rbg"]*( (sif["tsrvbg"] =='+')-(sif["tsrvbg"] =='-'))
-    #print sif["rbg"].describe()
+    print sif["rbg"].describe()
+    sif["rbg"] = sif["rbg"]*( (sif["tsrvbg"]=='+')-(sif["tsrvbg"] =='-'))
+    print sif["rbg"].describe()
     
     #  stamar <- substr(sif,5,5)
     
-    sif["stamar"] = sif["sif"].apply(lambda x: str(x)[4:5])
+    sif["stamar"] = sif["sif"].str[4:5]
     
     # Converting marital status
     
@@ -105,19 +106,19 @@ def sif():
     #  birthconj <- as.numeric(substr(sif,11,14))
     #
     
-    # TODO: should factorize this
-    sif["birthvous"] = sif["sif"].apply(lambda x: str(x)[5:9])
-    sif["birthconj"] = sif["sif"].apply(lambda x: str(x)[10:14])
+
+    sif["birthvous"] = sif["sif"].str[5:9]
+    sif["birthconj"] = sif["sif"].str[10:14]
     
     #  caseE <- as.numeric(substr(sif,16,16)=='E')
     #  caseF <- as.numeric(substr(sif,17,17)=='F')
     #  caseG <- as.numeric(substr(sif,18,18)=='G')
     #  caseK <- as.numeric(substr(sif,19,19)=='K')
     
-    sif["caseE"] = sif["sif"].apply(lambda x: str(x)[15:16]) == "E"
-    sif["caseF"] = sif["sif"].apply(lambda x: str(x)[16:17]) == "F"
-    sif["caseG"] = sif["sif"].apply(lambda x: str(x)[17:18]) == "G"
-    sif["caseK"] = sif["sif"].apply(lambda x: str(x)[18:19]) == "K"
+    sif["caseE"] = sif["sif"].str[15:16] == "E"
+    sif["caseF"] = sif["sif"].str[16:17] == "F"
+    sif["caseG"] = sif["sif"].str[17:18] == "G"
+    sif["caseK"] = sif["sif"].str[18:19] == "K"
     ## TODO: dtype conversion
     
     #  d = 0
@@ -134,13 +135,13 @@ def sif():
     #  }
     
     if year in [2006,2007]:
-        sif["caseL"] = sif["sif"].apply(lambda x: str(x)[19:20]) == "L"
-        sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20:21]) == "P"
-        sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21:22]) == "S"
-        sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22:23]) == "W"
-        sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23:24]) == "N"
-        sif["caseH"] = sif["sif"].apply(lambda x: str(x)[24:28])
-        sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28:29]) == "T"
+        sif["caseL"] = sif["sif"].str[19:20] == "L"
+        sif["caseP"] = sif["sif"].str[20:21] == "P"
+        sif["caseS"] = sif["sif"].str[21:22] == "S"
+        sif["caseW"] = sif["sif"].str[22:23] == "W"
+        sif["caseN"] = sif["sif"].str[23:24] == "N"
+        sif["caseH"] = sif["sif"].str[24:28]
+        sif["caseT"] = sif["sif"].str[28:29] == "T"
     #  
     #  if (year == 2008){
     #    d = - 1 # fin de la case L
@@ -154,12 +155,12 @@ def sif():
     #  
     if year in [2008]:
         d = - 1 # fin de la case L
-        sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20+d:21+d]) == "P"
-        sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21+d:22+d]) == "S"
-        sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22+d:23+d]) == "W"
-        sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23+d:24+d]) == "N"
-        sif["caseH"] = sif["sif"].apply(lambda x: str(x)[24+d:28+d])
-        sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28+d:29+d]) == "T"
+        sif["caseP"] = sif["sif"].str[20+d:21+d] == "P"
+        sif["caseS"] = sif["sif"].str[21+d:22+d] == "S"
+        sif["caseW"] = sif["sif"].str[22+d:23+d] == "W"
+        sif["caseN"] = sif["sif"].str[23+d:24+d] == "N"
+        sif["caseH"] = sif["sif"].str[24+d:28+d]
+        sif["caseT"] = sif["sif"].str[28+d:29+d] == "T"
     
     #  if (year == 2009){
     #    # retour de la case L par rapport à 2008 (donc on retrouve 2006)    
@@ -175,15 +176,15 @@ def sif():
     #  }
     
     if year in [2009]:
-        sif["caseL"] = sif["sif"].apply(lambda x: str(x)[19:20]) == "L"
-        sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20:21]) == "P"
-        sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21:22]) == "S"
-        sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22:23]) == "W"
-        sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23:24]) == "N"
+        sif["caseL"] = sif["sif"].str[19:20] == "L"
+        sif["caseP"] = sif["sif"].str[20:21] == "P"
+        sif["caseS"] = sif["sif"].str[21:22] == "S"
+        sif["caseW"] = sif["sif"].str[22:23] == "W"
+        sif["caseN"] = sif["sif"].str[23:24] == "N"
         # caseH en moins par rapport à 2008 (mais case en L en plus)
         # donc décalage par rapport à 2006
         d = -4
-        sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28+d:29+d]) == "T"
+        sif["caseT"] = sif["sif"].str[28+d:29+d] == "T"
     
     
     #
@@ -196,15 +197,15 @@ def sif():
     #  causeXYZ <- substr(sif,61+d,61+d)
     #
     
-    sif["caseX"] = sif["sif"].apply(lambda x: str(x)[33+d:34+d]) == "X"
-    sif["dateX"] = sif["sif"].apply(lambda x: str(x)[34+d:42+d])
-    sif["caseY"] = sif["sif"].apply(lambda x: str(x)[42+d:43+d]) == "Y"
-    sif["dateY"] = sif["sif"].apply(lambda x: str(x)[43+d:51+d]) 
-    sif["caseZ"] = sif["sif"].apply(lambda x: str(x)[51+d:53+d]) == "Z"
-    sif["dateZ"] = sif["sif"].apply(lambda x: str(x)[53+d:60+d]) 
-    sif["causeXYZ"] = sif["sif"].apply(lambda x: str(x)[60+d:61+d])
+    sif["caseX"] = sif["sif"].str[33+d:34+d] == "X"
+    sif["dateX"] = sif["sif"].str[34+d:42+d]
+    sif["caseY"] = sif["sif"].str[42+d:43+d] == "Y"
+    sif["dateY"] = sif["sif"].str[43+d:51+d] 
+    sif["caseZ"] = sif["sif"].str[51+d:53+d] == "Z"
+    sif["dateZ"] = sif["sif"].str[53+d:60+d] 
+    sif["causeXYZ"] = sif["sif"].str[60+d:61+d]
     
-    # TODO: convert dateXYZ to appropraite date in pandas
+    # TODO: convert dateXYZ to appropriate date in pandas
     # print sif["dateY"].unique()
     
     
@@ -222,13 +223,13 @@ def sif():
     #  nbH <- as.numeric(substr(sif,80+d,81+d))
     #  nbI <- as.numeric(substr(sif,83+d,84+d))
     
-    sif["nbF"] = sif["sif"].apply(lambda x: str(x)[64+d:66+d])
-    sif["nbG"] = sif["sif"].apply(lambda x: str(x)[67+d:69+d])
-    sif["nbR"] = sif["sif"].apply(lambda x: str(x)[70+d:72+d])
-    sif["nbJ"] = sif["sif"].apply(lambda x: str(x)[73+d:75+d])
-    sif["nbN"] = sif["sif"].apply(lambda x: str(x)[76+d:78+d])
-    sif["nbH"] = sif["sif"].apply(lambda x: str(x)[79+d:81+d])
-    sif["nbI"] = sif["sif"].apply(lambda x: str(x)[82+d:84+d])
+    sif["nbF"] = sif["sif"].str[64+d:66+d]
+    sif["nbG"] = sif["sif"].str[67+d:69+d]
+    sif["nbR"] = sif["sif"].str[70+d:72+d]
+    sif["nbJ"] = sif["sif"].str[73+d:75+d]
+    sif["nbN"] = sif["sif"].str[76+d:78+d]
+    sif["nbH"] = sif["sif"].str[79+d:81+d]
+    sif["nbI"] = sif["sif"].str[82+d:84+d]
     
     #  if (year != 2009){
     #  nbP <- as.numeric(substr(sif,86+d,87+d))
@@ -236,7 +237,7 @@ def sif():
     #})
     
     if (year != 2009):
-        sif["nbP"] = sif["sif"].apply(lambda x: str(x)[85+d:87+d])
+        sif["nbP"] = sif["sif"].str[85+d:87+d]
     
     #sif$sif <- NULL
     #sif$stamar <- NULL
@@ -267,13 +268,14 @@ def sif():
     #gc()
     ##################################################################
 
+    save_temp(sif, name="sif", year=year)
 
 def foyer_all():
 
     ## On ajoute les cases de la déclaration
     #foyer_all <- LoadIn(erfFoyFil)
     
-    foyer_all = df.get_values(table="foyer" )
+    foyer_all = data.get_values(table="foyer" )
     
     ## on ne garde que les cases de la déclaration ('fxzz')
     #vars <- names(foyer_all)
@@ -523,6 +525,9 @@ def foyer_all():
     err = 0
     err_vars = {}
     
+    from pandas import DataFrame
+    foy_ind = DataFrame()
+    
     for individual_var, foyer_vars in var_dict.iteritems():
 #        print individual_var
 #        print foyer_vars
@@ -545,10 +550,28 @@ def foyer_all():
         selection.rename(columns=dict(zip(foyer_vars, qui)), inplace=True)
         selection.set_index("noindiv", inplace=True)
         selection.columns.name = "quifoy"
+        
         selection = selection.stack()
+#        print selection.head(10)
         selection.name = individual_var
-        print selection
-
+        selection = selection.reset_index()
+#        print selection.head(10)
+#        print selection.describe()
+        if len(foy_ind) == 0:
+#            print "first pass"
+#            x = 0
+            foy_ind = selection
+        else:
+            foy_ind = foy_ind.merge(selection, on=["quifoy", "noindiv"], how = "outer")
+#            x += 1
+#        print foy_ind
+#        print foy_ind.describe()
+#        if x == 1:
+#
+#            print foy_ind.noindiv.value_counts().unique()
+#            print len(foy_ind.noindiv.unique())
+#            return
+        
 #        selection = selection.reset_index()
         
 
@@ -572,11 +595,12 @@ def foyer_all():
 #      not_first <- TRUE
 #    }
 #  }
-#}
+#}    
 
-
-
-
+    foy_ind = foy_ind.rename(columns={"noindiv" : "idfoy"})
+    save_temp(foy_ind, name="foy_ind", year = year)
+    show_temp()
+    
 #names(foy_ind)
 #rm(temp,foyer)
 #
@@ -588,5 +612,9 @@ def foyer_all():
 
 if __name__ == '__main__':
     
-
+#    sif()
     foyer_all()
+    foy_ind = load_temp(name="foy_ind", year = year)
+    print foy_ind.columns
+    print foy_ind.describe()
+    print foy_ind.iloc[:10,:10]
