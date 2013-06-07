@@ -6,9 +6,9 @@
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
 
-from numpy import logical_or as or_, logical_not as not_
+from pandas import concat
+from numpy import logical_or as or_, logical_not as not_, logical_and as and_
 
-import re
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 
@@ -37,13 +37,11 @@ def test():
     selection = Series()
     for var in ["zsali", "zchoi", "zrsti", "zalri", "zrtoi", "zragi", "zrici", "zrnci"]:
         varo = var[:-1]+"o"
-        print var, varo
         test = indivim[var] != indivim[varo]
         if len(selection) == 0:
             selection = test
         else:
             selection = or_(test, selection)
-    print selection.describe() 
 
 #indivi_i <- rename(indivi_i, c(ident = "idmen",
 #                               persfip="quifoy",  
@@ -98,13 +96,13 @@ def test():
     indivim.set_index("noindiv", inplace=True)
     indivi_i.set_index("noindiv", inplace=True)
     indivi = indivim
-    print indivim.quelfic.value_counts() 
+#    print indivim.quelfic.value_counts() 
     del indivim
     indivi.update(indivi_i)
-    print indivi_i.quelfic.value_counts()
-    print indivi.quelfic.value_counts() 
+#    print indivi_i.quelfic.value_counts()
+#    print indivi.quelfic.value_counts() 
     
-    
+    indivi.reset_index( inplace=True)
 
 
 
@@ -115,26 +113,65 @@ def test():
 #indivi[!fip_imp, "idfoy"]  <- as.integer(indivi[!fip_imp, "idmen"])*100 + as.integer(substr(indivi[!fip_imp, "declar1"], 1, 2))
 #
 #
+
+
     fip_imp = indivi.quelfic=="FIP_IMP"
     from numpy import nan
-    indivi["idfoy"] = nan
 
-    indivi.iloc[not_(fip_imp)]["idfoy"] = ( indivi.iloc[not_(fip_imp)]["idmen"].astype("int64")*100
-        +  (indivi[not_(fip_imp)]["declar1"].str[0:1]).convert_objects(convert_numeric=True))
-    print indivi[not_(fip_imp)]["idfoy"]
-    print indivi[not_(fip_imp)]["idfoy"].value_counts()
+    indivi["idfoy"] = (indivi["idmen"].astype("int64")*100 + 
+                       (indivi["declar1"].str[0:1]).convert_objects(convert_numeric=True))
     
-    return
+    print "before fip_imp to nan"
+    print indivi["idfoy"].isnull().value_counts()
+    indivi.loc[fip_imp,"idfoy"] = nan
+    print "after fip_imp to nan"
+    print indivi["idfoy"].isnull().value_counts()
+
+
 ## Certains FIP (ou du moins avec revenus imput?s) ont un num?ro de d?claration d'imp?t ( pourquoi ?)
 #fip_has_declar <- fip_imp  & (indivi$declar1!="")
 #indivi[fip_has_declar, "idfoy"]  <- as.integer(indivi[fip_has_declar, "idmen"])*100 + as.integer(substr(indivi[fip_has_declar, "declar1"], 1, 2))
 #rm(fip_has_declar)
+
+    print "declar1"
+    print indivi.declar1.describe()
+    print indivi.declar1.isnull().describe()
+    print indivi.declar1.notnull().describe()
+    
+    fip_has_declar = and_(fip_imp, indivi.declar1.notnull())
+    print fip_has_declar.describe()
+#    indivi.ix[fip_has_declar, "idfoy"] = ( indivi.ix[fip_has_declar, "idmen"]*100 
+#                                        + (indivi.ix[fip_has_declar, "declar1"].str[0:1]).convert_objects(convert_numeric=True) )
+    indivi["idfoy"] = where(fip_has_declar, 
+                            indivi["idmen"]*100 + indivi["declar1"].str[0:1].convert_objects(convert_numeric=True),
+                            indivi["idfoy"])
+    
+    
+    print "after fip_imp with declar"
+    print indivi.ix[fip_has_declar, "idfoy"]
+    print indivi["idfoy"].isnull().value_counts()
+    del fip_has_declar
+
 #
 #fip_no_declar <- fip_imp  & (indivi$declar1=="")
 #rm(fip_imp)
-#
 #indivi[fip_no_declar, "idfoy"]  <- as.integer(indivi[fip_no_declar, "idmen"])*100 + 50
 #indivi_fnd <- indivi[fip_no_declar, c("idfoy","noindiv")]
+
+    fip_no_declar = and_(fip_imp, indivi.declar1.isnull())
+    del fip_imp
+    print "fip_no_declar"
+    print fip_no_declar.describe()
+    indivi["idfoy"] = where(fip_no_declar, 
+                            indivi["idmen"]*100 + 50,
+                            indivi["idfoy"])
+    
+
+
+    indivi_fnd = indivi.loc[fip_no_declar, ["idfoy","noindiv"]]
+    
+    
+
 ## Some idfoy are duplicated ending with 50
 #table(duplicated(indivi_fnd[,"idfoy"]))
 ## we remove the duplicated idfoy by introducing 51, 52 at the end of idfoy
@@ -143,25 +180,50 @@ def test():
 #  tmp <- indivi_fnd[dup,"idfoy"]
 #  indivi_fnd[dup, "idfoy"] <- (tmp+1)    
 #}
+
+    
+    while any(indivi_fnd.duplicated(cols=["idfoy"])):
+        indivi_fnd["idfoy"] = where(indivi_fnd.duplicated(cols=["idfoy"]),
+                                    indivi_fnd["idfoy"] + 1,
+                                    indivi_fnd["idfoy"])
+        
+
+#    print indivi_fnd.describe()
+#    print indivi_fnd.head(10)
+    # Check that there is no duplicated left
+    assert indivi_fnd["idfoy"].duplicated().value_counts()[False] == len(indivi_fnd["idfoy"]), "Duplicates remaining"    
+
+
+
 ## we check there are some remaining duplicated individuals
 #table(duplicated(indivi_fnd$idfoy))
 #indivi[fip_no_declar, "idfoy"] <- indivi_fnd[,"idfoy"]
 #rm(tmp,indivi_fnd, fip_no_declar)
+
+    indivi.loc[fip_no_declar, ["idfoy"]] = indivi_fnd
+    del indivi_fnd, fip_no_declar
 #
 #
 ## Il reste des individus qui ne sont ni EE&FIP ni FIP_IMP mais qui sont quelfic EE, EE_CAF, EE_NRT
 #
-## On cr?e une d?claration pour les individus dont on n'a pas retrouv? la d?claration d'imp?ts
-## On va affecter ces individus ? une d?claration (celle de leur parent ou la leur...)
+## On crée une déclaration pour les individus dont on n'a pas retrouvé la déclaration d'impôts
+## On va affecter ces individus à une déclaration (celle de leur parent ou la leur...)
 #
-## On cr?e des feuilles d'impots individuels pour les NRT qui sont normalement sur 
-## la feuille de leurs parents (on peut ?galement les ?liminer ?)
+## On crée des feuilles d'impots individuels pour les NRT qui sont normalement sur 
+## la feuille de leurs parents (on peut également les éliminer ?)
 #nrt <- indivi$quelfic=="EE_NRT"
 #indivi[nrt,"idfoy"] <- indivi[nrt,"idmen"]*100 + indivi[nrt,"noi"]
 #indivi[nrt,"quifoy"] <- "vous"
 #rm(nrt)
 #
-## On cr?e un identifiant foyer pour les personne de r?f?rence et leurs conjoints des quelfic EE, EE_CAF
+
+    nrt = indivi.quelfic=="EE_NRT"
+    indivi.idfoy = where(nrt, indivi.idmen*100 + indivi.noi, indivi.idfoy)
+    indivi.loc[nrt,"quifoy"] = "vous"
+    del nrt
+
+
+## On crée un identifiant foyer pour les personne de référence et leurs conjoints des quelfic EE, EE_CAF
 #adults <- (indivi$quelfic %in% c("EE","EE_CAF")) & (indivi$lpr==1 | indivi$lpr==2) 
 #
 #indivi[adults,"idfoy"] <- indivi[adults,"idmen"]*100 + indivi[adults,"noi"]
@@ -170,14 +232,25 @@ def test():
 ## les lpr=1,2 sont desormais dans un foyer
 #table(is.na(indivi[(indivi$lpr==1 | indivi$lpr==2),"idfoy"]),useNA="ifany")
 #
-#
+    pref_or_cref = or_(indivi.lpr==1, indivi.lpr==2)
+    adults = and_(indivi.quelfic.isin(["EE","EE_CAF"]),pref_or_cref)  
+    indivi.idfoy = where(adults, indivi.idmen*100 + indivi.noi, indivi.idfoy)
+    indivi.loc[adults, "quifoy"] = "vous"
+    del adults
+## les lpr=1,2 sont desormais dans un foyer
+    assert indivi.loc[or_(indivi.lpr==1, indivi.lpr==2),"idfoy"].notnull().all()
+
 ## les lpr==4 sont essentiellement des enfants: on les rattache donc avec leurs parents/pref
 #sum(( indivi$quelfic %in% c("EE","EE_CAF")) & (indivi$lpr==4) )
 #table( indivi[(indivi$quelfic %in% c("EE","EE_CAF")) & (indivi$lpr==4),"naia"] )
+#    print (indivi.loc[and_(indivi.quelfic.isin(["EE","EE_CAF"]), indivi.lpr==4), "naia"]).value_counts()
+
+    
+
 #
-### On rattache les enfants ? la feuille d'imp?t de leurs parents:
+### On rattache les enfants à la feuille d'impôt de leurs parents:
 ## On affecte les enfants (et les lpr==4)  avec leur parent si elles sont monoparentales
-## il faut faire un choix pour les autres : on rattache à celui qui paie le plus d'imp?ts 
+## il faut faire un choix pour les autres : on rattache à celui qui paie le plus d'impôts 
 #
 #enf_ee <-  (indivi$quelfic %in% c("EE","EE_CAF")) & (indivi$lpr==3 | indivi$lpr==4)  
 #
@@ -213,6 +286,7 @@ def test():
 #deux_parents <- (is_pere_vous & is_mere_vous)
 #table(deux_parents,useNA="ifany")
 #
+
 #idfoy <- ifelse(!is.na(noindper),( (is_pere_vous & !deux_parents) | deux_parents*(zimpof_pere>=zimpof_mere))*noindper,0) +
 #  ifelse(!is.na(noindmer),( (is_mere_vous & !deux_parents) | deux_parents*(zimpof_pere<zimpof_mere))*noindmer,0)
 ## les idfoy==0 sont en fait ind?termin?es  
@@ -223,10 +297,90 @@ def test():
 #
 #rm(deux_parents, is_pere_vous, is_mere_vous, noindper, noindmer, idfoy, zimpof_pere, zimpof_mere, foyer, enf_ee)
 #
-## On enlève les individus pour lesquels il manque le d?clarant TODO: à améliorer (peut-être qu'il faut récupérer les deux feuilles d'impôts)
+
+    assert indivi["noindiv"].duplicated().any() == False, "Some noindiv appear twice"
+    lpr3_or_lpr4 = or_(indivi.lpr==3, indivi.lpr==4)
+    enf_ee = and_(indivi.quelfic.isin(["EE","EE_CAF"]), lpr3_or_lpr4)  
+    assert indivi.loc[enf_ee, "noindiv"].notnull().all(), " Some noindiv are not set, which will ruin next stage"
+    assert indivi.loc[enf_ee, "noindiv"].duplicated().any() == False, "Some noindiv appear twice"
+ 
+    from pandas import DataFrame
+    pere = DataFrame( {"noindiv_enf" : indivi.noindiv.loc[enf_ee], "noindiv" : 100*indivi.idmen.loc[enf_ee] + indivi.noiper.loc[enf_ee] })
+    mere = DataFrame( {"noindiv_enf" : indivi.noindiv.loc[enf_ee], "noindiv" : 100*indivi.idmen.loc[enf_ee] + indivi.noimer.loc[enf_ee] })
+    
+
+    
+    foyer = data.get_values(variables=["noindiv","zimpof"], table="foyer" )
+    pere  = pere.merge(foyer, how="inner", on="noindiv")
+    mere  = mere.merge(foyer, how="inner", on="noindiv")
+
+#     print "Some pere et mere are duplicated because people have two foyers"
+#     print pere[pere.duplicated()]
+#     print mere[mere.duplicated()]
+
+    df = pere.merge(mere, how="outer", on="noindiv_enf",  suffixes=('_p', '_m'))
+    
+#     print len(pere)
+#     print len(mere)
+#     print len(df)
+#     ll = df.loc[df["noindiv_enf"].duplicated(), "noindiv_enf"]
+#     print df.loc[df["noindiv_enf"].isin(ll)]
+#     print df[df.duplicated()]
+    
+    # Dealing with duble declarations
+    for col in ["noindiv_p","noindiv_m","noindiv_enf"]:     
+        df[col].fillna(0,inplace=True) # beacuase groupby drop groups wit hNA in index
+    df = df.groupby(by=["noindiv_p","noindiv_m","noindiv_enf"]).sum()
+    df.reset_index(inplace=True)
+
+    df["which"] = ""
+    df["which"] = where( and_(df.zimpof_m.notnull(), df.zimpof_p.isnull()), "mere", "")
+    df["which"] = where( and_(df.zimpof_p.notnull(), df.zimpof_m.isnull()), "pere", "")
+    both = and_(df.zimpof_p.notnull(), df.zimpof_m.notnull())
+    df["which"] = where( and_(both, df.zimpof_p  > df.zimpof_m), "pere", "mere")
+    df["which"] = where( and_(both, df.zimpof_m >= df.zimpof_p), "mere", "pere")
+    
+    assert df["which"].notnull().all(), "Some enf_ee individuals are not matched with any pere or mere"
+    del lpr3_or_lpr4, pere, mere 
+    
+    df.rename(columns={"noindiv_enf" : "noindiv"}, inplace=True)
+    df["idfoy"] = where( df.which=="pere", df.noindiv_p, df.noindiv_m)
+    df["idfoy"] = where( df.which=="mere", df.noindiv_m, df.noindiv_p)
+    
+    assert df["idfoy"].notnull().all()
+    
+    for col in df.columns:
+        if col not in ["idfoy", "noindiv"]:
+            del df[col]
+
+
+    print  indivi.loc[enf_ee,"idfoy"].isnull().sum()
+    assert indivi.loc[enf_ee,"idfoy"].isnull().all()
+    
+
+    assert df.duplicated().any() == False
+
+    df.set_index("noindiv",inplace=True, verify_integrity=True)
+    indivi.set_index("noindiv", inplace=True, verify_integrity=True)
+
+    ind_notnull = indivi["idfoy"].notnull().sum()
+    ind_isnull = indivi["idfoy"].isnull().sum()
+    indivi = indivi.combine_first(df)
+    assert ind_notnull + ind_isnull == (indivi["idfoy"].notnull().sum() + 
+                                        indivi["idfoy"].isnull().sum())
+        
+    indivi.reset_index(inplace=True)
+    assert indivi.duplicated().any() == False 
+
+
+
+## On enlève les individus pour lesquels il manque le déclarant TODO: à améliorer (peut-être qu'il faut récupérer les deux feuilles d'impôts)
 #sum(is.na(indivi$idfoy))
 #table(indivi[is.na(indivi$idfoy),c('naia','lpr','quelfic')])
 #indivi <- indivi[!is.na(indivi$idfoy),]
+
+# MBJ: issue delt with when moving from R code to python 
+
 #
 ## TODO il faut rajouterles enfants_fip et créer un ménage pour les majeurs
 ## On suit guide méthodo erf 2003 page 135
@@ -241,6 +395,11 @@ def test():
 #fip$declar <- NULL
 #fip$agepf <- NULL
 #
+    fip = load_temp(name="fipDat", year=year)
+    fip["declar"] = nan
+    fip["agepf"] = nan
+
+
 #fip <- upData(fip,drop=c("year","actrec","noidec"))
 #fip <- rename(fip, c(ident = "idmen",
 #                     persfip="quifoy",  
@@ -249,26 +408,53 @@ def test():
 #                     zrsti = "rsti2",
 #                     zalri = "alr2"))
 #
+    print list(fip.columns) 
+
+    fip.drop(["actrec", "year", "noidec"],axis=1)
+    fip.naia = fip.naia.astype("int32")
+    fip.rename( columns=dict(ident = "idmen",
+                     persfip="quifoy",  
+                     zsali = "sali2", # Inclu les salaires non imposables des agents d'assurance
+                     zchoi = "choi2", 
+                     zrsti = "rsti2",
+                     zalri = "alr2"), inplace=True)
+
 ## TODO: We put the fip kids over 18 in an individual menage 
 ## (We should do it here because we need initial ident/idmen in famille TODO)
 #
 #
 #is_fip_19_25 <- ((as.integer(year)-fip$naia-1)>=19)  & ((as.integer(year)-fip$naia-1)<25)
+    print type(year)
+    print fip.naia
+    is_fip_19_25 = and_((year-fip.naia-1)>=19, (year-fip.naia-1)<25)
+    print is_fip_19_25
 #
-## BUT for the time being we keep them in thier vous menage so the following lines are commented
+## TODO: BUT for the time being we keep them in thier vous menage so the following lines are commented
 ## The idmen are of the form 60XXXX we use idmen 61XXXX, 62XXXX for the idmen of the kids over 18 and less than 25
 ##fip[is_fip_19_25 ,"idmen"] <- (99-fip[is_fip_19_25,"noi"]+1)*100000 + fip[is_fip_19_25,"idmen"]
 ##fip[is_fip_19_25 ,"lpr"]  <- 1
 #
 #indivi <- rbind.fill(indivi,fip[is_fip_19_25,])
+
+    print indivi
+    print fip.loc[is_fip_19_25]
+    # TODO: RESTART HERE FIP SHOULD BE BUGGY SEE WITH JEROME
+    
+#    indivi = concat(indivi, fip.loc[is_fip_19_25])
+#    print indivi
 #
 ## on efface les variables inutiles 
 #rm(is_fip_19_25)
+
+    del is_fip_19_25
+
 #
 #
 ## on cr?e la date de naissance au format ISO
 ## Les ages et les ages en mois sont donn?s au 1er janvier de l'enqu?te
 #indivi$age <- as.numeric(year) - indivi$naia - 1
+    indivi.age = year - indivi.naia - 1
+
 #
 #
 ## ageq est l'?ge quinquennal obtenu en prenant l'?ge r?volu au 31 d?cembre 
@@ -291,9 +477,14 @@ def test():
 #  (indivi$ag>=60) + (indivi$ag>=65) + (indivi$ag>=70) + (indivi$ag>=75) + 
 #  (indivi$ag>=80)
 #
+# REMOVING ageq
+
 ## agem âge en mois au 1er janvier de l'année considérée
 #indivi$agem <- 12*indivi$age  + (12-indivi$naim)
 #
+
+    indivi.agem = 12*indivi.age  + 12-indivi.naim
+
 ## recode lpr
 #table(indivi$lpr, useNA="always")
 #indivi$quimen[indivi$lpr == 1] <- 0
@@ -301,6 +492,12 @@ def test():
 #indivi$quimen[indivi$lpr == 3] <- 2
 #indivi$quimen[indivi$lpr == 4] <- 3
 #
+
+    indivi.quimen = where(indivi.lpr == 1, 0, indivi.lpr)
+    indivi.quimen = where(indivi.lpr == 2, 1, indivi.lpr)
+    indivi.quimen = where(indivi.lpr == 3, 2, indivi.lpr)
+    indivi.quimen = where(indivi.lpr == 4, 3, indivi.lpr)    
+
 #indivi$not_pr_cpr[indivi$lpr <= 2] <- FALSE 
 #indivi$not_pr_cpr[indivi$lpr > 2] <- TRUE
 #
@@ -316,6 +513,10 @@ def test():
 #  print(table(test$quimen))
 #  j <- j + 1
 #}
+
+TODO: RESTART HERE
+
+
 #indivi$quimen <- as.character(indivi$quimen)
 #indivi[indivi$not_pr_cpr,c("quimen","idmen")] <- test 
 #indivi$quimen <- as.factor(indivi$quimen) 
