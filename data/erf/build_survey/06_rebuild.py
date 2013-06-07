@@ -22,6 +22,7 @@ data = DataCollection(year=year)
 
 def test():
     indivim = load_temp(name="indivim", year=year)
+    print indivim
 
     # Deals individuals with imputed income : some individuals are in 'erf individu table' but 
     # not in the 'foyer' table. We need to create a foyer for them.
@@ -440,8 +441,9 @@ def test():
     print fip.loc[is_fip_19_25]
     # TODO: RESTART HERE FIP SHOULD BE BUGGY SEE WITH JEROME
     
-#    indivi = concat(indivi, fip.loc[is_fip_19_25])
-#    print indivi
+    indivi = concat([indivi, fip.loc[is_fip_19_25]])
+    print indivi
+    return
 #
 ## on efface les variables inutiles 
 #rm(is_fip_19_25)
@@ -514,7 +516,7 @@ def test():
 #  j <- j + 1
 #}
 
-TODO: RESTART HERE
+# TODO: RESTART HERE
 
 
 #indivi$quimen <- as.character(indivi$quimen)
