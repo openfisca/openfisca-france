@@ -381,7 +381,7 @@ def foyer_all():
                'nacc_defs': ['f5nm', 'f5om', 'f5pm'],
                'mncn_impo': ['f5ku', 'f5lu', 'f5mu'],
                'cncn_bene': ['f5sn', 'f5ns', 'f5os'],
-               'cncn_defi': ['f5sp', 'f5nu', 'f5ou', 'f5sr'], # TODO
+               'cncn_defi': ['f5sp', 'f5nu', 'f5ou', 'f5sr'], # TODO:
                'mbnc_exon': ['f5hp', 'f5ip', 'f5jp'],
                'abnc_exon': ['f5qb', 'f5rb', 'f5sb'],
                'nbnc_exon': ['f5qh', 'f5rh', 'f5sh'],

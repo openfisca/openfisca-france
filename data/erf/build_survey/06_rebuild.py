@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 from pandas import concat
-from numpy import logical_or as or_, logical_not as not_, logical_and as and_
+from numpy import logical_or as or_, logical_not as not_, logical_and as and_, sum
 
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
@@ -22,6 +22,7 @@ data = DataCollection(year=year)
 
 def test():
     indivim = load_temp(name="indivim", year=year)
+    print indivim
 
     # Deals individuals with imputed income : some individuals are in 'erf individu table' but 
     # not in the 'foyer' table. We need to create a foyer for them.
@@ -440,8 +441,9 @@ def test():
     print fip.loc[is_fip_19_25]
     # TODO: RESTART HERE FIP SHOULD BE BUGGY SEE WITH JEROME
     
-#    indivi = concat(indivi, fip.loc[is_fip_19_25])
-#    print indivi
+    indivi = concat([indivi, fip.loc[is_fip_19_25]])
+    print indivi
+    
 #
 ## on efface les variables inutiles 
 #rm(is_fip_19_25)
@@ -453,7 +455,7 @@ def test():
 ## on cr?e la date de naissance au format ISO
 ## Les ages et les ages en mois sont donn?s au 1er janvier de l'enqu?te
 #indivi$age <- as.numeric(year) - indivi$naia - 1
-    indivi.age = year - indivi.naia - 1
+    indivi['age'] = year - indivi.naia - 1
 
 #
 #
@@ -483,7 +485,7 @@ def test():
 #indivi$agem <- 12*indivi$age  + (12-indivi$naim)
 #
 
-    indivi.agem = 12*indivi.age  + 12-indivi.naim
+    indivi['agem'] = 12*indivi.age  + 12-indivi.naim
 
 ## recode lpr
 #table(indivi$lpr, useNA="always")
@@ -491,17 +493,19 @@ def test():
 #indivi$quimen[indivi$lpr == 2] <- 1
 #indivi$quimen[indivi$lpr == 3] <- 2
 #indivi$quimen[indivi$lpr == 4] <- 3
-#
+#indivi$not_pr_cpr[indivi$lpr <= 2] <- FALSE 
+#indivi$not_pr_cpr[indivi$lpr > 2] <- TRUE
 
-    indivi.quimen = where(indivi.lpr == 1, 0, indivi.lpr)
+    indivi['quimen'] = where(indivi.lpr == 1, 0, indivi.lpr)
     indivi.quimen = where(indivi.lpr == 2, 1, indivi.lpr)
     indivi.quimen = where(indivi.lpr == 3, 2, indivi.lpr)
     indivi.quimen = where(indivi.lpr == 4, 3, indivi.lpr)    
+    indivi['not_pr_cpr'] = None
+    indivi['not_pr_cpr'][indivi['lpr']<=2] = False
+    indivi['not_pr_cpr'][indivi['lpr']>2] = True
 
-#indivi$not_pr_cpr[indivi$lpr <= 2] <- FALSE 
-#indivi$not_pr_cpr[indivi$lpr > 2] <- TRUE
 #
-## On cr?e les enf1,enf2 etc   # autre membre du m?nage non pref ou cref
+## On crée les enf1,enf2 etc   # autre membre du ménage non pref ou cref
 #test <- indivi[indivi$not_pr_cpr ,c("quimen","idmen")]
 #test$quimen <- 'enf1'
 #j = 2
@@ -513,20 +517,35 @@ def test():
 #  print(table(test$quimen))
 #  j <- j + 1
 #}
-
-TODO: RESTART HERE
-
-
 #indivi$quimen <- as.character(indivi$quimen)
 #indivi[indivi$not_pr_cpr,c("quimen","idmen")] <- test 
 #indivi$quimen <- as.factor(indivi$quimen) 
 #rm(test,tmp)
+
+    print 'On crée les enf1,enf2 etc'
+#     indivi.reset_index()
+#     print indivi['quimen'].describe()
+    test1 = indivi.loc[:,['quimen', 'idmen']][(indivi['not_pr_cpr'])]
+    test1['quimen'] = 'enf1'
+    print test1['quimen'].describe()
+    
+    j=2
+    while any(test1.duplicated(['quimen', 'idmen'])):
+        test1.loc[test1.duplicated(['quimen', 'idmen']), 'quimen'] = 'enf'+str(j)
+        print len(set(test1.quimen.values))
+        j += 1
+
+    indivi['quimen'] = indivi['quimen'].astype('str')
+    indivi = indivi.merge(test1, on=['quimen', 'idmen'], how='outer')
+    indivi.drop_duplicates(['quimen', 'idmen'], take_last=True)
+    print len(indivi.index)
+#     indivi.set_index(['quiment']) #TODO: check relevance
 #
 #
 #print_id(indivi)
 #
 ## TODO probl?me avec certains idfoy qui n'ont pas de vous
-## Il y clairement un pb de double d?claration comme le montre test ci-dessous
+## Il y clairement un pb de double déclaration comme le montre test ci-dessous
 #all <- unique(indivi$idfoy)                  # all idfoy 
 #with <- indivi[indivi$quifoy=="vous","idfoy"] # idfoy with "vous"
 #without <- all[!all %in% with]                       # # idfoy without "vous"
@@ -541,7 +560,19 @@ TODO: RESTART HERE
 #indivi[has_declar2, "idfoy"] <- ifelse(decl2_idfoy %in% with, decl2_idfoy, NA)   
 #
 #rm(all,with,without, has_declar2)
-#
+    all = indivi.drop_duplicates('idfoy')
+    print len(all.index)
+    with_ = indivi.loc[indivi['quifoy']=='vous', 'idfoy']
+    without = all[not_(all.idfoy.isin(with_.values))]
+    print len(without.index)
+    
+    print 'On cherche si le déclarant donné par la deuxième déclaration est bien un vous'
+    has_declar2 = and_((indivi.idfoy.isin(without.idfoy.values)), indivi.declar2.notnull())
+    decl2_idfoy = (indivi.loc[has_declar2, 'idmen'].astype('int')*100 + 
+                    indivi.loc[has_declar2, "declar2"].str[0:2].astype('int'))
+    indivi.loc[has_declar2, 'idfoy'] = where(decl2_idfoy.isin(with_.values), decl2_idfoy, None)
+    del all,with_,without, has_declar2
+    
 ## TODO dans un premier temps on élimine les idfoy restant
 #idfoyList <- unique(indivi[indivi$quifoy=="vous","idfoy"])
 #indivi <- indivi[indivi$idfoy %in% idfoyList,]
@@ -557,6 +588,22 @@ TODO: RESTART HERE
 #                               )
 #
 #indivi <- indivi[myvars]
+    print 'Elimination idfoy restant'
+    idfoyList = indivi.loc[indivi['quifoy']=="vous", 'idfoy'].drop_duplicates()
+    indivi = indivi[indivi.idfoy.isin(idfoyList.values)]
+    del idfoyList
+    
+    print indivi.index
+#     save_temp(indivi, file='indivi_tmp', year=year)
+    
+    print indivi
+    myvars = ["noindiv", "noi", "idmen", "idfoy", "quifoy", "wprm",
+                            "age","agem","quelfic","actrec", "quimen",
+                            "nbsala","titc","statut","txtppb","chpub","prosa","encadr"]
+    print set(myvars).difference(set(indivi.columns))
+
+    indivi = indivi.loc[:, myvars]
+
 ## activite      # actif occupé 0, chômeur 1, étudiant/élève 2, retraité 3, autre inactif 4  
 ## recodée ? partir de actrec
 ### actrec: (voir prep_proc)
@@ -596,7 +643,19 @@ TODO: RESTART HERE
 #  titc[is.na(titc) ] <- 0
 #  })
 ##table(indivi$titc,useNA="ifany")
-#  
+    print 'creation des activités'
+    indivi['activite'] = None
+    indivi['activite'][indivi['actrec']<=3] = 0
+    indivi['activite'][indivi['actrec']==4] = 1
+    indivi['activite'][indivi['actrec']==5] = 2
+    indivi['activite'][indivi['actrec']==7] = 3
+    indivi['activite'][indivi['actrec']==8] = 4
+    indivi['activite'][indivi['age']<=12] = 2 # ce sont en fait les actrec=9
+    print indivi['activite'].describe()
+    
+    indivi['titc'][indivi['titc'].isnull()] = 0
+    print indivi['titc'].isnull().describe()
+    return
 ## STATUT
 ## Statut détaillé mis en cohérence avec la profession
 ## Sans objet (ACTOP='2')
@@ -629,7 +688,22 @@ TODO: RESTART HERE
 #  statut[statut == 45 ] <- 11
 #  })
 #table(indivi$statut,useNA="ifany")  
-#
+    
+    indivi['statut'] = indivi['statut'].astype('int')
+    indivi['statut'][indivi['statut'].isnull()] = 0
+    indivi['statut'][indivi['statut']==11] = 1
+    indivi['statut'][indivi['statut']==12] = 2
+    indivi['statut'][indivi['statut']==13] = 3
+    indivi['statut'][indivi['statut']==21] = 4
+    indivi['statut'][indivi['statut']==22] = 5
+    indivi['statut'][indivi['statut']==33] = 6
+    indivi['statut'][indivi['statut']==34] = 7
+    indivi['statut'][indivi['statut']==35] = 8
+    indivi['statut'][indivi['statut']==43] = 9
+    indivi['statut'][indivi['statut']==44] = 10
+    indivi['statut'][indivi['statut']==45] = 11
+    print indivi['statut'].describe()
+    
 ##TXTPPB
 ## Sans objet (ACTOP='2') ou non renseigné
 ## 1 Moins d'un mi-temps (50%)
@@ -655,14 +729,21 @@ TODO: RESTART HERE
 ## 8 500 à 999 salariés
 ## 9 1000 salariés ou plus
 ## 99 Ne sait pas
-#  
+
 #indivi$nbsala <- as.numeric(indivi$nbsala)
 #indivi <- within(indivi,{
 #  nbsala[is.na(nbsala) ]    <- 0 
 #  nbsala[nbsala==99 ] <- 10  # TODO  418 fip à retracer qui sont NA
 #})
 #table(indivi$nbsala,useNA='ifany')
-#  
+
+    indivi['txtppb'][indivi['txtppb'].isnull()] = 0
+    
+    indivi['nbsala'] = indivi['nbsala'].astype('int')
+    indivi['nbsala'][indivi['nbsala'].isnull()] = 0
+    indivi['nbsala'][indivi['nbsala']==99] = 10
+    print indivi['nbsala'].describe()
+    return
 ## CHPUB
 ## Nature de l'employeur principal
 ## Sans objet (n'est pas salarié)
@@ -677,7 +758,9 @@ TODO: RESTART HERE
 #indivi <- within(indivi,{
 #  chpub[is.na(chpub) ]    <- 0   # TODO  418 fip à retracer qui sont NA
 #})
-#  
+    indivi['chpub'] = indivi['chpub'].astype('float16')
+    indivi['chpub'][indivi['chpub'].isnull()] = 0
+    
 ## 1 Manoeuvre ou ouvrier spécialisé
 ## 2 Ouvrier qualifié ou hautement qualifié
 ## 3 Technicien
@@ -690,12 +773,16 @@ TODO: RESTART HERE
 ## 9 Autre
 #
 #indivi$cadre <- 0  # 0 as NA
-#
+
 #indivi <- within(indivi,{
 #  prosa[is.na(prosa) ]    <- 0
 #  cadre[prosa==7 | prosa==8 ] <- 1
 #  cadre[prosa==9 & encadr==1] <- 1 
 #})
+    indivi['cadre'] = 0
+    indivi['prosa'][indivi['prosa'].isnull()] = 0
+    indivi['cadre'][indivi['prosa']==7 | indivi['prosa']==8] = 1
+    indivi['cadre'][indivi['prosa']==9 & indivi['encadr']==1] = 1
 #
 ### 
 #######################################################################################
@@ -729,7 +816,27 @@ TODO: RESTART HERE
 #print_id(indivi)
 #
 #saveTmp(indivi, file= "indivi.Rdata")
-#
+    print "on vérifie qu'il ne manque pas d'info sur les liens avec la personne de référence"
+    
+    print len(indivi['idmen'])
+    print len(indivi['idfoy'])
+    
+    #On crée les n° de personnes à charge
+    sum(indivi['idfoy'].isnull())
+    test2 = indivi.loc[indivi['quifoy']=='pac', ['quifoy', 'idfoy']]
+    test['quifoy'] = 'pac1'
+    
+    j=2
+    while test.duplicated(['quifoy', 'idfoy']).any():
+        test.loc[test.duplicated(['quifoy', 'idfoy']), 'quifoy'] = 'pac'+str(j)
+        print len(set(test['quifoy'].values))
+        j += 1
+    
+    indivi['quifoy'] = indivi['quifoy'].astype('str')
+    indivi = indivi.merge(test, on=['quifoy', 'idfoy'])
+    indivi.drop_duplicates(['quifoy', 'idfoy'], take_last=True, inplace=True)
+    del test2, fip 
+    print indivi
 #####################################################################################
 ## On ajoute les idfam et quifam
 #load(famc)
@@ -755,6 +862,24 @@ TODO: RESTART HERE
 #saveTmp(tot3, file= "tot3.Rdata")
 #rm(tot3,tot2,foyer)
 #
+    print 'création des totaux'
+    famille = load_temp(name='famille', year=year)
+    
+    tot2 = indivi.merge(famille, on='noindiv', how='outer')
+    del famille
+    print tot2
+    
+    tot2.loc[tot2['quifam'].isnull(), 'idfam'] = tot2.loc[tot2['quifam'].isnull(), 'noindiv']
+    tot2.loc[tot2['quifam'].isnull(), 'quifam'] = 0
+    save_temp(tot2, file='tot2', year=year)
+    del indivi
+    
+    #On combine les variables de revenu
+    foyer = load_temp(name='foyer', year=year)
+    tot3 = tot2.merge(foyer, how='outer')
+    print len(tot3.index)
+    save_temp(tot3, name='tot3', year=year)
+    
 ## On ajoute les variables individualisables
 #loadTmp("foyer_individualise.Rdata") # foy_ind
 #loadTmp("tot3.Rdata")
@@ -771,6 +896,20 @@ TODO: RESTART HERE
 #rm(tot3, foy_ind)
 #table(final[final$quifoy=="vous", "noindiv"] %in% sif$noindiv)
 #
+    print 'On ajoute les variables individualisables'
+    
+    foy_ind = load_temp(name = 'foy_ind', year=year)
+    sif = load_temp(name = 'sif', year=year)
+    allvars = load_temp(name = 'allvars', year=year)
+    
+    vars2 = set(tot3.columns).difference(set(allvars))
+    tot3 = tot3[vars2]
+    print tot3.columns
+    
+    final = tot3.merge(foy_ind, on=['idfoy', 'quifoy'], how='outer')
+    print final
+    del tot3, foy_ind
+    
 #final <- merge(final, sif, by = c('noindiv'), all.x = TRUE)
 #print_id(final)
 #saveTmp(final,"final.Rdata")
@@ -779,5 +918,11 @@ TODO: RESTART HERE
 #
 #rm(sif,final)
 #gc()
+
+    final = final.merge(sif, on='noindiv', how='outer')
+    print final.describe()
+    save_temp(final, name='final', year=year)
+    print 'final sauvegarde'
+    del sif, final
 if __name__ == '__main__':
     test()
