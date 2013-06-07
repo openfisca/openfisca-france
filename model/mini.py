@@ -448,6 +448,13 @@ def _rsa_act(rsa, rmi):
     res = max_(rsa - rmi, 0)
     return res 
 
+def _rsa_act_i(rsa_act):
+    '''
+    Calcule le montant du RSA activité individuel. Utile pour la deduction de la ppe.
+    
+    Note: le partage en moitié est un point de législation, pas un choix arbitraire
+    '''
+    return rsa_act/2
 
 def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds*rsa_act

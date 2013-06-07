@@ -12,14 +12,14 @@ from numpy import ( maximum as max_, minimum as min_, logical_xor as xor_,
 
 from src.countries.france.model.data import QUIMEN
 
-CHEF = QUIMEN['pref']
-PART = QUIMEN['cref']
+PREF = QUIMEN['pref']
+CREF = QUIMEN['cref']
 ENFS = [QUIMEN['enf1'], QUIMEN['enf2'], QUIMEN['enf3'], QUIMEN['enf4'], QUIMEN['enf5'], QUIMEN['enf6'], QUIMEN['enf7'], QUIMEN['enf8'], QUIMEN['enf9'], ]
 
 ALL = [x[1] for x in QUIMEN]
         
 
-def _tax_hab(zthabm, aah, aspa, asi, age, isf_tot, rfr, statmarit, nbptr, _P):
+def _tax_hab(zthabm, aah, aspa, asi, age, isf_tot, rfr, statmarit, nbptr, _P , _option = {'statmarit': [PREF]}):
     '''
     Taxe d'habitation
     'men'

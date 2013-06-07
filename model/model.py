@@ -25,8 +25,59 @@ import src.countries.france.model.common as cm
 import src.countries.france.model.calage as cl
 import src.countries.france.model.th as th
 
+from src.lib.columns import IntCol, EnumCol
+from src.countries.france.model.data import QUIFOY, QUIFAM, QUIMEN
+
+
+
+def _noi(noi):
+    return noi
+def _men(idmen, _option = {'idmen': [0]}):
+    return idmen
+def _fam(idfam, _option = {'idfam': [0]}):
+    return idfam
+def _foy(idfoy, _option = {'idfoy': [0]}):
+    return idfoy
+def _quimen(quimen):
+    return quimen
+def _quifam(quifam):
+    return quifam
+def _quifoy(quifoy):
+    return quifoy
+def _wprm(wprm):
+    return wprm
 
 class ModelSF(ModelDescription):
+
+    ############################################################
+    # Reproduction des identifiants 
+    ############################################################    
+#TODO: find a way of having only 'ind' if num_table == 1
+
+    noi_ind = Prestation(_noi)
+    idmen_ind = Prestation(_men)
+    idmen_foy = EnumPresta(_men,"foy")
+    idmen_men = EnumPresta(_men,"men")
+    idmen_fam = EnumPresta(_men,"fam")
+    idfam_ind = Prestation(_fam)
+    idfam_foy = EnumPresta(_fam,"foy")
+    idfam_men = EnumPresta(_fam,"men")
+    idfam_fam = EnumPresta(_fam,"fam")
+    idfoy_ind = Prestation(_foy)
+    idfoy_foy = EnumPresta(_foy,"foy")
+    idfoy_men = EnumPresta(_foy,"men")
+    idfoy_fam = EnumPresta(_foy,"fam")
+    
+    quimen_ind = EnumPresta(_quimen)
+    quifam_ind = EnumPresta(_quifam)
+    quifoy_ind = EnumPresta(_quifoy)    
+    
+    ############################################################
+    # Reproduction des pondérations
+    ############################################################       
+    wprm_ind = Prestation(_wprm,"ind")
+    wprm_fam = Prestation(_wprm,"fam")
+    wprm_foy = Prestation(_wprm,"foy")    
     
     mhsup = Prestation(cs._mhsup)
     alv   = Prestation(ir._alv)
@@ -159,7 +210,9 @@ class ModelSF(ModelDescription):
     ir_brut     = Prestation(ir._ir_brut, 'foy')
     nb_pac      = Prestation(ir._nb_pac, 'foy')
     nb_adult    = Prestation(ir._nb_adult, 'foy')
+    ir_ss_qf    = Prestation(ir._ir_ss_qf, 'foy')
     ir_plaf_qf  = Prestation(ir._ir_plaf_qf, 'foy')
+    avantage_qf = Prestation(ir._avantage_qf, 'foy')
     nat_imp     = Prestation(ir._nat_imp, 'foy')
     decote      = Prestation(ir._decote, 'foy')
     
@@ -212,7 +265,7 @@ class ModelSF(ModelDescription):
     
     
     # Prime pour l'emploi
-    ppe_coef    = Prestation(ir._ppe_coef)
+    ppe_coef    = Prestation(ir._ppe_coef, 'foy')
     ppe_base    = Prestation(ir._ppe_base)
     ppe_coef_tp = Prestation(ir._ppe_coef_tp)
     ppe_elig    = BoolPresta(ir._ppe_elig, 'foy')
@@ -380,6 +433,7 @@ class ModelSF(ModelDescription):
     alset  = Prestation(lg._alset, 'fam', label = u"Allocation logement sociale étudiante")
     apl    = Prestation(lg._apl, 'fam', label = u"Aide personalisée au logement")
     crds_lgtm =Prestation(lg._crds_lgtm, 'fam', label = u"CRDS (allocation logement)")
+ 
     
     ############################################################
     # RSA/RMI
@@ -400,6 +454,7 @@ class ModelSF(ModelDescription):
     rmi  = Prestation(ms._rmi, 'fam', label = u"Revenu de solidarité active - socle")
     rsa  = Prestation(ms._rsa, 'fam', label = u"Revenu de solidarité active")
     rsa_act = Prestation(ms._rsa_act, 'fam', label = u"Revenu de solidarité active - activité", start = date(2009, 7, 1))
+    rsa_act_i = Prestation(ms._rsa_act_i)
     psa = Prestation(ms._psa, 'fam', label = u"Prime de solidarité active", start = date(2009, 1, 1), end=date(2009, 12,31))
     api  = Prestation(ms._api, 'fam', end = date(2009, 7, 1), label = u"Allocation de parent isolé" )
     crds_mini = Prestation(ms._crds_mini, 'fam', start = date(2009, 7, 1))
@@ -497,7 +552,7 @@ class ModelSF(ModelDescription):
                                      u"8e décile",
                                      u"9e décile",
                                      u"10e décile"]))
-    
+     
     decile_net = EnumPresta(cm._decile_net, entity = 'men',
                         label = u"Décile de niveau de vie net",
                         enum = Enum([u"Hors champ"
@@ -511,19 +566,19 @@ class ModelSF(ModelDescription):
                                      u"8e décile",
                                      u"9e décile",
                                      u"10e décile"]))
-    
-    
+     
+     
     pauvre40 = EnumPresta(cm._pauvre40, entity = 'men',
                         label = u"Pauvreté monétaire au seuil de 40%",
                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 40%",
                                      u"Ménage en dessous du seuil de pauvreté à 40%"]))
-    
-    
+     
+     
     pauvre50 = EnumPresta(cm._pauvre50, entity = 'men',
                         label = u"Pauvreté monétaire au seuil de 50%",
                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
                                      u"Ménage en dessous du seuil de pauvreté à 50%"]))
-
+ 
     pauvre60 = EnumPresta(cm._pauvre60, entity = 'men',
                         label = u"Pauvreté monétaire au seuil de 60%",
                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",

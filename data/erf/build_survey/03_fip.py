@@ -335,7 +335,7 @@ def run():
 #   actrec   <- ifelse(agepf<=15,9,5)})
     print fip.columns
     fip['persfip'] = 'pac'
-    fip['year'] = 0
+    fip['year'] = year
     fip['year'] = fip['year'].astype('float') # BUG; pas de colonne année dans la DF
     fip['noi'] = 99
     fip['noicon'] = None
@@ -347,7 +347,7 @@ def run():
     fip['lien'] = None
     fip['quelfic'] = 'FIP'
     fip['acteu'] = None
-    fip['agepf'] = fip['year'] - fip['naia'].astype('float') - 1
+    fip['agepf'] = fip['year'] - fip['naia'].astype('float')
     fip['lpr'] = where(fip['agepf'] <=20, 3, 4) # TODO pas très propre d'après Mahdi/Clément
     fip['stc'] = None
     fip['contra'] = None
@@ -361,7 +361,7 @@ def run():
     fip['persfip'] = "pac"
     fip['agepr'] = None
     fip['actrec'] = where(fip['agepf']<=15, 9, 5)
- 
+    
 ## TODO: probleme actrec des enfants fip entre 16 et 20 ans : on ne sait pas s'ils sont étudiants ou salariés */
 ## TODO problème avec les mois des enfants FIP : voir si on ne peut pas remonter à ces valeurs
 
