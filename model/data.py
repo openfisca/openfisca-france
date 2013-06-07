@@ -40,7 +40,7 @@ class InputTable(ModelDescription):
 
     alr  = IntCol(label = u"Pension alimentaire reçue", val_type="monetary") # (f1ao, f1bo, f1co, f1do, f1eo)
     
-    hsup = IntCol( val_type="monetary")  # f1au
+    hsup = IntCol( label = "heures supplémentaires", val_type="monetary")  # (f1au, f1bu, f1cu, f1du, f1eu)
     inv  = BoolCol(label = u'invalide')
     alt  = BoolCol(label = u'garde alternée')
     cho_ld = BoolCol(label = 'chômeur de longue durée') # (f1ai, f1bi, f1ci, f1di, f1ei)
@@ -48,11 +48,11 @@ class InputTable(ModelDescription):
     ppe_tp_ns = BoolCol() # (f5nw, f5ow, f5pw)
     ppe_du_sa = IntCol() # (f1av, f1bv, f1cv, f1dv, f1qv)
     ppe_du_ns = IntCol() # (f5nv, f5ov, f5pv)
-    jour_xyz = IntCol(default = 360)
+    jour_xyz = IntCol(default = 360, entity="foy")
     age = AgesCol(label = u"âge" ,  val_type="age")
     agem = AgesCol(label = u"âge (en mois)", val_type="months")
     
-    zone_apl = EnumCol(label = u"zone apl", default = 2, entity= 'menage')
+    zone_apl = EnumCol(label = u"zone apl", default = 2, entity= 'men')
     loyer = IntCol(entity='men', val_type="monetary") # Loyer mensuel
     so = EnumCol(label = u"Statut d'occupation",
                  entity='men',
@@ -169,12 +169,14 @@ class InputTable(ModelDescription):
     f1cw = IntCol(entity= 'foy', val_type="monetary")
     f1dw = IntCol(entity= 'foy', val_type="monetary")
     
-    f1tv = IntCol(entity= 'foy', val_type="monetary")
-    f1uv = IntCol(entity= 'foy', val_type="monetary")
-    f1tw = IntCol(entity= 'foy', val_type="monetary")
-    f1uw = IntCol(entity= 'foy', val_type="monetary")
-    f1tx = IntCol(entity= 'foy', val_type="monetary")
-    f1ux = IntCol(entity= 'foy', val_type="monetary")
+    # Gain de levée d'option
+    #TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv 
+    # et les mettre en f1tvm comme pour sali
+    # Il faut aussi le faire en amont dans les tables
+    f1tv = IntCol(entity= 'ind', val_type="monetary") # (f1tv,f1uv)
+    f1tw = IntCol(entity= 'ind', val_type="monetary") # (f1tw,f1uw)
+    f1tx = IntCol(entity= 'ind', val_type="monetary") # (f1tx,f1ux)
+
     
     # RVCM
     # revenus au prélèvement libératoire
@@ -583,93 +585,93 @@ class InputTable(ModelDescription):
     f8uy = IntCol(entity= 'foy')
 
     # Revenus des professions non salariées
-    frag_exon = IntCol(entity= 'foy', val_type="monetary") # (f5hn, f5in, f5jn)
-    frag_impo = IntCol(entity= 'foy', val_type="monetary") # (f5ho, f5io, f5jo)    
-    arag_exon = IntCol(entity= 'foy', val_type="monetary") # (f5hb, f5ib, f5jb)
-    arag_impg = IntCol(entity= 'foy', val_type="monetary") # (f5hc, f5ic, f5jc)
-    arag_defi = IntCol(entity= 'foy', val_type="monetary") # (f5hf, f5if, f5jf)
-    nrag_exon = IntCol(entity= 'foy', val_type="monetary") # (f5hh, f5ih, f5jh)
-    nrag_impg = IntCol(entity= 'foy', val_type="monetary") # (f5hi, f5ii, f5ji)
-    nrag_defi = IntCol(entity= 'foy', val_type="monetary") # (f5hl, f5il, f5jl)
-    nrag_ajag = IntCol(entity= 'foy', val_type="monetary") # (f5hm, f5im, f5jm)
+    frag_exon = IntCol(entity= 'ind', val_type="monetary") # (f5hn, f5in, f5jn)
+    frag_impo = IntCol(entity= 'ind', val_type="monetary") # (f5ho, f5io, f5jo)    
+    arag_exon = IntCol(entity= 'ind', val_type="monetary") # (f5hb, f5ib, f5jb)
+    arag_impg = IntCol(entity= 'ind', val_type="monetary") # (f5hc, f5ic, f5jc)
+    arag_defi = IntCol(entity= 'ind', val_type="monetary") # (f5hf, f5if, f5jf)
+    nrag_exon = IntCol(entity= 'ind', val_type="monetary") # (f5hh, f5ih, f5jh)
+    nrag_impg = IntCol(entity= 'ind', val_type="monetary") # (f5hi, f5ii, f5ji)
+    nrag_defi = IntCol(entity= 'ind', val_type="monetary") # (f5hl, f5il, f5jl)
+    nrag_ajag = IntCol(entity= 'ind', val_type="monetary") # (f5hm, f5im, f5jm)
 
-    mbic_exon = IntCol(entity= 'foy', val_type="monetary") # (f5kn, f5ln, f5mn)
-    abic_exon = IntCol(entity= 'foy', val_type="monetary") # (f5kb, f5lb, f5mb)
-    nbic_exon = IntCol(entity= 'foy', val_type="monetary") # (f5kh, f5lh, f5mh)
-    mbic_impv = IntCol(entity= 'foy', val_type="monetary") # (f5ko, f5lo, f5mo)
-    mbic_imps = IntCol(entity= 'foy', val_type="monetary") # (f5kp, f5lp, f5mp)
-    abic_impn = IntCol(entity= 'foy', val_type="monetary") # (f5kc, f5lc, f5mc)
-    abic_imps = IntCol(entity= 'foy', val_type="monetary") # (f5kd, f5ld, f5md)
-    nbic_impn = IntCol(entity= 'foy', val_type="monetary") # (f5ki, f5li, f5mi)
-    nbic_imps = IntCol(entity= 'foy', val_type="monetary") # (f5kj, f5lj, f5mj)
-    abic_defn = IntCol(entity= 'foy', val_type="monetary") # (f5kf, f5lf, f5mf)
-    abic_defs = IntCol(entity= 'foy', val_type="monetary") # (f5kg, f5lg, f5mg)
-    nbic_defn = IntCol(entity= 'foy', val_type="monetary") # (f5kl, f5ll, f5ml)
-    nbic_defs = IntCol(entity= 'foy', val_type="monetary") # (f5km, f5lm, f5mm)
-    nbic_apch = IntCol(entity= 'foy', val_type="monetary") # (f5ks, f5ls, f5ms)
+    mbic_exon = IntCol(entity= 'ind', val_type="monetary") # (f5kn, f5ln, f5mn)
+    abic_exon = IntCol(entity= 'ind', val_type="monetary") # (f5kb, f5lb, f5mb)
+    nbic_exon = IntCol(entity= 'ind', val_type="monetary") # (f5kh, f5lh, f5mh)
+    mbic_impv = IntCol(entity= 'ind', val_type="monetary") # (f5ko, f5lo, f5mo)
+    mbic_imps = IntCol(entity= 'ind', val_type="monetary") # (f5kp, f5lp, f5mp)
+    abic_impn = IntCol(entity= 'ind', val_type="monetary") # (f5kc, f5lc, f5mc)
+    abic_imps = IntCol(entity= 'ind', val_type="monetary") # (f5kd, f5ld, f5md)
+    nbic_impn = IntCol(entity= 'ind', val_type="monetary") # (f5ki, f5li, f5mi)
+    nbic_imps = IntCol(entity= 'ind', val_type="monetary") # (f5kj, f5lj, f5mj)
+    abic_defn = IntCol(entity= 'ind', val_type="monetary") # (f5kf, f5lf, f5mf)
+    abic_defs = IntCol(entity= 'ind', val_type="monetary") # (f5kg, f5lg, f5mg)
+    nbic_defn = IntCol(entity= 'ind', val_type="monetary") # (f5kl, f5ll, f5ml)
+    nbic_defs = IntCol(entity= 'ind', val_type="monetary") # (f5km, f5lm, f5mm)
+    nbic_apch = IntCol(entity= 'ind', val_type="monetary") # (f5ks, f5ls, f5ms)
 
-    macc_exon = IntCol(entity= 'foy') # (f5nn, f5on, f5pn)
-    aacc_exon = IntCol(entity= 'foy') # (f5nb, f5ob, f5pb)
-    nacc_exon = IntCol(entity= 'foy') # (f5nh, f5oh, f5ph)
-    macc_impv = IntCol(entity= 'foy') # (f5no, f5oo, f5po)
-    macc_imps = IntCol(entity= 'foy') # (f5np, f5op, f5pp)
-    aacc_impn = IntCol(entity= 'foy') # (f5nc, f5oc, f5pc)
-    aacc_imps = IntCol(entity= 'foy') # (f5nd, f5od, f5pd)
-    aacc_defn = IntCol(entity= 'foy') # (f5nf, f5of, f5pf)
-    aacc_defs = IntCol(entity= 'foy') # (f5ng, f5og, f5pg)
-    nacc_impn = IntCol(entity= 'foy') # (f5ni, f5oi, f5pi)
-    nacc_imps = IntCol(entity= 'foy') # (f5nj, f5oj, f5pj)
-    nacc_defn = IntCol(entity= 'foy') # (f5nl, f5ol, f5pl)
-    nacc_defs = IntCol(entity= 'foy') # (f5nm, f5om, f5pm)
-    mncn_impo = IntCol(entity= 'foy') # (f5ku, f5lu, f5mu)
-    cncn_bene = IntCol(entity= 'foy') # (f5sn, f5ns, f5os)
-    cncn_defi = IntCol(entity= 'foy') # (f5sp, f5nu, f5ou, f5sr)
+    macc_exon = IntCol(entity= 'ind') # (f5nn, f5on, f5pn)
+    aacc_exon = IntCol(entity= 'ind') # (f5nb, f5ob, f5pb)
+    nacc_exon = IntCol(entity= 'ind') # (f5nh, f5oh, f5ph)
+    macc_impv = IntCol(entity= 'ind') # (f5no, f5oo, f5po)
+    macc_imps = IntCol(entity= 'ind') # (f5np, f5op, f5pp)
+    aacc_impn = IntCol(entity= 'ind') # (f5nc, f5oc, f5pc)
+    aacc_imps = IntCol(entity= 'ind') # (f5nd, f5od, f5pd)
+    aacc_defn = IntCol(entity= 'ind') # (f5nf, f5of, f5pf)
+    aacc_defs = IntCol(entity= 'ind') # (f5ng, f5og, f5pg)
+    nacc_impn = IntCol(entity= 'ind') # (f5ni, f5oi, f5pi)
+    nacc_imps = IntCol(entity= 'ind') # (f5nj, f5oj, f5pj)
+    nacc_defn = IntCol(entity= 'ind') # (f5nl, f5ol, f5pl)
+    nacc_defs = IntCol(entity= 'ind') # (f5nm, f5om, f5pm)
+    mncn_impo = IntCol(entity= 'ind') # (f5ku, f5lu, f5mu)
+    cncn_bene = IntCol(entity= 'ind') # (f5sn, f5ns, f5os)
+    cncn_defi = IntCol(entity= 'ind') # (f5sp, f5nu, f5ou, f5sr)
 
-    mbnc_exon = IntCol(entity= 'foy') # (f5hp, f5ip, f5jp)
-    abnc_exon = IntCol(entity= 'foy') # (f5qb, f5rb, f5sb)
-    nbnc_exon = IntCol(entity= 'foy') # (f5qh, f5rh, f5sh)
-    mbnc_impo = IntCol(entity= 'foy') # (f5hq, f5iq, f5jq)
-    abnc_impo = IntCol(entity= 'foy') # (f5qc, f5rc, f5sc)
-    abnc_defi = IntCol(entity= 'foy') # (f5qe, f5re, f5se)
-    nbnc_impo = IntCol(entity= 'foy') # (f5qi, f5ri, f5si)
-    nbnc_defi = IntCol(entity= 'foy') # (f5qk, f5rk, f5sk)
+    mbnc_exon = IntCol(entity= 'ind') # (f5hp, f5ip, f5jp)
+    abnc_exon = IntCol(entity= 'ind') # (f5qb, f5rb, f5sb)
+    nbnc_exon = IntCol(entity= 'ind') # (f5qh, f5rh, f5sh)
+    mbnc_impo = IntCol(entity= 'ind') # (f5hq, f5iq, f5jq)
+    abnc_impo = IntCol(entity= 'ind') # (f5qc, f5rc, f5sc)
+    abnc_defi = IntCol(entity= 'ind') # (f5qe, f5re, f5se)
+    nbnc_impo = IntCol(entity= 'ind') # (f5qi, f5ri, f5si)
+    nbnc_defi = IntCol(entity= 'ind') # (f5qk, f5rk, f5sk)
 
     mbic_mvct = IntCol(entity= 'foy') # (f5hu)
     macc_mvct = IntCol(entity= 'foy') # (f5iu)
     mncn_mvct = IntCol(entity= 'foy') # (f5ju)
     mbnc_mvct = IntCol(entity= 'foy') # (f5kz)
 
-    frag_pvct = IntCol(entity= 'foy') # (f5hw, f5iw, f5jw)
-    mbic_pvct = IntCol(entity= 'foy') # (f5kx, f5lx, f5mx)
-    macc_pvct = IntCol(entity= 'foy') # (f5nx, f5ox, f5px)
-    mbnc_pvct = IntCol(entity= 'foy') # (f5hv, f5iv, f5jv)
-    mncn_pvct = IntCol(entity= 'foy') # (f5ky, f5ly, f5my)
+    frag_pvct = IntCol(entity= 'ind') # (f5hw, f5iw, f5jw)
+    mbic_pvct = IntCol(entity= 'ind') # (f5kx, f5lx, f5mx)
+    macc_pvct = IntCol(entity= 'ind') # (f5nx, f5ox, f5px)
+    mbnc_pvct = IntCol(entity= 'ind') # (f5hv, f5iv, f5jv)
+    mncn_pvct = IntCol(entity= 'ind') # (f5ky, f5ly, f5my)
 
-    mbic_mvlt = IntCol(entity= 'foy') # (f5kr, f5lr, f5mr)
-    macc_mvlt = IntCol(entity= 'foy') # (f5nr, f5or, f5pr)
-    mncn_mvlt = IntCol(entity= 'foy') # (f5kw, f5lw, f5mw)
-    mbnc_mvlt = IntCol(entity= 'foy') # (f5hs, f5is, f5js)
+    mbic_mvlt = IntCol(entity= 'ind') # (f5kr, f5lr, f5mr)
+    macc_mvlt = IntCol(entity= 'ind') # (f5nr, f5or, f5pr)
+    mncn_mvlt = IntCol(entity= 'ind') # (f5kw, f5lw, f5mw)
+    mbnc_mvlt = IntCol(entity= 'ind') # (f5hs, f5is, f5js)
 
-    frag_pvce = IntCol(entity= 'foy') # (f5hx, f5ix, f5jx)
-    arag_pvce = IntCol(entity= 'foy') # (f5he, f5ie, f5je)
-    nrag_pvce = IntCol(entity= 'foy') # (f5hk, f5ik, f5jk)
-    mbic_pvce = IntCol(entity= 'foy') # (f5kq, f5lq, f5mq)
-    abic_pvce = IntCol(entity= 'foy') # (f5ke, f5le, f5me)
-    nbic_pvce = IntCol(entity= 'foy') # (f5kk, f5lk, f5mk)
-    macc_pvce = IntCol(entity= 'foy') # (f5nq, f5oq, f5pq)
-    aacc_pvce = IntCol(entity= 'foy') # (f5ne, f5oe, f5pe)
-    nacc_pvce = IntCol(entity= 'foy') # (f5nk, f5ok, f5pk)
-    mncn_pvce = IntCol(entity= 'foy') # (f5kv, f5lv, f5mv)
-    cncn_pvce = IntCol(entity= 'foy') # (f5so, f5nt, f5ot)
-    mbnc_pvce = IntCol(entity= 'foy') # (f5hr, f5ir, f5jr)
-    abnc_pvce = IntCol(entity= 'foy') # (f5qd, f5rd, f5sd)
-    nbnc_pvce = IntCol(entity= 'foy') # (f5qj, f5rj, f5sj)
+    frag_pvce = IntCol(entity= 'ind') # (f5hx, f5ix, f5jx)
+    arag_pvce = IntCol(entity= 'ind') # (f5he, f5ie, f5je)
+    nrag_pvce = IntCol(entity= 'ind') # (f5hk, f5ik, f5jk)
+    mbic_pvce = IntCol(entity= 'ind') # (f5kq, f5lq, f5mq)
+    abic_pvce = IntCol(entity= 'ind') # (f5ke, f5le, f5me)
+    nbic_pvce = IntCol(entity= 'ind') # (f5kk, f5lk, f5mk)
+    macc_pvce = IntCol(entity= 'ind') # (f5nq, f5oq, f5pq)
+    aacc_pvce = IntCol(entity= 'ind') # (f5ne, f5oe, f5pe)
+    nacc_pvce = IntCol(entity= 'ind') # (f5nk, f5ok, f5pk)
+    mncn_pvce = IntCol(entity= 'ind') # (f5kv, f5lv, f5mv)
+    cncn_pvce = IntCol(entity= 'ind') # (f5so, f5nt, f5ot)
+    mbnc_pvce = IntCol(entity= 'ind') # (f5hr, f5ir, f5jr)
+    abnc_pvce = IntCol(entity= 'ind') # (f5qd, f5rd, f5sd)
+    nbnc_pvce = IntCol(entity= 'ind') # (f5qj, f5rj, f5sj)
 
 # pfam only
     inactif   = BoolCol(entity='fam')
     partiel1  = BoolCol(entity='fam')
     partiel2  = BoolCol(entity='fam') 
-    categ_inv = IntCol(entity='fam')
+    categ_inv = IntCol()
     opt_colca = BoolCol(entity='fam')
     empl_dir  = BoolCol(entity='fam') 
     ass_mat   = BoolCol(entity='fam')
@@ -813,7 +815,7 @@ class InputTable(ModelDescription):
 ## ISF ##
     
 ## Immeubles bâtis ##
-    b1ab = IntCol(entity= 'foy') ##  valeur résidence principale avant abattement ##
+    b1ab = IntCol(entity= 'ind') ##  valeur résidence principale avant abattement ##
     b1ac = IntCol(entity= 'foy')
 ## non bâtis ##
     b1bc = IntCol(entity= 'foy')
@@ -854,15 +856,15 @@ class InputTable(ModelDescription):
 
 ## BOUCLIER FISCAL ##
 
-    rev_or= IntCol()
-    rev_exo= IntCol()
+    rev_or= IntCol(entity= 'foy')
+    rev_exo= IntCol(entity= 'foy')
 
-    tax_fonc= IntCol()
-    restit_imp= IntCol()
+    tax_fonc= IntCol(entity= 'foy')
+    restit_imp= IntCol(entity= 'foy')
         
     # to remove
-    champm = BoolCol()
-    wprm = FloatCol()
+    champm = BoolCol(entity='men', default = True)
+    wprm = FloatCol(entity='men', default = 1)
     etr = IntCol()     
     coloc = BoolCol()
     csg_rempl = EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
@@ -877,16 +879,15 @@ class InputTable(ModelDescription):
     ass = IntCol()
     f5sq = IntCol()
     
-    m_afeamam = IntCol()
-    m_agedm   = IntCol()
-    m_clcam   = IntCol()
-    m_colcam  = IntCol()
-    m_mgamm   = IntCol()
-    m_mgdomm  = IntCol()
-    zthabm    = IntCol()  
+    m_afeamam = IntCol(entity='men')
+    m_agedm   = IntCol(entity='men')
+    m_clcam   = IntCol(entity='men')
+    m_colcam  = IntCol(entity='men')
+    m_mgamm   = IntCol(entity='men')
+    m_mgdomm  = IntCol(entity='men')
+    zthabm    = IntCol(entity='men')  # Devrait être renommée tax
     
     adoption    = BoolCol(entity="ind",
                         label=u"Enfant adopté")
-    
-    # Devrait être renommée tax
+
     # tax_hab= IntCol()    
