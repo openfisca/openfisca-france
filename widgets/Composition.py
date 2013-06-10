@@ -61,7 +61,8 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         super(CompositionWidget, self).__init__(parent)
         self.setupUi(self)
         if parent is not None:
-            self.parent = parent
+            self.parent = parent            
+            
         if simulation is not None:
             self.set_simulation(simulation)
 
@@ -113,6 +114,8 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         """
         xaxis = self.get_option('xaxis')
         maxrev = self.get_option('maxrev')
+        print "in compo"
+        print maxrev
         nmen = self.get_option('nmen')
         self.nmen = nmen
         country = CONF.get('parameters', 'country')
@@ -146,7 +149,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         if isinstance(widget, QSpinBox) or isinstance(widget, QDoubleSpinBox):
             maxrev = widget.value()
             self.scenario.maxrev = maxrev
-            self.set_option('maxrev', maxrev) 
+            self.set_option('maxrev', maxrev)
         self.emit(SIGNAL('compoChanged()'))
 
     def changed(self):
@@ -469,6 +472,11 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         '''
         Toggle reform mode for test case
         '''
+        if (not reform) and self.action_set_reform.isChecked():
+            self.action_set_reform.toggle()
+        if (not self.action_set_reform.isChecked()) and reform:
+            self.action_set_reform.toggle()
+            
         self.simulation.set_config(reforme = reform)
         self.action_compute.setEnabled(True)
     
