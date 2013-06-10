@@ -993,14 +993,14 @@ def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, ca
 
 def _ppe_coef(jour_xyz):
     '''
-    ppe: coefficient de conversion en cas de changement en cours d'année
+    PPE: coefficient de conversion en cas de changement en cours d'année
     '''
     nb_jour = (jour_xyz==0) + jour_xyz
     return 360/nb_jour
 
 def _ppe_elig(rfr, ppe_coef, marpac, veuf, celdiv, nbptr, _P):
     '''
-    eligibilité à la ppe, returns a bool
+    PPE: eligibilité à la ppe
     'foy'
     '''
     P = _P.ir.credits_impot.ppe

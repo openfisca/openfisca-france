@@ -493,10 +493,13 @@ def preproc_inputs(datatable):
     
     """
     country = 'france'
-    WEIGHT = of_import("","WEIGHT", country)
-    datatable.propagate_to_members(WEIGHT, 'ind')
-#    datatable.propagate_to_members('rfr_n_2', 'ind')
-#    datatable.propagate_to_members('nbptr_n_2', 'ind')
+    try:
+        WEIGHT = of_import("","WEIGHT", country)
+        datatable.propagate_to_members(WEIGHT, 'ind')
+    #    datatable.propagate_to_members('rfr_n_2', 'ind')
+    #    datatable.propagate_to_members('nbptr_n_2', 'ind')
+    except:
+        pass
 
 
 def check_consistency(datatable):
