@@ -432,9 +432,7 @@ class Scenario(object):
                 datatable.set_value(var, 0.5*vls, entity, opt = 0)
                 datatable.set_value(var, 0.5*vls, entity, opt = 1)
             else:
-#                TODO
-#                datatable.set_value(var, vls, {0:{'idxIndi': index[0]['idxIndi'], 'idxUnit': index[0]['idxIndi']}})
-                pass
+                datatable.set_value(var, vls, entity, opt = 0)
             datatable._isPopulated = True
         
 country = "france"
