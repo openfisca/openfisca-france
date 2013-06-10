@@ -37,6 +37,7 @@ def invalide():
 # # table(invalides[,c("caseF","quifoy")],useNA="ifany")
 # # invalides[(invalides$caseP==1) & (invalides$quifoy=="vous"),"inv"] <- TRUE
 # # 
+    print 'Etape 1 création de la df invalides'
     final = load_temp(name="final", year=year)
     invalides = final.xs(columns=["noindiv","idmen","caseP","caseF","idfoy","quifoy"])
     invalides['caseP'] = where(invalides['caseP'].isnull(), 0, invalides['caseP'])
@@ -46,7 +47,8 @@ def invalide():
     #Les "vous" invalides
     invalides.xs(columns=['caseF', 'quifoy']).describe()
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']=='vous')] = True
-    
+    print invalides.describe()
+    return
 # # # Les conjoints invalides
 # # 
 # # #men_inv_conj <- invalides[c("idmen","caseF","quifoy")] 

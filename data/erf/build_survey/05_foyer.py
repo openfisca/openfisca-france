@@ -21,6 +21,7 @@ import numpy
 import re
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from pandas import DataFrame, concat
 
 year = 2006
 data = DataCollection(year=year)
@@ -119,7 +120,6 @@ def sif():
     sif["caseF"] = sif["sif"].str[16:17] == "F"
     sif["caseG"] = sif["sif"].str[17:18] == "G"
     sif["caseK"] = sif["sif"].str[18:19] == "K"
-    ## TODO: dtype conversion
     
     #  d = 0
     d = 0
@@ -261,14 +261,15 @@ def sif():
     sif_drop_duplicated = sif.drop_duplicates("noindiv")
     print "Number of distinct individuals after removing duplicates:", len(sif_drop_duplicated["noindiv"])
     
-    # TODO: save sif.Rdata
-    #
+    print 'Saving sif'
+    save_temp(sif, name='sif', year=year)
+    del sif
+    
     #saveTmp(sif, file = 'sif.Rdata')
     #rm(sif)
     #gc()
     ##################################################################
 
-    save_temp(sif, name="sif", year=year)
 
 def foyer_all():
 
@@ -381,7 +382,7 @@ def foyer_all():
                'nacc_defs': ['f5nm', 'f5om', 'f5pm'],
                'mncn_impo': ['f5ku', 'f5lu', 'f5mu'],
                'cncn_bene': ['f5sn', 'f5ns', 'f5os'],
-               'cncn_defi': ['f5sp', 'f5nu', 'f5ou', 'f5sr'], # TODO:
+               'cncn_defi': ['f5sp', 'f5nu', 'f5ou', 'f5sr'], # TODO: check
                'mbnc_exon': ['f5hp', 'f5ip', 'f5jp'],
                'abnc_exon': ['f5qb', 'f5rb', 'f5sb'],
                'nbnc_exon': ['f5qh', 'f5rh', 'f5sh'],
@@ -424,94 +425,7 @@ def foyer_all():
 #varlist = list(list('sali', c('f1aj', 'f1bj', 'f1cj', 'f1dj', 'f1ej')),
 #                list('choi', c('f1ap', 'f1bp', 'f1cp', 'f1dp', 'f1ep')),
 #               list('fra', c('f1ak', 'f1bk', 'f1ck', 'f1dk', 'f1ek')),
-#               list('cho_ld', c('f1ai', 'f1bi', 'f1ci', 'f1di', 'f1ei')),
-#               list('ppe_tp_sa', c('f1ax', 'f1bx', 'f1cx', 'f1dx', 'f1qx')),
-#               list('ppe_du_sa', c('f1av', 'f1bv', 'f1cv', 'f1dv', 'f1qv')),
-#               list('rsti', c('f1as', 'f1bs', 'f1cs', 'f1ds', 'f1es')),
-#               list('alr', c('f1ao', 'f1bo', 'f1co', 'f1do', 'f1eo')), 
-#
-#               list('ppe_tp_ns', c('f5nw', 'f5ow', 'f5pw')),
-#               list('ppe_du_ns',  c('f5nv', 'f5ov', 'f5pv')),
-#            
-#               
-#               list('frag_exon', c('f5hn', 'f5in', 'f5jn')),
-#               list('frag_impo', c('f5ho', 'f5io', 'f5jo')),    
-#               list('arag_exon', c('f5hb', 'f5ib', 'f5jb')),
-#               list('arag_impg', c('f5hc', 'f5ic', 'f5jc')),
-#               list('arag_defi', c('f5hf', 'f5if', 'f5jf')),
-#               list('nrag_exon', c('f5hh', 'f5ih', 'f5jh')),
-#               list('nrag_impg', c('f5hi', 'f5ii', 'f5ji')),
-#               list('nrag_defi', c('f5hl', 'f5il', 'f5jl')),
-#               list('nrag_ajag', c('f5hm', 'f5im', 'f5jm')),
-#           
-#               list('mbic_exon', c('f5kn', 'f5ln', 'f5mn')),
-#               list('abic_exon', c('f5kb', 'f5lb', 'f5mb')),
-#               list('nbic_exon', c('f5kh', 'f5lh', 'f5mh')),
-#               list('mbic_impv', c('f5ko', 'f5lo', 'f5mo')),
-#               list('mbic_imps', c('f5kp', 'f5lp', 'f5mp')),
-#               list('abic_impn', c('f5kc', 'f5lc', 'f5mc')),
-#               list('abic_imps', c('f5kd', 'f5ld', 'f5md')),
-#               list('nbic_impn', c('f5ki', 'f5li', 'f5mi')),
-#               list('nbic_imps', c('f5kj', 'f5lj', 'f5mj')),
-#               list('abic_defn', c('f5kf', 'f5lf', 'f5mf')),
-#               list('abic_defs', c('f5kg', 'f5lg', 'f5mg')),
-#               list('nbic_defn', c('f5kl', 'f5ll', 'f5ml')),
-#               list('nbic_defs', c('f5km', 'f5lm', 'f5mm')),
-#               list('nbic_apch', c('f5ks', 'f5ls', 'f5ms')),
-#           
-#               list('macc_exon', c('f5nn', 'f5on', 'f5pn')),
-#               list('aacc_exon', c('f5nb', 'f5ob', 'f5pb')),
-#               list('nacc_exon', c('f5nh', 'f5oh', 'f5ph')),
-#               list('macc_impv', c('f5no', 'f5oo', 'f5po')),
-#               list('macc_imps', c('f5np', 'f5op', 'f5pp')),
-#               list('aacc_impn', c('f5nc', 'f5oc', 'f5pc')),
-#               list('aacc_imps', c('f5nd', 'f5od', 'f5pd')),
-#               list('aacc_defn', c('f5nf', 'f5of', 'f5pf')),
-#               list('aacc_defs', c('f5ng', 'f5og', 'f5pg')),
-#               list('nacc_impn', c('f5ni', 'f5oi', 'f5pi')),
-#               list('nacc_imps', c('f5nj', 'f5oj', 'f5pj')),
-#               list('nacc_defn', c('f5nl', 'f5ol', 'f5pl')),
-#               list('nacc_defs', c('f5nm', 'f5om', 'f5pm')),
-#               list('mncn_impo', c('f5ku', 'f5lu', 'f5mu')),
-#               list('cncn_bene', c('f5sn', 'f5ns', 'f5os')),
-#               list('cncn_defi', c('f5sp', 'f5nu', 'f5ou', 'f5sr')), # TODO
-#           
-#               list('mbnc_exon', c('f5hp', 'f5ip', 'f5jp')),
-#               list('abnc_exon', c('f5qb', 'f5rb', 'f5sb')),
-#               list('nbnc_exon', c('f5qh', 'f5rh', 'f5sh')),
-#               list('mbnc_impo', c('f5hq', 'f5iq', 'f5jq')),
-#               list('abnc_impo', c('f5qc', 'f5rc', 'f5sc')),
-#               list('abnc_defi', c('f5qe', 'f5re', 'f5se')),
-#               list('nbnc_impo', c('f5qi', 'f5ri', 'f5si')),
-#               list('nbnc_defi', c('f5qk', 'f5rk', 'f5sk')),
-#           
-#               list('mbic_mvct', c('f5hu')),
-#               list('macc_mvct', c('f5iu')),
-#               list('mncn_mvct', c('f5ju')),
-#               list('mbnc_mvct', c('f5kz')),
-#           
-#               list('frag_pvct', c('f5hw', 'f5iw', 'f5jw')),
-#               list('mbic_pvct', c('f5kx', 'f5lx', 'f5mx')),
-#               list('macc_pvct', c('f5nx', 'f5ox', 'f5px')),
-#               list('mbnc_pvct', c('f5hv', 'f5iv', 'f5jv')),
-#               list('mncn_pvct', c('f5ky', 'f5ly', 'f5my')),
-#           
-#               list('mbic_mvlt', c('f5kr', 'f5lr', 'f5mr')),
-#               list('macc_mvlt', c('f5nr', 'f5or', 'f5pr')),
-#               list('mncn_mvlt', c('f5kw', 'f5lw', 'f5mw')),
-#               list('mbnc_mvlt', c('f5hs', 'f5is', 'f5js')),
-#           
-#               list('frag_pvce', c('f5hx', 'f5ix', 'f5jx')),
-#               list('arag_pvce', c('f5he', 'f5ie', 'f5je')),
-#               list('nrag_pvce', c('f5hk', 'f5ik', 'f5jk')),
-#               list('mbic_pvce', c('f5kq', 'f5lq', 'f5mq')),
-#               list('abic_pvce', c('f5ke', 'f5le', 'f5me')),
-#               list('nbic_pvce', c('f5kk', 'f5lk', 'f5mk')),
-#               list('macc_pvce', c('f5nq', 'f5oq', 'f5pq')),
-#               list('aacc_pvce', c('f5ne', 'f5oe', 'f5pe')),
-#               list('nacc_pvce', c('f5nk', 'f5ok', 'f5pk')),
-#               list('mncn_pvce', c('f5kv', 'f5lv', 'f5mv')),
-#               list('cncn_pvce', c('f5so', 'f5nt', 'f5ot')),
+# ......
 #               list('mbnc_pvce', c('f5hr', 'f5ir', 'f5jr')),
 #               list('abnc_pvce', c('f5qd', 'f5rd', 'f5sd')),
 #               list('nbnc_pvce', c('f5qj', 'f5rj', 'f5sj')),
@@ -558,22 +472,11 @@ def foyer_all():
 #        print selection.head(10)
 #        print selection.describe()
         if len(foy_ind) == 0:
-#            print "first pass"
-#            x = 0
             foy_ind = selection
         else:
             foy_ind = foy_ind.merge(selection, on=["quifoy", "noindiv"], how = "outer")
-#            x += 1
-#        print foy_ind
-#        print foy_ind.describe()
-#        if x == 1:
-#
-#            print foy_ind.noindiv.value_counts().unique()
-#            print len(foy_ind.noindiv.unique())
-#            return
-        
-#        selection = selection.reset_index()
-        
+
+
 
 #not_first <- FALSE
 #allvars = c()
@@ -596,7 +499,9 @@ def foyer_all():
 #    }
 #  }
 #}    
-
+    from pandas import Series
+    ind_vars_to_remove = Series(list(eligible_vars))
+    save_temp(ind_vars_to_remove, name='ind_vars_to_remove', year=year)
     foy_ind = foy_ind.rename(columns={"noindiv" : "idfoy"})
     save_temp(foy_ind, name="foy_ind", year = year)
     show_temp()
@@ -612,7 +517,7 @@ def foyer_all():
 
 if __name__ == '__main__':
     
-#    sif()
+    sif()
     foyer_all()
     foy_ind = load_temp(name="foy_ind", year = year)
     print foy_ind.columns

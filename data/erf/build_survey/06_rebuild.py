@@ -8,6 +8,7 @@
 
 from pandas import concat
 from numpy import logical_or as or_, logical_not as not_, logical_and as and_, sum
+import gc
 
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
@@ -655,7 +656,7 @@ def test():
     
     indivi['titc'][indivi['titc'].isnull()] = 0
     print indivi['titc'].isnull().describe()
-    return
+    
 ## STATUT
 ## Statut détaillé mis en cohérence avec la profession
 ## Sans objet (ACTOP='2')
@@ -688,9 +689,9 @@ def test():
 #  statut[statut == 45 ] <- 11
 #  })
 #table(indivi$statut,useNA="ifany")  
-    
-    indivi['statut'] = indivi['statut'].astype('int')
+
     indivi['statut'][indivi['statut'].isnull()] = 0
+    indivi['statut'] = indivi['statut'].astype('int')
     indivi['statut'][indivi['statut']==11] = 1
     indivi['statut'][indivi['statut']==12] = 2
     indivi['statut'][indivi['statut']==13] = 3
@@ -739,11 +740,11 @@ def test():
 
     indivi['txtppb'][indivi['txtppb'].isnull()] = 0
     
-    indivi['nbsala'] = indivi['nbsala'].astype('int')
     indivi['nbsala'][indivi['nbsala'].isnull()] = 0
+    indivi['nbsala'] = indivi['nbsala'].astype('int')
     indivi['nbsala'][indivi['nbsala']==99] = 10
     print indivi['nbsala'].describe()
-    return
+
 ## CHPUB
 ## Nature de l'employeur principal
 ## Sans objet (n'est pas salarié)
@@ -781,8 +782,8 @@ def test():
 #})
     indivi['cadre'] = 0
     indivi['prosa'][indivi['prosa'].isnull()] = 0
-    indivi['cadre'][indivi['prosa']==7 | indivi['prosa']==8] = 1
-    indivi['cadre'][indivi['prosa']==9 & indivi['encadr']==1] = 1
+    indivi['cadre'][or_(indivi['prosa']==7, indivi['prosa']==8)] = 1
+    indivi['cadre'][and_(indivi['prosa']==9, indivi['encadr']==1)] = 1
 #
 ### 
 #######################################################################################
@@ -824,19 +825,20 @@ def test():
     #On crée les n° de personnes à charge
     sum(indivi['idfoy'].isnull())
     test2 = indivi.loc[indivi['quifoy']=='pac', ['quifoy', 'idfoy']]
-    test['quifoy'] = 'pac1'
+    test2['quifoy'] = 'pac1'
     
     j=2
-    while test.duplicated(['quifoy', 'idfoy']).any():
-        test.loc[test.duplicated(['quifoy', 'idfoy']), 'quifoy'] = 'pac'+str(j)
-        print len(set(test['quifoy'].values))
+    while test2.duplicated(['quifoy', 'idfoy']).any():
+        test2.loc[test2.duplicated(['quifoy', 'idfoy']), 'quifoy'] = 'pac'+str(j)
+        print len(set(test2['quifoy'].values))
         j += 1
     
     indivi['quifoy'] = indivi['quifoy'].astype('str')
-    indivi = indivi.merge(test, on=['quifoy', 'idfoy'])
+    indivi = indivi.merge(test2, on=['quifoy', 'idfoy'], how='outer')
     indivi.drop_duplicates(['quifoy', 'idfoy'], take_last=True, inplace=True)
     del test2, fip 
     print indivi
+    
 #####################################################################################
 ## On ajoute les idfam et quifam
 #load(famc)
@@ -863,7 +865,7 @@ def test():
 #rm(tot3,tot2,foyer)
 #
     print 'création des totaux'
-    famille = load_temp(name='famille', year=year)
+    famille = load_temp(name='famc', year=year)
     
     tot2 = indivi.merge(famille, on='noindiv', how='outer')
     del famille
@@ -871,14 +873,13 @@ def test():
     
     tot2.loc[tot2['quifam'].isnull(), 'idfam'] = tot2.loc[tot2['quifam'].isnull(), 'noindiv']
     tot2.loc[tot2['quifam'].isnull(), 'quifam'] = 0
-    save_temp(tot2, file='tot2', year=year)
+    save_temp(tot2, name='tot2', year=year)
     del indivi
     
     #On combine les variables de revenu
-    foyer = load_temp(name='foyer', year=year)
+    foyer = load_temp(name='foy_ind', year=year)
     tot3 = tot2.merge(foyer, how='outer')
     print len(tot3.index)
-    save_temp(tot3, name='tot3', year=year)
     
 ## On ajoute les variables individualisables
 #loadTmp("foyer_individualise.Rdata") # foy_ind
@@ -897,18 +898,24 @@ def test():
 #table(final[final$quifoy=="vous", "noindiv"] %in% sif$noindiv)
 #
     print 'On ajoute les variables individualisables'
-    
-    foy_ind = load_temp(name = 'foy_ind', year=year)
-    sif = load_temp(name = 'sif', year=year)
-    allvars = load_temp(name = 'allvars', year=year)
+    print show_temp()
+    allvars = load_temp(name = 'ind_vars_to_remove', year=year)
     
     vars2 = set(tot3.columns).difference(set(allvars))
-    tot3 = tot3[vars2]
-    print tot3.columns
-    
+    tot3 = tot3[list(vars2)]
+    save_temp(tot3, name='tot3', year=year)
+    print 'tot3 sauvegardé'
+    del tot2, allvars, tot3, vars2
+    gc.collect()
+
+def creer_final():
+    print 'création de final'
+    foy_ind = load_temp(name = 'foy_ind', year=year)
+    tot3 = load_temp(name = 'tot3', year=year)
     final = tot3.merge(foy_ind, on=['idfoy', 'quifoy'], how='outer')
     print final
     del tot3, foy_ind
+    gc.collect()
     
 #final <- merge(final, sif, by = c('noindiv'), all.x = TRUE)
 #print_id(final)
@@ -919,10 +926,14 @@ def test():
 #rm(sif,final)
 #gc()
 
+    sif = load_temp(name = 'sif', year=year)
     final = final.merge(sif, on='noindiv', how='outer')
     print final.describe()
+    return
     save_temp(final, name='final', year=year)
-    print 'final sauvegarde'
+    print 'final sauvegardé'
     del sif, final
+    
 if __name__ == '__main__':
     test()
+    creer_final()
