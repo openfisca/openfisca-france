@@ -47,7 +47,7 @@ def _quifoy(quifoy):
 def _wprm(wprm):
     return wprm
 
-class ModelSF(ModelDescription):
+class OutputDescription(ModelDescription):
 
     ############################################################
     # Reproduction des identifiants 

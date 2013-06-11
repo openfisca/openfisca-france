@@ -7,9 +7,7 @@
 # (see openfisca/__init__.py for details)
 # # # OpenFisca
 
-from src import SRC_PATH
 from src.countries.france.data.erf.build_survey.utilitaries import control
-import os
 
 def run_all():
     

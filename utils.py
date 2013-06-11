@@ -453,8 +453,8 @@ class Xaxis(object):
     def set_label(self, country):
         from src.lib.utils import of_import
         from src.lib.datatable import Description
-        InputTable = of_import('model.data', 'InputTable', country)
-        description = Description(InputTable().columns)
+        InputDescription = of_import('model.data', 'InputDescription', country)
+        description = Description(InputDescription().columns)
         label2var, var2label, var2enum = description.builds_dicts()
         self.label = var2label[self.col_name]
         

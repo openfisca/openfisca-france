@@ -17,7 +17,7 @@ QUIMEN = Enum(['pref', 'cref', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7',
 CAT    = Enum(['noncadre', 'cadre', 'etat_t', 'colloc_t', 'contract']) 
 
 
-class InputTable(ModelDescription):
+class InputDescription(ModelDescription):
     '''
     Socio-economic data
     Données d'entrée de la simulation à fournir à partir d'une enquête ou 

@@ -150,6 +150,7 @@ def invalide():
     print invalides['inv'].describe()
     
     final = final.merge(invalides.loc[:, ['noindiv', 'inv', 'alt']], on='noindiv', how='outer')
+    control(final)
     print final.xs(columns=['inv', 'alt']).describe()
     
 # # rm(invalides)
