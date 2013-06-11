@@ -31,7 +31,7 @@ from src.countries.france.data.erf.build_survey import save_temp, load_temp
 year = 2006
 data = DataCollection(year=year)
 
-def run_1():
+def create_indivim():
         
 
     #erfmen <- LoadIn(erfMenFil)
@@ -203,7 +203,7 @@ def run_1():
     gc.collect()
 
 
-def run_2():
+def create_enfnn():
     ### Enfant à naître (NN pour nouveaux nés)
 
     #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien','acteu','stc','contra','titc','mrec',
@@ -274,5 +274,5 @@ def run_2():
     gc.collect()
     
 if __name__ == '__main__':
-    run_1()
-    run_2()
+    create_indivim()
+    create_enfnn()

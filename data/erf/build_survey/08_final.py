@@ -344,3 +344,6 @@ def final():
 # table(is.na(final2$activite),useNA="ifany")
 # 
 # saveTmp(final2, file= "final2.Rdata")
+
+if __name__ == '__main__':
+    final()
