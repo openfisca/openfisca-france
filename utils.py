@@ -432,9 +432,7 @@ class Scenario(object):
                 datatable.set_value(var, 0.5*vls, entity, opt = 0)
                 datatable.set_value(var, 0.5*vls, entity, opt = 1)
             else:
-#                TODO
-#                datatable.set_value(var, vls, {0:{'idxIndi': index[0]['idxIndi'], 'idxUnit': index[0]['idxIndi']}})
-                pass
+                datatable.set_value(var, vls, entity, opt = 0)
             datatable._isPopulated = True
         
 country = "france"
@@ -495,10 +493,13 @@ def preproc_inputs(datatable):
     
     """
     country = 'france'
-    WEIGHT = of_import("","WEIGHT", country)
-    datatable.propagate_to_members(WEIGHT, 'ind')
-#    datatable.propagate_to_members('rfr_n_2', 'ind')
-#    datatable.propagate_to_members('nbptr_n_2', 'ind')
+    try:
+        WEIGHT = of_import("","WEIGHT", country)
+        datatable.propagate_to_members(WEIGHT, 'ind')
+    #    datatable.propagate_to_members('rfr_n_2', 'ind')
+    #    datatable.propagate_to_members('nbptr_n_2', 'ind')
+    except:
+        pass
 
 
 def check_consistency(datatable):

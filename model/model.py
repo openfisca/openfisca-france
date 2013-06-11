@@ -271,7 +271,7 @@ class ModelSF(ModelDescription):
     ppe_elig    = BoolPresta(ir._ppe_elig, 'foy')
     ppe_elig_i  = BoolPresta(ir._ppe_elig_i)
     ppe_rev     = Prestation(ir._ppe_rev)
-    ppe_brute   = Prestation(ir._ppe_brute, 'foy')
+    ppe_brute   = Prestation(ir._ppe_brute, 'foy', label="Prime pour l'emploi brute")
     ppe  = Prestation(ir._ppe,'foy', label="Prime pour l'emploi")
     
     # Autres crédits d'impôts
