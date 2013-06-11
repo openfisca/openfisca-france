@@ -6,6 +6,7 @@
 # 
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from src.countries.france.data.erf.build_survey.utilitaries import control
 from pandas import DataFrame
 from numpy import array, where, NaN
 from pandas import concat
@@ -16,43 +17,8 @@ from numpy import logical_not as not_
 from numpy import logical_and as and_
 # from numpy import logical_or as or_
 
-def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5):
-    """
-    Function to help debugging the file.
-    
-    Parameters
-    ---------
-    verbose: Default False
-    Indicates whether to print the dataframe itself or just perform reguler checks.
-    
-    verbose_columns: List or String
-    The columns of the dataframe to print
-    
-    verbose_length: Int
-    the number of rows to print
-    """
-    
-    print 'longueur de la data frame =', len(dataframe.index)
-    for col in dataframe.columns:
-        assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    print 'présence de doublons dans la dataframe ?', (dataframe.duplicated().any())
-    print 'vérifications terminées'
-    
-    if verbose is True:
-        print '------ informations détaillées -------'
-        if dataframe.duplicated().any()==True:
-            print 'lignes dupliquées_____'
-            print dataframe[dataframe.duplicated()].head()
-        if verbose_columns is None:
-            print 'dataframe________'
-            print dataframe.head(verbose_length)
-        else:
-            print 'colonnes contrôlées', verbose_columns
-            for col in verbose_columns:
-                print col
-                print dataframe[col].head(verbose_length)
 
-def run():
+def create_fip():
     
 # message('03_fip')
 
@@ -440,4 +406,4 @@ def run():
     print 'rm(fip2,individec2)-----------------------'
 
 if __name__ == '__main__':
-    run()
+    create_fip()

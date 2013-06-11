@@ -21,7 +21,7 @@ data = DataCollection(year=year)
 ## on renomme les variables
 #load(indm)
 
-def test():
+def create_totals():
     indivim = load_temp(name="indivim", year=year)
     print indivim
 
@@ -879,6 +879,8 @@ def test():
     #On combine les variables de revenu
     foyer = load_temp(name='foy_ind', year=year)
     tot3 = tot2.merge(foyer, how='outer')
+    tot3 = tot3.drop_duplicates(cols='noindiv', take_last='true')
+    print 'duplicated values of noindiv in tot3 ? =>', tot3.duplicated(cols='noindiv').any()
     print len(tot3.index)
     
 ## On ajoute les variables individualisables
@@ -908,7 +910,7 @@ def test():
     del tot2, allvars, tot3, vars2
     gc.collect()
 
-def creer_final():
+def create_final():
     print 'création de final'
     foy_ind = load_temp(name = 'foy_ind', year=year)
     tot3 = load_temp(name = 'tot3', year=year)
@@ -929,11 +931,10 @@ def creer_final():
     sif = load_temp(name = 'sif', year=year)
     final = final.merge(sif, on='noindiv', how='outer')
     print final.describe()
-    return
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final
     
 if __name__ == '__main__':
-    test()
-    creer_final()
+    create_totals()
+    create_final()
