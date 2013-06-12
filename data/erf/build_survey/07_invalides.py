@@ -5,16 +5,19 @@
 # Copyright ©2013 Clément Schaff, Mahdi Ben Jelloul
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
+# # # OpenFisca
 
 from numpy import where, array, NaN
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from src.countries.france.data.erf.build_survey.utilitaries import control
 from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
 from pandas import concat, DataFrame
 
-# # # OpenFisca
+
+
 # # 
 # # ##***********************************************************************/
 # # message('07_invalides: construction de la variable invalide')
@@ -37,6 +40,7 @@ def invalide():
 # # table(invalides[,c("caseF","quifoy")],useNA="ifany")
 # # invalides[(invalides$caseP==1) & (invalides$quifoy=="vous"),"inv"] <- TRUE
 # # 
+    print 'Etape 1 création de la df invalides'
     final = load_temp(name="final", year=year)
     invalides = final.xs(columns=["noindiv","idmen","caseP","caseF","idfoy","quifoy"])
     invalides['caseP'] = where(invalides['caseP'].isnull(), 0, invalides['caseP'])
@@ -46,7 +50,8 @@ def invalide():
     #Les "vous" invalides
     invalides.xs(columns=['caseF', 'quifoy']).describe()
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']=='vous')] = True
-    
+    control(invalides, verbose=True)
+    return
 # # # Les conjoints invalides
 # # 
 # # #men_inv_conj <- invalides[c("idmen","caseF","quifoy")] 
