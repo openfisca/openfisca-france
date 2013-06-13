@@ -10,7 +10,7 @@
 from pandas import DataFrame, concat
 
 
-def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5):
+def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, debug=False):
     """
     Function to help debugging the data crunchin' files.
     
@@ -27,26 +27,35 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5):
     """
     
     print 'longueur de la data frame =', len(dataframe.index)
+    if debug and (dataframe.duplicated().any()) : print 'présence de doublons dans la dataframe ?'
+    if not(debug): assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
+    
     for col in dataframe.columns:
-        assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    print 'présence de doublons dans la dataframe ?', (dataframe.duplicated().any())
+        if debug:
+            if (dataframe[col].isnull().all()): print 'la colonne %s est vide' %(col)
+        else:
+            assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
+          
     print 'vérifications terminées'
     
     if verbose is True:
         print '------ informations détaillées -------'
-        if dataframe.duplicated().any()==True:
-            print 'lignes dupliquées_____'
-            print dataframe[dataframe.duplicated()].head()
+            
         if verbose_columns is None:
-            print 'dataframe________'
-            print dataframe.head(verbose_length)
-        else:
-            print 'colonnes contrôlées', verbose_columns
-            for col in verbose_columns:
-                print col
-                print dataframe[col].head(verbose_length)
+            print dataframe.head(verbose_length) 
+            if dataframe.duplicated().any():
+                print dataframe[dataframe.duplicated()].head(verbose_length)
+        else : 
+            if dataframe.duplicated(verbose_columns).any():
+                print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
+                print dataframe[dataframe.duplicated(verbose_columns)].head(verbose_length).to_string()
+            print 'colonnes contrôlées ------>', verbose_columns
 
 
+def check_structure(df):
+    print "autant de vous que d'idfoy", (len(df.noindiv)==len(df.index))
+    print "autant de quimen = 0 que d'idmen", len(df.idmen)==df["quimen"].value_counts()
+    print "autant de quifam = 0 que d'idfam", len(df.idfam)==df["quifam"].value_counts()
 
 def print_id(df):
     print "Individus : ", len(df.noindiv), "/", len(df)
