@@ -22,11 +22,11 @@ from pandas import concat, DataFrame
 # # ##***********************************************************************/
 # # message('07_invalides: construction de la variable invalide')
 # # ##***********************************************************************/
-def invalide():
+def invalide(year = 2006):
     
     print 'Entering 07_invalides: construction de la variable invalide'
     
-    year = 2006
+
 # # # Invalides
 # # #inv = caseP (vous), caseF (conj) ou case G, caseI, ou caseR (pac)
 # # 
@@ -42,13 +42,13 @@ def invalide():
 # # 
     print 'Etape 1 création de la df invalides'
     final = load_temp(name="final", year=year)
-    invalides = final.xs(columns=["noindiv","idmen","caseP","caseF","idfoy","quifoy"])
+    invalides = final.xs(["noindiv","idmen","caseP","caseF","idfoy","quifoy"], axis=1)
     invalides['caseP'] = where(invalides['caseP'].isnull(), 0, invalides['caseP'])
     invalides['caseF'] = where(invalides['caseF'].isnull(), 0, invalides['caseF'])
     invalides['inv'] = False
     
     #Les "vous" invalides
-    invalides.xs(columns=['caseF', 'quifoy']).describe()
+    invalides.xs(['caseF', 'quifoy'],axis=1).describe()
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']=='vous')] = True
     control(invalides, verbose=True)
     return

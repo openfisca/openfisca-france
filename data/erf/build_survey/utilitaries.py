@@ -45,3 +45,29 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5):
             for col in verbose_columns:
                 print col
                 print dataframe[col].head(verbose_length)
+
+
+
+def print_id(df):
+    print "Individus : ", len(df.noindiv), "/", len(df)
+  
+    try:
+        # Ici, il doit y avoir autant de vous que d'idfoy
+        print "Foyers", len(df.idfoy)
+        print df["quifoy"].value_counts()
+    except:
+        print "No idfoy or quifoy"
+         
+    try:
+        # Ici, il doit y avoir autant de quimen = 0 que d'idmen
+        print "Ménages", len(df.idmen)
+        print df["quimen"].value_counts()
+    except:
+        print "No idmen or quimen"
+  
+    try:
+        # Ici, il doit y avoir autant de quifam = 0 que d'idfam
+        print "Familles", len(df.idfam)
+        print df["quifam"].value_counts()
+    except:
+        print "No idfam or quifam"

@@ -17,12 +17,12 @@ from numpy import logical_not as not_
 from numpy import logical_and as and_
 # from numpy import logical_or as or_
 
-
-def create_fip():
-    
 # message('03_fip')
 
-    year = 2006
+def create_fip(year = 2006):
+    
+
+    
     df = DataCollection(year=year)
     
     print 'Démarrer 03_fip'

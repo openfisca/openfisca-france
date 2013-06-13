@@ -12,19 +12,19 @@ from numpy import logical_and as and_
 from pandas import read_csv
 
 
-def final():
+def final(year=2006):
 
 ##***********************************************************************/
     print('08_final: derniers réglages')
 ##***********************************************************************/
-    year = 2006
 # 
 # loadTmp("final.Rdata")
 # # On définit comme célibataires les individus dont on n'a pas retrouvé la déclaration
 # final$statmarit[is.na(final$statmarit)] <- 2
 # table(final$statmarit, useNA='ifany')
 # 
-
+    import gc
+    gc.collect()
     final = load_temp("final", year=year)
     final.statmarit = where(final.statmarit.isnull(), 2, final.statmarit)
 # 
@@ -88,18 +88,21 @@ def final():
 # saveTmp(final, file= "final.Rdata")
 #
 
-    final_fip = final.loc[final.quelfic=="FIP"]
+    final_fip = final.loc[final.quelfic=="FIP", ["choi", "sali", "alr", "rsti","age"]]
+    print final_fip.describe()
+    
+    print set(["choi", "sali", "alr", "rsti"]).difference(set(final_fip.columns))
     for var in  ["choi", "sali", "alr", "rsti"]:
         final_fip[var].fillna(0, inplace=True)
         
-    final_fip.activite = 2 # TODO comment choisr la valeur par d?faut ?
+    final_fip["activite"] = 2 # TODO comment choisr la valeur par défaut ?
     final_fip.activite = where(final_fip.choi > 0, 1, final_fip.activite)
     final_fip.activite = where(final_fip.sali > 0, 0, final_fip.activite)
     final_fip.activite = where(final_fip.age > 21, 2, final_fip.activite)  # ne peuvent être rattach?s que les ?tudiants  
 
     final.update(final_fip)
     
-    save_temp(final, name="final")
+    save_temp(final, name="final", year=year)
  
 # loadTmp("final.Rdata")
 # load(menm)
@@ -250,11 +253,12 @@ def final():
 # final$zthabm <- NULL
 # 
 # final2 <- merge(final, loyersMenages, by="idmen", all.x=TRUE)
-
+    import gc
     del final["wprm"]
+    gc.collect()
     final.rename(columns=dict(zthabm="tax_hab"), inplace=True) # rename zthabm to tax_hab
     final2 = final.merge(loyersMenages, on="idmen", how="left") # TODO: Check
-    
+    gc.collect()
 # 
 # # TODO: merging with patrimoine
 # rm(menagem,final)
@@ -303,9 +307,9 @@ def final():
     apl_imp = read_csv("../zone_apl/zone_apl_imputation_data.csv")
 
     if year == 2008:
-        zone_apl = final2.xs(columns=["tu99", "pol99", "reg"])
+        zone_apl = final2.xs(["tu99", "pol99", "reg"], axis=1)
     else:
-        zone_apl = final2.xs(columns=["tu99", "pol99", "tau99", "reg"])
+        zone_apl = final2.xs(["tu99", "pol99", "tau99", "reg"], axis=1)
 
     for i in range(len(apl_imp["TU99"])):
         tu = apl_imp.iloc[i,"TU99"]
@@ -346,4 +350,5 @@ def final():
 # saveTmp(final2, file= "final2.Rdata")
 
 if __name__ == '__main__':
+
     final()

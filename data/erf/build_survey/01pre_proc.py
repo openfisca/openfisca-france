@@ -28,12 +28,9 @@ from numpy import logical_or as or_
 from src.countries.france.data.erf.build_survey import save_temp, load_temp
 
     
-year = 2006
-data = DataCollection(year=year)
-
-def create_indivim():
-        
-
+def create_indivim(year=2006):
+    
+    data = DataCollection(year=year)
     #erfmen <- LoadIn(erfMenFil)
     erfmen = data.get_values(table="erf_menage")
     
@@ -203,7 +200,7 @@ def create_indivim():
     gc.collect()
 
 
-def create_enfnn():
+def create_enfnn(year=2006):
     ### Enfant à naître (NN pour nouveaux nés)
 
     #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien','acteu','stc','contra','titc','mrec',

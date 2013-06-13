@@ -11,7 +11,7 @@ from src import SRC_PATH
 from src.countries.france.data.erf.build_survey.utilitaries import control
 import os
 
-def run_all():
+def run_all(year=2006):
     
     pre_proc = __import__('01pre_proc')
     fip = __import__('03_fip')
@@ -21,16 +21,16 @@ def run_all():
     invalides = __import__('07_invalides')
     final = __import__('08_final')
     
-    pre_proc.create_indivim()
-    pre_proc.create_enfnn()
-    fip.create_fip()
-    famille.famille()
-    foyer.sif()
-    foyer.foyer_all()
-    rebuild.create_totals()
-    rebuild.create_final()
-    invalides.invalide()
-    final.final()
+    pre_proc.create_indivim(year=year)
+    pre_proc.create_enfnn(year=year)
+    fip.create_fip(year=year)
+    famille.famille(year=year)
+    foyer.sif(year=year)
+    foyer.foyer_all(year=year)
+    rebuild.create_totals(year=year)
+    rebuild.create_final(year=year)
+    invalides.invalide(year=year)
+    final.final(year=year)
 
 if __name__ == '__main__':
     run_all()

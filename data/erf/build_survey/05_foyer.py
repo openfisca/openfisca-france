@@ -22,11 +22,14 @@ import re
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from pandas import DataFrame, concat
+import gc
+from pandas import Series
 
-year = 2006
-data = DataCollection(year=year)
+from src.countries.france.data.erf.build_survey.utilitaries import print_id
 
-def sif():
+def sif(year=2006):
+    year = 2006
+    data = DataCollection(year=year)
     print u"05_foyer: extraction des données foyer"
     ## TODO Comment choisir le rfr n -2 pour éxonération de TH ?
     ## mnrvka  Revenu TH n-2
@@ -259,23 +262,24 @@ def sif():
     #print(length(table(sif$noindiv)))
     
     sif_drop_duplicated = sif.drop_duplicates("noindiv")
-    print "Number of distinct individuals after removing duplicates:", len(sif_drop_duplicated["noindiv"])
+    #print "Number of distinct individuals after removing duplicates:", len(sif_drop_duplicated["noindiv"])
+    assert len(sif["noindiv"].value_counts()) == len(sif_drop_duplicated["noindiv"])
     
     print 'Saving sif'
     save_temp(sif, name='sif', year=year)
     del sif
-    
+    gc.collect()
     #saveTmp(sif, file = 'sif.Rdata')
     #rm(sif)
     #gc()
     ##################################################################
 
 
-def foyer_all():
+def foyer_all(year=2006):
 
     ## On ajoute les cases de la déclaration
     #foyer_all <- LoadIn(erfFoyFil)
-    
+    data = DataCollection(year=year)
     foyer_all = data.get_values(table="foyer" )
     
     ## on ne garde que les cases de la déclaration ('fxzz')
@@ -294,8 +298,8 @@ def foyer_all():
     #
 
     foyer = foyer_all[vars + ["noindiv"]]
+
     del foyer_all
-    import gc
     gc.collect()
     
     #
@@ -307,6 +311,9 @@ def foyer_all():
     #print foyer.describe()["f1aj"].to_string()
     #print foyer.describe()["noindiv"].to_string()
     #
+
+    print_id(foyer)
+
     ## noindiv have been summed over original noindiv which are now in Group.1
     #foyer$noindiv <- NULL
     #foyer <- rename(foyer, c(Group.1 = 'noindiv'))
@@ -442,7 +449,6 @@ def foyer_all():
     err = 0
     err_vars = {}
     
-    from pandas import DataFrame
     foy_ind = DataFrame()
     
     for individual_var, foyer_vars in var_dict.iteritems():
@@ -458,29 +464,35 @@ def foyer_all():
                 print individual_var + " is not present"
                 continue
             else:
-                # Shrink the lsit
+                # Shrink the list
                 foyer_vars_cleaned = [var for var,present in zip(foyer_vars, presence) if present is True]                    
                 selection = foyer[foyer_vars_cleaned + ["noindiv"]]
 
-        
         # Reshape the dataframe        
         selection.rename(columns=dict(zip(foyer_vars, qui)), inplace=True)
         selection.set_index("noindiv", inplace=True)
         selection.columns.name = "quifoy"
-        
+
         selection = selection.stack()
-#        print selection.head(10)
         selection.name = individual_var
-        selection = selection.reset_index()
-#        print selection.head(10)
-#        print selection.describe()
+        selection = selection.reset_index() # A Series cannot see its index resetted to produce a DataFrame
+        " Clean the selection"
+        selection = selection.set_index(["quifoy", "noindiv"])
+        selection = selection[selection[individual_var] !=0]
+#        print len(selection)
+        
         if len(foy_ind) == 0:
             foy_ind = selection
         else:
-            foy_ind = foy_ind.merge(selection, on=["quifoy", "noindiv"], how = "outer")
 
+            foy_ind = concat([foy_ind, selection], axis=1, join='outer')
+    
+    foy_ind.reset_index(inplace=True)
+    print_id(foy_ind)
+    
+    print foy_ind.describe().to_string()
 
-
+    
 #not_first <- FALSE
 #allvars = c()
 #for (v in varlist){ 
@@ -502,12 +514,15 @@ def foyer_all():
 #    }
 #  }
 #}    
-    from pandas import Series
+
     ind_vars_to_remove = Series(list(eligible_vars))
     save_temp(ind_vars_to_remove, name='ind_vars_to_remove', year=year)
-    foy_ind = foy_ind.rename(columns={"noindiv" : "idfoy"})
+    foy_ind.rename(columns={"noindiv" : "idfoy"}, inplace=True)
+    
     save_temp(foy_ind, name="foy_ind", year = year)
     show_temp()
+
+    return
     
 #names(foy_ind)
 #rm(temp,foyer)
@@ -519,10 +534,6 @@ def foyer_all():
 
 
 if __name__ == '__main__':
-    
-    sif()
-    foyer_all()
-    foy_ind = load_temp(name="foy_ind", year = year)
-    print foy_ind.columns
-    print foy_ind.describe()
-    print foy_ind.iloc[:10,:10]
+    year = 2006
+    sif(year=year)
+    foyer_all(year=year)
