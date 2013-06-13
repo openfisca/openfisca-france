@@ -63,9 +63,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         if parent is not None:
             self.parent = parent            
             
-        if simulation is not None:
-            self.set_simulation(simulation)
-
         self.setLayout(self.verticalLayout)
         # Initialize xaxes
         country = 'france'
@@ -79,7 +76,8 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             axes_names.append(axe.name)
                         
         self.xaxis_box.setCurrentIndex(axes_names.index(xaxis))            
-        
+
+        self.initialize_plugin()        
         # Initialize maxrev # make it country dependant  
         self.maxrev_box.setMinimum(0)
         self.maxrev_box.setMaximum(100000000)
@@ -87,8 +85,14 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.maxrev_box.setSuffix(CURRENCY)
         maxrev = self.get_option('maxrev')
         self.maxrev_box.setValue(maxrev)
+        self.maxrev = maxrev
+        print "in init : ", self.maxrev
 
-        self.initialize_plugin()
+
+        if simulation is not None:
+            self.set_simulation(simulation)
+
+
         
         self.connect(self.open_btn, SIGNAL('clicked()'), self.load)
         self.connect(self.save_btn, SIGNAL('clicked()'), self.save)
@@ -105,6 +109,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.rmv_btn.setEnabled(False)
         self.emit(SIGNAL("ok()"))
 
+
         
     #------ Public API ---------------------------------------------    
 
@@ -113,9 +118,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         Set scenario_simualtion
         """
         xaxis = self.get_option('xaxis')
-        maxrev = self.get_option('maxrev')
-        print "in compo"
-        print maxrev
+        maxrev = self.maxrev
         nmen = self.get_option('nmen')
         self.nmen = nmen
         country = CONF.get('parameters', 'country')
@@ -146,10 +149,14 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         Sets the varying variable of the scenario
         '''
         widget = self.maxrev_box
+        
         if isinstance(widget, QSpinBox) or isinstance(widget, QDoubleSpinBox):
             maxrev = widget.value()
+            print "in set_maxrev :",  maxrev
             self.scenario.maxrev = maxrev
             self.set_option('maxrev', maxrev)
+            self.maxrev = maxrev
+            
         self.emit(SIGNAL('compoChanged()'))
 
     def changed(self):
@@ -477,7 +484,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         if (not self.action_set_reform.isChecked()) and reform:
             self.action_set_reform.toggle()
             
-        self.simulation.set_config(reforme = reform)
+        self.simulation.set_config(reforme = reform, maxrev=self.maxrev)
         self.action_compute.setEnabled(True)
     
     def set_single(self, is_single = True):
@@ -511,6 +518,8 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         if 'maxrev' in options:
             maxrev = self.get_option('maxrev')
             self.maxrev_box.setValue(maxrev)
+            self.maxrev = maxrev
+            print "in apply setting :" , self.maxrev
         if 'xaxis' in options:
             country = CONF.get('parameters','country')
             build_axes = of_import('utils','build_axes', country)        

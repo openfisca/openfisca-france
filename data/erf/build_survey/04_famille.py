@@ -32,7 +32,7 @@ def subset_base(base,famille):
     return tmp
 
 
-def famille():
+def famille(year=2006):
 ### On suit la méthode décrite dans le Guide ERF_2002_rétropolée page 135
 #
 #if (year=="2006") {
@@ -47,10 +47,6 @@ def famille():
 #    message("smic non défini")
 #  }
 #
-    
-    year = 2006
-    
-    data = DataCollection(year=year)
     
     if year == 2006: 
         smic = 1254
