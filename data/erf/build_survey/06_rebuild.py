@@ -972,8 +972,9 @@ def create_final(year=2006):
 #gc()
 
     sif = load_temp(name = 'sif', year=year)
-    final = final.merge(sif, on='noindiv', how='outer')
-    print final.describe()
+    final = final.merge(sif, on='noindiv', how='inner')
+    assert set(sif.columns) < set(final.columns)
+    print len(final[final['idfoy'].isnull()])
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final

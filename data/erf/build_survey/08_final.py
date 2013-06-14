@@ -7,10 +7,11 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import where, NaN, random
+from numpy import where, NaN, random, logical_or as or_ 
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from src.countries.france.data.erf.build_survey.utilitaries import print_id, control
 from numpy import logical_and as and_
-from pandas import read_csv
+from pandas import read_csv, concat
 
 
 def final(year=2006):
@@ -351,8 +352,17 @@ def final(year=2006):
     final2["zone_apl"][indices] = ( 1 + (z>proba_zone_1) +
                                        (z>(proba_zone_1 + proba_zone_2))) 
     del indices, probs
-
-
+    
+#     control(final2, verbose=True, debug=True, verbose_length=15)
+    
+    print final2[final2['sali'].isnull()].head(15).to_string()
+    print len(final2[final2['sali'].isnull()])
+#     columns_w_nan = []
+#     for col in final2.columns:
+#         if final2[final2['idfoy'].notnull()][col].isnull().any() and not final2[col].isnull().all():
+#             columns_w_nan.append(col)
+#     print columns_w_nan
+    return
 # 
 # # var <- names(foyer)
 # #a1 <- c('f7rb', 'f7ra', 'f7gx', 'f2aa', 'f7gt', 'f2an', 'f2am', 'f7gw', 'f7gs', 'f8td', 'f7nz', 'f1br', 'f7jy', 'f7cu', 'f7xi', 'f7xo', 'f7xn', 'f7xw', 'f7xy', 'f6hj', 'f7qt', 'f7ql', 'f7qm', 'f7qd', 'f7qb', 'f7qc', 'f1ar', 'f7my', 'f3vv', 'f3vu', 'f3vt', 'f7gu', 'f3vd', 'f2al', 'f2bh', 'f7fm', 'f8uy', 'f7td', 'f7gv', 'f7is', 'f7iy', 'f7il', 'f7im', 'f7ij', 'f7ik', 'f1er', 'f7wl', 'f7wk', 'f7we', 'f6eh', 'f7la', 'f7uh', 'f7ly', 'f8wy', 'f8wx', 'f8wv', 'f7sb', 'f7sc', 'f7sd', 'f7se', 'f7sf', 'f7sh', 'f7si',  'f1dr', 'f7hs', 'f7hr', 'f7hy', 'f7hk', 'f7hj', 'f7hm', 'f7hl', 'f7ho', 'f7hn', 'f4gc', 'f4gb', 'f4ga', 'f4gg', 'f4gf', 'f4ge', 'f7vz', 'f7vy', 'f7vx', 'f7vw', 'f7xe', 'f6aa', 'f1cr', 'f7ka', 'f7ky', 'f7db', 'f7dq', 'f2da')

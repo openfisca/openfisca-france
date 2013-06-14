@@ -25,7 +25,7 @@ from pandas import concat, DataFrame
 def invalide(year = 2006):
     
     print 'Entering 07_invalides: construction de la variable invalide'
-    
+    return
 
 # # # Invalides
 # # #inv = caseP (vous), caseF (conj) ou case G, caseI, ou caseR (pac)
@@ -51,7 +51,7 @@ def invalide(year = 2006):
     invalides.xs(['caseF', 'quifoy'],axis=1).describe()
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
     control(invalides, verbose=True, debug=True)
-    return
+
 # # # Les conjoints invalides
 # # 
 # # #men_inv_conj <- invalides[c("idmen","caseF","quifoy")] 
@@ -86,7 +86,7 @@ def invalide(year = 2006):
     print invalides_conj['inv'].describe()
 # # invalides[invalides$quifoy=="conj",c("idfoy","noindiv","inv")] <- invalides_conj
     invalides = invalides.merge(invalides_conj, on=["idfoy","noindiv","inv"] ,how='outer')
-    print invalides.descibre()
+    print invalides.head()
     invalides = invalides.drop_duplicates(cols='noindiv', take_last=True)
     print invalides.loc[:, ['idfoy', 'quifoy']].describe()
     del invalides_conj,foy_inv_conj
@@ -116,8 +116,10 @@ def invalide(year = 2006):
 # # 
     print 'enfants invalides et garde alternée'
     
-    pacIndiv = load_temp(name='pacIndiv', yaer=year)
+    pacIndiv = load_temp(name='pacIndiv', year=year)
     foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
+    print foy_inv_pac.columns
+    return
     foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'typ', 'naia']], 
                                     on='noindiv', how='outer')
     print foy_inv_pac.columns

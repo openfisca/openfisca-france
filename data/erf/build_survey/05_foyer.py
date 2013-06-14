@@ -528,11 +528,11 @@ def foyer_all(year=2006):
     foy_ind['quifoy'][foy_ind['quifoy']=='pac3'] = 4
     
     assert foy_ind['quifoy'].isin(range(5)).all()
-
+    
+    print 'saving foy_ind'
     print_id(foy_ind)    
     save_temp(foy_ind, name="foy_ind", year = year)
     show_temp()
-
     return
     
 #names(foy_ind)
