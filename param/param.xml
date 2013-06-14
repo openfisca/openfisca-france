@@ -4268,7 +4268,7 @@
       <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
 	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
 	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
-      </CODE
+      </CODE>
       <!-- là, c'est l'api mais depuis juillet 2009 elle est remplacée par la majoration du rsa qui 
          ne se calcule pas pareil du coups, il faut changer les dates pour l'api: les majo 1.5 et 0.5 
          sont valables jusqu'en juin 2009 ça ferait donc:
@@ -4285,7 +4285,7 @@
       <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
 	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
 	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
-      </CODE
+      </CODE>
 	  pour la majo "isolé" du rsa c'est:
 	</NODE>
     <NODE description="Majoration du RSA socle pour parent isolé" code="api" >
@@ -4305,7 +4305,7 @@
       <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
 	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
 	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
-      </CODE
+      </CODE>
     -->  
     </NODE>
     <NODE description="Allocation de solidarité spécifique" code="ass">
