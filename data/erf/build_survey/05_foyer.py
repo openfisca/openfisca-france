@@ -19,12 +19,17 @@
 
 import numpy
 import re
-from src.countries.france.data.erf.datatable import ErfsDataTable
+from src.countries.france.data.erf.datatable import DataCollection
+from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from pandas import DataFrame, concat
+import gc
+from pandas import Series
 
-year = 2006
-df = ErfsDataTable(year=year)
+from src.countries.france.data.erf.build_survey.utilitaries import print_id
 
-def sif():
+def sif(year=2006):
+    year = 2006
+    data = DataCollection(year=year)
     print u"05_foyer: extraction des données foyer"
     ## TODO Comment choisir le rfr n -2 pour éxonération de TH ?
     ## mnrvka  Revenu TH n-2
@@ -34,7 +39,7 @@ def sif():
     #vars <- c("noindiv", 'sif', "nbptr", "mnrvka")
     vars = ["noindiv", 'sif', "nbptr", "mnrvka", "rbg", "tsrvbg"]
     #sif <- LoadIn(erfFoyFil, vars)
-    sif = df.get_values(variables=vars, table="foyer" )
+    sif = data.get_values(variables=vars, table="foyer" )
     #sif$statmarit <- 0
     sif['statmarit'] = 0
     
@@ -81,13 +86,13 @@ def sif():
     #
     #sif <- within(sif,{
     ##  rbg = rbg*((tsrvbg =='+')-(tsrvbg =='-'))
-    #print sif["rbg"].describe()
-    #sif["rbg"] = sif["rbg"]*( (sif["tsrvbg"] =='+')-(sif["tsrvbg"] =='-'))
-    #print sif["rbg"].describe()
+    print sif["rbg"].describe()
+    sif["rbg"] = sif["rbg"]*( (sif["tsrvbg"]=='+')-(sif["tsrvbg"] =='-'))
+    print sif["rbg"].describe()
     
     #  stamar <- substr(sif,5,5)
     
-    sif["stamar"] = sif["sif"].apply(lambda x: str(x)[4:5])
+    sif["stamar"] = sif["sif"].str[4:5]
     
     # Converting marital status
     
@@ -105,20 +110,19 @@ def sif():
     #  birthconj <- as.numeric(substr(sif,11,14))
     #
     
-    # TODO: should factorize this
-    sif["birthvous"] = sif["sif"].apply(lambda x: str(x)[5:9])
-    sif["birthconj"] = sif["sif"].apply(lambda x: str(x)[10:14])
+
+    sif["birthvous"] = sif["sif"].str[5:9]
+    sif["birthconj"] = sif["sif"].str[10:14]
     
     #  caseE <- as.numeric(substr(sif,16,16)=='E')
     #  caseF <- as.numeric(substr(sif,17,17)=='F')
     #  caseG <- as.numeric(substr(sif,18,18)=='G')
     #  caseK <- as.numeric(substr(sif,19,19)=='K')
     
-    sif["caseE"] = sif["sif"].apply(lambda x: str(x)[15:16]) == "E"
-    sif["caseF"] = sif["sif"].apply(lambda x: str(x)[16:17]) == "F"
-    sif["caseG"] = sif["sif"].apply(lambda x: str(x)[17:18]) == "G"
-    sif["caseK"] = sif["sif"].apply(lambda x: str(x)[18:19]) == "K"
-    ## TODO: dtype conversion
+    sif["caseE"] = sif["sif"].str[15:16] == "E"
+    sif["caseF"] = sif["sif"].str[16:17] == "F"
+    sif["caseG"] = sif["sif"].str[17:18] == "G"
+    sif["caseK"] = sif["sif"].str[18:19] == "K"
     
     #  d = 0
     d = 0
@@ -134,13 +138,13 @@ def sif():
     #  }
     
     if year in [2006,2007]:
-        sif["caseL"] = sif["sif"].apply(lambda x: str(x)[19:20]) == "L"
-        sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20:21]) == "P"
-        sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21:22]) == "S"
-        sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22:23]) == "W"
-        sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23:24]) == "N"
-        sif["caseH"] = sif["sif"].apply(lambda x: str(x)[24:28])
-        sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28:29]) == "T"
+        sif["caseL"] = sif["sif"].str[19:20] == "L"
+        sif["caseP"] = sif["sif"].str[20:21] == "P"
+        sif["caseS"] = sif["sif"].str[21:22] == "S"
+        sif["caseW"] = sif["sif"].str[22:23] == "W"
+        sif["caseN"] = sif["sif"].str[23:24] == "N"
+        sif["caseH"] = sif["sif"].str[24:28]
+        sif["caseT"] = sif["sif"].str[28:29] == "T"
     #  
     #  if (year == 2008){
     #    d = - 1 # fin de la case L
@@ -154,12 +158,12 @@ def sif():
     #  
     if year in [2008]:
         d = - 1 # fin de la case L
-        sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20+d:21+d]) == "P"
-        sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21+d:22+d]) == "S"
-        sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22+d:23+d]) == "W"
-        sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23+d:24+d]) == "N"
-        sif["caseH"] = sif["sif"].apply(lambda x: str(x)[24+d:28+d])
-        sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28+d:29+d]) == "T"
+        sif["caseP"] = sif["sif"].str[20+d:21+d] == "P"
+        sif["caseS"] = sif["sif"].str[21+d:22+d] == "S"
+        sif["caseW"] = sif["sif"].str[22+d:23+d] == "W"
+        sif["caseN"] = sif["sif"].str[23+d:24+d] == "N"
+        sif["caseH"] = sif["sif"].str[24+d:28+d]
+        sif["caseT"] = sif["sif"].str[28+d:29+d] == "T"
     
     #  if (year == 2009){
     #    # retour de la case L par rapport à 2008 (donc on retrouve 2006)    
@@ -175,15 +179,15 @@ def sif():
     #  }
     
     if year in [2009]:
-        sif["caseL"] = sif["sif"].apply(lambda x: str(x)[19:20]) == "L"
-        sif["caseP"] = sif["sif"].apply(lambda x: str(x)[20:21]) == "P"
-        sif["caseS"] = sif["sif"].apply(lambda x: str(x)[21:22]) == "S"
-        sif["caseW"] = sif["sif"].apply(lambda x: str(x)[22:23]) == "W"
-        sif["caseN"] = sif["sif"].apply(lambda x: str(x)[23:24]) == "N"
+        sif["caseL"] = sif["sif"].str[19:20] == "L"
+        sif["caseP"] = sif["sif"].str[20:21] == "P"
+        sif["caseS"] = sif["sif"].str[21:22] == "S"
+        sif["caseW"] = sif["sif"].str[22:23] == "W"
+        sif["caseN"] = sif["sif"].str[23:24] == "N"
         # caseH en moins par rapport à 2008 (mais case en L en plus)
         # donc décalage par rapport à 2006
         d = -4
-        sif["caseT"] = sif["sif"].apply(lambda x: str(x)[28+d:29+d]) == "T"
+        sif["caseT"] = sif["sif"].str[28+d:29+d] == "T"
     
     
     #
@@ -196,15 +200,15 @@ def sif():
     #  causeXYZ <- substr(sif,61+d,61+d)
     #
     
-    sif["caseX"] = sif["sif"].apply(lambda x: str(x)[33+d:34+d]) == "X"
-    sif["dateX"] = sif["sif"].apply(lambda x: str(x)[34+d:42+d])
-    sif["caseY"] = sif["sif"].apply(lambda x: str(x)[42+d:43+d]) == "Y"
-    sif["dateY"] = sif["sif"].apply(lambda x: str(x)[43+d:51+d]) 
-    sif["caseZ"] = sif["sif"].apply(lambda x: str(x)[51+d:53+d]) == "Z"
-    sif["dateZ"] = sif["sif"].apply(lambda x: str(x)[53+d:60+d]) 
-    sif["causeXYZ"] = sif["sif"].apply(lambda x: str(x)[60+d:61+d])
+    sif["caseX"] = sif["sif"].str[33+d:34+d] == "X"
+    sif["dateX"] = sif["sif"].str[34+d:42+d]
+    sif["caseY"] = sif["sif"].str[42+d:43+d] == "Y"
+    sif["dateY"] = sif["sif"].str[43+d:51+d] 
+    sif["caseZ"] = sif["sif"].str[51+d:53+d] == "Z"
+    sif["dateZ"] = sif["sif"].str[53+d:60+d] 
+    sif["causeXYZ"] = sif["sif"].str[60+d:61+d]
     
-    # TODO: convert dateXYZ to appropraite date in pandas
+    # TODO: convert dateXYZ to appropriate date in pandas
     # print sif["dateY"].unique()
     
     
@@ -222,13 +226,13 @@ def sif():
     #  nbH <- as.numeric(substr(sif,80+d,81+d))
     #  nbI <- as.numeric(substr(sif,83+d,84+d))
     
-    sif["nbF"] = sif["sif"].apply(lambda x: str(x)[64+d:66+d])
-    sif["nbG"] = sif["sif"].apply(lambda x: str(x)[67+d:69+d])
-    sif["nbR"] = sif["sif"].apply(lambda x: str(x)[70+d:72+d])
-    sif["nbJ"] = sif["sif"].apply(lambda x: str(x)[73+d:75+d])
-    sif["nbN"] = sif["sif"].apply(lambda x: str(x)[76+d:78+d])
-    sif["nbH"] = sif["sif"].apply(lambda x: str(x)[79+d:81+d])
-    sif["nbI"] = sif["sif"].apply(lambda x: str(x)[82+d:84+d])
+    sif["nbF"] = sif["sif"].str[64+d:66+d]
+    sif["nbG"] = sif["sif"].str[67+d:69+d]
+    sif["nbR"] = sif["sif"].str[70+d:72+d]
+    sif["nbJ"] = sif["sif"].str[73+d:75+d]
+    sif["nbN"] = sif["sif"].str[76+d:78+d]
+    sif["nbH"] = sif["sif"].str[79+d:81+d]
+    sif["nbI"] = sif["sif"].str[82+d:84+d]
     
     #  if (year != 2009){
     #  nbP <- as.numeric(substr(sif,86+d,87+d))
@@ -236,7 +240,7 @@ def sif():
     #})
     
     if (year != 2009):
-        sif["nbP"] = sif["sif"].apply(lambda x: str(x)[85+d:87+d])
+        sif["nbP"] = sif["sif"].str[85+d:87+d]
     
     #sif$sif <- NULL
     #sif$stamar <- NULL
@@ -258,22 +262,25 @@ def sif():
     #print(length(table(sif$noindiv)))
     
     sif_drop_duplicated = sif.drop_duplicates("noindiv")
-    print "Number of distinct individuals after removing duplicates:", len(sif_drop_duplicated["noindiv"])
+    #print "Number of distinct individuals after removing duplicates:", len(sif_drop_duplicated["noindiv"])
+    assert len(sif["noindiv"].value_counts()) == len(sif_drop_duplicated["noindiv"])
     
-    # TODO: save sif.Rdata
-    #
+    print 'Saving sif'
+    save_temp(sif, name='sif', year=year)
+    del sif
+    gc.collect()
     #saveTmp(sif, file = 'sif.Rdata')
     #rm(sif)
     #gc()
     ##################################################################
 
 
-def foyer_all():
+def foyer_all(year=2006):
 
     ## On ajoute les cases de la déclaration
     #foyer_all <- LoadIn(erfFoyFil)
-    
-    foyer_all = df.get_values(table="foyer" )
+    data = DataCollection(year=year)
+    foyer_all = data.get_values(table="foyer" )
     
     ## on ne garde que les cases de la déclaration ('fxzz')
     #vars <- names(foyer_all)
@@ -291,8 +298,8 @@ def foyer_all():
     #
 
     foyer = foyer_all[vars + ["noindiv"]]
+
     del foyer_all
-    import gc
     gc.collect()
     
     #
@@ -304,6 +311,9 @@ def foyer_all():
     #print foyer.describe()["f1aj"].to_string()
     #print foyer.describe()["noindiv"].to_string()
     #
+
+    print_id(foyer)
+
     ## noindiv have been summed over original noindiv which are now in Group.1
     #foyer$noindiv <- NULL
     #foyer <- rename(foyer, c(Group.1 = 'noindiv'))
@@ -339,6 +349,9 @@ def foyer_all():
                'ppe_du_sa': ['f1av', 'f1bv', 'f1cv', 'f1dv', 'f1qv'],
                'rsti': ['f1as', 'f1bs', 'f1cs', 'f1ds', 'f1es'],
                'alr': ['f1ao', 'f1bo', 'f1co', 'f1do', 'f1eo'], 
+               'f1tv': ['f1tv', 'f1uv'], 
+               'f1tw': ['f1tw', 'f1uw'], 
+               'f1tx': ['f1tx', 'f1ux'], 
                'ppe_tp_ns': ['f5nw', 'f5ow', 'f5pw'],
                'ppe_du_ns':  ['f5nv', 'f5ov', 'f5pv'],
                'frag_exon': ['f5hn', 'f5in', 'f5jn'],
@@ -379,7 +392,7 @@ def foyer_all():
                'nacc_defs': ['f5nm', 'f5om', 'f5pm'],
                'mncn_impo': ['f5ku', 'f5lu', 'f5mu'],
                'cncn_bene': ['f5sn', 'f5ns', 'f5os'],
-               'cncn_defi': ['f5sp', 'f5nu', 'f5ou', 'f5sr'], # TODO
+               'cncn_defi': ['f5sp', 'f5nu', 'f5ou', 'f5sr'], # TODO: check
                'mbnc_exon': ['f5hp', 'f5ip', 'f5jp'],
                'abnc_exon': ['f5qb', 'f5rb', 'f5sb'],
                'nbnc_exon': ['f5qh', 'f5rh', 'f5sh'],
@@ -422,94 +435,7 @@ def foyer_all():
 #varlist = list(list('sali', c('f1aj', 'f1bj', 'f1cj', 'f1dj', 'f1ej')),
 #                list('choi', c('f1ap', 'f1bp', 'f1cp', 'f1dp', 'f1ep')),
 #               list('fra', c('f1ak', 'f1bk', 'f1ck', 'f1dk', 'f1ek')),
-#               list('cho_ld', c('f1ai', 'f1bi', 'f1ci', 'f1di', 'f1ei')),
-#               list('ppe_tp_sa', c('f1ax', 'f1bx', 'f1cx', 'f1dx', 'f1qx')),
-#               list('ppe_du_sa', c('f1av', 'f1bv', 'f1cv', 'f1dv', 'f1qv')),
-#               list('rsti', c('f1as', 'f1bs', 'f1cs', 'f1ds', 'f1es')),
-#               list('alr', c('f1ao', 'f1bo', 'f1co', 'f1do', 'f1eo')), 
-#
-#               list('ppe_tp_ns', c('f5nw', 'f5ow', 'f5pw')),
-#               list('ppe_du_ns',  c('f5nv', 'f5ov', 'f5pv')),
-#            
-#               
-#               list('frag_exon', c('f5hn', 'f5in', 'f5jn')),
-#               list('frag_impo', c('f5ho', 'f5io', 'f5jo')),    
-#               list('arag_exon', c('f5hb', 'f5ib', 'f5jb')),
-#               list('arag_impg', c('f5hc', 'f5ic', 'f5jc')),
-#               list('arag_defi', c('f5hf', 'f5if', 'f5jf')),
-#               list('nrag_exon', c('f5hh', 'f5ih', 'f5jh')),
-#               list('nrag_impg', c('f5hi', 'f5ii', 'f5ji')),
-#               list('nrag_defi', c('f5hl', 'f5il', 'f5jl')),
-#               list('nrag_ajag', c('f5hm', 'f5im', 'f5jm')),
-#           
-#               list('mbic_exon', c('f5kn', 'f5ln', 'f5mn')),
-#               list('abic_exon', c('f5kb', 'f5lb', 'f5mb')),
-#               list('nbic_exon', c('f5kh', 'f5lh', 'f5mh')),
-#               list('mbic_impv', c('f5ko', 'f5lo', 'f5mo')),
-#               list('mbic_imps', c('f5kp', 'f5lp', 'f5mp')),
-#               list('abic_impn', c('f5kc', 'f5lc', 'f5mc')),
-#               list('abic_imps', c('f5kd', 'f5ld', 'f5md')),
-#               list('nbic_impn', c('f5ki', 'f5li', 'f5mi')),
-#               list('nbic_imps', c('f5kj', 'f5lj', 'f5mj')),
-#               list('abic_defn', c('f5kf', 'f5lf', 'f5mf')),
-#               list('abic_defs', c('f5kg', 'f5lg', 'f5mg')),
-#               list('nbic_defn', c('f5kl', 'f5ll', 'f5ml')),
-#               list('nbic_defs', c('f5km', 'f5lm', 'f5mm')),
-#               list('nbic_apch', c('f5ks', 'f5ls', 'f5ms')),
-#           
-#               list('macc_exon', c('f5nn', 'f5on', 'f5pn')),
-#               list('aacc_exon', c('f5nb', 'f5ob', 'f5pb')),
-#               list('nacc_exon', c('f5nh', 'f5oh', 'f5ph')),
-#               list('macc_impv', c('f5no', 'f5oo', 'f5po')),
-#               list('macc_imps', c('f5np', 'f5op', 'f5pp')),
-#               list('aacc_impn', c('f5nc', 'f5oc', 'f5pc')),
-#               list('aacc_imps', c('f5nd', 'f5od', 'f5pd')),
-#               list('aacc_defn', c('f5nf', 'f5of', 'f5pf')),
-#               list('aacc_defs', c('f5ng', 'f5og', 'f5pg')),
-#               list('nacc_impn', c('f5ni', 'f5oi', 'f5pi')),
-#               list('nacc_imps', c('f5nj', 'f5oj', 'f5pj')),
-#               list('nacc_defn', c('f5nl', 'f5ol', 'f5pl')),
-#               list('nacc_defs', c('f5nm', 'f5om', 'f5pm')),
-#               list('mncn_impo', c('f5ku', 'f5lu', 'f5mu')),
-#               list('cncn_bene', c('f5sn', 'f5ns', 'f5os')),
-#               list('cncn_defi', c('f5sp', 'f5nu', 'f5ou', 'f5sr')), # TODO
-#           
-#               list('mbnc_exon', c('f5hp', 'f5ip', 'f5jp')),
-#               list('abnc_exon', c('f5qb', 'f5rb', 'f5sb')),
-#               list('nbnc_exon', c('f5qh', 'f5rh', 'f5sh')),
-#               list('mbnc_impo', c('f5hq', 'f5iq', 'f5jq')),
-#               list('abnc_impo', c('f5qc', 'f5rc', 'f5sc')),
-#               list('abnc_defi', c('f5qe', 'f5re', 'f5se')),
-#               list('nbnc_impo', c('f5qi', 'f5ri', 'f5si')),
-#               list('nbnc_defi', c('f5qk', 'f5rk', 'f5sk')),
-#           
-#               list('mbic_mvct', c('f5hu')),
-#               list('macc_mvct', c('f5iu')),
-#               list('mncn_mvct', c('f5ju')),
-#               list('mbnc_mvct', c('f5kz')),
-#           
-#               list('frag_pvct', c('f5hw', 'f5iw', 'f5jw')),
-#               list('mbic_pvct', c('f5kx', 'f5lx', 'f5mx')),
-#               list('macc_pvct', c('f5nx', 'f5ox', 'f5px')),
-#               list('mbnc_pvct', c('f5hv', 'f5iv', 'f5jv')),
-#               list('mncn_pvct', c('f5ky', 'f5ly', 'f5my')),
-#           
-#               list('mbic_mvlt', c('f5kr', 'f5lr', 'f5mr')),
-#               list('macc_mvlt', c('f5nr', 'f5or', 'f5pr')),
-#               list('mncn_mvlt', c('f5kw', 'f5lw', 'f5mw')),
-#               list('mbnc_mvlt', c('f5hs', 'f5is', 'f5js')),
-#           
-#               list('frag_pvce', c('f5hx', 'f5ix', 'f5jx')),
-#               list('arag_pvce', c('f5he', 'f5ie', 'f5je')),
-#               list('nrag_pvce', c('f5hk', 'f5ik', 'f5jk')),
-#               list('mbic_pvce', c('f5kq', 'f5lq', 'f5mq')),
-#               list('abic_pvce', c('f5ke', 'f5le', 'f5me')),
-#               list('nbic_pvce', c('f5kk', 'f5lk', 'f5mk')),
-#               list('macc_pvce', c('f5nq', 'f5oq', 'f5pq')),
-#               list('aacc_pvce', c('f5ne', 'f5oe', 'f5pe')),
-#               list('nacc_pvce', c('f5nk', 'f5ok', 'f5pk')),
-#               list('mncn_pvce', c('f5kv', 'f5lv', 'f5mv')),
-#               list('cncn_pvce', c('f5so', 'f5nt', 'f5ot')),
+# ......
 #               list('mbnc_pvce', c('f5hr', 'f5ir', 'f5jr')),
 #               list('abnc_pvce', c('f5qd', 'f5rd', 'f5sd')),
 #               list('nbnc_pvce', c('f5qj', 'f5rj', 'f5sj')),
@@ -522,6 +448,8 @@ def foyer_all():
     qui = ['vous', 'conj', 'pac1', 'pac2', 'pac3']
     err = 0
     err_vars = {}
+    
+    foy_ind = DataFrame()
     
     for individual_var, foyer_vars in var_dict.iteritems():
 #        print individual_var
@@ -536,22 +464,35 @@ def foyer_all():
                 print individual_var + " is not present"
                 continue
             else:
-                # Shrink the lsit
+                # Shrink the list
                 foyer_vars_cleaned = [var for var,present in zip(foyer_vars, presence) if present is True]                    
                 selection = foyer[foyer_vars_cleaned + ["noindiv"]]
 
-        
         # Reshape the dataframe        
         selection.rename(columns=dict(zip(foyer_vars, qui)), inplace=True)
         selection.set_index("noindiv", inplace=True)
         selection.columns.name = "quifoy"
+
         selection = selection.stack()
         selection.name = individual_var
-        print selection
-
-#        selection = selection.reset_index()
+        selection = selection.reset_index() # A Series cannot see its index resetted to produce a DataFrame
+        " Clean the selection"
+        selection = selection.set_index(["quifoy", "noindiv"])
+        selection = selection[selection[individual_var] !=0]
+#        print len(selection)
         
+        if len(foy_ind) == 0:
+            foy_ind = selection
+        else:
 
+            foy_ind = concat([foy_ind, selection], axis=1, join='outer')
+    
+    foy_ind.reset_index(inplace=True)
+    print_id(foy_ind)
+    
+    print foy_ind.describe().to_string()
+
+    
 #not_first <- FALSE
 #allvars = c()
 #for (v in varlist){ 
@@ -572,11 +513,17 @@ def foyer_all():
 #      not_first <- TRUE
 #    }
 #  }
-#}
+#}    
 
+    ind_vars_to_remove = Series(list(eligible_vars))
+    save_temp(ind_vars_to_remove, name='ind_vars_to_remove', year=year)
+    foy_ind.rename(columns={"noindiv" : "idfoy"}, inplace=True)
+    
+    save_temp(foy_ind, name="foy_ind", year = year)
+    show_temp()
 
-
-
+    return
+    
 #names(foy_ind)
 #rm(temp,foyer)
 #
@@ -587,6 +534,6 @@ def foyer_all():
 
 
 if __name__ == '__main__':
-    
-
-    foyer_all()
+    year = 2006
+    sif(year=year)
+    foyer_all(year=year)

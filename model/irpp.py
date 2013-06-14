@@ -53,28 +53,28 @@ def _nb_adult(marpac, celdiv, veuf):
 def _nb_pac(nbF, nbJ, nbR):
     return nbF + nbJ + nbR
         
-def _marpac(statmarit):
+def _marpac(statmarit, _option = {'statmarit': [VOUS]}):
     '''
     Marié (1) ou Pacsé (5)
     'foy'
     '''
     return (statmarit == 1) | (statmarit == 5)
 
-def _celdiv(statmarit):
+def _celdiv(statmarit , _option = {'statmarit': [VOUS]}):
     '''
     Célibataire (2) ou divorcé (3)
     'foy'
     '''
     return (statmarit == 2) | (statmarit == 3)
 
-def _veuf(statmarit):
+def _veuf(statmarit , _option = {'statmarit': [VOUS]}):
     '''
     Veuf (4)
     'foy'
     '''
     return statmarit == 4
 
-def _jveuf(statmarit):
+def _jveuf(statmarit , _option = {'statmarit': [VOUS]}):
     '''
     Jeune Veuf
     'foy'
@@ -188,6 +188,7 @@ def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
     Traitemens salaires pensions et rentes
     'foy'
     '''
+    #TODO: add just a sum option
     out = 0
     for qui in tspr.itervalues():
         out += qui
@@ -322,13 +323,21 @@ def _ir_brut(nbptr, rni, _P):
 #    bar._linear_taux_moy = True
     return nbptr*bar.calc(rni/nbptr) # TODO : partir d'ici, petite différence avec Matlab
 
-def _ir_plaf_qf(ir_brut, rni, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, _P):
-    ''' Impôt après plafonnement du quotient familial et réduction complémentaire '''
+def _ir_ss_qf(ir_brut, rni, nb_adult, _P):
+    ''' Impôt sans quotient familial '''
     P = _P.ir
     I = ir_brut
     A = P.bareme.calc(rni/nb_adult)
-    A = nb_adult*A    
+    return nb_adult*A    
+    
 
+def _ir_plaf_qf(ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, _P):
+    ''' Impôt après plafonnement du quotient familial et réduction complémentaire '''
+
+    A = ir_ss_qf
+    I = ir_brut
+    P = _P.ir
+    
     aa0 = (nbptr-nb_adult)*2           #nombre de demi part excédant nbadult
     # on dirait que les impôts font une erreur sur aa1 (je suis obligé de
     # diviser par 2)
@@ -385,6 +394,10 @@ def _ir_plaf_qf(ir_brut, rni, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celd
     # Récapitulatif
     return condition62a*IP0 + condition62b*IP1 # IP2 si DOM
 
+def _avantage_qf(ir_ss_qf, ir_plaf_qf):
+    return ir_ss_qf - ir_plaf_qf
+
+
 def _decote(ir_plaf_qf, _P):
     '''
     Décote
@@ -431,7 +444,7 @@ def _teicaa(f5qm, f5rm, _P):
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
     """
     Taxation des plus value
-    TODO: f3vt, 2013 f3vg au barème
+    TODO: f3vt, 2013 f3Vg au barème
     """
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
@@ -497,12 +510,13 @@ def _rfr(rni, alloc, f3va, f3vg, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, r
     '''
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vg + f3vz
  
-def _glo(f1tv, f1tw, f1tx, f1uv, f1uw, f1ux, f3vf, f3vi, f3vj, f3vk):
+def _glo(f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk): 
+    # TODO: f1uv, f1uw, f1ux deletion to check
     '''
     Gains de levée d'option
     'foy'
     '''
-    return f1tv + f1tw + f1tx + f1uv + f1uw + f1ux + f3vf + f3vi + f3vj + f3vk                   
+    return f1tv + f1tw + f1tx  + f3vf + f3vi + f3vj + f3vk   # + f1uv + f1uw + f1ux                
 
 def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
     """
@@ -979,14 +993,14 @@ def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, ca
 
 def _ppe_coef(jour_xyz):
     '''
-    ppe: coefficient de conversion en cas de changement en cours d'année
+    PPE: coefficient de conversion en cas de changement en cours d'année
     '''
     nb_jour = (jour_xyz==0) + jour_xyz
     return 360/nb_jour
 
 def _ppe_elig(rfr, ppe_coef, marpac, veuf, celdiv, nbptr, _P):
     '''
-    eligibilité à la ppe, returns a bool
+    PPE: eligibilité à la ppe
     'foy'
     '''
     P = _P.ir.credits_impot.ppe
@@ -1018,7 +1032,7 @@ def _ppe_coef_tp(ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, _P):
     tp = ppe_tp_sa | ppe_tp_ns |(frac_sa + frac_ns >= 1)
     return tp + not_(tp)*(frac_sa + frac_ns)
     
-def _ppe_base(ppe_rev, ppe_coef_tp, ppe_coef):
+def _ppe_base(ppe_rev, ppe_coef_tp, ppe_coef, _option = {'ppe_coef':ALL} ):
     out = ppe_rev/(ppe_coef_tp + (ppe_coef_tp==0))*ppe_coef
     return out
 
@@ -1094,12 +1108,12 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     ppe_tot = (ppe_tot!=0)*max_(P.versmin, ppe_tot)
     return ppe_tot
 
-def _ppe(ppe_brute, rsa_act, _option = {'rsa_act': [VOUS, CONJ]} ):
+def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]} ):
     """
     PPE effectivement versé
     """
 #   On retranche le RSA activité de la PPE
 #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
-    ppe = max_(ppe_brute - rsa_act[VOUS] - rsa_act[CONJ],0)
+    ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ],0)
     return ppe 
     

@@ -68,7 +68,7 @@ def _cohab(quimen, _option = {'quimen':[CREF]}):
     Indicatrice de vie en couple
     'men'
     '''
-    return 1 * (quimen[CREF] == 1)
+    return (quimen == 1)
 
 def _act_cpl(activite, cohab, _option = {'activite':[PREF, CREF]}):
     '''

@@ -28,12 +28,9 @@ from numpy import logical_or as or_
 from src.countries.france.data.erf.build_survey import save_temp, load_temp
 
     
-year = 2006
-data = DataCollection(year=year)
-
-def run_1():
-        
-
+def create_indivim(year=2006):
+    
+    data = DataCollection(year=year)
     #erfmen <- LoadIn(erfMenFil)
     erfmen = data.get_values(table="erf_menage")
     
@@ -57,9 +54,9 @@ def run_1():
     #eecind <- LoadIn(eecIndFil)
     erfind = data.get_values(table="erf_indivi")
     print 'describe erfind & eecind'
-#     print erfind.columns
+    print erfind.columns
     eecind = data.get_values(table="eec_indivi")
-#     print eecind.columns
+    print eecind.columns
 
     #transfert <- subset(eecind, lpr==1, select=c("ident","ddipl"))
     transfert = eecind[eecind['lpr'] == 1]
@@ -203,7 +200,7 @@ def run_1():
     gc.collect()
 
 
-def run_2():
+def create_enfnn(year=2006):
     ### Enfant à naître (NN pour nouveaux nés)
 
     #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien','acteu','stc','contra','titc','mrec',
@@ -274,5 +271,5 @@ def run_2():
     gc.collect()
     
 if __name__ == '__main__':
-    # run_1()
-    run_2()
+    create_indivim()
+    create_enfnn()

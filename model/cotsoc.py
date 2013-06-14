@@ -649,7 +649,7 @@ def _base_csg(salbrut, chobrut, rstbrut, rev_cap_bar, rev_cap_lib):
     '''
     return salbrut + chobrut + rstbrut + rev_cap_bar + rev_cap_lib
 
-def _ir_lps(base_csg, nbF, nbH, statmarit, _P):
+def _ir_lps(base_csg, nbF, nbH, statmarit, _P ):
     '''
     Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par
     Landais, Piketty, Saez (2011)
