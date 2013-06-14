@@ -214,6 +214,7 @@ def create_enfnn(year=2006):
     #eeccmp3 <- LoadIn(eecCmp3Fil,indVar)
     #enfnn <- rbind(eeccmp1,eeccmp2,eeccmp3)
     
+    data = DataCollection(year=year)
     eeccmp1 = data.get_values(table="eec_cmp_1", variables=individual_vars)
     eeccmp2 = data.get_values(table="eec_cmp_2", variables=individual_vars)
     eeccmp3 = data.get_values(table="eec_cmp_3", variables=individual_vars)
