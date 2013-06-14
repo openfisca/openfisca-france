@@ -488,8 +488,9 @@ def foyer_all(year=2006):
             foy_ind = concat([foy_ind, selection], axis=1, join='outer')
     
     foy_ind.reset_index(inplace=True)
-    print_id(foy_ind)
     
+    print "foy_ind"
+
     print foy_ind.describe().to_string()
 
     
@@ -519,6 +520,16 @@ def foyer_all(year=2006):
     save_temp(ind_vars_to_remove, name='ind_vars_to_remove', year=year)
     foy_ind.rename(columns={"noindiv" : "idfoy"}, inplace=True)
     
+    print_id(foy_ind)
+    foy_ind['quifoy'][foy_ind['quifoy']=='vous'] = 0
+    foy_ind['quifoy'][foy_ind['quifoy']=='conj'] = 1
+    foy_ind['quifoy'][foy_ind['quifoy']=='pac1'] = 2
+    foy_ind['quifoy'][foy_ind['quifoy']=='pac2'] = 3
+    foy_ind['quifoy'][foy_ind['quifoy']=='pac3'] = 4
+    
+    assert foy_ind['quifoy'].isin(range(5)).all()
+
+    print_id(foy_ind)    
     save_temp(foy_ind, name="foy_ind", year = year)
     show_temp()
 

@@ -58,7 +58,10 @@ def check_structure(df):
     print "autant de quifam = 0 que d'idfam", len(df.idfam)==df["quifam"].value_counts()
 
 def print_id(df):
-    print "Individus : ", len(df.noindiv), "/", len(df)
+    try:
+        print "Individus : ", len(df.noindiv), "/", len(df)
+    except:
+        print "No noindiv"
   
     try:
         # Ici, il doit y avoir autant de vous que d'idfoy

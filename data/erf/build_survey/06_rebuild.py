@@ -874,9 +874,25 @@ def create_totals(year=2006):
     print show_temp()
     #On combine les variables de revenu
     foyer = load_temp(name='foy_ind', year=year)
-    tot3 = tot2.merge(foyer, how='outer')
-    tot3.drop_duplicates(cols='noindiv', take_last='true', inplace=True)
+
+    print '____contrôle_____ foyer'
+    print control(foyer, debug=True) #Colonne frag_pvce
+    print control(foyer, verbose_columns=['sali'], debug=True, verbose=True) #Colonne frag_pvce
     
+    print foyer["quifoy"].value_counts()
+    
+    tot2.update(foyer)
+    
+    print "tot2"
+    print_id(tot2)
+    tot3 = tot2
+    # TODO: check where they come from
+    tot3 = tot3.drop_duplicates(cols='noindiv')
+    
+    assert not tot3.duplicated(cols='noindiv').any(), Exception("Duplicates in tot3")
+    
+    print_id(tot3)
+
     print 'TOT3'
 #     print tot3.loc[tot3.duplicated(['idfoy', 'quifoy']), ['idfoy', 'quifoy']].head(20)
 #     print len(tot3[tot3.duplicated(['idfoy', 'quifoy'])])
@@ -884,7 +900,7 @@ def create_totals(year=2006):
     
     assert not tot3.duplicated(cols='noindiv').any(), Exception("Duplicates in tot3")
 #     print_id(tot3)
-    print '____contrôle_____'
+    print '____contrôle_____ tot3'
     print control(tot3, debug=True) #Colonne frag_pvce
     
 ## On ajoute les variables individualisables
@@ -911,6 +927,7 @@ def create_totals(year=2006):
     tot3 = tot3[list(vars2)]
 #     print "len tot3"
 #     print len(tot3.index)
+    print_id(tot3)
     save_temp(tot3, name='tot3', year=year)
 #     print show_temp()
     print 'tot3 sauvegardé'

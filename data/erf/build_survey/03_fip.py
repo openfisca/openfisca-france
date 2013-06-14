@@ -83,7 +83,7 @@ def create_fip(year = 2006):
     fip = fip.stack()
     fip = fip[fip['type_pac'].notnull()]
     print fip.head(10)
-    control(fip, verbose=False, verbose_length=1)
+    control(fip, verbose=False, verbose_length=1, debug=True)
     
     
     print "    1.2 : elimination des foyers fiscaux sans pac"
@@ -94,7 +94,7 @@ def create_fip(year = 2006):
     fip = fip.reset_index()
     fip.columns = ['nb_row', 'no_pac', 'declaration', 'naia', 'type_pac']
     del fip['no_pac']
-    control(fip)
+    control(fip, debug=True)
     
 #     fip['nb_row'] = fip['nb_row'].astype('str')
 #     fip['type_pac'] = fip['type_pac'].astype('str')
@@ -129,7 +129,7 @@ def create_fip(year = 2006):
     tyFG = tyF.merge(tyG, on=['declaration', 'naia', 'dup'], how='outer')
     iden = tyFG
     del tyF, tyG, tyFG
-    control(iden)
+    control(iden, debug=True)
     print "merging tyF and tyG done"
 
 # # on enlève les H pour lesquels il y a un I ;
