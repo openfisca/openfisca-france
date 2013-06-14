@@ -15,6 +15,7 @@ from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
 from pandas import concat, DataFrame
+from src.countries.france.data.erf.build_survey.utilitaries import print_id
 
 
 
@@ -25,7 +26,7 @@ from pandas import concat, DataFrame
 def invalide(year = 2006):
     
     print 'Entering 07_invalides: construction de la variable invalide'
-    return
+    
 
 # # # Invalides
 # # #inv = caseP (vous), caseF (conj) ou case G, caseI, ou caseR (pac)
@@ -43,14 +44,20 @@ def invalide(year = 2006):
     print 'Etape 1 création de la df invalides'
     final = load_temp(name="final", year=year)
     invalides = final.xs(["noindiv","idmen","caseP","caseF","idfoy","quifoy"], axis=1)
-    invalides['caseP'] = where(invalides['caseP'].isnull(), 0, invalides['caseP'])
-    invalides['caseF'] = where(invalides['caseF'].isnull(), 0, invalides['caseF'])
+
+    for var in ["caseP", "caseF"]:  
+        assert invalides[var].notnull().all()
+     
+
+    # Les déclarants invalides
     invalides['inv'] = False
-    
-    #Les "vous" invalides
-    invalides.xs(['caseF', 'quifoy'],axis=1).describe()
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
+    
+    assert invalides["inv"].notnull().all()
     control(invalides, verbose=True, debug=True)
+
+
+    print invalides["inv"].sum(), " invalides déclarants"
 
 # # # Les conjoints invalides
 # # 
@@ -66,6 +73,7 @@ def invalide(year = 2006):
 # # foy_inv_conj <- rename(foy_inv_conj, c("caseF"="inv"))
 # # table(foy_inv_conj[ ,c("inv","quifoy")],useNA="ifany")
 # # # On ne garde donc que les caseF des "vous"
+
 # # foy_inv_conj   <- foy_inv_conj[foy_inv_conj$quifoy=="vous",c("idfoy","inv")]
 # # table(foy_inv_conj[ ,c("inv")],useNA="ifany")
 # # invalides_conj <- invalides[invalides$quifoy=="conj",c("idfoy","noindiv")]
@@ -74,22 +82,16 @@ def invalide(year = 2006):
 # # invalides[invalides$quifoy=="conj",c("idfoy","noindiv","inv")] <- invalides_conj
 # # table(invalides[,c("inv","quifoy")],useNA="ifany")
 # # rm(invalides_conj,foy_inv_conj)
-    print 'Les conjoints invalides'
-    foy_inv_conj = invalides.loc[:, ["idfoy","caseF","quifoy"]]
-    foy_inv_conj.columns = ["idfoy","inv","quifoy"]
-    print foy_inv_conj.columns
-    
-    # On ne garde donc que les caseF des "vous"
-    foy_inv_conj = foy_inv_conj.loc[foy_inv_conj['quifoy']==0, ["idfoy","inv"]]
-    invalides_conj = invalides.loc[invalides['quifoy']==1,["idfoy","noindiv"]]
-    invalides_conj = invalides_conj.merge(foy_inv_conj, on="idfoy", how='outer')
-    print invalides_conj['inv'].describe()
-# # invalides[invalides$quifoy=="conj",c("idfoy","noindiv","inv")] <- invalides_conj
-    invalides = invalides.merge(invalides_conj, on=["idfoy","noindiv","inv"] ,how='outer')
-    print invalides.head()
-    invalides = invalides.drop_duplicates(cols='noindiv', take_last=True)
-    print invalides.loc[:, ['idfoy', 'quifoy']].describe()
-    del invalides_conj,foy_inv_conj
+
+    # On récupère les idfoy des foyers avec une caseF cochée 
+
+    idfoy_inv_conj = final["idfoy"][final["caseF"]]
+    print idfoy_inv_conj
+    inv_conj_condition = invalides["idfoy"].isin(idfoy_inv_conj) & (invalides["quifoy"]==1)    
+    invalides["inv"][inv_conj_condition] = True
+
+    print invalides["inv"].sum(), " invalides déclarants et conjoints"
+
     
 # # # Enfants invalides et garde alternée
 # # 
@@ -114,22 +116,27 @@ def invalide(year = 2006):
 # # table(invalides$alt==1,useNA="ifany")
 # # rm(foy_inv_pac,pacIndiv)
 # # 
-    print 'enfants invalides et garde alternée'
+
+    # enfants invalides et garde alternée
     
     pacIndiv = load_temp(name='pacIndiv', year=year)
     foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
-    print foy_inv_pac.columns
+    print pacIndiv.columns
+    pacIndiv.reset_index(inplace=True)
+    pac = pacIndiv.xs( ["noindiv", "type_pac", "naia"], axis=1)
+    print pac.value_counts()
     return
-    foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'typ', 'naia']], 
+
+    foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'type_pac', 'naia']], 
                                     on='noindiv', how='outer')
     print foy_inv_pac.columns
-    print foy_inv_pac.xs(columns=['typ', 'naia']).describe()
-    foy_inv_pac['inv'] = ((foy_inv_pac['typ']=="G")|(foy_inv_pac['typ']=="R")|
-                          (foy_inv_pac['typ']=="I") | (foy_inv_pac['typ']=="F" & 
-                          (foy_inv_pac['year'] - foy_inv_pac['typ']>18)))
-    foy_inv_pac['alt'] = ((foy_inv_pac['typ']=="H") | (foy_inv_pac['typ']=="I"))
+    print foy_inv_pac.xs(columns=['type_pac', 'naia']).describe()
+    foy_inv_pac['inv'] = ((foy_inv_pac['type_pac']=="G")|(foy_inv_pac['type_pac']=="R")|
+                          (foy_inv_pac['type_pac']=="I") | (foy_inv_pac['type_pac']=="F" & 
+                          (foy_inv_pac['year'] - foy_inv_pac['type_pac']>18)))
+    foy_inv_pac['alt'] = ((foy_inv_pac['type_pac']=="H") | (foy_inv_pac['type_pac']=="I"))
     foy_inv_pac['naia'] = None
-    foy_inv_pac['typ'] = None
+    foy_inv_pac['type_pac'] = None
     
     print foy_inv_pac['inv'].describe()
     invalides['alt'] = 0

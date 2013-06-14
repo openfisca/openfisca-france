@@ -10,18 +10,14 @@ from src.countries.france.data.erf.build_survey.utilitaries import control
 from pandas import DataFrame
 from numpy import array, where, NaN
 from pandas import concat
-# import os
-# from src import SRC_PATH
+import gc
 
-from numpy import logical_not as not_
-from numpy import logical_and as and_
-# from numpy import logical_or as or_
+from numpy import logical_not as not_, logical_and as and_
+
 
 # message('03_fip')
 
 def create_fip(year = 2006):
-    
-
     
     df = DataCollection(year=year)
     
@@ -251,11 +247,12 @@ def create_fip(year = 2006):
 # pacIndiv <- pacInd[!duplicated(pacInd$noindiv),]
 # saveTmp(pacIndiv,file="pacIndiv.Rdata")
 # rm(pacInd,pacIndiv)
-    
+    del pacIndiv["key"]
     pacIndiv = pacInd[not_(pacInd.duplicated('noindiv'))]
+    pacIndiv.reset_index(inplace=True)
     save_temp(pacIndiv, name="pacIndiv", year=year)
-
-    print "save_tmp ------------------------------------" 
+    
+    gc.collect()
  
 # # We keep the fip in the menage of their parents because it is used in to
 # # build the famille. We should build an individual ident for the fip that are

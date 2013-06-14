@@ -625,7 +625,7 @@ def create_totals(year=2006):
     
     indivi['titc'][indivi['titc'].isnull()] = 0
 #    print indivi['titc'].isnull().value_counts()
-    assert indivi['titc'].notnull().all() , "Problème avec les titc"
+    assert indivi['titc'].notnull().all() , Exception("Problème avec les titc")
     
 ## STATUT
 ## Statut détaillé mis en cohérence avec la profession
@@ -674,7 +674,7 @@ def create_totals(year=2006):
     indivi['statut'][indivi['statut']==44] = 10
     indivi['statut'][indivi['statut']==45] = 11
     #print indivi['statut'].value_counts()
-    assert indivi['statut'].isin(range(12)).all(), "statut value over range"
+    assert indivi['statut'].isin(range(12)).all(), Exception("statut value over range")
     
 ##TXTPPB
 ## Sans objet (ACTOP='2') ou non renseigné
@@ -709,11 +709,10 @@ def create_totals(year=2006):
 #})
 #table(indivi$nbsala,useNA='ifany')
 
-    indivi['txtppb'][indivi['txtppb'].isnull()] = 0
-    
+    indivi['txtppb'].fillna(0)
     assert indivi['txtppb'].notnull().all()
     
-    indivi['nbsala'][indivi['nbsala'].isnull()] = 0
+    indivi['nbsala'].fillna(0)
     indivi['nbsala'] = indivi['nbsala'].astype('int')
     indivi['nbsala'][indivi['nbsala']==99] = 10
     print indivi['nbsala'].value_counts()
