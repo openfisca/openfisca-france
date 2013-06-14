@@ -49,8 +49,8 @@ def invalide(year = 2006):
     
     #Les "vous" invalides
     invalides.xs(['caseF', 'quifoy'],axis=1).describe()
-    invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']=='vous')] = True
-    control(invalides, verbose=True)
+    invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
+    control(invalides, verbose=True, debug=True)
     return
 # # # Les conjoints invalides
 # # 
@@ -80,8 +80,8 @@ def invalide(year = 2006):
     print foy_inv_conj.columns
     
     # On ne garde donc que les caseF des "vous"
-    foy_inv_conj = foy_inv_conj.loc[foy_inv_conj['quifoy']=="vous", ["idfoy","inv"]]
-    invalides_conj = invalides.loc[invalides['quifoy']=="conj",["idfoy","noindiv"]]
+    foy_inv_conj = foy_inv_conj.loc[foy_inv_conj['quifoy']==0, ["idfoy","inv"]]
+    invalides_conj = invalides.loc[invalides['quifoy']==1,["idfoy","noindiv"]]
     invalides_conj = invalides_conj.merge(foy_inv_conj, on="idfoy", how='outer')
     print invalides_conj['inv'].describe()
 # # invalides[invalides$quifoy=="conj",c("idfoy","noindiv","inv")] <- invalides_conj
@@ -117,7 +117,7 @@ def invalide(year = 2006):
     print 'enfants invalides et garde alternée'
     
     pacIndiv = load_temp(name='pacIndiv', yaer=year)
-    foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin(['vous', 'conj'])), ['noindiv', 'inv']]
+    foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
     foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'typ', 'naia']], 
                                     on='noindiv', how='outer')
     print foy_inv_pac.columns

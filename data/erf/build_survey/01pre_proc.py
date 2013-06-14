@@ -201,6 +201,8 @@ def create_indivim(year=2006):
 
 
 def create_enfnn(year=2006):
+    data = DataCollection(year=year)
+    
     ### Enfant à naître (NN pour nouveaux nés)
 
     #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien','acteu','stc','contra','titc','mrec',
