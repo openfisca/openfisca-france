@@ -3839,7 +3839,7 @@
 	<VALUE valeur="95" deb="2007-07-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Évaluation forfaitaire des ressources R. 351-7-1" code="dar_2" format='float' type="monetary">
-	<!-- Là, j'ai un probléme, le R. 351-7-1 se référe aux planchers ressources en secteur accession -->
+	 # Là, j'ai un problème, le R. 351-7-1 se réfère aux planchers ressources en secteur accession 
 	<VALUE valeur="6173.82" deb="2002-01-01" fin="2002-06-30"/>
 	<VALUE valeur="6300" deb="2002-07-01" fin="2003-06-30"/>
 	<VALUE valeur="6400" deb="2003-07-01" fin="2007-06-30"/>
@@ -3875,7 +3875,7 @@
 	<VALUE valeur="1400" deb="2009-01-01" fin="2009-12-31"/>
 	<VALUE valeur="1400" deb="2010-01-01" fin="2012-12-31"/>
       </CODE>
-      <!-- là, pour les  Demandes antérieures au 1er juillet je ne sais pas !!! je n'ai rien trouvé!  -->
+      # là, pour les  Demandes antérieures au 1er juillet je ne sais pas !!! je n'ai rien trouvé! 
       <CODE description="Demandes antérieures au 1er juillet" code="dar_6" format='float' type="monetary">
 	<VALUE valeur="4420.76" deb="2002-01-01" fin="2002-06-30"/>
 	<VALUE valeur="4400" deb="2002-07-01" fin="2007-06-30"/>
@@ -4257,10 +4257,10 @@
     </NODE>
     <NODE description="Allocation parent isolé et majoration du RSA socle" code="api" >
       <CODE description="Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)" code="base" format = 'percent'>
-	<VALUE valeur="1.5" deb="1977-01-10" fin="2011-12-31" /><!-- changer date de fin, -->
+	<VALUE valeur="1.5" deb="1977-01-10" fin="2011-12-31" /> # changer date de fin ?
       </CODE>
       <CODE description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" code="enf_sup" format = 'percent'>
-	<VALUE valeur="0.5" deb="1977-10-01" fin="2011-12-31" /><!-- changer date de fin, -->
+	<VALUE valeur="0.5" deb="1977-10-01" fin="2011-12-31" /> # changer date de fin ?
       </CODE>    
       <CODE description="Limite d'âge des enfants ouvrant droit" code="age" format='integer' type="age">
 	<VALUE valeur="3" deb="1977-10-01" fin="2013-12-31"/>
