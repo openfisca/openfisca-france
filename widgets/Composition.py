@@ -86,12 +86,9 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         maxrev = self.get_option('maxrev')
         self.maxrev_box.setValue(maxrev)
         self.maxrev = maxrev
-        print "in init : ", self.maxrev
-
 
         if simulation is not None:
             self.set_simulation(simulation)
-
 
         
         self.connect(self.open_btn, SIGNAL('clicked()'), self.load)

@@ -262,8 +262,7 @@ def sif(year=2006):
     #print(length(table(sif$noindiv)))
     
     sif_drop_duplicated = sif.drop_duplicates("noindiv")
-    #print "Number of distinct individuals after removing duplicates:", len(sif_drop_duplicated["noindiv"])
-    assert len(sif["noindiv"].value_counts()) == len(sif_drop_duplicated["noindiv"])
+    assert len(sif["noindiv"].value_counts()) == len(sif_drop_duplicated["noindiv"]), Exception("Number of distinct individuals after removing duplicates is not correct")
     
     print 'Saving sif'
     save_temp(sif, name='sif', year=year)
