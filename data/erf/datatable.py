@@ -11,10 +11,13 @@ import os
 import gc
 #    Uses rpy2.
 #    On MS Windows, The environment variable R_HOME and R_USER should be set
-import pandas.rpy.common as com 
-import rpy2.rpy_classic as rpy
-rpy.set_default_mode(rpy.NO_CONVERSION)
 
+try:
+    import pandas.rpy.common as com 
+    import rpy2.rpy_classic as rpy
+    rpy.set_default_mode(rpy.NO_CONVERSION)
+except:
+    pass
 from src.countries.france.data.sources.config import DATA_DIR
 from src import SRC_PATH
 from pandas import HDFStore
