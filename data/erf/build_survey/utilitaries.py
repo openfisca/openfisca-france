@@ -27,7 +27,9 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
     """
     
     print 'longueur de la data frame =', len(dataframe.index)
-    if debug and (dataframe.duplicated().any()) : print 'présence de doublons dans la dataframe ?'
+    if debug and (dataframe.duplicated().any()) : 
+        print 'Attention : présence de doublons dans la dataframe'
+        print 'nb de doublons', len(dataframe[dataframe.duplicated()])
     if not(debug): assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
 
     empty_columns = []
@@ -38,16 +40,17 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
                 empty_columns.append(col)
         else:
             assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    print empty_columns
+    if empty_columns != []: print empty_columns
     print 'vérifications terminées'
     
     if verbose is True:
         print '------ informations détaillées -------'
             
         if verbose_columns is None:
-            print dataframe.head(verbose_length) 
+#             print dataframe.head(verbose_length) 
             if dataframe.duplicated().any():
                 print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
+
         else : 
             if dataframe.duplicated(verbose_columns).any():
                 print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])

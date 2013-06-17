@@ -75,7 +75,6 @@ def create_fip(year = 2006): # message('03_fip')
         
     from pandas import MultiIndex 
     columns= MultiIndex.from_tuples(multi_index_columns, names=['pac_number', 'variable'])    
-    from numpy import zeros
     from numpy.random import randn
     fip = DataFrame(randn(len(foyer), 3*nb_pac_max),  columns=columns)
     fip.fillna(NaN, inplace=True)
@@ -84,40 +83,32 @@ def create_fip(year = 2006): # message('03_fip')
         fip[(i, 'declaration')] = foyer['declar'].values
         fip[(i,'type_pac')] = foyer['anaisenf'].str[5*(i-1)]
         fip[(i,'naia')] = foyer['anaisenf'].str[5*(i-1)+1:5*(i-1)+5]
-    
-    
-    
-    print fip.head(10)
-    
+        
+#     print fip.head(10).to_string()
 
-    
-    test = fip.stack("pac_number")
-    print test.head()
-    test.reset_index(inplace=True)
-    del test["level_0"]
-    test.set_index(["declaration","pac_number"], inplace=True)
-    print test.head()
-    print test["naia"].dtype
-    print test["naia"].value_counts()
+    fip = fip.stack("pac_number")
+    fip.reset_index(inplace=True)
+    del fip["level_0"]
+#     print fip.head(20).to_string()
+#     print fip["naia"].dtype
+#     print fip["naia"].value_counts()
 
     # TODO: RESTART FROM HERE
     # clean the test=new fip columns
-    return
-
 
     print "    1.2 : elimination des foyers fiscaux sans pac"
-    fip = fip.sort(columns=['declaration','naia','type_pac'])
     
     #Clearing missing values and changing data format
-    fip = fip[and_(fip['naia'] != '', fip['naia'] != 'an')]
+    fip = fip.sort(columns=['declaration','naia','type_pac'])
+    fip.set_index(["declaration","pac_number"], inplace=True)
+    fip = fip[and_(fip['type_pac'].notnull(), (fip['naia'] != 'an') & (fip['naia'] != ''))]
     fip = fip.reset_index()
-    fip.columns = ['nb_row', 'no_pac', 'declaration', 'naia', 'type_pac']
-    del fip['no_pac']
-    control(fip, debug=True)
+#     fip.columns = ['nb_row', 'no_pac', 'declaration', 'naia', 'type_pac']
+    del fip['pac_number']
+#     print fip.head(20).to_string()
+
+    control(fip, debug=True, verbose=True)
     
-#     fip['nb_row'] = fip['nb_row'].astype('str')
-#     fip['type_pac'] = fip['type_pac'].astype('str')
-#     fip.set_index(keys=['nb_row'])
 
 # library(plyr)
 # # on enlève les F pour lesquels il y a un G ;
@@ -135,22 +126,22 @@ def create_fip(year = 2006): # message('03_fip')
 # rm(tyF,tyG,tyFG)
 
     print "    1.3 : on enlève les individus F pour lesquels il existe un individu (le même vraisemblablement) G"
-    tyF = fip[fip['type_pac'] == 'F']
-    tyG = fip[fip['type_pac'] == 'G']
-    del tyF['type_pac'], tyG['type_pac']
 
-    tyF['dup'] = False
-    tyG['dup'] = False
-    tyF.drop_duplicates(cols=('declaration', 'naia'))
-    tyG.drop_duplicates(cols=('declaration', 'naia'))
-
-    #Merging tyF and tyG
-    tyFG = tyF.merge(tyG, on=['declaration', 'naia', 'dup'], how='outer')
-    iden = tyFG
-    del tyF, tyG, tyFG
-    control(iden, debug=True)
-    print "merging tyF and tyG done"
-
+    tyFG = fip[fip.type_pac.isin(['F', 'G'])] #Filtre pour ne travailler que sur F & G
+    
+    tyFG['same_pair'] = tyFG.duplicated(cols=['declaration', 'naia'])
+    tyFG['is_twin'] = tyFG.duplicated(cols=['declaration', 'naia', 'type_pac'])
+    tyFG['to_keep'] = (not_(tyFG['same_pair']) | (tyFG['is_twin']))
+    #Note : On conserve ceux qui ont des couples déclar/naia différents et les jumeaux 
+    #puis on retire les autres (à la fois F et G)
+    print len(tyFG),'/', len(tyFG[tyFG['to_keep']])
+    print 'longueur fip', len(fip)
+    
+    fip['to_keep'] = NaN
+    fip.update(tyFG)
+    print fip.head()
+    print 'enfants F & G traités'
+    
 # # on enlève les H pour lesquels il y a un I ;
 # tyH <- fip[fip$typ == 'H',]
 # tyH <- upData(tyH,drop = c('typ'))
@@ -159,23 +150,24 @@ def create_fip(year = 2006): # message('03_fip')
 # tyHI <- join(tyH,tyI, by = c('declar','naia'),type = 'right',match = 'first')
 # iden <- c(iden,tyHI$N) #TODO: ça fait quoi ça ?
 # rm(tyH,tyI,tyHI,L)
-
-    print "    1.3 : on enlève les H pour lesquels il y a un I"
-    tyH = fip[fip['type_pac'] == 'H']
-    tyI = fip[fip['type_pac'] == 'I']
-    tyHI = tyH.merge(tyI, on=['declaration', 'naia'], how='outer')
-    iden_ = [iden, tyHI['nb_row_x']]
-    
-    print "tyHI done-----------------------------"
-
 # indivifip <- fip[!fip$N %in% iden,c(1:3)];
 # rm(foyer,fip)
 # table(indivifip$typ,useNA="ifany")
 
-    indivifip = fip[ not_(fip.nb_row.isin(iden.declaration.values))]
-    del fip, #foyer ? 
-    print indivifip.head()
-    print "indivifip saved ------------------------------"
+    print "    1.3 : on enlève les H pour lesquels il y a un I"
+    tyHI = fip[fip.type_pac.isin(['H', 'I'])]
+    tyHI['same_pair'] = tyHI.duplicated(cols=['declaration', 'naia'])
+    tyHI['is_twin'] = tyHI.duplicated(cols=['declaration', 'naia', 'type_pac'])
+    tyHI['to_keep'] = not_(tyHI['same_pair']) | (tyHI['is_twin'])
+    
+    fip.update(tyHI)
+    fip['to_keep'] = fip['to_keep'].fillna(True)
+    print 'nb lines to keep/nb initial lines'
+    print len(fip[fip['to_keep']]), '/', len(fip)
+
+    indivifip = fip[fip['to_keep']]; del indivifip['to_keep'], fip, tyFG, tyHI
+    control(indivifip, debug=True)
+
 # 
 # #************************************************************************************************************/
     print 'Step 2 : matching indivifip with eec file'
