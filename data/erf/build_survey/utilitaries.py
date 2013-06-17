@@ -70,6 +70,10 @@ def print_id(df):
         # Ici, il doit y avoir autant de vous que d'idfoy
         print "Foyers", len(df.idfoy)
         print df["quifoy"].value_counts()
+        if df["idfoy"].isnull().any():        
+            print "NaN in idfoy : ", df["idfoy"].isnull().sum()
+        if df["quifoy"].isnull().any():        
+            print "NaN in quifoy : ", df["quifoy"].isnull().sum() 
     except:
         print "No idfoy or quifoy"
          
@@ -77,6 +81,10 @@ def print_id(df):
         # Ici, il doit y avoir autant de quimen = 0 que d'idmen
         print "Ménages", len(df.idmen)
         print df["quimen"].value_counts()
+        if df["idmen"].isnull().any():        
+            print "NaN in idmen : ", df["idmen"].isnull().sum()
+        if df["quimen"].isnull().any():        
+            print "NaN in quimen : ", df["quimen"].isnull().sum()
     except:
         print "No idmen or quimen"
   
@@ -84,5 +92,9 @@ def print_id(df):
         # Ici, il doit y avoir autant de quifam = 0 que d'idfam
         print "Familles", len(df.idfam)
         print df["quifam"].value_counts()
+        if df["idfam"].isnull().any():        
+            print "NaN in idfam : ", df["idfam"].isnull().sum()
+        if df["quifam"].isnull().any():        
+            print "NaN in quifam : ", df["quifam"].isnull().sum()
     except:
         print "No idfam or quifam"
