@@ -11,8 +11,8 @@ from numpy import where, NaN, random, logical_or as or_
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control
 from numpy import logical_and as and_
-from pandas import read_csv, concat
-
+from pandas import read_csv, HDFStore
+import os
 
 def final(year=2006):
 
@@ -378,9 +378,13 @@ def final(year=2006):
 # saveTmp(final2, file= "final2.Rdata")
 
     print_id(final2)
-    from pandas import HDFStore
+
+    from src.countries.france.data.erf.build_survey.utilitaries import check_structure
+    check_structure(final2)
+
+    return
+
     from src.countries.france import DATA_SOURCES_DIR
-    import os
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
     store = HDFStore(test_filename)
     store['survey_'+ str(year)]  = final2

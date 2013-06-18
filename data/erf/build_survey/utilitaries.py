@@ -56,9 +56,29 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
 
 
 def check_structure(df):
-    print "autant de vous que d'idfoy", (len(df.noindiv)==len(df.index))
-    print "autant de quimen = 0 que d'idmen", len(df.idmen)==df["quimen"].value_counts()
-    print "autant de quifam = 0 que d'idfam", len(df.idfam)==df["quifam"].value_counts()
+
+    dup = df.noindiv.duplicated().sum()
+    if dup > 1:
+        print "there are %s duplicated individuals" %dup
+        df.drop_duplicates("noindiv", inplace=True)
+    
+    for entity in ["men", "fam", "foy"]:
+        print entity
+        qui = 'qui' + entity
+        id  = 'id' + entity
+    
+        if df[qui].isnull().any():
+            print "there are NaN in qui%s" %entity
+        
+        max_entity = df[qui].max().astype("int")
+        for position in range(0, max_entity+1):
+            test = df[[ qui, id]].groupby(by=id).agg(lambda x: (x==position).sum()) 
+            errors = (test[qui] > 1).sum()
+            if errors > 0:
+                print "There are %s duplicated qui%s = %s" %(errors,entity,position)
+        
+    
+    
 
 def print_id(df):
     try:
