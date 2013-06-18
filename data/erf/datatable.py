@@ -95,7 +95,7 @@ class DataCollection(object):
         
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
-                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub"]
+                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub", "dip11"]
      
         erf_variables_to_fetch = {"erf_indivi": variables,
                                   "eec_indivi": variables_eec,
