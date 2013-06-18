@@ -9,7 +9,7 @@
 from __future__ import division
 from numpy import where, NaN, random, logical_or as or_ 
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import print_id, control
+from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
 from numpy import logical_and as and_
 from pandas import read_csv, concat
 
@@ -379,6 +379,8 @@ def final(year=2006):
 # saveTmp(final2, file= "final2.Rdata")
 
     print_id(final2)
+    control(final2, debug=True, verbose=True)
+    return
     from pandas import HDFStore
     from src.countries.france import DATA_SOURCES_DIR
     import os

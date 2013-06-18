@@ -50,6 +50,8 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
 #             print dataframe.head(verbose_length) 
             if dataframe.duplicated().any():
                 print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
+            else:
+                print 'pas de doublons'
 
         else : 
             if dataframe.duplicated(verbose_columns).any():

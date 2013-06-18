@@ -41,7 +41,6 @@ def create_fip(year = 2006): # message('03_fip')
 # # print "Step 1 : on recupere les personnes à charge des foyers"
 # #**********************************************************************************************************
 # # On traite les cas de declarations multiples pour ne pas créer de doublon de pac
-# # TODO: ON FAIT QUOI LA ?
 # 
 # 
 # # On récupère toutes les pac des foyers 
@@ -84,17 +83,10 @@ def create_fip(year = 2006): # message('03_fip')
         fip[(i,'type_pac')] = foyer['anaisenf'].str[5*(i-1)]
         fip[(i,'naia')] = foyer['anaisenf'].str[5*(i-1)+1:5*(i-1)+5]
         
-#     print fip.head(10).to_string()
-
     fip = fip.stack("pac_number")
     fip.reset_index(inplace=True)
     del fip["level_0"]
-#     print fip.head(20).to_string()
-#     print fip["naia"].dtype
-#     print fip["naia"].value_counts()
 
-    # TODO: RESTART FROM HERE
-    # clean the test=new fip columns
 
     print "    1.2 : elimination des foyers fiscaux sans pac"
     
@@ -103,9 +95,7 @@ def create_fip(year = 2006): # message('03_fip')
     fip.set_index(["declaration","pac_number"], inplace=True)
     fip = fip[and_(fip['type_pac'].notnull(), (fip['naia'] != 'an') & (fip['naia'] != ''))]
     fip = fip.reset_index()
-#     fip.columns = ['nb_row', 'no_pac', 'declaration', 'naia', 'type_pac']
     del fip['pac_number']
-#     print fip.head(20).to_string()
 
     control(fip, debug=True, verbose=True)
     
