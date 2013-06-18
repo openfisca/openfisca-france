@@ -709,10 +709,11 @@ def create_totals(year=2006):
 #})
 #table(indivi$nbsala,useNA='ifany')
 
-    indivi['txtppb'].fillna(0)
+    indivi['txtppb'] = indivi['txtppb'].fillna(0)
+    print len(indivi[indivi['txtppb'].isnull()])
     assert indivi['txtppb'].notnull().all()
     
-    indivi['nbsala'].fillna(0)
+    indivi['nbsala'] = indivi['nbsala'].fillna(0)
     indivi['nbsala'] = indivi['nbsala'].astype('int')
     indivi['nbsala'][indivi['nbsala']==99] = 10
     print indivi['nbsala'].value_counts()
@@ -971,13 +972,29 @@ def create_final(year=2006):
 #gc()
 
     sif = load_temp(name = 'sif', year=year)
-    final = final.merge(sif, on='noindiv', how='inner')
-    assert set(sif.columns) < set(final.columns)
-    print len(final[final['idfoy'].isnull()])
+    sifcols = sif.columns
+    sifcols = [col for col in sifcols if col != "noindiv"]
+    for col in sifcols:
+        final[col] = nan
+    print 'contrôles avant update -----------'
+    print final.duplicated('noindiv').any()
+    print sif.duplicated('noindiv').sum()
+    print len(sif)
+    final.update(sif) #TODO: IF FAUT UNE METHODE POUR GERER LES DOUBLES DECLARATIONS
+    
+#     final = final.merge(sif, on='noindiv', how='inner')
+#     assert set(sif.columns) < set(final.columns)
+    print len(final)
+    print final.duplicated(cols=['idfoy', 'quifoy']).any() 
+    print final.duplicated(cols=['idmen', 'quimen']).any()
+    print final.duplicated(cols=['idfam', 'quifam']).any()
+    print final.duplicated(cols=['noindiv']).sum()
+#     control(final, debug=True, verbose=True, verbose_columns=['noindiv'], verbose_length=0)
+    return
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final
     
 if __name__ == '__main__':
-    create_totals()
+#     create_totals()
     create_final()

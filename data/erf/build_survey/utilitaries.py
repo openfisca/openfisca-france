@@ -36,11 +36,10 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
     for col in dataframe.columns:
         if debug:
             if (dataframe[col].isnull().all()): 
-                print 'la colonne %s est vide' %(col)
                 empty_columns.append(col)
         else:
             assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    if empty_columns != []: print empty_columns
+    if empty_columns != []: print 'liste des colonnes entièrement vides',empty_columns
     print 'vérifications terminées'
     
     if verbose is True:
@@ -57,6 +56,8 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
             if dataframe.duplicated(verbose_columns).any():
                 print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
                 print dataframe[dataframe.duplicated(verbose_columns)].head(verbose_length).to_string()
+            for col in verbose_columns:
+                print 'présence de NaN dans %s : ' %(col), dataframe[col].isnull().any()
             print 'colonnes contrôlées ------>', verbose_columns
 
 

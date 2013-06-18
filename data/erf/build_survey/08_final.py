@@ -103,7 +103,6 @@ def final(year=2006):
     final_fip.activite = where(final_fip.age > 21, 2, final_fip.activite)  # ne peuvent être rattach?s que les ?tudiants  
 
     final.update(final_fip)
-    
     save_temp(final, name="final", year=year)
  
 # loadTmp("final.Rdata")
@@ -266,6 +265,7 @@ def final(year=2006):
     final.rename(columns=dict(zthabm="tax_hab"), inplace=True) # rename zthabm to tax_hab
     final2 = final.merge(loyersMenages, on="idmen", how="left") # TODO: Check
     gc.collect()
+    return
 # 
 # # TODO: merging with patrimoine
 # rm(menagem,final)
@@ -311,6 +311,7 @@ def final(year=2006):
 # }
 # 
 
+    print 'traitement des zones apl'
     apl_imp = read_csv("../../zone_apl/zone_apl_imputation_data.csv")
 
     print apl_imp.head(10)
@@ -381,7 +382,7 @@ def final(year=2006):
     print_id(final2)
 
     from src.countries.france.data.erf.build_survey.utilitaries import check_structure
-    check_structure(final2)
+    control(final2, debug=True, verbose=True, verbose_columns=['quifoy', 'idfoy'])
     return
 
 

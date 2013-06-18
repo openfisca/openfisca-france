@@ -91,7 +91,7 @@ def invalide(year = 2006):
     invalides["inv"][inv_conj_condition] = True
 
     print invalides["inv"].sum(), " invalides déclarants et conjoints"
-
+    return
     
 # # # Enfants invalides et garde alternée
 # # 
@@ -122,8 +122,9 @@ def invalide(year = 2006):
     pacIndiv = load_temp(name='pacIndiv', year=year)
     foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
     print pacIndiv.columns
-    pacIndiv.reset_index(inplace=True)
-    pac = pacIndiv.xs( ["noindiv", "type_pac", "naia"], axis=1)
+    print pacIndiv.head(10).to_string()
+#     pacIndiv.reset_index(inplace=True)
+    pac = pacIndiv.ix[:, ["noindiv", "type_pac", "naia"]]
     print pac.value_counts()
     return
 
@@ -161,7 +162,7 @@ def invalide(year = 2006):
     final = final.merge(invalides.loc[:, ['noindiv', 'inv', 'alt']], on='noindiv', how='outer')
     control(final)
     print final.xs(columns=['inv', 'alt']).describe()
-    
+    return
 # # rm(invalides)
 # # saveTmp(final, file= "final.Rdata")
     print 'Sauvegarde :'

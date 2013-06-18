@@ -3,7 +3,7 @@
 
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import control
+from src.countries.france.data.erf.build_survey.utilitaries import control, check_structure
 from pandas import DataFrame
 from numpy import array, where, NaN
 from pandas import concat
