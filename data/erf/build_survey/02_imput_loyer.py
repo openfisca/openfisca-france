@@ -5,6 +5,9 @@
 # Copyright ©2013 Clément Schaff, Mahdi Ben Jelloul
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
+
+
+from __future__ import division
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import control
@@ -22,18 +25,53 @@ from numpy import logical_not as not_, logical_and as and_
 # message('Entering 02_imput_loyer')
 # message('Building comparable tables')
 def create_imput_loyer(year):
+    
+    
+# message('Building comparable tables')
+# ## Variable used for imputation
+# if (yr == '08'){ # tau99 is not present
+#   menmVars <- c("ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
+#                 "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg")
+# } else {
+#   menmVars <- c("ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
+#               "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg","tau99")
+# }
+# indmVars <- c("noi",'ident',"lpr","dip11") # TODO check as.numeric
+# lgtAdrVars <- c("gzc2")
+# lgtMenVars <- c("sec1","mrcho","mrret","mrsal","mrtns","mdiplo","mtybd","magtr","mcs8","maa1at","qex","muc1")
+# if (yr=="03"){
+# lgtMenVars <- c(lgtMenVars,"typse","lmlm","hnph2","mnatior","ident")
+# lgtAdrVars <- c(lgtAdrVars,"iaat","tu99","ident")
+# }
+# if (yr %in% c("06", "07", "08", "09")){
+# lgtMenVars <- c(lgtMenVars,"mnatio","idlog")
+# lgtAdrVars <- c(lgtAdrVars,"idlog")  # pas de typse en 2006
+# lgtLgtVars <- c("lmlm","iaat","tu99","hnph2","idlog")  # pas de typse en 2006
+# }    
+#     
+
+# TODO:
+# - Garder le code R, c'est plus facile pour débugguer
+# - Ne pas garder les camelCase et mettre des espaces autour des " = " et après les ", ". 
+# - En général essayer de se conformer au coding style rules énoncées ici: http://www.python.org/dev/peps/pep-0008/
+# - Mettre des espaces pour aérer ton code
+# - Rajouter des assert pour vérifier certaiens étapes (demander à Jérôme)
+
     #Variables used for imputation
-    df=DataCollection(year=year)
+    df = DataCollection(year=year)
     print 'Démarrer 02_imput_loyer'
     if year == 2008: # Tau99 not present
-        menmVars=["ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
-                 "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg"]
+        menm_vars=["ztsam", "zperm", "zragm", "zricm", "zrncm", "zracm", "nb_uci", "wprm",
+                 "so", "nbpiec", "typmen5", "spr", "nbenfc", "agpr", "cstotpr",
+                 "nat28pr", "tu99", "aai1", 'ident', "pol99", "reg"]
     else:
-        menmVars=["ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
+        menm_vars = ["ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
                  "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg","tau99"]
-    indmVars =["noi",'ident',"lpr","dip11"]
-    LgtAdrVars=["gzc2"]
-    LgtMenVars=["sec1","mrcho","mrret","mrsal","mrtns","mdiplo","mtybd","magtr","mcs8","maa1at","qex","muc1"]
+    
+    indm_vars = ["noi",'ident',"lpr","dip11"]
+    LgtAdrVars = ["gzc2"]
+    LgtMenVars = ["sec1","mrcho","mrret","mrsal","mrtns","mdiplo","mtybd","magtr","mcs8","maa1at","qex","muc1"]
+    
     if year == 2003:
         LgtMenVars.extend(["typse","lmlm","hnph2","mnatior","ident"])
         LgtAdrVars.extend(["iaat","tu99","ident"])
@@ -41,6 +79,7 @@ def create_imput_loyer(year):
         LgtMenVars.extend(["mnatio","idlog"])
         LgtAdrVars.extend(["idlog"]) # pas de typse en 2006
         LgtLgtVars=["lmlm","iaat","tu99","hnph2","idlog"] # pas de typse en 2006
+    
     print year
 #===============================================================================
 # ## Travail sur la base ERF
@@ -63,16 +102,19 @@ def create_imput_loyer(year):
     print show_temp()
     erfmenm = load_temp(name="menagem",year=year) 
     #df.get_values(table="erfmenm",variables=menmVars)
-    erfmenm['revtot']= erfmenm['ztsam']+erfmenm['zperm']+erfmenm['zragm']+erfmenm['zricm']+erfmenm['zrncm']+erfmenm['zracm']
-    erfmenm['nvpr']=erfmenm['revtot'].astype('float') / erfmenm['nb_uci'].astype('float')
+    erfmenm['revtot'] = (erfmenm['ztsam'] + erfmenm['zperm'] + erfmenm['zragm'] + 
+                         erfmenm['zricm'] + erfmenm['zrncm'] + erfmenm['zracm'])
+    erfmenm['nvpr'] = erfmenm['revtot'] / erfmenm['nb_uci']
     erfmenm['logt']= erfmenm['so']
     #Preparing ERF individuals table
     erfindm = load_temp(name="indivim",year=year) #variables=indmVars)
     print 'ident' in erfindm.columns
     print 'dip11' in erfindm.columns
-     
-    erfindm=erfindm[erfindm['lpr']==1].loc[:, ['ident', 'dip11']]
-    
+    print erfindm
+#    erfindm=erfindm[['ident', 'dip11']][erfindm['lpr']==1]
+    erfindm = erfindm[['ident', 'dip11']][erfindm['lpr']==1]
+    print erfindm
+    return
 #===============================================================================
 # '''# Merge
 # message("merging erf menage and individu")
@@ -90,10 +132,11 @@ def create_imput_loyer(year):
 # rm(dec)'''
 #===============================================================================
     #Merging ERF menages and individuals
-    erf=erfmenm.merge(erfindm,on='ident')
+    erf = erfmenm.merge(erfindm, on='ident')
     #Compute quantiles
-    # TODO : quantiles
-    
+    # TODO : quantiles voir dans l'import ci dessous le lien pour comprendre comment le
+    # calcul de quantiles fonctionne
+    from src.lib.utils import mark_weighted_percentiles 
 #===============================================================================
 # '''message("recode variable for imputation")
 # erf <- subset(erf, so %in% c(3,4,5),
@@ -108,6 +151,8 @@ def create_imput_loyer(year):
                  'nat28pr','tu99','aai1','wprm','nvpr','revtot','dip11','deci']][erf['so'] < 6 and erf['so'] > 2]
 
     DataFrame().rename(columns={'nbpiec':'hnph2'}) 
+    # TODO: utiliser rename
+    # TODO: ne traite pas les types comme dans R teste-les pour voir comment pandas les gère 
     for col in erf.columns: # Sorte de rename, pas sûr que ça marche
         if col=='nbpiec':
             col='hnph2'
