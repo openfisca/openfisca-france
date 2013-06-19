@@ -492,81 +492,81 @@ class InputTable(ModelDescription):
     f7la = IntCol(entity= 'foy', label =u"Investissements locatifs neufs dispositif Scellier: report du solde de réduction d'impôt non encore imputé", val_type="monetary")
 
     # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-    f7ij = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7il = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7im = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7ik = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7is = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f7ij = IntCol(entity= 'foy', label =u"Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en n-1", val_type="monetary")
+    f7il = IntCol(entity= 'foy', label =u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-2", val_type="monetary")
+    f7im = IntCol(entity= 'foy', label =u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-3", val_type="monetary")
+    f7ik = IntCol(entity= 'foy', label =u"Reports de 1/9 de l'investissement réalisé et achevé au cours de l'année n-4", val_type="monetary")
+    f7is = IntCol(entity= 'foy', label =u"Report du solde de réduction d'impôt non encor imputé: année  n-4", val_type="monetary")
     
     # Investissements locatifs dans les résidences de tourisme situées dans une zone de 
     # revitalisation rurale
     f7gt = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7xg = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f7xg = IntCol(entity= 'foy', label =u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme", val_type="monetary")
     f7gu = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7gv = IntCol(entity= 'foy', label =u"", val_type="monetary")
     
     # Avoir fiscaux et crédits d'impôt     
     # f2ab déjà disponible
-    f8ta = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8tb = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8tf = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8tg = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8th = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8tc = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8td = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8te = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8to = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8tp = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8uz = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8tz = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wa = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wb = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wc = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wd = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8we = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wr = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8ws = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wt = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wu = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wv = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f8wx = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f8ta = IntCol(entity= 'foy', label =u"Retenue à la source en France ou impôt payé à l'étranger", val_type="monetary")
+    f8tb = IntCol(entity= 'foy', label =u"Crédit d'impôt recherche non encore remboursé", val_type="monetary")
+    f8tf = IntCol(entity= 'foy', label =u"Reprises de réductions ou de crédits d'impôt", val_type="monetary")
+    f8tg = IntCol(entity= 'foy', label =u"Crédits d'impôt en faveur des entreprises: Investissement en Corse", val_type="monetary")
+    f8th = IntCol(entity= 'foy', label =u"Retenue à la source élus locaux", val_type="monetary")
+    f8tc = IntCol(entity= 'foy', label =u"Crédit d'impôt recherche non encore remboursé (années antérieures)", val_type="monetary")
+    f8td = IntCol(entity= 'foy', label =u"Contribution exceptionnelle sur les hauts revenus")
+    f8te = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé", val_type="monetary")
+    f8to = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures", val_type="monetary")
+    f8tp = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt", val_type="monetary")
+    f8uz = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Famille", val_type="monetary")
+    f8tz = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Apprentissage", val_type="monetary")
+    f8wa = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Agriculture biologique", val_type="monetary")
+    f8wb = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Prospection commerciale", val_type="monetary")
+    f8wc = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies", val_type="monetary")
+    f8wd = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise", val_type="monetary")
+    f8we = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Intéressement", val_type="monetary")
+    f8wr = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Métiers d'art", val_type="monetary")
+    f8ws = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes", val_type="monetary")
+    f8wt = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs", val_type="monetary")
+    f8wu = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Maître restaurateur", val_type="monetary")
+    f8wv = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Débitants de tabac", val_type="monetary")
+    f8wx = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise", val_type="monetary")
     f8wy = IntCol(entity= 'foy', label =u"", val_type="monetary")
     
     # Acquisition de biens culturels
-    f7uo = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f7uo = IntCol(entity= 'foy', label =u"Acquisition de biens culturels", val_type="monetary")
 
     
     # Mécénat d'entreprise    
-    f7us = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f7us = IntCol(entity= 'foy', label =u"Réduction d'impôt mécénat d'entreprise", val_type="monetary")
 
     # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
     # f7wf = IntCol() déjà disponible
     # f7wh = IntCol() déjà disponible
     # f7wk = IntCol() déjà disponible
     # f7wq = IntCol() déjà disponible
-    f7sb = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7sd = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7se = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7sh = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f7sb = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %", val_type="monetary")
+    f7sd = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %", val_type="monetary")
+    f7se = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %", val_type="monetary")
+    f7sh = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %", val_type="monetary")
     # f7wg = IntCol() déjà disponible
     f7sc = IntCol(entity= 'foy', label =u"", val_type="monetary")
     
-    # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
-    f7up = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f7uq = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
+    f7up = IntCol(entity= 'foy', label =u"Crédit d'impôt", val_type="monetary")
+    f7uq = IntCol(entity= 'foy', label =u"Crédit d'impôt", val_type="monetary")
 
-    # Crédit d'impôt aide à la mobilité
-    f1ar = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f1br = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f1cr = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f1dr = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    f1er = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
+    f1ar = IntCol(entity= 'foy', label =u"Crédit d'impôt aide à la mobilité")
+    f1br = IntCol(entity= 'foy', label =u"Crédit d'impôt aide à la mobilité")
+    f1cr = IntCol(entity= 'foy', label =u"Crédit d'impôt aide à la mobilité")
+    f1dr = IntCol(entity= 'foy', label =u"Crédit d'impôt aide à la mobilité")
+    f1er = IntCol(entity= 'foy', label =u"Crédit d'impôt aide à la mobilité")
 
     # Crédit d’impôt directive « épargne » (case 2BG)
-    f2bg = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f2bg = IntCol(entity= 'foy', label =u"Crédit d’impôt directive « épargne »", val_type="monetary")
     
     # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
-    f4tq = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    f4tq = IntCol(entity= 'foy', label =u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail", val_type="monetary")
     
 
     # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
@@ -578,6 +578,10 @@ class InputTable(ModelDescription):
     f7si = IntCol(entity= 'foy', label =u"", val_type="monetary")
     
     # Frais de garde des enfants à l’extérieur du domicile 
+    """ là je ne sais pas à quoi cela correspond, les frais de garde des enfants sont en 7ga etc..., 
+    en 4 ce sont les revenus fonciers depuis un certain nb d'années, et ce n'est pas du g... 
+    en plus les f4ga..ne sont pas utilisées dans les prog (sauf un commentaire dans 08_final), moi, je supprimerais ça!
+    """
     f4ga = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f4gb = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f4gc = IntCol(entity= 'foy', label =u"", val_type="monetary")
@@ -585,8 +589,9 @@ class InputTable(ModelDescription):
     f4gf = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f4gg = IntCol(entity= 'foy', label =u"", val_type="monetary")
 
-    # Auto-entrepreneur : versements d’impôt sur le revenu 
-    f8uy = IntCol(entity= 'foy', label =u"", val_type="monetary")
+
+    # Auto-entrepreneur : versements libératoires d’impôt sur le revenu 
+    f8uy = IntCol(entity= 'foy', label =u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu", val_type="monetary")
 
     # Revenus des professions non salariées
     frag_exon = IntCol(entity= 'ind', label =u"", val_type="monetary") # (f5hn, f5in, f5jn)
