@@ -606,7 +606,6 @@ class InputTable(ModelDescription):
     nrag_defi = IntCol(entity= 'ind', label =u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type="monetary") # (f5hl, f5il, f5jl)
     nrag_ajag = IntCol(entity= 'ind', label =u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type="monetary") # (f5hm, f5im, f5jm)
 
-
     mbic_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)", val_type="monetary") # (f5kn, f5ln, f5mn)
     abic_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5kb, f5lb, f5mb)
     nbic_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5kh, f5lh, f5mh)
@@ -616,155 +615,68 @@ class InputTable(ModelDescription):
     abic_imps = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5kd, f5ld, f5md)
     nbic_impn = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5ki, f5li, f5mi)
     nbic_imps = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5kj, f5lj, f5mj)
-    abic_defn = IntCol(entity= 'ind', val_type="monetary") # (f5kf, f5lf, f5mf)
-    abic_defs = IntCol(entity= 'ind', val_type="monetary") # (f5kg, f5lg, f5mg)
-    nbic_defn = IntCol(entity= 'ind', val_type="monetary") # (f5kl, f5ll, f5ml)
-    nbic_defs = IntCol(entity= 'ind', val_type="monetary") # (f5km, f5lm, f5mm)
-    nbic_apch = IntCol(entity= 'ind', val_type="monetary") # (f5ks, f5ls, f5ms)
-
-
-
-
-    abic_defn = IntCol(entity= 'foy', label=u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5kf, f5lf, f5mf)
-    abic_defs = IntCol(entity= 'foy', label=u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5kg, f5lg, f5mg)
-    nbic_defn = IntCol(entity= 'foy', label=u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5kl, f5ll, f5ml)
-    nbic_defs = IntCol(entity= 'foy', label=u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5km, f5lm, f5mm)
-    nbic_apch = IntCol(entity= 'foy', label=u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ks, f5ls, f5ms)
-
-
+    abic_defn = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5kf, f5lf, f5mf)
+    abic_defs = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5kg, f5lg, f5mg)
+    nbic_defn = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5kl, f5ll, f5ml)
+    nbic_defs = IntCol(entity= 'ind', label=u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5km, f5lm, f5mm)
+    nbic_apch = IntCol(entity= 'ind', label=u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ks, f5ls, f5ms)
     
-    
-    
-    macc_exon = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)", val_type="monetary") # (f5nn, f5on, f5pn)
-    aacc_exon = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nb, f5ob, f5pb)
-    nacc_exon = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nh, f5oh, f5ph)
-    macc_impv = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)", val_type="monetary") # (f5no, f5oo, f5po)
-    macc_imps = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)", val_type="monetary") # (f5np, f5op, f5pp)
-    aacc_impn = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nc, f5oc, f5pc)
+    macc_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)", val_type="monetary") # (f5nn, f5on, f5pn)
+    aacc_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nb, f5ob, f5pb)
+    nacc_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nh, f5oh, f5ph)
+    macc_impv = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)", val_type="monetary") # (f5no, f5oo, f5po)
+    macc_imps = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)", val_type="monetary") # (f5np, f5op, f5pp)
+    aacc_impn = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nc, f5oc, f5pc)
+    aacc_imps = IntCol(entity= 'ind', label=u"Locations meublées non professionnelles (régime micro entreprise)", val_type="monetary") # (f5nd, f5od, f5pd)
+    aacc_defn = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nf, f5of, f5pf)
+    aacc_defs = IntCol(entity= 'ind', label=u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)", val_type="monetary") # (f5ng, f5og, f5pg)
+    nacc_impn = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5ni, f5oi, f5pi)
+    nacc_imps = IntCol(entity= 'ind', label=u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)", val_type="monetary") # (f5nj, f5oj, f5pj)
+    nacc_defn = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nl, f5ol, f5pl)
+    nacc_defs = IntCol(entity= 'ind', label=u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nm, f5om, f5pm)
+    mncn_impo = IntCol(entity= 'ind', label=u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ku, f5lu, f5mu)
+    cncn_bene = IntCol(entity= 'ind', label=u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)", val_type="monetary") # (f5sn, f5ns, f5os)
+    cncn_defi = IntCol(entity= 'ind', label=u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)", val_type="monetary") # (f5sp, f5nu, f5ou, f5sr)
 
-    macc_exon = IntCol(entity= 'ind', val_type="monetary") # (f5nn, f5on, f5pn)
-    aacc_exon = IntCol(entity= 'ind', val_type="monetary") # (f5nb, f5ob, f5pb)
-    nacc_exon = IntCol(entity= 'ind', val_type="monetary") # (f5nh, f5oh, f5ph)
-    macc_impv = IntCol(entity= 'ind', val_type="monetary") # (f5no, f5oo, f5po)
-    macc_imps = IntCol(entity= 'ind', val_type="monetary") # (f5np, f5op, f5pp)
-    aacc_impn = IntCol(entity= 'ind', val_type="monetary") # (f5nc, f5oc, f5pc)
-    aacc_imps = IntCol(entity= 'ind', val_type="monetary") # (f5nd, f5od, f5pd)
-    aacc_defn = IntCol(entity= 'ind', val_type="monetary") # (f5nf, f5of, f5pf)
-    aacc_defs = IntCol(entity= 'ind', val_type="monetary") # (f5ng, f5og, f5pg)
-    nacc_impn = IntCol(entity= 'ind', val_type="monetary") # (f5ni, f5oi, f5pi)
-    nacc_imps = IntCol(entity= 'ind', val_type="monetary") # (f5nj, f5oj, f5pj)
-    nacc_defn = IntCol(entity= 'ind', val_type="monetary") # (f5nl, f5ol, f5pl)
-    nacc_defs = IntCol(entity= 'ind', val_type="monetary") # (f5nm, f5om, f5pm)
-    mncn_impo = IntCol(entity= 'ind', val_type="monetary") # (f5ku, f5lu, f5mu)
-    cncn_bene = IntCol(entity= 'ind', val_type="monetary") # (f5sn, f5ns, f5os)
-    cncn_defi = IntCol(entity= 'ind', val_type="monetary") # (f5sp, f5nu, f5ou, f5sr)
-
-
-
-    aacc_imps = IntCol(entity= 'foy', label=u"Locations meublées non professionnelles (régime micro entreprise)", val_type="monetary") # (f5nd, f5od, f5pd)
-    aacc_defn = IntCol(entity= 'foy', label=u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary" ) # (f5nf, f5of, f5pf)
-    aacc_defs = IntCol(entity= 'foy', label=u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)", val_type="monetary") # (f5ng, f5og, f5pg)
-    nacc_impn = IntCol(entity= 'foy', label=u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5ni, f5oi, f5pi)
-    nacc_imps = IntCol(entity= 'foy', label=u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)", val_type="monetary") # (f5nj, f5oj, f5pj)
-    nacc_defn = IntCol(entity= 'foy', label=u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nl, f5ol, f5pl)
-    nacc_defs = IntCol(entity= 'foy', label=u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nm, f5om, f5pm)
-    mncn_impo = IntCol(entity= 'foy', label=u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ku, f5lu, f5mu)
-    cncn_bene = IntCol(entity= 'foy', label=u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)", val_type="monetary") # (f5sn, f5ns, f5os)
-    cncn_defi = IntCol(entity= 'foy', label=u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)", val_type="monetary") # (f5sp, f5nu, f5ou, f5sr)
-
-
-
-
-    mbnc_exon = IntCol(entity= 'foy', label=u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hp, f5ip, f5jp)
-    abnc_exon = IntCol(entity= 'foy', label=u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qb, f5rb, f5sb)
-    nbnc_exon = IntCol(entity= 'foy', label=u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type="monetary") # (f5qh, f5rh, f5sh)
-    mbnc_impo = IntCol(entity= 'foy', label=u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hq, f5iq, f5jq)
-    abnc_impo = IntCol(entity= 'foy', label=u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qc, f5rc, f5sc)
-    abnc_defi = IntCol(entity= 'foy', label=u"Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qe, f5re, f5se)
-    nbnc_impo = IntCol(entity= 'foy', label=u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type="monetary") # (f5qi, f5ri, f5si)
-    nbnc_defi = IntCol(entity= 'foy', label=u"Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type="monetary") # (f5qk, f5rk, f5sk)
-
-    mbnc_exon = IntCol(entity= 'ind', val_type="monetary") # (f5hp, f5ip, f5jp)
-    abnc_exon = IntCol(entity= 'ind', val_type="monetary") # (f5qb, f5rb, f5sb)
-    nbnc_exon = IntCol(entity= 'ind', val_type="monetary") # (f5qh, f5rh, f5sh)
-    mbnc_impo = IntCol(entity= 'ind', val_type="monetary") # (f5hq, f5iq, f5jq)
-    abnc_impo = IntCol(entity= 'ind', val_type="monetary") # (f5qc, f5rc, f5sc)
-    abnc_defi = IntCol(entity= 'ind', val_type="monetary") # (f5qe, f5re, f5se)
-    nbnc_impo = IntCol(entity= 'ind', val_type="monetary") # (f5qi, f5ri, f5si)
-    nbnc_defi = IntCol(entity= 'ind', val_type="monetary") # (f5qk, f5rk, f5sk)
-
-
+    mbnc_exon = IntCol(entity= 'ind', label=u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hp, f5ip, f5jp)
+    abnc_exon = IntCol(entity= 'ind', label=u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qb, f5rb, f5sb)
+    nbnc_exon = IntCol(entity= 'ind', label=u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type="monetary") # (f5qh, f5rh, f5sh)
+    mbnc_impo = IntCol(entity= 'ind', label=u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hq, f5iq, f5jq)
+    abnc_impo = IntCol(entity= 'ind', label=u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qc, f5rc, f5sc)
+    abnc_defi = IntCol(entity= 'ind', label=u"Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qe, f5re, f5se)
+    nbnc_impo = IntCol(entity= 'ind', label=u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type="monetary") # (f5qi, f5ri, f5si)
+    nbnc_defi = IntCol(entity= 'ind', label=u"Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type="monetary") # (f5qk, f5rk, f5sk)
 
     mbic_mvct = IntCol(entity= 'foy', label=u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)", val_type="monetary") # (f5hu)
     macc_mvct = IntCol(entity= 'foy', label=u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)", val_type="monetary") # (f5iu)
     mncn_mvct = IntCol(entity= 'foy', label=u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ju)
-    mbnc_mvct = IntCol(entity= 'foy', label=u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kz, f5lz, f5mz)
-   
-    mbic_mvct = IntCol(entity= 'foy', val_type="monetary") # (f5hu)
-    macc_mvct = IntCol(entity= 'foy', val_type="monetary") # (f5iu)
-    mncn_mvct = IntCol(entity= 'foy', val_type="monetary") # (f5ju)
-    mbnc_mvct = IntCol(entity= 'foy', val_type="monetary") # (f5kz)
-
-
-
-
-    frag_pvct = IntCol(entity= 'foy', label=u"Plus-values agricoles  à court terme (régime du forfait)", val_type="monetary") # (f5hw, f5iw, f5jw)
-    mbic_pvct = IntCol(entity= 'foy', label=u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)", val_type="monetary") # (f5kx, f5lx, f5mx)
-    macc_pvct = IntCol(entity= 'foy', label=u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)", val_type="monetary") # (f5nx, f5ox, f5px)
-    mbnc_pvct = IntCol(entity= 'foy', label=u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hv, f5iv, f5jv)
-    mncn_pvct = IntCol(entity= 'foy', label=u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ky, f5ly, f5my)
-   
+    mbnc_mvct = IntCol(entity= 'foy', label=u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kz
     
-    frag_pvct = IntCol(entity= 'ind', val_type="monetary") # (f5hw, f5iw, f5jw)
-    mbic_pvct = IntCol(entity= 'ind', val_type="monetary") # (f5kx, f5lx, f5mx)
-    macc_pvct = IntCol(entity= 'ind', val_type="monetary") # (f5nx, f5ox, f5px)
-    mbnc_pvct = IntCol(entity= 'ind', val_type="monetary") # (f5hv, f5iv, f5jv)
-    mncn_pvct = IntCol(entity= 'ind', val_type="monetary") # (f5ky, f5ly, f5my)
+    frag_pvct = IntCol(entity= 'ind', label=u"Plus-values agricoles  à court terme (régime du forfait)", val_type="monetary") # (f5hw, f5iw, f5jw)
+    mbic_pvct = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)", val_type="monetary") # (f5kx, f5lx, f5mx)
+    macc_pvct = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)", val_type="monetary") # (f5nx, f5ox, f5px)
+    mbnc_pvct = IntCol(entity= 'ind', label=u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hv, f5iv, f5jv)
+    mncn_pvct = IntCol(entity= 'ind', label=u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ky, f5ly, f5my)
+  
+    mbic_mvlt = IntCol(entity= 'ind', label=u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)", val_type="monetary") # (f5kr, f5lr, f5mr)
+    macc_mvlt = IntCol(entity= 'ind', label=u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)", val_type="monetary") # (f5nr, f5or, f5pr)
+    mncn_mvlt = IntCol(entity= 'ind', label=u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kw, f5lw, f5mw)
+    mbnc_mvlt = IntCol(entity= 'ind', label=u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hs, f5is, f5js)
 
-
-
-
-    mbic_mvlt = IntCol(entity= 'foy', label=u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)", val_type="monetary") # (f5kr, f5lr, f5mr)
-    macc_mvlt = IntCol(entity= 'foy', label=u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)", val_type="monetary") # (f5nr, f5or, f5pr)
-    mncn_mvlt = IntCol(entity= 'foy', label=u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kw, f5lw, f5mw)
-    mbnc_mvlt = IntCol(entity= 'foy', label=u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hs, f5is, f5js)
-
-   
-    mbic_mvlt = IntCol(entity= 'ind', val_type="monetary") # (f5kr, f5lr, f5mr)
-    macc_mvlt = IntCol(entity= 'ind', val_type="monetary") # (f5nr, f5or, f5pr)
-    mncn_mvlt = IntCol(entity= 'ind', val_type="monetary") # (f5kw, f5lw, f5mw)
-    mbnc_mvlt = IntCol(entity= 'ind', val_type="monetary") # (f5hs, f5is, f5js)
-
-    frag_pvce = IntCol(entity= 'foy', label=u"Plus-values agricoles de cession taxables à 16% (régime du forfait)", val_type="monetary") # (f5hx, f5ix, f5jx)
-    arag_pvce = IntCol(entity= 'foy', label=u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type="monetary") # (f5he, f5ie, f5je)
-    nrag_pvce = IntCol(entity= 'foy', label=u"Revenus non commerciaux non professionnels exonérés avec AA ou viseur (régime de la déclaration controlée)", val_type="monetary") # (f5hk, f5jk, f5lk)
-    mbic_pvce = IntCol(entity= 'foy', label=u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type="monetary") # (f5kq, f5lq, f5mq)
-    abic_pvce = IntCol(entity= 'foy', label=u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ke, f5le, f5me)
-    nbic_pvce = IntCol(entity= 'foy', label=u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)", val_type="monetary") # (f5ik, f5kk, f5mk)
-    macc_pvce = IntCol(entity= 'foy', label=u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type="monetary") # (f5nq, f5oq, f5pq)
-    aacc_pvce = IntCol(entity= 'foy', label=u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ne, f5oe, f5pe)
-    nacc_pvce = IntCol(entity= 'foy', label=u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nk, f5ok, f5pk)
-    mncn_pvce = IntCol(entity= 'foy', label=u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kv, f5lv, f5mv)
-    cncn_pvce = IntCol(entity= 'foy', label=u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)", val_type="monetary") # (f5so, f5nt, f5ot)
-    mbnc_pvce = IntCol(entity= 'foy', label=u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hr, f5ir, f5jr)
-    abnc_pvce = IntCol(entity= 'foy', label=u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qd, f5rd, f5sd)
-    nbnc_pvce = IntCol(entity= 'foy', label=u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5qj, f5rj, f5sj)
-
-
-    frag_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5hx, f5ix, f5jx)
-    arag_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5he, f5ie, f5je)
-    nrag_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5hk, f5ik, f5jk)
-    mbic_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5kq, f5lq, f5mq)
-    abic_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5ke, f5le, f5me)
-    nbic_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5kk, f5lk, f5mk)
-    macc_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5nq, f5oq, f5pq)
-    aacc_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5ne, f5oe, f5pe)
-    nacc_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5nk, f5ok, f5pk)
-    mncn_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5kv, f5lv, f5mv)
-    cncn_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5so, f5nt, f5ot)
-    mbnc_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5hr, f5ir, f5jr)
-    abnc_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5qd, f5rd, f5sd)
-    nbnc_pvce = IntCol(entity= 'ind', val_type="monetary") # (f5qj, f5rj, f5sj)
+    frag_pvce = IntCol(entity= 'ind', label=u"Plus-values agricoles de cession taxables à 16% (régime du forfait)", val_type="monetary") # (f5hx, f5ix, f5jx)
+    arag_pvce = IntCol(entity= 'ind', label=u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type="monetary") # (f5he, f5ie, f5je)
+    nrag_pvce = IntCol(entity= 'ind', label=u"Revenus non commerciaux non professionnels exonérés avec AA ou viseur (régime de la déclaration controlée)", val_type="monetary") # (f5hk, f5lk, f5jk)
+    mbic_pvce = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type="monetary") # (f5kq, f5lq, f5mq)
+    abic_pvce = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ke, f5le, f5me)
+    nbic_pvce = IntCol(entity= 'ind', label=u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)", val_type="monetary") # (f5kk, f5ik, f5mk)
+    macc_pvce = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type="monetary") # (f5nq, f5oq, f5pq)
+    aacc_pvce = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ne, f5oe, f5pe)
+    nacc_pvce = IntCol(entity= 'ind', label=u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nk, f5ok, f5pk)
+    mncn_pvce = IntCol(entity= 'ind', label=u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kv, f5lv, f5mv)
+    cncn_pvce = IntCol(entity= 'ind', label=u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)", val_type="monetary") # (f5so, f5nt, f5ot)
+    mbnc_pvce = IntCol(entity= 'ind', label=u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hr, f5ir, f5jr)
+    abnc_pvce = IntCol(entity= 'ind', label=u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type="monetary") # (f5qd, f5rd, f5sd)
+    nbnc_pvce = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5qj, f5rj, f5sj)
 
 # pfam only
     inactif   = BoolCol(entity='fam')
@@ -914,23 +826,23 @@ class InputTable(ModelDescription):
 ## ISF ##
     
 ## Immeubles bâtis ##
-    b1ab = IntCol(entity= 'ind', label =u"", val_type="monetary") ##  valeur résidence principale avant abattement ##
-    b1ac = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    b1ab = IntCol(entity= 'ind', label =u"valeur résidence principale avant abattement", val_type="monetary") ##  valeur résidence principale avant abattement ##
+    b1ac = IntCol(entity= 'foy', label =u"valeur autres immeubles avant abattement", val_type="monetary")
 ## non bâtis ##
-    b1bc = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1be = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1bh = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1bk = IntCol(entity= 'foy', label =u"", val_type="monetary") 
+    b1bc = IntCol(entity= 'foy', label =u"Immeubles non bâtis: bois, fôrets et parts de groupements forestiers", val_type="monetary")
+    b1be = IntCol(entity= 'foy', label =u"Immeubles non bâtis: biens ruraux loués à long termes", val_type="monetary")
+    b1bh = IntCol(entity= 'foy', label =u"Immeubles non bâtis: parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type="monetary")
+    b1bk = IntCol(entity= 'foy', label =u"Immeubles non bâtis: autres biens", val_type="monetary") 
+
 ## droits sociaux- valeurs mobilières-liquidités- autres meubles ##
+    b1cl = IntCol(entity= 'foy', label =u"Parts et actions détenues par les salariés et mandataires sociaux", val_type="monetary")
+    b1cb = IntCol(entity= 'foy', label =u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type="monetary")
+    b1cd = IntCol(entity= 'foy', label =u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type="monetary")
+    b1ce = IntCol(entity= 'foy', label =u"Autres valeurs mobilières", val_type="monetary")
+    b1cf = IntCol(entity= 'foy', label =u"Liquidités", val_type="monetary")
+    b1cg = IntCol(entity= 'foy', label =u"Autres biens meubles", val_type="monetary")
 
-    b1cl = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1cb = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1cd = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1ce = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1cf = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b1cg = IntCol(entity= 'foy', label =u"", val_type="monetary")
-
-    b1co = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    b1co = IntCol(entity= 'foy', label =u"Autres biens meubles: contrats d'assurance-vie", val_type="monetary")
 
 #    b1ch
 #    b1ci
@@ -939,19 +851,19 @@ class InputTable(ModelDescription):
 
 
 ## passifs et autres réduc ##
-    b2gh= IntCol(entity= 'foy', label =u"", val_type="monetary")
+    b2gh= IntCol(entity= 'foy', label =u"Total du passif et autres déductions", val_type="monetary")
     
 ## réductions ##
-    b2mt = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b2ne = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b2mv = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b2nf = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b2mx = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b2na = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    b2nc = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    b2mt = IntCol(entity= 'foy', label =u"Réductions pour investissements directs dans une société", val_type="monetary")
+    b2ne = IntCol(entity= 'foy', label =u"Réductions pour investissements directs dans une société", val_type="monetary")
+    b2mv = IntCol(entity= 'foy', label =u"Réductions pour investissements par sociétés interposées, holdings" , val_type="monetary")
+    b2nf = IntCol(entity= 'foy', label =u"Réductions pour investissements par sociétés interposées, holdings", val_type="monetary")
+    b2mx = IntCol(entity= 'foy', label =u"Réductions pour investissements par le biais de FIP", val_type="monetary")
+    b2na = IntCol(entity= 'foy', label =u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type="monetary")
+    b2nc = IntCol(entity= 'foy', label =u"Réductions pour dons à certains organismes d'intérêt général", val_type="monetary")
 
 ##  montant impôt acquitté hors de France ##
-    b4rs = IntCol(entity= 'foy', label =u"", val_type="monetary")
+    b4rs = IntCol(entity= 'foy', label =u"Montant de l'impôt acquitté hors de France", val_type="monetary")
 
 ## BOUCLIER FISCAL ##
 
