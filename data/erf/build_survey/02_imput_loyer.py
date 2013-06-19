@@ -13,11 +13,11 @@ from src.countries.france.data.erf.build_survey import show_temp, load_temp, sav
 from src.countries.france.data.erf.build_survey.utilitaries import control
 import pandas as pd
 from pandas import DataFrame
-from numpy import array, where, NaN
+from numpy import array, where, NaN, arange
 from pandas import concat
 import gc
 import math
-from numpy import logical_not as not_, logical_and as and_
+from numpy import logical_not as not_, logical_and as and_, max as max_
 from src.lib.utils import mark_weighted_percentiles 
 
 # TODO:
@@ -27,7 +27,22 @@ from src.lib.utils import mark_weighted_percentiles
 # - Mettre des espaces pour aérer ton code <------ OK
 # - Rajouter des assert pour vérifier certaiens étapes (demander à Jérôme) <----- Rajouté des "control" après les "merge"
 def create_imput_loyer(year):
-    
+    def assert_variable_inrange(name, wrange, table): # Assert if transformed variables are in correct range
+        temp = (table[table[name].notnull()])
+        range_1 = wrange[0]
+        range_2 = wrange[1]
+        #assert erf[name].isin(range(range_1, range_2+1)).all(), Exception("some %s not in wanted range" %(name))
+        for v in temp[name]:
+            assert v in range(range_1, range_2), Exception('some non-null values for %s not in wanted %s: %s' %(name, str(wrange), str(v)))
+    def count_NA(name,table): # Counts the number of Na's in a specified axis
+        count = 0
+        tmp = pd.isnull(erf[name])
+        for v in tmp:
+            if v:
+                count += 1
+        print "count of NA's for %s is %s" %(name, str(count))
+        #del count, tmp
+        
 # if (yr == '08'){ # tau99 is not present
 #   menmVars <- c("ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
 #                 "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg")
@@ -84,26 +99,33 @@ def create_imput_loyer(year):
     ## Travail sur la base ERF
     #Preparing ERF menages tables
     print show_temp()
-    temp1 = load_temp(name = "enfnn", year = year)
     erfmenm = load_temp(name="menagem", year=year) 
     #erfmenm = df.get_values(table=" ",variables=menmVars)
+    #Construction d'un temp pour éviter la prolifération des NA à partir de revtot
     erfmenm['revtot'] = (erfmenm['ztsam'] + erfmenm['zperm'] + erfmenm['zragm'] + 
                          erfmenm['zricm'] + erfmenm['zrncm'] + erfmenm['zracm'])
     erfmenm['nvpr'] = erfmenm['revtot'] / erfmenm['nb_uci']
+    # On donne la valeur 0 aux nvpr négatifs
+    def f(x):
+        return max(0,x)
+    erfmenm['wprm']=map(f,erfmenm['wprm'])
+    for v in erfmenm['wprm']:
+        assert v >= 0, Exception('Some wprm are negatives')
     erfmenm['logt'] = erfmenm['so']
     #Preparing ERF individuals table
     erfindm = load_temp(name = "indivim",year=year)
     # erfindm = df.get_values(table = " ", variables = indmVars)
-    print 'test un deux'
-    print 'aai1' in erfindm.columns or 'aai1' in erfmenm.columns
-    print 'ident' in erfindm.columns
-    print 'dip11' in erfindm.columns
+    
+    # TODO: clean this later
+    erfindm['dip11'] = 99
     erfindm = erfindm[['ident', 'dip11']][erfindm['lpr'] == 1]
 # erf <- merge(erfmenm, erfindm, by ="ident")
     print('merging erf menage and individu')
-    erf = erfmenm.merge(erfindm, on ='ident', how='outer')
-    control(erf)
-
+    #erf = erfmenm.merge(erfindm, on ='ident', how='outer')
+    erf = erfmenm.merge(erfindm, on ='ident', how='inner')
+    erf=erf.drop_duplicates('ident')
+    # control(erf) La colonne existe mais est vide, 
+    # on a du confondre cette colonne avec dip11 ?
     
 # dec <- wtd.quantile(erf$nvpr,weights=erf$wprm,probs=c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1))
 # erf$deci <-  as.factor((1 + (erf$nvpr>=dec[2]) + (erf$nvpr>=dec[3])
@@ -111,12 +133,33 @@ def create_imput_loyer(year):
 #                          + (erf$nvpr>=dec[6]) + (erf$nvpr>=dec[7])
 #                          + (erf$nvpr>=dec[8]) + (erf$nvpr>=dec[9])
 #                          + (erf$nvpr>=dec[10])))
-    dec = mark_weighted_percentiles(erf['nvpr'],[1,2,3,4,5,6,7,8,9,10],
-                                    erf['wprm'],1,return_quantiles=False) 
-    # J'utilise la méthode de wikipedia
-    erf['deci'] = (1+dec['nvpr']>1+dec['nvpr']>2+dec['nvpr']>3
-                 +dec['nvpr']>4+dec['nvpr']>5+dec['nvpr']>6
-                 +dec['nvpr']>7+dec['nvpr']>8+dec['nvpr']>9)
+
+#     dec = mark_weighted_percentiles(erf['nvpr'], [1,2,3,4,5,6,7,8,9,10],
+#                                     erf['wprm'], 1, return_quantiles=False) 
+#     
+    print erf['nvpr'].isnull().value_counts()
+    print erf['wprm'].isnull().value_counts()
+    print erf['nvpr'].describe()
+    print erf['wprm'].describe()
+    dec, values = mark_weighted_percentiles(erf['nvpr'], arange(1,11), erf['wprm'], 2, return_quantiles=True)
+    dec = DataFrame(dec)
+    values.sort()
+    #print DataFrame(dec).describe()
+    # J'utilise la méthode de "stackexchange post"
+    
+    #===========================================================================
+    # erf['deci'] = (1 + (dec[0]>1) + (dec[0]>2) + (dec[0]>3)
+    #                     + (dec[0]>4) + (dec[0]>5) + (dec[0]>6)
+    #                     + (dec[0]>7) + (dec[0]>8) + (dec[0]>9))
+    #===========================================================================
+    
+    erf['deci'] = (1 + (erf['nvpr']>values[1]) + (erf['nvpr']>values[2]) + (erf['nvpr']>values[3])
+                   + (erf['nvpr']>values[4]) + (erf['nvpr']>values[5]) + (erf['nvpr']>values[6])
+                   + (erf['nvpr']>values[7]) + (erf['nvpr']>values[8]) + (erf['nvpr']>values[9]))
+    # Problème : tous les individus sont soit dans le premier, soit dans le dernier décile. WTF
+    assert_variable_inrange('deci',[1,11], erf)
+    count_NA('deci',erf)
+    print erf['deci'].describe()
     del dec
 
 
@@ -129,9 +172,9 @@ def create_imput_loyer(year):
 #                      dip11='mdiplo'))
     erf = erf[['ident','ztsam','zperm','zragm','zricm','zrncm','zracm',
                  'nb_uci','logt','nbpiec','typmen5','spr','nbenfc','agpr','cstotpr',
-                 'nat28pr','tu99','aai1','wprm','nvpr','revtot','dip11','deci']][erf['so'] < 6 and erf['so'] > 2]
+                 'nat28pr','tu99','aai1','wprm','nvpr','revtot','dip11','deci']][erf['so'].isin(range(3,6))]
 
-    erf.rename(columns = {'nbpiec':'hnph2','nat28pr':'mnatio','aai1':'iaat','dip11':'mdiplo'}) 
+    erf.rename(columns = {'nbpiec':'hnph2','nat28pr':'mnatio','aai1':'iaat','dip11':'mdiplo'}, inplace = True)
     # TODO: ne traite pas les types comme dans R teste-les pour voir comment pandas les gère 
     
 # erf$agpr <- as.integer(erf$agpr)
@@ -139,16 +182,25 @@ def create_imput_loyer(year):
 # erf$tmp[erf$agpr < 65] <- 2
 # erf$tmp[erf$agpr < 40] <- 1
 # erf$magtr <- as.factor(erf$tmp)        
-    erf['agpr'] = int(erf['agpr'])
+    erf['agpr'] = erf['agpr'].astype('int64')
     erf['tmp'] = 3
     erf['tmp'][erf['agpr'] < 65] = 2
     erf['tmp'][erf['agpr'] < 40] = 1
     erf['magtr'] = erf['tmp']
+    count_NA('magtr',erf)
+    assert_variable_inrange('magtr',[1,4],erf)
     
 # erf$mcs8 <- floor(as.integer(erf$cstotpr)/10)
-# erf$mcs8[erf$mcs8==0] <- NA  # un mcs8=0 est transform? en NA : il y en a donc 1+4 NA's      
-    erf['mcs8'] = math.floor(erf['cstotpr']/10)
+# erf$mcs8[erf$mcs8==0] <- NA  # un mcs8=0 est transform? en NA : il y en a donc 1+4 NA's
+    #erf = erf[erf['cstotpr'].notnull()]
+    count_NA('cstotpr',erf)
+    erf['tmp'] = erf['cstotpr'].astype('float')/10.0
+    erf['tmp']=map(math.floor, erf['tmp'])
+    erf['mcs8'] = erf['tmp']
+    #erf['mcs8'] = math.floor(erf['cstotpr']/10.0)
     erf['mcs8'][erf['mcs8'] == 0] = NaN # Il y a donc 1+4 NAs
+    #assert isinstance(erf['mcs8'], (int, long)).all(), Exception('Some mcs8 are not integers')
+    count_NA('mcs8',erf)
         
 # erf$mtybd <- NA
 # erf$mtybd[(erf$typmen5==1) & (erf$spr!=2)] <- 1
@@ -157,34 +209,32 @@ def create_imput_loyer(year):
 # erf$mtybd[erf$typmen5==3]          <- 7
 # erf$mtybd[erf$nbenfc ==1]          <- 4
 # erf$mtybd[erf$nbenfc ==2]          <- 5
-# erf$mtybd[erf$nbenfc >=3]          <- 6        
+# erf$mtybd[erf$nbenfc >=3]          <- 6
+# TODO il reste 41 NA's 2003      
     erf['mtybd'] = NaN
-    erf['mtybd'][erf['typmen5'] == 1 and erf['spr'] != 2] = 1
-    erf['mtybd'][erf['typmen5'] == 1 and erf['spr'] == 2] = 2
+    erf['mtybd'][(erf['typmen5'] == 1) & (erf['spr'] != 2)] = 1 # Attention à ne pas mettre de "and", il n'aime pas ça
+    erf['mtybd'][(erf['typmen5'] == 1) & (erf['spr'] == 2)] = 2 # Vérifier que ça fait bien ce que l'on veut
     erf['mtybd'][erf['typmen5'] == 5] = 3
     erf['mtybd'][erf['typmen5'] == 3] = 7
     erf['mtybd'][erf['nbenfc'] == 1] = 4
     erf['mtybd'][erf['nbenfc'] == 2] = 5
     erf['mtybd'][erf['nbenfc'] >= 3] = 6
-    # TODO il reste 41 NA's 2003 
+    erf['mtybd']=erf['mtybd'] 
+    count_NA('mtybd',erf)
+    #assert_variable_inrange('mtybd', [1,7], erf) # bug, on trouve 7.0 qui fait assert
     
 # erf$hnph2[erf$hnph2 < 1] <- 1 # 3 logements ont 0 pièces !!
 # erf$hnph2[erf$hnph2 >=6] <- 6
     erf['hnph2'][erf['hnph2'] < 1] = 1
     erf['hnph2'][erf['hnph2'] >= 6] = 6
+    count_NA('hnph2', erf)
+    assert_variable_inrange('hnph2', [1,7], erf)
 
 # # table(erf$hnph2, useNA="ifany")
 # # TODO: il reste un NA 2003
 # #       il rest un NA en 2008
 # erf$hnph2 <- as.factor(erf$hnph2)
-    # Pour compter les NA
-    count = 0
-    tmp = pd.isnull(erf['hnph2'])
-    for v in tmp:
-        if v:
-            count += 1
-    print "count of NA's for hnph2 is " + str(count)
-    del count, tmp
+   
 
 # tmp <- erf$mnatio
 # tmp[erf$mnatio %in% c(10)] <- 1
@@ -192,8 +242,10 @@ def create_imput_loyer(year):
 # erf$mnatio <- as.factor(tmp)
     tmp = erf['mnatio']
     tmp[erf['mnatio'] == 10] = 1
-    tmp[erf['mnatio'] in [11,12,13,14,15,21,22,23,24,25,26,27,28,29,31,32,41,42,43,44,45,46,47,48,51,52,62,60]] = 2
+    tmp[erf['mnatio'].isin([11,12,13,14,15,21,22,23,24,25,26,27,28,29,31,32,41,42,43,44,45,46,47,48,51,52,62,60])] = 2
     erf['mnatio'] = tmp
+    count_NA('mnatio', erf)
+    assert_variable_inrange('mnatio', [1,3], erf)
     
 # tmp <- erf$iaat
 # tmp[erf$iaat %in% c(1,2,3)] <- 1
@@ -204,25 +256,20 @@ def create_imput_loyer(year):
 # tmp[erf$iaat %in% c(8)] <- 6
 # erf$iaat <- as.factor(tmp)
     tmp = erf['iaat']
-    tmp[erf['mnatio'] in [1,2,3]] = 1
+    tmp[erf['mnatio'].isin([1,2,3])] = 1
     tmp[erf['mnatio'] == 4] = 2
     tmp[erf['mnatio'] == 5] = 3
     tmp[erf['mnatio'] == 6] = 4
     tmp[erf['mnatio'] == 7] = 5
     tmp[erf['mnatio'] == 8] = 6
     erf['iaat'] = tmp
+    count_NA('iaat', erf)
+    assert_variable_inrange('iaat', [1,7], erf)
     
 # # Il reste un NA en 2003
 # #    reste un NA en 2008
 # table(erf$iaat, useNA="ifany") 
     # TODO: comparer logement et erf pour ?tre sur que cela colle
-    count = 0
-    tmp = pd.isnull(erf['iaat'])
-    for v in tmp:
-        if v:
-            count += 1
-    print "count of NA's for iaat is " + str(count)
-    del count, tmp
 
 # tmp <- erf$mdiplo
 # tmp[erf$mdiplo %in% c(71,"") ]      <- 1
@@ -231,11 +278,13 @@ def create_imput_loyer(year):
 # tmp[erf$mdiplo %in% c(10,11,30)]    <- 4
 # erf$mdiplo <- as.factor(tmp) 
     tmp = erf['mdiplo']
-    tmp[erf['mdiplo']in [71,""]] = 1
-    tmp[erf['mdiplo']in [70,60,50]] = 2
-    tmp[erf['mdiplo']in [41,42,31,33]] = 3
-    tmp[erf['mdiplo']in [10,11,30]] = 4
+    tmp[erf['mdiplo'].isin([71,""])] = 1
+    tmp[erf['mdiplo'].isin([70,60,50])] = 2
+    tmp[erf['mdiplo'].isin([41,42,31,33])] = 3
+    tmp[erf['mdiplo'].isin([10,11,30])] = 4
     erf['mdiplo'] = tmp
+    count_NA('mdiplo', erf)
+    #assert_variable_inrange('mdiplo', [1,5], erf) # On a un 99 qui se balade
     
 # tmp <- erf$tu99   # erf$tu99 is coded from 0 to 8 
 # tmp[erf$tu99 %in% c(0)] <- 1
@@ -246,11 +295,13 @@ def create_imput_loyer(year):
 # erf$tu99_recoded <- as.factor(tmp)
     tmp = erf['tu99']
     tmp[erf['tu99'] == 0] = 1
-    tmp[erf['tu99'] in [1,2,3]] = 2
-    tmp[erf['tu99'] in [4,5,6]] = 3
+    tmp[erf['tu99'].isin([1,2,3])] = 2
+    tmp[erf['tu99'].isin([4,5,6])] = 3
     tmp[erf['tu99'] == 7] = 4
     tmp[erf['tu99'] == 8] = 5
     erf['tu99_recoded'] = tmp
+    count_NA('tu99_recoded', erf)
+    assert_variable_inrange('tu99_recoded', [1,6], erf)
     
 # tmp <- erf$mcs8
 # tmp[erf$mcs8 %in% c(1)] <- 1  # TODO 0 ? rajouter 2003 ! 
@@ -263,15 +314,19 @@ def create_imput_loyer(year):
     tmp[erf['mcs8'] == 1] = 1
     tmp[erf['mcs8'] == 2] = 2
     tmp[erf['mcs8'] == 3] = 3
-    tmp[erf['mcs8'] in [4,8]] = 4
-    tmp[erf['mcs8']in [5,6,7]] = 5
+    tmp[erf['mcs8'].isin([4,8])] = 4
+    tmp[erf['mcs8'].isin([5,6,7])] = 5
     erf['mcs8'] = tmp
+    count_NA('mcs8', erf)
+    assert_variable_inrange('mcs8', [1,6], erf)
     
 # erf$wprm  <- as.integer(erf$wprm)
-    erf['wprm'] = int(erf['wprm'])
+    erf['wprm'] = erf['wprm'].astype('int64')
+    count_NA('wprm', erf)
 
 #erf <- upData(erf, drop=c('cstotpr','agpr','typmen5','nbenfc','spr','tmp','tu99'))
-    del erf[['cstotpr','agpr','typmen5','nbenfc','spr','tmp','tu99']]
+    del (erf['cstotpr'] ,erf['agpr'], erf['typmen5'], 
+    erf['nbenfc'], erf['spr'], erf['tmp'], erf['tu99'])
     
 # erf <- within(erf,{
 #   logt <- logt[,drop=TRUE]
@@ -285,7 +340,20 @@ def create_imput_loyer(year):
 #   tu99_recoded <-tu99_recoded[,drop = TRUE]
 #   mcs8 <- mcs8[,drop = TRUE]
 # })
-    erf.dropna(axis = ['logt','magtr','mcs8','mtybd','hnph2','mnatio','iaat','mdiplo','tu99_recoded'],how = 'any')
+    erf=(erf[erf['logt'].notnull()]) # Pas trouvé plus convenable
+    erf=(erf[erf['magtr'].notnull()])
+    erf=(erf[erf['mcs8'].notnull()])
+    erf=(erf[erf['mtybd'].notnull()])
+    erf=(erf[erf['hnph2'].notnull()])
+    erf=(erf[erf['mnatio'].notnull()])
+    erf=(erf[erf['iaat'].notnull()])
+    erf=(erf[erf['mdiplo'].notnull()])
+    erf=(erf[erf['tu99_recoded'].notnull()])
+    
+    #On vérifie au final que l'on n'a pas de doublons d'individus
+    erf_drop_dupl = erf.drop_duplicates('ident')
+    assert len(erf['ident'].value_counts()) == len(erf_drop_dupl['ident']), Exception('Number of distinct individuals after removing duplicates is not correct')
+    del erf_drop_dupl
 
     ## Travail sur la table logement
 
@@ -301,7 +369,7 @@ def create_imput_loyer(year):
         year_lgt = 2006
 
 
-
+    return
 # message("preparing logement menage table")
 # lgtmen <- LoadIn(lgtMenFil,lgtMenVars)
 # lgtmen <- upData(lgtmen, rename=renameidlgt)
@@ -333,12 +401,13 @@ def create_imput_loyer(year):
 #               + (nvpr>=dec[9])
 #               + (nvpr>=dec[10]))
 # })
-    dec = mark_weighted_percentiles(Lgtmen['nvpr'],[1,2,3,4,5,6,7,8,9,10],
-                                    Lgtmen['qex'],1,return_quantiles=False) 
+    dec = mark_weighted_percentiles(Lgtmen['nvpr'],arange(1,11),
+                                    Lgtmen['qex'],2,return_quantiles=False) 
+    dec = DataFrame(dec)
     # J'utilise la méthode des quantiles wikipedia
-    Lgtmen['deci'] = (1+dec['nvpr']>1+dec['nvpr']>2+dec['nvpr']>3
-                 +dec['nvpr']>4+dec['nvpr']>5+dec['nvpr']>6
-                 +dec['nvpr']>7+dec['nvpr']>8+dec['nvpr']>9)
+    Lgtmen['deci'] = (1+dec[0]>1+dec[0]>2+dec[0]>3
+                 +dec[0]>4+dec[0]>5+dec[0]>6
+                 +dec[0]>7+dec[0]>8+dec[0]>9)
     del dec
     
     ##Table logement (pas en 2003 mais en 2006)
@@ -352,21 +421,21 @@ def create_imput_loyer(year):
 # }
     if year_lgt == 2006:
         print 'preparing logement logement table'
-        #lgtlgt=load_temp()
+        lgtlgt=load_temp()
         # lgtlgt = df.get_values(table = " ", variables = LgtLgtVars)
         # Pas saisi l'étape rename
         Lgtmen.merge(lgtlgt, on = 'indent', how = 'outer')
 
 # data <- subset(lgtmen,sec1==21 | sec1==22|
 #                sec1==23 | sec1==24 | sec1==30)
-    data = Lgtmen[Lgtmen['sec1'] in [21,22,23,24,30]]
+    data = Lgtmen[Lgtmen['sec1'].isin([21,22,23,24,30])]
     del Lgtmen
 
 # if (year_lgt=="2006"){     # existe en 2006 pas en 2002
 #   data <- upData(data, rename=c(mnatio="mnatior"))
 # }
     if year_lgt == 2006:
-        data.rename(columns = {'mnatio':'mnatior'})
+        data.rename(columns = {'mnatio':'mnatior'}, inplace = True)
         
 # data <- within(data,{
 #   mnatior <- as.factor(mnatior)
@@ -381,13 +450,15 @@ def create_imput_loyer(year):
 #   logt    <- logt[,drop = TRUE]
 # })
 # lgtmen <- data
-    data.dropna(axis = ['mnatior','sec1'],how = 'any')
+    data=(data[data['mnatior'].notnull()])
+    data=(data[data['sec1'].notnull()])
     data['tmp'] = data['sec1']
-    data['tmp'][data['sec1'] in [21,22,23]] = 3
+    data['tmp'][data['sec1'].isin([21,22,23])] = 3
     data['tmp'][data['sec1'] == 24] = 4
     data['tmp'][data['sec1'] == 30] = 5
     data['logt'] = data['tmp']
-    data.dropna(axis = ['logt'],how = 'any')
+    count_NA('logt', data)
+    data=(data[data['logt'].notnull()])
     Lgtmen=data
 
 # ## Table adresse
@@ -412,17 +483,23 @@ def create_imput_loyer(year):
 #   hnph2 <- hnph2[,drop = TRUE]    
     Logement['hnph2'][Logement['hnph2'] >= 6] = 6
     Logement['hnph2'][Logement['hnph2'] < 1] = 1
-    Logement.dropna(axis = ['hpnh2'],how = 'any')
+    count_NA('hnph2', Logement)
+    Logement=(Logement[Logement['hpnh2'].notnull()])
 
 #   tmp <- mnatior
 #   tmp[mnatior %in% c(00,01)] <- 1
 #   tmp[mnatior %in% c(02,03,04,05,06,07,08,09,10,11)] <- 2
 #   mnatior <- as.factor(tmp)
     # On est dans la même étape within ici et par la suite ( cf code R )
+    # ATTENTION : ici problème je transforme les 07 en 7 
+    # car Python considère les 0n comme des nombres octaux ( < 08 ).
+    # J'espère que ce n'est pas important.
     Logement['tmp'] = Logement['mnatior']
-    Logement['tmp'][Logement['mnatior'] in [00,01]] = 1
-    Logement['tmp'][Logement['mnatior'] in [02,03,04,05,06,07,08,09,10,11]] = 2 # Aucune idée de ce qui fait planter
+    Logement['tmp'][Logement['mnatior'].isin([0, 1])] = 1
+    Logement['tmp'][Logement['mnatior'].isin([2, 3, 4, 5, 6, 7, 8, 9, 10, 11])] = 2 # Aucune idée de ce qui fait planter
     Logement['mnatior'] = Logement['tmp']
+    count_NA('mnatior', Logement)
+    assert_variable_inrange('mnatior', [1,3], Logement)
 
 #   tmp <- iaat
 #   tmp[iaat %in% c(1,2,3,4,5)] <- 1
@@ -433,13 +510,15 @@ def create_imput_loyer(year):
 #   tmp[iaat %in% c(10)]<- 6
 #   iaat <- as.factor(tmp) 
     Logement['tmp'] = Logement['iaat']
-    Logement['tmp'][Logement['iaat'] in [1,2,3,4,5]] = 1
+    Logement['tmp'][Logement['iaat'].isin([1,2,3,4,5])] = 1
     Logement['tmp'][Logement['iaat'] == 6] = 2
     Logement['tmp'][Logement['iaat'] == 7] = 3
     Logement['tmp'][Logement['iaat'] == 8] = 4
     Logement['tmp'][Logement['iaat'] == 9] = 5
     Logement['tmp'][Logement['iaat'] == 10] = 6 # TODO question Clément : et le 9 et le 10 ?
     Logement['iaat'] = Logement['tmp']
+    count_NA('iaat', Logement)
+    assert_variable_inrange('iaat', [1,7], Logement)
 
 #   tmp <- mdiplo
 #   tmp[mdiplo %in% c(1)] <- 1
@@ -449,10 +528,12 @@ def create_imput_loyer(year):
 #   mdiplo <- as.factor(tmp)
     Logement['tmp'] = Logement['mdiplo']
     Logement['tmp'][Logement['mdiplo'] == 1] = 1
-    Logement['tmp'][Logement['mdiplo'] in [2,3,4]] = 2
-    Logement['tmp'][Logement['mdiplo'] in [5,6,7,8]] = 3
+    Logement['tmp'][Logement['mdiplo'].isin([2,3,4])] = 2
+    Logement['tmp'][Logement['mdiplo'].isin([5,6,7,8])] = 3
     Logement['tmp'][Logement['mdiplo'] == 9] = 4
     Logement['mdiplo'] = Logement['tmp']
+    count_NA('mdiplo', Logement)
+    assert_variable_inrange('mdiplo', [1,5], Logement)
 
 #   tmp <- as.numeric(as.character(mtybd))
 #   tmp[mtybd %in% c(110)] <- 1
@@ -467,11 +548,13 @@ def create_imput_loyer(year):
     Logement['tmp'][Logement['mtybd'] == 110] = 1
     Logement['tmp'][Logement['mtybd'] == 120] = 2
     Logement['tmp'][Logement['mtybd'] == 200] = 3
-    Logement['tmp'][Logement['mtybd'] in [311,321,401]] = 4
-    Logement['tmp'][Logement['mtybd'] in [312,322,402]] = 5
-    Logement['tmp'][Logement['mtybd'] in [313,323,403]] = 6
+    Logement['tmp'][Logement['mtybd'].isin([311,321,401])] = 4
+    Logement['tmp'][Logement['mtybd'].isin([312,322,402])] = 5
+    Logement['tmp'][Logement['mtybd'].isin([313,323,403])] = 6
     Logement['tmp'][Logement['mtybd'] == 400] = 7
     Logement['mtybd'] = Logement['tmp']
+    count_NA('mtybd', Logement)
+    assert_variable_inrange('mtybd', [1,8], Logement)
 
 #   tmp <- as.numeric(as.character(tu99)) # tu99 is coded on 8 levels
 #   tmp[tu99 %in% c(0)] <- 1
@@ -481,12 +564,15 @@ def create_imput_loyer(year):
 #   tmp[tu99 %in% c(8)] <- 5
 #   tu99_recoded <- as.factor(tmp) 
     Logement['tmp'] = Logement['tu99']
+    count_NA('tu99', Logement)
     Logement['tmp'][Logement['tu99'] == 0] = 1
-    Logement['tmp'][Logement['tu99'] in [1,2,3]] = 2
-    Logement['tmp'][Logement['tu99'] in [4,5,6]] = 3
+    Logement['tmp'][Logement['tu99'].isin([1,2,3])] = 2
+    Logement['tmp'][Logement['tu99'].isin([4,5,6])] = 3
     Logement['tmp'][Logement['tu99'] == 7] = 4
     Logement['tmp'][Logement['tu99'] == 8] = 5
     Logement['tu99_recoded'] = Logement['tmp']
+    count_NA('tu99_recoded', Logement)
+    assert_variable_inrange('tu99_recoded', [1,6], Logement)
 
 #   tmp <- gzc2
 #   tmp[gzc2 %in% c(1)] <- 1
@@ -495,9 +581,11 @@ def create_imput_loyer(year):
 #   gzc2 <- as.factor(tmp) 
     Logement['tmp'] = Logement['gzc2']
     Logement['tmp'][Logement['gzc2'] == 1] = 1
-    Logement['tmp'][Logement['gzc2'] in [2,3,4,5,6]] = 2
+    Logement['tmp'][Logement['gzc2'].isin([2,3,4,5,6])] = 2
     Logement['tmp'][Logement['gzc2'] == 7] = 3
     Logement['gzc2'] = Logement['tmp']
+    count_NA('gzc2', Logement)
+    assert_variable_inrange('gzc2', [1,4], Logement)
 
 #   tmp <- magtr
 #   tmp[magtr %in% c(1,2)] <- 1
@@ -505,10 +593,12 @@ def create_imput_loyer(year):
 #   tmp[magtr %in% c(5)] <- 3
 #   magtr <- as.factor(tmp)
     Logement['tmp'] = Logement['magtr']
-    Logement['tmp'][Logement['magtr'] in [1,2]] = 1
-    Logement['tmp'][Logement['magtr'] in [3,4]] = 2
+    Logement['tmp'][Logement['magtr'].isin([1,2])] = 1
+    Logement['tmp'][Logement['magtr'].isin([3,4])] = 2
     Logement['tmp'][Logement['magtr'] == 5] = 3
     Logement['magtr'] = Logement['tmp']
+    count_NA('magtr', Logement)
+    assert_variable_inrange('magtr', [1,4], Logement)
 
 #   tmp <- mcs8
 #   tmp[mcs8 %in% c(1)] <- 1
@@ -521,9 +611,11 @@ def create_imput_loyer(year):
     Logement['tmp'][Logement['mcs8'] == 1] = 1
     Logement['tmp'][Logement['mcs8'] == 2] = 2
     Logement['tmp'][Logement['mcs8'] == 3] = 3
-    Logement['tmp'][Logement['mcs8'] in [4,8]] = 4
-    Logement['tmp'][Logement['mcs8'] in [5,6,7]] = 5
+    Logement['tmp'][Logement['mcs8'].isin([4,8])] = 4
+    Logement['tmp'][Logement['mcs8'].isin([5,6,7])] = 5
     Logement['mcs8'] = Logement['tmp']
+    count_NA('mcs8', Logement)
+    assert_variable_inrange('mcs8', [1,6], Logement)
 
 #   logloy <- log(lmlm)
     Logement['logloy'] = math.log(Logement['lmlm'])
@@ -535,7 +627,11 @@ def create_imput_loyer(year):
 #   maa1at  <- maa1at[,drop = TRUE]
 # 
 # })
-    Logement.dropna(axis = ['mdiplo','mtybd','magtr','mcs8','maa1at'])
+    Logement=(Logement[Logement['mdiplo'].notnull()])
+    Logement=(Logement[Logement['mtybd'].notnull()])
+    Logement=(Logement[Logement['magtr'].notnull()])
+    Logement=(Logement[Logement['mcs8'].notnull()])
+    Logement=(Logement[Logement['maa1at'].notnull()])
 
     ## Imputation des loyers proprement dite 
 
@@ -586,7 +682,7 @@ def create_imput_loyer(year):
     del allvars, matchvars, classes
 
 # fill.erf.nnd <- upData(fill.erf.nnd, rename=c(lmlm='loym'))
-    (fill_erf_nnd).rename(columns={'lmlm':'loym'})
+    (fill_erf_nnd).rename(columns={'lmlm':'loym'}, inplace = True)
 
 # loy_imput = fill.erf.nnd[c('ident','loym')]
     loy_imput = (fill_erf_nnd)[['ident','loym']]
