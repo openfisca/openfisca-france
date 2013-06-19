@@ -363,7 +363,7 @@ def final(year=2006):
 #         if final2[final2['idfoy'].notnull()][col].isnull().any() and not final2[col].isnull().all():
 #             columns_w_nan.append(col)
 #     print columns_w_nan
-    
+    final2 = final2.drop_duplicates(['noindiv'])
 
 # 
 # # var <- names(foyer)
@@ -385,9 +385,9 @@ def final(year=2006):
     control(final2, debug=True, verbose=True, verbose_columns=['quifoy', 'idfoy'])
     control(final2, debug=True, verbose=True, verbose_columns=['quifam', 'idfam'])
     control(final2, debug=True, verbose=True, verbose_columns=['quimen', 'idmen'])
-    control(final2, debug=True)
-    print final2
-
+    control(final2, debug=True, verbose=True, verbose_columns=['noindiv'])
+    check_structure(final2)
+    
     from src.countries.france import DATA_SOURCES_DIR
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
     store = HDFStore(test_filename)
