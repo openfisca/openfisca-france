@@ -57,7 +57,7 @@ def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, de
                 print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
                 print dataframe[dataframe.duplicated(verbose_columns)].head(verbose_length).to_string()
             for col in verbose_columns:
-                print 'présence de NaN dans %s : ' %(col), dataframe[col].isnull().any()
+                print 'nombre de NaN dans %s : ' %(col), dataframe[col].isnull().sum()
             print 'colonnes contrôlées ------>', verbose_columns
 
 

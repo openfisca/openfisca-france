@@ -976,21 +976,17 @@ def create_final(year=2006):
     sifcols = [col for col in sifcols if col != "noindiv"]
     for col in sifcols:
         final[col] = nan
-    print 'contrôles avant update -----------'
-    print final.duplicated('noindiv').any()
-    print sif.duplicated('noindiv').sum()
-    print len(sif)
     final.update(sif) #TODO: IF FAUT UNE METHODE POUR GERER LES DOUBLES DECLARATIONS
     
-#     final = final.merge(sif, on='noindiv', how='inner')
-#     assert set(sif.columns) < set(final.columns)
     print len(final)
-    print final.duplicated(cols=['idfoy', 'quifoy']).any() 
-    print final.duplicated(cols=['idmen', 'quimen']).any()
-    print final.duplicated(cols=['idfam', 'quifam']).any()
-    print final.duplicated(cols=['noindiv']).sum()
-#     control(final, debug=True, verbose=True, verbose_columns=['noindiv'], verbose_length=0)
-    return
+    assert not_(final.duplicated(cols=['idfoy', 'quifoy'])).all(), 'duplicate of tuple idfoy/quifoy' 
+    assert not_(final.duplicated(cols=['idmen', 'quimen'])).all(), 'duplicate of tuple idmen/quimen'
+    assert not_(final.duplicated(cols=['idfam', 'quifam'])).all(), 'duplicate of tupli idfam/quifam'
+    
+    final = final[final.caseP.notnull()]
+    print_id(final)
+    control(final, debug=True, verbose=True, verbose_columns=['caseP', 'caseF'])
+    
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final

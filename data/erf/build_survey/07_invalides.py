@@ -56,7 +56,6 @@ def invalide(year = 2006):
     assert invalides["inv"].notnull().all()
     control(invalides, verbose=True, debug=True)
 
-
     print invalides["inv"].sum(), " invalides déclarants"
 
 # # # Les conjoints invalides
@@ -86,12 +85,11 @@ def invalide(year = 2006):
     # On récupère les idfoy des foyers avec une caseF cochée 
 
     idfoy_inv_conj = final["idfoy"][final["caseF"]]
-    print idfoy_inv_conj
+    print idfoy_inv_conj.head()
     inv_conj_condition = invalides["idfoy"].isin(idfoy_inv_conj) & (invalides["quifoy"]==1)    
     invalides["inv"][inv_conj_condition] = True
 
     print invalides["inv"].sum(), " invalides déclarants et conjoints"
-    return
     
 # # # Enfants invalides et garde alternée
 # # 
@@ -117,24 +115,21 @@ def invalide(year = 2006):
 # # rm(foy_inv_pac,pacIndiv)
 # # 
 
-    # enfants invalides et garde alternée
+    print 'enfants invalides et garde alternée'
     
     pacIndiv = load_temp(name='pacIndiv', year=year)
     foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
-    print pacIndiv.columns
     print pacIndiv.head(10).to_string()
-#     pacIndiv.reset_index(inplace=True)
+    
     pac = pacIndiv.ix[:, ["noindiv", "type_pac", "naia"]]
-    print pac.value_counts()
-    return
 
     foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'type_pac', 'naia']], 
                                     on='noindiv', how='outer')
     print foy_inv_pac.columns
-    print foy_inv_pac.xs(columns=['type_pac', 'naia']).describe()
+    print foy_inv_pac.ix[:,['type_pac', 'naia']].describe()
     foy_inv_pac['inv'] = ((foy_inv_pac['type_pac']=="G")|(foy_inv_pac['type_pac']=="R")|
                           (foy_inv_pac['type_pac']=="I") | (foy_inv_pac['type_pac']=="F" & 
-                          (foy_inv_pac['year'] - foy_inv_pac['type_pac']>18)))
+                        (year.astype('int') - foy_inv_pac['type_pac']>18)))
     foy_inv_pac['alt'] = ((foy_inv_pac['type_pac']=="H") | (foy_inv_pac['type_pac']=="I"))
     foy_inv_pac['naia'] = None
     foy_inv_pac['type_pac'] = None

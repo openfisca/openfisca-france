@@ -186,7 +186,7 @@ def create_fip(year = 2006): # message('03_fip')
 # pac$key2 <- paste(pac$naia,pac$declar2)
 # indivifip$key <- paste(indivifip$naia,indivifip$declar)
     
-    pac = indivi[and_(indivi['persfip'] is not NaN, indivi['persfip']=='pac')] #La ligne semble un brin verbeuse 
+    pac = indivi[and_(indivi['persfip'] is not NaN, indivi['persfip']=='pac')]
     print pac.columns
     pac['key1'] = zip(pac['naia'], pac['declar1'])
     pac['key2'] = zip(pac['naia'], pac['declar2'])
@@ -227,10 +227,10 @@ def create_fip(year = 2006): # message('03_fip')
 # pacInd <- rbind(pacInd1,pacInd2)
 # rm(pacInd1,pacInd2)
 
-    pacInd1.rename(columns={'key1':'key'}, inplace=True)
-    pacInd2.rename(columns={'key2':'key'}, inplace=True)
-    
-
+#     pacInd1.rename(columns={'key1':'key'}, inplace=True)
+#     pacInd2.rename(columns={'key2':'key'}, inplace=True)
+    pacInd1['key'] = pacInd1['key1']; del pacInd1['key1']
+    pacInd2['key'] = pacInd2['key2']; del pacInd2['key2']
     
     if pacInd1.index == []:
         if pacInd2.index == []:
@@ -250,7 +250,7 @@ def create_fip(year = 2006): # message('03_fip')
 
     pacInd.duplicated(['noindiv', 'type_pac']).value_counts()
     pacInd.duplicated('noindiv').value_counts()
-
+    
 # pacIndiv <- pacInd[!duplicated(pacInd$noindiv),]
 # saveTmp(pacIndiv,file="pacIndiv.Rdata")
 # rm(pacInd,pacIndiv)

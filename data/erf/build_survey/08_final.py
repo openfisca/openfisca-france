@@ -265,7 +265,7 @@ def final(year=2006):
     final.rename(columns=dict(zthabm="tax_hab"), inplace=True) # rename zthabm to tax_hab
     final2 = final.merge(loyersMenages, on="idmen", how="left") # TODO: Check
     gc.collect()
-    return
+    
 # 
 # # TODO: merging with patrimoine
 # rm(menagem,final)
@@ -383,8 +383,10 @@ def final(year=2006):
 
     from src.countries.france.data.erf.build_survey.utilitaries import check_structure
     control(final2, debug=True, verbose=True, verbose_columns=['quifoy', 'idfoy'])
-    return
-
+    control(final2, debug=True, verbose=True, verbose_columns=['quifam', 'idfam'])
+    control(final2, debug=True, verbose=True, verbose_columns=['quimen', 'idmen'])
+    control(final2, debug=True)
+    print final2
 
     from src.countries.france import DATA_SOURCES_DIR
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
