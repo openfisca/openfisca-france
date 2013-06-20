@@ -23,6 +23,7 @@ def final_check(year=2006):
     age_data = final2['age'].value_counts().reset_index()
     age_data = age_data.sort_index(by='index', ascending='True')
     print age_data.to_string()
+    print final2.loc[final2['quifam']==2, ['quifam', 'age']].describe()
 
     pass
 
