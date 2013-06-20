@@ -150,7 +150,7 @@ def famille(year=2006):
     base['smic55'] = (base['ztsai'] >= smic*12*0.55) ##55% du smic mensuel brut
     base['famille'] = 0
     base['kid'] = False
-    print base.head()
+    print base.smic55.describe()
     
     def control(dataframe):
         print 'longueur de la dataframe après opération =', len(dataframe.index)
@@ -778,7 +778,11 @@ def famille(year=2006):
     print 'Vérifications sur famille'
     assert len(famille_check.loc[famille_check['chef'], :]) == len(set(famille.idfam.values)), 'the number of family chiefs is different from the number of families'
     assert not(any(famille.duplicated(cols=['idfam', 'quifam']))), 'there are duplicates of quifam inside a family'
+    assert famille['quifam'].notnull().all(), 'there are missing values in quifam'
+    assert famille['idfam'].notnull().all(), 'there are missing values in idfam'
     
+    print famille['idfam'].describe()
+    return
     print 'Sauvegarde'
     save_temp(famille, name="famc", year=year)
     del famille_check, indivi, enfnn

@@ -420,7 +420,7 @@ def create_totals(year=2006):
 ## Les ages et les ages en mois sont donn?s au 1er janvier de l'enqu?te
 #indivi$age <- as.numeric(year) - indivi$naia - 1
     indivi['age'] = year - indivi.naia - 1
-
+    
 #
 #
 ## ageq est l'?ge quinquennal obtenu en prenant l'?ge r?volu au 31 d?cembre 
@@ -985,12 +985,11 @@ def create_final(year=2006):
     
     final = final[final.caseP.notnull()]
     print_id(final)
-    control(final, debug=True, verbose=True, verbose_columns=['caseP', 'caseF'])
-    
+
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final
     
 if __name__ == '__main__':
-#     create_totals()
+    create_totals()
     create_final()

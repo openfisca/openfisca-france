@@ -386,6 +386,9 @@ def final(year=2006):
     control(final2, debug=True, verbose=True, verbose_columns=['quifam', 'idfam'])
     control(final2, debug=True, verbose=True, verbose_columns=['quimen', 'idmen'])
     control(final2, debug=True, verbose=True, verbose_columns=['noindiv'])
+    print final2.age.value_counts()
+    print final2.age.isnull().sum()
+
     check_structure(final2)
     
     from src.countries.france import DATA_SOURCES_DIR

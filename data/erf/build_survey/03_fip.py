@@ -97,8 +97,8 @@ def create_fip(year = 2006): # message('03_fip')
     fip = fip.reset_index()
     del fip['pac_number']
 
-    control(fip, debug=True, verbose=True)
-    
+    control(fip, debug=True, verbose=True, verbose_columns=['naia'])
+  
 
 # library(plyr)
 # # on enlève les F pour lesquels il y a un G ;
