@@ -12,12 +12,12 @@ import gc
 #    Uses rpy2.
 #    On MS Windows, The environment variable R_HOME and R_USER should be set
 
-try:
+try:   
     import pandas.rpy.common as com 
     import rpy2.rpy_classic as rpy
     rpy.set_default_mode(rpy.NO_CONVERSION)
 except:
-    pass
+     pass
 from src.countries.france.data.sources.config import DATA_DIR
 from src import SRC_PATH
 from pandas import HDFStore
@@ -381,6 +381,15 @@ def test():
     df = erf.get_values( ["typmen15", "nbinde", "af"], "eec_menage")
     print df.head()
     
+def test2():
+    erf = DataCollection()
+    erf.set_config(year=2006)
+    df = erf.get_of_values(["wprm", "af"], "erf_menage")
+    print df.head()
+    df = erf.get_values( ["typmen15", "nbinde"], "eec_menage")
+    print df.head()
+    df.save_output_table('testundeux', 'fichiertestundeux')
+    
 
 def test_init():
     for year in range(2006,2007):
@@ -398,7 +407,7 @@ def test_init():
 #    print reader.data()
     
 if __name__ == '__main__':
-    # test()
+    test2()
     # build_foyer()
     #test_reading_stata_tables()
-    test_init()
+    #test_init()

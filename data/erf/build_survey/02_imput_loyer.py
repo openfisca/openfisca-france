@@ -17,7 +17,8 @@ from numpy import array, where, NaN, arange
 from pandas import concat
 import gc
 import math
-from numpy import logical_not as not_, logical_and as and_, max as max_
+import numpy as np
+from numpy import logical_not as not_, logical_and as and_, maximum as max_
 from src.lib.utils import mark_weighted_percentiles 
 
 # TODO:
@@ -106,15 +107,16 @@ def create_imput_loyer(year):
                          erfmenm['zricm'] + erfmenm['zrncm'] + erfmenm['zracm'])
     erfmenm['nvpr'] = erfmenm['revtot'] / erfmenm['nb_uci']
     # On donne la valeur 0 aux nvpr négatifs
-    def f(x):
-        return max(0,x)
-    erfmenm['wprm']=map(f,erfmenm['wprm'])
-    for v in erfmenm['wprm']:
-        assert v >= 0, Exception('Some wprm are negatives')
+    tmp = np.zeros(erfmenm['nvpr'].shape, dtype = int)
+    erfmenm['nvpr'] = max_(tmp, erfmenm['nvpr'])
+    for v in erfmenm['nvpr']: # On vérifie qu'il n'y a plus de nvpr négatifs
+        assert v >= 0, Exception('Some nvpr are negatives')
     erfmenm['logt'] = erfmenm['so']
+    l = erfmenm.columns.tolist()
+    print l
     #Preparing ERF individuals table
     erfindm = load_temp(name = "indivim",year=year)
-    # erfindm = df.get_values(table = " ", variables = indmVars)
+    # erfindm = df.get_values(table = " ", variables = indmVars)9++66666666
     
     # TODO: clean this later
     erfindm['dip11'] = 99
@@ -124,6 +126,7 @@ def create_imput_loyer(year):
     #erf = erfmenm.merge(erfindm, on ='ident', how='outer')
     erf = erfmenm.merge(erfindm, on ='ident', how='inner')
     erf=erf.drop_duplicates('ident')
+
     # control(erf) La colonne existe mais est vide, 
     # on a du confondre cette colonne avec dip11 ?
     
@@ -142,7 +145,6 @@ def create_imput_loyer(year):
     print erf['nvpr'].describe()
     print erf['wprm'].describe()
     dec, values = mark_weighted_percentiles(erf['nvpr'], arange(1,11), erf['wprm'], 2, return_quantiles=True)
-    dec = DataFrame(dec)
     values.sort()
     #print DataFrame(dec).describe()
     # J'utilise la méthode de "stackexchange post"
@@ -159,8 +161,7 @@ def create_imput_loyer(year):
     # Problème : tous les individus sont soit dans le premier, soit dans le dernier décile. WTF
     assert_variable_inrange('deci',[1,11], erf)
     count_NA('deci',erf)
-    print erf['deci'].describe()
-    del dec
+    del dec, values
 
 
 # erf <- subset(erf, so %in% c(3,4,5),
@@ -175,13 +176,15 @@ def create_imput_loyer(year):
                  'nat28pr','tu99','aai1','wprm','nvpr','revtot','dip11','deci']][erf['so'].isin(range(3,6))]
 
     erf.rename(columns = {'nbpiec':'hnph2','nat28pr':'mnatio','aai1':'iaat','dip11':'mdiplo'}, inplace = True)
+    
     # TODO: ne traite pas les types comme dans R teste-les pour voir comment pandas les gère 
     
 # erf$agpr <- as.integer(erf$agpr)
 # erf$tmp <- 3
 # erf$tmp[erf$agpr < 65] <- 2
 # erf$tmp[erf$agpr < 40] <- 1
-# erf$magtr <- as.factor(erf$tmp)        
+# erf$magtr <- as.factor(erf$tmp)    
+    count_NA('agpr', erf)    
     erf['agpr'] = erf['agpr'].astype('int64')
     erf['tmp'] = 3
     erf['tmp'][erf['agpr'] < 65] = 2
@@ -219,8 +222,9 @@ def create_imput_loyer(year):
     erf['mtybd'][erf['nbenfc'] == 1] = 4
     erf['mtybd'][erf['nbenfc'] == 2] = 5
     erf['mtybd'][erf['nbenfc'] >= 3] = 6
-    erf['mtybd']=erf['mtybd'] 
     count_NA('mtybd',erf)
+    print "PINGAS"
+    print erf['mtybd'].dtype.fields
     #assert_variable_inrange('mtybd', [1,7], erf) # bug, on trouve 7.0 qui fait assert
     
 # erf$hnph2[erf$hnph2 < 1] <- 1 # 3 logements ont 0 pièces !!
@@ -229,6 +233,7 @@ def create_imput_loyer(year):
     erf['hnph2'][erf['hnph2'] >= 6] = 6
     count_NA('hnph2', erf)
     assert_variable_inrange('hnph2', [1,7], erf)
+    
 
 # # table(erf$hnph2, useNA="ifany")
 # # TODO: il reste un NA 2003
@@ -354,7 +359,7 @@ def create_imput_loyer(year):
     erf_drop_dupl = erf.drop_duplicates('ident')
     assert len(erf['ident'].value_counts()) == len(erf_drop_dupl['ident']), Exception('Number of distinct individuals after removing duplicates is not correct')
     del erf_drop_dupl
-
+    
     ## Travail sur la table logement
 
     # Table menage

@@ -26,6 +26,9 @@ from src import __version__ as VERSION
 import pickle
 from datetime import datetime
 from src.lib.utils import of_import
+import numpy as np
+from numpy import logical_not as not_
+from src.lib.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol
 
 from src.countries.france import ENTITIES_INDEX
 
@@ -501,8 +504,143 @@ def preproc_inputs(datatable):
     except:
         pass
 
+#def check_consistency(simulation, datatable, corrige = True):
+def check_consistency(simulation, corrige = True):
+    ''' Attention: la fonction suppose que datatable.dtype existe pour chaque colonne et est égal à l'ensemble des types présents'''
+    #check_inputs_enumcols(simulation):
+    # TODO: eventually should be a method of SurveySimulation specific for france 
 
-def check_consistency(datatable):
+    is_ok = True
+    message = ""
+    datatable = simulation.input_table
+    missing_variables = []
+    count = 0
+    count_enumcol = 0
+    for var in simulation.input_table.col_names:
+        varcol  = simulation.input_table.description.get_col(var)
+        serie = datatable.table[var]
+        #try:
+        if True:
+            # First checks for all if there is any missing data
+            if serie.isnull().any():
+                is_ok = False
+                message += "Some missing values in column %s, " %var
+                if corrige:
+                    serie.fillna(varcol._default)
+            if not corrige: # On ne modifie pas la série donc on peut l'amputer, elle n'est pas en return
+                serie = serie[serie.notnull()]
+                
+            # Then checks if all values are of specified datatype
+            if isinstance(varcol, EnumCol):
+                count_enumcol += 1
+                try:
+                    if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):  
+                        message +=  "Some duplicates in EnumCol %s \n" %var
+                        #print varcol.enum._nums
+                        #print sorted(serie.unique()), "\n"
+                        is_ok = False
+                except:
+                    is_ok = False
+                    message += "Wrong nums in EnumCol for %s \n" %var
+                    #print varcol.enum
+                    #print sorted(serie.unique()), "\n"
+                try:
+                    varcol.enum._vars
+                    
+                except:
+                    is_ok = False
+                    message += "wrong vars in EnumCol for %s \n" %var
+                    #print varcol.enum
+                    #print sorted(serie.unique())
+                    #print "\n"
+        
+            if isinstance(varcol, IntCol):
+                if serie.dtype not in ('int', 'int16', 'int32', 'int64'):
+                    is_ok = False
+                    #print serie[serie.notnull()]
+                    message += "Some values in column %s are not integer as wanted: %s \n" %(var, serie.dtype)
+                    stash = []
+                    for v in serie:
+                        if not (isinstance(v, 'int') or isinstance(v, 'int16')
+                                 or isinstance(v, 'int32') or isinstance(v, 'int64')):
+                            stash.append(v)
+                    message += "which are %s" %str(stash)
+                    
+                    
+            if isinstance(varcol, BoolCol):
+                if serie.dtype != 'bool':
+                    is_ok = False
+                    #print serie[serie.notnull()]
+                    message += "Some values in column %s are not boolean as wanted \n" %var
+                      
+            
+            if isinstance(varcol, AgesCol):
+                if not serie.dtype in ('int', 'int16', 'int32', 'int64'):
+                    is_ok = False
+                    message += "Age variable %s not of type int: \n"
+                    stash = list(set(serie.value) - set(range(serie.min(), serie.max()+1)))
+                    message += str(stash) + "\n"
+                    message += "Total frequency for non-integers for %s is %s" %(var, str(len(stash)))
+                    if corrige:
+                        pass
+                    
+                if not serie.isin(range(-1,156)).all(): # Pas plus vieux que 100 ans ?
+                    is_ok = False
+                    #print serie[serie.notnull()]
+                    message +=  "Age variable %s not in wanted range: \n" %var
+                    stash = list(set(serie.unique()) - set(range(-1,156)))
+                    message += str(stash) + "\n"
+                    message += "Total frequency of outranges for %s is %s \n"%(var,str(len(stash)))
+                    del stash
+                    if corrige:
+                        tmp = serie[serie.isin(range(-1,156))]
+                        serie[not_(serie.isin(range(-1,156)))] = tmp.median()
+                        del tmp
+                      
+            if isinstance(varcol, FloatCol):
+                if serie.dtype not in ('float','float32','float64','float16'):
+                    is_ok = False
+                    message +=  "Some values in column %s are not float as wanted \n" %var
+                    stash = list(set(serie.value) - set(range(serie.min(), serie.max()+1)))
+                    message += str(stash) + "\n"
+                    message += "Total frequency for non-integers for %s is %s" %(var, str(len(stash)))
+                      
+            if isinstance(varcol, DateCol):
+                if serie.dtype != 'np.datetime64':
+                    is_ok = False
+                    #print serie[serie.notnull()]
+                    message +=  "Some values in column %s are not of type date as wanted \n" %var
+                    
+            count += 1
+            
+        #except:
+            #missing_variables.append(var)
+            
+    print "Les variables qui sont bien la sont au nombre de:"  
+    print count
+    print count_enumcol               
+    print "Les variables manquantes sont:"
+    print missing_variables
+    print "\n"
+    return is_ok, message
+    
+    #NotImplementedError
+    
+from src.lib.simulation import SurveySimulation 
+from src.lib.utils import of_import
+from pandas import concat
+
+if __name__ == '__main__':
+    year = 2006
+    country = "france"
+    simulation = SurveySimulation()
+    simulation.set_config(year = year, country = country)
+    simulation.initialize_input_table()
+    simulation.input_table.load_data_from_survey(simulation.survey_filename)
     
     
-    NotImplementedError
+    simulation.set_param()
+
+    ok, message = check_consistency(simulation)
+    if not ok:
+        print message

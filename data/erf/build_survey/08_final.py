@@ -382,7 +382,7 @@ def final(year=2006):
     from src.countries.france.data.erf.build_survey.utilitaries import check_structure
     check_structure(final2)
 
-    return
+
 
     from src.countries.france import DATA_SOURCES_DIR
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
