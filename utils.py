@@ -504,8 +504,8 @@ def preproc_inputs(datatable):
     except:
         pass
 
-#def check_consistency(simulation, datatable, corrige = True):
-def check_consistency(simulation, corrige = True):
+def check_consistency(table_simu, datatable, corrige = True):
+#def check_consistency(simulation, corrige = True):
     ''' Attention: la fonction suppose que datatable.dtype existe pour chaque colonne et est égal à l'ensemble des types présents'''
     #check_inputs_enumcols(simulation):
     # TODO: eventually should be a method of SurveySimulation specific for france 
@@ -516,11 +516,10 @@ def check_consistency(simulation, corrige = True):
     missing_variables = []
     count = 0
     count_enumcol = 0
-    for var in simulation.input_table.col_names:
-        varcol  = simulation.input_table.description.get_col(var)
-        serie = datatable.table[var]
-        #try:
-        if True:
+    try:
+        for var in simulation.input_table.col_names:
+            varcol  = simulation.input_table.description.get_col(var)
+            serie = datatable.table[var]
             # First checks for all if there is any missing data
             if serie.isnull().any():
                 is_ok = False
@@ -559,12 +558,12 @@ def check_consistency(simulation, corrige = True):
                     is_ok = False
                     #print serie[serie.notnull()]
                     message += "Some values in column %s are not integer as wanted: %s \n" %(var, serie.dtype)
-                    stash = []
-                    for v in serie:
-                        if not (isinstance(v, 'int') or isinstance(v, 'int16')
-                                 or isinstance(v, 'int32') or isinstance(v, 'int64')):
-                            stash.append(v)
-                    message += "which are %s" %str(stash)
+                    if corrige:
+                        message += "Warning, forcing type integer for %s... " %var
+                        serie.astype(varcol._dtype)
+                        message += "Done"
+                else:
+                    message += "Values for %s are in range [%s,%s]\n" %(var,str(serie.min()),str(serie.max()))
                     
                     
             if isinstance(varcol, BoolCol):
@@ -593,8 +592,10 @@ def check_consistency(simulation, corrige = True):
                     message += "Total frequency of outranges for %s is %s \n"%(var,str(len(stash)))
                     del stash
                     if corrige:
+                        message += "Fixing the outranges for %s... " %var
                         tmp = serie[serie.isin(range(-1,156))]
                         serie[not_(serie.isin(range(-1,156)))] = tmp.median()
+                        message += "Done"
                         del tmp
                       
             if isinstance(varcol, FloatCol):
@@ -613,15 +614,10 @@ def check_consistency(simulation, corrige = True):
                     
             count += 1
             
-        #except:
-            #missing_variables.append(var)
-            
-    print "Les variables qui sont bien la sont au nombre de:"  
-    print count
-    print count_enumcol               
-    print "Les variables manquantes sont:"
-    print missing_variables
-    print "\n"
+    except:
+        missing_variables.append(var)
+        message = "Oh no ! Something went wrong in the tests. You may have coded like a noob"
+    
     return is_ok, message
     
     #NotImplementedError

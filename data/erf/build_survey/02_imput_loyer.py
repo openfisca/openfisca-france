@@ -642,7 +642,7 @@ def create_imput_loyer(year):
 
 # library(StatMatch) # loads StatMatch
 # # library(mice) use md.pattern to locate missing data
-    # TODO : à suprimer ?
+    # TODO : à supprimer ?
     
 # logt <- subset(logement,select=c(lmlm,logt , hnph2 , iaat , mdiplo , mtybd , tu99_recoded , magtr , mcs8 , deci, ident))
 # logt$wprm <- logement$qex

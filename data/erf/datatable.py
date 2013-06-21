@@ -12,12 +12,12 @@ import gc
 #    Uses rpy2.
 #    On MS Windows, The environment variable R_HOME and R_USER should be set
 
-try:   
-    import pandas.rpy.common as com 
-    import rpy2.rpy_classic as rpy
-    rpy.set_default_mode(rpy.NO_CONVERSION)
-except:
-     pass
+#try:   
+import pandas.rpy.common as com 
+import rpy2.rpy_classic as rpy
+rpy.set_default_mode(rpy.NO_CONVERSION)
+#except:
+ #    pass
 from src.countries.france.data.sources.config import DATA_DIR
 from src import SRC_PATH
 from pandas import HDFStore
@@ -72,9 +72,9 @@ class DataCollection(object):
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
         erf_tables_to_process = {
-#                                 "erf_menage" : "menage" + yr,
-#                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-#                                 "foyer" : "foyer" + yr,
+                                 "erf_menage" : "menage" + yr,
+                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+                                 "foyer" : "foyer" + yr,
                                  "erf_indivi" : "indivi" + yr,
                                  "eec_indivi" : "irf" + yr + "e" + yr + "t4",
                                  "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
@@ -339,18 +339,21 @@ class DataCollection(object):
         if variables is None:
             return df
             
-        
         from src.countries.france.data.erf import get_erf2of, get_of2erf
         of2erf = get_of2erf()
+        print of2erf.keys()
         to_be_renamed_variables = set(of2erf.keys()).intersection(variables)
         renamed_variables = []
+
         
         for variable in to_be_renamed_variables:
             renamed_variables.append(of2erf[variable])
         
+
         if renamed_variables:
             variables = list( set(variables).difference(to_be_renamed_variables)) + renamed_variables 
-        
+
+
 #        if table is None:
 #            for test_table in self.tables.keys:
 #                if set(variables) < set(self.tables[test_table].columns):
@@ -362,6 +365,7 @@ class DataCollection(object):
 #            print "varname not found in any tables"
 #            df = None
 #        else:
+
         variables = list( set(variables).intersection(df.columns))
         df = df[variables]
         
@@ -375,22 +379,33 @@ class DataCollection(object):
 
 def test():
     erf = DataCollection()
-    # erf.set_config(year=2006)
-    df = erf.get_value("wprm", "erf_menage")
-    print df
-    df = erf.get_values( ["typmen15", "nbinde", "af"], "eec_menage")
-    print df.head()
+    df = erf.get_of_values(["wprm", "af"], "erf_menage")
     
 def test2():
+    year=2006
     erf = DataCollection()
-    erf.set_config(year=2006)
     df = erf.get_of_values(["wprm", "af"], "erf_menage")
-    print df.head()
-    df = erf.get_values( ["typmen15", "nbinde"], "eec_menage")
-    print df.head()
-    df.save_output_table('testundeux', 'fichiertestundeux')
-    
+    def save_output_table(table, name, filename):
+        from src import SRC_PATH
+        from pandas import HDFStore
+        ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH,'countries','france','data','erf')
+        store = HDFStore(os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),filename+'.h5'))
+        store.put(name, table)
+        store.close()
+    save_output_table(df, 'test12', 'fichiertest')
 
+    from src.lib.simulation import SurveySimulation
+    simulation = SurveySimulation()
+    simulation.set_config(year=year)
+    simulation.set_param()
+    simulation.compute()
+    af_col = simulation.get_col("af")
+    from pandas import DataFrame
+    res = DataFrame({af_col.name: simulation.output_table.get_value(af_col.name, af_col.entity)})
+    
+    print res
+    
+    
 def test_init():
     for year in range(2006,2007):
         data = DataCollection(year=year)
@@ -407,7 +422,13 @@ def test_init():
 #    print reader.data()
     
 if __name__ == '__main__':
-    test2()
+    test()
     # build_foyer()
-    #test_reading_stata_tables()
+#===============================================================================
+# <<<<<<< HEAD
+#     #test_reading_stata_tables()
+# =======
+# 
+# >>>>>>> a07e793972a5b65256994cb8b1705aa969907df5
+#===============================================================================
     #test_init()
