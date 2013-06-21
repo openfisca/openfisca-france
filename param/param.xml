@@ -3839,7 +3839,6 @@
 	<VALUE valeur="95" deb="2007-07-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Évaluation forfaitaire des ressources R. 351-7-1" code="dar_2" format='float' type="monetary">
-	 # Là, j'ai un problème, le R. 351-7-1 se réfère aux planchers ressources en secteur accession 
 	<VALUE valeur="6173.82" deb="2002-01-01" fin="2002-06-30"/>
 	<VALUE valeur="6300" deb="2002-07-01" fin="2003-06-30"/>
 	<VALUE valeur="6400" deb="2003-07-01" fin="2007-06-30"/>
@@ -3850,6 +3849,7 @@
 	<VALUE valeur="16.25" deb="2007-07-01" fin="2012-12-31"/>
       </CODE>
 	  <!--
+  	  Là, j'ai un problème, le R. 351-7-1 se réfère aux planchers ressources en secteur accession 
 	  et non pas à l'évaluation forfaitaire des ressources qui est le R 351-7, ce qui change les montants...
 	  si on est en eval forf on aura:
 	<VALUE valeur="8952.30" deb="2011-01-01" fin="2011-12-31"/> en fait 1015*smic horaire brut du 31/12/n-2
@@ -3859,7 +3859,7 @@
       non pas en eval forf des ressources, donc faut-il changer le label où tu es sûr de toi ?
       n'a t-on pas besoin de l'évaluation forfaitaire des ressources plutôt que des planchers des ressources pour l'accession ?
 	  -->
-      <CODE description="Montant R. 351-7-2" code="dar_4" format='float' type="monetary">
+    <CODE description="Montant R. 351-7-2" code="dar_4" format='float' type="monetary">
 	<VALUE valeur="5411.62" deb="2002-01-01" fin="2002-06-30"/>
 	<VALUE valeur="5500" deb="2002-07-01" fin="2007-06-30"/>
 	<VALUE valeur="6900" deb="2007-07-01" fin="2008-12-31"/>
