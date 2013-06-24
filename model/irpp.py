@@ -574,10 +574,10 @@ def _rpns_pvce(frag_pvce, arag_pvce, nrag_pvce, mbic_pvce, abic_pvce,
     'ind'
     frag_pvce (f5hx, f5ix, f5jx)
     arag_pvce (f5he, f5ie, f5je)
-    nrag_pvce (f5hk, f5ik, f5jk)
+    nrag_pvce (f5hk, f5lk, f5jk)
     mbic_pvce (f5kq, f5lq, f5mq)
     abic_pvce (f5ke, f5le, f5me)
-    nbic_pvce (f5kk, f5lk, f5mk)
+    nbic_pvce (f5kk, f5ik, f5mk)
     macc_pvce (f5nq, f5oq, f5pq)
     aacc_pvce (f5ne, f5oe, f5pe)
     nacc_pvce (f5nk, f5ok, f5pk)
