@@ -475,7 +475,7 @@ def foyer_all(year=2006):
         selection = selection.stack()
         selection.name = individual_var
         selection = selection.reset_index() # A Series cannot see its index resetted to produce a DataFrame
-        " Clean the selection"
+        print " Clean the selection", var
         selection = selection.set_index(["quifoy", "noindiv"])
         selection = selection[selection[individual_var] !=0]
 #        print len(selection)
@@ -489,7 +489,6 @@ def foyer_all(year=2006):
     foy_ind.reset_index(inplace=True)
     
     print "foy_ind"
-
     print foy_ind.describe().to_string()
 
     

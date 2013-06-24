@@ -21,6 +21,9 @@ from src.countries.france.data.erf.build_survey.utilitaries import print_id, con
 
 def create_totals(year=2006):
     
+    print "Creating Totals"
+    print "Etape 1 : Chargement des données"
+    
     data = DataCollection(year=year)
     indivim = load_temp(name="indivim", year=year)
 
@@ -112,7 +115,8 @@ def create_totals(year=2006):
 #indivi[!fip_imp, "idfoy"]  <- as.integer(indivi[!fip_imp, "idmen"])*100 + as.integer(substr(indivi[!fip_imp, "declar1"], 1, 2))
 #
 #
-
+    print ''
+    print "Etape 2 : isolation des FIP"
     fip_imp = indivi.quelfic=="FIP_IMP"
     indivi["idfoy"] = (indivi["idmen"].astype("int64")*100 + 
                        (indivi["declar1"].str[0:1]).convert_objects(convert_numeric=True))
@@ -189,6 +193,9 @@ def create_totals(year=2006):
 #indivi[nrt,"quifoy"] <- "vous"
 #rm(nrt)
 #
+    print ''
+    print 'Etape 3 : Récupération des EE_NRT'
+    
     nrt = indivi.quelfic=="EE_NRT"
     indivi.idfoy = where(nrt, indivi.idmen*100 + indivi.noi, indivi.idfoy)
     indivi.loc[nrt,"quifoy"] = "vous"
@@ -268,13 +275,14 @@ def create_totals(year=2006):
 #
 #rm(deux_parents, is_pere_vous, is_mere_vous, noindper, noindmer, idfoy, zimpof_pere, zimpof_mere, foyer, enf_ee)
 #
-
+    print ''
+    print 'Etape 4 : Rattachement des enfants aux déclarations'
+    
     assert indivi["noindiv"].duplicated().any() == False, "Some noindiv appear twice"
     lpr3_or_lpr4 = or_(indivi.lpr==3, indivi.lpr==4)
     enf_ee = and_(indivi.quelfic.isin(["EE","EE_CAF"]), lpr3_or_lpr4)  
     assert indivi.loc[enf_ee, "noindiv"].notnull().all(), " Some noindiv are not set, which will ruin next stage"
     assert indivi.loc[enf_ee, "noindiv"].duplicated().any() == False, "Some noindiv appear twice"
- 
 
     pere = DataFrame( {"noindiv_enf" : indivi.noindiv.loc[enf_ee], "noindiv" : 100*indivi.idmen.loc[enf_ee] + indivi.noiper.loc[enf_ee] })
     mere = DataFrame( {"noindiv_enf" : indivi.noindiv.loc[enf_ee], "noindiv" : 100*indivi.idmen.loc[enf_ee] + indivi.noimer.loc[enf_ee] })
@@ -296,9 +304,9 @@ def create_totals(year=2006):
 #     print df.loc[df["noindiv_enf"].isin(ll)]
 #     print df[df.duplicated()]
     
-    # Dealing with double declarations
+    print '    4.1 : gestion des personnes dans 2 foyers'
     for col in ["noindiv_p","noindiv_m","noindiv_enf"]:     
-        df[col].fillna(0,inplace=True) # beacuase groupby drop groups wit hNA in index
+        df[col] = df[col].fillna(0,inplace=True) # beacause groupby drop groups with NA in index
     df = df.groupby(by=["noindiv_p","noindiv_m","noindiv_enf"]).sum()
     df.reset_index(inplace=True)
 
@@ -322,10 +330,7 @@ def create_totals(year=2006):
         if col not in ["idfoy", "noindiv"]:
             del df[col]
 
-
     assert indivi.loc[enf_ee,"idfoy"].isnull().all()
-    
-
     assert df.duplicated().any() == False
 
     df.set_index("noindiv",inplace=True, verify_integrity=True)
@@ -339,7 +344,6 @@ def create_totals(year=2006):
         
     indivi.reset_index(inplace=True)
     assert indivi.duplicated().any() == False 
-
 
 
 ## On enlève les individus pour lesquels il manque le déclarant TODO: à améliorer (peut-être qu'il faut récupérer les deux feuilles d'impôts)
@@ -363,10 +367,10 @@ def create_totals(year=2006):
 #fip$declar <- NULL
 #fip$agepf <- NULL
 #
+    print '   4.2 : On enlève les individus pour lesquels il manque le déclarant'
     fip = load_temp(name="fipDat", year=year)
     fip["declar"] = nan
     fip["agepf"] = nan
-
 
 #fip <- upData(fip,drop=c("year","actrec","noidec"))
 #fip <- rename(fip, c(ident = "idmen",
@@ -409,12 +413,10 @@ def create_totals(year=2006):
     indivi = concat([indivi, fip.loc[is_fip_19_25]])
     print_id(indivi)
     
-#
 ## on efface les variables inutiles 
 #rm(is_fip_19_25)
 
     del is_fip_19_25
-
 
 ## on crée la date de naissance au format ISO
 ## Les ages et les ages en mois sont donn?s au 1er janvier de l'enqu?te
@@ -487,7 +489,7 @@ def create_totals(year=2006):
 #indivi$quimen <- as.factor(indivi$quimen) 
 #rm(test,tmp)
 
-    print "Creating non pr=0 and cpr=1 idmen's"
+    print "    4.3 : Creating non pr=0 and cpr=1 idmen's"
     indivi.reset_index(inplace=True)
     test1 = indivi.ix[indivi['not_pr_cpr']==True,['quimen', 'idmen']]
     test1['quimen'] = 2
@@ -507,7 +509,7 @@ def create_totals(year=2006):
 #
 #print_id(indivi)
 #
-## TODO probl?me avec certains idfoy qui n'ont pas de vous
+## TODO problème avec certains idfoy qui n'ont pas de vous
 ## Il y clairement un pb de double déclaration comme le montre test ci-dessous
 #all <- unique(indivi$idfoy)                  # all idfoy 
 #with <- indivi[indivi$quifoy=="vous","idfoy"] # idfoy with "vous"
@@ -523,6 +525,8 @@ def create_totals(year=2006):
 #indivi[has_declar2, "idfoy"] <- ifelse(decl2_idfoy %in% with, decl2_idfoy, NA)   
 #
 #rm(all,with,without, has_declar2)
+    print ''
+    print "Etape 5 : Gestion des idfoy qui n'ont pas de vous"
     all = indivi.drop_duplicates('idfoy')
     print len(all.index)
     with_ = indivi.loc[indivi['quifoy']=='vous', 'idfoy']
@@ -551,13 +555,10 @@ def create_totals(year=2006):
 #                               )
 #
 #indivi <- indivi[myvars]
-    print 'Elimination idfoy restant'
+    print '    5.1 : Elimination idfoy restant'
     idfoyList = indivi.loc[indivi['quifoy']=="vous", 'idfoy'].drop_duplicates()
     indivi = indivi[indivi.idfoy.isin(idfoyList.values)]
     del idfoyList
-    
-
-    
     print_id(indivi)
     
     myvars = ["noindiv", "noi", "idmen", "idfoy", "quifoy", "wprm",
@@ -610,7 +611,9 @@ def create_totals(year=2006):
 #  titc[is.na(titc) ] <- 0
 #  })
 ##table(indivi$titc,useNA="ifany")
-    print 'creation des activités'
+    print ''
+    print 'Etape 6 : Création des variables descriptives'
+    print '    6.1 : variable activité'
     indivi['activite'] = None
     print indivi['actrec'].value_counts()
     indivi['activite'][indivi['actrec']<=3] = 0
@@ -660,6 +663,7 @@ def create_totals(year=2006):
 #  })
 #table(indivi$statut,useNA="ifany")  
 
+    print '    6.2 : variable statut'
     indivi['statut'][indivi['statut'].isnull()] = 0
     indivi['statut'] = indivi['statut'].astype('int')
     indivi['statut'][indivi['statut']==11] = 1
@@ -708,7 +712,7 @@ def create_totals(year=2006):
 #  nbsala[nbsala==99 ] <- 10  # TODO  418 fip à retracer qui sont NA
 #})
 #table(indivi$nbsala,useNA='ifany')
-
+    print '    6.3 : variable txtppb'
     indivi['txtppb'] = indivi['txtppb'].fillna(0)
     print len(indivi[indivi['txtppb'].isnull()])
     assert indivi['txtppb'].notnull().all()
@@ -734,6 +738,7 @@ def create_totals(year=2006):
 #indivi <- within(indivi,{
 #  chpub[is.na(chpub) ]    <- 0   # TODO  418 fip à retracer qui sont NA
 #})
+    print '    6.4 : variable chpub et CSP'
     indivi['chpub'].fillna(0, inplace=True)
     indivi['chpub'] = indivi['chpub'].astype('int')
     indivi['chpub'][indivi['chpub'].isnull()] = 0
@@ -761,9 +766,9 @@ def create_totals(year=2006):
 #})
     indivi['cadre'] = 0
     indivi['prosa'][indivi['prosa'].isnull()] = 0
-    
     assert indivi['prosa'].notnull().all()
     print indivi['encadr'].value_counts()
+    
     # encadr : 1=oui, 2=non
     indivi['encadr'].fillna(2, inplace=True)
     assert indivi['encadr'].notnull().all()
@@ -806,11 +811,12 @@ def create_totals(year=2006):
 #print_id(indivi)
 #
 #saveTmp(indivi, file= "indivi.Rdata")
-    print "on vérifie qu'il ne manque pas d'info sur les liens avec la personne de référence"
+    print ''
+    print "Etape 7 : on vérifie qu'il ne manque pas d'info sur les liens avec la personne de référence"
     
     control(indivi, debug=True, verbose=True, verbose_columns=['idfoy', 'quifoy'], verbose_length=1)
     
-    #On crée les n° de personnes à charge
+    print 'On crée les n° de personnes à charge'
     assert indivi['idfoy'].notnull().all()
     print_id(indivi)
     indivi['quifoy'][indivi['quifoy']=='vous'] = 0
@@ -856,7 +862,9 @@ def create_totals(year=2006):
 #saveTmp(tot3, file= "tot3.Rdata")
 #rm(tot3,tot2,foyer)
 #
-    print 'création des fichiers globaux'
+    print ''
+    print 'Etape 8 : création des fichiers totaux'
+    print '    8.1 : création de tot2 & tot3'
     famille = load_temp(name='famc', year=year)
 #     print_id(famille)
     tot2 = indivi.merge(famille, on='noindiv', how='outer')
@@ -864,44 +872,33 @@ def create_totals(year=2006):
     # TODO: MBJ increase in number of menage/foyer when merging with family ...
     print_id(tot2)
     assert tot2['quifam'].notnull().all()
-    
 #     control(tot2, debug=True, verbose=True, verbose_columns=['idfoy', 'quifoy'], verbose_length=15)
     print len(tot2.loc[and_(tot2.duplicated(['quifoy', 'idfoy']),tot2['quifoy']==1)])
     
-
+    print '    tot2 saved'
     save_temp(tot2, name='tot2', year=year)
     del indivi
-    print show_temp()
+    
     #On combine les variables de revenu
     foyer = load_temp(name='foy_ind', year=year)
-
-    print '____contrôle_____ foyer'
     print control(foyer, debug=True) #Colonne frag_pvce
     print control(foyer, verbose_columns=['sali'], debug=True, verbose=True) #Colonne frag_pvce
-    
-    print foyer["quifoy"].value_counts()
-    
     tot2.update(foyer)
     
-    print "tot2"
+    print "    check tot2"
     print_id(tot2)
     tot3 = tot2
     # TODO: check where they come from
     tot3 = tot3.drop_duplicates(cols='noindiv')
-    
     assert not tot3.duplicated(cols='noindiv').any(), Exception("Duplicates in tot3")
-    
     print_id(tot3)
 
-    print 'TOT3'
+    print '    check tot3'
 #     print tot3.loc[tot3.duplicated(['idfoy', 'quifoy']), ['idfoy', 'quifoy']].head(20)
 #     print len(tot3[tot3.duplicated(['idfoy', 'quifoy'])])
     control(tot3, debug=True, verbose=True, verbose_columns=['idfoy', 'quifoy'], verbose_length=5)
-    
     assert not tot3.duplicated(cols='noindiv').any(), Exception("Duplicates in tot3")
-#     print_id(tot3)
-    print '____contrôle_____ tot3'
-    print control(tot3, debug=True) #Colonne frag_pvce
+    print_id(tot3)
     
 ## On ajoute les variables individualisables
 #loadTmp("foyer_individualise.Rdata") # foy_ind
@@ -919,7 +916,7 @@ def create_totals(year=2006):
 #rm(tot3, foy_ind)
 #table(final[final$quifoy=="vous", "noindiv"] %in% sif$noindiv)
 #
-    print 'On ajoute les variables individualisables'
+    print '    8.2 : On ajoute les variables individualisables'
     print show_temp()
     allvars = load_temp(name = 'ind_vars_to_remove', year=year)
     
@@ -928,6 +925,9 @@ def create_totals(year=2006):
 #     print "len tot3"
 #     print len(tot3.index)
     print_id(tot3)
+    # "contrôle des familles"
+    control(tot3, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
+    
     save_temp(tot3, name='tot3', year=year)
 #     print show_temp()
     print 'tot3 sauvegardé'
@@ -940,9 +940,9 @@ def create_final(year=2006):
     print 'création de final'
     foy_ind = load_temp(name = 'foy_ind', year=year)
     tot3 = load_temp(name='tot3', year=year)
-    print "foy_ind"
+    print "    foy_ind----------------------"
     print foy_ind.duplicated(cols=['idfoy', 'quifoy']).any() 
-    print "final"
+    print "    final------------------------"
     print tot3.duplicated(cols=['noindiv']).any(), 'doublon noindiv ?'
     print tot3.loc[tot3.duplicated(['idfoy', 'quifoy']), ['idfoy', 'quifoy']].head(30)
     print len(tot3[tot3.duplicated(['idfoy', 'quifoy'])])
@@ -970,26 +970,33 @@ def create_final(year=2006):
 #
 #rm(sif,final)
 #gc()
-
+    print "    loading fip"
     sif = load_temp(name = 'sif', year=year)
+    
     sifcols = sif.columns
     sifcols = [col for col in sifcols if col != "noindiv"]
     for col in sifcols:
         final[col] = nan
-    final.update(sif) #TODO: IF FAUT UNE METHODE POUR GERER LES DOUBLES DECLARATIONS
     
-    print len(final)
+    print_id(sif)
+    print "    update final using fip"
+    final.update(sif) #TODO: IL FAUT UNE METHODE POUR GERER LES DOUBLES DECLARATIONS
+    
+    print_id(final)
+    print 'starting assertion block'
     assert not_(final.duplicated(cols=['idfoy', 'quifoy'])).all(), 'duplicate of tuple idfoy/quifoy' 
     assert not_(final.duplicated(cols=['idmen', 'quimen'])).all(), 'duplicate of tuple idmen/quimen'
     assert not_(final.duplicated(cols=['idfam', 'quifam'])).all(), 'duplicate of tupli idfam/quifam'
     
-    final = final[final.caseP.notnull()]
+#     final = final[final.caseP.notnull()]
+    final['caseP'] = final.caseP.fillna(False) 
+    print final['caseP'].value_counts()
     print_id(final)
-
+    return
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final
     
 if __name__ == '__main__':
-    create_totals()
+#     create_totals()
     create_final()

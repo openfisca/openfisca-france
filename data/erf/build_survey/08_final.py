@@ -10,9 +10,11 @@ from __future__ import division
 from numpy import where, NaN, random, logical_or as or_ 
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
-from numpy import logical_and as and_
+from numpy import logical_and as and_, logical_not as not_
 from pandas import read_csv, HDFStore
 import os
+import gc
+
 
 def final(year=2006):
 
@@ -28,6 +30,7 @@ def final(year=2006):
     import gc
     gc.collect()
     final = load_temp("final", year=year)
+    
     final.statmarit = where(final.statmarit.isnull(), 2, final.statmarit)
 # 
 #START REMOVE 
@@ -89,14 +92,15 @@ def final(year=2006):
 # print_id(final)
 # saveTmp(final, file= "final.Rdata")
 #
-
+    print '    gestion des FIP de final'
     final_fip = final.loc[final.quelfic=="FIP", ["choi", "sali", "alr", "rsti","age"]]
-    print final_fip.describe()
     
     print set(["choi", "sali", "alr", "rsti"]).difference(set(final_fip.columns))
     for var in  ["choi", "sali", "alr", "rsti"]:
         final_fip[var].fillna(0, inplace=True)
-        
+        assert final_fip[var].notnull().all(), "some NaN are remaining in column %s" %(var)
+    
+    
     final_fip["activite"] = 2 # TODO comment choisr la valeur par défaut ?
     final_fip.activite = where(final_fip.choi > 0, 1, final_fip.activite)
     final_fip.activite = where(final_fip.sali > 0, 0, final_fip.activite)
@@ -104,6 +108,7 @@ def final(year=2006):
 
     final.update(final_fip)
     save_temp(final, name="final", year=year)
+    print '    final has been updated with fip'
  
 # loadTmp("final.Rdata")
 # load(menm)
@@ -252,19 +257,21 @@ def final(year=2006):
     final.act5 = where(final.actrec==4, 3, final.act5) # chômeur
     final.act5 = where(final.actrec==7, 4, final.act5) # retraité
     final.act5 = where(final.actrec==8, 5, final.act5) # autres inactifs
-
+    print final.actrec.value_counts()
+#     assert final.act5.notnull().all(), 'there are NaN inside final.act5'
 
 # final$wprm <- NULL # with the intention to extract wprm from menage to deal with FIPs
 # final$tax_hab <- final$zthabm # rename zthabm to tax_hab
 # final$zthabm <- NULL
 # 
 # final2 <- merge(final, loyersMenages, by="idmen", all.x=TRUE)
-    import gc
+    print '    création de final2'
     del final["wprm"]
     gc.collect()
     final.rename(columns=dict(zthabm="tax_hab"), inplace=True) # rename zthabm to tax_hab
     final2 = final.merge(loyersMenages, on="idmen", how="left") # TODO: Check
     gc.collect()
+    print_id(final2)
     
 # 
 # # TODO: merging with patrimoine
@@ -311,7 +318,7 @@ def final(year=2006):
 # }
 # 
 
-    print 'traitement des zones apl'
+    print '    traitement des zones apl'
     apl_imp = read_csv("../../zone_apl/zone_apl_imputation_data.csv")
 
     print apl_imp.head(10)
@@ -356,17 +363,26 @@ def final(year=2006):
     
 #     control(final2, verbose=True, debug=True, verbose_length=15)
     
-    print final2[final2['sali'].isnull()].head(15).to_string()
-    print len(final2[final2['sali'].isnull()])
+    print '    performing cleaning on final2'
+    print 'nombre de sali nuls', len(final2[final2['sali'].isnull()])
+    print "nombre d'âges nuls", len(final2[final2.age.isnull()])
+    print "longueur de final2 avant purge", len(final2)
 #     columns_w_nan = []
 #     for col in final2.columns:
 #         if final2[final2['idfoy'].notnull()][col].isnull().any() and not final2[col].isnull().all():
 #             columns_w_nan.append(col)
 #     print columns_w_nan
+    print 'check doublons', len(final2[final2.duplicated(['noindiv', 'idmen'])])
+    print final2.age.isnull().sum()
 
+#     print final2.loc[final2.duplicated('noindiv'), ['noindiv', 'quifam']].to_string() 
+    #TODO: JS: des chefs de famille et conjoints en double il faut trouver la source des ces doublons !
     final2 = final2.drop_duplicates(['noindiv'])
-    final2 = final2[final2.age.notnull()]
-
+    
+    final2 = final2[not_(final2.age.isnull())]
+    print "longueur de final2 après purge", len(final2)
+    print_id(final2)
+    
 # 
 # # var <- names(foyer)
 # #a1 <- c('f7rb', 'f7ra', 'f7gx', 'f2aa', 'f7gt', 'f2an', 'f2am', 'f7gw', 'f7gs', 'f8td', 'f7nz', 'f1br', 'f7jy', 'f7cu', 'f7xi', 'f7xo', 'f7xn', 'f7xw', 'f7xy', 'f6hj', 'f7qt', 'f7ql', 'f7qm', 'f7qd', 'f7qb', 'f7qc', 'f1ar', 'f7my', 'f3vv', 'f3vu', 'f3vt', 'f7gu', 'f3vd', 'f2al', 'f2bh', 'f7fm', 'f8uy', 'f7td', 'f7gv', 'f7is', 'f7iy', 'f7il', 'f7im', 'f7ij', 'f7ik', 'f1er', 'f7wl', 'f7wk', 'f7we', 'f6eh', 'f7la', 'f7uh', 'f7ly', 'f8wy', 'f8wx', 'f8wv', 'f7sb', 'f7sc', 'f7sd', 'f7se', 'f7sf', 'f7sh', 'f7si',  'f1dr', 'f7hs', 'f7hr', 'f7hy', 'f7hk', 'f7hj', 'f7hm', 'f7hl', 'f7ho', 'f7hn', 'f4gc', 'f4gb', 'f4ga', 'f4gg', 'f4gf', 'f4ge', 'f7vz', 'f7vy', 'f7vx', 'f7vw', 'f7xe', 'f6aa', 'f1cr', 'f7ka', 'f7ky', 'f7db', 'f7dq', 'f2da')
@@ -381,7 +397,6 @@ def final(year=2006):
 # 
 # saveTmp(final2, file= "final2.Rdata")
 
-    print_id(final2)
 
     from src.countries.france.data.erf.build_survey.utilitaries import check_structure
     control(final2, debug=True, verbose=True, verbose_columns=['quifoy', 'idfoy'])
@@ -391,11 +406,11 @@ def final(year=2006):
     print final2.age.isnull().sum()
 
 #     check_structure(final2)
-    return
+    
     from src.countries.france import DATA_SOURCES_DIR
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
     store = HDFStore(test_filename)
-    store['survey_'+ str(year)]  = final2
+    store['survey_'+ str(year)] = final2
     
 if __name__ == '__main__':
 

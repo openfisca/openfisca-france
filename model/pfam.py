@@ -56,8 +56,8 @@ def _smic55(salbrut, _P):
     # TODO: ne pas comparer un salaire net à un smic brut
     nbh_travaillees = 151.67 * 12
     smic_annuel = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-#     return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel
-    return salbrut*0
+    return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel
+#     return salbrut*0
 
 def _br_pf_i(tspr, hsup, rpns):
     '''
@@ -95,18 +95,7 @@ def _br_pf(br_pf_i, rev_coll, _option={'br_pf_i': [CHEF, PART], 'rev_coll': [CHE
     
 def _af_nbenf(age, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
     P = _P.fam.af
-    from pandas import Series
-    print 'age in _af_nbenf'
-    print age
     af_nbenf = nb_enf(age, smic55, P.age1, P.age2)
-    control = Series(af_nbenf)
-    print len(control[control>0]), len(control[control==0])
-    
-    print "performing value counts"
-    for age_ind in age.values():
-        print Series(age_ind).value_counts()
-    print Series(af_nbenf).value_counts()
-    
     return af_nbenf
 
 ############################################################################

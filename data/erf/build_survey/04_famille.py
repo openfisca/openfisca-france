@@ -74,13 +74,16 @@ def famille(year=2006):
 
     
 #    indivi = erf_indivi.merge(eec_indivi)
-    indivi = load_temp(name="indivim", year=year)
 #
 #indivi <- within(indivi,{
 #          year <- as.numeric(year)
 #          noidec <- as.numeric(substr(declar1,1,2))
 #          agepf <- ifelse(naim < 7, year-naia ,year-naia-1)
 #          })
+    print 'Etape 1 : préparation de base'
+    print '    1.1 : récupération de indivi'
+    indivi = load_temp(name="indivim", year=year)
+
     indivi['year'] = year
     indivi["noidec"] =   indivi["declar1"].apply(lambda x: str(x)[0:2])
     indivi["agepf"] = where(indivi['naim'] < 7, indivi['year'] - indivi['naia'] ,
@@ -98,8 +101,8 @@ def famille(year=2006):
 # # indVar = c('noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
 # #            'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec',
 # #            "agepf","noidec","year")
-    print 'Enfant à naître----------------'
-    
+
+    print '    1.2 : récupération des enfants à naître'
     indVar = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
             'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec',
             "agepf","noidec","year"]
@@ -130,6 +133,7 @@ def famille(year=2006):
 # # table(dup)
 # # 
 # # str(base)
+    print '    1.3 : création de base'
     base = concat([indivi, enfnn])
     print 'length of base', len(base.index)
     
@@ -178,7 +182,8 @@ def famille(year=2006):
 # # table(famille$famille,useNA='ifany')
 # # rm(nof01)
 # # ##******************************************************************************************************************/
-    print 'Etape 1 : On cherche les enfants ayant père et/ou mère'
+    print ''
+    print 'Etape 2 : On cherche les enfants ayant père et/ou mère'
     
     pr = base[base['lpr']==1].loc[:, ['ident', 'noi']]
     pr['noifam'] = 100*pr['ident'] + pr['noi']
@@ -192,15 +197,16 @@ def famille(year=2006):
     print 'longueur de nof01 avant merge', len(nof01.index)
     nof01 = nof01.merge(pr, on='ident', how='outer')
     nof01['famille'] = 10
-    nof01['kid'] = (((nof01['lpr']==3) & (nof01['m15'])) | 
-                    ((nof01['lpr']==3) & (nof01['p16m20'] & not_(nof01['smic55']))))
+#     nof01['kid'] = (((nof01['lpr']==3) & (nof01['m15'])) | 
+#                     ((nof01['lpr']==3) & (nof01['p16m20'] & not_(nof01['smic55']))))
+    nof01['kid'] = or_(and_(nof01['lpr']==3, nof01['m15']), 
+                       and_(nof01['lpr']==3, (nof01['p16m20'] & not_(nof01['smic55']))))
     famille = nof01
     print nof01['kid'].value_counts()
     print nof01.lpr.value_counts()
     
     del nof01
     control_04(famille)
-
 
     
 # # message('Etape 2a')
@@ -212,7 +218,8 @@ def famille(year=2006):
 # # hcouple <- within(hcouple,{
 # #   noifam=100*ident + noi ## l'identifiant est la personne de référence du ménage  */
 # #     famille = 21 })
-    print 'Etape 2a : identification des couples------------------------'
+
+    print '    2.1 : identification des couples'
     # l'ID est le noi de l'homme
     hcouple = subset_base(base,famille)
     hcouple = hcouple[(hcouple['cohab']==1) & (hcouple['lpr']>=3) & (hcouple['sexe']==1)]
@@ -235,7 +242,8 @@ def famille(year=2006):
 # # table(dup)
 # # table(famille$famille,useNA='ifany')
 # # rm(hcouple,fcouple,famcom)
-    print 'Etape 2b : attributing the noifam to the wives-------------------'
+
+    print '    2.2 : attributing the noifam to the wives'
     fcouple = base[not_(base.noindiv.isin(famille.noindiv.values))]
     fcouple = fcouple[(fcouple['cohab']==1) & (fcouple['lpr']>=3) & (fcouple['sexe']==2)]
     fcouple['noifam'] = 100*fcouple['ident'] + fcouple['noi']
@@ -262,7 +270,8 @@ def famille(year=2006):
 # #   dup <- duplicated(famille$noindiv)
 # #   table(dup)
 # # }
-    print 'Etape 3: personnes seules---------------------'
+    print ''
+    print 'Etape 3: Récupération des personnes seules'
     print '    3.1 : personnes seules de catégorie 1'
     seul1 = base[not_(base.noindiv.isin(famille.noindiv.values))]
     seul1 = seul1[(seul1.lpr.isin([3,4])) & ((seul1['p16m20'] & seul1['smic55'])|seul1['p21']) & (seul1['cohab']==1) &
@@ -280,7 +289,7 @@ def famille(year=2006):
 # # seul2 <- within(seul2,{noifam <- 100*ident+noi
 # #                      famille <- 32})
 # # famille <- rbind(famille,seul2)
-    print '    3.1 personnes seules type 2'
+    print '    3.1 personnes seules de catégorie 2'
     seul2 = base[not_(base.noindiv.isin(famille.noindiv.values))]
     seul2 = seul2[(seul2.lpr.isin([3,4])) & seul2['p16m20'] & seul2['smic55'] & (seul2['cohab'] != 1)]
     seul2['noifam'] = 100*seul2['ident'] + seul2['noi']
@@ -297,7 +306,7 @@ def famille(year=2006):
 # # famille <- rbind(famille,seul3)
 # # dup <- duplicated(famille$noindiv)
 # # table(dup)
-    print '    3.3 personnes seules de type 3'
+    print '    3.3 personnes seules de catégorie 3'
     seul3 = subset_base(base,famille)
     seul3 = seul3[(seul3.lpr.isin([3,4])) & seul3['p21'] & (seul3['cohab'] != 1)]
     seul3['noifam'] = 100*seul3['ident'] + seul3['noi']
@@ -320,7 +329,8 @@ def famille(year=2006):
 # # 
 # # table(famille$famille,useNA='ifany')
 # # rm(seul1,seul2,seul3,seul4)
-    print '    3.4 : personnes seules de type 4'
+
+    print '    3.4 : personnes seules de catégorie 4'
     seul4 = subset_base(base,famille)
     seul4 = seul4[(seul4['lpr']==4) & seul4['p16m20'] & not_(seul4['smic55']) & (seul4['noimer']==0) &
                   (seul4['persfip']=='vous')]
@@ -354,6 +364,7 @@ def famille(year=2006):
 # # # TODO on préfère  donc enlever leurs enfants
 # # avec_mere <- avec_mere[avec_mere$noifam %in% mere$noifam,]
 # # 
+    print ''
     print 'Etape 4 : traitement des enfants'
     print '    4.1 : enfant avec mère'
     avec_mere = subset_base(base,famille)
@@ -455,8 +466,8 @@ def famille(year=2006):
     avec_pere['noifam'] = 100*avec_pere['ident'] + avec_pere['noiper']
     avec_pere['famille'] = 44
     avec_pere['kid'] = True
-    print 'check of presence of NaN in avec_pere',len(avec_pere[avec_pere['noifam'].isnull()].index)
-
+    print 'presence of NaN in avec_pere ?', avec_pere['noifam'].isnull().any()
+    
 
     pereid = DataFrame(avec_pere['noifam']); pereid.columns = ['noindiv']
     pereid = pereid.drop_duplicates()
@@ -477,6 +488,7 @@ def famille(year=2006):
         
     famille = famille[not_(famille.noindiv.isin(conj_pere.noindiv.values))]
     famille = concat([famille, avec_pere, pere, conj_pere])
+    print 'contrôle de famille après ajout des pères'
     control_04(famille)
     
 # # 
@@ -560,6 +572,7 @@ def famille(year=2006):
 # # dup<-duplicated(fip$noindiv)
 # # table(dup)
 # # 
+    print ''
     print 'Etape 5 : récupération des enfants fip-----------'
     print '    5.1 : création de la df fip'
     fip = load_temp(name='fipDat', year=year)
@@ -606,11 +619,11 @@ def famille(year=2006):
 # # table(famille$famille,useNA='ifany')
 # # rm(enfant_fip,fip,parent_fip)
     
-    print "extension de base"
-    print fip.describe()
+    print "    5.2 : extension de base avec les fip"
+    print fip.loc[:, ['noindiv', 'noidec', 'ztsai']].describe()
     base_ = concat([base, fip])
     print len(base.index)
-    
+
     enfant_fip = subset_base(base_, famille)
     print enfant_fip.ix[enfant_fip['quelfic']=="FIP","agepf"].describe()
     
@@ -623,19 +636,20 @@ def famille(year=2006):
     enfant_fip['kid'] = True
     enfant_fip['ident'] = None
     control_04(enfant_fip)
+    
     famille = concat([famille, enfant_fip])
     base = concat([base, enfant_fip])
-
     parent_fip = famille[famille.noindiv.isin(enfant_fip.noifam.values)]
+    
     if any(enfant_fip.noifam.isin(parent_fip.noindiv.values)): print "Doublons entre enfant_fip et parent fip !"
     parent_fip['noifam'] = parent_fip['noindiv']
     parent_fip['famille'] = 51
     parent_fip['kid'] = False
+    print 'contrôle de parent_fip'
     control_04(parent_fip)
     
     print 'famille defore merge and clearing'
     control_04(famille)
-    print set(famille.famille.values)
     
     famille = famille.merge(parent_fip, how='outer'); famille['famille'] = famille['famille'].astype('int')
     famille = famille.drop_duplicates(cols='noindiv', take_last=True)
@@ -678,6 +692,7 @@ def famille(year=2006):
 # # table(famille$famille, useNA="ifany")
 # # rm(base)
 # # table(duplicated(famille$noifam))
+    print ''
     print 'Etape 6 : gestion des non attribués'
     print '    6.1 : non attribués type 1'
     non_attribue1 = subset_base(base,famille)
@@ -746,23 +761,23 @@ def famille(year=2006):
 # # save(famille,file=famc)
 # # rm(famille, indivi, enfnn)
 # # gc()
-
-    print 'Sauvegarde de la table famille'
-    print '    Mise en forme finale'
+    print ''
+    print 'Etape 7 : Sauvegarde de la table famille'
+    print '    7.1 : Mise en forme finale'
     famille['idec'] = famille['declar1'].str[3:11]
     print famille['declar1'].notnull().describe()
     famille['idec'].apply(lambda x: str(x)+'-')
     famille['idec'] += famille['declar1'].str[0:2]
     famille['chef'] = (famille['noifam'] == famille['ident']*100+famille['noi'])
+    
     famille.reset_index(inplace=True)
-#     print equal(famille['declar1'], array("")).describe()
-#     print equal(famille['declar1'], array('')).isnull().describe()
     print famille['idec'].isnull().describe()
     
     control_04(famille)
     
-    print 'création de la colonne rang'  
+    print '    7.2 : création de la colonne rang'  
     famille['rang'] = famille['kid'].astype('int')  
+    
     while any(famille[(famille['rang']!=0)].duplicated(cols=['rang', 'noifam'])):
         famille["rang"][famille['rang']!=0] = where(
                                     famille[famille['rang']!=0].duplicated(cols=["rang", 'noifam']),
@@ -770,37 +785,32 @@ def famille(year=2006):
                                     famille["rang"][famille['rang']!=0])
         print "nb de rangs différents", len(set(famille.rang.values))
             
-    print 'création de la colonne quifam et troncature'
+    print '    7.3 : création de la colonne quifam et troncature'
     
-    print 'nb chefs',famille['chef'].value_counts()
-    print 'nb kid', famille['kid'].value_counts()
-    famille['quifam'] = 99
-    print famille['quifam'].dtype
-    print 'controle initial', len(famille[famille['quifam']==99])
-
-    famille['quifam'][famille['chef']] = 0
-    print 'controle final', len(famille[famille['quifam']==99])
+    print 'value_counts chef',famille['chef'].value_counts()
+    print 'value_counts kid', famille['kid'].value_counts()
     
+    famille['quifam'] = -1
+    print 'controle initial', len(famille[famille['quifam']==-1])
+    famille['quifam'] = where(famille['chef'], 0, famille['quifam'])
+    famille['quifam'] = where(famille['kid'], 1 + famille['rang'], famille['quifam'])
+    famille['quifam'] = where(not_(famille['chef']) & not_(famille['kid']), 1, famille['quifam'])
     
-    famille['quifam'][and_(not_(famille['chef']),  not_(famille['kid']))] = 1
-    famille['quifam'][famille['kid']] = 1 + famille['rang'][famille['kid']==1]
     famille['noifam'] = famille['noifam'].astype('int')
-    print famille['rang'].value_counts()
+    print famille['quifam'].value_counts()
+    
     famille_check = famille
     famille = famille.loc[:, ['noindiv', 'quifam', 'noifam']]
     famille.columns = ['noindiv', 'quifam', 'idfam']
-#     print control(famille, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
-    print len(famille[famille['quifam']==99])
     
     print 'Vérifications sur famille'
     assert len(famille_check.loc[famille_check['chef'], :]) == len(set(famille.idfam.values)), 'the number of family chiefs is different from the number of families'
     assert not(any(famille.duplicated(cols=['idfam', 'quifam']))), 'there are duplicates of quifam inside a family'
     assert famille['quifam'].notnull().all(), 'there are missing values in quifam'
     assert famille['idfam'].notnull().all(), 'there are missing values in idfam'
+    control(famille, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
     
-    print famille['idfam'].describe()
-    
-    print 'Sauvegarde'
+    print '    Sauvegarde de famille'
     save_temp(famille, name="famc", year=year)
     del famille_check, indivi, enfnn
     

@@ -18,14 +18,35 @@ import os
 
 def final_check(year=2006):
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
+    survey_filename = os.path.join(DATA_SOURCES_DIR,"survey.h5")
+     
     store = HDFStore(test_filename)
+    survey = HDFStore(survey_filename)
+    
     final2 = store.get('survey_2006')
-    age_data = final2['age'].value_counts().reset_index()
-    age_data = age_data.sort_index(by='index', ascending='True')
-    print age_data.to_string()
-    print final2.loc[final2['quifam']==2, ['quifam', 'age']].describe()
+    finalT = survey.get('survey_2006')
+    
+    print final2
+    print finalT
+#     control(final2, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
+#     control(finalT, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
+    print 'FAMILLE--------------'
+    print final2.quifam.value_counts()
+    print finalT.quifam.value_counts()
+    print ''
+    print 'FOYER------------------'
+    print final2.quifoy.value_counts()
+    print finalT.quifoy.value_counts()
+    print ''
+    print 'MENAGES-----------------'
+    print final2.quimen.value_counts()
+    print finalT.quimen.value_counts()
+#     age_data = final2['age'].value_counts().reset_index()
+#     age_data = age_data.sort_index(by='index', ascending='True')
+#     print age_data.to_string()
+#     print final2.loc[final2['quifam']==2, ['quifam', 'age']].describe()
 
-    pass
+    return
 
 
 
