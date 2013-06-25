@@ -407,11 +407,9 @@ def create_totals(year=2006):
 #
 #indivi <- rbind.fill(indivi,fip[is_fip_19_25,])
 
-    print_id(indivi)
 #    print fip.loc[is_fip_19_25]
     
     indivi = concat([indivi, fip.loc[is_fip_19_25]])
-    print_id(indivi)
     
 ## on efface les variables inutiles 
 #rm(is_fip_19_25)
@@ -503,7 +501,7 @@ def create_totals(year=2006):
     indivi.update(test1)
 
     print_id(indivi)
-
+    
 #     indivi.set_index(['quiment']) #TODO: check relevance
 #
 #
@@ -528,10 +526,8 @@ def create_totals(year=2006):
     print ''
     print "Etape 5 : Gestion des idfoy qui n'ont pas de vous"
     all = indivi.drop_duplicates('idfoy')
-    print len(all.index)
     with_ = indivi.loc[indivi['quifoy']=='vous', 'idfoy']
     without = all[not_(all.idfoy.isin(with_.values))]
-    print len(without.index)
     
     print 'On cherche si le déclarant donné par la deuxième déclaration est bien un vous'
     has_declar2 = and_((indivi.idfoy.isin(without.idfoy.values)), indivi.declar2.notnull())
@@ -615,7 +611,6 @@ def create_totals(year=2006):
     print 'Etape 6 : Création des variables descriptives'
     print '    6.1 : variable activité'
     indivi['activite'] = None
-    print indivi['actrec'].value_counts()
     indivi['activite'][indivi['actrec']<=3] = 0
     indivi['activite'][indivi['actrec']==4] = 1
     indivi['activite'][indivi['actrec']==5] = 2
@@ -714,13 +709,11 @@ def create_totals(year=2006):
 #table(indivi$nbsala,useNA='ifany')
     print '    6.3 : variable txtppb'
     indivi['txtppb'] = indivi['txtppb'].fillna(0)
-    print len(indivi[indivi['txtppb'].isnull()])
     assert indivi['txtppb'].notnull().all()
     
     indivi['nbsala'] = indivi['nbsala'].fillna(0)
     indivi['nbsala'] = indivi['nbsala'].astype('int')
     indivi['nbsala'][indivi['nbsala']==99] = 10
-    print indivi['nbsala'].value_counts()
     assert indivi['nbsala'].isin(range(11)).all()
 
 
@@ -831,6 +824,7 @@ def create_totals(year=2006):
         test2.loc[test2.duplicated(['quifoy', 'idfoy']), 'quifoy'] = j
         j += 1
     
+    
     #indivi['quifoy'] = indivi['quifoy'].astype('str')
     indivi.update(test2)
     del test2, fip 
@@ -864,15 +858,13 @@ def create_totals(year=2006):
 #
     print ''
     print 'Etape 8 : création des fichiers totaux'
-    print '    8.1 : création de tot2 & tot3'
     famille = load_temp(name='famc', year=year)
-#     print_id(famille)
+
+    print '    8.1 : création de tot2 & tot3'
     tot2 = indivi.merge(famille, on='noindiv', how='outer')
-    del famille
-    # TODO: MBJ increase in number of menage/foyer when merging with family ...
-    print_id(tot2)
+    del famille # TODO: MBJ increase in number of menage/foyer when merging with family ...
+    
     assert tot2['quifam'].notnull().all()
-#     control(tot2, debug=True, verbose=True, verbose_columns=['idfoy', 'quifoy'], verbose_length=15)
     print len(tot2.loc[and_(tot2.duplicated(['quifoy', 'idfoy']),tot2['quifoy']==1)])
     
     print '    tot2 saved'
@@ -881,24 +873,25 @@ def create_totals(year=2006):
     
     #On combine les variables de revenu
     foyer = load_temp(name='foy_ind', year=year)
-    print control(foyer, debug=True) #Colonne frag_pvce
-    print control(foyer, verbose_columns=['sali'], debug=True, verbose=True) #Colonne frag_pvce
-    tot2.update(foyer)
     
+    print foyer.quifoy.value_counts()
+    tot2.update(foyer)
+    print tot2.quifoy.value_counts()
+    return
+
+
     print "    check tot2"
     print_id(tot2)
     tot3 = tot2
     # TODO: check where they come from
     tot3 = tot3.drop_duplicates(cols='noindiv')
     assert not tot3.duplicated(cols='noindiv').any(), Exception("Duplicates in tot3")
-    print_id(tot3)
 
     print '    check tot3'
 #     print tot3.loc[tot3.duplicated(['idfoy', 'quifoy']), ['idfoy', 'quifoy']].head(20)
 #     print len(tot3[tot3.duplicated(['idfoy', 'quifoy'])])
     control(tot3, debug=True, verbose=True, verbose_columns=['idfoy', 'quifoy'], verbose_length=5)
     assert not tot3.duplicated(cols='noindiv').any(), Exception("Duplicates in tot3")
-    print_id(tot3)
     
 ## On ajoute les variables individualisables
 #loadTmp("foyer_individualise.Rdata") # foy_ind
@@ -992,11 +985,11 @@ def create_final(year=2006):
     final['caseP'] = final.caseP.fillna(False) 
     print final['caseP'].value_counts()
     print_id(final)
-    return
+    
     save_temp(final, name='final', year=year)
     print 'final sauvegardé'
     del sif, final
     
 if __name__ == '__main__':
-#     create_totals()
-    create_final()
+    create_totals()
+#     create_final()

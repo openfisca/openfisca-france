@@ -10,82 +10,6 @@
 from pandas import DataFrame, concat
 
 
-def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, debug=False):
-    """
-    Function to help debugging the data crunchin' files.
-    
-    Parameters
-    ---------
-    verbose: Default False
-    Indicates whether to print the dataframe itself or just perform reguler checks.
-    
-    verbose_columns: List or String
-    The columns of the dataframe to print
-    
-    verbose_length: Int
-    the number of rows to print
-    """
-    
-    print 'longueur de la data frame =', len(dataframe.index)
-    if debug and (dataframe.duplicated().any()) : 
-        print 'Attention : présence de doublons dans la dataframe'
-        print 'nb de doublons', len(dataframe[dataframe.duplicated()])
-    if not(debug): assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
-
-    empty_columns = []
-    for col in dataframe.columns:
-        if debug:
-            if (dataframe[col].isnull().all()): 
-                empty_columns.append(col)
-        else:
-            assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    if empty_columns != []: print 'liste des colonnes entièrement vides',empty_columns
-    print 'vérifications terminées'
-    
-    if verbose is True:
-        print '------ informations détaillées -------'
-            
-        if verbose_columns is None:
-#             print dataframe.head(verbose_length) 
-            if dataframe.duplicated().any():
-                print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
-            else:
-                print 'pas de doublons'
-
-        else : 
-            if dataframe.duplicated(verbose_columns).any():
-                print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
-                print dataframe[dataframe.duplicated(verbose_columns)].head(verbose_length).to_string()
-            for col in verbose_columns:
-                print 'nombre de NaN dans %s : ' %(col), dataframe[col].isnull().sum()
-            print 'colonnes contrôlées ------>', verbose_columns
-
-
-def check_structure(df):
-
-    dup = df.noindiv.duplicated().sum()
-    if dup > 1:
-        print "there are %s duplicated individuals" %dup
-        df.drop_duplicates("noindiv", inplace=True)
-    
-    for entity in ["men", "fam", "foy"]:
-        print entity
-        qui = 'qui' + entity
-        id  = 'id' + entity
-    
-        if df[qui].isnull().any():
-            print "there are NaN in qui%s" %entity
-        
-        max_entity = df[qui].max().astype("int")
-        for position in range(0, max_entity+1):
-            test = df[[ qui, id]].groupby(by=id).agg(lambda x: (x==position).sum()) 
-            errors = (test[qui] > 1).sum()
-            if errors > 0:
-                print "There are %s duplicated qui%s = %s" %(errors,entity,position)
-        
-    
-    
-
 def print_id(df):
     try:
         print "Individus : ", len(df.noindiv), "/", len(df)
@@ -124,3 +48,81 @@ def print_id(df):
             print "NaN in quifam : ", df["quifam"].isnull().sum()
     except:
         print "No idfam or quifam"
+
+
+def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose_length=5):
+    """
+    Function to help debugging the data crunchin' files.
+    
+    Parameters
+    ---------
+    verbose: Default False
+    Indicates whether to print the dataframe itself or just perform reguler checks.
+    
+    verbose_columns: List
+    The columns of the dataframe to print
+    
+    verbose_length: Int
+    the number of rows to print
+    """
+    
+    print 'longueur de la data frame =', len(dataframe.index)
+    if debug and (dataframe.duplicated().any()) : 
+        print 'Attention : présence de doublons dans la dataframe'
+        print 'nb de doublons', len(dataframe[dataframe.duplicated()])
+    if not(debug): assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
+
+    empty_columns = []
+    for col in dataframe.columns:
+        if debug:
+            if (dataframe[col].isnull().all()): 
+                empty_columns.append(col)
+        else:
+            assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
+    if empty_columns != []: print 'liste des colonnes entièrement vides',empty_columns
+    
+    if verbose is True:
+        print '------ informations détaillées -------'
+        print_id(dataframe)
+        
+        if verbose_columns is None:
+#             print dataframe.head(verbose_length) 
+            if dataframe.duplicated().any():
+                print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
+            else:
+                print 'pas de doublons'
+
+        else : 
+            if dataframe.duplicated(verbose_columns).any():
+                print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
+                print dataframe.loc[:, verbose_columns].describe()
+            for col in verbose_columns:
+                print 'nombre de NaN dans %s : ' %(col), dataframe[col].isnull().sum()
+            print 'colonnes contrôlées ------>', verbose_columns
+    print 'vérifications terminées'
+
+
+def check_structure(df):
+
+    dup = df.noindiv.duplicated().sum()
+    if dup > 1:
+        print "there are %s duplicated individuals" %dup
+        df.drop_duplicates("noindiv", inplace=True)
+    
+    for entity in ["men", "fam", "foy"]:
+        print entity
+        qui = 'qui' + entity
+        id  = 'id' + entity
+    
+        if df[qui].isnull().any():
+            print "there are NaN in qui%s" %entity
+        
+        max_entity = df[qui].max().astype("int")
+        for position in range(0, max_entity+1):
+            test = df[[ qui, id]].groupby(by=id).agg(lambda x: (x==position).sum()) 
+            errors = (test[qui] > 1).sum()
+            if errors > 0:
+                print "There are %s duplicated qui%s = %s" %(errors,entity,position)
+        
+    
+    

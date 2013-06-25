@@ -377,7 +377,7 @@ def final(year=2006):
 
 #     print final2.loc[final2.duplicated('noindiv'), ['noindiv', 'quifam']].to_string() 
     #TODO: JS: des chefs de famille et conjoints en double il faut trouver la source des ces doublons !
-    final2 = final2.drop_duplicates(['noindiv'])
+#     final2 = final2.drop_duplicates(['noindiv'])
     
     final2 = final2[not_(final2.age.isnull())]
     print "longueur de final2 après purge", len(final2)

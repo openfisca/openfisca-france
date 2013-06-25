@@ -41,6 +41,10 @@ def final_check(year=2006):
     print 'MENAGES-----------------'
     print final2.quimen.value_counts()
     print finalT.quimen.value_counts()
+    
+    print ''
+    print final2.age.describe()
+    print finalT.age.describe()
 #     age_data = final2['age'].value_counts().reset_index()
 #     age_data = age_data.sort_index(by='index', ascending='True')
 #     print age_data.to_string()

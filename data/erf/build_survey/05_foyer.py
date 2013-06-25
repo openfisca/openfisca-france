@@ -205,7 +205,7 @@ def sif(year=2006):
     sif["caseY"] = sif["sif"].str[42+d:43+d] == "Y"
     sif["dateY"] = sif["sif"].str[43+d:51+d] 
     sif["caseZ"] = sif["sif"].str[51+d:53+d] == "Z"
-    sif["dateZ"] = sif["sif"].str[53+d:60+d] 
+    sif["dateZ"] = sif["sif"].str[52+d:60+d] 
     sif["causeXYZ"] = sif["sif"].str[60+d:61+d]
     
     # TODO: convert dateXYZ to appropriate date in pandas
@@ -475,7 +475,6 @@ def foyer_all(year=2006):
         selection = selection.stack()
         selection.name = individual_var
         selection = selection.reset_index() # A Series cannot see its index resetted to produce a DataFrame
-        print " Clean the selection", var
         selection = selection.set_index(["quifoy", "noindiv"])
         selection = selection[selection[individual_var] !=0]
 #        print len(selection)
@@ -525,8 +524,11 @@ def foyer_all(year=2006):
     foy_ind['quifoy'][foy_ind['quifoy']=='pac2'] = 3
     foy_ind['quifoy'][foy_ind['quifoy']=='pac3'] = 4
     
-    assert foy_ind['quifoy'].isin(range(5)).all()
+    assert foy_ind['quifoy'].isin(range(5)).all(), 'présence de valuers aberrantes dans quifoy'
+    print foy_ind['quifoy'].value_counts()
     
+    
+    return
     print 'saving foy_ind'
     print_id(foy_ind)    
     save_temp(foy_ind, name="foy_ind", year = year)
