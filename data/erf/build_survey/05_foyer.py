@@ -199,23 +199,31 @@ def sif(year=2006):
     #  dateZ <- as.Date(substr(sif,53+d,60+d),'%d%m%Y')  # ERROR 54+d
     #  causeXYZ <- substr(sif,61+d,61+d)
     #
-    
+
     sif["caseX"] = sif["sif"].str[33+d:34+d] == "X"
     sif["dateX"] = sif["sif"].str[34+d:42+d]
+    sif["dateX2"] = sif["dateX"]
+    sif['dateX2'][sif['dateX'] != "00000000"] = sif['dateX'].str[4:8] + "-" + sif['dateX'].str[2:4] + "-" + sif['dateX'].str[0:2]
+    sif['dateX2'] = sif['dateX2'].astype(numpy.datetime64)
     sif["caseY"] = sif["sif"].str[42+d:43+d] == "Y"
-    sif["dateY"] = sif["sif"].str[43+d:51+d] 
+    sif["dateY"] = sif["sif"].str[43+d:51+d]
+    sif["dateY2"] = sif["dateY"]
+    sif['dateY2'][sif['dateY'] != "00000000"] = sif['dateY'].str[4:8] + "-" + sif['dateY'].str[2:4] + "-" + sif['dateY'].str[0:2]
+    sif['dateY2'] = sif['dateY2'].astype(numpy.datetime64)
     sif["caseZ"] = sif["sif"].str[51+d:53+d] == "Z"
-    sif["dateZ"] = sif["sif"].str[53+d:60+d] 
+    sif["dateZ"] = sif["sif"].str[52+d:60+d]
+    sif["dateZ2"] = sif["dateZ"]
+    sif['dateZ2'][sif['dateZ'] != "00000000"] = sif['dateZ'].str[4:8] + "-" + sif['dateZ'].str[2:4] + "-" + sif['dateZ'].str[0:2]
+    sif['dateZ2'] = sif['dateZ2'].astype(numpy.datetime64)
     sif["causeXYZ"] = sif["sif"].str[60+d:61+d]
     
-    # TODO: convert dateXYZ to appropriate date in pandas
-    # print sif["dateY"].unique()
+    # TODO: convert dateXYZ to appropriate date in pandas : DONE ?
+    # print sif["dateX"].unique()
     
     
     #  nbptr <- nbptr/100
     #  rfr_n_2 <- mnrvka
-    
-    sif["nbptr"] =  sif["nbptr"]/100
+    sif["nbptr"] =  sif["nbptr"].astype(numpy.float32) / 100.0 # Il y avait une erreur python faisait une division euclidienne
     sif["rfr_n_2"] = sif["mnrvka"]
     
     #  nbF <- as.numeric(substr(sif,65+d,66+d))

@@ -105,7 +105,7 @@ def create_imput_loyer(year):
     #Construction d'un temp pour éviter la prolifération des NA à partir de revtot
     erfmenm['revtot'] = (erfmenm['ztsam'] + erfmenm['zperm'] + erfmenm['zragm'] + 
                          erfmenm['zricm'] + erfmenm['zrncm'] + erfmenm['zracm'])
-    erfmenm['nvpr'] = erfmenm['revtot'] / erfmenm['nb_uci']
+    erfmenm['nvpr'] = erfmenm['revtot'].astype(np.float64) / erfmenm['nb_uci'].astype(np.float64)
     # On donne la valeur 0 aux nvpr négatifs
     tmp = np.zeros(erfmenm['nvpr'].shape, dtype = int)
     erfmenm['nvpr'] = max_(tmp, erfmenm['nvpr'])
