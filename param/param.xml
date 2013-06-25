@@ -4214,6 +4214,24 @@
 	<VALUE valeur="474.93" deb="2012-01-01" fin="2012-12-31"/>
 	<VALUE valeur="483.24" deb="2013-01-01" fin="2013-12-31"/>
       </CODE>
+      <NODE description="Majoration du RSA socle pour parent isolé" code="majo_rsa" >
+      <CODE description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base= pour un célibataire sans personne à charge)" code="majo_rsa_pac0" format = 'percent'>
+	<VALUE valeur="1.284" deb="2009-07-01" fin="2013-12-31" />
+      </CODE>
+      <CODE description="Taux de la majoration du RSA socle pour une personne seule avec 1 enfant à charge (en pourcentage du rsa de base)" code="majo_rsa_pac1" format = 'percent'>
+	<VALUE valeur="1.712" deb="2009-07-01" fin="2013-12-31" />
+      </CODE>
+      <CODE description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" code="majo_rsa_enf_sup" format = 'percent'>
+	<VALUE valeur="0.428" deb="2009-07-01" fin="2013-12-31" />
+      </CODE>     
+      <CODE description="Limite d'âge des enfants ouvrant droit" code="age" format='integer' type="age">
+	<VALUE valeur="3" deb="1977-10-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
+	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
+	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
+      </CODE>
+      </NODE>
       <CODE description="Prime de solidarité active" code="psa" format='integer' type="monetary">
       <VALUE valeur="200" deb="2009-01-01" fin="2009-12-31"/>
       </CODE>    
@@ -4255,12 +4273,12 @@
 	<VALUE valeur="1" deb="2001-01-01" fin="2013-12-31"/>
       </CODE>
     </NODE>
-    <NODE description="Allocation parent isolé et majoration du RSA socle" code="api" >
+    <NODE description="Allocation parent isolé" code="api" >
       <CODE description="Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)" code="base" format = 'percent'>
-	<VALUE valeur="1.5" deb="1977-01-10" fin="2011-12-31" /> # changer date de fin ?
+	<VALUE valeur="1.5" deb="1977-01-10" fin="2009-06-30" /> 
       </CODE>
       <CODE description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" code="enf_sup" format = 'percent'>
-	<VALUE valeur="0.5" deb="1977-10-01" fin="2011-12-31" /> # changer date de fin ?
+	<VALUE valeur="0.5" deb="1977-10-01" fin="2009-06-30" /> 
       </CODE>    
       <CODE description="Limite d'âge des enfants ouvrant droit" code="age" format='integer' type="age">
 	<VALUE valeur="3" deb="1977-10-01" fin="2013-12-31"/>
@@ -4269,44 +4287,6 @@
 	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
 	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
       </CODE>
-      <!-- là, c'est l'api mais depuis juillet 2009 elle est remplacée par la majoration du rsa qui 
-         ne se calcule pas pareil du coups, il faut changer les dates pour l'api: les majo 1.5 et 0.5 
-         sont valables jusqu'en juin 2009 ça ferait donc:
-    <NODE description="Allocation parent isolé" code="api" >
-      <CODE description="Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)" code="base" format = 'percent'>
-	<VALUE valeur="1.5" deb="1977-01-10" fin="2009-06-30" />
-      </CODE>
-      <CODE description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" code="enf_sup" format = 'percent'>
-	<VALUE valeur="0.5" deb="1977-10-01" fin="2011-06-30" />
-      </CODE>
-      <CODE description="Limite d'âge des enfants ouvrant droit" code="age" format='integer' type="age">
-	<VALUE valeur="3" deb="1977-10-01" fin="2013-12-31"/>
-      </CODE>
-      <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
-	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
-	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
-      </CODE>
-	  pour la majo "isolé" du rsa c'est:
-	</NODE>
-    <NODE description="Majoration du RSA socle pour parent isolé" code="api" >
-    	voir pour modifier les codes??????????
-      <CODE description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base= pour un célibataire sans personne à charge)" code="?????????base_rsa_majo_pac0??????" format = 'percent'>
-	<VALUE valeur="1.284" deb="2009-07-1" fin="2013-12-31" />
-      </CODE>
-      <CODE description="Taux de la majoration du RSA socle pour une personne seule avec 1 enfant à charge (en pourcentage du rsa de base)" code="?????????base_rsa_majo_pac1??????" format = 'percent'>
-	<VALUE valeur="1.712" deb="2009-07-1" fin="2013-12-31" />
-      </CODE>
-      <CODE description="Majoration de taux par enfant supplémentaire (en pourcentage du rsa de base)" code="enf_sup_majo_rsa??????????" format = 'percent'>
-	<VALUE valeur="0.428" deb="2009-07-01" fin="2013-12-31" />
-      </CODE>     
-      <CODE description="Limite d'âge des enfants ouvrant droit" code="age" format='integer' type="age">
-	<VALUE valeur="3" deb="1977-10-01" fin="2013-12-31"/>
-      </CODE>
-      <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
-	<VALUE valeur="20" deb="1977-10-01" fin="2009-05-30"/>
-	<VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
-      </CODE>
-    -->  
     </NODE>
     <NODE description="Allocation de solidarité spécifique" code="ass">
       <CODE description="Montant journalier à taux plein" code="montant_plein" format='float' type="monetary">
