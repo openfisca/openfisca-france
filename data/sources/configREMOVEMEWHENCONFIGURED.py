@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+﻿# -*- coding:utf-8 -*-
 # Created on 27 févr. 2013
 # This file is part of OpenFisca.
 # OpenFisca is a socio-fiscal microsimulation software
@@ -10,3 +10,4 @@
 # path of the data directory
 
 DATA_DIR = 'C:/Users/Username/Documents/Data/'
+destination_dir = 'C:/til/output/'
