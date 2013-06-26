@@ -3845,10 +3845,10 @@
 	<VALUE valeur="8000" deb="2007-07-01" fin="2013-12-31"/>
 	  </CODE>
 	  <CODE description="Plancher ressources APL en secteur accession R. 351-7-1" code="dar_2_2" format='float' type="monetary">
-	<VALUE valeur="" deb="2002-01-01" fin="2002-06-30"/>
-	<VALUE valeur="" deb="2002-07-01" fin="2003-06-30"/>
-	<VALUE valeur="" deb="2003-07-01" fin="2007-06-30"/>
-	<VALUE valeur="3900" deb="2007-07-01" fin="2013-12-31"/>
+	<VALUE valeur="6173.82" deb="2002-01-01" fin="2002-06-30"/>  # TODO
+	<VALUE valeur="6300" deb="2002-07-01" fin="2003-06-30"/>     # CHECK
+	<VALUE valeur="6400" deb="2003-07-01" fin="2007-06-30"/>     # THESE VALES
+	<VALUE valeur="3900" deb="2007-07-01" fin="2013-12-31"/>     # GOOD VALUE
 	  </CODE>
       <CODE description="Coefficient R. 351-7-1" code="dar_3" format='float' >
 	<VALUE valeur="13" deb="2002-01-01" fin="2007-06-30"/>
@@ -4248,13 +4248,13 @@
 	<VALUE valeur="483.24" deb="2013-01-01" fin="2013-12-31"/>
       </CODE>
       <NODE description="Majoration du RSA socle pour parent isolé" code="majo_rsa" >
-      <CODE description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base= pour un célibataire sans personne à charge)" code="majo_rsa_pac0" format = 'percent'>
+      <CODE description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" code="pac0" format = 'percent'>
 	<VALUE valeur="1.284" deb="2009-07-01" fin="2013-12-31" />
       </CODE>
-      <CODE description="Taux de la majoration du RSA socle pour une personne seule avec 1 enfant à charge (en pourcentage du rsa de base)" code="majo_rsa_pac1" format = 'percent'>
+      <CODE description="Taux de la majoration du RSA socle pour une personne seule avec 1 enfant à charge (en pourcentage du rsa de base)" code="pac1" format = 'percent'>
 	<VALUE valeur="1.712" deb="2009-07-01" fin="2013-12-31" />
       </CODE>
-      <CODE description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" code="majo_rsa_enf_sup" format = 'percent'>
+      <CODE description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" code="pac_enf_sup" format = 'percent'>
 	<VALUE valeur="0.428" deb="2009-07-01" fin="2013-12-31" />
       </CODE>     
       <CODE description="Limite d'âge des enfants ouvrant droit" code="age" format='integer' type="age">

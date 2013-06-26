@@ -460,7 +460,8 @@ def _majo_rsa(rsa_socle, agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa
 
     # moins de 20 ans avant inclusion dans rsa
     # moins de 25 ans après inclusion dans rsa
-    majo1 = eligib*rsa_socle*(P.minim.rmi.majo_rsa.majo_rsa_pac0 + P.minim.rmi.majo_rsa.majo_rsa_pac_enf_sup*nb_enf(age, smic55, P.fam.af.age1,P.minim.rmi.majo_rsa.age_pac-1) )
+    majo1 = eligib*rsa_socle*(P.minim.rmi.majo_rsa.pac0 + 
+                              P.minim.rmi.majo_rsa.pac_enf_sup*nb_enf(age, smic55, P.fam.af.age1,P.minim.rmi.majo_rsa.age_pac-1) )
     rsa = (P.minim.rmi.majo_rsa.age_pac >= 25) # dummy passage au rsa majoré
     br_api = br_rmi + af_majo*not_(rsa)
     # On pourrait mensualiser RMI, BRrmi et forfait logement
