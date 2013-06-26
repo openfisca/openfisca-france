@@ -285,7 +285,7 @@ def sif(year=2006):
 def foyer_all(year=2006):
 
     ## On ajoute les cases de la déclaration
-    #foyer_all <- LoadIn(erfFoyFil)
+#     foyer_all <- LoadIn(erfFoyFil)
     data = DataCollection(year=year)
     foyer_all = data.get_values(table="foyer" )
     

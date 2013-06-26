@@ -115,7 +115,7 @@ def create_totals(year=2006):
 
     fip_imp = indivi.quelfic=="FIP_IMP"
     indivi["idfoy"] = (indivi["idmen"].astype("int64")*100 + 
-                       (indivi["declar1"].str[0:1]).convert_objects(convert_numeric=True))
+                       (indivi["declar1"].str[0:2]).convert_objects(convert_numeric=True))
     
     indivi.loc[fip_imp,"idfoy"] = nan
 

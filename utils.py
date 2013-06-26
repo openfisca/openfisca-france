@@ -505,12 +505,9 @@ def preproc_inputs(datatable):
         pass
 
 def check_consistency(table_simu, dataframe, corrige = True):
-    ''' Attention: la fonction suppose que datatable.dtype: 
-        - existe pour chaque colonne 
-        - et est égal à l'ensemble des types présents'''
     '''
-    Studies dataframe columns as described in a simulation table columns attribute, and ould eventually
-    
+    Studies dataframe columns as described in a simulation table columns attribute, and should eventually
+    TODO
     Parameters
     ----------
     table_simu : datatable object, typically output table of a simulation
@@ -519,6 +516,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
     '''
     #check_inputs_enumcols(simulation):
     # TODO: eventually should be a method of SurveySimulation specific for france 
+
+    # verify type, force type
 
     is_ok = True
     message = ""
