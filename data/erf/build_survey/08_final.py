@@ -30,43 +30,10 @@ def final(year=2006):
     import gc
     gc.collect()
     final = load_temp("final", year=year)
-    
+    print 'check doublons', len(final[final.duplicated(['noindiv'])])
     final.statmarit = where(final.statmarit.isnull(), 2, final.statmarit)
 # 
-#START REMOVE 
-# # recode quifoy # TODO: should have been done directly above
-# table(final$quifoy, useNA="ifany")
-# levels(final$quifoy) <- list("0"='vous', 
-#                              "1"='conj',
-#                              "2"='pac1',
-#                              "3"='pac2',
-#                              "4"='pac3',
-#                              "5"='pac4',
-#                              "6"='pac5',
-#                              "7"='pac6',
-#                              "8"='pac7',
-#                              "9"='pac8')
-# 
-# final$quifoy <- as.numeric(levels(final$quifoy)[final$quifoy])
-# 
-# # recode quimen # TODO: should have been done directly above
-# table(final$quimen, useNA="ifany")
-# levels(final$quimen) <- list("0"="0", 
-#                              "1"="1",
-#                              "2"='enf1',
-#                              "3"='enf2',
-#                              "4"='enf3',
-#                              "5"='enf4',
-#                              "6"='enf5',
-#                              "7"='enf6',
-#                              "8"='enf7',
-#                              "9"='enf8',
-#                              "10"='enf9')
-# str(final$quimen)
-# final$quimen <- as.numeric(levels(final$quimen)[final$quimen])
-# 
-# 
-#END REMOVE
+
 
 
 # # activite des fip
@@ -270,9 +237,10 @@ def final(year=2006):
     gc.collect()
     final.rename(columns=dict(zthabm="tax_hab"), inplace=True) # rename zthabm to tax_hab
     final2 = final.merge(loyersMenages, on="idmen", how="left") # TODO: Check
+    print loyersMenages.head()
     gc.collect()
     print_id(final2)
-    
+        
 # 
 # # TODO: merging with patrimoine
 # rm(menagem,final)
@@ -372,7 +340,7 @@ def final(year=2006):
 #         if final2[final2['idfoy'].notnull()][col].isnull().any() and not final2[col].isnull().all():
 #             columns_w_nan.append(col)
 #     print columns_w_nan
-    print 'check doublons', len(final2[final2.duplicated(['noindiv', 'idmen'])])
+    print 'check doublons', len(final2[final2.duplicated(['noindiv'])])
     print final2.age.isnull().sum()
 
 #     print final2.loc[final2.duplicated('noindiv'), ['noindiv', 'quifam']].to_string() 
@@ -399,12 +367,10 @@ def final(year=2006):
 
 
     from src.countries.france.data.erf.build_survey.utilitaries import check_structure
-    control(final2, debug=True, verbose=True, verbose_columns=['quifoy', 'idfoy'])
-    control(final2, debug=True, verbose=True, verbose_columns=['quifam', 'idfam'])
-    control(final2, debug=True, verbose=True, verbose_columns=['quimen', 'idmen'])
-    control(final2, debug=True, verbose=True, verbose_columns=['noindiv'])
+    control(final2, debug=True)
     print final2.age.isnull().sum()
-
+    final2 = final2.drop_duplicates(cols='noindiv')
+    print_id(final2)
 #     check_structure(final2)
     
     from src.countries.france import DATA_SOURCES_DIR

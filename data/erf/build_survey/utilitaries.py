@@ -8,7 +8,7 @@
 # # # OpenFisca
 
 from pandas import DataFrame, concat
-
+from numpy import logical_not as not_
 
 def print_id(df):
     try:
@@ -50,7 +50,7 @@ def print_id(df):
         print "No idfam or quifam"
 
 
-def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose_length=5):
+def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose_length=5, ignore=None):
     """
     Function to help debugging the data crunchin' files.
     
@@ -65,21 +65,32 @@ def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose
     verbose_length: Int
     the number of rows to print
     """
-    
+    std_list = ['idfoy', 'quifoy', 'idmen', 'quimen', 'idfam', 'quifam']
+    for var in std_list: 
+        try:
+            assert var in dataframe.columns
+        except:
+            raise Exception('the dataframe does not contain the required column %s' %(var))
+        
     print 'longueur de la data frame =', len(dataframe.index)
-    if debug and (dataframe.duplicated().any()) : 
-        print 'Attention : présence de doublons dans la dataframe'
+    if debug: 
         print 'nb de doublons', len(dataframe[dataframe.duplicated()])
-    if not(debug): assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
+        print 'nb de doublons idfoy/quifoy', len(dataframe[dataframe.duplicated(cols=['idfoy', 'quifoy'])])
+        print 'nb de doublons idmen/quimen', len(dataframe[dataframe.duplicated(cols=['idmen', 'quimen'])])
+        print 'nb de doublons idfam/quifam', len(dataframe[dataframe.duplicated(cols=['idfam', 'quifam'])])
+        
+    if not(debug): 
+        assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
+        assert not_(dataframe.duplicated(cols=['idfoy', 'quifoy'])).all(), 'duplicate of tuple idfoy/quifoy' 
+        assert not_(dataframe.duplicated(cols=['idmen', 'quimen'])).all(), 'duplicate of tuple idmen/quimen'
+        assert not_(dataframe.duplicated(cols=['idfam', 'quifam'])).all(), 'duplicate of tupli idfam/quifam'
 
     empty_columns = []
     for col in dataframe.columns:
-        if debug:
-            if (dataframe[col].isnull().all()): 
+        if (dataframe[col].isnull().all()): 
                 empty_columns.append(col)
-        else:
-            assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    if empty_columns != []: print 'liste des colonnes entièrement vides',empty_columns
+                
+    if empty_columns != []: print 'liste des colonnes entièrement vides', empty_columns
     
     if verbose is True:
         print '------ informations détaillées -------'
@@ -89,8 +100,7 @@ def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose
 #             print dataframe.head(verbose_length) 
             if dataframe.duplicated().any():
                 print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
-            else:
-                print 'pas de doublons'
+
 
         else : 
             if dataframe.duplicated(verbose_columns).any():

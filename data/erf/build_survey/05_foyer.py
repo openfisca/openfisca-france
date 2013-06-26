@@ -17,6 +17,8 @@
 ###***********************************************************************/
 #
 
+from __future__ import division
+
 import numpy
 import re
 from src.countries.france.data.erf.datatable import DataCollection
