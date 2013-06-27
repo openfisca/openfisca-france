@@ -31,4 +31,4 @@ def run_all(year=2006):
     final.final(year=year)
 
 if __name__ == '__main__':
-    run_all()
+    run_all(year = 2008)

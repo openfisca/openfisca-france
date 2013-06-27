@@ -808,7 +808,7 @@ def famille(year=2006):
     assert not(any(famille.duplicated(cols=['idfam', 'quifam']))), 'there are duplicates of quifam inside a family'
     assert famille['quifam'].notnull().all(), 'there are missing values in quifam'
     assert famille['idfam'].notnull().all(), 'there are missing values in idfam'
-    control(famille, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
+#    control(famille, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])
     
     print '    Sauvegarde de famille'
     save_temp(famille, name="famc", year=year)

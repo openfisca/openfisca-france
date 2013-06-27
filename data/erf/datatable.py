@@ -405,13 +405,23 @@ def test2():
     
     print res
     
+def test3():
+    year=2006
+    erf = DataCollection(year=year)
+    df = erf.get_of_values(table = "erf_menage")
+    from src.lib.simulation import SurveySimulation
+    from src.countries.france.utils import check_consistency
+    simulation = SurveySimulation()
+    simulation.set_config(year=year)
+    simulation.set_param()
+    simulation.compute()
+    print check_consistency(simulation.input_table, df)
+    
     
 def test_init():
-    for year in range(2006,2007):
+    for year in range(2008,2010):
         data = DataCollection(year=year)
         data.initialize()
-#        print data.surveys["erf"].tables
-#        print data.surveys["lgt"].tables
         data.set_config()
     
 #def test_reading_stata_tables():
@@ -422,7 +432,7 @@ def test_init():
 #    print reader.data()
     
 if __name__ == '__main__':
-    test2()
-    # build_foyer()
+    test3()
+
 
     #test_init()

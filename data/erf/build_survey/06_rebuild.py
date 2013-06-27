@@ -26,7 +26,8 @@ def create_totals(year=2006):
     
     data = DataCollection(year=year)
     indivim = load_temp(name="indivim", year=year)
-    assert indivim.duplicated(['noindiv']).any(), "Doublons noindiv"
+     
+    assert indivim.duplicated(['noindiv']).any() == False, "Présence de doublons"
 
 
     # Deals individuals with imputed income : some individuals are in 'erf individu table' but 
@@ -970,11 +971,12 @@ def create_totals(year=2006):
     
 
 
-def create_final(year=2006):
+def create_final(year=None):
+    if year is None:
+        raise Exception("A year is needed")
     print 'création de final'
     foy_ind = load_temp(name = 'foy_ind', year=year)
     tot3 = load_temp(name='tot3', year=year)
-
 
 
     foy_ind.set_index(['idfoy', 'quifoy'], inplace=True)

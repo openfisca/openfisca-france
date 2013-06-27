@@ -34,7 +34,9 @@ def create_fip(year = 2006): # message('03_fip')
     
     erfFoyVar = ['declar', 'anaisenf']
     foyer = df.get_values(table="foyer", variables=erfFoyVar)
-    control(foyer, verbose=True, verbose_length=10)
+    from src.countries.france.data.erf.build_survey.utilitaries import print_id
+    print_id(foyer)
+#    control(foyer, verbose=True, verbose_length=10, debug=True)
  
  
 # #***********************************************************************************************************
@@ -97,7 +99,7 @@ def create_fip(year = 2006): # message('03_fip')
     fip = fip.reset_index()
     del fip['pac_number']
 
-    control(fip, debug=True, verbose=True, verbose_columns=['naia'])
+#    control(fip, debug=True, verbose=True, verbose_columns=['naia'])
   
 
 # library(plyr)
@@ -156,7 +158,7 @@ def create_fip(year = 2006): # message('03_fip')
     print len(fip[fip['to_keep']]), '/', len(fip)
 
     indivifip = fip[fip['to_keep']]; del indivifip['to_keep'], fip, tyFG, tyHI
-    control(indivifip, debug=True)
+#    control(indivifip, debug=True)
 
 # 
 # #************************************************************************************************************/

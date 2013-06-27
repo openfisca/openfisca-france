@@ -82,10 +82,11 @@ def final(year=2006):
 # menagem <- rename(menagem, c("ident"="idmen","loym"="loyer"))
 # menagem$cstotpragr <- floor(menagem$cstotpr/10)
 # 
-    
+    from math import floor
+
     menagem = load_temp(name="menagem", year=year)
     menagem.rename(columns=dict(ident="idmen",loym="loyer"), inplace=True)
-    
+    menagem["cstotpragr"] = menagem["cstotpr"].apply(lambda x: floor(x/10))    
 # 
 # # 2008 tau99 removed TODO: check ! and check incidence
 # if (year == "2008") {
