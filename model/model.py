@@ -453,6 +453,7 @@ class OutputDescription(ModelDescription):
     rsa_socle = Prestation(ms._rsa_socle, 'fam', label = u"RSA socle")
     rmi  = Prestation(ms._rmi, 'fam', label = u"Revenu de solidarité active - socle")
     rsa  = Prestation(ms._rsa, 'fam', label = u"Revenu de solidarité active")
+    majo_rsa = Prestation(ms._majo_rsa, 'fam', label = u"Majoration pour parent isolé du Revenu de solidarité active socle", start = date(2009, 7, 1))
     rsa_act = Prestation(ms._rsa_act, 'fam', label = u"Revenu de solidarité active - activité", start = date(2009, 7, 1))
     rsa_act_i = Prestation(ms._rsa_act_i)
     psa = Prestation(ms._psa, 'fam', label = u"Prime de solidarité active", start = date(2009, 1, 1), end=date(2009, 12,31))

@@ -203,11 +203,11 @@ def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     '''
     return af + cf + ars + aeeh + paje + asf + crds_pfam
 
-def _mini(aspa, aah, caah, asi, rsa, aefa, api, ass, psa):
+def _mini(aspa, aah, caah, asi, rsa, aefa, api, ass, psa, majo_rsa):
     '''
     Minima sociaux
     '''
-    return aspa + aah + caah + asi + rsa + aefa + api + ass + psa
+    return aspa + aah + caah + asi + rsa + aefa + api + ass + psa + majo_rsa
 
 def _logt(apl, als, alf, crds_lgtm):
     '''
