@@ -34,7 +34,6 @@ def create_fip(year = 2006): # message('03_fip')
     
     erfFoyVar = ['declar', 'anaisenf']
     foyer = df.get_values(table="foyer", variables=erfFoyVar)
-    control(foyer, verbose=True, verbose_length=10)
  
  
 # #***********************************************************************************************************
@@ -97,8 +96,6 @@ def create_fip(year = 2006): # message('03_fip')
     fip = fip.reset_index()
     del fip['pac_number']
 
-    control(fip, debug=True, verbose=True, verbose_columns=['naia'])
-  
 
 # library(plyr)
 # # on enlève les F pour lesquels il y a un G ;
@@ -129,22 +126,10 @@ def create_fip(year = 2006): # message('03_fip')
     
     fip['to_keep'] = NaN
     fip.update(tyFG)
-    print fip.head()
     print 'enfants F & G traités'
     
-# # on enlève les H pour lesquels il y a un I ;
-# tyH <- fip[fip$typ == 'H',]
-# tyH <- upData(tyH,drop = c('typ'))
-# tyI <- fip[fip$typ == 'I',]
-# tyI <- upData(tyI,drop = c('N'))
-# tyHI <- join(tyH,tyI, by = c('declar','naia'),type = 'right',match = 'first')
-# iden <- c(iden,tyHI$N) #TODO: ça fait quoi ça ?
-# rm(tyH,tyI,tyHI,L)
-# indivifip <- fip[!fip$N %in% iden,c(1:3)];
-# rm(foyer,fip)
-# table(indivifip$typ,useNA="ifany")
 
-    print "    1.3 : on enlève les H pour lesquels il y a un I"
+    print "    1.4 : on enlève les H pour lesquels il y a un I"
     tyHI = fip[fip.type_pac.isin(['H', 'I'])]
     tyHI['same_pair'] = tyHI.duplicated(cols=['declaration', 'naia'])
     tyHI['is_twin'] = tyHI.duplicated(cols=['declaration', 'naia', 'type_pac'])
@@ -156,10 +141,10 @@ def create_fip(year = 2006): # message('03_fip')
     print len(fip[fip['to_keep']]), '/', len(fip)
 
     indivifip = fip[fip['to_keep']]; del indivifip['to_keep'], fip, tyFG, tyHI
-    control(indivifip, debug=True)
 
-# 
+
 # #************************************************************************************************************/
+    print ''
     print 'Step 2 : matching indivifip with eec file'
 # #************************************************************************************************************/
 # indVar <- c('ident','noi','declar1','declar2','persfip','persfipd','naia','rga','lpr','noindiv','ztsai','ztsao','wprm')
@@ -169,7 +154,6 @@ def create_fip(year = 2006): # message('03_fip')
                   'ztsao','wprm']
     indvar_eec = ['ident','noi','naia','rga','lpr', 'noindiv']
     
-    print df.get_values(table = 'erf_indivi')
     erf_indivi = df.get_values(variables = indvar_erf, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
     eec_indivi = df.get_values(variables = indvar_eec, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
     indivi = erf_indivi.merge(eec_indivi, how='outer')
@@ -179,7 +163,6 @@ def create_fip(year = 2006): # message('03_fip')
     
 # indivi$noidec <- as.numeric(substr(indivi$declar1,1,2))
     indivi['noidec'] = indivi['declar1'].str[0:2].astype('float16')
-    print "------------------------------------"
 
 # pac <- indivi[!is.na(indivi$persfip) & indivi$persfip == 'pac',]
 # pac$key1 <- paste(pac$naia,pac$declar1)
@@ -197,7 +180,7 @@ def create_fip(year = 2006): # message('03_fip')
     
     fip = indivifip[not_(indivifip.key.isin(pac.key1.values))]
     fip = fip[not_(fip.key.isin(pac.key2.values))]
-    print "new fip created ---------------------------"
+    print "    2.1 new fip created"
 
 # We build a dataframe to link the pac to their type and noindiv
 # table(duplicated(pac[,c("noindiv")])) 
@@ -214,7 +197,7 @@ def create_fip(year = 2006): # message('03_fip')
     
     pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on='key1', right_on = 'key', how='outer')
     pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='outer')
-    print "pacInd1&2 créés-----------------------------------"
+    print "pacInd1&2 créés"
 
 # table(duplicated(pacInd1))
 # table(duplicated(pacInd2))
@@ -243,7 +226,7 @@ def create_fip(year = 2006): # message('03_fip')
         pacInd = pacInd1
     else:
         pacInd = concat([pacInd2, pacInd1]) 
-    print 'pacInd created ----------------------------'
+    print '    2.2 : pacInd created'
     
 # table(duplicated(pacInd[,c("noindiv","typ")]))
 # table(duplicated(pacInd$noindiv))
@@ -251,9 +234,6 @@ def create_fip(year = 2006): # message('03_fip')
     pacInd.duplicated(['noindiv', 'type_pac']).value_counts()
     pacInd.duplicated('noindiv').value_counts()
     
-# pacIndiv <- pacInd[!duplicated(pacInd$noindiv),]
-# saveTmp(pacIndiv,file="pacIndiv.Rdata")
-# rm(pacInd,pacIndiv)
     del pacInd["key"]
     pacIndiv = pacInd[not_(pacInd.duplicated('noindiv'))]
     pacIndiv.reset_index(inplace=True)
@@ -274,10 +254,7 @@ def create_fip(year = 2006): # message('03_fip')
     individec1 = individec1.loc[:, ["declar1","noidec","ident","rga","ztsai","ztsao"]]
     individec1 = individec1.rename(columns={'declar1':'declaration'})
     fip1 = fip.merge(individec1, on='declaration')
-    print 'fip1 created --------------------------------'
-
-    print individec1.head()
-    print fip1.head()
+    print '    2.3 : fip1 created'
 
 # # TODO: On ne s'occupe pas des declar2 pour l'instant
 # # individec2 <- subset(indivi, (declar2 %in% fip$declar) & (persfip=="vous"))
@@ -290,11 +267,8 @@ def create_fip(year = 2006): # message('03_fip')
     individec2.rename(columns={'declar2':'declaration'}, inplace=True)
     print individec2.head()
     fip2 = fip.merge(individec2)
-    print 'fip2 created --------------------------------'
+    print '    2.4 : fip2 created'
 
-# # Il ya des jumeaux et des triplés dans fip1
-# # table(duplicated(fip1))
-# # table(duplicated(fip2))
 
     fip1.duplicated().value_counts()
     fip2.duplicated().value_counts()
@@ -304,37 +278,9 @@ def create_fip(year = 2006): # message('03_fip')
 # table(fip$typ)
     
     fip = concat([fip1, fip2])
-#     fip = fip1 #TODO: Pourquoi cette ligne
+#     fip = fip1 #TODO: Pourquoi cette ligne ?
     fip.type_pac.value_counts()
  
-# # On crée des variables pour mettre les fip dans les familles 99, 98, 97
-# fip <- within(fip,{
-#   persfip <- 'pac'
-#   year <- as.numeric(year)
-#   noi <- 99
-#   noicon <- NA
-#   noindiv <- declar
-#   noiper   <- NA
-#   noimer   <- NA
-#   declar1  <- declar  # TODO declar ?
-#   naim     <- 99 
-#   lien     <- NA
-#   quelfic  <- "FIP"
-#   acteu    <- NA   
-#   agepf    <- year - naia - 1
-#   lpr      <- ifelse(agepf<=20,3,4)  # TODO pas très propre 
-#   stc      <- NA
-#   contra   <- NA
-#   titc     <- NA
-#   mrec     <- NA
-#   forter   <- NA
-#   rstg     <- NA
-#   retrai   <- NA
-#   cohab    <- NA
-#   sexe     <- NA
-#   persfip  <- "pac"
-#   agepr    <- NA 
-#   actrec   <- ifelse(agepf<=15,9,5)})
     print fip.columns
     fip['persfip'] = 'pac'
     fip['year'] = year
@@ -378,9 +324,6 @@ def create_fip(year = 2006): # message('03_fip')
     fip["ident"] = fip["ident"].astype("int64")
     
     fip_tmp = fip.loc[:, ['noi', 'ident']]
-    print "------------------"
-    print fip_tmp.head()
-    print "_________________________________"
 
     while any(fip.duplicated(cols=['noi', 'ident'])):
         fip_tmp = fip.loc[:, ['noi', 'ident']]
@@ -388,26 +331,16 @@ def create_fip(year = 2006): # message('03_fip')
         tmp = fip.loc[dup, 'noi']
         print len(tmp)
         fip.loc[dup, 'noi'] = tmp.astype('int64') - 1
-        print fip.noi.head()
 
-
-# fip$idfoy   <- 100*fip$ident + fip$noidec
-# fip$noindiv <- 100*fip$ident + fip$noi
-# fip$typ <- NULL
-# fip$key <- NULL
     fip['idfoy'] = 100*fip['ident'] + fip['noidec']
     fip['noindiv'] = 100*fip['ident'] + fip['noi']
     fip['type_pac'] = 0 ; fip['key'] = 0
     
-# table(duplicated(fip$noindiv))
-    fip.duplicated('noindiv').value_counts()
-#     control(fip)
-#     return
-# save(fip,file=fipDat)
-# rm(fip,fip1,individec1,indivifip,indivi,pac)
+    print fip.duplicated('noindiv').value_counts()
     save_temp(fip, name="fipDat", year=year)
+    del fip, fip1, individec1, indivifip, indivi, pac
 
-    print 'rm(fip2,individec2)-----------------------'
+    print 'fip sauvegardé'
 
 if __name__ == '__main__':
     create_fip()
