@@ -57,7 +57,6 @@ def _smic55(salbrut, _P):
     nbh_travaillees = 151.67 * 12
     smic_annuel = _P.cotsoc.gen.smic_h_b * nbh_travaillees
     return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel
-#     return salbrut*0
 
 def _br_pf_i(tspr, hsup, rpns):
     '''
