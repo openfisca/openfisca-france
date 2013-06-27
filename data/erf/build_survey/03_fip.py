@@ -80,7 +80,7 @@ def create_fip(year = 2006): # message('03_fip')
     for i in range(1,nb_pac_max+1):
         fip[(i, 'declaration')] = foyer['declar'].values
         fip[(i,'type_pac')] = foyer['anaisenf'].str[5*(i-1)]
-        fip[(i,'naia')] = foyer['anaisenf'].str[5*(i-1)+1:5*(i-1)+5]
+        fip[(i,'naia')] = foyer['anaisenf'].str[5*(i-1)+1:5*(i)]
         
     fip = fip.stack("pac_number")
     fip.reset_index(inplace=True)
@@ -171,9 +171,9 @@ def create_fip(year = 2006): # message('03_fip')
     
     pac = indivi[and_(indivi['persfip'] is not NaN, indivi['persfip']=='pac')]
     print pac.columns
-    pac['key1'] = zip(pac['naia'], pac['declar1'])
-    pac['key2'] = zip(pac['naia'], pac['declar2'])
-    indivifip['key'] = zip(indivifip['naia'], indivifip['declaration'])
+    pac['key1'] = zip(pac['naia'].astype('int'), pac['declar1'].str[:29])
+    pac['key2'] = zip(pac['naia'].astype('int'), pac['declar2'].str[:29])
+    indivifip['key'] = zip(indivifip['naia'], indivifip['declaration'].str[:29])
     
 # fip <- indivifip[!indivifip$key %in% pac$key1,]
 # fip <- fip[!fip$key %in% pac$key2,]
@@ -191,12 +191,20 @@ def create_fip(year = 2006): # message('03_fip')
 # 
 # pacInd2 <- merge(pac[,c("noindiv","key2","naia")],
 #                 indivifip[,c("key","typ")], by.x="key2", by.y="key")
-    tmp_pac1 = pac.loc[ :, ['noindiv', 'key1', 'naia']]
+    tmp_pac1 = pac.loc[ :, ['noindiv', 'declar1', 'naia']]
     tmp_pac2 = pac.loc[ :, ['noindiv', 'key2', 'naia']]
-    tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac']]
+    tmp_indivifip = indivifip.loc[ :, ['declaration', 'type_pac', 'naia']]
     
-    pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on='key1', right_on = 'key', how='outer')
-    pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='outer')
+    pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on=['declar1','naia'], right_on =['declaration', 'naia'], how='outer')
+    pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'declaration', how='outer')
+    
+#     print len(pacInd1), len(tmp_pac1), len(tmp_indivifip)
+#     print pacInd2.type_pac.value_counts()
+    print pacInd1[pacInd1.declar1.notnull()]['type_pac'].notnull().sum()
+    print indivifip.columns
+#     print indivifip['declaration'].str[:29].values
+#     print tmp_pac1.head(30).to_string()
+    return
     print "pacInd1&2 créés"
 
 # table(duplicated(pacInd1))
@@ -226,6 +234,10 @@ def create_fip(year = 2006): # message('03_fip')
         pacInd = pacInd1
     else:
         pacInd = concat([pacInd2, pacInd1]) 
+    print len(pacInd1), len(pacInd2), len(pacInd)
+    print pacInd2.type_pac.isnull().sum()
+    return
+    print pacInd.type_pac.value_counts()
     print '    2.2 : pacInd created'
     
 # table(duplicated(pacInd[,c("noindiv","typ")]))
@@ -233,14 +245,16 @@ def create_fip(year = 2006): # message('03_fip')
 
     pacInd.duplicated(['noindiv', 'type_pac']).value_counts()
     pacInd.duplicated('noindiv').value_counts()
-    
+    print pacInd.type_pac.isnull().sum()
+    return
     del pacInd["key"]
     pacIndiv = pacInd[not_(pacInd.duplicated('noindiv'))]
     pacIndiv.reset_index(inplace=True)
     save_temp(pacIndiv, name="pacIndiv", year=year)
     
+    print pacIndiv.type_pac.value_counts()
     gc.collect()
- 
+    return
 # # We keep the fip in the menage of their parents because it is used in to
 # # build the famille. We should build an individual ident for the fip that are
 # # older than 18 since they are not in their parents' menage according to the eec

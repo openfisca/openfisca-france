@@ -569,12 +569,12 @@ def create_final(year=2006):
     final = final.merge(sif, on=["noindiv"], how="left") 
     #TODO: IL FAUT UNE METHODE POUR GERER LES DOUBLES DECLARATIONS 
     
-    print 'check doublons', len(final[final.duplicated(['noindiv'])])
 
     print final.columns
     control(final, debug=True)
         
     final['caseP'] = final.caseP.fillna(False) 
+    final['caseF'] = final.caseF.fillna(False)
     print final['caseP'].value_counts()
     print_id(final)
     
