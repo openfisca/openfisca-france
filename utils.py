@@ -517,38 +517,56 @@ def check_consistency(table_simu, dataframe, corrige = True):
     #check_inputs_enumcols(simulation):
     # TODO: eventually should be a method of SurveySimulation specific for france 
 
-    # verify type, force type
+    
 
     is_ok = True
     message = ""
     missing_variables = []
+    unconsistent_variables = []
     present_variables = []
     count = 0
     
+    from src.countries.france.data.erf.build_survey.utilitaries import control
+    print 'Controlling simulation input_table'
+    control(table_simu.input_table.table, verbose = True)
+
     # First : study of the datatable / the specification of columns given by table_simu
     for var in table_simu.description.columns:
         try:
+                        
             varcol  = table_simu.description.get_col(var)
             serie = dataframe[var]
+            simu_serie = table_simu.input_table.table[var]
             present_variables.append(var)
             # First checks for all if there is any missing data
-            if serie.isnull().any():
+            if serie.isnull().any() or simu_serie.isnull.any():
                 is_ok = False
-                message += "Some missing values in column %s, \n" %var
+                if serie.isnull.any():
+                    message += "Some missing values in dataframe column %s, \n" %var
+                if simu_serie.isnull.any():
+                    message += 'Some missing values in input_table column %s \n' %var
+                cnt = len(set(simu_serie.isnull())) - len(set(serie.isnull()))
+                if 0 < cnt:
+                    message += "Warning : %s More NA's in simulation than in original dataframe for %s \n" %(str(cnt), var)
+                    
                 if corrige:
                     try:
-                        serie.fillna(varcol._default)
+                        message += "Filling NA's with default values for %s... \n" %var
+                        simu_serie.fillna(varcol._default)
                     except:
-                        message += " Cannot fill NA for column %s, maybe _.default doesn't exist" %var
+                        message += " Cannot fill NA for column %s, maybe _.default doesn't exist \n" %var
+
             if not corrige: # On ne modifie pas la série donc on peut l'amputer, elle n'est pas en return
                 serie = serie[serie.notnull()]
                 
             # Then checks if all values are of specified datatype
+            # verify type, force type
             
             if isinstance(varcol, EnumCol) or isinstance(varcol, EnumPresta):
                 try:
                     if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):  
-                        message +=  "Some variables out of range for EnumCol variable %s \n" %var
+                        message +=  "Some variables out of range for EnumCol variable %s : \n" %var
+                        message += str(set(serie.unique()) - set(sorted(varcol.enum._nums.values()))) + "\n"
                         #print varcol.enum._nums
                         #print sorted(serie.unique()), "\n"
                         is_ok = False
@@ -571,7 +589,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     varcol.enum
                 except:
                     is_ok = False
-                    message += "Error : not enum attribute for EnumCol %s ! \n" %var
+                    message += "Error : not enum attribute for EnumCol %s ! \n" %var 
+                    # Never happening, enum attribute is initialized to None at least
         
             if isinstance(varcol, IntCol) or isinstance(varcol, IntPresta):
                 if serie.dtype not in ('int', 'int16', 'int32', 'int64'):
@@ -647,6 +666,9 @@ def check_consistency(table_simu, dataframe, corrige = True):
             if corrige:
                 dataframe[var] = serie
             count += 1
+            del serie, varcol
+            
+
             
         except:
             is_ok = False
