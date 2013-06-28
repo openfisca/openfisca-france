@@ -3848,6 +3848,12 @@
 	<VALUE valeur="6173.82" deb="2002-01-01" fin="2002-06-30"/>  # TODO
 	<VALUE valeur="6300" deb="2002-07-01" fin="2003-06-30"/>     # CHECK
 	<VALUE valeur="6400" deb="2003-07-01" fin="2007-06-30"/>     # THESE VALES
+	<VALUE valeur="8000" deb="2007-07-01" fin="2013-12-31"/>     # GOOD VALUE
+	  </CODE>
+	  <CODE description="Plancher ressources AL en secteur accession R. 351-7-1" code="dar_2_2" format='float' type="monetary">
+	<VALUE valeur="" deb="2002-01-01" fin="2002-06-30"/>  # TODO
+	<VALUE valeur="" deb="2002-07-01" fin="2003-06-30"/>     # CHECK
+	<VALUE valeur="" deb="2003-07-01" fin="2007-06-30"/>     # THESE VALES
 	<VALUE valeur="3900" deb="2007-07-01" fin="2013-12-31"/>     # GOOD VALUE
 	  </CODE>
       <CODE description="Coefficient R. 351-7-1" code="dar_3" format='float' >
@@ -4538,24 +4544,24 @@
 	<VALUE valeur=".5" deb="1998-01-01" fin="2013-12-31" code="tx_plaf_supp" />
       </CODE>
       <CODE description="Montant mensuel de l'allocation adulte handicapé" code="montant" format='float' type="monetary">
-	<VALUE valeur = "545.13" deb="2000-01-01" fin="2002-12-31"/> 	            
-	<VALUE valeur = "557.12" deb="2001-01-01" fin="2002-12-31"/> 	      
-	<VALUE valeur = "569.38" deb="2002-01-01" fin="2002-12-31"/> 	      
-	<VALUE valeur = "577.92" deb="2003-01-01" fin="2003-12-31"/> 
-	<VALUE valeur = "587.74" deb="2004-01-01" fin="2004-12-31"/> 
-	<VALUE valeur = "599.49" deb="2005-01-01" fin="2005-12-31"/> 
-	<VALUE valeur = "610.28" deb="2006-01-01" fin="2006-12-31"/> 
-	<VALUE valeur = "621.27" deb="2007-01-01" fin="2007-12-31"/> 
-	<VALUE valeur = "628.10" deb="2008-01-01" fin="2008-08-31"/>
-	<VALUE valeur = "652.60" deb="2008-09-01" fin="2009-03-31"/>
-	<VALUE valeur = "666.96" deb="2009-04-01" fin="2009-08-31"/>
-	<VALUE valeur = "681.63" deb="2009-09-01" fin="2010-03-31"/>
-	<VALUE valeur = "696.63" deb="2010-04-01" fin="2010-08-31"/>
-	<VALUE valeur = "711.95" deb="2010-09-01" fin="2011-03-31"/>
-	<VALUE valeur = "727.61" deb="2011-04-01" fin="2011-08-31"/>
-	<VALUE valeur = "743.62" deb="2011-09-01" fin="2012-03-31"/>
-	<VALUE valeur = "759.98" deb="2012-04-01" fin="2012-08-31"/>
-	<VALUE valeur = "776.59" deb="2012-09-01" fin="2013-08-31"/>
+	<VALUE valeur ="545.13"   deb="2000-01-01" fin="2002-12-31"/> 	            
+	<VALUE valeur ="557.12"   deb="2001-01-01" fin="2002-12-31"/> 	      
+	<VALUE valeur ="569.38"   deb="2002-01-01" fin="2002-12-31"/> 	      
+	<VALUE valeur ="577.92"   deb="2003-01-01" fin="2003-12-31"/> 
+	<VALUE valeur ="587.74"   deb="2004-01-01" fin="2004-12-31"/> 
+	<VALUE valeur ="599.49"   deb="2005-01-01" fin="2005-12-31"/> 
+	<VALUE valeur ="610.28"   deb="2006-01-01" fin="2006-12-31"/> 
+	<VALUE valeur ="621.27"   deb="2007-01-01" fin="2007-12-31"/> 
+	<VALUE valeur ="628.10"   deb="2008-01-01" fin="2008-08-31"/>
+	<VALUE valeur ="652.60"   deb="2008-09-01" fin="2009-03-31"/>
+	<VALUE valeur ="666.96"   deb="2009-04-01" fin="2009-08-31"/>
+	<VALUE valeur ="681.63"   deb="2009-09-01" fin="2010-03-31"/>
+	<VALUE valeur ="696.63"   deb="2010-04-01" fin="2010-08-31"/>
+	<VALUE valeur ="711.95"   deb="2010-09-01" fin="2011-03-31"/>
+	<VALUE valeur ="727.61"   deb="2011-04-01" fin="2011-08-31"/>
+	<VALUE valeur ="743.62"   deb="2011-09-01" fin="2012-03-31"/>
+	<VALUE valeur ="759.98"   deb="2012-04-01" fin="2012-08-31"/>
+	<VALUE valeur ="776.59"   deb="2012-09-01" fin="2013-08-31"/>
       </CODE>
       <CODE description="Âge légal de départ à la retraite" code="age_legal_retraite" format='integer' type="age">
 	<VALUE valeur = "60"     deb="1983-07-01" fin="2011-06-30"/>
@@ -4571,13 +4577,19 @@
       <CODE description="Taux du montant mensuel du complément aux adultes handicapés (avant 2005)" code="cpltx" format = 'percent'>
 	<VALUE valeur="0.16"   deb="2002-01-01" fin="2008-08-31"/>      
       </CODE>
+      <CODE description="Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007)" code="cpltx_1" format = 'float' type="monetary">
+	<VALUE valeur="179.31"   deb="2007-01-01" fin="2013-08-31"/>      
+      </CODE>
       <CODE description="Garantie de ressources pour les personnes handicapées" code="grph" format='float' type="monetary">
 	<VALUE valeur = "776.79" deb="2006-01-01" fin="2006-06-30"/>
 	<VALUE valeur = "789.59" deb="2006-07-01" fin="2006-12-31"/>
 	<VALUE valeur = "800.58" deb="2007-01-01" fin="2007-12-31"/>
-	<VALUE valeur = "807.41" deb="2008-01-01" fin="2008-12-31"/>
-	<VALUE valeur = "808.41" deb="2009-01-01" fin="2009-12-31"/>
-	<VALUE valeur = "891.21" deb="2010-01-01" fin="2010-12-31"/>
+	<VALUE valeur = "807.41" deb="2008-01-01" fin="2008-08-31"/>
+	<VALUE valeur = "831.91" deb="2008-09-01" fin="2009-03-31"/>
+	<VALUE valeur = "846.27" deb="2009-04-01" fin="2009-08-31"/>
+	<VALUE valeur = "860.94" deb="2009-09-01" fin="2010-03-31"/>
+	<VALUE valeur = "875.94" deb="2010-04-01" fin="2010-08-31"/>
+	<VALUE valeur = "891.26" deb="2010-09-01" fin="2011-03-31"/>
 	<VALUE valeur = "906.92" deb="2011-04-01" fin="2011-08-31"/>
     <VALUE valeur = "922.93" deb="2011-09-01" fin="2012-03-31"/>
 	<VALUE valeur = "939.29" deb="2012-04-01" fin="2012-08-31"/>
