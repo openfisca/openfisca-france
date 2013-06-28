@@ -8,77 +8,7 @@
 # # # OpenFisca
 
 from pandas import DataFrame, concat
-
-
-def control(dataframe, verbose=False, verbose_columns=None, verbose_length=5, debug=False):
-    """
-    Function to help debugging the data crunchin' files.
-    
-    Parameters
-    ---------
-    verbose: Default False
-    Indicates whether to print the dataframe itself or just perform reguler checks.
-    
-    verbose_columns: List or String
-    The columns of the dataframe to print
-    
-    verbose_length: Int
-    the number of rows to print
-    """
-    
-    print 'longueur de la data frame =', len(dataframe.index)
-    if debug and (dataframe.duplicated().any()) : print 'présence de doublons dans la dataframe ?'
-    if not(debug): assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
-
-    empty_columns = []
-    for col in dataframe.columns:
-        if debug:
-            if (dataframe[col].isnull().all()): 
-                print 'la colonne %s est vide' %(col)
-                empty_columns.append(col)
-        else:
-            assert not(dataframe[col].isnull().all()), 'la colonne %s est vide' %(col)
-    print empty_columns
-    print 'vérifications terminées'
-    
-    if verbose is True:
-        print '------ informations détaillées -------'
-            
-        if verbose_columns is None:
-            print dataframe.head(verbose_length) 
-            if dataframe.duplicated().any():
-                print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
-        else : 
-            if dataframe.duplicated(verbose_columns).any():
-                print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
-                print dataframe[dataframe.duplicated(verbose_columns)].head(verbose_length).to_string()
-            print 'colonnes contrôlées ------>', verbose_columns
-
-
-def check_structure(df):
-
-    dup = df.noindiv.duplicated().sum()
-    if dup > 1:
-        print "there are %s duplicated individuals" %dup
-        df.drop_duplicates("noindiv", inplace=True)
-    
-    for entity in ["men", "fam", "foy"]:
-        print entity
-        qui = 'qui' + entity
-        id  = 'id' + entity
-    
-        if df[qui].isnull().any():
-            print "there are NaN in qui%s" %entity
-        
-        max_entity = df[qui].max().astype("int")
-        for position in range(0, max_entity+1):
-            test = df[[ qui, id]].groupby(by=id).agg(lambda x: (x==position).sum()) 
-            errors = (test[qui] > 1).sum()
-            if errors > 0:
-                print "There are %s duplicated qui%s = %s" %(errors,entity,position)
-        
-    
-    
+from numpy import logical_not as not_
 
 def print_id(df):
     try:
@@ -118,3 +48,91 @@ def print_id(df):
             print "NaN in quifam : ", df["quifam"].isnull().sum()
     except:
         print "No idfam or quifam"
+
+
+def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose_length=5, ignore=None):
+    """
+    Function to help debugging the data crunchin' files.
+    
+    Parameters
+    ---------
+    verbose: Default False
+    Indicates whether to print the dataframe itself or just perform reguler checks.
+    
+    verbose_columns: List
+    The columns of the dataframe to print
+    
+    verbose_length: Int
+    the number of rows to print
+    """
+    std_list = ['idfoy', 'quifoy', 'idmen', 'quimen', 'idfam', 'quifam']
+    for var in std_list: 
+        try:
+            assert var in dataframe.columns
+        except:
+            raise Exception('the dataframe does not contain the required column %s' %(var))
+        
+    print 'longueur de la data frame =', len(dataframe.index)
+    if debug: 
+        print 'nb de doublons', len(dataframe[dataframe.duplicated()])
+        print 'nb de doublons idfoy/quifoy', len(dataframe[dataframe.duplicated(cols=['idfoy', 'quifoy'])])
+        print 'nb de doublons idmen/quimen', len(dataframe[dataframe.duplicated(cols=['idmen', 'quimen'])])
+        print 'nb de doublons idfam/quifam', len(dataframe[dataframe.duplicated(cols=['idfam', 'quifam'])])
+        
+    if not(debug): 
+        assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
+        assert not_(dataframe.duplicated(cols=['idfoy', 'quifoy'])).all(), 'duplicate of tuple idfoy/quifoy' 
+        assert not_(dataframe.duplicated(cols=['idmen', 'quimen'])).all(), 'duplicate of tuple idmen/quimen'
+        assert not_(dataframe.duplicated(cols=['idfam', 'quifam'])).all(), 'duplicate of tupli idfam/quifam'
+
+    empty_columns = []
+    for col in dataframe.columns:
+        if (dataframe[col].isnull().all()): 
+                empty_columns.append(col)
+                
+    if empty_columns != []: print 'liste des colonnes entièrement vides', empty_columns
+    
+    if verbose is True:
+        print '------ informations détaillées -------'
+        print_id(dataframe)
+        
+        if verbose_columns is None:
+#             print dataframe.head(verbose_length) 
+            if dataframe.duplicated().any():
+                print dataframe[dataframe.duplicated()].head(verbose_length).to_string()
+
+
+        else : 
+            if dataframe.duplicated(verbose_columns).any():
+                print 'nb lignes lignes dupliquées_____', len(dataframe[dataframe.duplicated(verbose_columns)])
+                print dataframe.loc[:, verbose_columns].describe()
+            for col in verbose_columns:
+                print 'nombre de NaN dans %s : ' %(col), dataframe[col].isnull().sum()
+            print 'colonnes contrôlées ------>', verbose_columns
+    print 'vérifications terminées'
+
+
+def check_structure(df):
+
+    dup = df.noindiv.duplicated().sum()
+    if dup > 1:
+        print "there are %s duplicated individuals" %dup
+        df.drop_duplicates("noindiv", inplace=True)
+    
+    for entity in ["men", "fam", "foy"]:
+        print entity
+        qui = 'qui' + entity
+        id  = 'id' + entity
+    
+        if df[qui].isnull().any():
+            print "there are NaN in qui%s" %entity
+        
+        max_entity = df[qui].max().astype("int")
+        for position in range(0, max_entity+1):
+            test = df[[ qui, id]].groupby(by=id).agg(lambda x: (x==position).sum()) 
+            errors = (test[qui] > 1).sum()
+            if errors > 0:
+                print "There are %s duplicated qui%s = %s" %(errors,entity,position)
+        
+    
+    

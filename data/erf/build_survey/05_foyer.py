@@ -303,8 +303,6 @@ def foyer_all(year=2006):
     foy_ind = DataFrame()
     
     for individual_var, foyer_vars in var_dict.iteritems():
-#        print individual_var
-#        print foyer_vars
         try:
             selection = foyer[foyer_vars + ["noindiv"]]
         except KeyError:
