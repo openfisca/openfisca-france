@@ -370,13 +370,14 @@ def final(year=2006):
     control(final2, debug=True)
     print final2.age.isnull().sum()
     final2 = final2.drop_duplicates(cols='noindiv')
-    print_id(final2)
-#     check_structure(final2)
+    
+    check_structure(final2)
     
     from src.countries.france import DATA_SOURCES_DIR
     test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
     store = HDFStore(test_filename)
     store['survey_'+ str(year)] = final2
+    print 'fin du traitement des données'
     
 if __name__ == '__main__':
 

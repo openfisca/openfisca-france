@@ -575,7 +575,6 @@ def create_final(year=2006):
         
     final['caseP'] = final.caseP.fillna(False) 
     final['caseF'] = final.caseF.fillna(False)
-    print final['caseP'].value_counts()
     print_id(final)
     
     save_temp(final, name='final', year=year)
