@@ -32,8 +32,8 @@ def create_fip(year = 2006): # message('03_fip')
     # anaisenf is a string containing letter code of pac (F,G,H,I,J,N,R) and year of birth (example: 'F1990H1992')
     # when a child is invalid, he appears twice in anaisenf (example: F1900G1900 is a single invalid child born in 1990)    
     
-    erfFoyVar = ['declar', 'anaisenf']
-    foyer = df.get_values(table="foyer", variables=erfFoyVar)
+    erf_foy_var = ['declar', 'anaisenf']
+    foyer = df.get_values(table="foyer", variables=erf_foy_var)
  
  
 # #***********************************************************************************************************
@@ -86,12 +86,15 @@ def create_fip(year = 2006): # message('03_fip')
     fip.reset_index(inplace=True)
     del fip["level_0"]
 
+#     print fip.describe()
+#     print fip.head().to_string()
 
     print "    1.2 : elimination des foyers fiscaux sans pac"
     
     #Clearing missing values and changing data format
     fip = fip.sort(columns=['declaration','naia','type_pac'])
     fip.set_index(["declaration","pac_number"], inplace=True)
+    # print fip["naia"].value_counts()
     fip = fip[and_(fip['type_pac'].notnull(), (fip['naia'] != 'an') & (fip['naia'] != ''))]
     fip = fip.reset_index()
     del fip['pac_number']
@@ -150,19 +153,19 @@ def create_fip(year = 2006): # message('03_fip')
 # indVar <- c('ident','noi','declar1','declar2','persfip','persfipd','naia','rga','lpr','noindiv','ztsai','ztsao','wprm')
 # indivi <- LoadIn(indm,indVar)
 
-    indvar_erf = ['ident','noi','declar1','declar2','persfip','persfipd', 'noindiv','ztsai',
-                  'ztsao','wprm']
-    indvar_eec = ['ident','noi','naia','rga','lpr', 'noindiv']
-    
-    erf_indivi = df.get_values(variables = indvar_erf, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
-    eec_indivi = df.get_values(variables = indvar_eec, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
-    indivi = erf_indivi.merge(eec_indivi, how='outer')
+#     indvar_erf = ['ident','noi','declar1','declar2','persfip','persfipd', 'noindiv','ztsai',
+#                   'ztsao','wprm']
+#     indvar_eec = ['ident','noi','naia','rga','lpr', 'noindiv']
+#     
+#     erf_indivi = df.get_values(variables = indvar_erf, table = 'erf_indivi') #WARNING: Pas de variable naia dans indivi ??
+#     eec_indivi = df.get_values(variables = indvar_eec, table = 'eec_indivi') #WARNING: Pas de variable naia dans indivi ??
+#     indivi = erf_indivi.merge(eec_indivi, how='outer')
 
-#    indivi = load_temp(name="indivim", year=year) TODO USE THIS INSTEAD OF PREVIOUS LINES 
+    indivi = load_temp(name="indivim", year=year) #TODO: USE THIS INSTEAD OF PREVIOUS LINES 
 #    print list(indivi.columns)
     
 # indivi$noidec <- as.numeric(substr(indivi$declar1,1,2))
-    indivi['noidec'] = indivi['declar1'].str[0:2].astype('float16')
+    indivi['noidec'] = indivi['declar1'].str[0:2].astype('float16') # To be used later to set idfoy
 
 # pac <- indivi[!is.na(indivi$persfip) & indivi$persfip == 'pac',]
 # pac$key1 <- paste(pac$naia,pac$declar1)
@@ -170,16 +173,21 @@ def create_fip(year = 2006): # message('03_fip')
 # indivifip$key <- paste(indivifip$naia,indivifip$declar)
     
     pac = indivi[and_(indivi['persfip'] is not NaN, indivi['persfip']=='pac')]
-    print pac.columns
-    pac['key1'] = zip(pac['naia'].astype('int'), pac['declar1'].str[:29])
-    pac['key2'] = zip(pac['naia'].astype('int'), pac['declar2'].str[:29])
+    
+    pac['naia'] = pac['naia'].astype('int32') # TODO: was float in pac fix upstream
+    indivifip['naia'] = indivifip['naia'].astype('int32') 
+    pac['key1'] = zip(pac['naia'], pac['declar1'].str[:29])
+    pac['key2'] = zip(pac['naia'], pac['declar2'].str[:29])
     indivifip['key'] = zip(indivifip['naia'], indivifip['declaration'].str[:29])
+    assert pac.naia.dtype == indivifip.naia.dtype, 'types %s , %s are different' %(pac.naia.dtype, indivifip.naia.dtype)
     
 # fip <- indivifip[!indivifip$key %in% pac$key1,]
 # fip <- fip[!fip$key %in% pac$key2,]
     
     fip = indivifip[not_(indivifip.key.isin(pac.key1.values))]
     fip = fip[not_(fip.key.isin(pac.key2.values))]
+    
+        
     print "    2.1 new fip created"
 
 # We build a dataframe to link the pac to their type and noindiv
@@ -188,30 +196,28 @@ def create_fip(year = 2006): # message('03_fip')
     
 # pacInd1 <- merge(pac[,c("noindiv","key1","naia")],
 #                 indivifip[,c("key","typ")], by.x="key1", by.y="key")
-# 
 # pacInd2 <- merge(pac[,c("noindiv","key2","naia")],
 #                 indivifip[,c("key","typ")], by.x="key2", by.y="key")
-    tmp_pac1 = pac.loc[ :, ['noindiv', 'declar1', 'naia']]
-    tmp_pac2 = pac.loc[ :, ['noindiv', 'key2', 'naia']]
-    tmp_indivifip = indivifip.loc[ :, ['declaration', 'type_pac', 'naia']]
+
+    tmp_pac1 = pac.loc[ :, ['noindiv', 'key1']]
+    tmp_pac2 = pac.loc[ :, ['noindiv', 'key2']]
+    tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac']]
+
     
-    pacInd1 = tmp_pac1.merge(tmp_indivifip, left_on=['declar1','naia'], right_on =['declaration', 'naia'], how='outer')
-    pacInd2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'declaration', how='outer')
-    
-#     print len(pacInd1), len(tmp_pac1), len(tmp_indivifip)
-#     print pacInd2.type_pac.value_counts()
-    print pacInd1[pacInd1.declar1.notnull()]['type_pac'].notnull().sum()
-    print indivifip.columns
-#     print indivifip['declaration'].str[:29].values
-#     print tmp_pac1.head(30).to_string()
-    return
+    pac_ind1 = tmp_pac1.merge(tmp_indivifip, left_on=['key1'], right_on =['key'], how='inner')
+    print 'longueur pacInd1' , len(pac_ind1)
+    pac_ind2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='inner')
+    print len(pac_ind2)
+    print pac_ind1.type_pac.value_counts()
+    print pac_ind2.type_pac.value_counts()
+
     print "pacInd1&2 créés"
 
 # table(duplicated(pacInd1))
 # table(duplicated(pacInd2))
 
-    print pacInd1.duplicated().value_counts()
-    print pacInd2.duplicated().value_counts()
+    print pac_ind1.duplicated().sum()
+    print pac_ind2.duplicated().sum()
 
 # pacInd1 <-rename(pacInd1,c("key1" = "key"))
 # pacInd2 <-rename(pacInd2,c("key2" = "key"))
@@ -220,36 +226,40 @@ def create_fip(year = 2006): # message('03_fip')
 
 #     pacInd1.rename(columns={'key1':'key'}, inplace=True)
 #     pacInd2.rename(columns={'key2':'key'}, inplace=True)
-    pacInd1['key'] = pacInd1['key1']; del pacInd1['key1']
-    pacInd2['key'] = pacInd2['key2']; del pacInd2['key2']
-    
-    if pacInd1.index == []:
-        if pacInd2.index == []:
+    del pac_ind1['key1'], pac_ind2['key2']
+    print pac_ind1.columns
+    print pac_ind2.columns
+
+
+    if pac_ind1.index == []:
+        if pac_ind2.index == []:
                 print "Warning : no link between pac and noindiv for both pacInd1&2"
         else:
             print "Warning : pacInd1 is an empty data frame"
-            pacInd = pacInd2
-    elif pacInd2.index == []:
+            pacInd = pac_ind2
+    elif pac_ind2.index == []:
         print "Warning : pacInd2 is an empty data frame"
-        pacInd = pacInd1
+        pacInd = pac_ind1
     else:
-        pacInd = concat([pacInd2, pacInd1]) 
-    print len(pacInd1), len(pacInd2), len(pacInd)
-    print pacInd2.type_pac.isnull().sum()
-    return
+        pacInd = concat([pac_ind2, pac_ind1]) 
+    print len(pac_ind1), len(pac_ind2), len(pacInd)
+    print pac_ind2.type_pac.isnull().sum()
+
     print pacInd.type_pac.value_counts()
     print '    2.2 : pacInd created'
-    
+
 # table(duplicated(pacInd[,c("noindiv","typ")]))
 # table(duplicated(pacInd$noindiv))
 
-    pacInd.duplicated(['noindiv', 'type_pac']).value_counts()
-    pacInd.duplicated('noindiv').value_counts()
-    print pacInd.type_pac.isnull().sum()
-    return
+    print 'doublons noindiv, type_pac', pacInd.duplicated(['noindiv', 'type_pac']).sum()
+    print 'doublons noindiv seulement', pacInd.duplicated('noindiv').sum()
+    print 'nb de NaN', pacInd.type_pac.isnull().sum()
+    
     del pacInd["key"]
     pacIndiv = pacInd[not_(pacInd.duplicated('noindiv'))]
-    pacIndiv.reset_index(inplace=True)
+#     pacIndiv.reset_index(inplace=True)
+    print pacIndiv.columns
+
     save_temp(pacIndiv, name="pacIndiv", year=year)
     
     print pacIndiv.type_pac.value_counts()

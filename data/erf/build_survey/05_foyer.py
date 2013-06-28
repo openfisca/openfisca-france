@@ -17,6 +17,8 @@
 ###***********************************************************************/
 #
 
+from __future__ import division
+
 import numpy
 import re
 from src.countries.france.data.erf.datatable import DataCollection
@@ -34,12 +36,25 @@ def sif(year=2006):
     ## TODO Comment choisir le rfr n -2 pour éxonération de TH ?
     ## mnrvka  Revenu TH n-2
     ## mnrvkh  revenu TH (revenu fiscal de référence)
+    #
+    ## On récupère les variables du code sif
+    #vars <- c("noindiv", 'sif', "nbptr", "mnrvka")
     vars = ["noindiv", 'sif', "nbptr", "mnrvka", "rbg", "tsrvbg"]
+    #sif <- LoadIn(erfFoyFil, vars)
     sif = data.get_values(variables=vars, table="foyer" )
+    #sif$statmarit <- 0
     sif['statmarit'] = 0
     
     print sif
     
+    ## for (index in 60:80){
+    ##    print(index)  
+    ##    print(table(substr(sif$sif,index,index)))
+    ## }
+    
+    
+    #
+    #
     ## Pb with some 2 sifs that are misaligned
     ## index = 61
     ## sif[substr(sif$sif,index,index)=="F", "noindiv"]
@@ -62,26 +77,67 @@ def sif(year=2006):
     #  sif$sif[sif$noindiv == 900872201] <- new_sif
     #  rm(old_sif,new_sif)
     #}
-
+    #
+    #
+    ## for (index in 60:80){
+    ##     print(index)  
+    ##     print(table(substr(sif$sif,index,index)))
+    ## }
+    #
+    #
+    #
+    #sif <- within(sif,{
+    ##  rbg = rbg*((tsrvbg =='+')-(tsrvbg =='-'))
     print sif["rbg"].describe()
     sif["rbg"] = sif["rbg"]*( (sif["tsrvbg"]=='+')-(sif["tsrvbg"] =='-'))
     print sif["rbg"].describe()
     
+    #  stamar <- substr(sif,5,5)
+    
     sif["stamar"] = sif["sif"].str[4:5]
+    
+    # Converting marital status
+    
+    #  statmarit[stamar =="M"] <- 1
+    #  statmarit[stamar =="C"] <- 2
+    #  statmarit[stamar =="D"] <- 3
+    #  statmarit[stamar =="V"] <- 4
+    #  statmarit[stamar =="O"] <- 5
     
     statmarit_dict = {"M": 1, "C" : 2, "D" : 3, "V" : 4, "O": 5}
     for key , val in statmarit_dict.iteritems():
         sif["statmarit"][ sif.stamar == key] = val 
         
+    #  birthvous <- as.numeric(substr(sif,6,9))
+    #  birthconj <- as.numeric(substr(sif,11,14))
+    #
+    
+
     sif["birthvous"] = sif["sif"].str[5:9]
     sif["birthconj"] = sif["sif"].str[10:14]
+    
+    #  caseE <- as.numeric(substr(sif,16,16)=='E')
+    #  caseF <- as.numeric(substr(sif,17,17)=='F')
+    #  caseG <- as.numeric(substr(sif,18,18)=='G')
+    #  caseK <- as.numeric(substr(sif,19,19)=='K')
     
     sif["caseE"] = sif["sif"].str[15:16] == "E"
     sif["caseF"] = sif["sif"].str[16:17] == "F"
     sif["caseG"] = sif["sif"].str[17:18] == "G"
     sif["caseK"] = sif["sif"].str[18:19] == "K"
     
+    #  d = 0
     d = 0
+    #
+    #  if (year %in% c(2006,2007)){   
+    #    caseL <- as.numeric(substr(sif,20,20)=='L')
+    #    caseP <- as.numeric(substr(sif,21,21)=='P')
+    #    caseS <- as.numeric(substr(sif,22,22)=='S')
+    #    caseW <- as.numeric(substr(sif,23,23)=='W')
+    #    caseN <- as.numeric(substr(sif,24,24)=='N')
+    #    caseH <- as.numeric(substr(sif,25,28))
+    #    caseT <- as.numeric(substr(sif,29,29) == 'T')
+    #  }
     
     if year in [2006,2007]:
         sif["caseL"] = sif["sif"].str[19:20] == "L"
@@ -91,7 +147,17 @@ def sif(year=2006):
         sif["caseN"] = sif["sif"].str[23:24] == "N"
         sif["caseH"] = sif["sif"].str[24:28]
         sif["caseT"] = sif["sif"].str[28:29] == "T"
-
+    #  
+    #  if (year == 2008){
+    #    d = - 1 # fin de la case L
+    #    caseP <- as.numeric(substr(sif,21+d,21+d)=='P')
+    #    caseS <- as.numeric(substr(sif,22+d,22+d)=='S')
+    #    caseW <- as.numeric(substr(sif,23+d,23+d)=='W')
+    #    caseN <- as.numeric(substr(sif,24+d,24+d)=='N')
+    #    caseH <- as.numeric(substr(sif,25+d,28+d))
+    #    caseT <- as.numeric(substr(sif,29+d,29+d)=='T')
+    #  }
+    #  
     if year in [2008]:
         d = - 1 # fin de la case L
         sif["caseP"] = sif["sif"].str[20+d:21+d] == "P"
@@ -100,6 +166,19 @@ def sif(year=2006):
         sif["caseN"] = sif["sif"].str[23+d:24+d] == "N"
         sif["caseH"] = sif["sif"].str[24+d:28+d]
         sif["caseT"] = sif["sif"].str[28+d:29+d] == "T"
+    
+    #  if (year == 2009){
+    #    # retour de la case L par rapport à 2008 (donc on retrouve 2006)    
+    #    caseL <- as.numeric(substr(sif,20,20)=='L')
+    #    caseP <- as.numeric(substr(sif,21,21)=='P')
+    #    caseS <- as.numeric(substr(sif,22,22)=='S')
+    #    caseW <- as.numeric(substr(sif,23,23)=='W')
+    #    caseN <- as.numeric(substr(sif,24,24)=='N')
+    #    # caseH en moins par rapport à 2008 (mais case en L en plus)
+    #    # donc décalage par rapport à 2006
+    #    d = -4
+    #    caseT <- as.numeric(substr(sif,29+d,29+d)=='T')
+    #  }
     
     if year in [2009]:
         sif["caseL"] = sif["sif"].str[19:20] == "L"
@@ -112,28 +191,42 @@ def sif(year=2006):
         d = -4
         sif["caseT"] = sif["sif"].str[28+d:29+d] == "T"
     
+    
+    #
+    #  caseX <- as.numeric(substr(sif,34+d,34+d)=='X')
+    #  dateX <- as.Date(substr(sif,35+d,42+d),'%d%m%Y')
+    #  caseY <- as.numeric(substr(sif,43+d,43+d)== 'Y')
+    #  dateY <- as.Date(substr(sif,44+d,51+d),'%d%m%Y')
+    #  caseZ <- as.numeric(substr(sif,52+d,53+d)== 'Z')
+    #  dateZ <- as.Date(substr(sif,53+d,60+d),'%d%m%Y')  # ERROR 54+d
+    #  causeXYZ <- substr(sif,61+d,61+d)
+    #
+    
     sif["caseX"] = sif["sif"].str[33+d:34+d] == "X"
     sif["dateX"] = sif["sif"].str[34+d:42+d]
-    sif["dateX2"] = sif["dateX"]
-    sif['dateX2'][sif['dateX'] != "00000000"] = sif['dateX'].str[4:8] + "-" + sif['dateX'].str[2:4] + "-" + sif['dateX'].str[0:2]
-    sif['dateX2'] = sif['dateX2'].astype(numpy.datetime64)
     sif["caseY"] = sif["sif"].str[42+d:43+d] == "Y"
-    sif["dateY"] = sif["sif"].str[43+d:51+d]
-    sif["dateY2"] = sif["dateY"]
-    sif['dateY2'][sif['dateY'] != "00000000"] = sif['dateY'].str[4:8] + "-" + sif['dateY'].str[2:4] + "-" + sif['dateY'].str[0:2]
-    sif['dateY2'] = sif['dateY2'].astype(numpy.datetime64)
+    sif["dateY"] = sif["sif"].str[43+d:51+d] 
     sif["caseZ"] = sif["sif"].str[51+d:53+d] == "Z"
-    sif["dateZ"] = sif["sif"].str[52+d:60+d]
-    sif["dateZ2"] = sif["dateZ"]
-    sif['dateZ2'][sif['dateZ'] != "00000000"] = sif['dateZ'].str[4:8] + "-" + sif['dateZ'].str[2:4] + "-" + sif['dateZ'].str[0:2]
-    sif['dateZ2'] = sif['dateZ2'].astype(numpy.datetime64)
+    sif["dateZ"] = sif["sif"].str[52+d:60+d] 
     sif["causeXYZ"] = sif["sif"].str[60+d:61+d]
     
-    # TODO: convert dateXYZ to appropriate date in pandas : DONE ?
-    # print sif["dateX"].unique()
+    # TODO: convert dateXYZ to appropriate date in pandas
+    # print sif["dateY"].unique()
     
-    sif["nbptr"] =  sif["nbptr"].astype(numpy.float32) / 100.0 # Il y avait une erreur python faisait une division euclidienne
+    
+    #  nbptr <- nbptr/100
+    #  rfr_n_2 <- mnrvka
+    
+    sif["nbptr"] =  sif["nbptr"]/100
     sif["rfr_n_2"] = sif["mnrvka"]
+    
+    #  nbF <- as.numeric(substr(sif,65+d,66+d))
+    #  nbG <- as.numeric(substr(sif,68+d,69+d))
+    #  nbR <- as.numeric(substr(sif,71+d,72+d))
+    #  nbJ <- as.numeric(substr(sif,74+d,75+d))
+    #  nbN <- as.numeric(substr(sif,77+d,78+d))
+    #  nbH <- as.numeric(substr(sif,80+d,81+d))
+    #  nbI <- as.numeric(substr(sif,83+d,84+d))
     
     sif["nbF"] = sif["sif"].str[64+d:66+d]
     sif["nbG"] = sif["sif"].str[67+d:69+d]
@@ -143,15 +236,32 @@ def sif(year=2006):
     sif["nbH"] = sif["sif"].str[79+d:81+d]
     sif["nbI"] = sif["sif"].str[82+d:84+d]
     
+    #  if (year != 2009){
+    #  nbP <- as.numeric(substr(sif,86+d,87+d))
+    #  }
+    #})
+    
     if (year != 2009):
         sif["nbP"] = sif["sif"].str[85+d:87+d]
     
+    #sif$sif <- NULL
+    #sif$stamar <- NULL
+    #
+    
     del sif["sif"], sif["stamar"]
     
+    
+    #table(sif$statmarit)
     print sif["statmarit"].value_counts()
-
+    
+    #print(length(table(sif$noindiv)))
     print "Number of individuals :", len(sif["noindiv"])
     print "Number of distinct individuals :", len(sif["noindiv"].value_counts())
+    
+    #dup <- duplicated(sif$noindiv)
+    #table(dup)
+    #sif <- sif[!dup,]
+    #print(length(table(sif$noindiv)))
     
     sif_drop_duplicated = sif.drop_duplicates("noindiv")
     assert len(sif["noindiv"].value_counts()) == len(sif_drop_duplicated["noindiv"]), Exception("Number of distinct individuals after removing duplicates is not correct")
@@ -160,23 +270,48 @@ def sif(year=2006):
     save_temp(sif, name='sif', year=year)
     del sif
     gc.collect()
+    #saveTmp(sif, file = 'sif.Rdata')
+    #rm(sif)
+    #gc()
+    ##################################################################
+
 
 def foyer_all(year=2006):
 
+    ## On ajoute les cases de la déclaration
+    #foyer_all <- LoadIn(erfFoyFil)
     data = DataCollection(year=year)
     foyer_all = data.get_values(table="foyer" )
-
+    
+    ## on ne garde que les cases de la déclaration ('fxzz')
+    #vars <- names(foyer_all)
+    #vars <- c("noindiv", vars[grep("^f[0-9]", vars)])
+    #
+    
     vars = foyer_all.columns
     regex = re.compile("^f[0-9]")
     vars = [x for x in vars if regex.match(x)]
+    
+    #foyer <- foyer_all[vars]
+    #rm(foyer_all)
+    #gc()
+    #noindiv <- list(foyer$noindiv)
+    #
 
     foyer = foyer_all[vars + ["noindiv"]]
 
     del foyer_all
     gc.collect()
     
-    # On aggrège les déclarations dans le cas où un individu a fait plusieurs déclarations
+    #
+    ## On aggrège les déclarations dans le cas où un individu a fait plusieurs déclarations
+    #foyer <- aggregate(foyer, by = noindiv, FUN = 'sum')
+    #print foyer.describe()["f1aj"].to_string()
     foyer = foyer.groupby("noindiv", as_index=False).aggregate(numpy.sum)
+    #
+    #print foyer.describe()["f1aj"].to_string()
+    #print foyer.describe()["noindiv"].to_string()
+    #
 
     print_id(foyer)
 
@@ -184,7 +319,11 @@ def foyer_all(year=2006):
     #foyer$noindiv <- NULL
     #foyer <- rename(foyer, c(Group.1 = 'noindiv'))
     ## problème avec les dummies ()
-
+    #
+    #saveTmp(foyer, file= "foyer_aggr.Rdata")
+    #
+    #
+    #############################################################################
     ## On récupère les variables individualisables
     #loadTmp("foyer_aggr.Rdata")
     #
@@ -292,6 +431,17 @@ def foyer_all(year=2006):
                'nbnc_pvce': ['f5qj', 'f5rj', 'f5sj'],
                'demenage' : ['f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er']}  # (déménagement) uniquement en 2006
    
+
+#
+#varlist = list(list('sali', c('f1aj', 'f1bj', 'f1cj', 'f1dj', 'f1ej')),
+#                list('choi', c('f1ap', 'f1bp', 'f1cp', 'f1dp', 'f1ep')),
+#               list('fra', c('f1ak', 'f1bk', 'f1ck', 'f1dk', 'f1ek')),
+# ......
+#               list('mbnc_pvce', c('f5hr', 'f5ir', 'f5jr')),
+#               list('abnc_pvce', c('f5qd', 'f5rd', 'f5sd')),
+#               list('nbnc_pvce', c('f5qj', 'f5rj', 'f5sj')),
+#               list('demenage' , c('f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er'))) # (déménagement) uniquement en 2006
+#
     vars_sets = [ set(var_list) for var_list in var_dict.values() ]
     eligible_vars = (set().union(*vars_sets)).intersection( set(list(foyer.columns)))
 
@@ -325,7 +475,6 @@ def foyer_all(year=2006):
         selection = selection.stack()
         selection.name = individual_var
         selection = selection.reset_index() # A Series cannot see its index resetted to produce a DataFrame
-        " Clean the selection"
         selection = selection.set_index(["quifoy", "noindiv"])
         selection = selection[selection[individual_var] !=0]
 #        print len(selection)
@@ -339,8 +488,30 @@ def foyer_all(year=2006):
     foy_ind.reset_index(inplace=True)
     
     print "foy_ind"
-
     print foy_ind.describe().to_string()
+
+    
+#not_first <- FALSE
+#allvars = c()
+#for (v in varlist){ 
+#  vars = intersect(v[[2]],names(foyer)) # to deal with variabes that are not present
+#  if (length(vars) > 0) {
+#    allvars <-  c(allvars, vars) 
+#    qui <- c('vous', 'conj', 'pac1', 'pac2', 'pac3')
+#    n <- length(vars)
+#    temp <- individualisable(foyer, v[[1]], vars, qui[1:n])
+#    if (not_first) {
+#      print('merge')
+#      foy_ind <- merge(temp, foy_ind, by = c('noindiv', 'quifoy'), all = TRUE)
+#      names(foy_ind)
+#    }
+#    else   {
+#      print('init')
+#      foy_ind <- temp
+#      not_first <- TRUE
+#    }
+#  }
+#}    
 
     ind_vars_to_remove = Series(list(eligible_vars))
     save_temp(ind_vars_to_remove, name='ind_vars_to_remove', year=year)
@@ -353,13 +524,24 @@ def foyer_all(year=2006):
     foy_ind['quifoy'][foy_ind['quifoy']=='pac2'] = 3
     foy_ind['quifoy'][foy_ind['quifoy']=='pac3'] = 4
     
-    assert foy_ind['quifoy'].isin(range(5)).all()
+    assert foy_ind['quifoy'].isin(range(5)).all(), 'présence de valuers aberrantes dans quifoy'
+    print foy_ind['quifoy'].value_counts()
     
+    return
     print 'saving foy_ind'
     print_id(foy_ind)    
     save_temp(foy_ind, name="foy_ind", year = year)
     show_temp()
     return
+    
+#names(foy_ind)
+#rm(temp,foyer)
+#
+#saveTmp(allvars, file = "allvars.Rdata")
+#foy_ind <- rename(foy_ind, c(noindiv = "idfoy"))
+#saveTmp(foy_ind, file= "foyer_individualise.Rdata")
+#rm(foy_ind)
+
 
 if __name__ == '__main__':
     year = 2006

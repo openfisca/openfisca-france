@@ -97,7 +97,7 @@ def create_indivim(year=2006):
     indivim['actrec'] = where(indivim['acteu'] == 1, 3, indivim['actrec'])
     indivim['actrec'] = where(indivim['acteu'] == 3, 8, indivim['actrec'])
     
-    filter1 = and_(indivim['acteu'] == 1 , or_(indivim['stc'] == 1 , indivim['stc'] == 3))
+    filter1 = and_(indivim['acteu'] == 1, or_(indivim['stc'] == 1, indivim['stc'] == 3))
     indivim['actrec'] = where(filter1 is True, 1, indivim['actrec'])
     
     filter2 = and_(indivim['acteu'] == 1, or_(and_(indivim['stc'] == 2, indivim['contra'] == 1), 
