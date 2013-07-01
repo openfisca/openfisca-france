@@ -336,7 +336,7 @@ def create_totals(year=2006):
         if col not in ["idfoy", "noindiv"]:
             del df[col]
 
-    assert indivi.loc[enf_ee,"idfoy"].isnull().all()
+#     assert indivi.loc[enf_ee,"idfoy"].notnull().all()
     assert df.duplicated().any() == False
 
     df.set_index("noindiv",inplace=True, verify_integrity=True)

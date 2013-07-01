@@ -520,11 +520,13 @@ def check_consistency(table_simu, dataframe, corrige = True):
     
 
     is_ok = True
-    message = ""
+    message = "\n"
     missing_variables = []
     unconsistent_variables = []
     present_variables = []
     count = 0
+    count_of_enum = 0
+    count_of_failing_enum = 0
     
     from src.countries.france.data.erf.build_survey.utilitaries import control
     print 'Controlling simulation input_table'
@@ -539,11 +541,11 @@ def check_consistency(table_simu, dataframe, corrige = True):
             simu_serie = table_simu.table[var]
             present_variables.append(var)
             # First checks for all if there is any missing data
-            if serie.isnull().any() or simu_serie.isnull.any():
+            if serie.isnull().any() or simu_serie.isnull().any():
                 is_ok = False
-                if serie.isnull.any():
+                if serie.isnull().any():
                     message += "Some missing values in dataframe column %s, \n" %var
-                if simu_serie.isnull.any():
+                if simu_serie.isnull().any():
                     message += 'Some missing values in input_table column %s \n' %var
                 cnt = len(set(simu_serie.isnull())) - len(set(serie.isnull()))
                 if 0 < cnt:
@@ -552,7 +554,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 if corrige:
                     try:
                         message += "Filling NA's with default values for %s... \n" %var
-                        simu_serie.fillna(varcol._default)
+                        serie[serie.isnull()] = varcol._default
+                        message += "Done \n"
                     except:
                         message += " Cannot fill NA for column %s, maybe _.default doesn't exist \n" %var
 
@@ -563,6 +566,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
             # verify type, force type
             
             if isinstance(varcol, EnumCol) or isinstance(varcol, EnumPresta):
+                count_of_enum += 1
                 try:
                     if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):  
                         message +=  "Some variables out of range for EnumCol variable %s : \n" %var
@@ -572,6 +576,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                         is_ok = False
                         
                 except:
+                    count_of_failing_enum += 1
                     is_ok = False
                     message += "Error : no _num attribute for EnumCol.enum %s \n" %var
                     #print varcol.enum
@@ -597,6 +602,11 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     is_ok = False
                     #print serie[serie.notnull()]
                     message += "Some values in column %s are not integer as wanted: %s \n" %(var, serie.dtype)
+                    stash = []
+                    for v in serie:
+                        if not isinstance(v, int):
+                            stash.append(v)
+                    message += str(list(set(stash))) + " \n"
                     if corrige:
                         message += "Warning, forcing type integer for %s..." %var
                         try:
@@ -653,7 +663,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 if serie.dtype not in ('float','float32','float64','float16'):
                     is_ok = False
                     message +=  "Some values in column %s are not float as wanted \n" %var
-                    stash = list(set(serie.value) - set(range(serie.min(), serie.max()+1)))
+                    stash = list(set(serie.unique()) - set(range(serie.min(), serie.max()+1)))
                     message += str(stash) + "\n"
                     message += "Total frequency for non-integers for %s is %s \n" %(var, str(len(stash)))
                       
@@ -680,6 +690,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
     if len(missing_variables) > 0:
         message += "Some variables were not present in the datatable or caused an error:\n" + str(sorted(missing_variables)) + "\n"
         message += "Variables present in both tables :\n" + str(sorted(present_variables)) + "\n"
+        message += "Count of enum is %s \n" %str(count_of_enum)
+        message += "Count of failing enum is %s" %str(count_of_failing_enum)
     else:
         message += "All variables were present in the datatable and were handled without error \n"
     

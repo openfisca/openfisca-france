@@ -76,6 +76,14 @@ def sif(year=2006):
     #  sif$sif[sif$noindiv == 900872201] <- new_sif
     #  rm(old_sif,new_sif)
     #}
+    if year == 2009:
+        old_sif = sif['sif'][sif['noindiv'] == 901803201]
+        new_sif = old_sif.str[0:59] + old_sif.str[60:] + "0"
+        sif['sif'][sif['noindiv'] == 901803201] = new_sif
+        old_sif = sif['sif'][sif['noindiv'] == 900872201]
+        new_sif = old_sif.str[0:58] + " " + old_sif.str[58:]
+        sif['sif'][sif['noindiv'] == 900872201] = new_sif
+        del old_sif, new_sif
     #
     #
     ## for (index in 60:80){
@@ -543,6 +551,6 @@ def foyer_all(year=2006):
 
 
 if __name__ == '__main__':
-    year = 2006
+    year = 2009
     sif(year=year)
-    foyer_all(year=year)
+    #foyer_all(year=year)

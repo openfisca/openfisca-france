@@ -67,21 +67,21 @@ class DataCollection(object):
     def initialize_erf(self):
         """
         """
+
         year = self.year
         erf = SurveyDescription()
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
         erf_tables_to_process = {
-                                 "erf_menage" : "menage" + yr,
-                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                                 "foyer" : "foyer" + yr,
-                                 "erf_indivi" : "indivi" + yr,
-                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
-                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
-                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
-                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
-                                 }
-        
+#                                 "erf_menage" : "menage" + yr,
+#                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
+                                "foyer" : "foyer" + yr,
+#                                  "erf_indivi" : "indivi" + yr,
+#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
+#                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
+#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
+#                                   "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
+                                }      
         RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
         
         for name, RData_filename in erf_tables_to_process.iteritems():
@@ -97,15 +97,16 @@ class DataCollection(object):
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
                        'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub", "dip11"]
      
-        erf_variables_to_fetch = {"erf_indivi": variables,
-                                  "eec_indivi": variables_eec,
-                                  "eec_cmp_1" : variables_eec,
-                                  "eec_cmp_2" : variables_eec,
-                                  "eec_cmp_3" : variables_eec,
-                                    }
+        erf_variables_to_fetch = {
+#                                     "erf_indivi": variables,
+#                                   "eec_indivi": variables_eec,
+#                                   "eec_cmp_1" : variables_eec,
+#                                   "eec_cmp_2" : variables_eec,
+#                                 "eec_cmp_3" : variables_eec,
+                                     }
        
-        for name, vars in erf_variables_to_fetch.iteritems():
-            erf.insert_table(name=name,variables=vars)
+        for name, variables in erf_variables_to_fetch.iteritems():
+            erf.insert_table(name=name, variables=variables)
         
         self.surveys["erf"] = erf
         
@@ -176,9 +177,8 @@ class DataCollection(object):
         store = HDFStore(self.hdf5_filename)
         print store
         
-        
         for survey_name, description in self.surveys.iteritems():
-            for destination_table_name, tables in description.tables.iteritems():
+            for destination_table_name, tables in description.tables.iteritems():  
                 data_dir = tables["RData_dir"]
                 R_table_name = tables["RData_filename"]
                 try:
@@ -407,19 +407,26 @@ def test2():
     
 def test3():
     year=2006
+    
+    #===========================================================================
+    # from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+    # df=load_temp(name = 'menagem', year = year)
+    #===========================================================================
+    
     erf = DataCollection(year=year)
-    df = erf.get_of_values(table = "erf_menage")
+    df = erf.get_of_values(table = "eec_menage")
+    
     from src.lib.simulation import SurveySimulation
     from src.countries.france.utils import check_consistency
     simulation = SurveySimulation()
     simulation.set_config(year=year)
     simulation.set_param()
     simulation.compute()
-    print check_consistency(simulation.input_table, df)
+    check_consistency(simulation.input_table, df)
     
     
 def test_init():
-    for year in range(2008,2010):
+    for year in range(2009,2010):
         data = DataCollection(year=year)
         data.initialize()
         data.set_config()
@@ -432,7 +439,5 @@ def test_init():
 #    print reader.data()
     
 if __name__ == '__main__':
-    test3()
-
-
-    #test_init()
+    test_init()
+    #test3()

@@ -54,7 +54,6 @@ def invalide(year = 2006):
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
     
     assert invalides["inv"].notnull().all()
-    control(invalides, verbose=True, debug=True)
 
     print invalides["inv"].sum(), " invalides déclarants"
 
@@ -114,7 +113,7 @@ def invalide(year = 2006):
 # # table(invalides$alt==1,useNA="ifany")
 # # rm(foy_inv_pac,pacIndiv)
 # # 
-
+    
     print 'enfants invalides et garde alternée'
     
     pacIndiv = load_temp(name='pacIndiv', year=year)
@@ -138,6 +137,7 @@ def invalide(year = 2006):
     invalides['alt'] = 0
     foy_inv_pac['alt'][foy_inv_pac.alt.isnull()] = 0
     invalides = invalides.merge(foy_inv_pac, on=["noindiv","inv","alt"])
+
     invalides = invalides.drop_duplicates(['noindiv', 'inv', 'alt'], take_last=True)
     
     print invalides[invalides['inv']==1].describe()

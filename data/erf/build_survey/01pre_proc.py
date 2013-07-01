@@ -24,6 +24,7 @@ import gc
 from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
+from numpy import NaN
 
 from src.countries.france.data.erf.build_survey import save_temp, load_temp
 
@@ -119,8 +120,9 @@ def create_indivim(year=2006):
     #  eecind$tu99 <- as.numeric(eecind$tu99)
     #}
     if year == 2009:
-        erfind['tu99'] = None
-        eecind['tu99'] = float(eecind['tu99'])
+        #erfind['tu99'] = None
+        #eecind['tu99'] = float(eecind['tu99'])
+        erfind['tu99'] = NaN
     
     #indivim <- merge(eecind,erfind, by = c("noindiv","ident","noi"))
     indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="outer")
