@@ -9,18 +9,19 @@
 
 import os
 import gc
+from src import SRC_PATH
+from pandas import HDFStore
+from src.countries.france.utils import check_consistency
 #    Uses rpy2.
 #    On MS Windows, The environment variable R_HOME and R_USER should be set
 
-try:
+try:   
     import pandas.rpy.common as com 
     import rpy2.rpy_classic as rpy
     rpy.set_default_mode(rpy.NO_CONVERSION)
 except:
     pass
 from src.countries.france.data.sources.config import DATA_DIR
-from src import SRC_PATH
-from pandas import HDFStore
 
 ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH,'countries','france','data', 'erf')
 
@@ -378,34 +379,31 @@ class DataCollection(object):
         return df
 
 def test():
-    erf = DataCollection()
-    # erf.set_config(year=2006)
-    df = erf.get_of_values(["wprm", "af"], "erf_menage")
-    print df.head(10)
-    df = erf.get_of_values( ["typmen15", "nbinde"], "eec_menage")
-    print df.head(10)
+    '''
+    Validate check_consistency
+    ''' 
+    #===========================================================================
+    # from pandas import DataFrame
+    #res = DataFrame({af_col.name: simulation.output_table.get_value(af_col.name, af_col.entity)})
+    # print res
+    #===========================================================================
     
-    
-def test2():
+    store = HDFStore(os.path.join(os.path.dirname(os.path.join(SRC_PATH,'countries','france','data','erf')),'fichiertest.h5'))
+    datatable = store.get('test12')
+    test_simu = store.get('test_simu')
+    print check_consistency(test_simu, datatable)
+        
+def test3():
     year=2006
-    erf = DataCollection()
-    df = erf.get_of_values(["wprm", "af"], "erf_menage")
-    print df.head(10)
-    df = erf.get_of_values( ["typmen15", "nbinde"], "eec_menage")
-    print df.head(10)
-
+    erf = DataCollection(year=year)
+    df = erf.get_of_values(table = "eec_menage")
     from src.lib.simulation import SurveySimulation
     simulation = SurveySimulation()
     simulation.set_config(year=year)
     simulation.set_param()
     simulation.compute()
-    af_col = simulation.get_col("af")
-    from pandas import DataFrame
-    res = DataFrame({af_col.name: simulation.output_table.get_value(af_col.name, af_col.entity)})
-    
-    print res
-    
-    
+    print check_consistency(simulation.input_table, df)
+        
 def test_init():
     for year in range(2006,2007):
         data = DataCollection(year=year)
@@ -422,7 +420,13 @@ def test_init():
 #    print reader.data()
     
 if __name__ == '__main__':
-    test2()
+    test3()
     # build_foyer()
-
+#===============================================================================
+# <<<<<<< HEAD
+#     #test_reading_stata_tables()
+# =======
+# 
+# >>>>>>> a07e793972a5b65256994cb8b1705aa969907df5
+#===============================================================================
     #test_init()

@@ -30,7 +30,7 @@ def invalide(year = 2006):
 
 # # # Invalides
 # # #inv = caseP (vous), caseF (conj) ou case G, caseI, ou caseR (pac)
-# # 
+
 # # loadTmp("final.Rdata")
 # # invalides <- final[,c("noindiv","idmen","caseP","caseF","idfoy","quifoy")]
 # # invalides <- within(invalides,{
@@ -56,6 +56,7 @@ def invalide(year = 2006):
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
     
     print_id(invalides)
+
 
     print invalides["inv"].sum(), " invalides déclarants"
 
@@ -111,6 +112,7 @@ def invalide(year = 2006):
 # # invalides$alt <- 0
 # # foy_inv_pac[is.na(foy_inv_pac$alt),"alt"] <- 0
 # # invalides[!(invalides$quifoy %in% c("vous","conj")),c("noindiv","inv","alt")] <- foy_inv_pac
+
     print '    1.3 : enfants invalides et garde alternée'
     
     pacIndiv = load_temp(name='pacIndiv', year=year)

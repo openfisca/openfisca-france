@@ -380,5 +380,4 @@ def final(year=2006):
     print 'fin du traitement des données'
     
 if __name__ == '__main__':
-
     final()

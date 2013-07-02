@@ -200,13 +200,14 @@ def create_fip(year = 2006): # message('03_fip')
 
     tmp_pac1 = pac.loc[ :, ['noindiv', 'key1']]
     tmp_pac2 = pac.loc[ :, ['noindiv', 'key2']]
-    tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac', 'naia', 'declaration']]
+    tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac']]
 
     
     pac_ind1 = tmp_pac1.merge(tmp_indivifip, left_on=['key1'], right_on =['key'], how='inner')
     print 'longueur pacInd1' , len(pac_ind1)
     pac_ind2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='inner')
     print 'longueur pacInd2', len(pac_ind2)
+
     print "pacInd1&2 créés"
     
 # table(duplicated(pacInd1))
@@ -226,19 +227,22 @@ def create_fip(year = 2006): # message('03_fip')
     print pac_ind1.columns
     print pac_ind2.columns
 
+    if pac_ind1.index == []:
+        if pac_ind2.index == []:
+                print "Warning : no link between pac and noindiv for both pacInd1&2"
+        else:
+            print "Warning : pacInd1 is an empty data frame"
+            pacInd = pac_ind2
+    elif pac_ind2.index == []:
+        print "Warning : pacInd2 is an empty data frame"
+        pacInd = pac_ind1
+    else:
+        pacInd = concat([pac_ind2, pac_ind1]) 
+    print len(pac_ind1), len(pac_ind2), len(pacInd)
+    print pac_ind2.type_pac.isnull().sum()
 
-#     if pac_ind1.index == []:
-#         if pac_ind2.index == []:
-#                 print "Warning : no link between pac and noindiv for both pacInd1&2"
-#         else:
-#             print "Warning : pacInd1 is an empty data frame"
-#             pacInd = pac_ind2
-#     elif pac_ind2.index == []:
-#         print "Warning : pacInd2 is an empty data frame"
-#         pacInd = pac_ind1
-#     else:
-    pacInd = concat([pac_ind2, pac_ind1]) 
-
+    print pacInd.type_pac.value_counts()
+    
     print '    2.2 : pacInd created'
 
 # table(duplicated(pacInd[,c("noindiv","typ")]))
