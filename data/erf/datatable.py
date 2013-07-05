@@ -9,18 +9,19 @@
 
 import os
 import gc
+from src import SRC_PATH
+from pandas import HDFStore
+from src.countries.france.utils import check_consistency
 #    Uses rpy2.
 #    On MS Windows, The environment variable R_HOME and R_USER should be set
 
-try:
+try:   
     import pandas.rpy.common as com 
     import rpy2.rpy_classic as rpy
     rpy.set_default_mode(rpy.NO_CONVERSION)
 except:
     pass
 from src.countries.france.data.sources.config import DATA_DIR
-from src import SRC_PATH
-from pandas import HDFStore
 
 ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH,'countries','france','data', 'erf')
 
@@ -62,7 +63,7 @@ class DataCollection(object):
         Initialize survey data 
         """
         self.initialize_erf()
-#        self.initialize_logement()
+#         self.initialize_logement()
         
     def initialize_erf(self):
         """
@@ -73,9 +74,9 @@ class DataCollection(object):
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
         erf_tables_to_process = {
-#                                 "erf_menage" : "menage" + yr,
+                                "erf_menage" : "menage" + yr,
 #                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                                "foyer" : "foyer" + yr,
+#                                 "foyer" : "foyer" + yr,
 #                                  "erf_indivi" : "indivi" + yr,
 #                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
 #                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
@@ -175,8 +176,9 @@ class DataCollection(object):
             raise Exception("year should be defined")
         
         store = HDFStore(self.hdf5_filename)
+        print type(store)
         print store
-        
+        print "after store"
         for survey_name, description in self.surveys.iteritems():
             for destination_table_name, tables in description.tables.iteritems():  
                 data_dir = tables["RData_dir"]
@@ -332,10 +334,14 @@ class DataCollection(object):
         df : DataFrame, default None 
              A DataFrame containing the variables
         """
-
+        print self.hdf5_filename
+        print self.year
         store = HDFStore(self.hdf5_filename)
+        print store
         df = store[str(self.year)+"/"+table]
+        print store
         # If no variables read the whole table
+        print variables
         if variables is None:
             return df
             
@@ -352,7 +358,6 @@ class DataCollection(object):
 
         if renamed_variables:
             variables = list( set(variables).difference(to_be_renamed_variables)) + renamed_variables 
-
 
 #        if table is None:
 #            for test_table in self.tables.keys:
@@ -375,58 +380,38 @@ class DataCollection(object):
         if to_be_renamed_variables:
             for var in to_be_renamed_variables:
                 df.rename(columns = {var: erf2of[var]}, inplace=True)
+        print df
         return df
 
 def test():
-    erf = DataCollection()
-    # erf.set_config(year=2006)
-    df = erf.get_of_values(["wprm", "af"], "erf_menage")
-    print df.head(10)
-    df = erf.get_of_values( ["typmen15", "nbinde"], "eec_menage")
-    print df.head(10)
+    '''
+    Validate check_consistency
+    ''' 
+    #===========================================================================
+    # from pandas import DataFrame
+    #res = DataFrame({af_col.name: simulation.output_table.get_value(af_col.name, af_col.entity)})
+    # print res
+    #===========================================================================
     
-    
-def test2():
-    year=2006
-    erf = DataCollection()
-    df = erf.get_of_values(["wprm", "af"], "erf_menage")
-    print df.head(10)
-    df = erf.get_of_values( ["typmen15", "nbinde"], "eec_menage")
-    print df.head(10)
-
-    from src.lib.simulation import SurveySimulation
-    simulation = SurveySimulation()
-    simulation.set_config(year=year)
-    simulation.set_param()
-    simulation.compute()
-    af_col = simulation.get_col("af")
-    from pandas import DataFrame
-    res = DataFrame({af_col.name: simulation.output_table.get_value(af_col.name, af_col.entity)})
-    
-    print res
-    
+    store = HDFStore(os.path.join(os.path.dirname(os.path.join(SRC_PATH,'countries','france','data','erf')),'fichiertest.h5'))
+    datatable = store.get('test12')
+    test_simu = store.get('test_simu')
+    print check_consistency(test_simu, datatable)
+        
 def test3():
     year=2006
-    
-    #===========================================================================
-    # from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-    # df=load_temp(name = 'menagem', year = year)
-    #===========================================================================
-    
     erf = DataCollection(year=year)
     df = erf.get_of_values(table = "eec_menage")
-    
+    print df
     from src.lib.simulation import SurveySimulation
-    from src.countries.france.utils import check_consistency
     simulation = SurveySimulation()
     simulation.set_config(year=year)
     simulation.set_param()
     simulation.compute()
     check_consistency(simulation.input_table, df)
-    
-    
+        
 def test_init():
-    for year in range(2009,2010):
+    for year in range(2006,2007):
         data = DataCollection(year=year)
         data.initialize()
         data.set_config()
@@ -439,5 +424,5 @@ def test_init():
 #    print reader.data()
     
 if __name__ == '__main__':
+#    test3()
     test_init()
-    #test3()

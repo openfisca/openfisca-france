@@ -12,6 +12,7 @@ from src.countries.france.data.erf.build_survey.utilitaries import control
 def run_all(year=2006):
     
     pre_proc = __import__('01pre_proc')
+    imput_loyer = __import__('02_imput_loyer')
     fip = __import__('03_fip')
     famille = __import__('04_famille')
     foyer = __import__('05_foyer')
@@ -21,14 +22,15 @@ def run_all(year=2006):
     
     pre_proc.create_indivim(year=year)
     pre_proc.create_enfnn(year=year)
+    imput_loyer.create_imput_loyer(year=year)
     fip.create_fip(year=year)
     famille.famille(year=year)
     foyer.sif(year=year)
     foyer.foyer_all(year=year)
     rebuild.create_totals(year=year)
     rebuild.create_final(year=year)
-#     invalides.invalide(year=year)
+#    invalides.invalide(year=year)
     final.final(year=year)
 
 if __name__ == '__main__':
-    run_all(year = 2008)
+    run_all(year = 2006)

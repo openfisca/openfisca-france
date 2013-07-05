@@ -36,18 +36,6 @@ def subset_base(base,famille):
 def famille(year=2006):
 ### On suit la méthode décrite dans le Guide ERF_2002_rétropolée page 135
 #
-#if (year=="2006") {
-#  smic = 1254
-#  } else if (year=="2007") {
-#    smic = 1280    
-#  } else if (year=="2008") {
-#     smic = 1308    
-#  } else if (year=="2009") {
-#    smic = 1337
-#  } else {
-#    message("smic non défini")
-#  }
-#
     
     if year == 2006: 
         smic = 1254
@@ -60,9 +48,6 @@ def famille(year=2006):
     else: 
         print("smic non défini")
     
-    #indVar = c('noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
-    #            'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec')
-    #
     
     individual_vars = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','ztsai','sexe',
@@ -75,11 +60,6 @@ def famille(year=2006):
     
 #    indivi = erf_indivi.merge(eec_indivi)
 #
-#indivi <- within(indivi,{
-#          year <- as.numeric(year)
-#          noidec <- as.numeric(substr(declar1,1,2))
-#          agepf <- ifelse(naim < 7, year-naia ,year-naia-1)
-#          })
     print 'Etape 1 : préparation de base'
     print '    1.1 : récupération de indivi'
     indivi = load_temp(name="indivim", year=year)
@@ -88,34 +68,18 @@ def famille(year=2006):
     indivi["noidec"] =   indivi["declar1"].apply(lambda x: str(x)[0:2])
     indivi["agepf"] = where(indivi['naim'] < 7, indivi['year'] - indivi['naia'] ,
                             indivi['year'] - indivi['naia'] - 1)
-#table(indivi$acteu)
-#
-### On enlève les enfants en nourrice...*/
-#indivi2 <- subset(indivi,lien==6 & agepf <  16 & quelfic=='EE','noindiv')
-#indivi <- indivi[!indivi$noindiv %in% indivi2$noindiv,]
-#rm(indivi2)
 
     indivi = indivi[ not_((indivi['lien']==6) & (indivi['agepf']<16) & ("quelfic"=="EE"))]
 
-# # ## Enfant à naître (NN pour nouveaux nés)
-# # indVar = c('noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
-# #            'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec',
-# #            "agepf","noidec","year")
 
     print '    1.2 : récupération des enfants à naître'
     indVar = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic','acteu','stc','contra','titc','mrec',
             'forter','rstg','retrai','lpr','cohab','ztsai','sexe','persfip','agepr','rga','actrec',
             "agepf","noidec","year"]
     
-# # enfnn <- LoadIn(enfnnm,indVar)
     enfnn = load_temp(name='enfnn', year=year)
     enfnn = enfnn.loc[:, indVar] #NOTE: la moitié des colonnes est remplie avec des NaN
 
-# # ## Remove duplicated  noindiv because some rga are different
-# # enfnn <- enfnn[!duplicated(enfnn[,"noindiv"]),]
-# # ## On enlève les enfants à naitre qui ne sont pas les enfants de la personne de référence
-# # enfnn <- subset(enfnn,lpr==3)
-# # enfnn <- enfnn[(!enfnn$noindiv %in% indivi$noindiv),]
     enfnn = enfnn.drop_duplicates('noindiv')
     print 'nb enfants à naitre', len(enfnn.index)
     print 'On enlève les enfants à naitre qui ne sont pas les enfants de la personne de référence'
@@ -126,27 +90,12 @@ def famille(year=2006):
 # # # PB with vars "agepf"  "noidec" "year"  NOTE: quels problèmes ? JS
 # # base <- rbind(indivi,enfnn)
 # # setdiff(names(indivi),names(enfnn))
-# # table(base$quelfic)
 # # 
-# # dup <- duplicated(base[,c("noindiv")])
-# # #dup <- duplicated(base)
-# # table(dup)
-# # 
-# # str(base)
+
     print '    1.3 : création de base'
     base = concat([indivi, enfnn])
     print 'length of base', len(base.index)
     
-# # # Preparing the dataframe base :
-# # base <- within(base,{
-# #   noindiv<- 100*ident + noi
-# #   m15 <- (agepf<16) 
-# #   p16m20 <- ((agepf>=16) & (agepf<=20))
-# #   p21 <- (agepf>=21)
-# #   ztsai[is.na(ztsai)] <- 0
-# #   smic55 <- (ztsai>= smic*12*0.55)   ##55% du smic mensuel brut */
-# #   famille <- 0
-# #   kid <- FALSE})
     base['noindiv'] = 100*base['ident'] + base['noi']
     base['m15'] = (base['agepf']<16)
     base['p16m20'] = ((base['agepf']>=16) & (base['agepf']<=20))
@@ -166,7 +115,6 @@ def famille(year=2006):
         print 'contrôle noifam is null:', len(dataframe[dataframe['noifam'].isnull()])
         if len(dataframe.index) > len(base.index): raise Exception('too many rows compared to base')
     
-# # ##******************************************************************************************************************/
 # # message('Etape 1: On cherche les enfants ayant père et/ou mère')
 # # pr <- subset(base,lpr==1,c('ident','noi'))
 # # pr$noifam <- 100*pr$ident + pr$noi
@@ -179,9 +127,7 @@ def famille(year=2006):
 # #   kid <-(lpr==3 & m15) | (lpr==3 & (p16m20 & !smic55 ) )
 # #   })
 # # famille <- nof01
-# # table(famille$famille,useNA='ifany')
-# # rm(nof01)
-# # ##******************************************************************************************************************/
+
     print ''
     print 'Etape 2 : On cherche les enfants ayant père et/ou mère'
     
@@ -190,15 +136,11 @@ def famille(year=2006):
     pr = pr.loc[:, ['ident', 'noifam']]
     print 'length pr', len(pr.index)
     
-#     nof01 = base[(base.lpr.isin([1,2])) | (base['lpr'] == 3 & base['m15']) |
-#                  (base['lpr'] == 3 & (base['p16m20'] & not_(base['smic55'])) )]
     nof01 = base[or_(base.lpr.isin([1,2]), and_(base['lpr'] == 3, base['m15'])) |
                  and_(base['lpr'] == 3, and_(base['p16m20'], not_(base['smic55'])))]
     print 'longueur de nof01 avant merge', len(nof01.index)
     nof01 = nof01.merge(pr, on='ident', how='outer')
     nof01['famille'] = 10
-#     nof01['kid'] = (((nof01['lpr']==3) & (nof01['m15'])) | 
-#                     ((nof01['lpr']==3) & (nof01['p16m20'] & not_(nof01['smic55']))))
     nof01['kid'] = or_(and_(nof01['lpr']==3, nof01['m15']), 
                        and_(nof01['lpr']==3, (nof01['p16m20'] & not_(nof01['smic55']))))
     famille = nof01
@@ -209,16 +151,6 @@ def famille(year=2006):
     control_04(famille)
 
     
-# # message('Etape 2a')
-# # ## l'identifiant est le noi de l'homme
-# # ## cohab=1  vit en couple
-# # ## cohab=2 ou cohab=0 ne vit pas en couple
-# # hcouple <- base[(!base$noindiv %in% famille$noindiv),] 
-# # hcouple <- subset(hcouple,(cohab==1) & (lpr>=3) & (sexe==1))
-# # hcouple <- within(hcouple,{
-# #   noifam=100*ident + noi ## l'identifiant est la personne de référence du ménage  */
-# #     famille = 21 })
-
     print '    2.1 : identification des couples'
     # l'ID est le noi de l'homme
     hcouple = subset_base(base,famille)
@@ -238,10 +170,6 @@ def famille(year=2006):
 # # fcouple <- merge(famcom,fcouple)
 # # 
 # # famille <- rbind(famille,hcouple,fcouple)
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # table(famille$famille,useNA='ifany')
-# # rm(hcouple,fcouple,famcom)
 
     print '    2.2 : attributing the noifam to the wives'
     fcouple = base[not_(base.noindiv.isin(famille.noindiv.values))]
@@ -258,18 +186,6 @@ def famille(year=2006):
     famille = concat([famille, hcouple, fcouple], join='inner')
     control_04(famille)
 
-# # ##******************************************************************************************************************/
-# # message('Etape 3: personnes seules')
-# # message(' 3.1 personnes seules 1')
-# # seul1 <- base[(!base$noindiv %in% famille$noindiv),] 
-# # seul1 <- subset(seul1,(lpr %in% c(3,4)) & ( (p16m20 & smic55)|p21 ) & (cohab==1) & (sexe==2))
-# # if (nrow(seul1) > 0){
-# #   seul1 <- within(seul1,{noifam <- 100*ident+noi
-# #                        famille <- 31})
-# #   famille <- rbind(famille,seul1)
-# #   dup <- duplicated(famille$noindiv)
-# #   table(dup)
-# # }
     print ''
     print 'Etape 3: Récupération des personnes seules'
     print '    3.1 : personnes seules de catégorie 1'
@@ -304,8 +220,7 @@ def famille(year=2006):
 # # seul3 <- within(seul3,{noifam=100*ident+noi
 # #                          famille = 33})
 # # famille <- rbind(famille,seul3)
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
+
     print '    3.3 personnes seules de catégorie 3'
     seul3 = subset_base(base,famille)
     seul3 = seul3[(seul3.lpr.isin([3,4])) & seul3['p21'] & (seul3['cohab'] != 1)]
@@ -324,11 +239,6 @@ def famille(year=2006):
 # # }
 # # 
 # # famille <- rbind(famille,seul4)
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # 
-# # table(famille$famille,useNA='ifany')
-# # rm(seul1,seul2,seul3,seul4)
 
     print '    3.4 : personnes seules de catégorie 4'
     seul4 = subset_base(base,famille)
@@ -341,7 +251,6 @@ def famille(year=2006):
         famille = concat([famille, seul4])
     control_04(famille)
     
-# # ##******************************************************************************************************************/
 # # message('Etape 4')  
 # # message(' 4.1 enfant avec mère')
 # # avec_mere <- base[(!base$noindiv %in% famille$noindiv),] 
@@ -403,10 +312,6 @@ def famille(year=2006):
 # # famille <- famille[(!famille$noindiv %in% conj_mere$noindiv),] 
 # # famille <- rbind(famille,avec_mere,mere,conj_mere)
 # # 
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # table(famille$famille,useNA='ifany')
-# # rm(avec_mere,mere,mereid,conj_mere,conj_mereid)
 
     famille = famille[not_(famille.noindiv.isin(mere.noindiv.values))]
     control_04(famille)
@@ -453,13 +358,9 @@ def famille(year=2006):
 # # 
 # # famille <- famille[(!famille$noindiv %in% conj_pere$noindiv),] 
 # # famille <- rbind(famille,avec_pere,pere,conj_pere)
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
+
     print '    4.2 : enfants avec père'
     avec_pere = subset_base(base,famille)
-#     avec_pere = avec_pere[and_(avec_pere['lpr']==4,
-#                           and_(or_((avec_pere['p16m20']==1), (avec_pere['m15']==1)), 
-#                           avec_pere['noiper'].notnull()))]
     avec_pere = avec_pere[(avec_pere['lpr']==4) &
                           or_((avec_pere['p16m20']==1), (avec_pere['m15']==1)) & 
                           (avec_pere['noiper'].notnull())]
@@ -490,10 +391,6 @@ def famille(year=2006):
     famille = concat([famille, avec_pere, pere, conj_pere])
     print 'contrôle de famille après ajout des pères'
     control_04(famille)
-    
-# # 
-# # table(famille$famille,useNA='ifany')
-# # rm(avec_pere,pere,pereid,conj_pere,conj_pereid)
     del avec_pere,pere,pereid,conj_pere,conj_pereid
     
 # # ##* 42. enfants avec déclarant */
@@ -513,11 +410,7 @@ def famille(year=2006):
 # # 
 # # famille <- famille[(!famille$noindiv %in% dec$noindiv),] 
 # # famille <- rbind(famille,avec_dec,dec)
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # 
-# # table(famille$famille,useNA='ifany')
-# # rm(dec,decid,avec_dec)
+
     print '    4.3 : enfants avec déclarant'
     avec_dec = subset_base(base,famille)
     avec_dec = avec_dec[(avec_dec['persfip']=="pac") & (avec_dec['lpr']==4) &
@@ -539,8 +432,6 @@ def famille(year=2006):
     del dec, decid, avec_dec
     control_04(famille)
     
-# # 
-# # ##******************************************************************************************************************/
 # # ## famille etape 5 : enfants fip */ 
 # # message('Etape 5 : enfants fip')
 # # # On rajoute les enfants fip 
@@ -568,10 +459,7 @@ def famille(year=2006):
 # #   famille <- 0
 # #   kid <- FALSE
 # # })
-# # 
-# # dup<-duplicated(fip$noindiv)
-# # table(dup)
-# # 
+
     print ''
     print 'Etape 5 : récupération des enfants fip-----------'
     print '    5.1 : création de la df fip'
@@ -613,11 +501,6 @@ def famille(year=2006):
 # #                      kid <- FALSE})
 # # famille[famille$noindiv %in% enfant_fip$noifam,] <- parent_fip
 # # # TODO quid du conjoint ?
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # 
-# # table(famille$famille,useNA='ifany')
-# # rm(enfant_fip,fip,parent_fip)
     
     print "    5.2 : extension de base avec les fip"
     print fip.loc[:, ['noindiv', 'noidec', 'ztsai']].describe()
@@ -660,7 +543,6 @@ def famille(year=2006):
     print famille.loc[famille.noindiv.isin(enfant_fip.noifam), 'famille'].describe()
     del enfant_fip, fip, parent_fip
     
-# # ##******************************************************************************************************************/
 # # message('Etape 6 : non attribué')
 # # non_attribue1 <- base[(!base$noindiv %in% famille$noindiv),] 
 # # non_attribue1 <- subset(non_attribue1,
@@ -686,12 +568,6 @@ def famille(year=2006):
 # #     famille<-63})
 # # 
 # # famille <- rbind(famille,non_attribue2)
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # rm(non_attribue2)
-# # table(famille$famille, useNA="ifany")
-# # rm(base)
-# # table(duplicated(famille$noifam))
     print ''
     print 'Etape 6 : gestion des non attribués'
     print '    6.1 : non attribués type 1'
@@ -720,47 +596,10 @@ def famille(year=2006):
     control_04(famille)
     del non_attribue2
     
-# # ##******************************************************************************************************************/
 # # ## Sauvegarde de la table famille */  
 # # 
 # # # TODO nettoyer les champs qui ne servent plus à rien
 # # 
-# # famille <- within(famille,{
-# #   idec <- paste(substr(declar1,4,11),substr(declar1,1,2),sep = '-') # TODO remove me ?
-# #     chef <- (noifam == ident*100+noi)
-# # })
-# # table(famille$chef,useNA="ifany")
-# # # On a bien autant de famille que de chef de famille 
-# # 
-# # famille$kid <- as.numeric(famille$kid)
-# # 
-# # famille <- famille[order(famille$noifam,famille$kid,!famille$chef,famille$naia,famille$naim),]
-# # famille$chef <- as.numeric(famille$chef)
-# # 
-# # famille$rang = unsplit(lapply(split(famille$kid,famille$noifam),cumsum),famille$noifam)
-# # 
-# # dup <- duplicated(famille$noindiv)
-# # table(dup)
-# # 
-# # famille$quifam[famille$chef == 1] <- 0
-# # famille$quifam[(famille$chef == 0) & (famille$kid ==0)] <- 1
-# # famille$quifam[famille$kid == 1] <- 1 + famille$rang[famille$kid == 1]
-# # famille <- subset(famille, select = c(noindiv, quifam, noifam))
-# # famille <- rename(famille, c(noifam = "idfam"))
-# # 
-# # length(unique(famille$idfam))
-# # table(famille$quifam,useNA="ifany")
-# # sum(table(famille$quifam,useNA="ifany"))
-# # 
-# # print(length(table(famille$noindiv)))
-# # 
-# # # Vérifications des duplicats dans famille (même noindiv)
-# # dup <- duplicated(famille[,c("idfam","quifam")])
-# # table(dup,useNA="ifany")
-# # 
-# # save(famille,file=famc)
-# # rm(famille, indivi, enfnn)
-# # gc()
     print ''
     print 'Etape 7 : Sauvegarde de la table famille'
     print '    7.1 : Mise en forme finale'

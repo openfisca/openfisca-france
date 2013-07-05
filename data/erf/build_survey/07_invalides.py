@@ -44,9 +44,10 @@ def invalide(year = 2006):
     print 'Etape 1 création de la df invalides'
     final = load_temp(name="final", year=year)
     invalides = final.xs(["noindiv","idmen","caseP","caseF","idfoy","quifoy"], axis=1)
-
+    
+    
     for var in ["caseP", "caseF"]:  
-        assert invalides[var].notnull().all()
+        assert invalides[var].notnull().all(), 'présence de NaN dans %s' %(var)
      
 
     # Les déclarants invalides
@@ -54,6 +55,8 @@ def invalide(year = 2006):
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
     
     assert invalides["inv"].notnull().all()
+    print_id(invalides)
+
 
     print invalides["inv"].sum(), " invalides déclarants"
 
@@ -85,10 +88,10 @@ def invalide(year = 2006):
 
     idfoy_inv_conj = final["idfoy"][final["caseF"]]
     print idfoy_inv_conj.head()
-    inv_conj_condition = invalides["idfoy"].isin(idfoy_inv_conj) & (invalides["quifoy"]==1)    
+    inv_conj_condition = and_(invalides["idfoy"].isin(idfoy_inv_conj), (invalides["quifoy"]==1))    
     invalides["inv"][inv_conj_condition] = True
 
-    print invalides["inv"].sum(), " invalides déclarants et conjoints"
+    print invalides["inv"].sum(), " invalides à la fois déclarants et conjoints"
     
 # # # Enfants invalides et garde alternée
 # # 
@@ -118,17 +121,20 @@ def invalide(year = 2006):
     
     pacIndiv = load_temp(name='pacIndiv', year=year)
     foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
-    print pacIndiv.head(10).to_string()
     
     pac = pacIndiv.ix[:, ["noindiv", "type_pac", "naia"]]
 
     foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'type_pac', 'naia']], 
                                     on='noindiv', how='outer')
-    print foy_inv_pac.columns
     print foy_inv_pac.ix[:,['type_pac', 'naia']].describe()
-    foy_inv_pac['inv'] = ((foy_inv_pac['type_pac']=="G")|(foy_inv_pac['type_pac']=="R")|
-                          (foy_inv_pac['type_pac']=="I") | (foy_inv_pac['type_pac']=="F" & 
-                        (year.astype('int') - foy_inv_pac['type_pac']>18)))
+#     foy_inv_pac['inv'] = ((foy_inv_pac['type_pac']=="G")|(foy_inv_pac['type_pac']=="R")|
+#                           (foy_inv_pac['type_pac']=="I") | (foy_inv_pac['type_pac']=="F" & 
+#                         (year - foy_inv_pac['naia']>18)))
+    foy_inv_pac['inv'] = or_(foy_inv_pac['type_pac']=="G", or_(foy_inv_pac['type_pac']=="R",
+                            or_(foy_inv_pac['type_pac']=="I", and_(foy_inv_pac['type_pac']=="F", 
+                                (year - foy_inv_pac['naia'])>18))))
+    print foy_inv_pac.inv.describe() # TODO: JS : que des false là-dedans
+    
     foy_inv_pac['alt'] = ((foy_inv_pac['type_pac']=="H") | (foy_inv_pac['type_pac']=="I"))
     foy_inv_pac['naia'] = None
     foy_inv_pac['type_pac'] = None
@@ -154,9 +160,10 @@ def invalide(year = 2006):
     invalides['inv'][invalides.inv.isnull()] = 0
     print invalides['inv'].describe()
     
-    final = final.merge(invalides.loc[:, ['noindiv', 'inv', 'alt']], on='noindiv', how='outer')
-    control(final)
-    print final.xs(columns=['inv', 'alt']).describe()
+    final = final.merge(invalides.loc[:, ['noindiv', 'inv', 'alt']], on='noindiv', how='left')
+    control(final, debug=True)
+    print final.loc[:,['inv', 'alt']].describe()
+    print final.inv.value_counts()
     return
 # # rm(invalides)
 # # saveTmp(final, file= "final.Rdata")

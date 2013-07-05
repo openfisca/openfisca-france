@@ -8,59 +8,53 @@
 
 from src.lib.simulation import SurveySimulation
 from src.plugins.survey.aggregates import Aggregates
-from src.countries.france.data.erf.datatable import ErfsDataTable
-from src.countries.france.data.erf import get_of2erf
+from src.countries.france.data.erf.datatable import DataCollection
+from src.countries.france.data.erf import get_of2erf, get_erf2of
 
-def build_erf_aggregates():
+def build_erf_aggregates(variables):
     """
     Fetch the relevant aggregates from erf data
     """
-#    Uses rpy2.
-#    On MS Windows, The environment variable R_HOME and R_USER should be set
-    import pandas.rpy.common as com 
-    import rpy2.rpy_classic as rpy
-    rpy.set_default_mode(rpy.NO_CONVERSION)
     
+    dfs = []
     country = 'france'
     for year in range(2006,2010):
-
-        yr = str(year)
-        simu = SurveySimulation()
-        simu.set_config(year = yr, country = country)
-        simu.set_param()
-    
-        agg = Aggregates()
-        agg.set_simulation(simu)
-
-        erf = ErfsDataTable()
-        erf.set_config(year=year)
-        menage = erf.tables["menage"]
-
+        print year
+         
+        erf = DataCollection(year=year)
+        menage = erf.get_of_values(variables=variables, table = "erf_menage")
+        
         print menage.columns
         cols = []
-        print year
 
         of2erf = get_of2erf()
-        for col in agg.varlist:
+        erf2of = get_erf2of()
+        for col in variables:
             try:
                 erf_var = of2erf[col]
             except:
+                print "coucouc"
                 erf_var = None
             if erf_var in menage.columns:
-                print col, erf_var
+#                 print col, erf_var
                 cols += [erf_var]
             else:
                 print col + " not found"
             
         df = menage[cols]
+        print df
+        df.rename(columns = erf2of, inplace = True)
         wprm = menage["wprm"]
         for col in df.columns:
-            
-            tot = (df[col]*wprm).sum()/1e9
-            print col, tot
+            df[col] = (df[col]*wprm).sum()/1e9
+#             print col, tot
+        dfs.append(df)
+    return dfs
     
     
 
 
 if __name__ == '__main__':
-    build_erf_aggregates()
+    dfs = build_erf_aggregates()
+    dfs[0] = dfs[0][:1]
+    print dfs[0].to_string()
