@@ -120,11 +120,11 @@ def create_fip(year = 2006): # message('03_fip')
 # iden <- tyFG$N
 # rm(tyF,tyG,tyFG)
 
-    print "    1.3 : on enlève les individus F pour lesquels il existe un individu (le même vraisemblablement) G"
+    print "    1.3 : on enlève les individus F pour lesquels il existe un individu G"
 
     tyFG = fip[fip.type_pac.isin(['F', 'G'])] #Filtre pour ne travailler que sur F & G
     
-    tyFG['same_pair'] = tyFG.duplicated(cols=['declaration', 'naia'])
+    tyFG['same_pair'] = tyFG.duplicated(cols=['declaration', 'naia'], take_last=True)
     tyFG['is_twin'] = tyFG.duplicated(cols=['declaration', 'naia', 'type_pac'])
     tyFG['to_keep'] = (not_(tyFG['same_pair']) | (tyFG['is_twin']))
     #Note : On conserve ceux qui ont des couples déclar/naia différents et les jumeaux 
@@ -139,7 +139,7 @@ def create_fip(year = 2006): # message('03_fip')
 
     print "    1.4 : on enlève les H pour lesquels il y a un I"
     tyHI = fip[fip.type_pac.isin(['H', 'I'])]
-    tyHI['same_pair'] = tyHI.duplicated(cols=['declaration', 'naia'])
+    tyHI['same_pair'] = tyHI.duplicated(cols=['declaration', 'naia'], take_last=True)
     tyHI['is_twin'] = tyHI.duplicated(cols=['declaration', 'naia', 'type_pac'])
     tyHI['to_keep'] = not_(tyHI['same_pair']) | (tyHI['is_twin'])
     
@@ -149,7 +149,9 @@ def create_fip(year = 2006): # message('03_fip')
     print len(fip[fip['to_keep']]), '/', len(fip)
 
     indivifip = fip[fip['to_keep']]; del indivifip['to_keep'], fip, tyFG, tyHI
+
 #    control(indivifip, debug=True)
+
 
 
 # #************************************************************************************************************/
@@ -213,12 +215,10 @@ def create_fip(year = 2006): # message('03_fip')
     pac_ind1 = tmp_pac1.merge(tmp_indivifip, left_on=['key1'], right_on =['key'], how='inner')
     print 'longueur pacInd1' , len(pac_ind1)
     pac_ind2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on = 'key', how='inner')
-    print len(pac_ind2)
-    print pac_ind1.type_pac.value_counts()
-    print pac_ind2.type_pac.value_counts()
+    print 'longueur pacInd2', len(pac_ind2)
 
     print "pacInd1&2 créés"
-
+    
 # table(duplicated(pacInd1))
 # table(duplicated(pacInd2))
 
@@ -236,7 +236,6 @@ def create_fip(year = 2006): # message('03_fip')
     print pac_ind1.columns
     print pac_ind2.columns
 
-
     if pac_ind1.index == []:
         if pac_ind2.index == []:
                 print "Warning : no link between pac and noindiv for both pacInd1&2"
@@ -252,6 +251,7 @@ def create_fip(year = 2006): # message('03_fip')
     print pac_ind2.type_pac.isnull().sum()
 
     print pacInd.type_pac.value_counts()
+    
     print '    2.2 : pacInd created'
 
 # table(duplicated(pacInd[,c("noindiv","typ")]))
@@ -369,8 +369,8 @@ def create_fip(year = 2006): # message('03_fip')
     print fip.duplicated('noindiv').value_counts()
     save_temp(fip, name="fipDat", year=year)
     del fip, fip1, individec1, indivifip, indivi, pac
-
     print 'fip sauvegardé'
+
 
 if __name__ == '__main__':
     create_fip()
