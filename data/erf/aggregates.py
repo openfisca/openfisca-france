@@ -11,44 +11,42 @@ from src.plugins.survey.aggregates import Aggregates
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf import get_of2erf, get_erf2of
 
-def build_erf_aggregates(variables):
+def build_erf_aggregates(variables, year):
     """
     Fetch the relevant aggregates from erf data
     """
-    
     dfs = []
-    country = 'france'
-    for year in range(2006,2010):
-        print year
-         
-        erf = DataCollection(year=year)
-        menage = erf.get_of_values(variables=variables, table = "erf_menage")
-        
-        print menage.columns
-        cols = []
+    country = 'france'         
+    erf = DataCollection(year=year)
+    if "wprm" not in variables:
+        variables.append("wprm")
+    menage = erf.get_of_values(variables=variables, table = "erf_menage")
+    
+    print menage.columns
+    cols = []
 
-        of2erf = get_of2erf()
-        erf2of = get_erf2of()
-        for col in variables:
-            try:
-                erf_var = of2erf[col]
-            except:
-                print "coucouc"
-                erf_var = None
-            if erf_var in menage.columns:
+    of2erf = get_of2erf()
+    erf2of = get_erf2of()
+    for col in variables:
+        try:
+            erf_var = of2erf[col]
+        except:
+            print "coucouc"
+            erf_var = None
+        if erf_var in menage.columns:
 #                 print col, erf_var
-                cols += [erf_var]
-            else:
-                print col + " not found"
-            
-        df = menage[cols]
-        print df
-        df.rename(columns = erf2of, inplace = True)
-        wprm = menage["wprm"]
-        for col in df.columns:
-            df[col] = (df[col]*wprm).sum()/1e9
+            cols += [erf_var]
+        else:
+            print col + " not found"
+        
+    df = menage[cols]
+    print df
+    df.rename(columns = erf2of, inplace = True)
+    wprm = menage["wprm"]
+    for col in df.columns:
+        df[col] = (df[col]*wprm).sum()/1e9
 #             print col, tot
-        dfs.append(df)
+    dfs.append(df)
     return dfs
     
     

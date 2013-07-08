@@ -701,9 +701,51 @@ class InputDescription(ModelDescription):
                          u'200 000 habitants ou plus (sauf agglomération parisienne)',
                          u'agglomération parisienne']))
     
-    tau99 = EnumCol(label = u"tranche d'aire urbaine", entity='men')
-    reg   = EnumCol(label = u"Région", entity='men')
-    pol99 = EnumCol(label = u"Catégorie de la commune au sein du découpage en aires et espaces urbains", entity='men')
+    tau99 = EnumCol(label = u"tranche d'aire urbaine",
+                    entity='men',
+                    enum = Enum([u'Communes hors aire urbaine',
+                                 u'Aire urbaine de moins de 15 000 habitants',
+                                 u'Aire urbaine de 15 000 à 19 999 habitants',
+                                 u'Aire urbaine de 20 000 à 24 999 habitants',
+                                 u'Aire urbaine de 25 000 à 34 999 habitants',
+                                 u'Aire urbaine de 35 000 à 49 999 habitants',
+                                 u'Aire urbaine de 50 000 à 99 999 habitants',
+                                 u'Aire urbaine de 100 000 à 199 999 habitants',
+                                 u'Aire urbaine de 200 000 à 499 999 habitants',
+                                 u'Aire urbaine de 500 000 à 9 999 999 habitants',
+                                 u'Aire urbaine de Paris']))
+    reg   = EnumCol(label = u"Région",
+                    entity='men',
+                    enum = Enum([u'Ile-de-France',
+                                 u'Champagne-Ardenne',
+                                 u'Picardie',
+                                 u'Haute-Normandie',
+                                 u'Centre',
+                                 u'Basse-Normandie',
+                                 u'Bourgogne',
+                                 u'Nord-Pas de Calais',
+                                 u'Lorraine',
+                                 u'Alsace',
+                                 u'Franche-Comté',
+                                 u'Pays de la Loire',
+                                 u'Bretagne',
+                                 u'Poitou-Charentes',
+                                 u'Aquitaine',
+                                 u'Midi-Pyrénées',
+                                 u'Limousin',
+                                 u'Rhône-Alpes',
+                                 u'Auvergne',
+                                 u'Languedoc-Roussillon',
+                                 u"Provence-Alpes-Côte-d'Azur",
+                                 u'Corse' ]))
+    pol99 = EnumCol(label = u"Catégorie de la commune au sein du découpage en aires et espaces urbains", 
+                    entity='men',
+                    enum = Enum([ u"Commune appartenant à un pôle urbain",
+                                 u"Commune monopolarisée (appartenant à une couronne périurbaine",
+                                 u"Commune monopolarisée",
+                                 u"Espace à dominante rurale"]))
+
+    
     cstotpragr = EnumCol(label = u"catégorie socio_professionelle agrégée de la personne de référence",
                          entity= 'men',
                          enum = Enum([u"Non renseignée",

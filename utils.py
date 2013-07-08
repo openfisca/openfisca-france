@@ -802,8 +802,6 @@ def check_consistency(table_simu, dataframe, corrige = True):
     unconsistent_variables = []
     present_variables = []
     count = 0
-    count_of_enum = 0
-    count_of_failing_enum = 0
     
     from src.countries.france.data.erf.build_survey.utilitaries import control
     print 'Controlling simulation input_table'
@@ -843,7 +841,6 @@ def check_consistency(table_simu, dataframe, corrige = True):
             # verify type, force type
             
             if isinstance(varcol, EnumCol) or isinstance(varcol, EnumPresta):
-                count_of_enum += 1
                 try:
                     if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):  
                         message +=  "Some variables out of range for EnumCol variable %s : \n" %var
@@ -853,7 +850,6 @@ def check_consistency(table_simu, dataframe, corrige = True):
                         is_ok = False
                         
                 except:
-                    count_of_failing_enum += 1
                     is_ok = False
                     message += "Error : no _num attribute for EnumCol.enum %s \n" %var
                     #print varcol.enum
@@ -867,6 +863,12 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     #print varcol.enum
                     #print sorted(serie.unique())
                     #print "\n"
+                try:
+                    n = varcol.enum._count
+                    if n < len(set(serie.unique())):
+                        message += "More types of enum than expected : %s ( expected : %s) \n" %(str(set(serie.unique())), str(n))
+                except:
+                    message += "Error : no _count attribute for EnumCol.enum %s \n" %var
                 try:
                     varcol.enum
                 except:
@@ -967,8 +969,6 @@ def check_consistency(table_simu, dataframe, corrige = True):
     if len(missing_variables) > 0:
         message += "Some variables were not present in the datatable or caused an error:\n" + str(sorted(missing_variables)) + "\n"
         message += "Variables present in both tables :\n" + str(sorted(present_variables)) + "\n"
-        message += "Count of enum is %s \n" %str(count_of_enum)
-        message += "Count of failing enum is %s" %str(count_of_failing_enum)
     else:
         message += "All variables were present in the datatable and were handled without error \n"
     
