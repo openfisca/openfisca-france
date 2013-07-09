@@ -15,7 +15,6 @@ def build_erf_aggregates(variables, year):
     """
     Fetch the relevant aggregates from erf data
     """
-    dfs = []
     country = 'france'         
     erf = DataCollection(year=year)
     if "wprm" not in variables:
@@ -46,13 +45,13 @@ def build_erf_aggregates(variables, year):
     for col in df.columns:
         df[col] = (df[col]*wprm).sum()/1e9
 #             print col, tot
-    dfs.append(df)
-    return dfs
+    return df
     
     
 
 
 if __name__ == '__main__':
+    # Doesnt work anymroe
     dfs = build_erf_aggregates()
     dfs[0] = dfs[0][:1]
     print dfs[0].to_string()
