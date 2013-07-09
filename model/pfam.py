@@ -91,9 +91,8 @@ def _br_pf(br_pf_i, rev_coll, _option={'br_pf_i': [CHEF, PART], 'rev_coll': [CHE
     br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
     return br_pf
     
-def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}):
+def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}, _freq={'agem':'month'}):
     P = _P.fam.af
-
     for key, val in agem.iteritems():
         agem[key] = val//12
         
