@@ -58,12 +58,12 @@ class DataCollection(object):
         self.hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
     
     
-    def initialize(self):
+    def initialize(self, tables=None):
         """
         Initialize survey data 
         """
-        self.initialize_erf()
-#         self.initialize_logement()
+        self.initialize_erf(tables=tables)
+        self.initialize_logement()
         
     def initialize_erf(self, tables=None):
         """
@@ -73,19 +73,6 @@ class DataCollection(object):
         erf = SurveyDescription()
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
-        erf_tables_to_process = {
-                                "erf_menage" : "menage" + yr,
-                                 "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                                 "foyer" : "foyer" + yr,
-                                  "erf_indivi" : "indivi" + yr,
-#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
-#                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
-#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
-                                "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
-                                }      
-        RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
-        
-        
         
         variables = ['noi','noindiv','ident','declar1','quelfic','persfip','declar2','persfipd','wprm',
                      "zsali","zchoi","ztsai","zreti","zperi","zrsti","zalri","zrtoi","zragi","zrici","zrnci",
@@ -94,25 +81,37 @@ class DataCollection(object):
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
                        'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub", "dip11"]
-     
-        erf_variables_to_fetch = {
-                                     "erf_indivi": variables,
-                                  "eec_indivi": variables_eec,
-                                  "eec_cmp_1" : variables_eec,
-                                  "eec_cmp_2" : variables_eec,
-                                "eec_cmp_3" : variables_eec,
-                                     }
-       
-        for name, RData_filename in erf_tables_to_process.iteritems():
-            try:
-                variables = erf_variables_to_fetch[name]
-            except:
-                variables = None
-                
+             
+        erf_tables = {
+            "erf_menage" : {"RData_filename" :  "menage" + yr,
+                            "variables" : None},
+            "eec_menage" : {"RData_filename" :"mrf" + yr + "e" + yr + "t4",
+                            "variables" : None},
+            "foyer" :      {"RData_filename" :"foyer" + yr,
+                            "variables" : None},
+            "erf_indivi" : {"RData_filename" :"indivi" + yr,
+                            "variables" : variables},
+            "eec_indivi" : {"RData_filename" :"irf" + yr + "e" + yr + "t4",
+                            "variables" : variables_eec},
+            "eec_cmp_1" :  {"RData_filename" :"icomprf" + yr + "e" + yr1 + "t1",
+                            "variables" : variables_eec},
+            "eec_cmp_2" :  {"RData_filename" :"icomprf" + yr + "e" + yr1 + "t2",
+                            "variables" : variables_eec},
+            "eec_cmp_3" :  {"RData_filename" :"icomprf" + yr + "e" + yr1 + "t3",
+                            "variables" : variables_eec}}
+
+        RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
+        
+        if tables is None:
+            erf_tables_to_process = erf_tables 
+        else:
+            erf_tables_to_process = tables 
+            
+        for name in erf_tables_to_process:                
             erf.insert_table(name=name, 
-                             RData_filename=RData_filename,
+                             RData_filename=erf_tables[name]["RData_filename"],
                              RData_dir=RData_dir,
-                             variables=variables)
+                             variables=erf_tables[name]["variables"])
         
         self.surveys["erf"] = erf
         
@@ -189,7 +188,6 @@ class DataCollection(object):
                     variables = tables["variables"]
                 except:
                     variables = None
-                print variables
                 self.store_survey(survey_name, R_table_name, destination_table_name, data_dir, variables)
 
     def store_survey(self, survey_name, R_table_name, destination_table_name, data_dir, variables=None, force_recreation=True):
@@ -243,8 +241,6 @@ class DataCollection(object):
                 return
 
         if variables is not None:
-            print variables
-            print stored_table.describe()
             store[store_path] = stored_table[variables]
         else:
             store[store_path] = stored_table
@@ -406,7 +402,7 @@ def test3():
     check_consistency(simulation.input_table, df)
         
 def test_init():
-    for year in range(2009,2010):
+    for year in range(2007,2008):
         data = DataCollection(year=year)
         data.initialize()
         data.set_config()
