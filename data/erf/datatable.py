@@ -402,9 +402,9 @@ def test3():
     check_consistency(simulation.input_table, df)
         
 def test_init():
-    for year in range(2007,2008):
+    for year in range(2009,2010):
         data = DataCollection(year=year)
-        data.initialize()
+        data.initialize(tables=["eec_indivi"])
         data.set_config()
     
 #def test_reading_stata_tables():
@@ -416,11 +416,11 @@ def test_init():
     
 if __name__ == '__main__':
 #     test3()
-    test_init()
-#     hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
-#     print hdf5_filename
-#     store = HDFStore(hdf5_filename)
-#     print store
+#    test_init()
+    hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
+    print hdf5_filename
+    store = HDFStore(hdf5_filename)
+    print store
 #     
 #     hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf_old.h5')
 #     print hdf5_filename
