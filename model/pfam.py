@@ -53,10 +53,9 @@ def _smic55(salbrut, _P):
     Indicatrice individuelle d'un salaire supérieur à 55% du smic
     'ind'
     '''
-    # TODO: ne pas comparer un salaire net à un smic brut
     nbh_travaillees = 151.67 * 12
-    smic_annuel = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-    return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel
+    smic_annuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
+    return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel_brut
 
 def _br_pf_i(tspr, hsup, rpns):
     '''
@@ -92,9 +91,12 @@ def _br_pf(br_pf_i, rev_coll, _option={'br_pf_i': [CHEF, PART], 'rev_coll': [CHE
     br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
     return br_pf
     
-def _af_nbenf(age, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
+def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}, _freq={'agem':'month'}):
     P = _P.fam.af
-    af_nbenf = nb_enf(age, smic55, P.age1, P.age2)
+    for key, val in agem.iteritems():
+        agem[key] = val//12
+        
+    af_nbenf = nb_enf(agem, smic55, P.age1, P.age2)
     return af_nbenf
 
 ############################################################################

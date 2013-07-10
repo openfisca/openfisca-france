@@ -356,7 +356,9 @@ def _rmi_nbp(age, smic55, nb_par , _P, _option = {'age': ENFS, 'smic55': ENFS}):
     Nombre de personne à charge au sens du Rmi ou du Rsa
     'fam'
     '''
-    return nb_par + nb_enf(age, smic55, 0, 24)  # TODO: limite d'âge dans paramètres
+    # TODO: file a issue to check if D_enfch in rsa should be removed    
+    P = _P.minim.rmi
+    return nb_par + nb_enf(age, smic55, 0, P.age_pac-1)  # TODO: check limite d'âge in legislation
 
 def _forf_log(so, rmi_nbp, _P):
     '''
@@ -380,7 +382,7 @@ def _rsa_socle(forf_log, age , nb_par, rmi_nbp, ra_rsa, br_rmi, _P, _option = {'
     'fam'
     '''
     P = _P.minim
-    # RSA socle TODO mécanisme similaire à l'API: Pour les personnes ayant la charge 
+    # RSA socle TODO: mécanisme similaire à l'API: Pour les personnes ayant la charge 
     # d’au moins un enfant né ou à naître et se retrouvant en situation d’isolement, 
     # le montant forfaitaire est majoré pendant 12 mois, continus ou non, dans la 
     # limite de 18 mois à compter de la date du fait générateur de l’isolement. Le 
@@ -444,8 +446,8 @@ def _majo_rsa(rsa_socle, agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa
     
     benjamin = age_en_mois_benjamin(agem)  
     enceinte = (benjamin<0)*(benjamin>-6)
-    # TODO quel mois mettre ?
-    # TODO pas complètement exact
+    # TODO: quel mois mettre ?
+    # TODO: pas complètement exact
     # L'allocataire perçoit la majoration :
     # jusqu'à ce que le plus jeune enfant ait 3 ans,
     # ou pendant 12 mois consécutifs si les enfants sont âgés de plus de 3 ans 

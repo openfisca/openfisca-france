@@ -4231,19 +4231,23 @@
   <NODE description="Minima sociaux" code="minim" >
     <NODE description="Revenu de solidarité active" code="rmi" >
       <CODE description="Rsa socle" code="rmi" format='float' type="monetary">
-	<VALUE valeur="397.6" deb="2001-01-01" fin="2001-12-31"/>
-	<VALUE valeur="405.62" deb="2002-01-01" fin="2002-12-31"/>
-	<VALUE valeur="411.7" deb="2003-01-01" fin="2003-12-31"/>
-	<VALUE valeur="417.88" deb="2004-01-01" fin="2004-12-31"/>
-	<VALUE valeur="425.4" deb="2005-01-01" fin="2005-12-31"/>
-	<VALUE valeur="433.06" deb="2006-01-01" fin="2006-12-31"/>
-	<VALUE valeur="440.86" deb="2007-01-01" fin="2007-12-31"/>
-	<VALUE valeur="447.91" deb="2008-01-01" fin="2008-12-31"/>
-	<VALUE valeur="454.63" deb="2009-01-01" fin="2009-12-31"/>
-	<VALUE valeur="460.09" deb="2010-01-01" fin="2010-12-31"/>
-	<VALUE valeur="466.99" deb="2011-01-01" fin="2011-12-31"/>
-	<VALUE valeur="474.93" deb="2012-01-01" fin="2012-12-31"/>
-	<VALUE valeur="483.24" deb="2013-01-01" fin="2013-12-31"/>
+        <VALUE valeur="397.6" deb="2001-01-01" fin="2001-12-31"/>
+	    <VALUE valeur="405.62" deb="2002-01-01" fin="2002-12-31"/>
+	    <VALUE valeur="411.7" deb="2003-01-01" fin="2003-12-31"/>
+	    <VALUE valeur="417.88" deb="2004-01-01" fin="2004-12-31"/>
+	    <VALUE valeur="425.4" deb="2005-01-01" fin="2005-12-31"/>
+	    <VALUE valeur="433.06" deb="2006-01-01" fin="2006-12-31"/>
+	    <VALUE valeur="440.86" deb="2007-01-01" fin="2007-12-31"/>
+	    <VALUE valeur="447.91" deb="2008-01-01" fin="2008-12-31"/>
+	    <VALUE valeur="454.63" deb="2009-01-01" fin="2009-12-31"/>
+	    <VALUE valeur="460.09" deb="2010-01-01" fin="2010-12-31"/>
+	    <VALUE valeur="466.99" deb="2011-01-01" fin="2011-12-31"/>
+	    <VALUE valeur="474.93" deb="2012-01-01" fin="2012-12-31"/>
+	    <VALUE valeur="483.24" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Limite d'âge des enfants comptés à charge" code="age_pac" format='integer' type="age">
+        <VALUE valeur="25" deb="1977-10-01" fin="2009-05-30"/> # CHECK THIS
+        <VALUE valeur="25" deb="2009-06-01" fin="2013-12-31"/>
       </CODE>
       <NODE description="Majoration du RSA socle pour parent isolé" code="majo_rsa" >
       <CODE description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" code="pac0" format = 'percent'>
