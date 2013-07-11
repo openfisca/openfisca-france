@@ -56,17 +56,17 @@ class OutputDescription(ModelDescription):
 
     noi_ind = Prestation(_noi)
     idmen_ind = Prestation(_men)
-    idmen_foy = EnumPresta(_men,"foy")
-    idmen_men = EnumPresta(_men,"men")
-    idmen_fam = EnumPresta(_men,"fam")
+    idmen_foy = EnumPresta(_men, entity="foy")
+    idmen_men = EnumPresta(_men, entity="men")
+    idmen_fam = EnumPresta(_men, entity="fam")
     idfam_ind = Prestation(_fam)
-    idfam_foy = EnumPresta(_fam,"foy")
-    idfam_men = EnumPresta(_fam,"men")
-    idfam_fam = EnumPresta(_fam,"fam")
+    idfam_foy = EnumPresta(_fam, entity="foy")
+    idfam_men = EnumPresta(_fam, entity="men")
+    idfam_fam = EnumPresta(_fam, entity="fam")
     idfoy_ind = Prestation(_foy)
-    idfoy_foy = EnumPresta(_foy,"foy")
-    idfoy_men = EnumPresta(_foy,"men")
-    idfoy_fam = EnumPresta(_foy,"fam")
+    idfoy_foy = EnumPresta(_foy, entity="foy")
+    idfoy_men = EnumPresta(_foy, entity="men")
+    idfoy_fam = EnumPresta(_foy, entity="fam")
     
     quimen_ind = EnumPresta(_quimen)
     quifam_ind = EnumPresta(_quifam)
@@ -75,9 +75,9 @@ class OutputDescription(ModelDescription):
     ############################################################
     # Reproduction des pondérations
     ############################################################       
-    wprm_ind = Prestation(_wprm,"ind")
-    wprm_fam = Prestation(_wprm,"fam")
-    wprm_foy = Prestation(_wprm,"foy")    
+    wprm_ind = Prestation(_wprm, entity="ind")
+    wprm_fam = Prestation(_wprm, entity="fam")
+    wprm_foy = Prestation(_wprm, entity="foy")    
     
     mhsup = Prestation(cs._mhsup)
     alv   = Prestation(ir._alv)
