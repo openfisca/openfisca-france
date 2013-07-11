@@ -549,6 +549,6 @@ def foyer_all(year=2006):
 
 
 if __name__ == '__main__':
-    year = 2009
+    year = 2006
     sif(year=year)
-    #foyer_all(year=year)
+    foyer_all(year=year)

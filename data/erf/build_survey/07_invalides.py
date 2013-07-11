@@ -123,6 +123,7 @@ def invalide(year = 2006):
 #     pac = pacIndiv.ix[:, ["noindiv", "type_pac", "naia"]]
     print len(foy_inv_pac)
     
+    print pacIndiv.columns
     foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'type_pac', 'naia']], 
                                     on='noindiv', how='left')
     foy_inv_pac['inv'] = or_(foy_inv_pac['type_pac']=="G", or_(foy_inv_pac['type_pac']=="R",
@@ -152,8 +153,10 @@ def invalide(year = 2006):
     
     invalides = invalides.merge(foy_inv_pac, on='noindiv', how='left')
     invalides['inv'] = where(invalides['inv_y']==True, invalides['inv_y'], invalides['inv_x'])
+    invalides['alt'] = where(invalides['inv_y']==True, invalides['inv_y'], invalides['inv_x'])
+    
     invalides = invalides.loc[:, ["noindiv","idmen","caseP","caseF","idfoy","quifoy", "inv", 'alt']]
-    invalides.alt.fillna(False, inplace=True)
+    invalides['alt'].fillna(False, inplace=True)
     
     print invalides.inv.value_counts()
     invalides = invalides.drop_duplicates(['noindiv', 'inv', 'alt'], take_last=True)
@@ -179,4 +182,5 @@ def invalide(year = 2006):
     print 'final complétée et sauvegardée'
 
 if __name__ == '__main__':
-    invalide()
+    year=2006
+    invalide(year=year)

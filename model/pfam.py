@@ -227,7 +227,7 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
     
     res = None
     for alr in alr.itervalues():
-        if res is None: res = zeros(len(alr))  
+        if res is None: res = zeros(len(alr))
         res += alr
     no_alr = not_(res > 0)
     return asf_brut*no_alr
