@@ -74,13 +74,13 @@ class DataCollection(object):
         yr = str(year)[2:]
         yr1 = str(year+1)[2:]
         erf_tables_to_process = {
-                                "erf_menage" : "menage" + yr,
+#                                 "erf_menage" : "menage" + yr,
                                  "eec_menage" : "mrf" + yr + "e" + yr + "t4",
-                                 "foyer" : "foyer" + yr,
-                                  "erf_indivi" : "indivi" + yr,
-#                                 "eec_indivi" : "irf" + yr + "e" + yr + "t4",
-#                                 "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
-#                                 "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
+#                                  "foyer" : "foyer" + yr,
+#                                   "erf_indivi" : "indivi" + yr,
+                                "eec_indivi" : "irf" + yr + "e" + yr + "t4",
+                                "eec_cmp_1" : "icomprf" + yr + "e" + yr1 + "t1",
+                                "eec_cmp_2" : "icomprf" + yr + "e" + yr1 + "t2",
                                 "eec_cmp_3" : "icomprf" + yr + "e" + yr1 + "t3"
                                 }      
         RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
@@ -93,7 +93,8 @@ class DataCollection(object):
         
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
-                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub", "dip11"]
+                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub", "dip11",
+                       'rc1rev', 'maahe']
      
         erf_variables_to_fetch = {
                                      "erf_indivi": variables,
@@ -406,7 +407,7 @@ def test3():
     check_consistency(simulation.input_table, df)
         
 def test_init():
-    for year in range(2009,2010):
+    for year in range(2006,2007):
         data = DataCollection(year=year)
         data.initialize()
         data.set_config()

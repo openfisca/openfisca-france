@@ -19,6 +19,7 @@ def build_erf_aggregates(variables, year):
     erf = DataCollection(year=year)
     if "wprm" not in variables:
         variables.append("wprm")
+    print 'Fetching aggregates from erf %s data' %str(year)
     menage = erf.get_of_values(variables=variables, table = "erf_menage")
     
     print menage.columns
