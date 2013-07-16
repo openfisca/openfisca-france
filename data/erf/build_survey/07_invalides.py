@@ -25,9 +25,9 @@ from src.countries.france.data.erf.build_survey.utilitaries import print_id
 # # ##***********************************************************************/
 def invalide(year = 2006):
     
-    print 'Entering 07_invalides: construction de la variable invalide'
+    print 'Entering 07_invalides: construction de la variable invalide NOTFUNCTIONNAL NAOW'
     
-
+    return
 # # # Invalides
 # # #inv = caseP (vous), caseF (conj) ou case G, caseI, ou caseR (pac)
 
@@ -45,8 +45,9 @@ def invalide(year = 2006):
     print 'Etape 1 : création de la df invalides'
     print '    1.1 : déclarants invalides'
     final = load_temp(name="final", year=year)
-    invalides = final.xs(["noindiv","idmen","caseP","caseF","idfoy","quifoy"], axis=1)
+    invalides = final.xs(["noindiv","idmen","caseP","caseF","idfoy","quifoy","maahe","rc1rev"], axis=1)
     
+    print invalides['rc1rev'].value_counts()
     
     for var in ["caseP", "caseF"]:  
         assert invalides[var].notnull().all(), 'présence de NaN dans %s' %(var)
@@ -54,11 +55,15 @@ def invalide(year = 2006):
     # Les déclarants invalides
     invalides['inv'] = False
     invalides['inv'][(invalides['caseP']==1) & (invalides['quifoy']==0)] = True
-    
+    print invalides["inv"].sum(), " invalides déclarants"
+
+    #Les personnes qui touchent l'aah dans l'enquête emploi
+    invalides['inv'][(invalides['maahe']>0)] = True
+    invalides['inv'][(invalides['rc1rev']==4)] = True #TODO: vérifier le format.
+    print invalides["inv"].sum(), " invalides qui touchent des alloc"
+
     print_id(invalides)
 
-
-    print invalides["inv"].sum(), " invalides déclarants"
 
 # # # Les conjoints invalides
 # # 

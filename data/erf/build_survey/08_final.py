@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import where, NaN, random, logical_or as or_ 
+from numpy import where, NaN, random, logical_or as or_, unique 
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
 from numpy import logical_and as and_, logical_not as not_
@@ -371,6 +371,19 @@ def final(year=2006):
     control(final2, debug=True)
     print final2.age.isnull().sum()
     final2 = final2.drop_duplicates(cols='noindiv')
+    
+    print '    Filter to manage the new 3-tables structures:'
+    # On récupère les foyer, famille, ménages qui ont un chef :
+    liste_men = unique(final2.loc[final2['quimen']==0,'idmen'].values)
+    liste_fam = unique(final2.loc[final2['quifam']==0,'idfam'].values)
+    liste_foy = unique(final2.loc[final2['quifoy']==0,'idfoy'].values)
+    
+    #On ne conserve dans final2 que ces foyers là :
+    print 'final2 avant le filtrage' ,len(final2)
+    final2 = final2.loc[final2.idmen.isin(liste_men), :]
+    final2 = final2.loc[final2.idfam.isin(liste_fam), :]
+    final2 = final2.loc[final2.idfoy.isin(liste_foy), :]
+    print 'final2 après le filtrage', len(final2)
     
     check_structure(final2)
     

@@ -35,6 +35,8 @@ def create_indivim(year=2006):
     erfmen = data.get_values(table="erf_menage")
     eecmen = data.get_values(table="eec_menage")
     
+    print sorted(eecmen.columns)
+    return
     eecmen["locataire"] = eecmen["so"].isin([3,4,5])
     eecmen["locataire"] = eecmen["locataire"].astype("int32")
     noappar_m = eecmen[ not_(eecmen.ident.isin( erfmen.ident.values))]
@@ -168,6 +170,22 @@ def create_enfnn(year=2006):
     print "enfnnm saved"
     gc.collect()
     
+def manually_remove_errors(year=2006):
+    '''
+    This method is here because some oddities can make it through the controls throughout the procedure
+    It is here to remove all these individual errors that compromise the process.
+    GL,HF
+    '''
+    
+    if year==2006:
+        indivim = load_temp(name="indivim", year=year)
+        indivim.lien[indivim.noindiv==603018905] = 2
+        indivim.noimer[indivim.noindiv==603018905] = 1
+        print indivim[indivim.noindiv==603018905].to_string()
+        save_temp(indivim, name="indivim", year=year)
+    
 if __name__ == '__main__':
+    year = 2006
     create_indivim()
     create_enfnn()
+    manually_remove_errors(year=year)
