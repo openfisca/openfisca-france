@@ -63,7 +63,7 @@ class DataCollection(object):
         Initialize survey data 
         """
         self.initialize_erf(tables=tables)
-        self.initialize_logement()
+#        self.initialize_logement()
         
     def initialize_erf(self, tables=None):
         """
@@ -77,10 +77,19 @@ class DataCollection(object):
         variables = ['noi','noindiv','ident','declar1','quelfic','persfip','declar2','persfipd','wprm',
                      "zsali","zchoi","ztsai","zreti","zperi","zrsti","zalri","zrtoi","zragi","zrici","zrnci",
                      "zsalo","zchoo","ztsao","zreto","zpero","zrsto","zalro","zrtoo","zrago","zrico","zrnco"]
+
         
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
-                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', "nbsala",  "chpub", "dip11"]
+                       'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', 'nbsala',  'chpub', 'dip11']
+        
+        variables_eec_rsa = [ "sp0" + str(i) for i in range(0,10)] + ["sp10", "sp11"] + ['sitant', 'adeben', 
+                            'datant', 'raistp', 'amois', 'adfdap' , 'ancentr', 'ancchom', 'dimtyp', 'rabsp', 'raistp',
+                             'rdem', 'ancinatm']
+        
+        variables_eec_aah = ["rc1rev", "maahe"]
+        
+        variables_eec += variables_eec_rsa + variables_eec_aah
              
         erf_tables = {
             "erf_menage" : {"RData_filename" :  "menage" + yr,
@@ -241,7 +250,12 @@ class DataCollection(object):
                 return
 
         if variables is not None:
-            store[store_path] = stored_table[variables]
+            print store
+            print store_path
+            print variables
+            variables_stored = list(set(variables).intersection(set(stored_table.columns)))
+            print list(set(variables).difference((set(stored_table.columns))))
+            store[store_path] = stored_table[variables_stored]
         else:
             store[store_path] = stored_table
         store.close()
@@ -416,7 +430,7 @@ def test_init():
     
 if __name__ == '__main__':
 #     test3()
-#    test_init()
+    test_init()
     hdf5_filename = os.path.join(os.path.dirname(ERF_HDF5_DATA_DIR),'erf','erf.h5')
     print hdf5_filename
     store = HDFStore(hdf5_filename)

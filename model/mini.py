@@ -485,7 +485,7 @@ def _majo_rsa(rsa_socle, agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
    
 
-def _psa(api, rsa, activite, af_nbenf, al, _P, _option = {"activite" : {[CHEF, PART]}}):
+def _psa(api, rsa, activite, af_nbenf, al, _P, _option = {"activite" : [CHEF, PART]}):
     '''
     Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
     '''
@@ -512,6 +512,7 @@ def _rsa_act(rsa, rmi):
     Calcule le montant du RSA activité
     '''
     res = max_(rsa - rmi, 0)
+    print res
     return res 
 
 def _rsa_act_i(rsa_act):
