@@ -7,7 +7,9 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import (floor, maximum as max_, where, logical_not as not_)
+from numpy import (floor, maximum as max_, where, 
+                   logical_not as not_, logical_and as and_,
+                   logical_or as or_)
 from src.countries.france.model.data import QUIFAM, QUIFOY
 from src.countries.france.model.pfam import nb_enf, age_en_mois_benjamin
 
@@ -485,28 +487,22 @@ def _majo_rsa(rsa_socle, agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
    
 
-def _psa(api, rsa, _P):
+def _psa(api, rsa, activite, af_nbenf, al, _P, _option = {"activite" : [CHEF, PART]}):
     '''
     Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
     '''
-        
-    dummy_api = api > 0
-    dummy_rmi = rsa > 0
-    # dummy_apl = apl > 0
-
     # Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié en janvier, 
     # février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour les ex-bénéficiaires du Rmi ou de l’Api), 
     # de la prime forfaitaire mensuelle au titre du Rmi ou de l’Api 
     # ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et d’être âgé de plus de 25 ans 
     # ou d’avoir au moins un enfant à charge). 
-    # La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.  
-    
-    
-    condition = (dummy_api+dummy_rmi > 0)
-    
-    #if hasattr(P.fam.af,"age3"): nbPAC = nb_enf(age, smic55, P.fam.af.age1,P.fam.af.age3)
-    #else: nbPAC = af_nbenf
-    # TODO check nombre de PAC pour une famille
+    # La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.      
+    dummy_api = api > 0
+    dummy_rmi = rsa > 0
+    dummy_al = and_(al>0, or_(af_nbenf>0, or_(activite[CHEF]==0, activite[PART]==0 ) )) 
+
+    condition = (dummy_api + dummy_rmi + dummy_al > 0)
+
     P = _P.minim.rmi
     psa = condition*P.psa
                
@@ -518,6 +514,7 @@ def _rsa_act(rsa, rmi):
     Calcule le montant du RSA activité
     '''
     res = max_(rsa - rmi, 0)
+    print res
     return res 
 
 def _rsa_act_i(rsa_act):
