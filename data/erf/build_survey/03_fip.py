@@ -209,7 +209,7 @@ def create_fip(year = 2006): # message('03_fip')
 
     tmp_pac1 = pac.loc[ :, ['noindiv', 'key1']]
     tmp_pac2 = pac.loc[ :, ['noindiv', 'key2']]
-    tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac']]
+    tmp_indivifip = indivifip.loc[ :, ['key', 'type_pac', 'naia']]
 
     
     pac_ind1 = tmp_pac1.merge(tmp_indivifip, left_on=['key1'], right_on =['key'], how='inner')
@@ -270,7 +270,7 @@ def create_fip(year = 2006): # message('03_fip')
     
     print pacIndiv.type_pac.value_counts()
     gc.collect()
-    return
+    
 # # We keep the fip in the menage of their parents because it is used in to
 # # build the famille. We should build an individual ident for the fip that are
 # # older than 18 since they are not in their parents' menage according to the eec
