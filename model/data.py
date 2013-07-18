@@ -861,7 +861,7 @@ class InputDescription(ModelDescription):
                                   u"Indépendant",
                                   u"Chômeur",
                                   u"Retraité",
-                                  u"Inactif"],start=1)) # 5 postes normalement TODO; check=0
+                                  u"Inactif"],start=1)) # 5 postes normalement TODO: check=0
     wprm_init = FloatCol()
 
 
