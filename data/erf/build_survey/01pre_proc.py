@@ -24,7 +24,7 @@ import gc
 from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
-from numpy import NaN
+from numpy import nan
 
 from src.countries.france.data.erf.build_survey import save_temp, load_temp
 
@@ -35,6 +35,7 @@ def create_indivim(year=2006):
     erfmen = data.get_values(table="erf_menage")
     eecmen = data.get_values(table="eec_menage")
     
+    print sorted(eecmen.columns)
     eecmen["locataire"] = eecmen["so"].isin([3,4,5])
     eecmen["locataire"] = eecmen["locataire"].astype("int32")
     noappar_m = eecmen[ not_(eecmen.ident.isin( erfmen.ident.values))]
@@ -95,33 +96,34 @@ def create_indivim(year=2006):
         except:
             print "%s is missing" %var
     
+    
     indivim['actrec'] = 0
     indivim['actrec'] = where(indivim['acteu'] == 1, 3, indivim['actrec'])
     indivim['actrec'] = where(indivim['acteu'] == 3, 8, indivim['actrec'])
     
     filter1 = and_(indivim['acteu'] == 1, or_(indivim['stc'] == 1, indivim['stc'] == 3))
-    indivim['actrec'] = where(filter1 is True, 1, indivim['actrec'])
+    indivim['actrec'] = where(filter1, 1, indivim['actrec'])
     
     filter2 = and_(indivim['acteu'] == 1, or_(and_(indivim['stc'] == 2, indivim['contra'] == 1), 
                                               indivim['titc'] == 2))
-    indivim['actrec'] = where(filter2 is True, 2, indivim['actrec'])
+    indivim['actrec'] = where(filter2, 2, indivim['actrec'])
     
     filter3 = or_(indivim['acteu'] == 2, and_(indivim['acteu'] == 3, indivim['mrec'] == 1))
-    indivim['actrec'] = where(filter3 is True, 4, indivim['actrec'])
+    indivim['actrec'] = where(filter3, 4, indivim['actrec'])
     
     filter4 = and_(indivim['acteu'] == 3, or_(indivim['forter'] == 2, indivim['rstg'] == 1))
-    indivim['actrec'] = where(filter4 is True, 5, indivim['actrec'])
+    indivim['actrec'] = where(filter4, 5, indivim['actrec'])
     
     filter5 = and_(indivim['acteu'] == 2, (indivim.retrai.isin([1,2])))
-    indivim['actrec'] = where(filter5 is True, 7, indivim['actrec'])
-    indivim['actrec'] = where(indivim['acteu'] is None, 9, indivim['actrec'])
-
+    indivim['actrec'] = where(filter5, 7, indivim['actrec'])
+    indivim['actrec'] = where(indivim['acteu'].isnull(), 9, indivim['actrec'])
     
     save_temp(indivim, name="indivim", year=year)
     del erfind, eecind, indivim
     print 'indivim saved'
     gc.collect()
 
+    
 
 def create_enfnn(year=2006):
     data = DataCollection(year=year)
@@ -168,6 +170,22 @@ def create_enfnn(year=2006):
     print "enfnnm saved"
     gc.collect()
     
+def manually_remove_errors(year=2006):
+    '''
+    This method is here because some oddities can make it through the controls throughout the procedure
+    It is here to remove all these individual errors that compromise the process.
+    GL,HF
+    '''
+    
+    if year==2006:
+        indivim = load_temp(name="indivim", year=year)
+        indivim.lien[indivim.noindiv==603018905] = 2
+        indivim.noimer[indivim.noindiv==603018905] = 1
+        print indivim[indivim.noindiv==603018905].to_string()
+        save_temp(indivim, name="indivim", year=year)
+    
 if __name__ == '__main__':
+    year = 2006
     create_indivim()
     create_enfnn()
+    manually_remove_errors(year=year)

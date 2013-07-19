@@ -22,15 +22,15 @@ def run_all(year=2006):
     
     pre_proc.create_indivim(year=year)
     pre_proc.create_enfnn(year=year)
-    imput_loyer.create_imput_loyer(year=year)
+#     imput_loyer.create_imput_loyer(year=year)
     fip.create_fip(year=year)
     famille.famille(year=year)
     foyer.sif(year=year)
     foyer.foyer_all(year=year)
     rebuild.create_totals(year=year)
     rebuild.create_final(year=year)
-#    invalides.invalide(year=year)
-    final.final(year=year)
+#     invalides.invalide(year=year)
+#     final.final(year=year)
 
 if __name__ == '__main__':
     run_all(year = 2006)

@@ -584,5 +584,6 @@ def create_final(year=None):
     del sif, final
     
 if __name__ == '__main__':
-#    create_totals()
-    create_final()
+    year = 2006
+    create_totals(year=year)
+    create_final(year=year)

@@ -40,7 +40,8 @@ def final_check(year=2006):
     columns = set(columns)
     
     print varlist.difference(columns)
-    
+    print final2.loc[final2.idfoy==603018901, 
+                       ['idfoy', 'quifoy', 'idfam', 'quifam', 'idmen', 'quimen', 'noi']].to_string()
 #     print final2
 #     print finalT
 # #     control(final2, debug=True, verbose=True, verbose_columns=['idfam', 'quifam'])

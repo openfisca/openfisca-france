@@ -91,6 +91,7 @@ def create_imput_loyer(year):
 #     erfindm = df.get_values(table = "eec_indivi", variables = indm_vars)
      
     # TODO: clean this later
+    erfindm['dip11'] = 0
     count_NA('dip11', erfindm)
 #     erfindm['dip11'] = 99
     erfindm = erfindm[['ident', 'dip11']][erfindm['lpr'] == 1]
