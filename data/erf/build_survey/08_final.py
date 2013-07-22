@@ -225,11 +225,7 @@ def final(year=2006):
     final.act5 = where(final.actrec==4, 3, final.act5) # chômeur
     final.act5 = where(final.actrec==7, 4, final.act5) # retraité
     final.act5 = where(final.actrec==8, 5, final.act5) # autres inactifs
-    
     print final.act5.value_counts() # TODO : 29 retraités ?
-    print final.act5.unique()
-    temp = final.act5[final.act5.isnull()]
-    print len(temp)
 
 #     assert final.act5.notnull().all(), 'there are NaN inside final.act5'
 

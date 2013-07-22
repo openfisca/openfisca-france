@@ -84,7 +84,7 @@ def create_indivim(year=2006):
         erfind['tu99'] = NaN
     
     #indivim <- merge(eecind,erfind, by = c("noindiv","ident","noi"))
-    indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="outer")
+    indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="inner")
     
 
     var_list = (['acteu', 'stc', 'contra', 'titc', 'forter', 'mrec', 'rstg', 'retrai', 'lien', 'noicon', 
@@ -114,9 +114,10 @@ def create_indivim(year=2006):
     filter4 = and_(indivim['acteu'] == 3, or_(indivim['forter'] == 2, indivim['rstg'] == 1))
     indivim['actrec'] = where(filter4, 5, indivim['actrec'])
     
-    filter5 = and_(indivim['acteu'] == 2, (indivim.retrai.isin([1,2])))
+    filter5 = and_(indivim['acteu'] == 3, or_(indivim['retrai'] == 1, indivim['retrai'] == 2))
     indivim['actrec'] = where(filter5, 7, indivim['actrec'])
     indivim['actrec'] = where(indivim['acteu'].isnull(), 9, indivim['actrec'])
+    print indivim['actrec'].value_counts()
     
     save_temp(indivim, name="indivim", year=year)
     del erfind, eecind, indivim
