@@ -29,8 +29,8 @@ def run_all(year=2006):
     foyer.foyer_all(year=year)
     rebuild.create_totals(year=year)
     rebuild.create_final(year=year)
-    invalides.invalide(year=year)
-    final.final(year=year)
+#     invalides.invalide(year=year)
+#     final.final(year=year)
 
 if __name__ == '__main__':
     run_all(year = 2006)

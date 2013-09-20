@@ -862,7 +862,7 @@ class InputDescription(ModelDescription):
                                   u"Chômeur",
                                   u"Retraité",
                                   u"Inactif"],start=1)) # 5 postes normalement TODO: check=0
-    wprm_init = FloatCol()
+    wprm_init = FloatCol(label="Effectifs")
 
 
 ## ISF ##
@@ -917,7 +917,7 @@ class InputDescription(ModelDescription):
         
     # to remove
     champm = BoolCol(entity='men', default = True)
-    wprm = FloatCol(entity='men', default = 1)
+    wprm = FloatCol(entity='men', default = 1,label="Effectifs")
     etr = IntCol()     
     coloc = BoolCol()
     csg_rempl = EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",

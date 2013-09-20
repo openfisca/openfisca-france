@@ -24,7 +24,7 @@ import gc
 from numpy import logical_not as not_
 from numpy import logical_and as and_
 from numpy import logical_or as or_
-from numpy import NaN
+from numpy import nan
 
 from src.countries.france.data.erf.build_survey import save_temp, load_temp
 
@@ -36,7 +36,6 @@ def create_indivim(year=2006):
     eecmen = data.get_values(table="eec_menage")
     
     print sorted(eecmen.columns)
-    return
     eecmen["locataire"] = eecmen["so"].isin([3,4,5])
     eecmen["locataire"] = eecmen["locataire"].astype("int32")
     noappar_m = eecmen[ not_(eecmen.ident.isin( erfmen.ident.values))]
@@ -85,7 +84,7 @@ def create_indivim(year=2006):
         erfind['tu99'] = NaN
     
     #indivim <- merge(eecind,erfind, by = c("noindiv","ident","noi"))
-    indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="outer")
+    indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="inner")
     
 
     var_list = (['acteu', 'stc', 'contra', 'titc', 'forter', 'mrec', 'rstg', 'retrai', 'lien', 'noicon', 
@@ -97,33 +96,35 @@ def create_indivim(year=2006):
         except:
             print "%s is missing" %var
     
+    
     indivim['actrec'] = 0
     indivim['actrec'] = where(indivim['acteu'] == 1, 3, indivim['actrec'])
     indivim['actrec'] = where(indivim['acteu'] == 3, 8, indivim['actrec'])
     
     filter1 = and_(indivim['acteu'] == 1, or_(indivim['stc'] == 1, indivim['stc'] == 3))
-    indivim['actrec'] = where(filter1 is True, 1, indivim['actrec'])
+    indivim['actrec'] = where(filter1, 1, indivim['actrec'])
     
     filter2 = and_(indivim['acteu'] == 1, or_(and_(indivim['stc'] == 2, indivim['contra'] == 1), 
                                               indivim['titc'] == 2))
-    indivim['actrec'] = where(filter2 is True, 2, indivim['actrec'])
+    indivim['actrec'] = where(filter2, 2, indivim['actrec'])
     
     filter3 = or_(indivim['acteu'] == 2, and_(indivim['acteu'] == 3, indivim['mrec'] == 1))
-    indivim['actrec'] = where(filter3 is True, 4, indivim['actrec'])
+    indivim['actrec'] = where(filter3, 4, indivim['actrec'])
     
     filter4 = and_(indivim['acteu'] == 3, or_(indivim['forter'] == 2, indivim['rstg'] == 1))
-    indivim['actrec'] = where(filter4 is True, 5, indivim['actrec'])
+    indivim['actrec'] = where(filter4, 5, indivim['actrec'])
     
-    filter5 = and_(indivim['acteu'] == 2, (indivim.retrai.isin([1,2])))
-    indivim['actrec'] = where(filter5 is True, 7, indivim['actrec'])
-    indivim['actrec'] = where(indivim['acteu'] is None, 9, indivim['actrec'])
-
+    filter5 = and_(indivim['acteu'] == 3, or_(indivim['retrai'] == 1, indivim['retrai'] == 2))
+    indivim['actrec'] = where(filter5, 7, indivim['actrec'])
+    indivim['actrec'] = where(indivim['acteu'].isnull(), 9, indivim['actrec'])
+    print indivim['actrec'].value_counts()
     
     save_temp(indivim, name="indivim", year=year)
     del erfind, eecind, indivim
     print 'indivim saved'
     gc.collect()
 
+    
 
 def create_enfnn(year=2006):
     data = DataCollection(year=year)
