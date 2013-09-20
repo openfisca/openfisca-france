@@ -43,11 +43,11 @@ class InputDescription(ModelDescription):
     hsup = IntCol( label = "Heures supplémentaires", val_type="monetary")  # (f1au, f1bu, f1cu, f1du, f1eu)
     inv  = BoolCol(label = u'Invalide')
     alt  = BoolCol(label = u'Garde alternée')
-    cho_ld = BoolCol(label = 'Chômeur de longue durée') # (f1ai, f1bi, f1ci, f1di, f1ei)
-    ppe_tp_sa = BoolCol(label = "Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière") # (f1ax, f1bx, f1cx, f1dx, f1qx)
-    ppe_tp_ns = BoolCol(label = "Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière") # (f5nw, f5ow, f5pw)
-    ppe_du_sa = IntCol(label = "Prime pour l'emploi des salariés: nombre d'heures payées dans l'année") # (f1av, f1bv, f1cv, f1dv, f1qv)
-    ppe_du_ns = IntCol(label = "Prime pour l'emploi des non-salariés:nombre de jours travaillés dans l'année") # (f5nv, f5ov, f5pv)
+    cho_ld = BoolCol(label = u"Chômeur de longue durée") # (f1ai, f1bi, f1ci, f1di, f1ei)
+    ppe_tp_sa = BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière") # (f1ax, f1bx, f1cx, f1dx, f1qx)
+    ppe_tp_ns = BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière") # (f5nw, f5ow, f5pw)
+    ppe_du_sa = IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année") # (f1av, f1bv, f1cv, f1dv, f1qv)
+    ppe_du_ns = IntCol(label = u"Prime pour l'emploi des non-salariés:nombre de jours travaillés dans l'année") # (f5nv, f5ov, f5pv)
     jour_xyz = IntCol(default = 360, entity="foy")
     age = AgesCol(label = u"âge" ,  val_type="age")
     agem = AgesCol(label = u"âge (en mois)", val_type="months")
@@ -148,27 +148,27 @@ class InputDescription(ModelDescription):
     nbF = IntCol(label="Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity= 'foy')
     nbN = IntCol(label="Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille", entity= 'foy')
     
-    caseE = BoolCol(label="Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant moins de 5 ans", entity= 'foy')
-    caseF = BoolCol(label="Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente", entity= 'foy')
-    caseG = BoolCol(label="Titulaire d'une pension de veuve de guerre", entity= 'foy')
-    caseH = IntCol(label="Année de naissance des enfants à charge en garde alternée", entity= 'foy')
-    caseK = BoolCol(label="Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre", entity= 'foy')
-    caseL = BoolCol(label="Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant plus de 5 ans", entity= 'foy')
-    caseN = BoolCol(label="Vous ne vivez pas seul au 1er janvier de l'année n-1", entity= 'foy')
-    caseP = BoolCol(label="Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%", entity= 'foy')
-    caseS = BoolCol(label="Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity= 'foy')
-    caseT = BoolCol(label="Vous êtes parent isolé au 1er janvier de l'année n-1", entity= 'foy')
-    caseW = BoolCol(label="Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity= 'foy')
+    caseE = BoolCol(label=u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant moins de 5 ans", entity= 'foy')
+    caseF = BoolCol(label=u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente", entity= 'foy')
+    caseG = BoolCol(label=u"Titulaire d'une pension de veuve de guerre", entity= 'foy')
+    caseH = IntCol(label=u"Année de naissance des enfants à charge en garde alternée", entity= 'foy')
+    caseK = BoolCol(label=u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre", entity= 'foy')
+    caseL = BoolCol(label=u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant plus de 5 ans", entity= 'foy')
+    caseN = BoolCol(label=u"Vous ne vivez pas seul au 1er janvier de l'année n-1", entity= 'foy')
+    caseP = BoolCol(label=u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%", entity= 'foy')
+    caseS = BoolCol(label=u"Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity= 'foy')
+    caseT = BoolCol(label=u"Vous êtes parent isolé au 1er janvier de l'année n-1", entity= 'foy')
+    caseW = BoolCol(label=u"Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity= 'foy')
     
     
     rfr_n_2  = IntCol(entity='foy', label = u"Revenu fiscal de référence année n-2", val_type="monetary") # TODO: provide in data
     nbptr_n_2 = IntCol(entity='foy', label = u"Nombre de parts année n-2", val_type="monetary")  # TODO: provide in data
     
     # Rentes viagères
-    f1aw = IntCol(label ="Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans", entity= 'foy', val_type="monetary")
-    f1bw = IntCol(label ="Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans", entity= 'foy', val_type="monetary")
-    f1cw = IntCol(label ="Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans", entity= 'foy', val_type="monetary")
-    f1dw = IntCol(label ="Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans", entity= 'foy', val_type="monetary")
+    f1aw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans", entity= 'foy', val_type="monetary")
+    f1bw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans", entity= 'foy', val_type="monetary")
+    f1cw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans", entity= 'foy', val_type="monetary")
+    f1dw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans", entity= 'foy', val_type="monetary")
     
     # Gain de levée d'option
     #TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv 
@@ -225,8 +225,8 @@ class InputDescription(ModelDescription):
     
     # Plus values et gains taxables à des taux forfaitaires
     f3vg = IntCol(entity= 'foy', label=u"Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés", val_type="monetary")
-    f3vh = IntCol(entity= 'foy', label =u"Perte de l'année n-1", val_type="monetary")
-    f3vt = IntCol(entity= 'foy', label = u"Clôture du PEA : entre la 2e et la 5e année", val_type="monetary")
+    f3vh = IntCol(entity= 'foy', label=u"Perte de l'année n-1", val_type="monetary")
+    f3vt = IntCol(entity= 'foy', label=u"Clôture du PEA : entre la 2e et la 5e année", val_type="monetary")
     f3vu = IntCol(entity= 'foy')
     f3vv = IntCol(entity= 'foy')
 
@@ -234,11 +234,11 @@ class InputDescription(ModelDescription):
 
 
     # Revenu foncier
-    f4ba = IntCol(entity= 'foy', label="Revenus fonciers imposables", val_type="monetary")
-    f4bb = IntCol(entity= 'foy', label =u"Déficit imputable sur les revenus fonciers", val_type="monetary")
-    f4bc = IntCol(entity= 'foy', label =u"Déficit imputable sur le revenu global", val_type="monetary")
-    f4bd = IntCol(entity= 'foy', label =u"Déficits antérieurs non encore imputés", val_type="monetary")
-    f4be = IntCol(entity= 'foy', label =u"Micro foncier: recettes brutes sans abattement", val_type="monetary")
+    f4ba = IntCol(entity= 'foy', label=u"Revenus fonciers imposables", val_type="monetary")
+    f4bb = IntCol(entity= 'foy', label=u"Déficit imputable sur les revenus fonciers", val_type="monetary")
+    f4bc = IntCol(entity= 'foy', label=u"Déficit imputable sur le revenu global", val_type="monetary")
+    f4bd = IntCol(entity= 'foy', label=u"Déficits antérieurs non encore imputés", val_type="monetary")
+    f4be = IntCol(entity= 'foy', label=u"Micro foncier: recettes brutes sans abattement", val_type="monetary")
     
     # Prime d'assurance loyers impayés
     f4bf = IntCol(entity= 'foy', label =u"Primes d'assurance pour loyers impayés des locations conventionnées", val_type="monetary")
