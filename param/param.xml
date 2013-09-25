@@ -3170,6 +3170,14 @@
       <CODE description="Indicatrice pour imposition des revenus du capital au barème" code="finpfl" format = 'bool'>
 	    <VALUE valeur="0" deb="2001-01-01" fin="2012-12-31"/>
       </CODE>
+      <NODE code = "charge_loyer" description="Charge de loyer">
+      	<CODE description="Activation de la charge" code="active" format = 'bool'>
+	      <VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>
+        </CODE>
+        <CODE description="Plafond annuel" code="plaf" format = 'monetary'>
+	      <VALUE valeur="12000" deb="2002-01-01" fin="2012-12-31"/>
+        </CODE>      
+      </NODE>
     </NODE>
     <BAREME description="Contribution exceptionnelle sur les hauts revenus" code = "cehr" type = "monetary">
       <TRANCHE>

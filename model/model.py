@@ -169,6 +169,10 @@ class OutputDescription(ModelDescription):
     cd_cinema = Prestation(cd._cd_cinema, entity = 'foy', start=date(2002,1,1), end=date(2005,12,31))
     cd_ecodev = Prestation(cd._cd_ecodev, entity = 'foy', start=date(2007,1,1), end=date(2008,12,31))
     cd_grorep = Prestation(cd._cd_grorep, entity = 'foy', start=date(2009,1,1))
+
+    charges_deduc_reforme = Prestation(cd._charges_deduc_reforme, entity = 'foy')
+    charge_loyer = Prestation(cd._charge_loyer, entity = 'foy')
+
     
     rbg_int = Prestation(cd._rbg_int, entity = 'foy', label = u"Revenu brut global intermédiaire")
     cd1     = Prestation(cd._cd1, entity = 'foy', label = u"Charges déductibles non plafonnées")
@@ -295,6 +299,8 @@ class OutputDescription(ModelDescription):
     
     jeunes = Prestation(ci._jeunes, entity = 'foy', start=date(2005,1,1), end=date(2008,12,31))
     
+    
+
     credits_impot = Prestation(ci._credits_impot, entity = 'foy')
     
     irpp = Prestation(ir._irpp, entity = 'foy', label=u"Impôt sur le revenu des personnes physiques")

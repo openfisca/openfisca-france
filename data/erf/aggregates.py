@@ -16,7 +16,7 @@ def build_erf_aggregates(variables = None, year = 2006):
     """
     Fetch the relevant aggregates from erf data
     """
-    country = 'france'         
+
     erf = DataCollection(year=year)
     if variables is not None and "wprm" not in variables:
         variables.append("wprm")

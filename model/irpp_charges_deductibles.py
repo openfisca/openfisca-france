@@ -9,6 +9,15 @@
 from __future__ import division
 from numpy import minimum as min_, maximum as max_
 
+from src.countries.france.model.data import QUIFOY
+
+VOUS = QUIFOY['vous']
+CONJ = QUIFOY['conj']
+PAC1 = QUIFOY['pac1']
+PAC2 = QUIFOY['pac2']
+PAC3 = QUIFOY['pac3']
+ALL = [x[1] for x in QUIFOY]
+
 
 def _rfr_cd(cd_acc75a, cd_doment, cd_eparet, cd_sofipe):
     return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
@@ -52,8 +61,17 @@ def _cd2(cd_ecodev, cd_sofipe, cd_cinema, _P):
 def _rbg_int(rbg, cd1):
     return max_(rbg - cd1, 0)
 
-def _charges_deduc(cd1, cd2):
-    return cd1 + cd2
+def _charges_deduc_reforme(charge_loyer):
+    return charge_loyer
+
+def _charge_loyer(loyer, _P, _option = {'loyer': ALL}):
+    plaf = _P.ir.autre.charge_loyer.plaf
+    return _P.ir.autre.charge_loyer.active*min_(12*sum(loyer.itervalues()), plaf)
+
+
+def _charges_deduc(cd1, cd2, charges_deduc_reforme ):
+    return cd1 + cd2 + charges_deduc_reforme
+
 
 def _cd_penali(f6gi, f6gj, f6gp, f6el, f6em, f6gu, _P):
     '''

@@ -106,7 +106,7 @@ def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [
 
     return br_al
 
-def _al(concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, _P):
+def _al(concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, _P, _option = {'nat_imp': ALL}):
     '''
     Formule des aides aux logements en secteur locatif
     Attention, cette fonction calcul l'aide mensuelle
@@ -209,8 +209,12 @@ def _al(concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, _P):
     ## APL pour les accédants à la propriété
     al_acc = 0*acce
     ## APL (tous)
-    al = 12*(al_loc + al_acc)
-
+    
+    if _P.ir.autre.charge_loyer.active:
+        al = 12*(al_loc + al_acc)*not_( sum(nat_imp.itervalues()) >= 1)
+    else:
+        al = 12*(al_loc + al_acc)
+    
     return al
 
 def _alf(al, al_pac, so):
