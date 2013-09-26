@@ -4276,7 +4276,7 @@
 	<VALUE valeur="0.4" deb="2002-01-01" fin="2013-12-31"/>
       </CODE>
       <NODE code = "forfait_logement" description="Forfait logement">
-	    <CODE description="Fofait logement pour 1 personne" code="taux1" format = 'percent'>
+	    <CODE description="Fofait logement pour 1 personne (en  % du rsa_socle)" code="taux1" format = 'percent'>
 	  <VALUE valeur="0.12" deb="2002-01-01" fin="2013-12-31"/>
 	    </CODE>
 	    <CODE description="Forfait logement pour 2 personnes" code="taux2" format = 'percent'>
