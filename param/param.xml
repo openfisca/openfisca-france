@@ -3174,8 +3174,11 @@
       	<CODE description="Activation de la charge" code="active" format = 'bool'>
 	      <VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>
         </CODE>
-        <CODE description="Plafond annuel" code="plaf" format = 'monetary'>
-	      <VALUE valeur="12000" deb="2002-01-01" fin="2012-12-31"/>
+        <CODE description="Plafond mensuel" code="plaf" format = 'monetary'>
+	      <VALUE valeur="1000" deb="2002-01-01" fin="2012-12-31"/>
+        </CODE>
+        <CODE description="Ajuster le plafond au nombre de part" code="plaf_nbp" format = 'bool'>
+	      <VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>
         </CODE>      
       </NODE>
     </NODE>
