@@ -64,9 +64,13 @@ def _rbg_int(rbg, cd1):
 def _charges_deduc_reforme(charge_loyer):
     return charge_loyer
 
-def _charge_loyer(loyer, _P, _option = {'loyer': ALL}):
+def _charge_loyer(loyer, nbptr, _P, _option = {'loyer': ALL}):
+    
+    from numpy import logical_not as not_
     plaf = _P.ir.autre.charge_loyer.plaf
-    return _P.ir.autre.charge_loyer.active*min_(12*sum(loyer.itervalues()), plaf)
+    plaf_nbp = _P.ir.autre.charge_loyer.plaf_nbp
+    plafond = plaf*(not_(plaf_nbp) + plaf*nbptr*plaf_nbp) 
+    return 12*_P.ir.autre.charge_loyer.active*min_(sum(loyer.itervalues()), plafond)
 
 
 def _charges_deduc(cd1, cd2, charges_deduc_reforme ):
