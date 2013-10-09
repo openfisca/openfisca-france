@@ -514,7 +514,6 @@ def _rsa_act(rsa, rmi):
     Calcule le montant du RSA activité
     '''
     res = max_(rsa - rmi, 0)
-    print res
     return res 
 
 def _rsa_act_i(rsa_act):
