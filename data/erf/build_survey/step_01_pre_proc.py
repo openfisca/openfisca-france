@@ -12,7 +12,7 @@
 #
 ## Prepare the some useful merged tables
 #
-print('Entering 01_pre_proc')
+
 #
 ## Menages et Individus
 #
@@ -186,6 +186,7 @@ def manually_remove_errors(year=2006):
         save_temp(indivim, name="indivim", year=year)
     
 if __name__ == '__main__':
+    print('Entering 01_pre_proc')
     year = 2006
     create_indivim()
     create_enfnn()

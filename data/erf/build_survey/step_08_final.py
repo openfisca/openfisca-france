@@ -7,8 +7,8 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import where, NaN, random, logical_or as or_, unique 
-from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from numpy import where, NaN, random, unique 
+from src.countries.france.data.erf.build_survey import load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
 from numpy import logical_and as and_, logical_not as not_
 from pandas import read_csv, HDFStore
@@ -16,7 +16,7 @@ import os
 import gc
 
 
-def final(year=2006):
+def final(year=2006, filename="test", check=True):
 
 ##***********************************************************************/
     print('08_final: derniers réglages')
@@ -33,8 +33,6 @@ def final(year=2006):
     print 'check doublons', len(final[final.duplicated(['noindiv'])])
     final.statmarit = where(final.statmarit.isnull(), 2, final.statmarit)
 # 
-
-
 
 # # activite des fip
 # table(final[final$quelfic=="FIP","activite"],useNA="ifany")
@@ -368,7 +366,7 @@ def final(year=2006):
 # saveTmp(final2, file= "final2.Rdata")
 
 
-    from src.countries.france.data.erf.build_survey.utilitaries import check_structure
+
     control(final2, debug=True)
     print final2.age.isnull().sum()
     final2 = final2.drop_duplicates(cols='noindiv')
@@ -386,13 +384,23 @@ def final(year=2006):
     final2 = final2.loc[final2.idfoy.isin(liste_foy), :]
     print 'final2 après le filtrage', len(final2)
     
-    check_structure(final2)
+    if check:
+        check_structure(final2)
     
     from src.countries.france import DATA_SOURCES_DIR
-    test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
+    test_filename = os.path.join(DATA_SOURCES_DIR, filename + ".h5")
+    if os.path.exists(test_filename):
+        import warnings
+        import datetime
+        time_stamp = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M')
+        renamed_file = os.path.join(DATA_SOURCES_DIR, filename + "_" + time_stamp + ".h5")
+        warnings.warn("A file with the same name already exists \n Renaming current output and saving to " + renamed_file)
+        test_filename = renamed_file
+
+    
     store = HDFStore(test_filename)
     store['survey_'+ str(year)] = final2
-    print 'fin du traitement des données'
+
     
 if __name__ == '__main__':
     final()
