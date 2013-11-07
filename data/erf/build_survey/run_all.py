@@ -32,3 +32,5 @@ def run_all(year=2006, filename="test", check=False):
 
 if __name__ == '__main__':
     run_all(year = 2006, check=False)
+    import pdb
+    pdb.set_trace()

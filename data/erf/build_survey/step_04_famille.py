@@ -10,9 +10,7 @@ from numpy import where, array, NaN
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
-from numpy import logical_not as not_
-from numpy import logical_and as and_
-from numpy import logical_or as or_
+
 import pdb
 from pandas import concat, DataFrame
 
@@ -29,7 +27,7 @@ def subset_base(base,famille):
     generates a dataframe containing the values of base that are not already in famille
     """
     print "base", len(base.index)
-    tmp = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    tmp = base[~(base.noindiv.isin(famille.noindiv.values))]
     return tmp
 
 
@@ -69,7 +67,7 @@ def famille(year=2006):
     indivi["agepf"] = where(indivi['naim'] < 7, indivi['year'] - indivi['naia'] ,
                             indivi['year'] - indivi['naia'] - 1)
 
-    indivi = indivi[ not_((indivi['lien']==6) & (indivi['agepf']<16) & ("quelfic"=="EE"))]
+    indivi = indivi[ ~((indivi['lien']==6) & (indivi['agepf']<16) & ("quelfic"=="EE"))]
 
 
     print '    1.2 : récupération des enfants à naître'
@@ -84,7 +82,7 @@ def famille(year=2006):
     print 'nb enfants à naitre', len(enfnn.index)
     print 'On enlève les enfants à naitre qui ne sont pas les enfants de la personne de référence'
     enfnn = enfnn[enfnn['lpr']==3]
-    enfnn = enfnn[not_(enfnn.noindiv.isin(indivi.noindiv.values))]
+    enfnn = enfnn[~(enfnn.noindiv.isin(indivi.noindiv.values))]
     print len(enfnn.index)
 
 # # # PB with vars "agepf"  "noidec" "year"  NOTE: quels problèmes ? JS
@@ -136,13 +134,12 @@ def famille(year=2006):
     pr = pr.loc[:, ['ident', 'noifam']]
     print 'length pr', len(pr.index)
     
-    nof01 = base[or_(base.lpr.isin([1,2]), and_(base['lpr'] == 3, base['m15'])) |
-                 and_(base['lpr'] == 3, and_(base['p16m20'], not_(base['smic55'])))]
+    nof01 = base[(base.lpr.isin([1,2])) | ((base['lpr'] == 3) & (base['m15'])) |
+                 ((base['lpr'] == 3) & (base['p16m20']) & (~base['smic55']))]
     print 'longueur de nof01 avant merge', len(nof01.index)
     nof01 = nof01.merge(pr, on='ident', how='outer')
     nof01['famille'] = 10
-    nof01['kid'] = or_(and_(nof01['lpr']==3, nof01['m15']), 
-                       and_(nof01['lpr']==3, (nof01['p16m20'] & not_(nof01['smic55']))))
+    nof01['kid'] = ((nof01['lpr']==3) & (nof01['m15'])) | ((nof01['lpr']==3) & (nof01['p16m20']) & ~(nof01['smic55']))
     famille = nof01
     print nof01['kid'].value_counts()
     print nof01.lpr.value_counts()
@@ -172,7 +169,7 @@ def famille(year=2006):
 # # famille <- rbind(famille,hcouple,fcouple)
 
     print '    2.2 : attributing the noifam to the wives'
-    fcouple = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    fcouple = base[~(base.noindiv.isin(famille.noindiv.values))]
     fcouple = fcouple[(fcouple['cohab']==1) & (fcouple['lpr']>=3) & (fcouple['sexe']==2)]
     fcouple['noifam'] = 100*fcouple['ident'] + fcouple['noi']
     fcouple['famille'] = 22
@@ -189,7 +186,7 @@ def famille(year=2006):
     print ''
     print 'Etape 3: Récupération des personnes seules'
     print '    3.1 : personnes seules de catégorie 1'
-    seul1 = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    seul1 = base[~(base.noindiv.isin(famille.noindiv.values))]
     seul1 = seul1[(seul1.lpr.isin([3,4])) & ((seul1['p16m20'] & seul1['smic55'])|seul1['p21']) & (seul1['cohab']==1) &
                   (seul1['sexe']==2)]
     if len(seul1.index)>0:
@@ -206,7 +203,7 @@ def famille(year=2006):
 # #                      famille <- 32})
 # # famille <- rbind(famille,seul2)
     print '    3.1 personnes seules de catégorie 2'
-    seul2 = base[not_(base.noindiv.isin(famille.noindiv.values))]
+    seul2 = base[~(base.noindiv.isin(famille.noindiv.values))]
     seul2 = seul2[(seul2.lpr.isin([3,4])) & seul2['p16m20'] & seul2['smic55'] & (seul2['cohab'] != 1)]
     seul2['noifam'] = 100*seul2['ident'] + seul2['noi']
     seul2['famille'] = 32
@@ -242,7 +239,7 @@ def famille(year=2006):
 
     print '    3.4 : personnes seules de catégorie 4'
     seul4 = subset_base(base,famille)
-    seul4 = seul4[(seul4['lpr']==4) & seul4['p16m20'] & not_(seul4['smic55']) & (seul4['noimer']==0) &
+    seul4 = seul4[(seul4['lpr']==4) & seul4['p16m20'] & ~(seul4['smic55']) & (seul4['noimer']==0) &
                   (seul4['persfip']=='vous')]
     
     if len(seul4.index)>0:
@@ -313,7 +310,7 @@ def famille(year=2006):
 # # famille <- rbind(famille,avec_mere,mere,conj_mere)
 # # 
 
-    famille = famille[not_(famille.noindiv.isin(mere.noindiv.values))]
+    famille = famille[~(famille.noindiv.isin(mere.noindiv.values))]
     control_04(famille)
     
     #on retrouve les conjoints des mères
@@ -326,7 +323,7 @@ def famille(year=2006):
     conj_mere = conj_mereid.merge(base)
     conj_mere['famille'] = 43
     
-    famille = famille[not_(famille.noindiv.isin(conj_mere.noindiv.values))]
+    famille = famille[~(famille.noindiv.isin(conj_mere.noindiv.values))]
     famille = concat([famille, avec_mere, mere, conj_mere])
     control_04(famille)
     del avec_mere, mere, conj_mere, mereid, conj_mereid
@@ -362,7 +359,7 @@ def famille(year=2006):
     print '    4.2 : enfants avec père'
     avec_pere = subset_base(base,famille)
     avec_pere = avec_pere[(avec_pere['lpr']==4) &
-                          or_((avec_pere['p16m20']==1), (avec_pere['m15']==1)) & 
+                          ((avec_pere['p16m20']==1) | (avec_pere['m15']==1)) & 
                           (avec_pere['noiper'].notnull())]
     avec_pere['noifam'] = 100*avec_pere['ident'] + avec_pere['noiper']
     avec_pere['famille'] = 44
@@ -376,7 +373,7 @@ def famille(year=2006):
     
     pere['noifam'] = 100*pere['ident'] + pere['noi']
     pere['famille'] = 45
-    famille = famille[not_(famille.noindiv.isin(pere.noindiv.values))]
+    famille = famille[~(famille.noindiv.isin(pere.noindiv.values))]
     
     #On récupère les conjoints des pères
     conj_pereid = pere.loc[array(pere['noicon']!=0), ['ident','noicon','noifam']]
@@ -387,7 +384,7 @@ def famille(year=2006):
     control_04(conj_pere)
     if len(conj_pere.index)>0 : conj_pere['famille'] = 46
         
-    famille = famille[not_(famille.noindiv.isin(conj_pere.noindiv.values))]
+    famille = famille[~(famille.noindiv.isin(conj_pere.noindiv.values))]
     famille = concat([famille, avec_pere, pere, conj_pere])
     print 'contrôle de famille après ajout des pères'
     control_04(famille)
@@ -414,7 +411,7 @@ def famille(year=2006):
     print '    4.3 : enfants avec déclarant'
     avec_dec = subset_base(base,famille)
     avec_dec = avec_dec[(avec_dec['persfip']=="pac") & (avec_dec['lpr']==4) &
-                    ( (avec_dec['p16m20'] & not_(avec_dec['smic55'])) | (avec_dec['m15']==1 ))]
+                    ( (avec_dec['p16m20'] & ~(avec_dec['smic55'])) | (avec_dec['m15']==1 ))]
     avec_dec['noifam'] = 100*avec_dec['ident'] + avec_dec['noidec'].astype('float')
     avec_dec['famille'] = 47
     avec_dec['kid'] = True
@@ -427,7 +424,7 @@ def famille(year=2006):
     dec['noifam'] = 100*dec['ident'] + dec['noi']
     dec['famille'] = 48
     
-    famille = famille[not_(famille.noindiv.isin(dec.noindiv.values))]
+    famille = famille[~(famille.noindiv.isin(dec.noindiv.values))]
     famille = concat([famille, avec_dec, dec])
     del dec, decid, avec_dec
     control_04(famille)
@@ -511,7 +508,7 @@ def famille(year=2006):
     print enfant_fip.ix[enfant_fip['quelfic']=="FIP","agepf"].describe()
     
     enfant_fip = enfant_fip[(enfant_fip['quelfic']=="FIP") &
-                            ((enfant_fip.agepf.isin([19,20]) & not_(enfant_fip['smic55'])) | 
+                            ((enfant_fip.agepf.isin([19,20]) & ~(enfant_fip['smic55'])) | 
                             ((enfant_fip['naia']==enfant_fip['year']-1) & (enfant_fip['rga'].astype('int')==6)))]
     
     enfant_fip['noifam'] = 100*enfant_fip['ident'] + enfant_fip['noidec']
@@ -572,7 +569,7 @@ def famille(year=2006):
     print 'Etape 6 : gestion des non attribués'
     print '    6.1 : non attribués type 1'
     non_attribue1 = subset_base(base,famille)
-    non_attribue1 = non_attribue1[not_(non_attribue1['quelfic'] != 'FIP') & (non_attribue1['m15'] | 
+    non_attribue1 = non_attribue1[~(non_attribue1['quelfic'] != 'FIP') & (non_attribue1['m15'] | 
                                     (non_attribue1['p16m20'] & (non_attribue1.lien.isin(range(1,5))) & 
                                      (non_attribue1['agepr']>=35)))]
     # On rattache les moins de 15 ans avec la PR (on a déjà éliminé les enfants en nourrice) 
@@ -586,7 +583,7 @@ def famille(year=2006):
     del pr, non_attribue1
 
     print '    6.2 : non attribué type 2'
-    non_attribue2 = base[(not_(base.noindiv.isin(famille.noindiv.values)) & (base['quelfic']!="FIP"))]
+    non_attribue2 = base[(~(base.noindiv.isin(famille.noindiv.values)) & (base['quelfic']!="FIP"))]
     non_attribue2['noifam'] = 100*non_attribue2['ident'] + non_attribue2['noi']
     non_attribue2['noifam'] = non_attribue2['noifam'].astype('int')
     non_attribue2['kid'] = False
@@ -633,7 +630,7 @@ def famille(year=2006):
     print 'controle initial', len(famille[famille['quifam']==-1])
     famille['quifam'] = where(famille['chef'], 0, famille['quifam'])
     famille['quifam'] = where(famille['kid'], 1 + famille['rang'], famille['quifam'])
-    famille['quifam'] = where(not_(famille['chef']) & not_(famille['kid']), 1, famille['quifam'])
+    famille['quifam'] = where(~(famille['chef']) & ~(famille['kid']), 1, famille['quifam'])
     
     famille['noifam'] = famille['noifam'].astype('int')
     print famille['quifam'].value_counts()

@@ -10,7 +10,6 @@ from __future__ import division
 from numpy import where, NaN, random, unique 
 from src.countries.france.data.erf.build_survey import load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
-from numpy import logical_and as and_, logical_not as not_
 from pandas import read_csv, HDFStore
 import os
 import gc
@@ -302,15 +301,11 @@ def final(year=2006, filename="test", check=True):
         reg = apl_imp["REG"][i]
 
     if year == 2008:
-        indices = and_(and_(final2["tu99"] == tu, final2["pol99"] == pol),
-                       final2["reg"] == reg)
-        selection = and_(and_(apl_imp["TU99"] == tu, apl_imp["POL99"] == pol),
-                         apl_imp["REG"] == reg)
+        indices = (final2["tu99"] == tu) & (final2["pol99"] == pol) & (final2["reg"] == reg)
+        selection = (apl_imp["TU99"] == tu) & (apl_imp["POL99"] == pol) & (apl_imp["REG"] == reg)
     else:
-        indices = and_(and_(final2["tu99"] == tu, final2["pol99"] == pol),
-                       and_(final2["tau99"] == tau, final2["reg"] == reg))
-        selection = and_(and_(apl_imp["TU99"] == tu, apl_imp["POL99"] == pol),
-                         and_(apl_imp["TAU99"] == tau, apl_imp["REG"] == reg))
+        indices = (final2["tu99"] == tu) & (final2["pol99"] == pol) & (final2["tau99"] == tau) & (final2["reg"] == reg)
+        selection = (apl_imp["TU99"] == tu) & (apl_imp["POL99"] == pol) & (apl_imp["TAU99"] == tau) & (apl_imp["REG"] == reg)
     
     z = random.uniform(size=indices.sum())
     print len(z)
@@ -347,7 +342,7 @@ def final(year=2006, filename="test", check=True):
     #TODO: JS: des chefs de famille et conjoints en double il faut trouver la source des ces doublons !
 #     final2 = final2.drop_duplicates(['noindiv'])
     
-    final2 = final2[not_(final2.age.isnull())]
+    final2 = final2[~(final2.age.isnull())]
     print "longueur de final2 après purge", len(final2)
     print_id(final2)
     

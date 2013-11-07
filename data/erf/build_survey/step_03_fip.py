@@ -9,8 +9,6 @@ from numpy import array, where, NaN
 from pandas import concat
 import gc
 
-from numpy import logical_not as not_, logical_and as and_
-
 
 # Some individuals are declared as 'personne à charge' (pac) on 'tax forms' 
 # but are not present in the erf or eec tables.
@@ -98,7 +96,7 @@ def create_fip(year = 2006): # message('03_fip')
     fip = fip.sort(columns=['declaration','naia','type_pac'])
     fip.set_index(["declaration","pac_number"], inplace=True)
     # print fip["naia"].value_counts()
-    fip = fip[and_(fip['type_pac'].notnull(), (fip['naia'] != 'an') & (fip['naia'] != ''))]
+    fip = fip[(fip['type_pac'].notnull()) & (fip['naia'] != 'an') & (fip['naia'] != '')]
     fip = fip.reset_index()
     del fip['pac_number']
 
@@ -126,7 +124,7 @@ def create_fip(year = 2006): # message('03_fip')
     
     tyFG['same_pair'] = tyFG.duplicated(cols=['declaration', 'naia'], take_last=True)
     tyFG['is_twin'] = tyFG.duplicated(cols=['declaration', 'naia', 'type_pac'])
-    tyFG['to_keep'] = (not_(tyFG['same_pair']) | (tyFG['is_twin']))
+    tyFG['to_keep'] = (~(tyFG['same_pair']) | (tyFG['is_twin']))
     #Note : On conserve ceux qui ont des couples déclar/naia différents et les jumeaux 
     #puis on retire les autres (à la fois F et G)
     print len(tyFG),'/', len(tyFG[tyFG['to_keep']])
@@ -141,7 +139,7 @@ def create_fip(year = 2006): # message('03_fip')
     tyHI = fip[fip.type_pac.isin(['H', 'I'])]
     tyHI['same_pair'] = tyHI.duplicated(cols=['declaration', 'naia'], take_last=True)
     tyHI['is_twin'] = tyHI.duplicated(cols=['declaration', 'naia', 'type_pac'])
-    tyHI['to_keep'] = not_(tyHI['same_pair']) | (tyHI['is_twin'])
+    tyHI['to_keep'] = ~(tyHI['same_pair']) | (tyHI['is_twin'])
     
     fip.update(tyHI)
     fip['to_keep'] = fip['to_keep'].fillna(True)
@@ -180,7 +178,8 @@ def create_fip(year = 2006): # message('03_fip')
 # pac$key2 <- paste(pac$naia,pac$declar2)
 # indivifip$key <- paste(indivifip$naia,indivifip$declar)
     
-    pac = indivi[and_(indivi['persfip'] is not NaN, indivi['persfip']=='pac')]
+    #TODO: replace Indivi['persfip'] is not NaN by indivi['persfip'].notnull()
+    pac = indivi[(indivi['persfip'] is not NaN) &(indivi['persfip']=='pac')]
     
     pac['naia'] = pac['naia'].astype('int32') # TODO: was float in pac fix upstream
     indivifip['naia'] = indivifip['naia'].astype('int32') 
@@ -192,8 +191,8 @@ def create_fip(year = 2006): # message('03_fip')
 # fip <- indivifip[!indivifip$key %in% pac$key1,]
 # fip <- fip[!fip$key %in% pac$key2,]
     
-    fip = indivifip[not_(indivifip.key.isin(pac.key1.values))]
-    fip = fip[not_(fip.key.isin(pac.key2.values))]
+    fip = indivifip[~(indivifip.key.isin(pac.key1.values))]
+    fip = fip[~(fip.key.isin(pac.key2.values))]
     
         
     print "    2.1 new fip created"
@@ -262,7 +261,7 @@ def create_fip(year = 2006): # message('03_fip')
     print 'nb de NaN', pacInd.type_pac.isnull().sum()
     
     del pacInd["key"]
-    pacIndiv = pacInd[not_(pacInd.duplicated('noindiv'))]
+    pacIndiv = pacInd[~(pacInd.duplicated('noindiv'))]
 #     pacIndiv.reset_index(inplace=True)
     print pacIndiv.columns
 
@@ -280,7 +279,7 @@ def create_fip(year = 2006): # message('03_fip')
 # individec1 <- upData(individec1,rename=c(declar1="declar"))
 # fip1       <- merge(fip,individec1)
 
-    individec1 = indivi[and_(indivi.declar1.isin(fip.declaration.values), indivi['persfip']=="vous")]
+    individec1 = indivi[(indivi.declar1.isin(fip.declaration.values)) & (indivi['persfip']=="vous")]
     individec1 = individec1.loc[:, ["declar1","noidec","ident","rga","ztsai","ztsao"]]
     individec1 = individec1.rename(columns={'declar1':'declaration'})
     fip1 = fip.merge(individec1, on='declaration')
@@ -292,7 +291,7 @@ def create_fip(year = 2006): # message('03_fip')
 # # individec2 <- upData(individec2,rename=c(declar2="declar"))
 # # fip2 <-merge(fip,individec2)
 
-    individec2 = indivi[and_(indivi.declar2.isin(fip.declaration.values), indivi['persfip']=="vous")]
+    individec2 = indivi[(indivi.declar2.isin(fip.declaration.values)) & (indivi['persfip']=="vous")]
     individec2 = individec2.loc[:, ["declar2","noidec","ident","rga","ztsai","ztsao"]]
     individec2.rename(columns={'declar2':'declaration'}, inplace=True)
     print individec2.head()

@@ -11,9 +11,6 @@ from numpy import where, array, NaN
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import control
-from numpy import logical_not as not_
-from numpy import logical_and as and_
-from numpy import logical_or as or_
 from pandas import concat, DataFrame
 from src.countries.france.data.erf.build_survey.utilitaries import print_id
 
@@ -92,7 +89,7 @@ def invalide(year = 2006):
     # On récupère les idfoy des foyers avec une caseF cochée 
     print '    1.2 : Les conjoints invalides'
     idfoy_inv_conj = final["idfoy"][final["caseF"]]
-    inv_conj_condition = and_(invalides["idfoy"].isin(idfoy_inv_conj), (invalides["quifoy"]==1)) 
+    inv_conj_condition = (invalides["idfoy"].isin(idfoy_inv_conj)  & (invalides["quifoy"]==1)) 
     invalides["inv"][inv_conj_condition] = True
     
     print len(invalides[inv_conj_condition]), "invalides conjoints"
@@ -124,16 +121,15 @@ def invalide(year = 2006):
     pacIndiv = load_temp(name='pacIndiv', year=year)
     print pacIndiv.type_pac.value_counts()
     
-    foy_inv_pac = invalides.loc[not_(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
+    foy_inv_pac = invalides.loc[~(invalides.quifoy.isin([0, 1])), ['noindiv', 'inv']]
 #     pac = pacIndiv.ix[:, ["noindiv", "type_pac", "naia"]]
     print len(foy_inv_pac)
     
     print pacIndiv.columns
     foy_inv_pac = foy_inv_pac.merge(pacIndiv.loc[:, ['noindiv', 'type_pac', 'naia']], 
                                     on='noindiv', how='left')
-    foy_inv_pac['inv'] = or_(foy_inv_pac['type_pac']=="G", or_(foy_inv_pac['type_pac']=="R",
-                            or_(foy_inv_pac['type_pac']=="I", and_(foy_inv_pac['type_pac']=="F", 
-                                (year - foy_inv_pac['naia'])>18))))
+    foy_inv_pac['inv'] = (foy_inv_pac['type_pac'].isin(['G','R','I']) |
+                             ((foy_inv_pac['type_pac']=="F") & ((year - foy_inv_pac['naia'])>18))) 
     
     foy_inv_pac['alt'] = ((foy_inv_pac['type_pac']=="H") | (foy_inv_pac['type_pac']=="I"))
     foy_inv_pac['naia'] = None

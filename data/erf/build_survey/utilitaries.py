@@ -8,7 +8,6 @@
 # # # OpenFisca
 
 from pandas import DataFrame, concat
-from numpy import logical_not as not_
 
 def print_id(df):
     try:
@@ -81,9 +80,9 @@ def control(dataframe, verbose=False, verbose_columns=None, debug=False, verbose
         
     if not(debug): 
         assert not(dataframe.duplicated().any()), 'présence de lignes en double dans la dataframe'
-        assert not_(dataframe.duplicated(cols=['idfoy', 'quifoy'])).all(), 'duplicate of tuple idfoy/quifoy' 
-        assert not_(dataframe.duplicated(cols=['idmen', 'quimen'])).all(), 'duplicate of tuple idmen/quimen'
-        assert not_(dataframe.duplicated(cols=['idfam', 'quifam'])).all(), 'duplicate of tupli idfam/quifam'
+        assert ~(dataframe.duplicated(cols=['idfoy', 'quifoy'])).all(), 'duplicate of tuple idfoy/quifoy' 
+        assert ~(dataframe.duplicated(cols=['idmen', 'quimen'])).all(), 'duplicate of tuple idmen/quimen'
+        assert ~(dataframe.duplicated(cols=['idfam', 'quifam'])).all(), 'duplicate of tupli idfam/quifam'
 
     empty_columns = []
     for col in dataframe.columns:

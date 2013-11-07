@@ -18,7 +18,7 @@ from pandas import concat
 import gc
 import math
 import numpy as np
-from numpy import logical_not as not_, logical_and as and_, maximum as max_
+from numpy import maximum as max_
 from src.lib.utils import mark_weighted_percentiles 
 
 # TODO:

@@ -7,8 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 from pandas import Series, concat, DataFrame
-from numpy import (logical_or as or_, logical_not as not_,
-                   logical_and as and_, sum, nan, where)
+from numpy import ( sum, nan, where)
 import gc
 
 from src.countries.france.data.erf.datatable import DataCollection
@@ -41,7 +40,7 @@ def create_totals(year=2006):
         if len(selection) == 0:
             selection = test
         else:
-            selection = or_(test, selection)
+            selection = (test) | (selection)
 
 
     indivi_i = indivim[selection] 
@@ -100,7 +99,7 @@ def create_totals(year=2006):
 ## Certains FIP (ou du moins avec revenus imputés) ont un num?ro de déclaration d'impôt ( pourquoi ?)
 
     
-    fip_has_declar = and_(fip_imp, indivi.declar1.notnull())
+    fip_has_declar = (fip_imp) & (indivi.declar1.notnull())
 
 #    indivi.ix[fip_has_declar, "idfoy"] = ( indivi.ix[fip_has_declar, "idmen"]*100 
 #                                        + (indivi.ix[fip_has_declar, "declar1"].str[0:1]).convert_objects(convert_numeric=True) )
@@ -111,7 +110,7 @@ def create_totals(year=2006):
     del fip_has_declar
     
 
-    fip_no_declar = and_(fip_imp, indivi.declar1.isnull())
+    fip_no_declar = (fip_imp) & (indivi.declar1.isnull())
     del fip_imp
     indivi["idfoy"] = where(fip_no_declar, 
                             indivi["idmen"]*100 + 50,
@@ -140,19 +139,19 @@ def create_totals(year=2006):
     indivi.loc[nrt,"quifoy"] = "vous"
     del nrt
 
-    pref_or_cref = or_(indivi.lpr==1, indivi.lpr==2)
-    adults = and_(indivi.quelfic.isin(["EE","EE_CAF"]),pref_or_cref)  
+    pref_or_cref = indivi['lpr'].isin([1,2])
+    adults = (indivi.quelfic.isin(["EE","EE_CAF"])) & (pref_or_cref)  
     indivi.idfoy = where(adults, indivi.idmen*100 + indivi.noi, indivi.idfoy)
     indivi.loc[adults, "quifoy"] = "vous"
     del adults
-    assert indivi.loc[or_(indivi.lpr==1, indivi.lpr==2),"idfoy"].notnull().all()
+    assert indivi.loc[indivi['lpr'].isin([1,2]),"idfoy"].notnull().all()
 
     print ''
     print 'Etape 4 : Rattachement des enfants aux déclarations'
     
     assert indivi["noindiv"].duplicated().any() == False, "Some noindiv appear twice"
-    lpr3_or_lpr4 = or_(indivi.lpr==3, indivi.lpr==4)
-    enf_ee = and_(indivi.quelfic.isin(["EE","EE_CAF"]), lpr3_or_lpr4)  
+    lpr3_or_lpr4 = indivi['lpr'].isin([3,4])
+    enf_ee = (lpr3_or_lpr4) & (indivi.quelfic.isin(["EE","EE_CAF"]))
     assert indivi.loc[enf_ee, "noindiv"].notnull().all(), " Some noindiv are not set, which will ruin next stage"
     assert indivi.loc[enf_ee, "noindiv"].duplicated().any() == False, "Some noindiv appear twice"
 
@@ -185,11 +184,11 @@ def create_totals(year=2006):
     df.reset_index(inplace=True)
 
     df["which"] = ""
-    df["which"] = where( and_(df.zimpof_m.notnull(), df.zimpof_p.isnull()), "mere", "")
-    df["which"] = where( and_(df.zimpof_p.notnull(), df.zimpof_m.isnull()), "pere", "")
-    both = and_(df.zimpof_p.notnull(), df.zimpof_m.notnull())
-    df["which"] = where( and_(both, df.zimpof_p  > df.zimpof_m), "pere", "mere")
-    df["which"] = where( and_(both, df.zimpof_m >= df.zimpof_p), "mere", "pere")
+    df["which"] = where((df.zimpof_m.notnull()) & (df.zimpof_p.isnull()), "mere", "")
+    df["which"] = where((df.zimpof_p.notnull()) & (df.zimpof_m.isnull()), "pere", "")
+    both = (df.zimpof_p.notnull()) & (df.zimpof_m.notnull())
+    df["which"] = where(both & (df.zimpof_p  > df.zimpof_m), "pere", "mere")
+    df["which"] = where(both & (df.zimpof_m >= df.zimpof_p), "mere", "pere")
     
     assert df["which"].notnull().all(), "Some enf_ee individuals are not matched with any pere or mere"
     del lpr3_or_lpr4, pere, mere 
@@ -246,7 +245,7 @@ def create_totals(year=2006):
                      zalri = "alr2"), inplace=True)
 
 
-    is_fip_19_25 = and_((year-fip.naia-1)>=19, (year-fip.naia-1)<25)
+    is_fip_19_25 = ((year-fip.naia-1)>=19) & ((year-fip.naia-1)<25)
 
 ## TODO: BUT for the time being we keep them in thier vous menage so the following lines are commented
 ## The idmen are of the form 60XXXX we use idmen 61XXXX, 62XXXX for the idmen of the kids over 18 and less than 25
@@ -291,10 +290,10 @@ def create_totals(year=2006):
     print "Etape 5 : Gestion des idfoy qui n'ont pas de vous"
     all = indivi.drop_duplicates('idfoy')
     with_ = indivi.loc[indivi['quifoy']=='vous', 'idfoy']
-    without = all[not_(all.idfoy.isin(with_.values))]
+    without = all[~(all.idfoy.isin(with_.values))]
     
     print 'On cherche si le déclarant donné par la deuxième déclaration est bien un vous'
-    has_declar2 = and_((indivi.idfoy.isin(without.idfoy.values)), indivi.declar2.notnull())
+    has_declar2 = (indivi.idfoy.isin(without.idfoy.values)) & (indivi.declar2.notnull())
     decl2_idfoy = (indivi.loc[has_declar2, 'idmen'].astype('int')*100 + 
                     indivi.loc[has_declar2, "declar2"].str[0:2].astype('int'))
     indivi.loc[has_declar2, 'idfoy'] = where(decl2_idfoy.isin(with_.values), decl2_idfoy, None)
@@ -385,8 +384,8 @@ def create_totals(year=2006):
     # encadr : 1=oui, 2=non
     indivi['encadr'].fillna(2, inplace=True)
     assert indivi['encadr'].notnull().all()
-    indivi['cadre'][or_(indivi['prosa']==7, indivi['prosa']==8)] = 1
-    indivi['cadre'][and_(indivi['prosa']==9, indivi['encadr']==1)] = 1
+    indivi['cadre'][indivi['prosa'].isin([7,8])] = 1
+    indivi['cadre'][(indivi['prosa']==9) & (indivi['encadr']==1)] = 1
     print "cadre"
     print indivi['cadre'].value_counts()
     assert indivi['cadre'].isin(range(2)).all()

@@ -27,7 +27,6 @@ import pickle
 from datetime import datetime
 from src.lib.utils import of_import
 import numpy as np
-from numpy import logical_not as not_
 from src.lib.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta, IntPresta, EnumPresta
 
 from src.countries.france import ENTITIES_INDEX
@@ -511,7 +510,6 @@ def preproc_inputs(datatable):
 
 def check_consistency(table_simu, dataframe, corrige = True):
     from src.lib.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta, IntPresta, EnumPresta
-    from numpy import logical_not as not_
     '''
     Studies dataframe columns as described in a simulation table columns attribute, and should eventually
     TODO table_simu -> input_table
@@ -662,7 +660,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                         try:
                             message += "Fixing the outranges for %s... " %var
                             tmp = serie[serie.isin(range(-1,156))]
-                            serie[not_(serie.isin(range(-1,156)))] = tmp.median()
+                            serie[~(serie.isin(range(-1,156)))] = tmp.median()
                             message += "Done \n"
                             del tmp
                         except:
