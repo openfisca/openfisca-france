@@ -10,7 +10,7 @@
 from __future__ import division
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import control
+from src.countries.france.data.erf.build_survey.utilitaries import control, assert_variable_inrange, count_NA
 import pandas as pd
 from pandas import DataFrame
 from numpy import array, where, NaN, arange
@@ -28,34 +28,19 @@ from src.lib.utils import mark_weighted_percentiles
 # - Mettre des espaces pour aérer ton code <------ OK
 # - Rajouter des assert pour vérifier certaiens étapes (demander à Jérôme) <----- Rajouté des "control" après les "merge"
 def create_imput_loyer(year):
-    def assert_variable_inrange(name, wrange, table): # Assert if transformed variables are in correct range
-        temp = (table[table[name].notnull()])
-        range_1 = wrange[0]
-        range_2 = wrange[1]
-        #assert erf[name].isin(range(range_1, range_2+1)).all(), Exception("some %s not in wanted range" %(name))
-        for v in temp[name]:
-            assert v in range(range_1, range_2), Exception('some non-null values for %s not in wanted %s: %s' %(name, str(wrange), str(v)))
-    def count_NA(name,table): # Counts the number of Na's in a specified axis
-        count = 0
-        tmp = pd.isnull(table[name])
-        for v in tmp:
-            if v:
-                count += 1
-        print "count of NA's for %s is %s" %(name, str(count))
-        del count, tmp
-        gc.collect()
-        
+    '''
+    Impute les loyers à partir de ???
+    '''
+
     #Variables used for imputation
     df = DataCollection(year=year)
     print 'Démarrer 02_imput_loyer'
-    
+ 
+    menm_vars = ["ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
+             "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg","tau99"]   
     if year == 2008: # Tau99 not present
-        menm_vars=["ztsam", "zperm", "zragm", "zricm", "zrncm", "zracm", "nb_uci", "wprm",
-                 "so", "nbpiec", "typmen5", "spr", "nbenfc", "agpr", "cstotpr",
-                 "nat28pr", "tu99", "aai1", 'ident', "pol99", "reg"]
-    else:
-        menm_vars = ["ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
-                 "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg","tau99"]
+        menm_vars = menm_vars.pop('tau99')
+    
     
     indm_vars = ["noi",'ident',"lpr","dip11"]
     LgtAdrVars = ["gzc2"]
@@ -114,16 +99,18 @@ def create_imput_loyer(year):
     del dec, values
     gc.collect()
  
+    #TODO: faire le lien avec men_vars, il manque "pol99","reg","tau99" et ici on a en plus logt, 'nvpr','revtot','dip11','deci'
     erf = erf[['ident','ztsam','zperm','zragm','zricm','zrncm','zracm',
-                 'nb_uci','logt','nbpiec','typmen5','spr','nbenfc','agpr','cstotpr',
-                 'nat28pr','tu99','aai1','wprm','nvpr','revtot','dip11','deci']][erf['so'].isin(range(3,6))]
- 
+                 'nb_uci', 'logt' ,'nbpiec','typmen5','spr','nbenfc','agpr','cstotpr',
+                 'nat28pr','tu99','aai1','wprm', 'nvpr','revtot','dip11','deci']][erf['so'].isin(range(3,6))]
+            
     erf.rename(columns = {'nbpiec':'hnph2','nat28pr':'mnatio','aai1':'iaat','dip11':'mdiplo'}, inplace = True)
      
     # TODO: ne traite pas les types comme dans R teste-les pour voir comment pandas les gère 
         
     count_NA('agpr', erf)    
     erf['agpr'] = erf['agpr'].astype('int64')
+    # TODO: moche, pourquoi créer deux variables quand une suffit ?
     erf['tmp'] = 3
     erf['tmp'][erf['agpr'] < 65] = 2
     erf['tmp'][erf['agpr'] < 40] = 1
@@ -221,22 +208,12 @@ def create_imput_loyer(year):
     del (erf['cstotpr'] ,erf['agpr'], erf['typmen5'], 
     erf['nbenfc'], erf['spr'], erf['tmp'], erf['tu99'])
     gc.collect()
-     
-    erf=(erf[erf['logt'].notnull()]) # Pas trouvé plus convenable
-    erf=(erf[erf['magtr'].notnull()])
-    erf=(erf[erf['mcs8'].notnull()])
-    erf=(erf[erf['mtybd'].notnull()])
-    erf=(erf[erf['hnph2'].notnull()])
-    erf=(erf[erf['mnatio'].notnull()])
-    erf=(erf[erf['iaat'].notnull()])
-    erf=(erf[erf['mdiplo'].notnull()])
-    erf=(erf[erf['tu99_recoded'].notnull()])
-     
+    
+
+    erf = erf.dropna(subset=['logt','magtr','mcs8','mtybd','hnph2','mnatio','iaat','mdiplo','tu99_recoded'])
     #On vérifie au final que l'on n'a pas de doublons d'individus
-    erf_drop_dupl = erf.drop_duplicates('ident')
-    assert len(erf['ident'].value_counts()) == len(erf_drop_dupl['ident']), Exception('Number of distinct individuals after removing duplicates is not correct')
-    del erf_drop_dupl
-    gc.collect()
+    assert erf['ident'].value_counts().max() == 1, Exception('Number of distinct individuals after removing duplicates is not correct')
+
     
     ## Travail sur la table logement
 

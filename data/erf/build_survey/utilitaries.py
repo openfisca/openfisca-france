@@ -9,6 +9,21 @@
 
 from pandas import DataFrame, concat
 
+def assert_variable_inrange(name, wrange, table): 
+    '''
+    Assert if transformed variables are in correct range
+    wrange is a list like [minimum, maximum]
+    '''
+    temp = (table[table[name].notnull()])
+    range_1 = wrange[0]
+    range_2 = wrange[1]
+    for v in temp[name]:
+        assert v in range(range_1, range_2), Exception('some non-null values for %s not in wanted %s: %s' %(name, str(wrange), str(v)))
+        
+def count_NA(name,table): 
+    '''Counts the number of Na's in a specified axis'''
+    print "count of NA's for %s is %s" %(name, str(sum(table[name].isnull())))
+
 def print_id(df):
     try:
         print "Individus : ", len(df.noindiv), "/", len(df)
