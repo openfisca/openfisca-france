@@ -110,12 +110,12 @@ def _sal_net(rev_sal, cho_ld, fra, _P):
     return (fra > abatfor)*(rev_sal - fra) \
          + (fra <= abatfor)*max_(0,rev_sal - abatfor)
 
-def _rev_pen(alr, rst):
+def _rev_pen(alr, alr_decl, rst):
     """
     Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)
     'ind'
     """
-    return alr + rst
+    return alr*alr_decl + rst
 
 def _pen_net(rev_pen, _P):
     """

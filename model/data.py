@@ -39,6 +39,8 @@ class InputDescription(ModelDescription):
     fra  = IntCol(label="Frais réels",val_type="monetary") # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
     alr  = IntCol(label = u"Pension alimentaire reçue", val_type="monetary") # (f1ao, f1bo, f1co, f1do, f1eo)
+    alr_decl  = BoolCol(label = u"Pension déclarée", default=True) # (f1ao, f1bo, f1co, f1do, f1eo)
+
     
     hsup = IntCol( label = "Heures supplémentaires", val_type="monetary")  # (f1au, f1bu, f1cu, f1du, f1eu)
     inv  = BoolCol(label = u'Invalide')
