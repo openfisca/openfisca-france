@@ -34,7 +34,7 @@ def subset_base(base,famille):
 def famille(year=2006):
 ### On suit la méthode décrite dans le Guide ERF_2002_rétropolée page 135
 #
-    
+    #TODO: appeler un fichier de paramètres de législation
     if year == 2006: 
         smic = 1254
     elif year == 2007: 
@@ -45,17 +45,11 @@ def famille(year=2006):
         smic = 1337
     else: 
         print("smic non défini")
-    
-    
-    individual_vars = ['noi','noicon','noindiv','noiper','noimer','ident','declar1','naia','naim','lien','quelfic',
-                       'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','ztsai','sexe',
-                       'persfip','agepr','rga','actrec']
 
 ## TODO check if we can remove acteu forter etc since dealt with in 01_pre_proc 
 #
 #indivi <- LoadIn(indm,indVar)
 
-    
 #    indivi = erf_indivi.merge(eec_indivi)
 #
     print 'Etape 1 : préparation de base'
@@ -76,7 +70,7 @@ def famille(year=2006):
             "agepf","noidec","year"]
     
     enfnn = load_temp(name='enfnn', year=year)
-    enfnn = enfnn.loc[:, indVar] #NOTE: la moitié des colonnes est remplie avec des NaN
+    enfnn = enfnn[indVar] #NOTE: la moitié des colonnes est remplie avec des NaN
 
     enfnn = enfnn.drop_duplicates('noindiv')
     print 'nb enfants à naitre', len(enfnn.index)
@@ -500,7 +494,7 @@ def famille(year=2006):
 # # # TODO quid du conjoint ?
     
     print "    5.2 : extension de base avec les fip"
-    print fip.loc[:, ['noindiv', 'noidec', 'ztsai']].describe()
+    print fip[['noindiv', 'noidec', 'ztsai']].describe()
     base_ = concat([base, fip])
     print len(base.index)
 
