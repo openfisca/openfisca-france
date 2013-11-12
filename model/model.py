@@ -389,7 +389,7 @@ class OutputDescription(ModelDescription):
     br_pf    = Prestation(pf._br_pf, entity = 'fam', label ='Base ressource des prestations familiales')
     
     af_nbenf = Prestation(pf._af_nbenf, entity = 'fam', label = u"Nombre d'enfant au sens des AF")
-    af_base  = Prestation(pf._af_base, entity = 'fam', label ='Allocations familiales - Base', freq="month")
+    af_base  = Prestation(pf._af_base, entity = 'fam', label ='Allocations familiales - Base')
     af_majo  = Prestation(pf._af_majo, entity = 'fam', label ='Allocations familiales - Majoration pour age')
     af_forf  = Prestation(pf._af_forf, entity = 'fam', label ='Allocations familiales - Forfait 20 ans', start = date(2003,7,1))
     af       = Prestation(pf._af, entity = 'fam', label = u"Allocations familiales")

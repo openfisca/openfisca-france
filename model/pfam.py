@@ -91,7 +91,8 @@ def _br_pf(br_pf_i, rev_coll, _option={'br_pf_i': [CHEF, PART], 'rev_coll': [CHE
     br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
     return br_pf
     
-def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}, _freq={'agem':'month'}):
+#def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}, _freq={'agem':'month'}):    
+def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}):
     P = _P.fam.af
     for key, val in agem.iteritems():
         agem[key] = val//12
@@ -115,7 +116,7 @@ def _af_base(af_nbenf, _P):
     af_2enf = round(bmaf * P.af.taux.enf2, 2)
     af_enf_supp = round(bmaf * P.af.taux.enf3, 2)
     af_base = (af_nbenf >= 1)*af_1enf + (af_nbenf >= 2)*af_2enf + max_(af_nbenf - 2, 0)*af_enf_supp
-    return af_base  # annualisé
+    return 12*af_base  # annualisé
     
 def _af_majo(age, smic55, af_nbenf, _P, _option={'age': ENFS, 'smic55': ENFS}):
     '''
@@ -157,7 +158,8 @@ def _af_forf(age, af_nbenf, smic55, _P, _option={'age': ENFS, 'smic55': ENFS}):
     af_forfait = round(bmaf * P.af.taux.forfait, 2)
     return 12 * ((af_nbenf >= 2) * nbenf_forf) * af_forfait # annualisé
 
-def _af(af_base, af_majo, af_forf, _freq = {"af_base" : "year"}):
+#def _af(af_base, af_majo, af_forf, _freq = {"af_base" : "year"}):
+def _af(af_base, af_majo, af_forf):
     '''
     Allocations familiales - total des allocations
     'fam'
