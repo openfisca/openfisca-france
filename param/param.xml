@@ -3509,8 +3509,8 @@
       </CODE>
       <CODE description="Seconde limite d'âge (stricte) pour bénéficier de l'AGED " code="age2" format="integer" type="age">
     <VALUE valeur="6" deb="2001-01-01" fin="2006-12-31"/>
-    <CODE description="Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)" code="remb_taux3" format="percent">
     </CODE>
+    <CODE description="Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)" code="remb_taux3" format="percent">
     <VALUE valeur=".5" deb="2003-07-01" fin="2006-12-31"/>
       </CODE>
       <CODE description="Plafond des remboursements trimestriels (entre les deux limites d'âge ou APE taux partiel)" code="remb_plaf3" format="integer" type="monetary">
