@@ -3098,7 +3098,7 @@
       <CODE description="Taux" code="taux" format="percent">
     <VALUE valeur="0.025" deb="2001-01-01" fin="2012-12-31"/>
       </CODE>
-      <CODE description="Seuil" code="seuil" at="integer" type="monetary">
+      <CODE description="Seuil" code="seuil" format="integer" type="monetary">
     <VALUE valeur="0" deb="2001-01-01" fin="2011-12-31"/>
       </CODE>
     </NODE>
@@ -3174,7 +3174,7 @@
           <CODE description="Activation de la charge" code="active" format="bool">
           <VALUE valeur="0" deb="2002-01-01" fin="2012-12-31"/>
         </CODE>
-        <CODE description="Plafond mensuel" code="plaf" format="monetary">
+        <CODE description="Plafond mensuel" code="plaf" format="integer" type="monetary">
           <VALUE valeur="1000" deb="2002-01-01" fin="2012-12-31"/>
         </CODE>
         <CODE description="Ajuster le plafond au nombre de part" code="plaf_nbp" format="bool">
@@ -3317,7 +3317,7 @@
       <VALUE valeur="0.20234" deb="2003-07-01" fin="2012-12-31"/>
         </CODE>
       </NODE>
-      <NODE code="maj_age" description="Majorations pour âge" format="percent">
+      <NODE code="maj_age" description="Majorations pour âge">
         <CODE description="1ère majoration pour âge" code="taux1" format="percent">
       <VALUE valeur="0.09" deb="2002-01-01" fin="2008-04-30"/>
       <VALUE valeur="0.00" deb="2008-05-01" fin="2012-12-31"/>
@@ -3844,8 +3844,8 @@
       <VALUE valeur="474.93" deb="2014-01-01" fin="2014-12-31"/>
       <VALUE valeur="483.24" deb="2015-01-01" fin="2015-12-31"/>
      </CODE>
-    <NODE code="ressources" description="Dispositions applicables aux ressources" format="integer" type="monetary">
-      <CODE description="Abattement R. 351-6 (double activité)" code="dar_1">
+    <NODE code="ressources" description="Dispositions applicables aux ressources">
+      <CODE description="Abattement R. 351-6 (double activité)" code="dar_1" format="integer" type="monetary">
     <VALUE valeur="76" deb="2002-01-01" fin="2007-06-30"/>
     <VALUE valeur="95" deb="2007-07-01" fin="2012-12-31"/>
       </CODE>
@@ -3864,7 +3864,7 @@
     <VALUE valeur="13" deb="2002-01-01" fin="2007-06-30"/>
     <VALUE valeur="16.25" deb="2007-07-01" fin="2013-12-31"/>
       </CODE>
-      <NODE description="Évaluation forfaitaire des ressources R. 351-7" code="efress" format="float" type="monetary">
+      <NODE description="Évaluation forfaitaire des ressources R. 351-7" code="efress">
       <CODE description="Évaluation forfaitaire des ressources pour un salarié R. 351-7" code="dar_2a" format="float" type="monetary">
     <VALUE valeur="6770.05" deb="2003-01-01" fin="2003-12-31"/>
     <VALUE valeur="6932.45" deb="2004-01-01" fin="2004-12-31"/>
