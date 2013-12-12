@@ -86,16 +86,12 @@ class DataCollection(object):
                                 }      
         RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','erf')
         
-        
-        
         variables = ['noi','noindiv','ident','declar1','quelfic','persfip','declar2','persfipd','wprm',
                      "zsali","zchoi","ztsai","zreti","zperi","zrsti","zalri","zrtoi","zragi","zrici","zrnci",
                      "zsalo","zchoo","ztsao","zreto","zpero","zrsto","zalro","zrtoo","zrago","zrico","zrnco"]
 
-        
         variables_eec = ['noi','noicon','noindiv','noiper','noimer','ident','naia','naim','lien',
                        'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
-
                        'agepr','rga','statut', 'txtppb', 'encadr', 'prosa', 'nbsala',  'chpub', 'dip11']
         
         variables_eec_rsa = [ "sp0" + str(i) for i in range(0,10)] + ["sp10", "sp11"] + ['sitant', 'adeben', 
@@ -161,8 +157,8 @@ class DataCollection(object):
         
         lgt_tables_to_process = {"adresse" : "adresse",
                                  "lgt_menage" : lgt_men,
-                                 "lgt_logt" : lgt_lgt,
-                                 }
+                                 "lgt_logt" : lgt_lgt}
+        
         RData_dir = os.path.join(os.path.dirname(DATA_DIR),'R','logement')        
         for name, RData_filename in lgt_tables_to_process.iteritems():
             lgt.insert_table(name=name, 
@@ -174,7 +170,7 @@ class DataCollection(object):
     
     def initialize_patrimoine(self, year):
         """
-        TODO
+        TODO:
         """
         pat_tables_to_process = {"pat_individu" : "individu",
                                  "pat_menage" : "meange",
