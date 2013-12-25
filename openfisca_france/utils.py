@@ -25,15 +25,14 @@ from __future__ import division
 from src import __version__ as VERSION
 import pickle
 from datetime import datetime
-from src.lib.utils import of_import
 import numpy as np
 from src.lib.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta, IntPresta, EnumPresta
 
-from . import ENTITIES_INDEX
+from . import ENTITIES_INDEX, WEIGHT, XAXIS_PROPERTIES
 import pandas as pd
 
 import numpy as np
-    
+
 
 class Scenario(object):
     def __init__(self):
@@ -440,9 +439,7 @@ class Scenario(object):
             else:
                 datatable.set_value(var, vls, entity, opt = 0)
             datatable._isPopulated = True
-        
-country = "france"
-XAXIS_PROPERTIES =  of_import('','XAXIS_PROPERTIES', country)
+
 
 class Xaxis(object):
     def __init__(self, col_name = None, country = None):
@@ -457,9 +454,8 @@ class Xaxis(object):
             self.typ_tot_default = None
                  
     def set_label(self, country):
-        from src.lib.utils import of_import
         from src.lib.datatable import Description
-        InputDescription = of_import('model.data', 'InputDescription', country)
+        from .model.data import InputDescription
         description = Description(InputDescription().columns)
         label2var, var2label, var2enum = description.builds_dicts()
         self.label = var2label[self.col_name]
@@ -472,14 +468,9 @@ class Xaxis(object):
         self.name = XAXIS_PROPERTIES[col_name]['name']
         self.typ_tot = XAXIS_PROPERTIES[col_name]['typ_tot']
         self.typ_tot_default = XAXIS_PROPERTIES[col_name]['typ_tot_default'] 
-        
-
 
 
 def build_axes(country):
-    # TODO: should be in __init__.py of france
-
-    Xaxis = of_import('utils','Xaxis', country)
     axes = []
     for col_name in XAXIS_PROPERTIES:
         axe = Xaxis(col_name, country)
@@ -498,9 +489,7 @@ def preproc_inputs(datatable):
                 the DataTable containing the input variables of the model
     
     """
-    country = 'france'
     try:
-        WEIGHT = of_import("","WEIGHT", country)
         datatable.propagate_to_members(WEIGHT, 'ind')
     #    datatable.propagate_to_members('rfr_n_2', 'ind')
     #    datatable.propagate_to_members('nbptr_n_2', 'ind')
