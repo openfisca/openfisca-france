@@ -6,7 +6,7 @@
 # (see src/__init__.py for details)
 
 import os
-from src import SRC_PATH
+
 
 ## France 
 
@@ -23,7 +23,7 @@ WEIGHT = "wprm"
 WEIGHT_INI = "wprm_init"
 FILTERING_VARS = ["champm"]
 
-DATA_SOURCES_DIR = os.path.join(SRC_PATH,"countries","france","data","sources")
+DATA_SOURCES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),"data","sources")
 
 # Some variables needed by the test case plugins
 

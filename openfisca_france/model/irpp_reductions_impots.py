@@ -9,7 +9,7 @@
 
 from __future__ import division
 from numpy import minimum as min_, maximum as max_, zeros, logical_not as not_
-from src.countries.france.model.data import QUIFOY 
+from .data import QUIFOY 
 
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']

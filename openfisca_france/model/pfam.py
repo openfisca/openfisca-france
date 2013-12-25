@@ -9,7 +9,7 @@
 from __future__ import division
 from numpy import (round, floor, zeros, maximum as max_, minimum as min_,
                    logical_not as not_)
-from src.countries.france.model.data import QUIFAM
+from .data import QUIFAM
 
 
 CHEF = QUIFAM['chef']

@@ -11,19 +11,19 @@ from datetime import date
 from src.lib.utils import Enum
 from src.lib.description import ModelDescription
 from src.lib.columns import Prestation, BoolPresta, IntPresta, EnumPresta
-import src.countries.france.model.cotsoc as cs
-import src.countries.france.model.irpp as ir
-import src.countries.france.model.irpp_charges_deductibles as cd
-import src.countries.france.model.irpp_reductions_impots as ri
-import src.countries.france.model.irpp_credits_impots as ci
-import src.countries.france.model.irpp_plus_values_immo as immo
-import src.countries.france.model.isf as isf
-import src.countries.france.model.pfam as pf
-import src.countries.france.model.mini as ms
-import src.countries.france.model.lgtm as lg
-import src.countries.france.model.common as cm
-import src.countries.france.model.calage as cl
-import src.countries.france.model.th as th
+import .cotsoc as cs
+import .irpp as ir
+import .irpp_charges_deductibles as cd
+import .irpp_reductions_impots as ri
+import .irpp_credits_impots as ci
+import .irpp_plus_values_immo as immo
+import .isf as isf
+import .pfam as pf
+import .mini as ms
+import .lgtm as lg
+import .common as cm
+import .calage as cl
+import .th as th
 
 
 

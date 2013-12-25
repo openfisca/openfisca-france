@@ -9,7 +9,7 @@
 
 from __future__ import division
 from numpy import ( maximum as max_, minimum as min_) 
-from src.countries.france.model.data import QUIFOY
+from .data import QUIFOY
 ALL = [x[1] for x in QUIFOY]
 
 

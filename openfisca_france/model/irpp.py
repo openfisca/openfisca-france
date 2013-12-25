@@ -11,7 +11,7 @@ from __future__ import division
 from numpy import ( maximum as max_, minimum as min_, logical_xor as xor_, 
                      logical_not as not_, round) 
 
-from src.countries.france.model.data import QUIFOY
+from .data import QUIFOY
 
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']

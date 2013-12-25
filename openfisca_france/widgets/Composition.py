@@ -30,7 +30,7 @@ from src.lib.utils import of_import
 from src.gui.baseconfig import get_translation
 _ = get_translation('src')
 
-from src.countries.france import CURRENCY
+from .. import CURRENCY
 from datetime import datetime
 
 class S:

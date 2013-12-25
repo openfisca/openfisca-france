@@ -10,8 +10,8 @@ from __future__ import division
 from numpy import (floor, maximum as max_, where, 
                    logical_not as not_, logical_and as and_,
                    logical_or as or_)
-from src.countries.france.model.data import QUIFAM, QUIFOY
-from src.countries.france.model.pfam import nb_enf, age_en_mois_benjamin
+from .data import QUIFAM, QUIFOY
+from .pfam import nb_enf, age_en_mois_benjamin
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']

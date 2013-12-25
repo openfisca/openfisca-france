@@ -9,8 +9,8 @@
 from __future__ import division
 from numpy import (round, ceil, floor, maximum as max_, minimum as min_, 
                    logical_not as not_)
-from src.countries.france.model.data import QUIFAM, QUIMEN
-from src.countries.france.model.pfam import nb_enf
+from .data import QUIFAM, QUIMEN
+from .pfam import nb_enf
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']

@@ -8,7 +8,7 @@
 
 from __future__ import division
 from numpy import (floor, logical_not as not_, arange)
-from src.countries.france.model.data import QUIFAM, QUIMEN
+from .data import QUIFAM, QUIMEN
 
 
 CHEF = QUIFAM['chef']

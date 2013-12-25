@@ -29,7 +29,7 @@ from src.lib.utils import of_import
 import numpy as np
 from src.lib.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta, IntPresta, EnumPresta
 
-from src.countries.france import ENTITIES_INDEX
+from . import ENTITIES_INDEX
 import pandas as pd
 
 import numpy as np
@@ -531,7 +531,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
     present_variables = []
     count = 0
     
-    from src.countries.france.data.erf.build_survey.utilitaries import control
+    from .data.erf.build_survey.utilitaries import control
     print 'Controlling simulation input_table'
     control(table_simu.table, verbose = True)
 
