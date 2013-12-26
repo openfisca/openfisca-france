@@ -10,7 +10,7 @@
 import os
 from pandas import HDFStore
 import gc
-from src import SRC_PATH
+from openfisca_core import SRC_PATH
 
 country = "france"
 ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH, 'countries', country, 'data', 'erf')

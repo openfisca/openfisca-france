@@ -9,7 +9,7 @@
 
 from pandas import  HDFStore, ExcelFile, concat, DataFrame
 import os
-from src.lib.simulation import SurveySimulation
+from openfisca_core.simulations import SurveySimulation
 from src.plugins.survey.aggregates import Aggregates
 
 from src.countries.france.data.sources.config import DATA_DIR

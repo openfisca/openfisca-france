@@ -8,25 +8,24 @@
 
 
 from datetime import date
-from src.lib.utils import Enum
-from src.lib.description import ModelDescription
-from src.lib.columns import Prestation, BoolPresta, IntPresta, EnumPresta
-import .cotsoc as cs
-import .irpp as ir
-import .irpp_charges_deductibles as cd
-import .irpp_reductions_impots as ri
-import .irpp_credits_impots as ci
-import .irpp_plus_values_immo as immo
-import .isf as isf
-import .pfam as pf
-import .mini as ms
-import .lgtm as lg
-import .common as cm
-import .calage as cl
-import .th as th
 
+from openfisca_core.columns import Prestation, BoolPresta, IntPresta, EnumPresta
+from openfisca_core.descriptions import ModelDescription
+from openfisca_core.utils import Enum
 
-
+from . import calage as cl
+from . import common as cm
+from . import cotsoc as cs
+from . import irpp as ir
+from . import irpp_charges_deductibles as cd
+from . import irpp_credits_impots as ci
+from . import irpp_plus_values_immo as immo
+from . import irpp_reductions_impots as ri
+from . import isf as isf
+from . import lgtm as lg
+from . import mini as ms
+from . import pfam as pf
+from . import th as th
 
 
 def _noi(noi):

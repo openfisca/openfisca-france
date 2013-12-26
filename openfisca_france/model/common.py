@@ -249,7 +249,7 @@ def _prelsoc_cap(prel_soc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, 
     """
     return prel_soc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
-from src.lib.utils import mark_weighted_percentiles
+from openfisca_core.utils import mark_weighted_percentiles
 
 def _decile(nivvie, champm, wprm):
     '''

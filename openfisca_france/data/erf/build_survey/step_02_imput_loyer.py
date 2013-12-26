@@ -19,7 +19,7 @@ import gc
 import math
 import numpy as np
 from numpy import maximum as max_
-from src.lib.utils import mark_weighted_percentiles 
+from openfisca_core.utils import mark_weighted_percentiles 
 
 # TODO:
 # - Garder le code R, c'est plus facile pour débugguer <------------- OK

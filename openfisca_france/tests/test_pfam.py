@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 import nose
-from src.lib.simulation import ScenarioSimulation
+from openfisca_core.simulations import ScenarioSimulation
 from datetime import datetime
 
 

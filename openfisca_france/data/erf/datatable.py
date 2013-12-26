@@ -9,7 +9,7 @@
 
 import os
 import gc
-from src import SRC_PATH
+from openfisca_core import SRC_PATH
 from pandas import HDFStore
 from src.countries.france.utils import check_consistency
 #    Uses rpy2.
@@ -421,7 +421,7 @@ def test3():
     year=2006
     erf = DataCollection(year=year)
     df = erf.get_of_values(table = "eec_menage")
-    from src.lib.simulation import SurveySimulation
+    from openfisca_core.simulations import SurveySimulation
     simulation = SurveySimulation()
     simulation.set_config(year=year)
     simulation.set_param()

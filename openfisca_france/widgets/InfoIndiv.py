@@ -26,7 +26,7 @@ from src.gui.qt.QtGui import (QDockWidget)
 
 
 
-from src.lib.columns import IntCol, FloatCol, BoolCol, EnumCol
+from openfisca_core.columns import IntCol, FloatCol, BoolCol, EnumCol
 
 class S:
     name = 0

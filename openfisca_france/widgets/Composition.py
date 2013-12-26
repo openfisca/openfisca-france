@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 
-from datetime import date
+from datetime import date, datetime
 import pickle
 import os
 
@@ -29,9 +29,10 @@ from src.plugins import OpenfiscaPluginWidget
 from src.gui.baseconfig import get_translation
 _ = get_translation('src')
 
+from openfisca_core import axestools
+
 from .. import CURRENCY
-from ..utils import build_axes
-from datetime import datetime
+
 
 class S:
     name = 0
@@ -66,7 +67,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.setLayout(self.verticalLayout)
         # Initialize xaxes
         country = 'france'
-        axes = build_axes(country)
+        axes = axestools.build_axes()
         xaxis = self.get_option('xaxis')
         
         axes_names = []
@@ -518,7 +519,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             print "in apply setting :" , self.maxrev
         if 'xaxis' in options:
             country = CONF.get('parameters','country')
-            axes = build_axes(country)
+            axes = axestools.build_axes()
             xaxis = self.get_option('xaxis')
             axes_names = []
             for axe in axes:

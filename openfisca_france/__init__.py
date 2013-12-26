@@ -8,9 +8,6 @@
 import os
 
 
-## France 
-
-
 ## Debugging parameters
 
 DEBUG_COTSOC = True
@@ -19,11 +16,12 @@ DEBUG_COTSOC = True
 ENTITIES_INDEX = ['men', 'fam', 'foy']
 
 # Data
-WEIGHT = "wprm"
-WEIGHT_INI = "wprm_init"
 FILTERING_VARS = ["champm"]
 
 DATA_SOURCES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),"data","sources")
+
+WEIGHT = "wprm"
+WEIGHT_INI = "wprm_init"
 
 # Some variables needed by the test case plugins
 
@@ -118,3 +116,19 @@ AGGREGATES_DEFAULT_VARS = ['cotsoc_noncontrib', 'csg', 'crds',
             'logt', 'alf', 'als', 'apl']
 #ajouter csgd pour le calcul des agrégats erfs
 #ajouter rmi pour le calcul des agrégats erfs
+
+
+def init_country():
+    """Add country-specific content to OpenFisca-Core package."""
+    from openfisca_core import model as core_model
+    from openfisca_core import datatables as core_datatables
+
+    from .model.data import InputDescription
+    from .model.model import OutputDescription
+    from .utils import preproc_inputs
+
+    core_datatables.preproc_inputs = preproc_inputs
+    core_model.InputDescription = InputDescription
+    core_model.OutputDescription = OutputDescription
+    core_model.XAXIS_PROPERTIES = XAXIS_PROPERTIES
+
