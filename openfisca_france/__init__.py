@@ -122,13 +122,27 @@ def init_country():
     """Add country-specific content to OpenFisca-Core package."""
     from openfisca_core import model as core_model
     from openfisca_core import datatables as core_datatables
+    from openfisca_core import simulations as core_simulations
 
+    from . import decompositions, utils
     from .model.data import InputDescription
     from .model.model import OutputDescription
-    from .utils import preproc_inputs
 
-    core_datatables.preproc_inputs = preproc_inputs
+    country_dir = os.path.dirname(os.path.abspath(__file__))
+
+    core_datatables.preproc_inputs = utils.preproc_inputs
+
+    core_model.DATA_DIR = os.path.join(country_dir, 'data')
+    core_model.DECOMP_DIR = os.path.dirname(os.path.abspath(decompositions.__file__))
+    core_model.DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE
+    core_model.ENTITIES_INDEX = ENTITIES_INDEX
     core_model.InputDescription = InputDescription
     core_model.OutputDescription = OutputDescription
+    core_model.PARAM_FILE = os.path.join(country_dir, 'param', 'param.xml')
+    core_model.REFORMS_DIR = os.path.join(country_dir, 'reformes')
+    core_model.Scenario = utils.Scenario
+    core_model.WEIGHT = WEIGHT
+    core_model.WEIGHT_INI = WEIGHT_INI
     core_model.XAXIS_PROPERTIES = XAXIS_PROPERTIES
 
+    core_simulations.check_consistency = utils.check_consistency

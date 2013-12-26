@@ -21,19 +21,20 @@ This file is part of openFisca.
     along with openFisca.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+
 from __future__ import division
-from openfisca_core import __version__ as VERSION
-import pickle
+
 from datetime import datetime
+import pickle
+
 import numpy as np
-from openfisca_core.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta, IntPresta, EnumPresta
-
+from openfisca_core import __version__ as VERSION
 from openfisca_core import axestools
-
-from . import ENTITIES_INDEX, WEIGHT, XAXIS_PROPERTIES
+from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta,
+    IntPresta, EnumPresta)
 import pandas as pd
 
-import numpy as np
+from . import ENTITIES_INDEX, WEIGHT, XAXIS_PROPERTIES
 
 
 class Scenario(object):
@@ -462,7 +463,6 @@ def preproc_inputs(datatable):
 
 
 def check_consistency(table_simu, dataframe, corrige = True):
-    from openfisca_core.columns import EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta, IntPresta, EnumPresta
     '''
     Studies dataframe columns as described in a simulation table columns attribute, and should eventually
     TODO table_simu -> input_table
