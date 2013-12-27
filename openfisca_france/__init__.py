@@ -126,7 +126,7 @@ def init_country(qt = False):
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
-    from . import decompositions, utils
+    from . import decompositions, scenarios, utils
     from .model.data import InputDescription
     from .model.model import OutputDescription
     if qt:
@@ -150,7 +150,7 @@ def init_country(qt = False):
     core_model.REFORMS_DIR = os.path.join(country_dir, 'reformes')
     core_model.REV_TYP = None  # utils.REV_TYP  # Not defined for France
     core_model.REVENUES_CATEGORIES = REVENUES_CATEGORIES
-    core_model.Scenario = utils.Scenario
+    core_model.Scenario = scenarios.Scenario
     core_model.WEIGHT = WEIGHT
     core_model.WEIGHT_INI = WEIGHT_INI
     core_model.XAXIS_PROPERTIES = XAXIS_PROPERTIES
