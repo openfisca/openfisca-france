@@ -1,5 +1,6 @@
 build/
 dist/
+openfisca_france/data/survey.h5
 *.egg-info
 *.mo
 *.pyc
