@@ -42,29 +42,28 @@ class Scenario(object):
         self.indiv = {}
         # indiv est un dict de dict. La clé est le noi de l'individu
         # Exemple :
-        # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0, 
+        # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
         #     'birth': datetime.date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
         self.declar = {}
         # declar est un dict de dict. La clé est le noidec.
         self.famille = {}
-        
+
         # menage est un dict de dict la clé est la pref
         self.menage = {0:{'loyer':500,'so':4, 'code_postal':69001, 'zone_apl':2, 'zthabm' :0}}
 
         # on ajoute un individu, déclarant et chef de famille
         self.addIndiv(0, datetime(1975,1,1).date(), 'vous', 'chef')
-    
+
         self.nmen = None
         self.xaxis = None
         self.maxrev = None
         self.same_rev_couple = None
         self.year = None
-    
+
     def copy(self):
         from copy import deepcopy
         return deepcopy(self)
 
-    
     def check_consistency(self):
         '''
         Vérifie que le ménage entré est valide
@@ -80,7 +79,7 @@ class Scenario(object):
             if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
                 return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
         return ''
-    
+
     def modify(self, noi, newQuifoy = None, newFoyer = None):
         oldFoyer, oldQuifoy = self.indiv[noi]['noidec'], self.indiv[noi]['quifoy']
         if newQuifoy == None: newQuifoy = oldQuifoy
@@ -112,7 +111,7 @@ class Scenario(object):
         else:
             self._assignPerson(noi, quifam = newQuifam, famille = newFamille)
         self.genNbEnf()
-    
+
     def hasConj(self, noidec):
         '''
         Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
@@ -130,9 +129,9 @@ class Scenario(object):
             if (vals['noichef'] == noichef) and (vals['quifam']=='part'):
                 return True
         return False
-                
+
     def _assignVous(self, noi):
-        ''' 
+        '''
         Ajoute la personne numéro 'noi' et crée son foyer
         '''
         self.indiv[noi]['quifoy'] = 'vous'
@@ -140,8 +139,8 @@ class Scenario(object):
         self.declar.update({noi:{}})
 
     def _assignConj(self, noi, noidec):
-        ''' 
-        Ajoute la personne numéro 'noi' à la déclaration numéro 'noidec' en tant 
+        '''
+        Ajoute la personne numéro 'noi' à la déclaration numéro 'noidec' en tant
         que 'conj' si declar n'a pas de conj. Sinon, cherche le premier foyer sans
         conjoint. Sinon, crée un nouveau foyer en tant que vous.
         '''
@@ -157,14 +156,14 @@ class Scenario(object):
             self._assignVous(noi)
 
     def _assignPac(self, noi, noidec):
-        ''' 
+        '''
         Ajoute la personne numéro 'noi' et crée sa famille
         '''
         self.indiv[noi]['quifoy'] = 'pac0'
         self.indiv[noi]['noidec'] = noidec
 
     def _assignChef(self, noi):
-        ''' 
+        '''
         Désigne la personne numéro 'noi' comme chef de famille et crée une famille vide
         '''
         self.indiv[noi]['quifam'] = 'chef'
@@ -172,8 +171,8 @@ class Scenario(object):
         self.famille.update({noi:{}})
 
     def _assignPart(self, noi, noichef):
-        ''' 
-        Ajoute la personne numéro 'noi' à la famille 'noichef' en tant 
+        '''
+        Ajoute la personne numéro 'noi' à la famille 'noichef' en tant
         que 'part' si noi n'a pas de part. Sinon, cherche la première famille sans
         'part'. Sinon, crée un nouvelle famille en tant que vous.
         '''
@@ -189,7 +188,7 @@ class Scenario(object):
             self._assignChef(noi)
 
     def _assignEnfF(self, noi, noichef):
-        ''' 
+        '''
         Ajoute la personne numéro 'noi' à la déclaration famille 'noifam' en tant
         que 'enf'
         '''
@@ -231,7 +230,7 @@ class Scenario(object):
                 yield person
 
     def addIndiv(self, noi, birth, quifoy, quifam):
-        self.indiv.update({noi:{'birth':birth, 
+        self.indiv.update({noi:{'birth':birth,
                                 'inv': 0,
                                 'alt':0,
                                 'activite':0,
@@ -246,7 +245,7 @@ class Scenario(object):
 
     def nbIndiv(self):
         return len(self.indiv)
-            
+
     def genNbEnf(self):
         for noi, vals in self.indiv.iteritems():
             if vals.has_key('statmarit'):
@@ -260,7 +259,7 @@ class Scenario(object):
             if vals['quifoy'] == 'conj':
                 statmarit = self.indiv[vals['noidec']]['statmarit']
             vals.update({'statmarit':statmarit})
-                
+
         for noidec, vals in self.declar.iteritems():
             vals.update(self.NbEnfFoy(noidec))
         for noichef, vals in self.famille.iteritems():
@@ -272,13 +271,13 @@ class Scenario(object):
         for vals in self.indiv.itervalues():
             if (vals['noidec']==noidec) and (vals['quifoy'][:3]=='pac'):
                 n += 1
-                if (self.year - vals['birth'].year >= 18) and vals['inv'] == 0: 
+                if (self.year - vals['birth'].year >= 18) and vals['inv'] == 0:
                     out['nbJ'] += 1
                 else:
-                    if vals['alt'] == 0: 
+                    if vals['alt'] == 0:
                         out['nbF'] += 1
                         if vals['inv'] == 1 : out['nbG'] +=1
-                    elif vals['alt'] == 1: 
+                    elif vals['alt'] == 1:
                         out['nbH'] += 1
                         if vals['inv'] == 1: out['nbI'] += 1
                 vals['quifoy'] = 'pac%d' % n
@@ -325,7 +324,7 @@ class Scenario(object):
         outputFile = open(fileName, 'wb')
         pickle.dump({'version': VERSION, 'indiv': self.indiv, 'declar': self.declar, 'famille': self.famille, 'menage': self.menage}, outputFile)
         outputFile.close()
-    
+
     def openFile(self, fileName):
         inputFile = open(fileName, 'rb')
         S = pickle.load(inputFile)
@@ -334,7 +333,6 @@ class Scenario(object):
         self.declar = S['declar']
         self.menage = S['menage']
 
-
     def populate_datatable(self, datatable):
         '''
         Popualte a datatable from a given scenario
@@ -342,19 +340,19 @@ class Scenario(object):
         from pandas import DataFrame, concat
         import numpy as np
         scenario = self
-        
+
         if self.nmen is None:
             raise Exception('france.Scenario: self.nmen should be not None')
-        
-        nmen = self.nmen 
+
+        nmen = self.nmen
         same_rev_couple = self.same_rev_couple
         datatable.NMEN = nmen
         datatable._nrows = datatable.NMEN*len(scenario.indiv)
         datesim = datatable.datesim
         datatable.table = DataFrame()
-    
+
         idmen = np.arange(60001, 60001 + nmen)
-        
+
         for noi, dct in scenario.indiv.iteritems():
             birth = dct['birth']
             age = datesim.year- birth.year
@@ -364,7 +362,7 @@ class Scenario(object):
             quifam = datatable.description.get_col('quifam').enum[dct['quifam']]
             noichef = dct['noichef']
             quimen = datatable.description.get_col('quimen').enum[dct['quimen']]
-    
+
             dct = {'noi': noi*np.ones(nmen),
                    'age': age*np.ones(nmen),
                    'agem': agem*np.ones(nmen),
@@ -374,25 +372,25 @@ class Scenario(object):
                    'idmen': idmen,
                    'idfoy': idmen*100 + noidec,
                    'idfam': idmen*100 + noichef}
-                
+
             datatable.table = concat([datatable.table, DataFrame(dct)], ignore_index = True)
-    
+
         datatable.gen_index(ENTITIES_INDEX)
-    
+
         for name in datatable.col_names:
             if not name in datatable.table:
                 datatable.table[name] = datatable.description.get_col(name)._default
-            
+
         entity = 'men'
         nb = datatable.index[entity]['nb']
         for noi, dct in scenario.indiv.iteritems():
             for var, val in dct.iteritems():
-                if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'): 
+                if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'):
                     continue
                 if not datatable.index[entity][noi] is None:
                     datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
-            
+
         entity = 'foy'
         nb = datatable.index[entity]['nb']
         for noi, dct in scenario.declar.iteritems():
@@ -400,7 +398,7 @@ class Scenario(object):
                 if not datatable.index[entity][noi] is None:
                     datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
-            
+
         entity = 'men'
         nb = datatable.index[entity]['nb']
         for noi, dct in scenario.menage.iteritems():
@@ -408,30 +406,29 @@ class Scenario(object):
                 if not datatable.index[entity][noi] is None:
                     datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
-    
 
         if nmen>1:
             if self.maxrev is None:
                 raise Exception('france.Scenario: self.maxrev should not be None')
-            maxrev = self.maxrev      
+            maxrev = self.maxrev
             datatable.MAXREV = maxrev
-            
+
             if self.xaxis is None:
                 raise Exception('france.Scenario: self.xaxis should not be None')
-            
-            xaxis = self.xaxis    
+
+            xaxis = self.xaxis
             axes = axestools.build_axes()
             var = None
-            
+
             for axe in axes:
                 if axe.name == xaxis:
                     datatable.XAXIS = axe.col_name
                     var = axe.col_name
-                    
+
             if var is None:
-                datatable.XAXIS = xaxis 
+                datatable.XAXIS = xaxis
                 var = xaxis
-                        
+ 
             vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:
                 entity = 'men'
