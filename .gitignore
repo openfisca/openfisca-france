@@ -1,3 +1,6 @@
+.project
+.pydevproject
+.settings/
 build/
 dist/
 openfisca_france/data/survey.h5
