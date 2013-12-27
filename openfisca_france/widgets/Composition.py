@@ -8,30 +8,29 @@
 
 
 from datetime import date, datetime
-import pickle
 import os
-
-from src.gui.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox, 
-                          QDoubleSpinBox, QPushButton, QApplication, QFileDialog, QMessageBox, 
-                          QDialogButtonBox, QDockWidget)
-
-from src.gui.qt.QtCore import QObject, SIGNAL, SLOT, QDate, Qt, Signal
-from src.gui.qt.compat import to_qvariant
-
-from src.gui.views.ui_composition import Ui_Menage
-from src.gui.views.ui_logement import Ui_Logement
-from src.widgets.InfoComp import InfoComp
-from src.widgets.Declaration import Declaration
-
-from src.gui.utils.qthelpers import create_action
-from src.gui.config import CONF, get_icon
-from src.plugins import OpenfiscaPluginWidget
-from src.gui.baseconfig import get_translation
-_ = get_translation('src')
+import pickle
 
 from openfisca_core import axestools
+from openfisca_qt.gui.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox, 
+                          QDoubleSpinBox, QPushButton, QApplication, QFileDialog, QMessageBox, 
+                          QDialogButtonBox, QDockWidget)
+from openfisca_qt.gui.qt.QtCore import QObject, SIGNAL, SLOT, QDate, Qt, Signal
+from openfisca_qt.gui.qt.compat import to_qvariant
+from openfisca_qt.gui.views.ui_composition import Ui_Menage
+from openfisca_qt.gui.views.ui_logement import Ui_Logement
+from openfisca_qt.widgets.InfoComp import InfoComp
+from openfisca_qt.widgets.Declaration import Declaration
+from openfisca_qt.gui.utils.qthelpers import create_action
+from openfisca_qt.gui.config import CONF, get_icon
+from openfisca_qt.plugins import OpenfiscaPluginWidget
+from openfisca_qt.plugins.scenario import CompositionConfigPage
+from openfisca_qt.gui.baseconfig import get_translation
 
 from .. import CURRENCY
+
+
+_ = get_translation('openfisca_qt')
 
 
 class S:
@@ -43,7 +42,6 @@ class S:
     famnum = 5
     fampos = 6
 
-from src.plugins.scenario import CompositionConfigPage
 
 class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):    
     """

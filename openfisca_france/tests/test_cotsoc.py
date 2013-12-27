@@ -184,7 +184,7 @@ def test_cotsoc():
                 simulation.set_config(year = year, country = country, nmen = 1)
                 simulation.set_param()
             
-                from src.scripts.cecilia import complete_2012_param # TODO: FIXME when 2012 done
+                from openfisca_qt.scripts.cecilia import complete_2012_param # TODO: FIXME when 2012 done
                 if year == 2012:
                     complete_2012_param(simulation.P)
             

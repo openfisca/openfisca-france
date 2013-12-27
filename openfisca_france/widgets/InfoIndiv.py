@@ -21,12 +21,11 @@ This file is part of openFisca.
     along with openFisca.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from src.gui.qt.QtGui import (QDockWidget)
-
-
-
 
 from openfisca_core.columns import IntCol, FloatCol, BoolCol, EnumCol
+from openfisca_qt.gui.qt.QtGui import QDockWidget
+from openfisca_qt.gui.qthelpers import MyDoubleSpinBox, MyComboBox
+
 
 class S:
     name = 0
@@ -37,7 +36,6 @@ class S:
     famnum = 5
     fampos = 6
 
-from src.gui.qthelpers import MyDoubleSpinBox, MyComboBox
 
 def BoxFromCol(col):
     if col in [IntCol, FloatCol]:

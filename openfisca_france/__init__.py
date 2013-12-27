@@ -3,7 +3,7 @@
 # This file is part of OpenFisca
 # Copyright © 2012 Mahdi Ben Jelloul, Clément Schaff 
 # Licensed under the terms of the GPL License v3 or later version
-# (see src/__init__.py for details)
+# (see openfisca_france/__init__.py for details)
 
 import os
 
