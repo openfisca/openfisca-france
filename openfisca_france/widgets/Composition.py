@@ -27,7 +27,7 @@ from openfisca_qt.plugins import OpenfiscaPluginWidget
 from openfisca_qt.plugins.scenario import CompositionConfigPage
 from openfisca_qt.gui.baseconfig import get_translation
 
-from .. import CURRENCY
+from .. import CURRENCY, DATA_DIR
 
 
 _ = get_translation('openfisca_qt')
@@ -641,7 +641,7 @@ def get_zone(code, filename = None):
     Gets commune name and zone apl from postal code
     '''
     if filename is None:
-        code_file = open('countries/france/data/code_apl', 'r')
+        code_file = open(os.path.join(DATA_DIR, 'code_apl'), 'r')
     else:
         code_file = open(filename, 'r')
     code_dict = pickle.load(code_file)
