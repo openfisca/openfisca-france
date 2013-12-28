@@ -428,7 +428,7 @@ class Scenario(object):
             if var is None:
                 datatable.XAXIS = xaxis
                 var = xaxis
- 
+
             vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:
                 entity = 'men'
