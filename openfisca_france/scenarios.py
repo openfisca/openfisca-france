@@ -26,13 +26,15 @@
 from __future__ import division
 
 from datetime import datetime
+import itertools
 import pickle
 
 import numpy as np
 from openfisca_core import __version__ as VERSION
 from openfisca_core import axestools
 
-from . import ENTITIES_INDEX
+from . import conv, ENTITIES_INDEX
+from .model.data import InputDescription, QUIFAM, QUIFOY, QUIMEN
 
 
 class Scenario(object):
@@ -79,6 +81,185 @@ class Scenario(object):
             if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
                 return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
         return ''
+
+    @classmethod
+    def json_to_attributes(cls, value, state = None):
+        if value is None:
+            return value, None
+        if state is None:
+            state = conv.default_state
+        attributes, error = conv.pipe(
+            conv.test_isinstance(dict),
+            conv.struct(
+                dict(
+                    declar = conv.pipe(
+                        conv.test_isinstance(dict),
+                        conv.uniform_mapping(
+                            conv.pipe(
+                                conv.test_isinstance(basestring),
+                                conv.input_to_int,
+                                conv.test_greater_or_equal(0),
+                                conv.not_none,
+                                ),
+                            conv.pipe(
+                                conv.test_isinstance(dict),
+                                conv.struct(
+                                    dict(
+                                        (column.name, column.json_to_python)
+                                        for column in InputDescription.columns
+                                        if column.entity == 'foy'
+                                        ),
+                                    ),
+                                ),
+                            drop_none_values = True,
+                            ),
+                        conv.empty_to_none,
+                        conv.not_none,
+                        ),
+                    famille = conv.pipe(
+                        conv.test_isinstance(dict),
+                        conv.uniform_mapping(
+                            conv.pipe(
+                                conv.test_isinstance(basestring),
+                                conv.input_to_int,
+                                conv.test_greater_or_equal(0),
+                                conv.not_none,
+                                ),
+                            conv.pipe(
+                                conv.test_isinstance(dict),
+                                conv.struct(
+                                    dict(
+                                        (column.name, column.json_to_python)
+                                        for column in InputDescription.columns
+                                        if column.entity == 'fam'
+                                        ),
+                                    ),
+                                ),
+                            drop_none_values = True,
+                            ),
+                        conv.empty_to_none,
+                        conv.not_none,
+                        ),
+                    indiv = conv.pipe(
+                        conv.test_isinstance(list),
+                        conv.uniform_sequence(
+                            conv.pipe(
+                                conv.test_isinstance(dict),
+                                conv.struct(
+                                    dict(itertools.chain(
+                                        dict(
+                                            birth = conv.pipe(
+                                                conv.test_isinstance(basestring),
+                                                conv.iso8601_input_to_date,
+                                                conv.not_none,
+                                                ),
+                                            noichef = conv.pipe(  # index de la famille (= index du chef de famille)
+                                                conv.json_to_natural_int,
+                                                conv.not_none,
+                                                ),
+                                            noidec = conv.pipe(  # index du foyer fiscal (= index du déclarant)
+                                                conv.json_to_natural_int,
+                                                conv.not_none,
+                                                ),
+                                            noipref = conv.pipe(  # index du ménage (index du premier individu)
+                                                conv.json_to_natural_int,
+                                                conv.not_none,
+                                                ),
+                                            quifam = conv.pipe(
+                                                conv.test_isinstance(basestring),
+                                                conv.test_in(QUIFAM._nums),
+                                                conv.not_none,
+                                                ),
+                                            quifoy = conv.pipe(
+                                                conv.test_isinstance(basestring),
+                                                conv.test_in(QUIFOY._nums),
+                                                conv.not_none,
+                                                ),
+                                            quimen = conv.pipe(
+                                                conv.test_isinstance(basestring),
+                                                conv.test_in(QUIMEN._nums),
+                                                conv.not_none,
+                                                ),
+                                            ).iteritems(),
+                                        (
+                                            (column.name, column.json_to_python)
+                                            for column in InputDescription.columns
+                                            if column.entity == 'ind' and column.name not in ('age', 'agem', 'quifam',
+                                                'quifoy', 'quimen')
+                                            ),
+                                        )),
+                                    ),
+                                ),
+                            drop_none_items = True,
+                            ),
+                        conv.empty_to_none,
+                        conv.function(lambda values: dict(enumerate(values))),
+                        conv.not_none,
+                        ),
+                    menage = conv.pipe(
+                        conv.test_isinstance(dict),
+                        conv.uniform_mapping(
+                            conv.pipe(
+                                conv.test_isinstance(basestring),
+                                conv.input_to_int,
+                                conv.test_greater_or_equal(0),
+                                conv.not_none,
+                                ),
+                            conv.pipe(
+                                conv.test_isinstance(dict),
+                                conv.struct(
+                                    dict(
+                                        (column.name, column.json_to_python)
+                                        for column in InputDescription.columns
+                                        if column.entity == 'men'
+                                        ),
+                                    ),
+                                ),
+                            drop_none_values = True,
+                            ),
+                        conv.empty_to_none,
+                        conv.not_none,
+                        ),
+                    year = conv.pipe(
+                        conv.test_isinstance(int),
+                        conv.test_greater_or_equal(1900),  # TODO: Check that year is valid in params.
+                        conv.not_none,
+                        ),
+                    ),
+                ),
+            )(value, state = state)
+        if error is not None:
+            return attributes, error
+
+        indiv_indexes = sorted(attributes['indiv'].iterkeys())
+        return conv.struct(
+            dict(
+                declar = conv.uniform_mapping(
+                    conv.test_in(indiv_indexes),
+                    conv.noop,
+                    ),
+                famille = conv.uniform_mapping(
+                    conv.test_in(indiv_indexes),
+                    conv.noop,
+                    ),
+                indiv = conv.uniform_mapping(
+                    conv.noop,
+                    conv.struct(
+                        dict(
+                            noichef = conv.test_in(indiv_indexes),  # index de la famille (= index du chef de famille)
+                            noidec = conv.test_in(indiv_indexes),  # index du foyer fiscal (= index du déclarant)
+                            noipref = conv.test_in(indiv_indexes),  # index du ménage (index du premier individu)
+                            ),
+                        default = conv.noop,
+                        ),
+                    ),
+                menage = conv.uniform_mapping(
+                    conv.test_in(indiv_indexes),
+                    conv.noop,
+                    ),
+                ),
+                default = conv.noop,
+            )(attributes, state = state)
 
     def modify(self, noi, newQuifoy = None, newFoyer = None):
         oldFoyer, oldQuifoy = self.indiv[noi]['noidec'], self.indiv[noi]['quifoy']

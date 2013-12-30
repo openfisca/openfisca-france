@@ -28,12 +28,12 @@ import datetime
 import openfisca_france
 openfisca_france.init_country()
 
-from openfisca_core.simulations import ScenarioSimulation
+from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
 
 
-def test():
+def test_case_study(year = 2006):
     simulation = ScenarioSimulation()
-    simulation.set_config(year = 2006, country = 'france', reforme = False, nmen = 3, maxrev = 100000, xaxis = 'sali')
+    simulation.set_config(year = year, country = 'france', reforme = False, nmen = 3, maxrev = 100000, xaxis = 'sali')
     # Add husband/wife on the same tax sheet (foyer).
     simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
     simulation.set_param()
@@ -42,4 +42,13 @@ def test():
     # simulation.disable_prestations( ['aefa'])
     df = simulation.get_results_dataframe()
     print df.to_string()
+#    print df.to_json(orient = 'index')
+
+
+def test_survey(year = 2006):
+    simulation = SurveySimulation()
+    simulation.set_config(year = year, country = 'france')
+    simulation.set_param()
+
+    simulation.compute()
 

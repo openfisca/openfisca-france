@@ -56,6 +56,7 @@ setup(
 
     data_files = [],
     install_requires = [
+        'Biryani1 >= 0.9dev',
         "numpy",
         "pandas",
         ],
