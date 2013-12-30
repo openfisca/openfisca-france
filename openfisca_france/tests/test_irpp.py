@@ -7,9 +7,12 @@
 # (see openfisca/__init__.py for details)
 
 import nose
-from openfisca_core.simulations import ScenarioSimulation
 from datetime import datetime
 
+import openfisca_france
+openfisca_france.init_country()
+
+from openfisca_core.simulations import ScenarioSimulation
 
 
 def test_irpp():
@@ -134,16 +137,52 @@ def test_irpp():
                 print amount
                 print "OpenFisca :", abs(df.loc["irpp"][0])
                 print "Real value :", irpp
-            
             assert abs(df.loc["irpp"][0] - irpp) < 1 
+
+# TODO: The amounts are wrong
+#
+# def test_ppe():
+#     """
+#     test ppe pour un célibataire  
+#     """
+#     country = 'france'
+#     dico = { 
+# # test pour un célibataire ayant un revenu salarial (1AJ) 
+#             "sali": [
+#                 {"year" : 2010, "amount": 12*1000/2, "ppe":-1181 },
+#                 {"year" : 2010, "amount": 12*1000, "ppe":-1181 },
+#                 {"year" : 2011, "amount": 12*1000/2, "ppe":-42338},
+#                 {"year" : 2011, "amount": 12*1000, "ppe":-42338},
+#                 ]
+#             }
+#     for revenu, test_list in dico.iteritems():        
+#         for item in test_list: 
+#             year = item["year"]
+#             amount = item["amount"]
+#             ppe = item["ppe"]
+#             simulation = ScenarioSimulation()
+#             simulation.set_config(year = year, country = country, nmen = 1)
+#             simulation.set_param()
+#             test_case = simulation.scenario  
+#             if revenu in ["rsti", "sali"]:
+#                 test_case.indiv[0].update({revenu:amount})
+#                 test_case.indiv[0].update({"ppe_tp_sa":True})
+#             else:
+#                 assert False   
+#             df = simulation.get_results_dataframe(index_by_code=True)
+#             if not abs(df.loc["ppe"][0] - ppe) < 1:
+#                 print year
+#                 print revenu
+#                 print amount
+#                 print "OpenFisca :", abs(df.loc["ppe"][0])
+#                 print "Real value :", ppe
+#             assert abs(df.loc["ppe"][0] - ppe) < 1 
 
 
 if __name__ == '__main__':
-   
-
-#    test_irpp()
-    
-    nose.core.runmodule(argv=[__file__, '-v', '-i test_*.py'])
+    test_irpp()
+#    test_ppe()
+#    nose.core.runmodule(argv=[__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 
 

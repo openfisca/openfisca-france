@@ -11,12 +11,9 @@ from openfisca_core.simulations import ScenarioSimulation
 from datetime import datetime
 
 
-
-
 ''' test avec 2 enfants 
     de moins de 11 ans
 '''
-
 
 af_2enf = {2006: 1412.64, 2007 : 1436.64, 2008: 1451.04, 2009: 1494.48}
 
