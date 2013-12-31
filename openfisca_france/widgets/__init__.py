@@ -1,5 +1,5 @@
 from openfisca_qt.gui.config import CONF
-from openfisca_qt.plugins.survey.aggregates import AggregatesWidget
+
 
 def get_config(widget):
     """
