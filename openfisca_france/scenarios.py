@@ -57,7 +57,7 @@ class Scenario(object):
         self.addIndiv(0, datetime(1975,1,1).date(), 'vous', 'chef')
 
         self.nmen = None
-        self.xaxis = None
+        self.x_axis = None
         self.maxrev = None
         self.same_rev_couple = None
         self.year = None
@@ -232,7 +232,7 @@ class Scenario(object):
                         conv.test_greater_or_equal(1900),  # TODO: Check that year is valid in params.
                         conv.not_none,
                         ),
-                    xaxis = conv.pipe(
+                    x_axis = conv.pipe(
                         conv.test_isinstance(basestring),
                         conv.test_in(model.x_axes.keys()),
                         ),
@@ -606,16 +606,16 @@ class Scenario(object):
             maxrev = self.maxrev
             datatable.MAXREV = maxrev
 
-            xaxis = self.xaxis
-            if xaxis is None:
-                raise Exception('france.Scenario: self.xaxis should not be None')
+            x_axis = self.x_axis
+            if x_axis is None:
+                raise Exception('france.Scenario: self.x_axis should not be None')
             var = None
             for axe in model.x_axes.itervalues():
-                if axe.name == xaxis:
+                if axe.name == x_axis:
                     datatable.XAXIS = var = axe.col_name
             if var is None:
-                datatable.XAXIS = xaxis
-                var = xaxis
+                datatable.XAXIS = x_axis
+                var = x_axis
 
             vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:

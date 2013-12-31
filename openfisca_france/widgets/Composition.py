@@ -64,12 +64,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             
         self.setLayout(self.verticalLayout)
         # Initialize xaxes
-        xaxis = self.get_option('xaxis')
+        x_axis = self.get_option('x_axis')
         axes_names = []
         for axe in model.x_axes.itervalues():
-            self.xaxis_box.addItem(axe.label, to_qvariant(axe.name))
+            self.x_axis_box.addItem(axe.label, to_qvariant(axe.name))
             axes_names.append(axe.name)
-        self.xaxis_box.setCurrentIndex(axes_names.index(xaxis))
+        self.x_axis_box.setCurrentIndex(axes_names.index(x_axis))
 
         self.initialize_plugin()        
         # Initialize maxrev # make it country dependant  
@@ -92,7 +92,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.connect(self.lgt_btn, SIGNAL('clicked()'), self.openLogement)
         self.connect(self.inf_btn, SIGNAL('clicked()'), self.openInfoComp)
         self.connect(self.reset_btn, SIGNAL('clicked()'), self.resetScenario)
-        self.connect(self.xaxis_box, SIGNAL('currentIndexChanged(int)'), self.set_xaxis)
+        self.connect(self.x_axis_box, SIGNAL('currentIndexChanged(int)'), self.set_x_axis)
         self.connect(self.maxrev_box, SIGNAL('valueChanged(int)'), self.set_maxrev)
         self.connect(self, SIGNAL('compoChanged()'), self.changed)
         self._listPerson = []
@@ -108,7 +108,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         """
         Set scenario_simualtion
         """
-        xaxis = self.get_option('xaxis')
+        x_axis = self.get_option('x_axis')
         maxrev = self.maxrev
         nmen = self.get_option('nmen')
         self.nmen = nmen
@@ -117,21 +117,21 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         
         year = datesim.year
         self.simulation = simulation
-        self.simulation.set_config(year = year, xaxis = xaxis, nmen = self.nmen, maxrev = maxrev, reforme = False, 
+        self.simulation.set_config(year = year, x_axis = x_axis, nmen = self.nmen, maxrev = maxrev, reforme = False, 
             mode ='bareme')
         self.simulation.set_param()
         self.scenario = self.simulation.scenario
 
-    def set_xaxis(self):
+    def set_x_axis(self):
         '''
         Sets the varying variable of the scenario
         '''
-        widget = self.xaxis_box
+        widget = self.x_axis_box
         if isinstance(widget, QComboBox):
             data  = widget.itemData(widget.currentIndex())
-            xaxis = unicode(data)
-            self.scenario.xaxis = xaxis
-            self.set_option('xaxis', xaxis)
+            x_axis = unicode(data)
+            self.scenario.x_axis = x_axis
+            self.set_option('x_axis', x_axis)
         self.emit(SIGNAL('compoChanged()'))
     
     def set_maxrev(self):
@@ -510,13 +510,13 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             self.maxrev_box.setValue(maxrev)
             self.maxrev = maxrev
             print "in apply setting :" , self.maxrev
-        if 'xaxis' in options:
-            xaxis = self.get_option('xaxis')
+        if 'x_axis' in options:
+            x_axis = self.get_option('x_axis')
             axes_names = [
                 axe.name
                 for axe in model.x_axes.itervalues()
                 ]
-            self.xaxis_box.setCurrentIndex(axes_names.index(xaxis))
+            self.x_axis_box.setCurrentIndex(axes_names.index(x_axis))
 
     #------ OpenfiscaPluginWidget API ---------------------------------------------
     def get_plugin_title(self):
