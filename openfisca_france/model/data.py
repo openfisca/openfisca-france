@@ -15,13 +15,13 @@ from openfisca_core.utils import Enum
 QUIFOY = Enum(['vous', 'conj', 'pac1','pac2','pac3','pac4','pac5','pac6','pac7','pac8','pac9'])
 QUIFAM = Enum(['chef', 'part', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])
 QUIMEN = Enum(['pref', 'cref', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])
-CAT    = Enum(['noncadre', 'cadre', 'etat_t', 'colloc_t', 'contract']) 
+CAT    = Enum(['noncadre', 'cadre', 'etat_t', 'colloc_t', 'contract'])
 
 
 class InputDescription(ModelDescription):
     '''
     Socio-economic data
-    Données d'entrée de la simulation à fournir à partir d'une enquête ou 
+    Données d'entrée de la simulation à fournir à partir d'une enquête ou
     générée par le  générateur de cas type
     '''
     noi = IntCol(label="Numéro d'ordre individuel")
@@ -33,7 +33,7 @@ class InputDescription(ModelDescription):
     quimen  = EnumCol(QUIMEN)
     quifoy  = EnumCol(QUIFOY)
     quifam  = EnumCol(QUIFAM)
-    
+
     sali = IntCol(label="Salaire imposable", val_type="monetary") #(f1aj, f1bj, f1cj, f1dj, f1ej)
     choi = IntCol(label=u"Chômage imposable", val_type="monetary") # (f1ap, f1bp, f1cp, f1dp, f1ep)
     rsti = IntCol(label="Retraite imposable", val_type="monetary") # (f1as, f1bs, f1cs, f1ds, f1es)
@@ -42,7 +42,7 @@ class InputDescription(ModelDescription):
     alr  = IntCol(label = u"Pension alimentaire reçue", val_type="monetary") # (f1ao, f1bo, f1co, f1do, f1eo)
     alr_decl  = BoolCol(label = u"Pension déclarée", default=True) # (f1ao, f1bo, f1co, f1do, f1eo)
 
-    
+
     hsup = IntCol( label = "Heures supplémentaires", val_type="monetary")  # (f1au, f1bu, f1cu, f1du, f1eu)
     inv  = BoolCol(label = u'Invalide')
     alt  = BoolCol(label = u'Garde alternée')
@@ -54,7 +54,7 @@ class InputDescription(ModelDescription):
     jour_xyz = IntCol(default = 360, entity="foy")
     age = AgesCol(label = u"âge" ,  val_type="age")
     agem = AgesCol(label = u"âge (en mois)", val_type="months")
-    
+
     zone_apl = EnumCol(label = u"zone apl", default = 2, entity= 'men')
     loyer = IntCol(label = "Loyer mensuel", entity='men', val_type="monetary") # Loyer mensuel
     so = EnumCol(label = u"Statut d'occupation",
@@ -66,14 +66,14 @@ class InputDescription(ModelDescription):
                               u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
                               u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
                               u"Logé gratuitement par des parents, des amis ou l'employeur"]))
-    
+
     activite = EnumCol(label = u'Actvité',
                        enum = Enum([u'Actif occupé',
                                     u'Chômeur',
-                                    u'Étudiant, élève', 
-                                    u'Retraité', 
-                                    u'Autre inactif']), default = 4) 
-    
+                                    u'Étudiant, élève',
+                                    u'Retraité',
+                                    u'Autre inactif']), default = 4)
+
     titc = EnumCol(label = u"Statut, pour les agents de l'Etat des collectivités locales, ou des hôpitaux",
                     enum = Enum([u"Sans objet ou non renseigné",
                                 u"Elève fonctionnaire ou stagiaire",
@@ -126,13 +126,13 @@ class InputDescription(ModelDescription):
                             u"Entreprise publique (La Poste, EDF-GDF, etc.)",
                             u"Entreprise privée, association"
                             ]))
-    
+
     cadre = BoolCol(label = u"Cadre")
-    
-    
+
+
     boursier = BoolCol()
     code_postal = IntCol(label = "Code postal du lieu de résidence", entity='men')
-    
+
     statmarit = EnumCol(label = u"Statut marital",
                           default = 2,
                           enum = Enum([u"Marié",
@@ -141,16 +141,16 @@ class InputDescription(ModelDescription):
                                     u"Veuf",
                                     u"Pacsé",
                                     u"Jeune veuf"],start=1))
-    
+
     nbR = IntCol(label="Nombre de titulaires de la carte invalidité d'au moins 80 %", entity= 'foy')
     nbJ = IntCol(label="Nombre d'enfants majeurs célibataires sans enfant", entity= 'foy')
     nbI = IntCol(label="Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité", entity= 'foy')
     nbH = IntCol(label="Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity= 'foy')
-#   vérifier si c'est bien ça pour la nbH et la caseH qui suit 
+#   vérifier si c'est bien ça pour la nbH et la caseH qui suit
     nbG = IntCol(label="Nombre d'enfants à charge titulaires de la carte d'invalidité", entity= 'foy')
     nbF = IntCol(label="Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity= 'foy')
     nbN = IntCol(label="Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille", entity= 'foy')
-    
+
     caseE = BoolCol(label=u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant moins de 5 ans", entity= 'foy')
     caseF = BoolCol(label=u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente", entity= 'foy')
     caseG = BoolCol(label=u"Titulaire d'une pension de veuve de guerre", entity= 'foy')
@@ -162,26 +162,26 @@ class InputDescription(ModelDescription):
     caseS = BoolCol(label=u"Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity= 'foy')
     caseT = BoolCol(label=u"Vous êtes parent isolé au 1er janvier de l'année n-1", entity= 'foy')
     caseW = BoolCol(label=u"Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity= 'foy')
-    
-    
+
+
     rfr_n_2  = IntCol(entity='foy', label = u"Revenu fiscal de référence année n-2", val_type="monetary") # TODO: provide in data
     nbptr_n_2 = IntCol(entity='foy', label = u"Nombre de parts année n-2", val_type="monetary")  # TODO: provide in data
-    
+
     # Rentes viagères
     f1aw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans", entity= 'foy', val_type="monetary")
     f1bw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans", entity= 'foy', val_type="monetary")
     f1cw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans", entity= 'foy', val_type="monetary")
     f1dw = IntCol(label =u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans", entity= 'foy', val_type="monetary")
-    
+
     # Gain de levée d'option
-    #TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv 
+    #TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv
     # et les mettre en f1tvm comme pour sali
     # Il faut aussi le faire en amont dans les tables
     f1tv = IntCol(label="", entity= 'ind') # (f1tv,f1uv)
     f1tw = IntCol(label="", entity= 'ind') # (f1tw,f1uw)
     f1tx = IntCol(label="", entity= 'ind') # (f1tx,f1ux)
- 
-    
+
+
     # RVCM
     # revenus au prélèvement libératoire
     f2da = IntCol(entity= 'foy', label = u"Revenus des actions et parts soumis au prélèvement libératoire", val_type="monetary")
@@ -192,12 +192,12 @@ class InputDescription(ModelDescription):
     f2dc = IntCol(entity= 'foy', label =u"Revenus des actions et parts donnant droit à abattement", val_type="monetary")
     f2fu = IntCol(entity= 'foy', label =u"Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement", val_type="monetary")
     f2ch = IntCol(entity= 'foy', label =u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement", val_type="monetary")
-    
+
     # Revenus n'ouvrant pas droit à abattement
     f2ts = IntCol(entity= 'foy', label=u"Revenus de valeurs mobilières et distributions", val_type="monetary")
     f2go = IntCol(entity= 'foy', label= u"Autres revenus distribués et revenus des structures soumiseshors de France à un régime fiscal privilégié", val_type="monetary")
     f2tr = IntCol(entity= 'foy', label = u"Intérêts et autres revenus assimilés", val_type="monetary")
-    
+
     # Autres
     f2cg = IntCol(entity= 'foy', label =u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible", val_type="monetary")
     f2bh = IntCol(entity= 'foy', label =u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible", val_type="monetary")
@@ -209,23 +209,23 @@ class InputDescription(ModelDescription):
     f2an = IntCol(entity= 'foy', label =u"Déficits des années antérieures non encore déduits: année 2009", val_type="monetary")
     f2aq = IntCol(entity= 'foy', label =u"Déficits des années antérieures non encore déduits: année 2010", val_type="monetary")
     f2ar = IntCol(entity= 'foy', label =u"Déficits des années antérieures non encore déduits: année 2011", val_type="monetary")
-    
+
     # non accessible (from previous years)
-    f2gr = IntCol(entity= 'foy') 
-        
+    f2gr = IntCol(entity= 'foy')
+
     f3vc = IntCol(entity= 'foy', label =u"Produits et plus-values exonérés provenant de structure de capital-risque", val_type="monetary")
     f3vd = IntCol(entity= 'foy', label =u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 18 %", val_type="monetary")
     f3ve = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f3vf = IntCol(entity= 'foy', label =u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 41 %", val_type="monetary")
-    
+
     f3vl = IntCol(entity= 'foy', label =u"Distributions par des sociétés de capital-risque taxables à 24 %", val_type="monetary")
     f3vi = IntCol(entity= 'foy', label =u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 30 %", val_type="monetary")
     f3vm = IntCol(entity= 'foy', label =u"Clôture du PEA : avant l'expiration de la 2e année", val_type="monetary")
-    
+
     f3vj = IntCol(entity= 'foy', label =u"Gains imposables sur option dans la catégorie des salaires: déclarant 1", val_type="monetary")
     f3vk = IntCol(entity= 'foy', label =u"Gains imposables sur option dans la catégorie des salaires: déclarant 2", val_type="monetary")
     f3va = IntCol(entity= 'foy', label =u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values", val_type="monetary")
-    
+
     # Plus values et gains taxables à des taux forfaitaires
     f3vg = IntCol(entity= 'foy', label=u"Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés", val_type="monetary")
     f3vh = IntCol(entity= 'foy', label=u"Perte de l'année n-1", val_type="monetary")
@@ -242,15 +242,15 @@ class InputDescription(ModelDescription):
     f4bc = IntCol(entity= 'foy', label=u"Déficit imputable sur le revenu global", val_type="monetary")
     f4bd = IntCol(entity= 'foy', label=u"Déficits antérieurs non encore imputés", val_type="monetary")
     f4be = IntCol(entity= 'foy', label=u"Micro foncier: recettes brutes sans abattement", val_type="monetary")
-    
+
     # Prime d'assurance loyers impayés
     f4bf = IntCol(entity= 'foy', label =u"Primes d'assurance pour loyers impayés des locations conventionnées", val_type="monetary")
-    
+
     f4bl = IntCol(entity= 'foy', label =u"")
-    
+
     f5qm = IntCol(entity= 'foy', label =u"Agents généraux d’assurances: indemnités de cessation d’activité, déclarant 1", val_type="monetary")
     f5rm = IntCol(entity= 'foy', label =u"Agents généraux d’assurances: indemnités de cessation d’activité, déclarant 2", val_type="monetary")
-    
+
     # Csg déductible
     f6de = IntCol(entity= 'foy', label =u"CSG déductible calculée sur les revenus du patrimoine", val_type="monetary")
 
@@ -261,14 +261,14 @@ class InputDescription(ModelDescription):
     f6em = IntCol(entity= 'foy', label =u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant", val_type="monetary")
     f6gp = IntCol(entity= 'foy', label =u"Autres pensions alimentaires versées (mineurs, ascendants)", val_type="monetary")
     f6gu = IntCol(entity= 'foy', label =u"Autres pensions alimentaires versées (mineurs, ascendants)", val_type="monetary")
-    
+
     # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
     f6eu = IntCol(entity= 'foy', label =u"Frais d'accueil de personnes de plus de 75 ans dans le besoin", val_type="monetary")
     f6ev = IntCol(entity= 'foy', label =u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit")
-    
+
     # Déductions diverses
     f6dd = IntCol(entity= 'foy',label =u"Déductions diverses", val_type="monetary")
-    
+
     # Épargne retraite - PERP, PRÉFON, COREM et CGOS
     f6ps = IntCol(entity= 'foy', label =u"Plafond de déduction: déclarant 1", val_type="monetary")
     f6rs = IntCol(entity= 'foy', label =u"Cotisations versées au titre d'un PERP, PREFON, COREM et C.G.O.S: déclarant 1", val_type="monetary")
@@ -279,29 +279,29 @@ class InputDescription(ModelDescription):
     f6pu = IntCol(entity= 'foy', label =u"Plafond de déduction: personne à charge", val_type="monetary")
     f6ru = IntCol(entity= 'foy', label =u"Cotisations versées au titre d'un PERP, PREFON, COREM et C.G.O.S: personne à charge", val_type="monetary")
     f6su = IntCol(entity= 'foy', label =u"Rachat de cotisations PREFON, COREM et C.G.O.S: personne à charge", val_type="monetary")
-    
+
     # Souscriptions en faveur du cinéma ou de l’audiovisuel
     f6aa = IntCol(entity= 'foy', label =u"Souscriptions en faveur du cinéma ou de l’audiovisuel", val_type="monetary")
-    
+
     # Souscriptions au capital des SOFIPÊCHE
     f6cc = IntCol(entity= 'foy', label =u"Souscriptions au capital des SOFIPÊCHE", val_type="monetary")
-    
+
     # Investissements DOM-TOM dans le cadre d’une entreprise <= 2005
-    # ou Versements sur un compte épargne codéveloppement 
+    # ou Versements sur un compte épargne codéveloppement
     f6eh = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
-    # Pertes en capital consécutives à la souscription au capital de sociétés 
+
+    # Pertes en capital consécutives à la souscription au capital de sociétés
     # nouvelles ou de sociétés en difficulté
     f6da = IntCol(entity= 'foy', label =u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté", val_type="monetary")
-    
-    
+
+
     # Dépenses de grosses réparations effectuées par les nus propriétaires
     f6cb = IntCol(entity= 'foy', label =u"Dépenses de grosses réparations effectuées par les nus-propriétaires", val_type="monetary")
     f6hj = IntCol(entity= 'foy', label =u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures", val_type="monetary")
-    
+
     # Sommes à rajouter au revenu imposable
-    f6gh = IntCol(entity= 'foy', label =u"Sommes à ajouter au revenu imposable", val_type="monetary")    
-    
+    f6gh = IntCol(entity= 'foy', label =u"Sommes à ajouter au revenu imposable", val_type="monetary")
+
     # Deficits antérieurs
     f6fa = IntCol(entity= 'foy', label =u"Deficits globaux des années antérieures non encore déduits: année n-7", val_type="monetary")
     f6fb = IntCol(entity= 'foy', label =u"Deficits globaux des années antérieures non encore déduits: année n-6", val_type="monetary")
@@ -309,7 +309,7 @@ class InputDescription(ModelDescription):
     f6fd = IntCol(entity= 'foy', label =u"Deficits globaux des années antérieures non encore déduits: année n-4", val_type="monetary")
     f6fe = IntCol(entity= 'foy', label =u"Deficits globaux des années antérieures non encore déduits: année n-3", val_type="monetary")
     f6fl = IntCol(entity= 'foy', label =u"Deficits globaux des années antérieures non encore déduits: année n-2", val_type="monetary")
-    
+
     # Dons
     f7ud = IntCol(entity= 'foy', label =u"Dons à des organismes d'aide aux personnes en difficulté", val_type="monetary")
     f7uf = IntCol(entity= 'foy', label =u"Autres dons", val_type="monetary")
@@ -318,7 +318,7 @@ class InputDescription(ModelDescription):
     f7xu = IntCol(entity= 'foy', label =u"Report des années antérieures des réductions et crédits d'impôt: année n-4", val_type="monetary")
     f7xw = IntCol(entity= 'foy', label =u"Report des années antérieures des réductions et crédits d'impôt: année n-3", val_type="monetary")
     f7xy = IntCol(entity= 'foy', label =u"Report des années antérieures des réductions et crédits d'impôt: année n-2", val_type="monetary")
-    
+
     # Cotisations syndicales des salariées et pensionnés
     f7ac = IntCol(entity= 'foy', label =u"Cotisations syndicales des salariées et pensionnés: déclarant 1", val_type="monetary")
     f7ae = IntCol(entity= 'foy', label =u"Cotisations syndicales des salariées et pensionnés: déclarant 2", val_type="monetary")
@@ -330,7 +330,7 @@ class InputDescription(ModelDescription):
     f7dq = BoolCol(entity= 'foy', label =u"Emploi direct pour la première fois d'un salarié à domicile en n-1")
     f7dg = BoolCol(entity= 'foy', label =u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'aumoins 80 % en n-1")
     f7dl = IntCol(entity= 'foy', label =u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées en n-1")
-    
+
     # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale
     f7vy = IntCol(entity= 'foy', label =u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité", val_type="monetary")
     f7vz = IntCol(entity= 'foy', label =u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première suivante", val_type="monetary")
@@ -361,36 +361,36 @@ class InputDescription(ModelDescription):
     f7td = IntCol(entity= 'foy', label =u"Intérêts des prêts étudiants versés avant l'année n-1", val_type="monetary")
     f7vo = IntCol(entity= 'foy', label =u"Nombre d'années de remboursement du prêt étudiant avant l'année n-1")
     f7uk = IntCol(entity= 'foy', label =u"Intérêts des prêts étudiants versés en n-1", val_type="monetary")
-    
+
     # Primes de rente survie, contrats d'épargne handicap
     f7gz = IntCol(entity= 'foy', label =u"Primes de rente survie, contrats d'épargne handicap", val_type="monetary")
-    
+
     # Prestations compensatoires
     f7wm = IntCol(entity= 'foy', label =u"Prestations compensatoires: Capital fixé en substitution de rente", val_type="monetary")
     f7wn = IntCol(entity= 'foy', label =u"Prestations compensatoires: Sommes versées en n-1", val_type="monetary")
     f7wo = IntCol(entity= 'foy', label =u"Prestations compensatoires: Sommes totales décidées par jugement en n-1 ou capital reconstitué", val_type="monetary")
     f7wp = IntCol(entity= 'foy', label =u"Prestations compensatoires: Report des sommes décidées en n-2", val_type="monetary")
-    
+
     # Dépenses en faveur de la qualité environnementale de l'habitation principale
     f7we = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise en n-1")
     f7wq = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées")
     f7wh = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale de l'habitation principale: bouquet de travaux")
     f7wk = BoolCol(entity= 'foy', label =u"Votre habitation principale est une maison individuelle")
     f7wf = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1")
-    
+
     # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
     f7wi = IntCol(entity= 'foy', label =u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction", val_type="monetary")
     f7wj = IntCol(entity= 'foy', label =u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées", val_type="monetary")
     f7wl = IntCol(entity= 'foy', label =u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques", val_type="monetary")
-    
-    # Investissements dans les DOM-TOM dans le cadre d'une entrepise  
+
+    # Investissements dans les DOM-TOM dans le cadre d'une entrepise
     f7ur = IntCol(entity= 'foy', label =u"Investissements réalisés en n-1, total réduction d’impôt", val_type="monetary")
     f7oz = IntCol(entity= 'foy', label =u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6", val_type="monetary")
     f7pz = IntCol(entity= 'foy', label =u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-5", val_type="monetary")
     f7qz = IntCol(entity= 'foy', label =u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-4", val_type="monetary")
     f7rz = IntCol(entity= 'foy', label =u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3", val_type="monetary")
     f7sz = IntCol(entity= 'foy', label =u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-2", val_type="monetary")
-    
+
     # Aide aux créateurs et repreneurs d'entreprises
     f7fy = IntCol(entity= 'foy', label =u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1")
     f7gy = IntCol(entity= 'foy', label =u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1")
@@ -404,13 +404,13 @@ class InputDescription(ModelDescription):
     # Travaux de restauration immobilière
     f7ra = IntCol(entity= 'foy', label =u"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbail et paysager", val_type="monetary")
     f7rb = IntCol(entity= 'foy', label =u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé", val_type="monetary")
-    
+
     # Assurance-vie
     f7gw = IntCol(entity= 'foy', label =u"")
     f7gx = IntCol(entity= 'foy', label =u"")
     # f7gy = IntCol() existe ailleurs
 
-    # Investissements locatifs dans le secteur de touristique            
+    # Investissements locatifs dans le secteur de touristique
     f7xc = IntCol(entity= 'foy', label =u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1", val_type="monetary")
     f7xd = BoolCol(entity= 'foy', label =u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans")
     f7xe = BoolCol(entity= 'foy', label =u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans")
@@ -423,7 +423,7 @@ class InputDescription(ModelDescription):
     f7xm = IntCol(entity= 'foy', label =u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report de dépenses des travaux de réhabilitation achevés les années antérieures", val_type="monetary")
     f7xn = IntCol(entity= 'foy', label =u"Investissements locatifs dans une résidence hôtelière à vocation sociale: investissement réalisé en n-1", val_type="monetary")
     f7xo = IntCol(entity= 'foy', label =u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures", val_type="monetary")
-    
+
     # Souscriptions au capital des PME
     f7cf = IntCol(entity= 'foy', label =u"Souscriptions au capital des PME non cotées, montant versé en n-1", val_type="monetary")
     f7cl = IntCol(entity= 'foy', label =u"Souscriptions au capital des PME non cotées, report de versement de l'année n-4", val_type="monetary")
@@ -431,10 +431,10 @@ class InputDescription(ModelDescription):
     f7cn = IntCol(entity= 'foy', label =u"Souscriptions au capital des PME non cotées, report de versement de l'année n-2", val_type="monetary")
     f7cu = IntCol(entity= 'foy', label =u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures", val_type="monetary")
 
-    # Souscription au capital d’une SOFIPECHE 
+    # Souscription au capital d’une SOFIPECHE
     f7gs = IntCol(entity= 'foy', label =u"Souscription au capital d’une SOFIPECHE", val_type="monetary")
 
-    # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité    
+    # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
     f7ua = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7ub = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7uc = IntCol(entity= 'foy', label =u"", val_type="monetary")
@@ -446,40 +446,40 @@ class InputDescription(ModelDescription):
     f7ql = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7qt = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7qm = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
-    # Souscription de parts de fonds communs de placement dans l'innovation, 
-    # de fonds d'investissement de proximité    
+
+    # Souscription de parts de fonds communs de placement dans l'innovation,
+    # de fonds d'investissement de proximité
     f7gq = IntCol(entity= 'foy', label =u"Souscription de parts de fonds communs de placement dans l'innovation", val_type="monetary")
     f7fq = IntCol(entity= 'foy', label =u"Souscription de parts de fonds d'investissement de proximité", val_type="monetary")
     f7fm = IntCol(entity= 'foy', label =u"Souscription de parts de fonds d'investissement de proximité investis en Corse", val_type="monetary")
     f7fl = IntCol(entity= 'foy', label =u"")
-    
+
     # Souscriptions au capital de SOFICA
     f7gn = IntCol(entity= 'foy', label =u"Souscriptions au capital de SOFICA 48 %", val_type="monetary")
     f7fn = IntCol(entity= 'foy', label =u"Souscriptions au capital de SOFICA 40 %", val_type="monetary")
 
     # Intérêts d'emprunt pour reprise de société
-    f7fh = IntCol(entity= 'foy', label =u"Intérêts d'emprunt pour reprise de société", val_type="monetary")         
+    f7fh = IntCol(entity= 'foy', label =u"Intérêts d'emprunt pour reprise de société", val_type="monetary")
 
-    # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)        
+    # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)
     f7ff = IntCol(entity= 'foy', label =u"Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)", val_type="monetary")
     f7fg = IntCol(entity= 'foy', label =u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations")
-    
+
     # Travaux de conservation et de restauration d’objets classés monuments historiques
     f7nz = IntCol(entity= 'foy', label =u"Travaux de conservation et de restauration d’objets classés monuments historiques", val_type="monetary")
-    
+
     # Dépenses de protection du patrimoine naturel
     f7ka = IntCol(entity= 'foy', label =u"Dépenses de protection du patrimoine naturel", val_type="monetary")
 
     # Intérêts d'emprunts
     f7wg = IntCol(entity= 'foy', label =u"Intérêts d'emprunts", val_type="monetary")
-    
+
     # Intérêts des prêts à la consommation (case UH)
     f7uh = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
+
     # Investissements forestiers
     f7un = IntCol(entity= 'foy', label =u"Investissements forestiers: acquisition", val_type="monetary")
-    
+
     # Intérêts pour paiement différé accordé aux agriculteurs
     f7um = IntCol(entity= 'foy', label =u"Intérêts pour paiement différé accordé aux agriculteurs", val_type="monetary")
 
@@ -500,15 +500,15 @@ class InputDescription(ModelDescription):
     f7im = IntCol(entity= 'foy', label =u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-3", val_type="monetary")
     f7ik = IntCol(entity= 'foy', label =u"Reports de 1/9 de l'investissement réalisé et achevé au cours de l'année n-4", val_type="monetary")
     f7is = IntCol(entity= 'foy', label =u"Report du solde de réduction d'impôt non encor imputé: année  n-4", val_type="monetary")
-    
-    # Investissements locatifs dans les résidences de tourisme situées dans une zone de 
+
+    # Investissements locatifs dans les résidences de tourisme situées dans une zone de
     # revitalisation rurale
     f7gt = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7xg = IntCol(entity= 'foy', label =u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme", val_type="monetary")
     f7gu = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7gv = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
-    # Avoir fiscaux et crédits d'impôt     
+
+    # Avoir fiscaux et crédits d'impôt
     # f2ab déjà disponible
     f8ta = IntCol(entity= 'foy', label =u"Retenue à la source en France ou impôt payé à l'étranger", val_type="monetary")
     f8tb = IntCol(entity= 'foy', label =u"Crédit d'impôt recherche non encore remboursé", val_type="monetary")
@@ -534,12 +534,12 @@ class InputDescription(ModelDescription):
     f8wv = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Débitants de tabac", val_type="monetary")
     f8wx = IntCol(entity= 'foy', label =u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise", val_type="monetary")
     f8wy = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
+
     # Acquisition de biens culturels
     f7uo = IntCol(entity= 'foy', label =u"Acquisition de biens culturels", val_type="monetary")
 
-    
-    # Mécénat d'entreprise    
+
+    # Mécénat d'entreprise
     f7us = IntCol(entity= 'foy', label =u"Réduction d'impôt mécénat d'entreprise", val_type="monetary")
 
     # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
@@ -553,7 +553,7 @@ class InputDescription(ModelDescription):
     f7sh = IntCol(entity= 'foy', label =u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %", val_type="monetary")
     # f7wg = IntCol() déjà disponible
     f7sc = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
+
     # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
     f7up = IntCol(entity= 'foy', label =u"Crédit d'impôt", val_type="monetary")
     f7uq = IntCol(entity= 'foy', label =u"Crédit d'impôt", val_type="monetary")
@@ -567,10 +567,10 @@ class InputDescription(ModelDescription):
 
     # Crédit d’impôt directive « épargne » (case 2BG)
     f2bg = IntCol(entity= 'foy', label =u"Crédit d’impôt directive « épargne »", val_type="monetary")
-    
+
     # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
     f4tq = IntCol(entity= 'foy', label =u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail", val_type="monetary")
-    
+
 
     # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
     # f7wf
@@ -579,10 +579,10 @@ class InputDescription(ModelDescription):
     # f7wl
     f7sf = IntCol(entity= 'foy', label =u"", val_type="monetary")
     f7si = IntCol(entity= 'foy', label =u"", val_type="monetary")
-    
-    # Frais de garde des enfants à l’extérieur du domicile 
-    """ là je ne sais pas à quoi cela correspond, les frais de garde des enfants sont en 7ga etc..., 
-    en 4 ce sont les revenus fonciers depuis un certain nb d'années, et ce n'est pas du g... 
+
+    # Frais de garde des enfants à l’extérieur du domicile
+    """ là je ne sais pas à quoi cela correspond, les frais de garde des enfants sont en 7ga etc...,
+    en 4 ce sont les revenus fonciers depuis un certain nb d'années, et ce n'est pas du g...
     en plus les f4ga..ne sont pas utilisées dans les prog (sauf un commentaire dans 08_final), moi, je supprimerais ça!
     """
     f4ga = IntCol(entity= 'foy', label =u"", val_type="monetary")
@@ -593,14 +593,14 @@ class InputDescription(ModelDescription):
     f4gg = IntCol(entity= 'foy', label =u"", val_type="monetary")
 
 
-    # Auto-entrepreneur : versements libératoires d’impôt sur le revenu 
+    # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
     f8uy = IntCol(entity= 'foy', label =u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu", val_type="monetary")
 
 
     # Revenus des professions non salariées
-    
+
     frag_exon = IntCol(entity= 'ind', label =u"Revenus agricoles exonérés (régime du forfait)", val_type="monetary") # (f5hn, f5in, f5jn)
-    frag_impo = IntCol(entity= 'ind', label =u"Revenus agricoles imposables (régime du forfait)", val_type="monetary") # (f5ho, f5io, f5jo)    
+    frag_impo = IntCol(entity= 'ind', label =u"Revenus agricoles imposables (régime du forfait)", val_type="monetary") # (f5ho, f5io, f5jo)
     arag_exon = IntCol(entity= 'ind', label =u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type="monetary") # (f5hb, f5ib, f5jb)
     arag_impg = IntCol(entity= 'ind', label =u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",val_type="monetary") # (f5hc, f5ic, f5jc)
     arag_defi = IntCol(entity= 'ind', label =u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type="monetary") # (f5hf, f5if, f5jf)
@@ -623,7 +623,7 @@ class InputDescription(ModelDescription):
     nbic_defn = IntCol(entity= 'ind', label=u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5kl, f5ll, f5ml)
     nbic_defs = IntCol(entity= 'ind', label=u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5km, f5lm, f5mm)
     nbic_apch = IntCol(entity= 'ind', label=u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5ks, f5ls, f5ms)
-    
+
     macc_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)", val_type="monetary") # (f5nn, f5on, f5pn)
     aacc_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type="monetary") # (f5nb, f5ob, f5pb)
     nacc_exon = IntCol(entity= 'ind', label=u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)", val_type="monetary") # (f5nh, f5oh, f5ph)
@@ -654,13 +654,13 @@ class InputDescription(ModelDescription):
     macc_mvct = IntCol(entity= 'foy', label=u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)", val_type="monetary") # (f5iu)
     mncn_mvct = IntCol(entity= 'foy', label=u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ju)
     mbnc_mvct = IntCol(entity= 'foy', label=u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kz
-    
+
     frag_pvct = IntCol(entity= 'ind', label=u"Plus-values agricoles  à court terme (régime du forfait)", val_type="monetary") # (f5hw, f5iw, f5jw)
     mbic_pvct = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)", val_type="monetary") # (f5kx, f5lx, f5mx)
     macc_pvct = IntCol(entity= 'ind', label=u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)", val_type="monetary") # (f5nx, f5ox, f5px)
     mbnc_pvct = IntCol(entity= 'ind', label=u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5hv, f5iv, f5jv)
     mncn_pvct = IntCol(entity= 'ind', label=u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5ky, f5ly, f5my)
-  
+
     mbic_mvlt = IntCol(entity= 'ind', label=u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)", val_type="monetary") # (f5kr, f5lr, f5mr)
     macc_mvlt = IntCol(entity= 'ind', label=u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)", val_type="monetary") # (f5nr, f5or, f5pr)
     mncn_mvlt = IntCol(entity= 'ind', label=u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type="monetary") # (f5kw, f5lw, f5mw)
@@ -684,14 +684,14 @@ class InputDescription(ModelDescription):
 # pfam only
     inactif   = BoolCol(entity='fam')
     partiel1  = BoolCol(entity='fam')
-    partiel2  = BoolCol(entity='fam') 
+    partiel2  = BoolCol(entity='fam')
     categ_inv = IntCol()
     opt_colca = BoolCol(entity='fam')
-    empl_dir  = BoolCol(entity='fam') 
+    empl_dir  = BoolCol(entity='fam')
     ass_mat   = BoolCol(entity='fam')
     gar_dom   = BoolCol(entity='fam')
 
-# zones apl and calibration 
+# zones apl and calibration
     tu99 = EnumCol(label = u"tranche d'unité urbaine",
                    entity= 'men',
                    enum=Enum([u'Communes rurales',
@@ -703,7 +703,7 @@ class InputDescription(ModelDescription):
                          u'100 000 à 199 999 habitants',
                          u'200 000 habitants ou plus (sauf agglomération parisienne)',
                          u'agglomération parisienne']))
-    
+
     tau99 = EnumCol(label = u"tranche d'aire urbaine",
                     entity='men',
                     enum = Enum([u'Communes hors aire urbaine',
@@ -741,14 +741,14 @@ class InputDescription(ModelDescription):
                                  u'Languedoc-Roussillon',
                                  u"Provence-Alpes-Côte-d'Azur",
                                  u'Corse' ]))
-    pol99 = EnumCol(label = u"Catégorie de la commune au sein du découpage en aires et espaces urbains", 
+    pol99 = EnumCol(label = u"Catégorie de la commune au sein du découpage en aires et espaces urbains",
                     entity='men',
                     enum = Enum([ u"Commune appartenant à un pôle urbain",
                                  u"Commune monopolarisée (appartenant à une couronne périurbaine",
                                  u"Commune monopolarisée",
                                  u"Espace à dominante rurale"]))
 
-    
+
     cstotpragr = EnumCol(label = u"catégorie socio_professionelle agrégée de la personne de référence",
                          entity= 'men',
                          enum = Enum([u"Non renseignée",
@@ -760,7 +760,7 @@ class InputDescription(ModelDescription):
                                       u"Ouvriers",
                                       u"Retraités",
                                       u"Autres inactifs"]))
-    
+
     naf16pr = EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence",
                       entity= 'men',
                       enum = Enum([u"Sans objet",
@@ -780,7 +780,7 @@ class InputDescription(ModelDescription):
                                    u"Services aux entreprises",
                                    u"Services aux particuliers",
                                    u"Education, santé, action sociale",
-                                   u"Administrations"],start=-1)) # 17 postes + 1 (-1: sans objet, 0: nonrenseigné) 
+                                   u"Administrations"],start=-1)) # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
 
     nafg17npr = EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence ",
                       entity= 'men',
@@ -803,8 +803,8 @@ class InputDescription(ModelDescription):
                                    u"Activités scientifiques et techniques ; services administratifs et de soutien",
                                    u"Administration publique, enseignement, santé humaine et action sociale",
                                    u"Autres activités de services"],start=-1)) # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
-    
-    
+
+
 #    typmen15 = EnumCol(label = u"Type de ménage",
 #                       entity= 'men',
 #                       enum = Enum([u"Personne seule active",
@@ -822,7 +822,7 @@ class InputDescription(ModelDescription):
 #                                    u"Autres ménages, 1 actif",
 #                                    u"Autres ménages, 2 actifs ou plus",
 #                                    u"Autres ménages, tous inactifs"],start=1))
-    
+
     ageq  = EnumCol(label = u"âge quinquennal de la personne de référence",
                     entity= 'men',
                     enum = Enum([u"moins de 25 ans",
@@ -839,7 +839,7 @@ class InputDescription(ModelDescription):
                                  u"75 à 79 ans",
                                  u"80 ans et plus"]))
 
-                                 
+
 #    nbinde = EnumCol(label = u"taille du ménage",
 #                     entity= 'men',
 #                     enum = Enum([u"Une personne",
@@ -857,8 +857,8 @@ class InputDescription(ModelDescription):
                                  u"Baccalauréat ou brevet professionnel ou autre diplôme de ce niveau",
                                  u"CAP, BEP ou autre diplôme de ce niveau",
                                  u"Brevet des collèges",
-                                 u"Aucun diplôme ou CEP"],start=1)) 
-    
+                                 u"Aucun diplôme ou CEP"],start=1))
+
     act5 = EnumCol(label = u"activité",
                      enum = Enum([u"Salarié",
                                   u"Indépendant",
@@ -869,7 +869,7 @@ class InputDescription(ModelDescription):
 
 
 ## ISF ##
-    
+
 ## Immeubles bâtis ##
     b1ab = IntCol(entity= 'ind', label =u"valeur résidence principale avant abattement", val_type="monetary") ##  valeur résidence principale avant abattement ##
     b1ac = IntCol(entity= 'foy', label =u"valeur autres immeubles avant abattement", val_type="monetary")
@@ -877,7 +877,7 @@ class InputDescription(ModelDescription):
     b1bc = IntCol(entity= 'foy', label =u"Immeubles non bâtis: bois, fôrets et parts de groupements forestiers", val_type="monetary")
     b1be = IntCol(entity= 'foy', label =u"Immeubles non bâtis: biens ruraux loués à long termes", val_type="monetary")
     b1bh = IntCol(entity= 'foy', label =u"Immeubles non bâtis: parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type="monetary")
-    b1bk = IntCol(entity= 'foy', label =u"Immeubles non bâtis: autres biens", val_type="monetary") 
+    b1bk = IntCol(entity= 'foy', label =u"Immeubles non bâtis: autres biens", val_type="monetary")
 
 ## droits sociaux- valeurs mobilières-liquidités- autres meubles ##
     b1cl = IntCol(entity= 'foy', label =u"Parts et actions détenues par les salariés et mandataires sociaux", val_type="monetary")
@@ -897,7 +897,7 @@ class InputDescription(ModelDescription):
 
 ## passifs et autres réduc ##
     b2gh= IntCol(entity= 'foy', label =u"Total du passif et autres déductions", val_type="monetary")
-    
+
 ## réductions ##
     b2mt = IntCol(entity= 'foy', label =u"Réductions pour investissements directs dans une société", val_type="monetary")
     b2ne = IntCol(entity= 'foy', label =u"Réductions pour investissements directs dans une société", val_type="monetary")
@@ -917,11 +917,11 @@ class InputDescription(ModelDescription):
 
     tax_fonc= IntCol(entity= 'foy', label =u"",val_type="monetary")
     restit_imp= IntCol(entity= 'foy', label =u"", val_type="monetary")
-        
+
     # to remove
     champm = BoolCol(entity='men', default = True)
     wprm = FloatCol(entity='men', default = 1,label="Effectifs")
-    etr = IntCol()     
+    etr = IntCol()
     coloc = BoolCol()
     csg_rempl = EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
                  entity='ind',
@@ -930,11 +930,11 @@ class InputDescription(ModelDescription):
                               u"Taux réduit",
                               u"Taux plein"]),
                 default = 3)
-                        
+
     aer = IntCol()
     ass = IntCol()
     f5sq = IntCol()
-    
+
     m_afeamam = IntCol(entity='men')
     m_agedm   = IntCol(entity='men')
     m_clcam   = IntCol(entity='men')
@@ -942,8 +942,8 @@ class InputDescription(ModelDescription):
     m_mgamm   = IntCol(entity='men')
     m_mgdomm  = IntCol(entity='men')
     zthabm    = IntCol(entity='men')  # Devrait être renommée tax
-    
+
     adoption    = BoolCol(entity="ind",
                         label=u"Enfant adopté")
 
-    # tax_hab= IntCol()    
+    # tax_hab= IntCol()

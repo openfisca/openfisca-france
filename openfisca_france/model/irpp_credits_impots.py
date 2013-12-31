@@ -10,7 +10,7 @@ from __future__ import division
 from numpy import minimum as min_, maximum as max_, logical_not as not_
 
 def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
-           quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, 
+           quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy,
            autent, acqgpl, divide, aidmob, jeunes, _P):
     if _P.datesim.year == 2002:
         niches = (creimp + accult + prlire + aidper + acqgpl + drbail)
@@ -26,24 +26,24 @@ def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
                   quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
     elif _P.datesim.year == 2007:
         niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy + 
+                  quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
                   aidmob + jeunes)
     elif _P.datesim.year == 2008:
         niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + aidmob + 
+                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + aidmob +
                   jeunes)
     elif _P.datesim.year == 2009:
         niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
                   quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
     elif _P.datesim.year == 2010:
         niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + 
+                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
                   autent)
     elif _P.datesim.year >= 2011:
         niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + 
+                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
                   autent)    # TODO: check because totally unchecked
-        
+
     return niches
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
@@ -54,8 +54,8 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
     Avoir fiscaux et crédits d'impôt
     2002-
     '''
-    
-    if _P.datesim.year == 2002:        
+
+    if _P.datesim.year == 2002:
         return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
 
     elif _P.datesim.year == 2003:
@@ -63,7 +63,7 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
 
     elif _P.datesim.year == 2004:
         return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz)
-        
+
     elif _P.datesim.year == 2005:
         return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8we)
 
@@ -74,13 +74,13 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
     elif _P.datesim.year == 2007:
         return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
                    + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
-        
+
     elif _P.datesim.year == 2008:
         return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
                    + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
     elif _P.datesim.year == 2009:
-        return (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp 
+        return (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp
                    + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
 
     elif _P.datesim.year == 2010:
@@ -90,14 +90,14 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
         return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
     else:
         return f2ab*0 # TODO: 2012
-        
+
 def _divide(marpac, f2dc, f2gr, _P):
     '''
     Crédit d'impôt dividendes
     2005-2009
-    '''    
+    '''
     P = _P.ir.credits_impot.divide
-    
+
     max1 = P.max*(marpac+1)
     return min_(P.taux*(f2dc + f2gr), max1)
 
@@ -138,23 +138,23 @@ def _prlire(f2dh, f2ch, marpac, _P):
     2002-
     '''
     plaf_resid = max_(_P.ir.rvcm.abat_assvie-f2ch,0)
-    return _P.ir.credits_impot.prlire.taux*min_(f2dh, plaf_resid) 
+    return _P.ir.credits_impot.prlire.taux*min_(f2dh, plaf_resid)
 
 def _quaenv(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, f7wg, f7sc, _P):
     '''
-    Crédits d’impôt pour dépenses en faveur de la qualité environnementale 
+    Crédits d’impôt pour dépenses en faveur de la qualité environnementale
     (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
     2005-
     '''
     P = _P.ir.credits_impot.quaenv
-     
+
     n = nb_pac2
     if _P.datesim.year == 2005:
         max0 = P.max*(1+marpac) + P.pac1*(n>=1) + P.pac2*(n>=2) + P.pac2*(max_(n-2,0))
-                
+
     elif _P.datesim.year >= 2006:
         max0 = P.max*(1+marpac) + P.pac1*n
-    
+
     if _P.datesim.year == 2005:
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
@@ -188,7 +188,7 @@ def _quaenv(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, f7w
                 P.taux_wh*min_(f7wh, max6) +
                 P.taux_sb*min_(f7sb, max7) )
 
-    elif _P.datesim.year == 2010:  # TODO: Check 2011 formula and plaf in param 
+    elif _P.datesim.year == 2010:  # TODO: Check 2011 formula and plaf in param
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
         max3 = max_(0, max2 - f7wk)
@@ -206,11 +206,11 @@ def _quaenv(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, f7w
                 P.taux_sh*min_(f7sh, max7) )
     else:
         return f7wf*0
-        
+
 
 def _aidper(marpac, nb_pac2, f7wf, f7wi, f7wj, f7wl, f7sf, f7si, _P):
     '''
-    Crédits d’impôt pour dépenses en faveur de l’aide aux personnes 
+    Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
     (cases 7WI, 7WJ, 7WL et 7SF).
     2002-
     '''
@@ -219,7 +219,7 @@ def _aidper(marpac, nb_pac2, f7wf, f7wi, f7wj, f7wl, f7sf, f7si, _P):
     n = nb_pac2
     if _P.datesim.year <= 2005:
         max0 = P.max*(1+marpac) + P.pac1*(n>=1) + P.pac2*(n>=2) + P.pac2*(max_(n-2,0))
-               
+
     elif _P.datesim.year >= 2006:
         max0 = P.max*(1+marpac) + P.pac1*n
 
@@ -237,8 +237,8 @@ def _aidper(marpac, nb_pac2, f7wf, f7wi, f7wj, f7wl, f7sf, f7si, _P):
                 P.taux_sf*min_(f7sf, max1) +
                 P.taux_wj*min_(f7wj, max2) +
                 P.taux_wi*min_(f7si, max3) )
-    
-        
+
+
 
 def _acqgpl(f7up, f7uq, _P):
     '''
@@ -265,7 +265,7 @@ def _ci_garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
     '''
     P = _P.ir.credits_impot.garext
     max1 = P.max
-    return P.taux*(min_(f7ga, max1) + 
+    return P.taux*(min_(f7ga, max1) +
                           min_(f7gb, max1) +
                           min_(f7gc, max1) +
                           min_(f7ge, max1/2) +
@@ -278,13 +278,13 @@ def _preetu(f7uk, f7vo, f7td, _P):
     2005-
     '''
     P = _P.ir.credits_impot.preetu
-    
+
     if   _P.datesim.year == 2005:  max1 = P.max
-    elif _P.datesim.year >= 2006:  max1 = P.max*(1+f7vo)  # TODO check if it is not (f7vo) instead for ALL OR SOME YEARS (2011 for example) 
+    elif _P.datesim.year >= 2006:  max1 = P.max*(1+f7vo)  # TODO check if it is not (f7vo) instead for ALL OR SOME YEARS (2011 for example)
     if _P.datesim.year in (2005,2006,2007):
         return P.taux*min_(f7uk, max1)
     elif _P.datesim.year >=2008:
-        return P.taux*min_(f7uk, P.max) + P.taux*min_(f7td, max1) 
+        return P.taux*min_(f7uk, P.max) + P.taux*min_(f7td, max1)
 
 def _saldom2(nb_pac2, f7db, f7dg, f7dl, f7dq, _P):
     '''
@@ -292,16 +292,16 @@ def _saldom2(nb_pac2, f7db, f7dg, f7dl, f7dq, _P):
     2007-
     '''
     P = _P.ir.reductions_impots.saldom
-    
+
     isinvalid = f7dg
-    
+
     if _P.datesim.year in (2007,2008):
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1
         maxDuMaxNonInv = P.max2
         maxNonInv = min_(maxBase + P.pac*nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
-        
+
     elif _P.datesim.year in (2009, 2010):
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
@@ -313,7 +313,7 @@ def _saldom2(nb_pac2, f7db, f7dg, f7dl, f7dq, _P):
     elif _P.datesim.year >= 2011:
         # TODO:
         maxEffectif = 0
-        
+
     return P.taux*min_(f7db, maxEffectif)
 
 def _inthab(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P):
@@ -322,38 +322,38 @@ def _inthab(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P)
     2007-
     '''
     P = _P.ir.credits_impot.inthab
-        
+
     invalide = caseP |caseF | (nbG!=0) | (nbR!=0)
     nb = nb_pac2
     max0 = P.max*(marpac+1)*(1+invalide) + nb*P.add
 
     if _P.datesim.year == 2007:
         return 0*nb  # TODO
-    elif _P.datesim.year == 2008:  
+    elif _P.datesim.year == 2008:
         max1 = max_(max0 - f7vy, 0)
-        return (P.taux1*min_(f7vy, max0) + 
+        return (P.taux1*min_(f7vy, max0) +
                 P.taux3*min_(f7vz, max1) )
     elif _P.datesim.year == 2009:
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
-        return (P.taux1*min_(f7vx, max0) + 
-                P.taux1*min_(f7vy, max1) + 
+        return (P.taux1*min_(f7vx, max0) +
+                P.taux1*min_(f7vy, max1) +
                 P.taux3*min_(f7vz, max2) )
     elif _P.datesim.year == 2010:
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
-        return (P.taux1*min_(f7vx, max0) + 
-                P.taux1*min_(f7vy, max1) + 
-                P.taux2*min_(f7vw, max2) + 
+        return (P.taux1*min_(f7vx, max0) +
+                P.taux1*min_(f7vy, max1) +
+                P.taux2*min_(f7vw, max2) +
                 P.taux3*min_(f7vz, max3) )
     elif _P.datesim.year == 2011:  # TODO: formula parameters are set
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
-        return (P.taux1*min_(f7vx, max0) + 
-                P.taux1*min_(f7vy, max1) + 
-                P.taux2*min_(f7vw, max2) + 
+        return (P.taux1*min_(f7vx, max0) +
+                P.taux1*min_(f7vy, max1) +
+                P.taux2*min_(f7vw, max2) +
                 P.taux3*min_(f7vz, max3) )
     else:
         return f7vx*0

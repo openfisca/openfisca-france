@@ -40,8 +40,8 @@ def build_erf_aggregates(variables = None, year = 2006, unit = 1e6):
             pass
 
     return df.ix[0:1] # Aggregate so we only need 1 row
-    
-    
+
+
 
 
 if __name__ == '__main__':

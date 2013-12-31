@@ -15,7 +15,7 @@
 #   - zone_apl_imputation_data : ,TU99,TAU99,REG,POL99,proba_zone1,proba_zone2,proba_zone3
 
 
-# zone_apl_imputation_data_reader.py uses zone_apl_2006 to build zone_apl_imputation_data 
+# zone_apl_imputation_data_reader.py uses zone_apl_2006 to build zone_apl_imputation_data
 
-# code_apl in france.data is used by a widget codeAplReader was used to produce it. 
+# code_apl in france.data is used by a widget codeAplReader was used to produce it.
 # Should be stored here

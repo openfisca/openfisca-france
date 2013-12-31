@@ -16,11 +16,11 @@ def test_h5():
     store = HDFStore("amounts.h5")
     df_a = store['amounts']
     df_b = store['benef']
-    
+
     print df_a.to_string()
-    print df_b.to_string() 
+    print df_b.to_string()
     store.close()
-    
+
 if __name__ == '__main__':
     test_h5()
     

@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import  floor, arange, array, where 
+from numpy import  floor, arange, array, where
 from .data import QUIMEN
 
 ALL_MEN = [x[1] for x in QUIMEN]
@@ -23,7 +23,7 @@ def _nbinde(agem, _option = {'agem' : ALL_MEN}):
     """
     n1 = 0
     for ind in agem.iterkeys():
-        n1 += 1*(floor(agem[ind]) >= 0) 
+        n1 += 1*(floor(agem[ind]) >= 0)
     n2 = where( n1 >=6, 6, n1)
     return n2
 
@@ -47,7 +47,7 @@ def _ageq(agem):
     'ind'
     '''
     age = floor(agem/12)
-    tranche = array([ (age >= ag) for ag in arange(25,5,81) ]).sum(axis=0) 
+    tranche = array([ (age >= ag) for ag in arange(25,5,81) ]).sum(axis=0)
     return tranche
 
 
@@ -58,8 +58,8 @@ def _nb_ageq0(agem, _option = {'agem': ALL_MEN}):
     '''
     ag1 = 0
     nb  = 0
-    for agm in agem.itervalues():   
-        age = floor(agm/12) 
+    for agm in agem.itervalues():
+        age = floor(agm/12)
         nb   += (ag1 <= age) & (age <= (ag1+4))
     return nb
 
@@ -84,10 +84,10 @@ def _act_enf(activite, _option = {'activite': ENFS}):
     '''
     res = 0
     for act in activite.itervalues():
-        res += 1*(act <= 1) 
+        res += 1*(act <= 1)
     return res
-    
-    
+
+
 def _nb_act(act_cpl, act_enf):
     '''
     Nombre de membres actifs du ménage
@@ -107,13 +107,13 @@ def _cplx(quifam, quimen, age, _option = {'quifam': ENFS, 'quimen': ENFS, 'age':
     # On contourne en utilisant le fait que leur quimen = 0 également
     res = 0
     from itertools import izip
-    for quif, quim, age_i in izip(quifam.itervalues(), quimen.itervalues(), age.itervalues()):         
+    for quif, quim, age_i in izip(quifam.itervalues(), quimen.itervalues(), age.itervalues()):
         res += 1*(quif == 0)*(quim != 0) + age_i > 25
-    
+
     return (res > 0.5)
     # En fait on ne peut pas car on n'a les enfants qu'au sens des allocations familiales ...
     # return (typmen15 > 12)
-    
+
 def _typmen15(nbinde, cohab, act_cpl, cplx, act_enf):
     '''
     Type de ménage en 15 modalités
@@ -135,7 +135,7 @@ def _typmen15(nbinde, cohab, act_cpl, cplx, act_enf):
     'men'
     '''
     res = 0 + (cplx == 0 )*(
-            1 * ( (nbinde == 1) & (cohab == 0) & (act_cpl == 1)) + #  Personne seule active 
+            1 * ( (nbinde == 1) & (cohab == 0) & (act_cpl == 1)) + #  Personne seule active
             2 * ( (nbinde == 1) & (cohab == 0) & (act_cpl == 0)) + # Personne seule inactive
             3 * ( (nbinde > 1)  & (cohab == 0) & (act_cpl == 1)) + # Familles monoparentales, parent actif
             4 * ( (nbinde > 1)  & (cohab == 0) & (act_cpl == 0) & (act_enf >= 1) ) + # Familles monoparentales, parent inactif et au moins un enfant actif
@@ -151,8 +151,8 @@ def _typmen15(nbinde, cohab, act_cpl, cplx, act_enf):
             13 * (  ( (act_cpl + act_enf) == 1) ) +      # Autres ménages, 1 actif
             14 * (  ( (act_cpl + act_enf) >  1) ) +     # Autres ménages, 2 actifs ou plus
             15 * (  ( (act_cpl + act_enf) == 0) )  )     # Autres ménages, tous inactifs
-    
+
 #    ratio = (( (typmen15!=res)).sum())/((typmen15!=0).sum())
-    # print ratio  2.7 % d'erreurs enfant non nés et erreur d'enfants  
+    # print ratio  2.7 % d'erreurs enfant non nés et erreur d'enfants
     return res
 

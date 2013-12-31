@@ -19,7 +19,7 @@ import gc
 import math
 import numpy as np
 from numpy import maximum as max_
-from openfisca_core.utils import mark_weighted_percentiles 
+from openfisca_core.utils import mark_weighted_percentiles
 
 # TODO:
 # - Garder le code R, c'est plus facile pour débugguer <------------- OK
@@ -35,17 +35,17 @@ def create_imput_loyer(year):
     #Variables used for imputation
     df = DataCollection(year=year)
     print 'Démarrer 02_imput_loyer'
- 
+
     menm_vars = ["ztsam","zperm","zragm","zricm","zrncm","zracm","nb_uci","wprm",
-             "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg","tau99"]   
+             "so","nbpiec","typmen5","spr","nbenfc","agpr","cstotpr","nat28pr","tu99","aai1",'ident',"pol99","reg","tau99"]
     if year == 2008: # Tau99 not present
         menm_vars = menm_vars.pop('tau99')
-    
-    
+
+
     indm_vars = ["noi",'ident',"lpr","dip11"]
     LgtAdrVars = ["gzc2"]
     LgtMenVars = ["sec1","mrcho","mrret","mrsal","mrtns","mdiplo","mtybd","magtr","mcs8","maa1at","qex","muc1"]
-    
+
     if year == 2003:
         LgtMenVars.extend(["typse","lmlm","hnph2","mnatior","ident"])
         LgtAdrVars.extend(["iaat","tu99","ident"])
@@ -53,14 +53,14 @@ def create_imput_loyer(year):
         LgtMenVars.extend(["mnatio","idlog"])
         LgtAdrVars.extend(["idlog"]) # pas de typse en 2006
         LgtLgtVars=["lmlm","iaat","tu99","hnph2","idlog"] # pas de typse en 2006
-    
+
     ## Travail sur la base ERF
     #Preparing ERF menages tables
 #     print show_temp()
     # TODO : data.get_values
-    erfmenm = load_temp(name="menagem", year=year) 
+    erfmenm = load_temp(name="menagem", year=year)
 #     erfmenm = df.get_values(table="erf_menage",variables=menm_vars)
-    erfmenm['revtot'] = (erfmenm['ztsam'] + erfmenm['zperm'] + erfmenm['zragm'] + 
+    erfmenm['revtot'] = (erfmenm['ztsam'] + erfmenm['zperm'] + erfmenm['zragm'] +
                          erfmenm['zricm'] + erfmenm['zrncm'] + erfmenm['zracm'])
     erfmenm['nvpr'] = erfmenm['revtot'].astype(np.float64) / erfmenm['nb_uci'].astype(np.float64)
     # On donne la valeur 0 aux nvpr négatifs
@@ -74,7 +74,7 @@ def create_imput_loyer(year):
     #Preparing ERF individuals table
     erfindm = load_temp(name = "indivim",year=year)
 #     erfindm = df.get_values(table = "eec_indivi", variables = indm_vars)
-     
+
     # TODO: clean this later
     erfindm['dip11'] = 0
     count_NA('dip11', erfindm)
@@ -84,10 +84,10 @@ def create_imput_loyer(year):
     print('merging erf menage and individu')
     erf = erfmenm.merge(erfindm, on ='ident', how='inner')
     erf=erf.drop_duplicates('ident')
- 
-    # control(erf) La colonne existe mais est vide, 
+
+    # control(erf) La colonne existe mais est vide,
     # on a du confondre cette colonne avec dip11 ?
-     
+
     dec, values = mark_weighted_percentiles(erf['nvpr'], arange(1,11), erf['wprm'], 2, return_quantiles=True)
     values.sort()
     erf['deci'] = (1 + (erf['nvpr']>values[1]) + (erf['nvpr']>values[2]) + (erf['nvpr']>values[3])
@@ -98,17 +98,17 @@ def create_imput_loyer(year):
     count_NA('deci',erf)
     del dec, values
     gc.collect()
- 
+
     #TODO: faire le lien avec men_vars, il manque "pol99","reg","tau99" et ici on a en plus logt, 'nvpr','revtot','dip11','deci'
     erf = erf[['ident','ztsam','zperm','zragm','zricm','zrncm','zracm',
                  'nb_uci', 'logt' ,'nbpiec','typmen5','spr','nbenfc','agpr','cstotpr',
                  'nat28pr','tu99','aai1','wprm', 'nvpr','revtot','dip11','deci']][erf['so'].isin(range(3,6))]
-            
+
     erf.rename(columns = {'nbpiec':'hnph2','nat28pr':'mnatio','aai1':'iaat','dip11':'mdiplo'}, inplace = True)
-     
-    # TODO: ne traite pas les types comme dans R teste-les pour voir comment pandas les gère 
-        
-    count_NA('agpr', erf)    
+
+    # TODO: ne traite pas les types comme dans R teste-les pour voir comment pandas les gère
+
+    count_NA('agpr', erf)
     erf['agpr'] = erf['agpr'].astype('int64')
     # TODO: moche, pourquoi créer deux variables quand une suffit ?
     erf['tmp'] = 3
@@ -117,7 +117,7 @@ def create_imput_loyer(year):
     erf['magtr'] = erf['tmp']
     count_NA('magtr',erf)
     assert_variable_inrange('magtr',[1,4],erf)
-     
+
     count_NA('cstotpr',erf)
     erf['tmp'] = erf['cstotpr'].astype('float')/10.0
     erf['tmp']=map(math.floor, erf['tmp'])
@@ -125,11 +125,11 @@ def create_imput_loyer(year):
     erf['mcs8'][erf['mcs8'] == 0] = NaN
     # assert isinstance(erf['mcs8'], (int, long)).all(), Exception('Some mcs8 are not integers')
     count_NA('mcs8',erf)
-         
-    # TODO il reste 41 NA's 2003      
+
+    # TODO il reste 41 NA's 2003
     erf['mtybd'] = NaN
-    erf['mtybd'][(erf['typmen5'] == 1) & (erf['spr'] != 2)] = 1 
-    erf['mtybd'][(erf['typmen5'] == 1) & (erf['spr'] == 2)] = 2 
+    erf['mtybd'][(erf['typmen5'] == 1) & (erf['spr'] != 2)] = 1
+    erf['mtybd'][(erf['typmen5'] == 1) & (erf['spr'] == 2)] = 2
     erf['mtybd'][erf['typmen5'] == 5] = 3
     erf['mtybd'][erf['typmen5'] == 3] = 7
     erf['mtybd'][erf['nbenfc'] == 1] = 4
@@ -139,23 +139,23 @@ def create_imput_loyer(year):
 
 #     print erf['mtybd'].dtype.fields
     #assert_variable_inrange('mtybd', [1,7], erf) # bug, on trouve 7.0 qui fait assert
-     
+
     # TODO : 3 logements ont 0 pièces !!
     erf['hnph2'][erf['hnph2'] < 1] = 1
     erf['hnph2'][erf['hnph2'] >= 6] = 6
     count_NA('hnph2', erf)
     assert_variable_inrange('hnph2', [1,7], erf)
-     
+
 # # TODO: il reste un NA 2003
 # #       il rest un NA en 2008
-    
+
     tmp = erf['mnatio']
     tmp[erf['mnatio'] == 10] = 1
     tmp[erf['mnatio'].isin([11,12,13,14,15,21,22,23,24,25,26,27,28,29,31,32,41,42,43,44,45,46,47,48,51,52,62,60])] = 2
     erf['mnatio'] = tmp
     count_NA('mnatio', erf)
     assert_variable_inrange('mnatio', [1,3], erf)
-     
+
     tmp = erf['iaat']
     tmp[erf['mnatio'].isin([1,2,3])] = 1
     tmp[erf['mnatio'] == 4] = 2
@@ -166,12 +166,12 @@ def create_imput_loyer(year):
     erf['iaat'] = tmp
     count_NA('iaat', erf)
     assert_variable_inrange('iaat', [1,7], erf)
-     
+
 # # Il reste un NA en 2003
 # #    reste un NA en 2008
-# table(erf$iaat, useNA="ifany") 
+# table(erf$iaat, useNA="ifany")
     # TODO: comparer logement et erf pour ?tre sur que cela colle
- 
+
     tmp = erf['mdiplo']
     tmp[erf['mdiplo'].isin([71,""])] = 1
     tmp[erf['mdiplo'].isin([70,60,50])] = 2
@@ -180,7 +180,7 @@ def create_imput_loyer(year):
     erf['mdiplo'] = tmp
     count_NA('mdiplo', erf)
     #assert_variable_inrange('mdiplo', [1,5], erf) # On a un 99 qui se balade
-     
+
     tmp = erf['tu99']
     tmp[erf['tu99'] == 0] = 1
     tmp[erf['tu99'].isin([1,2,3])] = 2
@@ -190,7 +190,7 @@ def create_imput_loyer(year):
     erf['tu99_recoded'] = tmp
     count_NA('tu99_recoded', erf)
     assert_variable_inrange('tu99_recoded', [1,6], erf)
-     
+
     # TODO : 0 ? Rajouetr 2003 !
     tmp = erf['mcs8']
     tmp[erf['mcs8'] == 1] = 1
@@ -201,20 +201,20 @@ def create_imput_loyer(year):
     erf['mcs8'] = tmp
     count_NA('mcs8', erf)
     assert_variable_inrange('mcs8', [1,6], erf)
-     
+
     erf['wprm'] = erf['wprm'].astype('int64')
     count_NA('wprm', erf)
- 
-    del (erf['cstotpr'] ,erf['agpr'], erf['typmen5'], 
+
+    del (erf['cstotpr'] ,erf['agpr'], erf['typmen5'],
     erf['nbenfc'], erf['spr'], erf['tmp'], erf['tu99'])
     gc.collect()
-    
+
 
     erf = erf.dropna(subset=['logt','magtr','mcs8','mtybd','hnph2','mnatio','iaat','mdiplo','tu99_recoded'])
     #On vérifie au final que l'on n'a pas de doublons d'individus
     assert erf['ident'].value_counts().max() == 1, Exception('Number of distinct individuals after removing duplicates is not correct')
 
-    
+
     ## Travail sur la table logement
 
     # Table menage
@@ -229,7 +229,7 @@ def create_imput_loyer(year):
 #     Lgtmen = load_temp(name = "indivim",year = year) # Je rajoute une étape bidon
     Lgtmen = df.get_values(table = "lgt_menage", variables = LgtMenVars)
     Lgtmen.rename(columns = {'idlog':'ident'}, inplace = True)
-    
+
     count_NA('mrcho', Lgtmen)
     Lgtmen['mrcho'].fillna(0, inplace = True)
     Lgtmen['mrret'].fillna(0, inplace = True)
@@ -239,9 +239,9 @@ def create_imput_loyer(year):
     Lgtmen['revtot'] = Lgtmen['mrcho']+Lgtmen['mrret']+Lgtmen['mrsal']+Lgtmen['mrtns'] # Virer les revenus négatifs ?
     count_NA('revtot', Lgtmen)
     Lgtmen['nvpr']=10.0*Lgtmen['revtot']/Lgtmen['muc1']
-    
+
     count_NA('qex', Lgtmen)
-    dec, values = mark_weighted_percentiles(Lgtmen['nvpr'],arange(1,11), Lgtmen['qex'],2,return_quantiles=True) 
+    dec, values = mark_weighted_percentiles(Lgtmen['nvpr'],arange(1,11), Lgtmen['qex'],2,return_quantiles=True)
     values.sort()
     Lgtmen['deci'] = (1+(Lgtmen['nvpr']>values[1])+(Lgtmen['nvpr']>values[2])+(Lgtmen['nvpr']>values[3])
                       +(Lgtmen['nvpr']>values[4])+(Lgtmen['nvpr']>values[5])+(Lgtmen['nvpr']>values[6])
@@ -249,7 +249,7 @@ def create_imput_loyer(year):
     del dec, values
     print Lgtmen['deci'].describe()
     gc.collect()
-    
+
     ##Table logement (pas en 2003 mais en 2006)
 # str(lgtmen)
 # if (year_lgt=="2006"){
@@ -271,7 +271,7 @@ def create_imput_loyer(year):
 
     if year_lgt == 2006:
         data.rename(columns = {'mnatio':'mnatior'}, inplace = True)
-        
+
     data = (data[data['mnatior'].notnull()])
     data = (data[data['sec1'].notnull()])
     data['tmp'] = data['sec1'].astype(np.int64)
@@ -290,11 +290,11 @@ def create_imput_loyer(year):
     # Je rajoute une étae bidon
     Lgtadr = df.get_values(table = "adresse", variables = LgtAdrVars)
     Lgtadr.rename(columns = {'idlog':'ident'}, inplace = True)
-    
+
     print('Merging logement and menage tables')
     Logement = Lgtmen.merge(Lgtadr, on = 'ident', how = 'inner')
 #     control(Logement) # Pas de idfoy, etc. dans la table logement ?
-      
+
     Logement['hnph2'][Logement['hnph2'] >= 6] = 6
     Logement['hnph2'][Logement['hnph2'] < 1] = 1
     count_NA('hnph2', Logement)
@@ -302,7 +302,7 @@ def create_imput_loyer(year):
 #     Logement=(Logement[Logement['hnph2'].notnull()]) # Mis en comment car 0 NA pour hnph2
 
     # On est dans la même étape within ici et par la suite ( cf code R )
-    # TODO : ici problème je transforme les 07 en 7 
+    # TODO : ici problème je transforme les 07 en 7
     # car Python considère les 0n comme des nombres octaux ( < 08 ).
     # J'espère que ce n'est pas important.
     Logement['tmp'] = Logement['mnatior']
@@ -389,12 +389,12 @@ def create_imput_loyer(year):
     Logement=(Logement[Logement['mcs8'].notnull()])
     Logement=(Logement[Logement['maa1at'].notnull()])
 
-    ## Imputation des loyers proprement dite 
+    ## Imputation des loyers proprement dite
 
 # library(StatMatch) # loads StatMatch
 # # library(mice) use md.pattern to locate missing data
     # TODO : à supprimer ?
-    
+
 # logt <- subset(logement,select=c(lmlm,logt , hnph2 , iaat , mdiplo , mtybd , tu99_recoded , magtr , mcs8 , deci, ident))
 # logt$wprm <- logement$qex
 # erf <- subset(erf,select=c( logt , hnph2 , iaat , mdiplo , mtybd , tu99_recoded , magtr , mcs8 , deci, wprm, ident))
@@ -405,16 +405,16 @@ def create_imput_loyer(year):
 
 # # debug
 # # derf  <- describe(erf, weights=as.numeric(erf$wprm))
-# # dlogt <- describe(logt, weights=logt$wprm)   
-# # 
+# # dlogt <- describe(logt, weights=logt$wprm)
+# #
 # # for (var in as.list(names(derf))){
 # #   print("erf")
-# #   print(derf[[var]]) 
+# #   print(derf[[var]])
 # #   print("logt")
-# #   print(dlogt[[var]]) 
+# #   print(dlogt[[var]])
 # #   print("================")
 # # }
-    
+
 
     # TODO add md.pattern
 
@@ -424,11 +424,11 @@ def create_imput_loyer(year):
     erf = erf.dropna(how = 'any') # Si j'ai bien compris ce que l'on fait en R : dropper les lignes avec des NA
     #erf1 = erf # A-t-on toujours besoin de changer le nom du coup ?
     Logt = Logt.dropna(how = 'any')
-    
+
 # allvars <- c("logt", "hnph2", "iaat", "mdiplo", "mtybd", "tu99_recoded", "magtr", "mcs8", "deci")
 # classes <- c("magtr","tu99_recoded")
 # matchvars <- setdiff(allvars,classes)
-    allvars = ['logt', 'hnph2', 'iaat', 'mdiplo', 'mtybd', 'tu99_recoded', 'magtr', 'mcs8', 'deci']  
+    allvars = ['logt', 'hnph2', 'iaat', 'mdiplo', 'mtybd', 'tu99_recoded', 'magtr', 'mcs8', 'deci']
     classes = ['magtr', 'tu99_recoded']
     matchvars = list(set(allvars)-set(classes))
     erf['mcs8'] = erf['mcs8'].astype(int)
@@ -467,8 +467,8 @@ def create_imput_loyer(year):
 # menagem <- merge(menagem,loy_imput,by='ident',all.x = TRUE)
 # save(menagem,file=menm)
 #     Mis en comment block, car à manipuler avec précaution je suppose ( ne souhaite pas faire de conneries )
-    
-    erfmenm = load_temp(name="menagem", year=year) 
+
+    erfmenm = load_temp(name="menagem", year=year)
 #     del erfmenm['loym']
     erfmenm = erfmenm.merge(loy_imput,on='ident',how='left')
     assert 'loym' in erfmenm.columns, 'No loym in erfmenm columns'

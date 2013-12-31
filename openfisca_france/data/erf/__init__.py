@@ -11,7 +11,7 @@
 def get_of2erf(year=None):
     of2erf = dict()
     of2erf["csg"] = "csgim"  # imposable, et "csgdm", déductible
-#of2erf["csgd"] = "csgdm" 
+#of2erf["csgd"] = "csgdm"
     of2erf["crds"] = "crdsm"
     of2erf["irpp"] = "zimpom"
     of2erf["ppe"] = "m_ppem"
