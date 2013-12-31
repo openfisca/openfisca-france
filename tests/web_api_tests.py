@@ -121,7 +121,7 @@ def test_case_study():
             },
         nmen = 1,
         year = 2006,
-        xaxis = 'sali',
+        x_axis = 'sali',
         )
     print json.dumps(result, ensure_ascii = False, indent = 2, sort_keys = True)
 

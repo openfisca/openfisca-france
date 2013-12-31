@@ -20,7 +20,7 @@ af_2enf = {2006: 1412.64, 2007 : 1436.64, 2008: 1451.04, 2009: 1494.48}
 def test_af2():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -48,7 +48,7 @@ af_2enfb = {2006: 1809.96, 2007 : 1840.68, 2008: 2176.56, 2009: 2241.72}
 def test_af2b():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -77,7 +77,7 @@ af_2enfc = {2006: 1809.96, 2007 : 2154.96, 2008: 0.0, 2009: 0.0}
 def test_af2c():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -105,7 +105,7 @@ af_2enfm = {2006: 2118.96, 2007 : 2154.96, 2008: 2176.56, 2009: 2241.72}
 def test_af2m():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -132,7 +132,7 @@ af_3enf = {2006: 3222.60, 2007 : 3277.32, 2008: 3310.08, 2009: 3409.32}
 def test_af3():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -160,7 +160,7 @@ af_3enfm = {2006: 5341.56, 2007 : 5432.28, 2008: 5486.64, 2009: 5651.04}
 def test_af3m():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -188,7 +188,7 @@ af_3enf1m = {2006: 3928.92, 2007 : 3995.64, 2008: 4035.60, 2009: 4156.56}
 def test_af3m1():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -216,7 +216,7 @@ af_3enf1f06 = {2006: 2305.80, 2007 : 1436.64, 2008: 1451.04, 2009: 1494.48}
 def test_af31f06():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -240,7 +240,7 @@ af_3enf1f08 = {2006: 3928.92, 2007 : 3995.64, 2008: 2368.56, 2009: 1494.48}
 def test_af31f08():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -264,7 +264,7 @@ af_3enf1f09 = {2006: 3928.92, 2007 : 3995.64, 2008: 4035.60, 2009: 2439.48}
 def test_af31f09():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -292,7 +292,7 @@ af_3enfbis = {2006: 4326.24, 2007 : 4399.68, 2008: 2368.56, 2009: 1494.48}
 def test_af3bis():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -322,7 +322,7 @@ af_3enfter = {2006: 4635.24, 2007 : 2345.04, 2008: 0.0, 2009: 0.0}
 def test_af3ter():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -353,7 +353,7 @@ af_3enfqua = {2006: 4326.24, 2007 : 4713.96, 2008: 2368.56, 2009: 1494.48}
 def test_af3qua():
     for yr in range(2006,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
@@ -403,7 +403,7 @@ af_5enf = {2006: 6842.40, 2007 : 6958.68, 2008: 7028.16, 2009: 7239.12}
 def test_af5():
     for yr in range(2009,2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, xaxis = 'sali')
+        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
         simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part') 
         simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part') 
