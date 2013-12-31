@@ -31,7 +31,7 @@ import pickle
 
 import numpy as np
 from openfisca_core import __version__ as VERSION
-from openfisca_core import axestools
+from openfisca_core import model
 
 from . import conv, ENTITIES_INDEX
 from .model.data import InputDescription, QUIFAM, QUIFOY, QUIMEN
@@ -220,6 +220,11 @@ class Scenario(object):
                             drop_none_values = True,
                             ),
                         conv.empty_to_none,
+                        conv.not_none,
+                        ),
+                    nmen = conv.pipe(
+                        conv.test_isinstance(int),
+                        conv.test_greater_or_equal(1),
                         conv.not_none,
                         ),
                     year = conv.pipe(
@@ -597,18 +602,13 @@ class Scenario(object):
             maxrev = self.maxrev
             datatable.MAXREV = maxrev
 
-            if self.xaxis is None:
-                raise Exception('france.Scenario: self.xaxis should not be None')
-
             xaxis = self.xaxis
-            axes = axestools.build_axes()
+            if xaxis is None:
+                raise Exception('france.Scenario: self.xaxis should not be None')
             var = None
-
-            for axe in axes:
+            for axe in model.x_axes.itervalues():
                 if axe.name == xaxis:
-                    datatable.XAXIS = axe.col_name
-                    var = axe.col_name
-
+                    datatable.XAXIS = var = axe.col_name
             if var is None:
                 datatable.XAXIS = xaxis
                 var = xaxis

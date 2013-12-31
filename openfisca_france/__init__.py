@@ -52,9 +52,8 @@ REVENUES_CATEGORIES = {
     }
 WEIGHT = "wprm"
 WEIGHT_INI = "wprm_init"
-XAXIS_PROPERTIES = {
+X_AXES_PROPERTIES = {
     'alr': {
-        'col_name': 'alr',
         'name': 'alr',
         'typ_tot': {
             'pen': "Pensions",
@@ -62,7 +61,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'pen',
         },
     'choi': {
-        'col_name': 'choi',
         'name': 'cho',
         'typ_tot': {
             'cho': u"Chômage",
@@ -72,7 +70,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'cho',
         },
     'rsti': {
-        'col_name': 'rsti',
         'name': 'rst',
         'typ_tot': {
             'rst': u"Retraite",
@@ -92,7 +89,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'sal',
         },
     'f2da': {
-        'col_name': 'f2da',
         'name': 'divpfl',
         'typ_tot': {
             'rev_cap_brut': u"Revenus des capitaux",
@@ -101,7 +97,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'rev_cap_brut',
         },
     'f2dc': {
-        'col_name': 'f2dc',
         'name': 'divb',
         'typ_tot': {
             'rev_cap_brut': "Revenus des capitaux",
@@ -110,7 +105,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'rev_cap_brut',
         },
     'f2ee': {
-        'col_name': 'f2ee',
         'name': 'intpfl',
         'typ_tot': {
             'rev_cap_brut': "Revenus des capitaux",
@@ -119,7 +113,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'rev_cap_brut',
         },
     'f2tr': {
-        'col_name': 'f2tr',
         'name': 'intb',
         'typ_tot': {
             'rev_cap_brut': "Revenus des capitaux",
@@ -128,7 +121,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'rev_cap_brut',
         },
     'f4ba': {
-        'col_name': 'f4ba',
         'name': 'f4ba',
         'typ_tot': {
             'fon': "Revenus fonciers",
@@ -136,7 +128,6 @@ XAXIS_PROPERTIES = {
         'typ_tot_default': 'fon',
         },
     'f6gu': {
-        'col_name': 'f6gu',
         'name': 'f6gu',
         'typ_tot': {
             'pen': "Pensions",
@@ -151,6 +142,7 @@ def init_country(qt = False):
     from openfisca_core import model as core_model
     from openfisca_core import datatables as core_datatables
     from openfisca_core import simulations as core_simulations
+    from openfisca_core.xaxes import XAxis
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
@@ -179,7 +171,10 @@ def init_country(qt = False):
     core_model.Scenario = scenarios.Scenario
     core_model.WEIGHT = WEIGHT
     core_model.WEIGHT_INI = WEIGHT_INI
-    core_model.XAXIS_PROPERTIES = XAXIS_PROPERTIES
+    core_model.x_axes = dict(
+        (col_name, XAxis(col_name = col_name, label = InputDescription.column_by_name[col_name].label, **properties))
+        for col_name, properties in X_AXES_PROPERTIES.iteritems()
+        )
 
     core_simulations.check_consistency = utils.check_consistency
 
