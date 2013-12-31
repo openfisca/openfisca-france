@@ -232,6 +232,10 @@ class Scenario(object):
                         conv.test_greater_or_equal(1900),  # TODO: Check that year is valid in params.
                         conv.not_none,
                         ),
+                    xaxis = conv.pipe(
+                        conv.test_isinstance(basestring),
+                        conv.test_in(model.x_axes.keys()),
+                        ),
                     ),
                 ),
             )(value, state = state)
