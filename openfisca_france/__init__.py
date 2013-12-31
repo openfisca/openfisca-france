@@ -140,8 +140,8 @@ X_AXES_PROPERTIES = {
 def init_country(qt = False):
     """Add country-specific content to OpenFisca-Core package."""
     from openfisca_core import model as core_model
-    from openfisca_core import datatables as core_datatables
     from openfisca_core import simulations as core_simulations
+    from openfisca_core import taxbenefitsystems as core_taxbenefitsystems
     from openfisca_core.xaxes import XAxis
     if qt:
         from openfisca_qt import widgets as qt_widgets
@@ -152,7 +152,7 @@ def init_country(qt = False):
     if qt:
         from .widgets.Composition import CompositionWidget
 
-    core_datatables.preproc_inputs = utils.preproc_inputs
+    core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 
     core_model.AGGREGATES_DEFAULT_VARS = AGGREGATES_DEFAULT_VARS
     core_model.CURRENCY = CURRENCY
