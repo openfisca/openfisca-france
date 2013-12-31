@@ -11,7 +11,7 @@ from datetime import date, datetime
 import os
 import pickle
 
-from openfisca_core import axestools
+from openfisca_core import model
 from openfisca_qt.gui.qt.QtGui import (QDialog, QLabel, QDateEdit, QComboBox, QSpinBox, 
                           QDoubleSpinBox, QPushButton, QApplication, QFileDialog, QMessageBox, 
                           QDialogButtonBox, QDockWidget)
@@ -64,15 +64,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             
         self.setLayout(self.verticalLayout)
         # Initialize xaxes
-        axes = axestools.build_axes()
         xaxis = self.get_option('xaxis')
-        
         axes_names = []
-        for axe in axes:
+        for axe in model.x_axes.itervalues():
             self.xaxis_box.addItem(axe.label, to_qvariant(axe.name))
             axes_names.append(axe.name)
-                        
-        self.xaxis_box.setCurrentIndex(axes_names.index(xaxis))            
+        self.xaxis_box.setCurrentIndex(axes_names.index(xaxis))
 
         self.initialize_plugin()        
         # Initialize maxrev # make it country dependant  
@@ -514,14 +511,13 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             self.maxrev = maxrev
             print "in apply setting :" , self.maxrev
         if 'xaxis' in options:
-            axes = axestools.build_axes()
             xaxis = self.get_option('xaxis')
-            axes_names = []
-            for axe in axes:
-                axes_names.append(axe.name)        
+            axes_names = [
+                axe.name
+                for axe in model.x_axes.itervalues()
+                ]
             self.xaxis_box.setCurrentIndex(axes_names.index(xaxis))
-            
-    
+
     #------ OpenfiscaPluginWidget API ---------------------------------------------
     def get_plugin_title(self):
         """
