@@ -17,7 +17,6 @@ def test_cotsoc():
     test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 € 
     et des revenus de différentes origines 
     """
-    country = 'france'
     dico = { 
 # test pour un célibataire ayant un revenu salarial (1AJ) 
 #            "sali": [
@@ -181,7 +180,7 @@ def test_cotsoc():
             
             for var, value in item["vars"].iteritems():
                 simulation = ScenarioSimulation()
-                simulation.set_config(year = year, country = country, nmen = 1)
+                simulation.set_config(year = year, nmen = 1)
                 simulation.set_param()
             
                 from openfisca_qt.scripts.cecilia import complete_2012_param # TODO: FIXME when 2012 done
