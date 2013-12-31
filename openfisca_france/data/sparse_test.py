@@ -25,7 +25,7 @@ def test():
     columns = df.columns.copy()
 #    print columns
     return
-    
+
     for colname in columns:
         if i > 10:
             break

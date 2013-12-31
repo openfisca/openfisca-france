@@ -82,9 +82,9 @@ final.pop('zone2')
 final.pop('zone3')
 final.pop('total')
 
-final = final.reset_index() 
+final = final.reset_index()
 
-print final 
+print final
 
 
 # Sanity check

@@ -42,14 +42,14 @@ def BoxFromCol(col):
         MyDoubleSpinBox(prefix = col.label)
     elif col in [EnumCol]:
         MyComboBox(prefix= col.label, choices = col.enum._vars.keys() )
-        
+
 
 class InfoIndivWidget(QDockWidget):
     def __init__(self, parent = None):
         super(InfoIndivWidget, self).__init__(parent)
-        
+
         input_cols = []
-        
+
 #        for var in input_cols:
 #            BoxFromCol() TODO: finish here
-        
+

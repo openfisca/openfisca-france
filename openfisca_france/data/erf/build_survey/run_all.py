@@ -8,8 +8,8 @@
 # # # OpenFisca
 
 from src.countries.france.data.erf.build_survey import (step_01_pre_proc as pre_proc,
-                                                       step_02_imput_loyer as imput_loyer, 
-                                                       step_03_fip as fip, 
+                                                       step_02_imput_loyer as imput_loyer,
+                                                       step_03_fip as fip,
                                                        step_04_famille as famille,
                                                        step_05_foyer as foyer,
                                                        step_06_rebuild as rebuild,
@@ -17,7 +17,7 @@ from src.countries.france.data.erf.build_survey import (step_01_pre_proc as pre_
                                                        step_08_final as final)
 
 def run_all(year=2006, filename="test", check=False):
-      
+
 #     pre_proc.create_indivim(year=year)
 #     pre_proc.create_enfnn(year=year)
 #     imput_loyer.create_imput_loyer(year=year)

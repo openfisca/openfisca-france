@@ -18,13 +18,13 @@ ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH, 'countries', country, 'data', 'erf')
 def save_temp(dataframe, name=None, year=None):
     """
     Save a temporary table
-    
+
     Parameters
     ----------
     dataframe : pandas DataFrame
                 the dataframe to save
     name : string, default None
-           
+
     year : integer, default None
            year of the data
     """
@@ -37,16 +37,16 @@ def save_temp(dataframe, name=None, year=None):
         del store[str(year)+"/"+name]
     store[str(year)+"/"+name] = dataframe
     store.close()
-    return True 
+    return True
 
 def load_temp(name=None, year=None):
     """
     Load a temporary saved table
-    
+
     Parameters
     ----------
     name : string, default None
-           
+
     year : integer, default None
            year of the data
     """
@@ -55,11 +55,11 @@ def load_temp(name=None, year=None):
     if name is None:
         raise Exception("year is needed")
     store = HDFStore(os.path.join(ERF_HDF5_DATA_DIR,'temp.h5'))
-    dataframe = store[str(year)+"/"+name] 
+    dataframe = store[str(year)+"/"+name]
     store.close()
-    return dataframe 
-    
-    
+    return dataframe
+
+
 def show_temp():
     store = HDFStore(os.path.join(ERF_HDF5_DATA_DIR,'temp.h5'))
     print store

@@ -4,14 +4,14 @@
 from src.countries.france.data.erf.datatable import DataCollection
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import control, check_structure, print_id
-from pandas import DataFrame, MultiIndex 
+from pandas import DataFrame, MultiIndex
 from numpy import array, where, NaN
 from numpy.random import randn
 from pandas import concat
 import gc
 
 
-# Some individuals are declared as 'personne à charge' (pac) on 'tax forms' 
+# Some individuals are declared as 'personne à charge' (pac) on 'tax forms'
 # but are not present in the erf or eec tables.
 # We add them to ensure consistency between concepts.
 
@@ -19,9 +19,9 @@ def create_fip(year = 2006): # message('03_fip')
     """
     Creates a 'fipDat' table containing all these 'fip individuals'
     """
-    
+
     df = DataCollection(year=year)
-    
+
     print 'Démarrer 03_fip'
 # # anaisenf: année de naissance des PAC
 # erfFoyVar <- c('anaisenf','declar')
@@ -29,20 +29,20 @@ def create_fip(year = 2006): # message('03_fip')
 # foyer <- LoadIn(erfFoyFil,erfFoyVar)
 
     # anaisenf is a string containing letter code of pac (F,G,H,I,J,N,R) and year of birth (example: 'F1990H1992')
-    # when a child is invalid, he appears twice in anaisenf (example: F1900G1900 is a single invalid child born in 1990)    
+    # when a child is invalid, he appears twice in anaisenf (example: F1900G1900 is a single invalid child born in 1990)
     erfFoyVar = ['declar', 'anaisenf']
     foyer = df.get_values(table="foyer", variables=erfFoyVar)
     print_id(foyer)
 #    control(foyer, verbose=True, verbose_length=10, debug=True)
- 
- 
+
+
 # #***********************************************************************************************************
 # # print "Step 1 : on recupere les personnes à charge des foyers"
 # #**********************************************************************************************************
 # # On traite les cas de declarations multiples pour ne pas créer de doublon de pac
-# 
-# 
-# # On récupère toutes les pac des foyers 
+#
+#
+# # On récupère toutes les pac des foyers
 # L <- max(nchar(foyer$anaisenf))/5 # nombre de pac maximal
 # fip <-data.frame(declar = foyer$declar)
 # for (i in c(1:L)){
@@ -58,22 +58,22 @@ def create_fip(year = 2006): # message('03_fip')
 
     print "Etape 1 : on recupere les personnes à charge des foyers"
     print "    1.1 : Création des codes des enfants"
-    foyer['anaisenf'] = foyer['anaisenf'].astype('string')    
+    foyer['anaisenf'] = foyer['anaisenf'].astype('string')
     nb_pac_max = len(max(foyer['anaisenf'], key=len))/5
     print "il ya a au maximum %s pac par foyer" %nb_pac_max
-        
-# Separating the string coding the pac of each "déclaration". 
+
+# Separating the string coding the pac of each "déclaration".
 # Creating a list containing the new variables.
-    
+
     # Creating the multi_index for the columns
     multi_index_columns = []
-    for i in range(1, nb_pac_max + 1):        
+    for i in range(1, nb_pac_max + 1):
         pac_tuples_list = [(i, 'declaration'), (i, 'type_pac'), (i, 'naia')]
-        multi_index_columns += pac_tuples_list 
-        
-    columns = MultiIndex.from_tuples(multi_index_columns, names=['pac_number', 'variable'])    
+        multi_index_columns += pac_tuples_list
+
+    columns = MultiIndex.from_tuples(multi_index_columns, names=['pac_number', 'variable'])
     fip = DataFrame(randn(len(foyer), 3*nb_pac_max), columns=columns)
-    fip.fillna(NaN, inplace=True) # inutile a cause de la ligne précédente, to remove   
+    fip.fillna(NaN, inplace=True) # inutile a cause de la ligne précédente, to remove
     for i in range(1,nb_pac_max+1):
         fip[(i, 'declaration')] = foyer['declar'].values
         fip[(i,'type_pac')] = foyer['anaisenf'].str[5*(i-1)]
@@ -98,25 +98,25 @@ def create_fip(year = 2006): # message('03_fip')
 
     print "    1.3 : on enlève les individus F pour lesquels il existe un individu G"
     tyFG = fip[fip.type_pac.isin(['F', 'G'])] #Filtre pour ne travailler que sur F & G
-    
+
     tyFG['same_pair'] = tyFG.duplicated(cols=['declaration', 'naia'], take_last=True)
     tyFG['is_twin'] = tyFG.duplicated(cols=['declaration', 'naia', 'type_pac'])
     tyFG['to_keep'] = (~(tyFG['same_pair']) | (tyFG['is_twin']))
-    #Note : On conserve ceux qui ont des couples déclar/naia différents et les jumeaux 
+    #Note : On conserve ceux qui ont des couples déclar/naia différents et les jumeaux
     #puis on retire les autres (à la fois F et G)
     print len(tyFG),'/', len(tyFG[tyFG['to_keep']])
     print 'longueur fip', len(fip)
-    
+
     fip['to_keep'] = NaN
     fip.update(tyFG)
-    print 'enfants F & G traités'  
+    print 'enfants F & G traités'
 
     print "    1.4 : on enlève les H pour lesquels il y a un I"
     tyHI = fip[fip.type_pac.isin(['H', 'I'])]
     tyHI['same_pair'] = tyHI.duplicated(cols=['declaration', 'naia'], take_last=True)
     tyHI['is_twin'] = tyHI.duplicated(cols=['declaration', 'naia', 'type_pac'])
     tyHI['to_keep'] = ~(tyHI['same_pair']) | (tyHI['is_twin'])
-    
+
     fip.update(tyHI)
     fip['to_keep'] = fip['to_keep'].fillna(True)
     print 'nb lines to keep/nb initial lines'
@@ -132,42 +132,42 @@ def create_fip(year = 2006): # message('03_fip')
     print 'Step 2 : matching indivifip with eec file'
 # #************************************************************************************************************/
 
-    indivi = load_temp(name="indivim", year=year) #TODO: USE THIS INSTEAD OF PREVIOUS LINES 
+    indivi = load_temp(name="indivim", year=year) #TODO: USE THIS INSTEAD OF PREVIOUS LINES
 
 
 # pac <- indivi[!is.na(indivi$persfip) & indivi$persfip == 'pac',]
 # pac$key1 <- paste(pac$naia,pac$declar1)
 # pac$key2 <- paste(pac$naia,pac$declar2)
 # indivifip$key <- paste(indivifip$naia,indivifip$declar)
-    
+
     #TODO: replace Indivi['persfip'] is not NaN by indivi['persfip'].notnull()
     import pdb
     pdb.set_trace()
     pac = indivi[(indivi['persfip'] is not NaN) & (indivi['persfip']=='pac')]
-    
+
     pac['naia'] = pac['naia'].astype('int32') # TODO: was float in pac fix upstream
-    indivifip['naia'] = indivifip['naia'].astype('int32') 
+    indivifip['naia'] = indivifip['naia'].astype('int32')
     pac['key1'] = zip(pac['naia'], pac['declar1'].str[:29])
     pac['key2'] = zip(pac['naia'], pac['declar2'].str[:29])
     indivifip['key'] = zip(indivifip['naia'], indivifip['declaration'].str[:29])
     assert pac.naia.dtype == indivifip.naia.dtype, 'types %s , %s are different' %(pac.naia.dtype, indivifip.naia.dtype)
-    
+
 # fip <- indivifip[!indivifip$key %in% pac$key1,]
 # fip <- fip[!fip$key %in% pac$key2,]
     fip = indivifip[~(indivifip.key.isin(pac.key1.values))]
     fip = fip[~(fip.key.isin(pac.key2.values))]
-    
-        
+
+
     print "    2.1 new fip created"
 # We build a dataframe to link the pac to their type and noindiv
-# table(duplicated(pac[,c("noindiv")])) 
+# table(duplicated(pac[,c("noindiv")]))
     countInd = pac.noindiv.value_counts()
 
 # pacInd1 <- merge(pac[,c("noindiv","key1","naia")],
 #                 indivifip[,c("key","typ")], by.x="key1", by.y="key")
 # pacInd2 <- merge(pac[,c("noindiv","key2","naia")],
 #                 indivifip[,c("key","typ")], by.x="key2", by.y="key")
-    
+
     tmp_pac1 = pac[['noindiv', 'key1']]
     tmp_pac2 = pac[['noindiv', 'key2']]
     tmp_indivifip = indivifip[['key', 'type_pac', 'naia']]
@@ -177,7 +177,7 @@ def create_fip(year = 2006): # message('03_fip')
     pac_ind2 = tmp_pac2.merge(tmp_indivifip, left_on='key2', right_on='key', how='inner')
     print 'longueur pacInd2', len(pac_ind2)
     print "pacInd1&2 créés"
-    
+
 # table(duplicated(pacInd1))
 # table(duplicated(pacInd2))
 
@@ -205,11 +205,11 @@ def create_fip(year = 2006): # message('03_fip')
         print "Warning : pacInd2 is an empty data frame"
         pacInd = pac_ind1
     else:
-        pacInd = concat([pac_ind2, pac_ind1]) 
+        pacInd = concat([pac_ind2, pac_ind1])
     print len(pac_ind1), len(pac_ind2), len(pacInd)
     print pac_ind2.type_pac.isnull().sum()
     print pacInd.type_pac.value_counts()
-    
+
     print '    2.2 : pacInd created'
 
 # table(duplicated(pacInd[,c("noindiv","typ")]))
@@ -218,17 +218,17 @@ def create_fip(year = 2006): # message('03_fip')
     print 'doublons noindiv, type_pac', pacInd.duplicated(['noindiv', 'type_pac']).sum()
     print 'doublons noindiv seulement', pacInd.duplicated('noindiv').sum()
     print 'nb de NaN', pacInd.type_pac.isnull().sum()
-    
+
     del pacInd["key"]
     pacIndiv = pacInd[~(pacInd.duplicated('noindiv'))]
 #     pacIndiv.reset_index(inplace=True)
     print pacIndiv.columns
 
     save_temp(pacIndiv, name="pacIndiv", year=year)
-    
+
     print pacIndiv.type_pac.value_counts()
     gc.collect()
-    
+
 # # We keep the fip in the menage of their parents because it is used in to
 # # build the famille. We should build an individual ident for the fip that are
 # # older than 18 since they are not in their parents' menage according to the eec
@@ -261,22 +261,22 @@ def create_fip(year = 2006): # message('03_fip')
 
     fip1.duplicated().value_counts()
     fip2.duplicated().value_counts()
-    
+
 # #fip <- rbind(fip1,fip2)
 # fip <- fip1
 # table(fip$typ)
-    
+
     fip = concat([fip1, fip2])
 #     fip = fip1 #TODO: Pourquoi cette ligne ?
     fip.type_pac.value_counts()
- 
+
     print fip.columns
     fip['persfip'] = 'pac'
     fip['year'] = year
     fip['year'] = fip['year'].astype('float') # BUG; pas de colonne année dans la DF
     fip['noi'] = 99
     fip['noicon'] = None
-    fip['noindiv'] = fip['declaration'] 
+    fip['noindiv'] = fip['declaration']
     fip['noiper'] = None
     fip['noimer'] = None
     fip['declar1'] = fip['declaration'] #TODO declar ?
@@ -298,11 +298,11 @@ def create_fip(year = 2006): # message('03_fip')
     fip['persfip'] = "pac"
     fip['agepr'] = None
     fip['actrec'] = where(fip['agepf']<=15, 9, 5)
-    
+
 ## TODO: probleme actrec des enfants fip entre 16 et 20 ans : on ne sait pas s'ils sont étudiants ou salariés */
 ## TODO problème avec les mois des enfants FIP : voir si on ne peut pas remonter à ces valeurs: Alexis : clairement non
 
-# Reassigning noi for fip children if they are more than one per foyer fiscal 
+# Reassigning noi for fip children if they are more than one per foyer fiscal
 # while ( any(duplicated( fip[,c("noi","ident")]) ) ) {
 #   dup <- duplicated( fip[, c("noi","ident")])
 #   tmp <- fip[dup,"noi"]
@@ -311,7 +311,7 @@ def create_fip(year = 2006): # message('03_fip')
     #TODO: Le vecteur dup est-il correct
     fip["noi"] = fip["noi"].astype("int64")
     fip["ident"] = fip["ident"].astype("int64")
-    
+
     fip_tmp = fip[['noi','ident']]
 
     while any(fip.duplicated(cols=['noi', 'ident'])):
@@ -324,7 +324,7 @@ def create_fip(year = 2006): # message('03_fip')
     fip['idfoy'] = 100*fip['ident'] + fip['noidec']
     fip['noindiv'] = 100*fip['ident'] + fip['noi']
     fip['type_pac'] = 0 ; fip['key'] = 0
-    
+
     print fip.duplicated('noindiv').value_counts()
     save_temp(fip, name="fipDat", year=year)
     del fip, fip1, individec1, indivifip, indivi, pac

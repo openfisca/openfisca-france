@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import where, NaN, random 
+from numpy import where, NaN, random
 from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
 from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
 from pandas import read_csv, HDFStore
@@ -16,30 +16,30 @@ import os
 
 
 def final_check(year=2006):
-    test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5") 
+    test_filename = os.path.join(DATA_SOURCES_DIR,"test.h5")
     survey_filename = os.path.join(DATA_SOURCES_DIR,"survey.h5")
-     
+
     store = HDFStore(test_filename)
     survey = HDFStore(survey_filename)
-    
+
     final2 = store.get('survey_2006')
     print survey
     finalT = survey.get('survey_2006')
-    
+
     varlist = ['anref', 'sitant', 'adeben', 'stc', 'retrai', 'contra', 'datant', 'rabs', 'nondic', 'TXTPPB',
                'ancrech', 'RAISTP', 'amois', 'adfdap', 'ancentr', 'anciatm', 'ancchom', 'ident', 'noi', 'dimtyp',
                'RABSP', 'raistp', 'rdem', 'sp10', 'sp11', 'idfoy']
-    
+
     for i in range(0,10):
         varname = 'sp0' + str(i)
         varlist.append(varname)
-    
+
     varlist = set(varlist)
-    columns = final2.columns ; 
+    columns = final2.columns ;
     columns = set(columns)
-    
+
     print varlist.difference(columns)
-    print final2.loc[final2.idfoy==603018901, 
+    print final2.loc[final2.idfoy==603018901,
                        ['idfoy', 'quifoy', 'idfam', 'quifam', 'idmen', 'quimen', 'noi']].to_string()
 #     print final2
 #     print finalT
@@ -56,7 +56,7 @@ def final_check(year=2006):
 #     print 'MENAGES-----------------'
 #     print final2.quimen.value_counts()
 #     print finalT.quimen.value_counts()
-#     
+#
 #     print ''
 #     print final2.age.describe()
 #     print finalT.age.describe()

@@ -18,7 +18,7 @@ def build_totals():
     h5_name = "../amounts.h5"
     store = HDFStore(h5_name)
 
-    files = ['logement_tous_regime', 'pfam_tous_regimes', 
+    files = ['logement_tous_regime', 'pfam_tous_regimes',
              'minima_sociaux_tous_regimes', 'IRPP_PPE', 'cotisations_TousRegimes' ]
 
     first = True
@@ -27,7 +27,7 @@ def build_totals():
         print xls.path_or_buf
         df_a = xls.parse('amounts', na_values=['NA'])
         try:
-            df_b   = xls.parse('benef', na_values=['NA']) 
+            df_b   = xls.parse('benef', na_values=['NA'])
         except:
             df_b = DataFrame()
 
@@ -38,29 +38,29 @@ def build_totals():
         else:
             amounts_df = concat([amounts_df, df_a])
             benef_df =  concat([benef_df, df_b])
-    
+
     amounts_df, benef_df = amounts_df.set_index("var"), benef_df.set_index("var")
     print amounts_df.to_string()
-    print benef_df.to_string()    
+    print benef_df.to_string()
     store['amounts'] = amounts_df
     store['benef']   = benef_df
     store.close
-    
 
 
-    
+
+
 def test():
     country = "france"
     for year in range(2006,2010):
- 
+
         yr = str(year)
         simu = SurveySimulation()
         simu.set_config(year = yr, country = country)
         simu.set_param()
-    
+
         agg = Aggregates()
         agg.set_simulation(simu)
- 
+
         for col in agg.varlist:
             print col
 

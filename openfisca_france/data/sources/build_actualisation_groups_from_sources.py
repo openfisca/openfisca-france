@@ -8,7 +8,7 @@
 
 
 from pandas import  HDFStore, ExcelFile
-    
+
 def build_actualisation_group_vars_h5():
     h5_name = "../actualisation_groups.h5"
     store = HDFStore(h5_name)

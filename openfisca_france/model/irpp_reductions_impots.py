@@ -9,7 +9,7 @@
 
 from __future__ import division
 from numpy import minimum as min_, maximum as max_, zeros, logical_not as not_
-from .data import QUIFOY 
+from .data import QUIFOY
 
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
@@ -20,60 +20,60 @@ for qui in QUIFOY:
 
 taille = 0
 
-def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr, 
-               prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor, 
-               daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli, 
+def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
+               prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
+               daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
                locmeu, doment, domsoc, intemp, garext, assvie, invrev, intcon,
                ecodev, _P):
     '''
     Renvoie la liste des réductions d'impôt à intégrer en fonction de l'année
     '''
     if   _P.datesim.year == 2002:
-        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp + 
-                invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + 
+        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
+                invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga +
                 ecpess + doment)
     elif _P.datesim.year == 2003:
-        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp + 
-                repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog + 
+        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
+                repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog +
                 adhcga + ecpess + doment)
     elif _P.datesim.year == 2004:
-        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intcon + 
-                repsoc + invfor + garext + daepad + rsceha + assvie + invlst + domlog + 
+        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intcon +
+                repsoc + invfor + garext + daepad + rsceha + assvie + invlst + domlog +
                 adhcga + ecpess + doment)
     elif _P.datesim.year == 2005:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme + 
-                intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga + 
+        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme +
+                intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga +
                 ecpess + doment)
     elif _P.datesim.year == 2006:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica + 
-                cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog + 
+        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
+                cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
                 adhcga + ecpess + doment)
     elif _P.datesim.year == 2007:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica + 
-                cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog + 
+        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
+                cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
                 adhcga + creaen + ecpess + doment)
     elif _P.datesim.year == 2008:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist + 
-                sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + 
+        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist +
+                sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst +
                 domlog + adhcga + creaen + ecpess + doment)
     elif _P.datesim.year == 2009:
-        total = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr + 
-                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + 
-                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + 
+        total = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr +
+                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
+                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
                 locmeu + doment)
     elif _P.datesim.year == 2010:
-        total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr + 
-                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + 
-                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + 
-                locmeu + doment + domsoc) # TODO: check (sees checked) and report in Niches.xls         
+        total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
+                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
+                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
+                locmeu + doment + domsoc) # TODO: check (sees checked) and report in Niches.xls
     elif _P.datesim.year == 2011:
-        total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr + 
-                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + 
-                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + 
+        total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
+                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
+                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
                 locmeu + doment + domsoc)   # TODO: Check because totally unchecked 2011
     else:
         return ip_net*0
-    return min_(ip_net,total)    
+    return min_(ip_net,total)
 
 def _donapd(f7ud, _P):
     '''
@@ -84,7 +84,7 @@ def _donapd(f7ud, _P):
 
     return P.taux*min_(f7ud, P.max)
 
-def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):   
+def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
     '''
     Dons aux autres oeuvres et dons effectués pour le financement des partis
     politiques et des compagnes électorales
@@ -109,14 +109,14 @@ def _cotsyn(f7ac, f7ae, f7ag, sal, cho, rst, _P, _option= {'sal':ALL, 'cho':ALL,
     '''
     P = _P.ir.reductions_impots.cotsyn
     tx = P.seuil
-    
+
     salv, salc, salp = sal[VOUS], sal[CONJ], sal[PAC1]
     chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
     rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
     maxv = (salv+chov+rstv)*tx
     maxc = (salc+choc+rstc)*tx
     maxp = (salp+chop+rstp)*tx
-    
+
     return P.taux*(min_(f7ac,maxv)  + min_(f7ae,maxc) + min_(f7ag,maxp))
 
 def _resimm(f7ra, f7rb, _P):
@@ -144,7 +144,7 @@ def _sofipe(marpac, rbg_int, f7gs, _P):
     2009-2011
     """
     if _P.datesim.year >= 2011:
-        return rbg_int*0 
+        return rbg_int*0
     P = _P.ir.reductions_impots.sofipe
     max1 = min_(P.max*(marpac+1), P.base*rbg_int) # page3 ligne 18
     return P.taux*min_(f7gs, max1)
@@ -175,9 +175,9 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
     spéciale pour l’un de vos enfants à charge.
     '''
     P = _P.ir.reductions_impots.saldom
-    
+
     isinvalid = f7dg
-    
+
     if _P.datesim.year in (2002, 2003, 2004):
         max1 = P.max1*not_(isinvalid) + P.max3*isinvalid
     elif _P.datesim.year in (2005,2006):
@@ -186,7 +186,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxDuMaxNonInv = P.max2
         maxNonInv = min_(maxBase + P.pac*nbpacmin, maxDuMaxNonInv)
         max1 = maxNonInv*not_(isinvalid) + P.max3*isinvalid
-                 
+
     elif _P.datesim.year in (2007,2008):
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1
@@ -194,7 +194,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxNonInv = min_(maxBase + P.pac*nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
-            
+
     elif _P.datesim.year in (2009, 2010, 2011, 2012):  # TODO Check 2011 and 2012
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
@@ -203,7 +203,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxNonInv = min_(maxBase + P.pac*nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
-                
+
     return P.taux*min_(f7df, max1)
 
 def _intagr(f7um, marpac, _P):
@@ -222,20 +222,20 @@ def _prcomp(f7wm, f7wn, f7wo, f7wp, _P):
     '''
     P = _P.ir.reductions_impots.prcomp
     div = (f7wo==0)*1 + f7wo # Pour éviter les divisions par zéro
-    
+
     return ((f7wm == 0)*((f7wn==f7wo)*P.taux*min_(f7wn,P.seuil) +
                               (f7wn<f7wo)*(f7wo<=P.seuil)*P.taux*f7wn +
                               max_(0,(f7wn<f7wo)*(f7wo> P.seuil)*P.taux*P.seuil*f7wn/div) +
                               P.taux*f7wp ) +
-            (f7wm != 0)*((f7wn==f7wm)*(f7wo<=P.seuil)*P.taux*f7wm + 
-                              max_(0,(f7wn==f7wm)*(f7wo>=P.seuil)*P.taux*f7wm/div) + 
-                              (f7wn>f7wm)*(f7wo<=P.seuil)*P.taux*f7wn  + 
+            (f7wm != 0)*((f7wn==f7wm)*(f7wo<=P.seuil)*P.taux*f7wm +
+                              max_(0,(f7wn==f7wm)*(f7wo>=P.seuil)*P.taux*f7wm/div) +
+                              (f7wn>f7wm)*(f7wo<=P.seuil)*P.taux*f7wn  +
                               max_(0,(f7wn>f7wm)*(f7wo>=P.seuil)*P.taux*f7wn/div)) +
              P.taux*f7wp)
 
 def _spfcpi(marpac, f7gq, f7fq, f7fm, f7fl, _P):
     '''
-    Souscription de parts de fonds communs de placement dans l'innovation, 
+    Souscription de parts de fonds communs de placement dans l'innovation,
     de fonds d'investissement de proximité
     2002-
     '''
@@ -245,15 +245,15 @@ def _spfcpi(marpac, f7gq, f7fq, f7fm, f7fl, _P):
     if _P.datesim.year <= 2002:
         return P.taux1*min_(f7gq, max1)
     elif _P.datesim.year <= 2006:
-        return (P.taux1*min_(f7gq, max1) + 
+        return (P.taux1*min_(f7gq, max1) +
                 P.taux1*min_(f7fq, max1) )
     elif _P.datesim.year <= 2010:
-        return (P.taux1*min_(f7gq, max1) + 
+        return (P.taux1*min_(f7gq, max1) +
                 P.taux1*min_(f7fq, max1) +
                 P.taux2*min_(f7fm, max1) )
 
     elif _P.datesim.year <= 2011:
-        return (P.taux1*min_(f7gq, max1) + 
+        return (P.taux1*min_(f7gq, max1) +
                 P.taux1*min_(f7fq, max1) +
                 P.taux2*min_(f7fm, max1) +
                 P.taux3*min_(f7fl, max1))
@@ -274,7 +274,7 @@ def _sofica(f7gn, f7fn, rng, _P):
     2006-
     '''
     P = _P.ir.reductions_impots.sofica
-    
+
     max0 = min_(P.taux1*max_(rng,0), P.max)
     max1 = min_(0, max0 - f7gn)
     return P.taux2*min_(f7gn, max0) + P.taux3*min_(f7fn, max1)
@@ -301,7 +301,7 @@ def _cappme(marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P):
         return P.taux*(min_(base,seuil)+min_(f7cu, seuil_tpe))  # TODO: Modify and add f7cq, check taux
     else:
         return f7cu*0
-    
+
 def _intemp(nb_pac, f7wg, _P):
     '''
     Intérêts d'emprunts
@@ -328,7 +328,7 @@ def _repsoc(marpac, f7fh, _P):
     P = _P.ir.reductions_impots.repsoc
     seuil = P.seuil*(marpac+1)
     return P.taux*min_(f7fh, seuil)
-    
+
 def _invfor(marpac, f7un, _P):
     '''
     Investissements forestiers
@@ -341,7 +341,7 @@ def _invfor(marpac, f7un, _P):
         return P.taux*f7un
     else:
         seuil = 0 # TODO vérifier la notice à partir de 2009
-        return P.taux*min_(f7un, seuil) 
+        return P.taux*min_(f7un, seuil)
 
 def _garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
     '''
@@ -352,17 +352,17 @@ def _garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
     P = _P.ir.reductions_impots.garext
     max1 = P.max
     max2 = P.max/2
-    
+
     if _P.datesim.year <= 2002:
-        return P.taux*(min_(f7ga, max1) + 
-                       min_(f7gb, max1) + 
+        return P.taux*(min_(f7ga, max1) +
+                       min_(f7gb, max1) +
                        min_(f7gc, max1) )
     elif _P.datesim.year <= 2005:
-        return P.taux*(min_(f7ga, max1) + 
-                       min_(f7gb, max1) + 
-                       min_(f7gc, max1) + 
-                       min_(f7ge, max2) + 
-                       min_(f7gf, max2) + 
+        return P.taux*(min_(f7ga, max1) +
+                       min_(f7gb, max1) +
+                       min_(f7gc, max1) +
+                       min_(f7ge, max2) +
+                       min_(f7gf, max2) +
                        min_(f7gg, max2) )
 
 def _deffor(f7uc, _P):
@@ -372,7 +372,7 @@ def _deffor(f7uc, _P):
     '''
     P = _P.ir.reductions_impots.deffor
     return P.taux*min_(f7uc, P.max)
-    
+
 def _daepad(f7cd, f7ce, _P):
     '''
     Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
@@ -401,7 +401,7 @@ def _assvie(nb_pac, f7gw, f7gx, f7gy, _P):
 
 def _invrev(marpac, f7gs, f7gt, f7xg, f7gu, f7gv, _P):
     '''
-    Investissements locatifs dans les résidences de tourisme situées dans une zone de 
+    Investissements locatifs dans les résidences de tourisme situées dans une zone de
     revitalisation rurale (cases GS, GT, XG, GU et GV)
     2002-2003
     TODO 1/4 codé en dur
@@ -421,11 +421,11 @@ def _invlst(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, 
     seuil1 = P.seuil1*(1+marpac)
     seuil2 = P.seuil2*(1+marpac)
     seuil3 = P.seuil3*(1+marpac)
- 
+
     if _P.datesim.year == 2011:  # TODO formula and params !!
         return 0*f7xc
- 
-    
+
+
     if _P.datesim.year == 2004: xc = P.taux_xc*min_(f7xc,seuil1/4)
     else: xc = P.taux_xc*min_(f7xc, seuil1/6)
     xd = P.taux_xd*f7xd
@@ -440,9 +440,9 @@ def _invlst(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, 
     xm = P.taux_xm*f7xm
     xn = P.taux_xn*min_(f7xn,seuil1/6)
     xo = P.taux_xo*f7xo
-    
+
     return xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo
-    
+
 def _domlog(f7ua, f7ub, f7uc, f7ui, f7uj, f7qb, f7qc, f7qd, f7ql, f7qt, f7qm, _P):
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
@@ -452,7 +452,7 @@ def _domlog(f7ua, f7ub, f7uc, f7ui, f7uj, f7qb, f7qc, f7qd, f7ql, f7qt, f7qm, _P
     if _P.datesim.year <=2007:
         P = _P.ir.reductions_impots.domlog
     if _P.datesim.year <= 2002:
-        return P.taux1*f7uj + P.taux2*(f7uc + f7ub + f7uc) 
+        return P.taux1*f7uj + P.taux2*(f7uc + f7ub + f7uc)
     elif _P.datesim.year <= 2004:
         return P.taux1*f7uj + P.taux2*(f7uc + f7ub + f7uc) + f7ui
     elif _P.datesim.year <= 2007:
@@ -461,9 +461,9 @@ def _domlog(f7ua, f7ub, f7uc, f7ui, f7uj, f7qb, f7qc, f7qd, f7ql, f7qt, f7qm, _P
         return f7ui
     elif _P.datesim.year <= 2009:
         return f7qb + f7qc + f7qd
-    elif _P.datesim.year <= 2010:        
+    elif _P.datesim.year <= 2010:
         return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
- 
+
 def _adhcga(f7ff, f7fg, _P):
     '''
     Frais de comptabilité et d'adhésion à un CGA ou AA
@@ -488,7 +488,7 @@ def _creaen(f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P):
         return (P.base*((f7jy + f7fy) + (f7hy + f7ly)/2) +
                 P.hand*((f7ky + f7gy) + (f7iy + f7my)/2) )
 
-        
+
 def _ecpess(f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, _P):
     '''
     Réduction d'impôt au titre des enfants à charge poursuivant leurs études secondaires ou supérieures
@@ -503,7 +503,7 @@ def _scelli(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P):
     Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
     2009-2010
     '''
-    # il est possible de cummuler différents dispositifs scelleir 
+    # il est possible de cummuler différents dispositifs scelleir
     # dans la limite d'un seul investissment par an
     P = _P.ir.reductions_impots.scelli
     # taux1 25%
@@ -513,7 +513,7 @@ def _scelli(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P):
     elif _P.datesim.year == 2010:
         return ( max_(
             max_(P.taux1*min_(P.max,f7hj), P.taux2*min_(P.max,f7hk)),
-            max_(P.taux1*min_(P.max,f7hn), P.taux2*min_(P.max,f7ho))   
+            max_(P.taux1*min_(P.max,f7hn), P.taux2*min_(P.max,f7ho))
                       )/9 +
             max_(P.taux1*min_(P.max,f7hl), P.taux2*min_(P.max,f7hm))/9 +
             max_(f7hr,f7hs) + f7la )
@@ -525,7 +525,7 @@ def _locmeu(f7ij, f7il, f7im, f7ik, f7is, _P):
     '''
     P = _P.ir.reductions_impots.locmeu
     return ( (max_(min_(P.max,f7ij), min_(P.max,f7il)) + min_(P.max,f7im))/9 + f7ik)*P.taux + f7is
-    
+
 def _doment(f7ur, f7oz, f7pz, f7qz, f7rz, f7sz):
     '''
     Investissements dans les DOM-TOM dans le cadre d'une entrepise.

@@ -65,11 +65,11 @@ def _charges_deduc_reforme(charge_loyer):
     return charge_loyer
 
 def _charge_loyer(loyer, nbptr, _P, _option = {'loyer': ALL}):
-    
+
     from numpy import logical_not as not_
     plaf = _P.ir.autre.charge_loyer.plaf
     plaf_nbp = _P.ir.autre.charge_loyer.plaf_nbp
-    plafond = plaf*(not_(plaf_nbp) + plaf*nbptr*plaf_nbp) 
+    plafond = plaf*(not_(plaf_nbp) + plaf*nbptr*plaf_nbp)
     return 12*_P.ir.autre.charge_loyer.active*min_(sum(loyer.itervalues()), plafond)
 
 
@@ -82,20 +82,20 @@ def _cd_penali(f6gi, f6gj, f6gp, f6el, f6em, f6gu, _P):
     Pensions alimentaires
     '''
     P = _P.ir.charges_deductibles.penalim
-    max1 = P.max 
+    max1 = P.max
     if _P.datesim.year <= 2005:
-        # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou 
-        # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune 
+        # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
+        # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
         # foyer, la déduction est limitée à 2*max
-        return (min_(f6gi ,max1) + 
-                min_(f6gj, max1) + 
+        return (min_(f6gi ,max1) +
+                min_(f6gj, max1) +
                 f6gp)
     else:
         taux = P.taux
-        return (min_(f6gi*(1 + taux), max1) + 
-                min_(f6gj*(1 + taux), max1) + 
-                min_(f6el, max1) + 
-                min_(f6em, max1) + 
+        return (min_(f6gi*(1 + taux), max1) +
+                min_(f6gj*(1 + taux), max1) +
+                min_(f6el, max1) +
+                min_(f6em, max1) +
                 f6gp*(1 + taux) + f6gu)
 
 def _cd_acc75a(f6eu, f6ev, _P):
@@ -108,14 +108,14 @@ def _cd_acc75a(f6eu, f6ev, _P):
 
 def _cd_percap(f6cb, f6da, marpac, _P):
     '''
-    Pertes en capital consécutives à la souscription au capital de sociétés 
-    nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration 
+    Pertes en capital consécutives à la souscription au capital de sociétés
+    nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
     complémentaire)
     '''
     P = _P.ir.charges_deductibles
     if _P.datesim.year <= 2002:
         max_cb = P.percap.max_cb*(1 + marpac)
-        return min_(f6cb, max_cb) 
+        return min_(f6cb, max_cb)
     elif _P.datesim.year <= 2006:
         max_cb = P.percap.max_cb*(1 + marpac)
         max_da = P.percap.max_da*(1 + marpac)
@@ -129,7 +129,7 @@ def _cd_deddiv(f6dd):
 
 def _cd_doment(f6eh, _P):
     '''
-    Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la 
+    Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
     déclaration n° 2042 complémentaire)
     2002-2005
     '''
@@ -140,18 +140,18 @@ def _cd_eparet(f6ps, f6rs, f6ss, f6pt, f6rt, f6st, f6pu, f6ru, f6su, _P):
     Épargne retraite - PERP, PRÉFON, COREM et CGOS
     2004-
     '''
-    # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur 
+    # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
     # le formulaire 2041 GX
-    return ((f6ps==0)*(f6rs + f6ss) + 
+    return ((f6ps==0)*(f6rs + f6ss) +
             (f6ps!=0)*min_(f6rs + f6ss, f6ps) +
-            (f6pt==0)*(f6rt + f6st) + 
+            (f6pt==0)*(f6rt + f6st) +
             (f6pt!=0)*min_(f6rt + f6st, f6pt) +
-            (f6pu==0)*(f6ru + f6su) + 
+            (f6pu==0)*(f6ru + f6su) +
             (f6pu!=0)*min_(f6ru + f6su, f6pu))
 
 def _cd_sofipe(f6cc, rbg_int, marpac, _P):
     '''
-    Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration 
+    Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
     complémentaire)
     2002-2006
     '''
@@ -161,7 +161,7 @@ def _cd_sofipe(f6cc, rbg_int, marpac, _P):
 
 def _cd_cinema(f6aa, rbg_int, _P):
     '''
-    Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la 
+    Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
     déclaration n° 2042 complémentaire)
     2002-2005
     '''
@@ -171,7 +171,7 @@ def _cd_cinema(f6aa, rbg_int, _P):
 
 def _cd_ecodev(f6eh, rbg_int, _P):
     '''
-    Versements sur un compte épargne codéveloppement (case EH de la déclaration 
+    Versements sur un compte épargne codéveloppement (case EH de la déclaration
     complémentaire)
     2007-2008
     '''
@@ -182,7 +182,7 @@ def _cd_ecodev(f6eh, rbg_int, _P):
 def _cd_grorep(f6cb, f6hj, _P):
     '''
     Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
-    2009- 
+    2009-
     '''
     P = _P.ir.charges_deductibles
     return min_(f6cb + f6hj, P.grorep.max)

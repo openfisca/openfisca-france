@@ -6,7 +6,7 @@
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
 ## OpenFisca
-## Merge individu and menage tables from eec and erf, keeping all observations 
+## Merge individu and menage tables from eec and erf, keeping all observations
 ## erf tables are a subset of eec tables (no observation in erf not in eec)
 ## and adding some variables at the menage table that may be useful later on (ddip,lpr)
 #
@@ -21,11 +21,11 @@ from src.countries.france.data.erf.datatable import DataCollection
 from numpy import where
 import gc
 
-from numpy import nan 
+from numpy import nan
 
 from src.countries.france.data.erf.build_survey import save_temp, load_temp
 import pdb
-    
+
 def create_indivim(year=2006):
     '''
     '''
@@ -34,17 +34,17 @@ def create_indivim(year=2006):
     erfmen = data.get_values(table="erf_menage")
     eecmen = data.get_values(table="eec_menage")
     print sorted(eecmen.columns)
-    
+
     erfind = data.get_values(table="erf_indivi")
     eecind = data.get_values(table="eec_indivi")
     print eecind.columns
-    print erfind.columns   
-    
+    print erfind.columns
+
     # travail sur la cohérence entre les bases
     noappar_m = eecmen[ ~(eecmen.ident.isin( erfmen.ident.values))]
     print 'describe noappar_m'
-    print noappar_m.describe()     
-        
+    print noappar_m.describe()
+
     noappar_i = eecmen[ ~(eecmen.ident.isin( erfmen.ident.values))]
     noappar_i = noappar_i.drop_duplicates(cols='ident', take_last = True)
     #TODO: vérifier qu'il n'y a théoriquement pas de doublon
@@ -55,21 +55,21 @@ def create_indivim(year=2006):
     print dif, int
     del noappar_i, noappar_m, dif, int
     gc.collect()
-        
+
     #fusion enquete emploi et source fiscale
     menagem = erfmen.merge(eecmen)
     indivim = eecind.merge(erfind, on = ['noindiv', 'ident', 'noi'], how="inner")
 
     # optimisation des types? Controle de l'existence en passant
     #TODO: minimal dtype
-    var_list = (['acteu', 'stc', 'contra', 'titc', 'forter', 'mrec', 'rstg', 'retrai', 'lien', 'noicon', 
+    var_list = (['acteu', 'stc', 'contra', 'titc', 'forter', 'mrec', 'rstg', 'retrai', 'lien', 'noicon',
                  'noiper', 'noimer', 'naia', 'cohab', 'agepr', 'statut', 'txtppb', 'encadr', 'prosa'])
     for var in var_list:
         try:
             indivim[var] = indivim[var].astype("float32")
         except:
             print "%s is missing" %var
-    
+
     # création de variables
     ## actrec
     indivim['actrec'] = 0
@@ -88,19 +88,19 @@ def create_indivim(year=2006):
     indivim['actrec'][indivim['acteu'] == 3] =  8
     indivim['actrec'][indivim['acteu'].isnull()] =  9
     print indivim['actrec'].value_counts()
-    # tu99 
+    # tu99
     if year == 2009:
         #erfind['tu99'] = None
         #eecind['tu99'] = float(eecind['tu99'])
-        erfind['tu99'] = NaN   
-        
+        erfind['tu99'] = NaN
+
     ## locataire
     menagem["locataire"] = menagem["so"].isin([3,4,5])
     menagem["locataire"] = menagem["locataire"].astype("int32")
     ## ?? c'est bizarre d'avoir besoin du diplome de la personne de référence,
     ## ce serait mieux de faire le merge quand on a besoin seulement
     ## laissons à la table individuel ce qui doit l'être
-    
+
 #    NOTE pas de ddipl en year=2006 visiblement
 #    transfert = indivim.ix[indivim['lpr'] == 1, ['ident', 'ddipl']]
 #    print transfert
@@ -108,7 +108,7 @@ def create_indivim(year=2006):
 ##     #menagem <- merge(erfmen,eecmen)
 ##     #menagem <- merge(menagem,transfert)
 #    menagem  = menagem.merge(transfert)
-    
+
     # correction
     def _manually_remove_errors():
         '''
@@ -116,12 +116,12 @@ def create_indivim(year=2006):
         It is here to remove all these individual errors that compromise the process.
         GL,HF
         '''
-        
+
         if year==2006:
             indivim.lien[indivim.noindiv==603018905] = 2
             indivim.noimer[indivim.noindiv==603018905] = 1
             print indivim[indivim.noindiv==603018905].to_string()
-            
+
     _manually_remove_errors()
 
     # save
@@ -134,7 +134,7 @@ def create_indivim(year=2006):
     print 'indivim saved'
     gc.collect()
 
-    
+
 
 def create_enfnn(year=2006):
     '''
@@ -142,7 +142,7 @@ def create_enfnn(year=2006):
     #load
     data = DataCollection(year=year)
     ### Enfant à naître (NN pour nouveaux nés)
-    individual_vars = ['noi', 'noicon', 'noindiv', 'noiper', 'noimer', 'ident', 'naia', 'naim', 'lien', 
+    individual_vars = ['noi', 'noicon', 'noindiv', 'noiper', 'noimer', 'ident', 'naia', 'naim', 'lien',
                'acteu','stc','contra','titc','mrec','forter','rstg','retrai','lpr','cohab','sexe',
                'agepr','rga']
     data = DataCollection(year=year)
@@ -159,8 +159,8 @@ def create_enfnn(year=2006):
         print var
         enfnn[var] = enfnn[var].astype('float')
     del eeccmp1, eeccmp2, eeccmp3, individual_vars
- 
-    # création de variables   
+
+    # création de variables
     print enfnn.describe()
     enfnn['declar1'] = ''
     enfnn['noidec'] = 0
@@ -168,22 +168,22 @@ def create_enfnn(year=2006):
     enfnn['year'] = year
     enfnn['year'] = enfnn['year'].astype("float32") # -> integer ?
     enfnn['agepf'] = enfnn['year'] - enfnn['naia']
-    enfnn['agepf'][enfnn['naim'] >= 7] -= 1 
+    enfnn['agepf'][enfnn['naim'] >= 7] -= 1
     enfnn['actrec'] = 9
     enfnn['quelfic'] = 'ENF_NN'
     enfnn['persfip'] = ""
-    
+
     #selection
     #enfnn <- enfnn[(enfnn$naia==enfnn$year & enfnn$naim>=10) | (enfnn$naia==enfnn$year+1 & enfnn$naim<=5),]
-    enfnn = enfnn[((enfnn['naia'] == enfnn['year']) & (enfnn['naim'] >= 10)) | 
+    enfnn = enfnn[((enfnn['naia'] == enfnn['year']) & (enfnn['naim'] >= 10)) |
                       ((enfnn['naia'] == enfnn['year'] + 1) & (enfnn['naim'] <= 5))]
     #save
     save_temp(enfnn, name="enfnn", year=year)
     del enfnn
     print "enfnnm saved"
     gc.collect()
-    
-    
+
+
 if __name__ == '__main__':
     print('Entering 01_pre_proc')
     import time

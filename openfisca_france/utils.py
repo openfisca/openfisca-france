@@ -32,13 +32,13 @@ from . import WEIGHT
 
 def preproc_inputs(datatable):
     """
-    Preprocess inputs table: country specific manipulations 
-    
+    Preprocess inputs table: country specific manipulations
+
     Parameters
     ----------
     datatable : a DataTable object
                 the DataTable containing the input variables of the model
-    
+
     """
     try:
         datatable.propagate_to_members(WEIGHT, 'ind')
@@ -59,9 +59,9 @@ def check_consistency(table_simu, dataframe, corrige = True):
     corrige : if corrige is True, the function tries to correct errors in datatable by passing default values
     '''
     #check_inputs_enumcols(simulation):
-    # TODO: eventually should be a method of SurveySimulation specific for france 
+    # TODO: eventually should be a method of SurveySimulation specific for france
 
-    
+
 
     is_ok = True
     message = "\n"
@@ -69,7 +69,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
     unconsistent_variables = []
     present_variables = []
     count = 0
-    
+
     from .data.erf.build_survey.utilitaries import control
     print 'Controlling simulation input_table'
     control(table_simu.table, verbose = True)
@@ -77,7 +77,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
     # First : study of the datatable / the specification of columns given by table_simu
     for var in table_simu.description.columns:
         try:
-                        
+
             varcol  = table_simu.description.get_col(var)
             serie = dataframe[var]
             simu_serie = table_simu.table[var]
@@ -92,7 +92,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 cnt = len(set(simu_serie.isnull())) - len(set(serie.isnull()))
                 if 0 < cnt:
                     message += "Warning : %s More NA's in simulation than in original dataframe for %s \n" %(str(cnt), var)
-                    
+
                 if corrige:
                     try:
                         message += "Filling NA's with default values for %s... \n" %var
@@ -103,19 +103,19 @@ def check_consistency(table_simu, dataframe, corrige = True):
 
             if not corrige: # On ne modifie pas la série donc on peut l'amputer, elle n'est pas en return
                 serie = serie[serie.notnull()]
-                
+
             # Then checks if all values are of specified datatype
             # verify type, force type
-            
+
             if isinstance(varcol, EnumCol) or isinstance(varcol, EnumPresta):
                 try:
-                    if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):  
+                    if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):
                         message +=  "Some variables out of range for EnumCol variable %s : \n" %var
                         message += str(set(serie.unique()) - set(sorted(varcol.enum._nums.values()))) + "\n"
                         #print varcol.enum._nums
                         #print sorted(serie.unique()), "\n"
                         is_ok = False
-                        
+
                 except:
                     is_ok = False
                     message += "Error : no _num attribute for EnumCol.enum %s \n" %var
@@ -123,7 +123,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     #print sorted(serie.unique()), "\n"
                 try:
                     varcol.enum._vars
-                    
+
                 except:
                     is_ok = False
                     message += "Error : no _var attribute for EnumCol.enum %s \n" %var
@@ -140,9 +140,9 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     varcol.enum
                 except:
                     is_ok = False
-                    message += "Error : not enum attribute for EnumCol %s ! \n" %var 
+                    message += "Error : not enum attribute for EnumCol %s ! \n" %var
                     # Never happening, enum attribute is initialized to None at least
-        
+
             if isinstance(varcol, IntCol) or isinstance(varcol, IntPresta):
                 if serie.dtype not in ('int', 'int16', 'int32', 'int64'):
                     is_ok = False
@@ -162,8 +162,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
                             message += "sorry, cannot force type.\n"
                 else:
                     message += "Values for %s are in range [%s,%s]\n" %(var,str(serie.min()),str(serie.max()))
-                    
-                    
+
+
             if isinstance(varcol, BoolCol) or isinstance(varcol, BoolPresta):
                 if serie.dtype != 'bool':
                     is_ok = False
@@ -176,7 +176,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                             message += "Done \n"
                         except:
                             message += "sorry, cannot force type.\n"
-                            
+
             if isinstance(varcol, AgesCol):
                 if not serie.dtype in ('int', 'int16', 'int32', 'int64'):
                     is_ok = False
@@ -186,7 +186,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     message += "Total frequency for non-integers for %s is %s \n" %(var, str(len(stash)))
                     if corrige:
                         pass
-                    
+
                 if not serie.isin(range(-1,156)).all(): # Pas plus vieux que 100 ans ?
                     is_ok = False
                     #print serie[serie.notnull()]
@@ -204,7 +204,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                             del tmp
                         except:
                             message += "sorry, cannot fix outranges.\n"
-                      
+
             if isinstance(varcol, FloatCol):
                 if serie.dtype not in ('float','float32','float64','float16'):
                     is_ok = False
@@ -212,41 +212,41 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     stash = list(set(serie.unique()) - set(range(serie.min(), serie.max()+1)))
                     message += str(stash) + "\n"
                     message += "Total frequency for non-integers for %s is %s \n" %(var, str(len(stash)))
-                      
+
             if isinstance(varcol, DateCol):
                 if serie.dtype != 'np.datetime64':
                     is_ok = False
                     #print serie[serie.notnull()]
                     message +=  "Some values in column %s are not of type date as wanted \n" %var
-                    
+
             if corrige:
                 dataframe[var] = serie
             count += 1
             del serie, varcol
-            
 
-            
+
+
         except:
             is_ok = False
             missing_variables.append(var)
             #message = "Oh no ! Something went wrong in the tests. You may have coded like a noob"
-        
+
     # TODO : Then, comparaison between datatable and table_simu.table ?
-    
+
     if len(missing_variables) > 0:
         message += "Some variables were not present in the datatable or caused an error:\n" + str(sorted(missing_variables)) + "\n"
         message += "Variables present in both tables :\n" + str(sorted(present_variables)) + "\n"
     else:
         message += "All variables were present in the datatable and were handled without error \n"
-    
+
     if is_ok:
         print "All is well. Sleep mode activated."
     else:
         print message
-        
+
     if corrige:
         return dataframe
     else:
         return
-    
+
     #NotImplementedError

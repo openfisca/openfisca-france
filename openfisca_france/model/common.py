@@ -42,7 +42,7 @@ def _typ_men(isol, af_nbenf):
     _1_kid = af_nbenf == 1
     _2_kid = af_nbenf == 2
     _3_kid = af_nbenf >= 3
-    
+
     return (0*(isol & _0_kid) + # Célibataire
             1*(not_(isol) & _0_kid) + # Couple sans enfants
             2*(not_(isol) & _1_kid) + # Couple un enfant
@@ -51,8 +51,8 @@ def _typ_men(isol, af_nbenf):
             5*(isol & _1_kid) + # Famille monoparentale un enfant
             6*(isol & _2_kid) + # Famille monoparentale deux enfants
             7*(isol & _3_kid) ) # Famille monoparentale trois enfants et plus
-            
-    
+
+
 def _revdisp_i(rev_trav, pen, rev_cap, ir_lps, psoc, ppe, impo):
     '''
     Revenu disponible
@@ -82,7 +82,7 @@ def _revnet_i(rev_trav, pen, rev_cap):
     Revenu net individuel
     'ind'
     '''
-    return rev_trav + pen + rev_cap 
+    return rev_trav + pen + rev_cap
 
 def _revnet(revnet_i, _option = {'revnet_i': ALL}):
     '''
@@ -190,7 +190,7 @@ def _rev_cap(fon, rev_cap_bar, cotsoc_bar, rev_cap_lib, cotsoc_lib, imp_lib, rac
     Revenus du patrimoine
     '''
     return fon + rev_cap_bar + cotsoc_bar + rev_cap_lib + cotsoc_lib + imp_lib + rac
- 
+
 def _psoc(pfam, mini, logt):
     '''
     Prestations sociales
@@ -225,23 +225,23 @@ def _crds(crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_
     '''
     Contribution au remboursement de la dette sociale
     '''
-    return (crdssal + crdsrst + crdscho + 
+    return (crdssal + crdsrst + crdscho +
             crds_fon + crds_cap_bar + crds_cap_lib + crds_pv_mo + crds_pv_immo +
             crds_pfam + crds_lgtm + crds_mini)
-        
+
 def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
     """
     Contribution sociale généralisée
     """
-    return (csgsali + csgsald + csgchoi + csgchod + csgrsti + 
+    return (csgsali + csgsald + csgchoi + csgchod + csgrsti +
             csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo)
 
 
 def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     '''
-    Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar) 
+    Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
     '''
-    return cotpat_noncontrib + cotsal_noncontrib 
+    return cotpat_noncontrib + cotsal_noncontrib
 
 def _prelsoc_cap(prel_soc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_pv_immo):
     """
@@ -288,9 +288,9 @@ def _pauvre40(nivvie, champm, wprm):
     '''
     labels = arange(1,3)
     method = 2
-    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True) 
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True)
     threshold = .4*values[1]
-    return (nivvie <= threshold)*champm 
+    return (nivvie <= threshold)*champm
 
 
 def _pauvre50(nivvie, champm, wprm):
@@ -300,9 +300,9 @@ def _pauvre50(nivvie, champm, wprm):
     '''
     labels = arange(1,3)
     method = 2
-    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True) 
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True)
     threshold = .5*values[1]
-    return (nivvie <= threshold)*champm 
+    return (nivvie <= threshold)*champm
 
 def _pauvre60(nivvie, champm, wprm):
     '''
@@ -311,7 +311,7 @@ def _pauvre60(nivvie, champm, wprm):
     '''
     labels = arange(1,3)
     method = 2
-    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True) 
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True)
     threshold = .6*values[1]
     return (nivvie <= threshold)*champm
 

@@ -12,7 +12,7 @@ import os
 
 
 def get_csv_file_name(year):
-    
+
     os.path.dirname(DATA_DIR)
     R_DIR = os.path.join(os.path.dirname(DATA_DIR),'R','openfisca', str(year))
     yr = str(year)[2:]
@@ -21,7 +21,7 @@ def get_csv_file_name(year):
 
 def build_survey_psl():
     year = 2006
-    h5_name = '../survey_psl.h5'    
+    h5_name = '../survey_psl.h5'
     dfname = 'survey_' + str(year)
     os.path.dirname(DATA_DIR)
     PSL_DIR = os.path.join(os.path.dirname(DATA_DIR),'PSL')
@@ -38,14 +38,14 @@ def build_survey(year, option='frame'):
     csv2hdf5(csv_name, h5_name, dfname, option=option)
 
 def build_all_surveys( option = 'frame'):
-    h5_name = '../survey.h5'    
+    h5_name = '../survey.h5'
     try:
         os.remove(h5_name)
     except:
         pass
     for year in range(2006,2010):
         build_survey(year, option=option)
-        
+
 
 
 
