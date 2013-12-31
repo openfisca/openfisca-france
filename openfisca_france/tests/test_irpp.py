@@ -20,7 +20,6 @@ def test_irpp():
     test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 € 
     et des revenus de différentes origines 
     """
-    country = 'france'
     dico = { 
 # test pour un célibataire ayant un revenu salarial (1AJ) 
             "sali": [
@@ -121,7 +120,7 @@ def test_irpp():
             amount = item["amount"]
             irpp = item["irpp"]
             simulation = ScenarioSimulation()
-            simulation.set_config(year = year, country = country, nmen = 1)
+            simulation.set_config(year = year, nmen = 1)
             simulation.set_param()
             test_case = simulation.scenario  
             if revenu in ["rsti", "sali"]:
@@ -145,7 +144,6 @@ def test_irpp():
 #     """
 #     test ppe pour un célibataire  
 #     """
-#     country = 'france'
 #     dico = { 
 # # test pour un célibataire ayant un revenu salarial (1AJ) 
 #             "sali": [
@@ -161,7 +159,7 @@ def test_irpp():
 #             amount = item["amount"]
 #             ppe = item["ppe"]
 #             simulation = ScenarioSimulation()
-#             simulation.set_config(year = year, country = country, nmen = 1)
+#             simulation.set_config(year = year, nmen = 1)
 #             simulation.set_param()
 #             test_case = simulation.scenario  
 #             if revenu in ["rsti", "sali"]:

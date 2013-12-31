@@ -64,7 +64,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             
         self.setLayout(self.verticalLayout)
         # Initialize xaxes
-        country = 'france'
         axes = axestools.build_axes()
         xaxis = self.get_option('xaxis')
         
@@ -116,14 +115,13 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         maxrev = self.maxrev
         nmen = self.get_option('nmen')
         self.nmen = nmen
-        country = CONF.get('parameters', 'country')
         value = CONF.get('parameters', 'datesim')
         datesim = datetime.strptime(value ,"%Y-%m-%d").date()
         
         year = datesim.year
         self.simulation = simulation
-        self.simulation.set_config(year = year, country = country, xaxis = xaxis, 
-                                            nmen = self.nmen, maxrev = maxrev, reforme = False, mode ='bareme')
+        self.simulation.set_config(year = year, xaxis = xaxis, nmen = self.nmen, maxrev = maxrev, reforme = False, 
+            mode ='bareme')
         self.simulation.set_param()
         self.scenario = self.simulation.scenario
 
@@ -516,7 +514,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             self.maxrev = maxrev
             print "in apply setting :" , self.maxrev
         if 'xaxis' in options:
-            country = CONF.get('parameters','country')
             axes = axestools.build_axes()
             xaxis = self.get_option('xaxis')
             axes_names = []
