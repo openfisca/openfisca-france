@@ -88,6 +88,8 @@ class Scenario(object):
             return value, None
         if state is None:
             state = conv.default_state
+
+        # First validation and conversion step
         attributes, error = conv.pipe(
             conv.test_isinstance(dict),
             conv.struct(
@@ -231,6 +233,7 @@ class Scenario(object):
         if error is not None:
             return attributes, error
 
+        # Second validation step
         indiv_indexes = sorted(attributes['indiv'].iterkeys())
         return conv.struct(
             dict(
