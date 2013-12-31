@@ -119,6 +119,7 @@ def test_case_study():
         menage = {
             '0': dict(),
             },
+        nmen = 1,
         year = 2006,
         )
     print json.dumps(result, ensure_ascii = False, indent = 2, sort_keys = True)
