@@ -23,6 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import collections
 import json
 import logging
 import urllib2
@@ -40,7 +41,7 @@ web_api_url = 'http://localhost:2014/'
 
 
 api_response_to_value = conv.pipe(
-    conv.make_input_to_json(),
+    conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
     conv.not_none,
     conv.test_isinstance(dict),
     conv.struct(
@@ -62,6 +63,7 @@ api_response_to_value = conv.pipe(
                 ),
             value = conv.noop,
             ),
+        constructor = collections.OrderedDict,
         ),
     conv.function(lambda response: response['value']),
     )
@@ -76,11 +78,11 @@ def simulate_case_study(**simulation):
     except urllib2.HTTPError as response:
         response_text = response.read()
         try:
-            response_dict = json.loads(response_text)
+            response_dict = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
         except ValueError:
             log.error(response_text)
             raise
-        log.error(json.dumps(response_dict, ensure_ascii = False, indent = 2, sort_keys = True))
+        log.error(json.dumps(response_dict, ensure_ascii = False, indent = 2))
         raise
     assert response.code == 200
     result, error = api_response_to_value(response.read(), state = conv.default_state)
@@ -88,7 +90,7 @@ def simulate_case_study(**simulation):
         if isinstance(error, dict):
             error = json.dumps(error, ensure_ascii = False, indent = 2, sort_keys = True)
         if isinstance(value, dict):
-            value = json.dumps(value, ensure_ascii = False, indent = 2, sort_keys = True)
+            value = json.dumps(value, ensure_ascii = False, indent = 2)
         raise ValueError(u'{0} for: {1}'.format(error, value).encode('utf-8'))
     return result
 
@@ -125,5 +127,5 @@ def test_case_study():
             ],
         x_axis = 'sali',
         )
-    print json.dumps(result, ensure_ascii = False, indent = 2, sort_keys = True)
+    print json.dumps(result, ensure_ascii = False, indent = 2)
 
