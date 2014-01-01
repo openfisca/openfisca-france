@@ -222,19 +222,10 @@ class Scenario(object):
                         conv.empty_to_none,
                         conv.not_none,
                         ),
-                    nmen = conv.pipe(
-                        conv.test_isinstance(int),
-                        conv.test_greater_or_equal(1),
-                        conv.not_none,
-                        ),
                     year = conv.pipe(
                         conv.test_isinstance(int),
                         conv.test_greater_or_equal(1900),  # TODO: Check that year is valid in params.
                         conv.not_none,
-                        ),
-                    x_axis = conv.pipe(
-                        conv.test_isinstance(basestring),
-                        conv.test_in(model.x_axes.keys()),
                         ),
                     ),
                 ),

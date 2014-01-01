@@ -68,15 +68,11 @@ api_response_to_value = conv.pipe(
 
 
 def simulate_case_study(**simulation):
-    request_data = dict(
-        # api_key,
-        value = simulation,
-        )
     request_headers = headers.copy()
     request_headers['Content-Type'] = 'application/json'
     request = urllib2.Request(urlparse.urljoin(web_api_url, 'api/1/simulate'), headers = request_headers)
     try:
-        response = urllib2.urlopen(request, json.dumps(request_data))
+        response = urllib2.urlopen(request, json.dumps(simulation))
     except urllib2.HTTPError as response:
         response_text = response.read()
         try:
@@ -99,28 +95,34 @@ def simulate_case_study(**simulation):
 
 def test_case_study():
     result = simulate_case_study(
-        declar = {
-            '0': dict(),
-            },
-        famille = {
-            '0': dict(),
-            },
-        indiv = [
+        # api_key,
+        maxrev = 100000,
+        nmen = 3,
+        scenarios = [
             dict(
-                birth = '1965-12-27',
-                noichef = 0,
-                noidec = 0,
-                noipref = 0,
-                quifam = 'chef',
-                quifoy = 'vous',
-                quimen = 'pref',
+                declar = {
+                    '0': dict(),
+                    },
+                famille = {
+                    '0': dict(),
+                    },
+                indiv = [
+                    dict(
+                        birth = '1965-12-27',
+                        noichef = 0,
+                        noidec = 0,
+                        noipref = 0,
+                        quifam = 'chef',
+                        quifoy = 'vous',
+                        quimen = 'pref',
+                        ),
+                    ],
+                menage = {
+                    '0': dict(),
+                    },
+                year = 2006,
                 ),
             ],
-        menage = {
-            '0': dict(),
-            },
-        nmen = 1,
-        year = 2006,
         x_axis = 'sali',
         )
     print json.dumps(result, ensure_ascii = False, indent = 2, sort_keys = True)
