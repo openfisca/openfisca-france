@@ -180,4 +180,3 @@ def init_country(qt = False):
 
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget
-#        qt_widgets.ScenarioWidget = ScenarioWidget
