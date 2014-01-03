@@ -89,9 +89,9 @@ def simulate_case_study(**simulation):
     if error is not None:
         if isinstance(error, dict):
             error = json.dumps(error, ensure_ascii = False, indent = 2, sort_keys = True)
-        if isinstance(value, dict):
-            value = json.dumps(value, ensure_ascii = False, indent = 2)
-        raise ValueError(u'{0} for: {1}'.format(error, value).encode('utf-8'))
+        if isinstance(result, dict):
+            result = json.dumps(result, ensure_ascii = False, indent = 2)
+        raise ValueError(u'{0} for: {1}'.format(error, result).encode('utf-8'))
     return result
 
 
