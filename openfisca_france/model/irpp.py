@@ -321,12 +321,12 @@ def _ir_brut(nbptr, rni, _P):
     bar = _P.ir.bareme
     bar.t_x()
 #    bar._linear_taux_moy = True
-    return nbptr*bar.calc(rni/nbptr) # TODO : partir d'ici, petite différence avec Matlab
+    return nbptr*bar.calc(rni/nbptr) # TODO: partir d'ici, petite différence avec Matlab REMOVE
 
 def _ir_ss_qf(ir_brut, rni, nb_adult, _P):
     ''' Impôt sans quotient familial '''
     P = _P.ir
-    I = ir_brut
+    I = ir_brut # TODO: REMOVE 
     A = P.bareme.calc(rni/nb_adult)
     return nb_adult*A
 
