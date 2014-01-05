@@ -147,8 +147,8 @@ def init_country(qt = False):
         from openfisca_qt import widgets as qt_widgets
 
     from . import decompositions, scenarios, utils
-    from .model.data import InputDescription
-    from .model.model import OutputDescription
+    from .model.data import column_by_name
+    from .model.model import prestation_by_name
     if qt:
         from .widgets.Composition import CompositionWidget
 
@@ -162,9 +162,9 @@ def init_country(qt = False):
     core_model.DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE
     core_model.ENTITIES_INDEX = ENTITIES_INDEX
     core_model.FILTERING_VARS = FILTERING_VARS
-    core_model.InputDescription = InputDescription
-    core_model.OutputDescription = OutputDescription
+    core_model.column_by_name = column_by_name
     core_model.PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
+    core_model.prestation_by_name = prestation_by_name
     core_model.REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     core_model.REV_TYP = None  # utils.REV_TYP  # Not defined for France
     core_model.REVENUES_CATEGORIES = REVENUES_CATEGORIES
@@ -172,7 +172,7 @@ def init_country(qt = False):
     core_model.WEIGHT = WEIGHT
     core_model.WEIGHT_INI = WEIGHT_INI
     core_model.x_axes = dict(
-        (col_name, XAxis(col_name = col_name, label = InputDescription.column_by_name[col_name].label, **properties))
+        (col_name, XAxis(col_name = col_name, label = column_by_name[col_name].label, **properties))
         for col_name, properties in X_AXES_PROPERTIES.iteritems()
         )
 
