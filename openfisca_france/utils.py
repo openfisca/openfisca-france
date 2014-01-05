@@ -75,10 +75,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
     control(table_simu.table, verbose = True)
 
     # First : study of the datatable / the specification of columns given by table_simu
-    for var in table_simu.description.columns:
+    for var, varcol in table_simu.column_by_name.iteritems():
         try:
-
-            varcol  = table_simu.description.get_col(var)
             serie = dataframe[var]
             simu_serie = table_simu.table[var]
             present_variables.append(var)

@@ -34,7 +34,7 @@ from openfisca_core import __version__ as VERSION
 from openfisca_core import model
 
 from . import conv, ENTITIES_INDEX
-from .model.data import InputDescription, QUIFAM, QUIFOY, QUIMEN
+from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 
 class Scenario(object):
@@ -108,7 +108,7 @@ class Scenario(object):
                                 conv.struct(
                                     dict(
                                         (column.name, column.json_to_python)
-                                        for column in InputDescription.columns
+                                        for column in column_by_name.itervalues()
                                         if column.entity == 'foy'
                                         ),
                                     ),
@@ -132,7 +132,7 @@ class Scenario(object):
                                 conv.struct(
                                     dict(
                                         (column.name, column.json_to_python)
-                                        for column in InputDescription.columns
+                                        for column in column_by_name.itervalues()
                                         if column.entity == 'fam'
                                         ),
                                     ),
@@ -185,7 +185,7 @@ class Scenario(object):
                                             ).iteritems(),
                                         (
                                             (column.name, column.json_to_python)
-                                            for column in InputDescription.columns
+                                            for column in column_by_name.itervalues()
                                             if column.entity == 'ind' and column.name not in ('age', 'agem', 'quifam',
                                                 'quifoy', 'quimen')
                                             ),
@@ -212,7 +212,7 @@ class Scenario(object):
                                 conv.struct(
                                     dict(
                                         (column.name, column.json_to_python)
-                                        for column in InputDescription.columns
+                                        for column in column_by_name.itervalues()
                                         if column.entity == 'men'
                                         ),
                                     ),
@@ -542,10 +542,10 @@ class Scenario(object):
             age = datesim.year- birth.year
             agem = 12*(datesim.year- birth.year) + datesim.month - birth.month
             noidec = dct['noidec']
-            quifoy = datatable.description.get_col('quifoy').enum[dct['quifoy']]
-            quifam = datatable.description.get_col('quifam').enum[dct['quifam']]
+            quifoy = datatable.column_by_name.get('quifoy').enum[dct['quifoy']]
+            quifam = datatable.column_by_name.get('quifam').enum[dct['quifam']]
             noichef = dct['noichef']
-            quimen = datatable.description.get_col('quimen').enum[dct['quimen']]
+            quimen = datatable.column_by_name.get('quimen').enum[dct['quimen']]
 
             dct = {'noi': noi*np.ones(nmen),
                    'age': age*np.ones(nmen),
@@ -561,9 +561,9 @@ class Scenario(object):
 
         datatable.gen_index(ENTITIES_INDEX)
 
-        for name in datatable.col_names:
-            if not name in datatable.table:
-                datatable.table[name] = datatable.description.get_col(name)._default
+        for name, column in datatable.column_by_name.iteritems():
+            if name not in datatable.table:
+                datatable.table[name] = column._default
 
         entity = 'men'
         nb = datatable.index[entity]['nb']
