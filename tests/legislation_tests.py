@@ -92,3 +92,8 @@ def test_legislation_xml_file():
             unicode(json.dumps(errors, ensure_ascii = False, indent = 2, sort_keys = True)),
             unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
+
+
+if __name__ == '__main__':
+    import nose
+    nose.core.runmodule(argv=[__file__, '-v', 'legislation_tests:test_ipp_legislation_xml_file'])
