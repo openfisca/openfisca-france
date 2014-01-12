@@ -6,8 +6,12 @@
 # Licensed under the terms of the GPL (version 3 or later) license
 # (see openfisca/__init__.py for details)
 
+
 from __future__ import division
-from numpy import (floor, logical_not as not_, arange)
+
+from numpy import arange, floor, logical_not as not_
+from openfisca_core.statshelpers import mark_weighted_percentiles
+
 from .data import QUIFAM, QUIMEN
 
 
@@ -248,8 +252,6 @@ def _prelsoc_cap(prel_soc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, 
     Prélèvements sociaux sur les revenus du capital
     """
     return prel_soc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
-
-from openfisca_core.utils import mark_weighted_percentiles
 
 def _decile(nivvie, champm, wprm):
     '''
