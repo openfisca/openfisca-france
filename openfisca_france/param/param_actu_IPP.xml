@@ -1420,20 +1420,18 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Formation professionnelle (plus de 20 salariés)" taille="plusde20" code="formprof" option="contrib">
+        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="contrib">
           <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
         </SEUIL>
         <TAUX>
           <VALUE valeur="0.016" deb="2004-01-01" fin="2012-12-31"/>
-        </TAUX>
-        <TAUX>
           <VALUE valeur="0.015" deb="1993-07-01" fin="2003-12-31"/>
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Effort à la construction (plus de 20 salariés)" taille="plusde20" code="construction" option="noncontrib">
+        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
@@ -1788,11 +1786,11 @@
       </NODE>
     </NODE>
     <NODE description="Exonération sur les bas salaires" code="exo_fillon">
-      <CODE description="Taux maximum (plus de 20 salariés)" taille="plusde20" code="tx_max" format="percent">
+      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
         <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
         <VALUE valeur=".26" deb="2005-01-01" fin="2012-12-31"/>
       </CODE>
-      <CODE description="Taux maximum (moins de 20 salariés)" taille="moinsde20" code="tx_max2" format="percent">
+      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
     <VALUE valeur=".281" deb="2007-07-01" fin="2012-12-31"/>
       </CODE>
       <CODE description="Point de sortie (en smic)" code="seuil" format="percent">
