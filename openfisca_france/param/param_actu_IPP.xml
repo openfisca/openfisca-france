@@ -3998,7 +3998,7 @@
     <VALUE valeur="8000" deb="2007-07-01" fin="2013-12-31"/>
       </CODE>
       <CODE description="Plancher ressources AL en secteur accession R. 351-7-1" code="dar_2_2" format="float" type="monetary">
-    <VALUE valeur="" deb="2002-01-01" fin="2002-06-30"/>  # non trouvé
+    <!--VALUE valeur="" deb="2002-01-01" fin="2002-06-30"/-->  # non trouvé
     <VALUE valeur="3100" deb="2002-07-01" fin="2007-06-30"/>
     <VALUE valeur="3900" deb="2007-07-01" fin="2013-12-31"/>
       </CODE>
