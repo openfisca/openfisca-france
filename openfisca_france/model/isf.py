@@ -35,7 +35,6 @@ def _isf_imm_non_bati(b1bc, b1be, b1bh, b1bk, _P):
     # part de groupements forestiers- agricoles fonciers
     b1bi = min_(b1bh, P.seuil)*P.taux_r1
     b1bj = max_(b1bh-P.seuil,0)*P.taux_r2
-
     return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
 
 
@@ -52,7 +51,6 @@ def _isf_droits_sociaux(isf_actions_sal, b1cb, b1cd, b1ce, b1cf, b1cg, _P):
     P = _P.isf.droits_soc
     # parts ou actions de sociétés avec engagement de 6 ans conservation minimum
     b1cc = b1cb*P.taux2
-
     return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
 
 def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, _P):
@@ -75,7 +73,7 @@ def _isf_reduc_pac(nb_pac, nbH, _P):
     '''
     Réductions pour personnes à charges
     '''
-    P= _P.isf.reduc_pac
+    P = _P.isf.reduc_pac
     return P.reduc_1*nb_pac + P.reduc_2*nbH
 
 def _isf_inv_pme(b2mt, b2ne, b2mv, b2nf, b2mx, b2na, _P):
@@ -90,28 +88,28 @@ def _isf_inv_pme(b2mt, b2ne, b2mv, b2nf, b2mx, b2na, _P):
     fcpi= b2na*P.taux1
     return holdings + fip + fcpi + inv_dir_soc
 
-
 def _isf_org_int_gen(b2nc, _P):
     P = _P.isf.pme
     return b2nc*P.taux2
 
-def _isf_avant_plaf(isf_iai, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, _P ) :
+def _isf_avant_plaf(isf_iai, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, _P):
     '''
     Montant de l'impôt avant plafonnement
     '''
     borne_max = _P.isf.pme.max
     return max_(0, isf_iai - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
+
 ## calcul du plafonnement ##
 
-def _tot_impot(irpp, isf_avant_plaf ):
+def _tot_impot(irpp, isf_avant_plaf):
     return -irpp + isf_avant_plaf
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
-# + prélèvement libé de l'année passée + montant de la csg TODO
+# + prélèvement libé de l'année passée + montant de la csg TODO:
 
 def _revetproduits(sal_net, pen_net, rto_net, rfr_rvcm, fon, ric, rag, rpns_exon, rpns_pvct, rev_cap_lib, imp_lib, _P) :   # TODO: ric? benef indu et comm
     pt = max_(sal_net + pen_net + rto_net + rfr_rvcm + ric + rag + rpns_exon + rpns_pvct + rev_cap_lib + imp_lib, 0)
-    # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO
+    # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     ## def rev_exon et rev_etranger dans data? ##
     P= _P.isf.plafonnement
     return pt*P.taux
@@ -131,11 +129,9 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
                       (isf_avant_plaf >= P.seuil2)*min_(isf_avant_plaf*P.taux, plafonnement))
     return (isf_avant_plaf - limitationplaf)
 
-
 def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
     ## rs est le montant des impôts acquittés hors de France ##
     return min_( -((isf_apres_plaf - b4rs)*((-irpp)>0) + (isf_avant_plaf-b4rs)*((-irpp)<=0)), 0)
-
 
 ## BOUCLIER FISCAL ##
 
@@ -185,7 +181,6 @@ def _maj_cga(maj_cga_i, _option = {'maj_cga_i': ALL}):
             out = qui
         else:
             out += qui
-
     return out
 
 
@@ -260,4 +255,3 @@ def _bouclier_sumimp(bouclier_imp_gen, restitutions):
 def _bouclier_fiscal(bouclier_sumimp, bouclier_rev, _P):
     P = _P.bouclier_fiscal
     return max_(0, bouclier_sumimp - (bouclier_rev*P.taux))
-
