@@ -206,7 +206,7 @@ def _al(concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, _P, _o
     al_loc = max_(0,E - PP)*loca
     al_loc = al_loc*(al_loc>=P.al.autres.nv_seuil)
 
-    ## APL pour les accédants à la propriété
+    ## TODO: APL pour les accédants à la propriété
     al_acc = 0*acce
     ## APL (tous)
 

@@ -205,7 +205,7 @@ column_by_name = collections.OrderedDict((
 
     # Revenus n'ouvrant pas droit à abattement
     ('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières et distributions", val_type = "monetary")),
-    ('f2go', IntCol(entity = 'foy', label = u"Autres revenus distribués et revenus des structures soumiseshors de France à un régime fiscal privilégié", val_type = "monetary")),
+    ('f2go', IntCol(entity = 'foy', label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié", val_type = "monetary")),
     ('f2tr', IntCol(entity = 'foy', label = u"Intérêts et autres revenus assimilés", val_type = "monetary")),
 
     # Autres
