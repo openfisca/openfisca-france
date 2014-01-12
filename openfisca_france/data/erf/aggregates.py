@@ -7,8 +7,8 @@
 # (see openfisca/__init__.py for details)
 
 
-from src.countries.france.data.erf.datatable import DataCollection
-from src.countries.france.data.erf import get_of2erf, get_erf2of
+from openfisca_france.data.erf.datatable import DataCollection
+from openfisca_france.data.erf import get_of2erf, get_erf2of
 import numpy as np
 
 def build_erf_aggregates(variables = None, year = 2006, unit = 1e6):

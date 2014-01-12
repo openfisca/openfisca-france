@@ -8,10 +8,10 @@
 
 from __future__ import division
 from numpy import where, NaN, random
-from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
+from openfisca_france.data.erf.build_survey import show_temp, load_temp, save_temp
+from openfisca_france.data.erf.build_survey.utilitaries import print_id, control, check_structure
 from pandas import read_csv, HDFStore
-from src.countries.france import DATA_SOURCES_DIR
+from openfisca_france import DATA_SOURCES_DIR
 import os
 
 

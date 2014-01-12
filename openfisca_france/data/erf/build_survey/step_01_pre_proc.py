@@ -16,14 +16,14 @@
 #
 ## Menages et Individus
 #
-from src.countries.france.data.erf.datatable import DataCollection
+from openfisca_france.data.erf.datatable import DataCollection
 
 from numpy import where
 import gc
 
 from numpy import nan
 
-from src.countries.france.data.erf.build_survey import save_temp, load_temp
+from openfisca_france.data.erf.build_survey import save_temp, load_temp
 import pdb
 
 def create_indivim(year=2006):

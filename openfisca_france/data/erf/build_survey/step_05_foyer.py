@@ -21,13 +21,13 @@ from __future__ import division
 
 import numpy
 import re
-from src.countries.france.data.erf.datatable import DataCollection
-from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
+from openfisca_france.data.erf.datatable import DataCollection
+from openfisca_france.data.erf.build_survey import show_temp, load_temp, save_temp
 from pandas import DataFrame, concat
 import gc
 from pandas import Series
 
-from src.countries.france.data.erf.build_survey.utilitaries import print_id
+from openfisca_france.data.erf.build_survey.utilitaries import print_id
 
 def sif(year=2006):
     data = DataCollection(year=year)

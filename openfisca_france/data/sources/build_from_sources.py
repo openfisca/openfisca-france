@@ -12,7 +12,7 @@ import os
 from openfisca_core.simulations import SurveySimulation
 from src.plugins.survey.aggregates import Aggregates
 
-from src.countries.france.data.sources.config import DATA_DIR
+from openfisca_france.data.sources.config import DATA_DIR
 
 def build_totals():
     h5_name = "../amounts.h5"

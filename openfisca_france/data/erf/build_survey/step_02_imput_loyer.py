@@ -8,9 +8,9 @@
 
 
 from __future__ import division
-from src.countries.france.data.erf.datatable import DataCollection
-from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import control, assert_variable_inrange, count_NA
+from openfisca_france.data.erf.datatable import DataCollection
+from openfisca_france.data.erf.build_survey import show_temp, load_temp, save_temp
+from openfisca_france.data.erf.build_survey.utilitaries import control, assert_variable_inrange, count_NA
 import pandas as pd
 from pandas import DataFrame
 from numpy import array, where, NaN, arange

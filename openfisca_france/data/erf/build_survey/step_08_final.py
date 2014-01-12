@@ -8,8 +8,8 @@
 
 from __future__ import division
 from numpy import where, NaN, random, unique
-from src.countries.france.data.erf.build_survey import load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import print_id, control, check_structure
+from openfisca_france.data.erf.build_survey import load_temp, save_temp
+from openfisca_france.data.erf.build_survey.utilitaries import print_id, control, check_structure
 from pandas import read_csv, HDFStore
 import os
 import gc
@@ -382,7 +382,7 @@ def final(year=2006, filename="test", check=True):
     if check:
         check_structure(final2)
 
-    from src.countries.france import DATA_SOURCES_DIR
+    from openfisca_france import DATA_SOURCES_DIR
     test_filename = os.path.join(DATA_SOURCES_DIR, filename + ".h5")
     if os.path.exists(test_filename):
         import warnings

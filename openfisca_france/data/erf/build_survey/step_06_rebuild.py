@@ -10,9 +10,9 @@ from pandas import Series, concat, DataFrame
 from numpy import ( sum, nan, where)
 import gc
 
-from src.countries.france.data.erf.datatable import DataCollection
-from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import print_id, control
+from openfisca_france.data.erf.datatable import DataCollection
+from openfisca_france.data.erf.build_survey import show_temp, load_temp, save_temp
+from openfisca_france.data.erf.build_survey.utilitaries import print_id, control
 
 ## On part de la table individu de l'ERFS
 ## on renomme les variables

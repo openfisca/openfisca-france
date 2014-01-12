@@ -7,7 +7,7 @@
 # (see openfisca/__init__.py for details)
 # # # OpenFisca
 
-from src.countries.france.data.erf.build_survey import (step_01_pre_proc as pre_proc,
+from openfisca_france.data.erf.build_survey import (step_01_pre_proc as pre_proc,
                                                        step_02_imput_loyer as imput_loyer,
                                                        step_03_fip as fip,
                                                        step_04_famille as famille,

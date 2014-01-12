@@ -6,8 +6,8 @@
 # Licensed under the terms of the GVPLv3 or later license
 # (see openfisca/__init__.py for details)
 
-from src.countries.france.data.sources.config import DATA_DIR
-from src.countries.france.data.sources.utils import csv2hdf5
+from openfisca_france.data.sources.config import DATA_DIR
+from openfisca_france.data.sources.utils import csv2hdf5
 import os
 
 

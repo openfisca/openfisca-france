@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 # OpenFisca
 
-from src.countries.france.data.erf.datatable import DataCollection
-from src.countries.france.data.erf.build_survey import show_temp, load_temp, save_temp
-from src.countries.france.data.erf.build_survey.utilitaries import control, check_structure, print_id
+from openfisca_france.data.erf.datatable import DataCollection
+from openfisca_france.data.erf.build_survey import show_temp, load_temp, save_temp
+from openfisca_france.data.erf.build_survey.utilitaries import control, check_structure, print_id
 from pandas import DataFrame, MultiIndex
 from numpy import array, where, NaN
 from numpy.random import randn

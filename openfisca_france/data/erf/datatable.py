@@ -11,7 +11,7 @@ import os
 import gc
 from openfisca_core import SRC_PATH
 from pandas import HDFStore
-from src.countries.france.utils import check_consistency
+from openfisca_france.utils import check_consistency
 #    Uses rpy2.
 #    On MS Windows, The environment variable R_HOME and R_USER should be set
 
@@ -21,7 +21,7 @@ try:
     rpy.set_default_mode(rpy.NO_CONVERSION)
 except:
     pass
-from src.countries.france.data.sources.config import DATA_DIR
+from openfisca_france.data.sources.config import DATA_DIR
 
 ERF_HDF5_DATA_DIR = os.path.join(SRC_PATH,'countries','france','data', 'erf')
 
@@ -367,7 +367,7 @@ class DataCollection(object):
         if variables is None:
             return df
 
-        from src.countries.france.data.erf import get_erf2of, get_of2erf
+        from openfisca_france.data.erf import get_erf2of, get_of2erf
         of2erf = get_of2erf()
         to_be_renamed_variables = set(of2erf.keys()).intersection(variables)
         renamed_variables = []
