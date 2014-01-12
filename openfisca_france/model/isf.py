@@ -66,6 +66,8 @@ def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, _P)
 
 def _isf_iai(ass_isf, _P):
     bar = _P.isf.bareme
+    if _P.datesim.year > 2010:
+        ass_isf = (ass_isf >= bar.seuils[1])*ass_isf
     bar.t_x()
     return bar.calc(ass_isf)
 
@@ -74,16 +76,13 @@ def _isf_reduc_pac(nb_pac, nbH, _P):
     Réductions pour personnes à charges
     '''
     P= _P.isf.reduc_pac
-
     return P.reduc_1*nb_pac + P.reduc_2*nbH
-
 
 def _isf_inv_pme(b2mt, b2ne, b2mv, b2nf, b2mx, b2na, _P):
     '''
     Réductions pour investissements dans les PME
     à partir de 2008!
     '''
-
     P= _P.isf.pme
     inv_dir_soc = b2mt*P.taux2 + b2ne*P.taux1
     holdings = b2mv*P.taux2+ b2nf*P.taux1
@@ -103,14 +102,12 @@ def _isf_avant_plaf(isf_iai, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, _P ) :
     borne_max = _P.isf.pme.max
     return max_(0, isf_iai - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
-
 ## calcul du plafonnement ##
 
 def _tot_impot(irpp, isf_avant_plaf ):
     return -irpp + isf_avant_plaf
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
 # + prélèvement libé de l'année passée + montant de la csg TODO
-
 
 def _revetproduits(sal_net, pen_net, rto_net, rfr_rvcm, fon, ric, rag, rpns_exon, rpns_pvct, rev_cap_lib, imp_lib, _P) :   # TODO: ric? benef indu et comm
     pt = max_(sal_net + pen_net + rto_net + rfr_rvcm + ric + rag + rpns_exon + rpns_pvct + rev_cap_lib + imp_lib, 0)
@@ -138,7 +135,6 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
 def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
     ## rs est le montant des impôts acquittés hors de France ##
     return min_( -((isf_apres_plaf - b4rs)*((-irpp)>0) + (isf_avant_plaf-b4rs)*((-irpp)<=0)), 0)
-
 
 
 ## BOUCLIER FISCAL ##
@@ -247,7 +243,6 @@ def _bouclier_imp_gen (irpp, tax_hab, tax_fonc, isf_tot, cotsoc_lib, cotsoc_bar,
     Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
     '''
     return imp1+ imp2
-
 
 
 def _restitutions(ppe, restit_imp ):
