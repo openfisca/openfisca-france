@@ -27,7 +27,7 @@ import collections
 from datetime import date
 
 from openfisca_core.columns import Prestation, BoolPresta, IntPresta, EnumPresta
-from openfisca_core.utils import Enum
+from openfisca_core.enumerations import Enum
 
 from . import calage as cl
 from . import common as cm
