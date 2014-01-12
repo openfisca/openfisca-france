@@ -211,7 +211,7 @@
             <TAUX>
               <VALUE valeur=".042" deb="2005-01-01" fin="2013-12-31"/>
               <VALUE valeur=".038" deb="1998-01-01" fin="2004-12-31"/>
-              <VALUE valeur=".042" deb="1998-01-01" fin="1997-12-31"/>
+              <VALUE valeur=".042" deb="1997-01-01" fin="1997-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -442,7 +442,7 @@
         <VALUE valeur="2352" deb="2002-01-01" fin="2002-12-31"/>
         <VALUE valeur="2279" deb="2001-01-01" fin="2001-12-31"/>
       </CODE>
-      <CODE description="SMIC horaire brut" code="smic_h_b" format="integer" type="monetary">
+      <CODE description="SMIC horaire brut" code="smic_h_b" format="float" type="monetary">
         <VALUE valeur="9.43" deb="2013-01-01" fin="2013-12-31"/>
         <VALUE valeur="9.40" deb="2012-07-01" fin="2012-12-31"/>
         <VALUE valeur="9.22" deb="2012-01-01" fin="2012-06-30"/>
@@ -1319,7 +1319,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" taille="plusde20" code="fnal2" option="noncontrib">
+        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" code="fnal2" option="noncontrib">
           <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-01-01" fin="2012-12-31"/>
@@ -3651,7 +3651,7 @@
        <CODE description="Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)" code="remb_taux3" format="percent">
          <VALUE valeur=".5" deb="2003-07-01" fin="2006-12-31"/>
        </CODE>
-       <CODE description="Plafond des remboursements trimestriels (entre les deux limites d'âge ou APE taux partiel)" code="remb_plaf3" format="integer" type="monetary">
+       <CODE description="Plafond des remboursements trimestriels (entre les deux limites d'âge ou APE taux partiel)" code="remb_plaf3" format="float" type="monetary">
         <VALUE valeur="3331" deb="2001-07-01" fin="2001-12-31"/>
         <VALUE valeur="507.81" deb="2002-01-01" fin="2002-06-30"/>
         <VALUE valeur="516" deb="2002-07-01" fin="2003-06-30"/>
@@ -3919,7 +3919,7 @@
         <VALUE valeur="0" deb="1991-09-24" fin="2002-03-31"/>
         <VALUE valeur="1.8221" deb="2002-04-01" fin="2014-03-31"/>
       </CODE>
-      <CODE description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " code="cpl6" format="integer" type="monetary">
+      <CODE description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " code="cpl6" format="float" type="monetary">
         <VALUE valeur="916.32" deb="2002-04-01" fin="2002-12-31"/>
         <VALUE valeur="930.05" deb="2003-01-01" fin="2003-12-31"/>
         <VALUE valeur="945.87" deb="2004-01-01" fin="2004-12-31"/>
@@ -3957,7 +3957,7 @@
     </NODE>
   </NODE>
   <NODE description="Allocations logement" code="al">
-    <CODE description="Base mensuelle de calcul des allocations familiale n-2" code="bmaf" format="integer" type="monetary">
+    <CODE description="Base mensuelle de calcul des allocations familiale n-2" code="bmaf" format="float" type="monetary">
       <VALUE valeur="334.84" deb="2002-01-01" fin="2003-06-30"/>
       <VALUE valeur="341.87" deb="2003-07-01" fin="2004-06-30"/>
       <VALUE valeur="347.68" deb="2004-07-01" fin="2005-08-31"/>
@@ -4737,7 +4737,7 @@
         <VALUE valeur="776.59" deb="2012-09-01" fin="2013-08-31"/>
         <VALUE valeur="790.18" deb="2013-09-01" fin="2014-08-31"/>
       </CODE>
-      <CODE description="Âge légal de départ à la retraite" code="age_legal_retraite" format="integer" type="age">
+      <CODE description="Âge légal de départ à la retraite" code="age_legal_retraite" format="float" type="age">
         <VALUE valeur="60" deb="1983-07-01" fin="2011-06-30"/>
         <VALUE valeur="60.33" deb="2011-07-01" fin="2012-06-30"/>
         <VALUE valeur="60.66" deb="2012-07-01" fin="2013-06-30"/>
