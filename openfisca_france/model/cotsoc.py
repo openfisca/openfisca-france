@@ -8,9 +8,11 @@
 
 
 from __future__ import division
-from .data import CAT
+
 from numpy import maximum as max_, minimum as min_, logical_not as not_, zeros, ones
-from openfisca_core.utils import  scaleBaremes, combineBaremes, BaremeDict
+from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
+
+from .data import CAT
 
 
 # TODO: CHECK la csg déductible en 2006 est case GH
