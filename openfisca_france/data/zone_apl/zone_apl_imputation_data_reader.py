@@ -28,8 +28,7 @@ from pandas import read_csv, DataFrame
 import numpy as np
 
 
-
-with open('zone_apl_2006.csv') as zone_csv:
+with open("zone_apl_2006.csv") as zone_csv:
     Z = read_csv(zone_csv, delimiter = ";")
 
 #% PSDC99          population sans double compte 99
