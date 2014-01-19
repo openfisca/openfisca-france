@@ -23,6 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import datetime
 import json
 import os
 import xml.etree.ElementTree
@@ -51,7 +52,8 @@ def test_ipp_legislation_xml_file():
             unicode(json.dumps(legislation_xml_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
 
-    legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
+    _, legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
+#    raise ValueError(unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
 
     legislation_json, errors = legislations.validate_node_json(legislation_json, state = conv.default_state)
     if errors is not None:
@@ -62,6 +64,11 @@ def test_ipp_legislation_xml_file():
             unicode(json.dumps(errors, ensure_ascii = False, indent = 2, sort_keys = True)),
             unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
+
+    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datetime.date(2014, 1, 1))
+#    raise ValueError(unicode(json.dumps(dated_legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
+    compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+#    raise ValueError(compact_legislation)
 
 
 def test_legislation_xml_file():
@@ -81,7 +88,7 @@ def test_legislation_xml_file():
             unicode(json.dumps(legislation_xml_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
 
-    legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
+    _, legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
 
     legislation_json, errors = legislations.validate_node_json(legislation_json, state = conv.default_state)
     if errors is not None:
@@ -92,6 +99,11 @@ def test_legislation_xml_file():
             unicode(json.dumps(errors, ensure_ascii = False, indent = 2, sort_keys = True)),
             unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
+
+    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datetime.date(2006, 1, 1))
+#    raise ValueError(unicode(json.dumps(dated_legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
+    compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+#    raise ValueError(compact_legislation)
 
 
 if __name__ == '__main__':
