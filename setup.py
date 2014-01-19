@@ -58,7 +58,7 @@ setup(
     install_requires = [
         'Biryani1 >= 0.9dev',
         "numpy",
-        "pandas",
+        "pandas >= 0.13.0",
         ],
     packages = find_packages(),
     zip_safe = False,
