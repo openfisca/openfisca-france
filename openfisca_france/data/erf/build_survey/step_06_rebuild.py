@@ -235,15 +235,15 @@ def create_totals(year=2006):
     fip["agepf"] = nan
 
 
-    fip.drop(["actrec", "year", "noidec"],axis=1)
+    fip.drop(["actrec", "year", "noidec"], axis=1, inplace=True)
     fip.naia = fip.naia.astype("int32")
-    fip.rename( columns=dict(ident = "idmen",
+    fip.rename( columns=dict(ident="idmen",
                      persfip="quifoy",
-                     zsali = "sali2", # Inclu les salaires non imposables des agents d'assurance
-                     zchoi = "choi2",
-                     zrsti = "rsti2",
-                     zalri = "alr2"), inplace=True)
-
+                     zsali="sali2", # Inclu les salaires non imposables des agents d'assurance
+                     zchoi="choi2",
+                     zrsti="rsti2",
+                     zalri="alr2"),
+                inplace=True)
 
     is_fip_19_25 = ((year-fip.naia-1)>=19) & ((year-fip.naia-1)<25)
 
