@@ -9,7 +9,7 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, minimum as min_, logical_not as not_, zeros, ones
+from numpy import logical_not as not_, maximum as max_, minimum as min_, ones, zeros 
 from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
 
 from .data import CAT
@@ -264,10 +264,8 @@ def _type_sal(titc, statut, chpub, cadre, _P):
     4 contract : agent contractuel de l'Etat ou des collectivités locales
 
     '''
-
     cadre    = (statut ==8)*(chpub>3)*cadre
     noncadre = (statut ==8)*(chpub>3)*not_(cadre)
-
 
     etat_stag = (chpub==1)*(titc == 1)
     etat_tit  = (chpub==1)*(titc == 2)
@@ -277,7 +275,6 @@ def _type_sal(titc, statut, chpub, cadre, _P):
     colloc_tit  = (chpub==2)*(titc == 2)
     colloc_cont = (chpub==2)*(titc == 3)
 
-
     hosp_stag = (chpub==2)*(titc == 1)
     hosp_tit  = (chpub==2)*(titc == 2)
     hosp_cont = (chpub==2)*(titc == 3)
@@ -285,9 +282,8 @@ def _type_sal(titc, statut, chpub, cadre, _P):
     contract = (colloc_cont + hosp_cont + etat_cont) > 1
 
     colloc_tit2 = (colloc_tit + hosp_tit ) > 1
-
     return 1*cadre + 2*etat_tit + 3*colloc_tit2 + 4*contract
-
+    
 
 
 def build_pat(_P):
@@ -459,8 +455,8 @@ def _csgsald(salbrut, hsup, _P):
     '''
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
     csg = scaleBaremes(_P.csg.act.deduc, plaf_ss)
-
     return - csg.calc(salbrut - hsup)
+
 
 def _csgsali(salbrut, hsup, _P):
     '''
@@ -470,6 +466,7 @@ def _csgsali(salbrut, hsup, _P):
     csg = scaleBaremes(_P.csg.act.impos, plaf_ss)
     return  - csg.calc(salbrut - hsup)
 
+
 def _crdssal(salbrut, hsup, _P):
     '''
     CRDS sur les salaires
@@ -477,6 +474,7 @@ def _crdssal(salbrut, hsup, _P):
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
     crds = scaleBaremes(_P.crds.act, plaf_ss)
     return - crds.calc(salbrut - hsup)
+
 
 def _sal_h_b(salbrut):
     '''
@@ -491,12 +489,11 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, _P):
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
-
     P = _P.cotsoc
-
     taux_fillon = taux_exo_fillon(sal_h_b, P)
     alleg_fillon = taux_fillon*salbrut*(type_sal == CAT['noncadre'])
     return alleg_fillon
+
 
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''
@@ -504,8 +501,11 @@ def _sal(salbrut, csgsald, cotsal, hsup):
     '''
     return salbrut + csgsald + cotsal - hsup
 
+
 def _salsuperbrut(salbrut, cotpat, alleg_fillon):
     return salbrut - cotpat - alleg_fillon
+
+
 ############################################################################
 ## Allocations chômage
 ############################################################################
@@ -520,7 +520,7 @@ def exo_csg_chom(choi, _P):
     return (choi <= 12*cho_seuil_exo) # annuel
 
 
-def _csg_rempl(rfr_n_2, nbpt_n_2, choi, rsti, _P):
+def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
     '''
     Taux retenu sur la CSG des revenus de remplacment:
     0 : Non renseigné/non pertinent
@@ -532,11 +532,11 @@ def _csg_rempl(rfr_n_2, nbpt_n_2, choi, rsti, _P):
     P = _P.cotsoc.gen
     seuil_th = P.plaf_th_1 + P.plaf_th_supp*(max_(0, (nbpt_n_2-1)/2))
     res =  (0 +
-            max_((choi>0) + (rsti>0), 0) +
+            max_((chobrut>0) + (rstbrut>0), 0) +
             (rfr_n_2 >= seuil_th) +
             1  ) # conditon sur impot avant credit > seuil de non imposition
-
     return 3*ones(len(res))
+
 
 def _chobrut(choi, csg_rempl, _defaultP):
     '''
@@ -549,10 +549,10 @@ def _chobrut(choi, csg_rempl, _defaultP):
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
     isexo = exo_csg_chom(choi, _defaultP)
     chobrut = not_(isexo)*chobrut + (isexo)*choi
-
     return chobrut
 
-def _csgchod(chobrut, choi, csg_rempl, _P):
+
+def _csgchod(chobrut, csg_rempl, _P):
     '''
     CSG déductible sur les allocations chômage
     '''
@@ -561,10 +561,11 @@ def _csgchod(chobrut, choi, csg_rempl, _P):
     taux_plein = csg['plein']['deduc'].calc(chobrut)
     taux_reduit = csg['reduit']['deduc'].calc(chobrut)
     csgchod = (csg_rempl==2)*taux_reduit + (csg_rempl==3)*taux_plein
-    isexo = exo_csg_chom(choi, _P)
+    isexo = exo_csg_chom(chobrut, _P)
     return - not_(isexo)*csgchod
 
-def _csgchoi(chobrut, choi, csg_rempl, _P):
+
+def _csgchoi(chobrut, csg_rempl, _P):
     '''
     CSG imposable sur les allocations chômage
     '''
@@ -573,10 +574,11 @@ def _csgchoi(chobrut, choi, csg_rempl, _P):
     taux_plein = csg['plein']['impos'].calc(chobrut)
     taux_reduit = csg['reduit']['impos'].calc(chobrut)
     csgchoi = (csg_rempl==2)*taux_reduit + (csg_rempl==3)*taux_plein
-    isexo = exo_csg_chom(choi, _P)
+    isexo = exo_csg_chom(chobrut, _P)
     return - not_(isexo)*csgchoi
 
-def _crdscho(chobrut, choi, _P):
+
+def _crdscho(chobrut, _P):
     '''
     CRDS sur les allocations chômage
     '''
@@ -584,11 +586,12 @@ def _crdscho(chobrut, choi, _P):
     crds = scaleBaremes(_P.crds.act, plaf_ss)
     return - crds.calc(chobrut)
 
-def _cho(chobrut, csgchod, choi, _P):
-    '''
 
+def _cho(chobrut, csgchod, _P):
     '''
-    isexo = exo_csg_chom(choi, _P)
+    Chômage imposable
+    '''
+    isexo = exo_csg_chom(chobrut, _P)  # TODO: check
     return chobrut + not_(isexo)*csgchod
 
 
@@ -597,7 +600,7 @@ def _cho(chobrut, csgchod, choi, _P):
 ############################################################################
 def _rstbrut(rsti, csg_rempl, _defaultP):
     '''
-    Calcule les pensions de retraites brutes à partir des pensions nettes
+    Calcule les pensions de retraites brutes à partir des pensions nettes/imposables
     '''
     P = _defaultP.csg.retraite
     rst_plein = P.plein.deduc.inverse()  # TODO:     rajouter la non  déductible dans param
@@ -618,7 +621,7 @@ def _csgrstd(rstbrut, csg_rempl, _P):
 
 def _csgrsti(rstbrut, csg_rempl, _P):
     '''
-    CSG imposable sur les allocations chômage
+    CSG imposable sur les pensions de retraite
     '''
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', _P.csg.retraite), plaf_ss)
@@ -637,7 +640,7 @@ def _crdsrst(rstbrut, _P):
 
 def _rst(rstbrut, csgrstd):
     '''
-    Calcule les pensions nettes
+    Calcule les pensions imposables
     '''
     return rstbrut + csgrstd
 

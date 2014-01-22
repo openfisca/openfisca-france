@@ -137,7 +137,7 @@ X_AXES_PROPERTIES = {
     }
 
 
-def init_country(qt = False):
+def init_country(qt=False, start_from="imposable"):
     """Add country-specific content to OpenFisca-Core package."""
     from openfisca_core import model as core_model
     from openfisca_core import simulations as core_simulations
@@ -149,8 +149,25 @@ def init_country(qt = False):
     from . import decompositions, scenarios, utils
     from .model.data import column_by_name
     from .model.model import prestation_by_name
+
     if qt:
         from .widgets.Composition import CompositionWidget
+
+    assert start_from in ["imposable", "brut"], Exception("start_from should be imposable or brut") # TODO: net
+    if start_from == "brut":
+        variables_bruts = ["salbrut", "chobrut", "rstbrut"]
+        variables_imposables = ["sali", "choi", "rsti"]
+        for variable in variables_bruts:
+            column_by_name.update({variable: prestation_by_name[variable].to_column()})
+            del prestation_by_name[variable]
+        for variable in variables_imposables:
+            del column_by_name[variable]
+            del X_AXES_PROPERTIES[variable]
+        print type(column_by_name)
+            
+    if start_from == "net":
+        NotImplementedError
+
 
     core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 
@@ -177,6 +194,7 @@ def init_country(qt = False):
         )
 
     core_simulations.check_consistency = utils.check_consistency
+
 
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget
