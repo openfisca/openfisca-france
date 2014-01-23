@@ -328,8 +328,8 @@
       <TRANCHE code="tranche1">
         <ASSIETTE>
           <VALUE valeur=".95" deb="1996-02-01" fin="2004-12-31"/>
-          <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
-          <VALUE valeur="1" deb="2012-01-01" fin="2013-12-31"/>
+          <VALUE valeur=".97" deb="2005-01-01" fin="2010-12-31"/>
+          <VALUE valeur="1" deb="2011-01-01" fin="2013-12-31"/>
         </ASSIETTE>
         <SEUIL>
           <VALUE valeur="4" deb="1996-02-01" fin="2013-12-31"/>
@@ -356,8 +356,8 @@
       <TRANCHE code="tranche1">
         <ASSIETTE>
           <VALUE valeur=".95" deb="1996-02-01" fin="2004-12-31"/>
-          <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
-          <VALUE valeur="1" deb="2012-01-01" fin="2013-12-31"/>
+          <VALUE valeur=".97" deb="2005-01-01" fin="2010-12-31"/>
+          <VALUE valeur="1" deb="2011-01-01" fin="2013-12-31"/>
         </ASSIETTE>
         <SEUIL>
           <VALUE valeur="4" deb="1996-02-01" fin="2013-12-31"/>
@@ -551,7 +551,7 @@
         <BAREME description="Vieillesse (régime de base de la retraite CNAV)" code="vieillesse" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
+              <VALUE valeur="0" deb="1993-07-01" fin="2016-12-31"/>
             </SEUIL>
             <TAUX>
               <VALUE valeur=".0690" deb="2016-01-01" fin="2016-12-31"/>
@@ -564,30 +564,31 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-                <VALUE valeur="1" deb="1993-07-01" fin="2012-12-31"/>
+                <VALUE valeur="1" deb="1993-07-01" fin="2016-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
+              <VALUE valeur="0" deb="1993-07-01" fin="2016-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Vieillesse déplafonnée (ancienne assurance veuvage trasférée à la CNAV en 2004)" code="vieillessedeplaf" option="contrib">
+        <BAREME description="Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)" code="vieillessedeplaf" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE valeur="0" deb="2004-07-01" fin="2013-12-31"/>
+              <VALUE valeur="0" deb="2004-07-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur=".001" deb="2004-06-30" fin="2013-12-31"/>
+              <VALUE valeur=".0025" deb="2014-01-01" fin="2014-12-31"/>
+              <VALUE valeur=".001" deb="2004-07-01" fin="2013-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME description="Chômage-emploi ASSEDIC" code="assedic" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE valeur="0" deb="1993-07-01" fin="2013-12-31"/>
+              <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur=".024" deb="2007-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".024" deb="2007-01-01" fin="2014-12-31"/>
               <VALUE valeur=".0244" deb="2006-01-01" fin="2006-12-31"/>
               <VALUE valeur=".024" deb="2003-01-01" fin="2005-12-31"/>
               <VALUE valeur=".021" deb="2002-07-01" fin="2002-12-31"/>
@@ -602,10 +603,10 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-              <VALUE valeur="4" deb="2003-01-01" fin="2012-12-31"/>
+              <VALUE valeur="4" deb="2003-01-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur="0" deb="2003-01-01" fin="2013-12-31"/>
+              <VALUE valeur="0" deb="2003-01-01" fin="2014-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -615,6 +616,8 @@
               <VALUE valeur="0" deb="1993-07-01" fin="2013-12-31"/>
             </SEUIL>
             <TAUX>
+              <VALUE valeur=".031" deb="2015-01-01" fin="2015-12-31"/>
+	          <VALUE valeur=".0305" deb="2014-01-01" fin="2014-12-31"/>
               <VALUE valeur=".03" deb="1999-01-01" fin="2013-12-31"/>
               <VALUE valeur=".0275" deb="1998-01-01" fin="1998-12-31"/>
               <VALUE valeur=".025" deb="1997-01-01" fin="1997-12-31"/>
@@ -636,17 +639,15 @@
     	<BAREME description="Retraite complémentaire ARRCO" code="arrconc" option="contrib">
       	  <TRANCHE code="tranche0">
 	        <SEUIL>
-	          <VALUE valeur="0" deb="2000-01-01" fin="2012-12-31"/>
+	          <VALUE valeur="0" deb="2000-01-01" fin="2015-12-31"/>
 	        </SEUIL>
 	        <TAUX>
-	          <VALUE valeur=".031" deb="2015-01-01" fin="2015-12-31"/>
-	          <VALUE valeur=".0305" deb="2014-01-01" fin="2014-12-31"/>
-	          <VALUE valeur=".03" deb="1999-01-01" fin="2013-12-31"/>
+	          <VALUE valeur=".0" deb="1999-01-01" fin="2015-12-31"/> #1er tranche commune aux cadres et aux non-cadres
 	        </TAUX>
 	      </TRANCHE>
 	      <TRANCHE code="tranche1">
 	        <SEUIL>
-	          <VALUE valeur="1" deb="2000-01-01" fin="2012-12-31"/>
+	          <VALUE valeur="1" deb="2000-01-01" fin="2015-12-31"/>
 	        </SEUIL>
 	        <TAUX>
 	          <VALUE valeur=".081" deb="2015-01-01" fin="2015-12-31"/>
@@ -659,10 +660,10 @@
 	      </TRANCHE>
 	      <TRANCHE code="tranche2">
 	        <SEUIL>
-	          <VALUE valeur="3" deb="2003-01-01" fin="2012-12-31"/>
+	          <VALUE valeur="3" deb="2003-01-01" fin="2015-12-31"/>
 	        </SEUIL>
 	        <TAUX>
-	          <VALUE valeur="0" deb="2003-01-01" fin="2012-12-31"/>
+	          <VALUE valeur="0" deb="2003-01-01" fin="2015-12-31"/>
 	        </TAUX>
 	      </TRANCHE>
 	    </BAREME>
@@ -1366,7 +1367,7 @@
 	        </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" taille="plusde20" code="fnal2" option="noncontrib">
+        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" code="fnal2" option="noncontrib">
           <TRANCHE code="tranche0">
 	        <SEUIL>
 	          <VALUE valeur="0" deb="1991-07-01" fin="2014-12-31"/>
@@ -1467,7 +1468,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Formation professionnelle (plus de 20 salariés)" taille="plusde20" code="formprof" option="contrib">
+        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="contrib">
           <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1478,7 +1479,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Effort à la construction (plus de 20 salariés)" taille="plusde20" code="construction" option="noncontrib">
+        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="1992-01-01" fin="2014-12-31"/>
