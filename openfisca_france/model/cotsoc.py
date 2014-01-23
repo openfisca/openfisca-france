@@ -223,16 +223,16 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     '''
     plaf_ss = 12*_defaultP.cotsoc.gen.plaf_ss
 
-    sal = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
+    salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
     csg = scaleBaremes(BaremeDict('csg', _defaultP.csg), plaf_ss)
 
-    sal['noncadre'].update(sal['commun'])
-    sal['cadre'].update(sal['commun'])
+    salarie['noncadre'].update(salarie['commun'])
+    salarie['cadre'].update(salarie['commun'])
 
 
-    noncadre = combineBaremes(sal['noncadre'])
-    cadre    = combineBaremes(sal['cadre'])
-    fonc     = combineBaremes(sal['fonc'])
+    noncadre = combineBaremes(salarie['noncadre'])
+    cadre    = combineBaremes(salarie['cadre'])
+    fonc     = combineBaremes(salarie['fonc'])
 
     # On ajoute la CSG deductible
     noncadre.addBareme(csg['act']['deduc'])
@@ -250,6 +250,10 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     salbrut = (brut_nca*(type_sal == CAT['noncadre']) +
                brut_cad*(type_sal == CAT['cadre']) +
                brut_fon*(type_sal == CAT['etat_t']) )
+    
+    #print " nombre de barème:", len(salarie['noncadre'])
+    #for name, bar in salarie['noncadre'].iteritems():
+    #    print bar
 
     return salbrut + hsup
 
@@ -537,7 +541,7 @@ def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
             1  ) # conditon sur impot avant credit > seuil de non imposition
     return 3*ones(len(res))
 
-
+    
 def _chobrut(choi, csg_rempl, _defaultP):
     '''
     Calcule les allocations chômage brute à partir des allocations nettes
@@ -549,6 +553,14 @@ def _chobrut(choi, csg_rempl, _defaultP):
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
     isexo = exo_csg_chom(choi, _defaultP)
     chobrut = not_(isexo)*chobrut + (isexo)*choi
+    #print " nombre de barème:", len(P.plein.deduc)
+#     for name, bar in P.plein.iteritems() :
+#             print name
+#             print bar
+    print "taux plein :"
+    print  P.plein.impos,  P.plein.deduc
+    print "taux réduit : "
+    print  P.reduit.impos,  P.reduit.deduc
     return chobrut
 
 
