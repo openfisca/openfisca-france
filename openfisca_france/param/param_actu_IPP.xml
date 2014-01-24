@@ -693,8 +693,8 @@
 	        </TAUX>
 	      </TRANCHE>
 	    </BAREME>
-	      </NODE>
-	      <NODE description="Spécifiques aux cadres" code="cadre">
+	  </NODE>
+	  <NODE description="Spécifiques aux cadres" code="cadre">
 	    <BAREME description="Retraite complémentaire AGIRC GMP (tranches B et C, avant 65 ans)" code="agirc" option="contrib">
 	      <TRANCHE code="tranche0">
 	        <SEUIL>
@@ -818,8 +818,8 @@
 	        </TAUX>
 	      </TRANCHE>
 	    </BAREME>
-	      </NODE>
-	      <NODE description="Non salariés: artisans" code="arti">
+	  </NODE>
+	  <NODE description="Non salariés: artisans" code="arti">
 	    <BAREME description="Cotisation Famille" code="famille" option="noncontrib">
 	      <TRANCHE code="tranche0">
 	        <SEUIL>
@@ -956,8 +956,8 @@
 	        </TAUX>
 	      </TRANCHE>
 	    </BAREME>
-	      </NODE>
-	      <NODE description="Non salariés: commerçants et industriels" code="comind">
+	  </NODE>
+	  <NODE description="Non salariés: commerçants et industriels" code="comind">
 	    <BAREME description="Famille" code="famille" option="noncontrib">
 	      <TRANCHE code="tranche0">
 	        <SEUIL>
@@ -1297,10 +1297,10 @@
     <BAREME description="Contribution solidarité autonomie (dépendance)" code="csa" option="noncontrib">
           <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE valeur="0" deb="2004-07-01" fin="2012-12-31"/>
+          <VALUE valeur="0" deb="2004-07-01" fin="2014-12-31"/>
         </SEUIL>
         <TAUX>
-          <VALUE valeur=".003" deb="2004-07-01" fin="2012-12-31"/>
+          <VALUE valeur=".003" deb="2004-07-01" fin="2014-12-31"/>
         </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1330,18 +1330,18 @@
         <BAREME description="Vieillesse déplafonnée" code="vieillessedeplaf" option="contrib">
           <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
+          <VALUE valeur="0" deb="1993-07-01" fin="2016-12-31"/>
         </SEUIL>
         <TAUX>
           <VALUE valeur="0.0175" deb="2014-01-01" fin="2016-12-31"/>
-          <VALUE valeur="0.016" deb="1991-02-01" fin="2013-12-31"/>
+          <VALUE valeur="0.016" deb="1993-07-01" fin="2013-12-31"/>
         </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME description="Allocation familiales" code="famille" option="noncontrib">
           <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE valeur="0" deb="1993-07-01" fin="2012-12-31"/>
+          <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
         </SEUIL>
         <TAUX>
           <VALUE valeur=".0525" deb="2014-01-01" fin="2014-12-31"/>
@@ -1862,13 +1862,13 @@
     <NODE description="Exonération sur les bas salaires" code="exo_fillon">
       <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
         <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
-        <VALUE valeur=".26" deb="2005-01-01" fin="2012-12-31"/>
+        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
       </CODE>
       <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
-    <VALUE valeur=".281" deb="2007-07-01" fin="2012-12-31"/>
+    <VALUE valeur=".281" deb="2007-07-01" fin="2014-12-31"/>
       </CODE>
       <CODE description="Point de sortie (en smic)" code="seuil" format="percent">
-        <VALUE valeur="1.6" deb="2002-01-01" fin="2013-12-31"/>
+        <VALUE valeur="1.6" deb="2002-01-01" fin="2014-12-31"/>
       </CODE>
     </NODE>
   </NODE>

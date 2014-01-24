@@ -139,6 +139,8 @@ column_by_name = collections.OrderedDict((
                             ]))),
 
     ('cadre', BoolCol(label = u"Cadre")),
+    ('code_risque', IntCol(label = u"")),
+    ('taux_accident_travail', FloatCol(label = u"")),
 
 
     ('boursier', BoolCol()),
