@@ -118,7 +118,7 @@ prestation_by_name = collections.OrderedDict((
     ('csgsald', Prestation(cs._csgsald)),
     ('csgsali', Prestation(cs._csgsali)),
     ('crdssal', Prestation(cs._crdssal)),
-    ('sal', Prestation(cs._sal)),
+    ('sal', Prestation(cs._sal, label = u"Salaire imposable (recalculé)")),
     ('salsuperbrut', Prestation(cs._salsuperbrut)),
 
     # Chômage
