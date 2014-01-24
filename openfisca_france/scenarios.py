@@ -32,6 +32,7 @@ import pickle
 import numpy as np
 from openfisca_core import __version__ as VERSION
 from openfisca_core import model
+from pandas import DataFrame, concat
 
 from . import conv, ENTITIES_INDEX
 from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
@@ -518,26 +519,20 @@ class Scenario(object):
         self.menage = S['menage']
 
     def populate_datatable(self, datatable):
-        '''
-        Popualte a datatable from a given scenario
-        '''
-        from pandas import DataFrame, concat
-        import numpy as np
-        scenario = self
-
+        '''Populate a datatable from scenario.'''
         if self.nmen is None:
             raise Exception('france.Scenario: self.nmen should be not None')
 
         nmen = self.nmen
         same_rev_couple = self.same_rev_couple
         datatable.NMEN = nmen
-        datatable._nrows = datatable.NMEN*len(scenario.indiv)
+        datatable._nrows = datatable.NMEN * len(self.indiv)
         datesim = datatable.datesim
         datatable.table = DataFrame()
 
         idmen = np.arange(60001, 60001 + nmen)
 
-        for noi, dct in scenario.indiv.iteritems():
+        for noi, dct in self.indiv.iteritems():
             birth = dct['birth']
             age = datesim.year- birth.year
             agem = 12*(datesim.year- birth.year) + datesim.month - birth.month
@@ -567,7 +562,7 @@ class Scenario(object):
 
         entity = 'men'
         nb = datatable.index[entity]['nb']
-        for noi, dct in scenario.indiv.iteritems():
+        for noi, dct in self.indiv.iteritems():
             for var, val in dct.iteritems():
                 if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'):
                     continue
@@ -577,7 +572,7 @@ class Scenario(object):
 
         entity = 'foy'
         nb = datatable.index[entity]['nb']
-        for noi, dct in scenario.declar.iteritems():
+        for noi, dct in self.declar.iteritems():
             for var, val in dct.iteritems():
                 if not datatable.index[entity][noi] is None:
                     datatable.set_value(var, np.ones(nb)*val, entity, noi)
@@ -585,7 +580,7 @@ class Scenario(object):
 
         entity = 'men'
         nb = datatable.index[entity]['nb']
-        for noi, dct in scenario.menage.iteritems():
+        for noi, dct in self.menage.iteritems():
             for var, val in dct.iteritems():
                 if not datatable.index[entity][noi] is None:
                     datatable.set_value(var, np.ones(nb)*val, entity, noi)
@@ -616,4 +611,3 @@ class Scenario(object):
             else:
                 datatable.set_value(var, vls, entity, opt = 0)
             datatable._isPopulated = True
-
