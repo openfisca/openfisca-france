@@ -39,6 +39,8 @@ from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 
 class Scenario(object):
+    dummy_x_axis = False
+
     def __init__(self):
         super(Scenario, self).__init__()
 
@@ -586,7 +588,7 @@ class Scenario(object):
                     datatable.set_value(var, np.ones(nb)*val, entity, noi)
             del var, val
 
-        if nmen>1:
+        if nmen>1 and not self.dummy_x_axis:
             if self.maxrev is None:
                 raise Exception('france.Scenario: self.maxrev should not be None')
             maxrev = self.maxrev
