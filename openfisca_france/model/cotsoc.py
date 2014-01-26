@@ -9,11 +9,14 @@
 
 from __future__ import division
 
+import logging
+
 from numpy import logical_not as not_, maximum as max_, minimum as min_, ones, zeros 
 from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
 
 from .data import CAT
 
+log = logging.getLogger(__name__)
 
 # TODO: CHECK la csg déductible en 2006 est case GH
 # TODO:  la revenus soumis aux csg déductible et imposable sont en CG et BH en 2010
@@ -223,16 +226,16 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     '''
     plaf_ss = 12*_defaultP.cotsoc.gen.plaf_ss
 
-    sal = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
+    salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
     csg = scaleBaremes(BaremeDict('csg', _defaultP.csg), plaf_ss)
 
-    sal['noncadre'].update(sal['commun'])
-    sal['cadre'].update(sal['commun'])
+    salarie['noncadre'].update(salarie['commun'])
+    salarie['cadre'].update(salarie['commun'])
 
 
-    noncadre = combineBaremes(sal['noncadre'])
-    cadre    = combineBaremes(sal['cadre'])
-    fonc     = combineBaremes(sal['fonc'])
+    noncadre = combineBaremes(salarie['noncadre'])
+    cadre    = combineBaremes(salarie['cadre'])
+    fonc     = combineBaremes(salarie['fonc'])
 
     # On ajoute la CSG deductible
     noncadre.addBareme(csg['act']['deduc'])
@@ -250,6 +253,10 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     salbrut = (brut_nca*(type_sal == CAT['noncadre']) +
                brut_cad*(type_sal == CAT['cadre']) +
                brut_fon*(type_sal == CAT['etat_t']) )
+    
+    #print " nombre de barème:", len(salarie['noncadre'])
+    #for name, bar in salarie['noncadre'].iteritems():
+    #    print bar
 
     return salbrut + hsup
 
@@ -337,6 +344,9 @@ def _cotpat_contrib(salbrut, hsup, type_sal, _P):
             is_contrib = (bar.option == "contrib")
             temp = - (iscat*bar.calc(salbrut))*is_contrib
             cotpat += temp
+            if is_contrib == 1: 
+                log.info(bar)
+                log.info(temp)
     return cotpat
 
 def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
@@ -349,10 +359,14 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
         iscat = (type_sal == categ[1])
         for bar in pat[categ[0]].itervalues():
             is_noncontrib = (bar.option == "noncontrib")
-            if DEBUG:
-                is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
+            #if DEBUG:
+            #    is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
             temp = - (iscat*bar.calc(salbrut))*is_noncontrib
             cotpat += temp
+            if is_noncontrib == 1: 
+                log.info(bar)
+                log.info(temp)
+                
     return cotpat
 
 
@@ -385,7 +399,7 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
     del sal['commun']
-
+    
 #    print 'sal etat'
 #    print sal['etat_t'].keys()
 #
@@ -394,7 +408,6 @@ def build_sal(_P):
 
 #    print 'sal contract'
 #    print sal['contract'].keys()
-
 
     return sal
 
@@ -489,11 +502,11 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, _P):
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
+
     P = _P.cotsoc
     taux_fillon = taux_exo_fillon(sal_h_b, P)
     alleg_fillon = taux_fillon*salbrut*(type_sal == CAT['noncadre'])
-    return alleg_fillon
-
+    
 
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''
@@ -537,7 +550,7 @@ def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
             1  ) # conditon sur impot avant credit > seuil de non imposition
     return 3*ones(len(res))
 
-
+    
 def _chobrut(choi, csg_rempl, _defaultP):
     '''
     Calcule les allocations chômage brute à partir des allocations nettes
@@ -549,6 +562,9 @@ def _chobrut(choi, csg_rempl, _defaultP):
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
     isexo = exo_csg_chom(choi, _defaultP)
     chobrut = not_(isexo)*chobrut + (isexo)*choi
+#     print  P.plein.impos,  P.plein.deduc
+#     print "taux réduit : "
+#     print  P.reduit.impos,  P.reduit.deduc
     return chobrut
 
 
