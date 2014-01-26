@@ -32,7 +32,6 @@ from openfisca_core.enumerations import Enum
 QUIFOY = Enum(['vous', 'conj', 'pac1','pac2','pac3','pac4','pac5','pac6','pac7','pac8','pac9'])
 QUIFAM = Enum(['chef', 'part', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])
 QUIMEN = Enum(['pref', 'cref', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])
-CAT = Enum(['noncadre', 'cadre', 'etat_t', 'colloc_t', 'contract'])
 
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
@@ -129,19 +128,18 @@ column_by_name = collections.OrderedDict((
                                 ]))),
 
     ('chpub', EnumCol(label = u"Nature de l'employeur principal",
-                enum = Enum([u"Sans objet",
-                            u"Etat",
-                            u"Collectivités locales, HLM",
-                            u"Hôpitaux publics",
-                            u"Particulier",
-                            u"Entreprise publique (La Poste, EDF-GDF, etc.)",
-                            u"Entreprise privée, association"
-                            ]))),
+                      enum = Enum([u"Sans objet",
+                                   u"Etat",
+                                   u"Collectivités locales, HLM",
+                                   u"Hôpitaux publics",
+                                   u"Particulier",
+                                   u"Entreprise publique (La Poste, EDF-GDF, etc.)",
+                                   u"Entreprise privée, association",
+                                   ]))),
 
-    ('cadre', BoolCol(label = u"Cadre")),
-    ('code_risque', IntCol(label = u"")),
-    ('taux_accident_travail', FloatCol(label = u"")),
-
+    ('cadre', BoolCol(label = u"Cadre salarié du privé")),
+    ('code_risque', IntCol(label = u"")),  # TODO: complete label and add relevant default
+    ('taux_accident_travail', FloatCol(label = u"")), # TODO: complete label and add relevant default
 
     ('boursier', BoolCol()),
     ('code_postal', IntCol(label = "Code postal du lieu de résidence", entity = 'men')),

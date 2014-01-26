@@ -123,7 +123,7 @@ def _pen_net(rev_pen, _P):
     'ind'
     """
     P = _P.ir.tspr.abatpen
-#    problème car les pensions sont majorées au niveau du foyer
+#    TODO: problème car les pensions sont majorées au niveau du foyer
 #    d11 = ( AS + BS + CS + DS + ES +
 #            AO + BO + CO + DO + EO )
 #    penv2 = (d11-f11> P.abatpen.max)*(penv + (d11-f11-P.abatpen.max)) + (d11-f11<= P.abatpen.max)*penv

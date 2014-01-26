@@ -130,9 +130,6 @@ def _nivvie_ini(revini, uc):
     '''
     return revini/uc
 
-
-
-
 def _revprim_i(rev_trav, cho, rev_cap, cotpat, cotsal):
     '''
     Revenu primaire individuel
@@ -152,7 +149,6 @@ def _revprim(revprim_i, _option = {'revprim_i': ALL}):
         r += rev
     return r
 
-
 def _rev_trav(rev_sal, rag, ric, rnc):
     '''
     Revenu du travail
@@ -164,18 +160,6 @@ def _pen(chonet, rstnet, alr, alv, rto):
     Pensions
     '''
     return chonet + rstnet + alr + alv + rto
-
-def _chonet(cho, csgchoi, crdscho):
-    '''
-    Chômage net
-    '''
-    return cho + csgchoi + crdscho
-
-def _rstnet(rst, csgrsti, crdsrst):
-    '''
-    Retraites nettes
-    '''
-    return rst + csgrsti + crdsrst
 
 def _cotsoc_bar(csg_cap_bar, prelsoc_cap_bar, crds_cap_bar):
     '''

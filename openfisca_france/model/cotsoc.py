@@ -12,9 +12,18 @@ from __future__ import division
 import logging
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_, ones, zeros 
-from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
 
-from .data import CAT
+from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
+from openfisca_core.enumerations import Enum
+
+
+CAT = Enum(['prive_non_cadre',
+            'prive_cadre',
+            'public_titulaire_etat',
+            'public_titulaire_militaire',
+            'public_titulaire_territoriale',
+            'public_titulaire_hospitaliere',
+            'public_non_titulaire'])
 
 log = logging.getLogger(__name__)
 
@@ -246,13 +255,14 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     cad = cadre.inverse()
     fon = fonc.inverse()
 
+    # TODO: complete this to deal with the fonctionnaire
     brut_nca = nca.calc(sali)
     brut_cad = cad.calc(sali)
     brut_fon = fon.calc(sali)
 
-    salbrut = (brut_nca*(type_sal == CAT['noncadre']) +
-               brut_cad*(type_sal == CAT['cadre']) +
-               brut_fon*(type_sal == CAT['etat_t']) )
+    salbrut = (brut_nca*(type_sal == CAT['prive_non_cadre']) +
+               brut_cad*(type_sal == CAT['prive_cadre']) +
+               brut_fon*(type_sal == CAT['public_titulaire_etat']) )
     
     #print " nombre de barème:", len(salarie['noncadre'])
     #for name, bar in salarie['noncadre'].iteritems():
@@ -263,13 +273,14 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
 
 def _type_sal(titc, statut, chpub, cadre, _P):
     '''
-    Defines the type_sal of the individual
-    0 noncadre
-    1 cadre
-    2 etat_t   : agent titualire de l'Etat
-    3 colloc_t : agent titualire des collectivités locales
-    4 contract : agent contractuel de l'Etat ou des collectivités locales
-
+    Catégorie de salarié
+    0: prive_non_cadre
+    1: prive_cadre
+    2: public_titulaire_etat
+    3: public_titulaire_militaire
+    4: public_titulaire_territoriale
+    5: public_titulaire_hospitalière
+    6: public_non_titulaire
     '''
     cadre    = (statut ==8)*(chpub>3)*cadre
     noncadre = (statut ==8)*(chpub>3)*not_(cadre)
@@ -287,24 +298,34 @@ def _type_sal(titc, statut, chpub, cadre, _P):
     hosp_cont = (chpub==2)*(titc == 3)
 
     contract = (colloc_cont + hosp_cont + etat_cont) > 1
-
-    colloc_tit2 = (colloc_tit + hosp_tit ) > 1
-    return 1*cadre + 2*etat_tit + 3*colloc_tit2 + 4*contract
+    return 1*cadre + 2*etat_tit + 4*colloc_tit + 5*hosp_tit + 6*contract
     
+
+def _taille_entreprise(nbsala):
+    '''
+    0 : "Non pertinent"
+    1 : "Moins de 10 salariés"
+    2 : "De 10 à 19 salariés"
+    3 : "De 20 à 249 salariés"
+    4 : "Plus de 250 salariés"
+    '''
+    return 0 + 1*(nbsala>=1) + 1*(nbsala>=10) + 1*(nbsala>=20) + 1*(nbsala>=250)
 
 
 def build_pat(_P):
     '''
-    Builds pat from P.cotsoc.pat
+    Construit le dictionnaire de barèmes des cotisations patronales
+    à partir des informations contenues dans P.cotsoc.pat
     '''
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
-
     pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
-
     pat['noncadre'].update(pat['commun'])
     pat['cadre'].update(pat['commun'])
-
     pat['fonc']['contract'].update(pat['commun'])
+
+    # Renaiming
+    pat['prive_non_cadre'] =  pat.pop('noncadre')
+    pat['prive_cadre'] =  pat.pop('cadre')
 
     for var in ["maladie", "apprentissage", "apprentissage2", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction","assedic"]:
         del pat['commun'][var]
@@ -314,21 +335,22 @@ def build_pat(_P):
 
     pat['fonc']['etat'].update(pat['commun'])
     pat['fonc']['colloc'].update(pat['commun'])
-
-
     del pat['commun']
 
     pat['etat_t'] = pat['fonc']['etat']
     pat['colloc_t'] = pat['fonc']['colloc']
-
     pat['contract'] =  pat['fonc']['contract']
-
-    del pat['fonc']['etat']
-    del pat['fonc']['colloc']
-
-
-# TODO manque transport
-
+    
+    for var in ['etat', 'colloc', 'contract' ]:
+        del pat['fonc'][var]
+        
+    # Renaiming
+    pat['public_titulaire_etat'] =  pat.pop('etat_t')
+    pat['public_titulaire_territoriale'] =  pat.pop('colloc_t')
+#    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix ths
+    pat['public_non_titulaire'] =  pat.pop('contract')
+    
+# TODO: manque versement transport
     return pat
 
 
@@ -338,15 +360,17 @@ def _cotpat_contrib(salbrut, hsup, type_sal, _P):
     '''
     pat = build_pat(_P)
     cotpat = zeros(len(salbrut))
-    for categ in CAT:
-        iscat = (type_sal == categ[1])
-        for bar in pat[categ[0]].itervalues():
-            is_contrib = (bar.option == "contrib")
-            temp = - (iscat*bar.calc(salbrut))*is_contrib
-            cotpat += temp
-            if is_contrib == 1: 
-                log.info(bar)
-                log.info(temp)
+    for category in CAT:
+        iscat = (type_sal == category[1]) # category[1] is the numerical index
+        if category[0] in pat.keys():
+            for bar in pat[category[0]].itervalues():
+                is_contrib = (bar.option == "contrib")
+                temp = - (iscat*bar.calc(salbrut))*is_contrib
+                cotpat += temp
+                if is_contrib == 1: 
+                    log.info(bar)
+                    log.info(temp)
+                
     return cotpat
 
 def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
@@ -355,20 +379,19 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
     '''
     pat = build_pat(_P)
     cotpat = zeros(len(salbrut))
-    for categ in CAT:
-        iscat = (type_sal == categ[1])
-        for bar in pat[categ[0]].itervalues():
-            is_noncontrib = (bar.option == "noncontrib")
-            #if DEBUG:
-            #    is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
-            temp = - (iscat*bar.calc(salbrut))*is_noncontrib
-            cotpat += temp
-            if is_noncontrib == 1: 
-                log.info(bar)
-                log.info(temp)
-                
+    for category in CAT:
+        iscat = (type_sal == category[1])
+        if category[0] in pat.keys():
+            for bar in pat[category[0]].itervalues():
+                is_noncontrib = (bar.option == "noncontrib")
+                #if DEBUG:
+                #    is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
+                temp = - (iscat*bar.calc(salbrut))*is_noncontrib
+                cotpat += temp
+                if is_noncontrib == 1: 
+                    log.info(bar)
+                    log.info(temp)
     return cotpat
-
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib):
     '''
@@ -379,8 +402,10 @@ def _cotpat(cotpat_contrib, cotpat_noncontrib):
 
 def build_sal(_P):
     '''
-    Builds sal from P.cotsoc.pat
+    Construit le dictionnaire de barèmes des cotisations salariales
+    à partir des informations contenues dans P.cotsoc.sal
     '''
+    # TODO: homogeneize with the CAT enum categories, extend and cleanify
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
 
     sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
@@ -399,16 +424,10 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
     del sal['commun']
+    log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['etat_t'].keys() )   
+    log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['colloc_t'].keys() )   
+    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient %s", sal['contract'].keys() )   
     
-#    print 'sal etat'
-#    print sal['etat_t'].keys()
-#
-#    print 'sal colloc'
-#    print sal['colloc_t'].keys()
-
-#    print 'sal contract'
-#    print sal['contract'].keys()
-
     return sal
 
 
@@ -429,12 +448,14 @@ def _cotsal_contrib(salbrut, hsup, type_sal, _P):
     '''
     sal = build_sal(_P)
     cotsal = zeros(len(salbrut))
-    for categ in CAT:
-        iscat = (type_sal == categ[1])
-        for bar in sal[categ[0]].itervalues():
-            is_contrib = (bar.option == "contrib")
-            temp = - (iscat*bar.calc(salbrut-hsup))*is_contrib
-            cotsal += temp
+    for category in CAT:
+        iscat = (type_sal == category[1])
+        if category[0] in sal:
+            for bar in sal[category[0]].itervalues():
+                is_contrib = (bar.option == "contrib")
+                temp = - (iscat*bar.calc(salbrut-hsup))*is_contrib
+                cotsal += temp
+    
     return cotsal
 
 def _cotsal_noncontrib(salbrut, hsup, type_sal, _P):
@@ -444,15 +465,16 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, _P):
     sal = build_sal(_P)
     cotsal = zeros(len(salbrut))
     seuil_assuj_fds = seuil_fds(_P)
-    for categ in CAT:
-        iscat = (type_sal == categ[1])
-        for bar in sal[categ[0]].itervalues():
-            is_noncontrib = (bar.option == "noncontrib")
-            is_exempt_fds = (categ[0] in ['etat_t', 'colloc_t'])*(bar._name == 'solidarite')*( (salbrut-hsup) <= seuil_assuj_fds)   #TODO: check assiette voir IPP
-            if DEBUG:
-                is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
-            temp = - (iscat*bar.calc(salbrut-hsup))*is_noncontrib*not_(is_exempt_fds)
-            cotsal += temp
+    for category in CAT:
+        iscat = (type_sal == category[1])
+        if category[0] in sal:
+            for bar in sal[category[0]].itervalues():
+                is_noncontrib = (bar.option == "noncontrib")
+                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale'])*(bar._name == 'solidarite')*( (salbrut-hsup) <= seuil_assuj_fds)   #TODO: check assiette voir IPP
+                if DEBUG:
+                    is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
+                temp = - (iscat*bar.calc(salbrut-hsup))*is_noncontrib*not_(is_exempt_fds)
+                cotsal += temp
     return cotsal
 
 def _cotsal(cotsal_contrib, cotsal_noncontrib):
@@ -502,11 +524,10 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, _P):
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
-
     P = _P.cotsoc
     taux_fillon = taux_exo_fillon(sal_h_b, P)
-    alleg_fillon = taux_fillon*salbrut*(type_sal == CAT['noncadre'])
-    
+    alleg_fillon = taux_fillon*salbrut*(type_sal == CAT['prive_non_cadre'])
+    return alleg_fillon
 
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''
@@ -553,7 +574,7 @@ def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
     
 def _chobrut(choi, csg_rempl, _defaultP):
     '''
-    Calcule les allocations chômage brute à partir des allocations nettes
+    Calcule les allocations chômage brute à partir des allocations imposables
     '''
     # TODO: ajouter la crds ?
     P = _defaultP.csg.chom
@@ -602,21 +623,25 @@ def _crdscho(chobrut, _P):
     crds = scaleBaremes(_P.crds.act, plaf_ss)
     return - crds.calc(chobrut)
 
-
 def _cho(chobrut, csgchod, _P):
     '''
-    Chômage imposable
+    Chômage imposable (recalculé)
     '''
     isexo = exo_csg_chom(chobrut, _P)  # TODO: check
     return chobrut + not_(isexo)*csgchod
 
+def _chonet(cho, csgchoi, crdscho):
+    '''
+    Chômage net
+    '''
+    return cho + csgchoi + crdscho
 
 ############################################################################
 ## Pensions
 ############################################################################
 def _rstbrut(rsti, csg_rempl, _defaultP):
     '''
-    Calcule les pensions de retraites brutes à partir des pensions nettes/imposables
+    Calcule les pensions de retraites brutes à partir des pensions imposables
     '''
     P = _defaultP.csg.retraite
     rst_plein = P.plein.deduc.inverse()  # TODO:     rajouter la non  déductible dans param
@@ -659,6 +684,12 @@ def _rst(rstbrut, csgrstd):
     Calcule les pensions imposables
     '''
     return rstbrut + csgrstd
+
+def _rstnet(rst, csgrsti, crdsrst):
+    '''
+    Retraites nettes
+    '''
+    return rst + csgrsti + crdsrst
 
 ############################################################################
 ## Impôt Landais, Piketty, Saez

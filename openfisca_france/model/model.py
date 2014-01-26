@@ -62,12 +62,11 @@ def _wprm(wprm):
     return wprm
 
 
-prestation_by_name = collections.OrderedDict((
+prestation_by_name = collections.OrderedDict(( 
     ############################################################
     # Reproduction des identifiants
     ############################################################
     #TODO: find a way of having only 'ind' if num_table =  = 1
-
     ('noi_ind', Prestation(_noi)),
     ('idmen_ind', Prestation(_men)),
     ('idmen_foy', EnumPresta(_men, entity = "foy")),
@@ -101,39 +100,49 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
 
     # Salaires
-    ('type_sal', EnumPresta(cs._type_sal)),
-    ('salbrut', Prestation(cs._salbrut)),
-    ('sal_h_b', Prestation(cs._sal_h_b)),
+    ('type_sal', EnumPresta(cs._type_sal, label = u"Catégorie de salariés")),
+    ('salbrut', Prestation(cs._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
+    ('prime', Prestation(cs._salbrut, label = u"Primes et indemnités des fonctionnaires")),
+    ('sal_h_b', Prestation(cs._sal_h_b, label = u"Salaire horaire brut")),
+    ('taille_entreprise', EnumPresta(cs._taille_entreprise,
+                                    label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
+                                    enum = Enum([u"Non pertienent",
+                                                 u"Moins de 10 salariés",
+                                                 u"De 10 à 19 salariés",
+                                                 u"De 20 à 249 salariés",
+                                                 u"Plus de 250 salariés"]))),
+    
+    ('cotpat_contrib', Prestation(cs._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
+    ('cotpat_noncontrib', Prestation(cs._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
+    ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
 
-    ('cotpat_contrib', Prestation(cs._cotpat_contrib)),
-    ('cotpat_noncontrib', Prestation(cs._cotpat_noncontrib)),
-    ('cotpat', Prestation(cs._cotpat)),
+    ('alleg_fillon', Prestation(cs._alleg_fillon)), # TODO: complete label
 
-    ('alleg_fillon', Prestation(cs._alleg_fillon)),
+    ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
+    ('cotsal_noncontrib', Prestation(cs._cotsal_noncontrib, label = u"Cotisations sociales non salariales non-contributives")),
+    ('cotsal', Prestation(cs._cotsal, label = u"Cotisations sociales salariales")),
 
-    ('cotsal_contrib', Prestation(cs._cotsal_contrib)),
-    ('cotsal_noncontrib', Prestation(cs._cotsal_noncontrib)),
-    ('cotsal', Prestation(cs._cotsal)),
+    ('csgsald', Prestation(cs._csgsald, label = u"CSG déductible sur les salaires")),
+    ('csgsali', Prestation(cs._csgsali, label = u"CSG imposables sur les salaires")),
+    ('crdssal', Prestation(cs._crdssal, label = u"CRDS sur les salaires")),
+    ('sal', Prestation(cs._sal, label = u"Salaires imposables")),
+    ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")), # TODO: complete label
 
-    ('csgsald', Prestation(cs._csgsald)),
-    ('csgsali', Prestation(cs._csgsali)),
-    ('crdssal', Prestation(cs._crdssal)),
-    ('sal', Prestation(cs._sal, label = u"Salaire imposable (recalculé)")),
-    ('salsuperbrut', Prestation(cs._salsuperbrut)),
+    # Allocations chômage
+    ('chobrut', Prestation(cs._chobrut, label = u"Allocations chômage brutes")),
+    ('csgchod', Prestation(cs._csgchod, label = u"CSG déductible sur les allocations chômage")),
+    ('csgchoi', Prestation(cs._csgchoi, label = u"CSG imposable sur les allocations chômage")),
+    ('crdscho', Prestation(cs._crdscho, label = u"CRDS sur les allocations chômage")),  # TODO: complete label
+    ('cho', Prestation(cs._cho, label = u"Allocations chômage imposables")),
+    ('chonet', Prestation(cs._chonet, label = u"Allocations chômage nettes")),
 
-    # Chômage
-    ('chobrut', Prestation(cs._chobrut)),
-    ('csgchod', Prestation(cs._csgchod)),
-    ('csgchoi', Prestation(cs._csgchoi)),
-    ('crdscho', Prestation(cs._crdscho)),
-    ('cho', Prestation(cs._cho)),
-
-    # Pension
-    ('rstbrut', Prestation(cs._rstbrut)),
-    ('csgrstd', Prestation(cs._csgrstd)),
-    ('csgrsti', Prestation(cs._csgrsti)),
-    ('crdsrst', Prestation(cs._crdsrst)),
-    ('rst', Prestation(cs._rst)),
+    # Pensions
+    ('rstbrut', Prestation(cs._rstbrut, label = u"Pensions de retraite brutes")),
+    ('csgrstd', Prestation(cs._csgrstd, label = u"CSG déductible sur les pensions de retraite")),
+    ('csgrsti', Prestation(cs._csgrsti, label = u"CSG imposable sur les pensions de retraite")),
+    ('crdsrst', Prestation(cs._crdsrst, label = u"CRDS sur les pensions de retraite")),
+    ('rst', Prestation(cs._rst, label = u"Pensions de retraite imposables")),  
+    ('rstnet', Prestation(cs._rstnet, label = u"Pensions de retraite nettes")),
 
     # Revenus du capital soumis au prélèvement libératoire
     ('csg_cap_lib', Prestation(cs._csg_cap_lib, label = u"CSG sur les revenus du capital soumis au prélèvement libératoire")),
@@ -194,7 +203,7 @@ prestation_by_name = collections.OrderedDict((
     ('cd2', Prestation(cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002,1,1), end = date(2008,12,31))),
     ('charges_deduc', Prestation(cd._charges_deduc, entity = 'foy', label = u"Charges déductibles")),
 
-    ('rfr_cd', Prestation(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")),  # TODO
+    ('rfr_cd', Prestation(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")),  # TODO:
 
     ('rng', Prestation(ir._rng, entity = 'foy', label = u"Revenu net global")),
     ('rni', Prestation(ir._rni, entity = 'foy', label = u"Revenu net imposable")),
@@ -345,8 +354,9 @@ prestation_by_name = collections.OrderedDict((
     # Impôt sur le revenu afférent à la plus-value immobilière
     ###########################################################
 
-    ('ir_pv_immo', Prestation(immo._ir_pv_immo, entity = 'foy',
-        label = "Impôt sur le revenu afférent à la plus-value immobilière")),
+    ('ir_pv_immo', Prestation(immo._ir_pv_immo, 
+                              entity = 'foy',
+                              label = "Impôt sur le revenu afférent à la plus-value immobilière")),
 
     ############################################################
     # Impôt de solidarité sur la fortune
@@ -374,13 +384,28 @@ prestation_by_name = collections.OrderedDict((
     ('maj_cga_i', Prestation(isf._maj_cga_i)),
     ('maj_cga', Prestation(isf._maj_cga, entity = 'foy')),
 
-    ('bouclier_rev', Prestation( isf._bouclier_rev, entity = 'foy')),
-    ('bouclier_imp_gen', Prestation(isf._bouclier_imp_gen, entity = 'foy')),
-    ('restitutions', Prestation(isf._restitutions, entity = 'foy')),
-    ('bouclier_sumimp', Prestation(isf._bouclier_sumimp, entity = 'foy')),
-    ('bouclier_fiscal', Prestation(isf._bouclier_fiscal, entity = 'foy', start = date(2006,1,1))),
+    ('bouclier_rev', Prestation(isf._bouclier_rev, 
+                                entity = 'foy',
+                                start = date(2006,1,1),
+                                end = date(2010,12,31))),
+    ('bouclier_imp_gen', Prestation(isf._bouclier_imp_gen,
+                                    entity = 'foy',
+                                    start = date(2006,1,1),
+                                    end = date(2010,12,31))),
+    ('restitutions', Prestation(isf._restitutions,
+                                entity = 'foy',
+                                start = date(2006,1,1),
+                                end = date(2010,12,31))),
+    ('bouclier_sumimp', Prestation(isf._bouclier_sumimp,
+                                   entity = 'foy',
+                                   start = date(2006,1,1),
+                                   end = date(2010,12,31))),
+    ('bouclier_fiscal', Prestation(isf._bouclier_fiscal, 
+                                   entity = 'foy', 
+                                   start = date(2006,1,1),
+                                   end = date(2010,12,31))),
 
-    # inclure aussi les dates si nécessaire start = date(2007,1,1)
+    # TODO: inclure aussi les dates si nécessaire start = date(2007,1,1)
 
     ############################################################
     # Prestations familiales
@@ -525,75 +550,74 @@ prestation_by_name = collections.OrderedDict((
 
     ('typ_men', IntPresta(cm._typ_men, entity = 'men', label = u"Type de ménage")),
     ('nb_ageq0', IntPresta(cl._nb_ageq0, entity = 'men', label = u"Effectifs des tranches d'âge quiquennal")),
-    ('nbinde', EnumPresta(cl._nbinde, label = u"Nombre d'individus dans le ménage", entity = 'men',
-                          enum = Enum([u"Une personne",
-                                       u"Deux personnes",
-                                       u"Trois personnes",
-                                       u"Quatre personnes",
-                                       u"Cinq personnes",
-                                       u"Six personnes et plus"], start = 1))),
+     ('nbinde', EnumPresta(cl._nbinde, label = u"Nombre d'individus dans le ménage", entity = 'men',
+                           enum = Enum([u"Une personne",
+                                        u"Deux personnes",
+                                        u"Trois personnes",
+                                        u"Quatre personnes",
+                                        u"Cinq personnes",
+                                        u"Six personnes et plus"], start = 1))),
+ 
+     ('cplx', BoolPresta(cl._cplx, entity = 'men', label = u"Indicatrice de ménage complexe")),
+ 
+     ('act_cpl', IntPresta(cl._act_cpl, entity = 'men', label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint")),
+     ('cohab', BoolPresta(cl._cohab, entity = 'men', label = u"Vie en couple")),
+     ('act_enf', IntPresta(cl._act_enf, entity = 'men', label = u"Nombre d'enfants actifs")),
+ 
+     ('typmen15', EnumPresta(cl._typmen15, label = u"Type de ménage", entity = 'men',
+                           enum = Enum([u"Personne seule active",
+                                        u"Personne seule inactive",
+                                        u"Familles monoparentales, parent actif",
+                                        u"Familles monoparentales, parent inactif et au moins un enfant actif",
+                                         u"Familles monoparentales, tous inactifs",
+                                         u"Couples sans enfant, 1 actif",
+                                         u"Couples sans enfant, 2 actifs",
+                                         u"Couples sans enfant, tous inactifs",
+                                         u"Couples avec enfant, 1 membre du couple actif",
+                                         u"Couples avec enfant, 2 membres du couple actif",
+                                         u"Couples avec enfant, couple inactif et au moins un enfant actif",
+                                         u"Couples avec enfant, tous inactifs",
+                                         u"Autres ménages, 1 actif",
+                                         u"Autres ménages, 2 actifs ou plus",
+                                         u"Autres ménages, tous inactifs"],start = 1))),
+ 
+     ('decile', EnumPresta(cm._decile, entity = 'men', label = u"Décile de niveau de vie disponible",
+                         enum = Enum([u"Hors champ"
+                                      u"1er décile",
+                                      u"2nd décile",
+                                      u"3e décile",
+                                      u"4e décile",
+                                      u"5e décile",
+                                      u"6e décile",
+                                      u"7e décile",
+                                      u"8e décile",
+                                      u"9e décile",
+                                      u"10e décile"]))),
+ 
+     ('decile_net', EnumPresta(cm._decile_net, entity = 'men', label = u"Décile de niveau de vie net",
+                         enum = Enum([u"Hors champ"
+                                      u"1er décile",
+                                      u"2nd décile",
+                                      u"3e décile",
+                                      u"4e décile",
+                                      u"5e décile",
+                                      u"6e décile",
+                                      u"7e décile",
+                                      u"8e décile",
+                                      u"9e décile",
+                                      u"10e décile"]))),
 
-    ('cplx', BoolPresta(cl._cplx, entity = 'men', label = u"Indicatrice de ménage complexe")),
+     ('pauvre40', EnumPresta(cm._pauvre40, entity = 'men', label = u"Pauvreté monétaire au seuil de 40%",
+                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 40%",
+                                      u"Ménage en dessous du seuil de pauvreté à 40%"]))),
 
-    ('act_cpl', IntPresta(cl._act_cpl, entity = 'men', label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint")),
-    ('cohab', BoolPresta(cl._cohab, entity = 'men', label = u"Vie en couple")),
-    ('act_enf', IntPresta(cl._act_enf, entity = 'men', label = u"Nombre d'enfants actifs")),
+     ('pauvre50', EnumPresta(cm._pauvre50, entity = 'men', label = u"Pauvreté monétaire au seuil de 50%",
+                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
+                                      u"Ménage en dessous du seuil de pauvreté à 50%"]))),
 
-    ('typmen15', EnumPresta(cl._typmen15, label = u"Type de ménage", entity = 'men',
-                          enum = Enum([u"Personne seule active",
-                                       u"Personne seule inactive",
-                                       u"Familles monoparentales, parent actif",
-                                       u"Familles monoparentales, parent inactif et au moins un enfant actif",
-                                        u"Familles monoparentales, tous inactifs",
-                                        u"Couples sans enfant, 1 actif",
-                                        u"Couples sans enfant, 2 actifs",
-                                        u"Couples sans enfant, tous inactifs",
-                                        u"Couples avec enfant, 1 membre du couple actif",
-                                        u"Couples avec enfant, 2 membres du couple actif",
-                                        u"Couples avec enfant, couple inactif et au moins un enfant actif",
-                                        u"Couples avec enfant, tous inactifs",
-                                        u"Autres ménages, 1 actif",
-                                        u"Autres ménages, 2 actifs ou plus",
-                                        u"Autres ménages, tous inactifs"],start = 1))),
-
-    ('decile', EnumPresta(cm._decile, entity = 'men', label = u"Décile de niveau de vie disponible",
-                        enum = Enum([u"Hors champ"
-                                     u"1er décile",
-                                     u"2nd décile",
-                                     u"3e décile",
-                                     u"4e décile",
-                                     u"5e décile",
-                                     u"6e décile",
-                                     u"7e décile",
-                                     u"8e décile",
-                                     u"9e décile",
-                                     u"10e décile"]))),
-
-    ('decile_net', EnumPresta(cm._decile_net, entity = 'men', label = u"Décile de niveau de vie net",
-                        enum = Enum([u"Hors champ"
-                                     u"1er décile",
-                                     u"2nd décile",
-                                     u"3e décile",
-                                     u"4e décile",
-                                     u"5e décile",
-                                     u"6e décile",
-                                     u"7e décile",
-                                     u"8e décile",
-                                     u"9e décile",
-                                     u"10e décile"]))),
-
-    ('pauvre40', EnumPresta(cm._pauvre40, entity = 'men', label = u"Pauvreté monétaire au seuil de 40%",
-                        enum = Enum([u"Ménage au dessus du seuil de pauvreté à 40%",
-                                     u"Ménage en dessous du seuil de pauvreté à 40%"]))),
-
-
-    ('pauvre50', EnumPresta(cm._pauvre50, entity = 'men', label = u"Pauvreté monétaire au seuil de 50%",
-                        enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
-                                     u"Ménage en dessous du seuil de pauvreté à 50%"]))),
-
-    ('pauvre60', EnumPresta(cm._pauvre60, entity = 'men', label = u"Pauvreté monétaire au seuil de 60%",
-                        enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
-                                     u"Ménage en dessous du seuil de pauvreté à 50%"]))),
+     ('pauvre60', EnumPresta(cm._pauvre60, entity = 'men', label = u"Pauvreté monétaire au seuil de 60%",
+                         enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
+                                      u"Ménage en dessous du seuil de pauvreté à 50%"]))),
 
     ############################################################
     # Totaux
@@ -613,8 +637,6 @@ prestation_by_name = collections.OrderedDict((
 
     ('rev_trav', Prestation(cm._rev_trav)),
     ('pen', Prestation(cm._pen)),
-    ('chonet', Prestation(cm._chonet)),
-    ('rstnet', Prestation(cm._rstnet)),
     ('cotsoc_bar', Prestation(cm._cotsoc_bar)),
     ('cotsoc_lib', Prestation(cm._cotsoc_lib)),
     ('rev_cap', Prestation(cm._rev_cap)),
