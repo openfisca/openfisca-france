@@ -634,20 +634,19 @@ def _chobrut(choi, csg_rempl, _defaultP):
     '''
     # TODO: ajouter la crds ?
     P = _defaultP.csg.chom
+    plaf_ss = 12*_defaultP.cotsoc.gen.plaf_ss
+    csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
+    taux_plein = csg['plein']['deduc']
+    taux_reduit = csg['reduit']['deduc']
     
-    log.info(P.plein.deduc)
-    log.info(P.reduit.deduc)
+    log.info(taux_plein)
+    log.info(taux_reduit)
     
-    chom_plein = P.plein.deduc.inverse()
-    chom_reduit = P.reduit.deduc.inverse()
+    chom_plein = taux_plein.inverse()
+    chom_reduit = taux_reduit.inverse()
     log.info(chom_plein)
     log.info(chom_reduit)
-    print csg_rempl
-    print (csg_rempl==1)*choi
-    print (csg_rempl==2)*chom_reduit.calc(choi)
-    print (csg_rempl==3)*chom_plein.calc(choi)
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
-    print "csg montée ", chobrut - choi
     #isexo = exo_csg_chom(choi, _defaultP)
     #chobrut = not_(isexo)*chobrut + (isexo)*choi
 #     print  P.plein.impos,  P.plein.deduc
@@ -667,7 +666,6 @@ def _csgchod(chobrut, csg_rempl, _P):
     csgchod = (csg_rempl==2)*taux_reduit + (csg_rempl==3)*taux_plein
     #isexo = exo_csg_chom(chobrut, _P)
     # return - not_(isexo)*csgchod
-    print "csg descente ", csgchod
     return - csgchod
 
 def _csgchoi(chobrut, csg_rempl, _P):
