@@ -241,7 +241,6 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
-
     noncadre = combineBaremes(salarie['noncadre'])
     cadre    = combineBaremes(salarie['cadre'])
     fonc     = combineBaremes(salarie['fonc'])
@@ -264,10 +263,6 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
                brut_cad*(type_sal == CAT['prive_cadre']) +
                brut_fon*(type_sal == CAT['public_titulaire_etat']) )
     
-    #print " nombre de barème:", len(salarie['noncadre'])
-    #for name, bar in salarie['noncadre'].iteritems():
-    #    print bar
-
     return salbrut + hsup
 
 
@@ -591,9 +586,77 @@ def _sal(salbrut, csgsald, cotsal, hsup):
     '''
     return salbrut + csgsald + cotsal - hsup
 
-
 def _salsuperbrut(salbrut, cotpat, alleg_fillon):
     return salbrut - cotpat - alleg_fillon
+
+
+def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
+    '''
+    Supplément familial de traitement
+    '''
+    # TODO un seul sft par couple où est présent un fonctionnaire
+    
+    part_fixe_1 = 0 # TODO: fill parameters
+    part_fixe_2 = 0 # TODO: fill parameters
+    part_fixe_supp = 0 # TODO: fill parameters
+    part_fixe = ( part_fixe_1*(fonc_nbenf>=1) + (part_fixe_2-part_fixe_1)*(fonc_nbenf>=2) + 
+                  part_fixe_supp*max_(0, fonc_nbenf - 2) )
+
+    # pct_variable_1 = 0
+    pct_variable_2 = 0 # TODO: fill parameters
+    pct_variable_3 = 0 # TODO: fill parameters
+    pct_variable_supp = 0 # TODO: fill parameters
+    pct_variable =  ( pct_variable_2*(fonc_nbenf>=2) + (pct_variable_3-pct_variable_2)*(fonc_nbenf>=3) +
+                      pct_variable_supp*max_(0, fonc_nbenf - 3) )
+
+    plancher_mensuel_1 = 0 # TODO: fill parameters
+    plancher_mensuel_2 = 0 # TODO: fill parameters
+    plancher_mensuel_supp = 0 # TODO: fill parameters
+    
+    plancher = ( plancher_mensuel_1*(fonc_nbenf>=1) + (plancher_mensuel_2-plancher_mensuel_1)*(fonc_nbenf>=2) + 
+                plancher_mensuel_supp*max_(0, fonc_nbenf - 2) )
+
+    plafond_mensuel_1 = 0 # TODO: fill parameters
+    plafond_mensuel_2 = 0 # TODO: fill parameters
+    plafond_mensuel_supp = 0 # TODO: fill parameters
+    
+    plafond = ( plafond_mensuel_1*(fonc_nbenf>=1) + (plafond_mensuel_2-plafond_mensuel_1)*(fonc_nbenf>=2) + 
+                plafond_mensuel_supp*max_(0, fonc_nbenf - 2) )
+    
+    sft = min_( max(part_fixe + pct_variable*sal_brut, plancher), plafond )*(type_sal>=2)
+    # Nota Bene:
+    # type_sal is an EnumCol which enum is: 
+    # CAT = Enum(['prive_non_cadre',
+    #             'prive_cadre',
+    #             'public_titulaire_etat',
+    #             'public_titulaire_militaire',
+    #             'public_titulaire_territoriale',
+    #             'public_titulaire_hospitaliere',
+    #             'public_non_titulaire'])
+    return 12*sft
+
+def _indemnite_residence(type_sal, zone_apl, _P):
+    '''
+    Indemnité de résidence des fonctionnaires
+    '''
+    taux_zone_1 = .03 # TODO: fill parameters
+    taux_zone_2 = .01 # TODO: fill parameters
+    taux_zone_3 = 0 # TODO: fill parameters
+    return (taux_zone_1*(zone_apl==1) + taux_zone_2*(zone_apl==2) + taux_zone_3*(zone_apl==3))*(type_sal>=2)
+    
+def _indice_majore(type_sal, salbrut, _P):
+    '''
+    Indice majoré
+    '''
+    traitement_annuel_brut = 1 # TODO: fill parameters
+    return (salbrut/traitement_annuel_brut)*(type_sal>=2)
+
+def _gipa(type_sal, _P):
+    '''
+    Indemnité de garantie individuelle du pouvoir d'achat
+    '''
+    # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
+    pass
 
 
 ############################################################################
