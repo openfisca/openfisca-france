@@ -298,7 +298,8 @@ def _type_sal(titc, statut, chpub, cadre, _P):
     hosp_cont = (chpub==2)*(titc == 3)
 
     contract = (colloc_cont + hosp_cont + etat_cont) > 1
-    return 1*cadre + 2*etat_tit + 4*colloc_tit + 5*hosp_tit + 6*contract
+    print "type_sal", 1*cadre + 2*etat_tit + 4*colloc_tit + 5*hosp_tit + 6*contract
+    return 0 + 1*cadre + 2*etat_tit + 4*colloc_tit + 5*hosp_tit + 6*contract
     
 
 def _taille_entreprise(nbsala):
@@ -327,7 +328,7 @@ def build_pat(_P):
     pat['prive_non_cadre'] =  pat.pop('noncadre')
     pat['prive_cadre'] =  pat.pop('cadre')
 
-    for var in ["maladie", "apprentissage", "apprentissage2", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction","assedic"]:
+    for var in ["maladie", "apprentissage", "apprentissage2", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction","assedic", "transport"]:
         del pat['commun'][var]
 
     for var in ["apprentissage", "apprentissage2", "formprof", "chomfg", "construction","assedic"]:
@@ -405,15 +406,19 @@ def build_sal(_P):
     Construit le dictionnaire de barèmes des cotisations salariales
     à partir des informations contenues dans P.cotsoc.sal
     '''
-    # TODO: homogeneize with the CAT enum categories, extend and cleanify
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
 
     sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
     sal['noncadre'].update(sal['commun'])
     sal['cadre'].update(sal['commun'])
+    
+    # Renaiming
+    sal['prive_non_cadre'] =  sal.pop('noncadre')
+    sal['prive_cadre'] =  sal.pop('cadre')
+    
     sal['etat_t'] = sal['fonc']['etat']
     sal['colloc_t'] = sal['fonc']['colloc']
-    sal['contract']   = sal['fonc']['contract']
+    sal['contract'] = sal['fonc']['contract']
 
     sal['contract'].update(sal['commun'])
     del sal['contract']['arrco']
@@ -424,9 +429,20 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
     del sal['commun']
-    log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['etat_t'].keys() )   
-    log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['colloc_t'].keys() )   
-    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient %s", sal['contract'].keys() )   
+
+    # Renaiming
+    sal['public_titulaire_etat'] =  sal.pop('etat_t')
+    sal['public_titulaire_territoriale'] =  sal.pop('colloc_t')
+#    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix ths
+    sal['public_non_titulaire'] =  sal.pop('contract')
+    
+
+    log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['public_titulaire_etat'].keys() )   
+    log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['public_titulaire_territoriale'].keys() )   
+    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient %s", sal['public_non_titulaire'].keys() )   
+
+
+
     
     return sal
 
