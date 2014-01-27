@@ -36,26 +36,26 @@ QUIMEN = Enum(['pref', 'cref', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7',
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
 column_by_name = collections.OrderedDict((
-    ('noi', IntCol(label = "Numéro d'ordre individuel")),
+    ('noi', IntCol(label = u"Numéro d'ordre individuel")),
 
-    ('idmen', IntCol(label = "Identifiant du ménage")),  # 600001, 600002,
-    ('idfoy', IntCol(label = "Identifiant du foyer")),  # idmen + noi du déclarant
-    ('idfam', IntCol(label = "Identifiant de la famille")),  # idmen + noi du chef de famille
+    ('idmen', IntCol(label = u"Identifiant du ménage")),  # 600001, 600002,
+    ('idfoy', IntCol(label = u"Identifiant du foyer")),  # idmen + noi du déclarant
+    ('idfam', IntCol(label = u"Identifiant de la famille")),  # idmen + noi du chef de famille
 
     ('quimen', EnumCol(QUIMEN)),
     ('quifoy', EnumCol(QUIFOY)),
     ('quifam', EnumCol(QUIFAM)),
 
-    ('sali', IntCol(label = "Salaire imposable", val_type = "monetary")),  #(f1aj, f1bj, f1cj, f1dj, f1ej)
+    ('sali', IntCol(label = u"Salaire imposable", val_type = "monetary")),  #(f1aj, f1bj, f1cj, f1dj, f1ej)
     ('choi', IntCol(label = u"Chômage imposable", val_type = "monetary")),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    ('rsti', IntCol(label = "Retraite imposable", val_type = "monetary")),  # (f1as, f1bs, f1cs, f1ds, f1es)
-    ('fra', IntCol(label = "Frais réels",val_type = "monetary")),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
+    ('rsti', IntCol(label = u"Retraite imposable", val_type = "monetary")),  # (f1as, f1bs, f1cs, f1ds, f1es)
+    ('fra', IntCol(label = u"Frais réels",val_type = "monetary")),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
     ('alr', IntCol(label = u"Pension alimentaire reçue", val_type = "monetary")),  # (f1ao, f1bo, f1co, f1do, f1eo)
     ('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),  # (f1ao, f1bo, f1co, f1do, f1eo)
 
 
-    ('hsup', IntCol( label = "Heures supplémentaires", val_type = "monetary")),  # (f1au, f1bu, f1cu, f1du, f1eu)
+    ('hsup', IntCol( label = u"Heures supplémentaires", val_type = "monetary")),  # (f1au, f1bu, f1cu, f1du, f1eu)
     ('inv', BoolCol(label = u'Invalide')),
     ('alt', BoolCol(label = u'Garde alternée')),
     ('cho_ld', BoolCol(label = u"Chômeur de longue durée")),  # (f1ai, f1bi, f1ci, f1di, f1ei)
@@ -68,7 +68,7 @@ column_by_name = collections.OrderedDict((
     ('agem', AgesCol(label = u"âge (en mois)", val_type = "months")),
 
     ('zone_apl', EnumCol(label = u"zone apl", default = 2, entity = 'men')),
-    ('loyer', IntCol(label = "Loyer mensuel", entity = 'men', val_type = "monetary")),  # Loyer mensuel
+    ('loyer', IntCol(label = u"Loyer mensuel", entity = 'men', val_type = "monetary")),  # Loyer mensuel
     ('so', EnumCol(label = u"Statut d'occupation", entity = 'men',
                  enum = Enum([u"Non renseigné",
                               u"Accédant à la propriété",
@@ -142,7 +142,7 @@ column_by_name = collections.OrderedDict((
     ('taux_accident_travail', FloatCol(label = u"")), # TODO: complete label and add relevant default
 
     ('boursier', BoolCol()),
-    ('code_postal', IntCol(label = "Code postal du lieu de résidence", entity = 'men')),
+    ('code_postal', IntCol(label = u"Code postal du lieu de résidence", entity = 'men')),
 
     ('statmarit', EnumCol(label = u"Statut marital",
                           default = 2,
@@ -153,14 +153,14 @@ column_by_name = collections.OrderedDict((
                                     u"Pacsé",
                                     u"Jeune veuf"],start = 1))),
 
-    ('nbR', IntCol(label = "Nombre de titulaires de la carte invalidité d'au moins 80 %", entity = 'foy')),
-    ('nbJ', IntCol(label = "Nombre d'enfants majeurs célibataires sans enfant", entity = 'foy')),
-    ('nbI', IntCol(label = "Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité", entity = 'foy')),
-    ('nbH', IntCol(label = "Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity = 'foy')),
+    ('nbR', IntCol(label = u"Nombre de titulaires de la carte invalidité d'au moins 80 %", entity = 'foy')),
+    ('nbJ', IntCol(label = u"Nombre d'enfants majeurs célibataires sans enfant", entity = 'foy')),
+    ('nbI', IntCol(label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité", entity = 'foy')),
+    ('nbH', IntCol(label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity = 'foy')),
 #   vérifier si c'est bien ça pour la nbH et la caseH qui suit
-    ('nbG', IntCol(label = "Nombre d'enfants à charge titulaires de la carte d'invalidité", entity = 'foy')),
-    ('nbF', IntCol(label = "Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity = 'foy')),
-    ('nbN', IntCol(label = "Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille", entity = 'foy')),
+    ('nbG', IntCol(label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité", entity = 'foy')),
+    ('nbF', IntCol(label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity = 'foy')),
+    ('nbN', IntCol(label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille", entity = 'foy')),
 
     ('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant moins de 5 ans", entity = 'foy')),
     ('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente", entity = 'foy')),
@@ -187,9 +187,9 @@ column_by_name = collections.OrderedDict((
     #TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv
     # et les mettre en f1tvm comme pour sali
     # Il faut aussi le faire en amont dans les tables
-    ('f1tv', IntCol(label = "", entity = 'ind')),  # (f1tv,f1uv)),
-    ('f1tw', IntCol(label = "", entity = 'ind')),  # (f1tw,f1uw)),
-    ('f1tx', IntCol(label = "", entity = 'ind')),  # (f1tx,f1ux)),
+    ('f1tv', IntCol(label = u"", entity = 'ind')),  # (f1tv,f1uv)),
+    ('f1tw', IntCol(label = u"", entity = 'ind')),  # (f1tw,f1uw)),
+    ('f1tx', IntCol(label = u"", entity = 'ind')),  # (f1tx,f1ux)),
 
 
     # RVCM
@@ -874,7 +874,7 @@ column_by_name = collections.OrderedDict((
                                   u"Chômeur",
                                   u"Retraité",
                                   u"Inactif"],start = 1))),  # 5 postes normalement TODO: check = 0
-    ('wprm_init', FloatCol(label = "Effectifs")),
+    ('wprm_init', FloatCol(label = u"Effectifs")),
 
 
 ## ISF ##
@@ -929,7 +929,7 @@ column_by_name = collections.OrderedDict((
 
     # to remove
     ('champm', BoolCol(entity = 'men', default = True)),
-    ('wprm', FloatCol(entity = 'men', default = 1,label = "Effectifs")),
+    ('wprm', FloatCol(entity = 'men', default = 1,label = u"Effectifs")),
     ('etr', IntCol()),
     ('coloc', BoolCol()),
     ('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
