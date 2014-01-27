@@ -138,8 +138,9 @@ column_by_name = collections.OrderedDict((
                                    ]))),
 
     ('cadre', BoolCol(label = u"Cadre salarié du privé")),
-    ('code_risque', IntCol(label = u"")),  # TODO: complete label and add relevant default
-    ('taux_accident_travail', FloatCol(label = u"")), # TODO: complete label and add relevant default
+    ('code_risque', EnumCol(label = u"Code risque pour les accidents du travail")),  # TODO: complete label and add relevant default
+    ('taux_accident_travail', FloatCol(label = u"Taux de cotisation des accidents du travail",
+                                       default = .011)), # TODO: complete label and add relevant default
 
     ('boursier', BoolCol()),
     ('code_postal', IntCol(label = u"Code postal du lieu de résidence", entity = 'men')),
