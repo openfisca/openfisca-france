@@ -113,9 +113,11 @@ prestation_by_name = collections.OrderedDict((
                                                  u"Plus de 250 salariés"]))),
     
     ('cotpat_contrib', Prestation(cs._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
+    ('cotpat_accident', Prestation(cs._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
     ('cotpat_noncontrib', Prestation(cs._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
+    ('cotpat_main_d_oeuvre', Prestation(cs._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre")),
+    ('cotpat_transport', Prestation(cs._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
     ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
-
     ('alleg_fillon', Prestation(cs._alleg_fillon)), # TODO: complete label
 
     ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
@@ -126,13 +128,13 @@ prestation_by_name = collections.OrderedDict((
     ('csgsali', Prestation(cs._csgsali, label = u"CSG imposables sur les salaires")),
     ('crdssal', Prestation(cs._crdssal, label = u"CRDS sur les salaires")),
     ('sal', Prestation(cs._sal, label = u"Salaires imposables")),
-    ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")), # TODO: complete label
+    ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")),
 
     # Allocations chômage
     ('chobrut', Prestation(cs._chobrut, label = u"Allocations chômage brutes")),
     ('csgchod', Prestation(cs._csgchod, label = u"CSG déductible sur les allocations chômage")),
     ('csgchoi', Prestation(cs._csgchoi, label = u"CSG imposable sur les allocations chômage")),
-    ('crdscho', Prestation(cs._crdscho, label = u"CRDS sur les allocations chômage")),  # TODO: complete label
+    ('crdscho', Prestation(cs._crdscho, label = u"CRDS sur les allocations chômage")),
     ('cho', Prestation(cs._cho, label = u"Allocations chômage imposables")),
     ('chonet', Prestation(cs._chonet, label = u"Allocations chômage nettes")),
 
@@ -141,7 +143,7 @@ prestation_by_name = collections.OrderedDict((
     ('csgrstd', Prestation(cs._csgrstd, label = u"CSG déductible sur les pensions de retraite")),
     ('csgrsti', Prestation(cs._csgrsti, label = u"CSG imposable sur les pensions de retraite")),
     ('crdsrst', Prestation(cs._crdsrst, label = u"CRDS sur les pensions de retraite")),
-    ('rst', Prestation(cs._rst, label = u"Pensions de retraite imposables")),  
+    ('rst', Prestation(cs._rst, label = u"Pensions de retraite imposables")),
     ('rstnet', Prestation(cs._rstnet, label = u"Pensions de retraite nettes")),
 
     # Revenus du capital soumis au prélèvement libératoire

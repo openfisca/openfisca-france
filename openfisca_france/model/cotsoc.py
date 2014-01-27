@@ -298,7 +298,6 @@ def _type_sal(titc, statut, chpub, cadre, _P):
     hosp_cont = (chpub==2)*(titc == 3)
 
     contract = (colloc_cont + hosp_cont + etat_cont) > 1
-    print "type_sal", 1*cadre + 2*etat_tit + 4*colloc_tit + 5*hosp_tit + 6*contract
     return 0 + 1*cadre + 2*etat_tit + 4*colloc_tit + 5*hosp_tit + 6*contract
     
 
@@ -328,6 +327,10 @@ def build_pat(_P):
     pat['prive_non_cadre'] =  pat.pop('noncadre')
     pat['prive_cadre'] =  pat.pop('cadre')
 
+    log.info("Le dictionnaire des barèmes des cotisations patronales des non cadres contient %s", pat['prive_non_cadre'].keys())
+    log.info("Le dictionnaire des barèmes des cotisations patronales des cadres contient %s", pat['prive_cadre'].keys())
+
+    # Rework commun to deal with public employees
     for var in ["maladie", "apprentissage", "apprentissage2", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction","assedic", "transport"]:
         del pat['commun'][var]
 
@@ -350,8 +353,11 @@ def build_pat(_P):
     pat['public_titulaire_territoriale'] =  pat.pop('colloc_t')
 #    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix ths
     pat['public_non_titulaire'] =  pat.pop('contract')
+        
+    log.info("Le dictionnaire des barèmes des cotisations patronales des salariés titulaires de l'etat contient %s", pat['public_titulaire_etat'].keys())
+    log.info("Le dictionnaire des barèmes des cotisations patronales titulaires des collectivités locales contient %s", pat['public_titulaire_territoriale'].keys())
+    log.info("Le dictionnaire des barèmes des cotisations patronales du public contractuels contient %s", pat['public_non_titulaire'].keys())
     
-# TODO: manque versement transport
     return pat
 
 
@@ -368,13 +374,54 @@ def _cotpat_contrib(salbrut, hsup, type_sal, _P):
                 is_contrib = (bar.option == "contrib")
                 temp = - (iscat*bar.calc(salbrut))*is_contrib
                 cotpat += temp
-                if is_contrib == 1: 
-                    log.info(bar)
-                    log.info(temp)
-                
+                #if is_contrib == 1: 
+                #    log.info(bar)
+                #    log.info(temp)
     return cotpat
 
-def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
+def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, _P):
+    '''
+    Cotisation sociales patronales main d'oeuvre (TODO: complete avec justiofactiuon TaxIPP)
+    '''
+    pat = build_pat(_P)
+    cotpat = zeros(len(salbrut))
+    for category in CAT:
+        iscat = (type_sal == category[1]) # category[1] is the numerical index
+        if category[0] in pat.keys():
+            for bar in pat[category[0]].itervalues():
+                is_mo = (bar.option == "main_d_oeuvre")
+                temp = - (iscat*bar.calc(salbrut))*is_mo
+                cotpat += temp
+                #if is_mo == 1: 
+                #    log.info(bar)
+                #    log.info(temp)
+    return cotpat
+
+def _cotpat_transport(salbrut, hsup, type_sal, _P):
+    '''
+    Versement transport
+    '''
+    pat = build_pat(_P)
+    transport = zeros(len(salbrut))
+    for category in CAT:
+        iscat = (type_sal == category[1]) # category[1] is the numerical index of the category
+        if category[0] in pat.keys():     # category[0] is the name of the category
+            if 'transport' in pat[category[0]]:
+                bar = pat[category[0]]['transport']
+                temp = - bar.calc(salbrut)*iscat
+                transport += temp
+                #log.info(bar)
+                #log.info(transport)
+    return transport
+
+def _cotpat_accident(salbrut, taux_accident_travail):  # taux_accident_travail
+    '''
+    Cotisations patronales accident du travail et maladie professionelle
+    '''
+    return -salbrut*taux_accident_travail
+    
+    
+def _cotpat_noncontrib(salbrut, hsup, type_sal, cotpat_accident, _P):
     '''
     Cotisation sociales patronales non contributives
     '''
@@ -385,20 +432,18 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, _P):
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
                 is_noncontrib = (bar.option == "noncontrib")
-                #if DEBUG:
-                #    is_noncontrib = ( (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"] ))
                 temp = - (iscat*bar.calc(salbrut))*is_noncontrib
                 cotpat += temp
                 if is_noncontrib == 1: 
                     log.info(bar)
                     log.info(temp)
-    return cotpat
+    return cotpat + cotpat_accident
 
-def _cotpat(cotpat_contrib, cotpat_noncontrib):
+def _cotpat(cotpat_contrib, cotpat_noncontrib, cotpat_main_d_oeuvre, cotpat_transport):
     '''
     Cotisations sociales patronales
     '''
-    return cotpat_contrib + cotpat_noncontrib
+    return cotpat_contrib + cotpat_noncontrib + cotpat_main_d_oeuvre + cotpat_transport
 
 
 def build_sal(_P):
@@ -436,14 +481,9 @@ def build_sal(_P):
 #    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix ths
     sal['public_non_titulaire'] =  sal.pop('contract')
     
-
-    log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['public_titulaire_etat'].keys() )   
-    log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['public_titulaire_territoriale'].keys() )   
-    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient %s", sal['public_non_titulaire'].keys() )   
-
-
-
-    
+    log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['public_titulaire_etat'].keys())
+    log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['public_titulaire_territoriale'].keys())
+    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient %s", sal['public_non_titulaire'].keys())
     return sal
 
 
@@ -457,7 +497,6 @@ def seuil_fds(_P):
     seuil_mensuel = floor(100*(pt_ind*ind_maj_ref)/12)
     return seuil_mensuel
 
-
 def _cotsal_contrib(salbrut, hsup, type_sal, _P):
     '''
     Cotisations sociales salariales contributives
@@ -470,9 +509,10 @@ def _cotsal_contrib(salbrut, hsup, type_sal, _P):
             for bar in sal[category[0]].itervalues():
                 is_contrib = (bar.option == "contrib")
                 temp = - (iscat*bar.calc(salbrut-hsup))*is_contrib
-                cotsal += temp
-    
+                cotsal += temp    
     return cotsal
+
+
 
 def _cotsal_noncontrib(salbrut, hsup, type_sal, _P):
     '''
@@ -594,11 +634,22 @@ def _chobrut(choi, csg_rempl, _defaultP):
     '''
     # TODO: ajouter la crds ?
     P = _defaultP.csg.chom
+    
+    log.info(P.plein.deduc)
+    log.info(P.reduit.deduc)
+    
     chom_plein = P.plein.deduc.inverse()
     chom_reduit = P.reduit.deduc.inverse()
+    log.info(chom_plein)
+    log.info(chom_reduit)
+    print csg_rempl
+    print (csg_rempl==1)*choi
+    print (csg_rempl==2)*chom_reduit.calc(choi)
+    print (csg_rempl==3)*chom_plein.calc(choi)
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
-    isexo = exo_csg_chom(choi, _defaultP)
-    chobrut = not_(isexo)*chobrut + (isexo)*choi
+    print "csg montée ", chobrut - choi
+    #isexo = exo_csg_chom(choi, _defaultP)
+    #chobrut = not_(isexo)*chobrut + (isexo)*choi
 #     print  P.plein.impos,  P.plein.deduc
 #     print "taux réduit : "
 #     print  P.reduit.impos,  P.reduit.deduc
@@ -614,9 +665,10 @@ def _csgchod(chobrut, csg_rempl, _P):
     taux_plein = csg['plein']['deduc'].calc(chobrut)
     taux_reduit = csg['reduit']['deduc'].calc(chobrut)
     csgchod = (csg_rempl==2)*taux_reduit + (csg_rempl==3)*taux_plein
-    isexo = exo_csg_chom(chobrut, _P)
-    return - not_(isexo)*csgchod
-
+    #isexo = exo_csg_chom(chobrut, _P)
+    # return - not_(isexo)*csgchod
+    print "csg descente ", csgchod
+    return - csgchod
 
 def _csgchoi(chobrut, csg_rempl, _P):
     '''
@@ -627,9 +679,9 @@ def _csgchoi(chobrut, csg_rempl, _P):
     taux_plein = csg['plein']['impos'].calc(chobrut)
     taux_reduit = csg['reduit']['impos'].calc(chobrut)
     csgchoi = (csg_rempl==2)*taux_reduit + (csg_rempl==3)*taux_plein
-    isexo = exo_csg_chom(chobrut, _P)
-    return - not_(isexo)*csgchoi
-
+    #isexo = exo_csg_chom(chobrut, _P)
+    #return - not_(isexo)*csgchoi
+    return -csgchoi
 
 def _crdscho(chobrut, _P):
     '''
@@ -643,8 +695,8 @@ def _cho(chobrut, csgchod, _P):
     '''
     Chômage imposable (recalculé)
     '''
-    isexo = exo_csg_chom(chobrut, _P)  # TODO: check
-    return chobrut + not_(isexo)*csgchod
+#     isexo = exo_csg_chom(chobrut, _P)  # TODO: check
+    return chobrut + csgchod #+ not_(isexo)*csgchod
 
 def _chonet(cho, csgchoi, crdscho):
     '''
