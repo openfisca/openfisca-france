@@ -1317,9 +1317,9 @@
         <TAUX>
           <VALUE valeur="0.128" deb="1992-07-01" fin="2014-12-31"/>
         </TAUX>
-          </TRANCHE>
-        </BAREME>
-    <BAREME description="Contribution solidarité autonomie (dépendance)" code="csa" option="main_d_oeuvre">
+      </TRANCHE>
+    </BAREME>
+    <BAREME description="Contribution solidarité autonomie (dépendance)" code="csa" option="main-d-oeuvre">
       <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="2004-07-01" fin="2014-12-31"/>
@@ -1341,15 +1341,15 @@
           <VALUE valeur=".084" deb="2012-11-01" fin="2013-12-31"/>
           <VALUE valeur=".083" deb="2006-01-01" fin="2012-10-31"/>
           <VALUE valeur=".082" deb="1979-01-01" fin="2005-12-31"/>
-        </TAUX>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-        <SEUIL>
-          <VALUE valeur="1" deb="1979-01-01" fin="2016-12-31"/>
-        </SEUIL>
-        <TAUX>
-          <VALUE valeur="0" deb="1979-01-01" fin="2016-12-31"/>
-        </TAUX>
+        </TAUX>    
+      </TRANCHE>
+      <TRANCHE code="tranche1">
+	        <SEUIL>
+	          <VALUE valeur="1" deb="1979-01-01" fin="2016-12-31"/>
+	        </SEUIL>
+	        <TAUX>
+	          <VALUE valeur="0" deb="1979-01-01" fin="2016-12-31"/>
+	        </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME description="Vieillesse déplafonnée" code="vieillessedeplaf" option="contrib">
@@ -1374,7 +1374,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, tout employeur)" code="fnal1" option="main_d_oeuvre">
+        <BAREME description="Fonds national action logement (FNAL, tout employeur)" code="fnal1" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
 	        <SEUIL>
 	          <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1392,7 +1392,7 @@
 	        </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" code="fnal2" option="main_d_oeuvre">
+        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" code="fnal2" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
 	        <SEUIL>
 	          <VALUE valeur="0" deb="1991-07-01" fin="2014-12-31"/>
@@ -1471,7 +1471,7 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <BAREME description="Taxe d'apprentissage" code="apprentissage" option="main_d_oeuvre">
+    <BAREME description="Taxe d'apprentissage" code="apprentissage" option="main-d-oeuvre">
       <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1481,7 +1481,7 @@
         </TAUX>
       </TRANCHE>
      </BAREME>
-     <BAREME description="Contribution additionnelle au développement de l'apprentissage" code="apprentissage2" option="main_d_oeuvre">
+     <BAREME description="Contribution additionnelle au développement de l'apprentissage" code="apprentissage2" option="main-d-oeuvre">
        <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="2004-01-01" fin="2014-12-31"/>
@@ -1493,7 +1493,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="main_d_oeuvre">
+        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1504,7 +1504,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="main_d_oeuvre">
+        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="1992-01-01" fin="2014-12-31"/>
@@ -1883,20 +1883,30 @@
         </NODE>
       </NODE>
     </NODE>
-    <NODE description="Exonération sur les bas salaires" code="exo_fillon">
-      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
-        <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
-        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
-      </CODE>
-      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
-    <VALUE valeur=".281" deb="2007-07-01" fin="2014-12-31"/>
-      </CODE>
-      <CODE description="Point de sortie (en smic)" code="seuil" format="percent">
-        <VALUE valeur="1.6" deb="2002-01-01" fin="2014-12-31"/>
-      </CODE>
+    <NODE description="Exonération sur les bas salaires" code="exo_bas_sal">
+    	<NODE description="Exonération Fillon" code="fillon">
+	      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
+	        <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
+	        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
+	      </CODE>
+	      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
+	    	<VALUE valeur=".281" deb="2007-07-01" fin="2014-12-31"/>
+	      </CODE>
+	      <CODE description="Point de sortie (en smic)" code="seuil" format="percent">
+	        <VALUE valeur="1.6" deb="2002-01-01" fin="2014-12-31"/>
+	      </CODE>
+	    </NODE>
+	    <NODE description="Crédit d'impot compétitivité emploi" code="cice">
+	      <CODE description="Taux du CICE" code="taux" format="percent">
+	    	<VALUE valeur=".06" deb="2014-09-25" fin="2014-12-31"/>
+	    	<VALUE valeur=".04" deb="2013-01-01" fin="2014-09-24"/>
+	      </CODE>
+	      <CODE description="Plafond" code="max" format="percent">
+	        <VALUE valeur="2.5" deb="2013-01-01" fin="2014-12-31"/>
+	      </CODE>
+	    </NODE>
     </NODE>
   </NODE>
-
   <NODE description="Impôt sur le revenu" code="ir">
     <BAREME code="bareme" description="Tranches de l'IR" type="monetary">
       <TRANCHE code="tranche0">

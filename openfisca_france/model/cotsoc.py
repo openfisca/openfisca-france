@@ -301,10 +301,10 @@ def _taille_entreprise(nbsala):
     0 : "Non pertinent"
     1 : "Moins de 10 salariés"
     2 : "De 10 à 19 salariés"
-    3 : "De 20 à 249 salariés"
-    4 : "Plus de 250 salariés"
+    3 : "De 20 à 199 salariés"
+    4 : "Plus de 200 salariés"
     '''
-    return 0 + 1*(nbsala>=1) + 1*(nbsala>=10) + 1*(nbsala>=20) + 1*(nbsala>=250)
+    return 0 + 1*(nbsala>=1) + 1*(nbsala>=4) + 1*(nbsala>=5) + 1*(nbsala>=7)
 
 
 def build_pat(_P):
@@ -369,9 +369,9 @@ def _cotpat_contrib(salbrut, hsup, type_sal, _P):
                 is_contrib = (bar.option == "contrib")
                 temp = - (iscat*bar.calc(salbrut))*is_contrib
                 cotpat += temp
-                #if is_contrib == 1: 
-                #    log.info(bar)
-                #    log.info(temp)
+                if is_contrib == 1: 
+                    log.info(bar)
+                    log.info(temp)
     return cotpat
 
 def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, _P):
@@ -384,12 +384,12 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, _P):
         iscat = (type_sal == category[1]) # category[1] is the numerical index
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
-                is_mo = (bar.option == "main_d_oeuvre")
+                is_mo = (bar.option=="main-d-oeuvre")
                 temp = - (iscat*bar.calc(salbrut))*is_mo
                 cotpat += temp
-                #if is_mo == 1: 
-                #    log.info(bar)
-                #    log.info(temp)
+               #if is_mo == 1: 
+               #    log.info(bar)
+               #     log.info(temp)
     return cotpat
 
 def _cotpat_transport(salbrut, hsup, type_sal, _P):
@@ -429,9 +429,9 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, cotpat_accident, _P):
                 is_noncontrib = (bar.option == "noncontrib")
                 temp = - (iscat*bar.calc(salbrut))*is_noncontrib
                 cotpat += temp
-                if is_noncontrib == 1: 
-                    log.info(bar)
-                    log.info(temp)
+                #if is_noncontrib == 1: 
+                #    log.info(bar)
+                #    log.info(temp)
     return cotpat + cotpat_accident
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib, cotpat_main_d_oeuvre, cotpat_transport):
@@ -570,15 +570,24 @@ def _sal_h_b(salbrut):
     return salbrut/nbh_travaillees
 
 
-def _alleg_fillon(salbrut, sal_h_b, type_sal, _P):
+def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     '''
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
     P = _P.cotsoc
-    taux_fillon = taux_exo_fillon(sal_h_b, P)
-    alleg_fillon = taux_fillon*salbrut*(type_sal == CAT['prive_non_cadre'])
+    taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
+    alleg_fillon = taux_fillon*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
     return alleg_fillon
+
+def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
+    '''
+    Crédit d'imôt pour la compétitivité et l'emploi
+    '''
+    P = _P.cotsoc
+    taux_cice = taux_exo_cice(sal_h_b, P)
+    alleg_cice = taux_cice*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+    return alleg_cice
 
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''
@@ -586,8 +595,8 @@ def _sal(salbrut, csgsald, cotsal, hsup):
     '''
     return salbrut + csgsald + cotsal - hsup
 
-def _salsuperbrut(salbrut, cotpat, alleg_fillon):
-    return salbrut - cotpat - alleg_fillon
+def _salsuperbrut(salbrut, cotpat, alleg_fillon, alleg_cice):
+    return salbrut - cotpat - alleg_fillon - alleg_cice
 
 def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
     '''
@@ -723,13 +732,13 @@ def _chobrut(choi, csg_rempl, _defaultP):
     taux_plein = csg['plein']['deduc']
     taux_reduit = csg['reduit']['deduc']
     
-    log.info(taux_plein)
-    log.info(taux_reduit)
+    #log.info(taux_plein)
+    #log.info(taux_reduit)
     
     chom_plein = taux_plein.inverse()
     chom_reduit = taux_reduit.inverse()
-    log.info(chom_plein)
-    log.info(chom_reduit)
+    #log.info(chom_plein)
+    #log.info(chom_reduit)
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
     #isexo = exo_csg_chom(choi, _defaultP)
     #chobrut = not_(isexo)*chobrut + (isexo)*choi
@@ -873,24 +882,29 @@ def _ir_lps(base_csg, nbF, nbH, statmarit, _P ):
 ## Helper functions
 ############################################################################
 
-def taux_exo_fillon(sal_h_b, P):
+def taux_exo_fillon(sal_h_b, taille_entreprise, P):
     '''
     Exonération Fillon
     http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
     '''
-    # TODO Ainsi, à compter du 1er juillet 2007, le taux d’exonération des employeurs de 19 salariés au plus
-    # passera pour une rémunération horaire égale au SMIC de 26 % à 28,1 %.
-
-    # TODO la divison par zéro engendre un warning
+    # La divison par zéro engendre un warning
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;
     # il est égal au produit de la totalité de la rémunération annuelle telle que visée à l’article L. 242-1 du code de la Sécurité sociale par un coefficient.
     # Ce montant est majoré de 10 % pour les entreprises de travail temporaire au titre des salariés temporaires pour lesquels elle est tenue à l’obligation
     # d’indemnisation compensatrice de congés payés.
+    
     smic_h_b = P.gen.smic_h_b
-    seuil = P.exo_fillon.seuil
-    tx_max = P.exo_fillon.tx_max
+    Pf = P.exo_bas_sal.fillon
+    seuil = Pf.seuil
+    tx_max = Pf.tx_max*(taille_entreprise > 2) + Pf.tx_max2*(taille_entreprise <= 2)
     if seuil <= 1:
         return 0
     return tx_max*min_(1,max_(seuil*smic_h_b/(sal_h_b + 1e-10)-1,0)/(seuil-1))
 
+def taux_exo_cice(sal_h_b, P):
+    smic_h_b = P.gen.smic_h_b
+    Pc = P.exo_bas_sal.cice
+    plafond = Pc.max*smic_h_b
+    taux_cice = (sal_h_b <= plafond) * Pc.taux
+    return taux_cice
