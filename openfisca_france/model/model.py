@@ -88,9 +88,9 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
     # Reproduction des pondérations
     ############################################################
-    ('wprm_ind', Prestation(_wprm, entity = "ind", label = "Effectifs")),
-    ('wprm_fam', Prestation(_wprm, entity = "fam", label = "Effectifs")),
-    ('wprm_foy', Prestation(_wprm, entity = "foy", label = "Effectifs")),
+    ('wprm_ind', Prestation(_wprm, entity = "ind", label = u"Effectifs")),
+    ('wprm_fam', Prestation(_wprm, entity = "fam", label = u"Effectifs")),
+    ('wprm_foy', Prestation(_wprm, entity = "foy", label = u"Effectifs")),
 
     ('mhsup', Prestation(cs._mhsup)),
     ('alv', Prestation(ir._alv)),
@@ -300,8 +300,8 @@ prestation_by_name = collections.OrderedDict((
     ('ppe_elig', BoolPresta(ir._ppe_elig, entity = 'foy')),
     ('ppe_elig_i', BoolPresta(ir._ppe_elig_i)),
     ('ppe_rev', Prestation(ir._ppe_rev)),
-    ('ppe_brute', Prestation(ir._ppe_brute, entity = 'foy', label = "Prime pour l'emploi brute")),
-    ('ppe', Prestation(ir._ppe,'foy', label = "Prime pour l'emploi")),
+    ('ppe_brute', Prestation(ir._ppe_brute, entity = 'foy', label = u"Prime pour l'emploi brute")),
+    ('ppe', Prestation(ir._ppe,'foy', label = u"Prime pour l'emploi")),
 
     # Autres crédits d'impôts
     ('creimp', Prestation(ci._creimp, entity = 'foy')),
@@ -358,7 +358,7 @@ prestation_by_name = collections.OrderedDict((
 
     ('ir_pv_immo', Prestation(immo._ir_pv_immo, 
                               entity = 'foy',
-                              label = "Impôt sur le revenu afférent à la plus-value immobilière")),
+                              label = u"Impôt sur le revenu afférent à la plus-value immobilière")),
 
     ############################################################
     # Impôt de solidarité sur la fortune
