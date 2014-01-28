@@ -4,15 +4,14 @@
       <BAREME description="CSG déductible" code="deduc">
         <TRANCHE code="tranche0">
           <ASSIETTE>
-            <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>
+            <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
             <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
             <VALUE valeur=".9825" deb="2012-01-01" fin="2013-12-31"/>
           </ASSIETTE>
           <SEUIL>
-            <VALUE valeur="0" deb="1991-02-01" fin="2013-12-31"/>
+            <VALUE valeur="0" deb="1998-01-01" fin="2013-12-31"/>
           </SEUIL>
           <TAUX>
-            <VALUE valeur=".01" deb="1997-01-01" fin="1997-12-31"/>
             <VALUE valeur=".051" deb="1998-01-01" fin="2013-12-31"/>
           </TAUX>
         </TRANCHE>
@@ -83,31 +82,57 @@
           <BAREME description="CSG déductible" code="deduc">
             <TRANCHE code="tranche0">
                 <SEUIL>
-                  <VALUE valeur="0" deb="1997-01-01" fin="2013-12-31"/>
+                  <VALUE valeur="0" deb="1997-01-01" fin="2014-12-31"/>
                 </SEUIL>
                 <ASSIETTE>
-                  <VALUE valeur=".9825" deb="2012-01-01" fin="2013-12-31"/>
+                  <VALUE valeur=".9825" deb="2012-01-01" fin="2014-12-31"/>
                   <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
                   <VALUE valeur=".95" deb="1997-01-01" fin="2004-12-31"/>
                </ASSIETTE>
+	            <TAUX>
+	              <VALUE valeur=".038" deb="1997-01-01" fin="2014-12-31"/>
+	            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche1">
+            <ASSIETTE>
+              <VALUE valeur="1" deb="2012-01-01" fin="2014-12-31"/>
+              <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
+              <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
+            </ASSIETTE>
+            <SEUIL>
+              <VALUE valeur="4" deb="1998-01-01" fin="2014-12-31"/>
+            </SEUIL>
             <TAUX>
-              <VALUE valeur="0.038" deb="1997-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".038" deb="1998-01-01" fin="2014-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME description="CSG imposable" code="impos">
           <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE valeur="0" deb="1991-02-01" fin="2013-12-31"/>
+                <VALUE valeur="0" deb="1998-01-01" fin="2014-12-31"/>
               </SEUIL>
               <ASSIETTE>
-                <VALUE valeur=".9825" deb="2012-01-01" fin="2013-12-31"/>
+                <VALUE valeur=".9825" deb="2012-01-01" fin="2014-12-31"/>
                 <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
-                <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>
+                <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
               </ASSIETTE>
               <TAUX>
-                <VALUE valeur="0.0" deb="1998-01-01" fin="2013-12-31"/>
+                <VALUE valeur=".0" deb="1998-01-01" fin="2014-12-31"/>
               </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche1">
+            <ASSIETTE>
+              <VALUE valeur="1" deb="2012-01-01" fin="2014-12-31"/>
+              <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
+              <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
+            </ASSIETTE>
+            <SEUIL>
+              <VALUE valeur="4" deb="1998-01-01" fin="2014-12-31"/>
+            </SEUIL>
+            <TAUX>
+              <VALUE valeur=".0" deb="1998-01-01" fin="2014-12-31"/>
+            </TAUX>
           </TRANCHE>
         </BAREME>
       </NODE>
@@ -115,62 +140,62 @@
         <BAREME description="CSG déductible" code="deduc">
           <TRANCHE code="tranche0">
             <ASSIETTE>
-              <VALUE valeur=".9825" deb="2012-01-01" fin="2013-12-31"/>
-              <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
-              <VALUE valeur=".95" deb="1991-02-01" fin="2004-12-31"/>
-            </ASSIETTE>
-            <SEUIL>
-              <VALUE valeur="0" deb="1991-02-01" fin="2013-12-31"/>
-            </SEUIL>
-            <TAUX>
-              <VALUE valeur=".038" deb="1998-01-01" fin="2013-12-31"/>
-            </TAUX>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-            <ASSIETTE>
-              <VALUE valeur="1" deb="2012-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".9825" deb="2012-01-01" fin="2014-12-31"/>
               <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
               <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
             </ASSIETTE>
             <SEUIL>
-              <VALUE valeur="4" deb="1998-01-01" fin="2013-12-31"/>
+              <VALUE valeur="0" deb="1998-01-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur=".038" deb="1998-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".038" deb="1998-01-01" fin="2014-12-31"/>
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche1">
+            <ASSIETTE>
+              <VALUE valeur="1" deb="2012-01-01" fin="2014-12-31"/>
+              <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
+              <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
+            </ASSIETTE>
+            <SEUIL>
+              <VALUE valeur="4" deb="1998-01-01" fin="2014-12-31"/>
+            </SEUIL>
+            <TAUX>
+              <VALUE valeur=".038" deb="1998-01-01" fin="2014-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME description="CSG non déductible" code="impos">
           <TRANCHE code="tranche0">
             <ASSIETTE>
-              <VALUE valeur=".9825" deb="2012-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".9825" deb="2012-01-01" fin="2014-12-31"/>
               <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
               <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
             </ASSIETTE>
             <SEUIL>
-              <VALUE valeur="0" deb="1991-02-01" fin="2013-12-31"/>
+              <VALUE valeur="0" deb="1998-01-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur=".024" deb="1998-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".024" deb="1998-01-01" fin="2014-12-31"/>
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <ASSIETTE>
-              <VALUE valeur="1" deb="2012-01-01" fin="2013-12-31"/>
+              <VALUE valeur="1" deb="2012-01-01" fin="2014-12-31"/>
               <VALUE valeur=".97" deb="2005-01-01" fin="2011-12-31"/>
               <VALUE valeur=".95" deb="1998-01-01" fin="2004-12-31"/>
             </ASSIETTE>
             <SEUIL>
-              <VALUE valeur="4" deb="1998-01-01" fin="2013-12-31"/>
+              <VALUE valeur="4" deb="1998-01-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur=".024" deb="1998-01-01" fin="2013-12-31"/>
+              <VALUE valeur=".024" deb="1998-01-01" fin="2014-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
       </NODE>
       <CODE description="Revenu minimum imposable (en multiple du smic annuel brut)" code="min_exo">
-        <VALUE valeur="1" deb="2002-01-01" fin="2013-12-31"/>
+        <VALUE valeur="1" deb="2002-01-01" fin="2014-12-31"/>
       </CODE>
     </NODE>
     <NODE description="Pensions de retraites et d'invalidité" code="retraite">
@@ -1292,10 +1317,10 @@
         <TAUX>
           <VALUE valeur="0.128" deb="1992-07-01" fin="2014-12-31"/>
         </TAUX>
-          </TRANCHE>
-        </BAREME>
-    <BAREME description="Contribution solidarité autonomie (dépendance)" code="csa" option="noncontrib">
-          <TRANCHE code="tranche0">
+      </TRANCHE>
+    </BAREME>
+    <BAREME description="Contribution solidarité autonomie (dépendance)" code="csa" option="main-d-oeuvre">
+      <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="2004-07-01" fin="2014-12-31"/>
         </SEUIL>
@@ -1316,15 +1341,15 @@
           <VALUE valeur=".084" deb="2012-11-01" fin="2013-12-31"/>
           <VALUE valeur=".083" deb="2006-01-01" fin="2012-10-31"/>
           <VALUE valeur=".082" deb="1979-01-01" fin="2005-12-31"/>
-        </TAUX>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-        <SEUIL>
-          <VALUE valeur="1" deb="1979-01-01" fin="2016-12-31"/>
-        </SEUIL>
-        <TAUX>
-          <VALUE valeur="0" deb="1979-01-01" fin="2016-12-31"/>
-        </TAUX>
+        </TAUX>    
+      </TRANCHE>
+      <TRANCHE code="tranche1">
+	        <SEUIL>
+	          <VALUE valeur="1" deb="1979-01-01" fin="2016-12-31"/>
+	        </SEUIL>
+	        <TAUX>
+	          <VALUE valeur="0" deb="1979-01-01" fin="2016-12-31"/>
+	        </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME description="Vieillesse déplafonnée" code="vieillessedeplaf" option="contrib">
@@ -1349,7 +1374,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, tout employeur)" code="fnal1" option="noncontrib">
+        <BAREME description="Fonds national action logement (FNAL, tout employeur)" code="fnal1" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
 	        <SEUIL>
 	          <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1367,7 +1392,7 @@
 	        </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" code="fnal2" option="noncontrib">
+        <BAREME description="Fonds national action logement (FNAL, plus de 20 salariés)" code="fnal2" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
 	        <SEUIL>
 	          <VALUE valeur="0" deb="1991-07-01" fin="2014-12-31"/>
@@ -1446,7 +1471,7 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <BAREME description="Taxe d'apprentissage" code="apprentissage" option="contrib">
+    <BAREME description="Taxe d'apprentissage" code="apprentissage" option="main-d-oeuvre">
       <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1456,7 +1481,7 @@
         </TAUX>
       </TRANCHE>
      </BAREME>
-     <BAREME description="Contribution additionnelle au développement de l'apprentissage" code="apprentissage2" option="contrib">
+     <BAREME description="Contribution additionnelle au développement de l'apprentissage" code="apprentissage2" option="main-d-oeuvre">
        <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="2004-01-01" fin="2014-12-31"/>
@@ -1468,7 +1493,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="contrib">
+        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
         <SEUIL>
           <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
@@ -1479,7 +1504,7 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="noncontrib">
+        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="1992-01-01" fin="2014-12-31"/>
@@ -1489,14 +1514,13 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME description="Transport (valeur non différenciée selon la localité)" code="transport" option="noncontrib">
+        <BAREME description="Transport (valeur non différenciée selon la localité, Lyon reférence)" code="transport">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE valeur="0" deb="2003-01-01" fin="2014-12-31"/>
             </SEUIL>
             <TAUX>
-              <VALUE valeur="0.027" deb="2013-01-01" fin="2014-12-31"/>
-              <VALUE valeur="0.026" deb="2003-01-01" fin="2012-12-31"/>
+              <VALUE valeur="0.0175" deb="2003-01-01" fin="2014-12-31"/>
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1859,20 +1883,30 @@
         </NODE>
       </NODE>
     </NODE>
-    <NODE description="Exonération sur les bas salaires" code="exo_fillon">
-      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
-        <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
-        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
-      </CODE>
-      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
-    <VALUE valeur=".281" deb="2007-07-01" fin="2014-12-31"/>
-      </CODE>
-      <CODE description="Point de sortie (en smic)" code="seuil" format="percent">
-        <VALUE valeur="1.6" deb="2002-01-01" fin="2014-12-31"/>
-      </CODE>
+    <NODE description="Exonération sur les bas salaires" code="exo_bas_sal">
+    	<NODE description="Exonération Fillon" code="fillon">
+	      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
+	        <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
+	        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
+	      </CODE>
+	      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
+	    	<VALUE valeur=".281" deb="2007-07-01" fin="2014-12-31"/>
+	      </CODE>
+	      <CODE description="Point de sortie (en smic)" code="seuil" format="percent">
+	        <VALUE valeur="1.6" deb="2002-01-01" fin="2014-12-31"/>
+	      </CODE>
+	    </NODE>
+	    <NODE description="Crédit d'impot compétitivité emploi" code="cice">
+	      <CODE description="Taux du CICE" code="taux" format="percent">
+	    	<VALUE valeur=".06" deb="2014-09-25" fin="2014-12-31"/>
+	    	<VALUE valeur=".04" deb="2013-01-01" fin="2014-09-24"/>
+	      </CODE>
+	      <CODE description="Plafond" code="max" format="percent">
+	        <VALUE valeur="2.5" deb="2013-01-01" fin="2014-12-31"/>
+	      </CODE>
+	    </NODE>
     </NODE>
   </NODE>
-
   <NODE description="Impôt sur le revenu" code="ir">
     <BAREME code="bareme" description="Tranches de l'IR" type="monetary">
       <TRANCHE code="tranche0">
@@ -3424,7 +3458,7 @@
           <VALUE valeur="75.0" deb="2012-01-01" fin="2013-12-31"/>
         </TAUX>
       </TRANCHE>
-    </BAREME>
+    </BAREME>  
     <NODE code="pv_immo" description="Plus-values immobilières">
       <CODE description="Nombre d'années pleines de détentions minimale (1er seuil)" code="ann_det1" format="integer">
         <VALUE valeur="5" deb="2011-01-01" fin="2012-01-31"/>
@@ -3452,7 +3486,69 @@
       </CODE>
     </NODE>
   </NODE>
-
+  <NODE description="Traitement des fonctionnaires" code="fonc">
+    <CODE description="Indice 100 majoré" code="IM_100" format="float">
+      <VALUE valeur="5556.35" deb="2010-07-01" fin="2014-12-31"/>
+    </CODE>
+    <CODE description="Indice de traitement minimum" code="IM_min" format="integer">
+      <VALUE valeur="308" deb="2012-07-01" fin="2012-12-31"/>
+      <VALUE valeur="309" deb="2013-01-01" fin="2014-12-31"/>
+    </CODE>
+    <NODE description="Indemnité de résidence " code="indem_resid" >
+	  <NODE description="Indemnité de résidence : taux " code="taux">
+	    <CODE description="Indemnité de résidence zone 1 : taux " code="zone1" format="percent">
+	      <VALUE valeur="0.03" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 2 : taux " code="zone2" format="percent">
+	      <VALUE valeur="0.01" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
+	      <VALUE valeur="0.00" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	 </NODE>
+	 <NODE description="Indemnité de résidence : plancher" code="min">
+	    <CODE description="Indemnité de résidence zone 1 : plancher " code="zone1" format="float">
+	      <VALUE valeur="43.48" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 2 : plancher " code="zone2" format="float">
+	      <VALUE valeur="14.49" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
+	      <VALUE valeur="0.0" deb="2013-01-01" fin="2013-12-31"/>
+	  	</CODE>
+	  </NODE>
+    </NODE>
+    <NODE description="Supplément familial de traitement" code="supp_fam" >
+	  <CODE description="Indice majoré plancher" code="IM_min" format="integer">
+        <VALUE valeur="449" deb="2013-01-01" fin="2014-12-31"/>
+  	  </CODE>
+      <CODE description="Indice majoré plafond" code="IM_max" format="integer">
+        <VALUE valeur="712" deb="2013-01-01" fin="2014-12-31"/>
+  	  </CODE>
+  	  <NODE description="Part fixe" code="fixe">
+	    <CODE description="1er enfant" code="enf1" format="float">
+	      <VALUE valeur="2.29" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="2 enfants" code="enf2" format="float">
+	      <VALUE valeur="10.67" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="float">
+	      <VALUE valeur="4.57" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  </NODE>
+	  <NODE description="Part proportionnelle au traitement" code="prop">
+	    <CODE description="2 enfants" code="enf2" format="percent">
+	      <VALUE valeur="0.03" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="3enfants" code="enf3" format="percent">
+	      <VALUE valeur="0.08" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="percent">
+	      <VALUE valeur="0.06" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  </NODE>
+    </NODE>
+  </NODE>
   <NODE description="Prestations familiales" code="fam">
     <NODE description="Allocations familiales" code="af">
       <CODE description="Base mensuelle des allocations familiales" code="bmaf" format="float" type="monetary">

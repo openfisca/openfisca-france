@@ -301,10 +301,10 @@ def _taille_entreprise(nbsala):
     0 : "Non pertinent"
     1 : "Moins de 10 salariés"
     2 : "De 10 à 19 salariés"
-    3 : "De 20 à 249 salariés"
-    4 : "Plus de 250 salariés"
+    3 : "De 20 à 199 salariés"
+    4 : "Plus de 200 salariés"
     '''
-    return 0 + 1*(nbsala>=1) + 1*(nbsala>=10) + 1*(nbsala>=20) + 1*(nbsala>=250)
+    return 0 + 1*(nbsala>=1) + 1*(nbsala>=4) + 1*(nbsala>=5) + 1*(nbsala>=7)
 
 
 def build_pat(_P):
@@ -369,14 +369,14 @@ def _cotpat_contrib(salbrut, hsup, type_sal, _P):
                 is_contrib = (bar.option == "contrib")
                 temp = - (iscat*bar.calc(salbrut))*is_contrib
                 cotpat += temp
-                #if is_contrib == 1: 
-                #    log.info(bar)
-                #    log.info(temp)
+                if is_contrib == 1: 
+                    log.info(bar)
+                    log.info(temp)
     return cotpat
 
 def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, _P):
     '''
-    Cotisation sociales patronales main d'oeuvre (TODO: complete avec justiofactiuon TaxIPP)
+    Cotisation sociales patronales main d'oeuvre (TODO: complete avec justification TaxIPP)
     '''
     pat = build_pat(_P)
     cotpat = zeros(len(salbrut))
@@ -384,12 +384,12 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, _P):
         iscat = (type_sal == category[1]) # category[1] is the numerical index
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
-                is_mo = (bar.option == "main_d_oeuvre")
+                is_mo = (bar.option=="main-d-oeuvre")
                 temp = - (iscat*bar.calc(salbrut))*is_mo
                 cotpat += temp
-                #if is_mo == 1: 
+                #if is_mo == 1:
                 #    log.info(bar)
-                #    log.info(temp)
+                #     log.info(temp)
     return cotpat
 
 def _cotpat_transport(salbrut, hsup, type_sal, _P):
@@ -429,9 +429,9 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, cotpat_accident, _P):
                 is_noncontrib = (bar.option == "noncontrib")
                 temp = - (iscat*bar.calc(salbrut))*is_noncontrib
                 cotpat += temp
-                if is_noncontrib == 1: 
-                    log.info(bar)
-                    log.info(temp)
+                #if is_noncontrib == 1: 
+                #    log.info(bar)
+                #    log.info(temp)
     return cotpat + cotpat_accident
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib, cotpat_main_d_oeuvre, cotpat_transport):
@@ -570,15 +570,24 @@ def _sal_h_b(salbrut):
     return salbrut/nbh_travaillees
 
 
-def _alleg_fillon(salbrut, sal_h_b, type_sal, _P):
+def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     '''
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
     P = _P.cotsoc
-    taux_fillon = taux_exo_fillon(sal_h_b, P)
-    alleg_fillon = taux_fillon*salbrut*(type_sal == CAT['prive_non_cadre'])
+    taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
+    alleg_fillon = taux_fillon*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
     return alleg_fillon
+
+def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
+    '''
+    Crédit d'imôt pour la compétitivité et l'emploi
+    '''
+    P = _P.cotsoc
+    taux_cice = taux_exo_cice(sal_h_b, P)
+    alleg_cice = taux_cice*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+    return alleg_cice
 
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''
@@ -586,43 +595,51 @@ def _sal(salbrut, csgsald, cotsal, hsup):
     '''
     return salbrut + csgsald + cotsal - hsup
 
-def _salsuperbrut(salbrut, cotpat, alleg_fillon):
-    return salbrut - cotpat - alleg_fillon
 
+def _salsuperbrut(salbrut, cotpat, alleg_fillon, alleg_cice):
+    return salbrut - cotpat - alleg_fillon - alleg_cice
 
 def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
     '''
     Supplément familial de traitement
     '''
     # TODO un seul sft par couple où est présent un fonctionnaire
+    P = _P.fonc.sup_fam
     
-    part_fixe_1 = 0 # TODO: fill parameters
-    part_fixe_2 = 0 # TODO: fill parameters
-    part_fixe_supp = 0 # TODO: fill parameters
+    part_fixe_1 = P.fixe.enf1
+    part_fixe_2 = P.fixe.enf2
+    part_fixe_supp = P.fixe.enfsupp
     part_fixe = ( part_fixe_1*(fonc_nbenf>=1) + (part_fixe_2-part_fixe_1)*(fonc_nbenf>=2) + 
                   part_fixe_supp*max_(0, fonc_nbenf - 2) )
 
     # pct_variable_1 = 0
-    pct_variable_2 = 0 # TODO: fill parameters
-    pct_variable_3 = 0 # TODO: fill parameters
-    pct_variable_supp = 0 # TODO: fill parameters
+    pct_variable_2 = P.prop.enf2
+    pct_variable_3 = P.prop.enf3
+    pct_variable_supp = P.prop.enfsupp
     pct_variable =  ( pct_variable_2*(fonc_nbenf>=2) + (pct_variable_3-pct_variable_2)*(fonc_nbenf>=3) +
                       pct_variable_supp*max_(0, fonc_nbenf - 3) )
-
-    plancher_mensuel_1 = 0 # TODO: fill parameters
-    plancher_mensuel_2 = 0 # TODO: fill parameters
-    plancher_mensuel_supp = 0 # TODO: fill parameters
+    
+    indice_maj_min = P.IM_min
+    indice_maj_max = P.IM_max
+    
+    plancher_mensuel_1 = P.fixe.enf1
+    plancher_mensuel_2 = _traitement_brut_mensuel(indice_maj_min)*pct_variable_2
+    plancher_mensuel_3 = _traitement_brut_mensuel(indice_maj_min)*pct_variable_3
+    plancher_mensuel_supp = _traitement_brut_mensuel(indice_maj_min)*pct_variable_supp
     
     plancher = ( plancher_mensuel_1*(fonc_nbenf>=1) + (plancher_mensuel_2-plancher_mensuel_1)*(fonc_nbenf>=2) + 
-                plancher_mensuel_supp*max_(0, fonc_nbenf - 2) )
-
-    plafond_mensuel_1 = 0 # TODO: fill parameters
-    plafond_mensuel_2 = 0 # TODO: fill parameters
-    plafond_mensuel_supp = 0 # TODO: fill parameters
+               ( plancher_mensuel_3 - plancher_mensuel_2 - plancher_mensuel_1 )*(fonc_nbenf>=3) +
+               plancher_mensuel_supp*max_(0, fonc_nbenf - 3) )
+               
+    plafond_mensuel_1 = P.fixe.enf1
+    plafond_mensuel_2 = _traitement_brut_mensuel(indice_maj_max)*pct_variable_2
+    plafond_mensuel_3 = _traitement_brut_mensuel(indice_maj_max)*pct_variable_3
+    plafond_mensuel_supp = _traitement_brut_mensuel(indice_maj_max)*pct_variable_supp
     
     plafond = ( plafond_mensuel_1*(fonc_nbenf>=1) + (plafond_mensuel_2-plafond_mensuel_1)*(fonc_nbenf>=2) + 
-                plafond_mensuel_supp*max_(0, fonc_nbenf - 2) )
-    
+               ( plafond_mensuel_3 - plafond_mensuel_2 - plafond_mensuel_1 )*(fonc_nbenf>=3) +
+               plafond_mensuel_supp*max_(0, fonc_nbenf - 3) )
+               
     sft = min_( max(part_fixe + pct_variable*sal_brut, plancher), plafond )*(type_sal>=2)
     # Nota Bene:
     # type_sal is an EnumCol which enum is: 
@@ -635,21 +652,34 @@ def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
     #             'public_non_titulaire'])
     return 12*sft
 
+
+def _traitement_brut_mensuel(indice_maj, _P):   
+    Indice_majore_100 = _P.fonc.IM_100
+    traitement_brut = Indice_majore_100 *indice_maj / 1200
+    return traitement_brut
+
+
 def _indemnite_residence(type_sal, zone_apl, _P):
     '''
     Indemnité de résidence des fonctionnaires
     '''
-    taux_zone_1 = .03 # TODO: fill parameters
-    taux_zone_2 = .01 # TODO: fill parameters
-    taux_zone_3 = 0 # TODO: fill parameters
-    return (taux_zone_1*(zone_apl==1) + taux_zone_2*(zone_apl==2) + taux_zone_3*(zone_apl==3))*(type_sal>=2)
-    
+    P = _P.fonc.indem_resid
+    taux_zone_1 = P.taux.zone1
+    taux_zone_2 = P.taux.zone2
+    taux_zone_3 = P.taux.zone3
+    min_zone_1 = P.min.zone1
+    min_zone_2 = P.min.zone2
+    min_zone_3 = P.min.zone3
+    return (max_(min_zone_1, (taux_zone_1*(zone_apl==1)) + max_(min_zone_2, taux_zone_2*(zone_apl==2)) + max_(min_zone_3, taux_zone_3*(zone_apl==3)))*(type_sal>=2))
+
+
 def _indice_majore(type_sal, salbrut, _P):
     '''
     Indice majoré
     '''
-    traitement_annuel_brut = 1 # TODO: fill parameters
-    return (salbrut/traitement_annuel_brut)*(type_sal>=2)
+    traitement_annuel_brut = _P.fonc.IM_100
+    return (salbrut*1200/traitement_annuel_brut)*(type_sal>=2)
+
 
 def _gipa(type_sal, _P):
     '''
@@ -697,20 +727,19 @@ def _chobrut(choi, csg_rempl, _defaultP):
     '''
     # TODO: ajouter la crds ?
     P = _defaultP.csg.chom
+    plaf_ss = 12*_defaultP.cotsoc.gen.plaf_ss
+    csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
+    taux_plein = csg['plein']['deduc']
+    taux_reduit = csg['reduit']['deduc']
     
-    log.info(P.plein.deduc)
-    log.info(P.reduit.deduc)
+    #log.info(taux_plein)
+    #log.info(taux_reduit)
     
-    chom_plein = P.plein.deduc.inverse()
-    chom_reduit = P.reduit.deduc.inverse()
-    log.info(chom_plein)
-    log.info(chom_reduit)
-    print csg_rempl
-    print (csg_rempl==1)*choi
-    print (csg_rempl==2)*chom_reduit.calc(choi)
-    print (csg_rempl==3)*chom_plein.calc(choi)
+    chom_plein = taux_plein.inverse()
+    chom_reduit = taux_reduit.inverse()
+    #log.info(chom_plein)
+    #log.info(chom_reduit)
     chobrut = (csg_rempl==1)*choi + (csg_rempl==2)*chom_reduit.calc(choi) + (csg_rempl==3)*chom_plein.calc(choi)
-    print "csg montée ", chobrut - choi
     #isexo = exo_csg_chom(choi, _defaultP)
     #chobrut = not_(isexo)*chobrut + (isexo)*choi
 #     print  P.plein.impos,  P.plein.deduc
@@ -730,7 +759,6 @@ def _csgchod(chobrut, csg_rempl, _P):
     csgchod = (csg_rempl==2)*taux_reduit + (csg_rempl==3)*taux_plein
     #isexo = exo_csg_chom(chobrut, _P)
     # return - not_(isexo)*csgchod
-    print "csg descente ", csgchod
     return - csgchod
 
 def _csgchoi(chobrut, csg_rempl, _P):
@@ -854,24 +882,29 @@ def _ir_lps(base_csg, nbF, nbH, statmarit, _P ):
 ## Helper functions
 ############################################################################
 
-def taux_exo_fillon(sal_h_b, P):
+def taux_exo_fillon(sal_h_b, taille_entreprise, P):
     '''
     Exonération Fillon
     http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
     '''
-    # TODO Ainsi, à compter du 1er juillet 2007, le taux d’exonération des employeurs de 19 salariés au plus
-    # passera pour une rémunération horaire égale au SMIC de 26 % à 28,1 %.
-
-    # TODO la divison par zéro engendre un warning
+    # La divison par zéro engendre un warning
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;
     # il est égal au produit de la totalité de la rémunération annuelle telle que visée à l’article L. 242-1 du code de la Sécurité sociale par un coefficient.
     # Ce montant est majoré de 10 % pour les entreprises de travail temporaire au titre des salariés temporaires pour lesquels elle est tenue à l’obligation
     # d’indemnisation compensatrice de congés payés.
+    
     smic_h_b = P.gen.smic_h_b
-    seuil = P.exo_fillon.seuil
-    tx_max = P.exo_fillon.tx_max
+    Pf = P.exo_bas_sal.fillon
+    seuil = Pf.seuil
+    tx_max = Pf.tx_max*(taille_entreprise > 2) + Pf.tx_max2*(taille_entreprise <= 2)
     if seuil <= 1:
         return 0
     return tx_max*min_(1,max_(seuil*smic_h_b/(sal_h_b + 1e-10)-1,0)/(seuil-1))
 
+def taux_exo_cice(sal_h_b, P):
+    smic_h_b = P.gen.smic_h_b
+    Pc = P.exo_bas_sal.cice
+    plafond = Pc.max*smic_h_b
+    taux_cice = (sal_h_b <= plafond) * Pc.taux
+    return taux_cice
