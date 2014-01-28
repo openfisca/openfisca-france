@@ -589,40 +589,47 @@ def _sal(salbrut, csgsald, cotsal, hsup):
 def _salsuperbrut(salbrut, cotpat, alleg_fillon):
     return salbrut - cotpat - alleg_fillon
 
-
 def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
     '''
     Supplément familial de traitement
     '''
     # TODO un seul sft par couple où est présent un fonctionnaire
+    P = _P.fonc.sup_fam
     
-    part_fixe_1 = 0 # TODO: fill parameters
-    part_fixe_2 = 0 # TODO: fill parameters
-    part_fixe_supp = 0 # TODO: fill parameters
+    part_fixe_1 = P.fixe.enf1
+    part_fixe_2 = P.fixe.enf2
+    part_fixe_supp = P.fixe.enfsupp
     part_fixe = ( part_fixe_1*(fonc_nbenf>=1) + (part_fixe_2-part_fixe_1)*(fonc_nbenf>=2) + 
                   part_fixe_supp*max_(0, fonc_nbenf - 2) )
 
     # pct_variable_1 = 0
-    pct_variable_2 = 0 # TODO: fill parameters
-    pct_variable_3 = 0 # TODO: fill parameters
-    pct_variable_supp = 0 # TODO: fill parameters
+    pct_variable_2 = P.prop.enf2
+    pct_variable_3 = P.prop.enf3
+    pct_variable_supp = P.prop.enfsupp
     pct_variable =  ( pct_variable_2*(fonc_nbenf>=2) + (pct_variable_3-pct_variable_2)*(fonc_nbenf>=3) +
                       pct_variable_supp*max_(0, fonc_nbenf - 3) )
-
-    plancher_mensuel_1 = 0 # TODO: fill parameters
-    plancher_mensuel_2 = 0 # TODO: fill parameters
-    plancher_mensuel_supp = 0 # TODO: fill parameters
+    
+    indice_maj_min = P.IM_min
+    indice_maj_max = P.IM_max
+    
+    plancher_mensuel_1 = P.fixe.enf1
+    plancher_mensuel_2 = _traitement_brut_mensuel(indice_maj_min)*pct_variable_2
+    plancher_mensuel_3 = _traitement_brut_mensuel(indice_maj_min)*pct_variable_3
+    plancher_mensuel_supp = _traitement_brut_mensuel(indice_maj_min)*pct_variable_supp
     
     plancher = ( plancher_mensuel_1*(fonc_nbenf>=1) + (plancher_mensuel_2-plancher_mensuel_1)*(fonc_nbenf>=2) + 
-                plancher_mensuel_supp*max_(0, fonc_nbenf - 2) )
-
-    plafond_mensuel_1 = 0 # TODO: fill parameters
-    plafond_mensuel_2 = 0 # TODO: fill parameters
-    plafond_mensuel_supp = 0 # TODO: fill parameters
+               ( plancher_mensuel_3 - plancher_mensuel_2 - plancher_mensuel_1 )*(fonc_nbenf>=3) +
+               plancher_mensuel_supp*max_(0, fonc_nbenf - 3) )
+               
+    plafond_mensuel_1 = P.fixe.enf1
+    plafond_mensuel_2 = _traitement_brut_mensuel(indice_maj_max)*pct_variable_2
+    plafond_mensuel_3 = _traitement_brut_mensuel(indice_maj_max)*pct_variable_3
+    plafond_mensuel_supp = _traitement_brut_mensuel(indice_maj_max)*pct_variable_supp
     
     plafond = ( plafond_mensuel_1*(fonc_nbenf>=1) + (plafond_mensuel_2-plafond_mensuel_1)*(fonc_nbenf>=2) + 
-                plafond_mensuel_supp*max_(0, fonc_nbenf - 2) )
-    
+               ( plafond_mensuel_3 - plafond_mensuel_2 - plafond_mensuel_1 )*(fonc_nbenf>=3) +
+               plafond_mensuel_supp*max_(0, fonc_nbenf - 3) )
+               
     sft = min_( max(part_fixe + pct_variable*sal_brut, plancher), plafond )*(type_sal>=2)
     # Nota Bene:
     # type_sal is an EnumCol which enum is: 
@@ -635,21 +642,35 @@ def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
     #             'public_non_titulaire'])
     return 12*sft
 
+
+def _traitement_brut_mensuel(indice_maj):   
+    Indice_majore_100 = _P.fonc.IM_100
+    traitement_brut = Indice_majore_100 *indice_maj / 1200
+    return traitement_brut
+
+
 def _indemnite_residence(type_sal, zone_apl, _P):
     '''
     Indemnité de résidence des fonctionnaires
     '''
-    taux_zone_1 = .03 # TODO: fill parameters
-    taux_zone_2 = .01 # TODO: fill parameters
-    taux_zone_3 = 0 # TODO: fill parameters
-    return (taux_zone_1*(zone_apl==1) + taux_zone_2*(zone_apl==2) + taux_zone_3*(zone_apl==3))*(type_sal>=2)
+    P = _P.fonc.indem_resid
+    taux_zone_1 = P.taux.zone1
+    taux_zone_2 = P.taux.zone2
+    taux_zone_3 = P.taux.zone3
     
+    min_zone_1 = P.min.zone1
+    min_zone_2 = P.min.zone2
+    min_zone_3 = P.min.zone3
+    
+    return (max_(min_zone_1, (taux_zone_1*(zone_apl==1)) + max_(min_zone_2, taux_zone_2*(zone_apl==2)) + max_(min_zone_3, taux_zone_3*(zone_apl==3)))*(type_sal>=2))
+
+
 def _indice_majore(type_sal, salbrut, _P):
     '''
     Indice majoré
     '''
-    traitement_annuel_brut = 1 # TODO: fill parameters
-    return (salbrut/traitement_annuel_brut)*(type_sal>=2)
+    traitement_annuel_brut = _P.fonc.IM_100
+    return (salbrut*1200/traitement_annuel_brut)*(type_sal>=2)
 
 def _gipa(type_sal, _P):
     '''

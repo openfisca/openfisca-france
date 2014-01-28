@@ -3448,7 +3448,7 @@
           <VALUE valeur="75.0" deb="2012-01-01" fin="2013-12-31"/>
         </TAUX>
       </TRANCHE>
-    </BAREME>
+    </BAREME>  
     <NODE code="pv_immo" description="Plus-values immobilières">
       <CODE description="Nombre d'années pleines de détentions minimale (1er seuil)" code="ann_det1" format="integer">
         <VALUE valeur="5" deb="2011-01-01" fin="2012-01-31"/>
@@ -3476,7 +3476,69 @@
       </CODE>
     </NODE>
   </NODE>
-
+  <NODE description="Traitement des fonctionnaires" code="fonc">
+    <CODE description="Indice 100 majoré" code="IM_100" format="float">
+      <VALUE valeur="5556.35" deb="2010-07-01" fin="2014-12-31"/>
+    </CODE>
+    <CODE description="Indice de traitement minimum" code="IM_min" format="integer">
+      <VALUE valeur="308" deb="2012-07-01" fin="2012-12-31"/>
+      <VALUE valeur="309" deb="2013-01-01" fin="2014-12-31"/>
+    </CODE>
+    <NODE description="Indemnité de résidence " code="indem_resid" >
+	  <NODE description="Indemnité de résidence : taux " code="taux">
+	    <CODE description="Indemnité de résidence zone 1 : taux " code="zone1" format="percent">
+	      <VALUE valeur="0.03" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 2 : taux " code="zone2" format="percent">
+	      <VALUE valeur="0.01" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
+	      <VALUE valeur="0.00" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	 </NODE>
+	 <NODE description="Indemnité de résidence : plancher" code="min">
+	    <CODE description="Indemnité de résidence zone 1 : plancher " code="zone1" format="float">
+	      <VALUE valeur="43.48" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 2 : plancher " code="zone2" format="float">
+	      <VALUE valeur="14.49" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
+	      <VALUE valeur="0.0" deb="2013-01-01" fin="2013-12-31"/>
+	  	</CODE>
+	  </NODE>
+    </NODE>
+    <NODE description="Supplément familial de traitement" code="supp_fam" >
+	  <CODE description="Indice majoré plancher" code="IM_min" format="integer">
+        <VALUE valeur="449" deb="2013-01-01" fin="2014-12-31"/>
+  	  </CODE>
+      <CODE description="Indice majoré plafond" code="IM_max" format="integer">
+        <VALUE valeur="712" deb="2013-01-01" fin="2014-12-31"/>
+  	  </CODE>
+  	  <NODE description="Part fixe" code="fixe">
+	    <CODE description="1er enfant" code="enf1" format="float">
+	      <VALUE valeur="2.29" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="2 enfants" code="enf2" format="float">
+	      <VALUE valeur="10.67" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="float">
+	      <VALUE valeur="4.57" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  </NODE>
+	  <NODE description="Part proportionnelle au traitement" code="prop">
+	    <CODE description="2 enfants" code="enf2" format="percent">
+	      <VALUE valeur="0.03" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="3enfants" code="enf3" format="percent">
+	      <VALUE valeur="0.08" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="percent">
+	      <VALUE valeur="0.06" deb="2013-01-01" fin="2014-12-31"/>
+	  	</CODE>
+	  </NODE>
+    </NODE>
+  </NODE>
   <NODE description="Prestations familiales" code="fam">
     <NODE description="Allocations familiales" code="af">
       <CODE description="Base mensuelle des allocations familiales" code="bmaf" format="float" type="monetary">
