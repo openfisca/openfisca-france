@@ -584,10 +584,13 @@ def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     '''
     Crédit d'imôt pour la compétitivité et l'emploi
     '''
-    P = _P.cotsoc
-    taux_cice = taux_exo_cice(sal_h_b, P)
-    alleg_cice = taux_cice*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-    return alleg_cice
+    if _P.datesim.year >= 2013:
+        P = _P.cotsoc
+        taux_cice = taux_exo_cice(sal_h_b, P)
+        alleg_cice = taux_cice*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+        return alleg_cice
+    else:
+        return 0*salbrut
 
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''

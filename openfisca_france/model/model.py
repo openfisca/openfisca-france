@@ -119,7 +119,7 @@ prestation_by_name = collections.OrderedDict((
     ('cotpat_transport', Prestation(cs._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
     ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
     ('alleg_fillon', Prestation(cs._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")), 
-    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")), 
+    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")), # TODO: starting date etc
     
 
     ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
