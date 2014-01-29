@@ -120,6 +120,8 @@ prestation_by_name = collections.OrderedDict((
     ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
     ('alleg_fillon', Prestation(cs._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")), 
     ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")), 
+    ('taxes_sal', Prestation(cs._taxes_sal, label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA")),
+    ('tehr',  Prestation(cs._tehr, label = u"Taxes exceptionnelles sur les hauts revenus")),
     ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")),
 
     ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),

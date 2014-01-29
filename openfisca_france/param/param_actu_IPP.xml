@@ -1886,7 +1886,6 @@
     <NODE description="Exonération sur les bas salaires" code="exo_bas_sal">
     	<NODE description="Exonération Fillon" code="fillon">
 	      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
-	        <VALUE valeur=".00" deb="2002-01-01" fin="2004-12-31"/>
 	        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
 	      </CODE>
 	      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
@@ -1905,7 +1904,87 @@
 	        <VALUE valeur="2.5" deb="2013-01-01" fin="2014-12-31"/>
 	      </CODE>
 	    </NODE>
-    </NODE>
+      </NODE>
+      <NODE description="Taxes sur les salaires" code="taxes_sal">>
+	      <BAREME description="Taxes sur les salaires : taux majorés (France métropolitaine seulement)" code="taux_maj"> 
+	      <TRANCHE code="tranche0">
+	        <SEUIL>
+	          <VALUE valeur="0" deb="2001-01-01" fin="2014-12-31"/>
+	        </SEUIL>
+	        <TAUX>
+	          <VALUE valeur="0.00" deb="2001-01-01" fin="2014-12-31"/>
+	        </TAUX>
+	      </TRANCHE>
+	      <TRANCHE code="tranche1">
+	        <SEUIL>
+	          <VALUE valeur="6459.26" deb="2001-01-01" fin="2001-12-31"/>
+	          <VALUE valeur="6563" deb="2002-01-01" fin="2002-12-31"/>
+	          <VALUE valeur="6675" deb="2003-01-01" fin="2003-12-31"/>
+	          <VALUE valeur="6789" deb="2004-01-01" fin="2004-12-31"/>
+	          <VALUE valeur="6904" deb="2005-01-01" fin="2005-12-31"/>
+	          <VALUE valeur="7029" deb="2006-01-01" fin="2006-12-31"/>
+	          <VALUE valeur="7156" deb="2007-01-01" fin="2007-12-31"/>
+	          <VALUE valeur="7250" deb="2008-01-01" fin="2008-12-31"/>
+	          <VALUE valeur="7461" deb="2009-01-01" fin="2009-12-31"/>
+	          <VALUE valeur="7491" deb="2010-01-01" fin="2010-12-31"/>
+	          <VALUE valeur="7604" deb="2011-01-01" fin="2013-12-31"/>
+	          <VALUE valeur="7664" deb="2014-01-01" fin="2014-12-31"/>
+	        </SEUIL>
+	        <TAUX>
+	          <VALUE valeur="0.0425" deb="2001-01-01" fin="2014-12-31"/>
+	        </TAUX>
+	      </TRANCHE>
+	      <TRANCHE code="tranche2">
+	        <SEUIL>
+	          <VALUE valeur="12906.33" deb="2001-01-01" fin="2001-12-31"/>
+	          <VALUE valeur="13113" deb="2002-01-01" fin="2002-12-31"/>
+	          <VALUE valeur="13337" deb="2003-01-01" fin="2003-12-31"/>
+	          <VALUE valeur="13563" deb="2004-01-01" fin="2004-12-31"/>
+	          <VALUE valeur="13793" deb="2005-01-01" fin="2005-12-31"/>
+	          <VALUE valeur="14042" deb="2006-01-01" fin="2006-12-31"/>
+	          <VALUE valeur="14295" deb="2007-01-01" fin="2007-12-31"/>
+	          <VALUE valeur="14481" deb="2008-01-01" fin="2008-12-31"/>
+	          <VALUE valeur="14902" deb="2009-01-01" fin="2009-12-31"/>
+	          <VALUE valeur="14960" deb="2010-01-01" fin="2010-12-31"/>
+	          <VALUE valeur="15185" deb="2011-01-01" fin="2013-12-31"/>
+	          <VALUE valeur="15306" deb="2014-01-01" fin="2014-12-31"/>
+	        </SEUIL>
+	        <TAUX>
+	          <VALUE valeur="0.0935" deb="2001-01-01" fin="2014-12-31"/>
+	        </TAUX>
+	      </TRANCHE>
+	      <TRANCHE code="tranche3">
+	        <SEUIL>
+	          <VALUE valeur="150000" deb="2013-01-01" fin="2013-12-31"/>
+	          <VALUE valeur="151200" deb="2014-01-01" fin="2014-12-31"/>
+	        </SEUIL>
+	        <TAUX>
+	          <VALUE valeur="0.1575" deb="2001-01-01" fin="2014-12-31"/>
+	        </TAUX>
+	      </TRANCHE>
+	    </BAREME>
+	    <NODE description = "Taxes sur les salaires : taux normal" code="taux">
+	   	  <CODE description="Taxes sur les salaires : France métropolitaine" code="metro" type="percent"> 
+	        <VALUE valeur="0.0425" deb="2001-01-01" fin="2014-12-31"/>
+	      </CODE>
+	      <CODE description="Taxes sur les salaires : Guyane" code="guy" type="percent"> 
+	        <VALUE valeur="0.0255" deb="2001-01-01" fin="2014-12-31"/>
+	      </CODE>
+	      <CODE description="Taxes sur les salaires : Guadeloupe, Martinique, Réunion" code="mgr" type="percent"> 
+	       <VALUE valeur="0.0295" deb="2001-01-01" fin="2014-12-31"/>
+	      </CODE>
+	    </NODE>
+	 </NODE>
+	 <BAREME description="Taxes exceptionnelles sur les hauts revenus" code="tehr">
+          <TRANCHE code="tranche0">
+            <SEUIL>
+              <VALUE valeur="1000000" deb="2013-01-01" fin="2014-12-31"/>
+            </SEUIL>
+            <TAUX>
+              <VALUE valeur="0.50" deb="2013-01-01" fin="2014-12-31"/>
+            </TAUX>
+          </TRANCHE>
+      </BAREME>
   </NODE>
   <NODE description="Impôt sur le revenu" code="ir">
     <BAREME code="bareme" description="Tranches de l'IR" type="monetary">

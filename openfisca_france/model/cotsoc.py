@@ -387,9 +387,9 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, _P):
                 is_mo = (bar.option=="main-d-oeuvre")
                 temp = - (iscat*bar.calc(salbrut))*is_mo
                 cotpat += temp
-                #if is_mo == 1:
-                #    log.info(bar)
-                #     log.info(temp)
+                if is_mo == 1:
+                    log.info(bar)
+                    log.info(temp)
     return cotpat
 
 def _cotpat_transport(salbrut, hsup, type_sal, _P):
@@ -405,8 +405,8 @@ def _cotpat_transport(salbrut, hsup, type_sal, _P):
                 bar = pat[category[0]]['transport']
                 temp = - bar.calc(salbrut)*iscat
                 transport += temp
-                #log.info(bar)
-                #log.info(transport)
+                log.info(bar)
+                log.info(transport)
     return transport
 
 def _cotpat_accident(salbrut, taux_accident_travail):  # taux_accident_travail
@@ -429,9 +429,9 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, cotpat_accident, _P):
                 is_noncontrib = (bar.option == "noncontrib")
                 temp = - (iscat*bar.calc(salbrut))*is_noncontrib
                 cotpat += temp
-                #if is_noncontrib == 1: 
-                #    log.info(bar)
-                #    log.info(temp)
+                if is_noncontrib == 1: 
+                    log.info(bar)
+                    log.info(temp)
     return cotpat + cotpat_accident
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib, cotpat_main_d_oeuvre, cotpat_transport):
@@ -559,9 +559,6 @@ def _crdssal(salbrut, hsup, _P):
     '''
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
     crds = scaleBaremes(_P.crds.act, plaf_ss)
-    print "ici"
-    print crds
-    print crds.calc(salbrut - hsup)
     return - crds.calc(salbrut - hsup)
 
 
@@ -600,6 +597,17 @@ def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     else:
         return 0*salbrut
 
+def _taxes_sal(salbrut, tva_ent, _P):
+    P = _P.cotsoc.taxes_sal
+    maj = P.taux_maj # TODO: exonérations apprentis
+    taxes_sal = maj.calc(salbrut) + P.taux.metro*salbrut # TODO: modify if DOM 
+    return -taxes_sal*not_(tva_ent)
+
+def _tehr(salbrut, _P):
+    # TODO: a affiner avec condition de plafond sur le chiffre d'affaire des entreprises
+    bar = _P.cotsoc.tehr
+    return -bar.calc(salbrut)
+
 def _sal(salbrut, csgsald, cotsal, hsup):
     '''
     Calcul du salaire imposable
@@ -613,8 +621,8 @@ def _sal_net(sal, crdssal, csgsali):
     '''
     return sal + crdssal + csgsali
 
-def _salsuperbrut(salbrut, cotpat, alleg_fillon, alleg_cice):
-    return salbrut - cotpat - alleg_fillon - alleg_cice
+def _salsuperbrut(salbrut, cotpat, alleg_fillon, alleg_cice, taxes_sal, tehr):
+    return salbrut - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
 
 def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
     '''
@@ -793,10 +801,7 @@ def _csgchod(chobrut, csg_rempl, _P):
     CSG déductible sur les allocations chômage
     '''
     isexo = exo_csg_chom(chobrut, csg_rempl, _P)
-    print "csgchod des trucs"
-    print isexo
     csgchod = csgchod_sans_exo(chobrut, csg_rempl, _P)*not_(isexo)
-    print csgchod
     return csgchod
 
 def _csgchoi(chobrut, csg_rempl, _P):
