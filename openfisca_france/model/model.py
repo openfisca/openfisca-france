@@ -119,8 +119,8 @@ prestation_by_name = collections.OrderedDict((
     ('cotpat_transport', Prestation(cs._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
     ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
     ('alleg_fillon', Prestation(cs._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")), 
-    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")), # TODO: starting date etc
-    
+    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")), 
+    ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")),
 
     ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
     ('cotsal_noncontrib', Prestation(cs._cotsal_noncontrib, label = u"Cotisations sociales non salariales non-contributives")),
@@ -130,7 +130,7 @@ prestation_by_name = collections.OrderedDict((
     ('csgsali', Prestation(cs._csgsali, label = u"CSG imposables sur les salaires")),
     ('crdssal', Prestation(cs._crdssal, label = u"CRDS sur les salaires")),
     ('sal', Prestation(cs._sal, label = u"Salaires imposables")),
-    ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")),
+    ('sal_net', Prestation(cs._sal_net, label = u"Salaires nets d'après définition INSEE")),
 
     # Allocations chômage
     ('chobrut', Prestation(cs._chobrut, label = u"Allocations chômage brutes")),
@@ -217,7 +217,7 @@ prestation_by_name = collections.OrderedDict((
     ('deficit_ante', Prestation(ir._deficit_ante, entity = 'foy', label = u"Déficit global antérieur")),
 
     ('rev_sal', Prestation(ir._rev_sal)),
-    ('sal_net', Prestation(ir._sal_net)),
+    ('salcho_imp', Prestation(ir._salcho_imp)),
     ('rev_pen', Prestation(ir._rev_pen)),
     ('pen_net', Prestation(ir._pen_net)),
     ('indu_plaf_abat_pen', Prestation(ir._indu_plaf_abat_pen, entity = 'foy')),

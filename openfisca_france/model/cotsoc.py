@@ -559,6 +559,9 @@ def _crdssal(salbrut, hsup, _P):
     '''
     plaf_ss = 12*_P.cotsoc.gen.plaf_ss
     crds = scaleBaremes(_P.crds.act, plaf_ss)
+    print "ici"
+    print crds
+    print crds.calc(salbrut - hsup)
     return - crds.calc(salbrut - hsup)
 
 
@@ -575,10 +578,15 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
-    P = _P.cotsoc
-    taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
-    alleg_fillon = taux_fillon*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-    return alleg_fillon
+    if _P.datesim.year >= 2007:
+        #TO DO: deal with taux between 2005 and 2007
+        P = _P.cotsoc
+        taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
+        alleg_fillon = taux_fillon*salbrut*((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+        return alleg_fillon
+
+    else:
+        return 0*salbrut
 
 def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     '''
@@ -598,6 +606,12 @@ def _sal(salbrut, csgsald, cotsal, hsup):
     '''
     return salbrut + csgsald + cotsal - hsup
 
+def _sal_net(sal, crdssal, csgsali):
+    '''
+    Calcul du salaire net d'après définition INSEE 
+    net = net de csg et crds
+    '''
+    return sal + crdssal + csgsali
 
 def _salsuperbrut(salbrut, cotpat, alleg_fillon, alleg_cice):
     return salbrut - cotpat - alleg_fillon - alleg_cice
