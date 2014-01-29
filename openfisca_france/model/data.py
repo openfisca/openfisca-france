@@ -126,6 +126,7 @@ column_by_name = collections.OrderedDict((
                                 u"1000 salariés ou plus",
                                 u"Ne sait pas",
                                 ]))),
+    ('tva_ent', BoolCol(label = u"Entreprise employant le salarié paye de la TVA")),
 
     ('chpub', EnumCol(label = u"Nature de l'employeur principal",
                       enum = Enum([u"Sans objet",

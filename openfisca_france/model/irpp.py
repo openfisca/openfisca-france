@@ -99,7 +99,7 @@ def _rev_sal(sal, cho):
     '''
     return sal + cho
 
-def _sal_net(rev_sal, cho_ld, fra, _P):
+def _salcho_imp(rev_sal, cho_ld, fra, _P):
     """
     Salaires après abattements
     'ind'
@@ -107,8 +107,7 @@ def _sal_net(rev_sal, cho_ld, fra, _P):
     P = _P.ir.tspr.abatpro
     amin = P.min*not_(cho_ld) + P.min2*cho_ld
     abatfor = round(min_(max_(P.taux*rev_sal, amin),P.max))
-    return (fra > abatfor)*(rev_sal - fra) \
-         + (fra <= abatfor)*max_(0,rev_sal - abatfor)
+    return (fra > abatfor)*(rev_sal - fra)+ (fra <= abatfor)*max_(0,rev_sal - abatfor)
 
 def _rev_pen(alr, alr_decl, rst):
     """
@@ -148,20 +147,20 @@ def _indu_plaf_abat_pen(rev_pen, pen_net, _P, _option = {'rev_pen': ALL, 'pen_ne
     abat = rev_pen_foy - pen_net_foy
     return abat - min_(abat, P.max)
 
-def _abat_sal_pen(sal_net, pen_net, _P):
+def _abat_sal_pen(salcho_imp, pen_net, _P):
     """
     Abattement de 20% sur les salaires
     'ind'
     """
     P = _P.ir.tspr.abatsalpen
-    return min_(P.taux*max_(sal_net + pen_net, 0), P.max)
+    return min_(P.taux*max_(salcho_imp + pen_net, 0), P.max)
 
-def _sal_pen_net(sal_net, pen_net, abat_sal_pen):
+def _sal_pen_net(salcho_imp, pen_net, abat_sal_pen):
     """
     Salaires et pensions après abattement de 20% sur les salaires
     'ind'
     """
-    return sal_net + pen_net - abat_sal_pen
+    return salcho_imp + pen_net - abat_sal_pen
 
 def _rto(f1aw, f1bw, f1cw, f1dw):
     """
