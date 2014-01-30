@@ -29,9 +29,9 @@ from openfisca_core.columns import IntCol, EnumCol, BoolCol, AgesCol, FloatCol
 from openfisca_core.enumerations import Enum
 
 
-QUIFOY = Enum(['vous', 'conj', 'pac1','pac2','pac3','pac4','pac5','pac6','pac7','pac8','pac9'])
-QUIFAM = Enum(['chef', 'part', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])
-QUIMEN = Enum(['pref', 'cref', 'enf1','enf2','enf3','enf4','enf5','enf6','enf7','enf8','enf9'])
+QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
+QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
+QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
@@ -46,16 +46,16 @@ column_by_name = collections.OrderedDict((
     ('quifoy', EnumCol(QUIFOY)),
     ('quifam', EnumCol(QUIFAM)),
 
-    ('sali', IntCol(label = u"Salaire imposable", val_type = "monetary")),  #(f1aj, f1bj, f1cj, f1dj, f1ej)
+    ('sali', IntCol(label = u"Salaire imposable", val_type = "monetary")),  # (f1aj, f1bj, f1cj, f1dj, f1ej)
     ('choi', IntCol(label = u"Chômage imposable", val_type = "monetary")),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
     ('rsti', IntCol(label = u"Retraite imposable", val_type = "monetary")),  # (f1as, f1bs, f1cs, f1ds, f1es)
-    ('fra', IntCol(label = u"Frais réels",val_type = "monetary")),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
+    ('fra', IntCol(label = u"Frais réels", val_type = "monetary")),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
     ('alr', IntCol(label = u"Pension alimentaire reçue", val_type = "monetary")),  # (f1ao, f1bo, f1co, f1do, f1eo)
     ('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),  # (f1ao, f1bo, f1co, f1do, f1eo)
 
 
-    ('hsup', IntCol( label = u"Heures supplémentaires", val_type = "monetary")),  # (f1au, f1bu, f1cu, f1du, f1eu)
+    ('hsup', IntCol(label = u"Heures supplémentaires", val_type = "monetary")),  # (f1au, f1bu, f1cu, f1du, f1eu)
     ('inv', BoolCol(label = u'Invalide')),
     ('alt', BoolCol(label = u'Garde alternée')),
     ('cho_ld', BoolCol(label = u"Chômeur de longue durée")),  # (f1ai, f1bi, f1ci, f1di, f1ei)
@@ -64,19 +64,27 @@ column_by_name = collections.OrderedDict((
     ('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année")),  # (f1av, f1bv, f1cv, f1dv, f1qv)
     ('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés:nombre de jours travaillés dans l'année")),  # (f5nv, f5ov, f5pv)
     ('jour_xyz', IntCol(default = 360, entity = "foy")),
-    ('age', AgesCol(label = u"âge" ,  val_type = "age")),
+    ('age', AgesCol(label = u"âge" , val_type = "age")),
     ('agem', AgesCol(label = u"âge (en mois)", val_type = "months")),
 
-    ('zone_apl', EnumCol(label = u"zone apl", default = 2, entity = 'men')),
-    ('loyer', IntCol(label = u"Loyer mensuel", entity = 'men', val_type = "monetary")),  # Loyer mensuel
-    ('so', EnumCol(label = u"Statut d'occupation", entity = 'men',
-                 enum = Enum([u"Non renseigné",
-                              u"Accédant à la propriété",
-                              u"Propriétaire (non accédant) du logement",
-                              u"Locataire d'un logement HLM",
-                              u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-                              u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-                              u"Logé gratuitement par des parents, des amis ou l'employeur"]))),
+    ('zone_apl', EnumCol(label = u"zone apl",
+                         entity = 'men',
+                         enum = Enum([u"Non renseigné",
+                                      u"zone 1",
+                                      u"zone 2",
+                                      u"zone 3", ]), default = 2,)),
+    ('loyer', IntCol(label = u"Loyer mensuel",
+                     entity = 'men',
+                     val_type = "monetary")),  # Loyer mensuel
+    ('so', EnumCol(label = u"Statut d'occupation",
+                   entity = 'men',
+                   enum = Enum([u"Non renseigné",
+                                u"Accédant à la propriété",
+                                u"Propriétaire (non accédant) du logement",
+                                u"Locataire d'un logement HLM",
+                                u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
+                                u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
+                                u"Logé gratuitement par des parents, des amis ou l'employeur"]))),
 
     ('activite', EnumCol(label = u'Actvité',
                        enum = Enum([u'Actif occupé',
@@ -141,10 +149,11 @@ column_by_name = collections.OrderedDict((
     ('cadre', BoolCol(label = u"Cadre salarié du privé")),
     ('code_risque', EnumCol(label = u"Code risque pour les accidents du travail")),  # TODO: complete label and add relevant default
     ('taux_accident_travail', FloatCol(label = u"Taux de cotisation des accidents du travail",
-                                       default = .011)), # TODO: complete label and add relevant default
+                                       default = .011)),  # TODO: complete label and add relevant default
 
     ('boursier', BoolCol()),
-    ('code_postal', IntCol(label = u"Code postal du lieu de résidence", entity = 'men')),
+    ('code_postal', IntCol(label = u"Code postal du lieu de résidence",
+                           entity = 'men')),
 
     ('statmarit', EnumCol(label = u"Statut marital",
                           default = 2,
@@ -153,7 +162,7 @@ column_by_name = collections.OrderedDict((
                                     u"Divorcé",
                                     u"Veuf",
                                     u"Pacsé",
-                                    u"Jeune veuf"],start = 1))),
+                                    u"Jeune veuf"], start = 1))),
 
     ('nbR', IntCol(label = u"Nombre de titulaires de la carte invalidité d'au moins 80 %", entity = 'foy')),
     ('nbJ', IntCol(label = u"Nombre d'enfants majeurs célibataires sans enfant", entity = 'foy')),
@@ -186,7 +195,7 @@ column_by_name = collections.OrderedDict((
     ('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans", entity = 'foy', val_type = "monetary")),
 
     # Gain de levée d'option
-    #TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv
+    # TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv
     # et les mettre en f1tvm comme pour sali
     # Il faut aussi le faire en amont dans les tables
     ('f1tv', IntCol(label = u"", entity = 'ind')),  # (f1tv,f1uv)),
@@ -278,7 +287,7 @@ column_by_name = collections.OrderedDict((
     ('f6ev', IntCol(entity = 'foy', label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit")),
 
     # Déductions diverses
-    ('f6dd', IntCol(entity = 'foy',label = u"Déductions diverses", val_type = "monetary")),
+    ('f6dd', IntCol(entity = 'foy', label = u"Déductions diverses", val_type = "monetary")),
 
     # Épargne retraite - PERP, PRÉFON, COREM et CGOS
     ('f6ps', IntCol(entity = 'foy', label = u"Plafond de déduction: déclarant 1", val_type = "monetary")),
@@ -612,7 +621,7 @@ column_by_name = collections.OrderedDict((
     ('frag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés (régime du forfait)", val_type = "monetary")),  # (f5hn, f5in, f5jn)),
     ('frag_impo', IntCol(entity = 'ind', label = u"Revenus agricoles imposables (régime du forfait)", val_type = "monetary")),  # (f5ho, f5io, f5jo)),
     ('arag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hb, f5ib, f5jb)),
-    ('arag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",val_type = "monetary")),  # (f5hc, f5ic, f5jc)),
+    ('arag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hc, f5ic, f5jc)),
     ('arag_defi', IntCol(entity = 'ind', label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hf, f5if, f5jf)),
     ('nrag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hh, f5ih, f5jh)),
     ('nrag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hi, f5ii, f5ji)),
@@ -791,7 +800,7 @@ column_by_name = collections.OrderedDict((
                                    u"Services aux entreprises",
                                    u"Services aux particuliers",
                                    u"Education, santé, action sociale",
-                                   u"Administrations"],start = -1))),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
+                                   u"Administrations"], start = -1))),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
 
     ('nafg17npr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence ",
                       entity = 'men',
@@ -813,7 +822,7 @@ column_by_name = collections.OrderedDict((
                                    u"Activités immobilières",
                                    u"Activités scientifiques et techniques ; services administratifs et de soutien",
                                    u"Administration publique, enseignement, santé humaine et action sociale",
-                                   u"Autres activités de services"],start = -1))),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
+                                   u"Autres activités de services"], start = -1))),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
 
 
 #    ('typmen15', EnumCol(label = u"Type de ménage",
@@ -868,29 +877,29 @@ column_by_name = collections.OrderedDict((
                                  u"Baccalauréat ou brevet professionnel ou autre diplôme de ce niveau",
                                  u"CAP, BEP ou autre diplôme de ce niveau",
                                  u"Brevet des collèges",
-                                 u"Aucun diplôme ou CEP"],start = 1))),
+                                 u"Aucun diplôme ou CEP"], start = 1))),
 
     ('act5', EnumCol(label = u"activité",
                      enum = Enum([u"Salarié",
                                   u"Indépendant",
                                   u"Chômeur",
                                   u"Retraité",
-                                  u"Inactif"],start = 1))),  # 5 postes normalement TODO: check = 0
+                                  u"Inactif"], start = 1))),  # 5 postes normalement TODO: check = 0
     ('wprm_init', FloatCol(label = u"Effectifs")),
 
 
-## ISF ##
+# # ISF ##
 
-## Immeubles bâtis ##
-    ('b1ab', IntCol(entity = 'ind', label = u"valeur résidence principale avant abattement", val_type = "monetary")),  ##  valeur résidence principale avant abattement ##
+# # Immeubles bâtis ##
+    ('b1ab', IntCol(entity = 'ind', label = u"valeur résidence principale avant abattement", val_type = "monetary")),  # #  valeur résidence principale avant abattement ##
     ('b1ac', IntCol(entity = 'foy', label = u"valeur autres immeubles avant abattement", val_type = "monetary")),
-## non bâtis ##
+# # non bâtis ##
     ('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis: bois, fôrets et parts de groupements forestiers", val_type = "monetary")),
     ('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis: biens ruraux loués à long termes", val_type = "monetary")),
     ('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis: parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary")),
     ('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis: autres biens", val_type = "monetary")),
 
-## droits sociaux- valeurs mobilières-liquidités- autres meubles ##
+# # droits sociaux- valeurs mobilières-liquidités- autres meubles ##
     ('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary")),
     ('b1cb', IntCol(entity = 'foy', label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type = "monetary")),
     ('b1cd', IntCol(entity = 'foy', label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type = "monetary")),
@@ -906,10 +915,10 @@ column_by_name = collections.OrderedDict((
 #    b1ck
 
 
-## passifs et autres réduc ##
+# # passifs et autres réduc ##
     ('b2gh', IntCol(entity = 'foy', label = u"Total du passif et autres déductions", val_type = "monetary")),
 
-## réductions ##
+# # réductions ##
     ('b2mt', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary")),
     ('b2ne', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary")),
     ('b2mv', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings" , val_type = "monetary")),
@@ -918,20 +927,20 @@ column_by_name = collections.OrderedDict((
     ('b2na', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type = "monetary")),
     ('b2nc', IntCol(entity = 'foy', label = u"Réductions pour dons à certains organismes d'intérêt général", val_type = "monetary")),
 
-##  montant impôt acquitté hors de France ##
+# #  montant impôt acquitté hors de France ##
     ('b4rs', IntCol(entity = 'foy', label = u"Montant de l'impôt acquitté hors de France", val_type = "monetary")),
 
-## BOUCLIER FISCAL ##
+# # BOUCLIER FISCAL ##
 
     ('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
     ('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
 
-    ('tax_fonc', IntCol(entity = 'foy', label = u"",val_type = "monetary")),
+    ('tax_fonc', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
     ('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
 
     # to remove
     ('champm', BoolCol(entity = 'men', default = True)),
-    ('wprm', FloatCol(entity = 'men', default = 1,label = u"Effectifs")),
+    ('wprm', FloatCol(entity = 'men', default = 1, label = u"Effectifs")),
     ('etr', IntCol()),
     ('coloc', BoolCol()),
     ('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
