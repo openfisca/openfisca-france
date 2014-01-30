@@ -28,16 +28,16 @@ import os
 
 AGGREGATES_DEFAULT_VARS = [
     'cotsoc_noncontrib', 'csg', 'crds',
-    'irpp', 'ppe','ppe_brute',
-    'af', 'af_base', 'af_majo','af_forf', 'cf',
+    'irpp', 'ppe', 'ppe_brute',
+    'af', 'af_base', 'af_majo', 'af_forf', 'cf',
     'paje_base', 'paje_nais', 'paje_clca', 'paje_clmg',
     'ars', 'aeeh', 'asf', 'aspa',
     'aah', 'caah',
     'rsa', 'rsa_act', 'aefa', 'api', 'majo_rsa', 'psa',
     'logt', 'alf', 'als', 'apl',
     ]
-    #ajouter csgd pour le calcul des agrégats erfs
-    #ajouter rmi pour le calcul des agrégats erfs
+    # ajouter csgd pour le calcul des agrégats erfs
+    # ajouter rmi pour le calcul des agrégats erfs
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
 DATA_DIR = os.path.join(COUNTRY_DIR, 'data')
@@ -137,7 +137,7 @@ X_AXES_PROPERTIES = {
     }
 
 
-def init_country(qt=False, start_from="imposable"):
+def init_country(qt = False, start_from = "imposable"):
     """Add country-specific content to OpenFisca-Core package."""
     from openfisca_core import model as core_model
     from openfisca_core import simulations as core_simulations
@@ -153,21 +153,21 @@ def init_country(qt=False, start_from="imposable"):
     if qt:
         from .widgets.Composition import CompositionWidget
 
-    assert start_from in ["imposable", "brut"], Exception("start_from should be imposable or brut") # TODO: net
+    assert start_from in ["imposable", "brut"], Exception("start_from should be imposable or brut")  # TODO: net
     if start_from == "brut":
         variables_bruts = ["salbrut", "chobrut", "rstbrut"]
         variables_imposables = ["sali", "choi", "rsti"]
         for variable in variables_bruts:
-            column_by_name.update({variable: prestation_by_name[variable].to_column()})
+            column_by_name.update({
+                            variable: prestation_by_name[variable].to_column()})
             del prestation_by_name[variable]
         for variable in variables_imposables:
             del column_by_name[variable]
             del X_AXES_PROPERTIES[variable]
         print type(column_by_name)
-            
+
     if start_from == "net":
         NotImplementedError
-
 
     core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 
@@ -194,7 +194,6 @@ def init_country(qt=False, start_from="imposable"):
         )
 
     core_simulations.check_consistency = utils.check_consistency
-
 
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget

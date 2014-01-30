@@ -25,53 +25,14 @@
 
 import datetime
 import json
-import os
 import xml.etree.ElementTree
 
 import openfisca_france
-openfisca_france.init_country()
-
 from openfisca_core import conv, legislations, legislationsxml, model
 
 
-def test_ipp_legislation_xml_file():
-    legislation_tree = xml.etree.ElementTree.parse(os.path.join(os.path.dirname(model.PARAM_FILE),
-        'param_actu_IPP.xml'))
-    legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
-        state = conv.default_state)
-
-    legislation_xml_json, errors = legislationsxml.validate_node_xml_json(legislation_xml_json,
-        state = conv.default_state)
-    if errors is not None:
-        errors = conv.embed_error(legislation_xml_json, 'errors', errors)
-        if errors is None:
-            raise ValueError(unicode(json.dumps(legislation_xml_json, ensure_ascii = False,
-                indent = 2)).encode('utf-8'))
-        raise ValueError(u'{0} for: {1}'.format(
-            unicode(json.dumps(errors, ensure_ascii = False, indent = 2, sort_keys = True)),
-            unicode(json.dumps(legislation_xml_json, ensure_ascii = False, indent = 2)),
-            ).encode('utf-8'))
-
-    _, legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
-#    raise ValueError(unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
-
-    legislation_json, errors = legislations.validate_node_json(legislation_json, state = conv.default_state)
-    if errors is not None:
-        errors = conv.embed_error(legislation_json, 'errors', errors)
-        if errors is None:
-            raise ValueError(unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
-        raise ValueError(u'{0} for: {1}'.format(
-            unicode(json.dumps(errors, ensure_ascii = False, indent = 2, sort_keys = True)),
-            unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
-            ).encode('utf-8'))
-
-    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datetime.date(2014, 1, 1))
-#    raise ValueError(unicode(json.dumps(dated_legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
-    compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
-#    raise ValueError(compact_legislation)
-
-
 def test_legislation_xml_file():
+    openfisca_france.init_country()
     legislation_tree = xml.etree.ElementTree.parse(model.PARAM_FILE)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
@@ -108,4 +69,4 @@ def test_legislation_xml_file():
 
 if __name__ == '__main__':
     import nose
-    nose.core.runmodule(argv=[__file__, '-v', 'legislation_tests:test_ipp_legislation_xml_file'])
+    nose.core.runmodule(argv = [__file__, '-v', 'legislation_tests:test_legislation_xml_file'])

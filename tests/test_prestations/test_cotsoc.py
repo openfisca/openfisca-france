@@ -12,6 +12,7 @@ import openfisca_france
 openfisca_france.init_country()
 from openfisca_core.simulations import ScenarioSimulation
 
+
 def test_cotsoc():
     """
     test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 €

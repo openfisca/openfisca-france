@@ -31,7 +31,11 @@ from openfisca_core.enumerations import Enum
 
 from . import calage as cl
 from . import common as cm
-from . import cotsoc as cs
+from .cotisations_sociales import capital as cs_capital
+from .cotisations_sociales import travail as cs_travail
+from .cotisations_sociales import remplacement as cs_remplac
+from .cotisations_sociales import lps as cs_lps  # TODO: remove frome here
+
 from . import irpp as ir
 from . import irpp_charges_deductibles as cd
 from . import irpp_credits_impots as ci
@@ -46,18 +50,32 @@ from . import th as th
 
 def _noi(noi):
     return noi
+
+
 def _men(idmen, _option = {'idmen': [0]}):
     return idmen
+
+
 def _fam(idfam, _option = {'idfam': [0]}):
     return idfam
+
+
 def _foy(idfoy, _option = {'idfoy': [0]}):
     return idfoy
+
+
 def _quimen(quimen):
     return quimen
+
+
 def _quifam(quifam):
     return quifam
+
+
 def _quifoy(quifoy):
     return quifoy
+
+
 def _wprm(wprm):
     return wprm
 
@@ -92,7 +110,7 @@ prestation_by_name = collections.OrderedDict((
     ('wprm_fam', Prestation(_wprm, entity = "fam", label = u"Effectifs")),
     ('wprm_foy', Prestation(_wprm, entity = "foy", label = u"Effectifs")),
 
-    ('mhsup', Prestation(cs._mhsup)),
+    ('mhsup', Prestation(cs_travail._mhsup)),
     ('alv', Prestation(ir._alv)),
 
     ############################################################
@@ -100,11 +118,11 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
 
     # Salaires
-    ('type_sal', EnumPresta(cs._type_sal, label = u"Catégorie de salariés")),
-    ('salbrut', Prestation(cs._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
-    ('prime', Prestation(cs._salbrut, label = u"Primes et indemnités des fonctionnaires")),
-    ('sal_h_b', Prestation(cs._sal_h_b, label = u"Salaire horaire brut")),
-    ('taille_entreprise', EnumPresta(cs._taille_entreprise,
+    ('type_sal', EnumPresta(cs_travail._type_sal, label = u"Catégorie de salariés")),
+    ('salbrut', Prestation(cs_travail._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
+    ('prime', Prestation(cs_travail._salbrut, label = u"Primes et indemnités des fonctionnaires")),
+    ('sal_h_b', Prestation(cs_travail._sal_h_b, label = u"Salaire horaire brut")),
+    ('taille_entreprise', EnumPresta(cs_travail._taille_entreprise,
                                     label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
                                     enum = Enum([u"Non pertienent",
                                                  u"Moins de 10 salariés",
@@ -112,73 +130,74 @@ prestation_by_name = collections.OrderedDict((
                                                  u"De 20 à 249 salariés",
                                                  u"Plus de 250 salariés"]))),
 
-    ('cotpat_contrib', Prestation(cs._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
-    ('cotpat_accident', Prestation(cs._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
-    ('cotpat_noncontrib', Prestation(cs._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
-    ('cotpat_main_d_oeuvre', Prestation(cs._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre")),
-    ('cotpat_transport', Prestation(cs._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
-    ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
-    ('alleg_fillon', Prestation(cs._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")),
-    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")),
-    ('taxes_sal', Prestation(cs._taxes_sal, label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA")),
-    ('tehr', Prestation(cs._tehr, label = u"Taxes exceptionnelles sur les hauts revenus")),
-    ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")),
+    ('cotpat_contrib', Prestation(cs_travail._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
+    ('cotpat_accident', Prestation(cs_travail._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
+    ('cotpat_noncontrib', Prestation(cs_travail._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
+    ('cotpat_main_d_oeuvre', Prestation(cs_travail._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre")),
+    ('cotpat_transport', Prestation(cs_travail._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
+    ('cotpat', Prestation(cs_travail._cotpat, label = u"Cotisations sociales patronales")),
+    ('alleg_fillon', Prestation(cs_travail._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")),
+    ('alleg_cice', Prestation(cs_travail._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")),
+    ('taxes_sal', Prestation(cs_travail._taxes_sal, label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA")),
+    ('tehr', Prestation(cs_travail._tehr, label = u"Taxes exceptionnelles sur les hauts revenus")),
+    ('salsuperbrut', Prestation(cs_travail._salsuperbrut, label = u"Salaires super bruts")),
 
-    ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
-    ('cotsal_noncontrib', Prestation(cs._cotsal_noncontrib, label = u"Cotisations sociales non salariales non-contributives")),
-    ('cotsal', Prestation(cs._cotsal, label = u"Cotisations sociales salariales")),
+    ('cotsal_contrib', Prestation(cs_travail._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
+    ('cotsal_noncontrib', Prestation(cs_travail._cotsal_noncontrib, label = u"Cotisations sociales non salariales non-contributives")),
+    ('cotsal', Prestation(cs_travail._cotsal, label = u"Cotisations sociales salariales")),
 
-    ('csgsald', Prestation(cs._csgsald, label = u"CSG déductible sur les salaires")),
-    ('csgsali', Prestation(cs._csgsali, label = u"CSG imposables sur les salaires")),
-    ('crdssal', Prestation(cs._crdssal, label = u"CRDS sur les salaires")),
-    ('sal', Prestation(cs._sal, label = u"Salaires imposables")),
-    ('sal_net', Prestation(cs._sal_net, label = u"Salaires nets d'après définition INSEE")),
+    ('csgsald', Prestation(cs_travail._csgsald, label = u"CSG déductible sur les salaires")),
+    ('csgsali', Prestation(cs_travail._csgsali, label = u"CSG imposables sur les salaires")),
+    ('crdssal', Prestation(cs_travail._crdssal, label = u"CRDS sur les salaires")),
+    ('sal', Prestation(cs_travail._sal, label = u"Salaires imposables")),
+    ('sal_net', Prestation(cs_travail._sal_net, label = u"Salaires nets d'après définition INSEE")),
     # Fonctionnaires
-#    ('indemnite_residence', Prestation(cs._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
-#    ('supp_familial_traitement', Prestation(cs._supp_familial_traitement, label = u"Supplément familial de traitement (fonction publique)")),
+#    ('indemnite_residence', Prestation(cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
+#    ('supp_familial_traitement', Prestation(cs_travail._supp_familial_traitement, label = u"Supplément familial de traitement (fonction publique)")),
     # Allocations chômage
-    ('chobrut', Prestation(cs._chobrut, label = u"Allocations chômage brutes")),
-    ('csgchod', Prestation(cs._csgchod, label = u"CSG déductible sur les allocations chômage")),
-    ('csgchoi', Prestation(cs._csgchoi, label = u"CSG imposable sur les allocations chômage")),
-    ('crdscho', Prestation(cs._crdscho, label = u"CRDS sur les allocations chômage")),
-    ('cho', Prestation(cs._cho, label = u"Allocations chômage imposables")),
-    ('chonet', Prestation(cs._chonet, label = u"Allocations chômage nettes")),
+    ('chobrut', Prestation(cs_remplac._chobrut, label = u"Allocations chômage brutes")),
+    ('csgchod', Prestation(cs_remplac._csgchod, label = u"CSG déductible sur les allocations chômage")),
+    ('csgchoi', Prestation(cs_remplac._csgchoi, label = u"CSG imposable sur les allocations chômage")),
+    ('crdscho', Prestation(cs_remplac._crdscho, label = u"CRDS sur les allocations chômage")),
+    ('cho', Prestation(cs_remplac._cho, label = u"Allocations chômage imposables")),
+    ('chonet', Prestation(cs_remplac._chonet, label = u"Allocations chômage nettes")),
 
     # Pensions
-    ('rstbrut', Prestation(cs._rstbrut, label = u"Pensions de retraite brutes")),
-    ('csgrstd', Prestation(cs._csgrstd, label = u"CSG déductible sur les pensions de retraite")),
-    ('csgrsti', Prestation(cs._csgrsti, label = u"CSG imposable sur les pensions de retraite")),
-    ('crdsrst', Prestation(cs._crdsrst, label = u"CRDS sur les pensions de retraite")),
-    ('rst', Prestation(cs._rst, label = u"Pensions de retraite imposables")),
-    ('rstnet', Prestation(cs._rstnet, label = u"Pensions de retraite nettes")),
+    ('rstbrut', Prestation(cs_remplac._rstbrut, label = u"Pensions de retraite brutes")),
+    ('csgrstd', Prestation(cs_remplac._csgrstd, label = u"CSG déductible sur les pensions de retraite")),
+    ('csgrsti', Prestation(cs_remplac._csgrsti, label = u"CSG imposable sur les pensions de retraite")),
+    ('crdsrst', Prestation(cs_remplac._crdsrst, label = u"CRDS sur les pensions de retraite")),
+    ('rst', Prestation(cs_remplac._rst, label = u"Pensions de retraite imposables")),
+    ('rstnet', Prestation(cs_remplac._rstnet, label = u"Pensions de retraite nettes")),
 
     # Revenus du capital soumis au prélèvement libératoire
-    ('csg_cap_lib', Prestation(cs._csg_cap_lib, label = u"CSG sur les revenus du capital soumis au prélèvement libératoire")),
-    ('crds_cap_lib', Prestation(cs._crds_cap_lib, label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire")),
-    ('prelsoc_cap_lib', Prestation(cs._prelsoc_cap_lib, label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire")),
+    ('csg_cap_lib', Prestation(cs_capital._csg_cap_lib, label = u"CSG sur les revenus du capital soumis au prélèvement libératoire")),
+    ('crds_cap_lib', Prestation(cs_capital._crds_cap_lib, label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire")),
+    ('prelsoc_cap_lib', Prestation(cs_capital._prelsoc_cap_lib, label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire")),
 
     # Revenus du capital soumis au barème
-    ('csg_cap_bar', Prestation(cs._csg_cap_bar, label = u"CSG sur les revenus du capital soumis au barème")),
-    ('crds_cap_bar', Prestation(cs._crds_cap_bar, label = u"CRDS sur les revenus du capital soumis au barème")),
-    ('prelsoc_cap_bar', Prestation(cs._prelsoc_cap_bar, label = u"Prélèvements sociaux sur les revenus du capital soumis au barème")),
+    ('csg_cap_bar', Prestation(cs_capital._csg_cap_bar, label = u"CSG sur les revenus du capital soumis au barème")),
+    ('crds_cap_bar', Prestation(cs_capital._crds_cap_bar, label = u"CRDS sur les revenus du capital soumis au barème")),
+    ('prelsoc_cap_bar', Prestation(cs_capital._prelsoc_cap_bar, label = u"Prélèvements sociaux sur les revenus du capital soumis au barème")),
 
     # Revenus fonciers (sur les foyers)
-    ('csg_fon', Prestation(cs._csg_fon, "foy", label = u"CSG sur les revenus fonciers")),
-    ('crds_fon', Prestation(cs._crds_fon, "foy", label = u"CRDS sur les revenus fonciers")),
-    ('prelsoc_fon', Prestation(cs._prelsoc_fon, "foy", label = u"Prélèvements sociaux sur les revenus fonciers")),
+    ('csg_fon', Prestation(cs_capital._csg_fon, "foy", label = u"CSG sur les revenus fonciers")),
+    ('crds_fon', Prestation(cs_capital._crds_fon, "foy", label = u"CRDS sur les revenus fonciers")),
+    ('prelsoc_fon', Prestation(cs_capital._prelsoc_fon, "foy", label = u"Prélèvements sociaux sur les revenus fonciers")),
 
     # Plus values de cessions de valeurs mobilières
-    ('csg_pv_mo', Prestation(cs._csg_pv_mo, "foy", label = u"CSG sur les plus-values de cession de valeurs mobilières")),
-    ('crds_pv_mo', Prestation(cs._crds_pv_mo, "foy", label = u"CRDS sur les plus-values de cession de valeurs mobilières")),
-    ('prelsoc_pv_mo', Prestation(cs._prelsoc_pv_mo, "foy", label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières")),
+    ('csg_pv_mo', Prestation(cs_capital._csg_pv_mo, "foy", label = u"CSG sur les plus-values de cession de valeurs mobilières")),
+    ('crds_pv_mo', Prestation(cs_capital._crds_pv_mo, "foy", label = u"CRDS sur les plus-values de cession de valeurs mobilières")),
+    ('prelsoc_pv_mo', Prestation(cs_capital._prelsoc_pv_mo, "foy", label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières")),
 
     # Plus-values immobilières
-    ('csg_pv_immo', Prestation(cs._csg_pv_immo, "foy", label = u"CSG sur les plus-values immobilières")),
-    ('crds_pv_immo', Prestation(cs._crds_pv_immo, "foy", label = u"CRDS sur les plus-values immobilières")),
-    ('prelsoc_pv_immo', Prestation(cs._prelsoc_pv_immo, "foy", label = u"Prélèvements sociaux sur les plus-values immobilières")),
+    ('csg_pv_immo', Prestation(cs_capital._csg_pv_immo, "foy", label = u"CSG sur les plus-values immobilières")),
+    ('crds_pv_immo', Prestation(cs_capital._crds_pv_immo, "foy", label = u"CRDS sur les plus-values immobilières")),
+    ('prelsoc_pv_immo', Prestation(cs_capital._prelsoc_pv_immo, "foy", label = u"Prélèvements sociaux sur les plus-values immobilières")),
 
-    ('base_csg', Prestation(cs._base_csg)),
-    ('ir_lps', Prestation(cs._ir_lps, start = date(2010, 1, 1))),
+    # Réforme Landais-Pikettty-Saez TODO: move out form here
+    ('base_csg', Prestation(cs_lps._base_csg)),
+    ('ir_lps', Prestation(cs_lps._ir_lps, start = date(2010, 1, 1))),
 
     ############################################################
     # Impôt sur le revenu
