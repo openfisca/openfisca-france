@@ -15,20 +15,28 @@ from datetime import datetime
     de moins de 11 ans
 '''
 
-af_2enf = {2006: 1412.64, 2007 : 1436.64, 2008: 1451.04, 2009: 1494.48}
+af_2enf = {2006: 1412.64, 2007: 1436.64, 2008: 1451.04, 2009: 1494.48}
+
 
 def test_af2():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
+        simulation.set_config(year = yr,
+                              nmen = 2,
+                              maxrev = 100000,
+                              x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1),
+                                     'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime.date(1975, 2, 2),
+                                     'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(2000,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(2000,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime.date(2000, 1, 1),
+                                     'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime.date(2000, 1, 1),
+                                     'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
 #        print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -43,20 +51,22 @@ def test_af2():
 '''
 
 
-af_2enfb = {2006: 1809.96, 2007 : 1840.68, 2008: 2176.56, 2009: 2241.72}
+af_2enfb = {2006: 1809.96, 2007: 1840.68, 2008: 2176.56, 2009: 2241.72}
+
 
 def test_af2b():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
-        simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
+        simulation.set_config(year = yr, nmen = 2,
+                              maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1992,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1990,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1992, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
 #        print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -74,18 +84,19 @@ def test_af2b():
 
 af_2enfc = {2006: 1809.96, 2007 : 2154.96, 2008: 0.0, 2009: 0.0}
 
+
 def test_af2c():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1991,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1988,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1991, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1988, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
 #        print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -103,17 +114,17 @@ def test_af2c():
 af_2enfm = {2006: 2118.96, 2007 : 2154.96, 2008: 2176.56, 2009: 2241.72}
 
 def test_af2m():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1990,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1990,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enfm[yr]
 #        print type(df.loc["af"][0])
@@ -130,18 +141,18 @@ def test_af2m():
 af_3enf = {2006: 3222.60, 2007 : 3277.32, 2008: 3310.08, 2009: 3409.32}
 
 def test_af3():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(2003,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(2004,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(2003, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(2004, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -158,18 +169,18 @@ def test_af3():
 af_3enfm = {2006: 5341.56, 2007 : 5432.28, 2008: 5486.64, 2009: 5651.04}
 
 def test_af3m():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1990,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1990,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(1990,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -186,18 +197,18 @@ def test_af3m():
 af_3enf1m = {2006: 3928.92, 2007 : 3995.64, 2008: 4035.60, 2009: 4156.56}
 
 def test_af3m1():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1990,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(2005,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1990, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -214,18 +225,18 @@ def test_af3m1():
 af_3enf1f06 = {2006: 2305.80, 2007 : 1436.64, 2008: 1451.04, 2009: 1494.48}
 
 def test_af31f06():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1986,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(2005,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1986, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -238,18 +249,18 @@ def test_af31f06():
 af_3enf1f08 = {2006: 3928.92, 2007 : 3995.64, 2008: 2368.56, 2009: 1494.48}
 
 def test_af31f08():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1988,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(2005,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1988, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -262,18 +273,18 @@ def test_af31f08():
 af_3enf1f09 = {2006: 3928.92, 2007 : 3995.64, 2008: 4035.60, 2009: 2439.48}
 
 def test_af31f09():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1989,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(2005,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1989, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -290,18 +301,18 @@ def test_af31f09():
 af_3enfbis = {2006: 4326.24, 2007 : 4399.68, 2008: 2368.56, 2009: 1494.48}
 
 def test_af3bis():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1988,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1993,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1988, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1993, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
         print af_3enfbis[yr]
 #        print type(df.loc["af"][0])
@@ -320,18 +331,18 @@ def test_af3bis():
 af_3enfter = {2006: 4635.24, 2007 : 2345.04, 2008: 0.0, 2009: 0.0}
 
 def test_af3ter():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1987,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1988,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1987, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1988, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -351,18 +362,18 @@ def test_af3ter():
 af_3enfqua = {2006: 4326.24, 2007 : 4713.96, 2008: 2368.56, 2009: 1494.48}
 
 def test_af3qua():
-    for yr in range(2006,2010):
+    for yr in range(2006, 2010):
         simulation = ScenarioSimulation()
         simulation.set_config(year = yr, nmen = 2, maxrev = 100000, x_axis = 'sali')
         # Adding a husband/wife on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(1, datetime(1975,1,1).date(), 'conj', 'part')
-        simulation.scenario.addIndiv(2, datetime(1975,2,2).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(1, datetime(1975, 1, 1).date(), 'conj', 'part')
+        simulation.scenario.addIndiv(2, datetime(1975, 2, 2).date(), 'conj', 'part')
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(3, datetime(1991,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(4, datetime(1988,1,1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(5, datetime(2005,1,1).date(), 'pac', 'enf')
-        df = simulation.get_results_dataframe(index_by_code=True)
+        simulation.scenario.addIndiv(3, datetime(1991, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(4, datetime(1988, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(5, datetime(2005, 1, 1).date(), 'pac', 'enf')
+        df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
 #        print af_2enf[yr]
 #        print type(df.loc["af"][0])
@@ -383,7 +394,7 @@ if __name__ == '__main__':
     test_af2()
 
 
-    nose.core.runmodule(argv=[__file__, '-v', '-i test_*.py'])
+    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 
 

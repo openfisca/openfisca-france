@@ -125,11 +125,11 @@ def test_irpp():
             test_case = simulation.scenario
             if revenu in ["rsti", "sali"]:
                 test_case.indiv[0].update({revenu:amount})
-            elif revenu in ["f2da", "f2dh","f2dc","f2ts","f2tr","f4ba","f3vg","f3vz"]:
+            elif revenu in ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]:
                 test_case.declar[0].update({revenu:amount})
             else:
                 assert False
-            df = simulation.get_results_dataframe(index_by_code=True)
+            df = simulation.get_results_dataframe(index_by_code = True)
             if not abs(df.loc["irpp"][0] - irpp) < 1:
                 print year
                 print revenu

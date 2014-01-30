@@ -195,7 +195,7 @@ def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo,
     deficit_ante = null
 
     ## Revenus
-    frac_rvcm_rfr = 0.7*rvcm_plus_abat
+    frac_rvcm_rfr = 0.7*rvcm_plus_abat # TODO: UNUSED ?
     ## revenus distribués?
     ## A majorer de l'abatt de 40% - montant brut en cas de PFL
     ## pour le calcul de droit à restitution : prendre 0.7*montant_brut_rev_dist_soumis_au_barème

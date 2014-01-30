@@ -3556,15 +3556,15 @@
       <VALUE valeur="309" deb="2013-01-01" fin="2014-12-31"/>
     </CODE>
     <NODE description="Indemnité de résidence " code="indem_resid" >
-	  <NODE description="Indemnité de résidence : taux " code="taux">
+	  <NODE description="Indemnité de résidence : taux " code="taux"> # TODO: check initial date
 	    <CODE description="Indemnité de résidence zone 1 : taux " code="zone1" format="percent">
-	      <VALUE valeur="0.03" deb="2013-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.03" deb="2001-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Indemnité de résidence zone 2 : taux " code="zone2" format="percent">
-	      <VALUE valeur="0.01" deb="2013-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.01" deb="2001-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
-	      <VALUE valeur="0.00" deb="2013-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.00" deb="2001-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	 </NODE>
 	 <NODE description="Indemnité de résidence : plancher" code="min">

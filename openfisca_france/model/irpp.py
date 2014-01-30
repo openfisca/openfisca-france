@@ -230,7 +230,7 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     # Abattements, limité au revenu
     h12 = P.abatmob*(1 + marpac)
     TOT2 = max_(0,rev - h12)
-    i121= -min_(0,rev - h12)
+    #i121= -min_(0,rev - h12)
 
     # Part des frais s'imputant sur les revenus déclarés ligne TS
     F2 = f2ca - F1
@@ -325,7 +325,7 @@ def _ir_brut(nbptr, rni, _P):
 def _ir_ss_qf(ir_brut, rni, nb_adult, _P):
     ''' Impôt sans quotient familial '''
     P = _P.ir
-    I = ir_brut # TODO: REMOVE 
+    #I = ir_brut # TODO: REMOVE 
     A = P.bareme.calc(rni/nb_adult)
     return nb_adult*A
 

@@ -51,3 +51,5 @@ def test_survey(year = 2006):
     simulation.set_param()
     simulation.compute()
 
+if __name__ == '__main__':
+    test_case_study(year = 2011)

@@ -62,11 +62,11 @@ def _wprm(wprm):
     return wprm
 
 
-prestation_by_name = collections.OrderedDict(( 
+prestation_by_name = collections.OrderedDict((
     ############################################################
     # Reproduction des identifiants
     ############################################################
-    #TODO: find a way of having only 'ind' if num_table =  = 1
+    # TODO: find a way of having only 'ind' if num_table =  = 1
     ('noi_ind', Prestation(_noi)),
     ('idmen_ind', Prestation(_men)),
     ('idmen_foy', EnumPresta(_men, entity = "foy")),
@@ -111,17 +111,17 @@ prestation_by_name = collections.OrderedDict((
                                                  u"De 10 à 19 salariés",
                                                  u"De 20 à 249 salariés",
                                                  u"Plus de 250 salariés"]))),
-    
+
     ('cotpat_contrib', Prestation(cs._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
     ('cotpat_accident', Prestation(cs._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
     ('cotpat_noncontrib', Prestation(cs._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
     ('cotpat_main_d_oeuvre', Prestation(cs._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre")),
     ('cotpat_transport', Prestation(cs._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
     ('cotpat', Prestation(cs._cotpat, label = u"Cotisations sociales patronales")),
-    ('alleg_fillon', Prestation(cs._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")), 
-    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")), 
+    ('alleg_fillon', Prestation(cs._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")),
+    ('alleg_cice', Prestation(cs._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")),
     ('taxes_sal', Prestation(cs._taxes_sal, label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA")),
-    ('tehr',  Prestation(cs._tehr, label = u"Taxes exceptionnelles sur les hauts revenus")),
+    ('tehr', Prestation(cs._tehr, label = u"Taxes exceptionnelles sur les hauts revenus")),
     ('salsuperbrut', Prestation(cs._salsuperbrut, label = u"Salaires super bruts")),
 
     ('cotsal_contrib', Prestation(cs._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
@@ -133,7 +133,9 @@ prestation_by_name = collections.OrderedDict((
     ('crdssal', Prestation(cs._crdssal, label = u"CRDS sur les salaires")),
     ('sal', Prestation(cs._sal, label = u"Salaires imposables")),
     ('sal_net', Prestation(cs._sal_net, label = u"Salaires nets d'après définition INSEE")),
-
+    # Fonctionnaires
+#    ('indemnite_residence', Prestation(cs._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
+#    ('supp_familial_traitement', Prestation(cs._supp_familial_traitement, label = u"Supplément familial de traitement (fonction publique)")),
     # Allocations chômage
     ('chobrut', Prestation(cs._chobrut, label = u"Allocations chômage brutes")),
     ('csgchod', Prestation(cs._csgchod, label = u"CSG déductible sur les allocations chômage")),
@@ -192,21 +194,21 @@ prestation_by_name = collections.OrderedDict((
     # charges déductibles
     ('cd_penali', Prestation(cd._cd_penali, entity = 'foy')),
     ('cd_acc75a', Prestation(cd._cd_acc75a, entity = 'foy')),
-    ('cd_percap', Prestation(cd._cd_percap, entity = 'foy', start = date(2002,1,1), end = date(2006,12,31))),
+    ('cd_percap', Prestation(cd._cd_percap, entity = 'foy', start = date(2002, 1, 1), end = date(2006, 12, 31))),
     ('cd_deddiv', Prestation(cd._cd_deddiv, entity = 'foy')),
-    ('cd_doment', Prestation(cd._cd_doment, entity = 'foy', start = date(2002,1,1), end = date(2005,12,31))),
-    ('cd_eparet', Prestation(cd._cd_eparet, entity = 'foy', start = date(2004,1,1))),
-    ('cd_sofipe', Prestation(cd._cd_sofipe, entity = 'foy', start = date(2002,1,1), end = date(2006,12,31))),
-    ('cd_cinema', Prestation(cd._cd_cinema, entity = 'foy', start = date(2002,1,1), end = date(2005,12,31))),
-    ('cd_ecodev', Prestation(cd._cd_ecodev, entity = 'foy', start = date(2007,1,1), end = date(2008,12,31))),
-    ('cd_grorep', Prestation(cd._cd_grorep, entity = 'foy', start = date(2009,1,1))),
+    ('cd_doment', Prestation(cd._cd_doment, entity = 'foy', start = date(2002, 1, 1), end = date(2005, 12, 31))),
+    ('cd_eparet', Prestation(cd._cd_eparet, entity = 'foy', start = date(2004, 1, 1))),
+    ('cd_sofipe', Prestation(cd._cd_sofipe, entity = 'foy', start = date(2002, 1, 1), end = date(2006, 12, 31))),
+    ('cd_cinema', Prestation(cd._cd_cinema, entity = 'foy', start = date(2002, 1, 1), end = date(2005, 12, 31))),
+    ('cd_ecodev', Prestation(cd._cd_ecodev, entity = 'foy', start = date(2007, 1, 1), end = date(2008, 12, 31))),
+    ('cd_grorep', Prestation(cd._cd_grorep, entity = 'foy', start = date(2009, 1, 1))),
 
     ('charges_deduc_reforme', Prestation(cd._charges_deduc_reforme, entity = 'foy')),
     ('charge_loyer', Prestation(cd._charge_loyer, entity = 'foy')),
 
     ('rbg_int', Prestation(cd._rbg_int, entity = 'foy', label = u"Revenu brut global intermédiaire")),
     ('cd1', Prestation(cd._cd1, entity = 'foy', label = u"Charges déductibles non plafonnées")),
-    ('cd2', Prestation(cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002,1,1), end = date(2008,12,31))),
+    ('cd2', Prestation(cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002, 1, 1), end = date(2008, 12, 31))),
     ('charges_deduc', Prestation(cd._charges_deduc, entity = 'foy', label = u"Charges déductibles")),
 
     ('rfr_cd', Prestation(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")),  # TODO:
@@ -223,7 +225,7 @@ prestation_by_name = collections.OrderedDict((
     ('rev_pen', Prestation(ir._rev_pen)),
     ('pen_net', Prestation(ir._pen_net)),
     ('indu_plaf_abat_pen', Prestation(ir._indu_plaf_abat_pen, entity = 'foy')),
-    ('abat_sal_pen', Prestation(ir._abat_sal_pen, start = date(2002,1,1), end = date(2005,12,31))),
+    ('abat_sal_pen', Prestation(ir._abat_sal_pen, start = date(2002, 1, 1), end = date(2005, 12, 31))),
     ('sal_pen_net', Prestation(ir._sal_pen_net)),
     ('rto', Prestation(ir._rto, label = u'Rentes viagères (rentes à titre onéreux)')),
     ('rto_net', Prestation(ir._rto_net, label = u'Rentes viagères après abattements')),
@@ -253,36 +255,36 @@ prestation_by_name = collections.OrderedDict((
     ('donapd', Prestation(ri._donapd, entity = 'foy')),
     ('dfppce', Prestation(ri._dfppce, entity = 'foy')),
     ('cotsyn', Prestation(ri._cotsyn, entity = 'foy')),
-    ('resimm', Prestation(ri._resimm, entity = 'foy', start = date(2009,1,1))),
-    ('patnat', Prestation(ri._patnat, entity = 'foy', start = date(2010,1,1))),
-    ('sofipe', Prestation(ri._sofipe, entity = 'foy', start = date(2009,1,1))),
-    ('saldom', Prestation(ri._saldom, entity = 'foy', start = date(2007,1,1))),
-    ('intagr', Prestation(ri._intagr, entity = 'foy', start = date(2005,1,1))),
+    ('resimm', Prestation(ri._resimm, entity = 'foy', start = date(2009, 1, 1))),
+    ('patnat', Prestation(ri._patnat, entity = 'foy', start = date(2010, 1, 1))),
+    ('sofipe', Prestation(ri._sofipe, entity = 'foy', start = date(2009, 1, 1))),
+    ('saldom', Prestation(ri._saldom, entity = 'foy', start = date(2007, 1, 1))),
+    ('intagr', Prestation(ri._intagr, entity = 'foy', start = date(2005, 1, 1))),
     ('prcomp', Prestation(ri._prcomp, entity = 'foy')),
     ('spfcpi', Prestation(ri._spfcpi, entity = 'foy')),
-    ('mohist', Prestation(ri._mohist, entity = 'foy', start = date(2008,1,1))),
-    ('sofica', Prestation(ri._sofica, entity = 'foy', start = date(2006,1,1))),
+    ('mohist', Prestation(ri._mohist, entity = 'foy', start = date(2008, 1, 1))),
+    ('sofica', Prestation(ri._sofica, entity = 'foy', start = date(2006, 1, 1))),
     ('cappme', Prestation(ri._cappme, entity = 'foy')),
-    ('repsoc', Prestation(ri._repsoc, entity = 'foy', start = date(2003,1,1))),
+    ('repsoc', Prestation(ri._repsoc, entity = 'foy', start = date(2003, 1, 1))),
     ('invfor', Prestation(ri._invfor, entity = 'foy')),
-    ('deffor', Prestation(ri._deffor, entity = 'foy', start = date(2006,1,1))),
+    ('deffor', Prestation(ri._deffor, entity = 'foy', start = date(2006, 1, 1))),
     ('daepad', Prestation(ri._daepad, entity = 'foy')),
     ('rsceha', Prestation(ri._rsceha, entity = 'foy')),
-    ('invlst', Prestation(ri._invlst, entity = 'foy', start = date(2004,1,1))),
-    ('domlog', Prestation(ri._domlog, entity = 'foy', start = date(2002,1,1), end = date(2009,12,31))),
+    ('invlst', Prestation(ri._invlst, entity = 'foy', start = date(2004, 1, 1))),
+    ('domlog', Prestation(ri._domlog, entity = 'foy', start = date(2002, 1, 1), end = date(2009, 12, 31))),
     ('adhcga', Prestation(ri._adhcga, entity = 'foy')),
-    ('creaen', Prestation(ri._creaen, entity = 'foy', start = date(2006,1,1))),
+    ('creaen', Prestation(ri._creaen, entity = 'foy', start = date(2006, 1, 1))),
     ('ecpess', Prestation(ri._ecpess, entity = 'foy')),
-    ('scelli', Prestation(ri._scelli, entity = 'foy', start = date(2009,1,1), end = date(2010,12,31))),
-    ('locmeu', Prestation(ri._locmeu, entity = 'foy', start = date(2009,1,1), end = date(2010,12,31))),
+    ('scelli', Prestation(ri._scelli, entity = 'foy', start = date(2009, 1, 1), end = date(2010, 12, 31))),
+    ('locmeu', Prestation(ri._locmeu, entity = 'foy', start = date(2009, 1, 1), end = date(2010, 12, 31))),
     ('doment', Prestation(ri._doment, entity = 'foy')),
     ('domsoc', Prestation(ri._domsoc, entity = 'foy')),
-    ('intemp', Prestation(ri._intemp, entity = 'foy', start = date(2002,1,1), end = date(2003,12,31))),
-    ('garext', Prestation(ri._garext, entity = 'foy', start = date(2002,1,1), end = date(2005,12,31))),
-    ('assvie', Prestation(ri._assvie, entity = 'foy', start = date(2002,1,1), end = date(2004,12,31))),
-    ('invrev', Prestation(ri._invrev, entity = 'foy', start = date(2002,1,1), end = date(2003,12,31))),
-    ('intcon', Prestation(ri._intcon, entity = 'foy', start = date(2004,1,1), end = date(2005,12,31))),
-    ('ecodev', Prestation(ri._ecodev, entity = 'foy', start = date(2009,1,1), end = date(2009,12,31))),
+    ('intemp', Prestation(ri._intemp, entity = 'foy', start = date(2002, 1, 1), end = date(2003, 12, 31))),
+    ('garext', Prestation(ri._garext, entity = 'foy', start = date(2002, 1, 1), end = date(2005, 12, 31))),
+    ('assvie', Prestation(ri._assvie, entity = 'foy', start = date(2002, 1, 1), end = date(2004, 12, 31))),
+    ('invrev', Prestation(ri._invrev, entity = 'foy', start = date(2002, 1, 1), end = date(2003, 12, 31))),
+    ('intcon', Prestation(ri._intcon, entity = 'foy', start = date(2004, 1, 1), end = date(2005, 12, 31))),
+    ('ecodev', Prestation(ri._ecodev, entity = 'foy', start = date(2009, 1, 1), end = date(2009, 12, 31))),
 
     ('nb_pac2', Prestation(ci._nb_pac2, entity = 'foy')),
 
@@ -290,7 +292,7 @@ prestation_by_name = collections.OrderedDict((
     ('reductions', Prestation(ri._reductions, entity = 'foy')),
     ('iaidrdi', Prestation(ir._iaidrdi, entity = 'foy')),
     ('teicaa', Prestation(ir._teicaa, entity = 'foy')),
-    ('cont_rev_loc', Prestation(ir._cont_rev_loc, entity = 'foy', start = date(2001,1,1))),
+    ('cont_rev_loc', Prestation(ir._cont_rev_loc, entity = 'foy', start = date(2001, 1, 1))),
     ('iai', Prestation(ir._iai, entity = 'foy')),
     ('cehr', Prestation(ir._cehr, entity = 'foy')),
     ('cesthra', Prestation(ir._cesthra, entity = 'foy')),
@@ -305,29 +307,29 @@ prestation_by_name = collections.OrderedDict((
     ('ppe_elig_i', BoolPresta(ir._ppe_elig_i)),
     ('ppe_rev', Prestation(ir._ppe_rev)),
     ('ppe_brute', Prestation(ir._ppe_brute, entity = 'foy', label = u"Prime pour l'emploi brute")),
-    ('ppe', Prestation(ir._ppe,'foy', label = u"Prime pour l'emploi")),
+    ('ppe', Prestation(ir._ppe, 'foy', label = u"Prime pour l'emploi")),
 
     # Autres crédits d'impôts
     ('creimp', Prestation(ci._creimp, entity = 'foy')),
     ('accult', Prestation(ci._accult, entity = 'foy')),
-    ('percvm', Prestation(ci._percvm, entity = 'foy', start = date(2010,1,1))),
+    ('percvm', Prestation(ci._percvm, entity = 'foy', start = date(2010, 1, 1))),
     ('direpa', Prestation(ci._direpa, entity = 'foy')),
-    ('mecena', Prestation(ci._mecena, entity = 'foy', start = date(2003,1,1))),
+    ('mecena', Prestation(ci._mecena, entity = 'foy', start = date(2003, 1, 1))),
     ('prlire', Prestation(ci._prlire, entity = 'foy')),
     ('aidper', Prestation(ci._aidper, entity = 'foy')),
-    ('quaenv', Prestation(ci._quaenv, entity = 'foy', start = date(2005,1,1))),
+    ('quaenv', Prestation(ci._quaenv, entity = 'foy', start = date(2005, 1, 1))),
     ('drbail', Prestation(ci._drbail, entity = 'foy')),
-    ('ci_garext', Prestation(ci._ci_garext, entity = 'foy', start = date(2005,1,1))),
-    ('preetu', Prestation(ci._preetu, entity = 'foy', start = date(2005,1,1))),
-    ('saldom2', Prestation(ci._saldom2, entity = 'foy', start = date(2007,1,1))),
-    ('inthab', Prestation(ci._inthab, entity = 'foy', start = date(2007,1,1))),
-    ('assloy', Prestation(ci._assloy, entity = 'foy', start = date(2005,1,1))),
-    ('autent', Prestation(ci._autent, entity = 'foy', start = date(2009,1,1))),
-    ('acqgpl', Prestation(ci._acqgpl, entity = 'foy', start = date(2002,1,1), end = date(2007,12,31))),
-    ('divide', Prestation(ci._divide, entity = 'foy', start = date(2005,1,1), end = date(2009,12,31))),
-    ('aidmob', Prestation(ci._aidmob, entity = 'foy', start = date(2005,1,1), end = date(2008,12,31))),
+    ('ci_garext', Prestation(ci._ci_garext, entity = 'foy', start = date(2005, 1, 1))),
+    ('preetu', Prestation(ci._preetu, entity = 'foy', start = date(2005, 1, 1))),
+    ('saldom2', Prestation(ci._saldom2, entity = 'foy', start = date(2007, 1, 1))),
+    ('inthab', Prestation(ci._inthab, entity = 'foy', start = date(2007, 1, 1))),
+    ('assloy', Prestation(ci._assloy, entity = 'foy', start = date(2005, 1, 1))),
+    ('autent', Prestation(ci._autent, entity = 'foy', start = date(2009, 1, 1))),
+    ('acqgpl', Prestation(ci._acqgpl, entity = 'foy', start = date(2002, 1, 1), end = date(2007, 12, 31))),
+    ('divide', Prestation(ci._divide, entity = 'foy', start = date(2005, 1, 1), end = date(2009, 12, 31))),
+    ('aidmob', Prestation(ci._aidmob, entity = 'foy', start = date(2005, 1, 1), end = date(2008, 12, 31))),
 
-    ('jeunes', Prestation(ci._jeunes, entity = 'foy', start = date(2005,1,1), end = date(2008,12,31))),
+    ('jeunes', Prestation(ci._jeunes, entity = 'foy', start = date(2005, 1, 1), end = date(2008, 12, 31))),
 
     ('credits_impot', Prestation(ci._credits_impot, entity = 'foy')),
 
@@ -360,7 +362,7 @@ prestation_by_name = collections.OrderedDict((
     # Impôt sur le revenu afférent à la plus-value immobilière
     ###########################################################
 
-    ('ir_pv_immo', Prestation(immo._ir_pv_immo, 
+    ('ir_pv_immo', Prestation(immo._ir_pv_immo,
                               entity = 'foy',
                               label = u"Impôt sur le revenu afférent à la plus-value immobilière")),
 
@@ -369,7 +371,7 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
     ('isf_imm_bati', Prestation(isf._isf_imm_bati, entity = 'foy')),
     ('isf_imm_non_bati', Prestation(isf._isf_imm_non_bati, entity = 'foy')),
-    ('isf_actions_sal', Prestation(isf._isf_actions_sal, entity = 'foy', start = date(2006,1,1))),
+    ('isf_actions_sal', Prestation(isf._isf_actions_sal, entity = 'foy', start = date(2006, 1, 1))),
     ('isf_droits_sociaux', Prestation(isf._isf_droits_sociaux, entity = 'foy')),
     ('ass_isf', Prestation(isf._ass_isf, entity = 'foy')),
 
@@ -377,7 +379,7 @@ prestation_by_name = collections.OrderedDict((
     ('tot_impot', Prestation(isf._tot_impot, entity = 'foy')),
     ('isf_avant_plaf', Prestation(isf._isf_avant_plaf, entity = 'foy')),
     ('isf_reduc_pac', Prestation(isf._isf_reduc_pac, entity = 'foy')),
-    ('isf_inv_pme', Prestation(isf._isf_inv_pme, entity = 'foy', start = date(2008,1,1))),
+    ('isf_inv_pme', Prestation(isf._isf_inv_pme, entity = 'foy', start = date(2008, 1, 1))),
     ('isf_org_int_gen', Prestation(isf._isf_org_int_gen, entity = 'foy')),
     ('revetproduits', Prestation(isf._revetproduits, entity = 'foy')),
     ('isf_apres_plaf', Prestation(isf._isf_apres_plaf, entity = 'foy')),
@@ -390,26 +392,26 @@ prestation_by_name = collections.OrderedDict((
     ('maj_cga_i', Prestation(isf._maj_cga_i)),
     ('maj_cga', Prestation(isf._maj_cga, entity = 'foy')),
 
-    ('bouclier_rev', Prestation(isf._bouclier_rev, 
+    ('bouclier_rev', Prestation(isf._bouclier_rev,
                                 entity = 'foy',
-                                start = date(2006,1,1),
-                                end = date(2010,12,31))),
+                                start = date(2006, 1, 1),
+                                end = date(2010, 12, 31))),
     ('bouclier_imp_gen', Prestation(isf._bouclier_imp_gen,
                                     entity = 'foy',
-                                    start = date(2006,1,1),
-                                    end = date(2010,12,31))),
+                                    start = date(2006, 1, 1),
+                                    end = date(2010, 12, 31))),
     ('restitutions', Prestation(isf._restitutions,
                                 entity = 'foy',
-                                start = date(2006,1,1),
-                                end = date(2010,12,31))),
+                                start = date(2006, 1, 1),
+                                end = date(2010, 12, 31))),
     ('bouclier_sumimp', Prestation(isf._bouclier_sumimp,
                                    entity = 'foy',
-                                   start = date(2006,1,1),
-                                   end = date(2010,12,31))),
-    ('bouclier_fiscal', Prestation(isf._bouclier_fiscal, 
-                                   entity = 'foy', 
-                                   start = date(2006,1,1),
-                                   end = date(2010,12,31))),
+                                   start = date(2006, 1, 1),
+                                   end = date(2010, 12, 31))),
+    ('bouclier_fiscal', Prestation(isf._bouclier_fiscal,
+                                   entity = 'foy',
+                                   start = date(2006, 1, 1),
+                                   end = date(2010, 12, 31))),
 
     # TODO: inclure aussi les dates si nécessaire start = date(2007,1,1)
 
@@ -433,7 +435,7 @@ prestation_by_name = collections.OrderedDict((
     ('af_nbenf', Prestation(pf._af_nbenf, entity = 'fam', label = u"Nombre d'enfant au sens des AF")),
     ('af_base', Prestation(pf._af_base, entity = 'fam', label = 'Allocations familiales - Base')),
     ('af_majo', Prestation(pf._af_majo, entity = 'fam', label = 'Allocations familiales - Majoration pour age')),
-    ('af_forf', Prestation(pf._af_forf, entity = 'fam', label = 'Allocations familiales - Forfait 20 ans', start = date(2003,7,1))),
+    ('af_forf', Prestation(pf._af_forf, entity = 'fam', label = 'Allocations familiales - Forfait 20 ans', start = date(2003, 7, 1))),
     ('af', Prestation(pf._af, entity = 'fam', label = u"Allocations familiales")),
 
     ('cf_temp', Prestation(pf._cf, entity = 'fam', label = u"Complément familial avant d'éventuels cumuls")),
@@ -443,25 +445,25 @@ prestation_by_name = collections.OrderedDict((
     ('ars', Prestation(pf._ars, entity = 'fam', label = u"Allocation de rentrée scolaire")),
 
 
-    ('paje_base_temp', Prestation(pf._paje_base, entity = 'fam', label = u"Allocation de base de la PAJE sans tenir compte d'éventuels cumuls", start = date(2004,1,1))),
-    ('paje_base', Prestation(pf._paje_cumul, entity = 'fam', label = u"Allocation de base de la PAJE", start = date(2004,1,1))),
+    ('paje_base_temp', Prestation(pf._paje_base, entity = 'fam', label = u"Allocation de base de la PAJE sans tenir compte d'éventuels cumuls", start = date(2004, 1, 1))),
+    ('paje_base', Prestation(pf._paje_cumul, entity = 'fam', label = u"Allocation de base de la PAJE", start = date(2004, 1, 1))),
 
-    ('paje_nais', Prestation(pf._paje_nais, entity = 'fam', label = u"Allocation de naissance de la PAJE", start = date(2004,1,1))),
-    ('paje_clca', Prestation(pf._paje_clca, entity = 'fam', label = u"PAJE - Complément de libre choix d'activité", start = date(2004,1,1))),
-    ('paje_clca_taux_plein', BoolPresta(pf._paje_clca_taux_plein, entity = 'fam', label = u"Indicatrice Clca taux plein", start = date(2004,1,1))),
-    ('paje_clca_taux_partiel', BoolPresta(pf._paje_clca_taux_partiel, entity = 'fam', label = u"Indicatrice Clca taux partiel", start = date(2004,1,1))),
-    ('paje_colca', Prestation(pf._paje_colca, entity = 'fam', label = u"PAJE - Complément optionnel de libre choix d'activité", start = date(2004,1,1))),
-    ('paje_clmg', Prestation(pf._paje_clmg, entity = 'fam', label = u"PAJE - Complément de libre choix du mode de garde", start = date(2004,1,1))),
-    ('paje', Prestation(pf._paje, entity = 'fam', label = u"PAJE - Ensemble des prestations", start = date(2004,1,1))),
+    ('paje_nais', Prestation(pf._paje_nais, entity = 'fam', label = u"Allocation de naissance de la PAJE", start = date(2004, 1, 1))),
+    ('paje_clca', Prestation(pf._paje_clca, entity = 'fam', label = u"PAJE - Complément de libre choix d'activité", start = date(2004, 1, 1))),
+    ('paje_clca_taux_plein', BoolPresta(pf._paje_clca_taux_plein, entity = 'fam', label = u"Indicatrice Clca taux plein", start = date(2004, 1, 1))),
+    ('paje_clca_taux_partiel', BoolPresta(pf._paje_clca_taux_partiel, entity = 'fam', label = u"Indicatrice Clca taux partiel", start = date(2004, 1, 1))),
+    ('paje_colca', Prestation(pf._paje_colca, entity = 'fam', label = u"PAJE - Complément optionnel de libre choix d'activité", start = date(2004, 1, 1))),
+    ('paje_clmg', Prestation(pf._paje_clmg, entity = 'fam', label = u"PAJE - Complément de libre choix du mode de garde", start = date(2004, 1, 1))),
+    ('paje', Prestation(pf._paje, entity = 'fam', label = u"PAJE - Ensemble des prestations", start = date(2004, 1, 1))),
 
 
     ('cf', Prestation(pf._cf_cumul, entity = 'fam', label = u"Complément familial")),
     ('aeeh', Prestation(pf._aeeh, entity = 'fam', label = u"Allocation d'éducation de l'enfant handicapé")),
 
-    ('ape_temp', Prestation(pf._ape, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1,1))),
-    ('apje_temp', Prestation(pf._apje, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1,1))),
-    ('ape', Prestation(pf._ape_cumul, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1,1))),
-    ('apje', Prestation(pf._apje_cumul, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1,1))),
+    ('ape_temp', Prestation(pf._ape, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1, 1))),
+    ('apje_temp', Prestation(pf._apje, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1, 1))),
+    ('ape', Prestation(pf._ape_cumul, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1, 1))),
+    ('apje', Prestation(pf._apje_cumul, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1, 1))),
 
     ('crds_pfam', Prestation(pf._crds_pfam, entity = 'fam', label = u"CRDS (prestations familiales)")),
 
@@ -505,8 +507,8 @@ prestation_by_name = collections.OrderedDict((
         start = date(2009, 7, 1))),
     ('rsa_act_i', Prestation(ms._rsa_act_i)),
     ('psa', Prestation(ms._psa, entity = 'fam', label = u"Prime de solidarité active", start = date(2009, 1, 1),
-        end = date(2009, 12,31))),
-    ('api', Prestation(ms._api, entity = 'fam', end = date(2009, 7, 1), label = u"Allocation de parent isolé" )),
+        end = date(2009, 12, 31))),
+    ('api', Prestation(ms._api, entity = 'fam', end = date(2009, 7, 1), label = u"Allocation de parent isolé")),
     ('crds_mini', Prestation(ms._crds_mini, entity = 'fam', start = date(2009, 7, 1))),
     ('aefa', Prestation(ms._aefa, entity = 'fam', label = u"Allocation exceptionelle de fin d'année")),
 
@@ -563,13 +565,13 @@ prestation_by_name = collections.OrderedDict((
                                         u"Quatre personnes",
                                         u"Cinq personnes",
                                         u"Six personnes et plus"], start = 1))),
- 
+
      ('cplx', BoolPresta(cl._cplx, entity = 'men', label = u"Indicatrice de ménage complexe")),
- 
+
      ('act_cpl', IntPresta(cl._act_cpl, entity = 'men', label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint")),
      ('cohab', BoolPresta(cl._cohab, entity = 'men', label = u"Vie en couple")),
      ('act_enf', IntPresta(cl._act_enf, entity = 'men', label = u"Nombre d'enfants actifs")),
- 
+
      ('typmen15', EnumPresta(cl._typmen15, label = u"Type de ménage", entity = 'men',
                            enum = Enum([u"Personne seule active",
                                         u"Personne seule inactive",
@@ -585,8 +587,8 @@ prestation_by_name = collections.OrderedDict((
                                          u"Couples avec enfant, tous inactifs",
                                          u"Autres ménages, 1 actif",
                                          u"Autres ménages, 2 actifs ou plus",
-                                         u"Autres ménages, tous inactifs"],start = 1))),
- 
+                                         u"Autres ménages, tous inactifs"], start = 1))),
+
      ('decile', EnumPresta(cm._decile, entity = 'men', label = u"Décile de niveau de vie disponible",
                          enum = Enum([u"Hors champ"
                                       u"1er décile",
@@ -599,7 +601,7 @@ prestation_by_name = collections.OrderedDict((
                                       u"8e décile",
                                       u"9e décile",
                                       u"10e décile"]))),
- 
+
      ('decile_net', EnumPresta(cm._decile_net, entity = 'men', label = u"Décile de niveau de vie net",
                          enum = Enum([u"Hors champ"
                                       u"1er décile",
