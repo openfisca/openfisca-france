@@ -1871,6 +1871,7 @@
 	        <VALUE valeur=".26" deb="2005-01-01" fin="2014-12-31"/>
 	      </CODE>
 	      <CODE description="Taux maximum (moins de 20 salariés)" code="tx_max2" format="percent">
+	    	<VALUE valeur=".26" deb="2005-01-01" fin="2007-06-30"/>
 	    	<VALUE valeur=".281" deb="2007-07-01" fin="2014-12-31"/>
 	      </CODE>
 	      <CODE description="Point de sortie (en smic)" code="seuil" format="percent">

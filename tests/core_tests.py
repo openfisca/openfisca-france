@@ -26,13 +26,12 @@
 import datetime
 
 import openfisca_france
-
-
+openfisca_france.init_country()
 from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
 
 
 def test_case_study(year = 2006):
-    openfisca_france.init_country()
+
     simulation = ScenarioSimulation()
     simulation.set_config(year = year, reforme = False, nmen = 3, maxrev = 100000, x_axis = 'sali')
     # Add husband/wife on the same tax sheet (foyer).
@@ -47,7 +46,7 @@ def test_case_study(year = 2006):
 
 
 def test_survey(year = 2006):
-#    openfisca_france.init_country()
+    openfisca_france.init_country()
     simulation = SurveySimulation()
     simulation.set_config(year = year)
     simulation.set_param()

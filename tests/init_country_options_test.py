@@ -24,17 +24,17 @@
 
 
 import openfisca_france
-openfisca_france.init_country(start_from="brut")
+openfisca_france.init_country(start_from = "brut")
 
 from openfisca_core.simulations import SurveySimulation
 
 def main():
     simulation = SurveySimulation()
-    simulation.set_config(year=2006)
+    simulation.set_config(year = 2006)
     simulation.set_param()
     simulation.compute()
     print simulation.output_table.table
-
+    # TODO: Change this
 
 if __name__ == '__main__':
     main()

@@ -28,11 +28,12 @@ import json
 import xml.etree.ElementTree
 
 import openfisca_france
+openfisca_france.init_country()
+
 from openfisca_core import conv, legislations, legislationsxml, model
 
 
 def test_legislation_xml_file():
-    openfisca_france.init_country()
     legislation_tree = xml.etree.ElementTree.parse(model.PARAM_FILE)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
