@@ -793,4 +793,3 @@ class Scenario(object):
                 datatable.set_value(var, 0.5*vls, entity, opt = 1)
             else:
                 datatable.set_value(var, vls, entity, opt = 0)
-            datatable._isPopulated = True
