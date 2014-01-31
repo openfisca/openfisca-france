@@ -5128,35 +5128,35 @@
    </NODE>
    <NODE description="Droits sociaux" code="droits_soc"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##
      <CODE description="Taux parts et actions détenues par les salariés et mandataires sociaux" code="taux1" format="percent">
-       <VALUE valeur="0.25" deb="2006-01-01" fin="2013-12-31"/>
+       <VALUE valeur="0.25" deb="2006-01-01" fin="2011-12-31"/>
      </CODE>
      <CODE description="Taux parts et actions avec engagement de conservation de 6 ans minimum" code="taux2" format="percent">
        <VALUE valeur="0.5" deb="2002-01-01" fin="2005-12-31"/>
-       <VALUE valeur="0.25" deb="2006-01-01" fin="2013-12-31"/>
+       <VALUE valeur="0.25" deb="2006-01-01" fin="2011-12-31"/>
      </CODE>
    </NODE>
    <NODE description="Forfait mobilier" code="forf_mob">
            <CODE description="Taux forfait mobilier" code="taux" format="percent">
-      <VALUE valeur="0.05" deb="2002-01-01" fin="2013-12-31"/>
+      <VALUE valeur="0.05" deb="2002-01-01" fin="2011-12-31"/>
          </CODE>
    </NODE>
    <NODE description="Réductions pour personnes à charges" code="reduc_pac">
      <CODE description="Réduction pac sans garde alternée" code="reduc_1" format="integer" type="monetary">
        <VALUE valeur="150" deb="2002-01-01" fin="2011-12-31"/>
        <VALUE valeur="300" deb="2012-01-01" fin="2012-12-31"/>
-       <VALUE valeur="0" deb="2013-01-01" fin="2013-12-31"/>
+       <VALUE valeur="0" deb="2013-01-01" fin="2014-12-31"/>
      </CODE>
      <CODE description="Réduction pac avec garde alternée" code="reduc_2" format="integer" type="monetary">
        <VALUE valeur="75" deb="2002-01-01" fin="2011-12-31"/>
        <VALUE valeur="150" deb="2012-01-01" fin="2012-12-31"/>
-       <VALUE valeur="0" deb="2013-01-01" fin="2013-12-31"/>
+       <VALUE valeur="0" deb="2013-01-01" fin="2014-12-31"/>
      </CODE>
    </NODE>
    <NODE description="Plafonnement de l'ISF" code="plaf">
      <CODE description="Taux appliqué quand le montant de l'ISF avant plafonnement est supérieur au second seuil " code="taux" format="percent">
        <VALUE valeur="0.5" deb="1996-01-01" fin="2011-12-31"/>
        <VALUE valeur="0" deb="2012-01-01" fin="2012-12-31"/>
-       <VALUE valeur="0.5" deb="2013-01-01" fin="2013-12-31"/>
+       <VALUE valeur="0.5" deb="2013-01-01" fin="2014-12-31"/>
      </CODE>
     <CODE description="Premier seuil pour calcul du plafonnement" code="seuil1" format="integer" type="monetary">
       <VALUE valeur="10970" deb="2004-01-01" fin="2004-12-31"/>

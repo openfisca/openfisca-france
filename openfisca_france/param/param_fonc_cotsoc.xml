@@ -1324,12 +1324,19 @@
 		          <BAREME description="Pensions civiles (TI et NBI)" code="pension" option="contrib">
 		            <TRANCHE code="tranche0">
 		              <SEUIL>
-		                <VALUE valeur="0" deb="2012-01-01" fin="2014-12-31"/>
+		                <VALUE valeur="0" deb="1993-01-01" fin="2012-12-31"/>
 		              </SEUIL>
 		              <TAUX>
-		                <VALUE valeur="1.2607" deb="2013-01-01" fin="2014-12-31"/>
-		                <VALUE valeur="1.2155" deb="2012-01-01" fin="2012-12-31"/>
-			              </TAUX>
+		                <VALUE valeur="0.7428" deb="2013-01-01" fin="2014-12-31"/>
+		                <VALUE valeur="0.6859" deb="2012-01-01" fin="2012-12-31"/>
+		                <VALUE valeur="0.6539" deb="2011-01-01" fin="2011-12-31"/>
+		                <VALUE valeur="0.6214" deb="2010-01-01" fin="2010-12-31"/>
+		                <VALUE valeur="0.4014" deb="2009-12-01" fin="2009-12-31"/>
+		                <VALUE valeur="0.6014" deb="2009-01-01" fin="2009-11-30"/>
+		                <VALUE valeur="0.5571" deb="2008-01-01" fin="2008-12-31"/>
+		                <VALUE valeur="0.5074" deb="2007-01-01" fin="2007-12-31"/>
+		                <VALUE valeur="0.4990" deb="2006-01-01" fin="2006-12-31"/>
+		              </TAUX>
 		            </TRANCHE>
 		          </BAREME>
 		        </NODE>
@@ -1401,27 +1408,10 @@
 			</NODE>
 	        <NODE description="Collectivités locales" code="colloc">
 	        	<BAREME description="Fonds pour l'emploi hospitalier" code="feh">
-		            <TRANCHE code="tranche0">
-		              <SEUIL>
-		                <VALUE valeur="0" deb="2002-01-01" fin="2014-12-31"/>
-		              </SEUIL>
-		              <TAUX>
-		                <VALUE valeur="0.01" deb="2002-01-01" fin="2014-12-31"/>
-		              </TAUX>
-		            </TRANCHE>
 	        	</BAREME>
 	          </NODE>
 	        <NODE description="Fonction publique hospitalière" code="hospi">
 	        	<BAREME description="Fonds de compensation de la cessation progressive d’activité" code="fccpa">
-		            <TRANCHE code="tranche0">
-		              <SEUIL>
-		                <VALUE valeur="0" deb="2002-01-01" fin="2014-12-31"/>
-		              </SEUIL>
-		              <TAUX>
-		                <VALUE valeur="0" deb="2011-01-01" fin="2014-12-31"/>
-		                <VALUE valeur="0.05" deb="2002-01-01" fin="2010-12-31"/>
-		              </TAUX>
-		            </TRANCHE>
 	        	</BAREME>
 			</NODE>
 	        </NODE>
