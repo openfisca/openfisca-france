@@ -153,21 +153,19 @@ def init_country(qt = False, start_from = "imposable"):
     if qt:
         from .widgets.Composition import CompositionWidget
 
-    assert start_from in ["imposable", "brut"], Exception("start_from should be imposable or brut")  # TODO: net
+    assert start_from in ["brut", "imposable"]  # TODO: net
     if start_from == "brut":
         variables_bruts = ["salbrut", "chobrut", "rstbrut"]
         variables_imposables = ["sali", "choi", "rsti"]
-        for variable in variables_bruts:
-            column_by_name.update({
-                            variable: prestation_by_name[variable].to_column()})
-            del prestation_by_name[variable]
+        column_by_name.update(
+            (variable, prestation_by_name.pop(variable).to_column())
+            for variable in variables_bruts
+            )
         for variable in variables_imposables:
             del column_by_name[variable]
             del X_AXES_PROPERTIES[variable]
-        print type(column_by_name)
-
-    if start_from == "net":
-        NotImplementedError
+    elif start_from == "net":
+        raise NotImplementedError
 
     core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 
