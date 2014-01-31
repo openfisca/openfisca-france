@@ -5143,9 +5143,9 @@
      </CODE>
    </NODE>
    <NODE description="Forfait mobilier" code="forf_mob">
-	   <CODE description="Taux forfait mobilier" code="taux" format="percent">
-		<VALUE valeur="0.05" deb="2002-01-01" fin="2013-12-31"/>
-	   </CODE>
+           <CODE description="Taux forfait mobilier" code="taux" format="percent">
+      <VALUE valeur="0.05" deb="2002-01-01" fin="2013-12-31"/>
+         </CODE>
    </NODE>
    <NODE description="Réductions pour personnes à charges" code="reduc_pac">
      <CODE description="Réduction pac sans garde alternée" code="reduc_1" format="integer" type="monetary">
