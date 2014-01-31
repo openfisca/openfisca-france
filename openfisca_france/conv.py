@@ -34,3 +34,14 @@ json_to_natural_int = pipe(
     test_greater_or_equal(0),
     )
 
+
+def test_in_pop(values, error = None):
+    def remove(value):
+        values.remove(value)
+        return value
+
+    return pipe(
+        test_in(values, error = error),
+        function(remove),
+        )
+
