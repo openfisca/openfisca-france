@@ -42,7 +42,7 @@ def test_case_study(year = 2013):
     # The aefa prestation can be disabled by uncommenting the following line:
     # simulation.disable_prestations( ['aefa'])
     df = simulation.get_results_dataframe()
-    print df.to_string()
+    print df.to_string().encode('utf-8')
 #    print df.to_json(orient = 'index')
 
 
