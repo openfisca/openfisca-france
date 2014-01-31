@@ -89,6 +89,7 @@ def _isf_inv_pme(b2mt, b2ne, b2mv, b2nf, b2mx, b2na, _P):
     return holdings + fip + fcpi + inv_dir_soc
 
 def _isf_org_int_gen(b2nc, _P):
+    # TODO: rajouter ng (dons à certains organismes d'intérêt général)
     P = _P.isf.pme
     return b2nc*P.taux2
 
@@ -123,11 +124,14 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
     ## si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
     plafonnement = max_(tot_impot- revetproduits, 0)
     P = _P.isf.plaf
-    limitationplaf = (
-                      (isf_avant_plaf<= P.seuil1)*plafonnement +
-                      (P.seuil1 <= isf_avant_plaf)*(isf_avant_plaf <= P.seuil2)*min_(plafonnement, P.seuil1) +
-                      (isf_avant_plaf >= P.seuil2)*min_(isf_avant_plaf*P.taux, plafonnement))
-    return (isf_avant_plaf - limitationplaf)
+    if _P.datesim.year <= 2011: 
+        limitationplaf = (
+                          (isf_avant_plaf<= P.seuil1)*plafonnement +
+                          (P.seuil1 <= isf_avant_plaf)*(isf_avant_plaf <= P.seuil2)*min_(plafonnement, P.seuil1) +
+                          (isf_avant_plaf >= P.seuil2)*min_(isf_avant_plaf*P.taux, plafonnement))
+        return (isf_avant_plaf - limitationplaf)
+    else:
+        return isf_avant_plaf
 
 def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
     ## rs est le montant des impôts acquittés hors de France ##

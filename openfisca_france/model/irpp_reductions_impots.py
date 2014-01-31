@@ -124,6 +124,7 @@ def _resimm(f7ra, f7rb, _P):
     Travaux de restauration immobilière (cases 7RA et 7RB)
     2009-
     '''
+    # TODO: add f7re, f7rf...
     P = _P.ir.reductions_impots.resimm
     max1 = P.max
     max2 = max_(max1 - f7rb, 0)
@@ -195,7 +196,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
 
-    elif _P.datesim.year in (2009, 2010, 2011, 2012):  # TODO: Check 2011 and 2012
+    elif _P.datesim.year in (2009, 2010, 2011, 2012, 2013):  # TODO: Check 2011, 2012 and 2013
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1*not_(annee1) + P.max1_1ereAnnee*annee1
@@ -414,7 +415,7 @@ def _invrev(marpac, f7gs, f7gt, f7xg, f7gu, f7gv, _P):
 
 def _invlst(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P):
     '''
-    Investissements locatifs dans le secteur de touristique
+    Investissements locatifs dans le secteur touristique
     2004-
     '''
     P = _P.ir.reductions_impots.invlst

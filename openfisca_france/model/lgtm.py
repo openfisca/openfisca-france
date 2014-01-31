@@ -54,13 +54,13 @@ def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [
     Base ressource des allocations logement
     '''
     # On ne considère que les revenus des 2 conjoints et les revenus non
-    # individualisable
+    # individualisables
     #   0 - non étudiant
     #   1 - étudiant non boursier
     #   2 - éutidant boursier
     # revCatvous et self.conj : somme des revenus catégoriel après abatement
-    # revColl autres revenus du ménage non individualisable
-    # ALabat abatement prix en compte pour le calcul de la base ressources
+    # revColl : autres revenus du ménage non individualisable
+    # ALabat : abatement prix en compte pour le calcul de la base ressources
     # des allocattions logement
     # plancher de ressources pour les etudiants
     P = _P
@@ -70,6 +70,7 @@ def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [
     etuP = not_(etu[CHEF]) & (etu[PART])
     etuCP = (etu[CHEF]) & (etu[PART])
     # Boursiers
+    # TODO: distinguer boursier foyer/boursier locatif
     etuCB = etu[CHEF]&boursier[CHEF]
     etuPB = etu[PART]&boursier[PART]
     # self.etu = (self.etu[CHEF]>=1)|(self.etuP>=1)
@@ -79,8 +80,10 @@ def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [
     revCatVsCj = not_(etuCP)*(revCatVous + revCatConj) + \
                     etuCP*max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 -(etuCB|etuPB)*Pr.dar_5 + Pr.dar_7)
 
+    # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier), les inclure dans le calcul
     # somme des revenus catégoriels après abatement
     revCat = revCatVsCj + rev_coll
+    
     # TODO: charges déductibles : pension alimentaires et abatements spéciaux
     revNet = revCat
 
@@ -90,15 +93,15 @@ def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [
     # abattement forfaitaire double activité
     abatDoubleAct = biact*Pr.dar_1
 
-    # neutralisation des ressources
+    # TODO: neutralisation des ressources
     # ...
 
-    # abbattement sur les ressources
+    # TODO: abbattement sur les ressources
     # ...
 
-    # évaluation forfaitaire des ressources (première demande)
+    # TODO: évaluation forfaitaire des ressources (première demande)
 
-    # double résidence pour raisons professionnelles
+    # TODO :double résidence pour raisons professionnelles
 
     # Base ressource des aides au logement (arrondies aux 100 euros supérieurs)
 

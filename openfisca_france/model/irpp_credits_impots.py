@@ -135,7 +135,7 @@ def _mecena(f7us):
 def _prlire(f2dh, f2ch, marpac, _P):
     '''
     Prélèvement libératoire à restituer (case 2DH)
-    2002-
+    2002-2012
     '''
     plaf_resid = max_(_P.ir.rvcm.abat_assvie-f2ch,0)
     return _P.ir.credits_impot.prlire.taux*min_(f2dh, plaf_resid)
@@ -224,12 +224,12 @@ def _aidper(marpac, nb_pac2, f7wf, f7wi, f7wj, f7wl, f7sf, f7si, _P):
         max0 = P.max*(1+marpac) + P.pac1*n
 
     if _P.datesim.year in (2002,2003):
-        return P.taux_wi*min_(f7wi, max0) # TODO enfant en résidence altérnée
+        return P.taux_wi*min_(f7wi, max0) # TODO: enfant en résidence altérnée
     elif _P.datesim.year <= 2009:
         max1 = max_(0, max0 - f7wj)
         return (P.taux_wj*min_(f7wj, max0) +
                 P.taux_wi*min_(f7wi, max1) )
-    elif _P.datesim.year >= 2010:
+    elif _P.datesim.year == 2010:
         max1 = max_(0, max0 - f7wl)
         max2 = max_(0, max1 - f7sf)
         max3 = max_(0, max2 - f7wj)
@@ -237,7 +237,8 @@ def _aidper(marpac, nb_pac2, f7wf, f7wi, f7wj, f7wl, f7sf, f7si, _P):
                 P.taux_sf*min_(f7sf, max1) +
                 P.taux_wj*min_(f7wj, max2) +
                 P.taux_wi*min_(f7si, max3) )
-
+    else:
+        return 0*marpac # TODO 2011, 2012, 2013
 
 
 def _acqgpl(f7up, f7uq, _P):
@@ -284,7 +285,7 @@ def _preetu(f7uk, f7vo, f7td, _P):
     if _P.datesim.year in (2005,2006,2007):
         return P.taux*min_(f7uk, max1)
     elif _P.datesim.year >=2008:
-        return P.taux*min_(f7uk, P.max) + P.taux*min_(f7td, max1)
+        return P.taux*min_(f7uk, P.max) + P.taux*min_(f7td, max1) # TODO: 
 
 def _saldom2(nb_pac2, f7db, f7dg, f7dl, f7dq, _P):
     '''

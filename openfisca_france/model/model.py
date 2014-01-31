@@ -315,7 +315,7 @@ prestation_by_name = collections.OrderedDict((
     ('iai', Prestation(ir._iai, entity = 'foy')),
     ('cehr', Prestation(ir._cehr, entity = 'foy')),
     ('cesthra', Prestation(ir._cesthra, entity = 'foy')),
-    ('imp_lib', Prestation(ir._imp_lib, entity = 'foy')),
+    ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),), # TODO: Check - de 2000euros
 
 
     # Prime pour l'emploi
@@ -334,7 +334,7 @@ prestation_by_name = collections.OrderedDict((
     ('percvm', Prestation(ci._percvm, entity = 'foy', start = date(2010, 1, 1))),
     ('direpa', Prestation(ci._direpa, entity = 'foy')),
     ('mecena', Prestation(ci._mecena, entity = 'foy', start = date(2003, 1, 1))),
-    ('prlire', Prestation(ci._prlire, entity = 'foy')),
+    ('prlire', Prestation(ci._prlire, entity = 'foy', label = u"Prélèvement libératoire à restituer (case 2DH)", end = date(2012, 12, 31))),
     ('aidper', Prestation(ci._aidper, entity = 'foy')),
     ('quaenv', Prestation(ci._quaenv, entity = 'foy', start = date(2005, 1, 1))),
     ('drbail', Prestation(ci._drbail, entity = 'foy')),

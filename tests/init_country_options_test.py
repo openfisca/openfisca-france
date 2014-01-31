@@ -28,7 +28,7 @@ openfisca_france.init_country(start_from = "brut")
 
 from openfisca_core.simulations import SurveySimulation
 
-def main():
+def test_brut():
     simulation = SurveySimulation()
     simulation.set_config(year = 2006)
     simulation.set_param()
