@@ -98,34 +98,45 @@ def simulate_case_study(**simulation):
 def test_case_study():
     result = simulate_case_study(
         # api_key,
-        maxrev = 100000,
-        nmen = 3,
         scenarios = [
             dict(
-                declar = {
-                    '0': dict(),
-                    },
-                famille = {
-                    '0': dict(),
-                    },
-                indiv = [
+                familles = [
                     dict(
-                        birth = '1965-12-27',
-                        noichef = 0,
-                        noidec = 0,
-                        noipref = 0,
-                        quifam = 'chef',
-                        quifoy = 'vous',
-                        quimen = 'pref',
+                        parents = ['ind0', 'ind1'],
+                        enfants = ['ind2'],
                         ),
                     ],
-                menage = {
-                    '0': dict(),
-                    },
-                year = 2006,
+                foyers_fiscaux = [
+                    dict(
+                        declarants = ['ind0', 'ind1'],
+                        personnes_a_charge = ['ind2'],
+                        ),
+                    ],
+                individus = [
+                    dict(
+                        birth = '1965-12-27',
+                        id = 'ind0',
+                        sali = 18000,
+                        ),
+                    dict(
+                        birth = '1965-12-28',
+                        id = 'ind1',
+                        ),
+                    dict(
+                        birth = '2005-12-29',
+                        id = 'ind2',
+                        ),
+                    ],
+                menages = [
+                    dict(
+                        personne_de_reference = 'ind0',
+                        conjoint = 'ind1',
+                        enfants = ['ind2'],
+                        ),
+                    ],
+                year = 2013,
                 ),
             ],
-        x_axis = 'sali',
         )
-    print json.dumps(result, ensure_ascii = False, indent = 2)
+    print unicode(json.dumps(result, ensure_ascii = False, indent = 2)).encode('utf-8')
 
