@@ -371,6 +371,17 @@ class Scenario(object):
                 ),
             default = conv.noop,
             )(data, state = state)
+        remaining_individus_id = familles_individus_id.union(foyers_fiscaux_individus_id, menages_individus_id)
+        if remaining_individus_id:
+            if error is None:
+                error = {}
+            for individu_id in remaining_individus_id:
+                error.setdefault('individus', {})[individu_id] = state._(u"Individual is missing from {}").format(
+                    u' & '.join([
+                        u'familles' if individu_id in familles_individus_id else None,
+                        u'foyers_fiscaux' if individu_id in foyers_fiscaux_individus_id else None,
+                        u'menages' if individu_id in menages_individus_id else None,
+                        ]))
         if error is not None:
             return data, error
 
