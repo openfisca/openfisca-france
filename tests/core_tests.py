@@ -24,6 +24,8 @@
 
 
 import datetime
+import logging
+import sys
 
 import openfisca_france
 openfisca_france.init_country()
@@ -53,4 +55,5 @@ def test_survey(year = 2006):
     simulation.compute()
 
 if __name__ == '__main__':
-    test_case_study()
+    logging.basicConfig(level=logging.ERROR, stream=sys.stdout)
+    test_case_study(2013)

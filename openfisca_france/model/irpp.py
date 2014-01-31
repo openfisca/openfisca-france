@@ -443,7 +443,7 @@ def _teicaa(f5qm, f5rm, _P):
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
     """
     Taxation des plus value
-    TODO: f3vt, 2013 f3Vg au barème
+    TODO: f3vt, 2013 f3Vg au barème / tout refaire
     """
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
@@ -458,7 +458,12 @@ def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, rpns_pvce, _P):
         # revenus taxés à un taux proportionnel
         rdp += f3vd
         out += P.taux1*f3vd
-
+    if _P.datesim.year == 2012:
+        out = P.taux2 * f3vd  + P.taux3 * f3vi + P.taux4 * f3vf + P.taux1 * max_(0,f3vg - f3vh)
+        out = P.taux2 * (f3vd + f3sd)  + P.taux3 * (f3vi + f3si) + P.taux4 * (f3vf + f3sf) +  P.taux1 * max_(0,f3vg - f3vh) + P.pvce * f3sa
+    if _P.datesim.year > 2012:
+        out = f3vg * 0
+                
     return round(out)
 
 def _iai(iaidrdi, plus_values, cont_rev_loc, teicaa):
@@ -553,6 +558,8 @@ def _imp_lib(f2da, f2dh, f2ee, _P):
         out = - (P.assvie*f2dh + P.autre*f2ee )
     else:
         out = - (P.action*f2da  + P.autre*f2ee)*not_(_P.ir.autre.finpfl) - P.assvie*f2dh
+    
+    
     return out
 
 def _fon(f4ba, f4bb, f4bc, f4bd, f4be, _P):

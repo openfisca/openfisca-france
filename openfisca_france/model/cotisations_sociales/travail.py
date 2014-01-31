@@ -222,7 +222,7 @@ def _cotpat_contrib(salbrut, hsup, type_sal, _P):
         iscat = (type_sal == category[1])  # category[1] is the numerical index
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
-                if category[0] in ["prive_cadre", "prive_noncadre"]:  # TODO: move up
+                if category[0] in ["prive_cadre", "prive_non_cadre"]:  # TODO: move up
                     is_contrib = (bar.option == "contrib")
                     temp = -(iscat * bar.calc(salbrut)) * is_contrib
                     cotpat += temp
