@@ -159,7 +159,7 @@ def init_country(qt = False, start_from = "imposable"):
         variables_imposables = ["sali", "choi", "rsti"]
         column_by_name.update(
             (variable, prestation_by_name.pop(variable).to_column())
-            for variable in variables_bruts
+            for variable in variables_bruts + ['type_sal']
             )
         for variable in variables_imposables:
             del column_by_name[variable]

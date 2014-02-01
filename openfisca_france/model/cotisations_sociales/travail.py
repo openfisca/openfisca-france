@@ -123,13 +123,12 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
 
     # TODO: complete this to deal with the fonctionnaire
     brut_etat = etat.calc(sali)
-
     salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
     salbrut += brut_cad * (type_sal == CAT['prive_cadre'])
 
     supp_familial_traitement = 0  # TODO: dépend de salbrut
     indemnite_residence = 0  # TODO: fix bug
-    salbrut += ((brut_etat * (type_sal == CAT['public_titulaire_etat'])
+    salbrut += (type_sal == CAT['public_titulaire_etat']) * ((brut_etat
                 - supp_familial_traitement - indemnite_residence) / (1 + TAUX_DE_PRIME))
                 # TODO: fonctionnaire
 
@@ -165,6 +164,7 @@ def _type_sal(titc, statut, chpub, cadre):
     hosp_cont = (chpub == 2) * (titc == 3)
 
     contract = (colloc_cont + hosp_cont + etat_cont) > 1
+
     return (0 + 1 * cadre + 2 * etat_tit + 3 * militaire
             + 4 * colloc_tit + 5 * hosp_tit + 6 * contract)
 
@@ -196,8 +196,8 @@ def build_pat(_P):
     pat['prive_non_cadre'] = pat.pop('noncadre')
     pat['prive_cadre'] = pat.pop('cadre')
 
-    log.info("Le dictionnaire des barèmes des cotisations patronales des non cadres contient %s", pat['prive_non_cadre'].keys())
-    log.info("Le dictionnaire des barèmes des cotisations patronales des cadres contient %s", pat['prive_cadre'].keys())
+    log.info("Le dictionnaire des barèmes des cotisations patronales des non cadres contient: \n %s", pat['prive_non_cadre'].keys())
+    log.info("Le dictionnaire des barèmes des cotisations patronales des cadres contient: \n %s", pat['prive_cadre'].keys())
 
     # Rework commun to deal with public employees
     for var in ["maladie", "apprentissage", "apprentissage2", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction", "assedic", "transport"]:
@@ -288,7 +288,7 @@ def _cotpat_transport(salbrut, hsup, type_sal, _P):
     return transport
 
 
-def _cotpat_accident(salbrut, taux_accident_travail):  # taux_accident_travail
+def _cotpat_accident(salbrut, taux_accident_travail):
     '''
     Cotisations patronales accident du travail et maladie professionelle
     '''
@@ -312,7 +312,6 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, cotpat_accident, _P):
                     log.info(bar)
                     log.info(temp)
     return cotpat + cotpat_accident
-
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
             cotpat_main_d_oeuvre, cotpat_transport):
@@ -355,8 +354,12 @@ def build_sal(_P):
     # Renaiming
     sal['public_titulaire_etat'] = sal.pop('etat_t')
     sal['public_titulaire_territoriale'] = sal.pop('colloc_t')
-#    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix ths
+#    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix this
     sal['public_non_titulaire'] = sal.pop('contract')
+
+    log.info("Le dictionnaire des barèmes des salariés non cadres du privé  contient %s", sal['prive_non_cadre'].keys())
+    log.info("Le dictionnaire des barèmes des salariés cadres du privé contient %s", sal['prive_cadre'].keys())
+
 
     log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['public_titulaire_etat'].keys())
     log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['public_titulaire_territoriale'].keys())
@@ -493,6 +496,9 @@ def _taxes_sal(salbrut, tva_ent, _P):
 
 
 def _tehr(salbrut, _P):
+    """
+    Taxe exceptionelle sur les hauts revenus
+    """
     # TODO: a affiner avec condition de plafond
     #       sur le chiffre d'affaire des entreprises
     bar = _P.cotsoc.tehr
@@ -515,8 +521,19 @@ def _sal_net(sal, crdssal, csgsali):
 
 
 def _salsuperbrut(salbrut, cotpat, alleg_fillon, alleg_cice, taxes_sal, tehr):
-    return salbrut - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
-
+    """
+    Salaires superbruts
+    """
+    salsuperbrut = salbrut - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
+    expression = ("   salbrut      %s \n"
+                  " + cotpat       %s \n"
+                  " - alleg_fillon %s \n"
+                  " - alleg_cice   %s \n"
+                  " + taxes_sal    %s \n"
+                  " + tehr         %s \n"
+                  " = salsuperbut  %s") % (salbrut, cotpat, -alleg_fillon, -alleg_cice, taxes_sal, tehr, salsuperbrut)
+    log.info(expression)
+    return salsuperbrut
 
 def _pension_civile(salbrut, type_sal, _P):
     """
@@ -524,13 +541,13 @@ def _pension_civile(salbrut, type_sal, _P):
     """
     pass
 
-def _rafp_sal(sal_brut, type_sal, prime, supp_familial_traitement, indemnite_residence, _P):
+def _rafp_sal(salbrut, type_sal, prime, supp_familial_traitement, indemnite_residence, _P):
     '''
     Part salariale de la retraite additionelle de la fonction publique
     TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     Note: sal_brut est le traitement indiciaire brut
     '''
-    tib = sal_brut * (type_sal == CAT['public_titulaire_etat'])
+    tib = salbrut * (type_sal == CAT['public_titulaire_etat'])
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = prime + supp_familial_traitement + indemnite_residence
     return min_(base_imposable , plaf_ass * tib)
@@ -540,16 +557,16 @@ def _rafp_pat(rafp_sal):
     return rafp_sal
 
 
-def _primes(type_sal, sal_brut):
+def _primes(type_sal, salbrut):
     '''
     Calcul des primes pour les fonctionnaries
     Note: sal_brut est égal au traitement indiciaire brut
     '''
-    tib = sal_brut * (type_sal == CAT['public_titulaire_etat'])
-    return TAUX_DE_PRIME * sal_brut
+    tib = salbrut * (type_sal == CAT['public_titulaire_etat'])
+    return TAUX_DE_PRIME * salbrut
 
 
-def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
+def _supp_familial_traitement(type_sal, salbrut, fonc_nbenf, _P):
     '''
     Supplément familial de traitement
     '''
@@ -591,7 +608,7 @@ def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):
                (plafond_mensuel_3 - plafond_mensuel_2 - plafond_mensuel_1) * (fonc_nbenf >= 3) +
                plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-    sft = min_(max(part_fixe + pct_variable * sal_brut, plancher), plafond) * (type_sal >= 2)
+    sft = min_(max(part_fixe + pct_variable * salbrut, plancher), plafond) * (type_sal >= 2)
     # Nota Bene:
     # type_sal is an EnumCol which enum is:
     # CAT = Enum(['prive_non_cadre',

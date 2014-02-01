@@ -30,10 +30,10 @@ def _uc(agem, _option = {'agem': ALL}):
     uc_enf = 0.3
     uc = 0.5
     for agm in agem.itervalues():
-        age = floor(agm/12)
+        age = floor(agm / 12)
         adt = (15 <= age) & (age <= 150)
-        enf = (0  <= age) & (age <= 14)
-        uc += adt*uc_adt + enf*uc_enf
+        enf = (0 <= age) & (age <= 14)
+        uc += adt * uc_adt + enf * uc_enf
     return uc
 
 def _typ_men(isol, af_nbenf):
@@ -47,14 +47,14 @@ def _typ_men(isol, af_nbenf):
     _2_kid = af_nbenf == 2
     _3_kid = af_nbenf >= 3
 
-    return (0*(isol & _0_kid) + # Célibataire
-            1*(not_(isol) & _0_kid) + # Couple sans enfants
-            2*(not_(isol) & _1_kid) + # Couple un enfant
-            3*(not_(isol) & _2_kid) + # Couple deux enfants
-            4*(not_(isol) & _3_kid) + # Couple trois enfants et plus
-            5*(isol & _1_kid) + # Famille monoparentale un enfant
-            6*(isol & _2_kid) + # Famille monoparentale deux enfants
-            7*(isol & _3_kid) ) # Famille monoparentale trois enfants et plus
+    return (0 * (isol & _0_kid) +  # Célibataire
+            1 * (not_(isol) & _0_kid) +  # Couple sans enfants
+            2 * (not_(isol) & _1_kid) +  # Couple un enfant
+            3 * (not_(isol) & _2_kid) +  # Couple deux enfants
+            4 * (not_(isol) & _3_kid) +  # Couple trois enfants et plus
+            5 * (isol & _1_kid) +  # Famille monoparentale un enfant
+            6 * (isol & _2_kid) +  # Famille monoparentale deux enfants
+            7 * (isol & _3_kid))  # Famille monoparentale trois enfants et plus
 
 
 def _revdisp_i(rev_trav, pen, rev_cap, ir_lps, psoc, ppe, impo):
@@ -79,7 +79,7 @@ def _nivvie(revdisp, uc):
     Niveau de vie du ménage
     'men'
     '''
-    return revdisp/uc
+    return revdisp / uc
 
 def _revnet_i(rev_trav, pen, rev_cap):
     '''
@@ -103,7 +103,7 @@ def _nivvie_net(revnet, uc):
     Niveau de vie net du ménage
     'men'
     '''
-    return revnet/uc
+    return revnet / uc
 
 
 def _revini_i(rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
@@ -128,13 +128,13 @@ def _nivvie_ini(revini, uc):
     Niveau de vie initial du ménage
     'men'
     '''
-    return revini/uc
+    return revini / uc
 
 def _revprim_i(rev_trav, cho, rev_cap, cotpat, cotsal):
     '''
     Revenu primaire individuel
     Ensemble des revenus d'activités superbruts avant tout prélèvement
-    Il est égale à la valeur ajoutée produite par les ésidents
+    Il est égale à la valeur ajoutée produite par les résidents
     'ind'
     '''
     return rev_trav + rev_cap - cotpat - cotsal - cho
@@ -242,9 +242,9 @@ def _decile(nivvie, champm, wprm):
     Décile de niveau de vie disponible
     'men'
     '''
-    labels = arange(1,11)
+    labels = arange(1, 11)
     method = 2
-    decile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles = True)
+    decile, values = mark_weighted_percentiles(nivvie, labels, wprm * champm, method, return_quantiles = True)
 #    print values
 #    print len(values)
 #    print (nivvie*champm).min()
@@ -253,7 +253,7 @@ def _decile(nivvie, champm, wprm):
 #    print decile.max()
 #    print (nivvie*(decile==1)*champm*wprm).sum()/( ((decile==1)*champm*wprm).sum() )
     del values
-    return decile*champm
+    return decile * champm
 
 
 def _decile_net(nivvie_net, champm, wprm):
@@ -261,10 +261,10 @@ def _decile_net(nivvie_net, champm, wprm):
     Décile de niveau de vie net
     'men'
     '''
-    labels = arange(1,11)
+    labels = arange(1, 11)
     method = 2
-    decile, values = mark_weighted_percentiles(nivvie_net, labels, wprm*champm, method, return_quantiles=True)
-    return decile*champm
+    decile, values = mark_weighted_percentiles(nivvie_net, labels, wprm * champm, method, return_quantiles = True)
+    return decile * champm
 
 
 def _pauvre40(nivvie, champm, wprm):
@@ -272,11 +272,11 @@ def _pauvre40(nivvie, champm, wprm):
     Indicatrice de pauvreté à 50% du niveau de vie median
     'men'
     '''
-    labels = arange(1,3)
+    labels = arange(1, 3)
     method = 2
-    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True)
-    threshold = .4*values[1]
-    return (nivvie <= threshold)*champm
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm * champm, method, return_quantiles = True)
+    threshold = .4 * values[1]
+    return (nivvie <= threshold) * champm
 
 
 def _pauvre50(nivvie, champm, wprm):
@@ -284,20 +284,20 @@ def _pauvre50(nivvie, champm, wprm):
     Indicatrice de pauvreté à 50% du niveau de vie median
     'men'
     '''
-    labels = arange(1,3)
+    labels = arange(1, 3)
     method = 2
-    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True)
-    threshold = .5*values[1]
-    return (nivvie <= threshold)*champm
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm * champm, method, return_quantiles = True)
+    threshold = .5 * values[1]
+    return (nivvie <= threshold) * champm
 
 def _pauvre60(nivvie, champm, wprm):
     '''
     Indicatrice de pauvreté à 60% du niveau de vie median
     'men'
     '''
-    labels = arange(1,3)
+    labels = arange(1, 3)
     method = 2
-    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm*champm, method, return_quantiles=True)
-    threshold = .6*values[1]
-    return (nivvie <= threshold)*champm
+    percentile, values = mark_weighted_percentiles(nivvie, labels, wprm * champm, method, return_quantiles = True)
+    threshold = .6 * values[1]
+    return (nivvie <= threshold) * champm
 

@@ -5,7 +5,10 @@
         <NODE desc="Salaires bruts" shortname="Sal. bruts" code="salbrut" color = "0,99,143">
           <NODE desc= "Salaires super bruts" shortname="Coût travail" code= "salsuperbrut" color = "0,66,92" />
        		<NODE desc= "Cotisations sociales patronales" shortname="Cotsoc pat" code= "cotpat" color = "249,208,211"/>
-       		<NODE desc= "Allègement sur les bas salaires" shortname="Allèg. sal." code= "alleg_fillon"/>
+       		<NODE desc= "Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." code= "alleg_fillon"/>
+       		<NODE desc= "Crédit d'impôt compétitivité-emploi" shortname="CICE" code= "alleg_cice"/>
+       		<NODE desc= "Taxe sur les salaires" shortname="Taxe sal." code= "taxes_sal"/>
+       		<NODE desc= "Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" code= "tehr"/>
           </NODE>
         <NODE desc= "Cotisations sociales salariées" shortname="Cotsoc sal" code= "cotsal" color = "243,166,171"/>
         <NODE desc= "CSG déductible (salaires)" shortname="CSG deduc" code= "csgsald" color = "235,114,118"/>
