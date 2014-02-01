@@ -55,10 +55,10 @@ class Scenario(object):
         self.famille = {}
 
         # menage est un dict de dict la clé est la pref
-        self.menage = {0:{'loyer':500,'so':4, 'code_postal':69001, 'zone_apl':2, 'zthabm' :0}}
+        self.menage = {0:{'loyer':500, 'so':4, 'code_postal':69001, 'zone_apl':2, 'zthabm' :0}}
 
         # on ajoute un individu, déclarant et chef de famille
-        self.addIndiv(0, datetime(1975,1,1).date(), 'vous', 'chef')
+        self.addIndiv(0, datetime(1975, 1, 1).date(), 'vous', 'chef')
 
         self.nmen = None
         self.x_axis = None
@@ -81,7 +81,7 @@ class Scenario(object):
             if vals['quifoy'] in ('vous', 'conj'):
                 if age < 18: return u'Le déclarant et son éventuel conjoint doivent avoir plus de 18 ans'
             else:
-                if age > 25 and (vals['inv']==0): return u'Les personnes à charges doivent avoir moins de 25 ans si elles ne sont pas invalides'
+                if age > 25 and (vals['inv'] == 0): return u'Les personnes à charges doivent avoir moins de 25 ans si elles ne sont pas invalides'
             if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
                 return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
         return ''
@@ -485,7 +485,7 @@ class Scenario(object):
         Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
         '''
         for vals in self.indiv.itervalues():
-            if (vals['noidec'] == noidec) and (vals['quifoy']=='conj'):
+            if (vals['noidec'] == noidec) and (vals['quifoy'] == 'conj'):
                 return True
         return False
 
@@ -494,7 +494,7 @@ class Scenario(object):
         Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
         '''
         for vals in self.indiv.itervalues():
-            if (vals['noichef'] == noichef) and (vals['quifam']=='part'):
+            if (vals['noichef'] == noichef) and (vals['quifam'] == 'part'):
                 return True
         return False
 
@@ -565,12 +565,12 @@ class Scenario(object):
 
     def _assignPerson(self, noi, quifoy = None, foyer = None, quifam = None, famille = None):
         if quifoy is not None:
-            if   quifoy     == 'vous': self._assignVous(noi)
-            elif quifoy     == 'conj': self._assignConj(noi, foyer)
+            if   quifoy == 'vous': self._assignVous(noi)
+            elif quifoy == 'conj': self._assignConj(noi, foyer)
             elif quifoy[:3] == 'pac' : self._assignPac(noi, foyer)
         if quifam is not None:
-            if   quifam     == 'chef': self._assignChef(noi)
-            elif quifam     == 'part': self._assignPart(noi, famille)
+            if   quifam == 'chef': self._assignChef(noi)
+            elif quifam == 'part': self._assignPart(noi, famille)
             elif quifam[:3] == 'enf' : self._assignEnfF(noi, famille)
         self.genNbEnf()
 
@@ -580,13 +580,13 @@ class Scenario(object):
         if oldQuifoy == 'vous':
             toAssign = self.getIndiv(oldFoyer, 'noidec')
             for person in toAssign:
-                if self.indiv[person]['quifoy']     == 'conj': self._assignPerson(person, quifoy = 'conj', foyer = 0)
+                if self.indiv[person]['quifoy'] == 'conj': self._assignPerson(person, quifoy = 'conj', foyer = 0)
                 if self.indiv[person]['quifoy'][:3] == 'pac' : self._assignPerson(person, quifoy = 'pac' , foyer = 0)
             del self.declar[noi]
         if oldQuifam == 'chef':
             toAssign = self.getIndiv(oldFamille, 'noichef')
             for person in toAssign:
-                if self.indiv[person]['quifam']     == 'part': self._assignPerson(person, quifam = 'part', famille = 0)
+                if self.indiv[person]['quifam'] == 'part': self._assignPerson(person, quifam = 'part', famille = 0)
                 if self.indiv[person]['quifam'][:3] == 'enf' : self._assignPerson(person, quifam = 'enf' , famille = 0)
             del self.famille[noi]
         del self.indiv[noi]
@@ -619,9 +619,9 @@ class Scenario(object):
             if vals.has_key('statmarit'):
                 statmarit = vals['statmarit']
             else: statmarit = 2
-            if self.hasConj(noi) and (noi == vals['noidec']) and not statmarit in (1,5):
+            if self.hasConj(noi) and (noi == vals['noidec']) and not statmarit in (1, 5):
                 statmarit = 1
-            elif not self.hasConj(noi) and (noi == vals['noidec']) and not statmarit in (2,3,4):
+            elif not self.hasConj(noi) and (noi == vals['noidec']) and not statmarit in (2, 3, 4):
                 statmarit = 2
             # si c'est un conjoint, même statmarit que 'vous'
             if vals['quifoy'] == 'conj':
@@ -637,14 +637,14 @@ class Scenario(object):
         out = {'nbF': 0, 'nbG':0, 'nbH':0, 'nbI':0, 'nbR':0, 'nbJ':0, 'nbN':0}
         n = 0
         for vals in self.indiv.itervalues():
-            if (vals['noidec']==noidec) and (vals['quifoy'][:3]=='pac'):
+            if (vals['noidec'] == noidec) and (vals['quifoy'][:3] == 'pac'):
                 n += 1
                 if (self.year - vals['birth'].year >= 18) and vals['inv'] == 0:
                     out['nbJ'] += 1
                 else:
                     if vals['alt'] == 0:
                         out['nbF'] += 1
-                        if vals['inv'] == 1 : out['nbG'] +=1
+                        if vals['inv'] == 1 : out['nbG'] += 1
                     elif vals['alt'] == 1:
                         out['nbH'] += 1
                         if vals['inv'] == 1: out['nbI'] += 1
@@ -654,7 +654,7 @@ class Scenario(object):
     def NbEnfFam(self, noichef):
         n = 0
         for vals in self.indiv.itervalues():
-            if (vals['noichef']==noichef) and (vals['quifam'][:3]=='enf'):
+            if (vals['noichef'] == noichef) and (vals['quifam'][:3] == 'enf'):
                 n += 1
                 vals['quifam'] = 'enf%d' % n
 
@@ -666,7 +666,7 @@ class Scenario(object):
         for noi in xrange(self.nbIndiv()):
             if   noi == 0: quimen = 'pref'
             elif noi == 1: quimen = 'cref'
-            else:  quimen = 'enf%d' % (noi-1)
+            else:  quimen = 'enf%d' % (noi - 1)
             if 'quimen' not in people[noi].keys():
                 people[noi].update({'quimen': quimen,
                                     'noipref': 0})
@@ -717,23 +717,23 @@ class Scenario(object):
 
         for noi, dct in self.indiv.iteritems():
             birth = dct['birth']
-            age = datesim.year- birth.year
-            agem = 12*(datesim.year- birth.year) + datesim.month - birth.month
+            age = datesim.year - birth.year
+            agem = 12 * (datesim.year - birth.year) + datesim.month - birth.month
             noidec = dct['noidec']
             quifoy = datatable.column_by_name.get('quifoy').enum[dct['quifoy']]
             quifam = datatable.column_by_name.get('quifam').enum[dct['quifam']]
             noichef = dct['noichef']
             quimen = datatable.column_by_name.get('quimen').enum[dct['quimen']]
 
-            dct = {'noi': noi*np.ones(nmen),
-                   'age': age*np.ones(nmen),
-                   'agem': agem*np.ones(nmen),
-                   'quimen': quimen*np.ones(nmen),
-                   'quifoy': quifoy*np.ones(nmen),
-                   'quifam': quifam*np.ones(nmen),
+            dct = {'noi': noi * np.ones(nmen),
+                   'age': age * np.ones(nmen),
+                   'agem': agem * np.ones(nmen),
+                   'quimen': quimen * np.ones(nmen),
+                   'quifoy': quifoy * np.ones(nmen),
+                   'quifam': quifam * np.ones(nmen),
                    'idmen': idmen,
-                   'idfoy': idmen*100 + noidec,
-                   'idfam': idmen*100 + noichef}
+                   'idfoy': idmen * 100 + noidec,
+                   'idfam': idmen * 100 + noichef}
 
             datatable.table = concat([datatable.table, DataFrame(dct)], ignore_index = True)
 
@@ -750,7 +750,7 @@ class Scenario(object):
                 if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'):
                     continue
                 if not datatable.index[entity][noi] is None:
-                    datatable.set_value(var, np.ones(nb)*val, entity, noi)
+                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
             del var, val
 
         entity = 'foy'
@@ -758,7 +758,7 @@ class Scenario(object):
         for noi, dct in self.declar.iteritems():
             for var, val in dct.iteritems():
                 if not datatable.index[entity][noi] is None:
-                    datatable.set_value(var, np.ones(nb)*val, entity, noi)
+                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
             del var, val
 
         entity = 'men'
@@ -766,10 +766,10 @@ class Scenario(object):
         for noi, dct in self.menage.iteritems():
             for var, val in dct.iteritems():
                 if not datatable.index[entity][noi] is None:
-                    datatable.set_value(var, np.ones(nb)*val, entity, noi)
+                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
             del var, val
 
-        if nmen>1 and not self.dummy_x_axis:
+        if nmen > 1 and not self.dummy_x_axis:
             if self.maxrev is None:
                 raise Exception('france.Scenario: self.maxrev should not be None')
             maxrev = self.maxrev
@@ -781,6 +781,7 @@ class Scenario(object):
             var = None
             for axe in model.x_axes.itervalues():
                 if axe.name == x_axis:
+
                     datatable.XAXIS = var = axe.col_name
             if var is None:
                 datatable.XAXIS = x_axis
@@ -789,7 +790,7 @@ class Scenario(object):
             vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:
                 entity = 'men'
-                datatable.set_value(var, 0.5*vls, entity, opt = 0)
-                datatable.set_value(var, 0.5*vls, entity, opt = 1)
+                datatable.set_value(var, 0.5 * vls, entity, opt = 0)
+                datatable.set_value(var, 0.5 * vls, entity, opt = 1)
             else:
                 datatable.set_value(var, vls, entity, opt = 0)

@@ -135,7 +135,8 @@ column_by_name = collections.OrderedDict((
                                 u"1000 salariés ou plus",
                                 u"Ne sait pas",
                                 ]))),
-    ('tva_ent', BoolCol(label = u"Entreprise employant le salarié paye de la TVA")),
+    ('tva_ent', BoolCol(label = u"Entreprise employant le salarié paye de la TVA",
+                        default = True)),
 
     ('chpub', EnumCol(label = u"Nature de l'employeur principal",
                       enum = Enum([u"Sans objet",
@@ -254,6 +255,11 @@ column_by_name = collections.OrderedDict((
     ('f3vt', IntCol(entity = 'foy', label = u"Clôture du PEA : entre la 2e et la 5e année", val_type = "monetary")),
     ('f3vu', IntCol(entity = 'foy')),
     ('f3vv', IntCol(entity = 'foy')),
+
+    ('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
+    ('f3sa', IntCol(entity = 'foy')),
+    ('f3sf', IntCol(entity = 'foy')),
+    ('f3sd', IntCol(entity = 'foy')),
 
     ('f3vz', IntCol(entity = 'foy', label = u"Plus-values imposables de cession d’immeubles ou de biens meubles", val_type = "monetary")),  # Revenus 2011
 
