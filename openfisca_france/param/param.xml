@@ -1182,6 +1182,9 @@
               </TAUX>
             </TRANCHE>
           </BAREME>
+          <CODE description="Plafond d'assiette" code="rafp_plaf_assiette" format="percent">
+            <VALUE valeur="0.2" deb="2005-01-01" fin="2014-12-31"/>
+          </CODE>
         </NODE>
         <NODE description="Collectivités locales - Fonction publique hospitalière" code="colloc">
           <BAREME description="Retraites des agents des collectivités locales (taux hors NBI)" code="cnracl1" option="noncontrib">

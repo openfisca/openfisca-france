@@ -1,10 +1,26 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
@@ -16,6 +32,8 @@ from numpy import (logical_not as not_, maximum as max_, minimum as min_,
 
 from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
 from openfisca_core.enumerations import Enum
+
+TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
 
 
 CAT = Enum(['prive_non_cadre',
@@ -100,9 +118,10 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     cad = cadre.inverse()
     etat = public_etat.inverse()
 
-    # TODO: complete this to deal with the fonctionnaire
     brut_nca = nca.calc(sali)
     brut_cad = cad.calc(sali)
+
+    # TODO: complete this to deal with the fonctionnaire
     brut_etat = etat.calc(sali)
 
     salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
@@ -110,9 +129,8 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
 
     supp_familial_traitement = 0  # TODO: dépend de salbrut
     indemnite_residence = 0  # TODO: fix bug
-    prime = 0
-    salbrut += (brut_etat * (type_sal == CAT['public_titulaire_etat'])
-                - prime - supp_familial_traitement - indemnite_residence)
+    salbrut += ((brut_etat * (type_sal == CAT['public_titulaire_etat'])
+                - supp_familial_traitement - indemnite_residence) / (1 + TAUX_DE_PRIME))
                 # TODO: fonctionnaire
 
     return salbrut + hsup
@@ -505,6 +523,30 @@ def _pension_civile(salbrut, type_sal, _P):
     Pension civile
     """
     pass
+
+def _rafp_sal(sal_brut, type_sal, prime, supp_familial_traitement, indemnite_residence, _P):
+    '''
+    Part salariale de la retraite additionelle de la fonction publique
+    TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
+    Note: sal_brut est le traitement indiciaire brut
+    '''
+    tib = sal_brut * (type_sal == CAT['public_titulaire_etat'])
+    plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
+    base_imposable = prime + supp_familial_traitement + indemnite_residence
+    return min_(base_imposable , plaf_ass * tib)
+
+
+def _rafp_pat(rafp_sal):
+    return rafp_sal
+
+
+def _primes(type_sal, sal_brut):
+    '''
+    Calcul des primes pour les fonctionnaries
+    Note: sal_brut est égal au traitement indiciaire brut
+    '''
+    tib = sal_brut * (type_sal == CAT['public_titulaire_etat'])
+    return TAUX_DE_PRIME * sal_brut
 
 
 def _supp_familial_traitement(type_sal, sal_brut, fonc_nbenf, _P):

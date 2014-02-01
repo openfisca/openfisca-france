@@ -120,7 +120,7 @@ prestation_by_name = collections.OrderedDict((
     # Salaires
     ('type_sal', EnumPresta(cs_travail._type_sal, label = u"Catégorie de salariés")),
     ('salbrut', Prestation(cs_travail._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
-    ('prime', Prestation(cs_travail._salbrut, label = u"Primes et indemnités des fonctionnaires")),
+    ('primes', Prestation(cs_travail._primes, label = u"Primes et indemnités des fonctionnaires")),
     ('sal_h_b', Prestation(cs_travail._sal_h_b, label = u"Salaire horaire brut")),
     ('taille_entreprise', EnumPresta(cs_travail._taille_entreprise,
                                     label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
