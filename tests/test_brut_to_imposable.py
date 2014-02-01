@@ -34,7 +34,7 @@ from openfisca_core.simulations import ScenarioSimulation
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
 def test_case_study(year = 2013, verbose = False):
-    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:
+    for type_sal_category in ['prive_non_cadre', 'prive_cadre', 'public_titulaire_etat']:
 
         simulation = ScenarioSimulation()
         simulation.set_config(year = year, reforme = False, nmen = 5, maxrev = 20000, x_axis = 'salbrut')
@@ -73,7 +73,7 @@ def test_case_study(year = 2013, verbose = False):
                 print df_b2i.to_string()
                 print df_i2b.to_string()
 
-            assert test, "difference in %s for " % (var, type_sal_category)
+            assert test, "difference in %s for %s" % (var, type_sal_category)
 
 
 if __name__ == '__main__':
