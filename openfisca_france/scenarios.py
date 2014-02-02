@@ -40,7 +40,6 @@ from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 
 class Scenario(object):
-    dummy_x_axis = False
 
     def __init__(self):
         super(Scenario, self).__init__()
@@ -769,7 +768,7 @@ class Scenario(object):
                     datatable.set_value(var, np.ones(nb) * val, entity, noi)
             del var, val
 
-        if nmen > 1 and not self.dummy_x_axis:
+        if nmen >= 1:
             if self.maxrev is None:
                 raise Exception('france.Scenario: self.maxrev should not be None')
             maxrev = self.maxrev
@@ -779,15 +778,18 @@ class Scenario(object):
             if x_axis is None:
                 raise Exception('france.Scenario: self.x_axis should not be None')
             var = None
+
             for axe in model.x_axes.itervalues():
                 if axe.name == x_axis:
-
                     datatable.XAXIS = var = axe.col_name
+
             if var is None:
                 datatable.XAXIS = x_axis
                 var = x_axis
-
-            vls = np.linspace(0, maxrev, nmen)
+            if nmen == 1:
+                vls = maxrev
+            else:
+                vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:
                 entity = 'men'
                 datatable.set_value(var, 0.5 * vls, entity, opt = 0)
