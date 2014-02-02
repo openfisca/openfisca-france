@@ -170,7 +170,7 @@ def _rstbrut(rsti, csg_rempl, _defaultP):
     rst_reduit = P.reduit.deduc.inverse()
     rstbrut = ((csg_rempl == 1) * rsti + (csg_rempl == 2) * rst_reduit.calc(rsti)
                 + (csg_rempl == 3) * rst_plein.calc(rsti))
-    log.error(csg_rempl)
+    log.info(csg_rempl)
     return rstbrut
 
 
@@ -205,7 +205,7 @@ def _crdsrst(rstbrut, csg_rempl, _P):
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
     crds = scaleBaremes(BaremeDict('crds', _P.crds.rst), plaf_ss)
     isexo = (csg_rempl == 1)
-    return -crds['rst'].calc(rstbrut)*not_(isexo)
+    return -crds['rst'].calc(rstbrut) * not_(isexo)
 
 
 def _rst(rstbrut, csgrstd):

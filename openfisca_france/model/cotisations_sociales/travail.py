@@ -357,13 +357,13 @@ def build_sal(_P):
 #    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix this
     sal['public_non_titulaire'] = sal.pop('contract')
 
-    log.info("Le dictionnaire des barèmes des salariés non cadres du privé  contient %s", sal['prive_non_cadre'].keys())
-    log.info("Le dictionnaire des barèmes des salariés cadres du privé contient %s", sal['prive_cadre'].keys())
+    log.info("Le dictionnaire des barèmes des salariés non cadres du privé  contient : \n %s \n", sal['prive_non_cadre'].keys())
+    log.info("Le dictionnaire des barèmes des salariés cadres du privé contient : \n %s \n", sal['prive_cadre'].keys())
 
 
-    log.info("Le dictionnaire des barèmes des salariés titualires de l'etat contient %s", sal['public_titulaire_etat'].keys())
-    log.info("Le dictionnaire des barèmes des salariés titualires des collectivités locales contient %s", sal['public_titulaire_territoriale'].keys())
-    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient %s", sal['public_non_titulaire'].keys())
+    log.error("Le dictionnaire des barèmes des salariés titulaires de l'etat contient : \n %s \n", sal['public_titulaire_etat'].keys())
+    log.info("Le dictionnaire des barèmes des salariés titulaires des collectivités locales contient : \n %s \n", sal['public_titulaire_territoriale'].keys())
+    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
     return sal
 
 
@@ -541,20 +541,21 @@ def _pension_civile(salbrut, type_sal, _P):
     """
     pass
 
+
+def _rafp_pat(rafp_sal):
+    return rafp_sal
+
+
 def _rafp_sal(salbrut, type_sal, prime, supp_familial_traitement, indemnite_residence, _P):
     '''
     Part salariale de la retraite additionelle de la fonction publique
     TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-    Note: sal_brut est le traitement indiciaire brut
+    Note: sal_brut est le traitement indiciaire brut pour les fonctionnaires
     '''
     tib = salbrut * (type_sal == CAT['public_titulaire_etat'])
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = prime + supp_familial_traitement + indemnite_residence
     return min_(base_imposable , plaf_ass * tib)
-
-
-def _rafp_pat(rafp_sal):
-    return rafp_sal
 
 
 def _primes(type_sal, salbrut):
