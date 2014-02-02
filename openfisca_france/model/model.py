@@ -84,7 +84,7 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
     # Reproduction des identifiants
     ############################################################
-    # TODO: find a way of having only 'ind' if num_table =  = 1
+    # TODO: find a way of having only 'ind' if num_table == 1
     ('noi_ind', Prestation(_noi)),
     ('idmen_ind', Prestation(_men)),
     ('idmen_foy', EnumPresta(_men, entity = "foy")),
