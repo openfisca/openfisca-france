@@ -768,9 +768,7 @@ class Scenario(object):
                     datatable.set_value(var, np.ones(nb) * val, entity, noi)
             del var, val
 
-        if nmen >= 1:
-            if self.maxrev is None:
-                raise Exception('france.Scenario: self.maxrev should not be None')
+        if nmen > 1:
             maxrev = self.maxrev
             assert maxrev is not None
             datatable.MAXREV = maxrev
@@ -786,10 +784,7 @@ class Scenario(object):
             if var is None:
                 datatable.XAXIS = x_axis
                 var = x_axis
-            if nmen == 1:
-                vls = maxrev
-            else:
-                vls = np.linspace(0, maxrev, nmen)
+            vls = np.linspace(0, maxrev, nmen)
             if same_rev_couple is True:
                 entity = 'men'
                 datatable.set_value(var, 0.5 * vls, entity, opt = 0)
