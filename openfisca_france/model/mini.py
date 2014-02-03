@@ -413,7 +413,8 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     '''
     P = _P.minim.rmi
     RSA = max_(0,rsa_socle + P.pente*(ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
-    rsa = (RSA>=P.rsa_nv)*RSA
+    print "rsa activite"
+    rsa = RSA * (RSA>=P.rsa_nv * 12)
     return rsa
 
 
@@ -513,6 +514,7 @@ def _rsa_act(rsa, rmi):
     '''
     Calcule le montant du RSA activité
     '''
+    
     res = max_(rsa - rmi, 0)
     return res
 

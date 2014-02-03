@@ -583,7 +583,7 @@ def _primes(type_sal, salbrut):
     Note: sal_brut est égal au traitement indiciaire brut
     '''
     tib = salbrut * (type_sal == CAT['public_titulaire_etat'])
-    return TAUX_DE_PRIME * salbrut
+    return TAUX_DE_PRIME * tib
 
 
 def _supp_familial_traitement(type_sal, salbrut, fonc_nbenf, _P):

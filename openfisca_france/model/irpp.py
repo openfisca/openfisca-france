@@ -20,6 +20,9 @@ PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
 ALL = [x[1] for x in QUIFOY]
 
+import logging
+log = logging.getLogger(__name__)
+
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
@@ -286,6 +289,10 @@ def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns):
     ''' Revenus Categoriels '''
 #    AUTRE = TSPR + RVCM + RFON
+    
+    for var in [rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns]:
+        #log.error(var.__name__)
+        log.error(var)
     return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns
 
 ###############################################################################
@@ -318,6 +325,7 @@ def _ir_brut(nbptr, rni, _P):
     'foy'
     '''
     bar = _P.ir.bareme
+
     bar.t_x()
 #    bar._linear_taux_moy = True
     return nbptr * bar.calc(rni / nbptr)  # TODO: partir d'ici, petite différence avec Matlab REMOVE
@@ -1027,7 +1035,7 @@ def _ppe_rev(sal, hsup, rpns, _P):
     # Revenu d'activité non salarié
     rev_ns = min_(0, rpns) / P.abatns + max_(0, rpns) * P.abatns
     return rev_sa + rev_ns
-
+    
 def _ppe_coef_tp(ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, _P):
     '''
     PPE: coefficient de conversion temps partiel
@@ -1048,6 +1056,9 @@ def _ppe_elig_i(ppe_rev, ppe_coef_tp, _P):
     eligibilité individuelle à la ppe
     '''
     P = _P.ir.credits_impot.ppe
+    print "loul"
+    print ppe_rev
+    print  (ppe_rev >= P.seuil1) & (ppe_coef_tp != 0)
     return (ppe_rev >= P.seuil1) & (ppe_coef_tp != 0)
 
 def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, nb_pac, marpac, celdiv, veuf, caseT, caseL, nbH, _P, _option = {'ppe_elig_i': ALL, 'ppe_base': ALL, 'ppe_rev': ALL, 'ppe_coef_tp': ALL}):
@@ -1085,6 +1096,10 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
                            ((base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base1) * P.taux2)
 
     # calcul des primes individuelles.
+    print "ici"
+    print ppe_bar1
+    print basev
+    print eliv
     ppev = eliv * ppe_bar1(basev)
     ppec = elic * ppe_bar1(basec)
     ppe1 = eli1 * ppe_bar2(base1)
@@ -1104,13 +1119,12 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
 
     def coef(coef_tp):
         return (coef_tp <= 0.5) * coef_tp * 1.45 + (coef_tp > 0.5) * (0.55 * coef_tp + 0.45)
-
     ppe_vous = ppe_elig * (ppev * coef(coef_tpv) + ppe_monact_vous)
     ppe_conj = ppe_elig * (ppec * coef(coef_tpc) + ppe_monact_conj)
     ppe_pac1 = ppe_elig * (ppe1 * coef(coef_tp1))
     ppe_pac2 = ppe_elig * (ppe2 * coef(coef_tp2))
     ppe_pac3 = ppe_elig * (ppe3 * coef(coef_tp3))
-
+    #print ppe_vous, ppe_conj, ppe_pac1, ppe_pac2, ppe_pac3, maj_pac
     ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 + maj_pac
     ppe_tot = (ppe_tot != 0) * max_(P.versmin, ppe_tot)
     return ppe_tot
