@@ -30,7 +30,7 @@ import logging
 from numpy import (logical_not as not_, maximum as max_, minimum as min_,
                    zeros)
 
-from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
+from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
 from openfisca_core.enumerations import Enum
 
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
@@ -104,34 +104,58 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
+    log.info("Le dictionnaire des barèmes des cotisations salariés des titualires de l'Etat contien : \n %s", salarie['fonc']["etat"])
+
+    # Salariés du privé
+
     noncadre = combineBaremes(salarie['noncadre'])
     cadre = combineBaremes(salarie['cadre'])
-    public_etat = combineBaremes(salarie['fonc']["etat"])
-#    public_colloc = combineBaremes(salarie['fonc']["colloc"]) TODO:
 
     # On ajoute la CSG deductible
     noncadre.addBareme(csg['act']['deduc'])
     cadre.addBareme(csg['act']['deduc'])
-    public_etat.addBareme(csg['act']['deduc'])
 
     nca = noncadre.inverse()
     cad = cadre.inverse()
-    etat = public_etat.inverse()
-
     brut_nca = nca.calc(sali)
     brut_cad = cad.calc(sali)
-
-    # TODO: complete this to deal with the fonctionnaire
-    brut_etat = etat.calc(sali)
     salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
     salbrut += brut_cad * (type_sal == CAT['prive_cadre'])
 
+    # public etat
+    # TODO: modifier la contribution exceptionelle de solidarité
+    # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
+    # et en tenant compte des éléments de l'assiette
+    salarie['fonc']["etat"].update(['fonc']['commun'])
+
+    public_etat = salarie['fonc']["etat"]['pension']
+#    public_colloc = combineBaremes(salarie['fonc']["colloc"]) TODO:
+
+    # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
+    # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
+    bareme_csg_titulaire_etat = (csg['act']['deduc']).multTaux(1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
+    public_etat.addBareme(bareme_csg_titulaire_etat)
+    bareme_prime = Bareme(name = "taux de prime")
+    bareme_prime.addTranche(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
+    public_etat.addBareme(bareme_prime)
+
+    etat = public_etat.inverse()
+
+    # TODO: complete this to deal with the fonctionnaire
     supp_familial_traitement = 0  # TODO: dépend de salbrut
     indemnite_residence = 0  # TODO: fix bug
-    salbrut += (type_sal == CAT['public_titulaire_etat']) * ((brut_etat
-                - supp_familial_traitement - indemnite_residence) / (1 + TAUX_DE_PRIME))
-                # TODO: fonctionnaire
 
+#     print 'sali', sali / 12
+#     brut_etat = etat.calc(sali)
+#     print 'impot', public_etat.calc(brut_etat) / 12
+#     print 'brut_etat', brut_etat / 12
+#     salbrut_etat = (brut_etat)
+#                 # TODO: fonctionnaire
+#     print 'salbrut_etat', salbrut_etat / 12
+    salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
+
+# #        <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement" color = "0,99,143"/>
+# #        <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence" color = "0,99,143"/>
     return salbrut + hsup
 
 
@@ -336,31 +360,26 @@ def build_sal(_P):
     # Renaiming
     sal['prive_non_cadre'] = sal.pop('noncadre')
     sal['prive_cadre'] = sal.pop('cadre')
+    sal['public_titulaire_etat'] = sal['fonc']['etat']
+    sal['public_titulaire_territoriale'] = sal['fonc']['colloc']
+    #    sal['public_titulaire_hospitalière'] = sal['fonc']['colloc'] TODO: fix this
+    sal['public_non_titulaire'] = sal['fonc']['contract']
 
-    sal['etat_t'] = sal['fonc']['etat']
-    sal['colloc_t'] = sal['fonc']['colloc']
-    sal['contract'] = sal['fonc']['contract']
+    del sal['public_titulaire_etat']['rafp']
 
-    sal['contract'].update(sal['commun'])
-    del sal['contract']['arrco']
-    del sal['contract']['assedic']
-    sal['contract']['solidarite'] = sal['fonc']['commun']['solidarite']
+    sal['public_non_titulaire'].update(sal['commun'])
+    del sal['public_non_titulaire']['arrco']
+    del sal['public_non_titulaire']['assedic']
+    sal['public_non_titulaire']['solidarite'] = sal['fonc']['commun']['solidarite']
 
+    # Cleaning
+    del sal['commun']
     del sal['fonc']['etat']
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
-    del sal['commun']
-
-    # Renaiming
-    sal['public_titulaire_etat'] = sal.pop('etat_t')
-    sal['public_titulaire_territoriale'] = sal.pop('colloc_t')
-#    pat['public_titulaire_hospitalière'] =  pat.pop('colloc') TODO: fix this
-    sal['public_non_titulaire'] = sal.pop('contract')
 
     log.info("Le dictionnaire des barèmes des salariés non cadres du privé  contient : \n %s \n", sal['prive_non_cadre'].keys())
     log.info("Le dictionnaire des barèmes des salariés cadres du privé contient : \n %s \n", sal['prive_cadre'].keys())
-
-
     log.error("Le dictionnaire des barèmes des salariés titulaires de l'etat contient : \n %s \n", sal['public_titulaire_etat'].keys())
     log.info("Le dictionnaire des barèmes des salariés titulaires des collectivités locales contient : \n %s \n", sal['public_titulaire_territoriale'].keys())
     log.info("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
@@ -421,13 +440,13 @@ def _cotsal(cotsal_contrib, cotsal_noncontrib):
     return cotsal_contrib + cotsal_noncontrib
 
 
-def _csgsald(salbrut, hsup, _P):
+def _csgsald(salbrut, primes, hsup, _P):
     '''
     CSG deductible sur les salaires
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
     csg = scaleBaremes(_P.csg.act.deduc, plaf_ss)
-    return -csg.calc(salbrut - hsup)
+    return -csg.calc(salbrut + primes - hsup)
 
 
 def _csgsali(salbrut, hsup, _P):
