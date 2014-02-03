@@ -39,9 +39,10 @@ def test_case_study(year = 2013, verbose = False):
 
         simulation = ScenarioSimulation()
         maxrev = 24000
-        simulation.set_config(year = year, reforme = False, nmen = 1, maxrev = maxrev, x_axis = 'salbrut')
+        simulation.set_config(year = year, reforme = False, nmen = 1, x_axis = 'salbrut')
         # Add husband/wife on the same tax sheet (foyer).
     #    simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
+        simulation.scenario.indiv[0]['salbrut'] = maxrev
         simulation.scenario.indiv[0]['type_sal'] = CAT[type_sal_category]
         if type_sal_category == 'public_titulaire_etat':
             from openfisca_france.model.cotisations_sociales.travail import TAUX_DE_PRIME

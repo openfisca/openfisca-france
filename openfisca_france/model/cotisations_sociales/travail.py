@@ -126,7 +126,7 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     # TODO: modifier la contribution exceptionelle de solidarité
     # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
     # et en tenant compte des éléments de l'assiette
-    salarie['fonc']["etat"].update(['fonc']['commun'])
+# TODO:    salarie['fonc']["etat"].update(['fonc']['commun'])
 
     public_etat = salarie['fonc']["etat"]['pension']
 #    public_colloc = combineBaremes(salarie['fonc']["colloc"]) TODO:
@@ -146,10 +146,10 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     indemnite_residence = 0  # TODO: fix bug
 
 #     print 'sali', sali / 12
-#     brut_etat = etat.calc(sali)
+    brut_etat = etat.calc(sali)
 #     print 'impot', public_etat.calc(brut_etat) / 12
 #     print 'brut_etat', brut_etat / 12
-#     salbrut_etat = (brut_etat)
+    salbrut_etat = (brut_etat)
 #                 # TODO: fonctionnaire
 #     print 'salbrut_etat', salbrut_etat / 12
     salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
