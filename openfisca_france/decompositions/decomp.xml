@@ -1,4 +1,4 @@
-<NODE desc="Revenu disponible" shortname="Rev. disp." code="revdisp" color="0,0,255" typevar='2' >
+<NODE desc="Revenu disponible" shortname="Rev. disp." code="revdisp" color="0,0,255" typevar='2' > # TODO: missing indemnite_residence and sft
   <NODE desc="Revenu du travail" shortname="Rev. travail" code="rev_trav" color = "0,155,204">
     <NODE desc="Salaires nets" shortname="Sal. nets" code="salnet" color = "0,138,201">
       <NODE desc="Salaires imposables" shortname="Sal. impos." code="sal" color= "0,115,170">
