@@ -378,7 +378,7 @@ def _forf_log(so, rmi_nbp, _P):
              (rmi_nbp>=3)*FL.taux3 )
     return 12*(tx_fl*P.rmi.rmi)
 
-def _rsa_socle(forf_log, age , nb_par, rmi_nbp, ra_rsa, br_rmi, _P, _option = {'age' : [CHEF, PART]}):
+def _rsa_socle(age, nb_par, rmi_nbp, _P, _option = {'age' : [CHEF, PART]}):
     '''
     Rsa socle / Rmi
     'fam'
@@ -399,7 +399,7 @@ def _rsa_socle(forf_log, age , nb_par, rmi_nbp, ra_rsa, br_rmi, _P, _option = {'
 
 def _rmi(rsa_socle, forf_log, br_rmi):
     '''
-    Cacule le montant du RMI
+    Cacule le montant du RMI/ Revenu de solidarité active - socle
     'fam'
     '''
     rmi = max_(0, rsa_socle  - forf_log - br_rmi)
@@ -413,7 +413,6 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     '''
     P = _P.minim.rmi
     RSA = max_(0,rsa_socle + P.pente*(ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
-    print "rsa activite"
     rsa = RSA * (RSA>=P.rsa_nv * 12)
     return rsa
 
@@ -514,17 +513,18 @@ def _rsa_act(rsa, rmi):
     '''
     Calcule le montant du RSA activité
     '''
-    
     res = max_(rsa - rmi, 0)
-    return res
+    return res 
 
-def _rsa_act_i(rsa_act):
+def _rsa_act_i(rsa_act, concub, maries, quifam):
     '''
     Calcule le montant du RSA activité individuel. Utile pour la deduction de la ppe.
 
     Note: le partage en moitié est un point de législation, pas un choix arbitraire
     '''
-    return rsa_act/2
+    conj = concub | maries | (quifam == 1)
+    # TODO: mettre les conjoints (concubins ou mariés) à 1
+    return rsa_act/( 1 + conj)
 
 def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds*rsa_act

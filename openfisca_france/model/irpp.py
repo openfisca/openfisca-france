@@ -1056,9 +1056,6 @@ def _ppe_elig_i(ppe_rev, ppe_coef_tp, _P):
     eligibilité individuelle à la ppe
     '''
     P = _P.ir.credits_impot.ppe
-    print "loul"
-    print ppe_rev
-    print  (ppe_rev >= P.seuil1) & (ppe_coef_tp != 0)
     return (ppe_rev >= P.seuil1) & (ppe_coef_tp != 0)
 
 def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, nb_pac, marpac, celdiv, veuf, caseT, caseL, nbH, _P, _option = {'ppe_elig_i': ALL, 'ppe_base': ALL, 'ppe_rev': ALL, 'ppe_coef_tp': ALL}):
@@ -1096,10 +1093,7 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
                            ((base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base1) * P.taux2)
 
     # calcul des primes individuelles.
-    print "ici"
-    print ppe_bar1
-    print basev
-    print eliv
+
     ppev = eliv * ppe_bar1(basev)
     ppec = elic * ppe_bar1(basec)
     ppe1 = eli1 * ppe_bar2(base1)
@@ -1127,6 +1121,7 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     #print ppe_vous, ppe_conj, ppe_pac1, ppe_pac2, ppe_pac3, maj_pac
     ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 + maj_pac
     ppe_tot = (ppe_tot != 0) * max_(P.versmin, ppe_tot)
+
     return ppe_tot
 
 def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]}):
@@ -1136,5 +1131,6 @@ def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]}):
 #   On retranche le RSA activité de la PPE
 #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
     ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
+    print "rsa", rsa_act_i[VOUS]
     return ppe
 
