@@ -669,7 +669,7 @@ prestation_by_name = collections.OrderedDict((
     ('rev_cap', Prestation(cm._rev_cap)),
     ('psoc', Prestation(cm._psoc)),
     ('pfam', Prestation(cm._pfam, label = u"Prestations familiales")),
-    ('mini', Prestation(cm._mini)),
+    ('mini', Prestation(cm._mini, entity = 'fam')),
     ('logt', Prestation(cm._logt, label = u"Allocation logement")),
     ('impo', Prestation(cm._impo, label = u"Impôt sur le revenu")),
     ('crds', Prestation(cm._crds, label = u"Contribution au remboursement de la dette sociale")),

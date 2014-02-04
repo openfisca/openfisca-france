@@ -133,24 +133,30 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
         couple = marpac
     else:
         couple = maries
-
+        
+    #elig1 = ( (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART]) )
+    #elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple
+    #elig  = elig1 | elig2
+    #montant_max        = elig1*P.aspa.montant_seul + elig2*P.aspa.montant_couple
+    #ressources         = elig*(br_mv + montant_max)
+    #plafond_ressources = elig1*(P.aspa.plaf_seul*not_(couple) + P.aspa.plaf_couple*couple) + elig2*P.aspa.plaf_couple
+    #depassement        = ressources - plafond_ressources
+    
     P = _P.minim
-    elig1 = ( (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART]) )
-    elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple
-    elig  = elig1 | elig2
+    elig1 = (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART])
+    elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple # couple d'allocataire
 
-    montant_max        = elig1*P.aspa.montant_seul + elig2*P.aspa.montant_couple
-    ressources         = elig*(br_mv + montant_max)
-    plafond_ressources = elig1*(P.aspa.plaf_seul*not_(couple) + P.aspa.plaf_couple*couple) + elig2*P.aspa.plaf_couple
-    depassement        = ressources - plafond_ressources
+    diff_plaf = P.aspa.plaf_couple - P.aspa.plaf_seul
 
-    montant_servi_aspa   = max_(montant_max - depassement, 0)/12
+    plafond_ressources = (elig1*not_(couple)) *P.aspa.plaf_seul + (elig2 | elig1*couple)*P.aspa.plaf_couple 
+    montant_max        = (elig1*not_(couple))*P.aspa.montant_seul + elig2*P.aspa.montant_couple +  (elig1*couple)*((br_mv <= diff_plaf)*(P.aspa.montant_seul + br_mv) + (br_mv > diff_plaf)*P.aspa.montant_couple)
+    montant_servi_aspa   = max_(montant_max - br_mv, 0)*(br_mv <= plafond_ressources)
 
     # Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
 
-    return 12*(aspa_elig[CHEF]+aspa_elig[PART])*montant_servi_aspa*(elig1 + elig2/2) # annualisé
+    return (aspa_elig[CHEF]+aspa_elig[PART])*montant_servi_aspa*(elig1 + elig2/2) # annuel
 
 def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'asi_elig': [CHEF, PART]}):
     '''
