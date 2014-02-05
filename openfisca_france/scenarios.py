@@ -26,7 +26,7 @@
 from __future__ import division
 
 import collections
-from datetime import datetime
+from datetime import date, datetime
 import itertools
 import pickle
 import urllib2
@@ -50,7 +50,7 @@ class Scenario(object):
         # indiv est un dict de dict. La clé est le noi de l'individu
         # Exemple :
         # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
-        #     'birth': datetime.date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
+        #     'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
         self.declar = {}
         # declar est un dict de dict. La clé est le noidec.
         self.famille = {}
@@ -406,8 +406,9 @@ class Scenario(object):
             )(response.read(), state = state)
         if error is not None:
             return data, dict(legislation_url = error)
-            dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
-            compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+        datesim = date(data['year'], 1, 1)
+        dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+        compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
 
         attributes = dict(
             compact_legislation = compact_legislation,
