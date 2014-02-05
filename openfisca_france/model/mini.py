@@ -134,23 +134,39 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     else:
         couple = maries
 
+    # elig1 = ( (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART]) )
+    # elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple
+    # elig  = elig1 | elig2
+    # montant_max        = elig1*P.aspa.montant_seul + elig2*P.aspa.montant_couple
+    # ressources         = elig*(br_mv + montant_max)
+    # plafond_ressources = elig1*(P.aspa.plaf_seul*not_(couple) + P.aspa.plaf_couple*couple) + elig2*P.aspa.plaf_couple
+    # depassement        = ressources - plafond_ressources
+
     P = _P.minim
+
     elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
-    elig2 = (aspa_elig[CHEF] & aspa_elig[PART]) * couple
-    elig = elig1 | elig2
+    elig2 = (aspa_elig[CHEF] & aspa_elig[PART]) * couple  # couple d'allocataire
+#     elig = elig1 | elig2
+#
+#     montant_max = elig1 * P.aspa.montant_seul + elig2 * P.aspa.montant_couple
+#     ressources = elig * (br_mv + montant_max)
+#     plafond_ressources = elig1 * (P.aspa.plaf_seul * not_(couple) + P.aspa.plaf_couple * couple) + elig2 * P.aspa.plaf_couple
+#     depassement = ressources - plafond_ressources
+#
+#     montant_servi_aspa = max_(montant_max - depassement, 0) / 12
 
-    montant_max = elig1 * P.aspa.montant_seul + elig2 * P.aspa.montant_couple
-    ressources = elig * (br_mv + montant_max)
-    plafond_ressources = elig1 * (P.aspa.plaf_seul * not_(couple) + P.aspa.plaf_couple * couple) + elig2 * P.aspa.plaf_couple
-    depassement = ressources - plafond_ressources
+    diff_plaf = P.aspa.plaf_couple - P.aspa.plaf_seul
 
-    montant_servi_aspa = max_(montant_max - depassement, 0) / 12
+    plafond_ressources = (elig1 * not_(couple)) * P.aspa.plaf_seul + (elig2 | elig1 * couple) * P.aspa.plaf_couple
+    montant_max = (elig1 * not_(couple)) * P.aspa.montant_seul + elig2 * P.aspa.montant_couple + (elig1 * couple) * ((br_mv <= diff_plaf) * (P.aspa.montant_seul + br_mv) + (br_mv > diff_plaf) * P.aspa.montant_couple)
+    montant_servi_aspa = max_(montant_max - br_mv, 0) * (br_mv <= plafond_ressources) / 12
 
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
 
     return 12 * (aspa_elig[CHEF] + aspa_elig[PART]) * montant_servi_aspa * (elig1 + elig2 / 2)  # annualisé
+
 
 def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'asi_elig': [CHEF, PART]}):
     '''
@@ -378,7 +394,7 @@ def _forf_log(so, rmi_nbp, _P):
              (rmi_nbp >= 3) * FL.taux3)
     return 12 * (tx_fl * P.rmi.rmi)
 
-def _rsa_socle(forf_log, age , nb_par, rmi_nbp, ra_rsa, br_rmi, _P, _option = {'age' : [CHEF, PART]}):
+def _rsa_socle(age, nb_par, rmi_nbp, _P, _option = {'age' : [CHEF, PART]}):
     '''
     Rsa socle / Rmi
     'fam'
@@ -399,7 +415,7 @@ def _rsa_socle(forf_log, age , nb_par, rmi_nbp, ra_rsa, br_rmi, _P, _option = {'
 
 def _rmi(rsa_socle, forf_log, br_rmi):
     '''
-    Cacule le montant du RMI
+    Cacule le montant du RMI/ Revenu de solidarité active - socle
     'fam'
     '''
     rmi = max_(0, rsa_socle - forf_log - br_rmi)
@@ -413,7 +429,7 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     '''
     P = _P.minim.rmi
     RSA = max_(0, rsa_socle + P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
-    rsa = (RSA >= P.rsa_nv) * RSA
+    rsa = RSA * (RSA >= 12 * P.rsa_nv)
     return rsa
 
 
@@ -516,13 +532,15 @@ def _rsa_act(rsa, rmi):
     res = max_(rsa - rmi, 0)
     return res
 
-def _rsa_act_i(rsa_act):
+def _rsa_act_i(rsa_act, concub, maries, quifam):
     '''
     Calcule le montant du RSA activité individuel. Utile pour la deduction de la ppe.
 
     Note: le partage en moitié est un point de législation, pas un choix arbitraire
     '''
-    return rsa_act / 2
+    conj = concub | maries | (quifam == 1)
+    # TODO: mettre les conjoints (concubins ou mariés) à 1
+    return rsa_act / (1 + conj)
 
 def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds * rsa_act
@@ -548,7 +566,6 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
 #    Le montant forfaitaire majoré peut être accordé pendant 12 mois, continus ou discontinus, au cours d’une période de 18 mois suivant l’événement.
 #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé jusqu'à ses 3 ans.
 #
-
     benjamin = age_en_mois_benjamin(agem)
     enceinte = (benjamin < 0) * (benjamin > -6)
     # TODO quel mois mettre ?

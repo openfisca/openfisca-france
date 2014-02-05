@@ -196,7 +196,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxEffectif = maxNonInv*not_(isinvalid) + P.max3*isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
 
-    elif _P.datesim.year in (2009, 2010, 2011, 2012, 2013):  # TODO: Check 2011, 2012 and 2013
+    elif _P.datesim.year in (2009, 2010, 2011, 2012, 2013):  # TODO: Check 2011, 2012 and 2013"
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1*not_(annee1) + P.max1_1ereAnnee*annee1

@@ -20,6 +20,9 @@ PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
 ALL = [x[1] for x in QUIFOY]
 
+import logging
+log = logging.getLogger(__name__)
+
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
@@ -286,6 +289,10 @@ def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns):
     ''' Revenus Categoriels '''
 #    AUTRE = TSPR + RVCM + RFON
+
+    for var in [rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns]:
+        # log.error(var.__name__)
+        log.error(var)
     return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns
 
 ###############################################################################
@@ -318,6 +325,7 @@ def _ir_brut(nbptr, rni, _P):
     'foy'
     '''
     bar = _P.ir.bareme
+
     bar.t_x()
 #    bar._linear_taux_moy = True
     return nbptr * bar.calc(rni / nbptr)  # TODO: partir d'ici, petite différence avec Matlab REMOVE
@@ -391,6 +399,7 @@ def _ir_plaf_qf(ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf,
     # IP2 = IP1 - conditionGuadMarReu*min( postplafGuadMarReu,.3*IP1)  - conditionGuyane*min(postplafGuyane,.4*IP1)
 
     # Récapitulatif
+
     return condition62a * IP0 + condition62b * IP1  # IP2 si DOM
 
 def _avantage_qf(ir_ss_qf, ir_plaf_qf):
@@ -469,7 +478,7 @@ def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3s
 
 def _iai(iaidrdi, plus_values, cont_rev_loc, teicaa):
     '''
-    impôt avant imputation
+    impôt avant imputation de l'irpp
     '''
     return iaidrdi + plus_values + cont_rev_loc + teicaa
 
@@ -1045,7 +1054,8 @@ def _ppe_base(ppe_rev, ppe_coef_tp, ppe_coef, _option = {'ppe_coef':ALL}):
 
 def _ppe_elig_i(ppe_rev, ppe_coef_tp, _P):
     '''
-    eligibilité individuelle à la ppe
+    eligibilité individuelle à la ppe 
+    Attention : condition de plafonnement introduite dans ppe brute
     '''
     P = _P.ir.credits_impot.ppe
     return (ppe_rev >= P.seuil1) & (ppe_coef_tp != 0)
@@ -1102,6 +1112,8 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
         (ligne3 & (basevi >= P.seuil1) & (basev <= P.seuil3)) * ((min_(nb_pac_ppe, 1) * 2 * P.pac + max_(nb_pac_ppe - 1, 0) * P.pac) + (nb_pac_ppe == 0) * (min_(nbH, 2) * P.pac + max_(nbH - 2, 0) * P.pac * 0.5)) +
         (ligne3 & (basev > P.seuil3) & (basev <= P.seuil5)) * P.pac * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 
+    plaf_ppe = P.seuil3 * ((celdiv | veuf) & (nb_pac_ppe == 0) | marpac & (ppev > P.seuil1) & (ppec > P.seuil1)) + P.seuil4 * (marpac & ((ppev > P.seuil1) | (ppec > P.seuil1)) | ligne3)
+
     def coef(coef_tp):
         return (coef_tp <= 0.5) * coef_tp * 1.45 + (coef_tp > 0.5) * (0.55 * coef_tp + 0.45)
 
@@ -1113,6 +1125,8 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
 
     ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 + maj_pac
     ppe_tot = (ppe_tot != 0) * max_(P.versmin, ppe_tot)
+    ppe_tot = ppe_tot * (ppe_tot <= plaf_ppe)
+
     return ppe_tot
 
 def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]}):
