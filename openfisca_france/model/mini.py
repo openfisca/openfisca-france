@@ -143,7 +143,7 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     #depassement        = ressources - plafond_ressources
     
     P = _P.minim
-<<<<<<< HEAD
+
     elig1 = (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART])
     elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple # couple d'allocataire
 
@@ -152,28 +152,13 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     plafond_ressources = (elig1*not_(couple)) *P.aspa.plaf_seul + (elig2 | elig1*couple)*P.aspa.plaf_couple 
     montant_max        = (elig1*not_(couple))*P.aspa.montant_seul + elig2*P.aspa.montant_couple +  (elig1*couple)*((br_mv <= diff_plaf)*(P.aspa.montant_seul + br_mv) + (br_mv > diff_plaf)*P.aspa.montant_couple)
     montant_servi_aspa   = max_(montant_max - br_mv, 0)*(br_mv <= plafond_ressources)
-=======
-    elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
-    elig2 = (aspa_elig[CHEF] & aspa_elig[PART]) * couple
-    elig = elig1 | elig2
-
-    montant_max = elig1 * P.aspa.montant_seul + elig2 * P.aspa.montant_couple
-    ressources = elig * (br_mv + montant_max)
-    plafond_ressources = elig1 * (P.aspa.plaf_seul * not_(couple) + P.aspa.plaf_couple * couple) + elig2 * P.aspa.plaf_couple
-    depassement = ressources - plafond_ressources
-
-    montant_servi_aspa = max_(montant_max - depassement, 0) / 12
->>>>>>> Cotisation sociales almost done
 
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
 
-<<<<<<< HEAD
     return (aspa_elig[CHEF]+aspa_elig[PART])*montant_servi_aspa*(elig1 + elig2/2) # annuel
-=======
-    return 12 * (aspa_elig[CHEF] + aspa_elig[PART]) * montant_servi_aspa * (elig1 + elig2 / 2)  # annualisé
->>>>>>> Cotisation sociales almost done
+
 
 def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'asi_elig': [CHEF, PART]}):
     '''
@@ -435,13 +420,8 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     'fam'
     '''
     P = _P.minim.rmi
-<<<<<<< HEAD
     RSA = max_(0,rsa_socle + P.pente*(ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
     rsa = RSA * (RSA>=P.rsa_nv * 12)
-=======
-    RSA = max_(0, rsa_socle + P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
-    rsa = (RSA >= P.rsa_nv) * RSA
->>>>>>> Cotisation sociales almost done
     return rsa
 
 
@@ -541,6 +521,7 @@ def _rsa_act(rsa, rmi):
     '''
     Calcule le montant du RSA activité
     '''
+    
     res = max_(rsa - rmi, 0)
     return res 
 
