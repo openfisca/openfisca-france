@@ -150,10 +150,17 @@ prestation_by_name = collections.OrderedDict((
     ('csgsali', Prestation(cs_travail._csgsali, label = u"CSG imposables sur les salaires")),
     ('crdssal', Prestation(cs_travail._crdssal, label = u"CRDS sur les salaires")),
     ('sal', Prestation(cs_travail._sal, label = u"Salaires imposables")),
-    ('sal_net', Prestation(cs_travail._sal_net, label = u"Salaires nets d'après définition INSEE")),
+    ('salnet', Prestation(cs_travail._salnet, label = u"Salaires nets d'après définition INSEE")),
+
     # Fonctionnaires
-#    ('indemnite_residence', Prestation(cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
-#    ('supp_familial_traitement', Prestation(cs_travail._supp_familial_traitement, label = u"Supplément familial de traitement (fonction publique)")),
+    ('indemnite_residence', Prestation(cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
+    ('supp_familial_traitement', Prestation(cs_travail._supp_familial_traitement, label = u"Supplément familial de traitement (fonction publique)")),
+    ('cot_pat_pension_civile', Prestation(cs_travail._cot_pat_pension_civile, label = u"Cotisation patronale pension civile")),
+    ('cot_sal_pension_civile', Prestation(cs_travail._cot_sal_pension_civile, label = u"Cotisation salariale pension civile")),
+    ('cot_pat_rafp', Prestation(cs_travail._cot_pat_rafp, label = u"Cotisation patronale RAFP")),
+    ('cot_sal_rafp', Prestation(cs_travail._cot_sal_rafp, label = u"Cotisation salariale RAFP")),
+
+
     # Allocations chômage
     ('chobrut', Prestation(cs_remplac._chobrut, label = u"Allocations chômage brutes")),
     ('csgchod', Prestation(cs_remplac._csgchod, label = u"CSG déductible sur les allocations chômage")),
@@ -315,7 +322,7 @@ prestation_by_name = collections.OrderedDict((
     ('iai', Prestation(ir._iai, entity = 'foy')),
     ('cehr', Prestation(ir._cehr, entity = 'foy')),
     ('cesthra', Prestation(ir._cesthra, entity = 'foy')),
-    ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),), # TODO: Check - de 2000euros
+    ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
 
 
     # Prime pour l'emploi

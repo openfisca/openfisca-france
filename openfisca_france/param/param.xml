@@ -1105,7 +1105,7 @@
       </NODE>
       <NODE description="Spécifiques à la fonction publique" code="fonc">
         <NODE description="Commune à toutes les fonctions publiques" code="commun">
-          <BAREME description="Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)" code="solidarite" option="noncontrib">
+          <BAREME description="Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)" code="solidarite" option="noncontrib"> # TODO: c'est une contribution donc à mettre avec la CSG/CRDS
             <TRANCHE code="tranche0">
               <SEUIL>
                 <VALUE valeur="0" deb="1983-01-01" fin="2014-12-31"/>
@@ -3574,45 +3574,37 @@
 	      <VALUE valeur="0.00" deb="2001-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	 </NODE>
-	 <NODE description="Indemnité de résidence : plancher" code="min">
-	    <CODE description="Indemnité de résidence zone 1 : plancher " code="zone1" format="float">
-	      <VALUE valeur="43.48" deb="2013-01-01" fin="2014-12-31"/>
-	  	</CODE>
-	  	<CODE description="Indemnité de résidence zone 2 : plancher " code="zone2" format="float">
-	      <VALUE valeur="14.49" deb="2013-01-01" fin="2014-12-31"/>
-	  	</CODE>
-	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
-	      <VALUE valeur="0.0" deb="2013-01-01" fin="2013-12-31"/>
-	  	</CODE>
-	  </NODE>
+	 <CODE description="Indemnité de résidence : plancher (en indice majoré)" code="min" format="integer">
+	 	<VALUE valeur="313" deb="2011-01-01" fin="2014-12-31"/>
+	 </CODE>
     </NODE>
-    <NODE description="Supplément familial de traitement" code="supp_fam" >
+    <NODE description="Supplément familial de traitement" code="supp_fam" >  # TODO: Vérifier pour les années inféreieurs à 2013
 	  <CODE description="Indice majoré plancher" code="IM_min" format="integer">
-        <VALUE valeur="449" deb="2013-01-01" fin="2014-12-31"/>
+        <VALUE valeur="449" deb="2011-01-01" fin="2014-12-31"/>
   	  </CODE>
       <CODE description="Indice majoré plafond" code="IM_max" format="integer">
-        <VALUE valeur="712" deb="2013-01-01" fin="2014-12-31"/>
+        <VALUE valeur="712" deb="2011-01-01" fin="2014-12-31"/>
   	  </CODE>
   	  <NODE description="Part fixe" code="fixe">
 	    <CODE description="1er enfant" code="enf1" format="float">
-	      <VALUE valeur="2.29" deb="2013-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="2.29" deb="2011-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="2 enfants" code="enf2" format="float">
-	      <VALUE valeur="10.67" deb="2013-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="10.67" deb="2011-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="float">
-	      <VALUE valeur="4.57" deb="2013-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="4.57" deb="2011-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  </NODE>
 	  <NODE description="Part proportionnelle au traitement" code="prop">
-	    <CODE description="2 enfants" code="enf2" format="percent">
-	      <VALUE valeur="0.03" deb="2013-01-01" fin="2014-12-31"/>
+	    <CODE description="Pour 2 enfants" code="enf2" format="percent">
+	      <VALUE valeur="0.03" deb="2011-01-01" fin="2014-12-31"/>
 	  	</CODE>
-	  	<CODE description="3enfants" code="enf3" format="percent">
-	      <VALUE valeur="0.08" deb="2013-01-01" fin="2014-12-31"/>
+	  	<CODE description="Pour 3 enfants" code="enf3" format="percent">
+	      <VALUE valeur="0.08" deb="2011-01-01" fin="2014-12-31"/>
 	  	</CODE>
-	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="percent">
-	      <VALUE valeur="0.06" deb="2013-01-01" fin="2014-12-31"/>
+	  	<CODE description="Par nfant supplémentaire " code="enfsupp" format="percent">
+	      <VALUE valeur="0.06" deb="2011-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  </NODE>
     </NODE>

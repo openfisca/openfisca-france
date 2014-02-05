@@ -28,8 +28,8 @@ def _br_mv_i(sal, cho, rst, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, d
     'ind'
     '''
     out = (sal + cho + rst + alr + rto + rpns +
-           max_(0,rev_cap_bar) + max_(0,rev_cap_lib) + max_(0, rfon_ms) + max_(0,div_ms)
-           #max_(0,etr) +
+           max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
+           # max_(0,etr) +
            )
     return out
 
@@ -38,12 +38,12 @@ def _br_mv(br_mv_i, _option = {'br_mv_i': [CHEF, PART]}):
     Base ressource du minimlum vieillesse et assimilés (ASPA)
     'fam'
     '''
-    #Ressources prises en compte
-    #Tous les avantages de vieillesse et d'invalidité dont bénéficie l'intéressé sont pris en compte dans l'appréciation des ressources, de même que les revenus professionnels, les revenus des biens mobiliers et immobiliers et les biens dont il a fait donation dans les 10 années qui précèdent la demande d'Aspa.
-    #L'évaluation des ressources d'un couple est effectuée de la même manière, sans faire la distinction entre les biens propres ou les biens communs des conjoints, concubins ou partenaires liés par un Pacs.
-    #Ressources exclues
-    #Certaines ressources ne sont toutefois pas prises en compte dans l'estimation des ressources. Il s'agit notamment :
-    #de la valeur des locaux d'habitation occupés par le demandeur et les membres de sa famille vivant à son foyer lorsqu'il s'agit de sa résidence principale,
+    # Ressources prises en compte
+    # Tous les avantages de vieillesse et d'invalidité dont bénéficie l'intéressé sont pris en compte dans l'appréciation des ressources, de même que les revenus professionnels, les revenus des biens mobiliers et immobiliers et les biens dont il a fait donation dans les 10 années qui précèdent la demande d'Aspa.
+    # L'évaluation des ressources d'un couple est effectuée de la même manière, sans faire la distinction entre les biens propres ou les biens communs des conjoints, concubins ou partenaires liés par un Pacs.
+    # Ressources exclues
+    # Certaines ressources ne sont toutefois pas prises en compte dans l'estimation des ressources. Il s'agit notamment :
+    # de la valeur des locaux d'habitation occupés par le demandeur et les membres de sa famille vivant à son foyer lorsqu'il s'agit de sa résidence principale,
     # des prestations familiales,
     # de l'allocation de logement sociale,
     # des majorations prévues par la législation, accordées aux personnes dont l'état de santé nécessite l'aide constante d'une tierce personne,
@@ -65,7 +65,7 @@ def _br_mv(br_mv_i, _option = {'br_mv_i': [CHEF, PART]}):
 # ASPA:
 # Anciennes allocations du minimum vieillesse remplacées par l'ASPA
 #
-#Il s'agit de :
+# Il s'agit de :
 #    l'allocation aux vieux travailleurs salariés (AVTS),
 #    l'allocation aux vieux travailleurs non salariés,
 #    l'allocation aux mères de familles,
@@ -111,7 +111,7 @@ def _aspa_elig(age, inv, activite, _P):
     'ind'
     '''
     P = _P.minim.aspa
-    out = ((age >= P.age_min) | ((age >=P.age_ina) &  inv)) & (activite==3)
+    out = ((age >= P.age_min) | ((age >= P.age_ina) & inv)) & (activite == 3)
     return out
 
 def _asi_elig(aspa_elig, inv, activite):
@@ -119,10 +119,10 @@ def _asi_elig(aspa_elig, inv, activite):
     Éligibilité individuelle à l'ASI
     'ind'
     '''
-    return (inv & (activite==3)) & not_(aspa_elig)
+    return (inv & (activite == 3)) & not_(aspa_elig)
 
 def _asi_aspa_nb_alloc(aspa_elig, asi_elig, _option = {'aspa_elig': [CHEF, PART], 'asi_elig': [CHEF, PART]}):
-    return (1*aspa_elig[CHEF] + 1*aspa_elig[PART] + 1*asi_elig[CHEF]  + 1*asi_elig[PART])
+    return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
 def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'aspa_elig': [CHEF, PART]}):
     '''
@@ -143,6 +143,7 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     #depassement        = ressources - plafond_ressources
     
     P = _P.minim
+<<<<<<< HEAD
     elig1 = (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART])
     elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple # couple d'allocataire
 
@@ -151,12 +152,28 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     plafond_ressources = (elig1*not_(couple)) *P.aspa.plaf_seul + (elig2 | elig1*couple)*P.aspa.plaf_couple 
     montant_max        = (elig1*not_(couple))*P.aspa.montant_seul + elig2*P.aspa.montant_couple +  (elig1*couple)*((br_mv <= diff_plaf)*(P.aspa.montant_seul + br_mv) + (br_mv > diff_plaf)*P.aspa.montant_couple)
     montant_servi_aspa   = max_(montant_max - br_mv, 0)*(br_mv <= plafond_ressources)
+=======
+    elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
+    elig2 = (aspa_elig[CHEF] & aspa_elig[PART]) * couple
+    elig = elig1 | elig2
 
-    # Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
+    montant_max = elig1 * P.aspa.montant_seul + elig2 * P.aspa.montant_couple
+    ressources = elig * (br_mv + montant_max)
+    plafond_ressources = elig1 * (P.aspa.plaf_seul * not_(couple) + P.aspa.plaf_couple * couple) + elig2 * P.aspa.plaf_couple
+    depassement = ressources - plafond_ressources
+
+    montant_servi_aspa = max_(montant_max - depassement, 0) / 12
+>>>>>>> Cotisation sociales almost done
+
+    # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
 
+<<<<<<< HEAD
     return (aspa_elig[CHEF]+aspa_elig[PART])*montant_servi_aspa*(elig1 + elig2/2) # annuel
+=======
+    return 12 * (aspa_elig[CHEF] + aspa_elig[PART]) * montant_servi_aspa * (elig1 + elig2 / 2)  # annualisé
+>>>>>>> Cotisation sociales almost done
 
 def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'asi_elig': [CHEF, PART]}):
     '''
@@ -164,26 +181,26 @@ def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = 
     '''
     P = _P.minim
     # 1 A Un ou deux bénéficiaire(s) de l'ASI et aucun bénéficiaire de l'ASPA
-    elig1 = ( (asi_aspa_nb_alloc==1) & ( asi_elig[CHEF] | asi_elig[PART]) )      # un seul éligible
-    elig2 = (asi_elig[CHEF] & asi_elig[PART])*maries                    # couple d'éligible marié
-    elig3 = (asi_elig[CHEF] & asi_elig[PART])*(marpac & not_(maries))  # couple d'éligible non marié
-    elig  =  elig1 | elig2
+    elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))  # un seul éligible
+    elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries  # couple d'éligible marié
+    elig3 = (asi_elig[CHEF] & asi_elig[PART]) * (marpac & not_(maries))  # couple d'éligible non marié
+    elig = elig1 | elig2
 
-    montant_max = elig1*P.asi.montant_seul + elig2*P.asi.montant_couple + elig3*2*P.asi.montant_seul
-    ressources  = elig*(br_mv + montant_max)
-    plafond_ressources = elig1*(P.asi.plaf_seul*not_(marpac) + P.aspa.plaf_couple*marpac) + elig2*P.aspa.plaf_couple + elig3*P.asi.plaf_couple
-    depassement     = ressources - plafond_ressources
-    montant_servi_asi   = max_(montant_max - depassement, 0)/12
+    montant_max = elig1 * P.asi.montant_seul + elig2 * P.asi.montant_couple + elig3 * 2 * P.asi.montant_seul
+    ressources = elig * (br_mv + montant_max)
+    plafond_ressources = elig1 * (P.asi.plaf_seul * not_(marpac) + P.aspa.plaf_couple * marpac) + elig2 * P.aspa.plaf_couple + elig3 * P.asi.plaf_couple
+    depassement = ressources - plafond_ressources
+    montant_servi_asi = max_(montant_max - depassement, 0) / 12
     # Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
     # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
     # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    return 12*(asi_elig[CHEF] + asi_elig[PART])*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2) # annualisé
+    return 12 * (asi_elig[CHEF] + asi_elig[PART]) * montant_servi_asi * (elig1 * 1 + elig2 / 2 + elig3 / 2)  # annualisé
 
 def _asi_aspa_elig(aspa_elig, asi_elig, _option = {'asi_elig': [CHEF, PART], 'aspa_elig': [CHEF, PART]}):
     '''
     Éligibilité des membres de la famille à l'ASPA et à l'ASI
     '''
-    return ( (asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF]))
+    return ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF]))
 
 def _asi_coexist_aspa(asi_aspa_elig, maries, marpac, br_mv, _P):
     '''
@@ -192,20 +209,20 @@ def _asi_coexist_aspa(asi_aspa_elig, maries, marpac, br_mv, _P):
     P = _P.minim
     # Une personne peçoit l'ASI et l'autre l'ASPA
     # Les persones sont mariées
-    index       = asi_aspa_elig*maries
-    montant_max = where( index, (.5*P.asi.montant_couple + .5*P.aspa.montant_couple), 0)
-    ressources  = where( index, br_mv + montant_max,0)
-    plafond_ressources = where( index, P.aspa.plaf_couple, 0)
-    depassement        = ressources - plafond_ressources
-    montant_servi_asi_m   = where(index, max_(.5*P.asi.montant_couple  - 0.5*depassement, 0),0)/12
+    index = asi_aspa_elig * maries
+    montant_max = where(index, (.5 * P.asi.montant_couple + .5 * P.aspa.montant_couple), 0)
+    ressources = where(index, br_mv + montant_max, 0)
+    plafond_ressources = where(index, P.aspa.plaf_couple, 0)
+    depassement = ressources - plafond_ressources
+    montant_servi_asi_m = where(index, max_(.5 * P.asi.montant_couple - 0.5 * depassement, 0), 0) / 12
     # Les deux persones ne sont pas mariées mais concubins ou pacsés
-    index       = asi_aspa_elig*(marpac & not_(maries))
-    montant_max = where( index, P.asi.montant_seul + .5*P.aspa.montant_couple , 0)
-    ressources  = where( index, br_mv + montant_max,0)
-    plafond_ressources = where( index, P.aspa.plaf_couple, 0)
-    depassement        = ressources - plafond_ressources
-    montant_servi_asi_c   = where(index, max_(P.asi.montant_seul - 0.5*depassement, 0),0)/12
-    return 12*(montant_servi_asi_m + montant_servi_asi_c)   # annualisé
+    index = asi_aspa_elig * (marpac & not_(maries))
+    montant_max = where(index, P.asi.montant_seul + .5 * P.aspa.montant_couple , 0)
+    ressources = where(index, br_mv + montant_max, 0)
+    plafond_ressources = where(index, P.aspa.plaf_couple, 0)
+    depassement = ressources - plafond_ressources
+    montant_servi_asi_c = where(index, max_(P.asi.montant_seul - 0.5 * depassement, 0), 0) / 12
+    return 12 * (montant_servi_asi_m + montant_servi_asi_c)  # annualisé
 
 def _aspa_coexist_asi(asi_aspa_elig, maries, marpac, br_mv, _P):
     '''
@@ -214,20 +231,20 @@ def _aspa_coexist_asi(asi_aspa_elig, maries, marpac, br_mv, _P):
     P = _P.minim
     # Une personne peçoit l'ASI et l'autre l'ASPA
     # Les persones sont mariées
-    index       = asi_aspa_elig*maries
-    montant_max = where( index, (.5*P.asi.montant_couple + .5*P.aspa.montant_couple), 0)
-    ressources  = where( index, br_mv + montant_max,0)
-    plafond_ressources = where( index, P.aspa.plaf_couple, 0)
-    depassement        = ressources - plafond_ressources
-    montant_servi_aspa_m  = where(index, max_(.5*P.aspa.montant_couple - 0.5*depassement, 0),0)/12
+    index = asi_aspa_elig * maries
+    montant_max = where(index, (.5 * P.asi.montant_couple + .5 * P.aspa.montant_couple), 0)
+    ressources = where(index, br_mv + montant_max, 0)
+    plafond_ressources = where(index, P.aspa.plaf_couple, 0)
+    depassement = ressources - plafond_ressources
+    montant_servi_aspa_m = where(index, max_(.5 * P.aspa.montant_couple - 0.5 * depassement, 0), 0) / 12
     # Les deux persones ne sont pas mariées mais concubins ou pacsés
-    index       = asi_aspa_elig*(marpac & not_(maries))
-    montant_max = where( index, P.asi.montant_seul + .5*P.aspa.montant_couple , 0)
-    ressources  = where( index, br_mv + montant_max,0)
-    plafond_ressources = where( index, P.aspa.plaf_couple, 0)
-    depassement        = ressources - plafond_ressources
-    montant_servi_aspa_c  = where(index, max_(.5*P.aspa.montant_couple - 0.5*depassement, 0),0)/12
-    return 12*(montant_servi_aspa_m + montant_servi_aspa_c) # annualisé
+    index = asi_aspa_elig * (marpac & not_(maries))
+    montant_max = where(index, P.asi.montant_seul + .5 * P.aspa.montant_couple , 0)
+    ressources = where(index, br_mv + montant_max, 0)
+    plafond_ressources = where(index, P.aspa.plaf_couple, 0)
+    depassement = ressources - plafond_ressources
+    montant_servi_aspa_c = where(index, max_(.5 * P.aspa.montant_couple - 0.5 * depassement, 0), 0) / 12
+    return 12 * (montant_servi_aspa_m + montant_servi_aspa_c)  # annualisé
 
 def _aspa(aspa_pure, aspa_coexist_asi):
     return aspa_pure + aspa_coexist_asi
@@ -240,7 +257,7 @@ def _asi(asi_pure, asi_coexist_aspa):
 # RSA / RMI
 ############################################################################
 def _div_ms(f3vc, f3ve, f3vg, f3vl, f3vm):
-    return f3vc + f3ve + f3vg + f3vl+ f3vm
+    return f3vc + f3ve + f3vg + f3vl + f3vm
 
 def _rfon_ms(f4ba, f4be):
     '''
@@ -262,10 +279,10 @@ def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P
     'ind'
     """
     P = _P.minim
-    if _P.datesim.year < 2004: # taking care of the existence of the paje/ape/apje
-        out =  P.rmi.pfInBRrmi*(af_base + cf + asf + apje + ape)
+    if _P.datesim.year < 2004:  # taking care of the existence of the paje/ape/apje
+        out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
     else:
-        out =  P.rmi.pfInBRrmi*(af_base + cf + asf + paje_base + paje_clca + paje_colca)
+        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
     return out
 
 def _br_rmi_ms(aspa, asi, aah, caah):
@@ -366,7 +383,7 @@ def _rmi_nbp(age, smic55, nb_par , _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
     # TODO: file a issue to check if D_enfch in rsa should be removed
     P = _P.minim.rmi
-    return nb_par + nb_enf(age, smic55, 0, P.age_pac-1)  # TODO: check limite d'âge in legislation
+    return nb_par + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
 
 def _forf_log(so, rmi_nbp, _P):
     '''
@@ -379,10 +396,10 @@ def _forf_log(so, rmi_nbp, _P):
     P = _P.minim
     # loca = (3 <= so)&(5 >= so)
     FL = P.rmi.forfait_logement
-    tx_fl = ((rmi_nbp==1)*FL.taux1 +
-             (rmi_nbp==2)*FL.taux2 +
-             (rmi_nbp>=3)*FL.taux3 )
-    return 12*(tx_fl*P.rmi.rmi)
+    tx_fl = ((rmi_nbp == 1) * FL.taux1 +
+             (rmi_nbp == 2) * FL.taux2 +
+             (rmi_nbp >= 3) * FL.taux3)
+    return 12 * (tx_fl * P.rmi.rmi)
 
 def _rsa_socle(age, nb_par, rmi_nbp, _P, _option = {'age' : [CHEF, PART]}):
     '''
@@ -396,19 +413,19 @@ def _rsa_socle(age, nb_par, rmi_nbp, _P, _option = {'age' : [CHEF, PART]}):
     # limite de 18 mois à compter de la date du fait générateur de l’isolement. Le
     # cas échéant, la durée de majoration est prolongée jusqu’à ce que le plus jeune
     # enfant atteigne trois ans.
-    eligib = (age[CHEF]>=25) |(age[PART]>=25)
-    tx_rmi = ( 1 + ( rmi_nbp >= 2 )*P.rmi.txp2
-                 + ( rmi_nbp >= 3 )*P.rmi.txp3
-                 + ( rmi_nbp >= 4 )*((nb_par==1)*P.rmi.txps + (nb_par!=1)*P.rmi.txp3)
-                 + max_(rmi_nbp -4,0)*P.rmi.txps )
-    return 12*P.rmi.rmi*tx_rmi*eligib
+    eligib = (age[CHEF] >= 25) | (age[PART] >= 25)
+    tx_rmi = (1 + (rmi_nbp >= 2) * P.rmi.txp2
+                 + (rmi_nbp >= 3) * P.rmi.txp3
+                 + (rmi_nbp >= 4) * ((nb_par == 1) * P.rmi.txps + (nb_par != 1) * P.rmi.txp3)
+                 + max_(rmi_nbp - 4, 0) * P.rmi.txps)
+    return 12 * P.rmi.rmi * tx_rmi * eligib
 
 def _rmi(rsa_socle, forf_log, br_rmi):
     '''
     Cacule le montant du RMI/ Revenu de solidarité active - socle
     'fam'
     '''
-    rmi = max_(0, rsa_socle  - forf_log - br_rmi)
+    rmi = max_(0, rsa_socle - forf_log - br_rmi)
     return rmi
 
 
@@ -418,8 +435,13 @@ def _rsa(rsa_socle, ra_rsa, forf_log, br_rmi, _P, _option = {'ra_rsa': [CHEF, PA
     'fam'
     '''
     P = _P.minim.rmi
+<<<<<<< HEAD
     RSA = max_(0,rsa_socle + P.pente*(ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
     rsa = RSA * (RSA>=P.rsa_nv * 12)
+=======
+    RSA = max_(0, rsa_socle + P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
+    rsa = (RSA >= P.rsa_nv) * RSA
+>>>>>>> Cotisation sociales almost done
     return rsa
 
 
@@ -453,7 +475,7 @@ def _majo_rsa(rsa_socle, agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa
 #
 
     benjamin = age_en_mois_benjamin(agem)
-    enceinte = (benjamin<0)*(benjamin>-6)
+    enceinte = (benjamin < 0) * (benjamin > -6)
     # TODO: quel mois mettre ?
     # TODO: pas complètement exact
     # L'allocataire perçoit la majoration :
@@ -463,21 +485,21 @@ def _majo_rsa(rsa_socle, agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa
     #    assure seul la charge de l'enfant.
     # TODO: API courte gens pour les gens qui ont divorcés dans l'année
     # Le droit à l'allocation est réétudié tous les 3 mois.
-    ## Calcul de l'année et mois de naissance du benjamin
+    # # Calcul de l'année et mois de naissance du benjamin
 
-    condition = (floor(benjamin/12) <= P.minim.rmi.majo_rsa.age-1)
-    eligib = isol*( (enceinte!=0) | (nb_enf(age, smic55, 0,P.minim.rmi.majo_rsa.age-1)>0) )*condition;
+    condition = (floor(benjamin / 12) <= P.minim.rmi.majo_rsa.age - 1)
+    eligib = isol * ((enceinte != 0) | (nb_enf(age, smic55, 0, P.minim.rmi.majo_rsa.age - 1) > 0)) * condition;
 
     # moins de 20 ans avant inclusion dans rsa
     # moins de 25 ans après inclusion dans rsa
-    majo1 = eligib*rsa_socle*(P.minim.rmi.majo_rsa.pac0 +
-                              P.minim.rmi.majo_rsa.pac_enf_sup*nb_enf(age, smic55, P.fam.af.age1,P.minim.rmi.majo_rsa.age_pac-1) )
-    rsa = (P.minim.rmi.majo_rsa.age_pac >= 25) # dummy passage au rsa majoré
-    br_api = br_rmi + af_majo*not_(rsa)
+    majo1 = eligib * rsa_socle * (P.minim.rmi.majo_rsa.pac0 +
+                              P.minim.rmi.majo_rsa.pac_enf_sup * nb_enf(age, smic55, P.fam.af.age1, P.minim.rmi.majo_rsa.age_pac - 1))
+    rsa = (P.minim.rmi.majo_rsa.age_pac >= 25)  # dummy passage au rsa majoré
+    br_api = br_rmi + af_majo * not_(rsa)
     # On pourrait mensualiser RMI, BRrmi et forfait logement
-    majo_rsa  = max_(0, majo1 - forf_log/12 - br_api/12 - rsa/12)
+    majo_rsa = max_(0, majo1 - forf_log / 12 - br_api / 12 - rsa / 12)
     # L'API est exonérée de CRDS
-    return 12*majo_rsa # annualisé
+    return 12 * majo_rsa  # annualisé
     # TODO API: temps partiel qui modifie la base ressource
     # Cumul
     # Cumul avec un revenu
@@ -505,12 +527,12 @@ def _psa(api, rsa, activite, af_nbenf, al, _P, _option = {"activite" : [CHEF, PA
     # La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
     dummy_api = api > 0
     dummy_rmi = rsa > 0
-    dummy_al = and_(al>0, or_(af_nbenf>0, or_(activite[CHEF]==0, activite[PART]==0 ) ))
+    dummy_al = and_(al > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
 
     condition = (dummy_api + dummy_rmi + dummy_al > 0)
 
     P = _P.minim.rmi
-    psa = condition*P.psa
+    psa = condition * P.psa
 
     return psa
 
@@ -528,12 +550,16 @@ def _rsa_act_i(rsa_act, concub, maries, quifam):
 
     Note: le partage en moitié est un point de législation, pas un choix arbitraire
     '''
+<<<<<<< HEAD
     conj = concub | maries | (quifam == 1)
     # TODO: mettre les conjoints (concubins ou mariés) à 1
     return rsa_act/( 1 + conj)
+=======
+    return rsa_act / 2
+>>>>>>> Cotisation sociales almost done
 
 def _crds_mini(rsa_act, _P):
-    return _P.fam.af.crds*rsa_act
+    return _P.fam.af.crds * rsa_act
 
 
 def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = {'age': ENFS, 'agem': ENFS, 'smic55': ENFS}):
@@ -558,7 +584,7 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
 #
 
     benjamin = age_en_mois_benjamin(agem)
-    enceinte = (benjamin<0)*(benjamin>-6)
+    enceinte = (benjamin < 0) * (benjamin > -6)
     # TODO quel mois mettre ?
     # TODO pas complètement exact
     # L'allocataire perçoit l'API :
@@ -568,20 +594,20 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
     #    assure seul la charge de l'enfant.
     # TODO: API courte gens pour les gens qui ont divorcés dans l'année
     # Le droit à l'allocation est réétudié tous les 3 mois.
-    ## Calcul de l'année et mois de naissance du benjamin
+    # # Calcul de l'année et mois de naissance du benjamin
 
-    condition = (floor(benjamin/12) <= P.minim.api.age-1)
-    eligib = isol*( (enceinte!=0) | (nb_enf(age, smic55, 0,P.minim.api.age-1)>0) )*condition;
+    condition = (floor(benjamin / 12) <= P.minim.api.age - 1)
+    eligib = isol * ((enceinte != 0) | (nb_enf(age, smic55, 0, P.minim.api.age - 1) > 0)) * condition;
 
     # moins de 20 ans avant inclusion dans rsa
     # moins de 25 ans après inclusion dans rsa
-    api1 = eligib*bmaf*(P.minim.api.base + P.minim.api.enf_sup*nb_enf(age, smic55, P.fam.af.age1,P.minim.api.age_pac-1) )
-    rsa = (P.minim.api.age_pac >= 25) # dummy passage au rsa majoré
-    br_api = br_rmi + af_majo*not_(rsa)
+    api1 = eligib * bmaf * (P.minim.api.base + P.minim.api.enf_sup * nb_enf(age, smic55, P.fam.af.age1, P.minim.api.age_pac - 1))
+    rsa = (P.minim.api.age_pac >= 25)  # dummy passage au rsa majoré
+    br_api = br_rmi + af_majo * not_(rsa)
     # On pourrait mensualiser RMI, BRrmi et forfait logement
-    api  = max_(0, api1 - forf_log/12 - br_api/12 - rsa/12)
+    api = max_(0, api1 - forf_log / 12 - br_api / 12 - rsa / 12)
     # L'API est exonérée de CRDS
-    return 12*api # annualisé
+    return 12 * api  # annualisé
     # TODO API: temps partiel qui modifie la base ressource
     # Cumul
     # Cumul avec un revenu
@@ -596,7 +622,7 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
     # Lorsque la durée d'activité est inférieure à 78 heures par mois, le montant de l'API perçu par l'allocataire est diminué de la moitié du salaire.
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
 
-def _aefa(age, smic55, af_nbenf, nb_par, ass ,aer, api, rsa, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _aefa(age, smic55, af_nbenf, nb_par, ass , aer, api, rsa, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
     '''
@@ -620,20 +646,20 @@ def _aefa(age, smic55, af_nbenf, nb_par, ass ,aer, api, rsa, _P, _option = {'age
 
     maj = 0  # TODO
 
-    condition = (dummy_ass+dummy_aer+dummy_api+dummy_rmi > 0)
+    condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
 
-    if hasattr(P.fam.af,"age3"): nbPAC = nb_enf(age, smic55, P.fam.af.age1,P.fam.af.age3)
+    if hasattr(P.fam.af, "age3"): nbPAC = nb_enf(age, smic55, P.fam.af.age1, P.fam.af.age3)
     else: nbPAC = af_nbenf
     # TODO check nombre de PAC pour une famille
     P = _P.minim
-    aefa = condition*P.aefa.mon_seul*(1 + (nb_par==2)*P.aefa.tx_2p
-              + nbPAC*P.aefa.tx_supp*(nb_par<=2)
-              + nbPAC*P.aefa.tx_3pac*max_(nbPAC-2,0))
+    aefa = condition * P.aefa.mon_seul * (1 + (nb_par == 2) * P.aefa.tx_2p
+              + nbPAC * P.aefa.tx_supp * (nb_par <= 2)
+              + nbPAC * P.aefa.tx_3pac * max_(nbPAC - 2, 0))
 
-    if _P.datesim.year==2008: aefa += condition*P.aefa.forf2008
+    if _P.datesim.year == 2008: aefa += condition * P.aefa.forf2008
 
-    aefa_maj  = P.aefa.mon_seul*maj
-    aefa = max_(aefa_maj,aefa)
+    aefa_maj = P.aefa.mon_seul * maj
+    aefa = max_(aefa_maj, aefa)
     return aefa
 
 def _br_aah(br_pf, asi, aspa, _P):
@@ -685,30 +711,30 @@ def _aah(br_pf_i, br_aah, inv, age, smic55, concub, af_nbenf, _P, _option = {'in
 #        TODO éligibilité AAH, notamment avoir le % d'incapacité ?
     P = _P
 
-    eligC = ( ((inv[CHEF]) & (age[CHEF] <= P.minim.aah.age_legal_retraite)) &
-              ((age[CHEF] >= P.fam.aeeh.age) | ((age[CHEF]>=16) & (smic55[CHEF]) )) )
+    eligC = (((inv[CHEF]) & (age[CHEF] <= P.minim.aah.age_legal_retraite)) &
+              ((age[CHEF] >= P.fam.aeeh.age) | ((age[CHEF] >= 16) & (smic55[CHEF]))))
 
-    eligP = ( ((inv[PART]) & (age[PART] <= P.minim.aah.age_legal_retraite)) &
-              ((age[PART] >= P.fam.aeeh.age) | ((age[PART]>=16) & (smic55[PART]) )) )
+    eligP = (((inv[PART]) & (age[PART] <= P.minim.aah.age_legal_retraite)) &
+              ((age[PART] >= P.fam.aeeh.age) | ((age[PART] >= 16) & (smic55[PART]))))
 
-    plaf_aah = 12*P.minim.aah.montant*(1 + concub + P.minim.aah.tx_plaf_supp*af_nbenf)
-    eligib = ( eligC | eligP )
-    aah = eligib*max_(plaf_aah - br_aah, 0 )/12
+    plaf_aah = 12 * P.minim.aah.montant * (1 + concub + P.minim.aah.tx_plaf_supp * af_nbenf)
+    eligib = (eligC | eligP)
+    aah = eligib * max_(plaf_aah - br_aah, 0) / 12
     # l'aah est exonérée de crds
 
 #        Cumul d'allocation
 # L'AAH peut être cumulée :
 #
-#- avec le complément d'AAH (à titre transitoire pour les derniers bénéficiaires,
+# - avec le complément d'AAH (à titre transitoire pour les derniers bénéficiaires,
 #  ce complément étant remplacé par la majoration pour la vie autonome depuis
 #  le 1er juillet 2005) ;
-#- avec la majoration pour la vie autonome ;
-#- avec le complément de ressources (dans le cadre de la garantie de ressources).
+# - avec la majoration pour la vie autonome ;
+# - avec le complément de ressources (dans le cadre de la garantie de ressources).
 #
 # L'AAH n'est pas cumulable avec la perception d'un avantage de vieillesse,
 # d'invalidité, ou d'accident du travail si cet avantage est d'un montant au
 # moins égal à ladite allocation.
-    return 12*aah # annualisé
+    return 12 * aah  # annualisé
 
 
 def _caah(aah, asi, br_aah, al, _P):
@@ -717,15 +743,15 @@ def _caah(aah, asi, br_aah, al, _P):
     '''
 # Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
 # suivantes :
-#- percevoir l’allocation aux adultes handicapés à taux normal ou en
+# - percevoir l’allocation aux adultes handicapés à taux normal ou en
 #    complément d’une pension d’invalidité, d’une pension de vieillesse ou
 #    d’une rente accident du travail ;
-#- avoir un taux d’incapacité égal ou supérieur à 80 % ;
-#- avoir une capacité de travail, appréciée par la commission des droits et
+# - avoir un taux d’incapacité égal ou supérieur à 80 % ;
+# - avoir une capacité de travail, appréciée par la commission des droits et
 #    de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
-#- ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
+# - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
 #    du dépôt de la demande de complément ;
-#- disposer d’un logement indépendant.
+# - disposer d’un logement indépendant.
 # A noter : une personne hébergée par un particulier à son domicile n’est pas
 # considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
 # de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
@@ -737,10 +763,10 @@ def _caah(aah, asi, br_aah, al, _P):
 #       ressources pour les personnes handicapées (GRPH) et l’AAH
 
     P = _P.minim
-    elig_cpl = ((aah>0) | (asi>0))    # TODO: éligibilité logement indépendant
+    elig_cpl = ((aah > 0) | (asi > 0))  # TODO: éligibilité logement indépendant
     if _P.datesim.year >= 2006:
-        compl = elig_cpl*max_(P.caah.grph-(aah+br_aah)/12,0)
-    else : compl = P.caah.cpltx*P.aah.montant*elig_cpl
+        compl = elig_cpl * max_(P.caah.grph - (aah + br_aah) / 12, 0)
+    else : compl = P.caah.cpltx * P.aah.montant * elig_cpl
         # En fait perdure jusqu'en 2008
 
 
@@ -749,21 +775,21 @@ def _caah(aah, asi, br_aah, al, _P):
     # en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
 
 #        Conditions d'attribution
-#La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions suivantes :
-#- percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente accident du travail,
-#- avoir un taux d'incapacité au moins égal à 80 %,
-#- disposer d'un logement indépendant,
-#- bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par un Pacs au titulaire du droit,
-#- ne pas percevoir de revenu d'activité à caractère professionnel propre.
-#Choix entre la majoration ou la garantie de ressources
-#La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes handicapées.
-#La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de l'autre.
+# La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions suivantes :
+# - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente accident du travail,
+# - avoir un taux d'incapacité au moins égal à 80 %,
+# - disposer d'un logement indépendant,
+# - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par un Pacs au titulaire du droit,
+# - ne pas percevoir de revenu d'activité à caractère professionnel propre.
+# Choix entre la majoration ou la garantie de ressources
+# La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes handicapées.
+# La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de l'autre.
     if _P.datesim.year >= 2006:
-        elig_mva = (al>0)*( (aah>0) | (asi>0))   # TODO: complêter éligibilité
-        mva = P.caah.mva*elig_mva*0
+        elig_mva = (al > 0) * ((aah > 0) | (asi > 0))  # TODO: complêter éligibilité
+        mva = P.caah.mva * elig_mva * 0
     else: mva = 0
     caah = max_(compl, mva)
-    return 12*caah   # annualisé
+    return 12 * caah  # annualisé
 
 def _ass(br_pf, cho, concub, _P, _option = {'cho': [CHEF, PART]}):
     '''
@@ -800,14 +826,14 @@ def _ass(br_pf, cho, concub, _P, _option = {'cho': [CHEF, PART]}):
     majo = 0
     cond_act_prec_suff = False
     elig_ass = (cho[CHEF] | cho[PART]) & cond_act_prec_suff
-    plaf = P.chomage.ass.plaf_seul*not_(concub) + P.chomage.ass.plaf_coup*concub
-    montant_mensuel = 30*(P.chomage.ass.montant_plein*not_(majo)
-                          + majo*P.chomage.ass.montant_maj)
-    revenus = br_pf + 12*montant_mensuel  # TODO check base ressources
-    ass = elig_ass*(montant_mensuel*(revenus<=plaf)
-              + (revenus>plaf)*max_(plaf+montant_mensuel-revenus,0))
+    plaf = P.chomage.ass.plaf_seul * not_(concub) + P.chomage.ass.plaf_coup * concub
+    montant_mensuel = 30 * (P.chomage.ass.montant_plein * not_(majo)
+                          + majo * P.chomage.ass.montant_maj)
+    revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
+    ass = elig_ass * (montant_mensuel * (revenus <= plaf)
+              + (revenus > plaf) * max_(plaf + montant_mensuel - revenus, 0))
 
-    return 12*ass  # annualisé
+    return 12 * ass  # annualisé
 
 
 # TODO surle rsa hors rmi et api ?    def crds_mini():
