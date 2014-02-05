@@ -455,10 +455,6 @@ class Scenario(object):
             autres_id = menage.pop(u'autres')
             noipref = indiv_index_by_id[personne_de_reference_id]
             attributes['declar'][noipref] = menage
-            print [personne_de_reference_id]
-            print [conjoint_id] if conjoint_id is not None else []
-            print enfants_id
-            print autres_id
             for indivu_id in itertools.chain(
                     [personne_de_reference_id],
                     [conjoint_id] if conjoint_id is not None else [],
