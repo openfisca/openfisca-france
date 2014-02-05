@@ -347,7 +347,7 @@
           <VALUE valeur="0" deb="1998-01-01" fin="2014-12-31"/>
          </SEUIL>
          <TAUX>
-          <VALUE valeur=".005" deb="1998-01-01" fin="2013-12-31"/>
+          <VALUE valeur=".005" deb="1998-01-01" fin="2014-12-31"/>
          </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche1">
