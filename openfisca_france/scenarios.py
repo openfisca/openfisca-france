@@ -26,13 +26,14 @@
 from __future__ import division
 
 import collections
-from datetime import datetime
+from datetime import date, datetime
 import itertools
 import pickle
+import urllib2
 
 import numpy as np
 from openfisca_core import __version__ as VERSION
-from openfisca_core import model
+from openfisca_core import legislations, model
 from pandas import DataFrame, concat
 
 from . import conv, ENTITIES_INDEX
@@ -40,6 +41,7 @@ from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 
 class Scenario(object):
+    compact_legislation = None
 
     def __init__(self):
         super(Scenario, self).__init__()
@@ -48,7 +50,7 @@ class Scenario(object):
         # indiv est un dict de dict. La clé est le noi de l'individu
         # Exemple :
         # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
-        #     'birth': datetime.date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
+        #     'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
         self.declar = {}
         # declar est un dict de dict. La clé est le noidec.
         self.famille = {}
@@ -244,8 +246,8 @@ class Scenario(object):
                                         (
                                             (column.name, column.json_to_python)
                                             for column in column_by_name.itervalues()
-                                            if column.entity == 'ind' and column.name not in ('age', 'agem', 'quifam',
-                                                'quifoy', 'quimen')
+                                            if column.entity == 'ind' and column.name not in ('age', 'agem', 'idfam',
+                                                'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
                                             ),
                                         )),
                                     ),
@@ -253,6 +255,10 @@ class Scenario(object):
                             drop_none_values = True,
                             ),
                         conv.empty_to_none,
+                        conv.not_none,
+                        ),
+                    legislation_url = conv.pipe(
+                        conv.make_input_to_url(error_if_fragment = True, full = True),
                         conv.not_none,
                         ),
                     menages = conv.pipe(
@@ -385,7 +391,28 @@ class Scenario(object):
         if error is not None:
             return data, error
 
+        request = urllib2.Request(data['legislation_url'], headers = {
+            'User-Agent': 'OpenFisca-Web-API',
+            })
+        try:
+            response = urllib2.urlopen(request)
+        except urllib2.HTTPError:
+            return data, dict(legislation_url = ctx._(u'HTTP Error while retrieving legislation JSON'))
+        except urllib2.URLError:
+            return data, dict(legislation_url = ctx._(u'Error while retrieving legislation JSON'))
+        legislation_json, error = conv.pipe(
+            conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
+            legislations.validate_node_json,
+            conv.not_none,
+            )(response.read(), state = state)
+        if error is not None:
+            return data, dict(legislation_url = error)
+        datesim = date(data['year'], 1, 1)
+        dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+        compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+
         attributes = dict(
+            compact_legislation = compact_legislation,
             declar = {},
             famille = {},
             indiv = {},
@@ -430,10 +457,6 @@ class Scenario(object):
             autres_id = menage.pop(u'autres')
             noipref = indiv_index_by_id[personne_de_reference_id]
             attributes['declar'][noipref] = menage
-            print [personne_de_reference_id]
-            print [conjoint_id] if conjoint_id is not None else []
-            print enfants_id
-            print autres_id
             for indivu_id in itertools.chain(
                     [personne_de_reference_id],
                     [conjoint_id] if conjoint_id is not None else [],
