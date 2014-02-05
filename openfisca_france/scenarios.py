@@ -244,8 +244,8 @@ class Scenario(object):
                                         (
                                             (column.name, column.json_to_python)
                                             for column in column_by_name.itervalues()
-                                            if column.entity == 'ind' and column.name not in ('age', 'agem', 'quifam',
-                                                'quifoy', 'quimen')
+                                            if column.entity == 'ind' and column.name not in ('age', 'agem', 'idfam',
+                                                'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
                                             ),
                                         )),
                                     ),
