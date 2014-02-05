@@ -666,12 +666,8 @@ def _primes(type_sal, salbrut):
     Calcul des primes pour les fonctionnaries
     Note: sal_brut est égal au traitement indiciaire brut
     '''
-<<<<<<< HEAD
-    tib = salbrut * (type_sal == CAT['public_titulaire_etat'])
-=======
     public = (type_sal == CAT['public_titulaire_etat']) + (type_sal == CAT['public_titulaire_territoriale']) + (type_sal == CAT['public_titulaire_hospitaliere'])
     tib = salbrut * public
->>>>>>> Cotisation sociales almost done
     return TAUX_DE_PRIME * tib
 
 
