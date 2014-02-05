@@ -258,7 +258,8 @@ class Scenario(object):
                         conv.not_none,
                         ),
                     legislation_url = conv.pipe(
-                        conv.make_input_to_url(error_if_fragment = True, full = True),
+                        conv.make_input_to_url(error_if_fragment = True, full = True,
+                            schemes = ('file', 'http', 'https')),
                         conv.not_none,
                         ),
                     menages = conv.pipe(
