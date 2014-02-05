@@ -403,7 +403,7 @@ class Scenario(object):
             conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
             legislations.validate_node_json,
             conv.not_none,
-            )(response.read(), state = ctx)
+            )(response.read(), state = state)
         if error is not None:
             return data, dict(legislation_url = error)
             dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
