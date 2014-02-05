@@ -143,7 +143,6 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     #depassement        = ressources - plafond_ressources
     
     P = _P.minim
-
     elig1 = (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART])
     elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple # couple d'allocataire
 
