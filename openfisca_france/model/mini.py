@@ -134,14 +134,6 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     else:
         couple = maries
 
-    # elig1 = ( (asi_aspa_nb_alloc==1) & ( aspa_elig[CHEF] | aspa_elig[PART]) )
-    # elig2 = (aspa_elig[CHEF] & aspa_elig[PART])*couple
-    # elig  = elig1 | elig2
-    # montant_max        = elig1*P.aspa.montant_seul + elig2*P.aspa.montant_couple
-    # ressources         = elig*(br_mv + montant_max)
-    # plafond_ressources = elig1*(P.aspa.plaf_seul*not_(couple) + P.aspa.plaf_couple*couple) + elig2*P.aspa.plaf_couple
-    # depassement        = ressources - plafond_ressources
-
     P = _P.minim
 
     elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
