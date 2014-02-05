@@ -521,7 +521,6 @@ def _rsa_act(rsa, rmi):
     '''
     Calcule le montant du RSA activité
     '''
-    
     res = max_(rsa - rmi, 0)
     return res 
 
@@ -531,13 +530,10 @@ def _rsa_act_i(rsa_act, concub, maries, quifam):
 
     Note: le partage en moitié est un point de législation, pas un choix arbitraire
     '''
-<<<<<<< HEAD
     conj = concub | maries | (quifam == 1)
     # TODO: mettre les conjoints (concubins ou mariés) à 1
     return rsa_act/( 1 + conj)
-=======
-    return rsa_act / 2
->>>>>>> Cotisation sociales almost done
+
 
 def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds * rsa_act
