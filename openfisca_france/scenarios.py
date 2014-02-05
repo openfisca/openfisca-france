@@ -29,10 +29,11 @@ import collections
 from datetime import datetime
 import itertools
 import pickle
+import urllib2
 
 import numpy as np
 from openfisca_core import __version__ as VERSION
-from openfisca_core import model
+from openfisca_core import legislations, model
 from pandas import DataFrame, concat
 
 from . import conv, ENTITIES_INDEX
@@ -40,6 +41,7 @@ from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 
 class Scenario(object):
+    compact_legislation = None
 
     def __init__(self):
         super(Scenario, self).__init__()
@@ -255,6 +257,10 @@ class Scenario(object):
                         conv.empty_to_none,
                         conv.not_none,
                         ),
+                    legislation_url = conv.pipe(
+                        conv.make_input_to_url(error_if_fragment = True, full = True),
+                        conv.not_none,
+                        ),
                     menages = conv.pipe(
                         conv.condition(
                             conv.test_isinstance(list),
@@ -384,7 +390,27 @@ class Scenario(object):
         if error is not None:
             return data, error
 
+        request = urllib2.Request(data['legislation_url'], headers = {
+            'User-Agent': 'OpenFisca-Web-API',
+            })
+        try:
+            response = urllib2.urlopen(request)
+        except urllib2.HTTPError:
+            return data, dict(legislation_url = ctx._(u'HTTP Error while retrieving legislation JSON'))
+        except urllib2.URLError:
+            return data, dict(legislation_url = ctx._(u'Error while retrieving legislation JSON'))
+        legislation_json, error = conv.pipe(
+            conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
+            legislations.validate_node_json,
+            conv.not_none,
+            )(response.read(), state = ctx)
+        if error is not None:
+            return data, dict(legislation_url = error)
+            dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+            compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+
         attributes = dict(
+            compact_legislation = compact_legislation,
             declar = {},
             famille = {},
             indiv = {},
