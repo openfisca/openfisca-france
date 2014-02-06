@@ -401,10 +401,10 @@ def build_sal(_P):
 
     log.info("Le dictionnaire des barèmes des salariés non cadres du privé  contient : \n %s \n", sal['prive_non_cadre'].keys())
     log.info("Le dictionnaire des barèmes des salariés cadres du privé contient : \n %s \n", sal['prive_cadre'].keys())
-    log.info("Le dictionnaire des barèmes des salariés titulaires de l'etat contient : \n %s \n", sal['public_titulaire_etat'].keys())
+    log.error("Le dictionnaire des barèmes des salariés titulaires de l'etat contient : \n %s \n", sal['public_titulaire_etat'].keys())
     log.info("Le dictionnaire des barèmes des salariés titulaires des collectivités locales contient : \n %s \n", sal['public_titulaire_territoriale'].keys())
-    log.info("Le dictionnaire des barèmes des salariés titulaires de la fonction publique hospitalière contient : \n %s \n", sal['public_titulaire_hospitaliere'].keys())
-    log.error("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
+    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
+
     return sal
 
 
@@ -623,7 +623,11 @@ def _cot_sal_pension_civile(salbrut, type_sal, _P):
     return -cot_sal_pension_civile
 
 
-def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite_residence, _P):
+def _rafp_pat(rafp_sal):
+    return rafp_sal
+
+
+def _rafp_sal(salbrut, type_sal, prime, supp_familial_traitement, indemnite_residence, _P):
     '''
     Part salariale de la retraite additionelle de la fonction publique
     TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
@@ -641,25 +645,6 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     # Même régime pour etat et colloc
     cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
     return -12 * cot_sal_rafp
-
-def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite_residence, _P):
-    '''
-    Part patronale de la retraite additionelle de la fonction publique
-    TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-    Note: salbrut est le traitement indiciaire brut pour les fonctionnaires
-    '''
-    eligibles = ((type_sal == CAT['public_titulaire_etat'])
-                 + (type_sal == CAT['public_titulaire_territoriale'])
-                 + (type_sal == CAT['public_titulaire_hospitaliere']))
-    tib = salbrut * eligibles / 12
-    plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
-    base_imposable = primes + supp_familial_traitement + indemnite_residence
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
-    assiette = min_(base_imposable / 12, plaf_ass * tib)
-    cot_pat_rafp = eligibles * pat['fonc']['etat']['rafp'].calc(assiette)
-    return -12 * cot_pat_rafp
-
 
 def _primes(type_sal, salbrut):
     '''
