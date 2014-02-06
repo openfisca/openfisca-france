@@ -22,12 +22,12 @@ CONJ = QUIFOY['conj']
 ############################################################################
 # ASPA /  Minimum vieillesse
 ############################################################################
-def _br_mv_i(sal, cho, rst, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
+def _br_mv_i(salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
     '''
     Base ressource individuelle du minimlum vieillesse et assimilés (ASPA)
     'ind'
     '''
-    out = (sal + cho + rst + alr + rto + rpns +
+    out = (salbrut + chobrut + rstbrut + alr + rto + rpns +
            max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
            # max_(0,etr) +
            )

@@ -144,7 +144,7 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
 #     salbrut_etat = (brut_etat)
 #                 # TODO: fonctionnaire
 #     print 'salbrut_etat', salbrut_etat / 12
-    salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
+#    salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
 
 # #        <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement" color = "0,99,143"/>
 # #        <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence" color = "0,99,143"/>
@@ -464,13 +464,10 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, _P)
         iscat = (type_sal == category[1])
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
-                is_noncontrib = (bar.option == "noncontrib")
                 is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-#                 if DEBUG:
-#                     print bar._name
                 is_noncontrib = (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"])
                 temp = -(iscat
-                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup) * (category[0] == 'public_non_titulaire')
+                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup) #* (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp

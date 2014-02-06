@@ -1064,6 +1064,7 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     '''
     Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
     'foy'
+    Cf. http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/la-prime-pour-l-emploi-ppe,1034.html
     '''
     P = _P.ir.credits_impot.ppe
 
@@ -1082,13 +1083,17 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     base_monacti = ligne2 * (eliv * basevi + elic * baseci)
 
     def ppe_bar1(base):
-        cond1 = ligne1 | ligne3
-        cond2 = ligne2
-        return 1 / ppe_coef * ((cond1 & (base <= P.seuil2)) * (base) * P.taux1 +
-                           (cond1 & (base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base) * P.taux2 +
-                           (cond2 & (base <= P.seuil2)) * (base * P.taux1) +
-                           (cond2 & (base > P.seuil2) & (base <= P.seuil3)) * ((P.seuil3 - base) * P.taux2) +
-                           (cond2 & (base > P.seuil4) & (base <= P.seuil5)) * (P.seuil5 - base) * P.taux3)
+#        cond1 = ligne1 | ligne3
+#        cond2 = ligne2
+#        return 1 / ppe_coef * ((cond1 & (base <= P.seuil2)) * (base) * P.taux1 +
+#                           (cond1 & (base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base) * P.taux2 +
+#                           (cond2 & (base <= P.seuil2)) * (base * P.taux1) +
+#                           (cond2 & (base > P.seuil2) & (base <= P.seuil3)) * ((P.seuil3 - base) * P.taux2) +
+#                           (cond2 & (base > P.seuil4) & (base <= P.seuil5)) * (P.seuil5 - base) * P.taux3)
+        return 1 / ppe_coef * (((base <= P.seuil2)) * (base) * P.taux1 +
+                           ((base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base) * P.taux2 +
+                           (ligne2 & (base > P.seuil4) & (base <= P.seuil5)) * (P.seuil5 - base) * P.taux3)
+
 
     def ppe_bar2(base):
         return 1 / ppe_coef * ((base <= P.seuil2) * (base) * P.taux1 +
@@ -1128,12 +1133,12 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     ppe_tot = ppe_tot * (ppe_tot <= plaf_ppe)
     return ppe_tot
 
-def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]}):
+def _ppe(ppe_brute, rsa_act):
     """
     PPE effectivement versé
     """
 #   On retranche le RSA activité de la PPE
 #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
-    ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
+    ppe = max_(ppe_brute - rsa_act, 0)
     return ppe
 
