@@ -370,7 +370,6 @@ class Scenario(object):
                 ),
             default = conv.noop,
             )(data, state = state)
-            
         remaining_individus_id = familles_individus_id.union(foyers_fiscaux_individus_id, menages_individus_id)
         if remaining_individus_id:
             if error is None:
