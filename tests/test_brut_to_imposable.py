@@ -77,7 +77,7 @@ def test_case_study(year = 2013, verbose = False):
         for var in ['sal', 'salbrut']:
             test = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
 
-            if not test:
+            if (not test) or type_sal_category in ['public_titulaire_etat']:
                 print (df_b2i / 12).to_string()
                 print (df_i2b / 12).to_string()
 
