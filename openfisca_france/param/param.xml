@@ -3665,8 +3665,7 @@
         <VALUE valeur="449" deb="2006-11-01" fin="2014-12-31"/># TODO: check in july 2014 for "fin"
   	  </CODE>
       <CODE description="Indice majoré plafond" code="IM_max" format="integer">
-      	<VALUE valeur="716" deb="1999-06-13" fin="2006-10-31"/>
-        <VALUE valeur="717" deb="2006-11-01" fin="2014-12-31"/># TODO: check in july 2014 for "fin"
+        <VALUE valeur="717" deb="2011-01-01" fin="2014-12-31"/>
   	  </CODE>
   	  <NODE description="Part fixe" code="fixe">
 	    <CODE description="1er enfant" code="enf1" format="float">
