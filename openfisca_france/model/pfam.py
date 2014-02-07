@@ -236,7 +236,7 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
 
 def _ars(age, smic55, br_pf, _P, _option={'age': ENFS, 'smic55': ENFS}):
     '''
-    Allocation de rentrée scolaire
+    Allocation de rentrée scolaire brute de CRDS
     '''
     # TODO: convention sur la mensualisation
     # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
@@ -263,6 +263,7 @@ def _ars(age, smic55, br_pf, _P, _option={'age': ENFS, 'smic55': ENFS}):
                      P.ars.tx1518 * enf_lycee)
     # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
     ars = max_(0, (ars_plaf_res + arsbase * arsnbenf - max_(br_pf, ars_plaf_res)) / max_(1, arsnbenf))
+    # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
     return ars * (ars >= P.ars.seuil_nv)
 
 ############################################################################
@@ -414,9 +415,6 @@ def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_d
 #
 #Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
 #Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max_ 45,00 €.     Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-#
-#
-
     P = _P.fam
 
     # condition de revenu minimal

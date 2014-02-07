@@ -138,13 +138,13 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     indemnite_residence = 0  # TODO: fix bug
 
 #     print 'sali', sali / 12
-#     brut_etat = etat.calc(sali)
+    brut_etat = etat.calc(sali)
 #     print 'impot', public_etat.calc(brut_etat) / 12
 #     print 'brut_etat', brut_etat / 12
-#     salbrut_etat = (brut_etat)
+    salbrut_etat = (brut_etat)
 #                 # TODO: fonctionnaire
-#     print 'salbrut_etat', salbrut_etat / 12
-#    salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
+    print 'salbrut_etat', salbrut_etat / 12
+    salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
 
 # #        <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement" color = "0,99,143"/>
 # #        <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence" color = "0,99,143"/>

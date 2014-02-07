@@ -209,7 +209,7 @@ def test_cotsoc():
 
             computed_value = (simulation.output_table.table[variable] / 12).sum()
             test_assertion = abs(abs(computed_value) - value) < 1
-            expression = "Test failed for variable %s on year %i : \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, abs(computed_value), value)
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
             if not test_assertion:
                 print expression
