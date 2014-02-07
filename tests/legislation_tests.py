@@ -63,6 +63,7 @@ def test_legislation_xml_file():
             ).encode('utf-8'))
 
     dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datetime.date(2006, 1, 1))
+#    del dated_legislation_json['datesim']
 #    raise ValueError(unicode(json.dumps(dated_legislation_json, ensure_ascii = False, indent = 2)).encode('utf-8'))
     compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
 #    raise ValueError(compact_legislation)
