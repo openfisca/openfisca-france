@@ -340,7 +340,7 @@ Vérifie que le ménage entré est valide
                             ),
                         year = conv.pipe(
                             conv.test_isinstance(int),
-                            conv.test_greater_or_equal(1900),  # TODO: Check that year is valid in params.
+                            conv.test_greater_or_equal(1900), # TODO: Check that year is valid in params.
                             conv.not_none,
                             ),
                         ),
@@ -416,7 +416,7 @@ Vérifie que le ménage entré est valide
                 legislation_file_path = os.path.join(legislation_dir, legislation_filename)
                 legislation_json = None
                 if os.path.exists(legislation_file_path) \
-                        and os.path.getmtime(legislation_file_path) > time.time() - 900:  # 15 minutes
+                        and os.path.getmtime(legislation_file_path) > time.time() - 900: # 15 minutes
                     with open(legislation_file_path) as legislation_file:
                         try:
                             legislation_json = json.load(legislation_file,
