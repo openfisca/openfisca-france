@@ -56,4 +56,4 @@ def test_survey(year = 2013):
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_case_study()
+    test_case_study(2010)
