@@ -398,9 +398,9 @@ class Scenario(object):
         try:
             response = urllib2.urlopen(request)
         except urllib2.HTTPError:
-            return data, dict(legislation_url = ctx._(u'HTTP Error while retrieving legislation JSON'))
+            return data, dict(legislation_url = state._(u'HTTP Error while retrieving legislation JSON'))
         except urllib2.URLError:
-            return data, dict(legislation_url = ctx._(u'Error while retrieving legislation JSON'))
+            return data, dict(legislation_url = state._(u'Error while retrieving legislation JSON'))
         legislation_json, error = conv.pipe(
             conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
             legislations.validate_node_json,
