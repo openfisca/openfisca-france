@@ -2279,7 +2279,7 @@
       </CODE>
       <CODE description="majoration case GO" code="majGO" format="percent">
         <VALUE valeur="1" deb="2002-01-01" fin="2005-12-31"/>
-        <VALUE valeur="1.25" deb="2006-01-01" fin="2014-12-31"/>  
+        <VALUE valeur="1.25" deb="2006-01-01" fin="2014-12-31"/>  # TODO: CHECK wild extension of date
       </CODE>
    </NODE>
    <NODE code="microfoncier" description="Microfoncier">
@@ -3138,7 +3138,7 @@
       <VALUE valeur="5000" deb="2005-01-01" fin="2014-12-31"/> 
     </CODE>
     <CODE description="Majoration du plafond pour le 1er enfant" code="pac1" format="integer" type="monetary">
-      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/>  # 400 par pac 
+      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/>  # TODO: 400 par pac
     </CODE>
     <CODE description="Majoration du plafond pour le 2eme enfant" code="pac2" format="integer" type="monetary">
       <VALUE valeur="500" deb="2002-01-01" fin="2007-12-31"/>
@@ -3167,7 +3167,7 @@
       <VALUE valeur="8000" deb="2005-01-01" fin="2013-12-31"/> 
     </CODE>
     <CODE description="Majoration du plafond pour le 1er enfant" code="pac1" format="integer">
-      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/> # 400 par pac
+      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/> # TODO: 400 par pac
     </CODE>
     <CODE description="Majoration du plafond pour le 2nd enfant" code="pac2" format="integer">
       <VALUE valeur="500" deb="2002-01-01" fin="2007-12-31"/>
@@ -3658,7 +3658,7 @@
 	 	<VALUE valeur="313" deb="2013-01-01" fin="2014-12-31"/> # TODO: check in july 2014 for "fin"
 	 </CODE>
     </NODE>
-    <NODE description="Supplément familial de traitement" code="supp_fam" >  
+    <NODE description="Supplément familial de traitement" code="supp_fam" >  # TODO: Vérifier pour les années inférieures à 2013
 	  <CODE description="Indice majoré plancher" code="IM_min" format="integer">
 	  	<VALUE valeur="447" deb="1999-06-13" fin="1999-11-13"/>
 	  	<VALUE valeur="448" deb="1999-11-14" fin="2006-10-31"/>
