@@ -288,11 +288,6 @@ def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
 
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns):
     ''' Revenus Categoriels '''
-#    AUTRE = TSPR + RVCM + RFON
-
-    for var in [rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns]:
-        # log.error(var.__name__)
-        log.error(var)
     return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns
 
 ###############################################################################

@@ -244,7 +244,7 @@ def build_pat(_P):
     log.info("Le dictionnaire des barèmes des cotisations patronales des salariés titulaires de l'etat contient : \n %s", pat['public_titulaire_etat'].keys())
     log.info("Le dictionnaire des barèmes des cotisations patronales titulaires des collectivités locales contient : \n %s", pat['public_titulaire_territoriale'].keys())
     log.info("Le dictionnaire des barèmes des cotisations patronales titulaires hospitaliers contient : \n %s", pat['public_titulaire_hospitaliere'].keys())
-    log.error("Le dictionnaire des barèmes des cotisations patronales du public contractuels contient : \n %s", pat['public_non_titulaire'].keys())
+    log.info("Le dictionnaire des barèmes des cotisations patronales du public contractuels contient : \n %s", pat['public_non_titulaire'].keys())
 
     return pat
 
@@ -270,9 +270,9 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
                         log.info(temp)
 
         if category[0] == DEBUG_SAL_TYPE:
-            log.error("rafp pat: %s" % str(cot_pat_rafp / 12))
-            log.error("pension civile pat: %s" % str(cot_pat_pension_civile / 12))
-            
+            log.info("rafp pat: %s" % str(cot_pat_rafp / 12))
+            log.info("pension civile pat: %s" % str(cot_pat_pension_civile / 12))
+
     cotpat += cot_pat_rafp + cot_pat_pension_civile
     return cotpat
 
@@ -295,9 +295,9 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
                 cotpat += temp
                 if is_mo == 1:
                     if  category[0] == DEBUG_SAL_TYPE:
-                        log.error(category[0])
-                        log.error(bar._name)
-                        log.error(temp / 12)
+                        log.info(category[0])
+                        log.info(bar._name)
+                        log.info(temp / 12)
     return cotpat
 
 
@@ -315,9 +315,9 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
                 temp = -bar.calc(salbrut + indemnite_residence + primes) * iscat  # check
                 transport += temp
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.error(category[0])
-                    log.error(bar._name)
-                    log.error(temp / 12)
+                    log.info(category[0])
+                    log.info(bar._name)
+                    log.info(temp / 12)
     return transport
 
 
@@ -347,11 +347,11 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                 if is_noncontrib == 1:
                     if  category[0] == DEBUG_SAL_TYPE:
                         log.info(category[0])
-                        log.error(bar)
-                        log.error(temp / 12)
-                        log.error("\n \n")
+                        log.info(bar)
+                        log.info(temp / 12)
+                        log.info("\n \n")
 
-    log.error("accident : %s" % cotpat_accident)
+    log.info("accident : %s" % cotpat_accident)
     return cotpat + cotpat_accident
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
@@ -405,7 +405,7 @@ def build_sal(_P):
     log.info("Le dictionnaire des barèmes des salariés titulaires de l'etat contient : \n %s \n", sal['public_titulaire_etat'].keys())
     log.info("Le dictionnaire des barèmes des salariés titulaires des collectivités locales contient : \n %s \n", sal['public_titulaire_territoriale'].keys())
     log.info("Le dictionnaire des barèmes des salariés titulaires de la fonction publique hospitalière contient : \n %s \n", sal['public_titulaire_hospitaliere'].keys())
-    log.error("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
+    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
 
     return sal
 
@@ -438,19 +438,18 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
                         ) * is_contrib
                 cotsal += temp
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.error(category[0])
-                    log.error(bar._name)
-                    log.error(temp / 12)
+                    log.info(category[0])
+                    log.info(bar._name)
+                    log.info(temp / 12)
 
         if category[0] == DEBUG_SAL_TYPE:
             log.info("pension civile sal %s" % str(cot_sal_pension_civile / 12))
             log.info("rafp sal %s" % str(cot_sal_rafp / 12))
 
-    public = ((type_sal == CAT['public_titulaire_etat'])
+    public_titulaire = ((type_sal == CAT['public_titulaire_etat'])
               + (type_sal == CAT['public_titulaire_territoriale'])
               + (type_sal == CAT['public_titulaire_hospitaliere']))
-    return cotsal + (cot_sal_rafp + cot_sal_pension_civile) * public
-
+    return cotsal + (cot_sal_rafp + cot_sal_pension_civile) * public_titulaire
 
 
 def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
@@ -467,7 +466,7 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, _P)
                 is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
                 is_noncontrib = (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"])
                 temp = -(iscat
-                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup) #* (category[0] == 'public_non_titulaire')
+                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup)  # * (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp

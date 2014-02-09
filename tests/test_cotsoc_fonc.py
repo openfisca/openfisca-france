@@ -126,33 +126,6 @@ def test_cotsoc():
                      "salnet": 2147.26,
                     }
               },  # TODO: fds et versement transport
-                {"year" : 2012,
-              "input_vars":
-                    {
-                     "type_sal" : CAT["public_titulaire_territoriale"],
-                     "salbrut" : 12 * 2000,
-                     "primes" : 12 * 500,
-                     "zone_apl": 1,
-                    },
-              "output_vars" :
-                    {
-                     "cot_pat_pension_civile": 546,
-                     "cot_sal_pension_civile": 167.80,
-                     "cot_sal_rafp": 20,
-                     "cot_pat_rafp": 20,
-                     "indemnite_residence": 60,
-                     "cotpat_transport": 52,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 52 + 6,
-#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 ,  # 23.72
-#                               pension rafp
-                     "csgsald" : 128.28,
-                     "csgsali" : 60.36,
-                     "crdssal": 12.58,
-                     "salsuperbrut": 3542,
-                     "salnet": 2147.26,
-                    }
-              },  # TODO: fds et versement transport
              {"year" : 2012,
               "input_vars":
                     {
@@ -182,11 +155,7 @@ def test_cotsoc():
               },  # TODO: fds et versement transport
             ]
 
-
-
-
-
-
+    passed = True
     for test in tests_list:
 
         year = test["year"]
@@ -204,7 +173,7 @@ def test_cotsoc():
         df = simulation.get_results_dataframe(index_by_code = True)
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['sal'])
-        passed = True
+
         for variable, value in test['output_vars'].iteritems():
 
             computed_value = (simulation.output_table.table[variable] / 12).sum()
@@ -213,8 +182,9 @@ def test_cotsoc():
 
             if not test_assertion:
                 print expression
-                passed = True
-            assert passed, "Test failed for some variables"
+                passed = False
+
+    assert passed, "Test failed for some variables"
 
 
 if __name__ == '__main__':
