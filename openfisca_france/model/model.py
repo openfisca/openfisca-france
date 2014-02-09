@@ -46,7 +46,7 @@ from . import lgtm as lg
 from . import mini as ms
 from . import pfam as pf
 from . import th as th
-
+from . import inversion_revenus as inv_rev
 
 def _noi(noi):
     return noi
@@ -119,7 +119,7 @@ prestation_by_name = collections.OrderedDict((
 
     # Salaires
     ('type_sal', EnumPresta(cs_travail._type_sal, label = u"Catégorie de salariés")),
-    ('salbrut', Prestation(cs_travail._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
+    ('salbrut', Prestation(inv_rev._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
     ('primes', Prestation(cs_travail._primes, label = u"Primes et indemnités des fonctionnaires")),
     ('sal_h_b', Prestation(cs_travail._sal_h_b, label = u"Salaire horaire brut")),
     ('taille_entreprise', EnumPresta(cs_travail._taille_entreprise,

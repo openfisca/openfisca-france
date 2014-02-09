@@ -42,7 +42,6 @@ def test_cotsoc():
     et des revenus de différentes origines
     """
 
-
     tests_list = [
 #   Célibataires (pas de supplément familial de traitement
              {"year" : 2012,

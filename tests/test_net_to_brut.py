@@ -42,7 +42,7 @@ def test_case_study(year = 2013, verbose = False):
 
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
         simulation = ScenarioSimulation()
-        maxrev = 24000
+        maxrev = 50000
         simulation.set_config(year = year, reforme = False, nmen = 11, maxrev = maxrev, x_axis = 'salbrut')
         simulation.scenario.indiv[0]['salbrut'] = maxrev
         simulation.scenario.indiv[0]['type_sal'] = CAT[type_sal_category]
@@ -56,31 +56,31 @@ def test_case_study(year = 2013, verbose = False):
         # simulation.disable_prestations( ['aefa'])
         df = simulation.get_results_dataframe(index_by_code = True)
 
-        from openfisca_france.model.inversion_revenus import _salbrut
-        df_b2i = df.transpose()
+        from openfisca_france.model.inversion_revenus import _salbrut_from_salnet
+        df_b2n = df.transpose()
         if verbose:
 
-            print df_b2i.to_string()
+            print df_b2n.to_string()
 
-        sali = df_b2i['sal'].get_values()
+        salnet = df_b2n['salnet'].get_values()
         hsup = simulation.input_table.table['hsup'].get_values()
         type_sal = simulation.input_table.table['type_sal'].get_values()
         primes = simulation.input_table.table['hsup'].get_values()
 
         defaultP = simulation.P_default
         from pandas import DataFrame
-        df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut(sali, hsup, type_sal, defaultP) })
+        df_n2b = DataFrame({'salnet': salnet, 'salbrut' : _salbrut_from_salnet(salnet, hsup, type_sal, defaultP) })
 
         if verbose:
-            print df_i2b.to_string()
+            print df_n2b.to_string()
 
 
-        for var in ['sal', 'salbrut']:
-            passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
+        for var in ['salnet', 'salbrut']:
+            passed = ((df_b2n[var] - df_n2b[var]).abs() < .01).all()
 
             if (not passed) or type_sal_category in ['public_titulaire_etat']:
-                print (df_b2i / 12).to_string()
-                print (df_i2b / 12).to_string()
+                print (df_b2n / 12).to_string()
+                print (df_n2b / 12).to_string()
 
             assert passed, "difference in %s for %s" % (var, type_sal_category)
 

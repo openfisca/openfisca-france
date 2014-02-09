@@ -25,17 +25,11 @@
 from __future__ import division
 
 import logging
+from numpy import zeros
 
-from openfisca_core.baremes import BaremeDict, combineBaremes, scaleBaremes
-from openfisca_core.enumerations import Enum
+from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
+from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
 
-CAT = Enum(['prive_non_cadre',
-            'prive_cadre',
-            'public_titulaire_etat',
-            'public_titulaire_militaire',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire'])
 
 log = logging.getLogger(__name__)
 
@@ -78,8 +72,11 @@ log = logging.getLogger(__name__)
 ############################################################################
 
 def _salbrut(sali, hsup, type_sal, _defaultP):
+    # indemnite_residence, sup_familial
     '''
     Calcule le salaire brut à partir du salaire imposable
+    sauf pour les fonctionnaires où il renvoie le tratement indiciaire brut
+    Note : le supplément familial de traitement est imposable
     '''
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
 
@@ -89,71 +86,92 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
+    log.info("Le dictionnaire des barèmes des cotisations salariés des titualires de l'Etat contien : \n %s", salarie['fonc']["etat"])
+
+    # Salariés du privé
+
     noncadre = combineBaremes(salarie['noncadre'])
     cadre = combineBaremes(salarie['cadre'])
-    fonc = combineBaremes(salarie['fonc'])
 
     # On ajoute la CSG deductible
     noncadre.addBareme(csg['act']['deduc'])
     cadre.addBareme(csg['act']['deduc'])
-    fonc.addBareme(csg['act']['deduc'])
 
     nca = noncadre.inverse()
     cad = cadre.inverse()
-    fon = fonc.inverse()
-
-    # TODO: complete this to deal with the fonctionnaire
     brut_nca = nca.calc(sali)
     brut_cad = cad.calc(sali)
-    brut_fon = fon.calc(sali)
+    salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
+    salbrut += brut_cad * (type_sal == CAT['prive_cadre'])
 
-    salbrut = (brut_nca * (type_sal == CAT['prive_non_cadre']) +
-               brut_cad * (type_sal == CAT['prive_cadre']) +
-               brut_fon * (type_sal == CAT['public_titulaire_etat']))
+    # public etat
+    # TODO: modifier la contribution exceptionelle de solidarité
+    # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
+    # et en tenant compte des éléments de l'assiette
+    salarie['fonc']["etat"].update({'excep_solidarite' : salarie['fonc']['commun']['solidarite']})
 
+    public_etat = salarie['fonc']["etat"]['pension']
+#    public_colloc = combineBaremes(salarie['fonc']["colloc"]) TODO:
+
+    # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
+    # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
+    bareme_csg_titulaire_etat = (csg['act']['deduc']).multTaux(1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
+    public_etat.addBareme(bareme_csg_titulaire_etat)
+    bareme_prime = Bareme(name = "taux de prime")
+    bareme_prime.addTranche(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
+    public_etat.addBareme(bareme_prime)
+
+    etat = public_etat.inverse()
+
+    # TODO: complete this to deal with the fonctionnaire
+    supp_familial_traitement = 0  # TODO: dépend de salbrut
+    indemnite_residence = 0  # TODO: fix bug
+
+#     print 'sali', sali / 12
+    brut_etat = etat.calc(sali)
+#     print 'impot', public_etat.calc(brut_etat) / 12
+#     print 'brut_etat', brut_etat / 12
+    salbrut_etat = (brut_etat)
+#                 # TODO: fonctionnaire
+#    print 'salbrut_etat', salbrut_etat / 12
+    salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
+
+# #        <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement" color = "0,99,143"/>
+# #        <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence" color = "0,99,143"/>
     return salbrut + hsup
+
 
 def _salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
     '''
     Calcule le salaire brut à partir du salaire net
-    Renvoie 0 sauf pour les salariés non cadres, cadres (TODO: et les contractuels de la fonction publique ?)  
+    Renvoie 0 sauf pour les salariés non cadres, cadres (TODO: et les contractuels de la fonction publique ?)
     '''
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
+
     salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
     csg = scaleBaremes(BaremeDict('csg', _defaultP.csg), plaf_ss)
-    crds = scaleBaremes(BaremeDict('csrds', _defaultP.crds), plaf_ss)
-
+    crds = scaleBaremes(BaremeDict('crds', _defaultP.crds), plaf_ss)
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
-    noncadre = combineBaremes(salarie['noncadre'])
-    cadre = combineBaremes(salarie['cadre'])
-    fonc = combineBaremes(salarie['fonc'])
+    # Salariés du privé
+    prive_non_cadre = combineBaremes(salarie['noncadre'])
+    prive_cadre = combineBaremes(salarie['cadre'])
 
-    # On ajoute la CSG deductible+imosable et la CRDS
-    for baremes in [noncadre, cadre, fonc]:
-        baremes.addBareme(csg['act']['deduc'])
-        baremes.addBareme(csg['act']['impos'])
-        baremes.addBareme(crds['act'])
+    # On ajoute la CSG deductible et imposable
+    for bareme in [prive_non_cadre, prive_cadre]:
+        bareme.addBareme(csg['act']['deduc'])
+        bareme.addBareme(csg['act']['impos'])
+        bareme.addBareme(crds['act'])
 
-    nca = noncadre.inverse()
-    cad = cadre.inverse()
-    fon = fonc.inverse()
+    inversed_bareme = {'prive_non_cadre': prive_non_cadre.inverse(),
+                       'prive_cadre' : prive_cadre.inverse()}
 
-    # TODO: complete this to deal with the fonctionnaire
-    brut_nca = nca.calc(salnet)
-    brut_cad = cad.calc(salnet)
-    brut_fon = fon.calc(salnet)
-
-    salbrut = (brut_nca * (type_sal == CAT['prive_non_cadre']) +
-               brut_cad * (type_sal == CAT['prive_cadre']) +
-               brut_fon * (type_sal == CAT['public_titulaire_etat']))
+    salbrut = zeros(len(salnet))
+    for category in ['prive_non_cadre', 'prive_cadre']:
+        salbrut += inversed_bareme[category].calc(salnet) * (type_sal == CAT[category])
 
     return salbrut + hsup
-
-
-
-
 
 ############################################################################
 # # Allocations chômage
@@ -266,7 +284,7 @@ def get_brut_from_net(net, type_sal = 0, hsup = 0, csg_rempl = 0, rev = 'sal', y
 
 
 if __name__ == '__main__':
-    net = 10000
+    net = 1961
     brut = get_brut_from_net(12 * net) / 12
-
-    print get_brut_from_net(12 * 1568.80) / 12
+    print brut
+#    print get_brut_from_net(12 * 1568.80) / 12

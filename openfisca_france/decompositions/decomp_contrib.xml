@@ -1,4 +1,5 @@
 <NODE desc="Revenu disponible" shortname="Rev. disp." code="revdisp" color="0,0,255" typevar='2' >
+  <NODE desc="Revenus nets" shortname="Rev. nets" code="rev_net" color = "0,155,204">  # TODO: change color
   <NODE desc="Revenu du travail" shortname="Rev. travail" code="rev_trav" color = "0,155,204">
     <NODE desc="Salaires nets" shortname="Sal. nets" code="salnet" color = "0,138,201">
       <NODE desc="Salaires imposables" shortname="Sal. impos." code="sal" color= "0,115,170">
@@ -79,6 +80,7 @@
       </NODE>    
     </NODE>
     <NODE desc= "Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." code = "imp_lib" color = "232,79,95"/>
+  </NODE>
   </NODE>
   <NODE desc= "Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" code = "ir_lps" color = "232,79,95"/>
   <NODE desc= "Prestations sociales" shortname="Prest. soc." code= "psoc" color = "255,102,63">
