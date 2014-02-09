@@ -3385,6 +3385,9 @@
           <VALUE valeur="35" deb="2005-01-01" fin="2005-12-31"/>
           <VALUE valeur="36" deb="2006-01-01" fin="2013-12-31"/>
         </CODE>
+       	<CODE description="Prime 1er personne à charge, famille monoparentale" code="mono_pac" format="integer" type="monetary">
+          <VALUE valeur="72" deb="2007-01-01" fin="2013-12-31"/>
+        </CODE>
         <CODE description="Versement minimum" code="versmin" format="integer" type="monetary">
           <VALUE valeur="25" deb="2001-01-01" fin="2004-12-31"/>
           <VALUE valeur="30" deb="2005-01-01" fin="2013-12-31"/>
@@ -3777,15 +3780,30 @@
         <VALUE valeur="0.725" deb="2008-01-01" fin="2012-09-02"/>
         <VALUE valeur="0.8972" deb="2012-09-03" fin="2014-03-31"/>
       </CODE>
+      <CODE description="Montant pour les écoliers" code="enf0610" format="float" type="monetary">
+        <VALUE valeur="284.37" deb="2011-01-01" fin="2011-12-31"/>
+        <VALUE valeur="356.20" deb="2012-01-01" fin="2012-12-31"/>
+        <VALUE valeur="360.47" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
       <CODE description="Taux pour les collégiens (en % de bmaf)" code="tx1114" format="percent">
         <VALUE valeur="0.7322" deb="2002-01-01" fin="2007-12-31"/>
         <VALUE valeur="0.7649" deb="2008-01-01" fin="2012-09-02"/>
-        <VALUE valeur="0.9467" deb="2012-09-03" fin="2014-03-31"/>
+        <VALUE valeur="0.9467" deb="2012-09-01" fin="2014-03-31"/>
+      </CODE>
+      <CODE description="Montant pour les collégiens" code="enf1114" format="float" type="monetary">
+      	<VALUE valeur="300.66" deb="2011-01-01" fin="2011-12-31"/>
+        <VALUE valeur="375.85" deb="2012-01-01" fin="2012-12-31"/>
+        <VALUE valeur="380.36" deb="2013-01-01" fin="2013-12-31"/>
       </CODE>
       <CODE description="Taux pour les lycéens (en % de bmaf)" code="tx1518" format="percent">
         <VALUE valeur="0.7322" deb="2002-01-01" fin="2007-12-31"/>
         <VALUE valeur="0.7915" deb="2008-01-01" fin="2012-09-02"/>
         <VALUE valeur="0.9795" deb="2012-09-03" fin="2014-03-31"/>
+      </CODE>
+      <CODE description="Montant pour les lycéens" code="enf1518"  format="float" type="monetary">
+        <VALUE valeur="311.11" deb="2011-01-01" fin="2011-12-31"/>
+        <VALUE valeur="388.87" deb="2012-01-01" fin="2012-12-31"/>
+        <VALUE valeur="393.54" deb="2013-01-01" fin="2013-12-31"/>
       </CODE>
       <CODE description="Seuil de non versement" code="seuil_nv" format="integer" type="monetary">
         <VALUE valeur="15" deb="2002-01-01" fin="2013-12-31"/>

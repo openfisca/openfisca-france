@@ -1014,10 +1014,11 @@ def _ppe_coef(jour_xyz):
     nb_jour = (jour_xyz == 0) + jour_xyz
     return 360 / nb_jour
 
-def _ppe_elig(rfr, ppe_coef, marpac, veuf, celdiv, nbptr, _P):
+def _ppe_elig(rfr, ppe_coef, ppe_rev, marpac, veuf, celdiv, nbptr, _P):
     '''
-    PPE: eligibilité à la ppe
+    PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
     'foy'
+    CF ligne 1: http://bofip.impots.gouv.fr/bofip/3913-PGP.html
     '''
     P = _P.ir.credits_impot.ppe
     seuil = (veuf | celdiv) * (P.eligi1 + 2 * max_(nbptr - 1, 0) * P.eligi3) \
@@ -1064,6 +1065,7 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     '''
     Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
     'foy'
+    Cf. http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/la-prime-pour-l-emploi-ppe,1034.html
     '''
     P = _P.ir.credits_impot.ppe
 
@@ -1082,28 +1084,35 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     base_monacti = ligne2 * (eliv * basevi + elic * baseci)
 
     def ppe_bar1(base):
-        cond1 = ligne1 | ligne3
-        cond2 = ligne2
-        return 1 / ppe_coef * ((cond1 & (base <= P.seuil2)) * (base) * P.taux1 +
-                           (cond1 & (base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base) * P.taux2 +
-                           (cond2 & (base <= P.seuil2)) * (base * P.taux1) +
-                           (cond2 & (base > P.seuil2) & (base <= P.seuil3)) * ((P.seuil3 - base) * P.taux2) +
-                           (cond2 & (base > P.seuil4) & (base <= P.seuil5)) * (P.seuil5 - base) * P.taux3)
+#        cond1 = ligne1 | ligne3
+#        cond2 = ligne2
+#        return 1 / ppe_coef * ((cond1 & (base <= P.seuil2)) * (base) * P.taux1 +
+#                           (cond1 & (base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base) * P.taux2 +
+#                           (cond2 & (base <= P.seuil2)) * (base * P.taux1) +
+#                           (cond2 & (base > P.seuil2) & (base <= P.seuil3)) * ((P.seuil3 - base) * P.taux2) +
+#                           (cond2 & (base > P.seuil4) & (base <= P.seuil5)) * (P.seuil5 - base) * P.taux3)
+        return (1 / ppe_coef) * (((base <= P.seuil2)) * (base) * P.taux1 +
+                           ((base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base) * P.taux2 +
+                           ligne2 * ((base > P.seuil4) & (base <= P.seuil5)) * (P.seuil5 - base) * P.taux3)
+
 
     def ppe_bar2(base):
-        return 1 / ppe_coef * ((base <= P.seuil2) * (base) * P.taux1 +
+        return (1 / ppe_coef) * ((base <= P.seuil2) * (base) * P.taux1 +
                            ((base > P.seuil2) & (base <= P.seuil3)) * (P.seuil3 - base1) * P.taux2)
 
     # calcul des primes individuelles.
+
     ppev = eliv * ppe_bar1(basev)
     ppec = elic * ppe_bar1(basec)
     ppe1 = eli1 * ppe_bar2(base1)
     ppe2 = eli2 * ppe_bar2(base2)
     ppe3 = eli3 * ppe_bar2(base3)
 
+    # Primes de monoactivité
     ppe_monact_vous = (eliv & ligne2 & (basevi >= P.seuil1) & (basev <= P.seuil4)) * P.monact
     ppe_monact_conj = (elic & ligne2 & (baseci >= P.seuil1) & (basec <= P.seuil4)) * P.monact
 
+    # Primes pour enfants à charge
     maj_pac = ppe_elig * (eliv | elic) * (
         (ligne1 & marpac & ((ppev + ppec) != 0) & (min_(basev, basec) <= P.seuil3)) * P.pac * (nb_pac_ppe + nbH * 0.5) +
         (ligne1 & (celdiv | veuf) & eliv & (basev <= P.seuil3)) * P.pac * (nb_pac_ppe + nbH * 0.5) +
@@ -1111,8 +1120,6 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
         (ligne2 & (base_monact > P.seuil3) & (base_monact <= P.seuil5)) * P.pac * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0))) +
         (ligne3 & (basevi >= P.seuil1) & (basev <= P.seuil3)) * ((min_(nb_pac_ppe, 1) * 2 * P.pac + max_(nb_pac_ppe - 1, 0) * P.pac) + (nb_pac_ppe == 0) * (min_(nbH, 2) * P.pac + max_(nbH - 2, 0) * P.pac * 0.5)) +
         (ligne3 & (basev > P.seuil3) & (basev <= P.seuil5)) * P.pac * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
-
-    plaf_ppe = P.seuil3 * ((celdiv | veuf) & (nb_pac_ppe == 0) | marpac & (ppev > P.seuil1) & (ppec > P.seuil1)) + P.seuil4 * (marpac & ((ppev > P.seuil1) | (ppec > P.seuil1)) | ligne3)
 
     def coef(coef_tp):
         return (coef_tp <= 0.5) * coef_tp * 1.45 + (coef_tp > 0.5) * (0.55 * coef_tp + 0.45)
@@ -1124,17 +1131,20 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
     ppe_pac3 = ppe_elig * (ppe3 * coef(coef_tp3))
 
     ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 + maj_pac
+
     ppe_tot = (ppe_tot != 0) * max_(P.versmin, ppe_tot)
-    ppe_tot = ppe_tot * (ppe_tot <= plaf_ppe)
+    # from pandas import DataFrame
+    # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj, 8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
+    # print DataFrame(decompo).to_string()
 
     return ppe_tot
 
-def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]}):
+def _ppe(ppe_brute, rsa_act):
     """
     PPE effectivement versé
     """
 #   On retranche le RSA activité de la PPE
 #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
-    ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
+    ppe = max_(ppe_brute - rsa_act, 0)
     return ppe
 

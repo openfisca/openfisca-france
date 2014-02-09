@@ -236,7 +236,7 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
 
 def _ars(age, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
-    Allocation de rentrée scolaire
+    Allocation de rentrée scolaire brute de CRDS
     '''
     # TODO: convention sur la mensualisation
     # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
@@ -262,7 +262,8 @@ def _ars(age, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
                      P.ars.tx1114 * enf_college +
                      P.ars.tx1518 * enf_lycee)
     # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
-    ars = max_(0, (ars_plaf_res + arsbase * arsnbenf - max_(br_pf, ars_plaf_res)) / max_(1, arsnbenf))
+    ars = max_(0, (ars_plaf_res + arsbase - max_(br_pf, ars_plaf_res)))
+    # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
     return ars * (ars >= P.ars.seuil_nv)
 
 ############################################################################
@@ -413,9 +414,11 @@ def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_d
 #    étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
 #
 # Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
-# Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max_ 45,00 €.     Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
+# Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max_ 45,00 €.
+# Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
 #
 #
+
 
     P = _P.fam
 
@@ -423,11 +426,11 @@ def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_d
 
     cond_age_enf = (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
     cond_sal = (sal[CHEF] + sal[PART] + hsup[CHEF] + hsup[PART] > 12 * P.af.bmaf_n_2 * (1 + concub))
-# TODO    cond_rpns    =
+# TODO:    cond_rpns    =
     cond_act = cond_sal  # | cond_rpns
 
     cond_nonact = (aah > 0) | (etu[CHEF] & etu[PART])  # | (ass>0)
-#  TODO RSA insertion, alloc insertion, ass
+#  TODO: RSA insertion, alloc insertion, ass
     elig = cond_age_enf & (cond_act | cond_nonact)
     nbenf = af_nbenf
     seuil1 = P.paje.clmg.seuil11 * (nbenf == 1) + P.paje.clmg.seuil12 * (nbenf >= 2) + max_(nbenf - 2, 0) * P.paje.clmg.seuil1sup
@@ -515,7 +518,7 @@ def _aeeh(age, inv, isol, categ_inv, _P, _option = {'categ_inv': ENFS, 'inv': EN
         enfhand = inv[enfant] * (age[enfant] < P.aeeh.age) / 12
         categ = categ_inv[enfant]
         if _P.datesim.year <= 2002:
-            aeeh += 0 * enfhand  # TODO
+            aeeh += 0 * enfhand  # TODO:
         else:
             aeeh += enfhand * (P.af.bmaf * (P.aeeh.base +
                               P.aeeh.cpl1 * (categ == 1) +
@@ -550,8 +553,7 @@ def _ape(age, smic55, inactif, partiel1, partiel2, _P, _option = {'age': ENFS, '
     '''
     # Les personnes en couple peuvent toutes deux bénéficier de l’APE à taux plein, mais pas en même temps. En revanche, ils peuvent cumuler deux taux partiels, à condition que leur total ne dépasse pas le montant du taux plein.
 
-
-    # TODO cumul,  adoption, triplés,
+    # TODO: cumul,  adoption, triplés,
     #    Cumul d'allocations : Cette allocation n'est pas cumulable pour un même ménage avec
     # - une autre APE (sauf à taux partiel),
     # - ou l'allocation pour jeune enfant (APJE) versée à partir de la naissance,

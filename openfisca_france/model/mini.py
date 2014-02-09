@@ -22,12 +22,12 @@ CONJ = QUIFOY['conj']
 ############################################################################
 # ASPA /  Minimum vieillesse
 ############################################################################
-def _br_mv_i(sal, cho, rst, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
+def _br_mv_i(salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
     '''
     Base ressource individuelle du minimlum vieillesse et assimilés (ASPA)
     'ind'
     '''
-    out = (sal + cho + rst + alr + rto + rpns +
+    out = (salbrut + chobrut + rstbrut + alr + rto + rpns +
            max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
            # max_(0,etr) +
            )
@@ -544,7 +544,7 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
     """
     P = _P
     bmaf = P.fam.af.bmaf
-    # TODO
+    # TODO:
 
 #    Majoration pour isolement
 #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants à charge ou enceinte, le montant forfaitaire garanti est majoré.
@@ -560,8 +560,8 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
 #
     benjamin = age_en_mois_benjamin(agem)
     enceinte = (benjamin < 0) * (benjamin > -6)
-    # TODO quel mois mettre ?
-    # TODO pas complètement exact
+    # TODO: quel mois mettre ?
+    # TODO: pas complètement exact
     # L'allocataire perçoit l'API :
     # jusqu'à ce que le plus jeune enfant ait 3 ans,
     # ou pendant 12 mois consécutifs si les enfants sont âgés de plus de 3 ans

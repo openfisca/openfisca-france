@@ -118,8 +118,8 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     # TODO: modifier la contribution exceptionelle de solidarité
     # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
     # et en tenant compte des éléments de l'assiette
-
     salarie['fonc']["etat"].update({'excep_solidarite' : salarie['fonc']['commun']['solidarite']})
+
     public_etat = salarie['fonc']["etat"]['pension']
 #    public_colloc = combineBaremes(salarie['fonc']["colloc"]) TODO:
 
@@ -143,7 +143,7 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
 #     print 'brut_etat', brut_etat / 12
     salbrut_etat = (brut_etat)
 #                 # TODO: fonctionnaire
-#     print 'salbrut_etat', salbrut_etat / 12
+    print 'salbrut_etat', salbrut_etat / 12
     salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
 
 # #        <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement" color = "0,99,143"/>
@@ -272,9 +272,10 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
         if category[0] == DEBUG_SAL_TYPE:
             log.error("rafp pat: %s" % str(cot_pat_rafp / 12))
             log.error("pension civile pat: %s" % str(cot_pat_pension_civile / 12))
-
+            
     cotpat += cot_pat_rafp + cot_pat_pension_civile
     return cotpat
+
 
 def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
     '''
@@ -405,6 +406,7 @@ def build_sal(_P):
     log.info("Le dictionnaire des barèmes des salariés titulaires des collectivités locales contient : \n %s \n", sal['public_titulaire_territoriale'].keys())
     log.info("Le dictionnaire des barèmes des salariés titulaires de la fonction publique hospitalière contient : \n %s \n", sal['public_titulaire_hospitaliere'].keys())
     log.error("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
+
     return sal
 
 
@@ -462,13 +464,10 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, _P)
         iscat = (type_sal == category[1])
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
-                is_noncontrib = (bar.option == "noncontrib")
                 is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-#                 if DEBUG:
-#                     print bar._name
                 is_noncontrib = (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"])
                 temp = -(iscat
-                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup) * (category[0] == 'public_non_titulaire')
+                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup) #* (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp
@@ -633,6 +632,7 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
                  + (type_sal == CAT['public_titulaire_territoriale'])
                  + (type_sal == CAT['public_titulaire_hospitaliere']))
     tib = salbrut * eligibles / 12
+
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss
