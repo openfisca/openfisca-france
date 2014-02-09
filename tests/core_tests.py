@@ -29,13 +29,14 @@ import sys
 
 import openfisca_france
 openfisca_france.init_country()
+
 from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
 
 
 def test_case_study(year = 2013):
     simulation = ScenarioSimulation()
-    simulation.set_config(year = year, nmen = 1, reforme = False)
-    simulation.scenario.indiv[0]['sali'] = 16207
+    simulation.set_config(year = year, nmen = 2, maxrev = 10000, reforme = False, x_axis = 'sali')
+#    simulation.scenario.indiv[0]['sali'] = 16207
     # Add husband/wife on the same tax sheet (foyer)
     simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
     simulation.set_param()
