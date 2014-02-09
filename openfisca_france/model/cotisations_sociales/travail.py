@@ -412,31 +412,31 @@ def _cotsal(cotsal_contrib, cotsal_noncontrib):
     return cotsal_contrib + cotsal_noncontrib
 
 
-def _csgsald(salbrut, primes, indemnite_residence, hsup, _P):
+def _csgsald(salbrut, primes, indemnite_residence, supp_familial_traitement, hsup, _P):
     '''
     CSG deductible sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
     csg = scaleBaremes(_P.csg.act.deduc, plaf_ss)
-    return -12 * csg.calc((salbrut + primes + indemnite_residence - hsup) / 12)
+    return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
 
 
-def _csgsali(salbrut, hsup, primes, indemnite_residence, _P):
+def _csgsali(salbrut, hsup, primes, indemnite_residence, supp_familial_traitement, _P):
     '''
     CSG imposable sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
     csg = scaleBaremes(_P.csg.act.impos, plaf_ss)
-    return -12 * csg.calc((salbrut + primes + indemnite_residence - hsup) / 12)
+    return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
 
 
-def _crdssal(salbrut, hsup, primes, indemnite_residence, _P):
+def _crdssal(salbrut, hsup, primes, indemnite_residence, supp_familial_traitement, _P):
     '''
     CRDS sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
     crds = scaleBaremes(_P.crds.act, plaf_ss)
-    return -12 * crds.calc((salbrut - hsup + primes + indemnite_residence) / 12)
+    return -12 * crds.calc((salbrut - hsup + primes + indemnite_residence + supp_familial_traitement) / 12)
 
 
 def _sal_h_b(salbrut):
@@ -613,39 +613,39 @@ def _supp_familial_traitement(type_sal, salbrut, af_nbenf, _P):
     part_fixe_1 = P.fixe.enf1
     part_fixe_2 = P.fixe.enf2
     part_fixe_supp = P.fixe.enfsupp
-    part_fixe = (part_fixe_1 * (fonc_nbenf >= 1) + (part_fixe_2 - part_fixe_1) * (fonc_nbenf >= 2) +
+    part_fixe = (part_fixe_1 * (fonc_nbenf == 1) + part_fixe_2 * (fonc_nbenf == 2) +
                   part_fixe_supp * max_(0, fonc_nbenf - 2))
 
     # pct_variable_1 = 0
     pct_variable_2 = P.prop.enf2
     pct_variable_3 = P.prop.enf3
     pct_variable_supp = P.prop.enfsupp
-    pct_variable = (pct_variable_2 * (fonc_nbenf >= 2) + (pct_variable_3 - pct_variable_2) * (fonc_nbenf >= 3) +
+    pct_variable = (pct_variable_2 * (fonc_nbenf == 2) + (pct_variable_3) * (fonc_nbenf == 3) +
                       pct_variable_supp * max_(0, fonc_nbenf - 3))
 
     indice_maj_min = P.IM_min
     indice_maj_max = P.IM_max
 
-    plancher_mensuel_1 = P.fixe.enf1
-    plancher_mensuel_2 = _traitement_brut_mensuel(indice_maj_min, _P) * pct_variable_2
-    plancher_mensuel_3 = _traitement_brut_mensuel(indice_maj_min, _P) * pct_variable_3
+    plancher_mensuel_1 = part_fixe
+    plancher_mensuel_2 = part_fixe + _traitement_brut_mensuel(indice_maj_min, _P) * pct_variable_2
+    plancher_mensuel_3 = part_fixe + _traitement_brut_mensuel(indice_maj_min, _P) * pct_variable_3
     plancher_mensuel_supp = _traitement_brut_mensuel(indice_maj_min, _P) * pct_variable_supp
 
-    plancher = (plancher_mensuel_1 * (fonc_nbenf >= 1) +
-                (plancher_mensuel_2 - plancher_mensuel_1) * (fonc_nbenf >= 2) +
-                (plancher_mensuel_3 - plancher_mensuel_2 - plancher_mensuel_1) * (fonc_nbenf >= 3) +
+    plancher = (plancher_mensuel_1 * (fonc_nbenf == 1) +
+                plancher_mensuel_2 * (fonc_nbenf == 2) +
+                plancher_mensuel_3 * (fonc_nbenf >= 3) +
                 plancher_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-    plafond_mensuel_1 = P.fixe.enf1
-    plafond_mensuel_2 = _traitement_brut_mensuel(indice_maj_max, _P) * pct_variable_2
-    plafond_mensuel_3 = _traitement_brut_mensuel(indice_maj_max, _P) * pct_variable_3
+    plafond_mensuel_1 = part_fixe
+    plafond_mensuel_2 = part_fixe + _traitement_brut_mensuel(indice_maj_max, _P) * pct_variable_2
+    plafond_mensuel_3 = part_fixe + _traitement_brut_mensuel(indice_maj_max, _P) * pct_variable_3
     plafond_mensuel_supp = _traitement_brut_mensuel(indice_maj_max, _P) * pct_variable_supp
 
-    plafond = (plafond_mensuel_1 * (fonc_nbenf >= 1) + (plafond_mensuel_2 - plafond_mensuel_1) * (fonc_nbenf >= 2) +
-               (plafond_mensuel_3 - plafond_mensuel_2 - plafond_mensuel_1) * (fonc_nbenf >= 3) +
+    plafond = (plafond_mensuel_1 * (fonc_nbenf == 1) + plafond_mensuel_2 * (fonc_nbenf == 2) +
+               plafond_mensuel_3 * (fonc_nbenf == 3) +
                plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-    sft = min_(max_(part_fixe + pct_variable * salbrut, plancher), plafond) * (type_sal >= 2)
+    sft = min_(max_(part_fixe + pct_variable * salbrut / 12, plancher), plafond) * (type_sal >= 2)
     # Nota Bene:
     # type_sal is an EnumCol which enum is:
     # CAT = Enum(['prive_non_cadre',

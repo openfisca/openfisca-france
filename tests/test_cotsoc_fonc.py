@@ -26,6 +26,7 @@
 from __future__ import division
 
 import sys
+import datetime
 import logging
 import nose
 
@@ -36,10 +37,9 @@ from openfisca_core.simulations import ScenarioSimulation
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
 
-def test_cotsoc():
+def test_cotsoc_celib():
     """
-    test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 €
-    et des revenus de différentes origines
+    test pour un célibataire
     """
 
     tests_list = [
@@ -156,7 +156,6 @@ def test_cotsoc():
 
     passed = True
     for test in tests_list:
-
         year = test["year"]
         simulation = ScenarioSimulation()
         simulation.set_config(year = test["year"], nmen = 1)
@@ -186,8 +185,85 @@ def test_cotsoc():
     assert passed, "Test failed for some variables"
 
 
+def test_cotsoc_famille():
+    """
+    test pour un couple de fonctionnaire
+    """
+    tests_list = [
+#   Famille avec 2 enfants
+             {"year" : 2012,
+              "input_vars":
+                    {
+                     "type_sal" : CAT["public_titulaire_etat"],
+                     "salbrut" : 12 * 2000,
+                     "primes" : 12 * 500,
+                     "zone_apl": 1,
+                    },
+              "output_vars" :
+                    {
+                     "cot_pat_pension_civile": 1371.80,
+                     "cot_sal_pension_civile": 167.80,
+                     "cot_sal_rafp": 20,
+                     "cot_pat_rafp": 20,
+                     "csgsald" : 131.94,
+                     "csgsali" : 62.09,
+                     "indemnite_residence": 60,
+                     "supp_familial_traitement":73.04,
+                     "crdssal": 12.93,
+                     "cotpat_transport": 52,
+                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 52 + 6,
+#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
+                     "cotsal" : 167.80 + 20 ,  # 24.45 cot excep de solidarité
+#                               pension rafp
+                     "salsuperbrut": 4401.44,
+                     "salnet": 2213.83,
+                    }
+              },  # TODO: fds et versement transport
+                  ]
+
+    passed = True
+    for test in tests_list:
+
+        year = test["year"]
+        simulation = ScenarioSimulation()
+        simulation.set_config(year = test["year"], nmen = 1)
+        simulation.set_param()
+
+        test_case = simulation.scenario
+
+        test_case.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
+        test_case.addIndiv(2, datetime.date(2000, 1, 1), 'pac', 'enf')
+        test_case.addIndiv(3, datetime.date(2001, 1, 1), 'pac', 'enf')
+
+
+        for variable, value in test['input_vars'].iteritems():
+
+
+            if variable in ['zone_apl']:
+                test_case.menage[0].update({ variable: value})
+            else:
+                test_case.indiv[0].update({ variable: value})
+
+        df = simulation.get_results_dataframe(index_by_code = True)
+        simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
+        simulation.output_table.calculate_prestation(simulation.prestation_by_name['sal'])
+
+        for variable, value in test['output_vars'].iteritems():
+
+            computed_value = (simulation.output_table.table[variable] / 12).sum()
+            test_assertion = abs(abs(computed_value) - value) < 1
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+
+            if not test_assertion:
+                print expression
+                passed = False
+
+    assert passed, "Test failed for some variables"
+
+
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cotsoc()
+#    test_cotsoc_celib()
+    test_cotsoc_famille()
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)

@@ -3586,28 +3586,28 @@
         <VALUE valeur="449" deb="2011-01-01" fin="2014-12-31"/>
   	  </CODE>
       <CODE description="Indice majoré plafond" code="IM_max" format="integer">
-        <VALUE valeur="712" deb="2011-01-01" fin="2014-12-31"/>
+        <VALUE valeur="717" deb="2011-01-01" fin="2014-12-31"/>
   	  </CODE>
   	  <NODE description="Part fixe" code="fixe">
 	    <CODE description="1er enfant" code="enf1" format="float">
-	      <VALUE valeur="2.29" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="2.29" deb="2002-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="2 enfants" code="enf2" format="float">
-	      <VALUE valeur="10.67" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="10.67" deb="2002-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="float">
-	      <VALUE valeur="4.57" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="4.57" deb="2002-01-01" fin="2014-12-31"/>
 	  	</CODE>
 	  </NODE>
 	  <NODE description="Part proportionnelle au traitement" code="prop">
 	    <CODE description="Pour 2 enfants" code="enf2" format="percent">
-	      <VALUE valeur="0.03" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.03" deb="1985-11-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Pour 3 enfants" code="enf3" format="percent">
-	      <VALUE valeur="0.08" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.08" deb="1985-11-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Par nfant supplémentaire " code="enfsupp" format="percent">
-	      <VALUE valeur="0.06" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.06" deb="1985-11-01" fin="2014-12-31"/>
 	  	</CODE>
 	  </NODE>
     </NODE>

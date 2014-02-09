@@ -9,7 +9,10 @@
        	    <NODE desc= "Cotisations sociales patronales contributtives" shortname="Cotsoc pat cont." code= "cotpat_contrib" color = "249,208,211"/>
        	    <NODE desc= "Cotisations sociales patronales non contributives" shortname="Cotsoc pat noncont." code= "cotpat_noncontrib" color = "249,208,211"/>
        	  </NODE>
+       	  <NODE desc= "Taxe sur les salaires" shortname="Taxe sal." code= "taxes_sal"/>
+   		  <NODE desc= "Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" code= "tehr"/>
        	  <NODE desc= "Allègement sur les bas salaires" shortname="Allèg. sal." code= "alleg_fillon"/>
+       	  <NODE desc= "Crédit d'impôt compétitivité-emploi" shortname="CICE" code= "alleg_cice"/>
         </NODE>
         <NODE desc= "Cotisations sociales salariées" shortname="Cotsoc sal" code= "cotsal" color = "243,166,171">
        	    <NODE desc= "Cotisations sociales salariales contributtives" shortname="Cotsoc sal cont." code= "cotsal_contrib" color = "243,166,171"/>
