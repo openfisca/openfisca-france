@@ -62,8 +62,8 @@ def test_cotsoc_celib():
                      "csgsali" : 60.36,
                      "indemnite_residence": 60,
                      "crdssal": 12.58,
-                     "cotpat_transport": 52,
-                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 52 + 6,
+                     "cotpat_transport": 2000*0.0175,
+                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000*0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 167.80 + 20 ,  # 23.72
 #                               pension rafp
@@ -86,8 +86,8 @@ def test_cotsoc_celib():
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
                      "indemnite_residence": 60,
-                     "cotpat_transport": 52,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 52 + 6,
+                     "cotpat_transport": 2000*0.0175,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000*0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 167.80 + 20 ,  # 23.72
 #                               pension rafp
@@ -113,8 +113,8 @@ def test_cotsoc_celib():
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
                      "indemnite_residence": 60,
-                     "cotpat_transport": 52,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 52 + 6,
+                     "cotpat_transport": 2000*0.0175,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000*0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 167.80 + 20 ,  # 23.72
 #                               pension rafp
@@ -140,8 +140,8 @@ def test_cotsoc_celib():
                      "cot_sal_rafp": 0,
                      "cot_pat_rafp": 0,
                      "indemnite_residence": 60,
-                     "cotpat_transport": 52,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 52 + 6,
+                     "cotpat_transport": 2000*.0175,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000*0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 170.24 + 2.56 + 52.42 + 19.20 ,  # 23.16 cot excep de solidarite
 #                              viel_plaf viel_deplaf ircantecA maladie
@@ -167,7 +167,7 @@ def test_cotsoc_celib():
                 test_case.menage[0].update({ variable: value})
             else:
                 test_case.indiv[0].update({ variable: value})
-
+                      
         df = simulation.get_results_dataframe(index_by_code = True)
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['sal'])
@@ -210,8 +210,8 @@ def test_cotsoc_famille():
                      "indemnite_residence": 60,
                      "supp_familial_traitement":73.04,
                      "crdssal": 12.93,
-                     "cotpat_transport": 52,
-                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 52 + 6,
+                     "cotpat_transport": 2000*0.0175,
+                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000*0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 167.80 + 20 ,  # 24.45 cot excep de solidarité
 #                               pension rafp
@@ -263,7 +263,7 @@ def test_cotsoc_famille():
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-#    test_cotsoc_celib()
-    test_cotsoc_famille()
+    test_cotsoc_celib()
+#    test_cotsoc_famille()
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)

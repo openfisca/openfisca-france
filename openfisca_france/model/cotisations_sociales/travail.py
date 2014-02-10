@@ -244,7 +244,7 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
         if category[0] in pat.keys():  # category[0] is the name of the category
             if 'transport' in pat[category[0]]:
                 bar = pat[category[0]]['transport']
-                temp = -bar.calc(salbrut + indemnite_residence + primes) * iscat  # check
+                temp = -bar.calc(salbrut) * iscat  # check
                 transport += temp
                 if  category[0] == DEBUG_SAL_TYPE:
                     log.info(category[0])
