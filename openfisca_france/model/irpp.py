@@ -221,14 +221,12 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     # Part des frais s'imputant sur les revenus déclarés case DC
     den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
     F1 = f2ca / den * f2dc_bis
-
     # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
     # partie négative (à déduire des autres revenus nets de frais d'abattements
-    g12a = -min_(f2dc_bis * P.abatmob_taux - F1, 0)
+    g12a = -min_(f2dc_bis * (1-P.abatmob_taux) - F1, 0)
     # partie positive
-    g12b = max_(f2dc_bis * P.abatmob_taux - F1, 0)
-
-    rev = g12b + f2gr + f2fu * P.abatmob_taux
+    g12b = max_(f2dc_bis * (1-P.abatmob_taux) - F1, 0)
+    rev = g12b + f2gr + f2fu * (1-P.abatmob_taux)
 
     # Abattements, limité au revenu
     h12 = P.abatmob * (1 + marpac)
@@ -240,7 +238,6 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     TOT3 = (f2ts - F2) + f2go * P.majGO + f2tr_bis - g12a
 
     DEF = deficit_rcm
-
     return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
 def _rfr_rvcm(f2dc, f2fu, f2da, _P):
