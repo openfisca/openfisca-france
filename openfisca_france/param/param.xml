@@ -1187,7 +1187,7 @@
           </CODE>
         </NODE>
         <NODE description="Collectivités locales - Fonction publique hospitalière" code="colloc">
-          <BAREME description="Retraites des agents des collectivités locales (taux hors NBI)" code="cnracl1" option="noncontrib">
+          <BAREME description="Retraites des agents des collectivités locales (taux hors NBI)" code="cnracl1" option="contrib">
             <TRANCHE code="tranche0">
               <SEUIL>
                 <VALUE valeur="0" deb="1984-01-01" fin="2020-12-31"/>
@@ -1207,13 +1207,13 @@
               </TAUX>
             </TRANCHE>
           </BAREME>
-          <BAREME description="Retraites des agents des collectivités locales (taux NBI)" code="cnracl2" option="noncontrib">
+          <BAREME description="Retraites des agents des collectivités locales (taux NBI)" code="cnracl2" option="contrib">
             <TRANCHE code="tranche0">
               <SEUIL>
                 <VALUE valeur="0" deb="1984-01-01" fin="2020-12-31"/>
               </SEUIL>
               <TAUX>
-                <VALUE valeur="0.1080" deb="2020-01-01" fin="2020-12-31"/>
+                <VALUE valeur="0.1080" deb="2020-01-01" fin="2020-12-31"/> # TODO: CHECK change because réfore
                 <VALUE valeur="0.1053" deb="2019-01-01" fin="2019-12-31"/>
                 <VALUE valeur="0.1026" deb="2018-01-01" fin="2018-12-31"/>
                 <VALUE valeur="0.0999" deb="2017-01-01" fin="2017-12-31"/>

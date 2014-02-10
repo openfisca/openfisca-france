@@ -41,7 +41,8 @@ def test_cotsoc_celib():
     """
     test pour un célibataire
     """
-
+    # Comparaison avec la fiche de paie IPP calculé avec une cotisation transport correspondant à Paris ((.026)
+    # alors qu'Openfisca la cacule pour Lyon (.0175)
     tests_list = [
 #   Célibataires (pas de supplément familial de traitement
              {"year" : 2012,
@@ -54,23 +55,23 @@ def test_cotsoc_celib():
                     },
               "output_vars" :
                     {
+                     "indemnite_residence": 60,
                      "cot_pat_pension_civile": 1371.80,
                      "cot_sal_pension_civile": 167.80,
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
+                     "cotpat_transport": 2000 * 0.0175,
+                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
+#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
+                     "cotsal" : 167.80 + 20 + 23.72,
+#                               pension rafp
+                     "salsuperbrut": 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
-                     "indemnite_residence": 60,
                      "crdssal": 12.58,
-                     "cotpat_transport": 2000*0.0175,
-                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000*0.0175 + 6,
-#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 ,  # 23.72
-#                               pension rafp
-                     "salsuperbrut": 4328.40,
                      "salnet": 2147.26,
                     }
-              },  # TODO: fds et versement transport
+              },
              {"year" : 2012,
               "input_vars":
                     {
@@ -86,18 +87,18 @@ def test_cotsoc_celib():
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
                      "indemnite_residence": 60,
-                     "cotpat_transport": 2000*0.0175,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000*0.0175 + 6,
+                     "cotpat_transport": 2000 * 0.0175,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 ,  # 23.72
-#                               pension rafp
+                     "cotsal" : 167.80 + 20 + 23.72,
+#                               pension rafp, fds
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
-                     "salsuperbrut": 3542,
+                     "salsuperbrut": 3542 + 2000 * (0.0175 - 0.026),
                      "salnet": 2147.26,
                     }
-              },  # TODO: fds et versement transport
+              },
              {"year" : 2012,
               "input_vars":
                     {
@@ -113,18 +114,18 @@ def test_cotsoc_celib():
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
                      "indemnite_residence": 60,
-                     "cotpat_transport": 2000*0.0175,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000*0.0175 + 6,
+                     "cotpat_transport": 2000 * 0.0175,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 ,  # 23.72
+                     "cotsal" : 167.80 + 20 + 23.72,
 #                               pension rafp
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
-                     "salsuperbrut": 3542,
+                     "salsuperbrut": 3542 + 2000 * (0.0175 - 0.026),
                      "salnet": 2147.26,
                     }
-              },  # TODO: fds et versement transport
+              },
              {"year" : 2012,
               "input_vars":
                     {
@@ -140,18 +141,18 @@ def test_cotsoc_celib():
                      "cot_sal_rafp": 0,
                      "cot_pat_rafp": 0,
                      "indemnite_residence": 60,
-                     "cotpat_transport": 2000*.0175,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000*0.0175 + 6,
+                     "cotpat_transport": 2000 * .0175,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 170.24 + 2.56 + 52.42 + 19.20 ,  # 23.16 cot excep de solidarite
 #                              viel_plaf viel_deplaf ircantecA maladie
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
-                     "salsuperbrut": 3367.36,
+                     "salsuperbrut": 3367.36 + 2000 * (0.0175 - 0.026),
                      "salnet": 2091.20,
                     }
-              },  # TODO: fds et versement transport
+              },
             ]
 
     passed = True
@@ -167,7 +168,7 @@ def test_cotsoc_celib():
                 test_case.menage[0].update({ variable: value})
             else:
                 test_case.indiv[0].update({ variable: value})
-                      
+
         df = simulation.get_results_dataframe(index_by_code = True)
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['sal'])
@@ -210,15 +211,15 @@ def test_cotsoc_famille():
                      "indemnite_residence": 60,
                      "supp_familial_traitement":73.04,
                      "crdssal": 12.93,
-                     "cotpat_transport": 2000*0.0175,
-                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000*0.0175 + 6,
+                     "cotpat_transport": 2000 * 0.0175,
+                     "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 ,  # 24.45 cot excep de solidarité
+                     "cotsal" : 167.80 + 20 + 24.45,  # cot excep de solidarité
 #                               pension rafp
-                     "salsuperbrut": 4401.44,
+                     "salsuperbrut": 4401.44 + 2000 * (.0175 - .026),
                      "salnet": 2213.83,
                     }
-              },  # TODO: fds et versement transport
+              },
                   ]
 
     passed = True

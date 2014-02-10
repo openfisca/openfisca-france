@@ -44,31 +44,15 @@ CAT = Enum(['prive_non_cadre',
             'public_titulaire_hospitaliere',
             'public_non_titulaire'])
 
-DEBUG_SAL_TYPE = 'public_non_titulaire'
+DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 
 log = logging.getLogger(__name__)
-
-# TODO: CHECK la csg déductible en 2006 est case GH
-# TODO:  la revenus soumis aux csg déductible et imposable sont
-#        en CG et BH en 2010
-
-#        # Heures supplémentaires exonérées
-#        if not self.bareme.ir.autre.hsup_exo:
-#            self.sal += self.hsup
-#            self.hsup = 0*self.hsup
-
-# Exonération de CSG et de CRDS sur les revenus du chômage
-# et des préretraites si cela abaisse ces revenus sous le smic brut
-# TODO: mettre un trigger pour l'éxonération
-#       des revenus du chômage sous un smic
 
 # TODO: contribution patronale de prévoyance complémentaire
 # Formation professionnelle (entreprise de 10 à moins de 20 salariés)
 #        salaire total 1,05%
 # Formation professionnelle (entreprise de moins de 10 salariés)
 #        salaire total 0,55%
-
-
 
 def _mhsup(hsup):
     """
@@ -319,9 +303,6 @@ def build_sal(_P):
                                'public_non_titulaire']:
         sal[type_sal_category]['excep_solidarite'] = sal['fonc']['commun']['solidarite']
 
-    del sal['public_titulaire_etat']['rafp']
-    del sal['public_titulaire_etat']['pension']
-
     sal['public_non_titulaire'].update(sal['commun'])
     del sal['public_non_titulaire']['arrco']
     del sal['public_non_titulaire']['assedic']
@@ -332,12 +313,7 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
 
-    log.info("Le dictionnaire des barèmes des salariés non cadres du privé  contient : \n %s \n", sal['prive_non_cadre'].keys())
-    log.info("Le dictionnaire des barèmes des salariés cadres du privé contient : \n %s \n", sal['prive_cadre'].keys())
-    log.info("Le dictionnaire des barèmes des salariés titulaires de l'etat contient : \n %s \n", sal['public_titulaire_etat'].keys())
-    log.info("Le dictionnaire des barèmes des salariés titulaires des collectivités locales contient : \n %s \n", sal['public_titulaire_territoriale'].keys())
-    log.info("Le dictionnaire des barèmes des salariés titulaires de la fonction publique hospitalière contient : \n %s \n", sal['public_titulaire_hospitaliere'].keys())
-    log.info("Le dictionnaire des barèmes des salariés du public contractuels contient : \n %s \n", sal['public_non_titulaire'].keys())
+    log.error("Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
 
     return sal
 
@@ -349,7 +325,7 @@ def seuil_fds(_P):
     from math import  floor
     ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
     pt_ind = _P.cotsoc.sal.fonc.commun.pt_ind
-    seuil_mensuel = floor(100 * (pt_ind * ind_maj_ref) / 12)
+    seuil_mensuel = floor((pt_ind * ind_maj_ref) / 12)
     return seuil_mensuel
 
 
@@ -363,45 +339,88 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
         iscat = (type_sal == category[1])
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
-                is_contrib = (bar.option == "contrib")
+                is_contrib = (bar.option == "contrib") & (bar._name not in ["rafp", "pension", "cnracl1", "cnracl2"])  # dealed by pension civile and rafp
                 temp = -(iscat
                          * bar.calc(salbrut - hsup
                                     + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                         ) * is_contrib
                 cotsal += temp
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.info(category[0])
-                    log.info(bar._name)
-                    log.info(temp / 12)
+                    log.error(category[0])
+                    log.error(bar._name)
+                    log.error(temp / 12)
+
 
         if category[0] == DEBUG_SAL_TYPE:
-            log.info("pension civile sal %s" % str(cot_sal_pension_civile / 12))
-            log.info("rafp sal %s" % str(cot_sal_rafp / 12))
+            log.error("cot_sal_pension_civile %s" % str(cot_sal_pension_civile / 12))
+            log.error("rafp sal %s" % str(cot_sal_rafp / 12))
+
 
     public_titulaire = ((type_sal == CAT['public_titulaire_etat'])
               + (type_sal == CAT['public_titulaire_territoriale'])
               + (type_sal == CAT['public_titulaire_hospitaliere']))
-    return cotsal + (cot_sal_rafp + cot_sal_pension_civile) * public_titulaire
+
+    return cotsal + (cot_sal_pension_civile + cot_sal_rafp) * public_titulaire
 
 
-def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
+def _cot_sal_pension_civile(salbrut, type_sal, _P):
+    sal = build_sal(_P)
+    terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
+    cot_sal_pension_civile = (
+        (type_sal == CAT['public_titulaire_etat']) * sal['public_titulaire_etat']['pension'].calc(salbrut)
+        + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(salbrut)
+                              )
+    if (type_sal == CAT['public_titulaire_territoriale']).all():
+        log.error('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
+
+    return -cot_sal_pension_civile
+
+
+def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite_residence, _P):
+    '''
+    Part salariale de la retraite additionelle de la fonction publique
+    TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
+    Note: sal_brut est le traitement indiciaire brut pour les fonctionnaires
+    '''
+    eligibles = ((type_sal == CAT['public_titulaire_etat'])
+                 + (type_sal == CAT['public_titulaire_territoriale'])
+                 + (type_sal == CAT['public_titulaire_hospitaliere']))
+    tib = salbrut * eligibles / 12
+
+    plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
+    base_imposable = primes + supp_familial_traitement + indemnite_residence
+    plaf_ss = _P.cotsoc.gen.plaf_ss
+    sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
+    assiette = min_(base_imposable / 12 , plaf_ass * tib)
+    # Même régime pour etat et colloc
+    cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
+    return -12 * cot_sal_rafp
+
+
+def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sal_rafp, cot_sal_pension_civile, _P):
     '''
     Cotisations sociales salariales non-contributives
     '''
     sal = build_sal(_P)
     cotsal = zeros(len(salbrut))
     seuil_assuj_fds = seuil_fds(_P)
+    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
     for category in CAT:
         iscat = (type_sal == category[1])
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
-                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-                is_noncontrib = (bar.option == "noncontrib") and (bar._name in ["famille", "maladie"])
+                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) / 12 <= seuil_assuj_fds)  # TODO: check assiette voir IPP
+                is_noncontrib = (bar.option == "noncontrib")  # and (bar._name in ["famille", "maladie"])
                 temp = -(iscat
-                         * bar.calc(salbrut + (primes + indemnite_residence) - hsup)  # * (category[0] == 'public_non_titulaire')
+                         * bar.calc(salbrut + primes + indemnite_residence - hsup + cot_sal_rafp + cot_sal_pension_civile)  # * (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp
+                if  category[0] == DEBUG_SAL_TYPE:
+                    log.error(category[0])
+                    log.error(bar)
+                    log.error(temp / 12)
+
     return cotsal
 
 
@@ -523,8 +542,8 @@ def _salsuperbrut(salbrut, primes, indemnite_residence, cotpat, alleg_fillon, al
                   " - alleg_cice          %s \n"
                   " + taxes_sal           %s \n"
                   " + tehr                %s \n"
-                  " = salsuperbut         %s") % (salbrut, cotpat, primes, indemnite_residence,
-                                                  - alleg_fillon, -alleg_cice, taxes_sal, tehr, salsuperbrut)
+                  " = salsuperbut         %s") % (salbrut / 12, cotpat / 12, primes / 12, indemnite_residence / 12,
+                                                  - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12, salsuperbrut / 12)
     log.info(expression)
     return salsuperbrut
 
@@ -542,36 +561,6 @@ def _cot_pat_pension_civile(salbrut, type_sal, _P):
                              )
     return -cot_pat_pension_civile
 
-def _cot_sal_pension_civile(salbrut, type_sal, _P):
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
-    terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) + (type_sal == CAT['public_titulaire_hospitaliere'])
-    cot_sal_pension_civile = (
-         (type_sal == CAT['public_titulaire_etat']) * sal['fonc']['etat']['pension'].calc(salbrut)
-       + terr_or_hosp * sal['fonc']['colloc']['cnracl1'].calc(salbrut)
-                             )
-    return -cot_sal_pension_civile
-
-
-def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite_residence, _P):
-    '''
-    Part salariale de la retraite additionelle de la fonction publique
-    TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-    Note: sal_brut est le traitement indiciaire brut pour les fonctionnaires
-    '''
-    eligibles = ((type_sal == CAT['public_titulaire_etat'])
-                 + (type_sal == CAT['public_titulaire_territoriale'])
-                 + (type_sal == CAT['public_titulaire_hospitaliere']))
-    tib = salbrut * eligibles / 12
-
-    plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
-    base_imposable = primes + supp_familial_traitement + indemnite_residence
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
-    assiette = min_(base_imposable / 12 , plaf_ass * tib)
-    # Même régime pour etat et colloc
-    cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
-    return -12 * cot_sal_rafp
 
 def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite_residence, _P):
     '''
