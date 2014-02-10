@@ -520,19 +520,25 @@ def _psa(api, rsa, activite, af_nbenf, al, _P, _option = {"activite" : [CHEF, PA
 def _rsa_act(rsa, rmi):
     '''
     Calcule le montant du RSA activité
+    Note: le partage en moitié est un point de législation, pas un choix arbitraire
     '''
     res = max_(rsa - rmi, 0)
     return res
 
-def _rsa_act_i(rsa_act, concub, maries, quifam):
-    '''
-    Calcule le montant du RSA activité individuel. Utile pour la deduction de la ppe.
 
-    Note: le partage en moitié est un point de législation, pas un choix arbitraire
+def _rsa_act_i(rsa_act, concub, maries, quifam, idfam):
     '''
-    conj = concub | maries | (quifam == 1)
-    # TODO: mettre les conjoints (concubins ou mariés) à 1
-    return rsa_act / (1 + conj)
+    Calcule le montant du RSA activité
+    Note: le partage en moitié est un point de législation, pas un choix arbitraire
+    TODO: à refaire car cela ne marchera pas avec les données d'enquêtes si elles ne sont pas triées exactement comme il faut !
+    '''
+    conj = concub | maries
+    rsa_act_i = 0*rsa_act
+    rsa_act_i[quifam==0] = rsa_act[quifam==0]/(1+conj[quifam==0])
+    rsa_act_i[quifam==1] = rsa_act[conj]/ 2
+    return rsa_act_i
+
+
 
 def _crds_mini(rsa_act, _P):
     return _P.fam.af.crds * rsa_act
