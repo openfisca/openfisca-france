@@ -2229,7 +2229,7 @@
       </CODE>
       <CODE description="majoration case GO" code="majGO" format="percent">
         <VALUE valeur="1" deb="2002-01-01" fin="2005-12-31"/>
-        <VALUE valeur="1.25" deb="2006-01-01" fin="2014-12-31"/>  # TODO: CHECK wild extension of date
+        <VALUE valeur="1.25" deb="2006-01-01" fin="2014-12-31"/>  
       </CODE>
    </NODE>
    <NODE code="microfoncier" description="Microfoncier">
@@ -2249,14 +2249,14 @@
       </CODE>
       <CODE description="Taux de la pénalité non CGA-AA" code="cga_taux2" format="percent">
         <VALUE valeur="0" deb="2002-01-01" fin="2005-12-31"/>
-        <VALUE valeur="0.25" deb="2006-01-01" fin="2014-12-31"/> # TODO: vérifier 2013/2014
+        <VALUE valeur="0.25" deb="2006-01-01" fin="2014-12-31"/> 
       </CODE>
       <CODE description="Abattement centre de gestion agréé ou association aggréé///si revenu inférieur à " code="cga_max" format="integer" type="monetary">
         <VALUE valeur="113900" deb="2002-01-01" fin="2002-12-31"/>
         <VALUE valeur="115900" deb="2003-01-01" fin="2003-12-31"/>
         <VALUE valeur="117900" deb="2004-01-01" fin="2004-12-31"/>
         <VALUE valeur="120100" deb="2005-01-01" fin="2005-12-31"/>
-        <VALUE valeur="0" deb="2006-01-01" fin="2014-12-31"/> # TODO: vérifier 2013/2014
+        <VALUE valeur="0" deb="2006-01-01" fin="2014-12-31"/> 
       </CODE>
       <CODE description="Déficit agricole///%cf art 156 du CGI" code="def_agri_seuil" format="integer" type="monetary">
         <VALUE valeur="53360" deb="2002-01-01" fin="2003-12-31"/>
@@ -2291,10 +2291,10 @@
           <CODE description="Taux" code="taux" format="percent">
             <VALUE valeur="0.50" deb="1991-01-01" fin="2001-12-31"/>
             <VALUE valeur="0.52" deb="2002-01-01" fin="2005-12-31"/>
-            <VALUE valeur="0.50" deb="2006-01-01" fin="2013-12-31"/> # TODO: check 2013
+            <VALUE valeur="0.50" deb="2006-01-01" fin="2013-12-31"/> 
           </CODE>
           <CODE description="Minimum" code="min" format="integer" type="monetary">
-            <VALUE valeur="305" deb="2002-01-01" fin="2013-12-31"/> # TODO: check 2013
+            <VALUE valeur="305" deb="2002-01-01" fin="2013-12-31"/> 
           </CODE>
           <CODE description="Maximum" code="max" format="integer" type="monetary">
             <VALUE valeur="26679" deb="2001-01-01" fin="2001-12-31"/>
@@ -2495,7 +2495,7 @@
         <VALUE valeur="0.5" deb="2002-01-01" fin="2013-12-31"/>
       </CODE>
       <CODE description="Note 3 : case W ou G" code="not31b">
-        <VALUE valeur="0.5" deb="2002-01-01" fin="2013-12-31"/> # TODO: CHECK wild extension of date
+        <VALUE valeur="0.5" deb="2002-01-01" fin="2013-12-31"/> 
       </CODE>
       <CODE description="Note 3: personne seule ayant élevé des enfants" code="not32">
         <VALUE valeur="0.5" deb="2002-01-01" fin="2013-12-31"/>
@@ -2514,7 +2514,7 @@
       </CODE>
       <CODE description="Enfant issu du conjoint décédé" code="cdcd">
         <VALUE valeur="1" deb="2002-01-01" fin="2007-12-31"/>
-        <VALUE valeur="0" deb="2008-01-01" fin="2013-12-31"/>   # TODO: CHECK wild extension of date 
+        <VALUE valeur="0" deb="2008-01-01" fin="2013-12-31"/>   
       </CODE>
     </NODE>
     <NODE code="plafond_qf" description="Plafonnement du quotient familial">
@@ -3074,13 +3074,15 @@
       <VALUE valeur="5000" deb="2005-01-01" fin="2014-12-31"/> 
     </CODE>
     <CODE description="Majoration du plafond pour le 1er enfant" code="pac1" format="integer" type="monetary">
-      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/>  # TODO: 400 par pac
+      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/>  # 400 par pac 
     </CODE>
     <CODE description="Majoration du plafond pour le 2eme enfant" code="pac2" format="integer" type="monetary">
       <VALUE valeur="500" deb="2002-01-01" fin="2007-12-31"/>
+      <VALUE valeur="400" deb="2008-01-01" fin="2013-12-31"/> 
     </CODE>
     <CODE description="Majoration du plafond par enfant supplémentaire" code="pac3" format="integer" type="monetary">
       <VALUE valeur="600" deb="2002-01-01" fin="2007-12-31"/>
+      <VALUE valeur="400" deb="2008-01-01" fin="2013-12-31"/> 
     </CODE>
     <CODE description="Taux (WI)" code="taux_wi" format="percent">
       <VALUE valeur="0.15" deb="2002-01-01" fin="2013-12-31"/>  
@@ -3101,13 +3103,15 @@
       <VALUE valeur="8000" deb="2005-01-01" fin="2013-12-31"/> 
     </CODE>
     <CODE description="Majoration du plafond pour le 1er enfant" code="pac1" format="integer">
-      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/> # TODO: 400 par pac
+      <VALUE valeur="400" deb="2002-01-01" fin="2013-12-31"/> # 400 par pac
     </CODE>
     <CODE description="Majoration du plafond pour le 2nd enfant" code="pac2" format="integer">
       <VALUE valeur="500" deb="2002-01-01" fin="2007-12-31"/>
+      <VALUE valeur="400" deb="2008-01-01" fin="2013-12-31"/>
     </CODE>
     <CODE description="Majoration du plafond par enfant supplémentaire" code="pac3" format="integer">
       <VALUE valeur="600" deb="2002-01-01" fin="2007-12-31"/>
+      <VALUE valeur="400" deb="2008-01-01" fin="2013-12-31"/>
     </CODE>
     <CODE description="Taux (WF)" code="taux_wf" format="percent">
       <VALUE valeur="0.40" deb="2005-01-01" fin="2005-12-31"/>
@@ -3430,7 +3434,7 @@
     <NODE code="plus_values" description="Impôt sur les plus values à taux forfaitaires">
       <CODE description="Plus value de cession (RPNS) 16%" code="pvce" format="percent">
 	    <VALUE valeur="0.16" deb="2002-01-01" fin="2011-12-31"/>
-	    <VALUE valeur="0.19" deb="2012-01-01" fin="2013-12-31"/> # TODO: Check 2013
+	    <VALUE valeur="0.19" deb="2012-01-01" fin="2013-12-31"/> # TODO: Check 2013 
       </CODE>
       <CODE description="Capital risque (VL)" code="caprisque" format="percent">
         <VALUE valeur="0.16" deb="2002-01-01" fin="2007-12-31"/>
@@ -3565,48 +3569,58 @@
       <VALUE valeur="309" deb="2013-01-01" fin="2014-12-31"/>
     </CODE>
     <NODE description="Indemnité de résidence " code="indem_resid" >
-	  <NODE description="Indemnité de résidence : taux " code="taux"> # TODO: check initial date
+	  <NODE description="Indemnité de résidence : taux " code="taux"> 
 	    <CODE description="Indemnité de résidence zone 1 : taux " code="zone1" format="percent">
-	      <VALUE valeur="0.03" deb="2001-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.03" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Indemnité de résidence zone 2 : taux " code="zone2" format="percent">
-	      <VALUE valeur="0.01" deb="2001-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.01" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Indemnité de résidence zone 3 : taux " code="zone3" format="percent">
-	      <VALUE valeur="0.00" deb="2001-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.00" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	 </NODE>
 	 <CODE description="Indemnité de résidence : plancher (en indice majoré)" code="min" format="integer">
-	 	<VALUE valeur="313" deb="2011-01-01" fin="2014-12-31"/>
+	 	<VALUE valeur="294" deb="1999-06-13" fin="1999-11-13"/>
+	 	<VALUE valeur="295" deb="1999-11-14" fin="2001-04-30"/>
+	 	<VALUE valeur="297" deb="2001-05-01" fin="2006-10-31"/>
+	 	<VALUE valeur="298" deb="2006-11-01" fin="2010-12-31"/>
+	 	<VALUE valeur="299" deb="2011-01-01" fin="2011-12-31"/>
+	 	<VALUE valeur="306" deb="2012-01-01" fin="2012-07-06"/>
+	 	<VALUE valeur="312" deb="2012-07-07" fin="2012-12-31"/>
+	 	<VALUE valeur="313" deb="2013-01-01" fin="2014-12-31"/> # TODO: check in july 2014 for "fin"
 	 </CODE>
     </NODE>
-    <NODE description="Supplément familial de traitement" code="supp_fam" >  # TODO: Vérifier pour les années inférieures à 2013
+    <NODE description="Supplément familial de traitement" code="supp_fam" >  
 	  <CODE description="Indice majoré plancher" code="IM_min" format="integer">
-        <VALUE valeur="449" deb="2011-01-01" fin="2014-12-31"/>
+	  	<VALUE valeur="447" deb="1999-06-13" fin="1999-11-13"/>
+	  	<VALUE valeur="448" deb="1999-11-14" fin="2006-10-31"/>
+        <VALUE valeur="449" deb="2006-11-01" fin="2014-12-31"/># TODO: check in july 2014 for "fin"
   	  </CODE>
       <CODE description="Indice majoré plafond" code="IM_max" format="integer">
-        <VALUE valeur="717" deb="2011-01-01" fin="2014-12-31"/>
+      	<VALUE valeur="716" deb="1999-06-13" fin="2006-10-31"/>
+        <VALUE valeur="717" deb="2006-11-01" fin="2014-12-31"/># TODO: check in july 2014 for "fin"
   	  </CODE>
   	  <NODE description="Part fixe" code="fixe">
 	    <CODE description="1er enfant" code="enf1" format="float">
-	      <VALUE valeur="2.29" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="2.29" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="2 enfants" code="enf2" format="float">
-	      <VALUE valeur="10.67" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="10.67" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Enfant supplémentaire " code="enfsupp" format="float">
-	      <VALUE valeur="4.57" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="4.57" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  </NODE>
 	  <NODE description="Part proportionnelle au traitement" code="prop">
 	    <CODE description="Pour 2 enfants" code="enf2" format="percent">
-	      <VALUE valeur="0.03" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.03" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Pour 3 enfants" code="enf3" format="percent">
-	      <VALUE valeur="0.08" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.08" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  	<CODE description="Par nfant supplémentaire " code="enfsupp" format="percent">
-	      <VALUE valeur="0.06" deb="2011-01-01" fin="2014-12-31"/>
+	      <VALUE valeur="0.06" deb="1999-07-01" fin="2014-12-31"/>
 	  	</CODE>
 	  </NODE>
     </NODE>
