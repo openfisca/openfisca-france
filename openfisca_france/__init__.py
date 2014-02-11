@@ -148,6 +148,7 @@ def init_country(qt = False, start_from = "imposable"):
 
     from . import decompositions, scenarios, utils
     from .model.data import column_by_name
+    from .model.datatrees import columns_name_tree_by_entity
     from .model.model import prestation_by_name
 
     if qt:
@@ -178,6 +179,7 @@ def init_country(qt = False, start_from = "imposable"):
     core_model.ENTITIES_INDEX = ENTITIES_INDEX
     core_model.FILTERING_VARS = FILTERING_VARS
     core_model.column_by_name = column_by_name
+    core_model.columns_name_tree_by_entity = columns_name_tree_by_entity
     core_model.PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
     core_model.prestation_by_name = prestation_by_name
     core_model.REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
