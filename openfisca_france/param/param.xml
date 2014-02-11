@@ -3581,6 +3581,7 @@
 	 </NODE>
 	 <CODE description="Indemnité de résidence : plancher (en indice majoré)" code="min" format="integer">
 	 	<VALUE valeur="313" deb="2011-01-01" fin="2014-12-31"/>
+	 	<VALUE valeur="0" deb="2001-01-01" fin="2010-12-31"/>
 	 </CODE>
     </NODE>
     <NODE description="Supplément familial de traitement" code="supp_fam" >  # TODO: Vérifier pour les années inférieures à 2013

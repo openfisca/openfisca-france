@@ -154,7 +154,8 @@ prestation_by_name = collections.OrderedDict((
 
     # Fonctionnaires
     ('indemnite_residence', Prestation(cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
-    ('supp_familial_traitement', Prestation(cs_travail._supp_familial_traitement, label = u"Supplément familial de traitement (fonction publique)")),
+    ('supp_familial_traitement', Prestation(cs_travail._supp_familial_traitement, 
+                                            label = u"Supplément familial de traitement (fonction publique)", start = date(2011, 1, 1))),
     ('cot_pat_pension_civile', Prestation(cs_travail._cot_pat_pension_civile, label = u"Cotisation patronale pension civile")),
     ('cot_sal_pension_civile', Prestation(cs_travail._cot_sal_pension_civile, label = u"Cotisation salariale pension civile")),
     ('cot_pat_rafp', Prestation(cs_travail._cot_pat_rafp, label = u"Cotisation patronale RAFP")),
@@ -261,7 +262,7 @@ prestation_by_name = collections.OrderedDict((
     ('rev_cat_rvcm', Prestation(ir._rev_cat_rvcm, entity = 'foy', label = u'Revenu catégoriel - Capitaux')),
     ('rev_cat_rpns', Prestation(ir._rev_cat_rpns, entity = 'foy', label = u'Revenu catégoriel - Rpns')),
     ('rev_cat_rfon', Prestation(ir._rev_cat_rfon, entity = 'foy', label = u'Revenu catégoriel - Foncier')),
-
+    ('rev_cat_pv', Prestation(ir._rev_cat_pv, entity = 'foy', label = u'Revenu catégoriel - Plus-values', start = date(2013, 1, 1))),
     ('rev_cat', Prestation(ir._rev_cat, entity = 'foy', label = u"Revenus catégoriels")),
 
     ('deficit_rcm', Prestation(ir._deficit_rcm, entity = 'foy', label = u'Deficit capitaux mobiliers')),

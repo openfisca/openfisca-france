@@ -141,23 +141,32 @@ def _prelsoc_pv_immo(f3vz, _P):
 
 
 # revenus fonciers
-def _csg_fon(f4ba, _P):
+def _csg_fon(f4ba, rev_cat_rfon, _P):
     '''
     Calcule la CSG sur les revenus fonciers
+    TODO: to check before 2013
     '''
-    return -f4ba * _P.csg.capital.glob
 
-
-def _crds_fon(f4ba, _P):
+    if _P.datesim.year < 2013:
+        return -f4ba * _P.csg.capital.glob
+    else:
+        return -rev_cat_rfon * _P.csg.capital.glob
+    
+def _crds_fon(f4ba, rev_cat_rfon, _P):
     '''
     Calcule la CRDS sur les revenus fonciers
+    TODO: to check before 2013
     '''
-    return -f4ba * _P.crds.capital
+    if _P.datesim.year < 2013:
+        return -f4ba * _P.crds.capital
+    else:
+        return -rev_cat_rfon * _P.crds.capital
 
 
-def _prelsoc_fon(f4ba, _P):
+def _prelsoc_fon(f4ba, rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
+    TODO: to check before 2013
     '''
     P = _P.prelsoc
     if _P.datesim.year < 2006:
@@ -166,8 +175,11 @@ def _prelsoc_fon(f4ba, _P):
         total = P.base_pat + P.add
     else:
         total = P.base_pat + P.add + P.rsa
-    return -f4ba * total
-
+    if _P.datesim.year < 2013:
+        return -f4ba * total
+    else:
+        return -rev_cat_rfon * total
+ 
 
 # revenus du capital soumis au prélèvement libératoire
 def _csg_cap_lib(rev_cap_lib, _P):
