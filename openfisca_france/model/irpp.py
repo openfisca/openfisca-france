@@ -21,6 +21,9 @@ PAC3 = QUIFOY['pac3']
 ALL = [x[1] for x in QUIFOY]
 
 import logging
+import pdb
+
+
 log = logging.getLogger(__name__)
 
 # zetrf = zeros(taille)
@@ -185,6 +188,9 @@ def _tspr(sal_pen_net, rto_net):
     '''
     return sal_pen_net + rto_net
 
+def _rev_cat_pv(f3vg, f3vh):
+    return f3vg - f3vh
+
 def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
     '''
     Traitemens salaires pensions et rentes
@@ -197,8 +203,10 @@ def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
 
     return out + indu_plaf_abat_pen
 
-def _deficit_rcm(f2aa, f2al, f2am, f2an):
-    return f2aa + f2al + f2am + f2an
+def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar, f2as):
+    year= _P.datesim.year
+    return f2aa*(year==2009) + f2al*(year==2009 | year==2010) + f2am*(year==2009 | year==2010 | year==2011) + f2an*(year==2010 | year==2011 | year==2012) +\
+                  f2aq*(year==2011 | year==2012 | year==2013) + f2ar*(year==2012 | year==2013 | year==2014) + f2as*(year==2013 | year==2014 | year==2015)
 
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P):
     """
@@ -240,6 +248,8 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     DEF = deficit_rcm
     return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
+
+
 def _rfr_rvcm(f2dc, f2fu, f2da, _P):
     '''
     Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
@@ -256,9 +266,13 @@ def _rfr_rvcm(f2dc, f2fu, f2da, _P):
 def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     """
     Revenus fonciers
+    TODO: add assert in validator
     """
     P = _P.ir.microfoncier
     # # Calcul du revenu catégoriel
+    if ((f4be != 0) & ((f4ba != 0) |(f4bb != 0) | (f4bc != 0))).any():
+        print "Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"
+        pdb.set_trace()
     a13 = f4ba + f4be - P.taux * f4be * (f4be <= P.max)
     b13 = f4bb
     c13 = a13 - b13
@@ -283,9 +297,9 @@ def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
 
     return out
 
-def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns):
+def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns, rev_cat_pv):
     ''' Revenus Categoriels '''
-    return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns
+    return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 ###############################################################################
 # # Déroulé du calcul de l'irpp
@@ -528,11 +542,12 @@ def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
     """
     Revenus du capital imposés au barème
     """
+    P = _P.ir.rvcm
 #    if _P.datesim.year <= 2011:
 #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
 #    elif _P.datesim.year > 2011:
 #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
-    return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee) * (_P.ir.autre.finpfl)  # we add f2da an f2ee to allow for comparaison between year
+    return f2dc + f2gr + f2ch + f2ts +  f2go * P.majGO + f2tr + f2fu - avf + (f2da + f2ee) * (_P.ir.autre.finpfl)  # we add f2da an f2ee to allow for comparaison between year
 
 def _rev_cap_lib(f2da, f2dh, f2ee, _P):
     '''
