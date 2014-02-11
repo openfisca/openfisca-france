@@ -232,7 +232,8 @@ column_by_name = collections.OrderedDict((
     ('f2an', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2009", val_type = "monetary")),
     ('f2aq', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2010", val_type = "monetary")),
     ('f2ar', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2011", val_type = "monetary")),
-
+    ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary")),
+    
     # non accessible (from previous years)
     ('f2gr', IntCol(entity = 'foy')),
 
