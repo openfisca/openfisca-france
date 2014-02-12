@@ -82,11 +82,11 @@ def test_cotsoc_celib():
                     },
               "output_vars" :
                     {
+                     "indemnite_residence": 60,
                      "cot_pat_pension_civile": 546,
                      "cot_sal_pension_civile": 167.80,
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
-                     "indemnite_residence": 60,
                      "cotpat_transport": 2000 * 0.0175,
                      "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
@@ -109,24 +109,26 @@ def test_cotsoc_celib():
                     },
               "output_vars" :
                     {
+                     "indemnite_residence": 60,
                      "cot_pat_pension_civile": 546,
                      "cot_sal_pension_civile": 167.80,
                      "cot_sal_rafp": 20,
                      "cot_pat_rafp": 20,
-                     "indemnite_residence": 60,
                      "cotpat_transport": 2000 * 0.0175,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
-#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
+                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6,
+#                               pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
+                     "cotpat_contrib": 546 + 20 + 20,
+#                               pension,  rafp, feh
                      "cotsal" : 167.80 + 20 + 23.72,
-#                               pension rafp
+#                               pension, rafp, except de solidarité
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
-                     "salsuperbrut": 3542 + 2000 * (0.0175 - 0.026),
+                     "salsuperbrut": 3562 + 2000 * (0.0175 - 0.026),  # second term is correction of transport
                      "salnet": 2147.26,
                     }
               },
-             {"year" : 2012,
+             {"year" : 2011,
               "input_vars":
                     {
                      "type_sal" : CAT["public_non_titulaire"],
@@ -136,16 +138,18 @@ def test_cotsoc_celib():
                     },
               "output_vars" :
                     {
+                     "indemnite_residence": 60,
                      "cot_pat_pension_civile": 0,
                      "cot_sal_pension_civile": 0,
                      "cot_sal_rafp": 0,
                      "cot_pat_rafp": 0,
-                     "indemnite_residence": 60,
-                     "cotpat_transport": 2000 * .0175,
-                     "cotpat" : 546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
-#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 170.24 + 2.56 + 52.42 + 19.20 ,  # 23.16 cot excep de solidarite
-#                              viel_plaf viel_deplaf ircantecA maladie
+                     "cotpat_transport": 2560 * .0175,
+                     "cotpat" : 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68,
+#                               viellesse plaf, deplaf, ircantec, maladie, famille, fnal1, fnal2, transport, csa,
+                     "cotsal" : 170.24 + 2.56 + 58.24 + 19.20 + 23.16,
+#                              viel_plaf viel_deplaf ircantecA maladie, cot excep de solidarite
+                     "cotsal_contrib": 170.24 + 2.56 + 58.24,
+#                                      viel_plaf viel_deplaf ircantecA
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
