@@ -46,6 +46,7 @@ CAT = Enum(['prive_non_cadre',
 
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 
+
 log = logging.getLogger(__name__)
 
 # TODO: contribution patronale de prévoyance complémentaire
@@ -154,14 +155,25 @@ def build_pat(_P):
     del pat['public_titulaire_etat']['rafp']
 
     pat['public_titulaire_territoriale'] = pat.pop('colloc_t')
-    pat['public_titulaire_hospitaliere'] = pat['public_titulaire_territoriale']
+    import copy
+    pat['public_titulaire_hospitaliere'] = copy.deepcopy(pat['public_titulaire_territoriale'])
+
+
+    for category in ['territoriale', 'hospitaliere']:
+        for name, bareme in pat['public_titulaire_' + category][category].iteritems():
+            pat['public_titulaire_' + category][name] = bareme
+
+    for category in ['territoriale', 'hospitaliere']:
+        del pat['public_titulaire_territoriale'][category]
+        del pat['public_titulaire_hospitaliere'][category]
+
+#     import sys
+#     sys.exit()
+#     pat['public_titulaire_territoriale']['hospitaliere'] = pat['public_titulaire_territoriale']['hospitaliere'].pop('feh')
+#     pat['public_titulaire_hospitaliere']['territoriale'] = pat['public_titulaire_territoriale']['territoriale'].pop('fcppa')
+
     pat['public_non_titulaire'] = pat.pop('contract')
-
-    log.info("Le dictionnaire des barèmes des cotisations patronales des salariés titulaires de l'etat contient : \n %s", pat['public_titulaire_etat'].keys())
-    log.info("Le dictionnaire des barèmes des cotisations patronales titulaires des collectivités locales contient : \n %s", pat['public_titulaire_territoriale'].keys())
-    log.info("Le dictionnaire des barèmes des cotisations patronales titulaires hospitaliers contient : \n %s", pat['public_titulaire_hospitaliere'].keys())
-    log.info("Le dictionnaire des barèmes des cotisations patronales du public contractuels contient : \n %s", pat['public_non_titulaire'].keys())
-
+    log.info("Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
     return pat
 
 
@@ -175,15 +187,17 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
         iscat = (type_sal == category[1])  # category[1] is the numerical index
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
-                if category[0] in ["prive_cadre", "prive_non_cadre", "public_non_titulaire"]:  # TODO: move up
-                    is_contrib = (bar.option == "contrib")
+                if category[0] in ["prive_cadre", "prive_non_cadre", "public_non_titulaire", "public_titulaire_hospitaliere"]:  # TODO: move up
+                    is_contrib = (bar.option == "contrib") & (bar._name not in ['cnracl', 'rafp', 'pension'])
                     temp = -(iscat
                              * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                              ) * is_contrib
                     cotpat += temp
                     if is_contrib == 1:
-                        log.info(bar)
-                        log.info(temp)
+                        if category[0] == DEBUG_SAL_TYPE:
+                            if (temp != 0).all():
+                                log.info(bar)
+                                log.info(temp / 12)
 
         if category[0] == DEBUG_SAL_TYPE:
             log.info("rafp pat: %s" % str(cot_pat_rafp / 12))
@@ -228,7 +242,7 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
         if category[0] in pat.keys():  # category[0] is the name of the category
             if 'transport' in pat[category[0]]:
                 bar = pat[category[0]]['transport']
-                temp = -bar.calc(salbrut) * iscat  # check
+                temp = -bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes)) * iscat  # check
                 transport += temp
                 if  category[0] == DEBUG_SAL_TYPE:
                     log.info(category[0])
@@ -255,7 +269,10 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
         iscat = (type_sal == category[1])
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
-                is_noncontrib = (bar.option == "noncontrib")
+                try:
+                    is_noncontrib = (bar.option == "noncontrib")
+                except:
+                    print bar
                 temp = -(iscat
                          * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                          * is_noncontrib)
@@ -313,7 +330,7 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
 
-    log.error("Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
+    log.info("Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
 
     return sal
 
@@ -346,14 +363,15 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
                         ) * is_contrib
                 cotsal += temp
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.error(category[0])
-                    log.error(bar._name)
-                    log.error(temp / 12)
+                    if (temp != 0).all():
+                        log.info(category[0])
+                        log.info(bar._name)
+                        log.info(temp / 12)
 
 
         if category[0] == DEBUG_SAL_TYPE:
-            log.error("cot_sal_pension_civile %s" % str(cot_sal_pension_civile / 12))
-            log.error("rafp sal %s" % str(cot_sal_rafp / 12))
+            log.info("cot_sal_pension_civile %s" % str(cot_sal_pension_civile / 12))
+            log.info("rafp sal %s" % str(cot_sal_rafp / 12))
 
 
     public_titulaire = ((type_sal == CAT['public_titulaire_etat'])
@@ -370,8 +388,9 @@ def _cot_sal_pension_civile(salbrut, type_sal, _P):
         (type_sal == CAT['public_titulaire_etat']) * sal['public_titulaire_etat']['pension'].calc(salbrut)
         + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(salbrut)
                               )
-    if (type_sal == CAT['public_titulaire_territoriale']).all():
-        log.error('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
+    from numpy import array
+    if array(type_sal == DEBUG_SAL_TYPE).all():
+        log.info('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
 
     return -cot_sal_pension_civile
 
@@ -397,7 +416,7 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     return -12 * cot_sal_rafp
 
 
-def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sal_rafp, cot_sal_pension_civile, _P):
+def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sal_rafp, cot_sal_pension_civile, cotsal_contrib, _P):
     '''
     Cotisations sociales salariales non-contributives
     '''
@@ -412,14 +431,17 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                 is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) / 12 <= seuil_assuj_fds)  # TODO: check assiette voir IPP
                 is_noncontrib = (bar.option == "noncontrib")  # and (bar._name in ["famille", "maladie"])
                 temp = -(iscat
-                         * bar.calc(salbrut + primes + indemnite_residence - hsup + cot_sal_rafp + cot_sal_pension_civile)  # * (category[0] == 'public_non_titulaire')
+                         * bar.calc(salbrut + primes + indemnite_residence
+                                    - hsup + cot_sal_rafp + cot_sal_pension_civile
+                                    + cotsal_contrib * (category[0] == 'public_non_titulaire') * (bar._name == "excep_solidarite"))  # * (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.error(category[0])
-                    log.error(bar)
-                    log.error(temp / 12)
+                    if (temp != 0).all():
+                        log.info(category[0])
+                        log.info(bar)
+                        log.info(temp / 12)
 
     return cotsal
 
@@ -552,12 +574,11 @@ def _cot_pat_pension_civile(salbrut, type_sal, _P):
     Pension civile part patronale
     Note : salbrut est égal au traitement indiciaire brut 
     """
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
-    terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) + (type_sal == CAT['public_titulaire_hospitaliere'])
+    pat = build_pat(_P)
+    terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
     cot_pat_pension_civile = (
-         (type_sal == CAT['public_titulaire_etat']) * pat['fonc']['etat']['pension'].calc(salbrut)
-       + terr_or_hosp * pat['fonc']['colloc']['cnracl'].calc(salbrut)
+         (type_sal == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(salbrut)
+       + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(salbrut)
                              )
     return -cot_pat_pension_civile
 
@@ -574,7 +595,7 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     tib = salbrut * eligibles / 12
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
-    plaf_ss = _P.cotsoc.gen.plaf_ss
+    plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: use build_pat
     pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
     assiette = min_(base_imposable / 12, plaf_ass * tib)
     cot_pat_rafp = eligibles * pat['fonc']['etat']['rafp'].calc(assiette)

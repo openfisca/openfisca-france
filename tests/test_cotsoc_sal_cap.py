@@ -106,8 +106,8 @@ def test_cotsoc():
                  "csg_cap_bar":-.082 * 20000,
                  "crds_cap_bar":-.005 * 20000 } },
                      ],
-# # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise 
-### donnant droit à abattement (2fu)
+# # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise
+# ## donnant droit à abattement (2fu)
             "f2fu" :[
             {"year" : 2013, "amount": 20000,
              "vars" :
@@ -126,7 +126,7 @@ def test_cotsoc():
                  "csg_cap_bar":-2050,
                  "crds_cap_bar":-125,
                  "ir_plaf_qf": 2150,
-                 "irpp": -2150 } },
+                 "irpp":-2150 } },
                      ],
             "f2ts" :[
             {"year" : 2013, "amount": 20000,
@@ -136,7 +136,7 @@ def test_cotsoc():
                  "csg_cap_bar":-1640,
                  "crds_cap_bar":-100,
                  "ir_plaf_qf": 1450,
-                 "irpp": -1450 } },
+                 "irpp":-1450 } },
             {"year" : 2012, "amount": 20000,
              "vars" :
                 {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
@@ -161,7 +161,7 @@ def test_cotsoc():
                  "csg_cap_bar":-1640,
                  "crds_cap_bar":-100,
                  "ir_plaf_qf": 1450,
-                 "irpp": -1450 } },
+                 "irpp":-1450 } },
             {"year" : 2012, "amount": 20000,
              "vars" :
                 {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
@@ -204,7 +204,7 @@ def test_cotsoc():
                  "csg_pv_mo":-1640,
                  "crds_pv_mo":-100,
                  "ir_plaf_qf": 1450,
-                 "irpp": -1450} },
+                 "irpp":-1450} },
             {"year" : 2012, "amount": 20000,
              "vars" :
                 {"prelsoc_pv_mo":-(4.5 + 2 + 0.3) * 0.01 * 20000,
@@ -239,7 +239,7 @@ def test_cotsoc():
                  "csg_pv_immo":-.082 * 20000,
                  "crds_pv_immo":-.005 * 20000 } },
                      ],
-#Revenus fonciers imposables" (f4ba)
+# Revenus fonciers imposables" (f4ba)
             "f4ba" :[
             {"year" : 2013, "amount": 20000,
              "vars" :
@@ -247,7 +247,7 @@ def test_cotsoc():
                  "csg_fon":-1640,
                  "crds_fon":-100,
                  "ir_plaf_qf": 1450,
-                 "irpp": -1450} },
+                 "irpp":-1450} },
                  ],
 
             }
@@ -277,7 +277,7 @@ def test_cotsoc():
                     assert False
                 df = simulation.get_results_dataframe(index_by_code = True)
                 if var in df.columns:
-                    val = df.loc[var][0]   
+                    val = df.loc[var][0]
                 else:
                     val = simulation.output_table.table[var][0]
                 test = abs(val - value)
@@ -290,7 +290,7 @@ def test_cotsoc():
                     print "OpenFisca :", val
                     print "Real value :", value
 
-                #assert test < 1
+                # assert test < 1
 
 def test_cotsoc_cap_celib():
     """
@@ -305,9 +305,9 @@ def test_cotsoc_cap_celib():
                     },
               "output_vars" :
                     {
-                     "csg_cap_bar": -1640,
-                     "crds_cap_bar": -100,
-                     "prelsoc_cap_bar": -1360,
+                     "csg_cap_bar":-1640,
+                     "crds_cap_bar":-100,
+                     "prelsoc_cap_bar":-1360,
                      "rev_cat_rvcm" : 7000,
                      "irpp" : 0,
                     },
@@ -318,12 +318,12 @@ def test_cotsoc_cap_celib():
                     {"f4ba" : 20000,
                     },
               "output_vars" :
-                    {"csg_fon": -1640,
-                     "crds_fon": -100,
-                     "prelsoc_fon": -1360,
-                     "ir_plaf_qf" : 1450, 
+                    {"csg_fon":-1640,
+                     "crds_fon":-100,
+                     "prelsoc_fon":-1360,
+                     "ir_plaf_qf" : 1450,
                      "rev_cat_rfon" : 20000,
-                     "irpp" : -1450,
+                     "irpp" :-1450,
                     },
                 },
              {"year" : 2013,
@@ -334,12 +334,12 @@ def test_cotsoc_cap_celib():
                      "f4bd" : 1000,
                     },
               "output_vars" :
-                    {"csg_fon": -1394,
-                     "crds_fon": -85,
-                     "prelsoc_fon": -1156,
-                     "ir_plaf_qf" : 1030, 
+                    {"csg_fon":-1394,
+                     "crds_fon":-85,
+                     "prelsoc_fon":-1156,
+                     "ir_plaf_qf" : 1030,
                      "rev_cat_rfon" : 17000,
-                     "irpp" : -1030,
+                     "irpp" :-1030,
                     },
                 },
              {"year" : 2013,
@@ -348,14 +348,14 @@ def test_cotsoc_cap_celib():
                      "f4be" : 10000,
                     },
               "output_vars" :
-                    {"csg_fon": -574,
-                     "crds_fon": -35,
-                     "prelsoc_fon": -476, 
+                    {"csg_fon":-574,
+                     "crds_fon":-35,
+                     "prelsoc_fon":-476,
                      "rev_cat_rfon" : 7000,
                      "irpp" : 0,
                     },
                 },
- 
+
         ]
 
     passed = True
@@ -374,11 +374,11 @@ def test_cotsoc_cap_celib():
                 else:
                     print variable
                     assert False
-                    
+
         for variable, value in test['output_vars'].iteritems():
             df = simulation.get_results_dataframe(index_by_code = True)
             if variable in df.columns:
-                val = df.loc[variable][0]   
+                val = df.loc[variable][0]
             else:
                 val = simulation.output_table.table[variable][0]
             to_test = abs(val - value)
@@ -389,9 +389,9 @@ def test_cotsoc_cap_celib():
                 print variable
                 print "OpenFisca :", val
                 print "Real value :", value , "\n \n"
-                #expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(val), value)
-                #print expression
-    #assert passed, "Test failed for"
+                # expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(val), value)
+                # print expression
+    # assert passed, "Test failed for"
 
 if __name__ == '__main__':
 
