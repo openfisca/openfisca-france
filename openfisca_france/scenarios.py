@@ -242,6 +242,10 @@ class Scenario(object):
                                                 conv.iso8601_input_to_date,
                                                 conv.not_none,
                                                 ),
+                                            prenom = conv.pipe(
+                                                conv.test_isinstance(basestring),
+                                                conv.cleanup_line,
+                                                ),
                                             ).iteritems(),
                                         (
                                             (column.name, column.json_to_python)
@@ -377,7 +381,7 @@ class Scenario(object):
                 ),
             default = conv.noop,
             )(data, state = state)
-            
+
         remaining_individus_id = familles_individus_id.union(foyers_fiscaux_individus_id, menages_individus_id)
         if remaining_individus_id:
             if error is None:
@@ -425,6 +429,7 @@ class Scenario(object):
             for individu_index, individu_id in enumerate(data[u'individus'].iterkeys())
             )
         for individu_id, individu in data[u'individus'].iteritems():
+            individu.pop('prenom', None)
             attributes['indiv'][indiv_index_by_id[individu_id]] = individu
         for famille in data[u'familles'].itervalues():
             parents_id = famille.pop(u'parents')
