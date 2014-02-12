@@ -635,6 +635,11 @@ column_by_name = collections.OrderedDict((
     ('nrag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hi, f5ii, f5ji)),
     ('nrag_defi', IntCol(entity = 'ind', label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hl, f5il, f5jl)),
     ('nrag_ajag', IntCol(entity = 'ind', label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hm, f5im, f5jm)),
+    
+    # Autoentrepreneur
+    ('ebic_impv', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)", val_type = "monetary")),  # (f5ta, f5ua, f5va)),
+    ('ebic_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)", val_type = "monetary")),  # (f5tb, f5ub, f5vb)),
+    ('ebnc_impo', IntCol(entity = 'ind', label = u"Revenus non commerciaux imposables (régime auto-entrepreneur)", val_type = "monetary")),  # (f5te, f5ue, f5ve)),
 
     ('mbic_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)", val_type = "monetary")),  # (f5kn, f5ln, f5mn)),
     ('abic_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kb, f5lb, f5mb)),

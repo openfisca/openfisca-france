@@ -167,11 +167,6 @@ def build_pat(_P):
         del pat['public_titulaire_territoriale'][category]
         del pat['public_titulaire_hospitaliere'][category]
 
-#     import sys
-#     sys.exit()
-#     pat['public_titulaire_territoriale']['hospitaliere'] = pat['public_titulaire_territoriale']['hospitaliere'].pop('feh')
-#     pat['public_titulaire_hospitaliere']['territoriale'] = pat['public_titulaire_territoriale']['territoriale'].pop('fcppa')
-
     pat['public_non_titulaire'] = pat.pop('contract')
     log.info("Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
     return pat
@@ -215,7 +210,6 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
      En particulier, la CN classe:
         - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
         - D993: participation à l'effort de construction
-
     '''
     pat = build_pat(_P)
     cotpat = zeros(len(salbrut))

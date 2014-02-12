@@ -324,8 +324,11 @@ prestation_by_name = collections.OrderedDict((
     ('cehr', Prestation(ir._cehr, entity = 'foy')),
     ('cesthra', Prestation(ir._cesthra, entity = 'foy')),
     ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
-
-
+    ('assiette_vente', Prestation(ir._micro_social_vente, entity = 'foy')),
+    ('assiette_service', Prestation(ir._micro_social_service, entity = 'foy')),
+    ('assiette_proflib', Prestation(ir._micro_social_proflib, entity = 'foy')),
+    ('microsocial', Prestation(ir._micro_social, entity = 'foy')),
+    
     # Prime pour l'emploi
     ('ppe_coef', Prestation(ir._ppe_coef, entity = 'foy')),
     ('ppe_base', Prestation(ir._ppe_base)),
