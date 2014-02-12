@@ -46,6 +46,7 @@ CAT = Enum(['prive_non_cadre',
 
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 
+
 log = logging.getLogger(__name__)
 
 # TODO: contribution patronale de prévoyance complémentaire
@@ -340,7 +341,6 @@ def build_sal(_P):
     del sal['fonc']['contract']
 
     log.info("Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
-    log.error("Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
 
     return sal
 
@@ -375,9 +375,10 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
                 log.info(bar)
                 log.info(temp)
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.error(category[0])
-                    log.error(bar._name)
-                    log.error(temp / 12)
+                    if (temp != 0).all():
+                        log.info(category[0])
+                        log.info(bar._name)
+                        log.info(temp / 12)
 
 
         if category[0] == DEBUG_SAL_TYPE:
@@ -398,8 +399,9 @@ def _cot_sal_pension_civile(salbrut, type_sal, _P):
         (type_sal == CAT['public_titulaire_etat']) * sal['public_titulaire_etat']['pension'].calc(salbrut)
         + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(salbrut)
                               )
-    if (type_sal == CAT['public_titulaire_territoriale']).all():
-        log.error('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
+    from numpy import array
+    if array(type_sal == DEBUG_SAL_TYPE).all():
+        log.info('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
 
     return -cot_sal_pension_civile
 
@@ -425,7 +427,7 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     return -12 * cot_sal_rafp
 
 
-def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sal_rafp, cot_sal_pension_civile, _P):
+def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sal_rafp, cot_sal_pension_civile, cotsal_contrib, _P):
     '''
     Cotisations sociales salariales non-contributives
     '''
@@ -440,14 +442,17 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                 is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) / 12 <= seuil_assuj_fds)  # TODO: check assiette voir IPP
                 is_noncontrib = (bar.option == "noncontrib")  # and (bar._name in ["famille", "maladie"])
                 temp = -(iscat
-                         * bar.calc(salbrut + primes + indemnite_residence - hsup + cot_sal_rafp + cot_sal_pension_civile)  # * (category[0] == 'public_non_titulaire')
+                         * bar.calc(salbrut + primes + indemnite_residence
+                                    - hsup + cot_sal_rafp + cot_sal_pension_civile
+                                    + cotsal_contrib * (category[0] == 'public_non_titulaire') * (bar._name == "excep_solidarite"))  # * (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp
                 if  category[0] == DEBUG_SAL_TYPE:
-                    log.error(category[0])
-                    log.error(bar)
-                    log.error(temp / 12)
+                    if (temp != 0).all():
+                        log.info(category[0])
+                        log.info(bar)
+                        log.info(temp / 12)
 
     return cotsal
 
