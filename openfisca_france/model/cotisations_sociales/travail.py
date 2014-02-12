@@ -158,7 +158,6 @@ def build_pat(_P):
     import copy
     pat['public_titulaire_hospitaliere'] = copy.deepcopy(pat['public_titulaire_territoriale'])
 
-
     for category in ['territoriale', 'hospitaliere']:
         for name, bareme in pat['public_titulaire_' + category][category].iteritems():
             pat['public_titulaire_' + category][name] = bareme
@@ -166,6 +165,11 @@ def build_pat(_P):
     for category in ['territoriale', 'hospitaliere']:
         del pat['public_titulaire_territoriale'][category]
         del pat['public_titulaire_hospitaliere'][category]
+
+#     import sys
+#     sys.exit()
+#     pat['public_titulaire_territoriale']['hospitaliere'] = pat['public_titulaire_territoriale']['hospitaliere'].pop('feh')
+#     pat['public_titulaire_hospitaliere']['territoriale'] = pat['public_titulaire_territoriale']['territoriale'].pop('fcppa')
 
     pat['public_non_titulaire'] = pat.pop('contract')
     log.info("Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
