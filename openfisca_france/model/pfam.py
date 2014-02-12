@@ -234,7 +234,7 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
     no_alr = not_(res > 0)
     return asf_brut * no_alr
 
-def _ars(age, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _ars(age, af_nbenf, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
     Allocation de rentrée scolaire brute de CRDS
     '''
@@ -245,7 +245,7 @@ def _ars(age, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     P = _P.fam
     bmaf = P.af.bmaf
     # On doit prendre l'âge en septembre
-    enf_05 = nb_enf(age, smic55, P.ars.agep - 1, P.ars.agep - 1)  # 6 ans avant le 31 décembre
+    enf_05 = nb_enf(age, smic55, P.ars.agep - 1, P.ars.agep - 1)  # 5 ans et 6 ans avant le 31 décembre
     # enf_05 = 0
     # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans
     # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il
@@ -257,13 +257,16 @@ def _ars(age, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
 
     arsnbenf = enf_primaire + enf_college + enf_lycee
 
-    ars_plaf_res = P.ars.plaf * (1 + arsnbenf * P.ars.plaf_enf_supp)
+    # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
+    ars_plaf_res = P.ars.plaf * (1 + af_nbenf * P.ars.plaf_enf_supp)
     arsbase = bmaf * (P.ars.tx0610 * enf_primaire +
                      P.ars.tx1114 * enf_college +
                      P.ars.tx1518 * enf_lycee)
     # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
-    ars = max_(0, (ars_plaf_res + arsbase - max_(br_pf, ars_plaf_res)))
+    #ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
+    ars  = max_(0, arsbase - max_(0,(br_pf  - ars_plaf_res ) / arsnbenf))
     # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
+
     return ars * (ars >= P.ars.seuil_nv)
 
 ############################################################################
@@ -748,7 +751,8 @@ def age_en_mois_benjamin(agems):
     '''
     agem_benjamin = 12 * 9999
     for agem in agems.itervalues():
-        isbenjamin = (agem < agem_benjamin)
+        isbenjamin = (agem < agem_benjamin) & (agem != -9999)
         agem_benjamin = isbenjamin * agem + not_(isbenjamin) * agem_benjamin
     return agem_benjamin
+
 
