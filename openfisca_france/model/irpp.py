@@ -203,6 +203,7 @@ def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
 
     return out + indu_plaf_abat_pen
 
+
 def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar, f2as):
     year= _P.datesim.year
     return f2aa*(year==2009) + f2al*(year==2009 | year==2010) + f2am*(year==2009 | year==2010 | year==2011) + f2an*(year==2010 | year==2011 | year==2012) +\
@@ -455,6 +456,38 @@ def _teicaa(f5qm, f5rm, _P):
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
+def _micro_social_vente(ebic_impv, _option = {'ebic_impv': ALL}):
+    '''
+    Assiette régime microsociale pour les ventes
+    '''
+    assiette_vente = 0
+    for qui in ebic_impv.itervalues():
+        assiette_vente += qui
+    return assiette_vente
+
+def _micro_social_service(ebic_imps, _option = {'ebic_imps': ALL}):
+    '''
+    Assiette régime microsociale pour les prestations et services
+    '''
+    assiette_service = 0
+    for qui in ebic_imps.itervalues():
+        assiette_service += qui
+    return assiette_service
+
+def _micro_social_proflib(ebnc_impo, _option = {'ebnc_impo': ALL}):
+    '''
+    Assiette régime microsociale pour les professions libérales
+    '''
+    # TODO: distinction RSI/CIPAV
+    assiette_proflib = 0
+    for qui in ebnc_impo.itervalues():
+        assiette_proflib += qui
+    return assiette_proflib
+
+def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
+    P = _P.cotsoc.microsocial
+    return assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
+
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce, _P):
     """
     Taxation des plus value
@@ -508,11 +541,11 @@ def _cesthra(sal, _P, _option = {'sal': ALL}):
     return cesthra
 
 
-def _irpp(iai, credits_impot, cehr, cesthra):
+def _irpp(iai, credits_impot, cehr, cesthra, microsocial):#
     '''
     Montant avant seuil de recouvrement (hors ppe)
     '''
-    return -(iai - credits_impot + cehr + cesthra)
+    return -(iai - credits_impot + cehr + cesthra + microsocial)
 
 ###############################################################################
 # # Autres totaux utiles pour la suite

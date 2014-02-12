@@ -409,6 +409,8 @@ def foyer_all(year=2006):
                'abnc_defi': ['f5qe', 'f5re', 'f5se'],
                'nbnc_impo': ['f5qi', 'f5ri', 'f5si'],
                'nbnc_defi': ['f5qk', 'f5rk', 'f5sk'],
+#               'ebic_impv' : ['f5ta','f5ua', 'f5va'],
+#               'ebic_imps' : ['f5tb','f5ub', 'f5vb'],
                'mbic_mvct': ['f5hu'],
                'macc_mvct': ['f5iu'],
                'mncn_mvct': ['f5ju'],
