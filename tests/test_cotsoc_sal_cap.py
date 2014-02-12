@@ -22,7 +22,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import nose
 
 import openfisca_france
@@ -220,6 +219,11 @@ def test_cotsoc():
                 {"prelsoc_pv_mo":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
                  "csg_pv_mo":-.082 * 20000,
                  "crds_pv_mo":-.005 * 20000 } },
+            {"year" : 2006, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_mo": -460 ,
+                 "csg_pv_mo":-1640,
+                 "crds_pv_mo":-100} },
                      ],
 # # test sur les plus-values immobilières (3VZ)
             "f3vz" :[
@@ -340,6 +344,21 @@ def test_cotsoc_cap_celib():
                      "ir_plaf_qf" : 1030,
                      "rev_cat_rfon" : 17000,
                      "irpp" :-1030,
+                    },
+                },
+            {"year" : 2006,
+              "input_vars":
+                    {"f4ba" : 20000,
+                     "f4bb" : 1000,
+                     "f4bc" : 1000,
+                     "f4bd" : 1000,
+                    },
+              "output_vars" :
+                    {"csg_fon": -1394,
+                     "crds_fon": -85,
+                     "prelsoc_fon": -391,
+                     "rev_cat_rfon" : 17000,
+                     "irpp" : -1119,
                     },
                 },
              {"year" : 2013,
