@@ -210,7 +210,12 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
 def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
     '''
     Cotisation sociales patronales main d'oeuvre
-    (TODO: complete avec justification TaxIPP)
+    TODO: A discriminer selon la taille de l'entreprise
+    Il s'agit de prélèvements sur les salaires que la CN ne classe pas dans les cotisations sociales
+     En particulier, la CN classe:
+        - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
+        - D993: participation à l'effort de construction
+
     '''
     pat = build_pat(_P)
     cotpat = zeros(len(salbrut))
