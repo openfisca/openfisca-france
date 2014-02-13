@@ -1,15 +1,8 @@
 <NODE code="root">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 1c82b480920702904f03d0fc509bbc0c0e8830e2
       <NODE description="Patronales" code="pat">
       <NODE description="Communes aux cadres et non cadres" code="commun">
         <BAREME description="Maladie, maternité, invalidité, décès" code="maladie" option="noncontrib">
           <TRANCHE code="tranche0">
-<<<<<<< HEAD
-=======
-=======
   <NODE description="Contribution sociale généralisée (CSG)" code="csg">
     <NODE description="Revenus d'activité" code="act">
       <BAREME description="CSG déductible" code="deduc">
@@ -3565,17 +3558,10 @@
           <VALUE valeur="0.0175" deb="2014-01-01" fin="2016-12-31"/>
           <VALUE valeur="0.016" deb="1993-07-01" fin="2013-12-31"/>
         </TAUX>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 1c82b480920702904f03d0fc509bbc0c0e8830e2
           </TRANCHE>
         </BAREME>
         <BAREME description="Allocation familiales" code="famille" option="noncontrib">
           <TRANCHE code="tranche0">
-<<<<<<< HEAD
-=======
-=======
       </TRANCHE>
     </BAREME>
     <NODE code="plus_values" description="Impôt sur les plus values à taux forfaitaires">
@@ -3745,10 +3731,6 @@
           <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
         </TAUX>
       </TRANCHE>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 1c82b480920702904f03d0fc509bbc0c0e8830e2
     </BAREME>
     <NODE description="Taxes d'apprentissages" code="apprentissage_NEW">
 	    <BAREME description="Taxe d'apprentissage (plus de 250 salariés)" code="apprentissage250" option="main-d-oeuvre">
@@ -3822,7 +3804,6 @@
         </TAUX>
           </TRANCHE>
         </BAREME>
-<<<<<<< HEAD
         </NODE>
         <NODE description="Effort à la construction" code="construction" >
 	        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction_20" option="main-d-oeuvre">
@@ -3847,32 +3828,6 @@
           </TRANCHE>
         </BAREME>
       </NODE>
-
-=======
-        </NODE>
-        <NODE description="Effort à la construction" code="construction" >
-	        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction_20" option="main-d-oeuvre">
-	          <TRANCHE code="tranche0">
-	            <SEUIL>
-	              <VALUE valeur="0" deb="1992-01-01" fin="2014-12-31"/>
-	            </SEUIL>
-	            <TAUX>
-	              <VALUE valeur="0.0045" deb="1992-01-01" fin="2014-12-31"/>
-	            </TAUX>
-	          </TRANCHE>
-	        </BAREME>
-	       	</NODE>
-        <BAREME description="Transport (valeur non différenciée selon la localité, Lyon reférence)" code="transport">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE valeur="0" deb="2003-01-01" fin="2014-12-31"/>
-            </SEUIL>
-            <TAUX>
-              <VALUE valeur="0.0175" deb="2003-01-01" fin="2014-12-31"/>
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-=======
     </BAREME>  
     <NODE code="pv_immo" description="Plus-values immobilières">
       <CODE description="Nombre d'années pleines de détentions minimale (1er seuil)" code="ann_det1" format="integer">
@@ -5061,11 +5016,7 @@
         <CODE description="Forfait logement pour 3 personnes ou plus" code="taux3" format="percent">
             <VALUE valeur="0.297" deb="2002-01-01" fin="2013-12-31"/>
         </CODE>
->>>>>>> Add taille_entreprise
       </NODE>
-
-<<<<<<< HEAD
-=======
     <NODE description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)" code="aspa">
       <CODE description="Montant annuel pour une personne seule" code="montant_seul" format="float" type="monetary">
         <VALUE valeur="6832.4335" deb="2002-01-01" fin="2002-12-31"/>
@@ -5492,8 +5443,6 @@
     <CODE description="Taux d'imposition maximal" code="taux" format="percent">
       <VALUE valeur="0.6" deb="2006-01-01" fin="2006-12-31"/>
       <VALUE valeur="0.5" deb="2007-01-01" fin="2010-12-31"/> # Suppression du bouclier fiscal à compter des revenus réalisés en 2011. #
->>>>>>> Add taille_entreprise
->>>>>>> 1c82b480920702904f03d0fc509bbc0c0e8830e2
     </CODE>
   </NODE>
 </NODE>
