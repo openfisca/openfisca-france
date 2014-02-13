@@ -158,7 +158,6 @@ def build_pat(_P):
     import copy
     pat['public_titulaire_hospitaliere'] = copy.deepcopy(pat['public_titulaire_territoriale'])
 
-
     for category in ['territoriale', 'hospitaliere']:
         for name, bareme in pat['public_titulaire_' + category][category].iteritems():
             pat['public_titulaire_' + category][name] = bareme
@@ -166,6 +165,11 @@ def build_pat(_P):
     for category in ['territoriale', 'hospitaliere']:
         del pat['public_titulaire_territoriale'][category]
         del pat['public_titulaire_hospitaliere'][category]
+
+#     import sys
+#     sys.exit()
+#     pat['public_titulaire_territoriale']['hospitaliere'] = pat['public_titulaire_territoriale']['hospitaliere'].pop('feh')
+#     pat['public_titulaire_hospitaliere']['territoriale'] = pat['public_titulaire_territoriale']['territoriale'].pop('fcppa')
 
     pat['public_non_titulaire'] = pat.pop('contract')
     log.info("Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
@@ -535,7 +539,7 @@ def _tehr(salbrut, _P):
     return -bar.calc(salbrut)
 
 
-def _sal(salbrut, primes, indemnite_residence, csgsald, cotsal, hsup):
+def _sal(salbrut, primes, indemnite_residence, csgsald, cotsal, hsup, rev_microsocial):
     '''
     Calcul du salaire imposable
     '''
@@ -699,6 +703,19 @@ def _gipa(type_sal, _P):
     # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
     pass
 
+############################################################################
+# # Non salariés
+############################################################################
+
+def _rev_microsocial(assiette_service, assiette_vente, assiette_proflib, _P):
+    '''
+    Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)
+    'foy'
+    '''
+    P = _P.cotsoc.sal.microsocial
+    total = assiette_service +  assiette_vente + assiette_proflib 
+    prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
+    return total - prelsoc_ms
 
 ############################################################################
 # # Helper functions
