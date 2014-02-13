@@ -1896,6 +1896,20 @@
         </NODE>
       </NODE>
     </NODE>
+    <NODE description="Cotisations sociales pour régime micro-social" code="microsocial">
+      <CODE description="Taux pour les activités de ventes" code="vente" format="percent">
+        <VALUE valeur="0.141" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Taux pour les activités de prestations et de services" code="servi" format="percent">
+        <VALUE valeur="0.246" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Taux professions libérales relevant du RSI" code="rsi" format="percent">
+        <VALUE valeur="0.246" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Taux professions libérales relevant du  CIPAV" code="cipav" format="percent">
+        <VALUE valeur="0.233" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+    </NODE>
     <NODE description="Exonération sur les bas salaires" code="exo_bas_sal">
     	<NODE description="Exonération Fillon" code="fillon">
 	      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
@@ -2350,6 +2364,17 @@
             <VALUE valeur="32600" deb="2011-01-01" fin="2013-12-31"/>
           </CODE>
         </NODE>
+      </NODE>
+      <NODE description="Régime micro-social" code="microsocial">
+	      <CODE description="Taux pour les activités de ventes" code="vente" format="percent">
+	        <VALUE valeur="0.01" deb="2013-01-01" fin="2013-12-31"/>
+	      </CODE>
+	      <CODE description="Taux pour les activités de prestations et de services" code="servi" format="percent">
+	        <VALUE valeur="0.017" deb="2013-01-01" fin="2013-12-31"/>
+	      </CODE>
+	      <CODE description="Taux professions libérales relevant du RSI/CIPAV (bnc)" code="bnc" format="percent">
+	        <VALUE valeur="0.022" deb="2013-01-01" fin="2013-12-31"/>
+	      </CODE>
       </NODE>
     </NODE>
     <NODE code="charges_deductibles" description="Charges déductibles">
