@@ -535,7 +535,7 @@ def _tehr(salbrut, _P):
     return -bar.calc(salbrut)
 
 
-def _sal(salbrut, primes, indemnite_residence, csgsald, cotsal, hsup):
+def _sal(salbrut, primes, indemnite_residence, csgsald, cotsal, hsup, rev_microsocial):
     '''
     Calcul du salaire imposable
     '''
@@ -699,6 +699,19 @@ def _gipa(type_sal, _P):
     # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
     pass
 
+############################################################################
+# # Non salariés
+############################################################################
+
+def _rev_microsocial(assiette_service, assiette_vente, assiette_proflib, _P):
+    '''
+    Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)
+    'foy'
+    '''
+    P = _P.cotsoc.sal.microsocial
+    total = assiette_service +  assiette_vente + assiette_proflib 
+    prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
+    return total - prelsoc_ms
 
 ############################################################################
 # # Helper functions

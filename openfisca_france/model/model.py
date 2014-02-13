@@ -161,7 +161,9 @@ prestation_by_name = collections.OrderedDict((
     ('cot_pat_rafp', Prestation(cs_travail._cot_pat_rafp, label = u"Cotisation patronale RAFP")),
     ('cot_sal_rafp', Prestation(cs_travail._cot_sal_rafp, label = u"Cotisation salariale RAFP")),
 
-
+    # Revenus non-salariés
+    ('rev_microsocial', Prestation(cs_travail._rev_microsocial, label = u"Revenu net des cotisations sociales pour le régime microsocial", start = date(2009, 1, 1))),
+    
     # Allocations chômage
     ('chobrut', Prestation(cs_remplac._chobrut, label = u"Allocations chômage brutes")),
     ('csgchod', Prestation(cs_remplac._csgchod, label = u"CSG déductible sur les allocations chômage")),
@@ -324,9 +326,9 @@ prestation_by_name = collections.OrderedDict((
     ('cehr', Prestation(ir._cehr, entity = 'foy')),
     ('cesthra', Prestation(ir._cesthra, entity = 'foy')),
     ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
-    ('assiette_vente', Prestation(ir._micro_social_vente, entity = 'foy')),
-    ('assiette_service', Prestation(ir._micro_social_service, entity = 'foy')),
-    ('assiette_proflib', Prestation(ir._micro_social_proflib, entity = 'foy')),
+    ('assiette_vente', Prestation(ir._micro_social_vente, entity = 'foy', start = date(2009, 1, 1))),
+    ('assiette_service', Prestation(ir._micro_social_service, entity = 'foy', start = date(2009, 1, 1))),
+    ('assiette_proflib', Prestation(ir._micro_social_proflib, entity = 'foy', start = date(2009, 1, 1))),
     ('microsocial', Prestation(ir._micro_social, entity = 'foy')),
     
     # Prime pour l'emploi

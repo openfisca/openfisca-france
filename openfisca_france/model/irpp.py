@@ -105,6 +105,8 @@ def _rev_sal(sal, cho):
     '''
     return sal + cho
 
+
+
 def _salcho_imp(rev_sal, cho_ld, fra, _P):
     """
     Salaires après abattements
@@ -456,37 +458,44 @@ def _teicaa(f5qm, f5rm, _P):
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
-def _micro_social_vente(ebic_impv, _option = {'ebic_impv': ALL}):
+def _micro_social_vente(ebic_impv,_P, _option = {'ebic_impv': ALL}):
     '''
     Assiette régime microsociale pour les ventes
     '''
+    P = _P.ir.rpns.microentreprise
+    #assert (ebic_impv <= P.vente.max)
     assiette_vente = 0
     for qui in ebic_impv.itervalues():
         assiette_vente += qui
     return assiette_vente
 
-def _micro_social_service(ebic_imps, _option = {'ebic_imps': ALL}):
+def _micro_social_service(ebic_imps, _P, _option = {'ebic_imps': ALL}):
     '''
     Assiette régime microsociale pour les prestations et services
     '''
+    
+    P = _P.ir.rpns.microentreprise
+    #assert (ebic_imps <= P.servi.max)
     assiette_service = 0
     for qui in ebic_imps.itervalues():
         assiette_service += qui
     return assiette_service
 
-def _micro_social_proflib(ebnc_impo, _option = {'ebnc_impo': ALL}):
+def _micro_social_proflib(ebnc_impo, _P,_option = {'ebnc_impo': ALL}):
     '''
     Assiette régime microsociale pour les professions libérales
     '''
-    # TODO: distinction RSI/CIPAV
+    # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
+    P = _P.ir.rpns.microentreprise
+    #assert (ebnc_impo <= P.specialbnc.max)
     assiette_proflib = 0
     for qui in ebnc_impo.itervalues():
         assiette_proflib += qui
     return assiette_proflib
 
 def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
-    P = _P.cotsoc.microsocial
-    return assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
+    P = _P.ir.rpns.microsocial
+    return assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.bnc
 
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce, _P):
     """
