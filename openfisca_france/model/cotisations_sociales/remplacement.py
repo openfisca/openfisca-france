@@ -78,18 +78,18 @@ def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
     '''
     Taux retenu sur la CSG des revenus de remplacment:
     0 : Non renseigné/non pertinent
-    1 : Exonéré
-    2 : Taux réduit
+    1 : Exonéré  (sous plafond de ressource)
+    2 : Taux réduit (irpp < seuil de non versement)
     3 : Taux plein
     '''
     # TODO: problème avec le rfr n-2
     P = _P.cotsoc.gen
     seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbpt_n_2 - 1) / 2))
-    res = (0 +
-            max_((chobrut > 0) + (rstbrut > 0), 0) +
-            (rfr_n_2 >= seuil_th) +
-            1)  # conditon sur impot avant credit > seuil de non imposition
-    return 3 * ones(len(res))
+    res = (0
+           + max_((chobrut > 0) + (rstbrut > 0), 0)  # pertinence la personne est au chômage ou pensionnées
+           + (rfr_n_2 >= seuil_th)  # la personne n'ont pas assez de  ressources
+           + 1)  # la personne ne satisfait pas à la conditon de ressources mais son impot avant credit > seuil de non imposition
+    return res
 
 
 def _chobrut(choi, csg_rempl, _defaultP):

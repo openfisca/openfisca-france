@@ -186,8 +186,9 @@ def _chobrut(choi, csg_rempl, _defaultP):
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
 
-    taux_plein = csg['plein']
-    taux_reduit = csg['reduit']
+
+    taux_plein = combineBaremes(csg['plein'])
+    taux_reduit = combineBaremes(csg['reduit'])
 
     chom_plein = taux_plein.inverse()
     chom_reduit = taux_reduit.inverse()
