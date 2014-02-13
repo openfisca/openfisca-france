@@ -274,11 +274,13 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
             for bar in pat[category[0]].itervalues():
                 try:
                     is_noncontrib = (bar.option == "noncontrib")
+                    log.error(bar)
                 except:
                     print bar
                 temp = -(iscat
                          * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                          * is_noncontrib)
+                log.error(temp)
                 cotpat += temp
                 if is_noncontrib == 1:
                     if  category[0] == DEBUG_SAL_TYPE:
@@ -287,7 +289,7 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                         log.info(temp / 12)
                         log.info("\n \n")
 
-    log.info("accident : %s" % cotpat_accident)
+    log.error("accident : %s" % cotpat_accident)
     return cotpat + cotpat_accident
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
@@ -539,11 +541,11 @@ def _tehr(salbrut, _P):
     return -bar.calc(salbrut)
 
 
-def _sal(salbrut, primes, indemnite_residence, csgsald, cotsal, hsup, rev_microsocial):
+def _sal(salbrut, primes, indemnite_residence, supp_familial_traitement, csgsald, cotsal, hsup, rev_microsocial):
     '''
     Calcul du salaire imposable
     '''
-    return salbrut + primes + indemnite_residence + csgsald + cotsal - hsup
+    return salbrut + primes + indemnite_residence + supp_familial_traitement + csgsald + cotsal - hsup
 
 
 def _salnet(sal, crdssal, csgsali):
@@ -554,11 +556,11 @@ def _salnet(sal, crdssal, csgsali):
     return sal + crdssal + csgsali
 
 
-def _salsuperbrut(salbrut, primes, indemnite_residence, cotpat, alleg_fillon, alleg_cice, taxes_sal, tehr):
+def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement, cotpat, alleg_fillon, alleg_cice, taxes_sal, tehr):
     """
     Salaires superbruts
     """
-    salsuperbrut = salbrut + primes + indemnite_residence - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
+    salsuperbrut = salbrut + primes + indemnite_residence + supp_familial_traitement - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
     expression = ("   salbrut             %s \n"
                   " + cotpat              %s \n"
                   " + primes              %s \n"
@@ -570,6 +572,7 @@ def _salsuperbrut(salbrut, primes, indemnite_residence, cotpat, alleg_fillon, al
                   " = salsuperbut         %s") % (salbrut / 12, cotpat / 12, primes / 12, indemnite_residence / 12,
                                                   - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12, salsuperbrut / 12)
     log.info(expression)
+    
     return salsuperbrut
 
 def _cot_pat_pension_civile(salbrut, type_sal, _P):
@@ -618,6 +621,8 @@ def _primes(type_sal, salbrut):
 def _supp_familial_traitement(type_sal, salbrut, af_nbenf, _P):
     '''
     Supplément familial de traitement
+    Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
+    TODO: gérer le cas encore problématique du conjoint fonctionnaire
     '''
     # TODO: un seul sft par couple où est présent un fonctionnaire
     fonc_nbenf = af_nbenf

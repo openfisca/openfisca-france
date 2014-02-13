@@ -29,6 +29,7 @@ import sys
 import datetime
 import logging
 import nose
+import pdb
 
 import openfisca_france
 openfisca_france.init_country(start_from = "brut")
@@ -195,7 +196,7 @@ def test_cotsoc_famille():
     test pour un couple de fonctionnaire
     """
     tests_list = [
-#   Famille avec 2 enfants
+#  Famille avec 2 enfants
              {"year" : 2012,
               "input_vars":
                     {
@@ -224,6 +225,38 @@ def test_cotsoc_famille():
                      "salnet": 2213.83,
                     }
               },
+            {"year" : 2012,
+              "input_vars":
+                    {
+                     "type_sal" : CAT["public_titulaire_etat"],
+                     "salbrut" : 12 * 2000,
+                     "primes" : 12 * 500,
+                     "type_sal_c" : CAT["public_titulaire_etat"],
+                     "salbrut_c" : 12 * 2000,
+                     "primes_c" : 12 * 500,
+                     "zone_apl": 2,
+                     
+                    },
+              "output_vars" :
+                    {
+                     "cot_pat_pension_civile": 1371.80 * 2,
+                     "cot_sal_pension_civile": 167.80 * 2,
+                     "cot_sal_rafp": 20 * 2,
+                     "cot_pat_rafp": 20 * 2,
+                     "csgsald" : 131.94 * 2,
+                     "csgsali" : 62.09 * 2,
+                     "indemnite_residence": 240 * 2 /12,
+                     "supp_familial_traitement":73.04,  
+                     "crdssal": 12.93 * 2,
+                     "cotpat_transport": 2000 * 0.0175 * 2,
+                     "cotpat" : (1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
+#                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
+                     "cotsal" : (167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
+#                               pension rafp
+                     "salsuperbrut": (2000 +  500 + 20 + 1751.4 ) * 2 + 73.04,
+                     "salnet": (2000 + 500 + 20 - 131.94 -  62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
+                    }
+              },
                   ]
 
     passed = True
@@ -238,16 +271,19 @@ def test_cotsoc_famille():
 
         test_case.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
         test_case.addIndiv(2, datetime.date(2000, 1, 1), 'pac', 'enf')
-        test_case.addIndiv(3, datetime.date(2001, 1, 1), 'pac', 'enf')
-
+        test_case.addIndiv(3, datetime.date(2009, 1, 1), 'pac', 'enf')
 
         for variable, value in test['input_vars'].iteritems():
 
-
             if variable in ['zone_apl']:
                 test_case.menage[0].update({ variable: value})
-            else:
+            elif variable in ['type_sal', 'salbrut', 'primes']:
                 test_case.indiv[0].update({ variable: value})
+            elif variable in ['type_sal_c', 'salbrut_c', 'primes_c']:
+                test_case.indiv[1].update({ variable[:-2] : value})
+            else:
+                print "Variable non prise en charge : ", variable
+                pdb.set_trace()
 
         df = simulation.get_results_dataframe(index_by_code = True)
         simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
@@ -256,7 +292,7 @@ def test_cotsoc_famille():
         for variable, value in test['output_vars'].iteritems():
 
             computed_value = (simulation.output_table.table[variable] / 12).sum()
-            test_assertion = abs(abs(computed_value) - value) < 1
+            test_assertion = abs(abs(computed_value) - value) < 2
             expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
             if not test_assertion:
@@ -268,7 +304,8 @@ def test_cotsoc_famille():
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cotsoc_celib()
-#    test_cotsoc_famille()
+#    test_cotsoc_celib()
+    test_cotsoc_famille()
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
+
