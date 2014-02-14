@@ -42,7 +42,7 @@ def test_irpp():
             "sali": [
             {"year" : 2012, "amount": 20000, "irpp":-1181 },
             {"year" : 2011, "amount": 20000, "irpp":-1181 },
-            {"year" : 2010, "amount": 20000, "irpp":-1181 },
+            {"year" : 2010, "amount": 20000, "irpp":-1201 },
                     ],
        }
 
