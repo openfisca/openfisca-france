@@ -37,4 +37,4 @@ def test_brut():
     # TODO: Change this
 
 if __name__ == '__main__':
-    main()
+    test_brut()

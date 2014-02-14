@@ -21,7 +21,6 @@ PAC3 = QUIFOY['pac3']
 ALL = [x[1] for x in QUIFOY]
 
 import logging
-import pdb
 
 
 log = logging.getLogger(__name__)
@@ -207,9 +206,9 @@ def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
 
 
 def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar, f2as):
-    year= _P.datesim.year
-    return f2aa*(year==2009) + f2al*(year==2009 | year==2010) + f2am*(year==2009 | year==2010 | year==2011) + f2an*(year==2010 | year==2011 | year==2012) +\
-                  f2aq*(year==2011 | year==2012 | year==2013) + f2ar*(year==2012 | year==2013 | year==2014) + f2as*(year==2013 | year==2014 | year==2015)
+    year = _P.datesim.year
+    return f2aa * (year == 2009) + f2al * (year == 2009 | year == 2010) + f2am * (year == 2009 | year == 2010 | year == 2011) + f2an * (year == 2010 | year == 2011 | year == 2012) + \
+                  f2aq * (year == 2011 | year == 2012 | year == 2013) + f2ar * (year == 2012 | year == 2013 | year == 2014) + f2as * (year == 2013 | year == 2014 | year == 2015)
 
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P):
     """
@@ -234,10 +233,10 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     F1 = f2ca / den * f2dc_bis
     # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
     # partie négative (à déduire des autres revenus nets de frais d'abattements
-    g12a = -min_(f2dc_bis * (1-P.abatmob_taux) - F1, 0)
+    g12a = -min_(f2dc_bis * (1 - P.abatmob_taux) - F1, 0)
     # partie positive
-    g12b = max_(f2dc_bis * (1-P.abatmob_taux) - F1, 0)
-    rev = g12b + f2gr + f2fu * (1-P.abatmob_taux)
+    g12b = max_(f2dc_bis * (1 - P.abatmob_taux) - F1, 0)
+    rev = g12b + f2gr + f2fu * (1 - P.abatmob_taux)
 
     # Abattements, limité au revenu
     h12 = P.abatmob * (1 + marpac)
@@ -273,9 +272,9 @@ def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     """
     P = _P.ir.microfoncier
     # # Calcul du revenu catégoriel
-    if ((f4be != 0) & ((f4ba != 0) |(f4bb != 0) | (f4bc != 0))).any():
-        print "Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"
-        pdb.set_trace()
+    if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
+        log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
+
     a13 = f4ba + f4be - P.taux * f4be * (f4be <= P.max)
     b13 = f4bb
     c13 = a13 - b13
@@ -458,12 +457,12 @@ def _teicaa(f5qm, f5rm, _P):
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
-def _micro_social_vente(ebic_impv,_P, _option = {'ebic_impv': ALL}):
+def _micro_social_vente(ebic_impv, _P, _option = {'ebic_impv': ALL}):
     '''
     Assiette régime microsociale pour les ventes
     '''
     P = _P.ir.rpns.microentreprise
-    #assert (ebic_impv <= P.vente.max)
+    # assert (ebic_impv <= P.vente.max)
     assiette_vente = 0
     for qui in ebic_impv.itervalues():
         assiette_vente += qui
@@ -473,21 +472,21 @@ def _micro_social_service(ebic_imps, _P, _option = {'ebic_imps': ALL}):
     '''
     Assiette régime microsociale pour les prestations et services
     '''
-    
+
     P = _P.ir.rpns.microentreprise
-    #assert (ebic_imps <= P.servi.max)
+    # assert (ebic_imps <= P.servi.max)
     assiette_service = 0
     for qui in ebic_imps.itervalues():
         assiette_service += qui
     return assiette_service
 
-def _micro_social_proflib(ebnc_impo, _P,_option = {'ebnc_impo': ALL}):
+def _micro_social_proflib(ebnc_impo, _P, _option = {'ebnc_impo': ALL}):
     '''
     Assiette régime microsociale pour les professions libérales
     '''
     # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
     P = _P.ir.rpns.microentreprise
-    #assert (ebnc_impo <= P.specialbnc.max)
+    # assert (ebnc_impo <= P.specialbnc.max)
     assiette_proflib = 0
     for qui in ebnc_impo.itervalues():
         assiette_proflib += qui
@@ -550,7 +549,7 @@ def _cesthra(sal, _P, _option = {'sal': ALL}):
     return cesthra
 
 
-def _irpp(iai, credits_impot, cehr, cesthra, microsocial):#
+def _irpp(iai, credits_impot, cehr, cesthra, microsocial):  #
     '''
     Montant avant seuil de recouvrement (hors ppe)
     '''
@@ -589,7 +588,7 @@ def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
 #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
 #    elif _P.datesim.year > 2011:
 #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
-    return f2dc + f2gr + f2ch + f2ts +  f2go * P.majGO + f2tr + f2fu - avf + (f2da + f2ee) * (_P.ir.autre.finpfl)  # we add f2da an f2ee to allow for comparaison between year
+    return f2dc + f2gr + f2ch + f2ts + f2go * P.majGO + f2tr + f2fu - avf + (f2da + f2ee) * (_P.ir.autre.finpfl)  # we add f2da an f2ee to allow for comparaison between year
 
 def _rev_cap_lib(f2da, f2dh, f2ee, _P):
     '''
