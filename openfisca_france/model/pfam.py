@@ -279,7 +279,7 @@ def _paje(paje_base, paje_nais, paje_clca, paje_clmg, paje_colca):
     '''
     return paje_base + paje_nais + paje_clca + paje_clmg + paje_colca
 
-def _paje_base(age, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _paje_base(age, af_nbenf, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
     Prestation d'acceuil du jeune enfant - allocation de base
     '''
@@ -300,8 +300,8 @@ def _paje_base(age, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smi
     # celui au cours duquel l'enfant atteint l'âge de 3 ans.
 
     nbenf = nb_enf(age, smic55, 0, P.paje.base.age - 1)
-
-    plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(nbenf, 2) + P.paje.base.plaf_tx2 * max_(nbenf - 2, 0)
+    
+    plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
     majo = isol | biact
     plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
     plaf2 = plaf + 12 * base2  # TODO vérifier l'aspect différentielle de la PAJE et le plaf2 de la paje
@@ -323,19 +323,21 @@ def _paje_nais(agem, age, af_nbenf, br_pf, isol, biact, _P, _option = {'age': EN
     # donc les enfants concernés sont les enfants qui ont -2 mois
     nbnais = 0
     for age_m in agem.itervalues():
-# nbnais += (age_m == -2) cas mensuel
+        # nbnais += (age_m == -2) cas mensuel
         nbnais += (age_m >= -2) * (age_m < 10)
 
-    # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
-    nbaf = af_nbenf
+    nbaf = 0 # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
+    for age_m in agem.itervalues():
+        nbaf += (age_m >= 10)
+
     nbenf = nbaf + nbnais  # On ajoute l'enfant à  naître;
 
     paje_plaf = P.paje.base.plaf
 
-    plaf_tx = 1 + P.paje.base.plaf_tx1 * min_(nbenf, 2) + P.paje.base.plaf_tx2 * max_(nbenf - 2., 0)
+    plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
     majo = isol | biact
-    nais_plaf = paje_plaf * plaf_tx + majo
-    elig = (br_pf <= nais_plaf) * (nbnais != 0)
+    plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
+    elig = (br_pf <= plaf) * (nbnais != 0)
     nais_brut = nais_prime * elig * (nbnais)
     return nais_brut
 
