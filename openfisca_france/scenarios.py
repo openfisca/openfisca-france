@@ -397,11 +397,15 @@ Vérifie que le ménage entré est valide
                     error = {}
                 for individu_id in remaining_individus_id:
                     error.setdefault('individus', {})[individu_id] = state._(u"Individual is missing from {}").format(
-                        u' & '.join([
-                            u'familles' if individu_id in familles_individus_id else None,
-                            u'foyers_fiscaux' if individu_id in foyers_fiscaux_individus_id else None,
-                            u'menages' if individu_id in menages_individus_id else None,
-                            ]))
+                        u' & '.join(
+                            word
+                            for word in [
+                                u'familles' if individu_id not in familles_individus_id else None,
+                                u'foyers_fiscaux' if individu_id not in foyers_fiscaux_individus_id else None,
+                                u'menages' if individu_id not in menages_individus_id else None,
+                                ]
+                            if word is not None
+                            ))
             if error is not None:
                 return data, error
 
