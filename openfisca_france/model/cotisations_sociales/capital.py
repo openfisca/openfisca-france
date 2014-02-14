@@ -169,7 +169,6 @@ def _prelsoc_fon(rev_cat_rfon, _P):
     else:
         total = P.base_pat + P.add + P.rsa
     return -rev_cat_rfon * total
- 
 
 # revenus du capital soumis au prélèvement libératoire
 def _csg_cap_lib(rev_cap_lib, _P):

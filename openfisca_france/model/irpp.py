@@ -22,7 +22,6 @@ ALL = [x[1] for x in QUIFOY]
 
 import logging
 
-
 log = logging.getLogger(__name__)
 
 # zetrf = zeros(taille)
@@ -189,8 +188,10 @@ def _tspr(sal_pen_net, rto_net):
     '''
     return sal_pen_net + rto_net
 
+
 def _rev_cat_pv(f3vg, f3vh):
     return f3vg - f3vh
+
 
 def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
     '''
@@ -209,6 +210,7 @@ def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar, f2as):
     year = _P.datesim.year
     return f2aa * (year == 2009) + f2al * (year == 2009 | year == 2010) + f2am * (year == 2009 | year == 2010 | year == 2011) + f2an * (year == 2010 | year == 2011 | year == 2012) + \
                   f2aq * (year == 2011 | year == 2012 | year == 2013) + f2ar * (year == 2012 | year == 2013 | year == 2014) + f2as * (year == 2013 | year == 2014 | year == 2015)
+
 
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P):
     """
@@ -284,6 +286,7 @@ def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     g13 = max_(0, e13 - f13)
     out = (c13 >= 0) * (g13 + e13 * (e13 < 0)) - (c13 < 0) * d13
     return out
+
 
 def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
     '''
@@ -457,23 +460,24 @@ def _teicaa(f5qm, f5rm, _P):
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
+
 def _micro_social_vente(ebic_impv, _P, _option = {'ebic_impv': ALL}):
     '''
     Assiette régime microsociale pour les ventes
     '''
-    P = _P.ir.rpns.microentreprise
+    # P = _P.ir.rpns.microentreprise
     # assert (ebic_impv <= P.vente.max)
     assiette_vente = 0
     for qui in ebic_impv.itervalues():
         assiette_vente += qui
     return assiette_vente
 
+
 def _micro_social_service(ebic_imps, _P, _option = {'ebic_imps': ALL}):
     '''
     Assiette régime microsociale pour les prestations et services
     '''
-
-    P = _P.ir.rpns.microentreprise
+    # P = _P.ir.rpns.microentreprise
     # assert (ebic_imps <= P.servi.max)
     assiette_service = 0
     for qui in ebic_imps.itervalues():
@@ -485,7 +489,7 @@ def _micro_social_proflib(ebnc_impo, _P, _option = {'ebnc_impo': ALL}):
     Assiette régime microsociale pour les professions libérales
     '''
     # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
-    P = _P.ir.rpns.microentreprise
+    # P = _P.ir.rpns.microentreprise
     # assert (ebnc_impo <= P.specialbnc.max)
     assiette_proflib = 0
     for qui in ebnc_impo.itervalues():
@@ -493,8 +497,11 @@ def _micro_social_proflib(ebnc_impo, _P, _option = {'ebnc_impo': ALL}):
     return assiette_proflib
 
 def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
-    P = _P.ir.rpns.microsocial
-    return assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.bnc
+    if _P.datesim.year >= 2009:
+        P = _P.ir.rpns.microsocial
+        return assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.bnc
+    else:
+        return 0 * assiette_service
 
 def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce, _P):
     """
@@ -549,11 +556,12 @@ def _cesthra(sal, _P, _option = {'sal': ALL}):
     return cesthra
 
 
-def _irpp(iai, credits_impot, cehr, cesthra, microsocial):  #
+def _irpp(iai, credits_impot, cehr, cesthra, microsocial):
     '''
     Montant avant seuil de recouvrement (hors ppe)
     '''
     return -(iai - credits_impot + cehr + cesthra + microsocial)
+
 
 ###############################################################################
 # # Autres totaux utiles pour la suite
@@ -589,6 +597,7 @@ def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
 #    elif _P.datesim.year > 2011:
 #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
     return f2dc + f2gr + f2ch + f2ts + f2go * P.majGO + f2tr + f2fu - avf + (f2da + f2ee) * (_P.ir.autre.finpfl)  # we add f2da an f2ee to allow for comparaison between year
+
 
 def _rev_cap_lib(f2da, f2dh, f2ee, _P):
     '''

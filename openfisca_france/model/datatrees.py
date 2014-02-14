@@ -32,6 +32,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u'Principal'),
                 ('children', [
+                    'prenom',
+                    'birth',
                     'sali',
                     'choi',
                     'rsti',

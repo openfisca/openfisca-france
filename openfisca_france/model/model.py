@@ -131,6 +131,7 @@ prestation_by_name = collections.OrderedDict((
                                                  u"Plus de 250 salariés"]))),
 
     ('cotpat_contrib', Prestation(cs_travail._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
+    ('taux_accident_travail', Prestation(cs_travail._taux_accident_travail, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),    
     ('cotpat_accident', Prestation(cs_travail._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
     ('cotpat_noncontrib', Prestation(cs_travail._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
     ('cotpat_main_d_oeuvre', Prestation(cs_travail._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre")),

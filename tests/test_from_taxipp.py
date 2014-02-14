@@ -28,7 +28,7 @@ import os
 dirname = os.path.dirname(__file__) 
 
 
-def test_from_taxipp( date = "10-02-14", threshold = 1, list_input = None, list_output = None, verbose = False):
+def test_from_taxipp( date = "14-02", threshold = 1, list_input = None, list_output = None, verbose = False):
     
     def list_dta(date):
         input = []

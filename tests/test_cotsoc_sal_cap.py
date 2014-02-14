@@ -105,6 +105,7 @@ def test_cotsoc():
                  "csg_cap_bar":-.082 * 20000,
                  "crds_cap_bar":-.005 * 20000 } },
                      ],
+            
 # # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise
 # ## donnant droit à abattement (2fu)
             "f2fu" :[
@@ -126,6 +127,7 @@ def test_cotsoc():
                  "crds_cap_bar":-125,
                  "ir_plaf_qf": 2150,
                  "irpp":-2150 } },
+                 "irpp": -2150 } },
                      ],
             "f2ts" :[
             {"year" : 2013, "amount": 20000,
@@ -293,7 +295,6 @@ def test_cotsoc():
                     print var
                     print "OpenFisca :", val
                     print "Real value :", value
-
                 # assert test < 1
 
 def test_cotsoc_cap_celib():

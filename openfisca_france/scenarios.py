@@ -16,11 +16,11 @@
 #
 # OpenFisca is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
@@ -58,7 +58,7 @@ class Scenario(object):
         # indiv est un dict de dict. La clé est le noi de l'individu
         # Exemple :
         # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
-        #     'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
+        # 'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
         self.declar = {}
         # declar est un dict de dict. La clé est le noidec.
         self.famille = {}
@@ -81,8 +81,8 @@ class Scenario(object):
 
     def check_consistency(self):
         '''
-        Vérifie que le ménage entré est valide
-        '''
+Vérifie que le ménage entré est valide
+'''
         for noi, vals in self.indiv.iteritems():
             age = self.year - vals['birth'].year
             if age < 0:
@@ -544,8 +544,8 @@ class Scenario(object):
 
     def hasConj(self, noidec):
         '''
-        Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
-        '''
+Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
+'''
         for vals in self.indiv.itervalues():
             if (vals['noidec'] == noidec) and (vals['quifoy'] == 'conj'):
                 return True
@@ -553,8 +553,8 @@ class Scenario(object):
 
     def hasPart(self, noichef):
         '''
-        Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
-        '''
+Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
+'''
         for vals in self.indiv.itervalues():
             if (vals['noichef'] == noichef) and (vals['quifam'] == 'part'):
                 return True
@@ -562,18 +562,18 @@ class Scenario(object):
 
     def _assignVous(self, noi):
         '''
-        Ajoute la personne numéro 'noi' et crée son foyer
-        '''
+Ajoute la personne numéro 'noi' et crée son foyer
+'''
         self.indiv[noi]['quifoy'] = 'vous'
         self.indiv[noi]['noidec'] = noi
         self.declar.update({noi:{}})
 
     def _assignConj(self, noi, noidec):
         '''
-        Ajoute la personne numéro 'noi' à la déclaration numéro 'noidec' en tant
-        que 'conj' si declar n'a pas de conj. Sinon, cherche le premier foyer sans
-        conjoint. Sinon, crée un nouveau foyer en tant que vous.
-        '''
+Ajoute la personne numéro 'noi' à la déclaration numéro 'noidec' en tant
+que 'conj' si declar n'a pas de conj. Sinon, cherche le premier foyer sans
+conjoint. Sinon, crée un nouveau foyer en tant que vous.
+'''
         decnum = noidec
         if (noidec not in self.declar) or self.hasConj(noidec):
             for k in self.declar:
@@ -587,25 +587,25 @@ class Scenario(object):
 
     def _assignPac(self, noi, noidec):
         '''
-        Ajoute la personne numéro 'noi' et crée sa famille
-        '''
+Ajoute la personne numéro 'noi' et crée sa famille
+'''
         self.indiv[noi]['quifoy'] = 'pac0'
         self.indiv[noi]['noidec'] = noidec
 
     def _assignChef(self, noi):
         '''
-        Désigne la personne numéro 'noi' comme chef de famille et crée une famille vide
-        '''
+Désigne la personne numéro 'noi' comme chef de famille et crée une famille vide
+'''
         self.indiv[noi]['quifam'] = 'chef'
         self.indiv[noi]['noichef'] = noi
         self.famille.update({noi:{}})
 
     def _assignPart(self, noi, noichef):
         '''
-        Ajoute la personne numéro 'noi' à la famille 'noichef' en tant
-        que 'part' si noi n'a pas de part. Sinon, cherche la première famille sans
-        'part'. Sinon, crée un nouvelle famille en tant que vous.
-        '''
+Ajoute la personne numéro 'noi' à la famille 'noichef' en tant
+que 'part' si noi n'a pas de part. Sinon, cherche la première famille sans
+'part'. Sinon, crée un nouvelle famille en tant que vous.
+'''
         famnum = noichef
         if (noichef not in self.famille) or self.hasPart(noichef):
             for k in self.famille:
@@ -619,19 +619,19 @@ class Scenario(object):
 
     def _assignEnfF(self, noi, noichef):
         '''
-        Ajoute la personne numéro 'noi' à la déclaration famille 'noifam' en tant
-        que 'enf'
-        '''
+Ajoute la personne numéro 'noi' à la déclaration famille 'noifam' en tant
+que 'enf'
+'''
         self.indiv[noi]['quifam'] = 'enf0'
         self.indiv[noi]['noichef'] = noichef
 
     def _assignPerson(self, noi, quifoy = None, foyer = None, quifam = None, famille = None):
         if quifoy is not None:
-            if   quifoy == 'vous': self._assignVous(noi)
+            if quifoy == 'vous': self._assignVous(noi)
             elif quifoy == 'conj': self._assignConj(noi, foyer)
             elif quifoy[:3] == 'pac' : self._assignPac(noi, foyer)
         if quifam is not None:
-            if   quifam == 'chef': self._assignChef(noi)
+            if quifam == 'chef': self._assignChef(noi)
             elif quifam == 'part': self._assignPart(noi, famille)
             elif quifam[:3] == 'enf' : self._assignEnfF(noi, famille)
         self.genNbEnf()
@@ -666,7 +666,7 @@ class Scenario(object):
                                 'activite':0,
                                 'quifoy': 'none',
                                 'quifam': 'none',
-                                'noidec':  0,
+                                'noidec': 0,
                                 'noichef': 0,
                                 'noipref': 0}})
 
@@ -722,13 +722,13 @@ class Scenario(object):
 
     def updateMen(self):
         '''
-        Il faut virer cela
-        '''
+Il faut virer cela
+'''
         people = self.indiv
         for noi in xrange(self.nbIndiv()):
-            if   noi == 0: quimen = 'pref'
+            if noi == 0: quimen = 'pref'
             elif noi == 1: quimen = 'cref'
-            else:  quimen = 'enf%d' % (noi - 1)
+            else: quimen = 'enf%d' % (noi - 1)
             if 'quimen' not in people[noi].keys():
                 people[noi].update({'quimen': quimen,
                                     'noipref': 0})

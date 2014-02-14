@@ -157,7 +157,6 @@ def build_pat(_P):
     pat['public_titulaire_territoriale'] = pat.pop('colloc_t')
     import copy
     pat['public_titulaire_hospitaliere'] = copy.deepcopy(pat['public_titulaire_territoriale'])
-
     for category in ['territoriale', 'hospitaliere']:
         for name, bareme in pat['public_titulaire_' + category][category].iteritems():
             pat['public_titulaire_' + category][name] = bareme
@@ -165,11 +164,6 @@ def build_pat(_P):
     for category in ['territoriale', 'hospitaliere']:
         del pat['public_titulaire_territoriale'][category]
         del pat['public_titulaire_hospitaliere'][category]
-
-#     import sys
-#     sys.exit()
-#     pat['public_titulaire_territoriale']['hospitaliere'] = pat['public_titulaire_territoriale']['hospitaliere'].pop('feh')
-#     pat['public_titulaire_hospitaliere']['territoriale'] = pat['public_titulaire_territoriale']['territoriale'].pop('fcppa')
 
     pat['public_non_titulaire'] = pat.pop('contract')
     log.info("Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
@@ -254,11 +248,21 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
     return transport
 
 
+def _taux_accident_travail(exposition_accident, _P):
+    '''
+    Approximation du taux accident à partir de l'exposition au risque donnée
+    TO DO: a actualiser dans param.xml
+    '''
+    if _P.datesim.year >= 2012:
+        P = _P.cotsoc.accident
+        return ( exposition_accident == 0 ) * P.faible + ( exposition_accident == 1 ) * P.moyen  + ( exposition_accident == 2 ) * P.eleve +  ( exposition_accident == 3 ) * P.treseleve
+    else:
+        return 0 * exposition_accident
 def _cotpat_accident(salbrut, type_sal, taux_accident_travail):
     '''
     Cotisations patronales accident du travail et maladie professionelle
     '''
-    prive = (type_sal == CAT['prive_non_cadre']) + (type_sal == CAT['prive_non_cadre'])
+    prive = (type_sal == CAT['prive_cadre']) + (type_sal == CAT['prive_non_cadre'])
     return -salbrut * taux_accident_travail * prive  # TODO: check public
 
 
@@ -274,13 +278,14 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
             for bar in pat[category[0]].itervalues():
                 try:
                     is_noncontrib = (bar.option == "noncontrib")
-                    log.error(bar)
+                    log.info(bar)
                 except:
                     print bar
                 temp = -(iscat
                          * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                          * is_noncontrib)
-                log.error(temp)
+                log.info(temp)
+                log.info("\n \n")
                 cotpat += temp
                 if is_noncontrib == 1:
                     if  category[0] == DEBUG_SAL_TYPE:
@@ -289,7 +294,7 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                         log.info(temp / 12)
                         log.info("\n \n")
 
-    log.error("accident : %s" % cotpat_accident)
+    log.info("accident : %s" % cotpat_accident)
     return cotpat + cotpat_accident
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
@@ -367,6 +372,8 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
                                     + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                         ) * is_contrib
                 cotsal += temp
+                log.info(bar)
+                log.info(temp)
                 if  category[0] == DEBUG_SAL_TYPE:
                     if (temp != 0).all():
                         log.info(category[0])
@@ -377,7 +384,6 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
         if category[0] == DEBUG_SAL_TYPE:
             log.info("cot_sal_pension_civile %s" % str(cot_sal_pension_civile / 12))
             log.info("rafp sal %s" % str(cot_sal_rafp / 12))
-
 
     public_titulaire = ((type_sal == CAT['public_titulaire_etat'])
               + (type_sal == CAT['public_titulaire_territoriale'])

@@ -428,6 +428,21 @@
     </CODE>
   </NODE>
   <NODE description="Cotisations sociales" code="cotsoc">
+    <NODE description="Accident du travail" code="accident"> # Wild distinction between the rates. TODO: handle the extreme diversity...
+       <CODE description="Accident du travail (taux bureau)" code="faible">
+         <VALUE valeur="0.011" deb="2013-01-01" fin="2013-12-31"/>
+         <VALUE valeur="0.010" deb="1996-01-01" fin="2012-12-31"/>
+         </CODE>
+       <CODE description="Accident du travail (taux moyen)" code="moyen">
+         <VALUE valeur="0.03" deb="2012-01-01" fin="2013-12-31"/> # TODO: update, get more info...
+         </CODE>
+       <CODE description="Accident du travail (taux eleve)" code="eleve">
+         <VALUE valeur="0.05" deb="2012-01-01" fin="2013-12-31"/> # TODO: update, get more info...
+         </CODE>
+       <CODE description="Accident du travail (taux tres eleve)" code="treseleve">
+         <VALUE valeur="0.10" deb="2012-01-01" fin="2013-12-31"/> # TODO: update, get more info...
+         </CODE>
+   </NODE>
     <NODE description="Paramètres généraux" code="gen">
       <CODE description="Plafond de la sécurité sociale" code="plaf_ss" format="integer" type="monetary">
         <VALUE valeur="3086" deb="2013-01-01" fin="2013-12-31"/>
@@ -564,8 +579,8 @@
               <VALUE valeur=".0690" deb="2016-01-01" fin="2016-12-31"/>
               <VALUE valeur=".0685" deb="2015-01-01" fin="2015-12-31"/>
               <VALUE valeur=".0680" deb="2014-01-01" fin="2014-12-31"/>
-              <VALUE valeur=".0675" deb="2012-01-01" fin="2013-12-31"/>
-              <VALUE valeur=".0665" deb="2006-01-01" fin="2011-12-31"/>
+              <VALUE valeur=".0675" deb="2012-11-01" fin="2013-12-31"/>
+              <VALUE valeur=".0665" deb="2006-01-01" fin="2012-10-31"/>
               <VALUE valeur=".0655" deb="1993-07-01" fin="2005-12-31"/>
             </TAUX>
           </TRANCHE>
@@ -1207,7 +1222,7 @@
             <VALUE valeur="0.2" deb="2005-01-01" fin="2014-12-31"/>
           </CODE>
         </NODE>
-        <NODE description="Spécifiques aux fonctions publiques territoriale et hospitalière" code="colloc">
+        <NODE description="Collectivités locales - Fonction publique hospitalière" code="colloc">
           <BAREME description="Retraites des agents des collectivités locales (taux hors NBI)" code="cnracl1" option="contrib">
             <TRANCHE code="tranche0">
               <SEUIL>
@@ -1917,7 +1932,20 @@
         </NODE>
       </NODE>
     </NODE>
-    
+    <NODE description="Cotisations sociales pour régime micro-social" code="microsocial">
+      <CODE description="Taux pour les activités de ventes" code="vente" format="percent">
+        <VALUE valeur="0.141" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Taux pour les activités de prestations et de services" code="servi" format="percent">
+        <VALUE valeur="0.246" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Taux professions libérales relevant du RSI" code="rsi" format="percent">
+        <VALUE valeur="0.246" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+      <CODE description="Taux professions libérales relevant du  CIPAV" code="cipav" format="percent">
+        <VALUE valeur="0.233" deb="2013-01-01" fin="2013-12-31"/>
+      </CODE>
+    </NODE>
     <NODE description="Exonération sur les bas salaires" code="exo_bas_sal">
     	<NODE description="Exonération Fillon" code="fillon">
 	      <CODE description="Taux maximum (plus de 20 salariés)" code="tx_max" format="percent">
