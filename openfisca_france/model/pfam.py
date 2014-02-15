@@ -263,8 +263,8 @@ def _ars(age, af_nbenf, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENF
                      P.ars.tx1114 * enf_college +
                      P.ars.tx1518 * enf_lycee)
     # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
-    #ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
-    ars  = max_(0, arsbase - max_(0,(br_pf  - ars_plaf_res ) / arsnbenf))
+    # ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
+    ars = max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / arsnbenf))
     # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
     return ars * (ars >= P.ars.seuil_nv)
@@ -403,8 +403,8 @@ def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_d
 #
 #    avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
 #    employer une assistante maternelle agréée ou une garde à domicile.
-#    avoir une activité professionnelle min_
-#        si vous êtes salarié cette activité doit vous procurer un revenu min_ de :
+#    avoir une activité professionnelle minimale
+#        si vous êtes salarié cette activité doit vous procurer un revenu minimum de :
 #            si vous vivez seul : une fois la BMAF
 #            si vous vivez en couple  soit 2 fois la BMAF
 #        si vous êtes non salarié, vous devez être à jour de vos cotisations sociales d'assurance vieillesse
@@ -417,7 +417,7 @@ def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_d
 #    étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
 #
 # Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
-# Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max_ 45,00 €.
+# Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max 45,00 €.
 # Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
 #
 #
@@ -509,7 +509,7 @@ def _aeeh(age, inv, isol, categ_inv, _P, _option = {'categ_inv': ENFS, 'inv': EN
 #
 #        Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
 #        le coût du handicap de l'enfant,
-#        la cessation ou la réduction d'activité professionnelle daspa_elig[CHEF]un ou l'autre des deux parents,
+#        la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
 #        l'embauche d'une tierce personne rémunérée.
 #
 #        Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
