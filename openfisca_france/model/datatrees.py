@@ -58,12 +58,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'hsup',  # Heures supplémentaires
                     'inv',  # Invalide
                     'alt',  # Garde alternée
-                    'statut',  # Statut détaillé mis en cohérence avec la profession
-                    'txtppb',  # Taux du temps partiel
                     'nbsala',  # Nombre de salariés dans l'établissement de l'emploi actuel
                     'tva_ent',  # Entreprise employant le salarié paye de la TVA
-                    'chpub',  # Nature de l'employeur principal
-                    'cadre',  # Cadre salarié du privé
                     'code_risque',  # Code risque pour les accidents du travail
                     'exposition_accident',  # Exposition au risque pour les accidents du travail
                     'boursier',

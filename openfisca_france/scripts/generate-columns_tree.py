@@ -56,7 +56,8 @@ def cleanup_tree(tree):
     for child in (tree.get('children') or []):
         if isinstance(child, basestring):
             # Child is a column name.
-            if child in data.column_by_name:
+            column = data.column_by_name.get(child)
+            if column is not None and is_valid_column(column):
                 children.append(child)
         else:
             assert isinstance(child, dict), child
@@ -69,6 +70,11 @@ def cleanup_tree(tree):
     tree = tree.copy()
     tree['children'] = children
     return tree
+
+
+def is_valid_column(column):
+    return column.name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen') \
+        and not column.survey_only
 
 
 def iter_placed_tree(tree):
@@ -105,9 +111,7 @@ def main():
         )
 
     for name, column in data.column_by_name.iteritems():
-        if name in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen'):
-            continue
-        if column.survey_only:
+        if not is_valid_column(column):
             continue
         if name in placed_columns_name:
             continue
