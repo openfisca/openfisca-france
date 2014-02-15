@@ -137,7 +137,7 @@ X_AXES_PROPERTIES = {
     }
 
 
-def init_country(qt = False, start_from = "imposable"):
+def init_country(qt = False, start_from = "imposable", drop_survey_only_variables = False):
     """Add country-specific content to OpenFisca-Core package."""
     from openfisca_core import model as core_model
     from openfisca_core import simulations as core_simulations
@@ -155,6 +155,10 @@ def init_country(qt = False, start_from = "imposable"):
         from .widgets.Composition import CompositionWidget
 
     assert start_from in ["brut", "imposable"]  # TODO: net
+
+    if start_from in ['brut', 'net']:
+        drop_survey_only_variables = True
+
     if start_from == "brut":
         variables_bruts = ["salbrut", "chobrut", "rstbrut"]
         variables_imposables = ["sali", "choi", "rsti"]
@@ -167,6 +171,16 @@ def init_country(qt = False, start_from = "imposable"):
             del X_AXES_PROPERTIES[variable]
     elif start_from == "net":
         raise NotImplementedError
+
+    if drop_survey_only_variables:
+        survey_only_variables = [ name for name, col in column_by_name.iteritems() if col.survey_only ]
+        for variable in survey_only_variables:
+            del column_by_name[variable]
+
+        needed_columns = ['type_sal', 'primes']
+        for variable in needed_columns:
+            if variable not in column_by_name:
+                column_by_name.update(variable, prestation_by_name.pop(variable).to_column())
 
     core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 

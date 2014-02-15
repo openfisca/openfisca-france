@@ -1249,7 +1249,7 @@
                 <VALUE valeur="0" deb="1984-01-01" fin="2020-12-31"/>
               </SEUIL>
               <TAUX>
-                <VALUE valeur="0.1080" deb="2020-01-01" fin="2020-12-31"/> # TODO: CHECK change because réfore
+                <VALUE valeur="0.1080" deb="2020-01-01" fin="2020-12-31"/> # TODO: CHECK change because reforme
                 <VALUE valeur="0.1053" deb="2019-01-01" fin="2019-12-31"/>
                 <VALUE valeur="0.1026" deb="2018-01-01" fin="2018-12-31"/>
                 <VALUE valeur="0.0999" deb="2017-01-01" fin="2017-12-31"/>
@@ -3623,7 +3623,7 @@
           <VALUE valeur="1000000" deb="2012-01-01" fin="2013-12-31"/>
         </SEUIL>
         <TAUX>
-          <VALUE valeur="75.0" deb="2012-01-01" fin="2013-12-31"/>
+          <VALUE valeur=".75" deb="2012-01-01" fin="2013-12-31"/>
         </TAUX>
       </TRANCHE>
     </BAREME>  
@@ -3719,7 +3719,7 @@
 	 	<VALUE valeur="313" deb="2013-01-01" fin="2014-12-31"/> # TODO: check in july 2014 for "fin"
 	 </CODE>
     </NODE>
-    <NODE description="Supplément familial de traitement" code="supp_fam" >  # TODO: Vérifier pour les années inférieures à 2013
+    <NODE description="Supplément familial de traitement" code="supp_fam" >
 	  <CODE description="Indice majoré plancher" code="IM_min" format="integer">
 	  	<VALUE valeur="447" deb="1999-06-13" fin="1999-11-13"/>
 	  	<VALUE valeur="448" deb="1999-11-14" fin="2006-10-31"/>

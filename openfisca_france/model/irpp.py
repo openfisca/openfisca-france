@@ -560,6 +560,7 @@ def _irpp(iai, credits_impot, cehr, cesthra, microsocial):
     '''
     Montant avant seuil de recouvrement (hors ppe)
     '''
+    log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
     return -(iai - credits_impot + cehr + cesthra + microsocial)
 
 

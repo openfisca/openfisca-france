@@ -94,12 +94,12 @@ column_by_name = collections.OrderedDict((
                                     u'Autre inactif']), default = 4)),
 
     ('titc', EnumCol(label = u"Statut, pour les agents de l'Etat des collectivités locales, ou des hôpitaux",
-        enum = Enum([
-            u"Sans objet ou non renseigné",
-            u"Elève fonctionnaire ou stagiaire",
-            u"Agent titulaire",
-            u"Contractuel"]),
-        survey_only = True,
+                     enum = Enum([
+                                  u"Sans objet ou non renseigné",
+                                  u"Elève fonctionnaire ou stagiaire",
+                                  u"Agent titulaire",
+                                  u"Contractuel"]),
+                     survey_only = True,
         )),
 
     ('statut', EnumCol(label = u"Statut détaillé mis en cohérence avec la profession",
@@ -115,7 +115,9 @@ column_by_name = collections.OrderedDict((
                                     u"CDD (Etat, coll.loc.), hors contrats aides",
                                     u"Stagiaires et contrats aides (Etat, coll.loc.)",
                                     u"Autres contrats (Etat, coll.loc.)",
-                                    ]))),
+                                    ]),
+                       survey_only = True,
+                       )),
 
     ('txtppb', EnumCol(label = u"Taux du temps partiel",
                 enum = Enum([u"Sans objet",
@@ -123,7 +125,8 @@ column_by_name = collections.OrderedDict((
                             u"Mi-temps (50%)",
                             u"Entre 50 et 80%",
                             u"80%",
-                            u"Plus de 80%"]))),
+                            u"Plus de 80%"]),
+                       survey_only = True)),
 
     ('nbsala', EnumCol(label = u"Nombre de salariés dans l'établissement de l'emploi actuel",
                     enum = Enum([u"Sans objet",
@@ -138,6 +141,7 @@ column_by_name = collections.OrderedDict((
                                 u"1000 salariés ou plus",
                                 u"Ne sait pas",
                                 ]))),
+
     ('tva_ent', BoolCol(label = u"Entreprise employant le salarié paye de la TVA",
                         default = True)),
 
@@ -149,9 +153,12 @@ column_by_name = collections.OrderedDict((
                                    u"Particulier",
                                    u"Entreprise publique (La Poste, EDF-GDF, etc.)",
                                    u"Entreprise privée, association",
-                                   ]))),
+                                   ]),
+                      survey_only = True)),
 
-    ('cadre', BoolCol(label = u"Cadre salarié du privé")),
+    ('cadre', BoolCol(label = u"Cadre salarié du privé",
+                      survey_only = True)),
+
     ('code_risque', EnumCol(label = u"Code risque pour les accidents du travail")),  # TODO: complete label and add relevant default
     ('exposition_accident', EnumCol(label = u"Exposition au risque pour les accidents du travail",
                             enum = Enum([u"Faible",
@@ -240,7 +247,7 @@ column_by_name = collections.OrderedDict((
     ('f2aq', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2010", val_type = "monetary")),
     ('f2ar', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2011", val_type = "monetary")),
     ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary")),
-    
+
     # non accessible (from previous years)
     ('f2gr', IntCol(entity = 'foy')),
 
@@ -642,7 +649,7 @@ column_by_name = collections.OrderedDict((
     ('nrag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hi, f5ii, f5ji)),
     ('nrag_defi', IntCol(entity = 'ind', label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hl, f5il, f5jl)),
     ('nrag_ajag', IntCol(entity = 'ind', label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hm, f5im, f5jm)),
-    
+
     # Autoentrepreneur
     ('ebic_impv', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)", val_type = "monetary")),  # (f5ta, f5ua, f5va)),
     ('ebic_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)", val_type = "monetary")),  # (f5tb, f5ub, f5vb)),

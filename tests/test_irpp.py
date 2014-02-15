@@ -153,6 +153,7 @@ def test_irpp():
                 print amount
                 print "OpenFisca :", abs(df.loc["irpp"][0])
                 print "Real value :", irpp
+#                print df.to_string()
             assert abs(df.loc["irpp"][0] - irpp) < 1
 
 # TODO: The amounts are wrong
