@@ -51,16 +51,36 @@ app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
 
 
-def iter_tree(tree):
-    assert tree.get('children'), tree
+def cleanup_tree(tree):
+    children = []
     for child in (tree.get('children') or []):
+        if isinstance(child, basestring):
+            # Child is a column name.
+            if child in data.column_by_name:
+                children.append(child)
+        else:
+            assert isinstance(child, dict), child
+            if child.get('label') != u'Autres':
+                child = cleanup_tree(child)
+                if child is not None:
+                    children.append(child)
+    if not children:
+        return None
+    tree = tree.copy()
+    tree['children'] = children
+    return tree
+
+
+def iter_placed_tree(tree):
+    assert tree.get('children'), tree
+    for child in tree['children']:
         if isinstance(child, basestring):
             # Child is a column name.
             yield child
         else:
-            assert isinstance(child, dict), child
-            for column_name in iter_tree(child):
-                yield column_name
+            if child.get('label') != u'Autres':
+                for column_name in iter_placed_tree(child):
+                    yield column_name
 
 
 def main():
@@ -69,10 +89,19 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
+    global columns_name_tree_by_entity
+    columns_name_tree_by_entity = collections.OrderedDict(
+        (entity, columns_name_tree)
+        for entity, columns_name_tree in (
+            (entity1, cleanup_tree(columns_name_tree1))
+            for entity1, columns_name_tree1 in columns_name_tree_by_entity.iteritems()
+            )
+        if columns_name_tree is not None
+        )
     placed_columns_name = set(
         column_name
         for columns_name_tree in columns_name_tree_by_entity.itervalues()
-        for column_name in iter_tree(columns_name_tree)
+        for column_name in iter_placed_tree(columns_name_tree)
         )
 
     for name, column in data.column_by_name.iteritems():
@@ -146,10 +175,21 @@ def write_tree(tree_file, tree, level = 1):
             for child in children:
                 tree_file.write(u'    ' * (level + 2))
                 if isinstance(child, basestring):
-                    tree_file.write(pprint.pformat(child)),
+                    tree_file.write(pprint.pformat(child))
+                    tree_file.write(u',')
+                    column = data.column_by_name[child]
+                    label = column.label
+                    if label is not None:
+                        label = label.strip() or None
+                        if label == child:
+                            label = None
+                        if label is not None:
+                            tree_file.write(u'  # ')
+                            tree_file.write(column.label.strip())
+                    tree_file.write(u'\n')
                 else:
                     write_tree(tree_file, child, level = level + 2)
-                tree_file.write(u',\n')
+                    tree_file.write(u',\n')
             tree_file.write(u'    ' * (level + 2))
             tree_file.write(u"]),\n")
         tree_file.write(u'    ' * (level + 1))
