@@ -3927,7 +3927,7 @@
       </CODE>
       <CODE description="Taux pour les collégiens (en % de bmaf)" code="tx1114" format="percent">
         <VALUE valeur="0.7322" deb="2002-01-01" fin="2007-12-31"/>
-        <VALUE valeur="0.7649" deb="2008-01-01" fin="2012-09-02"/>
+        <VALUE valeur="0.7649" deb="2008-01-01" fin="2012-08-31"/>
         <VALUE valeur="0.9467" deb="2012-09-01" fin="2014-03-31"/>
       </CODE>
       <CODE description="Montant pour les collégiens" code="enf1114" format="float" type="monetary">
