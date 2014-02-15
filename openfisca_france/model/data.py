@@ -94,10 +94,13 @@ column_by_name = collections.OrderedDict((
                                     u'Autre inactif']), default = 4)),
 
     ('titc', EnumCol(label = u"Statut, pour les agents de l'Etat des collectivités locales, ou des hôpitaux",
-                     enum = Enum([u"Sans objet ou non renseigné",
-                                  u"Elève fonctionnaire ou stagiaire",
-                                  u"Agent titulaire",
-                                  u"Contractuel"]))),
+        enum = Enum([
+            u"Sans objet ou non renseigné",
+            u"Elève fonctionnaire ou stagiaire",
+            u"Agent titulaire",
+            u"Contractuel"]),
+        survey_only = True,
+        )),
 
     ('statut', EnumCol(label = u"Statut détaillé mis en cohérence avec la profession",
                        enum = Enum([u"Sans objet",

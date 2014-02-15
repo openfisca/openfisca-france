@@ -78,6 +78,8 @@ def main():
     for name, column in data.column_by_name.iteritems():
         if name in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen'):
             continue
+        if column.survey_only:
+            continue
         if name in placed_columns_name:
             continue
         placed_columns_name.add(name)
