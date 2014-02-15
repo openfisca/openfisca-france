@@ -62,7 +62,7 @@ column_by_name = collections.OrderedDict((
     ('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière")),  # (f1ax, f1bx, f1cx, f1dx, f1qx)
     ('ppe_tp_ns', BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière")),  # (f5nw, f5ow, f5pw)
     ('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année")),  # (f1av, f1bv, f1cv, f1dv, f1qv)
-    ('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés:nombre de jours travaillés dans l'année")),  # (f5nv, f5ov, f5pv)
+    ('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année")),  # (f5nv, f5ov, f5pv)
     ('jour_xyz', IntCol(default = 360, entity = "foy")),
     ('age', AgesCol(label = u"âge" , val_type = "age")),
     ('agem', AgesCol(label = u"âge (en mois)", val_type = "months")),
@@ -86,7 +86,7 @@ column_by_name = collections.OrderedDict((
                                 u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
                                 u"Logé gratuitement par des parents, des amis ou l'employeur"]))),
 
-    ('activite', EnumCol(label = u'Actvité',
+    ('activite', EnumCol(label = u'Activité',
                          enum = Enum([u'Actif occupé',
                                     u'Chômeur',
                                     u'Étudiant, élève',
