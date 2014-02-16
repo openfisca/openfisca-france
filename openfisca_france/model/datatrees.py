@@ -348,7 +348,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"""Charges déductibles"""),
+                ('label', u"""Charges déductibles (autres)"""),
                 ('children', [
                     'f7ud',  # Dons à des organismes d'aide aux personnes en difficulté
                     'f7uf',  # Autres dons
