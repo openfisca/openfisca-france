@@ -235,7 +235,7 @@ def test_cotsoc_famille():
                      "salbrut_c" : 12 * 2000,
                      "primes_c" : 12 * 500,
                      "zone_apl": 2,
-                     
+
                     },
               "output_vars" :
                     {
@@ -245,16 +245,16 @@ def test_cotsoc_famille():
                      "cot_pat_rafp": 20 * 2,
                      "csgsald" : 131.94 * 2,
                      "csgsali" : 62.09 * 2,
-                     "indemnite_residence": 240 * 2 /12,
-                     "supp_familial_traitement":73.04,  
+                     "indemnite_residence": 240 * 2 / 12,
+                     "supp_familial_traitement":73.04,
                      "crdssal": 12.93 * 2,
                      "cotpat_transport": 2000 * 0.0175 * 2,
                      "cotpat" : (1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : (167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
 #                               pension rafp
-                     "salsuperbrut": (2000 +  500 + 20 + 1751.4 ) * 2 + 73.04,
-                     "salnet": (2000 + 500 + 20 - 131.94 -  62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
+                     "salsuperbrut": (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
+                     "salnet": (2000 + 500 + 20 - 131.94 - 62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
                     }
               },
                   ]
@@ -304,8 +304,8 @@ def test_cotsoc_famille():
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-#    test_cotsoc_celib()
-    test_cotsoc_famille()
+    test_cotsoc_celib()
+#    test_cotsoc_famille()
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 

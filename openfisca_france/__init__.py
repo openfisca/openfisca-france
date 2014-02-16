@@ -177,6 +177,11 @@ def init_country(qt = False, start_from = "imposable", drop_survey_only_variable
         for variable in survey_only_variables:
             del column_by_name[variable]
 
+        survey_only_variables = [ name for name, presta in prestation_by_name.iteritems() if presta.survey_only ]
+        for variable in survey_only_variables:
+            del prestation_by_name[variable]
+
+
         needed_columns = ['type_sal', 'primes']
         for variable in needed_columns:
             if variable not in column_by_name:

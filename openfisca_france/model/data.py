@@ -992,12 +992,14 @@ column_by_name = collections.OrderedDict((
     # to remove
     ('champm', BoolCol(entity = 'men',
                        default = True,
-                       survey_only = True)),
+                       survey_only = True,
+                       )),
 
     ('wprm', FloatCol(entity = 'men',
                       default = 1,
                       label = u"Effectifs",
-                       survey_only = True)),
+                      survey_only = True,
+                      )),
 
     ('etr', IntCol()),
     ('coloc', BoolCol()),
