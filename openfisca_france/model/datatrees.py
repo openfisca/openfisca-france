@@ -60,81 +60,51 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     collections.OrderedDict([
                         ('label', u"""Auto-entrepreneur (ayant opté pour le versment libératoire)"""),
                         ('children', [
-                            collections.OrderedDict([
-                                ('label', u"""Revenus industriels et commerciaux (chiffres d'affaires bruts"""),
-                                ('children', [
-                                    'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)
-                                    'ebic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)
-                                    ]),
-                                ]),
-                            collections.OrderedDict([
-                                ('label', u"""Revenus non commerciaux"""),
-                                ('children', [
-                                    'ebnc_impo',  # Revenus non commerciaux imposables (régime auto-entrepreneur)
-                                    ]),
-                                ]),
+                            'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)
+                            'ebic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)
+                            'ebnc_impo',  # Revenus non commerciaux imposables (régime auto-entrepreneur)
                             ]),
                         ]),
                     collections.OrderedDict([
                         ('label', u"""Revenus agricoles"""),
                         ('children', [
-                            collections.OrderedDict([
-                                ('label', u"""Régime du forfait"""),
-                                ('children', [
-                                    'frag_exon',  # Revenus agricoles exonérés (régime du forfait)
-                                    'frag_impo',  # Revenus agricoles imposables (régime du forfait)
-                                    'frag_pvct',  # Plus-values agricoles  à court terme (régime du forfait)
-                                    'frag_pvce',  # Plus-values agricoles de cession taxables à 16% (régime du forfait)
-                                    ]),
-                                ]),
-                            collections.OrderedDict([
-                                ('label', u"""Régime du bénéfice réel"""),
-                                ('children', [
-                                    'arag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                                    'arag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                                    'arag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                                    'arag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                                    'nrag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
-                                    'nrag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
-                                    'nrag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
-                                    'nrag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
-                                    'nrag_ajag',  # Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                                    ]),
-                                ]),
+                            'frag_exon',  # Revenus agricoles exonérés (régime du forfait)
+                            'frag_impo',  # Revenus agricoles imposables (régime du forfait)
+                            'frag_pvct',  # Plus-values agricoles  à court terme (régime du forfait)
+                            'frag_pvce',  # Plus-values agricoles de cession taxables à 16% (régime du forfait)
+                            'arag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
+                            'arag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
+                            'arag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
+                            'arag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
+                            'nrag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
+                            'nrag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
+                            'nrag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
+                            'nrag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
+                            'nrag_ajag',  # Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
                             ]),
                         ]),
                     collections.OrderedDict([
                         ('label', u"""Revenus indutriel et commerciaux professionnels"""),
                         ('children', [
-                            collections.OrderedDict([
-                                ('label', u"""Régime micro-entreprise"""),
-                                ('children', [
-                                    'mbic_exon',  # Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)
-                                    'mbic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)
-                                    'mbic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)
-                                    'mbic_pvct',  # Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)
-                                    'mbic_mvlt',  # Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)
-                                    'mbic_pvce',  # Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)
-                                    ]),
-                                ]),
-                            collections.OrderedDict([
-                                ('label', u"""Régime du bénéfice réel"""),
-                                ('children', [
-                                    'abic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)
-                                    'nbic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)
-                                    'abic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
-                                    'abic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)
-                                    'nbic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                                    'nbic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)
-                                    'abic_defn',  # Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
-                                    'abic_defs',  # Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)
-                                    'nbic_defn',  # Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                                    'nbic_defs',  # Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)
-                                    'nbic_apch',  # Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)
-                                    'abic_pvce',  # Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)
-                                    'nbic_pvce',  # Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)
-                                    ]),
-                                ]),
+                            'mbic_exon',  # Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)
+                            'mbic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)
+                            'mbic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)
+                            'mbic_pvct',  # Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)
+                            'mbic_mvlt',  # Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)
+                            'mbic_pvce',  # Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)
+                            'abic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)
+                            'nbic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)
+                            'abic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
+                            'abic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)
+                            'nbic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
+                            'nbic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)
+                            'abic_defn',  # Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
+                            'abic_defs',  # Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)
+                            'nbic_defn',  # Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)
+                            'nbic_defs',  # Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)
+                            'nbic_apch',  # Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)
+                            'abic_pvce',  # Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)
+                            'nbic_pvce',  # Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)
                             ]),
                         ]),
                     collections.OrderedDict([
