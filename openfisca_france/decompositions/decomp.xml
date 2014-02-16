@@ -11,9 +11,6 @@
        		  <NODE desc= "Taxe sur les salaires" shortname="Taxe sal." code= "taxes_sal"/>
        		  <NODE desc= "Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" code= "tehr"/>
             </NODE>
-          <NODE desc= "Primes" shortname="Primes" code= "primes" color = "0,99,143"/>
-          <NODE desc= "Supplément familial de traitement" shortname="Supp. fam. trait." code= "supp_familial_traitement" color = "0,99,143"/>
-          <NODE desc= "Indemnité de résidence" shortname="Ind. résid." code= "indemnite_residence" color = "0,99,143"/>
           <NODE desc= "Cotisations sociales salariées" shortname="Cotsoc sal" code= "cotsal" color = "243,166,171"/>
           <NODE desc= "CSG déductible (salaires)" shortname="CSG deduc" code= "csgsald" color = "235,114,118"/>
           <NODE desc= "Heures supplémentaires éxonérées" shortname="Heures sup" code= "mhsup" color = "0,115,170"/>

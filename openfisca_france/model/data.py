@@ -54,10 +54,9 @@ column_by_name = collections.OrderedDict((
     ('alr', IntCol(label = u"Pension alimentaire reçue", val_type = "monetary")),  # (f1ao, f1bo, f1co, f1do, f1eo)
     ('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),  # (f1ao, f1bo, f1co, f1do, f1eo)
 
-
     ('hsup', IntCol(label = u"Heures supplémentaires", val_type = "monetary")),  # (f1au, f1bu, f1cu, f1du, f1eu)
     ('inv', BoolCol(label = u'Invalide')),
-    ('alt', BoolCol(label = u'Garde alternée')),
+    ('alt', BoolCol(label = u'Enfant en garde alternée')),
     ('cho_ld', BoolCol(label = u"Chômeur de longue durée")),  # (f1ai, f1bi, f1ci, f1di, f1ei)
     ('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière")),  # (f1ax, f1bx, f1cx, f1dx, f1qx)
     ('ppe_tp_ns', BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière")),  # (f5nw, f5ow, f5pw)
@@ -167,7 +166,7 @@ column_by_name = collections.OrderedDict((
                                    u"Très elevé",
                                    ]))),
 
-    ('boursier', BoolCol()),
+    ('boursier', BoolCol(label = u"Elève ou étudiant boursier")),
     ('code_postal', IntCol(label = u"Code postal du lieu de résidence",
                            entity = 'men')),
 
@@ -714,7 +713,7 @@ column_by_name = collections.OrderedDict((
 
     ('frag_pvce', IntCol(entity = 'ind', label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)", val_type = "monetary")),  # (f5hx, f5ix, f5jx)),
     ('arag_pvce', IntCol(entity = 'ind', label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5he, f5ie, f5je)),
-    ('nrag_pvce', IntCol(entity = 'ind', label = u"Revenus non commerciaux non professionnels exonérés avec AA ou viseur (régime de la déclaration controlée)", val_type = "monetary")),  # (f5hk, f5lk, f5jk)),
+    ('nrag_pvce', IntCol(entity = 'ind', label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hk, f5lk, f5jk)),
     ('mbic_pvce', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type = "monetary")),  # (f5kq, f5lq, f5mq)),
     ('abic_pvce', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5ke, f5le, f5me)),
     ('nbic_pvce', IntCol(entity = 'ind', label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)", val_type = "monetary")),  # (f5kk, f5ik, f5mk)),
@@ -991,8 +990,15 @@ column_by_name = collections.OrderedDict((
     ('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
 
     # to remove
-    ('champm', BoolCol(entity = 'men', default = True)),
-    ('wprm', FloatCol(entity = 'men', default = 1, label = u"Effectifs")),
+    ('champm', BoolCol(entity = 'men',
+                       default = True,
+                       survey_only = True)),
+
+    ('wprm', FloatCol(entity = 'men',
+                      default = 1,
+                      label = u"Effectifs",
+                       survey_only = True)),
+
     ('etr', IntCol()),
     ('coloc', BoolCol()),
     ('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
