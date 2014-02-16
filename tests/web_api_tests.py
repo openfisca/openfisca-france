@@ -140,3 +140,6 @@ def test_case_study():
         )
     print unicode(json.dumps(result, ensure_ascii = False, indent = 2)).encode('utf-8')
 
+
+if __name__ == '__main__':
+    test_case_study()
