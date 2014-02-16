@@ -139,9 +139,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'mbnc_pvce',  # Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)
                     'abnc_pvce',  # Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
                     'nbnc_pvce',  # Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)
-                    'categ_inv',
-                    'act5',  # activité
-                    'wprm_init',  # Effectifs
+                    'categ_inv',  # Catégorie de handicap (AEEH)
                     'b1ab',  # valeur résidence principale avant abattement
                     'etr',
                     'coloc',
@@ -159,13 +157,13 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u'Autres'),
                 ('children', [
-                    'inactif',
-                    'partiel1',
-                    'partiel2',
-                    'opt_colca',
-                    'empl_dir',
-                    'ass_mat',
-                    'gar_dom',
+                    'inactif',  # Parent incatif (PAJE-CLCA)
+                    'partiel1',  # Parent actif à moins de 50% (PAJE-CLCA)
+                    'partiel2',  # Parent actif entre 50% et 80% (PAJE-CLCA)
+                    'opt_colca',  # Opte pour le COLCA
+                    'empl_dir',  # Emploi direct (CLCMG)
+                    'ass_mat',  # Assistante maternelle (CLCMG)
+                    'gar_dom',  # Garde à domicile (CLCMG)
                     ]),
                 ]),
             ]),
@@ -512,15 +510,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u'Autres'),
                 ('children', [
-                    'tu99',  # tranche d'unité urbaine
-                    'tau99',  # tranche d'aire urbaine
-                    'reg',  # Région
-                    'pol99',  # Catégorie de la commune au sein du découpage en aires et espaces urbains
-                    'cstotpragr',  # catégorie socio_professionelle agrégée de la personne de référence
-                    'naf16pr',  # activité économique de l'établissement de l'emploi principal actuel de la personne de référence
-                    'nafg17npr',  # activité économique de l'établissement de l'emploi principal actuel de la personne de référence
-                    'ageq',  # âge quinquennal de la personne de référence
-                    'ddipl',  # diplôme de la personne de référence
                     'champm',
                     'wprm',  # Effectifs
                     'm_afeamam',
