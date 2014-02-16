@@ -30,7 +30,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
     ('ind', collections.OrderedDict([
         ('children', [
             collections.OrderedDict([
-                ('label', u'Principal'),
+                ('label', u"""Principal"""),
                 ('children', [
                     'statmarit',  # Statut marital
                     'sali',  # Salaire imposable
@@ -39,7 +39,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"Traitements, salaires, primes pour l'emploi et rentes"),
+                ('label', u"""Traitements, salaires, primes pour l'emploi et rentes"""),
                 ('children', [
                     'activite',  # Activité
                     'fra',  # Frais réels
@@ -55,37 +55,40 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u'Revenus et plus-values des professions non-salariées'),
+                ('label', u"""Revenus et plus-values des professions non-salariées"""),
                 ('children', [
                     collections.OrderedDict([
-                        ('label', u'Auto-entrepreneur (ayant opté pour le versment libératoire)'),
+                        ('label', u"""Auto-entrepreneur (ayant opté pour le versment libératoire)"""),
                         ('children', [
                             collections.OrderedDict([
-                                ('label', u"Revenus industriels et commerciaux (chiffres d'affaires bruts"),
+                                ('label', u"""Revenus industriels et commerciaux (chiffres d'affaires bruts"""),
                                 ('children', [
                                     'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)
                                     'ebic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)
-                                      ]),
+                                    ]),
                                 ]),
                             collections.OrderedDict([
-                                ('label', u'Revenus non commerciaux'),
+                                ('label', u"""Revenus non commerciaux"""),
                                 ('children', [
-                                    'ebnc_impo',  # Revenus non commerciaux imposables (régime auto-entrepreneur)                                      
-                                      ]),
+                                    'ebnc_impo',  # Revenus non commerciaux imposables (régime auto-entrepreneur)
+                                    ]),
                                 ]),
-                        ('label', u'Revenus agricoles'),
+                            ]),
+                        ]),
+                    collections.OrderedDict([
+                        ('label', u"""Revenus agricoles"""),
                         ('children', [
                             collections.OrderedDict([
-                                ('label', u'Régime du forfait'),
+                                ('label', u"""Régime du forfait"""),
                                 ('children', [
                                     'frag_exon',  # Revenus agricoles exonérés (régime du forfait)
                                     'frag_impo',  # Revenus agricoles imposables (régime du forfait)
                                     'frag_pvct',  # Plus-values agricoles  à court terme (régime du forfait)
                                     'frag_pvce',  # Plus-values agricoles de cession taxables à 16% (régime du forfait)
-                                       ]),
+                                    ]),
                                 ]),
                             collections.OrderedDict([
-                                ('label', u'Régime du bénéfice réel'),
+                                ('label', u"""Régime du bénéfice réel"""),
                                 ('children', [
                                     'arag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
                                     'arag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
@@ -96,26 +99,29 @@ columns_name_tree_by_entity = collections.OrderedDict([
                                     'nrag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
                                     'nrag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
                                     'nrag_ajag',  # Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                                      ]),
-                                ]),              
-                        ('label', u'Revenus indutriel et commerciaux professionnels'),
+                                    ]),
+                                ]),
+                            ]),
+                        ]),
+                    collections.OrderedDict([
+                        ('label', u"""Revenus indutriel et commerciaux professionnels"""),
                         ('children', [
                             collections.OrderedDict([
-                                ('label', u'Régime micro-entreprise'),
+                                ('label', u"""Régime micro-entreprise"""),
                                 ('children', [
                                     'mbic_exon',  # Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)
                                     'mbic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)
                                     'mbic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)
                                     'mbic_pvct',  # Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)
                                     'mbic_mvlt',  # Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)
-                                    'mbic_pvce',  # Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)                    
-                                       ]),
+                                    'mbic_pvce',  # Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)
+                                    ]),
                                 ]),
                             collections.OrderedDict([
-                                ('label', u'Régime du bénéfice réel'),
+                                ('label', u"""Régime du bénéfice réel"""),
                                 ('children', [
                                     'abic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)
-                                    'nbic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)          
+                                    'nbic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)
                                     'abic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
                                     'abic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)
                                     'nbic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
@@ -126,90 +132,95 @@ columns_name_tree_by_entity = collections.OrderedDict([
                                     'nbic_defs',  # Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)
                                     'nbic_apch',  # Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)
                                     'abic_pvce',  # Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)
-                                    'nbic_pvce',  # Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)                       
-                                      ]),
-                                ]),   
+                                    'nbic_pvce',  # Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)
+                                    ]),
+                                ]),
                             ]),
-                        ('label', u'Revenus indutriel et commerciaux non professionnels'),
-                        ('children', [    
-                              'macc_exon',  # Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)
-                              'aacc_exon',  # Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)
-                              'nacc_exon',  # Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)
-                              'macc_impv',  # Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)
-                              'macc_imps',  # Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)
-                              'aacc_impn',  # Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
-                              'aacc_imps',  # Locations meublées non professionnelles (régime micro entreprise)
-                              'aacc_defn',  # Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
-                              'aacc_defs',  # Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)
-                              'nacc_impn',  # Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                              'nacc_imps',  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)
-                              'nacc_defn',  # Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                              'nacc_defs',  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)
-                              'macc_pvct',  # Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)
-                              'macc_mvlt',  # Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)
-                              'macc_pvce',  # Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)
-                              'aacc_pvce',  # Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)
-                              'nacc_pvce',  # Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)
-                            ]),                                      
-                        ('label', u'Revenus non commerciaux professionnels'),
+                        ]),
+                    collections.OrderedDict([
+                        ('label', u"""Revenus indutriel et commerciaux non professionnels"""),
                         ('children', [
-                              'mbnc_exon',  # Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)
-                              'abnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                              'nbnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
-                              'mbnc_impo',  # Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)
-                              'abnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                              'abnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                              'nbnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
-                              'nbnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
-                              'mbnc_pvct',  # Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)
-                              'mbnc_mvlt',  # Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)
-                              'mbnc_pvce',  # Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)
-                              'abnc_pvce',  # Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                              'nbnc_pvce',  # Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)
+                            'macc_exon',  # Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)
+                            'aacc_exon',  # Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)
+                            'nacc_exon',  # Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)
+                            'macc_impv',  # Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)
+                            'macc_imps',  # Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)
+                            'aacc_impn',  # Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
+                            'aacc_imps',  # Locations meublées non professionnelles (régime micro entreprise)
+                            'aacc_defn',  # Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
+                            'aacc_defs',  # Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)
+                            'nacc_impn',  # Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
+                            'nacc_imps',  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)
+                            'nacc_defn',  # Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)
+                            'nacc_defs',  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)
+                            'macc_pvct',  # Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)
+                            'macc_mvlt',  # Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)
+                            'macc_pvce',  # Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)
+                            'aacc_pvce',  # Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)
+                            'nacc_pvce',  # Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)
                             ]),
-                        ('label', u'Revenus non commerciaux non professionnels'),
-                        ('children', [    
-                              'mncn_impo',  # Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)
-                              'cncn_bene',  # Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)
-                              'cncn_defi',  # Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)
-                              'mncn_pvct',  # Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)
-                              'mncn_mvlt',  # Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)
-                              'mncn_pvce',  # Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)
-                              'cncn_pvce',  # Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)
-                              ]),                                                
-                        ]),           
-                    ]),           
-                ]),                                      
+                        ]),
+                    collections.OrderedDict([
+                        ('label', u"""Revenus non commerciaux professionnels"""),
+                        ('children', [
+                            'mbnc_exon',  # Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)
+                            'abnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
+                            'nbnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
+                            'mbnc_impo',  # Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)
+                            'abnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
+                            'abnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
+                            'nbnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
+                            'nbnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
+                            'mbnc_pvct',  # Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)
+                            'mbnc_mvlt',  # Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)
+                            'mbnc_pvce',  # Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)
+                            'abnc_pvce',  # Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
+                            'nbnc_pvce',  # Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)
+                            ]),
+                        ]),
+                    collections.OrderedDict([
+                        ('label', u"""Revenus non commerciaux non professionnels"""),
+                        ('children', [
+                            'mncn_impo',  # Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)
+                            'cncn_bene',  # Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)
+                            'cncn_defi',  # Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)
+                            'mncn_pvct',  # Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)
+                            'mncn_mvlt',  # Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)
+                            'mncn_pvce',  # Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)
+                            'cncn_pvce',  # Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)
+                            ]),
+                        ]),
+                    ]),
+                ]),
             collections.OrderedDict([
-                ('label', u'Autres'),
+                ('label', u"""Autres"""),
                 ('children', [
-                    'alt',  # Garde alternée
-                    'boursier',
-                    'adoption',  # Enfant adopté
-                    'categ_inv',  # Catégorie de handicap (AEEH)
-                    'code_risque',  # Code risque pour les accidents du travail
-                    'exposition_accident',  # Exposition au risque pour les accidents du travail
                     'inv',  # Invalide
+                    'alt',  # Enfant en garde alternée
                     'nbsala',  # Nombre de salariés dans l'établissement de l'emploi actuel
                     'tva_ent',  # Entreprise employant le salarié paye de la TVA
-                    'etr',
-                    'b1ab',  # valeur résidence principale avant abattement
+                    'code_risque',  # Code risque pour les accidents du travail
+                    'exposition_accident',  # Exposition au risque pour les accidents du travail
+                    'boursier',  # Elève ou étudiant boursier
                     'f1tv',
                     'f1tw',
                     'f1tx',
-
+                    'categ_inv',  # Catégorie de handicap (AEEH)
+                    'b1ab',  # valeur résidence principale avant abattement
+                    'etr',
                     'coloc',
                     'aer',
                     'ass',
                     'f5sq',
+                    'adoption',  # Enfant adopté
                     ]),
                 ]),
             ]),
-        ]),
+        ])),
     ('fam', collections.OrderedDict([
         ('children', [
             collections.OrderedDict([
-                ('label', u'Autres'),
+                ('label', u"""Autres"""),
                 ('children', [
                     'inactif',  # Parent incatif (PAJE-CLCA)
                     'partiel1',  # Parent actif à moins de 50% (PAJE-CLCA)
@@ -225,55 +236,50 @@ columns_name_tree_by_entity = collections.OrderedDict([
     ('foy', collections.OrderedDict([
         ('children', [
             collections.OrderedDict([
-                ('label', u'Principal'),
+                ('label', u"""Principal"""),
                 ('children', [
                     'jour_xyz',
-
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u'Situations particulières'),
+                ('label', u"""Situations particulières"""),
                 ('children', [
                     'caseK',  # Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre
                     'caseL',  # Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant plus de 5 ans
                     'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant moins de 5 ans
                     'caseN',  # Vous ne vivez pas seul au 1er janvier de l'année n-1
                     'caseP',  # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%
-                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente                    
-                    'caseW',  # Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre                    
-                    'caseS',  # Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre                    
+                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente
+                    'caseW',  # Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
+                    'caseS',  # Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseG',  # Titulaire d'une pension de veuve de guerre
-
                     'nbF',  # Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge
                     'nbJ',  # Nombre d'enfants majeurs célibataires sans enfant
                     'nbI',  # Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité
                     'nbH',  # Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge
                     'caseH',  # Année de naissance des enfants à charge en garde alternée
-
                     'nbG',  # Nombre d'enfants à charge titulaires de la carte d'invalidité
                     'nbN',  # Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille
-                    
                     'nbR',  # Nombre de titulaires de la carte invalidité d'au moins 80 %
- 
                     'caseT',  # Vous êtes parent isolé au 1er janvier de l'année n-1
                     'rfr_n_2',  # Revenu fiscal de référence année n-2
                     'nbptr_n_2',  # Nombre de parts année n-2
                     ]),
-                ]),       
+                ]),
             collections.OrderedDict([
-                ('label', u'Autres section de la déclaration'),
+                ('label', u"""Autres section de la déclaration"""),
                 ('children', [
                     collections.OrderedDict([
-                        ('label', u"Traitements, salaires, primes pour l'emploi, pensions et rentes"),
+                        ('label', u"""Traitements, salaires, primes pour l'emploi, pensions et rentes"""),
                         ('children', [
                             'f1aw',  # Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans
                             'f1bw',  # Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
                             'f1cw',  # Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
                             'f1dw',  # Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans
                             ]),
-                        ]), 
-                              collections.OrderedDict([
-                        ('label', u"Revenus des valeurs et capitaux mobiliers"),
+                        ]),
+                    collections.OrderedDict([
+                        ('label', u"""Revenus des valeurs et capitaux mobiliers"""),
                         ('children', [
                             'f2da',  # Revenus des actions et parts soumis au prélèvement libératoire
                             'f2dh',  # Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire
@@ -297,9 +303,9 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             'f2as',  # Déficits des années antérieures non encore déduits: année 2012
                             'f2gr',
                             ]),
-                        ]), 
+                        ]),
                     collections.OrderedDict([
-                        ('label', u"Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés"),
+                        ('label', u"""Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés"""),
                         ('children', [
                             'f3vc',  # Produits et plus-values exonérés provenant de structure de capital-risque
                             'f3vd',  # Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 18 %
@@ -322,10 +328,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             'f3sd',
                             'f3vz',  # Plus-values imposables de cession d’immeubles ou de biens meubles
                             ]),
-                        ]), 
+                        ]),
                     collections.OrderedDict([
-                        ('label', u"Revenus fonciers"),
-                        ('children', [         
+                        ('label', u"""Revenus fonciers"""),
+                        ('children', [
                             'f4ba',  # Revenus fonciers imposables
                             'f4bb',  # Déficit imputable sur les revenus fonciers
                             'f4bc',  # Déficit imputable sur le revenu global
@@ -333,18 +339,18 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             'f4be',  # Micro foncier: recettes brutes sans abattement
                             'f4bf',  # Primes d'assurance pour loyers impayés des locations conventionnées
                             'f4bl',
-                           ]),
+                            ]),
                         ]),
                     collections.OrderedDict([
-                        ('label', u"Section 5"),
-                        ('children', [                            
+                        ('label', u"""Section 5"""),
+                        ('children', [
                             'f5qm',  # Agents généraux d’assurances: indemnités de cessation d’activité, déclarant 1
                             'f5rm',  # Agents généraux d’assurances: indemnités de cessation d’activité, déclarant 2
-                       ]),
-                    ]),
+                            ]),
+                        ]),
                     collections.OrderedDict([
-                        ('label', u"Charges déductibles"),
-                        ('children', [                            
+                        ('label', u"""Charges déductibles"""),
+                        ('children', [
                             'f6de',  # CSG déductible calculée sur les revenus du patrimoine
                             'f6gi',  # Pensions alimentaires versées à des enfants majeurs: 1er enfant
                             'f6gj',  # Pensions alimentaires versées à des enfants majeurs: 2eme enfant
@@ -380,7 +386,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             ]),
                         ]),
                     collections.OrderedDict([
-                        ('label', u"Charges déductibles"),
+                        ('label', u"""Charges déductibles"""),
                         ('children', [
                             'f7ud',  # Dons à des organismes d'aide aux personnes en difficulté
                             'f7uf',  # Autres dons
@@ -514,7 +520,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             ]),
                         ]),
                     collections.OrderedDict([
-                        ('label', u"Autres impuattions et divers"),
+                        ('label', u"""Autres impuattions et divers"""),
                         ('children', [
                             'f8ta',  # Retenue à la source en France ou impôt payé à l'étranger
                             'f8tb',  # Crédit d'impôt recherche non encore remboursé
@@ -540,7 +546,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             'f8wv',  # Crédit d'impôt en faveur des entreprises: Débitants de tabac
                             'f8wx',  # Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise
                             'f8wy',
-                                                
                             'f7uo',  # Acquisition de biens culturels
                             'f7us',  # Réduction d'impôt mécénat d'entreprise
                             'f7sb',  # Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %
@@ -570,11 +575,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
                             'macc_mvct',  # Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)
                             'mncn_mvct',  # Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)
                             'mbnc_mvct',  # Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)
-
                             ]),
                         ]),
                     collections.OrderedDict([
-                        ('label', u"Impôt de solidarité sur la fortune"),
+                        ('label', u"""Impôt de solidarité sur la fortune"""),
                         ('children', [
                             'b1ac',  # valeur autres immeubles avant abattement
                             'b1bc',  # Immeubles non bâtis: bois, fôrets et parts de groupements forestiers
@@ -605,12 +609,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                         ]),
                     ]),
                 ]),
-            ]),                     
+            ]),
         ])),
     ('men', collections.OrderedDict([
         ('children', [
             collections.OrderedDict([
-                ('label', u'Principal'),
+                ('label', u"""Principal"""),
                 ('children', [
                     'zone_apl',  # zone apl
                     'loyer',  # Loyer mensuel
@@ -619,7 +623,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u'Autres'),
+                ('label', u"""Autres"""),
                 ('children', [
                     'm_afeamam',
                     'm_agedm',
@@ -628,9 +632,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'm_mgamm',
                     'm_mgdomm',
                     'zthabm',
+                    ]),
                 ]),
             ]),
-        ]),
-    ])),]
-         
-    
+        ])),
+    ])

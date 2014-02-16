@@ -31,7 +31,6 @@ When tree already exists, don't change location of columns that have already bee
 
 
 import argparse
-import codecs
 import collections
 import itertools
 import json
@@ -49,6 +48,16 @@ except ImportError:
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
+
+
+class PrettyPrinter(pprint.PrettyPrinter):
+    """Override pprint PrettyPrinter to correctly handle diacritical characters."""
+    def format(self, object, context, maxlevels, level):
+        if isinstance(object, unicode):
+            return ('u"""{}"""'.format(object.encode('utf8')), True, False)
+        return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
+
+pretty_printer = PrettyPrinter()
 
 
 def cleanup_tree(tree):
@@ -126,8 +135,8 @@ def main():
         last_entity_child.setdefault('children', []).append(name)
 
     datatrees_module_path = os.path.join(os.path.dirname(data.__file__), 'datatrees.py') 
-    with codecs.open(datatrees_module_path, 'w', encoding = 'utf-8') as datatree_file:
-        datatree_file.write(u'''\
+    with open(datatrees_module_path, 'w') as datatree_file:
+        datatree_file.write('''\
 # -*- coding: utf-8 -*-
 
 
@@ -159,28 +168,28 @@ import collections
 columns_name_tree_by_entity = collections.OrderedDict([
 ''')
         for entity in ('ind', 'fam', 'foy', 'men'):
-            datatree_file.write(u'    ({}, '.format(pprint.pformat(entity)))
+            datatree_file.write('    ({}, '.format(pretty_printer.pformat(entity)))
             write_tree(datatree_file, columns_name_tree_by_entity[entity])
-            datatree_file.write(u'),\n')
-        datatree_file.write(u'    ])\n')
+            datatree_file.write('),\n')
+        datatree_file.write('    ])\n')
     return 0
 
 
 def write_tree(tree_file, tree, level = 1):
-        tree_file.write(u'collections.OrderedDict([\n')
+        tree_file.write('collections.OrderedDict([\n')
         label = tree.get('label')
         if label is not None:
-            tree_file.write(u'    ' * (level + 1))
-            tree_file.write(u"('label', {}),\n".format(pprint.pformat(label)))
+            tree_file.write('    ' * (level + 1))
+            tree_file.write("('label', {}),\n".format(pretty_printer.pformat(label)))
         children = tree.get('children')
         if children is not None:
-            tree_file.write(u'    ' * (level + 1))
-            tree_file.write(u"('children', [\n".format(pprint.pformat(label)))
+            tree_file.write('    ' * (level + 1))
+            tree_file.write("('children', [\n".format(pretty_printer.pformat(label)))
             for child in children:
-                tree_file.write(u'    ' * (level + 2))
+                tree_file.write('    ' * (level + 2))
                 if isinstance(child, basestring):
-                    tree_file.write(pprint.pformat(child))
-                    tree_file.write(u',')
+                    tree_file.write(pretty_printer.pformat(child))
+                    tree_file.write(',')
                     column = data.column_by_name[child]
                     label = column.label
                     if label is not None:
@@ -188,16 +197,16 @@ def write_tree(tree_file, tree, level = 1):
                         if label == child:
                             label = None
                         if label is not None:
-                            tree_file.write(u'  # ')
-                            tree_file.write(column.label.strip())
-                    tree_file.write(u'\n')
+                            tree_file.write('  # ')
+                            tree_file.write(column.label.strip().encode('utf-8'))
+                    tree_file.write('\n')
                 else:
                     write_tree(tree_file, child, level = level + 2)
-                    tree_file.write(u',\n')
-            tree_file.write(u'    ' * (level + 2))
-            tree_file.write(u"]),\n")
-        tree_file.write(u'    ' * (level + 1))
-        tree_file.write(u'])')
+                    tree_file.write(',\n')
+            tree_file.write('    ' * (level + 2))
+            tree_file.write("]),\n")
+        tree_file.write('    ' * (level + 1))
+        tree_file.write('])')
 
 
 if __name__ == "__main__":
