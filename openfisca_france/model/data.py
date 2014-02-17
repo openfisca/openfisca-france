@@ -339,6 +339,8 @@ column_by_name = collections.OrderedDict((
     # Dépenses de grosses réparations effectuées par les nus propriétaires
     ('f6cb', IntCol(entity = 'foy', label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires", val_type = "monetary")),
     ('f6hj', IntCol(entity = 'foy', label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures", val_type = "monetary")),
+    ('f6hl', IntCol(entity = 'foy', label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures", val_type = "monetary")),
+    ('f6hk', IntCol(entity = 'foy', label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures", val_type = "monetary")),
 
     # Sommes à rajouter au revenu imposable
     ('f6gh', IntCol(entity = 'foy', label = u"Sommes à ajouter au revenu imposable", val_type = "monetary")),

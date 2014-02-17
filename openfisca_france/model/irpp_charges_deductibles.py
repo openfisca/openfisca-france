@@ -174,10 +174,10 @@ def _cd_ecodev(f6eh, rbg_int, _P):
     max1 = min_(P.ecodev.taux * rbg_int, P.ecodev.max)
     return min_(f6eh, max1)
 
-def _cd_grorep(f6cb, f6hj, _P):
+def _cd_grorep(f6cb, f6hj, f6hk, f6hl, _P):
     '''
     Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
     2009-
     '''
     P = _P.ir.charges_deductibles
-    return min_(f6cb + f6hj, P.grorep.max)
+    return min_(f6cb + f6hj + f6hk + f6hl, P.grorep.max)
