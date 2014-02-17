@@ -38,44 +38,15 @@ from openfisca_france.model.cotisations_sociales.travail import CAT
 
 def test_niches():
     """
-    test pour un célibataire pour un revenu de 20 000 € 
-    et des revenus de différentes origines
+    test pour un célibataire pour un revenu salarial de 20 000 € 
+    
     """
 
 #    test charges déductibles: pensions alimentaires "f6gi","f6gj","f6el","f6em","f6gp","f6gu".
     tests_list = [
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas de PA
-             {"year" : 2012,
-              "input_vars":
-                    {
-                     "sali" : 50000,
-                    },
-              "output_vars" :
-                    {
-                     "irpp":-7934,
-                    },
-              },
-             {"year" : 2012,
-              "input_vars":
-                    {
-                     "sali" : 20000,
-                    },
-              "output_vars" :
-                    {
-                     "irpp":-1181,
-                    },
-              },
-             {"year" : 2011,
-              "input_vars":
-                    {
-                     "sali" : 20000,
-                    },
-              "output_vars" :
-                    {
-                     "irpp":-1181,
-                    },
-              },
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas un PA de type 6GI
+
+
+#   Test PA de type 6GI
               {"year" : 2012,
               "input_vars":
                     {
@@ -84,7 +55,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-819,
+                     "irpp": 819,
                     },
               },
              {"year" : 2011,
@@ -95,10 +66,21 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-860,
+                     "irpp": 860,
                     },
               },
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas un PA de type 6EL
+             {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6gi" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 860,
+                    },
+              },
+#    PA de type 6EL
               {"year" : 2012,
               "input_vars":
                     {
@@ -107,7 +89,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-913,
+                     "irpp": 913,
                     },
               },
              {"year" : 2011,
@@ -118,10 +100,21 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-929,
+                     "irpp": 929,
                     },
               },
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas un PA de type 6gj
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6el" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+#   PA de type 6gj
               {"year" : 2012,
               "input_vars":
                     {
@@ -130,7 +123,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-819,
+                     "irpp": 819,
                     },
               },
              {"year" : 2011,
@@ -141,10 +134,21 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-860,
+                     "irpp": 860,
                     },
               },
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas un PA de type 6em
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6gj" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 860,
+                    },
+              },
+#   un PA de type 6em
               {"year" : 2012,
               "input_vars":
                     {
@@ -153,7 +157,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-913,
+                     "irpp": 913,
                     },
               },
              {"year" : 2011,
@@ -164,10 +168,21 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-929,
+                     "irpp": 929,
                     },
               },
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas un PA de type 6gp
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6em" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+#   PA de type 6gp
               {"year" : 2012,
               "input_vars":
                     {
@@ -176,7 +191,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-819,
+                     "irpp": 819,
                     },
               },
              {"year" : 2011,
@@ -187,10 +202,21 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-860,
+                     "irpp": 860,
                     },
               },
-#   Test pour un célibataire ayant un revenu salarial (1AJ) et pas un PA de type 6gu
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6gp" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 860,
+                    },
+              },
+#   PA de type 6gu
               {"year" : 2012,
               "input_vars":
                     {
@@ -199,7 +225,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-913,
+                     "irpp": 913,
                     },
               },
              {"year" : 2011,
@@ -210,9 +236,221 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":-929,
+                     "irpp": 929,
                     },
               },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6gu" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# test plafond
+            {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6gi" : 6000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 94,
+                    },
+              }, {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6gi" : 1800,
+                     "f6gj" : 6000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+#    test charges déductibles: CSG déductible connue, calculée sur les revenus du patrimoine "f6de".
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6de" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6de" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6de" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+#    test charges déductibles: déductions diverses "f6dd".
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6dd" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6dd" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6dd" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+
+#    test charges déductibles: frais d'accueil d'une personnde de plus de 75 ans "f6eu".
+# 1 PAC 1800 €
+
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# 1 PAC 3600 €
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 3600,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 586,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 3600,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 627,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 3600,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 627,
+                    },
+              },
+
+# 2 PAC 3600 €
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 3600,
+                     "f6ev" : 2,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 535,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 3600,
+                     "f6ev" : 2,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 576,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6eu" : 3600,
+                     "f6ev" : 2,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 576,
+                    },
+              },
+
             ]
 
 
@@ -237,7 +475,8 @@ def test_niches():
 
             computed_value = (simulation.output_table.table[variable]).sum()
             test_assertion = abs(abs(computed_value) - value) < 1
-            expression = "Test failed for variable %s on year %i : \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, abs(computed_value), value)
+            list_var = set(test['input_vars'].keys()) - set(['sali'])
+            expression = "Test failed for variables %s on year %i : \n OpenFisca value : %s \n Real value : %s \n" % (list(list_var), year, abs(computed_value), value)
 
             if not test_assertion:
                 print expression
@@ -246,7 +485,7 @@ def test_niches():
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    logging.basicConfig(level = logging.CRITICAL, stream = sys.stdout)
     test_niches()
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)

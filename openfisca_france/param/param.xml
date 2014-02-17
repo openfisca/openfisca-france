@@ -2420,9 +2420,8 @@
     </NODE>
     <NODE code="charges_deductibles" description="Charges déductibles">
       <NODE code="penalim" description="Pensions alimentaires">
-        <CODE description="Majoration (si ouverture du droit)" code="taux" format="percent">
-          <VALUE valeur="0.25" deb="2002-01-01" fin="2005-12-31"/>
-          <VALUE valeur="0.00" deb="2006-01-01" fin="2013-12-31"/>
+        <CODE description="Majoration (si ouverture du droit) si jugement avant 2006" code="taux_jgt_2006" format="percent">
+          <VALUE valeur="0.25" deb="2002-01-01" fin="2013-12-31"/>
         </CODE>
         <CODE description="Limite par enfant" code="max" format="integer" type="monetary">
           <VALUE valeur="3824" deb="2001-01-01" fin="2001-12-31"/>
