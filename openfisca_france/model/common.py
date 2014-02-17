@@ -179,6 +179,7 @@ def _rev_cap(fon, rev_cap_bar, cotsoc_bar, rev_cap_lib, cotsoc_lib, imp_lib, rac
     '''
     return fon + rev_cap_bar + cotsoc_bar + rev_cap_lib + cotsoc_lib + imp_lib + rac
 
+
 def _psoc(pfam, mini, logt):
     '''
     Prestations sociales
@@ -217,11 +218,11 @@ def _crds(crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_
             crds_fon + crds_cap_bar + crds_cap_lib + crds_pv_mo + crds_pv_immo +
             crds_pfam + crds_lgtm + crds_mini)
 
-def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
+def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
     """
     Contribution sociale généralisée
     """
-    return (csgsali + csgsald + csgchoi + csgchod + csgrsti +
+    return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
             csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo)
 
 
@@ -231,11 +232,11 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     '''
     return cotpat_noncontrib + cotsal_noncontrib
 
-def _prelsoc_cap(prel_soc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_pv_immo):
+def _prelsoc_cap(prelsoc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_pv_immo):
     """
     Prélèvements sociaux sur les revenus du capital
     """
-    return prel_soc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
+    return prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
 def _decile(nivvie, champm, wprm):
     '''

@@ -261,13 +261,14 @@ def _ra_rsa(sal, hsup, rpns, etr):
 def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
-    'ind'
+    TO DO: Add mva (majoration vie autonome), 
     """
     P = _P.minim
     if _P.datesim.year < 2004:  # taking care of the existence of the paje/ape/apje
         out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
     else:
-        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca )
+
     return out
 
 def _br_rmi_ms(aspa, asi, aah, caah):
@@ -358,7 +359,6 @@ def _br_rmi(br_rmi_pf, br_rmi_ms, br_rmi_i, _P,
 
     br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] +
               br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART])
-
     return br_rmi
 
 def _rmi_nbp(age, smic55, nb_par , _P, _option = {'age': ENFS, 'smic55': ENFS}):

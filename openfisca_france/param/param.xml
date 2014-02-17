@@ -5166,6 +5166,20 @@
   </NODE>
 
   <NODE description="Impôt de solidarité sur la fortune (ISF)" code="isf"> # Réforme sarkozy jamais appliquée
+   <NODE desctiption="Décôte de l'ISF" code="decote">
+   	<CODE description = "Plancher de la décote" code="min" format="float" type="monetary">
+   		<VALUE valeur="1300000" deb="2013-01-01" fin="2014-12-31"/>
+   	</CODE>
+   	<CODE description = "Plafond de la décote" code="max" format="float" type="monetary">
+   		<VALUE valeur="1400000" deb="2013-01-01" fin="2014-12-31"/>
+   	</CODE>
+   	<CODE description = "Taux de la décote" code="taux" format="percent">
+   		<VALUE valeur="0.0125" deb="2013-01-01" fin="2014-12-31"/>
+   	</CODE>
+   	<CODE description = "Base montant décote" code="base" format="float">
+   		<VALUE valeur="17500" deb="2013-01-01" fin="2014-12-31"/>
+   	</CODE>
+   </NODE>
    <BAREME description="Impôt de solidarité" code="bareme" type="monetary">
     <TRANCHE code="tranche0">
       <SEUIL>
@@ -5330,7 +5344,7 @@
       <VALUE valeur="11995" deb="2009-01-01" fin="2009-12-31"/>
       <VALUE valeur="12050" deb="2010-01-01" fin="2010-12-31"/>
       <VALUE valeur="12255" deb="2011-01-01" fin="2011-12-31"/>
-       </CODE>
+    </CODE>
     <CODE description="Second seuil pour calcul du plafonnement" code="seuil2" format="integer" type="monetary">
       <VALUE valeur="21940" deb="2004-01-01" fin="2004-12-31"/>
       <VALUE valeur="22314" deb="2005-01-01" fin="2005-12-31"/>
