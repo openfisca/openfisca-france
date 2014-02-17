@@ -42,6 +42,12 @@ def test_niches():
     
     """
 
+    """
+    
+    CHARGES DEDUCTIBLES
+
+    """
+
 #    test charges déductibles: pensions alimentaires "f6gi","f6gj","f6el","f6em","f6gp","f6gu".
     tests_list = [
 
@@ -55,7 +61,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 819,
+                     "irpp":819,
                     },
               },
              {"year" : 2011,
@@ -451,7 +457,340 @@ def test_niches():
                     },
               },
 
+<<<<<<< HEAD
+=======
+# épargne retraite PERP,PREFON,COREM et CGOS (f6rs, f6rt, f6ru, f6ss, f6st, f6su)
+# cotisations et produits assimilés : f6rs (f6rt = conjoint, f6ru= pac, mêmes conditions mais pas testées)
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6rs" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6rs" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6rs" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# test avec 1 pac
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "nbJ": 1,
+                     "f6ru" : 1800,
+
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 118,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "nbJ": 1,
+                     "f6ru" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 159,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "nbJ": 1,
+                     "f6ru" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 159,
+                    },
+              },
+
+# rachats de cotisations PREFON, COREM et CGOS : f6ss (f6st = conjoint, f6su= pac, mêmes conditions mais pas testées)
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6ss" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6ss" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6ss" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# test avec 1 pac
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "nbJ": 1,
+                     "f6su" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 118,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "nbJ": 1,
+                     "f6su" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 159,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "nbJ": 1,
+                     "f6su" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 159,
+                    },
+              },
+# Dépenses de grosses réparations des nus-propriétaires (plafond 25 000€) (f6cb, f6hl, f6hk, f6hj)
+# f6cb
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6cb" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6cb" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6cb" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# f6hl (uniquement présente en 2012)
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6hl" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+# f6hk (présente en 2012 et 2011)
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6hk" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6hk" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# f6hj
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6hj" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6hj" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6hj" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# test 70 000 € pour test plafond
+               {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 70000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 13334,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 70000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 13334,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 70000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 13334,
+                    },
+              },
+# test plafond avec f6cb
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 70000,
+                     "f6cb" : 28000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 5834,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 70000,
+                     "f6cb" : 28000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 5834,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 70000,
+                     "f6cb" : 28000,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 5834,
+                    },
+              },
+
+
+
+>>>>>>> 443fe59... suite test_niches
             ]
+
+# test déficits globaux antérieurs non encore déduits (f6fa, f6fb, f6fc, f6fd, f6fe, f6fl)
+
+
+
+    """
+    
+    CREDITS D'IMPOTS
+
+    """
+
+
+
 
 
     for test in tests_list:
