@@ -44,6 +44,7 @@ def test_nonsal_celib():
              {"year" : 2013,
               "input_vars":
                     {
+                     "activite": 3,
                      "rsti" : 12500,
                     },
               "output_vars" :
@@ -96,6 +97,8 @@ def test_nonsal_famille():
                {"year" : 2013,
               "input_vars":
                     {
+                     "birth": datetime.date(1940, 1, 1),
+                     "activite": 3,
                      "rsti" : 12500,
                     },
               "output_vars" :
@@ -114,14 +117,14 @@ def test_nonsal_famille():
         test_case = simulation.scenario
         test_case.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
 
-        print test_case
         for variable, value in test['input_vars'].iteritems():
-                if variable in ['rsti']:
+                if variable in ['activite', 'birth', 'rsti']:
                     test_case.indiv[0].update({variable: value})
                     test_case.indiv[1].update({variable: value})
                 else:
                     print variable
                     assert False
+        print test_case
 
         for variable, value in test['output_vars'].iteritems():
             df = simulation.get_results_dataframe(index_by_code = True)
