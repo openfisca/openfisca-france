@@ -28,15 +28,15 @@ import os
 dirname = os.path.dirname(__file__) 
 
 
-def test_from_taxipp( date = "14-02", threshold = 1, list_input = None, list_output = None, verbose = False):
+def test_from_taxipp( date = "ISF", threshold = 1, list_input = None, list_output = None, verbose = False):
     
     def list_dta(date):
         input = []
         output = []
         for filename in os.listdir(dirname):
-            if filename.startswith("base_IPP_input") and filename.endswith(".dta") and filename.find(date) :
+            if filename.startswith("base_IPP_input") and filename.endswith(date + ".dta"):
                 input += [filename]   
-            if filename.startswith("base_IPP_output") and filename.endswith(".dta") and filename.find(date) :
+            if filename.startswith("base_IPP_output") and filename.endswith(date + ".dta"):
                 output += [filename]     
         return input, output
 
@@ -50,6 +50,7 @@ def test_from_taxipp( date = "14-02", threshold = 1, list_input = None, list_out
             
     dic_input,dic_output =  dic_ipp2of()
     last_param_scenar = "rien"
+    print "Listes : ", list_input, list_output
     for i in range(len(list_input)) :
         input = list_input[i]
         output = list_output[i]
@@ -65,4 +66,4 @@ def test_from_taxipp( date = "14-02", threshold = 1, list_input = None, list_out
             pass
 
 if __name__ == '__main__':
-    test_from_taxipp(verbose = False) #list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
+    test_from_taxipp(verbose = True) #list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
