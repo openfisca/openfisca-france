@@ -69,6 +69,9 @@ def _isf_iai(ass_isf, _P):
     bar.t_x()
     return bar.calc(ass_isf)
 
+def _isf_avant_reduction(isf_iai, decote_isf):
+    return isf_iai - decote_isf
+
 def _isf_reduc_pac(nb_pac, nbH, _P):
     '''
     Réductions pour personnes à charges
@@ -93,18 +96,18 @@ def _isf_org_int_gen(b2nc, _P):
     P = _P.isf.pme
     return b2nc*P.taux2
 
-def _isf_avant_plaf(isf_iai, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, _P):
+def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, _P):
     '''
     Montant de l'impôt avant plafonnement
     '''
     borne_max = _P.isf.pme.max
-    return max_(0, isf_iai - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+    return max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 ## calcul du plafonnement ##
 
-def _tot_impot(irpp, isf_avant_plaf):
-    return -irpp + isf_avant_plaf
+def _tot_impot(irpp, isf_avant_plaf, crds, csg, prelsoc_cap):
+    return -irpp + isf_avant_plaf -crds -csg - prelsoc_cap
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
 # + prélèvement libé de l'année passée + montant de la csg TODO:
 
@@ -113,7 +116,19 @@ def _revetproduits(salcho_imp, pen_net, rto_net, rfr_rvcm, fon, ric, rag, rpns_e
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     ## def rev_exon et rev_etranger dans data? ##
     P= _P.isf.plafonnement
-    return pt*P.taux
+    return pt * P.taux
+
+def _decote_isf(ass_isf, _P):
+    '''
+    Décote d el'ISF
+    '''
+    if _P.datesim.year >= 2013:
+        P = _P.isf.decote
+        elig = ( ass_isf >= P.min ) & ( ass_isf <= P.max )
+        LB = P.base - P.taux * ass_isf
+        return LB * elig
+    else:
+        return 0 * ass_isf
 
 def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
     """
@@ -122,16 +137,24 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
     ## si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
     ## si entre les deux seuils; l'allègement est limité au 1er seuil ##
     ## si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
-    plafonnement = max_(tot_impot- revetproduits, 0)
+   
     P = _P.isf.plaf
-    if _P.datesim.year <= 2011: 
+    # Plafonnement supprimé pour l'année 2012
+    if _P.datesim.year <= 2011:
+        plafonnement = max_(tot_impot- revetproduits, 0)
         limitationplaf = (
                           (isf_avant_plaf<= P.seuil1)*plafonnement +
                           (P.seuil1 <= isf_avant_plaf)*(isf_avant_plaf <= P.seuil2)*min_(plafonnement, P.seuil1) +
                           (isf_avant_plaf >= P.seuil2)*min_(isf_avant_plaf*P.taux, plafonnement))
         return (isf_avant_plaf - limitationplaf)
-    else:
+    
+    elif _P.datesim.year == 2012: 
         return isf_avant_plaf
+    
+    else:
+        plafond = max_(0, tot_impot - P.taux * revetproduits) # case PU sur la déclaration d'impôt
+        return isf_avant_plaf - plafond
+
 
 def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
     ## rs est le montant des impôts acquittés hors de France ##
