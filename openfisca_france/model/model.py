@@ -325,7 +325,7 @@ prestation_by_name = collections.OrderedDict((
     ('cont_rev_loc', Prestation(ir._cont_rev_loc, entity = 'foy', start = date(2001, 1, 1))),
     ('iai', Prestation(ir._iai, entity = 'foy')),
     ('cehr', Prestation(ir._cehr, entity = 'foy')),
-    ('cesthra', Prestation(ir._cesthra, entity = 'foy')),
+ #   ('cesthra', Prestation(ir._cesthra, entity = 'foy', start = date(2013, 1, 1))), PLF 2013, amendement rejeté
     ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
     ('assiette_vente', Prestation(ir._micro_social_vente, entity = 'foy', start = date(2009, 1, 1))),
     ('assiette_service', Prestation(ir._micro_social_service, entity = 'foy', start = date(2009, 1, 1))),
@@ -719,6 +719,7 @@ prestation_by_name = collections.OrderedDict((
     ('impo', Prestation(cm._impo, label = u"Impôt sur le revenu")),
     ('crds', Prestation(cm._crds, label = u"Contribution au remboursement de la dette sociale")),
     ('csg', Prestation(cm._csg, label = u"Contribution sociale généralisée")),
+    ('prelsoc_cap', Prestation(cm._prelsoc_cap, label = u"Prélèvements sociaux sur les revenus du capital")),
     ('cotsoc_noncontrib', Prestation(cm._cotsoc_noncontrib, label = u"Cotisations sociales non contributives")),
     ))
 

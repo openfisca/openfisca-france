@@ -258,17 +258,16 @@ def _ra_rsa(sal, hsup, rpns, etr):
     '''
     return sal + hsup + rpns + etr
 
-def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape,aeeh, apl, als, _P):
+def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
-    'ind' : http://www.caf.fr/sites/default/files/caf/631/Documents/guide_calculette_qf_alsh_janvier_2012.pdf
     TO DO: Add mva (majoration vie autonome), 
     """
     P = _P.minim
     if _P.datesim.year < 2004:  # taking care of the existence of the paje/ape/apje
         out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
     else:
-        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca + aeeh + apl +  als )
+        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca )
 
     return out
 

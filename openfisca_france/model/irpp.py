@@ -548,6 +548,7 @@ def _cesthra(sal, _P, _option = {'sal': ALL}):
     '''
     Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité
     'foy'
+    PLF 2013 (rejeté) : 'taxe à 75%'
     '''
     cesthra = 0
     bar = _P.ir.cesthra
@@ -556,12 +557,12 @@ def _cesthra(sal, _P, _option = {'sal': ALL}):
     return cesthra
 
 
-def _irpp(iai, credits_impot, cehr, cesthra, microsocial):
+def _irpp(iai, credits_impot, cehr, microsocial):
     '''
     Montant avant seuil de recouvrement (hors ppe)
     '''
-    log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
-    return -(iai - credits_impot + cehr + cesthra + microsocial)
+    #log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
+    return -(iai - credits_impot + cehr + microsocial)
 
 
 ###############################################################################
