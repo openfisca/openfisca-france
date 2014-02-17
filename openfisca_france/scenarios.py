@@ -471,7 +471,7 @@ Vérifie que le ménage entré est valide
                 parents_id = famille.pop(u'parents')
                 enfants_id = famille.pop(u'enfants')
                 noichef = indiv_index_by_id[parents_id[0]]
-                attributes['declar'][noichef] = famille
+                attributes['famille'][noichef] = famille
                 for indivu_id in itertools.chain(parents_id, enfants_id):
                     attributes['indiv'][indiv_index_by_id[indivu_id]]['noichef'] = noichef
                 attributes['indiv'][noichef]['quifam'] = u'chef'
@@ -498,7 +498,7 @@ Vérifie que le ménage entré est valide
                 enfants_id = menage.pop(u'enfants')
                 autres_id = menage.pop(u'autres')
                 noipref = indiv_index_by_id[personne_de_reference_id]
-                attributes['declar'][noipref] = menage
+                attributes['menage'][noipref] = menage
                 for indivu_id in itertools.chain(
                         [personne_de_reference_id],
                         [conjoint_id] if conjoint_id is not None else [],
