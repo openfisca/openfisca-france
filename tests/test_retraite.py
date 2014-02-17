@@ -117,7 +117,6 @@ def test_nonsal_famille():
         test_case = simulation.scenario
         test_case.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
 
-
         for variable, value in test['input_vars'].iteritems():
                 if variable in ['activite', 'birth', 'rsti']:
                     test_case.indiv[0].update({variable: value})
@@ -125,7 +124,7 @@ def test_nonsal_famille():
                 else:
                     print variable
                     assert False
-
+        print test_case
 
         for variable, value in test['output_vars'].iteritems():
             df = simulation.get_results_dataframe(index_by_code = True)
