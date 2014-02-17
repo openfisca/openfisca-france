@@ -618,19 +618,9 @@ column_by_name = collections.OrderedDict((
     # f7wi
     # f7wj
     # f7wl
-    ('f7sf', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    ('f7si', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
+    ('f7sf', IntCol(entity = 'foy', label = u"Appareils de régulation du chauffage, matériaux de calorifugeage", val_type = "monetary")),
+    ('f7si', IntCol(entity = 'foy', label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)", val_type = "monetary")),
 
-    # Frais de garde des enfants à l’extérieur du domicile
-#    là je ne sais pas à quoi cela correspond, les frais de garde des enfants sont en 7ga etc...,
-#    en 4 ce sont les revenus fonciers depuis un certain nb d'années, et ce n'est pas du g...
-#    en plus les f4ga..ne sont pas utilisées dans les prog (sauf un commentaire dans 08_final), moi, je supprimerais ça!
-    ('f4ga', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    ('f4gb', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    ('f4gc', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    ('f4ge', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    ('f4gf', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    ('f4gg', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
 
 
     # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
@@ -986,7 +976,7 @@ column_by_name = collections.OrderedDict((
     ('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
     ('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
 
-    ('tax_fonc', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
+    ('tax_fonc', IntCol(entity = 'foy', label = u"Taxe foncière", val_type = "monetary")),
     ('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
 
     # to remove
@@ -1002,7 +992,7 @@ column_by_name = collections.OrderedDict((
                       )),
 
     ('etr', IntCol()),
-    ('coloc', BoolCol()),
+    ('coloc', BoolCol(label = u"Vie en colocation")),
     ('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
                  entity = 'ind',
                  enum = Enum([u"Non renseigné/non pertinent",
