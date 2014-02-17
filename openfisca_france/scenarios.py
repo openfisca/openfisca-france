@@ -464,6 +464,7 @@ Vérifie que le ménage entré est valide
                 for individu_index, individu_id in enumerate(data[u'individus'].iterkeys())
                 )
             for individu_id, individu in data[u'individus'].iteritems():
+                individu['noi'] = indiv_index_by_id[individu_id]
                 individu.pop('prenom', None)
                 attributes['indiv'][indiv_index_by_id[individu_id]] = individu
             for famille in data[u'familles'].itervalues():
