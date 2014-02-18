@@ -8,10 +8,19 @@
 
 
 from __future__ import division
+
+import logging
 from numpy import ( maximum as max_, minimum as min_)
 from .data import QUIFOY
 ALL = [x[1] for x in QUIFOY]
 
+from .data import QUIFAM, QUIFOY
+from .pfam import nb_enf, age_en_mois_benjamin
+
+CHEF = QUIFAM['chef']
+PART = QUIFAM['part']
+
+log = logging.getLogger(__name__)
 
 # 1 ACTIF BRUT
 
@@ -54,6 +63,9 @@ def _isf_droits_sociaux(isf_actions_sal, b1cb, b1cd, b1ce, b1cf, b1cg, _P):
     return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
 
 def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, _P):
+    '''
+    TO DO: Gérer les trois option meubles meublants
+    '''
     total = isf_imm_bati + isf_imm_non_bati + isf_droits_sociaux
     P=_P.isf.forf_mob
     forf_mob = (b1cg != 0)*b1cg + (b1cg==0)*total*P.taux
@@ -64,9 +76,11 @@ def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, _P)
 
 def _isf_iai(ass_isf, _P):
     bar = _P.isf.bareme
+    log.info(bar)
     if _P.datesim.year > 2010:
         ass_isf = (ass_isf >= bar.seuils[1])*ass_isf
     bar.t_x()
+    log.info(ass_isf)
     return bar.calc(ass_isf)
 
 def _isf_avant_reduction(isf_iai, decote_isf):
@@ -106,8 +120,9 @@ def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc
 
 ## calcul du plafonnement ##
 
-def _tot_impot(irpp, isf_avant_plaf, crds, csg, prelsoc_cap):
-    return -irpp + isf_avant_plaf -crds -csg - prelsoc_cap
+def _tot_impot(irpp, isf_avant_plaf, crds, csg, prelsoc_cap,  _option = {'crds': [CHEF, PART], 'csg': [CHEF, PART]}):
+    return -irpp + isf_avant_plaf - (crds[CHEF] + crds[PART]) -(csg[CHEF] + csg[PART]) - prelsoc_cap
+
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
 # + prélèvement libé de l'année passée + montant de la csg TODO:
 
@@ -146,14 +161,14 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
                           (isf_avant_plaf<= P.seuil1)*plafonnement +
                           (P.seuil1 <= isf_avant_plaf)*(isf_avant_plaf <= P.seuil2)*min_(plafonnement, P.seuil1) +
                           (isf_avant_plaf >= P.seuil2)*min_(isf_avant_plaf*P.taux, plafonnement))
-        return (isf_avant_plaf - limitationplaf)
+        return max_(isf_avant_plaf - limitationplaf, 0)
     
     elif _P.datesim.year == 2012: 
         return isf_avant_plaf
     
     else:
-        plafond = max_(0, tot_impot - P.taux * revetproduits) # case PU sur la déclaration d'impôt
-        return isf_avant_plaf - plafond
+        plafond = max_(0, tot_impot - revetproduits) # case PU sur la déclaration d'impôt
+        return max_(isf_avant_plaf - plafond, 0)
 
 
 def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
