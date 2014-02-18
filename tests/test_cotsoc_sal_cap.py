@@ -127,7 +127,6 @@ def test_cotsoc():
                  "crds_cap_bar":-125,
                  "ir_plaf_qf": 2150,
                  "irpp":-2150 } },
-                 "irpp": -2150 } },
                      ],
             "f2ts" :[
             {"year" : 2013, "amount": 20000,
