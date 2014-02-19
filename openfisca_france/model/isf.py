@@ -19,6 +19,8 @@ from .pfam import nb_enf, age_en_mois_benjamin
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
+VOUS = QUIFOY['vous']
+CONJ = QUIFOY['conj']
 
 log = logging.getLogger(__name__)
 
@@ -120,8 +122,8 @@ def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc
 
 ## calcul du plafonnement ##
 
-def _tot_impot(irpp, isf_avant_plaf, crds, csg, prelsoc_cap,  _option = {'crds': [CHEF, PART], 'csg': [CHEF, PART]}):
-    return -irpp + isf_avant_plaf - (crds[CHEF] + crds[PART]) -(csg[CHEF] + csg[PART]) - prelsoc_cap
+def _tot_impot(irpp, isf_avant_plaf, crds, csg, prelsoc_cap,  _option = {'crds': [VOUS, CONJ], 'csg': [VOUS, CONJ]}):
+    return -irpp + isf_avant_plaf - (crds[VOUS] + crds[CONJ]) -(csg[VOUS] + csg[CONJ]) - prelsoc_cap
 
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
 # + prélèvement libé de l'année passée + montant de la csg TODO:
