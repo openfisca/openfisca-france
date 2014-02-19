@@ -430,8 +430,7 @@
   <NODE description="Cotisations sociales" code="cotsoc">
     <NODE description="Accident du travail" code="accident"> # Wild distinction between the rates. TODO: handle the extreme diversity...
        <CODE description="Accident du travail (taux bureau)" code="faible">
-         <VALUE valeur="0.011" deb="2014-01-01" fin="2014-12-31"/> # TODO check
-         <VALUE valeur="0.011" deb="2013-01-01" fin="2013-12-31"/>
+         <VALUE valeur="0.011" deb="2013-01-01" fin="2014-12-31"/>
          <VALUE valeur="0.010" deb="1996-01-01" fin="2012-12-31"/>
          </CODE>
        <CODE description="Accident du travail (taux moyen)" code="moyen">
@@ -441,8 +440,8 @@
          <VALUE valeur="0.05" deb="2012-01-01" fin="2014-12-31"/> # TODO: update, get more info...
          </CODE>
        <CODE description="Accident du travail (taux tres eleve)" code="treseleve">
-         <VALUE valeur="0.10" deb="2012-01-01" fin="2014-12-31"/> # TODO: update, get more info...
-         </CODE>
+         <VALUE valeur="0.10" deb="2012-01-01" fin="2014-12-31"/> # TODO: update, get more info..
+       </CODE>
    </NODE>
     <NODE description="Paramètres généraux" code="gen">
       <CODE description="Plafond de la sécurité sociale" code="plaf_ss" format="integer" type="monetary">

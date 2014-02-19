@@ -28,20 +28,21 @@ import os
 dirname = os.path.dirname(__file__) 
 
 
-def test_from_taxipp( date = "ISF", threshold = 1, list_input = None, list_output = None, verbose = False):
-    
+def test_from_taxipp( selection = "famille_modeste", threshold = 1, list_input = None, list_output = None, verbose = False):
+    # selection : dernier mot avant le .dta : "actif-chomeur", "ISF", "famille_modeste"
     def list_dta(date):
         input = []
         output = []
-        for filename in os.listdir(dirname):
-            if filename.startswith("base_IPP_input") and filename.endswith(date + ".dta"):
-                input += [filename]   
-            if filename.startswith("base_IPP_output") and filename.endswith(date + ".dta"):
-                output += [filename]     
+        for filename in os.listdir(dirname + "\\base_IPP"):
+            path_file = dirname + '/base_IPP/' + filename
+            if filename.startswith("base_IPP_input") and filename.endswith(selection + ".dta"):
+                input += [path_file]   
+            if filename.startswith("base_IPP_output") and filename.endswith(selection + ".dta"):
+                output += [path_file]     
         return input, output
 
     if not list_input :
-        list_input, list_output = list_dta(date)
+        list_input, list_output = list_dta(selection)
 
     elif not list_output:
         list_output = []
@@ -50,7 +51,6 @@ def test_from_taxipp( date = "ISF", threshold = 1, list_input = None, list_outpu
             
     dic_input,dic_output =  dic_ipp2of()
     last_param_scenar = "rien"
-    print "Listes : ", list_input, list_output
     for i in range(len(list_input)) :
         input = list_input[i]
         output = list_output[i]

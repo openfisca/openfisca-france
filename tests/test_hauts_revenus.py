@@ -46,7 +46,7 @@ def test_isf_celib():
     # alors qu'Openfisca la cacule pour Lyon (.0175)
     tests_list = [
 #   Célibataires (pas de supplément familial de traitement
-             {"year" : 2013,
+             {"year" : 2011,
               "input_vars":
                     {
                      "sali": 50000,

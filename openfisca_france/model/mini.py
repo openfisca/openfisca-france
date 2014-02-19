@@ -124,13 +124,13 @@ def _asi_elig(aspa_elig, inv, activite):
 def _asi_aspa_nb_alloc(aspa_elig, asi_elig, _option = {'aspa_elig': [CHEF, PART], 'asi_elig': [CHEF, PART]}):
     return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
-def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'aspa_elig': [CHEF, PART]}):
+def _aspa_pure(aspa_elig, marpac, concub, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'aspa_elig': [CHEF, PART]}):
     '''
     Calcule l'ASPA lorsqu'il y a un ou deux bénéficiaire de l'ASPA et aucun bénéficiaire de l'ASI
     '''
     # La notion de couple change au 1er janvier 2007 (réforme de 2006)
     if _P.datesim.year >= 2007:
-        couple = marpac
+        couple = marpac | concub
     else:
         couple = maries
 
@@ -152,12 +152,11 @@ def _aspa_pure(aspa_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option 
     plafond_ressources = (elig1 * not_(couple)) * P.aspa.plaf_seul + (elig2 | elig1 * couple) * P.aspa.plaf_couple
     montant_max = (elig1 * not_(couple)) * P.aspa.montant_seul + elig2 * P.aspa.montant_couple + (elig1 * couple) * ((br_mv <= diff_plaf) * (P.aspa.montant_seul + br_mv) + (br_mv > diff_plaf) * P.aspa.montant_couple)
     montant_servi_aspa = max_(montant_max - br_mv, 0) * (br_mv <= plafond_ressources) / 12
-
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
-
-    return 12 * (aspa_elig[CHEF] + aspa_elig[PART]) * montant_servi_aspa * (elig1 + elig2 / 2)  # annualisé
+    elig_indiv = (aspa_elig[CHEF] + aspa_elig[PART])
+    return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2 )  # annualisé
 
 
 def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'asi_elig': [CHEF, PART]}):
@@ -207,6 +206,7 @@ def _asi_coexist_aspa(asi_aspa_elig, maries, marpac, br_mv, _P):
     plafond_ressources = where(index, P.aspa.plaf_couple, 0)
     depassement = ressources - plafond_ressources
     montant_servi_asi_c = where(index, max_(P.asi.montant_seul - 0.5 * depassement, 0), 0) / 12
+   
     return 12 * (montant_servi_asi_m + montant_servi_asi_c)  # annualisé
 
 def _aspa_coexist_asi(asi_aspa_elig, maries, marpac, br_mv, _P):
@@ -356,7 +356,7 @@ def _br_rmi(br_rmi_pf, br_rmi_ms, br_rmi_i, _P,
 #    23 Des mesures de réparation mentionnées à l’article 2 du décret no 2004-751 du 27 juillet 2004 instituant
 #       une aide financière en reconnaissance des souffrances endurées par les orphelins dont les parents ont été
 #       victimes d’actes de barbarie durant la Deuxième Guerre mondiale
-
+    
     br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] +
               br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART])
     return br_rmi
@@ -541,7 +541,7 @@ def _rsa_act_i(rsa_act, concub, maries, quifam, idfam):
 
 
 def _crds_mini(rsa_act, _P):
-    return _P.fam.af.crds * rsa_act
+    return -_P.fam.af.crds * rsa_act
 
 
 def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = {'age': ENFS, 'agem': ENFS, 'smic55': ENFS}):
