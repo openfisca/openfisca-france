@@ -183,7 +183,7 @@ column_by_name = collections.OrderedDict((
     ('nbJ', IntCol(label = u"Nombre d'enfants majeurs célibataires sans enfant", entity = 'foy')),
     ('nbI', IntCol(label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité", entity = 'foy')),
     ('nbH', IntCol(label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity = 'foy')),
-#   vérifier si c'est bien ça pour la nbH et la caseH qui suit
+# TODO: vérifier si c'est bien ça pour la nbH et la caseH qui suit
     ('nbG', IntCol(label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité", entity = 'foy')),
     ('nbF', IntCol(label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge", entity = 'foy')),
     ('nbN', IntCol(label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille", entity = 'foy')),
