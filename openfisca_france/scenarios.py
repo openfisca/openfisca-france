@@ -436,7 +436,7 @@ Vérifie que le ménage entré est valide
                     return data, dict(legislation_url = state._(u'Error while retrieving legislation JSON'))
                 legislation_json, error = conv.pipe(
                     conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
-                    legislations.validate_node_json,
+                    legislations.validate_any_legislation_json,
                     conv.not_none,
                     )(response.read(), state = state)
                 if error is not None:
@@ -448,7 +448,11 @@ Vérifie que le ménage entré est valide
                         legislation_file.write(unicode(json.dumps(legislation_json, encoding = 'utf-8',
                             ensure_ascii = False, indent = 2)).encode('utf-8'))
             datesim = date(data['year'], 1, 1)
-            dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+            if legislation_json.get('datesim') is None:
+                dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+            else:
+                dated_legislation_json = legislation_json
+                legislation_json = None
             compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
 
             attributes = dict(
