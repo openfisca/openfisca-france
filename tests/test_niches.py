@@ -774,12 +774,523 @@ def test_niches():
                     },
               },
 
+# test déficits globaux antérieurs non encore déduits (f6fa, f6fb, f6fc, f6fd, f6fe, f6fl)
+# case f6fa
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fa" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fa" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fa" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# case f6fb
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fb" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fb" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fb" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# case f6fc
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fc" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fc" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fc" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+
+# case f6fd
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fd" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fd" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fd" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# case f6fe
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fe" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fe" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fe" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+# case f6fl
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fl" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 913,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fl" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 20000,
+                     "f6fl" : 1800,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 929,
+                    },
+              },
+
+
+# test abattements spéciaux
+
+# abattement accordé aux personnes âgées ou invalides
+# pour 2010, 2011 et 2012 : 2312€ si rng<14510€, 1156€ si 14510€ < rng < 23390€
+
+# test personnes âgées rng<14510
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 14000,
+                     "age": 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 14000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 14000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+# test personnes âgées 14510<rng<23390
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 18000,
+                     "age": 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 670,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 18000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 711,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 18000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 711,
+                    },
+              },
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 25000,
+                     "age": 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1649,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 25000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1649,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 25000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1649,
+                    },
+              },
+# test personnes âgées rng>23390
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 28000,
+                     "age": 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 2189,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 28000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 2189,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 28000,
+                     "age" : 66,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 2189,
+                    },
+              },
+# test personnes invalides rng < 14510
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 14000,
+                     "caseP": 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 14000,
+                     "caseP" : 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 14000,
+                     "caseP" : 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 0,
+                    },
+              },
+# test personnes invalides 14510 < rng < 23390
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 25000,
+                     "caseP": 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 979,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 25000,
+                     "caseP" : 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 979,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 25000,
+                     "caseP" : 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 979,
+                    },
+              },
+# test personnes invalides rng > 23390
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 28000,
+                     "caseP": 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1519,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 28000,
+                     "caseP" : 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1519,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 28000,
+                     "caseP" : 1,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1519,
+                    },
+              },
+# abattement pour enfants à charge ayant fondé un foyer distinct: 5698€ par personne rattachée
+              {"year" : 2012,
+              "input_vars":
+                    {
+                     "sali" : 38000,
+                     "nbN": 3,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1056,
+                    },
+              },
+             {"year" : 2011,
+              "input_vars":
+                    {
+                     "sali" : 38000,
+                     "nbN" : 3,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1056,
+                    },
+              },
+              {"year" : 2010,
+              "input_vars":
+                    {
+                     "sali" : 38000,
+                     "nbN" : 3,
+                    },
+              "output_vars" :
+                    {
+                     "irpp": 1056,
+                    },
+              },
+# on ne peut pas tester le cas d'un enfant à charge de famille dont l'enfant est en garde alternée ?
+
+
+# test abattements complémentaires
+"""
+'statmarit'="Veuf",
+'nbF'=nb enfant -18 à charge
+
+"caseP"
+
+"caseP"
+'nbF'=nb enfant -18 à charge
+
+
+'statmarit'="Marié",
+'caseS'
+'nbR'
+'nbI'
+'caseP'
+'caseF'
+'caseG'
+
+
+"""
+
+
+
+
 
 
 >>>>>>> 443fe59... suite test_niches
             ]
 
-# test déficits globaux antérieurs non encore déduits (f6fa, f6fb, f6fc, f6fd, f6fe, f6fl)
 
 
 
