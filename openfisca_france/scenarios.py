@@ -96,7 +96,7 @@ Vérifie que le ménage entré est valide
         return ''
 
     @classmethod
-    def make_json_to_attributes(cls, cache_dir = None):
+    def make_json_to_attributes(cls, cache_dir = None, legislation_url = None):
         def json_to_attributes(value, state = None):
             if value is None:
                 return value, None
@@ -271,9 +271,9 @@ Vérifie que le ménage entré est valide
                             conv.not_none,
                             ),
                         legislation_url = conv.pipe(
-                            conv.make_input_to_url(error_if_fragment = True, full = True,
-                                schemes = ('file', 'http', 'https')),
-                            conv.not_none,
+                            conv.test_isinstance(basestring),
+                            conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
+                            conv.default(legislation_url) if legislation_url is not None else conv.not_none,
                             ),
                         menages = conv.pipe(
                             conv.condition(
