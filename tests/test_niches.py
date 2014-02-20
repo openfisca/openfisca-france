@@ -457,8 +457,7 @@ def test_niches():
                     },
               },
 
-<<<<<<< HEAD
-=======
+
 # épargne retraite PERP,PREFON,COREM et CGOS (f6rs, f6rt, f6ru, f6ss, f6st, f6su)
 # cotisations et produits assimilés : f6rs (f6rt = conjoint, f6ru= pac, mêmes conditions mais pas testées)
               {"year" : 2012,
@@ -1258,48 +1257,34 @@ def test_niches():
                      "irpp": 1056,
                     },
               },
+          ]
 # on ne peut pas tester le cas d'un enfant à charge de famille dont l'enfant est en garde alternée ?
 
 
 # test abattements complémentaires
-"""
-'statmarit'="Veuf",
-'nbF'=nb enfant -18 à charge
-
-"caseP"
-
-"caseP"
-'nbF'=nb enfant -18 à charge
-
-
-'statmarit'="Marié",
-'caseS'
-'nbR'
-'nbI'
-'caseP'
-'caseF'
-'caseG'
-
-
-"""
-
-
-
-
-
-
->>>>>>> 443fe59... suite test_niches
-            ]
-
-
-
-
-    """
-    
-    CREDITS D'IMPOTS
-
-    """
-
+# """
+# 'statmarit'="Veuf",
+# 'nbF'=nb enfant -18 à charge
+#
+# "caseP"
+#
+# "caseP"
+# 'nbF'=nb enfant -18 à charge
+#
+#
+# 'statmarit'="Marié",
+# 'caseS'
+# 'nbR'
+# 'nbI'
+# 'caseP'
+# 'caseF'
+# 'caseG'
+#
+#
+#    CREDITS D'IMPOTS
+#
+# """
+#
 
 
 
