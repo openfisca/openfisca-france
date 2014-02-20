@@ -482,7 +482,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"""Autres impuattions et divers"""),
+                ('label', u"""Autres imputations et divers"""),
                 ('children', [
                     'f8ta',  # Retenue à la source en France ou impôt payé à l'étranger
                     'f8tb',  # Crédit d'impôt recherche non encore remboursé

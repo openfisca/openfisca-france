@@ -60,8 +60,6 @@ log = logging.getLogger(__name__)
 
 from openfisca_france.model.cotisations_sociales.travail import build_sal, build_pat
 
-
-
 def modify_parameters(simulation = None):
 
     if simulation is None:
@@ -69,19 +67,19 @@ def modify_parameters(simulation = None):
         simulation.set_config(year = 2013)
         simulation.set_param()
 
-    _P = simulation.P
-    sal = build_sal(_P)
-    pat = build_pat(_P)
+    for _P in [simulation.P, simulation.P_default]:
 
-    _P.cotsoc.__dict__['cotisations_patronales'] = CompactNode()
-    _P.cotsoc.__dict__['cotisations_salariales'] = CompactNode()
+        sal = build_sal(_P)
+        pat = build_pat(_P)
 
-    for cotisation_name, bareme_dict in {'cotisations_patronales' : pat, 'cotisations_salariales': sal}.iteritems():
-        for category in bareme_dict:
-            if category in CAT._nums:
-                _P.cotsoc.__dict__[cotisation_name].__dict__[category] = bareme_dict[category]
+        _P.cotsoc.__dict__['cotisations_patronales'] = CompactNode()
+        _P.cotsoc.__dict__['cotisations_salariales'] = CompactNode()
 
-    print _P.cotsoc
+        for cotisation_name, bareme_dict in {'cotisations_patronales' : pat, 'cotisations_salariales': sal}.iteritems():
+            for category in bareme_dict:
+                if category in CAT._nums:
+                    _P.cotsoc.__dict__[cotisation_name].__dict__[category] = bareme_dict[category]
+
 
 
 if __name__ == '__main__':
