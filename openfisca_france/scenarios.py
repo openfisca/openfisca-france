@@ -33,8 +33,8 @@ import logging
 import os
 import pickle
 import time
-import uuid
 import urllib2
+import uuid
 
 import numpy as np
 from openfisca_core import __version__ as VERSION
