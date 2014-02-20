@@ -121,18 +121,34 @@ def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc
 
 
 ## calcul du plafonnement ##
-
 def _tot_impot(irpp, isf_avant_plaf, crds, csg, prelsoc_cap,  _option = {'crds': [VOUS, CONJ], 'csg': [VOUS, CONJ]}):
+    '''
+    Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF
+    Utilisé pour calculer le montant du plafonnement de l'ISF 
+    '''
+    i = 0
+    for  var in [irpp, isf_avant_plaf, crds, csg, prelsoc_cap]:
+        log.info((i,var))
+        i += 1
     return -irpp + isf_avant_plaf - (crds[VOUS] + crds[CONJ]) -(csg[VOUS] + csg[CONJ]) - prelsoc_cap
 
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
 # + prélèvement libé de l'année passée + montant de la csg TODO:
 
-def _revetproduits(salcho_imp, pen_net, rto_net, rfr_rvcm, fon, ric, rag, rpns_exon, rpns_pvct, rev_cap_lib, imp_lib, _P) :   # TODO: ric? benef indu et comm
-    pt = max_(salcho_imp + pen_net + rto_net + rfr_rvcm + ric + rag + rpns_exon + rpns_pvct + rev_cap_lib + imp_lib, 0)
+def _revetproduits(salcho_imp, pen_net, rto_net, rev_cap_bar, fon, ric, rag, rpns_exon, rpns_pvct, rev_cap_lib, imp_lib, _P) :   # TODO: ric? benef indu et comm
+    '''
+    Revenus et produits perçus (avant abattement), 
+    Utilisé pour calculer le montant du plafonnement de l'ISF
+    Cf. http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
+    '''
+    pt = max_(salcho_imp + pen_net + rto_net + rev_cap_bar  + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib, 0)
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     ## def rev_exon et rev_etranger dans data? ##
     P= _P.isf.plafonnement
+    i = 0
+    for  var in [salcho_imp + pen_net + rto_net + rev_cap_bar + ric + rag + rpns_exon + rpns_pvct + rev_cap_lib + imp_lib]:
+        log.info((i,var))
+        i += 1
     return pt * P.taux
 
 def _decote_isf(ass_isf, _P):

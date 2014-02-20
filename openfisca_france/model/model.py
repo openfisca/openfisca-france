@@ -269,6 +269,7 @@ prestation_by_name = collections.OrderedDict((
     ('rev_cat', Prestation(ir._rev_cat, entity = 'foy', label = u"Revenus catégoriels")),
 
     ('deficit_rcm', Prestation(ir._deficit_rcm, entity = 'foy', label = u'Deficit capitaux mobiliers')),
+    ('csg_deduc_patrimoine', Prestation(ir._csg_deduc_patrimoine, entity = 'foy', label = u'Csg déductible sur le patrimoine')),
     ('csg_deduc', Prestation(ir._csg_deduc, entity = 'foy', label = u'Csg déductible')),
 
     ('plus_values', Prestation(ir._plus_values, entity = 'foy')),
@@ -723,6 +724,10 @@ prestation_by_name = collections.OrderedDict((
     ('crds', Prestation(cm._crds, label = u"Total des contributions au remboursement de la dette sociale")),
     ('csg', Prestation(cm._csg, label = u"Total des contributions sociale généralisée")),
     ('cotsoc_noncontrib', Prestation(cm._cotsoc_noncontrib, label = u"Cotisations sociales non contributives")),
+    ('check_csk', Prestation(cm._check_csk)),
+    ('check_csg', Prestation(cm._check_csg)),
+    ('check_crds', Prestation(cm._check_crds)),
+
     ))
 
 for name, prestation in prestation_by_name.iteritems():
