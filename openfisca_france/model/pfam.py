@@ -75,13 +75,13 @@ def _biact(br_pf_i, _P, _option = {'br_pf_i': [CHEF, PART]}):
 def _div(rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc, f3ve, f3vg, f3vh, f3vl, f3vm):
     return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
-def _rev_coll(rto_net, rev_cap_lib, rev_cap_bar, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc):
+def _rev_coll(rto_net, rev_cap_lib, rev_cat_rvcm, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc, rev_cat_pv):
     '''
     revenus collectif
     '''
     # TODO: ajouter les revenus de l'étranger etr*0.9
     # alv is negative since it is paid by the declaree
-    return rto_net + rev_cap_lib + rev_cap_bar + fon + glo + alv - f7ga - f7gb - f7gc - abat_spe
+    return rto_net + rev_cap_lib + rev_cat_rvcm + fon + glo + alv - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv
 
 def _br_pf(br_pf_i, rev_coll, _option = {'br_pf_i': [CHEF, PART], 'rev_coll': [CHEF, PART]}):
     '''
@@ -308,7 +308,6 @@ def _paje_base(age, af_nbenf, br_pf, isol, biact, smic55, _P, _option = {'age': 
 
     paje_base = (nbenf > 0) * ((br_pf < plaf) * base +
                            (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
-
     # non cumulabe avec la CF, voir Paje_CumulCf
     return 12 * paje_base  # annualisé
 

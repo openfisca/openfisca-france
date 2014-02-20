@@ -223,7 +223,7 @@ def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon, csg_cap_
     Contribution sociale généralisée
     """
     return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
-            csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo)
+            csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo + csg_cap_bar)
 
 
 def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
@@ -237,6 +237,15 @@ def _prelsoc_cap(prelsoc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, p
     Prélèvements sociaux sur les revenus du capital
     """
     return prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
+
+def _check_csk(prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_fon):
+    return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+
+def _check_csg(csg_cap_bar, csg_pv_mo, csg_fon):
+    return csg_cap_bar + csg_pv_mo + csg_fon
+
+def _check_crds(crds_cap_bar, crds_pv_mo, crds_fon):
+    return crds_cap_bar + crds_pv_mo + crds_fon
 
 def _decile(nivvie, champm, wprm):
     '''

@@ -319,9 +319,20 @@ def _rbg(alloc, rev_cat, deficit_ante, f6gh, _P):
     # sans les revenus au quotient
     return max_(0, alloc + rev_cat + f6gh - deficit_ante)
 
-def _csg_deduc(rbg, f6de):
+def _csg_deduc_patrimoine(rev_cat_rfon, rev_cap_bar, rto, _P):
+    '''
+    Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
+    http://bofip.impots.gouv.fr/bofip/887-PGP
+    '''
+    taux = _P.csg.capital.deduc
+    patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto 
+    log.info(taux * patrimoine_deduc)
+    return taux * patrimoine_deduc
+
+def _csg_deduc(rbg, csg_deduc_patrimoine): #f6de
     ''' CSG déductible '''
-    return min_(f6de, max_(rbg, 0))
+    # min_(f6de, max_(rbg, 0))
+    return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
 def _rng(rbg, csg_deduc, charges_deduc):
     ''' Revenu net global (total 20) '''
