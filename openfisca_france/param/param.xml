@@ -5165,7 +5165,7 @@
   </NODE>
 
   <NODE description="Impôt de solidarité sur la fortune (ISF)" code="isf"> # Réforme sarkozy jamais appliquée
-   <NODE desctiption="Décôte de l'ISF" code="decote">
+   <NODE description="Décôte de l'ISF" code="decote">
    	<CODE description = "Plancher de la décote" code="min" format="float" type="monetary">
    		<VALUE valeur="1300000" deb="2013-01-01" fin="2014-12-31"/>
    	</CODE>
