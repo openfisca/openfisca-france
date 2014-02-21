@@ -46,6 +46,7 @@ from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 
 log = logging.getLogger(__name__)
+N_ = lambda message: message
 
 
 class Scenario(object):
@@ -149,6 +150,8 @@ Vérifie que le ménage entré est valide
                                                         ),
                                                     conv.empty_to_none,
                                                     conv.not_none,
+                                                    conv.test(lambda parents: len(parents) <= 2,
+                                                        error = N_(u'A "famille" must have at most 2 "parents"'))
                                                     ),
                                                 ).iteritems(),
                                             (
@@ -197,6 +200,9 @@ Vérifie que le ménage entré est valide
                                                         ),
                                                     conv.empty_to_none,
                                                     conv.not_none,
+                                                    conv.test(lambda declarants: len(declarants) <= 2,
+                                                        error = N_(u'A "foyer_fiscal" must have at most 2 "declarants"'
+                                                        ))
                                                     ),
                                                 personnes_a_charge = conv.pipe(
                                                     conv.test_isinstance(list),
