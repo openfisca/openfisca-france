@@ -9,6 +9,9 @@
 from __future__ import division
 from numpy import minimum as min_, maximum as max_
 
+import logging
+
+
 from .data import QUIFOY
 
 VOUS = QUIFOY['vous']
@@ -37,10 +40,12 @@ def _cd1(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment, cd_eparet, cd_gr
         niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
     elif _P.datesim.year in (2007, 2008):
         niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
-    elif _P.datesim.year in (2009, 2010, 2011, 2012, 2013):
+    elif _P.datesim.year in (2009, 2010, 2011, 2012, 2013, 2014):
         niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
-    else:
-        niches1 = 0 * cd_penali
+
+    if _P.datesim.year > 2013:
+        log.error("Charges déductibles to be checked because not defined for %s", _P.datesim.year)
+
     return niches1
 
 def _cd2(cd_ecodev, cd_sofipe, cd_cinema, _P):
