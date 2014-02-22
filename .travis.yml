@@ -1,5 +1,8 @@
 language: python
 python: "2.7"
+before_install:
+  - apt-get update -qq
+  - apt-get install -qq libhdf5-7
 install:
   - pip install cython  # For PyTables
   - pip install numexpr  # For PyTables
