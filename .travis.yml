@@ -1,6 +1,7 @@
 language: python
 python: "2.7"
 install:
-  - pip install numexpr
+  - pip install cython  # For PyTables
+  - pip install numexpr  # For PyTables
   - pip install -r requirements-travis.txt
 script: nosetests tests.core_tests tests.init_country_options_test tests.legislation_tests
