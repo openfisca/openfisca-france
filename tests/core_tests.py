@@ -33,7 +33,7 @@ openfisca_france.init_country()
 from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
 
 
-def test_case_study(year = 2014):
+def test_case_study(year = 2013):
     simulation = ScenarioSimulation()
     simulation.set_config(year = year, nmen = 2, maxrev = 2000, reforme = False, x_axis = 'sali')
 #    simulation.scenario.indiv[0]['sali'] = 16207
