@@ -1,5 +1,7 @@
-# Needed by Biryani1 datetimeconv.
+# Needed by Biryani1 datetimeconv:
 isodate
+# Needed by PyTables:
+numexpr >= 2
 -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
 -r requirements.txt
 
