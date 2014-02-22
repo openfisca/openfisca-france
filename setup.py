@@ -56,7 +56,7 @@ setup(
 
     data_files = [],
     dependency_links = [
-        'git+https://github.com/etalab/biryani.git#egg=Biryani1',
+        'git+https://github.com/etalab/biryani.git#egg=Biryani1[datetimeconv]',
         ],
     install_requires = [
         'Biryani1[datetimeconv] >= 0.9dev',
