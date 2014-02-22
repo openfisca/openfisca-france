@@ -1,7 +1,6 @@
 language: python
 python: "2.7"
-before-install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq python-tables
-install: pip install -r requirements-travis.txt
+install:
+  - pip install numexpr
+  - pip install -r requirements-travis.txt
 script: nosetests tests.core_tests tests.init_country_options_test tests.legislation_tests
