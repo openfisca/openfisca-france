@@ -1,4 +1,4 @@
 language: python
 python: "2.7"
 install: pip install -r requirements-travis.txt
-script: nosetests tests.core_tests
+script: nosetests tests.core_tests tests.legislation_tests
