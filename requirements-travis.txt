@@ -1,3 +1,5 @@
+# Needed by Biryani1 datetimeconv.
+isodate
 -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
 -r requirements.txt
 
