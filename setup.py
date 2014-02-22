@@ -57,8 +57,8 @@ setup(
     data_files = [],
     install_requires = [
         'Biryani1[datetimeconv] >= 0.9dev',
-        "numpy",
-        "pandas >= 0.13.0",
+        'numpy',
+        'pandas >= 0.13',
         ],
     packages = find_packages(),
     zip_safe = False,
