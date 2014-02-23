@@ -36,9 +36,9 @@ from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
 def test_case_study(year = 2013):
     simulation = ScenarioSimulation()
     simulation.set_config(year = year, nmen = 2, maxrev = 2000, reforme = False, x_axis = 'sali')
-    simulation.scenario.indiv[0]['sali'] = 16207
-    # Add husband/wife on the same tax sheet (foyer)
-    simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
+#    simulation.scenario.indiv[0]['sali'] = 16207
+#    # Add husband/wife on the same tax sheet (foyer)
+#    simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
     simulation.set_param()
 
     # The aefa prestation can be disabled by uncommenting the following line:
@@ -48,11 +48,11 @@ def test_case_study(year = 2013):
 #    print df.to_json(orient = 'index')
 
 
-def test_survey(year = 2013):
-    simulation = SurveySimulation()
-    simulation.set_config(year = year)
-    simulation.set_param()
-    simulation.compute()
+#def test_survey(year = 2013):
+#    simulation = SurveySimulation()
+#    simulation.set_config(year = year)
+#    simulation.set_param()
+#    simulation.compute()
 
 
 if __name__ == '__main__':
