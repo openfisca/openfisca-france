@@ -2,7 +2,7 @@ language: python
 python: "2.7"
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq libhdf5-dev  # For PyTables
+  - sudo apt-get install -qq libhdf5-serial-dev  # For PyTables
 install:
   - pip install cython  # For PyTables
   - pip install isodate  # For Biryani1 datetimeconv
