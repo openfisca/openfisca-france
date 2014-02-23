@@ -58,6 +58,7 @@ setup(
     install_requires = [
         'Biryani1[datetimeconv] >= 0.9dev',
         'numpy',
+        'OpenFisca-Core >= 0.2dev',
         'pandas >= 0.13',
         ],
     packages = find_packages(),
