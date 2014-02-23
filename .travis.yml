@@ -2,9 +2,11 @@ language: python
 python: "2.7"
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq libhdf5-7
+  - sudo apt-get install -qq libhdf5-dev  # For PyTables
 install:
   - pip install cython  # For PyTables
+  - pip install isodate  # For Biryani1 datetimeconv
+  - pip install numpy  # For numexpr
   - pip install numexpr  # For PyTables
-  - pip install -r requirements-travis.txt
+  - pip install -r requirements.txt
 script: nosetests tests.core_tests tests.init_country_options_test tests.legislation_tests
