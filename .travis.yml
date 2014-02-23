@@ -8,5 +8,6 @@ install:
   - pip install isodate  # For Biryani1 datetimeconv
   - pip install numpy  # For numexpr
   - pip install numexpr  # For PyTables
+  - pip install -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
   - pip install -r requirements.txt
 script: nosetests tests.core_tests tests.init_country_options_test tests.legislation_tests
