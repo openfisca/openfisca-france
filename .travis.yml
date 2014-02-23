@@ -6,7 +6,7 @@ before_install:
 install:
   - pip install cython  # For PyTables
   - pip install isodate  # For Biryani1 datetimeconv
-  - pip install -e git+https://github.com/etalab/biryani.git#egg=Biryani1  # For OpenFisca-Core
+  - pip install -e git+https://github.com/etalab/biryani.git@biryani1#egg=Biryani1  # For OpenFisca-Core
   - pip install numpy  # For numexpr
   - pip install numexpr  # For PyTables
   - pip install -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
