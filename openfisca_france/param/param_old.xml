@@ -1,4 +1,4 @@
-<NODE code="root">
+<NODE code="root" deb="2006-01-01" fin="2013-12-31">
   <NODE description="Contribution sociale généralisée (CSG)" code="csg">
     <NODE description="Revenus d'activité" code="act">
       <BAREME description="CSG déductible" code="deduc">

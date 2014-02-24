@@ -33,7 +33,14 @@ openfisca_france.init_country()
 from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
 
 
-def test_case_study(year = 2013):
+def check_survey(year = 2013):
+    simulation = SurveySimulation()
+    simulation.set_config(year = year)
+    simulation.set_param()
+    simulation.compute()
+
+
+def check_test_case(year = 2013):
     simulation = ScenarioSimulation()
     simulation.set_config(year = year, nmen = 2, maxrev = 2000, reforme = False, x_axis = 'sali')
 #    simulation.scenario.indiv[0]['sali'] = 16207
@@ -48,13 +55,16 @@ def test_case_study(year = 2013):
 #    print df.to_json(orient = 'index')
 
 
-#def test_survey(year = 2013):
-#    simulation = SurveySimulation()
-#    simulation.set_config(year = year)
-#    simulation.set_param()
-#    simulation.compute()
+def test_case():
+    for year in (2013, 2014):
+        yield check_test_case, year
+
+
+#def test_survey():
+#    for year in (2013, 2014):
+#        yield check_survey, year
 
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_case_study(2013)
+    check_test_case(2013)

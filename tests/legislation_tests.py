@@ -38,7 +38,7 @@ def test_legislation_xml_file():
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
 
-    legislation_xml_json, errors = legislationsxml.validate_node_xml_json(legislation_xml_json,
+    legislation_xml_json, errors = legislationsxml.validate_legislation_xml_json(legislation_xml_json,
         state = conv.default_state)
     if errors is not None:
         errors = conv.embed_error(legislation_xml_json, 'errors', errors)
@@ -52,7 +52,7 @@ def test_legislation_xml_file():
 
     _, legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
 
-    legislation_json, errors = legislations.validate_node_json(legislation_json, state = conv.default_state)
+    legislation_json, errors = legislations.validate_legislation_json(legislation_json, state = conv.default_state)
     if errors is not None:
         errors = conv.embed_error(legislation_json, 'errors', errors)
         if errors is None:
