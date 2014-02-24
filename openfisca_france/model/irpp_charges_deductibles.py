@@ -7,12 +7,15 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import minimum as min_, maximum as max_
 
 import logging
 
+from numpy import minimum as min_, maximum as max_
 
 from .data import QUIFOY
+
+
+log = logging.getLogger(__name__)
 
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
