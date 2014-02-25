@@ -32,6 +32,7 @@ import json
 import logging
 import os
 import pickle
+import re
 import time
 import urllib2
 import uuid
@@ -47,6 +48,7 @@ from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
 
 log = logging.getLogger(__name__)
 N_ = lambda message: message
+year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]\d|3[0-1]))?)?$')
 
 
 class Scenario(object):
@@ -253,8 +255,22 @@ Vérifie que le ménage entré est valide
                                         dict(itertools.chain(
                                             dict(
                                                 birth = conv.pipe(
-                                                    conv.test_isinstance(basestring),
-                                                    conv.iso8601_input_to_date,
+                                                    conv.condition(
+                                                        conv.test_isinstance(int),
+                                                        conv.pipe(
+                                                            conv.test_between(1870, 2099),
+                                                            conv.function(lambda year: date(year, 1, 1)),
+                                                            ),
+                                                        conv.pipe(
+                                                            conv.test_isinstance(basestring),
+                                                            conv.test(year_or_month_or_day_re.match,
+                                                                error = N_(u'Invalid year')),
+                                                            conv.function(lambda birth: u'-'.join((
+                                                                birth.split(u'-') + [u'01', u'01'])[:3])),
+                                                            conv.iso8601_input_to_date,
+                                                            conv.test_between(date(1870, 1, 1), date(2099, 12, 31)),
+                                                            ),
+                                                        ),
                                                     conv.not_none,
                                                     ),
                                                 prenom = conv.pipe(
@@ -265,8 +281,8 @@ Vérifie que le ménage entré est valide
                                             (
                                                 (column.name, column.json_to_python)
                                                 for column in column_by_name.itervalues()
-                                                if column.entity == 'ind' and column.name not in ('age', 'agem', 'idfam',
-                                                    'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
+                                                if column.entity == 'ind' and column.name not in ('age', 'agem',
+                                                    'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
                                                 ),
                                             )),
                                         ),
