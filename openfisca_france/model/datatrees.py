@@ -55,7 +55,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"""Auto-entrepreneur (ayant opté pour le versment libératoire)"""),
+                ('label', u"""Auto-entrepreneur (ayant opté pour le versement libératoire)"""),
                 ('children', [
                     'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)
                     'ebic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)

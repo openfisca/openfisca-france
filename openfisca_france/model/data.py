@@ -217,24 +217,48 @@ column_by_name = collections.OrderedDict((
                       entity = 'foy',
                       cerfa_field = u'K')),
     ('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant plus de 5 ans",
-                      entity = 'foy')),
-    ('caseN', BoolCol(label = u"Vous ne vivez pas seul au 1er janvier de l'année n-1", entity = 'foy')),
-    ('caseP', BoolCol(label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%", entity = 'foy')),
-    ('caseS', BoolCol(label = u"Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity = 'foy')),
-    ('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année n-1", entity = 'foy')),
-    ('caseW', BoolCol(label = u"Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre", entity = 'foy')),
+                      entity = 'foy',
+                      cerfa_field = u'L')),
+    ('caseN', BoolCol(label = u"Vous ne vivez pas seul au 1er janvier de l'année n-1",
+                      entity = 'foy',
+                      cerfa_field = u'N')),
+    ('caseP', BoolCol(label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%",
+                      entity = 'foy',
+                      cerfa_field = u'P')),
+    ('caseS', BoolCol(label = u"Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
+                      entity = 'foy',
+                      cerfa_field = u'S')),
+    ('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année n-1",
+                      entity = 'foy',
+                      cerfa_field = u'T')),
+    ('caseW', BoolCol(label = u"Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
+                      entity = 'foy',
+                      cerfa_field = u'W')),
 
     ('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n-2", val_type = "monetary")),  # TODO: provide in data
     ('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n-2", val_type = "monetary")),  # TODO: provide in data
 
     # Rentes viagères
-    ('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans", entity = 'foy', val_type = "monetary")),
-    ('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans", entity = 'foy', val_type = "monetary")),
-    ('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans", entity = 'foy', val_type = "monetary")),
-    ('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans", entity = 'foy', val_type = "monetary")),
+    ('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
+                    entity = 'foy',
+                    val_type = "monetary",
+                    cerfa_field = u'1AW')),
+    ('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
+                    entity = 'foy',
+                    val_type = "monetary",
+                    cerfa_field = u'1BW')),
+    ('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
+                    entity = 'foy',
+                    val_type = "monetary",
+                    cerfa_field = u'1CW')),
+    ('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
+                    entity = 'foy',
+                    val_type = "monetary",
+                    cerfa_field = u'1DW')),
 
     # Gain de levée d'option
-    # TODO: j'ai changé là mais pas dans le code, il faut chercher les f1uv
+    # TODO: Labels des gains de levée d'option
+    # j'ai changé là mais pas dans le code, il faut chercher les f1uv
     # et les mettre en f1tvm comme pour sali
     # Il faut aussi le faire en amont dans les tables
     ('f1tv', IntCol(label = u"", entity = 'ind')),  # (f1tv,f1uv)),
@@ -244,19 +268,44 @@ column_by_name = collections.OrderedDict((
 
     # RVCM
     # revenus au prélèvement libératoire
-    ('f2da', IntCol(entity = 'foy', label = u"Revenus des actions et parts soumis au prélèvement libératoire", val_type = "monetary")),
-    ('f2dh', IntCol(entity = 'foy', label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire", val_type = "monetary")),
-    ('f2ee', IntCol(entity = 'foy', label = u"Revenus au prélèvement libératoire hors actions et assurance-vie", val_type = "monetary")),
+    ('f2da', IntCol(entity = 'foy', label = u"Revenus des actions et parts soumis au prélèvement libératoire",
+                    val_type = "monetary",
+                    cerfa_field = u'2DA')),
+    ('f2dh', IntCol(entity = 'foy',
+                    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire",
+                    val_type = "monetary",
+                    cerfa_field = u'2DH')),
+    ('f2ee', IntCol(entity = 'foy',
+                    label = u"Revenus au prélèvement libératoire hors actions et assurance-vie",
+                    val_type = "monetary",
+                    cerfa_field = u'2EE')),
 
     # revenus ouvrant droit à abattement
-    ('f2dc', IntCol(entity = 'foy', label = u"Revenus des actions et parts donnant droit à abattement", val_type = "monetary")),
-    ('f2fu', IntCol(entity = 'foy', label = u"Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement", val_type = "monetary")),
-    ('f2ch', IntCol(entity = 'foy', label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement", val_type = "monetary")),
+    ('f2dc', IntCol(entity = 'foy',
+                    label = u"Revenus des actions et parts donnant droit à abattement",
+                    val_type = "monetary",
+                    cerfa_field = u'2DC')),
+
+    ('f2fu', IntCol(entity = 'foy',
+                    label = u"Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement",
+                    val_type = "monetary",
+                    cerfa_field = u'2FU')),
+    ('f2ch', IntCol(entity = 'foy',
+                    label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement",
+                    val_type = "monetary",
+                    cerfa_field = u'2CH')),
 
     # Revenus n'ouvrant pas droit à abattement
-    ('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières et distributions", val_type = "monetary")),
-    ('f2go', IntCol(entity = 'foy', label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié", val_type = "monetary")),
-    ('f2tr', IntCol(entity = 'foy', label = u"Intérêts et autres revenus assimilés", val_type = "monetary")),
+    ('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières et distributions",
+                    val_type = "monetary",
+                    cerfa_field = u'2TS')),
+    ('f2go', IntCol(entity = 'foy',
+                    label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié",
+                    val_type = "monetary",
+                    cerfa_field = u'2GO')),
+    ('f2tr', IntCol(entity = 'foy', label = u"Intérêts et autres revenus assimilés",
+                    val_type = "monetary",
+                    cerfa_field = u'2TR')),
 
     # Autres
     ('f2cg', IntCol(entity = 'foy', label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible", val_type = "monetary")),
