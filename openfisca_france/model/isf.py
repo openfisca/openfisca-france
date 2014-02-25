@@ -141,14 +141,14 @@ def _revetproduits(salcho_imp, pen_net, rto_net, rev_cap_bar, fon, ric, rag, rpn
     Utilisé pour calculer le montant du plafonnement de l'ISF
     Cf. http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
     '''
-    pt = max_(salcho_imp + pen_net + rto_net + rev_cap_bar  + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib, 0)
+    pt = max_(salcho_imp + pen_net + rto_net + rev_cap_bar  + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon, 0)
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     ## def rev_exon et rev_etranger dans data? ##
     P= _P.isf.plafonnement
     i = 0
-    for  var in [salcho_imp + pen_net + rto_net + rev_cap_bar + ric + rag + rpns_exon + rpns_pvct + rev_cap_lib + imp_lib]:
+    for  var in [salcho_imp,rev_cap_bar,ric, rag ,rpns_exon ,rpns_pvct , rev_cap_lib, imp_lib, fon]: #pen_net,rto_net,
         log.info((i,var))
-        i += 1
+        i = i + 1
     return pt * P.taux
 
 def _decote_isf(ass_isf, _P):
