@@ -265,7 +265,7 @@ def _rfr_rvcm(f2dc, f2fu, f2da, _P):
         f2dc_bis = f2dc
     # # TODO: manque le sous total i121 (dans la fonction _rev_cat_rvcm)
     i121 = 0
-    return max_((1 - P.abatmob_taux) * (f2dc_bis + f2fu) - i121, 0)
+    return max_((P.abatmob_taux) * (f2dc_bis + f2fu) - i121, 0)
 
 def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     """
@@ -586,11 +586,12 @@ def _alv(f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     '''
     return -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
 
-def _rfr(rni, alloc, f3va, f3vg, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
+def _rfr(rni, alloc, f3va,  f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
+    f3vg -> rev_cat_pv -> ... -> rni
     '''
-    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vg + f3vz
+    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +  f3vz
 
 def _glo(f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk):
     # TODO: f1uv, f1uw, f1ux deletion to check
