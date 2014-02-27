@@ -100,27 +100,27 @@ def test_cho_rst(year = 2013, verbose = False):
         if verbose:
             print df_b2i.to_string()
 
-            vari = df_b2i[var].get_values()
-            csg_rempl = vari * 0 + 1
+        vari = df_b2i[var].get_values()
+        csg_rempl = vari * 0 + 1
 
-            defaultP = simulation.P_default
-            from pandas import DataFrame
-            df_i2b = DataFrame({var: vari, varbrut : _chobrut(vari, csg_rempl, defaultP) })
+        defaultP = simulation.P_default
+        from pandas import DataFrame
+        df_i2b = DataFrame({var: vari, varbrut : _chobrut(vari, csg_rempl, defaultP) })
 
-            if verbose:
-                print df_i2b.to_string()
+        if verbose:
+            print df_i2b.to_string()
 
 
-            for variable in [var, varbrut]:
-                passed = ((df_b2i[variable] - df_i2b[variable]).abs() < .01).all()
+        for variable in [var, varbrut]:
+            passed = ((df_b2i[variable] - df_i2b[variable]).abs() < 1).all()
 
-                if (not passed):
-                    print (df_b2i / 12).to_string()
-                    print (df_i2b / 12).to_string()
+            if (not passed):
+                print (df_b2i[[var, varbrut]] / 12).to_string()
+                print (df_i2b / 12).to_string()
 
-                assert passed, "difference in %s " % (var)
+            assert passed, "difference in %s " % (var)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cho_rst(2013, verbose = True)
+    test_cho_rst(2013, verbose = False)

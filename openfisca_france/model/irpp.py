@@ -284,8 +284,8 @@ def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     e13 = c13 - d13 * (c13 >= 0)
     f13 = f4bd * (e13 >= 0)
     g13 = max_(0, e13 - f13)
-    out = (c13 >= 0) * (g13 + e13 * (e13 < 0)) - (c13 < 0) * d13
-    return out
+    rev_cat_rfon = (c13 >= 0) * (g13 + e13 * (e13 < 0)) - (c13 < 0) * d13
+    return rev_cat_rfon
 
 
 def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
@@ -303,7 +303,9 @@ def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
     return out
 
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns, rev_cat_pv):
-    ''' Revenus Categoriels '''
+    '''
+    Revenus Categoriels
+    '''
     return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 ###############################################################################
@@ -311,25 +313,37 @@ def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns, rev_cat_pv)
 ###############################################################################
 
 def _deficit_ante(f6fa, f6fb, f6fc, f6fd, f6fe, f6fl):
-    ''' Déficits antérieurs '''
+    '''
+    Déficits antérieurs
+    '''
     return f6fa + f6fb + f6fc + f6fd + f6fe + f6fl
 
 def _rbg(alloc, rev_cat, deficit_ante, f6gh, _P):
-    ''' Revenu brut global (Total 17) '''
+    '''Revenu brut global
+    '''
+    # (Total 17)
     # sans les revenus au quotient
     return max_(0, alloc + rev_cat + f6gh - deficit_ante)
 
-def _csg_deduc_patrimoine(rev_cat_rfon, rev_cap_bar, rto, _P):
+def _csg_deduc_patrimoine(f6de, _P):
+    '''
+    CSG déductible sur les revenus du patrimoine
+    http://bofip.impots.gouv.fr/bofip/887-PGP
+    '''
+    return max_(f6de, 0)
+
+
+def _csg_deduc_patrimoine_simulated(rev_cat_rfon, rev_cap_bar, rto, _P):
     '''
     Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
     http://bofip.impots.gouv.fr/bofip/887-PGP
     '''
     taux = _P.csg.capital.deduc
-    patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto 
+    patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
     log.info(taux * patrimoine_deduc)
     return taux * patrimoine_deduc
 
-def _csg_deduc(rbg, csg_deduc_patrimoine): #f6de
+def _csg_deduc(rbg, csg_deduc_patrimoine):  # f6de
     ''' CSG déductible '''
     # min_(f6de, max_(rbg, 0))
     return min_(csg_deduc_patrimoine, max_(rbg, 0))
@@ -353,7 +367,9 @@ def _ir_brut(nbptr, rni, _P):
     return nbptr * bar.calc(rni / nbptr)  # TODO: partir d'ici, petite différence avec Matlab REMOVE
 
 def _ir_ss_qf(ir_brut, rni, nb_adult, _P):
-    ''' Impôt sans quotient familial '''
+    '''
+    Impôt sans quotient familial
+    '''
     P = _P.ir
     # I = ir_brut # TODO: REMOVE
     A = P.bareme.calc(rni / nb_adult)
@@ -361,7 +377,9 @@ def _ir_ss_qf(ir_brut, rni, nb_adult, _P):
 
 
 def _ir_plaf_qf(ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, _P):
-    ''' Impôt après plafonnement du quotient familial et réduction complémentaire '''
+    ''' 
+    Impôt après plafonnement du quotient familial et réduction complémentaire
+    '''
 
     A = ir_ss_qf
     I = ir_brut
@@ -572,7 +590,7 @@ def _irpp(iai, credits_impot, cehr, microsocial):
     '''
     Montant avant seuil de recouvrement (hors ppe)
     '''
-    #log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
+    # log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
     return -(iai - credits_impot + cehr + microsocial)
 
 
@@ -586,12 +604,12 @@ def _alv(f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     '''
     return -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
 
-def _rfr(rni, alloc, f3va,  f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
+def _rfr(rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
     f3vg -> rev_cat_pv -> ... -> rni
     '''
-    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +  f3vz
+    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 
 def _glo(f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk):
     # TODO: f1uv, f1uw, f1ux deletion to check

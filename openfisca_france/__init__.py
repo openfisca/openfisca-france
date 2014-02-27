@@ -137,8 +137,12 @@ X_AXES_PROPERTIES = {
     }
 
 
-def init_country(qt = False, start_from = "imposable", drop_survey_only_variables = False):
+def init_country(qt = False,
+                 start_from = "imposable",
+                 drop_survey_only_variables = False,
+                 simulate_f6de = False):
     """Add country-specific content to OpenFisca-Core package."""
+    from openfisca_core.columns import Prestation
     from openfisca_core import model as core_model
     from openfisca_core import simulations as core_simulations
     from openfisca_core import taxbenefitsystems as core_taxbenefitsystems
@@ -186,6 +190,21 @@ def init_country(qt = False, start_from = "imposable", drop_survey_only_variable
         for variable in needed_columns:
             if variable not in column_by_name:
                 column_by_name.update(variable, prestation_by_name.pop(variable).to_column())
+
+    if simulate_f6de:
+        del column_by_name['f6de']
+        csg_deduc_patrimoine_simulated = prestation_by_name.pop('csg_deduc_patrimoine_simulated')
+        prestation_by_name['csg_deduc_patrimoine'] = Prestation(csg_deduc_patrimoine_simulated._func,
+                                                                entity = csg_deduc_patrimoine_simulated.entity,
+                                                                label = csg_deduc_patrimoine_simulated.label,
+                                                                start = csg_deduc_patrimoine_simulated.start,
+                                                                end = csg_deduc_patrimoine_simulated.end,
+                                                                val_type = csg_deduc_patrimoine_simulated.val_type,
+                                                                freq = csg_deduc_patrimoine_simulated.freq,
+                                                                survey_only = False)
+    else:
+        del prestation_by_name['csg_deduc_patrimoine_simulated']
+
 
     core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 

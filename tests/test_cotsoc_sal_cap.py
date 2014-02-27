@@ -23,6 +23,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import nose
+import  logging
+import sys
 
 import openfisca_france
 openfisca_france.init_country()
@@ -105,7 +107,7 @@ def test_cotsoc():
                  "csg_cap_bar":-.082 * 20000,
                  "crds_cap_bar":-.005 * 20000 } },
                      ],
-            
+
 # # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise
 # ## donnant droit à abattement (2fu)
             "f2fu" :[
@@ -166,7 +168,7 @@ def test_cotsoc():
              "vars" :
                 {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
                  "csg_cap_bar":-.082 * 20000,
-                 "crds_cap_bar":-.005 * 20000 } },
+                 "crds_cap_bar":-.005 * 20000, } },
             {"year" : 2011, "amount": 20000,
              "vars" :
                 {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
@@ -180,11 +182,19 @@ def test_cotsoc():
                      ],
 # # test sur les revenus fonciers (4BA)
             "f4ba":[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"prelsoc_fon":-1360,
+                 "csg_fon":-1640,
+                 "crds_fon":-100,
+                 "ir_plaf_qf": 1450,
+                 "irpp":-1450} },
             {"year" : 2012, "amount": 20000,
              "vars" :
                 {"prelsoc_fon":-(4.5 + 2 + 0.3) * 0.01 * 20000,
                  "csg_fon":-.082 * 20000,
-                 "crds_fon":-.005 * 20000 } },
+                 "crds_fon":-.005 * 20000,
+                 "irpp" :-1461 } },
             {"year" : 2011, "amount": 20000,
              "vars" :
                 {"prelsoc_fon":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
@@ -244,17 +254,6 @@ def test_cotsoc():
                  "csg_pv_immo":-.082 * 20000,
                  "crds_pv_immo":-.005 * 20000 } },
                      ],
-# Revenus fonciers imposables" (f4ba)
-            "f4ba" :[
-            {"year" : 2013, "amount": 20000,
-             "vars" :
-                {"prelsoc_fon":-1360,
-                 "csg_fon":-1640,
-                 "crds_fon":-100,
-                 "ir_plaf_qf": 1450,
-                 "irpp":-1450} },
-                 ],
-
             }
 
 
@@ -400,21 +399,21 @@ def test_cotsoc_cap_celib():
                 val = df.loc[variable][0]
             else:
                 val = simulation.output_table.table[variable][0]
-            to_test = abs(val - value)
-            if not (to_test < 1):
-                print "Il y a une différence : ", to_test
+            difference = abs(val - value)
+            passed = (difference < 1)
+            if not passed:
+                print "Il y a une différence : ", difference
                 print "Pour le scénario", test['input_vars']
                 print year
                 print variable
                 print "OpenFisca :", val
                 print "Real value :", value , "\n \n"
-                # expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(val), value)
-                # print expression
-    # assert passed, "Test failed for"
+                expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(val), value)
+                assert passed, expression
 
 if __name__ == '__main__':
-
-#    test_cotsoc()
+    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    test_cotsoc()
     test_cotsoc_cap_celib()
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_cotsoc_sal_cap.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
