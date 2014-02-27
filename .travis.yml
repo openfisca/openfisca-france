@@ -11,4 +11,4 @@ install:
   - pip install numexpr  # For PyTables
   - pip install -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
   - pip install -r requirements.txt
-script: nosetests tests.core_tests tests.legislation_tests tests.cotsoc_sal_cap
+script: nosetests tests.core_tests tests.legislation_tests tests.test_cotsoc_sal_cap
