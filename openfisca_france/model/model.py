@@ -269,7 +269,8 @@ prestation_by_name = collections.OrderedDict((
     ('rev_cat', Prestation(ir._rev_cat, entity = 'foy', label = u"Revenus catégoriels")),
 
     ('deficit_rcm', Prestation(ir._deficit_rcm, entity = 'foy', label = u'Deficit capitaux mobiliers')),
-    ('csg_deduc_patrimoine_simulated', Prestation(ir._csg_deduc_patrimoine_simulated, entity = 'foy', label = u'Csg déductible sur le patrimoine simulée')),
+    ('csg_deduc_patrimoine_simulated', Prestation(ir._csg_deduc_patrimoine_simulated, entity = 'foy',
+        label = u'Csg déductible sur le patrimoine simulée')),
     ('csg_deduc_patrimoine', Prestation(ir._csg_deduc_patrimoine, entity = 'foy', label = u'Csg déductible sur le patrimoine')),
     ('csg_deduc', Prestation(ir._csg_deduc, entity = 'foy', label = u'Csg déductible sur le patrimoine')),
 

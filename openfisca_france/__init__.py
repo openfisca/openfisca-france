@@ -154,7 +154,6 @@ def init_country(qt = False,
     from .model.data import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
     from .model.model import prestation_by_name
-
     if qt:
         from .widgets.Composition import CompositionWidget
 
@@ -177,19 +176,26 @@ def init_country(qt = False,
         raise NotImplementedError
 
     if drop_survey_only_variables:
-        survey_only_variables = [ name for name, col in column_by_name.iteritems() if col.survey_only ]
+        survey_only_variables = [
+            name
+            for name, column in column_by_name.iteritems()
+            if column.survey_only
+            ]
         for variable in survey_only_variables:
             del column_by_name[variable]
 
-        survey_only_variables = [ name for name, presta in prestation_by_name.iteritems() if presta.survey_only ]
+        survey_only_variables = [
+            name
+            for name, prestation in prestation_by_name.iteritems()
+            if prestation.survey_only
+            ]
         for variable in survey_only_variables:
             del prestation_by_name[variable]
-
 
         needed_columns = ['type_sal', 'primes']
         for variable in needed_columns:
             if variable not in column_by_name:
-                column_by_name.update(variable, prestation_by_name.pop(variable).to_column())
+                column_by_name[variable] = prestation_by_name.pop(variable).to_column()
 
     if simulate_f6de:
         del column_by_name['f6de']
@@ -204,7 +210,6 @@ def init_country(qt = False,
                                                                 survey_only = False)
     else:
         del prestation_by_name['csg_deduc_patrimoine_simulated']
-
 
     core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
 
