@@ -79,5 +79,6 @@ def test_legislation_xml_file():
 
 
 if __name__ == '__main__':
+    test_legislation_xml_file()
     import nose
     nose.core.runmodule(argv = [__file__, '-v', 'legislation_tests:test_legislation_xml_file'])

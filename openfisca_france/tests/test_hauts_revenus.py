@@ -26,13 +26,11 @@
 from __future__ import division
 
 import sys
-import datetime
 import logging
 import nose
-import pdb
 
 import openfisca_france
-openfisca_france.init_country()#start_from = "brut")
+openfisca_france.init_country()  # start_from = "brut")
 
 from openfisca_core.simulations import ScenarioSimulation
 from openfisca_france.model.cotisations_sociales.travail import CAT
@@ -53,8 +51,6 @@ def test_isf_celib():
                      "b1bc" : 5000,
                      "b1ab": 2500000,
                      "b2nf": 7000,
-                     
-
                     },
               "output_vars" :
                     {
@@ -63,7 +59,7 @@ def test_isf_celib():
                      "isf_inv_pme": 3500,
                     }
               },
- 
+
             ]
 
     passed = True
@@ -82,12 +78,12 @@ def test_isf_celib():
 
         df = simulation.get_results_dataframe(index_by_code = True)
         for var, value in test['output_vars'].iteritems():
-            
+
             if var in df.columns:
                 val = df.loc[var][0]
             else:
                 val = simulation.output_table.table[var][0]
-                
+
             test_assertion = abs(abs(val) - value) < 1
 #            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 

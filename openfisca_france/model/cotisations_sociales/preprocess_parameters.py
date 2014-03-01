@@ -67,6 +67,8 @@ def modify_parameters(simulation = None):
         simulation.set_config(year = 2013)
         simulation.set_param()
 
+        print len(simulation.column_by_name)
+
     for _P in [simulation.P, simulation.P_default]:
 
         sal = build_sal(_P)
@@ -79,7 +81,8 @@ def modify_parameters(simulation = None):
             for category in bareme_dict:
                 if category in CAT._nums:
                     _P.cotsoc.__dict__[cotisation_name].__dict__[category] = bareme_dict[category]
-
+# model dans legislation
+# recherchez à partir du dated_le... qui est dans legilation_test
 
 
 if __name__ == '__main__':

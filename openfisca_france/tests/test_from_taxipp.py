@@ -22,10 +22,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from comparator import compare, dic_ipp2of, run_OF
+import sys
 import os
-dirname = os.path.dirname(__file__)
+from openfisca_france.tests.ipp.taxipp_utils import run_OF, compare, dic_ipp2of
+
+
+ipp_dir = os.path.join(os.path.dirname(__file__), 'ipp')
 
 
 def test_from_taxipp(selection = "famille_modeste", threshold = 1, list_input = None, list_output = None, verbose = False):
@@ -33,8 +35,8 @@ def test_from_taxipp(selection = "famille_modeste", threshold = 1, list_input = 
     def list_dta(date):
         input = []
         output = []
-        for filename in os.listdir(dirname + "\\base_IPP"):
-            path_file = dirname + '/base_IPP/' + filename
+        for filename in os.listdir(ipp_dir + "\\base_IPP"):
+            path_file = ipp_dir + '/base_IPP/' + filename
             if filename.startswith("base_IPP_input") and filename.endswith(selection + ".dta"):
                 input += [path_file]
             if filename.startswith("base_IPP_output") and filename.endswith(selection + ".dta"):
