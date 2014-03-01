@@ -46,32 +46,105 @@ column_by_name = collections.OrderedDict((
     ('quifoy', EnumCol(QUIFOY)),
     ('quifam', EnumCol(QUIFAM)),
 
-    ('sali', IntCol(label = u"Salaire imposable", val_type = "monetary")),  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-    ('choi', IntCol(label = u"Chômage imposable", val_type = "monetary")),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    ('rsti', IntCol(label = u"Retraite imposable", val_type = "monetary")),  # (f1as, f1bs, f1cs, f1ds, f1es)
-    ('fra', IntCol(label = u"Frais réels", val_type = "monetary")),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
+    ('sali', IntCol(label = u"Salaire imposable",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"1AJ",
+                                   QUIFOY['conj']: u"1BJ",
+                                   QUIFOY['pac1']: u"1CJ",
+                                   QUIFOY['pac2']: u"1DJ",
+                                   QUIFOY['pac3']: u"1EJ",
+                                   })),  # (f1aj, f1bj, f1cj, f1dj, f1ej)
+    ('choi', IntCol(label = u"Chômage imposable",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"1AP",
+                                   QUIFOY['conj']: u"1BP",
+                                   QUIFOY['pac1']: u"1CP",
+                                   QUIFOY['pac2']: u"1DP",
+                                   QUIFOY['pac3']: u"1EP",
+                                   })),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
+    ('rsti', IntCol(label = u"Retraite imposable",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"1AS",
+                                   QUIFOY['conj']: u"1BS",
+                                   QUIFOY['pac1']: u"1CS",
+                                   QUIFOY['pac2']: u"1DS",
+                                   QUIFOY['pac3']: u"1ES",
+                                   })),  # (f1as, f1bs, f1cs, f1ds, f1es)
+    ('fra', IntCol(label = u"Frais réels",
+                   val_type = "monetary",
+                   cerfa_field = {QUIFOY['vous']: u"1AK",
+                                  QUIFOY['conj']: u"1BK",
+                                  QUIFOY['pac1']: u"1CK",
+                                  QUIFOY['pac2']: u"1DK",
+                                  QUIFOY['pac3']: u"1EK",
+                                  })),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-    ('alr', IntCol(label = u"Pension alimentaire reçue", val_type = "monetary")),  # (f1ao, f1bo, f1co, f1do, f1eo)
-    ('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),  # (f1ao, f1bo, f1co, f1do, f1eo)
+    ('alr', IntCol(label = u"Pension alimentaire reçue",
+                   val_type = "monetary",
+                   cerfa_field = {QUIFOY['vous']: u"1AO",
+                                  QUIFOY['conj']: u"1BO",
+                                  QUIFOY['pac1']: u"1CO",
+                                  QUIFOY['pac2']: u"1DO",
+                                  QUIFOY['pac3']: u"1EO",
+                                  })),  # (f1ao, f1bo, f1co, f1do, f1eo)
+    ('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),
 
-    ('hsup', IntCol(label = u"Heures supplémentaires", val_type = "monetary")),  # (f1au, f1bu, f1cu, f1du, f1eu)
-    ('inv', BoolCol(label = u'Invalide')),
-    ('alt', BoolCol(label = u'Enfant en garde alternée')),
-    ('cho_ld', BoolCol(label = u"Chômeur de longue durée")),  # (f1ai, f1bi, f1ci, f1di, f1ei)
-    ('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière")),  # (f1ax, f1bx, f1cx, f1dx, f1qx)
-    ('ppe_tp_ns', BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière")),  # (f5nw, f5ow, f5pw)
-    ('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année")),  # (f1av, f1bv, f1cv, f1dv, f1qv)
-    ('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année")),  # (f5nv, f5ov, f5pv)
-    ('jour_xyz', IntCol(default = 360, entity = "foy")),
-    ('age', AgesCol(label = u"âge" , val_type = "age")),
-    ('agem', AgesCol(label = u"âge (en mois)", val_type = "months")),
+    ('hsup', IntCol(label = u"Heures supplémentaires",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"1AU",
+                                   QUIFOY['conj']: u"1BU",
+                                   QUIFOY['pac1']: u"1CU",
+                                   QUIFOY['pac2']: u"1DU",
+                                   QUIFOY['pac3']: u"1EU",
+                                   })),  # (f1au, f1bu, f1cu, f1du, f1eu)
 
-    ('zone_apl', EnumCol(label = u"zone apl",
+    ('inv', BoolCol(label = u'Invalide')),  # TODO: cerfa_field
+
+    ('alt', BoolCol(label = u'Enfant en garde alternée')),  # TODO: cerfa_field
+
+    ('cho_ld', BoolCol(label = u"Chômeur de longue durée",
+                       cerfa_field = {QUIFOY['vous']: u"1AI",
+                                      QUIFOY['conj']: u"1BI",
+                                      QUIFOY['pac1']: u"1CI",
+                                      QUIFOY['pac2']: u"1DI",
+                                      QUIFOY['pac3']: u"1EI",
+                                   })),  # (f1ai, f1bi, f1ci, f1di, f1ei)
+    ('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière",
+                          cerfa_field = {QUIFOY['vous']: u"1AX",
+                                         QUIFOY['conj']: u"1BX",
+                                         QUIFOY['pac1']: u"1CX",
+                                         QUIFOY['pac2']: u"1DX",
+                                         QUIFOY['pac3']: u"1QX",
+                                         })),  # (f1ax, f1bx, f1cx, f1dx, f1qx)
+    ('ppe_tp_ns', BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière",
+                          cerfa_field = {QUIFOY['vous']: u"5NW",
+                                         QUIFOY['conj']: u"5OW",
+                                         QUIFOY['pac1']: u"5PW",
+                                         })),  # (f5nw, f5ow, f5pw)
+    ('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
+                         cerfa_field = {QUIFOY['vous']: u"1AV",
+                                        QUIFOY['conj']: u"1BV",
+                                        QUIFOY['pac1']: u"1CV",
+                                        QUIFOY['pac2']: u"1DV",
+                                        QUIFOY['pac3']: u"1QV",
+                                        })),  # (f1av, f1bv, f1cv, f1dv, f1qv)
+    ('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année",
+                         cerfa_field = {QUIFOY['vous']: u"5NV",
+                                        QUIFOY['conj']: u"5OV",
+                                        QUIFOY['pac1']: u"5PV",
+                                   })),  # (f5nv, f5ov, f5pv)
+    ('jour_xyz', IntCol(default = 360,
+                        entity = "foy",
+                        label = "Jours décomptés au tire de cette déclaration")),
+    ('age', AgesCol(label = u"Âge" , val_type = "age")),
+    ('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
+
+    ('zone_apl', EnumCol(label = u"Zone apl",
                          entity = 'men',
                          enum = Enum([u"Non renseigné",
-                                      u"zone 1",
-                                      u"zone 2",
-                                      u"zone 3", ]), default = 2,)),
+                                      u"Zone 1",
+                                      u"Zone 2",
+                                      u"Zone 3", ]), default = 2,)),
     ('loyer', IntCol(label = u"Loyer mensuel",
                      entity = 'men',
                      val_type = "monetary")),  # Loyer mensuel
