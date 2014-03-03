@@ -73,9 +73,9 @@ def _prelsoc_cap_bar(rev_cap_bar, _P):
     if _P.datesim.year < 2006:
         total = P.base_pat
     elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add
+        total = P.base_pat + P.add_pat
     else:
-        total = P.base_pat + P.add + P.rsa
+        total = P.base_pat + P.add_pat + P.rsa
     return -rev_cap_bar * total
 
 # plus-values de valeurs mobilières
@@ -104,9 +104,9 @@ def _prelsoc_pv_mo(f3vg, _P):
     if _P.datesim.year < 2006:
         total = P.base_pat
     elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add
+        total = P.base_pat + P.add_pat
     else:
-        total = P.base_pat + P.add + P.rsa
+        total = P.base_pat + P.add_pat + P.rsa
     return -f3vg * total
 
 
@@ -134,9 +134,9 @@ def _prelsoc_pv_immo(f3vz, _P):
     if _P.datesim.year < 2006:
         total = P.base_pat
     elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add
+        total = P.base_pat + P.add_pat
     else:
-        total = P.base_pat + P.add + P.rsa
+        total = P.base_pat + P.add_pat + P.rsa
     return -f3vz * total
 
 
@@ -147,7 +147,7 @@ def _csg_fon(rev_cat_rfon, _P):
     Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
     '''
     return -rev_cat_rfon * _P.csg.capital.glob
-    
+
 def _crds_fon(rev_cat_rfon, _P):
     '''
     Calcule la CRDS sur les revenus fonciers
@@ -165,9 +165,9 @@ def _prelsoc_fon(rev_cat_rfon, _P):
     if _P.datesim.year < 2006:
         total = P.base_pat
     elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add
+        total = P.base_pat + P.add_pat
     else:
-        total = P.base_pat + P.add + P.rsa
+        total = P.base_pat + P.add_pat + P.rsa
     return -rev_cat_rfon * total
 
 # revenus du capital soumis au prélèvement libératoire
@@ -197,9 +197,9 @@ def _prelsoc_cap_lib(rev_cap_lib, _P):
     if _P.datesim.year < 2006:
         total = P.base_pat
     elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add
+        total = P.base_pat + P.add_pat
     else:
-        total = P.base_pat + P.add + P.rsa
+        total = P.base_pat + P.add_pat + P.rsa
     return -rev_cap_lib * total
 
 

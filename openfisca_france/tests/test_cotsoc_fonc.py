@@ -146,7 +146,6 @@ def test_cotsoc_celib():
                      "cot_pat_rafp": 0,
                      "cotpat_transport": 2560 * .0175,
                      "cotpat" : 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68,
-#                               viellesse plaf, deplaf, ircantec, maladie, famille, fnal1, fnal2, transport, csa,
                      "cotsal" : 170.24 + 2.56 + 58.24 + 19.20 + 23.16,
 #                              viel_plaf viel_deplaf ircantecA maladie, cot excep de solidarite
                      "cotsal_contrib": 170.24 + 2.56 + 58.24,

@@ -166,7 +166,7 @@ prestation_by_name = collections.OrderedDict((
     ('rev_microsocial', Prestation(cs_travail._rev_microsocial, label = u"Revenu net des cotisations sociales pour le régime microsocial", start = date(2009, 1, 1))),
 
     # Allocations chômage
-    ('chobrut', Prestation(cs_remplac._chobrut, label = u"Allocations chômage brutes")),
+    ('chobrut', Prestation(inv_rev._chobrut, label = u"Allocations chômage brutes")),
     ('csgchod', Prestation(cs_remplac._csgchod, label = u"CSG déductible sur les allocations chômage")),
     ('csgchoi', Prestation(cs_remplac._csgchoi, label = u"CSG imposable sur les allocations chômage")),
     ('crdscho', Prestation(cs_remplac._crdscho, label = u"CRDS sur les allocations chômage")),
@@ -180,6 +180,7 @@ prestation_by_name = collections.OrderedDict((
     ('crdsrst', Prestation(cs_remplac._crdsrst, label = u"CRDS sur les pensions de retraite")),
     ('rst', Prestation(cs_remplac._rst, label = u"Pensions de retraite imposables")),
     ('rstnet', Prestation(cs_remplac._rstnet, label = u"Pensions de retraite nettes")),
+    ('casa', Prestation(cs_remplac._casa, label = u"Contribution additionnelle de solidarité et d'autonomie", start = date(2013, 4, 1))),
 
     # Revenus du capital soumis au prélèvement libératoire
     ('csg_cap_lib', Prestation(cs_capital._csg_cap_lib, label = u"CSG sur les revenus du capital soumis au prélèvement libératoire")),
@@ -241,7 +242,7 @@ prestation_by_name = collections.OrderedDict((
     ('cd2', Prestation(cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002, 1, 1), end = date(2008, 12, 31))),
     ('charges_deduc', Prestation(cd._charges_deduc, entity = 'foy', label = u"Charges déductibles")),
 
-    ('rfr_cd', Prestation(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")),  # TODO:
+    ('rfr_cd', Prestation(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")), # TODO:
 
     ('rng', Prestation(ir._rng, entity = 'foy', label = u"Revenu net global")),
     ('rni', Prestation(ir._rni, entity = 'foy', label = u"Revenu net imposable")),
@@ -329,7 +330,7 @@ prestation_by_name = collections.OrderedDict((
     ('iai', Prestation(ir._iai, entity = 'foy')),
     ('cehr', Prestation(ir._cehr, entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus")),
  #   ('cesthra', Prestation(ir._cesthra, entity = 'foy', start = date(2013, 1, 1))), PLF 2013, amendement rejeté
-    ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
+    ('imp_lib', Prestation(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),), # TODO: Check - de 2000euros
     ('assiette_vente', Prestation(ir._micro_social_vente, entity = 'foy', start = date(2009, 1, 1))),
     ('assiette_service', Prestation(ir._micro_social_service, entity = 'foy', start = date(2009, 1, 1))),
     ('assiette_proflib', Prestation(ir._micro_social_proflib, entity = 'foy', start = date(2009, 1, 1))),

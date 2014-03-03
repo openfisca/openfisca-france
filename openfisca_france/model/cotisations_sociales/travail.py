@@ -36,7 +36,6 @@ from openfisca_core.enumerations import Enum
 from .preprocessing import build_pat, build_sal
 
 
-
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
 
 
@@ -69,7 +68,6 @@ def _mhsup(hsup):
 ############################################################################
 # # Salaires
 ############################################################################
-
 
 
 def _type_sal(titc, statut, chpub, cadre):
@@ -118,14 +116,11 @@ def _taille_entreprise(nbsala):
               + 1 * (nbsala >= 7))
 
 
-
-
-
 def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pat_rafp, cot_pat_pension_civile, _P):
     '''
     Cotisation sociales patronales contributives
     '''
-    pat = build_pat(_P)
+    pat = _P.cotsoc.cotisations_employeur.__dict__
     cotpat = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])  # category[1] is the numerical index
@@ -151,6 +146,7 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
     return cotpat
 
 
+
 def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
     '''
     Cotisation sociales patronales main d'oeuvre
@@ -160,7 +156,7 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
         - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
         - D993: participation à l'effort de construction
     '''
-    pat = build_pat(_P)
+    pat = _P.cotsoc.cotisations_employeur.__dict__
     cotpat = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])  # category[1] is the numerical index
@@ -183,7 +179,7 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
     '''
     Versement transport
     '''
-    pat = build_pat(_P)
+    pat = _P.cotsoc.cotisations_employeur.__dict__
     transport = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])  # category[1] is the numerical index of the category
@@ -202,13 +198,15 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
 def _taux_accident_travail(exposition_accident, _P):
     '''
     Approximation du taux accident à partir de l'exposition au risque donnée
-    TO DO: a actualiser dans param.xml
+    TODO: a actualiser dans param.xml
     '''
     if _P.datesim.year >= 2012:
         P = _P.cotsoc.accident
         return (exposition_accident == 0) * P.faible + (exposition_accident == 1) * P.moyen + (exposition_accident == 2) * P.eleve + (exposition_accident == 3) * P.treseleve
     else:
         return 0 * exposition_accident
+
+
 def _cotpat_accident(salbrut, type_sal, taux_accident_travail):
     '''
     Cotisations patronales accident du travail et maladie professionelle
@@ -221,7 +219,7 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
     '''
     Cotisation sociales patronales non contributives
     '''
-    pat = build_pat(_P)
+    pat = _P.cotsoc.cotisations_employeur.__dict__
     cotpat = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])
@@ -248,6 +246,7 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
     log.info("accident : %s" % cotpat_accident)
     return cotpat + cotpat_accident
 
+
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
             cotpat_main_d_oeuvre, cotpat_transport):
     '''
@@ -255,8 +254,6 @@ def _cotpat(cotpat_contrib, cotpat_noncontrib,
     '''
     return (cotpat_contrib + cotpat_noncontrib
             + cotpat_main_d_oeuvre + cotpat_transport)
-
-
 
 
 def seuil_fds(_P):
@@ -274,7 +271,7 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
     '''
     Cotisations sociales salariales contributives
     '''
-    sal = build_sal(_P)
+    sal = _P.cotsoc.cotisations_salarie.__dict__
     cotsal = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])
@@ -307,7 +304,7 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
 
 
 def _cot_sal_pension_civile(salbrut, type_sal, _P):
-    sal = build_sal(_P)
+    sal = _P.cotsoc.cotisations_salarie.__dict__
     terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
     cot_sal_pension_civile = (
         (type_sal == CAT['public_titulaire_etat']) * sal['public_titulaire_etat']['pension'].calc(salbrut)
@@ -345,7 +342,7 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
     '''
     Cotisations sociales salariales non-contributives
     '''
-    sal = build_sal(_P)
+    sal = _P.cotsoc.cotisations_salarie.__dict__
     cotsal = zeros(len(salbrut))
     seuil_assuj_fds = seuil_fds(_P)
     log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
@@ -500,7 +497,7 @@ def _cot_pat_pension_civile(salbrut, type_sal, _P):
     Pension civile part patronale
     Note : salbrut est égal au traitement indiciaire brut 
     """
-    pat = build_pat(_P)
+    pat = _P.cotsoc.cotisations_employeur.__dict__
     terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
     cot_pat_pension_civile = (
          (type_sal == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(salbrut)
@@ -515,6 +512,7 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     Note: salbrut est le traitement indiciaire brut pour les fonctionnaires
     '''
+
     eligibles = ((type_sal == CAT['public_titulaire_etat'])
                  + (type_sal == CAT['public_titulaire_territoriale'])
                  + (type_sal == CAT['public_titulaire_hospitaliere']))
@@ -524,7 +522,9 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: use build_pat
     pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
     assiette = min_(base_imposable / 12, plaf_ass * tib)
-    cot_pat_rafp = eligibles * pat['fonc']['etat']['rafp'].calc(assiette)
+
+    bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
+    cot_pat_rafp = eligibles * bareme_rafp.calc(assiette)
     return -12 * cot_pat_rafp
 
 

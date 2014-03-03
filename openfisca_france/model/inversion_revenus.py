@@ -25,10 +25,11 @@
 from __future__ import division
 
 import logging
-from numpy import zeros
+from numpy import zeros, logical_not as not_
 
 from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from openfisca_france.model.cotisations_sociales.remplacement import exo_csg_chom
 
 
 log = logging.getLogger(__name__)
@@ -41,30 +42,10 @@ log = logging.getLogger(__name__)
 #            self.sal += self.hsup
 #            self.hsup = 0*self.hsup
 
-# Exonération de CSG et de CRDS sur les revenus du chômage
-# et des préretraites si cela abaisse ces revenus sous le smic brut
-# TODO: mettre un trigger pour l'éxonération des revenus du chômage sous un smic
-
-# TODO: RAFP assiette + prime
-# TODO: pension assiette = salaire hors prime
-# autres salaires + primes
-
-
 # TODO: contribution patronale de prévoyance complémentaire
 # Formation professionnelle (entreprise de 10 à moins de 20 salariés) salaire total 1,05%
 # Formation professionnelle (entreprise de moins de 10 salariés)      salaire total 0,55%
-# Taxe sur les salaries (pour ceux non-assujettis à la TVA)           salaire total 4,25%
 # TODO: accident du travail ?
-
-# temp = 0
-# if hasattr(P, "prelsoc"):
-#    for val in P.prelsoc.__dict__.itervalues(): temp += val
-#    P.prelsoc.total = temp
-# else :
-#    P.__dict__.update({"prelsoc": {"total": 0} })
-#
-# a = {'sal':sal, 'pat':pat, 'csg':csg, 'crds':crds, 'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps, 'ir': P.ir, 'prelsoc': P.prelsoc}
-# return Dicts2Object(**a)
 
 
 ############################################################################
@@ -72,7 +53,6 @@ log = logging.getLogger(__name__)
 ############################################################################
 
 def _salbrut(sali, hsup, type_sal, _defaultP):
-    # indemnite_residence, sup_familial
     '''
     Calcule le salaire brut à partir du salaire imposable
     sauf pour les fonctionnaires où il renvoie le tratement indiciaire brut
@@ -181,25 +161,18 @@ def _chobrut(choi, csg_rempl, _defaultP):
     '''
     Calcule les allocations chômage brute à partir des allocations imposables
     '''
-    # TODO: ajouter la crds ? Malka Louise
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-
-
-    taux_plein = combineBaremes(csg['plein'])
-    taux_reduit = combineBaremes(csg['reduit'])
+    taux_plein = csg['plein']['deduc']
+    taux_reduit = csg['reduit']['deduc']
 
     chom_plein = taux_plein.inverse()
     chom_reduit = taux_reduit.inverse()
-    # log.info(chom_plein)
-    # log.info(chom_reduit)
     chobrut = (csg_rempl == 1) * choi + (csg_rempl == 2) * chom_reduit.calc(choi) + (csg_rempl == 3) * chom_plein.calc(choi)
-    # isexo = exo_csg_chom(choi, _defaultP)
-    # chobrut = not_(isexo)*chobrut + (isexo)*choi
-#     print  P.plein.impos,  P.plein.deduc
-#     print "taux réduit : "
-#     print  P.reduit.impos,  P.reduit.deduc
+    isexo = exo_csg_chom(chobrut, csg_rempl, _defaultP)
+    chobrut = not_(isexo) * chobrut + (isexo) * choi
+
     return chobrut
 
 
@@ -233,7 +206,7 @@ def _rstbrut(rsti, csg_rempl, _defaultP):
     Calcule les pensions de retraites brutes à partir des pensions imposables
     '''
     P = _defaultP.csg.retraite
-    rst_plein = P.plein.deduc.inverse()  # TODO:     rajouter la non  déductible dans param
+    rst_plein = P.plein.deduc.inverse()  # TODO: rajouter la non  déductible dans param
     rst_reduit = P.reduit.deduc.inverse()  #
     rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
     return rstbrut
@@ -250,8 +223,16 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     # TODO: rajouter la non  déductible dans param
     taux_plein = combineBaremes(csg['plein'])
     taux_reduit = combineBaremes(csg['reduit'])
+
     taux_plein.addBareme(crds)
     taux_reduit.addBareme(crds)
+
+    casa = Bareme(name = "casa")
+    casa.addTranche(0, _defaultP.prelsoc.add_ret)
+
+    taux_plein.addBareme(casa)
+    taux_reduit.addBareme(casa)
+
     rst_plein = taux_plein.inverse()
     rst_reduit = taux_reduit.inverse()
     rstbrut = (csg_rempl == 2) * rst_reduit.calc(rstnet) + (csg_rempl == 3) * rst_plein.calc(rstnet)

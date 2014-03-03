@@ -392,8 +392,11 @@
       <VALUE valeur=".034" deb="2011-01-01" fin="2011-12-31"/>
       <VALUE valeur=".045" deb="2012-01-01" fin="2013-12-31"/>
     </CODE>
-    <CODE description="Contribution additionnelle solidarité autonomie" code="add" format="percent">
+    <CODE description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" code="add_pat" format="percent">
       <VALUE valeur=".003" deb="2004-07-01" fin="2013-12-31"/>
+    </CODE>
+      <CODE description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" code="add_ret" format="percent">
+      <VALUE valeur=".003" deb="2013-04-01" fin="2013-12-31"/>
     </CODE>
     <CODE description="Contribution au financement du revenu de solidarité active" code="rsa" format="percent">
       <VALUE valeur=".011" deb="2009-01-01" fin="2011-12-31"/>

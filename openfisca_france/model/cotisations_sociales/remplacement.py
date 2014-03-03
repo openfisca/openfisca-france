@@ -28,6 +28,24 @@ log = logging.getLogger(__name__)
 ############################################################################
 
 
+def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
+    '''
+    Taux retenu sur la CSG des revenus de remplacment:
+    0 : Non renseigné/non pertinent
+    1 : Exonéré  (sous plafond de ressource)
+    2 : Taux réduit (irpp < seuil de non versement)
+    3 : Taux plein
+    '''
+    # TODO: problème avec le rfr n-2
+    P = _P.cotsoc.gen
+    seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbpt_n_2 - 1) / 2))
+    res = (0
+           + max_((chobrut > 0) + (rstbrut > 0), 0)  # pertinence la personne est au chômage ou pensionnées
+           + (rfr_n_2 >= seuil_th)  # la personne n'ont pas assez de  ressources
+           + 1)  # la personne ne satisfait pas à la conditon de ressources mais son impot avant credit > seuil de non imposition
+    return res
+
+
 def exo_csg_chom(chobrut, csg_rempl, _P):
     '''
     Indicatrice d'exonération de la CSG sur les revenus du chômage sans exo
@@ -74,47 +92,6 @@ def crdscho_sans_exo(chobrut, csg_rempl, _P):
     return -crds.calc(chobrut) * (2 <= csg_rempl)
 
 
-def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
-    '''
-    Taux retenu sur la CSG des revenus de remplacment:
-    0 : Non renseigné/non pertinent
-    1 : Exonéré  (sous plafond de ressource)
-    2 : Taux réduit (irpp < seuil de non versement)
-    3 : Taux plein
-    '''
-    # TODO: problème avec le rfr n-2
-    P = _P.cotsoc.gen
-    seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbpt_n_2 - 1) / 2))
-    res = (0
-           + max_((chobrut > 0) + (rstbrut > 0), 0)  # pertinence la personne est au chômage ou pensionnées
-           + (rfr_n_2 >= seuil_th)  # la personne n'ont pas assez de  ressources
-           + 1)  # la personne ne satisfait pas à la conditon de ressources mais son impot avant credit > seuil de non imposition
-    return res
-
-
-def _chobrut(choi, csg_rempl, _defaultP):
-    '''
-    Calcule les allocations chômage brute à partir des allocations imposables
-    '''
-    # TODO: ajouter la crds ?
-    P = _defaultP.csg.chom
-    plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    taux_plein = csg['plein']['deduc']
-    taux_reduit = csg['reduit']['deduc']
-
-    chom_plein = taux_plein.inverse()
-    chom_reduit = taux_reduit.inverse()
-
-    chobrut_temp = ((csg_rempl == 1) * choi
-                        + (csg_rempl == 2) * chom_reduit.calc(choi)
-                        + (csg_rempl == 3) * chom_plein.calc(choi))
-    isexo = exo_csg_chom(chobrut_temp, csg_rempl, _defaultP)
-    chobrut = not_(isexo) * chobrut_temp + (isexo) * choi
-
-    return chobrut
-
-
 def _csgchod(chobrut, csg_rempl, _P):
     '''
     CSG déductible sur les allocations chômage
@@ -146,8 +123,7 @@ def _cho(chobrut, csgchod, _P):
     '''
     Chômage imposable (recalculé)
     '''
-    # isexo = exo_csg_chom(chobrut, _P)  # TODO: check
-    return chobrut + csgchod  # + not_(isexo)*csgchod
+    return chobrut + csgchod
 
 
 def _chonet(cho, csgchoi, crdscho):
@@ -160,6 +136,7 @@ def _chonet(cho, csgchoi, crdscho):
 ############################################################################
 # # Pensions
 ############################################################################
+
 def _rstbrut(rsti, csg_rempl, _defaultP):
     '''
     Calcule les pensions de retraites brutes à partir des pensions imposables
@@ -208,6 +185,13 @@ def _crdsrst(rstbrut, csg_rempl, _P):
     return -crds['rst'].calc(rstbrut) * not_(isexo)
 
 
+def _casa(rstbrut, csg_rempl, _P):
+    """
+    Contribution additionnelle de solidarité et d'autonomie
+    """
+    return (csg_rempl == 3) * _P.prelsoc.add_ret * rst_brut
+
+
 def _rst(rstbrut, csgrstd):
     '''
     Calcule les pensions imposables
@@ -215,9 +199,8 @@ def _rst(rstbrut, csgrstd):
     return rstbrut + csgrstd
 
 
-def _rstnet(rst, csgrsti, crdsrst):
+def _rstnet(rst, csgrsti, crdsrst, casa):
     '''
     Retraites nettes
     '''
-    return rst + csgrsti + crdsrst
-
+    return rst + csgrsti + crdsrst + casa

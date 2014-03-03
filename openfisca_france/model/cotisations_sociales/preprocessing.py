@@ -42,7 +42,7 @@ CAT = Enum(['prive_non_cadre',
             'public_titulaire_hospitaliere',
             'public_non_titulaire'])
 
-DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
+DEBUG_SAL_TYPE = 'public_titulaire_etat'
 
 from openfisca_core.legislations import CompactNode
 
@@ -91,9 +91,9 @@ def build_pat(_P):
     for var in ['etat', 'colloc', 'contract' ]:
         del pat['fonc'][var]
 
-    # Renaiming
+    # Renaming
     pat['public_titulaire_etat'] = pat.pop('etat_t')
-    del pat['public_titulaire_etat']['rafp']
+#    del pat['public_titulaire_etat']['rafp']
 
     pat['public_titulaire_territoriale'] = pat.pop('colloc_t')
     import copy
@@ -159,10 +159,10 @@ def preprocess_legislation_parameters(legislation_parameters_list):
         sal = build_sal(_P)
         pat = build_pat(_P)
 
-        _P.cotsoc.__dict__['cotisations_patronales'] = CompactNode()
-        _P.cotsoc.__dict__['cotisations_salariales'] = CompactNode()
+        _P.cotsoc.__dict__[u'cotisations_employeur'] = CompactNode()
+        _P.cotsoc.__dict__[u'cotisations_salarie'] = CompactNode()
 
-        for cotisation_name, bareme_dict in {'cotisations_patronales' : pat, 'cotisations_salariales': sal}.iteritems():
+        for cotisation_name, bareme_dict in {'cotisations_employeur' : pat, 'cotisations_salarie': sal}.iteritems():
             for category in bareme_dict:
                 if category in CAT._nums:
                     _P.cotsoc.__dict__[cotisation_name].__dict__[category] = bareme_dict[category]

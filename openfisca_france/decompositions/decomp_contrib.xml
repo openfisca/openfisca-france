@@ -39,12 +39,13 @@
       <NODE desc= "CRDS (chômage)" shortname="CRDS chôm." code= "crdscho" color = "229,48,56"/>
     </NODE>
     <NODE desc= "Retraites nettes" shortname="Retraites nettes" code = "rstnet" color = "87,88,138">
-      <NODE desc= "Retraites" shortname="Retr. décl." code = "rst">
+      <NODE desc= "Retraites imposables" shortname="Retr. décl." code = "rst">
         <NODE desc= "Retraites brutes" shortname="Retr. brutes" code = "rstbrut"/>
         <NODE desc= "CSG déductible (retraite)" shortname="CSG déd. ret." code= "csgrstd" color = "235,114,118"/>
       </NODE>
       <NODE desc= "CSG non déductible (pensions)" shortname="CSG imp. pens." code= "csgrsti" color = "235,114,118"/>
       <NODE desc= "CRDS (pensions)" shortname="CRDS (pens.)" code= "crdsrst" color = "229,48,56"/>
+      <NODE desc= "Contribution additionnelle de solidarité pour l'autonomie" shortname="CASA (pens.)" code= "crdsrst" color = "229,48,56"/>
     </NODE>
     <NODE desc= "Pensions alimentaires reçues" shortname="P. alim. reç." code = "alr" color = "136,120,178"/>
     <NODE desc= "Pensions alimentaires versée" shortname="P. alim. vers." code = "alv" color = "136,120,178"/>
