@@ -135,7 +135,7 @@ column_by_name = collections.OrderedDict((
                                    })),  # (f5nv, f5ov, f5pv)
     ('jour_xyz', IntCol(default = 360,
                         entity = "foy",
-                        label = "Jours décomptés au tire de cette déclaration")),
+                        label = u"Jours décomptés au tire de cette déclaration")),
     ('age', AgesCol(label = u"Âge" , val_type = "age")),
     ('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
 
