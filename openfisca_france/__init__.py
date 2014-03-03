@@ -140,7 +140,8 @@ X_AXES_PROPERTIES = {
 def init_country(qt = False,
                  start_from = "imposable",
                  drop_survey_only_variables = False,
-                 simulate_f6de = False):
+                 simulate_f6de = False,
+                 test_param = False):
     """Add country-specific content to OpenFisca-Core package."""
     from openfisca_core.columns import Prestation
     from openfisca_core import model as core_model
@@ -154,8 +155,14 @@ def init_country(qt = False,
     from .model.data import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
     from .model.model import prestation_by_name
+
+
     if qt:
         from .widgets.Composition import CompositionWidget
+
+    if test_param:
+        from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
+
 
     assert start_from in ["brut", "imposable"]  # TODO: net
 
@@ -240,3 +247,6 @@ def init_country(qt = False,
 
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget
+
+    if test_param:
+        core_simulations.preprocess_legislation_parameters = preprocess_legislation_parameters
