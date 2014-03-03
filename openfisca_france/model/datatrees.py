@@ -81,7 +81,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"""Revenus industriel et commerciaux professionnels"""),
+                ('label', u"""Revenus industriels et commerciaux professionnels"""),
                 ('children', [
                     'mbic_exon',  # Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)
                     'mbic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)
@@ -105,7 +105,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"""Revenus industriel et commerciaux non professionnels"""),
+                ('label', u"""Revenus industriels et commerciaux non professionnels"""),
                 ('children', [
                     'macc_exon',  # Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)
                     'aacc_exon',  # Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)
