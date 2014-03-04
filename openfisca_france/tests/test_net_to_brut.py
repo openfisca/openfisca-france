@@ -27,11 +27,12 @@ from __future__ import division
 import sys
 import logging
 
+from pandas import DataFrame
+
 import openfisca_france
 openfisca_france.init_country(start_from = "brut")
 
 from openfisca_core.simulations import ScenarioSimulation
-
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
 def test_case_study(year = 2013, verbose = False):
@@ -52,14 +53,12 @@ def test_case_study(year = 2013, verbose = False):
 
         simulation.set_param()
 
-        # The aefa prestation can be disabled by uncommenting the following line:
-        # simulation.disable_prestations( ['aefa'])
         df = simulation.get_results_dataframe(index_by_code = True)
 
         from openfisca_france.model.inversion_revenus import _salbrut_from_salnet
         df_b2n = df.transpose()
-        if verbose:
 
+        if verbose:
             print df_b2n.to_string()
 
         salnet = df_b2n['salnet'].get_values()
@@ -74,7 +73,6 @@ def test_case_study(year = 2013, verbose = False):
         if verbose:
             print df_n2b.to_string()
 
-
         for var in ['salnet', 'salbrut']:
             passed = ((df_b2n[var] - df_n2b[var]).abs() < .01).all()
 
@@ -85,6 +83,53 @@ def test_case_study(year = 2013, verbose = False):
             assert passed, "difference in %s for %s" % (var, type_sal_category)
 
 
+def test_cho_rst(year = 2013, verbose = False):
+    '''
+    Tests that _chobrut which computes "chômage brut" from "net" yields an amount compatible
+    with the one obtained from running openfisca satrting with a "chômage brut"
+    '''
+    remplacement = {'chonet' : 'chobrut', 'rstnet': 'rstbrut'}
+
+    for var, varbrut in remplacement.iteritems():
+
+        simulation = ScenarioSimulation()
+        maxrev = 24000
+        simulation.set_config(year = year, reforme = False, nmen = 11, maxrev = maxrev, x_axis = varbrut)
+        simulation.set_param()
+        df = simulation.get_results_dataframe(index_by_code = True)
+
+        df_b2n = df.transpose()
+
+        varnet = df_b2n[var].get_values()
+        csg_rempl = varnet * 0 + 3
+
+        defaultP = simulation.P_default
+
+        if var == "chonet":
+            from openfisca_france.model.inversion_revenus import _chobrut_from_chonet as _varnet_to_brut
+        elif var == "rstnet":
+            from openfisca_france.model.inversion_revenus import _rstbrut_from_rstnet as _varnet_to_brut
+
+        df_n2b = DataFrame({var: varnet, varbrut : _varnet_to_brut(varnet, csg_rempl, defaultP) })
+
+        if verbose:
+            print df_n2b.to_string()
+            print df_b2n.to_string()
+
+        for variable in [var, varbrut]:
+            passed = ((df_b2n[variable] - df_n2b[variable]).abs() < 1).all()
+
+            if (not passed) or verbose:
+                print "Brut to net"
+                print (df_b2n[[varbrut, var]] / 12).to_string()
+                print "Net to brut"
+                print (df_n2b / 12).to_string()
+
+            assert passed, "difference in %s " % (var)
+
+
+
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_case_study(2013, verbose = True)
+#    test_case_study(2013, verbose = True)
+    test_cho_rst(2013, verbose = False)

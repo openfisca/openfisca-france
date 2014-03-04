@@ -129,8 +129,9 @@ def _salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
 
     salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
-    csg = scaleBaremes(BaremeDict('csg', _defaultP.csg), plaf_ss)
-    crds = scaleBaremes(BaremeDict('crds', _defaultP.crds), plaf_ss)
+    csg_deduc = scaleBaremes(_defaultP.csg.act.deduc, plaf_ss)
+    csg_impos = scaleBaremes(_defaultP.csg.act.deduc, plaf_ss)
+    crds = scaleBaremes(_defaultP.crds.act, plaf_ss)
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
@@ -140,9 +141,9 @@ def _salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
 
     # On ajoute la CSG deductible et imposable
     for bareme in [prive_non_cadre, prive_cadre]:
-        bareme.addBareme(csg['act']['deduc'])
-        bareme.addBareme(csg['act']['impos'])
-        bareme.addBareme(crds['act'])
+        bareme.addBareme(csg_deduc)
+        bareme.addBareme(csg_impos)
+        bareme.addBareme(crds)
 
     inversed_bareme = {'prive_non_cadre': prive_non_cadre.inverse(),
                        'prive_cadre' : prive_cadre.inverse()}
@@ -183,7 +184,7 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(BaremeDict('crds', _defaultP.crds), plaf_ss)
+    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss) # crds.rst est la CRDS sur les revenus de remplacement
 
     taux_plein = combineBaremes(csg['plein'])
     taux_reduit = combineBaremes(csg['reduit'])
@@ -194,6 +195,8 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
 
     chobrut = (csg_rempl == 1) * chonet + (csg_rempl == 2) * chom_reduit.calc(chonet) + (csg_rempl == 3) * chom_plein.calc(chonet)
 
+    isexo = exo_csg_chom(chobrut, csg_rempl, _defaultP)
+    chobrut = not_(isexo) * chobrut + (isexo) * chonet
     return chobrut
 
 
@@ -219,19 +222,17 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     P = _defaultP.csg.retraite
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(BaremeDict('crds', _defaultP.crds), plaf_ss)
-    # TODO: rajouter la non  déductible dans param
+    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)
     taux_plein = combineBaremes(csg['plein'])
     taux_reduit = combineBaremes(csg['reduit'])
-
     taux_plein.addBareme(crds)
     taux_reduit.addBareme(crds)
 
-    casa = Bareme(name = "casa")
-    casa.addTranche(0, _defaultP.prelsoc.add_ret)
-
-    taux_plein.addBareme(casa)
-    taux_reduit.addBareme(casa)
+    if hasattr(_defaultP.prelsoc, 'add_ret'):
+        casa = Bareme(name = "casa")
+        casa.addTranche(0, _defaultP.prelsoc.add_ret)
+        taux_plein.addBareme(casa)
+        taux_reduit.addBareme(casa)
 
     rst_plein = taux_plein.inverse()
     rst_reduit = taux_reduit.inverse()
@@ -240,7 +241,6 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
 
 
 def get_brut_from_net(net, type_sal = 0, hsup = 0, csg_rempl = 0, rev = 'sal', year = 2011):
-
 
     from openfisca_core.simulations import ScenarioSimulation
     import openfisca_france

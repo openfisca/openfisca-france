@@ -33,7 +33,6 @@ import openfisca_france
 openfisca_france.init_country(start_from = "brut")
 
 from openfisca_core.simulations import ScenarioSimulation
-
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
 def test_sal(year = 2013, verbose = False):
@@ -98,8 +97,6 @@ def test_cho_rst(year = 2013, verbose = False):
         df = simulation.get_results_dataframe(index_by_code = True)
 
         df_b2i = df.transpose()
-#        if verbose:
-#            print df_b2i.to_string()
 
         vari = df_b2i[var].get_values()
         csg_rempl = vari * 0 + 3
@@ -113,8 +110,9 @@ def test_cho_rst(year = 2013, verbose = False):
 
         df_i2b = DataFrame({var: vari, varbrut : _vari_to_brut(vari, csg_rempl, defaultP) })
 
-#        if verbose:
-#            print df_i2b.to_string()
+        if verbose:
+            print df_i2b.to_string()
+            print df_b2i.to_string()
 
         for variable in [var, varbrut]:
             passed = ((df_b2i[variable] - df_i2b[variable]).abs() < 1).all()

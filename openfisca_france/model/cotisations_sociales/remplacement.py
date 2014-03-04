@@ -88,7 +88,7 @@ def crdscho_sans_exo(chobrut, csg_rempl, _P):
     CRDS sur les allocations chômage sans exo
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    crds = scaleBaremes(_P.crds.act, plaf_ss)
+    crds = scaleBaremes(_P.crds.rst, plaf_ss)
     return -crds.calc(chobrut) * (2 <= csg_rempl)
 
 
