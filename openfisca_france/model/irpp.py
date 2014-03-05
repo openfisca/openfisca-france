@@ -648,6 +648,7 @@ def _avf(f2ab):
     '''
     return f2ab
 
+
 def _imp_lib(f2da, f2dh, f2ee, _P):
     '''
     Prelèvement libératoire sur les revenus du capital
@@ -657,9 +658,8 @@ def _imp_lib(f2da, f2dh, f2ee, _P):
         out = -(P.assvie * f2dh + P.autre * f2ee)
     else:
         out = -(P.action * f2da + P.autre * f2ee) * not_(_P.ir.autre.finpfl) - P.assvie * f2dh
-
-
     return out
+
 
 def _fon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     '''
@@ -1138,7 +1138,7 @@ def _ppe_coef_tp(ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, _P):
     tp = ppe_tp_sa | ppe_tp_ns | (frac_sa + frac_ns >= 1)
     return tp + not_(tp) * (frac_sa + frac_ns)
 
-def _ppe_base(ppe_rev, ppe_coef_tp, ppe_coef, _option = {'ppe_coef':ALL}):
+def _ppe_base(ppe_rev, ppe_coef_tp, ppe_coef):
     out = ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
     return out
 

@@ -27,14 +27,16 @@ import datetime
 import json
 import xml.etree.ElementTree
 
+from openfisca_core import conv, legislations, legislationsxml
 import openfisca_france
-openfisca_france.init_country()
 
-from openfisca_core import conv, legislations, legislationsxml, model
+
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
 
 
 def test_legislation_xml_file():
-    legislation_tree = xml.etree.ElementTree.parse(model.PARAM_FILE)
+    legislation_tree = xml.etree.ElementTree.parse(tax_benefit_system.PARAM_FILE)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
 
@@ -76,9 +78,11 @@ def test_legislation_xml_file():
             ).encode('utf-8'))
 
     compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+    if tax_benefit_system.preprocess_legislation_parameters is not None:
+        tax_benefit_system.preprocess_legislation_parameters(compact_legislation)
 
 
 if __name__ == '__main__':
     test_legislation_xml_file()
     import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'legislation_tests:test_legislation_xml_file'])
+    nose.core.runmodule(argv = [__file__, '-v', 'legislations_tests:test_legislation_xml_file'])

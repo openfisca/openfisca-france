@@ -27,26 +27,6 @@ from __future__ import division
 from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta,
     IntPresta, EnumPresta)
 
-from . import WEIGHT
-
-
-def preproc_inputs(datatable):
-    """
-    Preprocess inputs table: country specific manipulations
-
-    Parameters
-    ----------
-    datatable : a DataTable object
-                the DataTable containing the input variables of the model
-
-    """
-    try:
-        datatable.propagate_to_members(WEIGHT, 'ind')
-    #    datatable.propagate_to_members('rfr_n_2', 'ind')
-    #    datatable.propagate_to_members('nbptr_n_2', 'ind')
-    except:
-        pass
-
 
 def check_consistency(table_simu, dataframe, corrige = True):
     '''

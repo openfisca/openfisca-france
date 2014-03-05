@@ -137,37 +137,31 @@ X_AXES_PROPERTIES = {
     }
 
 
-def init_country(qt = False,
-                 start_from = "imposable",
-                 drop_survey_only_variables = False,
-                 simulate_f6de = False):
-    """Add country-specific content to OpenFisca-Core package."""
+def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de = False, start_from = 'imposable'):
+    """Create a country-specific TaxBenefitSystem."""
     from openfisca_core.columns import Prestation
-    from openfisca_core import model as core_model
-    from openfisca_core import simulations as core_simulations
     from openfisca_core import taxbenefitsystems as core_taxbenefitsystems
     from openfisca_core.xaxes import XAxis
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
     from . import decompositions, scenarios, utils
+    from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
     from .model.data import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
     from .model.model import prestation_by_name
-
-    from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
-
     if qt:
         from .widgets.Composition import CompositionWidget
 
-    assert start_from in ["brut", "imposable"]  # TODO: net
+    assert start_from in ['brut', 'imposable']  # TODO: net
+    column_by_name = column_by_name.copy()
 
     if start_from in ['brut', 'net']:
         drop_survey_only_variables = True
 
-    if start_from == "brut":
-        variables_bruts = ["salbrut", "chobrut", "rstbrut"]
-        variables_imposables = ["sali", "choi", "rsti"]
+    if start_from == 'brut':
+        variables_bruts = ['salbrut', 'chobrut', 'rstbrut']
+        variables_imposables = ['sali', 'choi', 'rsti']
         column_by_name.update(
             (variable, prestation_by_name.pop(variable).to_column())
             for variable in variables_bruts + ['type_sal', 'primes']
@@ -175,7 +169,7 @@ def init_country(qt = False,
         for variable in variables_imposables:
             del column_by_name[variable]
             del X_AXES_PROPERTIES[variable]
-    elif start_from == "net":
+    elif start_from == 'net':
         raise NotImplementedError
 
     if drop_survey_only_variables:
@@ -203,44 +197,74 @@ def init_country(qt = False,
     if simulate_f6de:
         del column_by_name['f6de']
         csg_deduc_patrimoine_simulated = prestation_by_name.pop('csg_deduc_patrimoine_simulated')
-        prestation_by_name['csg_deduc_patrimoine'] = Prestation(csg_deduc_patrimoine_simulated._func,
-                                                                entity = csg_deduc_patrimoine_simulated.entity,
-                                                                label = csg_deduc_patrimoine_simulated.label,
-                                                                start = csg_deduc_patrimoine_simulated.start,
-                                                                end = csg_deduc_patrimoine_simulated.end,
-                                                                val_type = csg_deduc_patrimoine_simulated.val_type,
-                                                                freq = csg_deduc_patrimoine_simulated.freq,
-                                                                survey_only = False)
+        prestation_by_name['csg_deduc_patrimoine'] = Prestation(
+            csg_deduc_patrimoine_simulated._func,
+            entity = csg_deduc_patrimoine_simulated.entity,
+            label = csg_deduc_patrimoine_simulated.label,
+            start = csg_deduc_patrimoine_simulated.start,
+            end = csg_deduc_patrimoine_simulated.end,
+            val_type = csg_deduc_patrimoine_simulated.val_type,
+            freq = csg_deduc_patrimoine_simulated.freq,
+            survey_only = False,
+            )
     else:
         del prestation_by_name['csg_deduc_patrimoine_simulated']
 
-    core_taxbenefitsystems.preproc_inputs = utils.preproc_inputs
-
-    core_model.AGGREGATES_DEFAULT_VARS = AGGREGATES_DEFAULT_VARS
-    core_model.CURRENCY = CURRENCY
-    core_model.DATA_DIR = DATA_DIR
-    core_model.DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
-    core_model.DECOMP_DIR = os.path.dirname(os.path.abspath(decompositions.__file__))
-    core_model.DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE
-    core_model.ENTITIES_INDEX = ENTITIES_INDEX
-    core_model.FILTERING_VARS = FILTERING_VARS
-    core_model.column_by_name = column_by_name
-    core_model.columns_name_tree_by_entity = columns_name_tree_by_entity
-    core_model.PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
-    core_model.prestation_by_name = prestation_by_name
-    core_model.REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
-    core_model.REV_TYP = None  # utils.REV_TYP  # Not defined for France
-    core_model.REVENUES_CATEGORIES = REVENUES_CATEGORIES
-    core_model.Scenario = scenarios.Scenario
-    core_model.WEIGHT = WEIGHT
-    core_model.WEIGHT_INI = WEIGHT_INI
-    core_model.x_axes = dict(
-        (col_name, XAxis(col_name = col_name, label = column_by_name[col_name].label, **properties))
-        for col_name, properties in X_AXES_PROPERTIES.iteritems()
-        )
-
-    core_simulations.check_consistency = utils.check_consistency
-    core_simulations.preprocess_legislation_parameters = preprocess_legislation_parameters
-
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget
+
+    class TaxBenefitSystem(core_taxbenefitsystems.AbstractTaxBenefitSystem):
+        """French tax benefit system"""
+        AGGREGATES_DEFAULT_VARS = AGGREGATES_DEFAULT_VARS
+        check_consistency = staticmethod(utils.check_consistency)
+        CURRENCY = CURRENCY
+        DATA_DIR = DATA_DIR
+        DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
+        DECOMP_DIR = os.path.dirname(os.path.abspath(decompositions.__file__))
+        DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE
+        entities = [
+            'familles',
+            'foyers_fiscaux',
+            'individus',
+            'menages',
+            ]
+        ENTITIES_INDEX = ENTITIES_INDEX
+        FILTERING_VARS = FILTERING_VARS
+        # column_by_name = column_by_name  # Done below to avoid "name is not defined" exception
+        # columns_name_tree_by_entity = columns_name_tree_by_entity  # Done below to avoid "name is not defined" exception
+        PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
+        # preprocess_legislation_parameters = preprocess_legislation_parameters  # Done below to avoid "name is not defined" exception
+        # prestation_by_name = prestation_by_name  # Done below to avoid "name is not defined" exception
+        REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
+        REV_TYP = None  # utils.REV_TYP  # Not defined for France
+        REVENUES_CATEGORIES = REVENUES_CATEGORIES
+        Scenario = scenarios.Scenario
+        WEIGHT = WEIGHT
+        WEIGHT_INI = WEIGHT_INI
+        x_axes = dict(
+            (col_name, XAxis(col_name = col_name, label = column_by_name[col_name].label, **properties))
+            for col_name, properties in X_AXES_PROPERTIES.iteritems()
+            )
+
+        def preproc_inputs(self, datatable):
+            """Preprocess inputs table: country specific manipulations
+
+            Parameters
+            ----------
+            datatable : a DataTable object
+                        the DataTable containing the input variables of the model
+
+            """
+            try:
+                datatable.propagate_to_members(WEIGHT, 'ind')
+            #    datatable.propagate_to_members('rfr_n_2', 'ind')
+            #    datatable.propagate_to_members('nbptr_n_2', 'ind')
+            except:
+                pass
+
+    TaxBenefitSystem.column_by_name = column_by_name
+    TaxBenefitSystem.columns_name_tree_by_entity = columns_name_tree_by_entity
+    TaxBenefitSystem.preprocess_legislation_parameters = staticmethod(preprocess_legislation_parameters)
+
+    TaxBenefitSystem.prestation_by_name = prestation_by_name
+    return TaxBenefitSystem

@@ -23,27 +23,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from __future__ import division
-
 import collections
-from datetime import date, datetime
+import datetime
 import itertools
 import json
 import logging
 import os
-import pickle
 import re
 import time
 import urllib2
 import uuid
 
 import numpy as np
-from openfisca_core import __version__ as VERSION
-from openfisca_core import legislations, model
-from pandas import DataFrame, concat
-
-from . import conv, ENTITIES_INDEX
-from .model.data import column_by_name, QUIFAM, QUIFOY, QUIMEN
+from openfisca_core import legislations, simulations
+from . import conv, entities
 
 
 log = logging.getLogger(__name__)
@@ -53,54 +46,17 @@ year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]
 
 class Scenario(object):
     compact_legislation = None
-
-    def __init__(self):
-        super(Scenario, self).__init__()
-
-        self.indiv = {}
-        # indiv est un dict de dict. La clé est le noi de l'individu
-        # Exemple :
-        # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
-        # 'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
-        self.declar = {}
-        # declar est un dict de dict. La clé est le noidec.
-        self.famille = {}
-
-        # menage est un dict de dict la clé est la pref
-        self.menage = {0:{'loyer':500, 'so':4, 'code_postal':69001, 'zone_apl':2, 'zthabm' :0}}
-
-        # on ajoute un individu, déclarant et chef de famille
-        self.addIndiv(0, datetime(1975, 1, 1).date(), 'vous', 'chef')
-
-        self.nmen = None
-        self.x_axis = None
-        self.maxrev = None
-        self.same_rev_couple = None
-        self.year = None
-
-    def copy(self):
-        from copy import deepcopy
-        return deepcopy(self)
-
-    def check_consistency(self):
-        '''
-Vérifie que le ménage entré est valide
-'''
-        for noi, vals in self.indiv.iteritems():
-            age = self.year - vals['birth'].year
-            if age < 0:
-                return u"L'année de naissance doit être antérieure à celle de la simulation (voir Fichier->Paramètres pour régler la date de la simulation"
-            if vals['quifoy'] in ('vous', 'conj'):
-                if age < 18: return u'Le déclarant et son éventuel conjoint doivent avoir plus de 18 ans'
-            else:
-                if age > 25 and (vals['inv'] == 0): return u'Les personnes à charges doivent avoir moins de 25 ans si elles ne sont pas invalides'
-            if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
-                return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
-        return ''
+    tax_benefit_system = None
+    test_case = None
+    year = None
 
     @classmethod
-    def make_json_to_attributes(cls, cache_dir = None, legislation_url = None):
-        def json_to_attributes(value, state = None):
+    def make_dict_to_instance(cls, cache_dir = None, tax_benefit_system = None):
+        return cls.make_json_or_python_to_instance(cache_dir = cache_dir, tax_benefit_system = tax_benefit_system)
+
+    @classmethod
+    def make_json_or_python_to_instance(cls, cache_dir = None, tax_benefit_system = None):
+        def json_or_python_to_instance(value, state = None):
             if value is None:
                 return value, None
             if state is None:
@@ -108,6 +64,100 @@ Vérifie que le ménage entré est valide
 
             # First validation and conversion step
             data, error = conv.pipe(
+                conv.test_isinstance(dict),
+                conv.struct(
+                    dict(
+                        legislation_url = conv.pipe(
+                            conv.test_isinstance(basestring),
+                            conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
+                            ),
+                        test_case = conv.pipe(
+                            cls.make_json_or_python_to_test_case(tax_benefit_system = tax_benefit_system),
+                            conv.not_none,
+                            ),
+                        year = conv.pipe(
+                            conv.test_isinstance(int),
+                            conv.test_greater_or_equal(1900), # TODO: Check that year is valid in params.
+                            conv.not_none,
+                            ),
+                        ),
+                    ),
+                )(value, state = state)
+            if error is not None:
+                return data, error
+
+            if data['legislation_url'] is None:
+                compact_legislation = None
+            else:
+                legislation_json = None
+                if cache_dir is not None:
+                    legislation_uuid_hex = uuid.uuid5(uuid.NAMESPACE_URL, data['legislation_url'].encode('utf-8')).hex
+                    legislation_dir = os.path.join(cache_dir, 'legislations', legislation_uuid_hex[:2])
+                    legislation_filename = '{}.json'.format(legislation_uuid_hex[2:])
+                    legislation_file_path = os.path.join(legislation_dir, legislation_filename)
+                    if os.path.exists(legislation_file_path) \
+                            and os.path.getmtime(legislation_file_path) > time.time() - 900: # 15 minutes
+                        with open(legislation_file_path) as legislation_file:
+                            try:
+                                legislation_json = json.load(legislation_file,
+                                    object_pairs_hook = collections.OrderedDict)
+                            except ValueError:
+                                log.exception('Error while reading legislation JSON file: {}'.format(
+                                    legislation_file_path))
+                if legislation_json is None:
+                    request = urllib2.Request(data['legislation_url'], headers = {
+                        'User-Agent': 'OpenFisca-Web-API',
+                        })
+                    try:
+                        response = urllib2.urlopen(request)
+                    except urllib2.HTTPError:
+                        return data, dict(legislation_url = state._(u'HTTP Error while retrieving legislation JSON'))
+                    except urllib2.URLError:
+                        return data, dict(legislation_url = state._(u'Error while retrieving legislation JSON'))
+                    legislation_json, error = conv.pipe(
+                        conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
+                        legislations.validate_any_legislation_json,
+                        conv.not_none,
+                        )(response.read(), state = state)
+                    if error is not None:
+                        return data, dict(legislation_url = error)
+                    if cache_dir is not None:
+                        if not os.path.exists(legislation_dir):
+                            os.makedirs(legislation_dir)
+                        with open(legislation_file_path, 'w') as legislation_file:
+                            legislation_file.write(unicode(json.dumps(legislation_json, encoding = 'utf-8',
+                                ensure_ascii = False, indent = 2)).encode('utf-8'))
+                datesim = datetime.date(data['year'], 1, 1)
+                if legislation_json.get('datesim') is None:
+                    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+                else:
+                    dated_legislation_json = legislation_json
+                    legislation_json = None
+                compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+                if tax_benefit_system.preprocess_legislation_parameters is not None:
+                    tax_benefit_system.preprocess_legislation_parameters(compact_legislation)
+
+            self = cls()
+            self.compact_legislation = compact_legislation
+            self.tax_benefit_system = tax_benefit_system
+            self.test_case = data['test_case']
+            self.year = data['year']
+            return self, None
+
+        return json_or_python_to_instance
+
+    @classmethod
+    def make_json_or_python_to_test_case(cls, tax_benefit_system = None):
+        column_by_name = tax_benefit_system.column_by_name
+
+        def json_or_python_to_test_case(value, state = None):
+            if value is None:
+                return value, None
+            if state is None:
+                state = conv.default_state
+
+            # First validation and conversion step
+            test_case, error = conv.pipe(
                 conv.test_isinstance(dict),
                 conv.struct(
                     dict(
@@ -162,6 +212,7 @@ Vérifie que le ménage entré est valide
                                                 if column.entity == 'fam'
                                                 ),
                                             )),
+                                        drop_none_values = True,
                                         ),
                                     ),
                                 drop_none_values = True,
@@ -221,8 +272,8 @@ Vérifie que le ménage entré est valide
                                                 if column.entity == 'foy'
                                                 ),
                                             )),
+                                        drop_none_values = True,
                                         ),
-
                                     ),
                                 drop_none_values = True,
                                 ),
@@ -256,21 +307,26 @@ Vérifie que le ménage entré est valide
                                             dict(
                                                 birth = conv.pipe(
                                                     conv.condition(
-                                                        conv.test_isinstance(int),
-                                                        conv.pipe(
-                                                            conv.test_between(1870, 2099),
-                                                            conv.function(lambda year: date(year, 1, 1)),
-                                                            ),
-                                                        conv.pipe(
-                                                            conv.test_isinstance(basestring),
-                                                            conv.test(year_or_month_or_day_re.match,
-                                                                error = N_(u'Invalid year')),
-                                                            conv.function(lambda birth: u'-'.join((
-                                                                birth.split(u'-') + [u'01', u'01'])[:3])),
-                                                            conv.iso8601_input_to_date,
-                                                            conv.test_between(date(1870, 1, 1), date(2099, 12, 31)),
+                                                        conv.test_isinstance(datetime.date),
+                                                        conv.noop,
+                                                        conv.condition(
+                                                            conv.test_isinstance(int),
+                                                            conv.pipe(
+                                                                conv.test_between(1870, 2099),
+                                                                conv.function(lambda year: datetime.date(year, 1, 1)),
+                                                                ),
+                                                            conv.pipe(
+                                                                conv.test_isinstance(basestring),
+                                                                conv.test(year_or_month_or_day_re.match,
+                                                                    error = N_(u'Invalid year')),
+                                                                conv.function(lambda birth: u'-'.join((
+                                                                    birth.split(u'-') + [u'01', u'01'])[:3])),
+                                                                conv.iso8601_input_to_date,
+                                                                ),
                                                             ),
                                                         ),
+                                                    conv.test_between(datetime.date(1870, 1, 1),
+                                                        datetime.date(2099, 12, 31)),
                                                     conv.not_none,
                                                     ),
                                                 prenom = conv.pipe(
@@ -285,17 +341,13 @@ Vérifie que le ménage entré est valide
                                                     'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
                                                 ),
                                             )),
+                                        drop_none_values = True,
                                         ),
                                     ),
                                 drop_none_values = True,
                                 ),
                             conv.empty_to_none,
                             conv.not_none,
-                            ),
-                        legislation_url = conv.pipe(
-                            conv.test_isinstance(basestring),
-                            conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
-                            conv.default(legislation_url) if legislation_url is not None else conv.not_none,
                             ),
                         menages = conv.pipe(
                             conv.condition(
@@ -353,6 +405,7 @@ Vérifie que le ménage entré est valide
                                                 if column.entity == 'men'
                                                 ),
                                             )),
+                                        drop_none_values = True,
                                         ),
                                     ),
                                 drop_none_values = True,
@@ -360,22 +413,17 @@ Vérifie que le ménage entré est valide
                             conv.empty_to_none,
                             conv.not_none,
                             ),
-                        year = conv.pipe(
-                            conv.test_isinstance(int),
-                            conv.test_greater_or_equal(1900), # TODO: Check that year is valid in params.
-                            conv.not_none,
-                            ),
                         ),
                     ),
                 )(value, state = state)
             if error is not None:
-                return data, error
+                return test_case, error
 
             # Second validation step
-            familles_individus_id = set(data['individus'].iterkeys())
-            foyers_fiscaux_individus_id = set(data['individus'].iterkeys())
-            menages_individus_id = set(data['individus'].iterkeys())
-            data, error = conv.struct(
+            familles_individus_id = set(test_case['individus'].iterkeys())
+            foyers_fiscaux_individus_id = set(test_case['individus'].iterkeys())
+            menages_individus_id = set(test_case['individus'].iterkeys())
+            test_case, error = conv.struct(
                 dict(
                     familles = conv.uniform_mapping(
                         conv.noop,
@@ -411,7 +459,7 @@ Vérifie que le ménage entré est valide
                         ),
                     ),
                 default = conv.noop,
-                )(data, state = state)
+                )(test_case, state = state)
 
             remaining_individus_id = familles_individus_id.union(foyers_fiscaux_individus_id, menages_individus_id)
             if remaining_individus_id:
@@ -428,460 +476,370 @@ Vérifie que le ménage entré est valide
                                 ]
                             if word is not None
                             ))
-            if error is not None:
-                return data, error
 
-            if cache_dir is not None:
-                legislation_uuid_hex = uuid.uuid5(uuid.NAMESPACE_URL, data['legislation_url'].encode('utf-8')).hex
-                legislation_dir = os.path.join(cache_dir, 'legislations', legislation_uuid_hex[:2])
-                legislation_filename = '{}.json'.format(legislation_uuid_hex[2:])
-                legislation_file_path = os.path.join(legislation_dir, legislation_filename)
-                legislation_json = None
-                if os.path.exists(legislation_file_path) \
-                        and os.path.getmtime(legislation_file_path) > time.time() - 900: # 15 minutes
-                    with open(legislation_file_path) as legislation_file:
-                        try:
-                            legislation_json = json.load(legislation_file,
-                                object_pairs_hook = collections.OrderedDict)
-                        except ValueError:
-                            log.exception('Error while reading legislation JSON file: {}'.format(
-                                legislation_file_path))
-            if legislation_json is None:
-                request = urllib2.Request(data['legislation_url'], headers = {
-                    'User-Agent': 'OpenFisca-Web-API',
-                    })
-                try:
-                    response = urllib2.urlopen(request)
-                except urllib2.HTTPError:
-                    return data, dict(legislation_url = state._(u'HTTP Error while retrieving legislation JSON'))
-                except urllib2.URLError:
-                    return data, dict(legislation_url = state._(u'Error while retrieving legislation JSON'))
-                legislation_json, error = conv.pipe(
-                    conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
-                    legislations.validate_any_legislation_json,
-                    conv.not_none,
-                    )(response.read(), state = state)
-                if error is not None:
-                    return data, dict(legislation_url = error)
-                if cache_dir is not None:
-                    if not os.path.exists(legislation_dir):
-                        os.makedirs(legislation_dir)
-                    with open(legislation_file_path, 'w') as legislation_file:
-                        legislation_file.write(unicode(json.dumps(legislation_json, encoding = 'utf-8',
-                            ensure_ascii = False, indent = 2)).encode('utf-8'))
-            datesim = date(data['year'], 1, 1)
-            if legislation_json.get('datesim') is None:
-                dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
-            else:
-                dated_legislation_json = legislation_json
-                legislation_json = None
-            compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+            return test_case, error
 
-            attributes = dict(
-                compact_legislation = compact_legislation,
-                declar = {},
-                famille = {},
-                indiv = {},
-                menage = {},
-                year = data['year'],
-                )
-            indiv_index_by_id = dict(
-                (individu_id, individu_index)
-                for individu_index, individu_id in enumerate(data[u'individus'].iterkeys())
-                )
-            for individu_id, individu in data[u'individus'].iteritems():
-                individu['noi'] = indiv_index_by_id[individu_id]
-                individu.pop('prenom', None)
-                attributes['indiv'][indiv_index_by_id[individu_id]] = individu
-            for famille in data[u'familles'].itervalues():
-                parents_id = famille.pop(u'parents')
-                enfants_id = famille.pop(u'enfants')
-                noichef = indiv_index_by_id[parents_id[0]]
-                attributes['famille'][noichef] = famille
-                for indivu_id in itertools.chain(parents_id, enfants_id):
-                    attributes['indiv'][indiv_index_by_id[indivu_id]]['noichef'] = noichef
-                attributes['indiv'][noichef]['quifam'] = u'chef'
-                if len(parents_id) > 1:
-                    attributes['indiv'][indiv_index_by_id[parents_id[1]]]['quifam'] = u'part'
-                for enfant_number, enfant_id in enumerate(enfants_id, 1):
-                    attributes['indiv'][indiv_index_by_id[enfant_id]]['quifam'] = u'enf{}'.format(enfant_number)
-            for foyer_fiscal in data[u'foyers_fiscaux'].itervalues():
-                declarants_id = foyer_fiscal.pop(u'declarants')
-                personnes_a_charge_id = foyer_fiscal.pop(u'personnes_a_charge')
-                noidec = indiv_index_by_id[declarants_id[0]]
-                attributes['declar'][noidec] = foyer_fiscal
-                for indivu_id in itertools.chain(declarants_id, personnes_a_charge_id):
-                    attributes['indiv'][indiv_index_by_id[indivu_id]]['noidec'] = noidec
-                attributes['indiv'][noidec]['quifoy'] = u'vous'
-                if len(declarants_id) > 1:
-                    attributes['indiv'][indiv_index_by_id[declarants_id[1]]]['quifoy'] = u'conj'
-                for personne_a_charge_number, personne_a_charge_id in enumerate(personnes_a_charge_id, 1):
-                    attributes['indiv'][indiv_index_by_id[personne_a_charge_id]]['quifoy'] = u'pac{}'.format(
-                        personne_a_charge_number)
-            for menage in data[u'menages'].itervalues():
-                personne_de_reference_id = menage.pop(u'personne_de_reference')
-                conjoint_id = menage.pop(u'conjoint')
-                enfants_id = menage.pop(u'enfants')
-                autres_id = menage.pop(u'autres')
-                noipref = indiv_index_by_id[personne_de_reference_id]
-                attributes['menage'][noipref] = menage
-                for indivu_id in itertools.chain(
-                        [personne_de_reference_id],
-                        [conjoint_id] if conjoint_id is not None else [],
-                        enfants_id,
-                        autres_id,
-                        ):
-                    attributes['indiv'][indiv_index_by_id[indivu_id]]['noipref'] = noipref
-                attributes['indiv'][noipref]['quimen'] = u'pref'
-                if conjoint_id is not None:
-                    attributes['indiv'][indiv_index_by_id[conjoint_id]]['quimen'] = u'cref'
-                for enfant_number, enfant_id in enumerate(itertools.chain(enfants_id, autres_id), 1):
-                    attributes['indiv'][indiv_index_by_id[enfant_id]]['quimen'] = u'enf{}'.format(enfant_number)
-            return attributes, None
+        return json_or_python_to_test_case
 
-        return json_to_attributes
+    @classmethod
+    def make_json_to_instance(cls, cache_dir = None, tax_benefit_system = None):
+        return cls.make_json_or_python_to_instance(cache_dir = cache_dir, tax_benefit_system = tax_benefit_system)
 
-    def modify(self, noi, newQuifoy = None, newFoyer = None):
-        oldFoyer, oldQuifoy = self.indiv[noi]['noidec'], self.indiv[noi]['quifoy']
-        if newQuifoy == None: newQuifoy = oldQuifoy
-        if newFoyer == None: newFoyer = oldFoyer
-        if oldQuifoy == 'vous':
-            toAssign = self.getIndiv(oldFoyer, 'noidec')
-            del self.declar[oldFoyer]
-            self._assignPerson(noi, quifoy = newQuifoy, foyer = newFoyer)
-            for person in toAssign:
-                oldPos = self.indiv[person]['quifoy']
-                if oldPos == "vous": continue
-                else: self.modify(person, newQuifoy = oldPos, newFoyer = 0)
-        else:
-            self._assignPerson(noi, quifoy = newQuifoy, foyer = newFoyer)
-        self.genNbEnf()
+    @classmethod
+    def make_json_to_test_case(cls, tax_benefit_system = None):
+        return cls.make_json_or_python_to_test_case(tax_benefit_system = tax_benefit_system)
 
-    def modifyFam(self, noi, newQuifam = None, newFamille = None):
-        oldFamille, oldQuifam = self.indiv[noi]['noichef'], self.indiv[noi]['quifam']
-        if newQuifam == None: newQuifam = oldQuifam
-        if newFamille == None: newFamille = oldFamille
-        if oldQuifam == 'chef':
-            toAssign = self.getIndiv(oldFamille, 'noichef')
-            del self.famille[oldFamille]
-            self._assignPerson(noi, quifam = newQuifam, famille = newFamille)
-            for person in toAssign:
-                oldQui = self.indiv[person]['quifam']
-                if oldQui == "chef": continue
-                else: self.modifyFam(person, newQuifam = oldQui, newFamille = 0)
-        else:
-            self._assignPerson(noi, quifam = newQuifam, famille = newFamille)
-        self.genNbEnf()
+    @classmethod
+    def make_validate_test_case(cls, tax_benefit_system = None):
+        return cls.make_json_or_python_to_test_case(tax_benefit_system = tax_benefit_system)
 
-    def hasConj(self, noidec):
-        '''
-Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
-'''
-        for vals in self.indiv.itervalues():
-            if (vals['noidec'] == noidec) and (vals['quifoy'] == 'conj'):
-                return True
-        return False
-
-    def hasPart(self, noichef):
-        '''
-Renvoie True s'il y a un conjoint dans la déclaration 'noidec', sinon False
-'''
-        for vals in self.indiv.itervalues():
-            if (vals['noichef'] == noichef) and (vals['quifam'] == 'part'):
-                return True
-        return False
-
-    def _assignVous(self, noi):
-        '''
-Ajoute la personne numéro 'noi' et crée son foyer
-'''
-        self.indiv[noi]['quifoy'] = 'vous'
-        self.indiv[noi]['noidec'] = noi
-        self.declar.update({noi:{}})
-
-    def _assignConj(self, noi, noidec):
-        '''
-Ajoute la personne numéro 'noi' à la déclaration numéro 'noidec' en tant
-que 'conj' si declar n'a pas de conj. Sinon, cherche le premier foyer sans
-conjoint. Sinon, crée un nouveau foyer en tant que vous.
-'''
-        decnum = noidec
-        if (noidec not in self.declar) or self.hasConj(noidec):
-            for k in self.declar:
-                if not self.hasConj(k):
-                    decnum = k
-        if not self.hasConj(decnum):
-            self.indiv[noi]['quifoy'] = 'conj'
-            self.indiv[noi]['noidec'] = decnum
-        else:
-            self._assignVous(noi)
-
-    def _assignPac(self, noi, noidec):
-        '''
-Ajoute la personne numéro 'noi' et crée sa famille
-'''
-        self.indiv[noi]['quifoy'] = 'pac0'
-        self.indiv[noi]['noidec'] = noidec
-
-    def _assignChef(self, noi):
-        '''
-Désigne la personne numéro 'noi' comme chef de famille et crée une famille vide
-'''
-        self.indiv[noi]['quifam'] = 'chef'
-        self.indiv[noi]['noichef'] = noi
-        self.famille.update({noi:{}})
-
-    def _assignPart(self, noi, noichef):
-        '''
-Ajoute la personne numéro 'noi' à la famille 'noichef' en tant
-que 'part' si noi n'a pas de part. Sinon, cherche la première famille sans
-'part'. Sinon, crée un nouvelle famille en tant que vous.
-'''
-        famnum = noichef
-        if (noichef not in self.famille) or self.hasPart(noichef):
-            for k in self.famille:
-                if not self.hasPart(k):
-                    famnum = k
-        if not self.hasPart(famnum):
-            self.indiv[noi]['quifam'] = 'part'
-            self.indiv[noi]['noichef'] = famnum
-        else:
-            self._assignChef(noi)
-
-    def _assignEnfF(self, noi, noichef):
-        '''
-Ajoute la personne numéro 'noi' à la déclaration famille 'noifam' en tant
-que 'enf'
-'''
-        self.indiv[noi]['quifam'] = 'enf0'
-        self.indiv[noi]['noichef'] = noichef
-
-    def _assignPerson(self, noi, quifoy = None, foyer = None, quifam = None, famille = None):
-        if quifoy is not None:
-            if quifoy == 'vous': self._assignVous(noi)
-            elif quifoy == 'conj': self._assignConj(noi, foyer)
-            elif quifoy[:3] == 'pac' : self._assignPac(noi, foyer)
-        if quifam is not None:
-            if quifam == 'chef': self._assignChef(noi)
-            elif quifam == 'part': self._assignPart(noi, famille)
-            elif quifam[:3] == 'enf' : self._assignEnfF(noi, famille)
-        self.genNbEnf()
-
-    def rmvIndiv(self, noi):
-        oldFoyer, oldQuifoy = self.indiv[noi]['noidec'], self.indiv[noi]['quifoy']
-        oldFamille, oldQuifam = self.indiv[noi]['noichef'], self.indiv[noi]['quifam']
-        if oldQuifoy == 'vous':
-            toAssign = self.getIndiv(oldFoyer, 'noidec')
-            for person in toAssign:
-                if self.indiv[person]['quifoy'] == 'conj': self._assignPerson(person, quifoy = 'conj', foyer = 0)
-                if self.indiv[person]['quifoy'][:3] == 'pac' : self._assignPerson(person, quifoy = 'pac' , foyer = 0)
-            del self.declar[noi]
-        if oldQuifam == 'chef':
-            toAssign = self.getIndiv(oldFamille, 'noichef')
-            for person in toAssign:
-                if self.indiv[person]['quifam'] == 'part': self._assignPerson(person, quifam = 'part', famille = 0)
-                if self.indiv[person]['quifam'][:3] == 'enf' : self._assignPerson(person, quifam = 'enf' , famille = 0)
-            del self.famille[noi]
-        del self.indiv[noi]
-        self.genNbEnf()
-
-    def getIndiv(self, noi, champ = 'noidec'):
-        for person, vals in self.indiv.iteritems():
-            if vals[champ] == noi:
-                yield person
-
-    def addIndiv(self, noi, birth, quifoy, quifam):
-        self.indiv.update({noi:{'birth':birth,
-                                'inv': 0,
-                                'alt':0,
-                                'activite':0,
-                                'quifoy': 'none',
-                                'quifam': 'none',
-                                'noidec': 0,
-                                'noichef': 0,
-                                'noipref': 0}})
-
-        self._assignPerson(noi, quifoy = quifoy, foyer = 0, quifam = quifam, famille = 0)
-        self.updateMen()
-
-    def nbIndiv(self):
-        return len(self.indiv)
-
-    def genNbEnf(self):
-        for noi, vals in self.indiv.iteritems():
-            if vals.has_key('statmarit'):
-                statmarit = vals['statmarit']
-            else: statmarit = 2
-            if self.hasConj(noi) and (noi == vals['noidec']) and not statmarit in (1, 5):
-                statmarit = 1
-            elif not self.hasConj(noi) and (noi == vals['noidec']) and not statmarit in (2, 3, 4):
-                statmarit = 2
-            # si c'est un conjoint, même statmarit que 'vous'
-            if vals['quifoy'] == 'conj':
-                statmarit = self.indiv[vals['noidec']]['statmarit']
-            vals.update({'statmarit':statmarit})
-
-        for noidec, vals in self.declar.iteritems():
-            vals.update(self.NbEnfFoy(noidec))
-        for noichef, vals in self.famille.iteritems():
-            self.NbEnfFam(noichef)
-
-    def NbEnfFoy(self, noidec):
-        out = {'nbF': 0, 'nbG':0, 'nbH':0, 'nbI':0, 'nbR':0, 'nbJ':0, 'nbN':0}
-        n = 0
-        for vals in self.indiv.itervalues():
-            if (vals['noidec'] == noidec) and (vals['quifoy'][:3] == 'pac'):
-                n += 1
-                if (self.year - vals['birth'].year >= 18) and vals['inv'] == 0:
-                    out['nbJ'] += 1
+    @classmethod
+    def new_single_entity_simulation(cls, parent1 = None, parent2 = None, enfants = None, tax_benefit_system = None,
+            year = None):
+        if enfants is None:
+            enfants = []
+        assert parent1 is not None
+        famille = {}
+        foyer_fiscal = {}
+        individus = []
+        menage = {}
+        for index, individu in enumerate([parent1, parent2] + (enfants or [])):
+            if individu is None:
+                continue
+            id = individu.get('id')
+            if id is None:
+                individu = individu.copy()
+                individu['id'] = id = 'ind{}'.format(index)
+            individus.append(individu)
+            if index <= 1 :
+                famille.setdefault('parents', []).append(id)
+                foyer_fiscal.setdefault('declarants', []).append(id)
+                if index == 0:
+                    menage['personne_de_reference'] = id
                 else:
-                    if vals['alt'] == 0:
-                        out['nbF'] += 1
-                        if vals['inv'] == 1 : out['nbG'] += 1
-                    elif vals['alt'] == 1:
-                        out['nbH'] += 1
-                        if vals['inv'] == 1: out['nbI'] += 1
-                vals['quifoy'] = 'pac%d' % n
-        return out
-
-    def NbEnfFam(self, noichef):
-        n = 0
-        for vals in self.indiv.itervalues():
-            if (vals['noichef'] == noichef) and (vals['quifam'][:3] == 'enf'):
-                n += 1
-                vals['quifam'] = 'enf%d' % n
-
-    def updateMen(self):
-        '''
-Il faut virer cela
-'''
-        people = self.indiv
-        for noi in xrange(self.nbIndiv()):
-            if noi == 0: quimen = 'pref'
-            elif noi == 1: quimen = 'cref'
-            else: quimen = 'enf%d' % (noi - 1)
-            if 'quimen' not in people[noi].keys():
-                people[noi].update({'quimen': quimen,
-                                    'noipref': 0})
+                    menage['conjoint'] = id
             else:
-                people[noi].update({'noipref': 0})
+                famille.setdefault('enfants', []).append(id)
+                foyer_fiscal.setdefault('personnes_a_charge', []).append(id)
+                menage.setdefault('enfants', []).append(id)
+        scenario_dict = dict(
+            test_case = dict(
+                familles = [famille],
+                foyers_fiscaux = [foyer_fiscal],
+                individus = individus,
+                menages = [menage],
+                ),
+            year = year,
+            )
+        self = conv.check(cls.make_dict_to_instance(tax_benefit_system = tax_benefit_system))(scenario_dict)
+        return self.new_simulation()
 
-    def __repr__(self):
-        outstr = "INDIV" + '\n'
-        for key, val in self.indiv.iteritems():
-            outstr += str(key) + str(val) + '\n'
-        outstr += "DECLAR" + '\n'
-        for key, val in self.declar.iteritems():
-            outstr += str(key) + str(val) + '\n'
-        outstr += "FAMILLE" + '\n'
-        for key, val in self.famille.iteritems():
-            outstr += str(key) + str(val) + '\n'
-        outstr += "MENAGE" + '\n'
-        for key, val in self.menage.iteritems():
-            outstr += str(key) + str(val) + '\n'
-        return outstr
+    def new_simulation(self):
+        simulation = simulations.Simulation(
+            compact_legislation = self.compact_legislation,
+            date = datetime.date(self.year, 1, 1),
+            tax_benefit_system = self.tax_benefit_system,
+            )
 
-    def saveFile(self, fileName):
-        outputFile = open(fileName, 'wb')
-        pickle.dump({'version': VERSION, 'indiv': self.indiv, 'declar': self.declar, 'famille': self.famille, 'menage': self.menage}, outputFile)
-        outputFile.close()
+        column_by_name = self.tax_benefit_system.column_by_name
+        test_case = self.test_case
+        individu_index_by_id = dict(
+            (individu_id, individu_index)
+            for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
+            )
+        individus = entities.Individus(simulation = simulation)
+        individus.count = len(test_case[u'individus'])
+        individus.new_holder('age').array = np.fromiter(
+            (self.year - individu['birth'].year for individu in test_case[u'individus'].itervalues()),
+            dtype = column_by_name['age']._dtype)
+        individus.new_holder('agem').array = np.fromiter(
+            (
+                (self.year - individu['birth'].year) * 12 + 1 - individu['birth'].month
+                for individu in test_case[u'individus'].itervalues()
+                ),
+            dtype = column_by_name['agem']._dtype)
+#        individus.new_holder('birth').array = np.fromiter(
+#            (individu['birth'].isoformat() for individu in test_case[u'individus'].itervalues()),
+#            dtype = 'S10')
+#        individus.new_holder('id').array = np.array(test_case[u'individus'].keys(), dtype = object)
+        #
+        individus.new_holder('idfam').array = idfam_array = np.empty(individus.count,
+            dtype = column_by_name['idfam']._dtype)  # famille_index
+        individus.new_holder('quifam').array = quifam_array = np.empty(individus.count,
+            dtype = column_by_name['quifam']._dtype)  # famille_role
+        for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
+            parents_id = famille.pop(u'parents')
+            individu_index = individu_index_by_id[parents_id[0]]
+            idfam_array[individu_index] = famille_index
+            quifam_array[individu_index] = 0  # chef
+            if len(parents_id) > 1:
+                individu_index = individu_index_by_id[parents_id[1]]
+                idfam_array[individu_index] = famille_index
+                quifam_array[individu_index] = 1  # part
+            for enfant_index, enfant_id in enumerate(famille.pop(u'enfants')):
+                individu_index = individu_index_by_id[enfant_id]
+                idfam_array[individu_index] = famille_index
+                quifam_array[individu_index] = 2 + enfant_index  # enf
+        #
+        individus.new_holder('idfoy').array = idfoy_array = np.empty(individus.count,
+            dtype = column_by_name['idfoy']._dtype)  # foyer_fiscal_index
+        individus.new_holder('quifoy').array = quifoy_array = np.empty(individus.count,
+            dtype = column_by_name['quifoy']._dtype)  # foyer_fiscal_role
+        for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
+            declarants_id = foyer_fiscal.pop(u'declarants')
+            individu_index = individu_index_by_id[declarants_id[0]]
+            idfoy_array[individu_index] = foyer_fiscal_index
+            quifoy_array[individu_index] = 0  # vous
+            if len(declarants_id) > 1:
+                individu_index = individu_index_by_id[declarants_id[1]]
+                idfoy_array[individu_index] = foyer_fiscal_index
+                quifoy_array[individu_index] = 1  # conj
+            for personne_a_charge_index, personne_a_charge_id in enumerate(foyer_fiscal.pop(u'personnes_a_charge')):
+                individu_index = individu_index_by_id[personne_a_charge_id]
+                idfoy_array[individu_index] = foyer_fiscal_index
+                quifoy_array[individu_index] = 2 + personne_a_charge_index  # pac
+        #
+        individus.new_holder('idmen').array = idmen_array = np.empty(individus.count,
+            dtype = column_by_name['idmen']._dtype)  # menage_index
+        individus.new_holder('quimen').array = quimen_array = np.empty(individus.count,
+            dtype = column_by_name['quimen']._dtype)  # menage_role
+        for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
+            individu_index = individu_index_by_id[menage.pop(u'personne_de_reference')]
+            idmen_array[individu_index] = menage_index
+            quimen_array[individu_index] = 0  # pref
+            conjoint_id = menage.pop(u'conjoint')
+            if conjoint_id is not None:
+                individu_index = individu_index_by_id[conjoint_id]
+                idmen_array[individu_index] = menage_index
+                quimen_array[individu_index] = 1  # cref
+            for enfant_index, enfant_id in enumerate(itertools.chain(menage.pop(u'enfants'),
+                    menage.pop(u'autres'))):
+                individu_index = individu_index_by_id[enfant_id]
+                idmen_array[individu_index] = menage_index
+                quimen_array[individu_index] = 2 + enfant_index  # enf
+        #
+        individus.new_holder('noi').array = np.arange(individus.count, dtype = column_by_name['noi']._dtype)
+#        individus.new_holder('prenom').array = np.array(
+#            [individu['prenom'] for individu in test_case[u'individus'].itervalues()],
+#            dtype = object)
+        used_columns_name = set(
+            key
+            for individu in test_case[u'individus'].itervalues()
+            for key in individu
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'ind' and column_name in used_columns_name \
+                    and column_name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen'):
+                individus.new_holder(column_name).array = np.fromiter(
+                    (
+                        cell if cell is not None else column._default
+                        for cell in (
+                            individu[column_name]
+                            for individu in test_case[u'individus'].itervalues()
+                            )
+                        ),
+                    dtype = column._dtype)
 
-    def openFile(self, fileName):
-        inputFile = open(fileName, 'rb')
-        S = pickle.load(inputFile)
-        inputFile.close()
-        self.indiv = S['indiv']
-        self.declar = S['declar']
-        self.menage = S['menage']
+        familles = entities.Familles(simulation = simulation)
+        familles.count = len(test_case[u'familles'])
+#        familles.new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
+        used_columns_name = set(
+            key
+            for famille in test_case[u'familles'].itervalues()
+            for key in famille
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'fam' and column_name in used_columns_name:
+                familles.new_holder(column_name).array = np.fromiter(
+                    (
+                        cell if cell is not None else column._default
+                        for cell in (
+                            famille[column_name]
+                            for famille in test_case[u'familles'].itervalues()
+                            )
+                        ),
+                    dtype = column._dtype)
 
-    def populate_datatable(self, datatable):
-        '''Populate a datatable from scenario.'''
-        if self.nmen is None:
-            raise Exception('france.Scenario: self.nmen should be not None')
+        foyers_fiscaux = entities.FoyersFiscaux(simulation = simulation)
+        foyers_fiscaux.count = len(test_case[u'foyers_fiscaux'])
+#        foyers_fiscaux.new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
+        used_columns_name = set(
+            key
+            for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
+            for key in foyer_fiscal
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'foy' and column_name in used_columns_name:
+                foyers_fiscaux.new_holder(column_name).array = np.fromiter(
+                    (
+                        cell if cell is not None else column._default
+                        for cell in (
+                            foyer_fiscal[column_name]
+                            for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
+                            )
+                        ),
+                    dtype = column._dtype)
 
-        nmen = self.nmen
-        same_rev_couple = self.same_rev_couple
-        datatable.NMEN = nmen
-        datatable._nrows = datatable.NMEN * len(self.indiv)
-        datesim = datatable.datesim
-        datatable.table = DataFrame()
+        menages = entities.Menages(simulation = simulation)
+        menages.count = len(test_case[u'menages'])
+#        menages.new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
+        used_columns_name = set(
+            key
+            for menage in test_case[u'menages'].itervalues()
+            for key in menage
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'men' and column_name in used_columns_name:
+                menages.new_holder(column_name).array = np.fromiter(
+                    (
+                        cell if cell is not None else column._default
+                        for cell in (
+                            menage[column_name]
+                            for menage in test_case[u'menages'].itervalues()
+                            )
+                        ),
+                    dtype = column._dtype)
 
-        idmen = np.arange(60001, 60001 + nmen)
+        simulation.set_entities(dict(
+            familles = familles,
+            foyers_fiscaux = foyers_fiscaux,
+            individus = individus,
+            menages = menages,
+            ))
+        return simulation
 
-        for noi, dct in self.indiv.iteritems():
-            birth = dct['birth']
-            age = datesim.year - birth.year
-            agem = 12 * (datesim.year - birth.year) + datesim.month - birth.month
-            noidec = dct['noidec']
-            quifoy = datatable.column_by_name.get('quifoy').enum[dct['quifoy']]
-            quifam = datatable.column_by_name.get('quifam').enum[dct['quifam']]
-            noichef = dct['noichef']
-            quimen = datatable.column_by_name.get('quimen').enum[dct['quimen']]
+#    def __init__(self):
+#        super(Scenario, self).__init__()
 
-            dct = {'noi': noi * np.ones(nmen),
-                   'age': age * np.ones(nmen),
-                   'agem': agem * np.ones(nmen),
-                   'quimen': quimen * np.ones(nmen),
-                   'quifoy': quifoy * np.ones(nmen),
-                   'quifam': quifam * np.ones(nmen),
-                   'idmen': idmen,
-                   'idfoy': idmen * 100 + noidec,
-                   'idfam': idmen * 100 + noichef}
+#        self.indiv = {}
+#        # indiv est un dict de dict. La clé est le noi de l'individu
+#        # Exemple :
+#        # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
+#        # 'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
+#        self.declar = {}
+#        # declar est un dict de dict. La clé est le noidec.
+#        self.famille = {}
 
-            datatable.table = concat([datatable.table, DataFrame(dct)], ignore_index = True)
+#        # menage est un dict de dict la clé est la pref
+#        self.menage = {0:{'loyer':500, 'so':4, 'code_postal':69001, 'zone_apl':2, 'zthabm' :0}}
 
-        datatable.gen_index(ENTITIES_INDEX)
+#        # on ajoute un individu, déclarant et chef de famille
+#        self.addIndiv(0, datetime(1975, 1, 1).date(), 'vous', 'chef')
 
-        for name, column in datatable.column_by_name.iteritems():
-            if name not in datatable.table:
-                datatable.table[name] = column._default
+#        self.nmen = None
+#        self.x_axis = None
+#        self.maxrev = None
+#        self.same_rev_couple = None
+#        self.year = None
 
-        entity = 'men'
-        nb = datatable.index[entity]['nb']
-        for noi, dct in self.indiv.iteritems():
-            for var, val in dct.iteritems():
-                if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'):
-                    continue
-                if not datatable.index[entity][noi] is None:
-                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
-            del var, val
+#    def copy(self):
+#        from copy import deepcopy
+#        return deepcopy(self)
 
-        entity = 'foy'
-        nb = datatable.index[entity]['nb']
-        for noi, dct in self.declar.iteritems():
-            for var, val in dct.iteritems():
-                if not datatable.index[entity][noi] is None:
-                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
-            del var, val
+#    def check_consistency(self):
+#        '''
+#Vérifie que le ménage entré est valide
+#'''
+#        for noi, vals in self.indiv.iteritems():
+#            age = self.year - vals['birth'].year
+#            if age < 0:
+#                return u"L'année de naissance doit être antérieure à celle de la simulation (voir Fichier->Paramètres pour régler la date de la simulation"
+#            if vals['quifoy'] in ('vous', 'conj'):
+#                if age < 18: return u'Le déclarant et son éventuel conjoint doivent avoir plus de 18 ans'
+#            else:
+#                if age > 25 and (vals['inv'] == 0): return u'Les personnes à charges doivent avoir moins de 25 ans si elles ne sont pas invalides'
+#            if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
+#                return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
+#        return ''
 
-        entity = 'men'
-        nb = datatable.index[entity]['nb']
-        for noi, dct in self.menage.iteritems():
-            for var, val in dct.iteritems():
-                if not datatable.index[entity][noi] is None:
-                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
-            del var, val
+#    def populate_datatable(self, datatable):
+#        '''Populate a datatable from scenario.'''
+#        if self.nmen is None:
+#            raise Exception('france.Scenario: self.nmen should be not None')
 
-        if nmen > 1:
-            maxrev = self.maxrev
-            assert maxrev is not None
-            datatable.MAXREV = maxrev
+#        nmen = self.nmen
+#        same_rev_couple = self.same_rev_couple
+#        datatable.NMEN = nmen
+#        datatable._nrows = datatable.NMEN * len(self.indiv)
+#        datesim = datatable.datesim
+#        datatable.table = DataFrame()
 
-            x_axis = self.x_axis
-            assert x_axis is not None
-            var = None
+#        idmen = np.arange(60001, 60001 + nmen)
 
-            for axe in model.x_axes.itervalues():
-                if axe.name == x_axis:
-                    datatable.XAXIS = var = axe.col_name
+#        for noi, dct in self.indiv.iteritems():
+#            birth = dct['birth']
+#            age = datesim.year - birth.year
+#            agem = 12 * (datesim.year - birth.year) + datesim.month - birth.month
+#            noidec = dct['noidec']
+#            quifoy = datatable.column_by_name.get('quifoy').enum[dct['quifoy']]
+#            quifam = datatable.column_by_name.get('quifam').enum[dct['quifam']]
+#            noichef = dct['noichef']
+#            quimen = datatable.column_by_name.get('quimen').enum[dct['quimen']]
 
-            if var is None:
-                datatable.XAXIS = x_axis
-                var = x_axis
-            vls = np.linspace(0, maxrev, nmen)
-            if same_rev_couple is True:
-                entity = 'men'
-                datatable.set_value(var, 0.5 * vls, entity, opt = 0)
-                datatable.set_value(var, 0.5 * vls, entity, opt = 1)
-            else:
-                datatable.set_value(var, vls, entity, opt = 0)
+#            dct = {'noi': noi * np.ones(nmen),
+#                   'age': age * np.ones(nmen),
+#                   'agem': agem * np.ones(nmen),
+#                   'quimen': quimen * np.ones(nmen),
+#                   'quifoy': quifoy * np.ones(nmen),
+#                   'quifam': quifam * np.ones(nmen),
+#                   'idmen': idmen,
+#                   'idfoy': idmen * 100 + noidec,
+#                   'idfam': idmen * 100 + noichef}
+
+#            datatable.table = concat([datatable.table, DataFrame(dct)], ignore_index = True)
+
+#        datatable.gen_index(ENTITIES_INDEX)
+
+#        for name, column in datatable.column_by_name.iteritems():
+#            if name not in datatable.table:
+#                datatable.table[name] = column._default
+
+#        entity = 'men'
+#        nb = datatable.index[entity]['nb']
+#        for noi, dct in self.indiv.iteritems():
+#            for var, val in dct.iteritems():
+#                if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'):
+#                    continue
+#                if not datatable.index[entity][noi] is None:
+#                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
+#            del var, val
+
+#        entity = 'foy'
+#        nb = datatable.index[entity]['nb']
+#        for noi, dct in self.declar.iteritems():
+#            for var, val in dct.iteritems():
+#                if not datatable.index[entity][noi] is None:
+#                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
+#            del var, val
+
+#        entity = 'men'
+#        nb = datatable.index[entity]['nb']
+#        for noi, dct in self.menage.iteritems():
+#            for var, val in dct.iteritems():
+#                if not datatable.index[entity][noi] is None:
+#                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
+#            del var, val
+
+#        if nmen > 1:
+#            maxrev = self.maxrev
+#            assert maxrev is not None
+#            datatable.MAXREV = maxrev
+
+#            x_axis = self.x_axis
+#            assert x_axis is not None
+#            var = None
+
+#            for axe in model.x_axes.itervalues():
+#                if axe.name == x_axis:
+#                    datatable.XAXIS = var = axe.col_name
+
+#            if var is None:
+#                datatable.XAXIS = x_axis
+#                var = x_axis
+#            vls = np.linspace(0, maxrev, nmen)
+#            if same_rev_couple is True:
+#                entity = 'men'
+#                datatable.set_value(var, 0.5 * vls, entity, opt = 0)
+#                datatable.set_value(var, 0.5 * vls, entity, opt = 1)
+#            else:
+#                datatable.set_value(var, vls, entity, opt = 0)

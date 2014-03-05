@@ -200,7 +200,7 @@ def _cf(age, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': E
                              (br_pf > cf_plaf) * max_(cf_plaf2 - br_pf, 0) / 12.0)
     return 12 * cf
 
-def _asf_elig(caseT, caseL, _option = {'caseT': [CHEF, PART], 'caseL': [CHEF, PART]}):
+def _asf_elig(caseT, caseL):
     return caseT | caseL
 
 def _asf(age, rst, isol, asf_elig, smic55, alr, _P,

@@ -29,6 +29,7 @@ import logging
 
 from pandas import DataFrame
 
+from openfisca_core.simulations import ScenarioSimulation
 import openfisca_france
 openfisca_france.init_country(start_from = "brut")
 

@@ -43,7 +43,7 @@ doc_lines = __doc__.split('\n')
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.2dev',
+    version = '0.3dev',
 
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
@@ -58,7 +58,7 @@ setup(
     install_requires = [
         'Biryani1[datetimeconv] >= 0.9dev',
         'numpy',
-        'OpenFisca-Core >= 0.2dev',
+        'OpenFisca-Core >= 0.3dev',
         'pandas >= 0.13',
         ],
     packages = find_packages(),
