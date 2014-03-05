@@ -129,8 +129,8 @@ def test_af3():
         simulation = create_couple_simulation(year)
         simulation.set_param()
         # Adding children on the same tax sheet (foyer)
-        simulation.scenario.addIndiv(2, datetime(2003, 1, 1).date(), 'pac', 'enf')
-        simulation.scenario.addIndiv(3, datetime(2004, 1, 1).date(), 'pac', 'enf')
+        simulation.scenario.addIndiv(2, datetime.date(2003, 1, 1), 'pac', 'enf')
+        simulation.scenario.addIndiv(3, datetime.date(2004, 1, 1), 'pac', 'enf')
         simulation.scenario.addIndiv(4, datetime.date(2005, 1, 1), 'pac', 'enf')
         df = simulation.get_results_dataframe(index_by_code = True)
         print df.loc["af"][0]
