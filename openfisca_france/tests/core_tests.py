@@ -24,39 +24,40 @@
 
 
 import datetime
-import logging
-import sys
 
 import openfisca_france
-openfisca_france.init_country()
 
-from openfisca_core.simulations import ScenarioSimulation, SurveySimulation
+
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
 
 
 def check_survey(year = 2013):
-    simulation = SurveySimulation()
-    simulation.set_config(year = year)
-    simulation.set_param()
-    simulation.compute()
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
+        year = year,
+        ).new_simulation()
+    simulation.compute('revdisp')
 
 
 def check_test_case(year = 2013):
-    simulation = ScenarioSimulation()
-    simulation.set_config(year = year, nmen = 1, reforme = False, x_axis = 'sali')
-    simulation.scenario.indiv[0]['sali'] = 3000 # 300000000000 yields an error
-#    # Add husband/wife on the same tax sheet (foyer)
-#    simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
-    simulation.set_param()
-
-    # The aefa prestation can be disabled by uncommenting the following line:
-    # simulation.disable_prestations( ['aefa'])
-    df = simulation.get_results_dataframe()
-    print df.to_string().encode('utf-8')
-#    print df.to_json(orient = 'index')
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = 100,
+                name = 'sali',
+                max = 100000,
+                min = 0,
+                ),
+            ],
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
+        year = year,
+        ).new_simulation()
+    simulation.compute('revdisp')
 
 
 def test_case():
-    for year in (2013, 2014):
+    for year in range(2006, 2015):
         yield check_test_case, year
 
 
@@ -66,5 +67,8 @@ def test_case():
 
 
 if __name__ == '__main__':
+    import logging
+    import sys
+
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     check_test_case(2014)
