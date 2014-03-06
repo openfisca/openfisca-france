@@ -189,7 +189,7 @@ def _casa(rstbrut, csg_rempl, _P):
     """
     Contribution additionnelle de solidarité et d'autonomie
     """
-    return (csg_rempl == 3) * _P.prelsoc.add_ret * rst_brut
+    return (csg_rempl == 3) * _P.prelsoc.add_ret * rstbrut
 
 
 def _rst(rstbrut, csgrstd):
