@@ -54,7 +54,7 @@ def test_sal(year = 2013, verbose = False):
             birth = datetime.date(year - 40, 1, 1),
             type_sal = CAT[type_sal_category],
             primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
-            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 10, index = 0) ]),
+            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 10) ]),
         tax_benefit_system = tax_benefit_system,
         year = year)
 
