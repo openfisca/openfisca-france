@@ -58,7 +58,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
     """Create a country-specific TaxBenefitSystem."""
     from openfisca_core.columns import Prestation
     from openfisca_core import taxbenefitsystems as core_taxbenefitsystems
-    from openfisca_core.xaxes import XAxis
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
