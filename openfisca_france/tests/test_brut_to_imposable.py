@@ -136,4 +136,5 @@ def test_cho_rst(year = 2013, verbose = False):
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    test_sal(2014, verbose = True)
     test_cho_rst(2014, verbose = True)
