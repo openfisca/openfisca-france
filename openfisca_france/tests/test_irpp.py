@@ -23,16 +23,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
-import logging
-import nose
-import sys
 
 import openfisca_france
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
-logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
 def test_irpp():
     """
@@ -165,25 +161,23 @@ def test_irpp():
             year = item["year"]
             amount = item["amount"]
             irpp = item["irpp"]
-
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
 
             if revenu in ["rsti", "sali"]:
-                simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
+                simulation = tax_benefit_system.Scenario.init_single_entity(
                     parent1 = {'birth': datetime.date(year - 40, 1, 1),
                                revenu: amount,
                                },
                     tax_benefit_system = tax_benefit_system,
                     year = year,
-                    )
+                    ).new_simulation()
             elif revenu in fiscal_values:
-                simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
+                simulation = tax_benefit_system.new_scenario().init_single_entity(
                     parent1 = {'birth': datetime.date(year - 40, 1, 1),
                                },
                     foyer_fiscal = {revenu: amount},
-                    tax_benefit_system = tax_benefit_system,
                     year = year,
-                    )
+                    ).new_simulation()
 
             computed_irpp = simulation.compute('irpp')
             if not abs(computed_irpp - irpp) < 1:
@@ -196,9 +190,14 @@ def test_irpp():
 
 
 if __name__ == '__main__':
+    import logging
+    import sys
+    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+
     test_irpp()
+#    import nose
 #    nose.core.runmodule(argv=[__file__, '-v', '-i test_*.py'])
-#     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
+#    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 
 
 
