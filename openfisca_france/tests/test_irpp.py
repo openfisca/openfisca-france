@@ -22,15 +22,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import datetime
 import logging
+import nose
 import sys
 
-import nose
-
 import openfisca_france
-openfisca_france.init_country()
 
-from openfisca_core.simulations import ScenarioSimulation
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
 
 logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
@@ -165,26 +165,34 @@ def test_irpp():
             year = item["year"]
             amount = item["amount"]
             irpp = item["irpp"]
-            simulation = ScenarioSimulation()
-            simulation.set_config(year = year, nmen = 1)
-            simulation.set_param()
-            test_case = simulation.scenario
+
+            fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
+
             if revenu in ["rsti", "sali"]:
-                test_case.indiv[0].update({revenu:amount})
-            elif revenu in ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]:
-                test_case.declar[0].update({revenu:amount})
-            else:
-                assert False
-            df = simulation.get_results_dataframe(index_by_code = True)
-            if not abs(df.loc["irpp"][0] - irpp) < 1:
+                simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
+                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
+                               revenu: amount,
+                               },
+                    tax_benefit_system = tax_benefit_system,
+                    year = year,
+                    )
+            elif revenu in fiscal_values:
+                simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
+                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
+                               },
+                    foyer_fiscal = {revenu: amount},
+                    tax_benefit_system = tax_benefit_system,
+                    year = year,
+                    )
+
+            computed_irpp = simulation.compute('irpp')
+            if not abs(computed_irpp - irpp) < 1:
                 print year
                 print revenu
                 print amount
-                print "OpenFisca :", abs(df.loc["irpp"][0])
+                print "OpenFisca :", abs(computed_irpp)
                 print "Real value :", irpp
-
-            assert abs(df.loc["irpp"][0] - irpp) < 1, "error in irpp for revenu %s in year %s \n" % (revenu, year)
-
+            assert abs(computed_irpp - irpp) < 1, "error in irpp for revenu %s in year %s \n" % (revenu, year)
 
 
 if __name__ == '__main__':
