@@ -37,6 +37,7 @@ tax_benefit_system = TaxBenefitSystem()
 logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
 from openfisca_france.model.cotisations_sociales.travail import CAT
+from openfisca_france.model.cotisations_sociales.travail import TAUX_DE_PRIME
 
 
 def test_sal(year = 2013, verbose = False):
@@ -45,28 +46,23 @@ def test_sal(year = 2013, verbose = False):
     with the one obtained from running openfisca satrting with a "salaire brut"
     '''
 
-    maxrev = 24000.0
+    maxrev = 24000
 
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
         simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
-            salbrut = maxrev,
-            type_sal = CAT[type_sal_category]),
+            type_sal = CAT[type_sal_category],
+            primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
+            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 10, index = 0) ]),
         tax_benefit_system = tax_benefit_system,
         year = year)
 
-        print simulation.entities
-        boum
-        if type_sal_category == 'public_titulaire_etat':
-            from openfisca_france.model.cotisations_sociales.travail import TAUX_DE_PRIME
-            simulation.scenario.indiv[0]['primes'] = TAUX_DE_PRIME * maxrev
-
-
-        simulation.set_param()
-        df = simulation.get_results_dataframe(index_by_code = True)
+        print simulation.compute('sal')
 
         from openfisca_france.model.inversion_revenus import _salbrut
+        boum
+
         df_b2i = df.transpose()
         if verbose:
             print df_b2i.to_string()
