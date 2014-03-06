@@ -30,22 +30,26 @@ from openfisca_core import entities
 
 class Familles(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
+    key = 'familles'
     symbol = 'fam'
 
 
 class FoyersFiscaux(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
+    key = 'foyers_fiscaux'
     symbol = 'foy'
 
 
 class Individus(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
-    prenom = None  # TODO: alias, nickname, surnom
+    key = 'individus'
+#    prenom = None  # TODO: alias, nickname, surnom
     symbol = 'ind'
 
 
 class Menages(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
+    key = 'menages'
     symbol = 'men'
 
 
