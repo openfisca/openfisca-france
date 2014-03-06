@@ -552,15 +552,15 @@ class Scenario(object):
         return cls.make_json_or_python_to_test_case(tax_benefit_system = tax_benefit_system)
 
     @classmethod
-    def new_single_entity_simulation(cls, parent1 = None, parent2 = None, enfants = None, tax_benefit_system = None,
-            year = None):
+    def new_single_entity_simulation(cls, axes = None, enfants = None, parent1 = None, parent2 = None, famille = None,
+            foyer_fiscal = None, menage = None, tax_benefit_system = None, year = None):
         if enfants is None:
             enfants = []
         assert parent1 is not None
-        famille = {}
-        foyer_fiscal = {}
+        famille = famille.copy() if famille is not None else {}
+        foyer_fiscal = foyer_fiscal.copy() if foyer_fiscal is not None else {}
         individus = []
-        menage = {}
+        menage = menage.copy() if menage is not None else {}
         for index, individu in enumerate([parent1, parent2] + (enfants or [])):
             if individu is None:
                 continue
@@ -581,6 +581,7 @@ class Scenario(object):
                 foyer_fiscal.setdefault('personnes_a_charge', []).append(id)
                 menage.setdefault('enfants', []).append(id)
         scenario_dict = dict(
+            axes = axes,
             test_case = dict(
                 familles = [famille],
                 foyers_fiscaux = [foyer_fiscal],
