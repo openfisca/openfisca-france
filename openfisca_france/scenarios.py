@@ -859,10 +859,6 @@ class Scenario(object):
 #        self.same_rev_couple = None
 #        self.year = None
 
-#    def copy(self):
-#        from copy import deepcopy
-#        return deepcopy(self)
-
 #    def check_consistency(self):
 #        '''
 #Vérifie que le ménage entré est valide
@@ -878,95 +874,3 @@ class Scenario(object):
 #            if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
 #                return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
 #        return ''
-
-#    def populate_datatable(self, datatable):
-#        '''Populate a datatable from scenario.'''
-#        if self.nmen is None:
-#            raise Exception('france.Scenario: self.nmen should be not None')
-
-#        nmen = self.nmen
-#        same_rev_couple = self.same_rev_couple
-#        datatable.NMEN = nmen
-#        datatable._nrows = datatable.NMEN * len(self.indiv)
-#        datesim = datatable.datesim
-#        datatable.table = DataFrame()
-
-#        idmen = np.arange(60001, 60001 + nmen)
-
-#        for noi, dct in self.indiv.iteritems():
-#            birth = dct['birth']
-#            age = datesim.year - birth.year
-#            agem = 12 * (datesim.year - birth.year) + datesim.month - birth.month
-#            noidec = dct['noidec']
-#            quifoy = datatable.column_by_name.get('quifoy').enum[dct['quifoy']]
-#            quifam = datatable.column_by_name.get('quifam').enum[dct['quifam']]
-#            noichef = dct['noichef']
-#            quimen = datatable.column_by_name.get('quimen').enum[dct['quimen']]
-
-#            dct = {'noi': noi * np.ones(nmen),
-#                   'age': age * np.ones(nmen),
-#                   'agem': agem * np.ones(nmen),
-#                   'quimen': quimen * np.ones(nmen),
-#                   'quifoy': quifoy * np.ones(nmen),
-#                   'quifam': quifam * np.ones(nmen),
-#                   'idmen': idmen,
-#                   'idfoy': idmen * 100 + noidec,
-#                   'idfam': idmen * 100 + noichef}
-
-#            datatable.table = concat([datatable.table, DataFrame(dct)], ignore_index = True)
-
-#        datatable.gen_index(ENTITIES_INDEX)
-
-#        for name, column in datatable.column_by_name.iteritems():
-#            if name not in datatable.table:
-#                datatable.table[name] = column._default
-
-#        entity = 'men'
-#        nb = datatable.index[entity]['nb']
-#        for noi, dct in self.indiv.iteritems():
-#            for var, val in dct.iteritems():
-#                if var in ('birth', 'noipref', 'noidec', 'noichef', 'quifoy', 'quimen', 'quifam'):
-#                    continue
-#                if not datatable.index[entity][noi] is None:
-#                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
-#            del var, val
-
-#        entity = 'foy'
-#        nb = datatable.index[entity]['nb']
-#        for noi, dct in self.declar.iteritems():
-#            for var, val in dct.iteritems():
-#                if not datatable.index[entity][noi] is None:
-#                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
-#            del var, val
-
-#        entity = 'men'
-#        nb = datatable.index[entity]['nb']
-#        for noi, dct in self.menage.iteritems():
-#            for var, val in dct.iteritems():
-#                if not datatable.index[entity][noi] is None:
-#                    datatable.set_value(var, np.ones(nb) * val, entity, noi)
-#            del var, val
-
-#        if nmen > 1:
-#            maxrev = self.maxrev
-#            assert maxrev is not None
-#            datatable.MAXREV = maxrev
-
-#            x_axis = self.x_axis
-#            assert x_axis is not None
-#            var = None
-
-#            for axe in model.x_axes.itervalues():
-#                if axe.name == x_axis:
-#                    datatable.XAXIS = var = axe.col_name
-
-#            if var is None:
-#                datatable.XAXIS = x_axis
-#                var = x_axis
-#            vls = np.linspace(0, maxrev, nmen)
-#            if same_rev_couple is True:
-#                entity = 'men'
-#                datatable.set_value(var, 0.5 * vls, entity, opt = 0)
-#                datatable.set_value(var, 0.5 * vls, entity, opt = 1)
-#            else:
-#                datatable.set_value(var, vls, entity, opt = 0)

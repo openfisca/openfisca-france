@@ -52,89 +52,6 @@ REVENUES_CATEGORIES = {
     }
 WEIGHT = "wprm"
 WEIGHT_INI = "wprm_init"
-X_AXES_PROPERTIES = {
-    'alr': {
-        'name': 'alr',
-        'typ_tot': {
-            'pen': "Pensions",
-            },
-        'typ_tot_default': 'pen',
-        },
-    'choi': {
-        'name': 'cho',
-        'typ_tot': {
-            'cho': u"Chômage",
-            'chobrut': u"Chômage brut",
-            'chonet': u"Chômage net",
-            },
-        'typ_tot_default': 'cho',
-        },
-    'rsti': {
-        'name': 'rst',
-        'typ_tot': {
-            'rst': u"Retraite",
-            'rstbrut': u"Retraite brut",
-            'rstnet': u"Retraite net",
-            },
-        'typ_tot_default': 'rst',
-        },
-    'sali': {
-        'name': 'sal',
-        'typ_tot': {
-            'sal':'Salaire imposable',
-            'salbrut': 'Salaire brut',
-            'salnet': 'Salaire net',
-            'salsuperbrut': 'Salaire super brut',
-            },
-        'typ_tot_default': 'sal',
-        },
-    'f2da': {
-        'name': 'divpfl',
-        'typ_tot': {
-            'rev_cap_brut': u"Revenus des capitaux",
-            'rev_cap_net': u"Revenus des capitaux nets",
-            },
-        'typ_tot_default': 'rev_cap_brut',
-        },
-    'f2dc': {
-        'name': 'divb',
-        'typ_tot': {
-            'rev_cap_brut': "Revenus des capitaux",
-            'rev_cap_net': "Revenus des capitaux nets",
-            },
-        'typ_tot_default': 'rev_cap_brut',
-        },
-    'f2ee': {
-        'name': 'intpfl',
-        'typ_tot': {
-            'rev_cap_brut': "Revenus des capitaux",
-            'rev_cap_net': "Revenus des capitaux nets",
-            },
-        'typ_tot_default': 'rev_cap_brut',
-        },
-    'f2tr': {
-        'name': 'intb',
-        'typ_tot': {
-            'rev_cap_brut': "Revenus des capitaux",
-            'rev_cap_net': "Revenus des capitaux nets",
-            },
-        'typ_tot_default': 'rev_cap_brut',
-        },
-    'f4ba': {
-        'name': 'f4ba',
-        'typ_tot': {
-            'fon': "Revenus fonciers",
-            },
-        'typ_tot_default': 'fon',
-        },
-    'f6gu': {
-        'name': 'f6gu',
-        'typ_tot': {
-            'pen': "Pensions",
-            },
-        'typ_tot_default': 'pen',
-        },
-    }
 
 
 def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de = False, start_from = 'imposable'):
@@ -168,7 +85,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
             )
         for variable in variables_imposables:
             del column_by_name[variable]
-            del X_AXES_PROPERTIES[variable]
     elif start_from == 'net':
         raise NotImplementedError
 
@@ -241,10 +157,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         Scenario = scenarios.Scenario
         WEIGHT = WEIGHT
         WEIGHT_INI = WEIGHT_INI
-        x_axes = dict(
-            (col_name, XAxis(col_name = col_name, label = column_by_name[col_name].label, **properties))
-            for col_name, properties in X_AXES_PROPERTIES.iteritems()
-            )
 
         def preproc_inputs(self, datatable):
             """Preprocess inputs table: country specific manipulations
