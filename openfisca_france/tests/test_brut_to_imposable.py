@@ -26,15 +26,18 @@ from __future__ import division
 
 import sys
 import logging
-
+import datetime
 from pandas import DataFrame
 
-from openfisca_core.simulations import ScenarioSimulation
 import openfisca_france
-openfisca_france.init_country(start_from = "brut")
 
-from openfisca_core.simulations import ScenarioSimulation
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
+
+logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+
 from openfisca_france.model.cotisations_sociales.travail import CAT
+
 
 def test_sal(year = 2013, verbose = False):
     '''
@@ -42,15 +45,24 @@ def test_sal(year = 2013, verbose = False):
     with the one obtained from running openfisca satrting with a "salaire brut"
     '''
 
+    maxrev = 24000.0
+
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
-        simulation = ScenarioSimulation()
-        maxrev = 24000
-        simulation.set_config(year = year, reforme = False, nmen = 11, maxrev = maxrev, x_axis = 'salbrut')
-        simulation.scenario.indiv[0]['salbrut'] = maxrev
-        simulation.scenario.indiv[0]['type_sal'] = CAT[type_sal_category]
+        simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            salbrut = maxrev,
+            type_sal = CAT[type_sal_category]),
+        tax_benefit_system = tax_benefit_system,
+        year = year)
+
+        print simulation.entities
+        boum
         if type_sal_category == 'public_titulaire_etat':
             from openfisca_france.model.cotisations_sociales.travail import TAUX_DE_PRIME
             simulation.scenario.indiv[0]['primes'] = TAUX_DE_PRIME * maxrev
+
+
         simulation.set_param()
         df = simulation.get_results_dataframe(index_by_code = True)
 
@@ -129,4 +141,4 @@ def test_cho_rst(year = 2013, verbose = False):
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cho_rst(2014, verbose = False)
+    test_sal(2014, verbose = False)
