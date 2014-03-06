@@ -22,22 +22,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
-import sys
-import logging
 import datetime
-from pandas import DataFrame
 
 import openfisca_france
+from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from pandas import DataFrame
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
-
-logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-
-from openfisca_france.model.cotisations_sociales.travail import CAT
-from openfisca_france.model.cotisations_sociales.travail import TAUX_DE_PRIME
 
 
 def test_sal(year = 2013, verbose = False):
@@ -49,15 +45,15 @@ def test_sal(year = 2013, verbose = False):
     maxrev = 50000
 
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
-        simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
-        parent1 = dict(
-            birth = datetime.date(year - 40, 1, 1),
-            primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
-            type_sal = CAT[type_sal_category],
-            ),
-        axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
-        tax_benefit_system = tax_benefit_system,
-        year = year)
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
+            parent1 = dict(
+                birth = datetime.date(year - 40, 1, 1),
+                primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
+                type_sal = CAT[type_sal_category],
+                ),
+            year = year,
+            ).new_simulation()
 
         df_b2i = DataFrame(dict(sal = simulation.compute('sal'),
                                 salbrut = simulation.compute('salbrut'),
@@ -95,13 +91,13 @@ def test_cho_rst(year = 2013, verbose = False):
 
         maxrev = 24000
 
-        simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
-            parent1 = dict(
-            birth = datetime.date(year - 40, 1, 1),
-            ),
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
-            tax_benefit_system = tax_benefit_system,
-            year = year)
+            parent1 = dict(
+                birth = datetime.date(year - 40, 1, 1),
+                ),
+            year = year,
+            ).new_simulation()
 
         df_b2i = DataFrame({var: simulation.compute(var),
                             varbrut : simulation.compute(varbrut),
@@ -135,6 +131,9 @@ def test_cho_rst(year = 2013, verbose = False):
 
 
 if __name__ == '__main__':
+    import logging
+    import sys
+
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_sal(2014, verbose = True)
     test_cho_rst(2014, verbose = True)
