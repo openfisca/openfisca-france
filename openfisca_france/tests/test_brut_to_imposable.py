@@ -46,45 +46,38 @@ def test_sal(year = 2013, verbose = False):
     with the one obtained from running openfisca satrting with a "salaire brut"
     '''
 
-    maxrev = 24000
+    maxrev = 50000
 
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
         simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
-            type_sal = CAT[type_sal_category],
             primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
-            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 10) ]),
+            type_sal = CAT[type_sal_category],
+            ),
+        axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
         tax_benefit_system = tax_benefit_system,
         year = year)
 
-        print simulation.compute('sal')
+        df_b2i = DataFrame(dict(sal = simulation.compute('sal'),
+                                salbrut = simulation.compute('salbrut'),
+                                ))
 
         from openfisca_france.model.inversion_revenus import _salbrut
-        boum
-
-        df_b2i = df.transpose()
-        if verbose:
-            print df_b2i.to_string()
-
         sali = df_b2i['sal'].get_values()
-        hsup = simulation.input_table.table['hsup'].get_values()
-        type_sal = simulation.input_table.table['type_sal'].get_values()
-        primes = simulation.input_table.table['hsup'].get_values()
-
-        defaultP = simulation.P_default
-        from pandas import DataFrame
+        hsup = simulation.compute('hsup')
+        type_sal = simulation.compute('type_sal')
+#        primes = simulation.compute('primes')
+        defaultP = simulation.default_compact_legislation
         df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut(sali, hsup, type_sal, defaultP) })
-
-        if verbose:
-            print df_i2b.to_string()
-
 
         for var in ['sal', 'salbrut']:
             passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
 
-            if (not passed) or type_sal_category in ['public_titulaire_etat']:
-                print (df_b2i / 12).to_string()
+            if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
+                print "Brut to imposable"
+                print (df_b2i[['salbrut', 'sal' ]] / 12).to_string()
+                print "Imposable to brut"
                 print (df_i2b / 12).to_string()
 
             assert passed, "difference in %s for %s" % (var, type_sal_category)
@@ -99,19 +92,25 @@ def test_cho_rst(year = 2013, verbose = False):
 
     for var, varbrut in remplacement.iteritems():
 
-        simulation = ScenarioSimulation()
-        maxrev = 24000
-        simulation.set_config(year = year, reforme = False, nmen = 11, maxrev = maxrev, x_axis = varbrut)
-        simulation.set_param()
-        df = simulation.get_results_dataframe(index_by_code = True)
 
-        df_b2i = df.transpose()
+        maxrev = 24000
+
+        simulation = tax_benefit_system.Scenario.new_single_entity_simulation(
+            parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            ),
+            axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
+            tax_benefit_system = tax_benefit_system,
+            year = year)
+
+        df_b2i = DataFrame({var: simulation.compute(var),
+                            varbrut : simulation.compute(varbrut),
+                            })
 
         vari = df_b2i[var].get_values()
         csg_rempl = vari * 0 + 3
 
-        defaultP = simulation.P_default
-
+        defaultP = simulation.default_compact_legislation
         if var == "cho":
             from openfisca_france.model.inversion_revenus import _chobrut as _vari_to_brut
         elif var == "rst":
@@ -137,4 +136,4 @@ def test_cho_rst(year = 2013, verbose = False):
 
 if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_sal(2014, verbose = False)
+    test_cho_rst(2014, verbose = True)
