@@ -225,11 +225,7 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
         iscat = (type_sal == category[1])
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
-                try:
-                    is_noncontrib = (bar.option == "noncontrib")
-                    log.info(bar)
-                except:
-                    print bar
+                is_noncontrib = (bar.option == "noncontrib")
                 temp = -(iscat
                          * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                          * is_noncontrib)

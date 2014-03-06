@@ -25,6 +25,7 @@
 
 from __future__ import division
 
+import copy
 import logging
 
 
@@ -62,6 +63,17 @@ def build_pat(_P):
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
     pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
+
+    for bareme in ['apprentissage', 'apprentissage_add']:
+        pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
+    del pat['commun']['apprentissage_node']
+
+    pat['commun']['formprof'] = pat['commun']['formprof_node']['formprof_20']
+    del pat['commun']['formprof_node']
+
+    pat['commun']['construction'] = pat['commun']['construction_node']['construction_20']
+    del pat['commun']['construction_node']
+
     pat['noncadre'].update(pat['commun'])
     pat['cadre'].update(pat['commun'])
     pat['fonc']['contract'].update(pat['commun'])
@@ -74,10 +86,10 @@ def build_pat(_P):
     log.info(u"Le dictionnaire des barèmes des cotisations patronales des cadres contient: \n %s", pat['prive_cadre'].keys())
 
     # Rework commun to deal with public employees
-    for var in ["maladie", "apprentissage", "apprentissage2", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction", "assedic"]:
+    for var in ["maladie", "apprentissage", "apprentissage_add", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction", "assedic"]:
         del pat['commun'][var]
 
-    for var in ["apprentissage", "apprentissage2", "formprof", "chomfg", "construction", "assedic"]:
+    for var in ["apprentissage", "apprentissage_add", "formprof", "chomfg", "construction", "assedic"]:
         del pat['fonc']['contract'][var]
 
     pat['fonc']['etat'].update(pat['commun'])
@@ -96,7 +108,7 @@ def build_pat(_P):
 #    del pat['public_titulaire_etat']['rafp']
 
     pat['public_titulaire_territoriale'] = pat.pop('colloc_t')
-    import copy
+
     pat['public_titulaire_hospitaliere'] = copy.deepcopy(pat['public_titulaire_territoriale'])
     for category in ['territoriale', 'hospitaliere']:
         for name, bareme in pat['public_titulaire_' + category][category].iteritems():

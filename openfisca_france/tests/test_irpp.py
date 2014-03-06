@@ -22,15 +22,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+import sys
 
 import nose
-from datetime import datetime
 
 import openfisca_france
 openfisca_france.init_country()
 
 from openfisca_core.simulations import ScenarioSimulation
 
+logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
 def test_irpp():
     """

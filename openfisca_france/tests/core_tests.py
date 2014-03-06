@@ -42,8 +42,8 @@ def check_survey(year = 2013):
 
 def check_test_case(year = 2013):
     simulation = ScenarioSimulation()
-    simulation.set_config(year = year, nmen = 2, maxrev = 2000, reforme = False, x_axis = 'sali')
-#    simulation.scenario.indiv[0]['sali'] = 16207
+    simulation.set_config(year = year, nmen = 1, reforme = False, x_axis = 'sali')
+    simulation.scenario.indiv[0]['sali'] = 3000 # 300000000000 yields an error
 #    # Add husband/wife on the same tax sheet (foyer)
 #    simulation.scenario.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
     simulation.set_param()

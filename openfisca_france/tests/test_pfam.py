@@ -25,12 +25,16 @@
 
 import datetime
 
-import openfisca_france
-from openfisca_france import conv
+import logging
+import sys
 
+import openfisca_france
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
+
+
+logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
 
 def check_af2(year):

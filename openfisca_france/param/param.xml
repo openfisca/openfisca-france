@@ -1497,60 +1497,102 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <BAREME description="Taxe d'apprentissage" code="apprentissage" option="main-d-oeuvre">
+    <NODE description="Taxes d'apprentissages" code="apprentissage_node">
+      <BAREME description="Taxe d'apprentissage (plus de 250 salariés)" code="apprentissage_250" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+	        <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
+	      </SEUIL>
+	      <TAUX>
+            <VALUE valeur="0.005" deb="1993-07-01" fin="2014-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME description="Taxe d'apprentissage (toutes entreprises)" code="apprentissage" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
+          </SEUIL>
+          <TAUX>
+            <VALUE valeur="0.005" deb="1993-07-01" fin="2014-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME description="Contribution additionnelle au développement de l'apprentissage (toutes entreprises)" code="apprentissage_add" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE valeur="0" deb="2004-01-01" fin="2014-12-31"/>
+          </SEUIL>
+          <TAUX>
+            <VALUE valeur="0.0018" deb="2006-01-01" fin="2014-12-31"/>
+            <VALUE valeur="0.0012" deb="2005-01-01" fin="2005-12-31"/>
+            <VALUE valeur="0.0006" deb="2004-01-01" fin="2004-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+    </NODE>
+    <NODE description="Formation professionnelle" code="formprof_node">
+      <BAREME description="Formation professionnelle (0-9 salaries)" code="formprof_09" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE valeur="0" deb="1992-01-01" fin="2013-12-31"/>
+          </SEUIL>
+          <TAUX>
+            <VALUE valeur="0.0055" deb="2005-01-01" fin="2013-12-31"/>
+            <VALUE valeur="0.004" deb="2004-01-01" fin="2004-12-31"/>
+            <VALUE valeur="0.0015" deb="1993-07-01" fin="2003-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME description="Formation professionnelle (10-19 salaries)" code="formprof_1019" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE valeur="0" deb="1992-07-01" fin="2013-12-31"/>
+          </SEUIL>
+          <TAUX>
+            <VALUE valeur="0.0105" deb="2005-08-04" fin="2013-12-01"/>
+            <VALUE valeur="0.016" deb="2004-01-01" fin="2005-08-03"/>
+            <VALUE valeur="0.015" deb="1993-01-01" fin="2003-12-31"/>
+            <VALUE valeur="0.014" deb="1992-01-01" fin="1992-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof_20" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
+          </SEUIL>
+          <TAUX>
+            <VALUE valeur="0.016" deb="2004-01-01" fin="2013-12-31"/>
+            <VALUE valeur="0.015" deb="1993-01-01" fin="2003-12-31"/>
+            <VALUE valeur="0.014" deb="1992-01-01" fin="1992-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+    </NODE>
+    <NODE description="Effort à la construction" code="construction_node" >
+      <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction_20" option="main-d-oeuvre">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE valeur="0" deb="1992-01-01" fin="2014-12-31"/>
+          </SEUIL>
+          <TAUX>
+            <VALUE valeur="0.0045" deb="1992-01-01" fin="2014-12-31"/>
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+    </NODE>    
+    <BAREME description="Transport (valeur non différenciée selon la localité, Lyon reférence)" code="transport">
       <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
+          <VALUE valeur="0" deb="2003-01-01" fin="2014-12-31"/>
         </SEUIL>
         <TAUX>
-          <VALUE valeur="0.005" deb="1993-07-01" fin="2014-12-31"/>
+          <VALUE valeur="0.0175" deb="2003-01-01" fin="2014-12-31"/>
         </TAUX>
       </TRANCHE>
-     </BAREME>
-     <BAREME description="Contribution additionnelle au développement de l'apprentissage" code="apprentissage2" option="main-d-oeuvre">
-       <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE valeur="0" deb="2004-01-01" fin="2014-12-31"/>
-        </SEUIL>
-        <TAUX>
-          <VALUE valeur="0.0018" deb="2006-01-01" fin="2014-12-31"/>
-          <VALUE valeur="0.0012" deb="2005-01-01" fin="2005-12-31"/>
-          <VALUE valeur="0.0006" deb="2004-01-01" fin="2004-12-31"/>
-        </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME description="Formation professionnelle (plus de 20 salariés)" code="formprof" option="main-d-oeuvre">
-          <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE valeur="0" deb="1993-07-01" fin="2014-12-31"/>
-        </SEUIL>
-        <TAUX>
-          <VALUE valeur="0.016" deb="2004-01-01" fin="2014-12-31"/>
-          <VALUE valeur="0.015" deb="1993-07-01" fin="2003-12-31"/>
-        </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME description="Effort à la construction (plus de 20 salariés)" code="construction" option="main-d-oeuvre">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE valeur="0" deb="1992-01-01" fin="2014-12-31"/>
-            </SEUIL>
-            <TAUX>
-              <VALUE valeur="0.0045" deb="1992-01-01" fin="2014-12-31"/>
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME description="Transport (valeur non différenciée selon la localité, Lyon reférence)" code="transport">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE valeur="0" deb="2003-01-01" fin="2014-12-31"/>
-            </SEUIL>
-            <TAUX>
-              <VALUE valeur="0.0175" deb="2003-01-01" fin="2014-12-31"/>
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-      </NODE>
+    </BAREME>
+    </NODE>
       <NODE description="Non cadres" code="noncadre">
         <BAREME description="Retraite complémentaire" code="arrco" option="contrib">
           <TRANCHE code="tranche0">
@@ -2312,7 +2354,8 @@
       </CODE>
       <CODE description="majoration case GO" code="majGO" format="percent">
         <VALUE valeur="1" deb="2002-01-01" fin="2005-12-31"/>
-        <VALUE valeur="1.25" deb="2006-01-01" fin="2014-12-31"/>  # TODO: CHECK wild extension of date
+        <VALUE valeur="1.25" deb="2006-01-01" fin="2014-12-31"/> #
+        TODO: CHECK wild extension of date
       </CODE>
    </NODE>
    <NODE code="microfoncier" description="Microfoncier">
