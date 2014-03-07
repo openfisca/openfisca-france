@@ -49,7 +49,7 @@ def _al_pac(age, smic55, nbR, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     # pour une famille
     return al_pac
 
-def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [CHEF, PART], 'etu': [CHEF, PART], 'br_pf_i': [CHEF, PART]}):
+def _br_al(self, etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [CHEF, PART], 'etu': [CHEF, PART], 'br_pf_i': [CHEF, PART]}):
     '''
     Base ressource des allocations logement
     '''
@@ -63,6 +63,8 @@ def _br_al(etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [
     # ALabat : abatement prix en compte pour le calcul de la base ressources
     # des allocattions logement
     # plancher de ressources pour les etudiants
+    rev_coll = self.sum_by_entity(rev_coll, entity = 'famille')
+
     P = _P
     Pr = P.al.ressources
 
