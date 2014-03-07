@@ -615,12 +615,16 @@ def _rfr(rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap
     '''
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 
-def _glo(f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk):
+def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk):
     # TODO: f1uv, f1uw, f1ux deletion to check
     '''
     Gains de levée d'option
-    'foy'
     '''
+    f3vf = self.cast_from_entity_to_role(f3vf, entity = 'foyer_fiscal', role = VOUS)
+    f3vi = self.cast_from_entity_to_role(f3vi, entity = 'foyer_fiscal', role = VOUS)
+    f3vj = self.cast_from_entity_to_role(f3vj, entity = 'foyer_fiscal', role = VOUS)
+    f3vk = self.cast_from_entity_to_role(f3vk, entity = 'foyer_fiscal', role = VOUS)
+
     return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj + f3vk  # + f1uv + f1uw + f1ux
 
 def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):

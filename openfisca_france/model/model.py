@@ -398,7 +398,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('rfr_rvcm', FloatPresta(ir._rfr_rvcm, entity = 'foy')),
 
 #    build_simple_formula_couple('alv', FloatPresta(ir._alv)),
-    build_simple_formula_couple('glo', FloatPresta(ir._glo, entity = 'foy')),
+    build_simple_formula_couple('glo', FloatPresta(ir._glo)),
     build_simple_formula_couple('rag', FloatPresta(ir._rag)),
     build_simple_formula_couple('ric', FloatPresta(ir._ric)),
     build_simple_formula_couple('rac', FloatPresta(ir._rac)),
