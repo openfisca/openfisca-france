@@ -500,7 +500,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('af', FloatPresta(pf._af, entity = 'fam', label = u"Allocations familiales")),
 
     build_simple_formula_couple('cf_temp', FloatPresta(pf._cf, entity = 'fam', label = u"Complément familial avant d'éventuels cumuls")),
-    build_simple_formula_couple('asf_elig', BoolPresta(pf._asf_elig)),
+    build_simple_formula_couple('asf_elig', BoolPresta(pf._asf_elig, entity = 'fam')),
     build_simple_formula_couple('asf', FloatPresta(pf._asf, entity = 'fam', label = u"Allocation de soutien familial")),
 
     build_simple_formula_couple('ars', FloatPresta(pf._ars, entity = 'fam', label = u"Allocation de rentrée scolaire")),
