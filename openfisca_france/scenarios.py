@@ -720,7 +720,7 @@ class Scenario(object):
                     (
                         cell if cell is not None else column._default
                         for cell in (
-                            individu[column_name]
+                            individu.get(column_name)
                             for step_index in range(steps_count)
                             for individu in test_case[u'individus'].itervalues()
                             )
@@ -739,7 +739,7 @@ class Scenario(object):
                     (
                         cell if cell is not None else column._default
                         for cell in (
-                            famille[column_name]
+                            famille.get(column_name)
                             for step_index in range(steps_count)
                             for famille in test_case[u'familles'].itervalues()
                             )
@@ -758,7 +758,7 @@ class Scenario(object):
                     (
                         cell if cell is not None else column._default
                         for cell in (
-                            foyer_fiscal[column_name]
+                            foyer_fiscal.get(column_name)
                             for step_index in range(steps_count)
                             for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
                             )
@@ -777,7 +777,7 @@ class Scenario(object):
                     (
                         cell if cell is not None else column._default
                         for cell in (
-                            menage[column_name]
+                            menage.get(column_name)
                             for step_index in range(steps_count)
                             for menage in test_case[u'menages'].itervalues()
                             )
