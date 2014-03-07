@@ -25,17 +25,14 @@
 
 from __future__ import division
 
-import sys
 import datetime
-import logging
-import nose
 import pdb
 
 import openfisca_france
-openfisca_france.init_country(start_from = "brut")
-
-from openfisca_core.simulations import ScenarioSimulation
 from openfisca_france.model.cotisations_sociales.travail import CAT
+
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
 
 
 def test_cotsoc_celib():
@@ -162,24 +159,23 @@ def test_cotsoc_celib():
     passed = True
     for test in tests_list:
         year = test["year"]
-        simulation = ScenarioSimulation()
-        simulation.set_config(year = test["year"], nmen = 1)
-        simulation.set_param()
-
-        test_case = simulation.scenario
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+        menage = dict()
         for variable, value in test['input_vars'].iteritems():
             if variable in ['zone_apl']:
-                test_case.menage[0].update({ variable: value})
+                menage.update({ variable: value})
             else:
-                test_case.indiv[0].update({ variable: value})
+                parent1.update({ variable: value})
 
-        df = simulation.get_results_dataframe(index_by_code = True)
-        simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
-        simulation.output_table.calculate_prestation(simulation.prestation_by_name['sal'])
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            parent1 = parent1,
+            menage = menage,
+            year = year,
+            ).new_simulation()
 
         for variable, value in test['output_vars'].iteritems():
 
-            computed_value = (simulation.output_table.table[variable] / 12).sum()
+            computed_value = (simulation.compute(variable) / 12).sum()
             test_assertion = abs(abs(computed_value) - value) < 1
             expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
@@ -302,9 +298,13 @@ def test_cotsoc_famille():
 
 
 if __name__ == '__main__':
+    import logging
+    import sys
+
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cotsoc_celib()
 #    test_cotsoc_famille()
+#    import nose
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 

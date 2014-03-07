@@ -164,7 +164,7 @@ def test_irpp():
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
 
             if revenu in ["rsti", "sali"]:
-                simulation = tax_benefit_system.Scenario.init_single_entity(
+                simulation = tax_benefit_system.new_scenario().init_single_entity(
                     parent1 = {'birth': datetime.date(year - 40, 1, 1),
                                revenu: amount,
                                },
