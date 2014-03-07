@@ -76,7 +76,7 @@ def test_sal(year = 2013, verbose = False):
                 print "Imposable to brut"
                 print (df_i2b / 12).to_string()
 
-            assert passed, "difference in %s for %s" % (var, type_sal_category)
+                assert passed, "difference in %s for %s" % (var, type_sal_category)
 
 
 def test_cho_rst(year = 2013, verbose = False):
@@ -127,7 +127,7 @@ def test_cho_rst(year = 2013, verbose = False):
                 print "Imposable to brut"
                 print (df_i2b / 12).to_string()
 
-            assert passed, "difference in %s " % (var)
+                assert passed, "difference in %s " % (var)
 
 
 if __name__ == '__main__':

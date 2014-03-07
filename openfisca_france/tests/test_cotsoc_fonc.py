@@ -26,16 +26,16 @@
 from __future__ import division
 
 import datetime
-import pdb
 
 import openfisca_france
 from openfisca_france.model.cotisations_sociales.travail import CAT
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def test_cotsoc_celib():
+def test_cotsoc_celib(verbose = False):
     """
     test pour un célibataire
     """
@@ -63,7 +63,7 @@ def test_cotsoc_celib():
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 167.80 + 20 + 23.72,
 #                               pension rafp
-                     "salsuperbrut": 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
+                     "salsuperbrut": 4328.40 + 2000 * (0.0175 - 0.026), # Correction transport
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
@@ -122,7 +122,7 @@ def test_cotsoc_celib():
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
-                     "salsuperbrut": 3562 + 2000 * (0.0175 - 0.026),  # second term is correction of transport
+                     "salsuperbrut": 3562 + 2000 * (0.0175 - 0.026), # second term is correction of transport
                      "salnet": 2147.26,
                     }
               },
@@ -182,11 +182,16 @@ def test_cotsoc_celib():
             if not test_assertion:
                 print expression
                 passed = False
+            else:
+                if verbose:
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    print expression
+
 
     assert passed, "Test failed for some variables"
 
 
-def test_cotsoc_famille():
+def test_cotsoc_famille(verbose = False):
     """
     test pour un couple de fonctionnaire
     """
@@ -214,7 +219,7 @@ def test_cotsoc_famille():
                      "cotpat_transport": 2000 * 0.0175,
                      "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 + 24.45,  # cot excep de solidarité
+                     "cotsal" : 167.80 + 20 + 24.45, # cot excep de solidarité
 #                               pension rafp
                      "salsuperbrut": 4401.44 + 2000 * (.0175 - .026),
                      "salnet": 2213.83,
@@ -246,7 +251,7 @@ def test_cotsoc_famille():
                      "cotpat_transport": 2000 * 0.0175 * 2,
                      "cotpat" : (1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : (167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
+                     "cotsal" : (167.80 + 20 + 24.45) * 2 , # cot excep de solidarité
 #                               pension rafp
                      "salsuperbrut": (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
                      "salnet": (2000 + 500 + 20 - 131.94 - 62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
@@ -258,41 +263,46 @@ def test_cotsoc_famille():
     for test in tests_list:
 
         year = test["year"]
-        simulation = ScenarioSimulation()
-        simulation.set_config(year = test["year"], nmen = 1)
-        simulation.set_param()
 
-        test_case = simulation.scenario
-
-        test_case.addIndiv(1, datetime.date(1975, 1, 1), 'conj', 'part')
-        test_case.addIndiv(2, datetime.date(2000, 1, 1), 'pac', 'enf')
-        test_case.addIndiv(3, datetime.date(2009, 1, 1), 'pac', 'enf')
+        menage = dict()
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+        parent2 = dict(birth = datetime.date(year - 40, 1, 1))
 
         for variable, value in test['input_vars'].iteritems():
 
             if variable in ['zone_apl']:
-                test_case.menage[0].update({ variable: value})
+                menage[variable] = value
             elif variable in ['type_sal', 'salbrut', 'primes']:
-                test_case.indiv[0].update({ variable: value})
+                parent1[variable] = value
             elif variable in ['type_sal_c', 'salbrut_c', 'primes_c']:
-                test_case.indiv[1].update({ variable[:-2] : value})
+                parent2[variable[:-2]] = value
             else:
-                print "Variable non prise en charge : ", variable
-                pdb.set_trace()
+                assert False, "Variable non prise en charge : %s" % variable
 
-        df = simulation.get_results_dataframe(index_by_code = True)
-        simulation.output_table.calculate_prestation(simulation.prestation_by_name['salnet'])
-        simulation.output_table.calculate_prestation(simulation.prestation_by_name['sal'])
+        print parent1
+        print parent2
+        print menage
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            parent1 = parent1,
+            parent2 = parent2,
+            menage = menage,
+            year = year,
+            ).new_simulation()
+
 
         for variable, value in test['output_vars'].iteritems():
 
-            computed_value = (simulation.output_table.table[variable] / 12).sum()
+            computed_value = (simulation.compute(variable) / 12).sum()
             test_assertion = abs(abs(computed_value) - value) < 2
             expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
             if not test_assertion:
                 print expression
                 passed = False
+            else:
+                if verbose:
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    print expression
 
     assert passed, "Test failed for some variables"
 
@@ -302,8 +312,8 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cotsoc_celib()
-#    test_cotsoc_famille()
+#    test_cotsoc_celib(verbose = False)
+    test_cotsoc_famille(verbose = False)
 #    import nose
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)

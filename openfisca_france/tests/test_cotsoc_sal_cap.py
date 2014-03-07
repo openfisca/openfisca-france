@@ -22,9 +22,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import nose
-import  logging
-import sys
 
 import openfisca_france
 openfisca_france.init_country()
@@ -412,8 +409,12 @@ def test_cotsoc_cap_celib():
                 assert passed, expression
 
 if __name__ == '__main__':
+    import  logging
+    import sys
+
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cotsoc()
     test_cotsoc_cap_celib()
+#    import nose
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_cotsoc_sal_cap.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
