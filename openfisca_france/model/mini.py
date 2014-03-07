@@ -22,11 +22,14 @@ CONJ = QUIFOY['conj']
 ############################################################################
 # ASPA /  Minimum vieillesse
 ############################################################################
-def _br_mv_i(salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
+def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
     '''
     Base ressource individuelle du minimlum vieillesse et assimilés (ASPA)
     'ind'
     '''
+    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar, entity = 'foyer_fiscal', role = VOUS)
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
+
     out = (salbrut + chobrut + rstbrut + alr + rto + rpns +
            max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
            # max_(0,etr) +
