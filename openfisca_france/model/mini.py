@@ -244,7 +244,13 @@ def _asi(asi_pure, asi_coexist_aspa):
 ############################################################################
 # RSA / RMI
 ############################################################################
-def _div_ms(f3vc, f3ve, f3vg, f3vl, f3vm):
+def _div_ms(self, f3vc, f3ve, f3vg, f3vl, f3vm):
+    f3vc = self.cast_from_entity_to_role(f3vc, entity = 'foyer_fiscal', role = VOUS)
+    f3ve = self.cast_from_entity_to_role(f3ve, entity = 'foyer_fiscal', role = VOUS)
+    f3vg = self.cast_from_entity_to_role(f3vg, entity = 'foyer_fiscal', role = VOUS)
+    f3vl = self.cast_from_entity_to_role(f3vl, entity = 'foyer_fiscal', role = VOUS)
+    f3vm = self.cast_from_entity_to_role(f3vm, entity = 'foyer_fiscal', role = VOUS)
+
     return f3vc + f3ve + f3vg + f3vl + f3vm
 
 def _rfon_ms(self, f4ba, f4be):
