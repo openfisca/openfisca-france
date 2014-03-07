@@ -74,13 +74,13 @@ def _charges_deduc_reforme(charge_loyer):
     return charge_loyer
 
 def _charge_loyer(self, loyer, nbptr, _P):
-    loyer_by_individu = self.cast_from_entity_to_role(loyer, entity = 'menage', role = PREF)
-    loyer_by_foyer_fiscal = self.sum_by_entity(loyer_by_individu, entity = 'foyer_fiscal')
+    loyer = self.cast_from_entity_to_role(loyer, entity = 'menage', role = PREF)
+    loyer = self.sum_by_entity(loyer, entity = 'foyer_fiscal')
 
     plaf = _P.ir.autre.charge_loyer.plaf
     plaf_nbp = _P.ir.autre.charge_loyer.plaf_nbp
     plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
-    return 12 * _P.ir.autre.charge_loyer.active * min_(loyer_by_foyer_fiscal, plafond)
+    return 12 * _P.ir.autre.charge_loyer.active * min_(loyer, plafond)
 
 
 def _charges_deduc(cd1, cd2, charges_deduc_reforme):
