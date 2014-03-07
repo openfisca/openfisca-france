@@ -168,7 +168,6 @@ def test_irpp():
                     parent1 = {'birth': datetime.date(year - 40, 1, 1),
                                revenu: amount,
                                },
-                    tax_benefit_system = tax_benefit_system,
                     year = year,
                     ).new_simulation()
             elif revenu in fiscal_values:
