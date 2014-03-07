@@ -25,25 +25,21 @@
 
 from __future__ import division
 
-import sys
-import logging
-import nose
+import datetime
 
 import openfisca_france
-openfisca_france.init_country()  # start_from = "brut")
-
-from openfisca_core.simulations import ScenarioSimulation
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
 
-def test_isf_celib():
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
+
+
+def test_isf_celib(verbose = False):
     """
     test pour un célibataire
     """
-    # Comparaison avec la fiche de paie IPP calculé avec une cotisation transport correspondant à Paris ((.026)
-    # alors qu'Openfisca la cacule pour Lyon (.0175)
     tests_list = [
-#   Célibataires (pas de supplément familial de traitement
              {"year" : 2011,
               "input_vars":
                     {
@@ -59,47 +55,52 @@ def test_isf_celib():
                      "isf_inv_pme": 3500,
                     }
               },
-
             ]
 
     passed = True
     for test in tests_list:
         year = test["year"]
-        simulation = ScenarioSimulation()
-        simulation.set_config(year = test["year"], nmen = 1)
-        simulation.set_param()
+        menage = dict()
+        foyer_fiscal = dict()
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
 
-        test_case = simulation.scenario
         for variable, value in test['input_vars'].iteritems():
+
             if variable in ['zone_apl']:
-                test_case.menage[0].update({ variable: value})
+                menage[variable] = value
+            elif variable in ['sali', 'b1ab']:
+                parent1[variable] = value
             else:
-                test_case.indiv[0].update({ variable: value})
+                foyer_fiscal[variable] = value
 
-        df = simulation.get_results_dataframe(index_by_code = True)
-        for var, value in test['output_vars'].iteritems():
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            parent1 = parent1,
+            foyer_fiscal = foyer_fiscal,
+            menage = menage,
+            year = year,
+            ).new_simulation()
 
-            if var in df.columns:
-                val = df.loc[var][0]
-            else:
-                val = simulation.output_table.table[var][0]
+        for variable, value in test['output_vars'].iteritems():
 
-            test_assertion = abs(abs(val) - value) < 1
-#            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+            computed_value = (simulation.compute(variable)).sum()
+            test_assertion = abs(abs(computed_value) - value) < 1
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
             if not test_assertion:
-                print year
-                print var
-                print "OpenFisca :", val
-                print "Real value :", value
+                print expression
                 passed = False
+            else:
+                if verbose:
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    print expression
 
     assert passed, "Test failed for some variables"
 
 
 
-
 if __name__ == '__main__':
+    import sys
+    import logging
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_isf_celib()
 

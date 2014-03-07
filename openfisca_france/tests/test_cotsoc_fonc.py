@@ -279,9 +279,6 @@ def test_cotsoc_famille(verbose = False):
             else:
                 assert False, "Variable non prise en charge : %s" % variable
 
-        print parent1
-        print parent2
-        print menage
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             parent1 = parent1,
             parent2 = parent2,
