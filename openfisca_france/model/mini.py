@@ -244,11 +244,14 @@ def _asi(asi_pure, asi_coexist_aspa):
 def _div_ms(f3vc, f3ve, f3vg, f3vl, f3vm):
     return f3vc + f3ve + f3vg + f3vl + f3vm
 
-def _rfon_ms(f4ba, f4be):
+def _rfon_ms(self, f4ba, f4be):
     '''
     Revenus fonciers pour la base ressource du rmi/rsa
     'ind'
     '''
+    f4ba = self.cast_from_entity_to_role(f4ba, entity = 'foyer_fiscal', role = VOUS)
+    f4be = self.cast_from_entity_to_role(f4be, entity = 'foyer_fiscal', role = VOUS)
+
     return f4ba + f4be
 
 def _ra_rsa(sal, hsup, rpns, etr):
