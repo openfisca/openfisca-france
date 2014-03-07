@@ -6,13 +6,14 @@
 # Licensed under the terms of the GPL (version 3 or later) license
 # (see openfisca/__init__.py for details)
 
+
 from __future__ import division
 
 import logging
 
-from numpy import minimum as min_, maximum as max_
+from numpy import logical_not as not_, minimum as min_, maximum as max_
 
-from .data import QUIFOY
+from .data import QUIFOY, QUIMEN
 
 
 log = logging.getLogger(__name__)
@@ -22,7 +23,7 @@ CONJ = QUIFOY['conj']
 PAC1 = QUIFOY['pac1']
 PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
-ALL = [x[1] for x in QUIFOY]
+PREF = QUIMEN['pref']
 
 
 def _rfr_cd(cd_acc75a, cd_doment, cd_eparet, cd_sofipe):
@@ -72,13 +73,14 @@ def _rbg_int(rbg, cd1):
 def _charges_deduc_reforme(charge_loyer):
     return charge_loyer
 
-def _charge_loyer(loyer, nbptr, _P, _option = {'loyer': ALL}):
+def _charge_loyer(self, loyer, nbptr, _P):
+    loyer_by_individu = self.cast_from_entity_to_role(loyer, entity = 'menage', role = PREF)
+    loyer_by_foyer_fiscal = self.sum_by_entity(loyer_by_individu, entity = 'foyer_fiscal')
 
-    from numpy import logical_not as not_
     plaf = _P.ir.autre.charge_loyer.plaf
     plaf_nbp = _P.ir.autre.charge_loyer.plaf_nbp
     plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
-    return 12 * _P.ir.autre.charge_loyer.active * min_(sum(loyer.itervalues()), plafond)
+    return 12 * _P.ir.autre.charge_loyer.active * min_(loyer_by_foyer_fiscal, plafond)
 
 
 def _charges_deduc(cd1, cd2, charges_deduc_reforme):

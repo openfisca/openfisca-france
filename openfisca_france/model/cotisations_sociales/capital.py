@@ -13,8 +13,12 @@ import logging
 
 from openfisca_core.enumerations import Enum
 
+from ..data import QUIFOY
+
 
 log = logging.getLogger(__name__)
+VOUS = QUIFOY['vous']
+
 
 # TODO: CHECK la csg déductible en 2006 est case GH
 # TODO:  la revenus soumis aux csg déductible et imposable sont
@@ -49,21 +53,23 @@ def _mhsup(hsup):
 
 
 # revenus du capital soumis au barème
-def _csg_cap_bar(rev_cap_bar, _P):
+def _csg_cap_bar(self, rev_cap_bar, _P):
     '''
     Calcule la CSG sur les revenus du captial soumis au barème
     '''
-    return -rev_cap_bar * _P.csg.capital.glob
+    return self.cast_from_entity_to_role(-rev_cap_bar * _P.csg.capital.glob,
+        entity = 'foyer_fiscal', role = VOUS)
 
 
-def _crds_cap_bar(rev_cap_bar, _P):
+def _crds_cap_bar(self, rev_cap_bar, _P):
     '''
     Calcule la CRDS sur les revenus du capital soumis au barème
     '''
-    return -rev_cap_bar * _P.crds.capital
+    return self.cast_from_entity_to_role(-rev_cap_bar * _P.crds.capital,
+        entity = 'foyer_fiscal', role = VOUS)
 
 
-def _prelsoc_cap_bar(rev_cap_bar, _P):
+def _prelsoc_cap_bar(self, rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
@@ -76,7 +82,8 @@ def _prelsoc_cap_bar(rev_cap_bar, _P):
         total = P.base_pat + P.add_pat
     else:
         total = P.base_pat + P.add_pat + P.rsa
-    return -rev_cap_bar * total
+    return self.cast_from_entity_to_role(-rev_cap_bar * total,
+        entity = 'foyer_fiscal', role = VOUS)
 
 # plus-values de valeurs mobilières
 
@@ -171,22 +178,24 @@ def _prelsoc_fon(rev_cat_rfon, _P):
     return -rev_cat_rfon * total
 
 # revenus du capital soumis au prélèvement libératoire
-def _csg_cap_lib(rev_cap_lib, _P):
+def _csg_cap_lib(self, rev_cap_lib, _P):
     '''
     Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire
     '''
-    return -rev_cap_lib * _P.csg.capital.glob
+    return self.cast_from_entity_to_role(-rev_cap_lib * _P.csg.capital.glob,
+        entity = 'foyer_fiscal', role = VOUS)
 
 
-def _crds_cap_lib(rev_cap_lib, _P):
+def _crds_cap_lib(self, rev_cap_lib, _P):
     '''
     Calcule la CRDS sur les revenus du capital
     soumis au prélèvement libératoire
     '''
-    return -rev_cap_lib * _P.crds.capital
+    return self.cast_from_entity_to_role(-rev_cap_lib * _P.crds.capital,
+        entity = 'foyer_fiscal', role = VOUS)
 
 
-def _prelsoc_cap_lib(rev_cap_lib, _P):
+def _prelsoc_cap_lib(self, rev_cap_lib, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital
     soumis au prélèvement libératoire
@@ -200,7 +209,8 @@ def _prelsoc_cap_lib(rev_cap_lib, _P):
         total = P.base_pat + P.add_pat
     else:
         total = P.base_pat + P.add_pat + P.rsa
-    return -rev_cap_lib * total
+    return self.cast_from_entity_to_role(-rev_cap_lib * total,
+        entity = 'foyer_fiscal', role = VOUS)
 
 
 # TODO: non_imposabilité pour les revenus au barème

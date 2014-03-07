@@ -27,10 +27,10 @@ import collections
 from datetime import date
 
 from openfisca_core.columns import BoolPresta, FloatPresta, IntPresta, EnumPresta
-from openfisca_core.formulas import SimpleFormula
 from openfisca_core.enumerations import Enum
 
 from .. import entities
+from ..formulas import SimpleFormula
 from . import calage as cl
 from . import common as cm
 from .cotisations_sociales import capital as cs_capital

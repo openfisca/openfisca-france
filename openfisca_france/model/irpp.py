@@ -8,10 +8,13 @@
 
 
 from __future__ import division
-from numpy import (maximum as max_, minimum as min_, logical_xor as xor_,
-                     logical_not as not_, round)
+
+import logging
+
+from numpy import logical_not as not_, logical_xor as xor_, maximum as max_, minimum as min_, round
 
 from .data import QUIFOY
+
 
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
@@ -19,8 +22,6 @@ PAC1 = QUIFOY['pac1']
 PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
 ALL = [x[1] for x in QUIFOY]
-
-import logging
 
 log = logging.getLogger(__name__)
 
@@ -168,18 +169,20 @@ def _sal_pen_net(salcho_imp, pen_net, abat_sal_pen):
     """
     return salcho_imp + pen_net - abat_sal_pen
 
-def _rto(f1aw, f1bw, f1cw, f1dw):
+def _rto(self, f1aw, f1bw, f1cw, f1dw):
     """
     Rentes viagères à titre onéreux (avant abattements)
     """
-    return f1aw + f1bw + f1cw + f1dw
+    return self.cast_from_entity_to_role(f1aw + f1bw + f1cw + f1dw,
+        entity = 'foyer_fiscal', role = VOUS)
 
-def _rto_net(f1aw, f1bw, f1cw, f1dw, _P):
+def _rto_net(self, f1aw, f1bw, f1cw, f1dw, _P):
     '''
     Rentes viagères après abattements
     '''
     P = _P.ir.tspr.abatviag
-    return round(P.taux1 * f1aw + P.taux2 * f1bw + P.taux3 * f1cw + P.taux4 * f1dw)
+    return self.cast_from_entity_to_role(round(P.taux1 * f1aw + P.taux2 * f1bw + P.taux3 * f1cw + P.taux4 * f1dw),
+        entity = 'foyer_fiscal', role = VOUS)
 
 def _tspr(sal_pen_net, rto_net):
     '''
@@ -598,11 +601,12 @@ def _irpp(iai, credits_impot, cehr, microsocial):
 # # Autres totaux utiles pour la suite
 ###############################################################################
 
-def _alv(f6gi, f6gj, f6el, f6em, f6gp, f6gu):
+def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     '''
     Pensions alimentaires versées
     '''
-    return -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
+    return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
+        entity = 'foyer_fiscal', role = VOUS)
 
 def _rfr(rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
     '''
@@ -870,7 +874,7 @@ def _rpns_pvct(frag_pvct, mbic_pvct, macc_pvct, mbnc_pvct, mncn_pvct):
     '''
     return frag_pvct + mbic_pvct + macc_pvct + mbnc_pvct + mncn_pvct
 
-def _rpns_mvct(mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
+def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
     '''
     Moins values de court terme
     'ind'
@@ -880,7 +884,8 @@ def _rpns_mvct(mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
     mbnc_mvct (f5kz)
 
     '''
-    return mbic_mvct + macc_mvct + mbnc_mvct + mncn_mvct
+    return self.cast_from_entity_to_role(mbic_mvct + macc_mvct + mbnc_mvct + mncn_mvct,
+        entity = 'foyer_fiscal', role = VOUS)
 
 def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     '''

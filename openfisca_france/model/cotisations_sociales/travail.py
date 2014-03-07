@@ -33,6 +33,7 @@ from numpy import (logical_not as not_, logical_or as or_, maximum as max_, mini
 from openfisca_core.baremes import BaremeDict, scaleBaremes
 from openfisca_core.enumerations import Enum
 
+from ..data import QUIFAM, QUIFOY, QUIMEN
 from .preprocessing import build_pat, build_sal
 
 
@@ -46,11 +47,12 @@ CAT = Enum(['prive_non_cadre',
             'public_titulaire_territoriale',
             'public_titulaire_hospitaliere',
             'public_non_titulaire'])
-
+CHEF = QUIFAM['chef']
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
-
-
 log = logging.getLogger(__name__)
+PREF = QUIMEN['pref']
+VOUS = QUIFOY['vous']
+
 
 # TODO: contribution patronale de prévoyance complémentaire
 # Formation professionnelle (entreprise de 10 à moins de 20 salariés)
@@ -491,7 +493,7 @@ def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement
 def _cot_pat_pension_civile(salbrut, type_sal, _P):
     """
     Pension civile part patronale
-    Note : salbrut est égal au traitement indiciaire brut 
+    Note : salbrut est égal au traitement indiciaire brut
     """
     pat = _P.cotsoc.cotisations_employeur.__dict__
     terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
@@ -534,14 +536,14 @@ def _primes(type_sal, salbrut):
     return TAUX_DE_PRIME * tib
 
 
-def _supp_familial_traitement(type_sal, salbrut, af_nbenf, _P):
+def _supp_familial_traitement(self, type_sal, salbrut, af_nbenf, _P):
     '''
     Supplément familial de traitement
     Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     TODO: gérer le cas encore problématique du conjoint fonctionnaire
     '''
     # TODO: un seul sft par couple où est présent un fonctionnaire
-    fonc_nbenf = af_nbenf
+    fonc_nbenf = self.cast_from_entity_to_role(af_nbenf, entity = 'famille', role = CHEF)
     P = _P.fonc.supp_fam
 
     part_fixe_1 = P.fixe.enf1
@@ -598,10 +600,12 @@ def _traitement_brut_mensuel(indice_maj, _P):
     return traitement_brut
 
 
-def _indemnite_residence(salbrut, type_sal, zone_apl, _P):
+def _indemnite_residence(self, salbrut, type_sal, zone_apl, _P):
     '''
     Indemnité de résidence des fonctionnaires
     '''
+    zone_apl = self.cast_from_entity_to_all_roles(zone_apl, entity = 'menage')
+
     P = _P.fonc.indem_resid
     min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
     taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
@@ -628,7 +632,7 @@ def _gipa(type_sal, _P):
 # # Non salariés
 ############################################################################
 
-def _rev_microsocial(assiette_service, assiette_vente, assiette_proflib, _P):
+def _rev_microsocial(self, assiette_service, assiette_vente, assiette_proflib, _P):
     '''
     Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)
     'foy'
@@ -636,7 +640,8 @@ def _rev_microsocial(assiette_service, assiette_vente, assiette_proflib, _P):
     P = _P.cotsoc.sal.microsocial
     total = assiette_service + assiette_vente + assiette_proflib
     prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-    return total - prelsoc_ms
+    return self.cast_from_entity_to_role(total - prelsoc_ms,
+        entity = 'foyer_fiscal', role = VOUS)
 
 ############################################################################
 # # Helper functions

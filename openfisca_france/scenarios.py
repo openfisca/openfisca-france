@@ -503,9 +503,9 @@ class Scenario(object):
                             u"Max value must be greater than min value")
                     column = column_by_name[axis['name']]
                     entity_class = entities.entity_class_by_symbol[column.entity]
-                    if axis['index'] >= len(data['test_case'][entity_class.key]):
+                    if axis['index'] >= len(data['test_case'][entity_class.key_plural]):
                         errors.setdefault('axes', {}).setdefault(axis_index, {})['index'] = state._(
-                            u"Index must be lower than {}").format(len(data['test_case'][entity_class.key]))
+                            u"Index must be lower than {}").format(len(data['test_case'][entity_class.key_plural]))
                 if errors:
                     return data, errors
 
@@ -638,6 +638,7 @@ class Scenario(object):
             dtype = column_by_name['idfam']._dtype)  # famille_index
         individus.new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_count,
             dtype = column_by_name['quifam']._dtype)  # famille_role
+        familles_roles_count = 0
         for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
             parents_id = famille.pop(u'parents')
             enfants_id = famille.pop(u'enfants')
@@ -645,21 +646,28 @@ class Scenario(object):
                 individu_index = individu_index_by_id[parents_id[0]]
                 idfam_array[step_index * individus_count + individu_index] = step_index * familles_count + famille_index
                 quifam_array[step_index * individus_count + individu_index] = 0  # chef
+                famille_roles_count = 1
                 if len(parents_id) > 1:
                     individu_index = individu_index_by_id[parents_id[1]]
                     idfam_array[step_index * individus_count + individu_index] \
                         = step_index * familles_count + famille_index
                     quifam_array[step_index * individus_count + individu_index] = 1  # part
+                    famille_roles_count += 1
                 for enfant_index, enfant_id in enumerate(enfants_id):
                     individu_index = individu_index_by_id[enfant_id]
                     idfam_array[step_index * individus_count + individu_index] \
                         = step_index * familles_count + famille_index
                     quifam_array[step_index * individus_count + individu_index] = 2 + enfant_index  # enf
+                    famille_roles_count += 1
+                if famille_roles_count > familles_roles_count:
+                    familles_roles_count = famille_roles_count
+        familles.roles_count = familles_roles_count
         #
         individus.new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_count,
             dtype = column_by_name['idfoy']._dtype)  # foyer_fiscal_index
         individus.new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_count,
             dtype = column_by_name['quifoy']._dtype)  # foyer_fiscal_role
+        foyers_fiscaux_roles_count = 0
         for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
             declarants_id = foyer_fiscal.pop(u'declarants')
             personnes_a_charge_id = foyer_fiscal.pop(u'personnes_a_charge')
@@ -668,21 +676,28 @@ class Scenario(object):
                 idfoy_array[step_index * individus_count + individu_index] \
                     = step_index * foyers_fiscaux_count + foyer_fiscal_index
                 quifoy_array[step_index * individus_count + individu_index] = 0  # vous
+                foyer_fiscal_roles_count = 1
                 if len(declarants_id) > 1:
                     individu_index = individu_index_by_id[declarants_id[1]]
                     idfoy_array[step_index * individus_count + individu_index] \
                         = step_index * foyers_fiscaux_count + foyer_fiscal_index
                     quifoy_array[step_index * individus_count + individu_index] = 1  # conj
+                    foyer_fiscal_roles_count += 1
                 for personne_a_charge_index, personne_a_charge_id in enumerate(personnes_a_charge_id):
                     individu_index = individu_index_by_id[personne_a_charge_id]
                     idfoy_array[step_index * individus_count + individu_index] \
                         = step_index * foyers_fiscaux_count + foyer_fiscal_index
                     quifoy_array[step_index * individus_count + individu_index] = 2 + personne_a_charge_index  # pac
+                    foyer_fiscal_roles_count += 1
+                if foyer_fiscal_roles_count > foyers_fiscaux_roles_count:
+                    foyers_fiscaux_roles_count = foyer_fiscal_roles_count
+        foyers_fiscaux.roles_count = foyers_fiscaux_roles_count
         #
         individus.new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_count,
             dtype = column_by_name['idmen']._dtype)  # menage_index
         individus.new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_count,
             dtype = column_by_name['quimen']._dtype)  # menage_role
+        menages_roles_count = 0
         for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
             personne_de_reference_id = menage.pop(u'personne_de_reference')
             conjoint_id = menage.pop(u'conjoint')
@@ -692,16 +707,22 @@ class Scenario(object):
                 individu_index = individu_index_by_id[personne_de_reference_id]
                 idmen_array[step_index * individus_count + individu_index] = step_index * menages_count + menage_index
                 quimen_array[step_index * individus_count + individu_index] = 0  # pref
+                menage_roles_count = 1
                 if conjoint_id is not None:
                     individu_index = individu_index_by_id[conjoint_id]
                     idmen_array[step_index * individus_count + individu_index] \
                         = step_index * menages_count + menage_index
                     quimen_array[step_index * individus_count + individu_index] = 1  # cref
+                    menage_roles_count += 1
                 for enfant_index, enfant_id in enumerate(itertools.chain(enfants_id, autres_id)):
                     individu_index = individu_index_by_id[enfant_id]
                     idmen_array[step_index * individus_count + individu_index] \
                         = step_index * menages_count + menage_index
                     quimen_array[step_index * individus_count + individu_index] = 2 + enfant_index  # enf
+                    menage_roles_count += 1
+                if menage_roles_count > menages_roles_count:
+                    menages_roles_count = menage_roles_count
+        menages.roles_count = menages_roles_count
         #
         individus.new_holder('noi').array = np.arange(steps_count * individus_count,
             dtype = column_by_name['noi']._dtype)
