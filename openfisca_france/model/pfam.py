@@ -86,12 +86,21 @@ def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc, f3ve, f3vg, f3v
 
     return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
-def _rev_coll(rto_net, rev_cap_lib, rev_cat_rvcm, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc, rev_cat_pv):
+def _rev_coll(self, rto_net, rev_cap_lib, rev_cat_rvcm, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc, rev_cat_pv):
     '''
     revenus collectif
     '''
     # TODO: ajouter les revenus de l'étranger etr*0.9
     # alv is negative since it is paid by the declaree
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
+    rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm, entity = 'foyer_fiscal', role = VOUS)
+    abat_spe = self.cast_from_entity_to_role(abat_spe, entity = 'foyer_fiscal', role = VOUS)
+    fon = self.cast_from_entity_to_role(fon, entity = 'foyer_fiscal', role = VOUS)
+    f7ga = self.cast_from_entity_to_role(f7ga, entity = 'foyer_fiscal', role = VOUS)
+    f7gb = self.cast_from_entity_to_role(f7gb, entity = 'foyer_fiscal', role = VOUS)
+    f7gc = self.cast_from_entity_to_role(f7gc, entity = 'foyer_fiscal', role = VOUS)
+    rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv, entity = 'foyer_fiscal', role = VOUS)
+
     return rto_net + rev_cap_lib + rev_cat_rvcm + fon + glo + alv - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv
 
 def _br_pf(br_pf_i, rev_coll, _option = {'br_pf_i': [CHEF, PART], 'rev_coll': [CHEF, PART]}):
