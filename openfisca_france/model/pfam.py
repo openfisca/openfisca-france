@@ -7,14 +7,18 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
+
 from numpy import (round, floor, zeros, maximum as max_, minimum as min_,
                    logical_not as not_)
-from .data import QUIFAM
+
+from .data import QUIFAM, QUIFOY
 
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+VOUS = QUIFOY['vous']
+
 
 def _nb_par(quifam, _option = {'quifam':[PART]}):
     '''
@@ -72,7 +76,14 @@ def _biact(br_pf_i, _P, _option = {'br_pf_i': [CHEF, PART]}):
     biact = (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
     return biact
 
-def _div(rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc, f3ve, f3vg, f3vh, f3vl, f3vm):
+def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc, f3ve, f3vg, f3vh, f3vl, f3vm):
+    f3vc = self.cast_from_entity_to_role(f3vc, entity = 'foyer_fiscal', role = VOUS)
+    f3ve = self.cast_from_entity_to_role(f3ve, entity = 'foyer_fiscal', role = VOUS)
+    f3vg = self.cast_from_entity_to_role(f3vg, entity = 'foyer_fiscal', role = VOUS)
+    f3vh = self.cast_from_entity_to_role(f3vh, entity = 'foyer_fiscal', role = VOUS)
+    f3vl = self.cast_from_entity_to_role(f3vl, entity = 'foyer_fiscal', role = VOUS)
+    f3vm = self.cast_from_entity_to_role(f3vm, entity = 'foyer_fiscal', role = VOUS)
+
     return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 def _rev_coll(rto_net, rev_cap_lib, rev_cat_rvcm, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc, rev_cat_pv):
