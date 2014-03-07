@@ -123,7 +123,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
             survey_only = False,
             )
     else:
-        del prestation_by_name['csg_deduc_patrimoine_simulated']
+        prestation_by_name.pop('csg_deduc_patrimoine_simulated', None)
 
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget

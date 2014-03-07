@@ -35,6 +35,45 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
+def process_test_list(tests_list, verbose = False):
+    passed = True
+    for test in tests_list:
+        year = test["year"]
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+        menage = dict()
+        foyer_fiscal = dict()
+        for variable, value in test['input_vars'].iteritems():
+            if tax_benefit_system.column_by_name[variable].entity == 'men':
+                menage[variable] = value
+            elif tax_benefit_system.column_by_name[variable].entity == 'ind':
+                parent1[variable] = value
+            elif tax_benefit_system.column_by_name[variable].entity == 'foy':
+                foyer_fiscal[variable] = value
+
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            parent1 = parent1,
+            menage = menage,
+            foyer_fiscal = foyer_fiscal,
+            year = year,
+            ).new_simulation()
+
+        for variable, value in test['output_vars'].iteritems():
+
+            computed_value = (simulation.compute(variable) / 12).sum()
+            test_assertion = abs(abs(computed_value) - value) < 1
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+
+            if not test_assertion:
+                print expression
+                passed = False
+            else:
+                if verbose:
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    print expression
+
+    assert passed, "Test failed for some variables"
+
+
 def test_cotsoc_celib(verbose = False):
     """
     test pour un célibataire
@@ -63,7 +102,7 @@ def test_cotsoc_celib(verbose = False):
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
                      "cotsal" : 167.80 + 20 + 23.72,
 #                               pension rafp
-                     "salsuperbrut": 4328.40 + 2000 * (0.0175 - 0.026), # Correction transport
+                     "salsuperbrut": 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
@@ -122,7 +161,7 @@ def test_cotsoc_celib(verbose = False):
                      "csgsald" : 128.28,
                      "csgsali" : 60.36,
                      "crdssal": 12.58,
-                     "salsuperbrut": 3562 + 2000 * (0.0175 - 0.026), # second term is correction of transport
+                     "salsuperbrut": 3562 + 2000 * (0.0175 - 0.026),  # second term is correction of transport
                      "salnet": 2147.26,
                     }
               },
@@ -155,40 +194,9 @@ def test_cotsoc_celib(verbose = False):
                     }
               },
             ]
-
-    passed = True
-    for test in tests_list:
-        year = test["year"]
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
-        menage = dict()
-        for variable, value in test['input_vars'].iteritems():
-            if variable in ['zone_apl']:
-                menage.update({ variable: value})
-            else:
-                parent1.update({ variable: value})
-
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
-            parent1 = parent1,
-            menage = menage,
-            year = year,
-            ).new_simulation()
-
-        for variable, value in test['output_vars'].iteritems():
-
-            computed_value = (simulation.compute(variable) / 12).sum()
-            test_assertion = abs(abs(computed_value) - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
-
-            if not test_assertion:
-                print expression
-                passed = False
-            else:
-                if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
-                    print expression
+    process_test_list(tests_list, verbose = False)
 
 
-    assert passed, "Test failed for some variables"
 
 
 def test_cotsoc_famille(verbose = False):
@@ -219,7 +227,7 @@ def test_cotsoc_famille(verbose = False):
                      "cotpat_transport": 2000 * 0.0175,
                      "cotpat" : 1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : 167.80 + 20 + 24.45, # cot excep de solidarité
+                     "cotsal" : 167.80 + 20 + 24.45,  # cot excep de solidarité
 #                               pension rafp
                      "salsuperbrut": 4401.44 + 2000 * (.0175 - .026),
                      "salnet": 2213.83,
@@ -251,7 +259,7 @@ def test_cotsoc_famille(verbose = False):
                      "cotpat_transport": 2000 * 0.0175 * 2,
                      "cotpat" : (1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 #                               pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
-                     "cotsal" : (167.80 + 20 + 24.45) * 2 , # cot excep de solidarité
+                     "cotsal" : (167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
 #                               pension rafp
                      "salsuperbrut": (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
                      "salnet": (2000 + 500 + 20 - 131.94 - 62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
@@ -268,8 +276,8 @@ def test_cotsoc_famille(verbose = False):
         parent1 = dict(birth = datetime.date(year - 40, 1, 1))
         parent2 = dict(birth = datetime.date(year - 40, 1, 1))
 
-        for variable, value in test['input_vars'].iteritems():
 
+        for variable, value in test['input_vars'].iteritems():
             if variable in ['zone_apl']:
                 menage[variable] = value
             elif variable in ['type_sal', 'salbrut', 'primes']:
@@ -288,7 +296,6 @@ def test_cotsoc_famille(verbose = False):
 
 
         for variable, value in test['output_vars'].iteritems():
-
             computed_value = (simulation.compute(variable) / 12).sum()
             test_assertion = abs(abs(computed_value) - value) < 2
             expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)

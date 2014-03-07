@@ -25,15 +25,55 @@
 
 from __future__ import division
 
-import sys
-import logging
-import nose
+import datetime
 
 import openfisca_france
-openfisca_france.init_country()
-
-from openfisca_core.simulations import ScenarioSimulation
 from openfisca_france.model.cotisations_sociales.travail import CAT
+
+
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
+
+
+
+def process_test_list(tests_list, verbose = False):
+    passed = True
+    for test in tests_list:
+        year = test["year"]
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+        menage = dict()
+        foyer_fiscal = dict()
+        for variable, value in test['input_vars'].iteritems():
+            if tax_benefit_system.column_by_name[variable].entity == 'men':
+                menage[variable] = value
+            elif tax_benefit_system.column_by_name[variable].entity == 'ind':
+                parent1[variable] = value
+            elif tax_benefit_system.column_by_name[variable].entity == 'foy':
+                foyer_fiscal[variable] = value
+
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            parent1 = parent1,
+            menage = menage,
+            foyer_fiscal = foyer_fiscal,
+            year = year,
+            ).new_simulation()
+
+        for variable, value in test['output_vars'].iteritems():
+
+            computed_value = (simulation.compute(variable)).sum()
+            test_assertion = abs(abs(computed_value) - value) < 1
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+
+            if not test_assertion:
+                print expression
+                passed = False
+            else:
+                if verbose:
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    print expression
+
+    assert passed, "Test failed for some variables"
+
 
 
 def test_niches():
@@ -1287,40 +1327,15 @@ def test_niches():
 #
 
 
+    process_test_list(tests_list, verbose = False)
 
-
-    for test in tests_list:
-
-        year = test["year"]
-        simulation = ScenarioSimulation()
-        simulation.set_config(year = test["year"], nmen = 1)
-        simulation.set_param()
-
-        test_case = simulation.scenario
-        for variable, value in test['input_vars'].iteritems():
-            if variable in ['sali']:
-                test_case.indiv[0].update({ variable: value})
-            else:
-                test_case.declar[0].update({ variable: value})
-
-        df = simulation.get_results_dataframe(index_by_code = True)
-
-        passed = True
-        for variable, value in test['output_vars'].iteritems():
-
-            computed_value = (simulation.output_table.table[variable]).sum()
-            test_assertion = abs(abs(computed_value) - value) < 1
-            list_var = set(test['input_vars'].keys()) - set(['sali'])
-            expression = "Test failed for variables %s on year %i : \n OpenFisca value : %s \n Real value : %s \n" % (list(list_var), year, abs(computed_value), value)
-
-            if not test_assertion:
-                print expression
-                passed = True
-            assert passed, "Test failed for some variables"
 
 
 if __name__ == '__main__':
+    import sys
+    import logging
     logging.basicConfig(level = logging.CRITICAL, stream = sys.stdout)
     test_niches()
+#    import nose
 #    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
-#     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
+#    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
