@@ -746,8 +746,8 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('crds', FloatPresta(cm._crds, label = u"Total des contributions au remboursement de la dette sociale")),
     build_simple_formula_couple('csg', FloatPresta(cm._csg, label = u"Total des contributions sociale généralisée")),
     build_simple_formula_couple('cotsoc_noncontrib', FloatPresta(cm._cotsoc_noncontrib, label = u"Cotisations sociales non contributives")),
-    build_simple_formula_couple('check_csk', FloatPresta(cm._check_csk)),
-    build_simple_formula_couple('check_csg', FloatPresta(cm._check_csg)),
-    build_simple_formula_couple('check_crds', FloatPresta(cm._check_crds)),
+    build_simple_formula_couple('check_csk', FloatPresta(cm._check_csk, entity = 'men')),
+    build_simple_formula_couple('check_csg', FloatPresta(cm._check_csg, entity = 'men')),
+    build_simple_formula_couple('check_crds', FloatPresta(cm._check_crds, entity = 'men')),
 
     ))

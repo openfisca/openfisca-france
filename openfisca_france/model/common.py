@@ -261,14 +261,35 @@ def _prelsoc_cap(self, prelsoc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv
     return prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
 
-def _check_csk(prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_fon):
+def _check_csk(self, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_fon):
+    prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar, entity = 'menage')
+    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo, entity = 'foyer_fiscal', role = CHEF)
+    prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo, entity = 'menage')
+    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon, entity = 'foyer_fiscal', role = CHEF)
+    prelsoc_fon = self.sum_by_entity(prelsoc_fon, entity = 'menage')
+
     return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
-def _check_csg(csg_cap_bar, csg_pv_mo, csg_fon):
+
+def _check_csg(self, csg_cap_bar, csg_pv_mo, csg_fon):
+    csg_cap_bar = self.sum_by_entity(csg_cap_bar, entity = 'menage')
+    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo, entity = 'foyer_fiscal', role = CHEF)
+    csg_pv_mo = self.sum_by_entity(csg_pv_mo, entity = 'menage')
+    csg_fon = self.cast_from_entity_to_role(csg_fon, entity = 'foyer_fiscal', role = CHEF)
+    csg_fon = self.sum_by_entity(csg_fon, entity = 'menage')
+
     return csg_cap_bar + csg_pv_mo + csg_fon
 
-def _check_crds(crds_cap_bar, crds_pv_mo, crds_fon):
+
+def _check_crds(self, crds_cap_bar, crds_pv_mo, crds_fon):
+    crds_cap_bar = self.sum_by_entity(crds_cap_bar, entity = 'menage')
+    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo, entity = 'foyer_fiscal', role = CHEF)
+    crds_pv_mo = self.sum_by_entity(crds_pv_mo, entity = 'menage')
+    crds_fon = self.cast_from_entity_to_role(crds_fon, entity = 'foyer_fiscal', role = CHEF)
+    crds_fon = self.sum_by_entity(crds_fon, entity = 'menage')
+
     return crds_cap_bar + crds_pv_mo + crds_fon
+
 
 def _decile(nivvie, champm, wprm):
     '''
