@@ -1152,9 +1152,11 @@ def _ppe_coef_tp(ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, _P):
     tp = ppe_tp_sa | ppe_tp_ns | (frac_sa + frac_ns >= 1)
     return tp + not_(tp) * (frac_sa + frac_ns)
 
-def _ppe_base(ppe_rev, ppe_coef_tp, ppe_coef):
-    out = ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
-    return out
+def _ppe_base(self, ppe_rev, ppe_coef_tp, ppe_coef):
+    ppe_coef = self.cast_from_entity_to_role(ppe_coef, entity = 'foyer_fiscal', role = VOUS)
+
+    return ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
+
 
 def _ppe_elig_i(ppe_rev, ppe_coef_tp, _P):
     '''
