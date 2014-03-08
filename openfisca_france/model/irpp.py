@@ -535,11 +535,13 @@ def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
     else:
         return 0 * assiette_service
 
-def _plus_values(f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce, _P):
+def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce, _P):
     """
     Taxation des plus value
     TODO: f3vt, 2013 f3Vg au barème / tout refaire
     """
+    rpns_pvce = self.sum_by_entity(rpns_pvce, entity = 'foyer_fiscal')
+
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
     rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
