@@ -822,6 +822,7 @@ class Scenario(object):
                 if holder.array is None:
                     column = entity.column_by_name[axis['name']]
                     holder.array = np.empty(entity.count, dtype = column._dtype)
+                    holder.array.fill(column._default)
                 holder.array[axis['index']:: entity.step_size] = np.linspace(axis['min'], axis['max'], axis['count'])
             else:
                 axes_linspaces = [
@@ -836,6 +837,7 @@ class Scenario(object):
                     if holder.array is None:
                         column = entity.column_by_name[axis['name']]
                         holder.array = np.empty(entity.count, dtype = column._dtype)
+                        holder.array.fill(column._default)
                     holder.array[axis['index']:: entity.step_size] = mesh.reshape(steps_count)
 
         return simulation
