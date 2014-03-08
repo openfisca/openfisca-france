@@ -12,14 +12,15 @@ from __future__ import division
 from numpy import arange, floor, logical_not as not_
 from openfisca_core.statshelpers import mark_weighted_percentiles
 
-from .data import QUIFAM, QUIMEN
+from .data import QUIFAM, QUIFOY, QUIMEN
 
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 
 ALL = [x[1] for x in QUIMEN]
+CHEF = QUIFAM['chef']
+ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+PART = QUIFAM['part']
+VOUS = QUIFOY['vous']
+
 
 def _uc(agem, _option = {'agem': ALL}):
     '''
@@ -210,18 +211,29 @@ def _impo(irpp, tax_hab):
     '''
     return irpp + tax_hab
 
-def _crds(crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_pfam, crds_lgtm, crds_mini, crds_pv_mo, crds_pv_immo):
+def _crds(self, crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_pfam, crds_lgtm, crds_mini, crds_pv_mo, crds_pv_immo):
     '''
     Contribution au remboursement de la dette sociale
     '''
+    crds_fon = self.cast_from_entity_to_role(crds_fon, entity = 'foyer_fiscal', role = VOUS)
+    crds_lgtm = self.cast_from_entity_to_role(crds_lgtm, entity = 'famille', role = CHEF)
+    crds_mini = self.cast_from_entity_to_role(crds_mini, entity = 'famille', role = CHEF)
+    crds_pfam = self.cast_from_entity_to_role(crds_pfam, entity = 'famille', role = CHEF)
+    crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo, entity = 'foyer_fiscal', role = VOUS)
+    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo, entity = 'foyer_fiscal', role = VOUS)
+
     return (crdssal + crdsrst + crdscho +
             crds_fon + crds_cap_bar + crds_cap_lib + crds_pv_mo + crds_pv_immo +
             crds_pfam + crds_lgtm + crds_mini)
 
-def _csg(csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
+def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
     """
     Contribution sociale généralisée
     """
+    csg_fon = self.cast_from_entity_to_role(csg_fon, entity = 'foyer_fiscal', role = VOUS)
+    csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo, entity = 'foyer_fiscal', role = VOUS)
+    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo, entity = 'foyer_fiscal', role = VOUS)
+
     return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
             csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo + csg_cap_bar)
 
