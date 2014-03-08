@@ -1,10 +1,26 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
@@ -83,12 +99,12 @@ def _nivvie(revdisp, uc):
     return revdisp / uc
 
 
-def _revnet(rev_trav, pen, rev_cap):
+def _revnet(self, rev_trav, pen, rev_cap):
     '''
     Revenu net du ménage
     'men'
     '''
-    return rev_trav + pen + rev_cap
+    return self.sum_by_entity(rev_trav + pen + rev_cap, entity = 'menage')
 
 
 def _nivvie_net(revnet, uc):
@@ -99,12 +115,12 @@ def _nivvie_net(revnet, uc):
     return revnet / uc
 
 
-def _revini(rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
+def _revini(self, rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
     '''
     Revenu initial du ménage
     'men'
     '''
-    return rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib
+    return self.sum_by_entity(rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib, entity = 'menage')
 
 
 def _nivvie_ini(revini, uc):
