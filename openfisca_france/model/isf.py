@@ -287,7 +287,21 @@ def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo,
 
     return revenus - charges
 
-def _bouclier_imp_gen (irpp, tax_hab, tax_fonc, isf_tot, cotsoc_lib, cotsoc_bar, csgsald, csgsali, crdssal, csgchoi, csgchod, csgrstd, csgrsti, imp_lib): ## ajouter CSG- CRDS
+
+def _bouclier_imp_gen (self, irpp, tax_hab, tax_fonc, isf_tot, cotsoc_lib, cotsoc_bar, csgsald, csgsali, crdssal,
+        csgchoi, csgchod, csgrstd, csgrsti, imp_lib): ## ajouter CSG- CRDS
+    cotsoc_bar = self.sum_by_entity(cotsoc_bar, entity = 'foyer_fiscal')
+    cotsoc_lib = self.sum_by_entity(cotsoc_lib, entity = 'foyer_fiscal')
+    crdssal = self.sum_by_entity(crdssal, entity = 'foyer_fiscal')
+    csgchod = self.sum_by_entity(csgchod, entity = 'foyer_fiscal')
+    csgchoi = self.sum_by_entity(csgchoi, entity = 'foyer_fiscal')
+    csgsald = self.sum_by_entity(csgsald, entity = 'foyer_fiscal')
+    csgsali = self.sum_by_entity(csgsali, entity = 'foyer_fiscal')
+    csgrstd = self.sum_by_entity(csgrstd, entity = 'foyer_fiscal')
+    csgrsti = self.sum_by_entity(csgrsti, entity = 'foyer_fiscal')
+    tax_hab = self.cast_from_entity_to_role(tax_hab, entity = 'menage', role = PREF)
+    tax_hab = self.sum_by_entity(tax_hab, entity = 'foyer_fiscal')
+
     ## ajouter Prelèvements sources/ libé
     ## ajouter crds rstd
     ## impôt sur les plus-values immo et cession de fonds de commerce
