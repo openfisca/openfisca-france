@@ -290,6 +290,7 @@ def test_cotsoc_famille(verbose = False):
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             parent1 = parent1,
             parent2 = parent2,
+            enfants = [dict(birth = datetime.date(2000, 1, 1)), dict(birth = datetime.date(2009, 1, 1))],
             menage = menage,
             year = year,
             ).new_simulation()
