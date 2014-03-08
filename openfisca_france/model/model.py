@@ -723,7 +723,6 @@ prestation_by_name = collections.OrderedDict((
     # Totaux
     ############################################################
 
-    build_simple_formula_couple('revdisp_i', FloatPresta(cm._revdisp_i, label = u"Revenu disponible individuel")),
     build_simple_formula_couple('revdisp', FloatPresta(cm._revdisp, entity = 'men', label = u"Revenu disponible du ménage")),
     build_simple_formula_couple('nivvie', FloatPresta(cm._nivvie, entity = 'men', label = u"Niveau de vie du ménage")),
 

@@ -58,22 +58,22 @@ def _typ_men(isol, af_nbenf):
             7 * (isol & _3_kid))  # Famille monoparentale trois enfants et plus
 
 
-def _revdisp_i(rev_trav, pen, rev_cap, ir_lps, psoc, ppe, impo):
-    '''
-    Revenu disponible
-    'ind'
-    '''
-    return rev_trav + pen + rev_cap + ir_lps + psoc + ppe + impo
-
-def _revdisp(revdisp_i, _option = {'revdisp_i': ALL}):
+def _revdisp(self, rev_trav, pen, rev_cap, ir_lps, psoc, ppe, impo):
     '''
     Revenu disponible - ménage
     'men'
     '''
-    r = 0
-    for rev in revdisp_i.itervalues():
-        r += rev
-    return r
+    ir_lps = self.sum_by_entity(ir_lps, entity = 'menage')
+    pen = self.sum_by_entity(pen, entity = 'menage')
+    ppe = self.cast_from_entity_to_role(ppe, entity = 'foyer_fiscal', role = CHEF)
+    ppe = self.sum_by_entity(ppe, entity = 'menage')
+    psoc = self.cast_from_entity_to_role(psoc, entity = 'famille', role = CHEF)
+    psoc = self.sum_by_entity(psoc, entity = 'menage')
+    rev_cap = self.sum_by_entity(rev_cap, entity = 'menage')
+    rev_trav = self.sum_by_entity(rev_trav, entity = 'menage')
+
+    return rev_trav + pen + rev_cap + ir_lps + psoc + ppe + impo
+
 
 def _nivvie(revdisp, uc):
     '''
