@@ -450,7 +450,6 @@ prestation_by_name = collections.OrderedDict((
     #                            Bouclier Fiscal
     ############################################################
     build_simple_formula_couple('rvcm_plus_abat', FloatPresta(isf._rvcm_plus_abat, entity = 'foy')),
-    build_simple_formula_couple('maj_cga_i', FloatPresta(isf._maj_cga_i)),
     build_simple_formula_couple('maj_cga', FloatPresta(isf._maj_cga, entity = 'foy')),
 
     build_simple_formula_couple('bouclier_rev', FloatPresta(isf._bouclier_rev,

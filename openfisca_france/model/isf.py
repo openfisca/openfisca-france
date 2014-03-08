@@ -218,14 +218,15 @@ def _rvcm_plus_abat(rev_cat_rvcm, rfr_rvcm):
     '''
     return rev_cat_rvcm + rfr_rvcm
 
+
 # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
-def _maj_cga_i(frag_impo, nrag_impg,
+def _maj_cga(self, frag_impo, nrag_impg,
             nbic_impn, nbic_imps, nbic_defn, nbic_defs,
             nacc_impn, nacc_imps, nacc_defn, nacc_defs,
             nbnc_impo, nbnc_defi, _P):
     '''
     Majoration pour non adhésion à un centre de gestion agréé
-    'ind'
+    'foy'
     '''
 
     ## B revenus industriels et commerciaux professionnels
@@ -242,20 +243,7 @@ def _maj_cga_i(frag_impo, nrag_impg,
     ntimp = nrag_impg + nbic_timp +  nacc_timp + nbnc_timp
 
     maj_cga = max_(0,_P.ir.rpns.cga_taux2*(ntimp + frag_impo))
-    return maj_cga
-
-def _maj_cga(maj_cga_i, _option = {'maj_cga_i': ALL}):
-    '''
-    Traitemens salaires pensions et rentes
-    'foy'
-    '''
-    out = None
-    for qui in maj_cga_i.itervalues():
-        if out is None:
-            out = qui
-        else:
-            out += qui
-    return out
+    return self.sum_by_entity(maj_cga, entity = 'foyer_fiscal')
 
 
 def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo, rev_or, cd_penali, cd_eparet):
