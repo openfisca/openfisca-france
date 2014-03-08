@@ -542,18 +542,23 @@ def _rsa_act(rsa, rmi):
     return res
 
 
-def _rsa_act_i(rsa_act, concub, maries, quifam, idfam):
+def _rsa_act_i(self, rsa_act, concub, maries, quifam, idfam):
     '''
-    Calcule le montant du RSA activité
-    Note: le partage en moitié est un point de législation, pas un choix arbitraire
-    TODO: à refaire car cela ne marchera pas avec les données d'enquêtes si elles ne sont pas triées exactement comme il faut !
-    '''
-    conj = concub | maries
-    rsa_act_i = 0*rsa_act
-    rsa_act_i[quifam==0] = rsa_act[quifam==0]/(1+conj[quifam==0])
-    rsa_act_i[quifam==1] = rsa_act[conj]/ 2
-    return rsa_act_i
+    Calcule le montant du RSA activité.
 
+    Note: le partage en moitié est un point de législation, pas un choix arbitraire.
+    '''
+    concub = self.cast_from_entity_to_all_roles(concub, entity = 'famille')
+    maries = self.cast_from_entity_to_all_roles(maries, entity = 'famille')
+    rsa_act = self.cast_from_entity_to_all_roles(rsa_act, entity = 'famille')
+
+    conj = or_(concub, maries)
+    rsa_act_i = 0 * quifam
+    chef_filter = quifam == 0
+    rsa_act_i[chef_filter] = rsa_act[chef_filter] / (1 + conj[chef_filter])
+    partenaire_filter = quifam == 1
+    rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
+    return rsa_act_i
 
 
 def _crds_mini(rsa_act, _P):
