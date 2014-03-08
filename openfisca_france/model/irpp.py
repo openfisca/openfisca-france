@@ -610,11 +610,14 @@ def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
         entity = 'foyer_fiscal', role = VOUS)
 
-def _rfr(rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
+def _rfr(self, rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
     f3vg -> rev_cat_pv -> ... -> rni
     '''
+    rpns_exon = self.sum_by_entity(rpns_exon, entity = 'foyer_fiscal')
+    rpns_pvce = self.sum_by_entity(rpns_pvce, entity = 'foyer_fiscal')
+
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 
 def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk):
