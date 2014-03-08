@@ -111,11 +111,15 @@ def _br_al(self, etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursi
 
     return br_al
 
-def _al(concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, _P, _option = {'nat_imp': ALL}):
+def _al(self, concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, _P):
     '''
     Formule des aides aux logements en secteur locatif
-    Attention, cette fonction calcul l'aide mensuelle
+    Attention, cette fonction calcule l'aide mensuelle
     '''
+    coloc = self.or_by_entity(coloc, entity = 'famille')
+    nat_imp = self.cast_from_entity_to_all_roles(nat_imp, entity = 'foyer_fiscal')
+    nat_imp = self.or_by_entity(nat_imp, entity = 'famille')
+
     P = _P
     # ne prend pas en compte les chambres ni les logements-foyers.
     # variables nécéssaires dans FA
@@ -216,9 +220,9 @@ def _al(concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, _P, _o
     ## APL (tous)
 
     if _P.ir.autre.charge_loyer.active:
-        al = 12*(al_loc + al_acc)*not_( sum(nat_imp.itervalues()) >= 1)
+        al = 12 * (al_loc + al_acc) * not_(nat_imp)
     else:
-        al = 12*(al_loc + al_acc)
+        al = 12 * (al_loc + al_acc)
 
     return al
 

@@ -90,6 +90,8 @@ class FormulaMixin(object):
             target_array[entity_index_array[boolean_filter]] += array[boolean_filter]
         return target_array
 
+    or_by_entity = sum_by_entity
+
 
 class Formula(FormulaMixin, formulas.AbstractFormula):
     pass
