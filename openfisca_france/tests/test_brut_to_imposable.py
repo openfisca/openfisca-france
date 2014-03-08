@@ -55,15 +55,15 @@ def test_sal(year = 2013, verbose = False):
             year = year,
             ).new_simulation()
 
-        df_b2i = DataFrame(dict(sal = simulation.compute('sal'),
-                                salbrut = simulation.compute('salbrut'),
+        df_b2i = DataFrame(dict(sal = simulation.calculate('sal'),
+                                salbrut = simulation.calculate('salbrut'),
                                 ))
 
         from openfisca_france.model.inversion_revenus import _salbrut
         sali = df_b2i['sal'].get_values()
-        hsup = simulation.compute('hsup')
-        type_sal = simulation.compute('type_sal')
-#        primes = simulation.compute('primes')
+        hsup = simulation.calculate('hsup')
+        type_sal = simulation.calculate('type_sal')
+#        primes = simulation.calculate('primes')
         defaultP = simulation.default_compact_legislation
         df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut(sali, hsup, type_sal, defaultP) })
 
@@ -99,8 +99,8 @@ def test_cho_rst(year = 2013, verbose = False):
             year = year,
             ).new_simulation()
 
-        df_b2i = DataFrame({var: simulation.compute(var),
-                            varbrut : simulation.compute(varbrut),
+        df_b2i = DataFrame({var: simulation.calculate(var),
+                            varbrut : simulation.calculate(varbrut),
                             })
 
         vari = df_b2i[var].get_values()

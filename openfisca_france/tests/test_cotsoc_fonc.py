@@ -59,16 +59,16 @@ def process_test_list(tests_list, verbose = False):
 
         for variable, value in test['output_vars'].iteritems():
 
-            computed_value = (simulation.compute(variable) / 12).sum()
-            test_assertion = abs(abs(computed_value) - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+            calculated_value = (simulation.calculate(variable) / 12).sum()
+            test_assertion = abs(abs(calculated_value) - value) < 1
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
 
             if not test_assertion:
                 print expression
                 passed = False
             else:
                 if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
                     print expression
 
     assert passed, "Test failed for some variables"
@@ -295,19 +295,19 @@ def test_cotsoc_famille(verbose = False):
             year = year,
             ).new_simulation()
 
-        print 'zone_apl array', simulation.compute('zone_apl')
-        print 'indemnite_residence array', simulation.compute('indemnite_residence')
+        print 'zone_apl array', simulation.calculate('zone_apl')
+        print 'indemnite_residence array', simulation.calculate('indemnite_residence')
         for variable, value in test['output_vars'].iteritems():
-            computed_value = (simulation.compute(variable) / 12).sum()  # monthly values
-            test_assertion = abs(abs(computed_value) - value) < 2
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+            calculated_value = (simulation.calculate(variable) / 12).sum()  # monthly values
+            test_assertion = abs(abs(calculated_value) - value) < 2
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
 
             if not test_assertion:
                 print expression
                 passed = False
             else:
                 if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
                     print expression
 
     assert passed, "Test failed for some variables"

@@ -279,7 +279,7 @@ def test_cotsoc(dico):
                     ).new_simulation()
 
 
-                val = simulation.compute(var)
+                val = simulation.calculate(var)
                 difference = abs(val - value)
                 passed = (difference < 1)
                 if not passed:
@@ -387,16 +387,16 @@ def test_cotsoc_cap_celib(verbose = False):
 
         for variable, value in test['output_vars'].iteritems():
 
-            computed_value = (simulation.compute(variable)).sum()
-            test_assertion = abs(computed_value - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+            calculated_value = (simulation.calculate(variable)).sum()
+            test_assertion = abs(calculated_value - value) < 1
+            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
 
             if not test_assertion:
                 print expression
                 passed = False
             else:
                 if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], computed_value, value)
+                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], calculated_value, value)
                     print expression
 
 
