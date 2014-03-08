@@ -177,7 +177,7 @@ prestation_by_name = collections.OrderedDict((
     # Fonctionnaires
     build_simple_formula_couple('indemnite_residence', FloatPresta(cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
     build_simple_formula_couple('supp_familial_traitement', FloatPresta(cs_travail._supp_familial_traitement,
-        label = u"Supplément familial de traitement (fonction publique)", start = date(2011, 1, 1))),
+        label = u"Supplément familial de traitement (fonction publique)", start = date(2011, 1, 1))),  # TODO: check this curious starting date
     build_simple_formula_couple('cot_pat_pension_civile', FloatPresta(cs_travail._cot_pat_pension_civile, label = u"Cotisation patronale pension civile")),
     build_simple_formula_couple('cot_sal_pension_civile', FloatPresta(cs_travail._cot_sal_pension_civile, label = u"Cotisation salariale pension civile")),
     build_simple_formula_couple('cot_pat_rafp', FloatPresta(cs_travail._cot_pat_rafp, label = u"Cotisation patronale RAFP")),
@@ -264,7 +264,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('cd2', FloatPresta(cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002, 1, 1), end = date(2008, 12, 31))),
     build_simple_formula_couple('charges_deduc', FloatPresta(cd._charges_deduc, entity = 'foy', label = u"Charges déductibles")),
 
-    build_simple_formula_couple('rfr_cd', FloatPresta(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")), # TODO:
+    build_simple_formula_couple('rfr_cd', FloatPresta(cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")),  # TODO:
 
     build_simple_formula_couple('rng', FloatPresta(ir._rng, entity = 'foy', label = u"Revenu net global")),
     build_simple_formula_couple('rni', FloatPresta(ir._rni, entity = 'foy', label = u"Revenu net imposable")),
@@ -352,7 +352,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('iai', FloatPresta(ir._iai, entity = 'foy')),
     build_simple_formula_couple('cehr', FloatPresta(ir._cehr, entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus")),
  #   build_simple_formula_couple('cesthra', FloatPresta(ir._cesthra, entity = 'foy', start = date(2013, 1, 1))), PLF 2013, amendement rejeté
-    build_simple_formula_couple('imp_lib', FloatPresta(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),), # TODO: Check - de 2000euros
+    build_simple_formula_couple('imp_lib', FloatPresta(ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
     build_simple_formula_couple('assiette_vente', FloatPresta(ir._micro_social_vente, entity = 'foy', start = date(2009, 1, 1))),
     build_simple_formula_couple('assiette_service', FloatPresta(ir._micro_social_service, entity = 'foy', start = date(2009, 1, 1))),
     build_simple_formula_couple('assiette_proflib', FloatPresta(ir._micro_social_proflib, entity = 'foy', start = date(2009, 1, 1))),

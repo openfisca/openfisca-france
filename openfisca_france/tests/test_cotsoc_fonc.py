@@ -295,9 +295,10 @@ def test_cotsoc_famille(verbose = False):
             year = year,
             ).new_simulation()
 
-
+        print 'zone_apl array', simulation.compute('zone_apl')
+        print 'indemnite_residence array', simulation.compute('indemnite_residence')
         for variable, value in test['output_vars'].iteritems():
-            computed_value = (simulation.compute(variable) / 12).sum()
+            computed_value = (simulation.compute(variable) / 12).sum()  # monthly values
             test_assertion = abs(abs(computed_value) - value) < 2
             expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
