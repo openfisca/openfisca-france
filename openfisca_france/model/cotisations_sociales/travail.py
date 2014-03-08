@@ -134,15 +134,15 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
                              * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                              ) * is_contrib
                     cotpat += temp
-                    if is_contrib == 1:
-                        if category[0] == DEBUG_SAL_TYPE:
-                            if (temp != 0).all():
-                                log.info(bar)
-                                log.info(temp / 12)
+#                    if is_contrib == 1:
+#                        if category[0] == DEBUG_SAL_TYPE:
+#                            if (temp != 0).all():
+#                                log.info(bar)
+#                                log.info(temp / 12)
 
-        if category[0] == DEBUG_SAL_TYPE:
-            log.info("rafp pat: %s" % str(cot_pat_rafp / 12))
-            log.info("pension civile pat: %s" % str(cot_pat_pension_civile / 12))
+#        if category[0] == DEBUG_SAL_TYPE:
+#            log.info("rafp pat: %s" % str(cot_pat_rafp / 12))
+#            log.info("pension civile pat: %s" % str(cot_pat_pension_civile / 12))
 
     cotpat += cot_pat_rafp + cot_pat_pension_civile
     return cotpat
@@ -169,11 +169,11 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
                          * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                          * is_mo)
                 cotpat += temp
-                if is_mo == 1:
-                    if  category[0] == DEBUG_SAL_TYPE:
-                        log.info(category[0])
-                        log.info(bar._name)
-                        log.info(temp / 12)
+#                if is_mo == 1:
+#                    if  category[0] == DEBUG_SAL_TYPE:
+#                        log.info(category[0])
+#                        log.info(bar._name)
+#                        log.info(temp / 12)
     return cotpat
 
 
@@ -190,10 +190,10 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
                 bar = pat[category[0]]['transport']
                 temp = -bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes)) * iscat  # check
                 transport += temp
-                if  category[0] == DEBUG_SAL_TYPE:
-                    log.info(category[0])
-                    log.info(bar._name)
-                    log.info(temp / 12)
+#                if  category[0] == DEBUG_SAL_TYPE:
+#                    log.info(category[0])
+#                    log.info(bar._name)
+#                    log.info(temp / 12)
     return transport
 
 
@@ -231,17 +231,17 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                 temp = -(iscat
                          * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                          * is_noncontrib)
-                log.info(temp)
-                log.info("\n \n")
+#                log.info(temp)
+#                log.info("\n \n")
                 cotpat += temp
-                if is_noncontrib == 1:
-                    if  category[0] == DEBUG_SAL_TYPE:
-                        log.info(category[0])
-                        log.info(bar)
-                        log.info(temp / 12)
-                        log.info("\n \n")
+#                if is_noncontrib == 1:
+#                    if  category[0] == DEBUG_SAL_TYPE:
+#                        log.info(category[0])
+#                        log.info(bar)
+#                        log.info(temp / 12)
+#                        log.info("\n \n")
 
-    log.info("accident : %s" % cotpat_accident)
+#    log.info("accident : %s" % cotpat_accident)
     return cotpat + cotpat_accident
 
 
@@ -281,18 +281,17 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
                                     + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                         ) * is_contrib
                 cotsal += temp
-                log.info(bar)
-                log.info(temp)
-                if  category[0] == DEBUG_SAL_TYPE:
-                    if (temp != 0).all():
-                        log.info(category[0])
-                        log.info(bar._name)
-                        log.info(temp / 12)
+#                log.info(bar)
+#                log.info(temp)
+#                if  category[0] == DEBUG_SAL_TYPE:
+#                    if (temp != 0).all():
+#                        log.info(category[0])
+#                        log.info(bar._name)
+#                        log.info(temp / 12)
 
-
-        if category[0] == DEBUG_SAL_TYPE:
-            log.info("cot_sal_pension_civile %s" % str(cot_sal_pension_civile / 12))
-            log.info("rafp sal %s" % str(cot_sal_rafp / 12))
+#        if category[0] == DEBUG_SAL_TYPE:
+#            log.info("cot_sal_pension_civile %s" % str(cot_sal_pension_civile / 12))
+#            log.info("rafp sal %s" % str(cot_sal_rafp / 12))
 
     public_titulaire = ((type_sal == CAT['public_titulaire_etat'])
               + (type_sal == CAT['public_titulaire_territoriale'])
@@ -308,9 +307,8 @@ def _cot_sal_pension_civile(salbrut, type_sal, _P):
         (type_sal == CAT['public_titulaire_etat']) * sal['public_titulaire_etat']['pension'].calc(salbrut)
         + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(salbrut)
                               )
-    from numpy import array
-    if array(type_sal == DEBUG_SAL_TYPE).all():
-        log.info('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
+#    if array(type_sal == DEBUG_SAL_TYPE).all():
+#        log.info('cot_sal_pension_civile %s', cot_sal_pension_civile / 12)
 
     return -cot_sal_pension_civile
 
@@ -343,7 +341,7 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
     sal = _P.cotsoc.cotisations_salarie.__dict__
     cotsal = zeros(len(salbrut))
     seuil_assuj_fds = seuil_fds(_P)
-    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
+#    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
     for category in CAT:
         iscat = (type_sal == category[1])
         if category[0] in sal:
@@ -357,11 +355,11 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp
-                if  category[0] == DEBUG_SAL_TYPE:
-                    if (temp != 0).all():
-                        log.info(category[0])
-                        log.info(bar)
-                        log.info(temp / 12)
+#                if  category[0] == DEBUG_SAL_TYPE:
+#                    if (temp != 0).all():
+#                        log.info(category[0])
+#                        log.info(bar)
+#                        log.info(temp / 12)
 
     return cotsal
 
@@ -476,17 +474,17 @@ def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement
     Salaires superbruts
     """
     salsuperbrut = salbrut + primes + indemnite_residence + supp_familial_traitement - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
-    expression = ("   salbrut             %s \n"
-                  " + cotpat              %s \n"
-                  " + primes              %s \n"
-                  " + indemnite_residence %s \n"
-                  " - alleg_fillon        %s \n"
-                  " - alleg_cice          %s \n"
-                  " + taxes_sal           %s \n"
-                  " + tehr                %s \n"
-                  " = salsuperbut         %s") % (salbrut / 12, cotpat / 12, primes / 12, indemnite_residence / 12,
-                                                  - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12, salsuperbrut / 12)
-    log.info(expression)
+#    expression = ("   salbrut             %s \n"
+#                  " + cotpat              %s \n"
+#                  " + primes              %s \n"
+#                  " + indemnite_residence %s \n"
+#                  " - alleg_fillon        %s \n"
+#                  " - alleg_cice          %s \n"
+#                  " + taxes_sal           %s \n"
+#                  " + tehr                %s \n"
+#                  " = salsuperbut         %s") % (salbrut / 12, cotpat / 12, primes / 12, indemnite_residence / 12,
+#                                                  - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12, salsuperbrut / 12)
+#    log.info(expression)
 
     return salsuperbrut
 

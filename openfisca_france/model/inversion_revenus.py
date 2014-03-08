@@ -22,11 +22,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
 import logging
-from numpy import zeros, logical_not as not_
 
+from numpy import zeros, logical_not as not_
 from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
 from openfisca_france.model.cotisations_sociales.remplacement import exo_csg_chom
@@ -66,7 +67,7 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
-    log.info("Le dictionnaire des barèmes des cotisations salariés des titualires de l'Etat contien : \n %s", salarie['fonc']["etat"])
+#    log.info("Le dictionnaire des barèmes des cotisations salariés des titulaires de l'Etat contient : \n %s", salarie['fonc']["etat"])
 
     # Salariés du privé
 

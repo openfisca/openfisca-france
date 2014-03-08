@@ -28,11 +28,9 @@ from __future__ import division
 import copy
 import logging
 
-
 from openfisca_core.baremes import BaremeDict, scaleBaremes
 from openfisca_core.enumerations import Enum
-
-TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
+from openfisca_core.legislations import CompactNode
 
 
 CAT = Enum(['prive_non_cadre',
@@ -44,6 +42,7 @@ CAT = Enum(['prive_non_cadre',
             'public_non_titulaire'])
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
+TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
 
 from openfisca_core.legislations import CompactNode
 
@@ -82,8 +81,8 @@ def build_pat(_P):
     pat['prive_non_cadre'] = pat.pop('noncadre')
     pat['prive_cadre'] = pat.pop('cadre')
 
-    log.info(u"Le dictionnaire des barèmes des cotisations patronales des non cadres contient: \n %s", pat['prive_non_cadre'].keys())
-    log.info(u"Le dictionnaire des barèmes des cotisations patronales des cadres contient: \n %s", pat['prive_cadre'].keys())
+#    log.info(u"Le dictionnaire des barèmes des cotisations patronales des non cadres contient: \n %s", pat['prive_non_cadre'].keys())
+#    log.info(u"Le dictionnaire des barèmes des cotisations patronales des cadres contient: \n %s", pat['prive_cadre'].keys())
 
     # Rework commun to deal with public employees
     for var in ["maladie", "apprentissage", "apprentissage_add", "vieillesseplaf", "vieillessedeplaf", "formprof", "chomfg", "construction", "assedic"]:
@@ -119,7 +118,7 @@ def build_pat(_P):
         del pat['public_titulaire_hospitaliere'][category]
 
     pat['public_non_titulaire'] = pat.pop('contract')
-    log.info(u"Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
+#    log.info(u"Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
     return pat
 
 def build_sal(_P):
@@ -156,7 +155,7 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
 
-    log.info(u"Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
+#    log.info(u"Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE, sal[DEBUG_SAL_TYPE].keys()))
 
     return sal
 

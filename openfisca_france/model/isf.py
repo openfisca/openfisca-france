@@ -1,28 +1,42 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Sarah Dijols, Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
 
-import logging
 from numpy import ( maximum as max_, minimum as min_)
-from .data import QUIFOY
-ALL = [x[1] for x in QUIFOY]
 
-from .data import QUIFAM, QUIFOY
+from .data import QUIFAM, QUIFOY, QUIMEN
 from .pfam import nb_enf, age_en_mois_benjamin
 
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
 
-log = logging.getLogger(__name__)
+CHEF = QUIFAM['chef']
+CONJ = QUIFOY['conj']
+PART = QUIFAM['part']
+PREF = QUIMEN['pref']
+VOUS = QUIFOY['vous']
+
 
 # 1 ACTIF BRUT
 
@@ -78,11 +92,9 @@ def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, _P)
 
 def _isf_iai(ass_isf, _P):
     bar = _P.isf.bareme
-    log.info(bar)
     if _P.datesim.year > 2010:
         ass_isf = (ass_isf >= bar.seuils[1])*ass_isf
     bar.t_x()
-    log.info(ass_isf)
     return bar.calc(ass_isf)
 
 def _isf_avant_reduction(isf_iai, decote_isf):
@@ -126,8 +138,6 @@ def _tot_impot(self, irpp, isf_avant_plaf, crds, csg, prelsoc_cap, _option = {'c
     Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF
     Utilisé pour calculer le montant du plafonnement de l'ISF 
     '''
-    for  i, var in enumerate([irpp, isf_avant_plaf, crds, csg, prelsoc_cap]):
-        log.info((i, var))
     return -irpp + isf_avant_plaf - (crds[VOUS] + crds[CONJ]) - (csg[VOUS] + csg[CONJ]) - (prelsoc_cap[VOUS] + prelsoc_cap[CONJ])
 
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
@@ -148,8 +158,6 @@ def _revetproduits(self, salcho_imp, pen_net, rto_net, rev_cap_bar, fon, ric, ra
     rto_net = self.sum_by_entity(rto_net, entity = 'foyer_fiscal')
     salcho_imp = self.sum_by_entity(salcho_imp, entity = 'foyer_fiscal')
 
-    for  i, var in enumerate([salcho_imp,rev_cap_bar,ric, rag ,rpns_exon ,rpns_pvct , rev_cap_lib, imp_lib, fon]):  #pen_net,rto_net,
-        log.info((i, var))
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     ## def rev_exon et rev_etranger dans data? ##
     pt = max_(salcho_imp + pen_net + rto_net + rev_cap_bar  + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon, 0)
