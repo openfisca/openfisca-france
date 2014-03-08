@@ -82,22 +82,14 @@ def _nivvie(revdisp, uc):
     '''
     return revdisp / uc
 
-def _revnet_i(rev_trav, pen, rev_cap):
+
+def _revnet(rev_trav, pen, rev_cap):
     '''
-    Revenu net individuel
-    'ind'
+    Revenu net du ménage
+    'men'
     '''
     return rev_trav + pen + rev_cap
 
-def _revnet(revnet_i, _option = {'revnet_i': ALL}):
-    '''
-    Revenu net du ménage
-    'ind'
-    '''
-    r = 0
-    for rev in revnet_i.itervalues():
-        r += rev
-    return r
 
 def _nivvie_net(revnet, uc):
     '''
