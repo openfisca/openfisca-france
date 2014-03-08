@@ -211,6 +211,7 @@ def _impo(irpp, tax_hab):
     '''
     return irpp + tax_hab
 
+
 def _crds(self, crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_pfam, crds_lgtm, crds_mini, crds_pv_mo, crds_pv_immo):
     '''
     Contribution au remboursement de la dette sociale
@@ -225,6 +226,7 @@ def _crds(self, crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib,
     return (crdssal + crdsrst + crdscho +
             crds_fon + crds_cap_bar + crds_cap_lib + crds_pv_mo + crds_pv_immo +
             crds_pfam + crds_lgtm + crds_mini)
+
 
 def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
     """
@@ -244,11 +246,17 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     '''
     return cotpat_noncontrib + cotsal_noncontrib
 
-def _prelsoc_cap(prelsoc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_pv_immo):
+
+def _prelsoc_cap(self, prelsoc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_pv_immo):
     """
     Prélèvements sociaux sur les revenus du capital
     """
+    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon, entity = 'foyer_fiscal', role = VOUS)
+    prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo, entity = 'foyer_fiscal', role = VOUS)
+    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo, entity = 'foyer_fiscal', role = VOUS)
+
     return prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
+
 
 def _check_csk(prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_fon):
     return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
