@@ -23,86 +23,35 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from __future__ import division
-
-
 import datetime
-
 import openfisca_france
-from openfisca_france.tests.utils import process_tests_list
 
-
-def test_nonsal_celib():
-    """
-    Test pour un célibataire
-    """
-    tests_list = [
-             {"year" : 2013,
-              "input_vars":
-                    {
-                     "activite": 3,
-                     "rsti" : 12500,
-                    },
-              "output_vars" :
-                     {
-                      "rst": 12500,
-                    }
-              },
-            ]
-    process_tests_list(tests_list)
-
-
-def test_nonsal_famille(verbose = False):
-    """
-    """
-    tests_list = [
-               {"year" : 2013,
-              "input_vars":
-                    {
-                     "birth": datetime.date(1940, 1, 1),
-                     "activite": 3,
-                     "rsti" : 12500,
-                    },
-              "output_vars" :
-                     {
-                     "rst" : 12500,
-                    }
-              },
-                  ]
-
-    passed = True
-    for test in tests_list:
-        year = test["year"]
-
+def process_tests_list(tests_list, verbose = False):
     TaxBenefitSystem = openfisca_france.init_country()
     tax_benefit_system = TaxBenefitSystem()
     passed = True
     for test in tests_list:
         year = test["year"]
         parent1 = dict(birth = datetime.date(year - 40, 1, 1))
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1))
         menage = dict()
         foyer_fiscal = dict()
         for variable, value in test['input_vars'].iteritems():
 
             if variable == "age":
                 parent1['birth'] = datetime.date(year - value, 1, 1)
-                parent2['birth'] = datetime.date(year - value, 1, 1)
             elif tax_benefit_system.column_by_name[variable].entity == 'men':
                 menage[variable] = value
             elif tax_benefit_system.column_by_name[variable].entity == 'ind':
                 parent1[variable] = value
-                parent2[variable] = value
             elif tax_benefit_system.column_by_name[variable].entity == 'foy':
                 foyer_fiscal[variable] = value
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             parent1 = parent1,
-            parent2 = parent2,
             menage = menage,
             foyer_fiscal = foyer_fiscal,
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         for variable, value in test['output_vars'].iteritems():
 
@@ -119,11 +68,3 @@ def test_nonsal_famille(verbose = False):
                     print expression
 
     assert passed, "Test failed for some variables"
-
-
-if __name__ == '__main__':
-    import logging
-    import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_nonsal_celib()
-    test_nonsal_famille()

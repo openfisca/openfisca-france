@@ -112,4 +112,5 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    check_test_case(2014)
+    test_1_parent()
+    test_1_parent_2_children()

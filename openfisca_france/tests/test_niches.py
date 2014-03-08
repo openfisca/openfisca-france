@@ -22,76 +22,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 from __future__ import division
 
-import datetime
-
-import openfisca_france
-from openfisca_france.model.cotisations_sociales.travail import CAT
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
-
-
-
-def process_test_list(tests_list, verbose = False):
-    passed = True
-    for test in tests_list:
-        year = test["year"]
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
-        menage = dict()
-        foyer_fiscal = dict()
-        for variable, value in test['input_vars'].iteritems():
-            if tax_benefit_system.column_by_name[variable].entity == 'men':
-                menage[variable] = value
-            elif tax_benefit_system.column_by_name[variable].entity == 'ind':
-                parent1[variable] = value
-            elif tax_benefit_system.column_by_name[variable].entity == 'foy':
-                foyer_fiscal[variable] = value
-
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
-            parent1 = parent1,
-            menage = menage,
-            foyer_fiscal = foyer_fiscal,
-            year = year,
-            ).new_simulation(debug = True)
-
-        for variable, value in test['output_vars'].iteritems():
-
-            calculated_value = (simulation.calculate(variable)).sum()
-            test_assertion = abs(abs(calculated_value) - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
-
-            if not test_assertion:
-                print expression
-                passed = False
-            else:
-                if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
-                    print expression
-
-    assert passed, "Test failed for some variables"
-
+from openfisca_france.tests.utils import process_tests_list
 
 
 def test_niches():
     """
-    test pour un célibataire pour un revenu salarial de 20 000 € 
-    
+    test pour un célibataire pour un revenu salarial de 20 000 €     
     """
 
-    """
-    
-    CHARGES DEDUCTIBLES
-
-    """
-
+#    CHARGES DEDUCTIBLES
 #    test charges déductibles: pensions alimentaires "f6gi","f6gj","f6el","f6em","f6gp","f6gu".
     tests_list = [
-
-
 #   Test PA de type 6GI
               {"year" : 2012,
               "input_vars":
@@ -387,7 +330,6 @@ def test_niches():
                      "irpp": 929,
                     },
               },
-
 #    test charges déductibles: frais d'accueil d'une personnde de plus de 75 ans "f6eu".
 # 1 PAC 1800 €
 
@@ -1302,7 +1244,7 @@ def test_niches():
 
 
 # test abattements complémentaires
-# """
+#
 # 'statmarit'="Veuf",
 # 'nbF'=nb enfant -18 à charge
 #
@@ -1323,11 +1265,7 @@ def test_niches():
 #
 #    CREDITS D'IMPOTS
 #
-# """
-#
-
-
-    process_test_list(tests_list, verbose = False)
+    process_tests_list(tests_list, verbose = False)
 
 
 
