@@ -6,8 +6,16 @@
 # Licensed under the terms of the GPL (version 3 or later) license
 # (see openfisca/__init__.py for details)
 
+
 from __future__ import division
-from numpy import minimum as min_, maximum as max_, logical_not as not_
+
+from numpy import logical_not as not_, maximum as max_, minimum as min_
+
+from .data import QUIFOY
+
+
+VOUS = QUIFOY['vous']
+
 
 def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
            quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy,
@@ -380,7 +388,7 @@ def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
     '''
     return (f1ar + f1br + f1cr + f1dr + f1er)*_P.ir.credits_impot.aidmob.montant
 
-def _jeunes(age, nbptr, rfr, marpac, _P):
+def _jeunes(age, nbptr, rfr, marpac, _P, _option = {'age': [VOUS]}):  # TODO: Replace VOUS in age with personnes à charge.
     '''
     Crédit d'impôt en faveur des jeunes
     2005-2008
