@@ -33,19 +33,11 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def check_survey(year = 2013):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        year = year,
-        ).new_simulation(debug = True)
-    simulation.calculate('revdisp')
-
-
 def check_1_parent(year = 2013):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
-                count = 100,
+                count = 3,
                 name = 'sali',
                 max = 100000,
                 min = 0,
@@ -56,7 +48,7 @@ def check_1_parent(year = 2013):
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
     sali = simulation.get_holder('sali').new_test_case_array()
-    assert (sali - np.linspace(0, 100000, 100)).all() == 0, sali
+    assert (sali - np.linspace(0, 100000, 3)).all() == 0, sali
 
 
 def test_1_parent():
@@ -64,7 +56,7 @@ def test_1_parent():
         yield check_1_parent, year
 
 
-def check_1_parent_2_children(year):
+def check_1_parent_2_enfants(year):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
@@ -97,9 +89,55 @@ def check_1_parent_2_children(year):
     simulation.calculate('revdisp')
 
 
-def test_1_parent_2_children():
+def test_1_parent_2_enfants():
     for year in range(2006, 2015):
-        yield check_1_parent_2_children, year
+        yield check_1_parent_2_enfants, year
+
+
+def check_1_parent_2_enfants_1_column(column_name, year):
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = 3,
+                name = 'sali',
+                max = 24000,
+                min = 0,
+                ),
+            ],
+        parent1 = dict(
+            activite = u'Actif occupé',
+            birth = 1970,
+            cadre = True,
+            statmarit = u'Célibataire',
+            ),
+        enfants = [
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '1992-02-01',
+                ),
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '1990-04-17',
+                ),
+            ],
+        year = year,
+        ).new_simulation(debug = True)
+    simulation.calculate(column_name)
+
+
+def test_1_parent_2_enfants_1_column():
+    for column_name, column in tax_benefit_system.column_by_name.iteritems():
+        if not column.survey_only:
+            for year in range(2006, 2015):
+                yield check_1_parent_2_enfants_1_column, column_name, year
+
+
+#def check_survey(year = 2013):
+#    simulation = tax_benefit_system.new_scenario().init_single_entity(
+#        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
+#        year = year,
+#        ).new_simulation(debug = True)
+#    simulation.calculate('revdisp')
 
 
 # def test_survey():
