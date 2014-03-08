@@ -159,7 +159,7 @@ def _aspa_pure(aspa_elig, marpac, concub, maries, asi_aspa_nb_alloc, br_mv, _P, 
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
     elig_indiv = (aspa_elig[CHEF] + aspa_elig[PART])
-    return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2 )  # annualisé
+    return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2)  # annualisé
 
 
 def _asi_pure(asi_elig, marpac, maries, asi_aspa_nb_alloc, br_mv, _P, _option = {'asi_elig': [CHEF, PART]}):
@@ -209,7 +209,7 @@ def _asi_coexist_aspa(asi_aspa_elig, maries, marpac, br_mv, _P):
     plafond_ressources = where(index, P.aspa.plaf_couple, 0)
     depassement = ressources - plafond_ressources
     montant_servi_asi_c = where(index, max_(P.asi.montant_seul - 0.5 * depassement, 0), 0) / 12
-   
+
     return 12 * (montant_servi_asi_m + montant_servi_asi_c)  # annualisé
 
 def _aspa_coexist_asi(asi_aspa_elig, maries, marpac, br_mv, _P):
@@ -372,7 +372,7 @@ def _br_rmi(br_rmi_pf, br_rmi_ms, br_rmi_i, _P,
 #    23 Des mesures de réparation mentionnées à l’article 2 du décret no 2004-751 du 27 juillet 2004 instituant
 #       une aide financière en reconnaissance des souffrances endurées par les orphelins dont les parents ont été
 #       victimes d’actes de barbarie durant la Deuxième Guerre mondiale
-    
+
     br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] +
               br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART])
     return br_rmi
@@ -551,7 +551,6 @@ def _rsa_act_i(self, rsa_act, concub, maries, quifam, idfam):
     concub = self.cast_from_entity_to_all_roles(concub, entity = 'famille')
     maries = self.cast_from_entity_to_all_roles(maries, entity = 'famille')
     rsa_act = self.cast_from_entity_to_all_roles(rsa_act, entity = 'famille')
-
     conj = or_(concub, maries)
     rsa_act_i = 0 * quifam
     chef_filter = quifam == 0
@@ -562,6 +561,9 @@ def _rsa_act_i(self, rsa_act, concub, maries, quifam, idfam):
 
 
 def _crds_mini(rsa_act, _P):
+    """
+    CRDS sur les minima sociaux
+    """
     return -_P.fam.af.crds * rsa_act
 
 
