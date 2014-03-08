@@ -88,7 +88,7 @@ def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc, f3ve, f3vg, f3v
 
 def _rev_coll(self, rto_net, rev_cap_lib, rev_cat_rvcm, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc, rev_cat_pv):
     '''
-    revenus collectif
+    Revenus collectifs
     '''
     # TODO: ajouter les revenus de l'étranger etr*0.9
     # alv is negative since it is paid by the declaree
@@ -320,7 +320,7 @@ def _paje_base(age, af_nbenf, br_pf, isol, biact, smic55, _P, _option = {'age': 
     # celui au cours duquel l'enfant atteint l'âge de 3 ans.
 
     nbenf = nb_enf(age, smic55, 0, P.paje.base.age - 1)
-    
+
     plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
     majo = isol | biact
     plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
@@ -345,7 +345,7 @@ def _paje_nais(agem, age, af_nbenf, br_pf, isol, biact, _P, _option = {'age': EN
         # nbnais += (age_m == -2) cas mensuel
         nbnais += (age_m >= -2) * (age_m < 10)
 
-    nbaf = 0 # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
+    nbaf = 0  # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
     for age_m in agem.itervalues():
         nbaf += (age_m >= 10)
 
