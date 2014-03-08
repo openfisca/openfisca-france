@@ -1091,8 +1091,7 @@ column_by_name = collections.OrderedDict((
                                   u"Inactif"], start = 1),
                     survey_only = True)),  # 5 postes normalement TODO: check = 0
 
-    build_column_couple('wprm_init', FloatCol(label = u"Effectifs",
-                           survey_only = True)),
+    build_column_couple('wprm_init', FloatCol(label = u"Effectifs", survey_only = True)),
 
 # # ISF ##
 
