@@ -51,38 +51,6 @@ from . import th as th
 from . import inversion_revenus as inv_rev
 
 
-def _noi(noi):
-    return noi
-
-
-def _men(idmen, _option = {'idmen': [0]}):
-    return idmen
-
-
-def _fam(idfam, _option = {'idfam': [0]}):
-    return idfam
-
-
-def _foy(idfoy, _option = {'idfoy': [0]}):
-    return idfoy
-
-
-def _quimen(quimen):
-    return quimen
-
-
-def _quifam(quifam):
-    return quifam
-
-
-def _quifoy(quifoy):
-    return quifoy
-
-
-def _wprm(wprm):
-    return wprm
-
-
 def build_simple_formula_couple(name, prestation):
     assert isinstance(name, basestring), name
     name = unicode(name)
@@ -104,33 +72,8 @@ def build_simple_formula_couple(name, prestation):
 
 prestation_by_name = collections.OrderedDict((
     ############################################################
-    # Reproduction des identifiants
-    ############################################################
-    build_simple_formula_couple('noi_ind', FloatPresta(_noi)),
-    build_simple_formula_couple('idmen_ind', FloatPresta(_men)),
-    build_simple_formula_couple('idmen_foy', EnumPresta(_men, entity = "foy")),
-    build_simple_formula_couple('idmen_men', EnumPresta(_men, entity = "men")),
-    build_simple_formula_couple('idmen_fam', EnumPresta(_men, entity = "fam")),
-    build_simple_formula_couple('idfam_ind', FloatPresta(_fam)),
-    build_simple_formula_couple('idfam_foy', EnumPresta(_fam, entity = "foy")),
-    build_simple_formula_couple('idfam_men', EnumPresta(_fam, entity = "men")),
-    build_simple_formula_couple('idfam_fam', EnumPresta(_fam, entity = "fam")),
-    build_simple_formula_couple('idfoy_ind', FloatPresta(_foy)),
-    build_simple_formula_couple('idfoy_foy', EnumPresta(_foy, entity = "foy")),
-    build_simple_formula_couple('idfoy_men', EnumPresta(_foy, entity = "men")),
-    build_simple_formula_couple('idfoy_fam', EnumPresta(_foy, entity = "fam")),
-
-    build_simple_formula_couple('quimen_ind', EnumPresta(_quimen)),
-    build_simple_formula_couple('quifam_ind', EnumPresta(_quifam)),
-    build_simple_formula_couple('quifoy_ind', EnumPresta(_quifoy)),
-
-    ############################################################
     # Reproduction des pondérations
     ############################################################
-    build_simple_formula_couple('wprm_ind', FloatPresta(_wprm, entity = "ind", label = u"Effectifs", survey_only = True,)),
-    build_simple_formula_couple('wprm_fam', FloatPresta(_wprm, entity = "fam", label = u"Effectifs", survey_only = True,)),
-    build_simple_formula_couple('wprm_foy', FloatPresta(_wprm, entity = "foy", label = u"Effectifs", survey_only = True,)),
-
     build_simple_formula_couple('mhsup', FloatPresta(cs_travail._mhsup)),
     build_simple_formula_couple('alv', FloatPresta(ir._alv)),
 
