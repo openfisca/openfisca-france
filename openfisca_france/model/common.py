@@ -114,24 +114,16 @@ def _nivvie_ini(revini, uc):
     '''
     return revini / uc
 
-def _revprim_i(rev_trav, cho, rev_cap, cotpat, cotsal):
+
+def _revprim(rev_trav, cho, rev_cap, cotpat, cotsal):
     '''
-    Revenu primaire individuel
+    Revenu primaire du ménage
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
-    'ind'
+    'men'
     '''
     return rev_trav + rev_cap - cotpat - cotsal - cho
 
-def _revprim(revprim_i, _option = {'revprim_i': ALL}):
-    '''
-    Revenu net du ménage
-    'ind'
-    '''
-    r = 0
-    for rev in revprim_i.itervalues():
-        r += rev
-    return r
 
 def _rev_trav(rev_sal, rag, ric, rnc):
     '''
