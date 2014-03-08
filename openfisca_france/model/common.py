@@ -199,10 +199,12 @@ def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     '''
     return af + cf + ars + aeeh + paje + asf + crds_pfam
 
-def _mini(aspa, aah, caah, asi, rsa, aefa, api, ass, psa, majo_rsa):
+def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass, psa, majo_rsa):
     '''
     Minima sociaux
     '''
+    ass = self.sum_by_entity(ass, entity = 'famille')
+
     return aspa + aah + caah + asi + rsa + aefa + api + ass + psa + majo_rsa
 
 def _logt(apl, als, alf, crds_lgtm):
@@ -211,10 +213,14 @@ def _logt(apl, als, alf, crds_lgtm):
     '''
     return apl + als + alf + crds_lgtm
 
-def _impo(irpp, tax_hab):
+
+def _impo(self, irpp, tax_hab):
     '''
     Impôts directs
     '''
+    irpp = self.cast_from_entity_to_role(irpp, entity = 'foyer_fiscal', role = VOUS)
+    irpp = self.sum_by_entity(irpp, entity = 'menage')
+
     return irpp + tax_hab
 
 
