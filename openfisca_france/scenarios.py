@@ -574,10 +574,11 @@ class Scenario(object):
         self.tax_benefit_system = tax_benefit_system
         return self.make_json_or_python_to_attributes(cache_dir = cache_dir)
 
-    def new_simulation(self):
+    def new_simulation(self, debug = False):
         simulation = simulations.Simulation(
             compact_legislation = self.compact_legislation,
             date = datetime.date(self.year, 1, 1),
+            debug = debug,
             tax_benefit_system = self.tax_benefit_system,
             )
 
