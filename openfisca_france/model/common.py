@@ -174,10 +174,16 @@ def _cotsoc_lib(csg_cap_lib, prelsoc_cap_lib, crds_cap_lib):
     '''
     return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
 
-def _rev_cap(fon, rev_cap_bar, cotsoc_bar, rev_cap_lib, cotsoc_lib, imp_lib, rac):
+
+def _rev_cap(self, fon, rev_cap_bar, cotsoc_bar, rev_cap_lib, cotsoc_lib, imp_lib, rac):
     '''
     Revenus du patrimoine
     '''
+    fon = self.cast_from_entity_to_role(fon, entity = 'foyer_fiscal', role = VOUS)
+    imp_lib = self.cast_from_entity_to_role(imp_lib, entity = 'foyer_fiscal', role = VOUS)
+    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar, entity = 'foyer_fiscal', role = VOUS)
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
+
     return fon + rev_cap_bar + cotsoc_bar + rev_cap_lib + cotsoc_lib + imp_lib + rac
 
 
