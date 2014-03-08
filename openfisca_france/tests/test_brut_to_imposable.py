@@ -53,7 +53,7 @@ def test_sal(year = 2013, verbose = False):
                 type_sal = CAT[type_sal_category],
                 ),
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         df_b2i = DataFrame(dict(sal = simulation.calculate('sal'),
                                 salbrut = simulation.calculate('salbrut'),
@@ -97,7 +97,7 @@ def test_cho_rst(year = 2013, verbose = False):
                 birth = datetime.date(year - 40, 1, 1),
                 ),
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         df_b2i = DataFrame({var: simulation.calculate(var),
                             varbrut : simulation.calculate(varbrut),

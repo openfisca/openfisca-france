@@ -169,14 +169,14 @@ def test_irpp():
                                revenu: amount,
                                },
                     year = year,
-                    ).new_simulation()
+                    ).new_simulation(debug = True)
             elif revenu in fiscal_values:
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
                     parent1 = {'birth': datetime.date(year - 40, 1, 1),
                                },
                     foyer_fiscal = {revenu: amount},
                     year = year,
-                    ).new_simulation()
+                    ).new_simulation(debug = True)
 
             calculated_irpp = simulation.calculate('irpp')
             if not abs(calculated_irpp - irpp) < 1:

@@ -55,7 +55,7 @@ def process_test_list(tests_list, verbose = False):
             menage = menage,
             foyer_fiscal = foyer_fiscal,
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         for variable, value in test['output_vars'].iteritems():
 
@@ -293,7 +293,7 @@ def test_cotsoc_famille(verbose = False):
             enfants = [dict(birth = datetime.date(2000, 1, 1)), dict(birth = datetime.date(2009, 1, 1))],
             menage = menage,
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         print 'zone_apl array', simulation.calculate('zone_apl')
         print 'indemnite_residence array', simulation.calculate('indemnite_residence')

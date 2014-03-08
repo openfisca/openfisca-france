@@ -36,7 +36,7 @@ def check_survey(year = 2013):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         year = year,
-        ).new_simulation()
+        ).new_simulation(debug = True)
     simulation.calculate('revdisp')
 
 
@@ -52,7 +52,7 @@ def check_test_case(year = 2013):
             ],
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         year = year,
-        ).new_simulation()
+        ).new_simulation(debug = True)
     simulation.calculate('revdisp')
 
 

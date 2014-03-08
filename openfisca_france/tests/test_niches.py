@@ -56,7 +56,7 @@ def process_test_list(tests_list, verbose = False):
             menage = menage,
             foyer_fiscal = foyer_fiscal,
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         for variable, value in test['output_vars'].iteritems():
 

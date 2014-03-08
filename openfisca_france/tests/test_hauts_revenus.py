@@ -78,7 +78,7 @@ def test_isf_celib(verbose = False):
             foyer_fiscal = foyer_fiscal,
             menage = menage,
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         for variable, value in test['output_vars'].iteritems():
 

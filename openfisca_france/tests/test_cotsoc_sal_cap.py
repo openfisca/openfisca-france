@@ -276,7 +276,7 @@ def test_cotsoc(dico):
                     parent1 = parent1,
                     foyer_fiscal = foyer_fiscal,
                     year = year,
-                    ).new_simulation()
+                    ).new_simulation(debug = True)
 
 
                 val = simulation.calculate(var)
@@ -383,7 +383,7 @@ def test_cotsoc_cap_celib(verbose = False):
             parent1 = parent1,
             foyer_fiscal = foyer_fiscal,
             year = year,
-            ).new_simulation()
+            ).new_simulation(debug = True)
 
         for variable, value in test['output_vars'].iteritems():
 
