@@ -99,22 +99,13 @@ def _nivvie_net(revnet, uc):
     return revnet / uc
 
 
-def _revini_i(rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
+def _revini(rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
     '''
-    Revenu initial individuel
-    'ind'
+    Revenu initial du ménage
+    'men'
     '''
     return rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib
 
-def _revini(revini_i, _option = {'revini_i': ALL}):
-    '''
-    Revenu initial du ménage
-    'ind'
-    '''
-    r = 0
-    for rev in revini_i.itervalues():
-        r += rev
-    return r
 
 def _nivvie_ini(revini, uc):
     '''
