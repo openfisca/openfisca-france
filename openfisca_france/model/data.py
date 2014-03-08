@@ -1097,7 +1097,7 @@ column_by_name = collections.OrderedDict((
 # # ISF ##
 
 # # Immeubles bâtis ##
-    build_column_couple('b1ab', IntCol(entity = 'ind', label = u"valeur résidence principale avant abattement", val_type = "monetary")),  # #  valeur résidence principale avant abattement ##
+    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"valeur résidence principale avant abattement", val_type = "monetary")),  # #  valeur résidence principale avant abattement ##
     build_column_couple('b1ac', IntCol(entity = 'foy', label = u"valeur autres immeubles avant abattement", val_type = "monetary")),
 # # non bâtis ##
     build_column_couple('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis: bois, fôrets et parts de groupements forestiers", val_type = "monetary")),

@@ -30,8 +30,8 @@ def _isf_imm_bati(b1ab, b1ac, _P):
     '''
     Immeubles bâtis
     '''
-    P= _P.isf.res_princ
-    return (1-P.taux)*b1ab + b1ac
+    P = _P.isf.res_princ
+    return ( 1- P.taux) * b1ab + b1ac
 
 def _isf_imm_non_bati(b1bc, b1be, b1bh, b1bk, _P):
     '''
