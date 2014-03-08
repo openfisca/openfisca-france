@@ -25,6 +25,7 @@
 
 import datetime
 
+import numpy as np
 import openfisca_france
 
 
@@ -40,7 +41,7 @@ def check_survey(year = 2013):
     simulation.calculate('revdisp')
 
 
-def check_test_case(year = 2013):
+def check_1_parent(year = 2013):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
@@ -54,11 +55,51 @@ def check_test_case(year = 2013):
         year = year,
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
+    sali = simulation.get_holder('sali').new_test_case_array()
+    assert (sali - np.linspace(0, 100000, 100)).all() == 0, sali
 
 
-def test_case():
+def test_1_parent():
     for year in range(2006, 2015):
-        yield check_test_case, year
+        yield check_1_parent, year
+
+
+def check_1_parent_2_children(year):
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = 3,
+                name = 'sali',
+                max = 24000,
+                min = 0,
+                ),
+            ],
+        parent1 = dict(
+            activite = u'Actif occupé',
+            birth = 1970,
+            cadre = True,
+            statmarit = u'Célibataire',
+            ),
+        enfants = [
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '1992-02-01',
+                ),
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '1990-04-17',
+                ),
+            ],
+        year = year,
+        ).new_simulation(debug = True)
+    sali = simulation.get_holder('sali').new_test_case_array()
+    assert (sali - np.linspace(0, 24000, 3)).all() == 0, sali
+    simulation.calculate('revdisp')
+
+
+def test_1_parent_2_children():
+    for year in range(2006, 2015):
+        yield check_1_parent_2_children, year
 
 
 # def test_survey():
