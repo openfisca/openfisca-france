@@ -569,7 +569,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('psa', FloatPresta(ms._psa, entity = 'fam', label = u"Prime de solidarité active", start = date(2009, 1, 1), end = date(2009, 12, 31))),
     build_simple_formula_couple('api', FloatPresta(ms._api, entity = 'fam', end = date(2009, 7, 1), label = u"Allocation de parent isolé")),
     build_simple_formula_couple('crds_mini', FloatPresta(ms._crds_mini, entity = 'fam', start = date(2009, 7, 1))),
-    build_simple_formula_couple('aefa', FloatPresta(ms._aefa, entity = 'fam', label = u"Allocation exceptionelle de fin d'année")),
+    build_simple_formula_couple('aefa', FloatPresta(ms._aefa, entity = 'fam', label = u"Allocation exceptionnelle de fin d'année")),
 
     ############################################################
     # ASPA/ASI, Minimum vieillesse

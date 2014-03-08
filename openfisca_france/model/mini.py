@@ -270,7 +270,7 @@ def _ra_rsa(sal, hsup, rpns, etr):
     '''
     return sal + hsup + rpns + etr
 
-def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P):
+def _br_rmi_pf(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
     TO DO: Add mva (majoration vie autonome), 
@@ -279,22 +279,26 @@ def _br_rmi_pf(af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P
     if _P.datesim.year < 2004:  # taking care of the existence of the paje/ape/apje
         out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
     else:
-        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca )
+        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
 
-    return out
+    return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
-def _br_rmi_ms(aspa, asi, aah, caah):
+def _br_rmi_ms(self, aspa, asi, aah, caah):
     """
     Minima sociaux inclus dans la base ressource RSA/RMI
     'ind'
     """
-    return aspa + asi + aah + caah
+    return self.cast_from_entity_to_role(aspa + asi + aah + caah,
+        entity = 'famille', role = CHEF)
 
-def _br_rmi_i(ra_rsa, cho, rst, alr, rto, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
+def _br_rmi_i(self, ra_rsa, cho, rst, alr, rto, rev_cap_bar, rev_cap_lib, rfon_ms, div_ms):
     '''
     Base ressource individuelle du RSA/RMI
     'ind'
     '''
+    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar, entity = 'foyer_fiscal', role = VOUS)
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
+
     return ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
 
 def _br_rmi(br_rmi_pf, br_rmi_ms, br_rmi_i, _P,
@@ -615,12 +619,16 @@ def _api(agem, age, smic55, isol, forf_log, br_rmi, af_majo, rsa, _P, _option = 
     # Lorsque la durée d'activité est inférieure à 78 heures par mois, le montant de l'API perçu par l'allocataire est diminué de la moitié du salaire.
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
 
-def _aefa(age, smic55, af_nbenf, nb_par, ass , aer, api, rsa, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _aefa(self, age, smic55, af_nbenf, nb_par, ass , aer, api, rsa, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
+
+    Insituée en 1998
+    Apparaît sous le nom de complément de rmi dans les ERF
     '''
-    # Insituée en 1998
-    # Apparaît sous le nom de complément de rmi dans les ERF
+    aer = self.sum_by_entity(aer, entity = 'famille')
+    ass = self.sum_by_entity(ass, entity = 'famille')
+
     P = _P
     dummy_ass = ass > 0
     dummy_aer = aer > 0

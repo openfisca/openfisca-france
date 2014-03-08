@@ -1166,8 +1166,8 @@ column_by_name = collections.OrderedDict((
                               u"Taux plein"]),
                 default = 3)),
 
-    build_column_couple('aer', IntCol()),
-    build_column_couple('ass', IntCol()),
+    build_column_couple('aer', IntCol(label = u"Allocation équivalent retraite (AER)")),
+    build_column_couple('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)")),
     build_column_couple('f5sq', IntCol()),
 
     build_column_couple('m_afeamam', IntCol(entity = 'men')),
