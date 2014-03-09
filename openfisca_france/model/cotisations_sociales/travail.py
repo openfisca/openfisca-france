@@ -602,7 +602,7 @@ def _indemnite_residence(self, salbrut, type_sal, zone_apl, _P):
     '''
     Indemnité de résidence des fonctionnaires
     '''
-    zone_apl = self.cast_from_entity_to_all_roles(zone_apl, entity = 'menage')
+    zone_apl = self.cast_from_entity_to_roles(zone_apl, entity = 'menage')
 
     P = _P.fonc.indem_resid
     min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3

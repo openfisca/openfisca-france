@@ -117,7 +117,7 @@ def _al(self, concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, 
     Attention, cette fonction calcule l'aide mensuelle
     '''
     coloc = self.any_by_entity(coloc, entity = 'famille')
-    nat_imp = self.cast_from_entity_to_all_roles(nat_imp, entity = 'foyer_fiscal')
+    nat_imp = self.cast_from_entity_to_roles(nat_imp, entity = 'foyer_fiscal')
     nat_imp = self.any_by_entity(nat_imp, entity = 'famille')
 
     P = _P

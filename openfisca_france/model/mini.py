@@ -548,9 +548,9 @@ def _rsa_act_i(self, rsa_act, concub, maries, quifam, idfam):
 
     Note: le partage en moitié est un point de législation, pas un choix arbitraire.
     '''
-    concub = self.cast_from_entity_to_all_roles(concub, entity = 'famille')
-    maries = self.cast_from_entity_to_all_roles(maries, entity = 'famille')
-    rsa_act = self.cast_from_entity_to_all_roles(rsa_act, entity = 'famille')
+    concub = self.cast_from_entity_to_roles(concub, entity = 'famille')
+    maries = self.cast_from_entity_to_roles(maries, entity = 'famille')
+    rsa_act = self.cast_from_entity_to_roles(rsa_act, entity = 'famille')
     conj = or_(concub, maries)
     rsa_act_i = 0 * quifam
     chef_filter = quifam == 0

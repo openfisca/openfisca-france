@@ -28,7 +28,11 @@ from openfisca_core import formulas
 
 
 class FormulaMixin(object):
-    def cast_from_entity_to_all_roles(self, array, default = 0, entity = None):
+    def cast_from_entity_to_role(self, array, default = 0, entity = None, role = None):
+        assert isinstance(role, int)
+        return self.cast_from_entity_to_roles(array, default = default, entity = entity, roles = [role])
+
+    def cast_from_entity_to_roles(self, array, default = 0, entity = None, roles = None):
         holder = self.holder
         target_entity = holder.entity
         simulation = target_entity.simulation
@@ -40,7 +44,9 @@ class FormulaMixin(object):
         target_array = np.empty(individus.count, dtype = array.dtype)
         target_array.fill(default)
         entity_index_array = individus.holder_by_name['id' + entity.symbol].array
-        for role in range(entity.roles_count):
+        if roles is None:
+            roles = range(entity.roles_count)
+        for role in roles:
             boolean_filter = individus.holder_by_name['qui' + entity.symbol].array == role
             try:
                 target_array[boolean_filter] = array[entity_index_array[boolean_filter]]
