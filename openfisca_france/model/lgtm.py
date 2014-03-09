@@ -7,16 +7,17 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
-from numpy import (round, ceil, floor, maximum as max_, minimum as min_,
-                   logical_not as not_)
+
+from numpy import ceil, floor, logical_not as not_, maximum as max_, minimum as min_, round
+
 from .data import QUIFAM, QUIMEN
 from .pfam import nb_enf
 
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 
-ALL = [x[1] for x in QUIMEN]
+CHEF = QUIFAM['chef']
+ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+PART = QUIFAM['part']
+
 
 def _al_pac(age, smic55, nbR, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     '''
@@ -268,18 +269,3 @@ def _crds_lgtm(al, _P):
     CRDS des allocations logement
     '''
     return -al*_P.fam.af.crds
-
-def _uc(agem, _option = {'agem': ALL}):
-    '''
-    Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'insee
-    'men'
-    '''
-    uc_adt = 0.5
-    uc_enf = 0.3
-    uc = 0.5
-    for agm in agem.itervalues():
-        age = floor(agm/12)
-        adt = (15 <= age) & (age <= 150)
-        enf = (0  <= age) & (age <= 14)
-        uc += adt*uc_adt + enf*uc_enf
-    return uc
