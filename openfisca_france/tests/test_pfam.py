@@ -392,7 +392,7 @@ def test_af3qua():
         yield check_af3qua, year
 
 
-#def check_af5(year):
+# def check_af5(year):
 #    '''
 #    test avec 5 enfants
 #    de moins de 11 ans
@@ -417,7 +417,7 @@ def test_af3qua():
 #        expected_af_by_year[year])
 
 
-#def test_af5():
+# def test_af5():
 #    for year in range(2006, 2010):
 #        yield check_af5, year
 
@@ -429,6 +429,6 @@ if __name__ == '__main__':
     import nose
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
+    nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv = [__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit = False)
 

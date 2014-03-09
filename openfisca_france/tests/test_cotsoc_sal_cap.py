@@ -25,238 +25,238 @@
 from __future__ import division
 
 import datetime
+
 import openfisca_france
 
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
 
 
-cotsoc_cap = {
-# test pour un célibataire ayant un revenu salarial (1AJ)
-#            "sali": [
-#            {"year" : 2010, "amount": 20000, "irpp":-1181 },
-#            {"year" : 2011, "amount": 20000, "irpp":-1181 },
-#            {"year" : 2010, "amount": 50000, "irpp":-7934 },
-#            {"year" : 2011, "amount": 50000, "irpp":-7934 },
-#            {"year" : 2010, "amount": 150000, "irpp":-42338},
-#            {"year" : 2011, "amount": 150000, "irpp":-42338}
-#                    ],
-# test pour un retraité célibataire ayant une pension (1AS)
-#            "rsti": [
-#            {"year" : 2010, "amount": 20000, "irpp":-1181 },
-#            {"year" : 2011, "amount": 20000, "irpp":-1181 },
-#            {"year" : 2010, "amount": 50000, "irpp":-8336 },
-#            {"year" : 2011, "amount": 50000, "irpp":-8336 },
-#            {"year" : 2010, "amount": 150000, "irpp":-46642 },
-#            {"year" : 2011, "amount": 150000, "irpp":-46642 },
-#                    ],
-# test sur un revenu des actions soumises à un prélèvement libératoire de 21 % (2DA)
-        "f2da" : [
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_lib":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_cap_lib":-.082 * 20000,
-             "crds_cap_lib":-.005 * 20000 } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_lib":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_lib":-.082 * 20000,
-             "crds_cap_lib":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" : {"prelsoc_cap_lib":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_lib":-.082 * 20000,
-             "crds_cap_lib":-.005 * 20000 } }
-                ],
-# # test sur un revenu (2DH) issu des produits d'assurance vie
-# # et de capitalisation soumis au prélèvement libératoire de 7.5 %
-#            "f2dh" :[
-#            {"year" : 2010, "amount": 20000, "irpp":345},
-#            {"year" : 2011, "amount": 20000, "irpp":345},
-#            {"year" : 2010, "amount": 50000, "irpp":345},
-#            {"year" : 2011, "amount": 50000, "irpp":345},
-#            {"year" : 2010, "amount": 150000, "irpp":345},
-#            {"year" : 2011, "amount": 150000, "irpp":345},
-# Célibataire sans enfant                   ],
-# test sur un revenu des actions et  parts (2DC)
-        "f2dc" :[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-1360,
-             "csg_cap_bar":-1640,
-             "crds_cap_bar":-100,
-             "ir_plaf_qf": 330,
-             "irpp":-0} },
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-                 ],
 
-# # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise
-# ## donnant droit à abattement (2fu)
-        "f2fu" :[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-1360,
-             "csg_cap_bar":-1640,
-             "crds_cap_bar":-100,
-             "ir_plaf_qf": 330,
-             "irpp":0} },
-                 ],
-# Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (2Go)
-        "f2go" :[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"rev_cat_rvcm" : 25000,
-             "prelsoc_cap_bar":-1700,
-             "csg_cap_bar":-2050,
-             "crds_cap_bar":-125,
-             "ir_plaf_qf": 2150,
-             "irpp":-2150 } },
-                 ],
-        "f2ts" :[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"rev_cat_rvcm" : 20000,
-             "prelsoc_cap_bar":-1360,
-             "csg_cap_bar":-1640,
-             "crds_cap_bar":-100,
-             "ir_plaf_qf": 1450,
-             "irpp":-1450 } },
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-                 ],
-# # test sur les intérêts (2TR)
-        "f2tr" :[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-1360,
-             "csg_cap_bar":-1640,
-             "crds_cap_bar":-100,
-             "ir_plaf_qf": 1450,
-             "irpp":-1450 } },
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000, } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" :
-            {"prelsoc_cap_bar":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_cap_bar":-.082 * 20000,
-             "crds_cap_bar":-.005 * 20000 } },
-                 ],
-# # test sur les revenus fonciers (4BA)
-        "f4ba":[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"prelsoc_fon":-1360,
-             "csg_fon":-1640,
-             "crds_fon":-100,
-             "ir_plaf_qf": 1450,
-             "irpp":-1450} },
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_fon":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_fon":-.082 * 20000,
-             "crds_fon":-.005 * 20000,
-             "irpp" :-1461 } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_fon":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_fon":-.082 * 20000,
-             "crds_fon":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" :
-            {"prelsoc_fon":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_fon":-.082 * 20000,
-             "crds_fon":-.005 * 20000 } },
-                 ],
-# # test (3VG) Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés
-        "f3vg" :[
-        {"year" : 2013, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_mo":-1360,
-             "csg_pv_mo":-1640,
-             "crds_pv_mo":-100,
-             "ir_plaf_qf": 1450,
-             "irpp":-1450} },
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_mo":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_pv_mo":-.082 * 20000,
-             "crds_pv_mo":-.005 * 20000 } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_mo":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_pv_mo":-.082 * 20000,
-             "crds_pv_mo":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_mo":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_pv_mo":-.082 * 20000,
-             "crds_pv_mo":-.005 * 20000 } },
-        {"year" : 2006, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_mo":-460 ,
-             "csg_pv_mo":-1640,
-             "crds_pv_mo":-100} },
-                 ],
-# # test sur les plus-values immobilières (3VZ)
-        "f3vz" :[
-        {"year" : 2012, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_immo":-(4.5 + 2 + 0.3) * 0.01 * 20000,
-             "csg_pv_immo":-.082 * 20000,
-             "crds_pv_immo":-.005 * 20000 } },
-        {"year" : 2011, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_immo":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_pv_immo":-.082 * 20000,
-             "crds_pv_immo":-.005 * 20000 } },
-        {"year" : 2010, "amount": 20000,
-         "vars" :
-            {"prelsoc_pv_immo":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
-             "csg_pv_immo":-.082 * 20000,
-             "crds_pv_immo":-.005 * 20000 } },
-                 ],
-        }
-
-
-def test_cotsoc(dico):
+def test_cotsoc():
     """
-    Run test for a given dictionnary 
+    Cotisations sur les revenus du capital
     """
-    for revenu, test_list in dico.iteritems():
+
+    cotsoc_cap = {
+    # test pour un célibataire ayant un revenu salarial (1AJ)
+    #            "sali": [
+    #            {"year" : 2010, "amount": 20000, "irpp":-1181 },
+    #            {"year" : 2011, "amount": 20000, "irpp":-1181 },
+    #            {"year" : 2010, "amount": 50000, "irpp":-7934 },
+    #            {"year" : 2011, "amount": 50000, "irpp":-7934 },
+    #            {"year" : 2010, "amount": 150000, "irpp":-42338},
+    #            {"year" : 2011, "amount": 150000, "irpp":-42338}
+    #                    ],
+    # test pour un retraité célibataire ayant une pension (1AS)
+    #            "rsti": [
+    #            {"year" : 2010, "amount": 20000, "irpp":-1181 },
+    #            {"year" : 2011, "amount": 20000, "irpp":-1181 },
+    #            {"year" : 2010, "amount": 50000, "irpp":-8336 },
+    #            {"year" : 2011, "amount": 50000, "irpp":-8336 },
+    #            {"year" : 2010, "amount": 150000, "irpp":-46642 },
+    #            {"year" : 2011, "amount": 150000, "irpp":-46642 },
+    #                    ],
+    # test sur un revenu des actions soumises à un prélèvement libératoire de 21 % (2DA)
+            "f2da" : [
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_lib":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_cap_lib":-.082 * 20000,
+                 "crds_cap_lib":-.005 * 20000 } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_lib":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_lib":-.082 * 20000,
+                 "crds_cap_lib":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" : {"prelsoc_cap_lib":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_lib":-.082 * 20000,
+                 "crds_cap_lib":-.005 * 20000 } }
+                    ],
+    # # test sur un revenu (2DH) issu des produits d'assurance vie
+    # # et de capitalisation soumis au prélèvement libératoire de 7.5 %
+    #            "f2dh" :[
+    #            {"year" : 2010, "amount": 20000, "irpp":345},
+    #            {"year" : 2011, "amount": 20000, "irpp":345},
+    #            {"year" : 2010, "amount": 50000, "irpp":345},
+    #            {"year" : 2011, "amount": 50000, "irpp":345},
+    #            {"year" : 2010, "amount": 150000, "irpp":345},
+    #            {"year" : 2011, "amount": 150000, "irpp":345},
+    # Célibataire sans enfant                   ],
+    # test sur un revenu des actions et  parts (2DC)
+            "f2dc" :[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-1360,
+                 "csg_cap_bar":-1640,
+                 "crds_cap_bar":-100,
+                 "ir_plaf_qf": 330,
+                 "irpp":-0} },
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+                     ],
+
+    # # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise
+    # ## donnant droit à abattement (2fu)
+            "f2fu" :[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-1360,
+                 "csg_cap_bar":-1640,
+                 "crds_cap_bar":-100,
+                 "ir_plaf_qf": 330,
+                 "irpp":0} },
+                     ],
+    # Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (2Go)
+            "f2go" :[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"rev_cat_rvcm" : 25000,
+                 "prelsoc_cap_bar":-1700,
+                 "csg_cap_bar":-2050,
+                 "crds_cap_bar":-125,
+                 "ir_plaf_qf": 2150,
+                 "irpp":-2150 } },
+                     ],
+            "f2ts" :[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"rev_cat_rvcm" : 20000,
+                 "prelsoc_cap_bar":-1360,
+                 "csg_cap_bar":-1640,
+                 "crds_cap_bar":-100,
+                 "ir_plaf_qf": 1450,
+                 "irpp":-1450 } },
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+                     ],
+    # # test sur les intérêts (2TR)
+            "f2tr" :[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-1360,
+                 "csg_cap_bar":-1640,
+                 "crds_cap_bar":-100,
+                 "ir_plaf_qf": 1450,
+                 "irpp":-1450 } },
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000, } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" :
+                {"prelsoc_cap_bar":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_cap_bar":-.082 * 20000,
+                 "crds_cap_bar":-.005 * 20000 } },
+                     ],
+    # # test sur les revenus fonciers (4BA)
+            "f4ba":[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"prelsoc_fon":-1360,
+                 "csg_fon":-1640,
+                 "crds_fon":-100,
+                 "ir_plaf_qf": 1450,
+                 "irpp":-1450} },
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_fon":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_fon":-.082 * 20000,
+                 "crds_fon":-.005 * 20000,
+                 "irpp" :-1461 } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_fon":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_fon":-.082 * 20000,
+                 "crds_fon":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" :
+                {"prelsoc_fon":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_fon":-.082 * 20000,
+                 "crds_fon":-.005 * 20000 } },
+                     ],
+    # # test (3VG) Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés
+            "f3vg" :[
+            {"year" : 2013, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_mo":-1360,
+                 "csg_pv_mo":-1640,
+                 "crds_pv_mo":-100,
+                 "ir_plaf_qf": 1450,
+                 "irpp":-1450} },
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_mo":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_pv_mo":-.082 * 20000,
+                 "crds_pv_mo":-.005 * 20000 } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_mo":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_pv_mo":-.082 * 20000,
+                 "crds_pv_mo":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_mo":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_pv_mo":-.082 * 20000,
+                 "crds_pv_mo":-.005 * 20000 } },
+            {"year" : 2006, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_mo":-460 ,
+                 "csg_pv_mo":-1640,
+                 "crds_pv_mo":-100} },
+                     ],
+    # # test sur les plus-values immobilières (3VZ)
+            "f3vz" :[
+            {"year" : 2012, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_immo":-(4.5 + 2 + 0.3) * 0.01 * 20000,
+                 "csg_pv_immo":-.082 * 20000,
+                 "crds_pv_immo":-.005 * 20000 } },
+            {"year" : 2011, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_immo":-(3.4 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_pv_immo":-.082 * 20000,
+                 "crds_pv_immo":-.005 * 20000 } },
+            {"year" : 2010, "amount": 20000,
+             "vars" :
+                {"prelsoc_pv_immo":-(2.2 + 1.1 + 0.3) * 0.01 * 20000,
+                 "csg_pv_immo":-.082 * 20000,
+                 "crds_pv_immo":-.005 * 20000 } },
+                     ],
+            }
+
+    for revenu, test_list in cotsoc_cap.iteritems():
         for item in test_list:
             year = item["year"]
             amount = item["amount"]
@@ -272,6 +272,8 @@ def test_cotsoc(dico):
                     print revenu
                     assert False
 
+                TaxBenefitSystem = openfisca_france.init_country()
+                tax_benefit_system = TaxBenefitSystem()
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
                     parent1 = parent1,
                     foyer_fiscal = foyer_fiscal,
@@ -366,46 +368,15 @@ def test_cotsoc_cap_celib(verbose = False):
                 },
 
         ]
-
-    passed = True
-    for test in tests_list:
-        year = test["year"]
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
-        foyer_fiscal = dict()
-
-        for variable, value in test['input_vars'].iteritems():
-            if variable in ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz", "f2fu", "f4ba", "f2go", "f2dc", "f2ca", "f4ba", "f4bb", "f4bc", "f4bd", "f4be", "f4bf"]:
-                foyer_fiscal[variable] = value
-            else:
-                parent1[variable] = value
-
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
-            parent1 = parent1,
-            foyer_fiscal = foyer_fiscal,
-            year = year,
-            ).new_simulation(debug = True)
-
-        for variable, value in test['output_vars'].iteritems():
-
-            calculated_value = (simulation.calculate(variable)).sum()
-            test_assertion = abs(calculated_value - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(calculated_value), value)
-
-            if not test_assertion:
-                print expression
-                passed = False
-            else:
-                if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], calculated_value, value)
-                    print expression
+    from openfisca_france.tests.utils import process_tests_list
+    process_tests_list(tests_list)
 
 
 if __name__ == '__main__':
     import  logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cotsoc(cotsoc_cap)
-    test_cotsoc_cap_celib(verbose = True)
-#    import nose
-#    nose.core.runmodule(argv = [__file__, '-v', '-i test_cotsoc_sal_cap.py'])
+
+    import nose
+    nose.core.runmodule(argv = [__file__, '-v', 'test_cotsoc_sal_cap.py'])
 #     nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)

@@ -24,8 +24,6 @@
 
 from __future__ import division
 
-from openfisca_france.tests.utils import process_tests_list
-
 
 def test_niches():
     """
@@ -44,7 +42,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp":819,
+                     "irpp":-819,
                     },
               },
              {"year" : 2011,
@@ -55,7 +53,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 860,
+                     "irpp":-860,
                     },
               },
              {"year" : 2010,
@@ -66,7 +64,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 860,
+                     "irpp":-860,
                     },
               },
 #    PA de type 6EL
@@ -78,7 +76,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -89,7 +87,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -100,7 +98,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 #   PA de type 6gj
@@ -112,7 +110,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 819,
+                     "irpp":-819,
                     },
               },
              {"year" : 2011,
@@ -123,7 +121,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 860,
+                     "irpp":-860,
                     },
               },
               {"year" : 2010,
@@ -134,7 +132,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 860,
+                     "irpp":-860,
                     },
               },
 #   un PA de type 6em
@@ -146,7 +144,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -157,7 +155,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -168,7 +166,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 #   PA de type 6gp
@@ -180,7 +178,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 819,
+                     "irpp":-819,
                     },
               },
              {"year" : 2011,
@@ -191,7 +189,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 860,
+                     "irpp":-860,
                     },
               },
               {"year" : 2010,
@@ -202,7 +200,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 860,
+                     "irpp":-860,
                     },
               },
 #   PA de type 6gu
@@ -214,7 +212,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -225,7 +223,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -236,7 +234,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # test plafond
@@ -248,7 +246,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 94,
+                     "irpp":-94,
                     },
               }, {"year" : 2012,
               "input_vars":
@@ -259,7 +257,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
 #    test charges déductibles: CSG déductible connue, calculée sur les revenus du patrimoine "f6de".
@@ -271,7 +269,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -282,7 +280,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -293,7 +291,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 #    test charges déductibles: déductions diverses "f6dd".
@@ -305,7 +303,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -316,7 +314,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -327,7 +325,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 #    test charges déductibles: frais d'accueil d'une personnde de plus de 75 ans "f6eu".
@@ -341,7 +339,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -352,7 +350,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -363,7 +361,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # 1 PAC 3600 €
@@ -375,7 +373,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 586,
+                     "irpp":-586,
                     },
               },
              {"year" : 2011,
@@ -386,7 +384,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 627,
+                     "irpp":-627,
                     },
               },
               {"year" : 2010,
@@ -397,7 +395,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 627,
+                     "irpp":-627,
                     },
               },
 
@@ -411,7 +409,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 535,
+                     "irpp":-535,
                     },
               },
              {"year" : 2011,
@@ -423,7 +421,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 576,
+                     "irpp":-576,
                     },
               },
               {"year" : 2010,
@@ -435,7 +433,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 576,
+                     "irpp":-576,
                     },
               },
 
@@ -450,7 +448,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -461,7 +459,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -472,7 +470,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # test avec 1 pac
@@ -486,7 +484,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 118,
+                     "irpp":-118,
                     },
               },
              {"year" : 2011,
@@ -498,7 +496,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 159,
+                     "irpp":-159,
                     },
               },
               {"year" : 2010,
@@ -510,7 +508,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 159,
+                     "irpp":-159,
                     },
               },
 
@@ -523,7 +521,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -534,7 +532,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -545,7 +543,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # test avec 1 pac
@@ -558,7 +556,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 118,
+                     "irpp":-118,
                     },
               },
              {"year" : 2011,
@@ -570,7 +568,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 159,
+                     "irpp":-159,
                     },
               },
               {"year" : 2010,
@@ -582,7 +580,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 159,
+                     "irpp":-159,
                     },
               },
 # Dépenses de grosses réparations des nus-propriétaires (plafond 25 000€) (f6cb, f6hl, f6hk, f6hj)
@@ -595,7 +593,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -606,7 +604,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -617,7 +615,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # f6hl (uniquement présente en 2012)
@@ -629,7 +627,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
 # f6hk (présente en 2012 et 2011)
@@ -641,7 +639,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -652,7 +650,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # f6hj
@@ -664,7 +662,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -675,7 +673,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -686,7 +684,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # test 70 000 € pour test plafond
@@ -697,7 +695,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 13334,
+                     "irpp":-13334,
                     },
               },
              {"year" : 2011,
@@ -707,7 +705,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 13334,
+                     "irpp":-13334,
                     },
               },
               {"year" : 2010,
@@ -717,7 +715,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 13334,
+                     "irpp":-13334,
                     },
               },
 # test plafond avec f6cb
@@ -729,7 +727,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 5834,
+                     "irpp":-5834,
                     },
               },
              {"year" : 2011,
@@ -740,7 +738,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 5834,
+                     "irpp":-5834,
                     },
               },
               {"year" : 2010,
@@ -751,7 +749,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 5834,
+                     "irpp":-5834,
                     },
               },
 
@@ -765,7 +763,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -776,7 +774,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -787,7 +785,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # case f6fb
@@ -799,7 +797,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -810,7 +808,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -821,7 +819,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # case f6fc
@@ -833,7 +831,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -844,7 +842,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -855,7 +853,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 
@@ -868,7 +866,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -879,7 +877,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -890,7 +888,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # case f6fe
@@ -902,7 +900,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -913,7 +911,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -924,7 +922,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 # case f6fl
@@ -936,7 +934,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 913,
+                     "irpp":-913,
                     },
               },
              {"year" : 2011,
@@ -947,7 +945,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
               {"year" : 2010,
@@ -958,7 +956,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 929,
+                     "irpp":-929,
                     },
               },
 
@@ -977,7 +975,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
              {"year" : 2011,
@@ -988,7 +986,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
               {"year" : 2010,
@@ -999,7 +997,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
 # test personnes âgées 14510<rng<23390
@@ -1011,7 +1009,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 670,
+                     "irpp":-670,
                     },
               },
              {"year" : 2011,
@@ -1022,7 +1020,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 711,
+                     "irpp":-711,
                     },
               },
               {"year" : 2010,
@@ -1033,7 +1031,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 711,
+                     "irpp":-711,
                     },
               },
               {"year" : 2012,
@@ -1044,7 +1042,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1649,
+                     "irpp":-1649,
                     },
               },
              {"year" : 2011,
@@ -1055,7 +1053,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1649,
+                     "irpp":-1649,
                     },
               },
               {"year" : 2010,
@@ -1066,7 +1064,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1649,
+                     "irpp":-1649,
                     },
               },
 # test personnes âgées rng>23390
@@ -1078,7 +1076,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 2189,
+                     "irpp":-2189,
                     },
               },
              {"year" : 2011,
@@ -1089,7 +1087,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 2189,
+                     "irpp":-2189,
                     },
               },
               {"year" : 2010,
@@ -1100,7 +1098,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 2189,
+                     "irpp":-2189,
                     },
               },
 # test personnes invalides rng < 14510
@@ -1112,7 +1110,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
              {"year" : 2011,
@@ -1123,7 +1121,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
               {"year" : 2010,
@@ -1134,7 +1132,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 0,
+                     "irpp":-0,
                     },
               },
 # test personnes invalides 14510 < rng < 23390
@@ -1146,7 +1144,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 979,
+                     "irpp":-979,
                     },
               },
              {"year" : 2011,
@@ -1157,7 +1155,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 979,
+                     "irpp":-979,
                     },
               },
               {"year" : 2010,
@@ -1168,7 +1166,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 979,
+                     "irpp":-979,
                     },
               },
 # test personnes invalides rng > 23390
@@ -1180,7 +1178,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1519,
+                     "irpp":-1519,
                     },
               },
              {"year" : 2011,
@@ -1191,7 +1189,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1519,
+                     "irpp":-1519,
                     },
               },
               {"year" : 2010,
@@ -1202,7 +1200,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1519,
+                     "irpp":-1519,
                     },
               },
 # abattement pour enfants à charge ayant fondé un foyer distinct: 5698€ par personne rattachée
@@ -1214,7 +1212,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1056,
+                     "irpp":-1056,
                     },
               },
              {"year" : 2011,
@@ -1225,7 +1223,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1056,
+                     "irpp":-1056,
                     },
               },
               {"year" : 2010,
@@ -1236,7 +1234,7 @@ def test_niches():
                     },
               "output_vars" :
                     {
-                     "irpp": 1056,
+                     "irpp":-1056,
                     },
               },
           ]
@@ -1265,15 +1263,15 @@ def test_niches():
 #
 #    CREDITS D'IMPOTS
 #
+    from openfisca_france.tests.utils import process_tests_list
     process_tests_list(tests_list, verbose = False)
-
 
 
 if __name__ == '__main__':
     import sys
     import logging
-    logging.basicConfig(level = logging.CRITICAL, stream = sys.stdout)
-    test_niches()
-#    import nose
-#    nose.core.runmodule(argv = [__file__, '-v', '-i test_*.py'])
+    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    import nose
+    nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
+#    test_niches()

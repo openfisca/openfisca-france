@@ -26,12 +26,17 @@
 import datetime
 import openfisca_france
 
-def process_tests_list(tests_list, verbose = False):
+def process_tests_list(tests_list, verbose = False, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
     TaxBenefitSystem = openfisca_france.init_country()
     tax_benefit_system = TaxBenefitSystem()
-    passed = True
     for test in tests_list:
         year = test["year"]
+
+        if forced_error_margin:
+            error_margin = forced_error_margin
+        else:
+            error_margin = test.pop("error_margin", default_error_margin)
+
         parent1 = dict(birth = datetime.date(year - 40, 1, 1))
         menage = dict()
         foyer_fiscal = dict()
@@ -53,18 +58,13 @@ def process_tests_list(tests_list, verbose = False):
             year = year,
             ).new_simulation(debug = True)
 
-        for variable, value in test['output_vars'].iteritems():
+        for variable, expected_value in test['output_vars'].iteritems():
+            calculated_value = (simulation.calculate(variable)).sum() / (1 * (not monthly_amount) + 12 * monthly_amount)
+            assert abs(calculated_value - expected_value) < error_margin, u'Variable "{} = {}. Expected: {}'.format(
+                variable, calculated_value, expected_value)
 
-            computed_value = (simulation.calculate(variable)).sum()
-            test_assertion = abs(abs(computed_value) - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
-            if not test_assertion:
-                print expression
-                passed = False
-            else:
-                if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
-                    print expression
-
-    assert passed, "Test failed for some variables"
+def check_simulation_variable(description, simulation, variable, expected_value, error_margin):
+    calculated_value = (simulation.calculate(variable)).sum()
+    assert abs(calculated_value - expected_value) < error_margin, u'Variable "{} = {}. Expected: {}'.format(
+        variable, calculated_value, expected_value)

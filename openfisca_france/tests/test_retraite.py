@@ -29,10 +29,9 @@ from __future__ import division
 import datetime
 
 import openfisca_france
-from openfisca_france.tests.utils import process_tests_list
 
 
-def test_nonsal_celib():
+def test_celib(verbose = False):
     """
     Test pour un célibataire
     """
@@ -49,23 +48,26 @@ def test_nonsal_celib():
                     }
               },
             ]
-    process_tests_list(tests_list)
+
+    from openfisca_france.tests.utils import process_tests_list
+    process_tests_list(tests_list, verbose = verbose)
 
 
-def test_nonsal_famille(verbose = False):
+def test_couple(verbose = False):
     """
+    Couple de retraités
     """
     tests_list = [
                {"year" : 2013,
               "input_vars":
                     {
-                     "birth": datetime.date(1940, 1, 1),
+                     "age": 73,
                      "activite": 3,
                      "rsti" : 12500,
                     },
               "output_vars" :
                      {
-                     "rst" : 12500,
+                     "rst" : 2 * 12500,
                     }
               },
                   ]
@@ -125,5 +127,7 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_nonsal_celib()
-    test_nonsal_famille()
+    import nose
+    nose.core.runmodule(argv = [__file__, '-v'])
+#     test_celib()
+#     test_couple()

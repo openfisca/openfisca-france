@@ -33,9 +33,9 @@ from numpy import array
 from pandas import read_stata, ExcelFile, DataFrame
 
 import openfisca_france
-from openfisca_core import model
-from openfisca_core.simulations import SurveySimulation
-openfisca_france.init_country()
+# from openfisca_core import model
+# from openfisca_core.simulations import SurveySimulation
+# openfisca_france.init_country()
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 variables_corresp = os.path.join(current_dir, 'correspondances_variables.xlsx')
@@ -181,23 +181,17 @@ def run_OF(dic_input, path_dta_input, param_scenario = None, dic = None, datesim
 
     if 'salbrut' in param_scenario.items() :
         if param_scenario['option'] == 'salbrut':
-            import openfisca_france
-            from openfisca_core import model
-            from openfisca_core.simulations import SurveySimulation
-            openfisca_france.init_country(start_from = "brut")
+            TaxBenefitSystem = openfisca_france.init_country(start_from = "brut")
+            tax_benefit_system = TaxBenefitSystem()
             del dic_input['sal_irpp_old']
             dic_input['sal_brut'] = 'salbrut'
         else :
-            import openfisca_france
-            from openfisca_core import model
-            from openfisca_core.simulations import SurveySimulation
-            openfisca_france.init_country()
+            TaxBenefitSystem = openfisca_france.init_country()
+            tax_benefit_system = TaxBenefitSystem()
 
     else :
-        import openfisca_france
-        from openfisca_core import model
-        from openfisca_core.simulations import SurveySimulation
-        openfisca_france.init_country()
+        TaxBenefitSystem = openfisca_france.init_country()
+        tax_benefit_system = TaxBenefitSystem()
 
     openfisca_survey = build_input_OF(data_IPP, dic_input)
     openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy','noi'])
@@ -214,6 +208,7 @@ def run_OF(dic_input, path_dta_input, param_scenario = None, dic = None, datesim
         return simulation, simulation.output_table.table
 
 def build_input_OF(data, dic_var):
+
     def _qui(data, entity):
         qui = "qui" + entity
         id = "id" + entity

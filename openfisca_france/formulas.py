@@ -91,7 +91,7 @@ class FormulaMixin(object):
         target_array = np.zeros(entity.count, dtype = array.dtype)
         entity_index_array = individus.holder_by_name['id' + entity.symbol].array
         for role in range(entity.roles_count):
-            # TODO Mettre les filtres en cache dans la simulation
+            # TODO: Mettre les filtres en cache dans la simulation
             boolean_filter = individus.holder_by_name['qui' + entity.symbol].array == role
             target_array[entity_index_array[boolean_filter]] += array[boolean_filter]
         return target_array
