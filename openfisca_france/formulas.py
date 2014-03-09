@@ -43,7 +43,7 @@ class FormulaMixin(object):
         for role in range(entity.roles_count):
             boolean_filter = individus.holder_by_name['qui' + entity.symbol].array == role
             try:
-                target_array[entity_index_array[boolean_filter]] = array
+                target_array[boolean_filter] = array[entity_index_array[boolean_filter]]
             except:
                 log.error(u'An error occurred while transforming array for role {}[{}] in function {}'.format(
                     entity.key_singular, role, holder.column.name))
