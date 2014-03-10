@@ -258,10 +258,14 @@ def _cf(self, age_holder, br_pf, isol, biact, smic55_holder, _P):
                              (br_pf > cf_plaf) * max_(cf_plaf2 - br_pf, 0) / 12.0)
     return 12 * cf
 
-def _asf_elig(caseT, caseL):
+def _asf_elig(self, caseT_holder, caseL_holder):
     '''
     Eligibilté à l'allocation de soutien familial (ASF)
     '''
+    caseT = self.cast_from_entity_to_role(caseT_holder, role = VOUS)
+    caseT = self.any_by_roles(caseT)
+    caseL = self.cast_from_entity_to_role(caseL_holder, role = VOUS)
+    caseL = self.any_by_roles(caseL)
     return caseT | caseL
 
 

@@ -10,16 +10,16 @@ from __future__ import division
 
 from numpy import ceil, floor, logical_not as not_, maximum as max_, minimum as min_, round
 
-from .data import QUIFAM, QUIMEN
+from .data import QUIFAM, QUIMEN, QUIFOY
 from .pfam import nb_enf
 
 
 CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 PART = QUIFAM['part']
+VOUS = QUIFOY['vous']
 
-
-def _al_pac(self, age_holder, smic55_holder, nbR, _P):
+def _al_pac(self, age_holder, smic55_holder, nbR_holder, _P):
     '''
     Nombre de personne à charge au sens des allocations logement
 
@@ -47,7 +47,9 @@ def _al_pac(self, age_holder, smic55_holder, nbR, _P):
     P = _P
     # P_AL.D_enfch est une dummy qui vaut 1 si les enfants sont comptés à
     # charge (cas actuel) et zéro sinon.
-    al_nbinv = nbR
+    nbR = self.cast_from_entity_to_role(nbR_holder, role = VOUS)
+    al_nbinv = self.sum_by_roles(nbR)
+    
     age1 = P.fam.af.age1
     age2 = P.fam.cf.age2
     al_nbenf = nb_enf(age, smic55, age1, age2)
