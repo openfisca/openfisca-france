@@ -281,50 +281,58 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nbI', IntCol(label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité",
                    entity = 'foy',
                    cerfa_field = u'I')),
-    build_column_couple('nbH', IntCol(label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge",
+    build_column_couple('nbH', IntCol(label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge",
                    entity = 'foy',
                    cerfa_field = u'H')),
 # TODO: vérifier si c'est bien ça pour la nbH et la caseH qui suit
     build_column_couple('nbG', IntCol(label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité",
                    entity = 'foy',
                    cerfa_field = u'G')),
-    build_column_couple('nbF', IntCol(label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année n-1, ou nés en n-1 ou handicapés quel que soit l'âge",
+    build_column_couple('nbF', IntCol(label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés en durant la même année ou handicapés quel que soit leur âge",
                    entity = 'foy',
                    cerfa_field = u'F')),
     build_column_couple('nbN', IntCol(label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille",
                    entity = 'foy',
                    cerfa_field = u'N')),
 
-    build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant moins de 5 ans",
+    build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
-                      cerfa_field = u'E')),
-    build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité(vivant ou décédé l'année précédente",
+                      cerfa_field = u'E', end=2012)),
+    build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
                       entity = 'foy',
                       cerfa_field = u'F')),
     build_column_couple('caseG', BoolCol(label = u"Titulaire d'une pension de veuve de guerre",
                       entity = 'foy',
-                      cerfa_field = u'G')),
+                      cerfa_field = u'G')), # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche 
     build_column_couple('caseH', IntCol(label = u"Année de naissance des enfants à charge en garde alternée", entity = 'foy',
                      cerfa_field = u'H')),
+# il ne s'agit pas à proprement parlé de la case H, les cases permettant d'indiquer l'année de naissance
+#    se rapportent bien à nbH mais ne sont pas nommées, choisissons nous de laisser cerfa_field = u'H' pour caseH ?
+#    De plus les caseH peuvent être multiples puisqu'il peut y avoir plusieurs enfants? donc faut-il les nommer caseH1, caseH2...caseH6 (les 6 présentes dans la déclaration) ?
+#    il faut aussi créer les cases F, G, R et I qui donnent également les années de naissances des PAC
+
+                     
     build_column_couple('caseK', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre",
                       entity = 'foy',
-                      cerfa_field = u'K')),
-    build_column_couple('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: enfant élevé seul pendant plus de 5 ans",
+                      cerfa_field = u'K', end = 2011)),
+
+    build_column_couple('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
                       cerfa_field = u'L')),
-    build_column_couple('caseN', BoolCol(label = u"Vous ne vivez pas seul au 1er janvier de l'année n-1",
+
+    build_column_couple('caseN', BoolCol(label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus",
                       entity = 'foy',
                       cerfa_field = u'N')),
     build_column_couple('caseP', BoolCol(label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%",
                       entity = 'foy',
                       cerfa_field = u'P')),
-    build_column_couple('caseS', BoolCol(label = u"Vous ou votre conjoint êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
+    build_column_couple('caseS', BoolCol(label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
                       entity = 'foy',
                       cerfa_field = u'S')),
-    build_column_couple('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année n-1",
+    build_column_couple('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"",
                       entity = 'foy',
                       cerfa_field = u'T')),
-    build_column_couple('caseW', BoolCol(label = u"Votre conjoint âgé de plus de 75 ans, décédé en n-1 était titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
+    build_column_couple('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
                       entity = 'foy',
                       cerfa_field = u'W')),
 
@@ -332,48 +340,70 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n-2", val_type = "monetary")),  # TODO: provide in data
 
     # Rentes viagères
-    build_column_couple('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
+    build_column_couple('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1AW')),
-    build_column_couple('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
+    build_column_couple('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1BW')),
-    build_column_couple('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
+    build_column_couple('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1CW')),
-    build_column_couple('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçu par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
+    build_column_couple('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1DW')),
 
-    # Gain de levée d'option
-    # TODO: Labels des gains de levée d'option
-    # j'ai changé là mais pas dans le code, il faut chercher les f1uv
+    # Gain de levée d'options
+    # Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv
     # et les mettre en f1tvm comme pour sali
     # Il faut aussi le faire en amont dans les tables
-    build_column_couple('f1tv', IntCol(label = u"", entity = 'ind')),  # (f1tv,f1uv)),
-    build_column_couple('f1tw', IntCol(label = u"", entity = 'ind')),  # (f1tw,f1uw)),
-    build_column_couple('f1tx', IntCol(label = u"", entity = 'ind')),  # (f1tx,f1ux)),
 
+    # là je ne comprends pas pourquoi il faut changer les f1uv en f1tvm....
+    # du coups je n'ai pas changé et j'ai fait un dico comme pour sali
+    
+    build_column_couple('f1tv', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans",
+                            entity = 'ind',
+                            val_type = "monetary",
+                            cerfa_field = {QUIFOY['vous']: u"1TV",
+                                           QUIFOY['conj']: u"1UV",
+                                           })),  # (f1tv,f1uv)),
+
+    build_column_couple('f1tw', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans",
+                            entity = 'ind',
+                            val_type = "monetary",
+                            cerfa_field = {QUIFOY['vous']: u"1TW",
+                                           QUIFOY['conj']: u"1UW",
+                                           })),  # (f1tw,f1uw)),
+
+    build_column_couple('f1tx', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans",
+                            entity = 'ind',
+                            val_type = "monetary",
+                            cerfa_field = {QUIFOY['vous']: u"1TX",
+                                           QUIFOY['conj']: u"1UX",
+                            })),  # (f1tx,f1ux)),
 
     # RVCM
     # revenus au prélèvement libératoire
-    build_column_couple('f2da', IntCol(entity = 'foy', label = u"Revenus des actions et parts soumis au prélèvement libératoire",
+    build_column_couple('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
+                    entity = 'foy',
                     val_type = "monetary",
-                    cerfa_field = u'2DA')),
-    build_column_couple('f2dh', IntCol(entity = 'foy',
-                    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire",
+                    cerfa_field = u'2DA', end = 2012)),  # à vérifier sur la nouvelle déclaration des revenus 2013
+
+    build_column_couple('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
+                    entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'2DH')),
-    build_column_couple('f2ee', IntCol(entity = 'foy',
-                    label = u"Revenus au prélèvement libératoire hors actions et assurance-vie",
+
+    build_column_couple('f2ee', IntCol(label = u"Autres produits de placement soumis aux prélèvements libératoires",
+                    entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'2EE')),
 
-    # revenus ouvrant droit à abattement
+    # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
     build_column_couple('f2dc', IntCol(entity = 'foy',
                     label = u"Revenus des actions et parts donnant droit à abattement",
                     val_type = "monetary",
@@ -388,111 +418,403 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'2CH')),
 
-    # Revenus n'ouvrant pas droit à abattement
-    build_column_couple('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières et distributions",
+    #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
+    build_column_couple('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)",
                     val_type = "monetary",
                     cerfa_field = u'2TS')),
     build_column_couple('f2go', IntCol(entity = 'foy',
-                    label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié",
+                    label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n'ouvrant pas droit à abattement)",
                     val_type = "monetary",
                     cerfa_field = u'2GO')),
-    build_column_couple('f2tr', IntCol(entity = 'foy', label = u"Intérêts et autres revenus assimilés",
+    build_column_couple('f2tr', IntCol(entity = 'foy', label = u"Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)",
                     val_type = "monetary",
                     cerfa_field = u'2TR')),
 
-    # Autres
-    build_column_couple('f2cg', IntCol(entity = 'foy', label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible", val_type = "monetary")),
-    build_column_couple('f2bh', IntCol(entity = 'foy', label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible", val_type = "monetary")),
-    build_column_couple('f2ca', IntCol(entity = 'foy', label = u"Frais venant en déduction", val_type = "monetary")),
-    build_column_couple('f2aa', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2006", val_type = "monetary")),
-    build_column_couple('f2ab', IntCol(entity = 'foy', label = u"Crédits d'impôt sur valeurs étrangères", val_type = "monetary")),
-    build_column_couple('f2al', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2007", val_type = "monetary")),
-    build_column_couple('f2am', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2008", val_type = "monetary")),
-    build_column_couple('f2an', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2009", val_type = "monetary")),
-    build_column_couple('f2aq', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2010", val_type = "monetary")),
-    build_column_couple('f2ar', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2011", val_type = "monetary")),
-    build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary")),
 
-    # non accessible (from previous years)
-    build_column_couple('f2gr', IntCol(entity = 'foy')),
+    # Autres revenus des valeurs et capitaux mobiliers
+    build_column_couple('f2cg', IntCol(entity = 'foy',
+                    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible",
+                    val_type = "monetary",
+                    cerfa_field = u'2CG')),
 
-    build_column_couple('f3vc', IntCol(entity = 'foy', label = u"Produits et plus-values exonérés provenant de structure de capital-risque", val_type = "monetary")),
-    build_column_couple('f3vd', IntCol(entity = 'foy', label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 18 %", val_type = "monetary")),
-    build_column_couple('f3ve', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    build_column_couple('f3vf', IntCol(entity = 'foy', label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 41 %", val_type = "monetary")),
+    build_column_couple('f2bh', IntCol(entity = 'foy',
+                    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible",
+                    val_type = "monetary",
+                    cerfa_field = u'2BH')),
 
-    build_column_couple('f3vl', IntCol(entity = 'foy', label = u"Distributions par des sociétés de capital-risque taxables à 24 %", val_type = "monetary")),
-    build_column_couple('f3vi', IntCol(entity = 'foy', label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites taxables à 30 %", val_type = "monetary")),
-    build_column_couple('f3vm', IntCol(entity = 'foy', label = u"Clôture du PEA : avant l'expiration de la 2e année", val_type = "monetary")),
+    build_column_couple('f2ca', IntCol(entity = 'foy',
+                    label = u"Frais et charges déductibles",
+                    val_type = "monetary",
+                    cerfa_field = u'2CA')),
 
-    build_column_couple('f3vj', IntCol(entity = 'foy', label = u"Gains imposables sur option dans la catégorie des salaires: déclarant 1", val_type = "monetary")),
-    build_column_couple('f3vk', IntCol(entity = 'foy', label = u"Gains imposables sur option dans la catégorie des salaires: déclarant 2", val_type = "monetary")),
-    build_column_couple('f3va', IntCol(entity = 'foy', label = u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values", val_type = "monetary")),
+    build_column_couple('f2ck', IntCol(entity = 'foy',
+                    label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé",
+                    val_type = "monetary",
+                    cerfa_field = u'2CK',
+                    start = 2013)),  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
+
+    build_column_couple('f2ab', IntCol(entity = 'foy',
+                    label = u"Crédits d'impôt sur valeurs étrangères",
+                    val_type = "monetary",
+                    cerfa_field = u'2AB')),
+
+    build_column_couple('f2bg', IntCol(entity = 'foy',
+                    label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
+                    val_type = "monetary",
+                    cerfa_field = u'2BG',
+                    start = 2012)),  # TODO: nouvelle case à créer où c'est nécessaire
+                                     # TODO: vérifier existence avant 2012
+
+    build_column_couple('f2aa', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits",
+                    val_type = "monetary",
+                    cerfa_field = u'2AA')),
+
+    build_column_couple('f2al', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits",
+                    val_type = "monetary",
+                    cerfa_field = u'2AL')),
+
+    build_column_couple('f2am', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits",
+                    val_type = "monetary",
+                    cerfa_field = u'2AM')),
+
+    build_column_couple('f2an', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits",
+                    val_type = "monetary",
+                    cerfa_field = u'2AN',
+                    start = 2010)),
+
+    build_column_couple('f2aq', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits",
+                    val_type = "monetary",
+                    cerfa_field = u'2AQ',
+                    start = 2011)),
+
+    build_column_couple('f2ar', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits",
+                    val_type = "monetary",
+                    cerfa_field = u'2AR',
+                    start = 2012)),
+
+# je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
+#
+#   ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = 2011)),  # TODO: vérifier existence <=2011
+
+    build_column_couple('f2dm', IntCol(entity = 'foy',
+                    label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
+                    val_type = "monetary",
+                    cerfa_field = u'2DM',
+                    start = 2012)),  # TODO: nouvelle case à utiliser où c'est nécessaire
+                                     # TODO: vérifier existence avant 2012
+
+    build_column_couple('f2gr', IntCol(entity = 'foy',
+                    label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
+                    val_type = "monetary",
+                    cerfa_field = u'2GR',
+                    start = 2009,
+                    end = 2009)),  # TODO: vérifier existence à partir de 2011
+
+    build_column_couple('f3vc', IntCol(entity = 'foy',
+                    label = u"Produits et plus-values exonérés provenant de structure de capital-risque",
+                    val_type = "monetary",
+                    cerfa_field = u'3VC')),
+
+    build_column_couple('f3vd', IntCol(entity = 'ind',
+                    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"3VD",
+                                   QUIFOY['conj']: u"3SD",
+                                   })),  # (f3vd, f3sd)
+
+    build_column_couple('f3ve', IntCol(entity = 'foy',
+                    label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
+                    val_type = "monetary",
+                    cerfa_field = u'3VE')),
+
+    build_column_couple('f3vf', IntCol(entity = 'ind',
+                    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"3VF",
+                                   QUIFOY['conj']: u"3SF",
+                                   })),  # (f3vf, f3sf)
+
+# comment gérer les cases qui ont le même nom mais qui ne correspondent pas tout à fait à la même chose ? 
+# peut-ont garder le même nom et l'encadrer par des start-end ? ou avec un truc genre if sur l'année ?(pour ne pas avoir à changer le nom de la variable)
+# si on garde le même nom avec des start-end, et si on intégre la variable partout où elle doit être (dans les différents calculs), est-on sûr que lors des calculs les start-end seront bien pris en compte ?
+# ça rendra le modéle un peu moins clair parce qu'il y aura le même nom de variable pour des choses différentes et dans des calculs ne se rapportant pas aux mêmes choses, 
+# mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calculs ? qu'en penses-tu ? 
+   
+    ### build_column_couple('f3vl', IntCol(entity = 'foy', 
+    ###                 label = u"Distributions par des sociétés de capital-risque taxables à 24 %", 
+    ###                 val_type = "monetary",
+    ###                 cerfa_field = u'3VL'
+    ###                 start = 2009,
+    ###                 end = 2009)),#vérifier avant 2009
+                                          
+    build_column_couple('f3vl', IntCol(entity = 'foy', 
+                    label = u"Distributions par des sociétés de capital-risque taxables à 19 %", 
+                    val_type = "monetary",
+                    cerfa_field = u'3VL'
+                    start = 2012,
+                    end = 2013)),# vérifier pour 2011 et 2010
+
+    build_column_couple('f3vi', IntCol(entity = 'ind',
+                    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"3VI",
+                                   QUIFOY['conj']: u"3SI",
+                                   })),  # (f3vi, f3si )
+
+    build_column_couple('f3vm', IntCol(entity = 'foy',
+                    label = u"Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %",
+                    val_type = "monetary",
+                    cerfa_field = u'3VM')),
+
+    build_column_couple('f3vt', IntCol(entity = 'foy',
+                    label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %",
+                    val_type = "monetary",
+                    cerfa_field = u'3VT')),
+
+    build_column_couple('f3vj', IntCol(entity = 'ind',
+                    label = u"Gains imposables sur option dans la catégorie des salaires",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"3VJ",
+                                   QUIFOY['conj']: u"3VK",
+                                   })),  # (f3vj, f3vk )
+
+    build_column_couple('f3va', IntCol(entity = 'ind',
+                    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"3VA",
+                                   QUIFOY['conj']: u"3VB",
+                                   })),  # (f3va, f3vb ))),
 
     # Plus values et gains taxables à des taux forfaitaires
-    build_column_couple('f3vg', IntCol(entity = 'foy', label = u"Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés", val_type = "monetary")),
-    build_column_couple('f3vh', IntCol(entity = 'foy', label = u"Perte de l'année n-1", val_type = "monetary")),
-    build_column_couple('f3vt', IntCol(entity = 'foy', label = u"Clôture du PEA : entre la 2e et la 5e année", val_type = "monetary")),
-    build_column_couple('f3vu', IntCol(entity = 'foy')),
-    build_column_couple('f3vv', IntCol(entity = 'foy')),
 
-    build_column_couple('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
-    build_column_couple('f3sa', IntCol(entity = 'foy')),
-    build_column_couple('f3sf', IntCol(entity = 'foy')),
-    build_column_couple('f3sd', IntCol(entity = 'foy')),
+    build_column_couple('f3vg', IntCol(entity = 'foy',
+                    label = u"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés",
+                    val_type = "monetary",
+                    cerfa_field = u'3VG')),
 
-    build_column_couple('f3vz', IntCol(entity = 'foy', label = u"Plus-values imposables de cession d’immeubles ou de biens meubles", val_type = "monetary")),  # Revenus 2011
+    build_column_couple('f3vh', IntCol(entity = 'foy',
+                    label = u"Perte de l'année de perception des revenus",
+                    val_type = "monetary",
+                    cerfa_field = u'3VH')),
 
-    # Revenu foncier
-    build_column_couple('f4ba', IntCol(entity = 'foy', label = u"Revenus fonciers imposables", val_type = "monetary")),
-    build_column_couple('f4bb', IntCol(entity = 'foy', label = u"Déficit imputable sur les revenus fonciers", val_type = "monetary")),
-    build_column_couple('f4bc', IntCol(entity = 'foy', label = u"Déficit imputable sur le revenu global", val_type = "monetary")),
-    build_column_couple('f4bd', IntCol(entity = 'foy', label = u"Déficits antérieurs non encore imputés", val_type = "monetary")),
-    build_column_couple('f4be', IntCol(entity = 'foy', label = u"Micro foncier: recettes brutes sans abattement", val_type = "monetary")),
+    build_column_couple('f3vu', IntCol(entity = 'foy',
+                    end = 2009)),  # TODO: vérifier pour 2010 et 2011
+
+    # build_column_couple('f3vv', IntCol(entity = 'foy',
+    #                 label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
+    #                 val_type = "monetary",
+    #                 cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
+
+    # build_column_couple('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
+    #                                    # correspond à autre chose en 2009, vérifier 2011,2010
+
+    # build_column_couple('f3sa', IntCol(entity = 'foy', end = 2009)),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
+
+    # build_column_couple('f3sf', IntCol(entity = 'foy')),  # déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+
+    # build_column_couple('f3sd', IntCol(entity = 'foy')),  # déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+
+    # build_column_couple('f3vz', IntCol(entity = 'foy',
+    #                 label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
+    #                 val_type = "monetary",
+    #                 cerfa_field = u'3VV',
+    #                 start = 2011)),  # TODO: vérifier avant 2012
+
+    # Revenus fonciers
+    build_column_couple('f4ba', IntCol(entity = 'foy',
+                    label = u"Revenus fonciers imposables",
+                    val_type = "monetary",
+                    cerfa_field = u'4BA')),
+
+    build_column_couple('f4bb', IntCol(entity = 'foy',
+                    label = u"Déficit imputable sur les revenus fonciers",
+                    val_type = "monetary",
+                    cerfa_field = u'4BB')),
+
+    build_column_couple('f4bc', IntCol(entity = 'foy',
+                    label = u"Déficit imputable sur le revenu global",
+                    val_type = "monetary",
+                    cerfa_field = u'7BC')),
+
+    build_column_couple('f4bd', IntCol(entity = 'foy',
+                    label = u"Déficits antérieurs non encore imputés",
+                    val_type = "monetary",
+                    cerfa_field = u'4BD')),
+
+    build_column_couple('f4be', IntCol(entity = 'foy',
+                    label = u"Micro foncier: recettes brutes sans abattement",
+                    val_type = "monetary",
+                    cerfa_field = u'4BE')),
 
     # Prime d'assurance loyers impayés
-    build_column_couple('f4bf', IntCol(entity = 'foy', label = u"Primes d'assurance pour loyers impayés des locations conventionnées", val_type = "monetary")),
+    build_column_couple('f4bf', IntCol(entity = 'foy',
+                    label = u"Primes d'assurance pour loyers impayés des locations conventionnées",
+                    val_type = "monetary",
+                    cerfa_field = u'4BF')),
 
-    build_column_couple('f4bl', IntCol(entity = 'foy', label = u"")),
+    build_column_couple('f4bl', IntCol(entity = 'foy', label = u"", end = 2009)),  # TODO: cf 2010 2011
 
-    build_column_couple('f5qm', IntCol(entity = 'foy', label = u"Agents généraux d’assurances: indemnités de cessation d’activité, déclarant 1", val_type = "monetary")),
-    build_column_couple('f5rm', IntCol(entity = 'foy', label = u"Agents généraux d’assurances: indemnités de cessation d’activité, déclarant 2", val_type = "monetary")),
+    build_column_couple('f5qm', IntCol(entity = 'ind',
+                    label = u"Agents généraux d’assurances: indemnités de cessation d’activité",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"5QM",
+                                   QUIFOY['conj']: u"5RM",
+                                   })),  # (f5qm, f5rm )
 
     # Csg déductible
-    build_column_couple('f6de', IntCol(entity = 'foy', label = u"CSG déductible calculée sur les revenus du patrimoine", val_type = "monetary")),
+    build_column_couple('f6de', IntCol(entity = 'foy',
+                    label = u"CSG déductible calculée sur les revenus du patrimoine",
+                    val_type = "monetary",
+                    cerfa_field = u'6DE')),
 
     # Pensions alimentaires
-    build_column_couple('f6gi', IntCol(entity = 'foy', label = u"Pensions alimentaires versées à des enfants majeurs: 1er enfant", val_type = "monetary")),
-    build_column_couple('f6gj', IntCol(entity = 'foy', label = u"Pensions alimentaires versées à des enfants majeurs: 2eme enfant", val_type = "monetary")),
-    build_column_couple('f6el', IntCol(entity = 'foy', label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant", val_type = "monetary")),
-    build_column_couple('f6em', IntCol(entity = 'foy', label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant", val_type = "monetary")),
-    build_column_couple('f6gp', IntCol(entity = 'foy', label = u"Autres pensions alimentaires versées (mineurs, ascendants)", val_type = "monetary")),
-    build_column_couple('f6gu', IntCol(entity = 'foy', label = u"Autres pensions alimentaires versées (mineurs, ascendants)", val_type = "monetary")),
+    build_column_couple('f6gi', IntCol(entity = 'foy',
+                    label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant",
+                    val_type = "monetary",
+                    cerfa_field = u'6GI')),
+
+    build_column_couple('f6gj', IntCol(entity = 'foy',
+                    label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant",
+                    val_type = "monetary",
+                    cerfa_field = u'6GJ')),
+
+    build_column_couple('f6el', IntCol(entity = 'foy',
+                    label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant",
+                    val_type = "monetary",
+                    cerfa_field = u'6EL')),
+
+    build_column_couple('f6em', IntCol(entity = 'foy',
+                    label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant",
+                    val_type = "monetary",
+                    cerfa_field = u'6EM')),
+
+    build_column_couple('f6gp', IntCol(entity = 'foy',
+                    label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)",
+                    val_type = "monetary",
+                    cerfa_field = u'6GP')),
+
+    build_column_couple('f6gu', IntCol(entity = 'foy',
+                    label = u"Autres pensions alimentaires versées (mineurs, ascendants)",
+                    val_type = "monetary",
+                    cerfa_field = u'6GU')),
+
 
     # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
-    build_column_couple('f6eu', IntCol(entity = 'foy', label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin", val_type = "monetary")),
-    build_column_couple('f6ev', IntCol(entity = 'foy', label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit")),
+    build_column_couple('f6eu', IntCol(entity = 'foy',
+                    label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin",
+                    val_type = "monetary",
+                    cerfa_field = u'6EU')),
+
+    build_column_couple('f6ev', IntCol(entity = 'foy',
+                    label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit",
+                    cerfa_field = u'6EV')),
 
     # Déductions diverses
-    build_column_couple('f6dd', IntCol(entity = 'foy', label = u"Déductions diverses", val_type = "monetary")),
+    build_column_couple('f6dd', IntCol(entity = 'foy',
+                    label = u"Déductions diverses",
+                    val_type = "monetary",
+                    cerfa_field = u'6DD')),
 
     # Épargne retraite - PERP, PRÉFON, COREM et CGOS
-    build_column_couple('f6ps', IntCol(entity = 'foy', label = u"Plafond de déduction: déclarant 1", val_type = "monetary")),
-    build_column_couple('f6rs', IntCol(entity = 'foy', label = u"Cotisations versées au titre d'un PERP, PREFON, COREM et C.G.O.S: déclarant 1", val_type = "monetary")),
-    build_column_couple('f6ss', IntCol(entity = 'foy', label = u"Rachat de cotisations PREFON, COREM et C.G.O.S: déclarant 1", val_type = "monetary")),
-    build_column_couple('f6pt', IntCol(entity = 'foy', label = u"Plafond de déduction: déclarant 2", val_type = "monetary")),
-    build_column_couple('f6rt', IntCol(entity = 'foy', label = u"Cotisations versées au titre d'un PERP, PREFON, COREM et C.G.O.S: déclarant 2", val_type = "monetary")),
-    build_column_couple('f6st', IntCol(entity = 'foy', label = u"Rachat de cotisations PREFON, COREM et C.G.O.S: déclarant 2", val_type = "monetary")),
-    build_column_couple('f6pu', IntCol(entity = 'foy', label = u"Plafond de déduction: personne à charge", val_type = "monetary")),
-    build_column_couple('f6ru', IntCol(entity = 'foy', label = u"Cotisations versées au titre d'un PERP, PREFON, COREM et C.G.O.S: personne à charge", val_type = "monetary")),
-    build_column_couple('f6su', IntCol(entity = 'foy', label = u"Rachat de cotisations PREFON, COREM et C.G.O.S: personne à charge", val_type = "monetary")),
+    build_column_couple('f6ps', IntCol(entity = 'ind',
+                    label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"6PS",
+                                   QUIFOY['conj']: u"6PT",
+                                   QUIFOY['pac1']: u"6PU",
+                                   })),  # (f6ps, f6pt, f6pu)
+
+    build_column_couple('f6rs', IntCol(entity = 'ind',
+                    label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"6RS",
+                                   QUIFOY['conj']: u"6RT",
+                                   QUIFOY['pac1']: u"6RU",
+                                   })),  # (f6rs, f6rt, f6ru))),
+
+    build_column_couple('f6ss', IntCol(entity = 'ind',
+                    label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S",
+                    val_type = "monetary",
+                    cerfa_field = {QUIFOY['vous']: u"6SS",
+                                   QUIFOY['conj']: u"6ST",
+                                   QUIFOY['pac1']: u"6SU",
+                                   })),  # (f6ss, f6st, f6su))),
+
 
     # Souscriptions en faveur du cinéma ou de l’audiovisuel
-    build_column_couple('f6aa', IntCol(entity = 'foy', label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel", val_type = "monetary")),
+    build_column_couple('f6aa', IntCol(entity = 'foy', label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel", val_type = "monetary"))# Souscriptions en faveur du cinéma ou de l’audiovisuel (SOFICA)
+    ('f6aa', IntCol(entity = 'foy',
+                    label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
+                    val_type = "monetary",
+                    start = 2005,
+                    end = 2005,
+                    cerfa_field = u'AA')),  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
     # Souscriptions au capital des SOFIPÊCHE
-    build_column_couple('f6cc', IntCol(entity = 'foy', label = u"Souscriptions au capital des SOFIPÊCHE", val_type = "monetary")),
+    build_column_couple('f6cc', IntCol(entity = 'foy',
+                    label = u"Souscriptions au capital des SOFIPÊCHE",
+                    val_type = "monetary",
+                    cerfa_field = u'CC',
+                    start = 2005,
+                    end = 2005)),  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
+                    
 
+    # Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
+    # ou Versements sur un compte épargne codéveloppement
+    build_column_couple('f6eh', IntCol(entity = 'foy',
+                    label = u"",
+                    val_type = "monetary",
+                    start = 2005,
+                    end = 2005,
+                    cerfa_field = u'EH')),  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
+
+    # Pertes en capital consécutives à la souscription au capital de sociétés
+    # nouvelles ou de sociétés en difficulté
+    build_column_couple('f6da', IntCol(entity = 'foy',
+                    label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté",
+                    val_type = "monetary",
+                    start = 2005,
+                    end = 2005,
+                    cerfa_field = u'DA')),
+
+
+    # Dépenses de grosses réparations effectuées par les nus propriétaires
+    build_column_couple('f6cb', IntCol(entity = 'foy',
+                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
+                    val_type = "monetary",
+                    start = 2006,
+                    cerfa_field = u'6CB')),  # TODO: vérifier 2011, 10, 9 ,8, 7,6, ok pou 12 et 13
+                                           # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
+
+    build_column_couple('f6hj', IntCol(entity = 'foy',
+                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'6HJ')),
+
+    build_column_couple('f6hk', IntCol(entity = 'foy',
+                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'6HK')),
+
+    build_column_couple('f6hl', IntCol(entity = 'foy',
+                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'6HL')),
+
+    build_column_couple('f6hm', IntCol(entity = 'foy',
+                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                    val_type = "monetary",
+                    start = 2013,
+                    cerfa_field = u'6HM')),
+RESTART HERE
+
+    
     # Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
     # ou Versements sur un compte épargne codéveloppement
     build_column_couple('f6eh', IntCol(entity = 'foy', label = u"", val_type = "monetary")),

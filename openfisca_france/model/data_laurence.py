@@ -411,7 +411,7 @@ column_by_name = collections.OrderedDict((
     ('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
                     entity = 'foy',
                     val_type = "monetary",
-                    cerfa_field = u'2DA', end = 2012)),  # à vérifier sur la nouvelle déclaration des revenus 2013
+                    cerfa_field = u'2DA', end = 2012)),
 
     ('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
                     entity = 'foy',
@@ -525,11 +525,11 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'2AR',
                     start = 2012)),
-"""
+
 je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
  
-"""
-    ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = 2011)),  # TODO vérifier existence <=2011
+""
+    ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = 2011)),  # TODO: vérifier existence <=2011
 
     ('f2dm', IntCol(entity = 'foy',
                     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
@@ -778,14 +778,14 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
 attention pour les 4 cases suivantes, le format cerfa_field n'est pas sur 3 positions
 il s'agit de la déclaration 2005 et même si effectivemnt c'est dans l'encart 6, les cases ne portent que 2 lettres, 
 mettons nous 6AA ou seulement AA ? 
-"""
+""
      # Souscriptions en faveur du cinéma ou de l’audiovisuel (SOFICA)
     ('f6aa', IntCol(entity = 'foy',
                     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
                     val_type = "monetary",
                     start = 2005,
                     end = 2005,
-                    cerfa_field = u'AA')),  # ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
+                    cerfa_field = u'AA')),  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
     # Souscriptions au capital des SOFIPÊCHE
     ('f6cc', IntCol(entity = 'foy',
