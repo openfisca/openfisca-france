@@ -102,10 +102,13 @@ def _jveuf(self, statmarit_holder):
 # # Revenus catégoriels
 ###############################################################################
 
-def _alloc(af, _P):
+def _alloc(af_holder, _P):
     '''
     Allocations familiales imposables
     '''
+    # TODO:  
+    af = self.cast_from_entity_to_role(af_holder, role = VOUS)
+    af = self.sum_by_roles(af)
     P = _P.ir.autre
     return af * P.alloc_imp
 
