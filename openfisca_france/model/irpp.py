@@ -119,8 +119,6 @@ def _rev_sal(sal, cho):
     '''
     return sal + cho
 
-
-
 def _salcho_imp(rev_sal, cho_ld, fra, _P):
     """
     Salaires après abattements
