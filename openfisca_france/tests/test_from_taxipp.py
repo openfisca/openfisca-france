@@ -30,42 +30,42 @@ from openfisca_france.tests.ipp.taxipp_utils import run_OF, compare, dic_ipp2of
 ipp_dir = os.path.join(os.path.dirname(__file__), 'ipp')
 
 
-def test_from_taxipp(selection = "famille_modeste", threshold = 1, list_input = None, list_output = None, verbose = False):
-    # selection : dernier mot avant le .dta : "actif-chomeur", "ISF", "famille_modeste"
-    def list_dta(date):
-        input = []
-        output = []
-        for filename in os.listdir(ipp_dir + "\\base_IPP"):
-            path_file = ipp_dir + '/base_IPP/' + filename
-            if filename.startswith("base_IPP_input") and filename.endswith(selection + ".dta"):
-                input += [path_file]
-            if filename.startswith("base_IPP_output") and filename.endswith(selection + ".dta"):
-                output += [path_file]
-        return input, output
+#def test_from_taxipp(selection = "famille_modeste", threshold = 1, list_input = None, list_output = None, verbose = False):
+#    # selection : dernier mot avant le .dta : "actif-chomeur", "ISF", "famille_modeste"
+#    def list_dta(date):
+#        input = []
+#        output = []
+#        for filename in os.listdir(os.path.join(ipp_dir, "base_IPP")):
+#            path_file = ipp_dir + '/base_IPP/' + filename
+#            if filename.startswith("base_IPP_input") and filename.endswith(selection + ".dta"):
+#                input += [path_file]
+#            if filename.startswith("base_IPP_output") and filename.endswith(selection + ".dta"):
+#                output += [path_file]
+#        return input, output
 
-    if not list_input :
-        list_input, list_output = list_dta(selection)
+#    if not list_input :
+#        list_input, list_output = list_dta(selection)
 
-    elif not list_output:
-        list_output = []
-        for i in range(len(list_input)):
-            list_output += [list_input[i].replace('input', 'output')]
+#    elif not list_output:
+#        list_output = []
+#        for i in range(len(list_input)):
+#            list_output += [list_input[i].replace('input', 'output')]
 
-    dic_input, dic_output = dic_ipp2of()
-    last_param_scenar = "rien"
-    for i in range(len(list_input)) :
-        input = list_input[i]
-        output = list_output[i]
-        simulation, openfisca_output, param_scenario = run_OF(dic_input, path_dta_input = input, option = 'list_dta')
-        if str(param_scenario) != str(last_param_scenar) :
-            pbs = compare(output, openfisca_output, dic_output, param_scenario, simulation, threshold, verbose = verbose)
-            try :
-                assert len(pbs) == 1
-            except :
-                print  " Avec la base dta ", input, "\n  et un seuil de ", threshold, ", les problèmes suivants ont été identifiés : \n ", pbs
-            last_param_scenar = param_scenario
-        else:
-            pass
+#    dic_input, dic_output = dic_ipp2of()
+#    last_param_scenar = "rien"
+#    for i in range(len(list_input)) :
+#        input = list_input[i]
+#        output = list_output[i]
+#        simulation, openfisca_output, param_scenario = run_OF(dic_input, path_dta_input = input, option = 'list_dta')
+#        if str(param_scenario) != str(last_param_scenar) :
+#            pbs = compare(output, openfisca_output, dic_output, param_scenario, simulation, threshold, verbose = verbose)
+#            try :
+#                assert len(pbs) == 1
+#            except :
+#                print  " Avec la base dta ", input, "\n  et un seuil de ", threshold, ", les problèmes suivants ont été identifiés : \n ", pbs
+#            last_param_scenar = param_scenario
+#        else:
+#            pass
 
 if __name__ == '__main__':
     test_from_taxipp(verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
