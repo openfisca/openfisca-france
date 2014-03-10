@@ -73,9 +73,10 @@ def _rbg_int(rbg, cd1):
 def _charges_deduc_reforme(charge_loyer):
     return charge_loyer
 
-def _charge_loyer(self, loyer, nbptr, _P):
-    loyer = self.cast_from_entity_to_role(loyer, entity = 'menage', role = PREF)
-    loyer = self.sum_by_entity(loyer, entity = 'foyer_fiscal')
+
+def _charge_loyer(self, loyer_holder, nbptr, _P):
+    loyer = self.cast_from_entity_to_role(loyer_holder, role = PREF)
+    loyer = self.sum_by_roles(loyer)
 
     plaf = _P.ir.autre.charge_loyer.plaf
     plaf_nbp = _P.ir.autre.charge_loyer.plaf_nbp

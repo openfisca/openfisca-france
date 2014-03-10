@@ -534,14 +534,14 @@ def _primes(type_sal, salbrut):
     return TAUX_DE_PRIME * tib
 
 
-def _supp_familial_traitement(self, type_sal, salbrut, af_nbenf, _P):
+def _supp_familial_traitement(self, type_sal, salbrut, af_nbenf_holder, _P):
     '''
     Supplément familial de traitement
     Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     TODO: gérer le cas encore problématique du conjoint fonctionnaire
     '''
     # TODO: un seul sft par couple où est présent un fonctionnaire
-    fonc_nbenf = self.cast_from_entity_to_role(af_nbenf, entity = 'famille', role = CHEF)
+    fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
     P = _P.fonc.supp_fam
 
     part_fixe_1 = P.fixe.enf1
@@ -598,11 +598,11 @@ def _traitement_brut_mensuel(indice_maj, _P):
     return traitement_brut
 
 
-def _indemnite_residence(self, salbrut, type_sal, zone_apl, _P):
+def _indemnite_residence(self, salbrut, type_sal, zone_apl_holder, _P):
     '''
     Indemnité de résidence des fonctionnaires
     '''
-    zone_apl = self.cast_from_entity_to_roles(zone_apl, entity = 'menage')
+    zone_apl = self.cast_from_entity_to_roles(zone_apl_holder)
 
     P = _P.fonc.indem_resid
     min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3

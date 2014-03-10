@@ -16,14 +16,13 @@ from numpy import logical_not as not_, logical_xor as xor_, maximum as max_, min
 from .data import QUIFOY
 
 
-VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
+log = logging.getLogger(__name__)
 PAC1 = QUIFOY['pac1']
 PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
-ALL = [x[1] for x in QUIFOY]
+VOUS = QUIFOY['vous']
 
-log = logging.getLogger(__name__)
 
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
@@ -58,33 +57,46 @@ def _nb_adult(marpac, celdiv, veuf):
 def _nb_pac(nbF, nbJ, nbR):
     return nbF + nbJ + nbR
 
-def _marpac(statmarit, _option = {'statmarit': [VOUS]}):
+
+def _marpac(self, statmarit_holder):
     '''
     Marié (1) ou Pacsé (5)
     'foy'
     '''
+    statmarit = self.filter_role(statmarit_holder, role = VOUS)
+
     return (statmarit == 1) | (statmarit == 5)
 
-def _celdiv(statmarit , _option = {'statmarit': [VOUS]}):
+
+def _celdiv(self, statmarit_holder):
     '''
     Célibataire (2) ou divorcé (3)
     'foy'
     '''
+    statmarit = self.filter_role(statmarit_holder, role = VOUS)
+
     return (statmarit == 2) | (statmarit == 3)
 
-def _veuf(statmarit , _option = {'statmarit': [VOUS]}):
+
+def _veuf(self, statmarit_holder):
     '''
     Veuf (4)
     'foy'
     '''
+    statmarit = self.filter_role(statmarit_holder, role = VOUS)
+
     return statmarit == 4
 
-def _jveuf(statmarit , _option = {'statmarit': [VOUS]}):
+
+def _jveuf(self, statmarit_holder):
     '''
     Jeune Veuf
     'foy'
     '''
+    statmarit = self.filter_role(statmarit_holder, role = VOUS)
+
     return statmarit == 6
+
 
 ###############################################################################
 # # Revenus catégoriels
@@ -137,21 +149,16 @@ def _pen_net(rev_pen, _P):
     return max_(0, rev_pen - round(max_(P.taux * rev_pen , P.min)))
 #    return max_(0, rev_pen - min_(round(max_(P.taux*rev_pen , P.min)), P.max))  le max se met au niveau du foyer
 
-def _indu_plaf_abat_pen(rev_pen, pen_net, _P, _option = {'rev_pen': ALL, 'pen_net': ALL}):
+def _indu_plaf_abat_pen(self, rev_pen_holder, pen_net_holder, _P):
     """
     Plafonnement de l'abattement de 10% sur les pensions du foyer
     'foy'
     """
+    pen_net = self.sum_by_roles(pen_net_holder)
+    rev_pen = self.sum_by_roles(rev_pen_holder)
+
     P = _P.ir.tspr.abatpen
-    rev_pen_foy = 0
-    for rev_pen_qui in rev_pen.itervalues():
-        rev_pen_foy += rev_pen_qui
-
-    pen_net_foy = 0
-    for pen_net_qui in pen_net.itervalues():
-        pen_net_foy += pen_net_qui
-
-    abat = rev_pen_foy - pen_net_foy
+    abat = rev_pen - pen_net
     return abat - min_(abat, P.max)
 
 def _abat_sal_pen(salcho_imp, pen_net, _P):
@@ -196,17 +203,14 @@ def _rev_cat_pv(f3vg, f3vh):
     return f3vg - f3vh
 
 
-def _rev_cat_tspr(tspr, indu_plaf_abat_pen, _option = {'tspr': ALL}):
+def _rev_cat_tspr(self, tspr_holder, indu_plaf_abat_pen):
     '''
     Traitemens salaires pensions et rentes
     'foy'
     '''
-    # TODO: add just a sum option
-    out = 0
-    for qui in tspr.itervalues():
-        out += qui
+    tspr = self.sum_by_roles(tspr_holder)
 
-    return out + indu_plaf_abat_pen
+    return tspr + indu_plaf_abat_pen
 
 
 def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar, f2as):
@@ -291,19 +295,13 @@ def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, _P):
     return rev_cat_rfon
 
 
-def _rev_cat_rpns(rpns_i, _option = {'rpns_i': ALL}):
+def _rev_cat_rpns(self, rpns_i_holder):
     '''
     Traitemens salaires pensions et rentes
     'foy'
     '''
-    out = None
-    for qui in rpns_i.itervalues():
-        if out is None:
-            out = qui
-        else:
-            out += qui
+    return self.sum_by_roles(rpns_i_holder)
 
-    return out
 
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns, rev_cat_pv):
     '''
@@ -493,40 +491,33 @@ def _teicaa(f5qm, f5rm, _P):
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
 
-def _micro_social_vente(ebic_impv, _P, _option = {'ebic_impv': ALL}):
+def _micro_social_vente(self, ebic_impv_holder):
     '''
     Assiette régime microsociale pour les ventes
     '''
+    return self.sum_by_roles(ebic_impv_holder)
     # P = _P.ir.rpns.microentreprise
     # assert (ebic_impv <= P.vente.max)
-    assiette_vente = 0
-    for qui in ebic_impv.itervalues():
-        assiette_vente += qui
-    return assiette_vente
 
 
-def _micro_social_service(ebic_imps, _P, _option = {'ebic_imps': ALL}):
+def _micro_social_service(self, ebic_imps_holder):
     '''
     Assiette régime microsociale pour les prestations et services
     '''
+    return self.sum_by_roles(ebic_imps_holder)
     # P = _P.ir.rpns.microentreprise
     # assert (ebic_imps <= P.servi.max)
-    assiette_service = 0
-    for qui in ebic_imps.itervalues():
-        assiette_service += qui
-    return assiette_service
 
-def _micro_social_proflib(ebnc_impo, _P, _option = {'ebnc_impo': ALL}):
+
+def _micro_social_proflib(self, ebnc_impo_holder):
     '''
     Assiette régime microsociale pour les professions libérales
     '''
     # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
+    return self.sum_by_roles(ebnc_impo_holder)
     # P = _P.ir.rpns.microentreprise
     # assert (ebnc_impo <= P.specialbnc.max)
-    assiette_proflib = 0
-    for qui in ebnc_impo.itervalues():
-        assiette_proflib += qui
-    return assiette_proflib
+
 
 def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
     if _P.datesim.year >= 2009:
@@ -535,12 +526,12 @@ def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
     else:
         return 0 * assiette_service
 
-def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce, _P):
+def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce_holder, _P):
     """
     Taxation des plus value
     TODO: f3vt, 2013 f3Vg au barème / tout refaire
     """
-    rpns_pvce = self.sum_by_entity(rpns_pvce, entity = 'foyer_fiscal')
+    rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
 
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
@@ -578,12 +569,14 @@ def _cehr(rfr, nb_adult, _P):
     bar = _P.ir.cehr
     return bar.calc(rfr / nb_adult) * nb_adult
 
-def _cesthra(sal, _P, _option = {'sal': ALL}):
+def _cesthra(self, sal_holder, _P):
     '''
     Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité
     'foy'
     PLF 2013 (rejeté) : 'taxe à 75%'
     '''
+    sal = self.split_by_roles(sal_holder)
+
     cesthra = 0
     bar = _P.ir.cesthra
     for rev in sal.itervalues():
@@ -610,25 +603,25 @@ def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
         entity = 'foyer_fiscal', role = VOUS)
 
-def _rfr(self, rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon, rpns_pvce, rev_cap_lib, f3vz):
+def _rfr(self, rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
     f3vg -> rev_cat_pv -> ... -> rni
     '''
-    rpns_exon = self.sum_by_entity(rpns_exon, entity = 'foyer_fiscal')
-    rpns_pvce = self.sum_by_entity(rpns_pvce, entity = 'foyer_fiscal')
+    rpns_exon = self.sum_by_roles(rpns_exon_holder)
+    rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
 
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 
-def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj, f3vk):
+def _glo(self, f1tv, f1tw, f1tx, f3vf_holder, f3vi_holder, f3vj_holder, f3vk_holder):
     # TODO: f1uv, f1uw, f1ux deletion to check
     '''
     Gains de levée d'option
     '''
-    f3vf = self.cast_from_entity_to_role(f3vf, entity = 'foyer_fiscal', role = VOUS)
-    f3vi = self.cast_from_entity_to_role(f3vi, entity = 'foyer_fiscal', role = VOUS)
-    f3vj = self.cast_from_entity_to_role(f3vj, entity = 'foyer_fiscal', role = VOUS)
-    f3vk = self.cast_from_entity_to_role(f3vk, entity = 'foyer_fiscal', role = VOUS)
+    f3vf = self.cast_from_entity_to_role(f3vf_holder, role = VOUS)
+    f3vi = self.cast_from_entity_to_role(f3vi_holder, role = VOUS)
+    f3vj = self.cast_from_entity_to_role(f3vj_holder, role = VOUS)
+    f3vk = self.cast_from_entity_to_role(f3vk_holder, role = VOUS)
 
     return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj + f3vk  # + f1uv + f1uw + f1ux
 
@@ -999,24 +992,27 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
 
     return RPNS
 
-def _abat_spe(age, caseP, caseF, rng, nbN, _P, _option = {'age': [VOUS, CONJ]}):
+
+def _abat_spe(self, age_holder, caseP, caseF, rng, nbN, _P):
     """
     Abattements spéciaux
+
+    - pour personnes âges ou invalides : âgé(e) de plus de 65 ans
+      ou invalide (titulaire d’une pension d’invalidité militaire ou d’accident
+      du travail d’au moins 40 % ou titulaire de la carte d’invalidité),
+      abattement de 2 172 € si rng du foyer fiscal inférieur à 13 370 €
+                    1 086 € si rng  compris entre 13 370 € et 21 570 €.
+      Abattement doublé si conjoint remplit également ces conditions
+      d’âge ou d’invalidité.
+    - pour enfants à charge ayant fondé un foyer distinct : Si  rattachement
+      enfants mariés ou pacsés ou enfants  célibataires, veufs, divorcés, séparés, chargés de famille,
+      abattement 5 495 € par personne ainsi rattachée.
+      Si l’enfant de la personne rattachée est réputé à charge de
+      l’un et l’autre de ses parents (garde alternée), cet abattement est divisé
+      par deux soit 2 748€. Exemple : 10 990 € pour un jeune ménage et 8 243 €
+      pour un célibataire avec un jeune enfant en résidence alternée.
     """
-#    - pour personnes âges ou invalides : âgé(e) de plus de 65 ans
-#      ou invalide (titulaire d’une pension d’invalidité militaire ou d’accident
-#      du travail d’au moins 40 % ou titulaire de la carte d’invalidité),
-#      abattement de 2 172 € si rng du foyer fiscal inférieur à 13 370 €
-#                    1 086 € si rng  compris entre 13 370 € et 21 570 €.
-#      Abattement doublé si conjoint remplit également ces conditions
-#      d’âge ou d’invalidité.
-#    - pour enfants à charge ayant fondé un foyer distinct : Si  rattachement
-#      enfants mariés ou pacsés ou enfants  célibataires, veufs, divorcés, séparés, chargés de famille,
-#      abattement 5 495 € par personne ainsi rattachée.
-#      Si l’enfant de la personne rattachée est réputé à charge de
-#      l’un et l’autre de ses parents (garde alternée), cet abattement est divisé
-#      par deux soit 2 748€. Exemple : 10 990 € pour un jeune ménage et 8 243 €
-#      pour un célibataire avec un jeune enfant en résidence alternée.
+    age = self.split_by_roles(age_holder, roles = [VOUS, CONJ])
 
     ageV, ageC = age[VOUS], age[CONJ]
     invV, invC = caseP, caseF
@@ -1028,6 +1024,7 @@ def _abat_spe(age, caseP, caseF, rng, nbN, _P, _option = {'age': [VOUS, CONJ]}):
     as_enf = nbN * P.enf_montant
 
     return min_(rng, as_inv + as_enf)
+
 
 ###############################################################################
 # # Calcul du nombre de parts
@@ -1152,8 +1149,8 @@ def _ppe_coef_tp(ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, _P):
     tp = ppe_tp_sa | ppe_tp_ns | (frac_sa + frac_ns >= 1)
     return tp + not_(tp) * (frac_sa + frac_ns)
 
-def _ppe_base(self, ppe_rev, ppe_coef_tp, ppe_coef):
-    ppe_coef = self.cast_from_entity_to_roles(ppe_coef, entity = 'foyer_fiscal')
+def _ppe_base(self, ppe_rev, ppe_coef_tp, ppe_coef_holder):
+    ppe_coef = self.cast_from_entity_to_roles(ppe_coef_holder)
 
     return ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
 
@@ -1166,12 +1163,18 @@ def _ppe_elig_i(ppe_rev, ppe_coef_tp, _P):
     P = _P.ir.credits_impot.ppe
     return (ppe_rev >= P.seuil1) & (ppe_coef_tp != 0)
 
-def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, nb_pac, marpac, celdiv, veuf, caseT, caseL, nbH, _P, _option = {'ppe_elig_i': ALL, 'ppe_base': ALL, 'ppe_rev': ALL, 'ppe_coef_tp': ALL}):
+def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holder, ppe_coef, ppe_coef_tp_holder, nb_pac, marpac, celdiv, veuf,
+        caseT, caseL, nbH, _P):
     '''
     Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
     'foy'
     Cf. http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/la-prime-pour-l-emploi-ppe,1034.html
     '''
+    ppe_base = self.split_by_roles(ppe_base_holder)
+    ppe_coef_tp = self.split_by_roles(ppe_coef_tp_holder)
+    ppe_elig_i = self.split_by_roles(ppe_elig_i_holder)
+    ppe_rev = self.split_by_roles(ppe_rev_holder)
+
     P = _P.ir.credits_impot.ppe
 
     eliv, elic, eli1, eli2, eli3 = ppe_elig_i[VOUS], ppe_elig_i[CONJ], ppe_elig_i[PAC1], ppe_elig_i[PAC2], ppe_elig_i[PAC3],
@@ -1244,13 +1247,15 @@ def _ppe_brute(ppe_elig, ppe_elig_i, ppe_rev, ppe_base, ppe_coef, ppe_coef_tp, n
 
     return ppe_tot
 
-def _ppe(ppe_brute, rsa_act_i, _option = {'rsa_act_i': [VOUS, CONJ]}):
+
+def _ppe(self, ppe_brute, rsa_act_i_holder):
     """
-    PPE effectivement versé
+    PPE effectivement versée
     'foy'
     """
+    rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
+
 #   On retranche le RSA activité de la PPE
 #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
     ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
     return ppe
-

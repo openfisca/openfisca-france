@@ -8,17 +8,17 @@
 
 
 from __future__ import division
+
 from numpy import minimum as min_, maximum as max_, zeros, logical_not as not_
+
 from .data import QUIFOY
 
-VOUS = QUIFOY['vous']
+
 CONJ = QUIFOY['conj']
 PAC1 = QUIFOY['pac1']
-ALL = []
-for qui in QUIFOY:
-    ALL.append(qui[1])
-
 taille = 0
+VOUS = QUIFOY['vous']
+
 
 def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
@@ -102,11 +102,15 @@ def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
     # TODO: note de bas de page
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
-def _cotsyn(f7ac, f7ae, f7ag, sal, cho, rst, _P, _option = {'sal':ALL, 'cho':ALL, 'rst':ALL}):
+def _cotsyn(self, f7ac, f7ae, f7ag, sal_holder, cho_holder, rst_holder, _P):
     '''
     Cotisations syndicales
     2002-
     '''
+    cho = self.split_by_roles(cho_holder)
+    rst = self.split_by_roles(rst_holder)
+    sal = self.split_by_roles(sal_holder)
+
     P = _P.ir.reductions_impots.cotsyn
     tx = P.seuil
 

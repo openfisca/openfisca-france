@@ -23,80 +23,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import numpy as np
 from openfisca_core import formulas
 
 
 class FormulaMixin(object):
-    def cast_from_entity_to_role(self, array, default = 0, entity = None, role = None):
-        assert isinstance(role, int)
-        return self.cast_from_entity_to_roles(array, default = default, entity = entity, roles = [role])
-
-    def cast_from_entity_to_roles(self, array, default = 0, entity = None, roles = None):
-        holder = self.holder
-        target_entity = holder.entity
-        simulation = target_entity.simulation
-        individus = simulation.entities['individus']
-        assert entity in simulation.entity_by_key_singular, u"Unknown entity: {}".format(entity).encode('utf-8')
-        entity = simulation.entity_by_key_singular[entity]
-        assert isinstance(array, np.ndarray), u"Expected a numpy array. Got: {}".format(array).encode('utf-8')
-        assert array.size == entity.count, u"Expected an array of size {}. Got: {}".format(entity.count, array.size)
-        target_array = np.empty(individus.count, dtype = array.dtype)
-        target_array.fill(default)
-        entity_index_array = individus.holder_by_name['id' + entity.symbol].array
-        if roles is None:
-            roles = range(entity.roles_count)
-        for role in roles:
-            boolean_filter = individus.holder_by_name['qui' + entity.symbol].array == role
-            try:
-                target_array[boolean_filter] = array[entity_index_array[boolean_filter]]
-            except:
-                log.error(u'An error occurred while transforming array for role {}[{}] in function {}'.format(
-                    entity.key_singular, role, holder.column.name))
-                raise
-        return target_array
-
-    def cast_from_entity_to_role(self, array, default = 0, entity = None, role = None):
-        holder = self.holder
-        target_entity = holder.entity
-        simulation = target_entity.simulation
-        individus = simulation.entities['individus']
-        assert entity in simulation.entity_by_key_singular, u"Unknown entity: {}".format(entity).encode('utf-8')
-        entity = simulation.entity_by_key_singular[entity]
-        assert isinstance(array, np.ndarray), u"Expected a numpy array. Got: {}".format(array).encode('utf-8')
-        assert array.size == entity.count, u"Expected an array of size {}. Got: {}".format(entity.count, array.size)
-        target_array = np.empty(individus.count, dtype = array.dtype)
-        target_array.fill(default)
-        entity_index_array = individus.holder_by_name['id' + entity.symbol].array
-        assert role is not None
-        boolean_filter = individus.holder_by_name['qui' + entity.symbol].array == role
-        try:
-            target_array[entity_index_array[boolean_filter]] = array
-        except:
-            log.error(u'An error occurred while transforming array for role {}[{}] in function {}'.format(
-                entity.key_singular, role, holder.column.name))
-            raise
-        return target_array
-
-    def sum_by_entity(self, array, entity = None):
-        holder = self.holder
-        target_entity = holder.entity
-        simulation = target_entity.simulation
-        individus = simulation.entities['individus']
-        assert entity in simulation.entity_by_key_singular, u"Unknown entity: {}".format(entity).encode('utf-8')
-        entity = simulation.entity_by_key_singular[entity]
-        assert isinstance(array, np.ndarray), u"Expected a numpy array. Got: {}".format(array).encode('utf-8')
-        assert array.size == individus.count, u"Expected an array of size {}. Got: {}".format(individus.count,
-            array.size)
-        target_array = np.zeros(entity.count, dtype = array.dtype)
-        entity_index_array = individus.holder_by_name['id' + entity.symbol].array
-        for role in range(entity.roles_count):
-            # TODO: Mettre les filtres en cache dans la simulation
-            boolean_filter = individus.holder_by_name['qui' + entity.symbol].array == role
-            target_array[entity_index_array[boolean_filter]] += array[boolean_filter]
-        return target_array
-
-    any_by_entity = sum_by_entity
+    pass
 
 
 class Formula(FormulaMixin, formulas.AbstractFormula):

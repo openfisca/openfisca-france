@@ -388,13 +388,15 @@ def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
     '''
     return (f1ar + f1br + f1cr + f1dr + f1er)*_P.ir.credits_impot.aidmob.montant
 
-def _jeunes(age, nbptr, rfr, marpac, _P, _option = {'age': [VOUS]}):  # TODO: Replace VOUS in age with personnes à charge.
+def _jeunes(self, age_holder, nbptr, rfr, marpac, _P):  # TODO: Replace VOUS in age with personnes à charge.
     '''
     Crédit d'impôt en faveur des jeunes
     2005-2008
     TODO: What is rev?
     rfr de l'année où jeune de moins de 26 à travaillé six mois
     '''
+    age = self.filter_role(age_holder, role = VOUS)
+
     rev = 0
     P = _P.ir.credits_impot.jeunes
     elig = (age > P.age) * ( rfr > P.rfr_plaf*(marpac*P.rfr_mult + not_(marpac)) + max_(0,nbptr-2)*.5*P.rfr_maj)

@@ -37,23 +37,23 @@ VOUS = QUIFOY['vous']
 # # Impôt Landais, Piketty, Saez
 ############################################################################
 
-def _base_csg(self, salbrut, chobrut, rstbrut, rev_cap_bar, rev_cap_lib):
+def _base_csg(self, salbrut, chobrut, rstbrut, rev_cap_bar_holder, rev_cap_lib_holder):
     '''
     Assiette de la csg
     '''
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar, entity = 'foyer_fiscal', role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
+    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
     return salbrut + chobrut + rstbrut + rev_cap_bar + rev_cap_lib
 
 
-def _ir_lps(self, base_csg, nbF, nbH, statmarit, _P):
+def _ir_lps(self, base_csg, nbF_holder, nbH_holder, statmarit, _P):
     '''
     Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par
     Landais, Piketty, Saez (2011)
     '''
-    nbF = self.cast_from_entity_to_role(nbF, entity = 'foyer_fiscal', role = VOUS)
-    nbH = self.cast_from_entity_to_role(nbH, entity = 'foyer_fiscal', role = VOUS)
+    nbF = self.cast_from_entity_to_role(nbF_holder, role = VOUS)
+    nbH = self.cast_from_entity_to_role(nbH_holder, role = VOUS)
 
     P = _P.lps
     nbEnf = (nbF + nbH / 2)

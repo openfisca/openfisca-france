@@ -44,6 +44,7 @@ class FoyersFiscaux(entities.AbstractEntity):
 
 class Individus(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
+    is_persons_entity = True
     key_plural = 'individus'
     key_singular = 'individu'
     symbol = 'ind'

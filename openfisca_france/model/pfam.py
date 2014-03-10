@@ -20,18 +20,24 @@ ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['
 VOUS = QUIFOY['vous']
 
 
-def _nb_par(quifam, _option = {'quifam':[PART]}):
+def _nb_par(self, quifam_holder):
     '''
     Nombre d'adultes (parents) dans la famille
     'fam'
     '''
+    quifam = self.filter_role(quifam_holder, role = PART)
+
     return 1 + 1 * (quifam == 1)
 
-def _maries(statmarit , _option = {'statmarit': [CHEF]}):
+
+def _maries(self, statmarit_holder):
     '''
     couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?
     '''
+    statmarit = self.filter_role(statmarit_holder, role = CHEF)
+
     return statmarit == 1
+
 
 def _concub(nb_par):
     '''
@@ -68,51 +74,68 @@ def _br_pf_i(tspr, hsup, rpns):
     '''
     return tspr + hsup + rpns
 
-def _biact(br_pf_i, _P, _option = {'br_pf_i': [CHEF, PART]}):
+
+def _biact(self, br_pf_i_holder, _P):
     '''
     Indicatrice de biactivité des adultes de la famille
     '''
+    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
+
     seuil_rev = 12 * _P.fam.af.bmaf_n_2
     biact = (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
     return biact
 
-def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc, f3ve, f3vg, f3vh, f3vl, f3vm):
-    f3vc = self.cast_from_entity_to_role(f3vc, entity = 'foyer_fiscal', role = VOUS)
-    f3ve = self.cast_from_entity_to_role(f3ve, entity = 'foyer_fiscal', role = VOUS)
-    f3vg = self.cast_from_entity_to_role(f3vg, entity = 'foyer_fiscal', role = VOUS)
-    f3vh = self.cast_from_entity_to_role(f3vh, entity = 'foyer_fiscal', role = VOUS)
-    f3vl = self.cast_from_entity_to_role(f3vl, entity = 'foyer_fiscal', role = VOUS)
-    f3vm = self.cast_from_entity_to_role(f3vm, entity = 'foyer_fiscal', role = VOUS)
+
+def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc_holder, f3ve_holder, f3vg_holder, f3vh_holder,
+        f3vl_holder, f3vm_holder):
+    f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
+    f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
+    f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
+    f3vh = self.cast_from_entity_to_role(f3vh_holder, role = VOUS)
+    f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
+    f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
 
     return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
-def _rev_coll(self, rto_net, rev_cap_lib, rev_cat_rvcm, div, abat_spe, glo, fon, alv, f7ga, f7gb, f7gc, rev_cat_pv):
+def _rev_coll(self, rto_net, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_spe_holder, glo, fon_holder, alv,
+        f7ga_holder, f7gb_holder, f7gc_holder, rev_cat_pv_holder):
     '''
     Revenus collectifs
     '''
     # TODO: ajouter les revenus de l'étranger etr*0.9
     # alv is negative since it is paid by the declaree
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
-    rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm, entity = 'foyer_fiscal', role = VOUS)
-    abat_spe = self.cast_from_entity_to_role(abat_spe, entity = 'foyer_fiscal', role = VOUS)
-    fon = self.cast_from_entity_to_role(fon, entity = 'foyer_fiscal', role = VOUS)
-    f7ga = self.cast_from_entity_to_role(f7ga, entity = 'foyer_fiscal', role = VOUS)
-    f7gb = self.cast_from_entity_to_role(f7gb, entity = 'foyer_fiscal', role = VOUS)
-    f7gc = self.cast_from_entity_to_role(f7gc, entity = 'foyer_fiscal', role = VOUS)
-    rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv, entity = 'foyer_fiscal', role = VOUS)
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+    rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm_holder, role = VOUS)
+    abat_spe = self.cast_from_entity_to_role(abat_spe_holder, role = VOUS)
+    fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
+    f7ga = self.cast_from_entity_to_role(f7ga_holder, role = VOUS)
+    f7gb = self.cast_from_entity_to_role(f7gb_holder, role = VOUS)
+    f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
+    rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
     return rto_net + rev_cap_lib + rev_cat_rvcm + fon + glo + alv - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv
 
-def _br_pf(br_pf_i, rev_coll, _option = {'br_pf_i': [CHEF, PART], 'rev_coll': [CHEF, PART]}):
+
+def _br_pf(self, br_pf_i_holder, rev_coll_holder):
     '''
     Base ressource des prestations familiales de la famille
     'fam'
     '''
+    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
+    rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
+
     br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
     return br_pf
 
-# def _af_nbenf(agem, smic55, _P, _option={'agem': ENFS, 'smic55': ENFS}, _freq={'agem':'month'}):
-def _af_nbenf(agem, smic55, _P, _option = {'agem': ENFS, 'smic55': ENFS}):
+
+def _af_nbenf(self, agem_holder, smic55_holder, _P):
+    '''
+    Nombre d'enfants dans la familles au sens des allocations familiales
+    'fam'
+    '''
+    agem = self.split_by_roles(agem_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     P = _P.fam.af
     for key, val in agem.iteritems():
         agem[key] = val // 12
@@ -120,9 +143,11 @@ def _af_nbenf(agem, smic55, _P, _option = {'agem': ENFS, 'smic55': ENFS}):
     af_nbenf = nb_enf(agem, smic55, P.age1, P.age2)
     return af_nbenf
 
+
 ############################################################################
 # Allocations familiales
 ############################################################################
+
 
 def _af_base(af_nbenf, _P):
     '''
@@ -138,11 +163,15 @@ def _af_base(af_nbenf, _P):
     af_base = (af_nbenf >= 1) * af_1enf + (af_nbenf >= 2) * af_2enf + max_(af_nbenf - 2, 0) * af_enf_supp
     return 12 * af_base  # annualisé
 
-def _af_majo(age, smic55, af_nbenf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _af_majo(self, age_holder, smic55_holder, af_nbenf, _P):
     '''
     Allocations familiales - majoration pour âge
     'fam'
     '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     # TODO: Date d'entrée en vigueur de la nouvelle majoration
     # enfants nés après le "1997-04-30"
     bmaf = _P.fam.af.bmaf
@@ -167,11 +196,15 @@ def _af_majo(age, smic55, af_nbenf, _P, _option = {'age': ENFS, 'smic55': ENFS})
 
     return 12 * af_majo  # annualisé
 
-def _af_forf(age, af_nbenf, smic55, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _af_forf(self, age_holder, af_nbenf, smic55_holder, _P):
     '''
     Allocations familiales - forfait
     'fam'
     '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     P = _P.fam
     bmaf = _P.fam.af.bmaf
     nbenf_forf = nb_enf(age, smic55, P.af.age3, P.af.age3)
@@ -186,11 +219,13 @@ def _af(af_base, af_majo, af_forf):
     '''
     return af_base + af_majo + af_forf
 
+
 ############################################################################
 # Complément familial
 ############################################################################
 
-def _cf(age, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _cf(self, age_holder, br_pf, isol, biact, smic55_holder, _P):
     """
     Complément familial
     Vous avez au moins 3 enfants à charge tous âgés de plus de 3 ans.
@@ -203,6 +238,9 @@ def _cf(age, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': E
     # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
     # pouvoir déflater les revenus de l'année courante pour en tenir compte.
     """
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     P = _P.fam
     bmaf = P.af.bmaf
     bmaf2 = P.af.bmaf_n_2
@@ -223,20 +261,25 @@ def _cf(age, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': E
 def _asf_elig(caseT, caseL):
     return caseT | caseL
 
-def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
-         _option = {'rst': [CHEF, PART], 'age': ENFS, 'smic55': ENFS, 'alr': [CHEF, PART] + ENFS}):
+
+def _asf(self, age_holder, rst_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
     '''
     Allocation de soutien familial
+
+    L’ASF permet d’aider le conjoint survivant ou le parent isolé ayant la garde
+    d’un enfant et les familles ayant à la charge effective et permanente un enfant
+    orphelin.
+    Vous avez au moins un enfant à votre charge. Vous êtes son père ou sa mère et vous vivez seul(e),
+    ou vous avez recueilli cet enfant et vous vivez seul ou en couple.
+
+    http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
     '''
-    # TODO: what is rst doing here ?
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    alr = self.sum_by_roles(alr_holder)
+    # TODO: what is rst doing here?
+    rst = self.split_by_roles(rst_holder, roles = [CHEF, PART])
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-    # L’ASF permet d’aider le conjoint survivant ou le parent isolé ayant la garde
-    # d’un enfant et les familles ayant à la charge effective et permanente un enfant
-    # orphelin.
-    # Vous avez au moins un enfant à votre charge. Vous êtes son père ou sa mère et vous vivez seul(e),
-    # ou vous avez recueilli cet enfant et vous vivez seul ou en couple.
-
-#    http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
     # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
     # action devant le TGI pour complêter l'éligibilité
 
@@ -247,20 +290,19 @@ def _asf(age, rst, isol, asf_elig, smic55, alr, _P,
 
     asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1), 2)
 
-    res = None
-    for alr in alr.itervalues():
-        if res is None: res = zeros(len(alr))
-        res += alr
-    no_alr = not_(res > 0)
+    no_alr = not_(alr > 0)
     return asf_brut * no_alr
 
-def _ars(age, af_nbenf, smic55, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _ars(self, age_holder, af_nbenf, smic55_holder, br_pf, _P):
     '''
     Allocation de rentrée scolaire brute de CRDS
     '''
     # TODO: convention sur la mensualisation
     # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
     # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     P = _P.fam
     bmaf = P.af.bmaf
@@ -299,15 +341,18 @@ def _paje(paje_base, paje_nais, paje_clca, paje_clmg, paje_colca):
     '''
     return paje_base + paje_nais + paje_clca + paje_clmg + paje_colca
 
-def _paje_base(age, af_nbenf, br_pf, isol, biact, smic55, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _paje_base(self, age_holder, af_nbenf, br_pf, isol, biact, smic55_holder, _P):
     '''
-    Prestation d'acceuil du jeune enfant - allocation de base
+    Prestation d'accueil du jeune enfant - allocation de base
     '''
     # TODO cumul des paje si et seulement si naissance multiples
 
     # TODO : théorie, il faut comparer les revenus de l'année n-2 à la bmaf de
     # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
     # pouvoir déflater les revenus de l'année courante pour en tenir compte.
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     P = _P.fam
     bmaf = P.af.bmaf
@@ -331,10 +376,14 @@ def _paje_base(age, af_nbenf, br_pf, isol, biact, smic55, _P, _option = {'age': 
     # non cumulabe avec la CF, voir Paje_CumulCf
     return 12 * paje_base  # annualisé
 
-def _paje_nais(agem, age, af_nbenf, br_pf, isol, biact, _P, _option = {'age': ENFS, 'agem': ENFS}):
+
+def _paje_nais(self, agem_holder, age_holder, af_nbenf, br_pf, isol, biact, _P):
     '''
     Prestation d'accueil du jeune enfant - Allocation de naissance
     '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    agem = self.split_by_roles(agem_holder, roles = ENFS)
+
     P = _P.fam
     bmaf = P.af.bmaf
     nais_prime = round(100 * P.paje.nais.prime_tx * bmaf) / 100
@@ -360,7 +409,8 @@ def _paje_nais(agem, age, af_nbenf, br_pf, isol, biact, _P, _option = {'age': EN
     nais_brut = nais_prime * elig * (nbnais)
     return nais_brut
 
-def _paje_clca(agem, af_nbenf, paje_base, inactif, partiel1, partiel2, _P, _option = {'agem': ENFS}):
+
+def _paje_clca(self, agem_holder, af_nbenf, paje_base, inactif, partiel1, partiel2, _P):
     """
     Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
     'fam'
@@ -378,9 +428,11 @@ def _paje_clca(agem, af_nbenf, paje_base, inactif, partiel1, partiel2, _P, _opti
     partiel2 :  Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
                 VRP ou non salarié travaillant à temps partiel: Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
                                                                 (smic_8.27*169*136 %)
-    """
 
-    # http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
+    http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
+    """
+    agem = self.split_by_roles(agem_holder, roles = ENFS)
+
     paje = paje_base >= 0
     P = _P.fam
     # durée de versement :
@@ -413,36 +465,40 @@ def _paje_clca_taux_partiel(paje_clca, partiel1):
 
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
-def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom, paje_clca_taux_partiel, paje_clca_taux_plein, _P, _option = {'age': ENFS, 'smic55': ENFS, 'etu': [CHEF, PART], 'sal': [CHEF, PART], 'hsup': [CHEF, PART] }):
+
+def _paje_clmg(self, aah, age_holder, smic55_holder, etu_holder, sal_holder, hsup_holder, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom,
+        paje_clca_taux_partiel, paje_clca_taux_plein, _P):
     '''
     Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
+
+    Les conditions
+
+    Vous devez :
+
+        avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
+        employer une assistante maternelle agréée ou une garde à domicile.
+        avoir une activité professionnelle minimale
+            si vous êtes salarié cette activité doit vous procurer un revenu minimum de :
+                si vous vivez seul : une fois la BMAF
+                si vous vivez en couple  soit 2 fois la BMAF
+            si vous êtes non salarié, vous devez être à jour de vos cotisations sociales d'assurance vieillesse
+
+    Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
+
+        bénéficiaire de l'allocation aux adultes handicapés (Aah)
+        au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
+        bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par votre Caf, et inscrit dans une démarche d'insertion
+        étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
+
+    Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
+    Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max 45,00 €.
+    Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
     '''
-
-#        Les conditions
-#
-# Vous devez :
-#
-#    avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
-#    employer une assistante maternelle agréée ou une garde à domicile.
-#    avoir une activité professionnelle minimale
-#        si vous êtes salarié cette activité doit vous procurer un revenu minimum de :
-#            si vous vivez seul : une fois la BMAF
-#            si vous vivez en couple  soit 2 fois la BMAF
-#        si vous êtes non salarié, vous devez être à jour de vos cotisations sociales d'assurance vieillesse
-#
-# Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
-#
-#    bénéficiaire de l'allocation aux adultes handicapés (Aah)
-#    au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
-#    bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par votre Caf, et inscrit dans une démarche d'insertion
-#    étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
-#
-# Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
-# Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max 45,00 €.
-# Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-#
-#
-
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+    hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
+    sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     P = _P.fam
 
@@ -489,10 +545,13 @@ def _paje_clmg(aah, age, smic55, etu, sal, hsup, concub, af_nbenf, br_pf, empl_d
     # TODO vérfiez les règles de cumul
     return 12 * paje_clmg  # annualisé
 
-def _paje_colca(af_nbenf, agem, opt_colca, paje_base, _P, _option = {'agem': ENFS}):
+
+def _paje_colca(self, af_nbenf, agem_holder, opt_colca, paje_base, _P):
     '''
     Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
     '''
+    agem = self.split_by_roles(agem_holder, roles = ENFS)
+
     P = _P.fam
     age_m_benjamin = age_en_mois_benjamin(agem)
     condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
@@ -501,8 +560,8 @@ def _paje_colca(af_nbenf, agem, opt_colca, paje_base, _P, _option = {'agem': ENF
     paje_colca = opt_colca * condition * (nbenf >= 3) * P.af.bmaf * (
         (paje) * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
     return 12 * paje_colca  # annualisé
-
     # TODO: cumul avec clca self.colca_tot_m
+
 
 def _paje_cumul(paje_base_temp, cf_temp):
     '''
@@ -519,21 +578,28 @@ def _cf_cumul(paje_base_temp, apje_temp, ape_temp, cf_temp):
     cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
     return round(cf_brut, 2)
 
+
 ############################################################################
 # Enfant handicapé
 ############################################################################
 
-def _aeeh(age, inv, isol, categ_inv, _P, _option = {'categ_inv': ENFS, 'inv': ENFS, 'age': ENFS}):
+
+def _aeeh(self, age_holder, inv_holder, isol, categ_inv_holder, _P):
     '''
     Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
+
+    Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
+    le coût du handicap de l'enfant,
+    la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
+    l'embauche d'une tierce personne rémunérée.
+
+    Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit son activité
+    professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
     '''
-#
-#        Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
-#        le coût du handicap de l'enfant,
-#        la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
-#        l'embauche d'une tierce personne rémunérée.
-#
-#        Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    categ_inv = self.split_by_roles(categ_inv_holder, roles = ENFS)
+    inv = self.split_by_roles(inv_holder, roles = ENFS)
+
     P = _P.fam
     isole = isol
 
@@ -565,31 +631,39 @@ def _aeeh(age, inv, isol, categ_inv, _P, _option = {'categ_inv': ENFS, 'inv': EN
     # Ces allocations ne sont pas soumis à la CRDS
     return 12 * aeeh  # annualisé
 
-def _ape(age, smic55, inactif, partiel1, partiel2, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _ape(self, age_holder, smic55_holder, inactif, partiel1, partiel2, _P):
     '''
     Allocation parentale d'éducation
     'fam'
+
     L’allocation parentale d’éducation s’adresse aux parents qui souhaitent arrêter ou
     réduire leur activité pour s’occuper de leurs jeunes enfants, à condition que ceux-ci
     soient nés avant le 01/01/2004. En effet, pour les enfants nés depuis cette date,
     dans le cadre de la Prestation d’Accueil du Jeune Enfant, les parents peuvent bénéficier
     du « complément de libre choix d’activité. »
+
+    Les personnes en couple peuvent toutes deux bénéficier de l’APE à taux plein, mais pas en même temps. En revanche,
+    elles peuvent cumuler deux taux partiels, à condition que leur total ne dépasse pas le montant du taux plein.
+
+    TODO: cumul,  adoption, triplés,
+    Cumul d'allocations : Cette allocation n'est pas cumulable pour un même ménage avec
+    - une autre APE (sauf à taux partiel),
+    - ou l'allocation pour jeune enfant (APJE) versée à partir de la naissance,
+    - ou le complément familial,
+    - ou l'allocation d’adulte handicapé (AAH).
+    Enfin, il est à noter que cette allocation n’est pas cumulable avec :
+    - une pension d’invalidité ou une retraite ;
+    - des indemnités journalières de maladie, de maternité ou d’accident du travail ;
+    - des allocations chômage. Il est tout de même possible de demander aux ASSEDIC la suspension de ces dernières pour
+      percevoir l’APE.
+
+    L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour les
+    professions non salariées.
     '''
-    # Les personnes en couple peuvent toutes deux bénéficier de l’APE à taux plein, mais pas en même temps. En revanche, ils peuvent cumuler deux taux partiels, à condition que leur total ne dépasse pas le montant du taux plein.
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-    # TODO: cumul,  adoption, triplés,
-    #    Cumul d'allocations : Cette allocation n'est pas cumulable pour un même ménage avec
-    # - une autre APE (sauf à taux partiel),
-    # - ou l'allocation pour jeune enfant (APJE) versée à partir de la naissance,
-    # - ou le complément familial,
-    # - ou l'allocation d’adulte handicapé (AAH).
-    # Enfin, il est à noter que cette allocation n’est pas cumulable avec :
-    # - une pension d’invalidité ou une retraite ;
-    # - des indemnités journalières de maladie, de maternité ou d’accident du travail ;
-    # - des allocations chômage. Il est tout de même possible de demander aux ASSEDIC la suspension de ces dernières pour percevoir l’APE.
-
-    # L'allocation parentale d'éducation n'est pas soumise
-    # à condition de ressources, sauf l’APE à taux partiel pour les professions non salariées
     P = _P.fam
     elig = (nb_enf(age, smic55, 0, P.ape.age - 1) >= 1) & (nb_enf(age, smic55, 0, P.af.age2) >= 2)
     # Inactif
@@ -609,10 +683,14 @@ def _ape(age, smic55, inactif, partiel1, partiel2, _P, _option = {'age': ENFS, '
     # Cummul APE APJE CF
     return 12 * ape  # annualisé
 
-def _apje(br_pf, age, smic55, isol, biact, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _apje(self, br_pf, age_holder, smic55_holder, isol, biact, _P):
     '''
     Allocation pour jeune enfant
     '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     # TODO: APJE courte voir doc ERF 2006
     P = _P.fam
     nbenf = nb_enf(age, smic55, 0, P.apje.age - 1)
@@ -655,19 +733,22 @@ def _apje_cumul(apje_temp, ape_temp, cf_temp):
 
 # # TODO rajouter la prime à la naissance et à l'adoption br_mv paje check ancienne version
 
-def _aged(age, smic55, br_pf, ape_taux_partiel, dep_trim, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+
+def _aged(self, age_holder, smic55_holder, br_pf, ape_taux_partiel, dep_trim, _P):
     '''
     Allocation garde d'enfant à domicile
+
+    les deux conjoints actif et revenu min requis, jusqu'aux 6 ans de l'enfant né avant le 01/01/2004, emploi d'une garde A DOMICILE
+    cette allocation consiste en une prise en charge partielle des charges sociales inhérentes à l'emploi d'une personne à domicile.
+    Si vous avez au moins un enfant  de moins de 3 ans gardé au domicile, 2 cas :
+    Revenus 2005 > 37 241  € : la CAF prend en charge 50% des charges sociales (plafonné à 1 106 € par trimestre),
+    Revenus 2005 < 37 341  € : la CAF prend en charge 75% des charges sociales (plafonné à 1 659 € par trimestre).
+    Si vous avez un enfant de plus de 3 ans gardé au domicile (1 seul cas, sans condition de ressources) :
+    la CAF prend en charge 50% des charges sociales (plafonné à 553 € par trimestre)
     '''
     # TODO: trimestrialiser
-    # les deux conjoints actif et revenu min requis, jusqu'aux 6 ans de l'enfant né avant le 01/01/2004, emploi d'une garde A DOMICILE
-    # cette allocation consiste en une prise en charge partielle des charges sociales inhérentes à l'emploi d'une personne à domicile.
-    # Si vous avez au moins un enfant  de moins de 3 ans gardé au domicile, 2 cas :
-    # Revenus 2005 > 37 241  € : la CAF prend en charge 50% des charges sociales (plafonné à 1 106 € par trimestre),
-    # Revenus 2005 < 37 341  € : la CAF prend en charge 75% des charges sociales (plafonné à 1 659 € par trimestre).
-    # Si vous avez un enfant de plus de 3 ans gardé au domicile (1 seul cas, sans condition de ressources) :
-    # la CAF prend en charge 50% des charges sociales (plafonné à 553 € par trimestre)
-
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     P = _P.fam
     nbenf = nb_enf(age, smic55, 0, P.aged.age1 - 1)
@@ -681,10 +762,13 @@ def _aged(age, smic55, br_pf, ape_taux_partiel, dep_trim, _P, _option = {'age': 
     return 12 * (aged3 + aged6)  # annualisé
 
 
-def _afeama(age, smic55, ape, af_nbenf, br_pf, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, _P):
     '''
     Aide à la famille pour l'emploi d'une assistante maternelle agréée
     '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     # TODO http://web.archive.org/web/20080205163300/http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/afeama
     # Les seuils sont de 80 et 110 % de l'ARS
     # Vérifier que c'est la même chose pour le clmg
@@ -735,9 +819,11 @@ def _crds_pfam(af, cf, asf, ars, paje, ape, apje, _P):
     '''
     return -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
 
+
 ############################################################################
 # Helper functions
 ############################################################################
+
 
 def nb_enf(ages, smic55, ag1, ag2):
     """
@@ -754,6 +840,7 @@ def nb_enf(ages, smic55, ag1, ag2):
         res += ((ag1 <= age) & (age <= ag2)) * not_(smic55[key])
     return res
 
+
 def age_aine(ages, smic55, ag1, ag2):
     '''
     renvoi un vecteur avec l'âge de l'ainé (au sens des allocations
@@ -766,6 +853,7 @@ def age_aine(ages, smic55, ag1, ag2):
         ageaine = isaine * age + not_(isaine) * ageaine
     return ageaine
 
+
 def age_en_mois_benjamin(agems):
     '''
     renvoi un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check agem > 0
@@ -775,5 +863,3 @@ def age_en_mois_benjamin(agems):
         isbenjamin = (agem < agem_benjamin) & (agem != -9999)
         agem_benjamin = isbenjamin * agem + not_(isbenjamin) * agem_benjamin
     return agem_benjamin
-
-

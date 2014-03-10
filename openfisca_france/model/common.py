@@ -31,18 +31,19 @@ from openfisca_core.statshelpers import mark_weighted_percentiles
 from .data import QUIFAM, QUIFOY, QUIMEN
 
 
-ALL = [x[1] for x in QUIMEN]
 CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 PART = QUIFAM['part']
 VOUS = QUIFOY['vous']
 
 
-def _uc(agem, _option = {'agem': ALL}):
+def _uc(self, agem_holder):
     '''
     Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'insee
     'men'
     '''
+    agem = self.split_by_roles(agem_holder)
+
     uc_adt = 0.5
     uc_enf = 0.3
     uc = 0.5
@@ -52,6 +53,7 @@ def _uc(agem, _option = {'agem': ALL}):
         enf = (0 <= age) & (age <= 14)
         uc += adt * uc_adt + enf * uc_enf
     return uc
+
 
 def _typ_men(isol, af_nbenf):
     '''
@@ -74,19 +76,19 @@ def _typ_men(isol, af_nbenf):
             7 * (isol & _3_kid))  # Famille monoparentale trois enfants et plus
 
 
-def _revdisp(self, rev_trav, pen, rev_cap, ir_lps, psoc, ppe, impo):
+def _revdisp(self, rev_trav_holder, pen_holder, rev_cap_holder, ir_lps_holder, psoc_holder, ppe_holder, impo):
     '''
     Revenu disponible - ménage
     'men'
     '''
-    ir_lps = self.sum_by_entity(ir_lps, entity = 'menage')
-    pen = self.sum_by_entity(pen, entity = 'menage')
-    ppe = self.cast_from_entity_to_role(ppe, entity = 'foyer_fiscal', role = CHEF)
-    ppe = self.sum_by_entity(ppe, entity = 'menage')
-    psoc = self.cast_from_entity_to_role(psoc, entity = 'famille', role = CHEF)
-    psoc = self.sum_by_entity(psoc, entity = 'menage')
-    rev_cap = self.sum_by_entity(rev_cap, entity = 'menage')
-    rev_trav = self.sum_by_entity(rev_trav, entity = 'menage')
+    ir_lps = self.sum_by_roles(ir_lps_holder)
+    pen = self.sum_by_roles(pen_holder)
+    ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
+    ppe = self.sum_by_roles(ppe)
+    psoc = self.cast_from_entity_to_role(psoc_holder, role = CHEF)
+    psoc = self.sum_by_roles(psoc)
+    rev_cap = self.sum_by_roles(rev_cap_holder)
+    rev_trav = self.sum_by_roles(rev_trav_holder)
 
     return rev_trav + pen + rev_cap + ir_lps + psoc + ppe + impo
 
@@ -104,7 +106,7 @@ def _revnet(self, rev_trav, pen, rev_cap):
     Revenu net du ménage
     'men'
     '''
-    return self.sum_by_entity(rev_trav + pen + rev_cap, entity = 'menage')
+    return self.sum_by_roles(rev_trav + pen + rev_cap)
 
 
 def _nivvie_net(revnet, uc):
@@ -120,7 +122,7 @@ def _revini(self, rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
     Revenu initial du ménage
     'men'
     '''
-    return self.sum_by_entity(rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib, entity = 'menage')
+    return self.sum_by_roles(rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib)
 
 
 def _nivvie_ini(revini, uc):
@@ -166,14 +168,14 @@ def _cotsoc_lib(csg_cap_lib, prelsoc_cap_lib, crds_cap_lib):
     return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
 
 
-def _rev_cap(self, fon, rev_cap_bar, cotsoc_bar, rev_cap_lib, cotsoc_lib, imp_lib, rac):
+def _rev_cap(self, fon_holder, rev_cap_bar_holder, cotsoc_bar, rev_cap_lib_holder, cotsoc_lib, imp_lib_holder, rac):
     '''
     Revenus du patrimoine
     '''
-    fon = self.cast_from_entity_to_role(fon, entity = 'foyer_fiscal', role = VOUS)
-    imp_lib = self.cast_from_entity_to_role(imp_lib, entity = 'foyer_fiscal', role = VOUS)
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar, entity = 'foyer_fiscal', role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib, entity = 'foyer_fiscal', role = VOUS)
+    fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
+    imp_lib = self.cast_from_entity_to_role(imp_lib_holder, role = VOUS)
+    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
     return fon + rev_cap_bar + cotsoc_bar + rev_cap_lib + cotsoc_lib + imp_lib + rac
 
@@ -190,11 +192,11 @@ def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     '''
     return af + cf + ars + aeeh + paje + asf + crds_pfam
 
-def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass, psa, majo_rsa):
+def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass_holder, psa, majo_rsa):
     '''
     Minima sociaux
     '''
-    ass = self.sum_by_entity(ass, entity = 'famille')
+    ass = self.sum_by_roles(ass_holder)
 
     return aspa + aah + caah + asi + rsa + aefa + api + ass + psa + majo_rsa
 
@@ -205,39 +207,41 @@ def _logt(apl, als, alf, crds_lgtm):
     return apl + als + alf + crds_lgtm
 
 
-def _impo(self, irpp, tax_hab):
+def _impo(self, irpp_holder, tax_hab):
     '''
     Impôts directs
     '''
-    irpp = self.cast_from_entity_to_role(irpp, entity = 'foyer_fiscal', role = VOUS)
-    irpp = self.sum_by_entity(irpp, entity = 'menage')
+    irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
+    irpp = self.sum_by_roles(irpp)
 
     return irpp + tax_hab
 
 
-def _crds(self, crdssal, crdsrst, crdscho, crds_fon, crds_cap_bar, crds_cap_lib, crds_pfam, crds_lgtm, crds_mini, crds_pv_mo, crds_pv_immo):
+def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar, crds_cap_lib, crds_pfam_holder,
+        crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
     '''
     Contribution au remboursement de la dette sociale
     '''
-    crds_fon = self.cast_from_entity_to_role(crds_fon, entity = 'foyer_fiscal', role = VOUS)
-    crds_lgtm = self.cast_from_entity_to_role(crds_lgtm, entity = 'famille', role = CHEF)
-    crds_mini = self.cast_from_entity_to_role(crds_mini, entity = 'famille', role = CHEF)
-    crds_pfam = self.cast_from_entity_to_role(crds_pfam, entity = 'famille', role = CHEF)
-    crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo, entity = 'foyer_fiscal', role = VOUS)
-    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo, entity = 'foyer_fiscal', role = VOUS)
+    crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = VOUS)
+    crds_lgtm = self.cast_from_entity_to_role(crds_lgtm_holder, role = CHEF)
+    crds_mini = self.cast_from_entity_to_role(crds_mini_holder, role = CHEF)
+    crds_pfam = self.cast_from_entity_to_role(crds_pfam_holder, role = CHEF)
+    crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo_holder, role = VOUS)
+    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = VOUS)
 
     return (crdssal + crdsrst + crdscho +
             crds_fon + crds_cap_bar + crds_cap_lib + crds_pv_mo + crds_pv_immo +
             crds_pfam + crds_lgtm + crds_mini)
 
 
-def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon, csg_cap_lib, csg_cap_bar, csg_pv_mo, csg_pv_immo):
+def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_holder, csg_cap_lib, csg_cap_bar,
+        csg_pv_mo_holder, csg_pv_immo_holder):
     """
     Contribution sociale généralisée
     """
-    csg_fon = self.cast_from_entity_to_role(csg_fon, entity = 'foyer_fiscal', role = VOUS)
-    csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo, entity = 'foyer_fiscal', role = VOUS)
-    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo, entity = 'foyer_fiscal', role = VOUS)
+    csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = VOUS)
+    csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
+    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
 
     return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
             csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo + csg_cap_bar)
@@ -250,43 +254,44 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     return cotpat_noncontrib + cotsal_noncontrib
 
 
-def _prelsoc_cap(self, prelsoc_fon, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_pv_immo):
+def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo_holder,
+        prelsoc_pv_immo_holder):
     """
     Prélèvements sociaux sur les revenus du capital
     """
-    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon, entity = 'foyer_fiscal', role = VOUS)
-    prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo, entity = 'foyer_fiscal', role = VOUS)
-    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo, entity = 'foyer_fiscal', role = VOUS)
+    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = VOUS)
+    prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
+    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
 
     return prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
 
-def _check_csk(self, prelsoc_cap_bar, prelsoc_pv_mo, prelsoc_fon):
-    prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar, entity = 'menage')
-    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo, entity = 'foyer_fiscal', role = CHEF)
-    prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo, entity = 'menage')
-    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon, entity = 'foyer_fiscal', role = CHEF)
-    prelsoc_fon = self.sum_by_entity(prelsoc_fon, entity = 'menage')
+def _check_csk(self, prelsoc_cap_bar_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):
+    prelsoc_cap_bar = self.sum_by_roles(prelsoc_cap_bar_holder)
+    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = CHEF)
+    prelsoc_pv_mo = self.sum_by_roles(prelsoc_pv_mo)
+    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = CHEF)
+    prelsoc_fon = self.sum_by_roles(prelsoc_fon)
 
     return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
 
-def _check_csg(self, csg_cap_bar, csg_pv_mo, csg_fon):
-    csg_cap_bar = self.sum_by_entity(csg_cap_bar, entity = 'menage')
-    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo, entity = 'foyer_fiscal', role = CHEF)
-    csg_pv_mo = self.sum_by_entity(csg_pv_mo, entity = 'menage')
-    csg_fon = self.cast_from_entity_to_role(csg_fon, entity = 'foyer_fiscal', role = CHEF)
-    csg_fon = self.sum_by_entity(csg_fon, entity = 'menage')
+def _check_csg(self, csg_cap_bar_holder, csg_pv_mo_holder, csg_fon_holder):
+    csg_cap_bar = self.sum_by_roles(csg_cap_bar_holder)
+    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = CHEF)
+    csg_pv_mo = self.sum_by_roles(csg_pv_mo)
+    csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = CHEF)
+    csg_fon = self.sum_by_roles(csg_fon)
 
     return csg_cap_bar + csg_pv_mo + csg_fon
 
 
-def _check_crds(self, crds_cap_bar, crds_pv_mo, crds_fon):
-    crds_cap_bar = self.sum_by_entity(crds_cap_bar, entity = 'menage')
-    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo, entity = 'foyer_fiscal', role = CHEF)
-    crds_pv_mo = self.sum_by_entity(crds_pv_mo, entity = 'menage')
-    crds_fon = self.cast_from_entity_to_role(crds_fon, entity = 'foyer_fiscal', role = CHEF)
-    crds_fon = self.sum_by_entity(crds_fon, entity = 'menage')
+def _check_crds(self, crds_cap_bar_holder, crds_pv_mo_holder, crds_fon_holder):
+    crds_cap_bar = self.sum_by_roles(crds_cap_bar_holder)
+    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = CHEF)
+    crds_pv_mo = self.sum_by_roles(crds_pv_mo)
+    crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = CHEF)
+    crds_fon = self.sum_by_roles(crds_fon)
 
     return crds_cap_bar + crds_pv_mo + crds_fon
 

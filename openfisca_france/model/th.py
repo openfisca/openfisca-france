@@ -17,18 +17,22 @@ from .data import QUIMEN
 PREF = QUIMEN['pref']
 
 
-def _tax_hab(zthabm, aah, aspa, asi, age, isf_tot, rfr, statmarit, nbptr, _P , _option = {'age': [PREF], 'statmarit': [PREF]}):
+def _tax_hab(self, zthabm, aah, aspa, asi, age_holder, isf_tot, rfr, statmarit_holder, nbptr, _P):
     '''
     Taxe d'habitation
     'men'
+
+    Eligibilité:
+    - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
+    - veuf quel que soit votre âge et non soumis à l'impôt de solidarité sur la fortune (ISF) n-1
+    - titulaire de l'allocation de solidarité aux personnes âgées (Aspa)  ou de l'allocation supplémentaire d'invalidité (Asi),
+    bénéficiaire de l'allocation aux adultes handicapés (AAH),
+    atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
     '''
+    age = self.filter_role(age_holder, role = PREF)
+    statmarit = self.filter_role(statmarit_holder, role = PREF)
+
     P = _P.cotsoc.gen
-    # Eligibilité:
-    # - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
-    # - veuf quel que soit votre âge et non soumis à l'impôt de solidarité sur la fortune (ISF) n-1
-    # - titulaire de l'allocation de solidarité aux personnes âgées (Aspa)  ou de l'allocation supplémentaire d'invalidité (Asi),
-    # bénéficiaire de l'allocation aux adultes handicapés (AAH),
-    # atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
     concern = ((age >= 60) + (statmarit == 4))*(isf_tot  <= 0) + (aspa > 0) + (asi > 0)
     seuil_th = P.plaf_th_1 + P.plaf_th_supp*(max_(0, (nbptr-1)/2))
     elig = concern * (rfr < seuil_th) + (asi > 0) + (aspa > 0)

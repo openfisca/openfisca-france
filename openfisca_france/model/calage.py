@@ -7,20 +7,25 @@
 # (see openfisca/__init__.py for details)
 
 from __future__ import division
+
 from numpy import  floor, arange, array, where
+
 from .data import QUIMEN
 
-ALL_MEN = [x[1] for x in QUIMEN]
+
 PREF = QUIMEN['pref']
 CREF = QUIMEN['cref']
 ENFS = [QUIMEN['enf1'], QUIMEN['enf2'], QUIMEN['enf3'], QUIMEN['enf4'], QUIMEN['enf5'], QUIMEN['enf6'], QUIMEN['enf7'], QUIMEN['enf8'], QUIMEN['enf9'], ]
 
-def _nbinde(agem, _option = {'agem' : ALL_MEN}):
+
+def _nbinde(self, agem_holder):
     """
     Number of household members
     'men'
     Values range between 1 and 6 for 6 members or more
     """
+    agem = self.split_by_roles(agem_holder)
+
     n1 = 0
     for ind in agem.iterkeys():
         n1 += 1*(floor(agem[ind]) >= 0)
@@ -51,11 +56,13 @@ def _ageq(agem):
     return tranche
 
 
-def _nb_ageq0(agem, _option = {'agem': ALL_MEN}):
+def _nb_ageq0(self, agem_holder):
     '''
     Calcule le nombre d'individus dans chaque tranche d'âge quinquennal (voir ageq)
     'men'
     '''
+    agem = self.split_by_roles(agem_holder)
+
     ag1 = 0
     nb  = 0
     for agm in agem.itervalues():
@@ -63,25 +70,34 @@ def _nb_ageq0(agem, _option = {'agem': ALL_MEN}):
         nb   += (ag1 <= age) & (age <= (ag1+4))
     return nb
 
-def _cohab(quimen, _option = {'quimen':[CREF]}):
+
+def _cohab(self, quimen_holder):
     '''
     Indicatrice de vie en couple
     'men'
     '''
-    return (quimen == 1)
+    quimen = self.filter_role(quimen_holder, role = CREF)
 
-def _act_cpl(activite, cohab, _option = {'activite':[PREF, CREF]}):
+    return quimen == 1
+
+
+def _act_cpl(self, activite_holder, cohab):
     '''
     Nombre d'actifs parmi la personne de référence et son conjoint
     'men'
     '''
+    activite = self.split_by_roles(activite_holder, roles = [PREF, CREF])
+
     return 1*(activite[PREF] <= 1) + 1*(activite[CREF] <= 1)*cohab
 
-def _act_enf(activite, _option = {'activite': ENFS}):
+
+def _act_enf(self, activite_holder):
     '''
     Nombre de membres actifs du ménage autre que la personne de référence ou son conjoint
     'men'
     '''
+    activite = self.split_by_roles(activite_holder, roles = ENFS)
+
     res = 0
     for act in activite.itervalues():
         res += 1*(act <= 1)
@@ -95,14 +111,19 @@ def _nb_act(act_cpl, act_enf):
     '''
     return act_cpl + act_enf
 
+
 #def _cplx(typmen15):
-def _cplx(quifam, quimen, age, _option = {'quifam': ENFS, 'quimen': ENFS, 'age': ENFS}):
+def _cplx(self, quifam_holder, quimen_holder, age_holder):
     """
     Indicatrice de ménage complexe
     'men'
+
+    Un ménage est complexe si les personnes autres que la personne de référence ou son conjoint ne sont pas enfants.
     """
-    # ménage complexe si les personnes autres que la personne de référence ou son conjoint
-    # ne sont pas enfants
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    quifam = self.split_by_roles(quifam_holder, roles = ENFS)
+    quimen = self.split_by_roles(quimen_holder, roles = ENFS)
+
     # TODO problème avec les ENFS qui n'existent pas: leur quifam = 0
     # On contourne en utilisant le fait que leur quimen = 0 également
     res = 0
@@ -113,6 +134,7 @@ def _cplx(quifam, quimen, age, _option = {'quifam': ENFS, 'quimen': ENFS, 'age':
     return (res > 0.5)
     # En fait on ne peut pas car on n'a les enfants qu'au sens des allocations familiales ...
     # return (typmen15 > 12)
+
 
 def _typmen15(nbinde, cohab, act_cpl, cplx, act_enf):
     '''

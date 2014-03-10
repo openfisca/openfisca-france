@@ -19,26 +19,32 @@ ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['
 PART = QUIFAM['part']
 
 
-def _al_pac(age, smic55, nbR, _P, _option = {'age': ENFS, 'smic55': ENFS}):
+def _al_pac(self, age_holder, smic55_holder, nbR, _P):
     '''
     Nombre de personne à charge au sens des allocations logement
+
+    site de la CAF en 2011:
+
+    # Enfant à charge
+    Vous assurez financièrement l'entretien et asez la responsabilité
+    affective et éducative d'un enfant, que vous ayez ou non un lien de
+    parenté avec lui. Il est reconnu à votre charge pour le versement
+    des aides au logement jusqu'au mois précédent ses 21 ans.
+    Attention, s'il travaille, il doit gagner moins de 836,55 € par mois.
+
+    # Parents âgés ou infirmes
+    Sont à votre charge s'ils vivent avec vous et si leurs revenus 2009
+    ne dépassent pas 10 386,59 € :
+    * vos parents ou grand-parents âgés de plus de 65 ans ou d'au moins
+    60 ans, inaptes au travail, anciens déportés,
+    * vos proches parents infirmes âgés de 22 ans ou plus (parents,
+    grand-parents, enfants, petits enfants, frères, soeurs, oncles,
+    tantes, neveux, nièces).
     '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
     P = _P
-    # site de la CAF en 2011:
-    ## Enfant à charge
-    # Vous assurez financièrement l'entretien et asez la responsabilité
-    # affective et éducative d'un enfant, que vous ayez ou non un lien de
-    # parenté avec lui. Il est reconnu à votre charge pour le versement
-    # des aides au logement jusqu'au mois précédent ses 21 ans.
-    # Attention, s'il travaille, il doit gagner moins de 836,55 € par mois.
-    ## Parents âgés ou infirmes
-    # Sont à votre charge s'ils vivent avec vous et si leurs revenus 2009
-    # ne dépassent pas 10 386,59 € :
-    #   * vos parents ou grand-parents âgés de plus de 65 ans ou d'au moins
-    #     60 ans, inaptes au travail, anciens déportés,
-    #   * vos proches parents infirmes âgés de 22 ans ou plus (parents,
-    #     grand-parents, enfants, petits enfants, frères, soeurs, oncles,
-    #     tantes, neveux, nièces).
     # P_AL.D_enfch est une dummy qui vaut 1 si les enfants sont comptés à
     # charge (cas actuel) et zéro sinon.
     al_nbinv = nbR
@@ -50,7 +56,8 @@ def _al_pac(age, smic55, nbR, _P, _option = {'age': ENFS, 'smic55': ENFS}):
     # pour une famille
     return al_pac
 
-def _br_al(self, etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursier': [CHEF, PART], 'etu': [CHEF, PART], 'br_pf_i': [CHEF, PART]}):
+
+def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, biact, _P):
     '''
     Base ressource des allocations logement
     '''
@@ -64,7 +71,10 @@ def _br_al(self, etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursi
     # ALabat : abatement prix en compte pour le calcul de la base ressources
     # des allocattions logement
     # plancher de ressources pour les etudiants
-    rev_coll = self.sum_by_entity(rev_coll, entity = 'famille')
+    boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
+    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
+    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+    rev_coll = self.sum_by_roles(rev_coll_holder)
 
     P = _P
     Pr = P.al.ressources
@@ -112,14 +122,14 @@ def _br_al(self, etu, boursier, br_pf_i, rev_coll, biact, _P ,_option = {'boursi
 
     return br_al
 
-def _al(self, concub, br_al, so, loyer, coloc, isol, al_pac, zone_apl, nat_imp, _P):
+def _al(self, concub, br_al, so, loyer, coloc_holder, isol, al_pac, zone_apl, nat_imp_holder, _P):
     '''
     Formule des aides aux logements en secteur locatif
     Attention, cette fonction calcule l'aide mensuelle
     '''
-    coloc = self.any_by_entity(coloc, entity = 'famille')
-    nat_imp = self.cast_from_entity_to_roles(nat_imp, entity = 'foyer_fiscal')
-    nat_imp = self.any_by_entity(nat_imp, entity = 'famille')
+    coloc = self.any_by_roles(coloc_holder)
+    nat_imp = self.cast_from_entity_to_roles(nat_imp_holder)
+    nat_imp = self.any_by_roles(nat_imp)
 
     P = _P
     # ne prend pas en compte les chambres ni les logements-foyers.
@@ -231,23 +241,29 @@ def _alf(al, al_pac, so):
     '''
     Allocation logement familiale
     '''
-    alf   = (al_pac>=1)*(so != 3)*al    # TODO: également pour les jeunes ménages et femems enceints
+    alf = (al_pac>=1)*(so != 3)*al  # TODO: également pour les jeunes ménages et femems enceints
     return alf
 
-def _als_nonet(al, al_pac, etu, so, _option = {'etu': [CHEF, PART]}):
+
+def _als_nonet(self, al, al_pac, etu_holder, so):
     '''
     Allocation logement sociale (non étudiante)
     '''
-    als   = (al_pac==0)*(so != 3)*not_(etu[CHEF]|etu[PART])*al
+    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+
+    als = (al_pac==0)*(so != 3)*not_(etu[CHEF]|etu[PART])*al
     return als
 
 
-def _alset(al, al_pac, etu, so, _option = {'etu': [CHEF, PART]}):
+def _alset(self, al, al_pac, etu_holder, so):
     '''
     Allocation logement sociale étudiante
     '''
+    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+
     alset = (al_pac==0)*(so != 3)*(etu[CHEF] | etu[PART])*al
     return alset
+
 
 def _als(als_nonet, alset):
     '''
