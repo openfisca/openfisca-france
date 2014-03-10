@@ -95,50 +95,52 @@ def simulate_case_study(**simulation):
     return result
 
 
-def test_case_study():
-    result = simulate_case_study(
-        # api_key,
-        scenarios = [
-            dict(
-                familles = [
-                    dict(
-                        parents = ['ind0', 'ind1'],
-                        enfants = ['ind2'],
-                        ),
-                    ],
-                foyers_fiscaux = [
-                    dict(
-                        declarants = ['ind0', 'ind1'],
-                        personnes_a_charge = ['ind2'],
-                        ),
-                    ],
-                individus = [
-                    dict(
-                        birth = '1965-12-27',
-                        id = 'ind0',
-                        sali = 18000,
-                        ),
-                    dict(
-                        birth = '1965-12-28',
-                        id = 'ind1',
-                        ),
-                    dict(
-                        birth = '2005-12-29',
-                        id = 'ind2',
-                        ),
-                    ],
-                menages = [
-                    dict(
-                        personne_de_reference = 'ind0',
-                        conjoint = 'ind1',
-                        enfants = ['ind2'],
-                        ),
-                    ],
-                year = 2013,
-                ),
-            ],
-        )
-    print unicode(json.dumps(result, ensure_ascii = False, indent = 2)).encode('utf-8')
+#def test_case_study():
+#    result = simulate_case_study(
+#        # api_key,
+#        scenarios = [
+#            dict(
+#                test_case = dict(
+#                    familles = [
+#                        dict(
+#                            parents = ['ind0', 'ind1'],
+#                            enfants = ['ind2'],
+#                            ),
+#                        ],
+#                    foyers_fiscaux = [
+#                        dict(
+#                            declarants = ['ind0', 'ind1'],
+#                            personnes_a_charge = ['ind2'],
+#                            ),
+#                        ],
+#                    individus = [
+#                        dict(
+#                            birth = '1965-12-27',
+#                            id = 'ind0',
+#                            sali = 18000,
+#                            ),
+#                        dict(
+#                            birth = '1965-12-28',
+#                            id = 'ind1',
+#                            ),
+#                        dict(
+#                            birth = '2005-12-29',
+#                            id = 'ind2',
+#                            ),
+#                        ],
+#                    menages = [
+#                        dict(
+#                            personne_de_reference = 'ind0',
+#                            conjoint = 'ind1',
+#                            enfants = ['ind2'],
+#                            ),
+#                        ],
+#                    ),
+#                year = 2013,
+#                ),
+#            ],
+#        )
+#    print unicode(json.dumps(result, ensure_ascii = False, indent = 2)).encode('utf-8')
 
 
 if __name__ == '__main__':
