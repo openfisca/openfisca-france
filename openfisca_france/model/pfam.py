@@ -259,10 +259,13 @@ def _cf(self, age_holder, br_pf, isol, biact, smic55_holder, _P):
     return 12 * cf
 
 def _asf_elig(caseT, caseL):
+    '''
+    Eligibilté à l'allocation de soutien familial (ASF)
+    '''
     return caseT | caseL
 
 
-def _asf(self, age_holder, rst_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
+def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
     '''
     Allocation de soutien familial
 
@@ -277,7 +280,6 @@ def _asf(self, age_holder, rst_holder, isol, asf_elig, smic55_holder, alr_holder
     age = self.split_by_roles(age_holder, roles = ENFS)
     alr = self.sum_by_roles(alr_holder)
     # TODO: what is rst doing here?
-    rst = self.split_by_roles(rst_holder, roles = [CHEF, PART])
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
