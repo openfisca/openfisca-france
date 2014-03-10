@@ -160,24 +160,23 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    'inv',  # Invalide
-                    'alt',  # Enfant en garde alternée
-                    'nbsala',  # Nombre de salariés dans l'établissement de l'emploi actuel
-                    'tva_ent',  # Entreprise employant le salarié paye de la TVA
-                    'code_risque',  # Code risque pour les accidents du travail
-                    'exposition_accident',  # Exposition au risque pour les accidents du travail
-                    'boursier',  # Elève ou étudiant boursier
-                    'f1tv',
-                    'f1tw',
-                    'f1tx',
-                    'categ_inv',  # Catégorie de handicap (AEEH)
-                    'b1ab',  # valeur résidence principale avant abattement
-                    'etr',
-                    'coloc',
-                    'aer',
-                    'ass',
-                    'f5sq',
-                    'adoption',  # Enfant adopté
+                    u"""inv""",  # Invalide
+                    u"""alt""",  # Enfant en garde alternée
+                    u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
+                    u"""tva_ent""",  # Entreprise employant le salarié paye de la TVA
+                    u"""code_risque""",  # Code risque pour les accidents du travail
+                    u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
+                    u"""boursier""",  # Elève ou étudiant boursier
+                    u"""f1tv""",
+                    u"""f1tw""",
+                    u"""f1tx""",
+                    u"""categ_inv""",  # Catégorie de handicap (AEEH)
+                    u"""etr""",
+                    u"""coloc""",  # Vie en colocation
+                    u"""aer""",  # Allocation équivalent retraite (AER)
+                    u"""ass""",  # Allocation de solidarité spécifique (ASS)
+                    u"""f5sq""",
+                    u"""adoption""",  # Enfant adopté
                     ]),
                 ]),
             ]),
@@ -187,13 +186,13 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    'inactif',  # Parent incatif (PAJE-CLCA)
-                    'partiel1',  # Parent actif à moins de 50% (PAJE-CLCA)
-                    'partiel2',  # Parent actif entre 50% et 80% (PAJE-CLCA)
-                    'opt_colca',  # Opte pour le COLCA
-                    'empl_dir',  # Emploi direct (CLCMG)
-                    'ass_mat',  # Assistante maternelle (CLCMG)
-                    'gar_dom',  # Garde à domicile (CLCMG)
+                    u"""inactif""",  # Parent incatif (PAJE-CLCA)
+                    u"""partiel1""",  # Parent actif à moins de 50% (PAJE-CLCA)
+                    u"""partiel2""",  # Parent actif entre 50% et 80% (PAJE-CLCA)
+                    u"""opt_colca""",  # Opte pour le COLCA
+                    u"""empl_dir""",  # Emploi direct (CLCMG)
+                    u"""ass_mat""",  # Assistante maternelle (CLCMG)
+                    u"""gar_dom""",  # Garde à domicile (CLCMG)
                     ]),
                 ]),
             ]),
@@ -203,7 +202,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'jour_xyz',
+                    'jour_xyz',  # Jours décomptés au tire de cette déclaration
                     ]),
                 ]),
             collections.OrderedDict([
@@ -524,14 +523,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f1er',  # Crédit d'impôt aide à la mobilité
                     'f2bg',  # Crédit d’impôt directive « épargne »
                     'f4tq',  # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
-                    'f7sf',
-                    'f7si',
-                    'f4ga',
-                    'f4gb',
-                    'f4gc',
-                    'f4ge',
-                    'f4gf',
-                    'f4gg',
+                    'f7sf',  # Appareils de régulation du chauffage, matériaux de calorifugeage
+                    'f7si',  # Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)
                     'f8uy',  # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
                     'mbic_mvct',  # Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)
                     'macc_mvct',  # Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)
@@ -542,6 +535,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Impôt de solidarité sur la fortune"""),
                 ('children', [
+                    'b1ab',  # valeur résidence principale avant abattement 
                     'b1ac',  # valeur autres immeubles avant abattement
                     'b1bc',  # Immeubles non bâtis: bois, fôrets et parts de groupements forestiers
                     'b1be',  # Immeubles non bâtis: biens ruraux loués à long termes
@@ -565,8 +559,15 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'b4rs',  # Montant de l'impôt acquitté hors de France
                     'rev_or',
                     'rev_exo',
-                    'tax_fonc',
+                    'tax_fonc',  # Taxe foncière
                     'restit_imp',
+                    ]),
+                ]),
+            collections.OrderedDict([
+                ('label', u"""Autres"""),
+                ('children', [
+                    u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
+                    u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     ]),
                 ]),
             ]),
@@ -576,7 +577,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'zone_apl',  # zone apl
+                    'zone_apl',  # Zone apl
                     'loyer',  # Loyer mensuel
                     'so',  # Statut d'occupation
                     'code_postal',  # Code postal du lieu de résidence
@@ -585,13 +586,13 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    'm_afeamam',
-                    'm_agedm',
-                    'm_clcam',
-                    'm_colcam',
-                    'm_mgamm',
-                    'm_mgdomm',
-                    'zthabm',
+                    u"""m_afeamam""",
+                    u"""m_agedm""",
+                    u"""m_clcam""",
+                    u"""m_colcam""",
+                    u"""m_mgamm""",
+                    u"""m_mgdomm""",
+                    u"""zthabm""",
                     ]),
                 ]),
             ]),
