@@ -138,12 +138,13 @@ def _asi_aspa_nb_alloc(self, aspa_elig_holder, asi_elig_holder):
     return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
 
-def _aspa_pure(self, aspa_elig_holder, marpac, concub, maries, asi_aspa_nb_alloc, br_mv, _P):
+def _aspa_pure(self, aspa_elig_holder, marpac_holder, concub, maries, asi_aspa_nb_alloc, br_mv, _P):
     '''
     Calcule l'ASPA lorsqu'il y a un ou deux bénéficiaire de l'ASPA et aucun bénéficiaire de l'ASI
     '''
     aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-
+    marpac = self.cast_from_entity_to_role(marpac_holder, role = VOUS)
+    marpac = self.any_by_roles(marpac)
     # La notion de couple change au 1er janvier 2007 (réforme de 2006)
     if _P.datesim.year >= 2007:
         couple = marpac | concub
@@ -175,12 +176,13 @@ def _aspa_pure(self, aspa_elig_holder, marpac, concub, maries, asi_aspa_nb_alloc
     return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2)  # annualisé
 
 
-def _asi_pure(self, asi_elig_holder, marpac, maries, asi_aspa_nb_alloc, br_mv, _P):
+def _asi_pure(self, asi_elig_holder, marpac_holder, maries, asi_aspa_nb_alloc, br_mv, _P):
     '''
     Calcule l'ASI lorsqu'il y a un ou deux bénéficiaire de l'ASI et aucun bénéficiaire de l'ASPA
     '''
     asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-
+    marpac = self.cast_from_entity_to_role(marpac_holder, role = VOUS)
+    marpac = self.any_by_roles(marpac)
     P = _P.minim
     # 1 A Un ou deux bénéficiaire(s) de l'ASI et aucun bénéficiaire de l'ASPA
     elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))  # un seul éligible
@@ -209,13 +211,15 @@ def _asi_aspa_elig(self, aspa_elig_holder, asi_elig_holder):
     return ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF]))
 
 
-def _asi_coexist_aspa(asi_aspa_elig, maries, marpac, br_mv, _P):
+def _asi_coexist_aspa(self, asi_aspa_elig, maries, marpac_holder, br_mv, _P):
     '''
     Montant de l'ASI quand une personne perçoit l'ASI et l'autre l'ASPA
     '''
     P = _P.minim
     # Une personne peçoit l'ASI et l'autre l'ASPA
     # Les persones sont mariées
+    marpac = self.cast_from_entity_to_role(marpac_holder, role = VOUS)
+    marpac = self.any_by_roles(marpac)
     index = asi_aspa_elig * maries
     montant_max = where(index, (.5 * P.asi.montant_couple + .5 * P.aspa.montant_couple), 0)
     ressources = where(index, br_mv + montant_max, 0)
@@ -232,13 +236,15 @@ def _asi_coexist_aspa(asi_aspa_elig, maries, marpac, br_mv, _P):
 
     return 12 * (montant_servi_asi_m + montant_servi_asi_c)  # annualisé
 
-def _aspa_coexist_asi(asi_aspa_elig, maries, marpac, br_mv, _P):
+def _aspa_coexist_asi(self, asi_aspa_elig, maries, marpac_holder, br_mv, _P):
     '''
     Montant de l'ASPA quand une personne perçoit l'ASPA et l'autre l'ASI
     '''
     P = _P.minim
     # Une personne peçoit l'ASI et l'autre l'ASPA
     # Les persones sont mariées
+    marpac = self.cast_from_entity_to_role(marpac_holder, role = VOUS)
+    marpac = self.any_by_roles(marpac)
     index = asi_aspa_elig * maries
     montant_max = where(index, (.5 * P.asi.montant_couple + .5 * P.aspa.montant_couple), 0)
     ressources = where(index, br_mv + montant_max, 0)
