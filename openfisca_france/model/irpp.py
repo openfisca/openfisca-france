@@ -102,7 +102,7 @@ def _jveuf(self, statmarit_holder):
 # # Revenus catégoriels
 ###############################################################################
 
-def _alloc(af_holder, _P):
+def _alloc(self, af_holder, _P):
     '''
     Allocations familiales imposables
     '''
@@ -113,7 +113,7 @@ def _alloc(af_holder, _P):
     return af * P.alloc_imp
 
 def _rev_sal(sal, cho):
-    '''
+    '''  
     Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)
     'ind'
     '''
