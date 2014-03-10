@@ -831,7 +831,6 @@ class Scenario(object):
                     ]
                 axes_meshes = np.meshgrid(*axes_linspaces)
                 for axis, mesh in zip(self.axes, axes_meshes):
-                    simulation.get_or_new_holder(axis['name']).array = mesh.reshape(steps_count)
                     entity = simulation.entity_by_column_name[axis['name']]
                     holder = simulation.get_or_new_holder(axis['name'])
                     if holder.array is None:
