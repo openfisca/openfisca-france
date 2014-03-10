@@ -63,7 +63,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('quifoy', EnumCol(QUIFOY)),
     build_column_couple('quifam', EnumCol(QUIFAM)),
 
-    build_column_couple('sali', IntCol(label = u"Salaire imposable",
+    build_column_couple('sali', IntCol(label = u"Revenus d'activité imposables",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AJ",
                                    QUIFOY['conj']: u"1BJ",
@@ -71,7 +71,7 @@ column_by_name = collections.OrderedDict((
                                    QUIFOY['pac2']: u"1DJ",
                                    QUIFOY['pac3']: u"1EJ",
                                    })),  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-    build_column_couple('choi', IntCol(label = u"Chômage imposable",
+    build_column_couple('choi', IntCol(label = u"Autres revenus imposables (chômage, préretraite)",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AP",
                                    QUIFOY['conj']: u"1BP",
@@ -79,7 +79,7 @@ column_by_name = collections.OrderedDict((
                                    QUIFOY['pac2']: u"1DP",
                                    QUIFOY['pac3']: u"1EP",
                                    })),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    build_column_couple('rsti', IntCol(label = u"Retraite imposable",
+    build_column_couple('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables!p",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AS",
                                    QUIFOY['conj']: u"1BS",
@@ -96,7 +96,7 @@ column_by_name = collections.OrderedDict((
                                   QUIFOY['pac3']: u"1EK",
                                   })),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-    build_column_couple('alr', IntCol(label = u"Pension alimentaire reçue",
+    build_column_couple('alr', IntCol(label = u"Pensions alimentaires perçues",
                    val_type = "monetary",
                    cerfa_field = {QUIFOY['vous']: u"1AO",
                                   QUIFOY['conj']: u"1BO",
@@ -106,7 +106,7 @@ column_by_name = collections.OrderedDict((
                                   })),  # (f1ao, f1bo, f1co, f1do, f1eo)
     build_column_couple('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),
 
-    build_column_couple('hsup', IntCol(label = u"Heures supplémentaires",
+    build_column_couple('hsup', IntCol(label = u"Heures supplémentaires: revenus exonérés connus",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AU",
                                    QUIFOY['conj']: u"1BU",
@@ -115,11 +115,14 @@ column_by_name = collections.OrderedDict((
                                    QUIFOY['pac3']: u"1EU",
                                    })),  # (f1au, f1bu, f1cu, f1du, f1eu)
 
+# pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
+# la case P exsite déjà plus bas ligne 339 sous le nom caseP  
+
     build_column_couple('inv', BoolCol(label = u'Invalide')),  # TODO: cerfa_field
 
     build_column_couple('alt', BoolCol(label = u'Enfant en garde alternée')),  # TODO: cerfa_field
 
-    build_column_couple('cho_ld', BoolCol(label = u"Chômeur de longue durée",
+    build_column_couple('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
                        cerfa_field = {QUIFOY['vous']: u"1AI",
                                       QUIFOY['conj']: u"1BI",
                                       QUIFOY['pac1']: u"1CI",
@@ -152,7 +155,7 @@ column_by_name = collections.OrderedDict((
                                    })),  # (f5nv, f5ov, f5pv)
     build_column_couple('jour_xyz', IntCol(default = 360,
                         entity = "foy",
-                        label = u"Jours décomptés au tire de cette déclaration")),
+                        label = u"Jours décomptés au titre de cette déclaration")),
     build_column_couple('age', AgesCol(label = u"Âge" , val_type = "age")),
     build_column_couple('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
 
