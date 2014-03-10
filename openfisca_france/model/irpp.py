@@ -106,7 +106,7 @@ def _alloc(self, af_holder, _P):
     '''
     Allocations familiales imposables
     '''
-    # TODO:  
+    # TODO: remove frome here it is a reforme
     af = self.cast_from_entity_to_role(af_holder, role = VOUS)
     af = self.sum_by_roles(af)
     P = _P.ir.autre
