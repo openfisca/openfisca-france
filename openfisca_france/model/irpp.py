@@ -530,7 +530,7 @@ def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
     else:
         return 0 * assiette_service
 
-def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd_holder, f3si, f3sf, f3sa, rpns_pvce_holder, _P): # TODO: f3sd is in f3vd holder
+def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P): # f3sd is in f3vd holder
     """
     Taxation des plus value
     TODO: f3vt, 2013 f3Vg au barème / tout refaire
@@ -539,7 +539,11 @@ def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd_holder, f3si, f3
     rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
     f3vd = self.filter_role(f3vd_holder, role = VOUS)
     f3sd = self.filter_role(f3vd_holder, role = CONJ)
-
+    f3vi = self.filter_role(f3vi_holder, role = VOUS)
+    f3si = self.filter_role(f3vi_holder, role = CONJ)
+    f3vf = self.filter_role(f3vf_holder, role = VOUS)
+    f3sf = self.filter_role(f3vf_holder, role = CONJ)
+    # TODO: remove this todo use sum for all fields after checking
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
     rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
@@ -610,27 +614,31 @@ def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
         entity = 'foyer_fiscal', role = VOUS)
 
-def _rfr(self, rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder, rev_cap_lib, f3vz):
+def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
     f3vg -> rev_cat_pv -> ... -> rni
     '''
+
+    f3va = self.sum_by_roles(f3va_holder)
+    f3vi = self.sum_by_roles(f3vi_holder)
+    
     rpns_exon = self.sum_by_roles(rpns_exon_holder)
     rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
 
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 
-def _glo(self, f1tv, f1tw, f1tx, f3vf_holder, f3vi_holder, f3vj_holder, f3vk_holder):
-    # TODO: f1uv, f1uw, f1ux deletion to check
+def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj):
+    # f1tv contient f1uv
+    # f1tw contient f1uw
+    # f1tx contient f1ux
+    # f3vf contient f3sf
+    # f3vi contient f3si
+    # f3vj contient f3vk voir data.py TODO: rename
     '''
     Gains de levée d'option
     '''
-    f3vf = self.cast_from_entity_to_role(f3vf_holder, role = VOUS)
-    f3vi = self.cast_from_entity_to_role(f3vi_holder, role = VOUS)
-    f3vj = self.cast_from_entity_to_role(f3vj_holder, role = VOUS)
-    f3vk = self.cast_from_entity_to_role(f3vk_holder, role = VOUS)
-
-    return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj + f3vk  # + f1uv + f1uw + f1ux
+    return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
 def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
     """

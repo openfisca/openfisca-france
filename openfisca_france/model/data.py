@@ -621,7 +621,7 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('f3sf', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
-    # build_column_couple('f3sd', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+    build_column_couple('f3sd', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
     build_column_couple('f3vz', IntCol(entity = 'foy',
                      label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
