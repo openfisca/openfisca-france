@@ -342,7 +342,7 @@ def _csg_deduc_patrimoine_simulated(rev_cat_rfon, rev_cap_bar, rto, _P):
     '''
     taux = _P.csg.capital.deduc
     patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
-    log.info(taux * patrimoine_deduc)
+#    log.info(taux * patrimoine_deduc)
     return taux * patrimoine_deduc
 
 def _csg_deduc(rbg, csg_deduc_patrimoine):  # f6de

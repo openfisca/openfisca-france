@@ -36,6 +36,7 @@ import uuid
 
 import numpy as np
 from openfisca_core import legislations, simulations
+
 from . import conv, entities
 
 

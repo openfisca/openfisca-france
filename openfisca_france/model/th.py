@@ -42,6 +42,5 @@ def _tax_hab(self, zthabm, aah, aspa, asi, age_holder, isf_tot_holder, rfr_holde
     P = _P.cotsoc.gen
     concern = ((age >= 60) + (statmarit == 4))*(isf_tot  <= 0) + (aspa > 0) + (asi > 0)
     seuil_th = P.plaf_th_1 + P.plaf_th_supp*(max_(0, (nbptr-1)/2))
-    print len(concern), len(rfr), len(seuil_th), len(asi > 0), len(aspa > 0)
     elig = concern * (rfr < seuil_th) + (asi > 0) + (aspa > 0)
     return -zthabm * elig
