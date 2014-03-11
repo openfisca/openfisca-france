@@ -479,7 +479,7 @@ def test_niches():
                     {
                      "sali" : 20000,
                      "nbJ": 1,
-                     "f6ru" : 1800,
+                     "f6rs" : 1800,
 
                     },
               "output_vars" :
@@ -492,7 +492,7 @@ def test_niches():
                     {
                      "sali" : 20000,
                      "nbJ": 1,
-                     "f6ru" : 1800,
+                     "f6rs" : 1800,
                     },
               "output_vars" :
                     {
@@ -504,7 +504,7 @@ def test_niches():
                     {
                      "sali" : 20000,
                      "nbJ": 1,
-                     "f6ru" : 1800,
+                     "f6rs" : 1800,
                     },
               "output_vars" :
                     {
@@ -552,7 +552,7 @@ def test_niches():
                     {
                      "sali" : 20000,
                      "nbJ": 1,
-                     "f6su" : 1800,
+                     "f6ss" : 1800,
                     },
               "output_vars" :
                     {
@@ -564,7 +564,7 @@ def test_niches():
                     {
                      "sali" : 20000,
                      "nbJ": 1,
-                     "f6su" : 1800,
+                     "f6ss" : 1800,
                     },
               "output_vars" :
                     {
@@ -576,7 +576,7 @@ def test_niches():
                     {
                      "sali" : 20000,
                      "nbJ": 1,
-                     "f6su" : 1800,
+                     "f6ss" : 1800,
                     },
               "output_vars" :
                     {
@@ -1271,7 +1271,7 @@ if __name__ == '__main__':
     import sys
     import logging
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v'])
+#    import nose
+#    nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
-#    test_niches()
+    test_niches()
