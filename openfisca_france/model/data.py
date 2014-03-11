@@ -24,6 +24,7 @@
 
 
 import collections
+import datetime
 
 from openfisca_core.columns import IntCol, EnumCol, BoolCol, AgesCol, FloatCol
 from openfisca_core.enumerations import Enum
@@ -297,7 +298,7 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
-                      cerfa_field = u'E', end = 2012)),
+                      cerfa_field = u'E', end = datetime.date(2012,12,31))),
     build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
                       entity = 'foy',
                       cerfa_field = u'F')),
@@ -314,7 +315,7 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('caseK', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre",
                       entity = 'foy',
-                      cerfa_field = u'K', end = 2011)),
+                      cerfa_field = u'K', end = datetime.date(2011,12,31))),
 
     build_column_couple('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
@@ -393,7 +394,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
                     entity = 'foy',
                     val_type = "monetary",
-                    cerfa_field = u'2DA', end = 2012)),  # à vérifier sur la nouvelle déclaration des revenus 2013
+                    cerfa_field = u'2DA', end = datetime.date(2012, 12, 31))),  # à vérifier sur la nouvelle déclaration des revenus 2013
 
     build_column_couple('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
                     entity = 'foy',
@@ -453,7 +454,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé",
                     val_type = "monetary",
                     cerfa_field = u'2CK',
-                    start = 2013)),  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
+                    start = datetime.date(2013, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
 
     build_column_couple('f2ab', IntCol(entity = 'foy',
                     label = u"Crédits d'impôt sur valeurs étrangères",
@@ -464,7 +465,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
                     val_type = "monetary",
                     cerfa_field = u'2BG',
-                    start = 2012)),  # TODO: nouvelle case à créer où c'est nécessaire
+                    start = datetime.date(2012, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire
                                      # TODO: vérifier existence avant 2012
 
     build_column_couple('f2aa', IntCol(entity = 'foy',
@@ -486,37 +487,37 @@ column_by_name = collections.OrderedDict((
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
                     cerfa_field = u'2AN',
-                    start = 2010)),
+                    start = datetime.date(2010, 1, 1))),
 
     build_column_couple('f2aq', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
                     cerfa_field = u'2AQ',
-                    start = 2011)),
+                    start = datetime.date(2011, 1, 1))),
 
     build_column_couple('f2ar', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
                     cerfa_field = u'2AR',
-                    start = 2012)),
+                    start = datetime.date(2012, 1, 1))),
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 #
-#   ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = 2011)),  # TODO: vérifier existence <=2011
+   build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = datetime.date(2011,12,31))),  # TODO: vérifier existence <=2011
 
     build_column_couple('f2dm', IntCol(entity = 'foy',
                     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
                     val_type = "monetary",
                     cerfa_field = u'2DM',
-                    start = 2012)),  # TODO: nouvelle case à utiliser où c'est nécessaire
+                    start = datetime.date(2012, 1, 1))),  # TODO: nouvelle case à utiliser où c'est nécessaire
                                      # TODO: vérifier existence avant 2012
 
     build_column_couple('f2gr', IntCol(entity = 'foy',
                     label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
                     val_type = "monetary",
                     cerfa_field = u'2GR',
-                    start = 2009,
-                    end = 2009)),  # TODO: vérifier existence à partir de 2011
+                    start = datetime.date(2009, 1, 1),
+                    end = datetime.date(2009, 12, 31))),  # TODO: vérifier existence à partir de 2011
 
     build_column_couple('f3vc', IntCol(entity = 'foy',
                     label = u"Produits et plus-values exonérés provenant de structure de capital-risque",
@@ -552,15 +553,15 @@ column_by_name = collections.OrderedDict((
     # ##                 label = u"Distributions par des sociétés de capital-risque taxables à 24 %",
     # ##                 val_type = "monetary",
     # ##                 cerfa_field = u'3VL'
-    # ##                 start = 2009,
-    # ##                 end = 2009)),#vérifier avant 2009
+    # ##                 start = datetime.date(2009, 1, 1),
+    # ##                 end = datetime.date(2009, 12, 31))),#vérifier avant 2009
 
     build_column_couple('f3vl', IntCol(entity = 'foy',
                     label = u"Distributions par des sociétés de capital-risque taxables à 19 %",
                     val_type = "monetary",
                     cerfa_field = u'3VL',
-                    start = 2012,
-                    end = 2013)),  # vérifier pour 2011 et 2010
+                    start = datetime.date(2012, 1, 1),
+                    end = datetime.date(2013, 12, 31))),  # vérifier pour 2011 et 2010
 
     build_column_couple('f3vi', IntCol(entity = 'ind',
                     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %",
@@ -606,27 +607,27 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'3VH')),
 
     build_column_couple('f3vu', IntCol(entity = 'foy',
-                    end = 2009)),  # TODO: vérifier pour 2010 et 2011
+                    end = datetime.date(2009, 12, 31))),  # TODO: vérifier pour 2010 et 2011
 
-    # build_column_couple('f3vv', IntCol(entity = 'foy',
-    #                 label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
+    build_column_couple('f3vv', IntCol(entity = 'foy',
+                     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
+                     val_type = "monetary",
+                     cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
 
-    # build_column_couple('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
+    build_column_couple('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
     #                                    # correspond à autre chose en 2009, vérifier 2011,2010
 
-    # build_column_couple('f3sa', IntCol(entity = 'foy', end = 2009)),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
+    build_column_couple('f3sa', IntCol(entity = 'foy', end = datetime.date(2009, 12, 31))),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
 
-    # build_column_couple('f3sf', IntCol(entity = 'foy')),  # déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+    build_column_couple('f3sf', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
-    # build_column_couple('f3sd', IntCol(entity = 'foy')),  # déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+    # build_column_couple('f3sd', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
-    # build_column_couple('f3vz', IntCol(entity = 'foy',
-    #                 label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'3VV',
-    #                 start = 2011)),  # TODO: vérifier avant 2012
+    build_column_couple('f3vz', IntCol(entity = 'foy',
+                     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
+                     val_type = "monetary",
+                     cerfa_field = u'3VZ',
+                     start = datetime.date(2011, 1, 1))),  # TODO: vérifier avant 2012
 
     # Revenus fonciers
     build_column_couple('f4ba', IntCol(entity = 'foy',
@@ -660,7 +661,7 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'4BF')),
 
-    build_column_couple('f4bl', IntCol(entity = 'foy', label = u"", end = 2009)),  # TODO: cf 2010 2011
+    build_column_couple('f4bl', IntCol(entity = 'foy', label = u"", end = datetime.date(2009, 12, 31))),  # TODO: cf 2010 2011
 
     build_column_couple('f5qm', IntCol(entity = 'ind',
                     label = u"Agents généraux d’assurances: indemnités de cessation d’activité",
@@ -753,8 +754,8 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6aa', IntCol(entity = 'foy',
                     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
                     val_type = "monetary",
-                    start = 2005,
-                    end = 2005,
+                    start = datetime.date(2005, 1, 1),
+                    end = datetime.date(2005, 12, 31),
                     cerfa_field = u'6AA')),  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
     # Souscriptions au capital des SOFIPÊCHE
@@ -762,8 +763,8 @@ column_by_name = collections.OrderedDict((
                     label = u"Souscriptions au capital des SOFIPÊCHE",
                     val_type = "monetary",
                     cerfa_field = u'CC',
-                    start = 2005,
-                    end = 2005)),  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
+                    start = datetime.date(2005, 1, 1),
+                    end = datetime.date(2005, 12, 31))),  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
 
 
     # Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
@@ -771,8 +772,8 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6eh', IntCol(entity = 'foy',
                     label = u"",
                     val_type = "monetary",
-                    start = 2005,
-                    end = 2005,
+                    start = datetime.date(2005, 1, 1),
+                    end = datetime.date(2005, 12, 31),
                     cerfa_field = u'EH')),  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
     # Pertes en capital consécutives à la souscription au capital de sociétés
@@ -780,8 +781,8 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6da', IntCol(entity = 'foy',
                     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté",
                     val_type = "monetary",
-                    start = 2005,
-                    end = 2005,
+                    start = datetime.date(2005, 1, 1),
+                    end = datetime.date(2005, 12, 31),
                     cerfa_field = u'DA')),
 
 
@@ -789,7 +790,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6cb', IntCol(entity = 'foy',
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
                     val_type = "monetary",
-                    start = 2006,
+                    start = datetime.date(2006, 1, 1),
                     cerfa_field = u'6CB')),  # TODO: vérifier 2011, 10, 9 ,8, 7,6, ok pou 12 et 13
                                            # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
@@ -811,7 +812,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6hm', IntCol(entity = 'foy',
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
                     val_type = "monetary",
-                    start = 2013,
+                    start = datetime.date(2013, 1, 1),
                     cerfa_field = u'6HM')),
 
     # Sommes à rajouter au revenu imposable
@@ -896,6 +897,29 @@ column_by_name = collections.OrderedDict((
                                    QUIFOY['pac1']: u"7AG",
                                    })),  # f7ac, f7ae, f7ag
 
+    # Salarié à domicile
+    build_column_couple('f7db', IntCol(entity = 'foy',
+                    label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés",
+                    val_type = "monetary",
+                    cerfa_field = u'7DB')),
+
+    build_column_couple('f7df', IntCol(entity = 'foy',
+                    label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés",
+                    val_type = "monetary",
+                    cerfa_field = u'7DF')),
+
+    build_column_couple('f7dq', BoolCol(entity = 'foy',
+                     label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés",
+                     cerfa_field = u'7DQ')),
+
+    build_column_couple('f7dg', BoolCol(entity = 'foy',
+                     label = u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'au moins 80 % l'année de perception des revenus déclarés",
+                     cerfa_field = u'7DG')),
+
+    build_column_couple('f7dl', IntCol(entity = 'foy',
+                    label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés",
+                    cerfa_field = u'7DL')),
+                                   
     # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale
     build_column_couple('f7vy', IntCol(entity = 'foy',
                     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité",
@@ -1050,21 +1074,21 @@ column_by_name = collections.OrderedDict((
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
                     val_type = "monetary",
                     cerfa_field = u'7',
-                    start = 2012)),  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
+                    start = datetime.date(2012, 1, 1))),  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
                                     # TODO vérifier pour les années précédentes
 # TODO: CHECK
     # Intérêts d'emprunts
 #     build_column_couple('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7')), # cf pour quelle année
 #
-#     build_column_couple('f7wq', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées", cerfa_field = u'7')),
+     build_column_couple('f7wq', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées", cerfa_field = u'7WQ')),
 
     build_column_couple('f7wt', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
-                    start = 2013,
+                    start = datetime.date(2013, 1, 1),
                     cerfa_field = u'7WT')),  # TODO vérifier année de début
 
     build_column_couple('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
-                    start = 2013,
+                    start = datetime.date(2013, 1, 1),
                     cerfa_field = u'7WH')),  # TODO vérifier année de début
 
     build_column_couple('f7wk', BoolCol(entity = 'foy',
@@ -1073,7 +1097,7 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('f7wf', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1",
-                    end = 2012,
+                    end = datetime.date(2012, 12, 31),
                     cerfa_field = u'7WF')),  # TODO vérifier les années précédentes
 
     # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
@@ -1081,7 +1105,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction",
                     val_type = "monetary",
                     cerfa_field = u'7WI',
-                    end = 2012)),
+                    end = datetime.date(2012, 12, 31))),
 
     build_column_couple('f7wj', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées",
@@ -1098,55 +1122,55 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements réalisés en n-1, total réduction d’impôt",
                     val_type = "monetary",
                     cerfa_field = u'7UR',
-                    end = 2011)),  # TODO: vérifier les années antérieures
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier les années antérieures
 
     build_column_couple('f7oz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6",
                     val_type = "monetary",
                     cerfa_field = u'7OZ',
-                    end = 2011)),  # TODO: vérifier les années antérieures
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier les années antérieures
 
     build_column_couple('f7pz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7PZ',
-                    end = 2012)),  # TODO: vérifier les années antérieures
+                    end = datetime.date(2012, 12, 31))),  # TODO: vérifier les années antérieures
 
     build_column_couple('f7qz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7QZ',
-                    end = 2012)),  # TODO: vérifier les années antérieures
+                    end = datetime.date(2012, 12, 31))),  # TODO: vérifier les années antérieures
 
     build_column_couple('f7rz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
                     val_type = "monetary",
                     cerfa_field = u'7RZ',
-                    end = 2011)),  # TODO: vérifier années antérieures.
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier années antérieures.
 
 # TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
 #     build_column_couple('f7sz', IntCol(entity = 'foy',
 #                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-2",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7SZ',
-#                     end = 2011)),  # TODO: vérifier années <=2011.
+#                     end = datetime.date(2011,12,31))),  # TODO: vérifier années <=2011.
 
     build_column_couple('f7sz', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location",
                     val_type = "monetary",
                     cerfa_field = u'7SZ',
-                    start = 2012)),  # TODO: vérifier années <=2011
+                    start = datetime.date(2012, 1, 1))),  # TODO: vérifier années <=2011
 
     # Aide aux créateurs et repreneurs d'entreprises
     build_column_couple('f7fy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
                     cerfa_field = u'7FY',
-                    end = 2011)),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
 
     build_column_couple('f7gy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
                     cerfa_field = u'7GY',
-                    end = 2011)),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
 
 
 # TODO: 7jy réutilisée en 2013
@@ -1154,34 +1178,34 @@ column_by_name = collections.OrderedDict((
 #     build_column_couple('f7jy', IntCol(entity = 'foy',
 #                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et ayant pris fin en n-1",
 #                     cerfa_field = u'7JY',
-#                     end = 2011)),
+#                     end = datetime.date(2011,12,31))),
 
      build_column_couple('f7jy', IntCol(entity = 'foy',
                     label = u"Report de 1/9 des investissements réalisés l'année de perception des revenus déclarés -3 ou -4",
                     cerfa_field = u'7JY',
-                    start = 2013)),
+                    start = datetime.date(2013, 1, 1))),
 
     build_column_couple('f7hy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
                     cerfa_field = u'7HY',
-                    end = 2011)),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
 
     build_column_couple('f7ky', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
                     cerfa_field = u'7KY',
-                    end = 2011)),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
 
 # 7iy réutilisée en 2013
 #
 #     build_column_couple('f7iy', IntCol(entity = 'foy',
 #                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
 #                     cerfa_field = u'7IY',
-#                     end = 2011)),  # TODO: vérifier date <=2011
+#                     end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
 
     build_column_couple('f7iy', IntCol(entity = 'foy',
                     label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
                     cerfa_field = u'7IY',
-                    start = 2013)),
+                    start = datetime.date(2013, 1, 1))),
 
     build_column_couple('f7ly', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
@@ -1205,36 +1229,36 @@ column_by_name = collections.OrderedDict((
 
 # TOOD: f7gw et f7gx ne se rapporte pas a de l'assurance vie en 2013
     # Assurance-vie
-#     build_column_couple('f7gw', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GW', end = 2011)),  # TODO: cf pour <=2011
-#     build_column_couple('f7gx', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GX', end = 2011)),  # TODO: cf pour <=2011
+#     build_column_couple('f7gw', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GW', end = datetime.date(2011,12,31))),  # TODO: cf pour <=2011
+#     build_column_couple('f7gx', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GX', end = datetime.date(2011,12,31))),  # TODO: cf pour <=2011
     # build_column_couple('f7gy', IntCol()), existe ailleurs (n'existe pas en 2013 et 2012)
 
     build_column_couple('f7gw', IntCol(entity = 'foy',
                     label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GW',
-                    start = 2013)),
+                    start = datetime.date(2013, 1, 1))),
 
     build_column_couple('f7gx', IntCol(entity = 'foy',
                     label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GX',
-                    start = 2013)),
+                    start = datetime.date(2013, 1, 1))),
 
     # Investissements locatifs dans le secteur de touristique
     build_column_couple('f7xc', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1",
                     val_type = "monetary",
                     cerfa_field = u'7XC',
-                    end = 2012)),
+                    end = datetime.date(2012, 12, 31))),
 
     build_column_couple('f7xd', BoolCol(entity = 'foy',
                      label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
                      cerfa_field = u'7XD',
-                     end = 2012)),
+                     end = datetime.date(2012, 12, 31))),
 
     build_column_couple('f7xe', BoolCol(entity = 'foy',
                      label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
                      cerfa_field = u'7XE',
-                     end = 2012)),
+                     end = datetime.date(2012, 12, 31))),
 
     build_column_couple('f7xf', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
@@ -1245,7 +1269,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements locatifs dans le secteur de touristique: travaux de reconstruction, agrandissement, réparation dans une résidence de tourisme classée ou un meublé de tourisme",
                     val_type = "monetary",
                     cerfa_field = u'7XH',
-                    end = 2012)),
+                    end = datetime.date(2012, 12, 31))),
 
     build_column_couple('f7xi', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
@@ -1266,7 +1290,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, prix de revient d'un logement réhabilité en n-1 et achevé depuis moins de 15 ans",
                     val_type = "monetary",
                     cerfa_field = u'7XL',
-                    end = 2012)),
+                    end = datetime.date(2012, 12, 31))),
 
     build_column_couple('f7xm', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report de dépenses des travaux de réhabilitation achevés les années antérieures",
@@ -1278,13 +1302,13 @@ column_by_name = collections.OrderedDict((
 #                     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: investissement réalisé en n-1",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7XN',
-#                     end = 2011)),
+#                     end = datetime.date(2011,12,31))),
 
     build_column_couple('f7xn', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7XN',
-                    start = 2012)),
+                    start = datetime.date(2012, 1, 1))),
 
     build_column_couple('f7xo', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
@@ -1328,35 +1352,35 @@ column_by_name = collections.OrderedDict((
 #                     label = u"Souscription au capital d’une SOFIPECHE",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7GS',
-#                     end = 2011)),
+#                     end = datetime.date(2011,12,31))),
 
     build_column_couple('f7gs', IntCol(entity = 'foy',
                     label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
                     val_type = "monetary",
                     cerfa_field = u'7GS',
-                    start = 2013)),
+                    start = datetime.date(2013, 1, 1))),
 
     # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
-    build_column_couple('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = 2011)),  # vérifier <=2011
+    build_column_couple('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = datetime.date(2011,12,31))),  # vérifier <=2011
 
 # en 2013 et 2012, 7uc se rapporte à autre chose, réutilisation de la case
-#    build_column_couple('f7uc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UC', end = 2011)),  # vérifier <=2011
+#    build_column_couple('f7uc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UC', end = datetime.date(2011,12,31))),  # vérifier <=2011
 
     build_column_couple('f7uc', IntCol(entity = 'foy',
                     label = u"Cotisations pour la défense des forêts contre l'incendie ",
                     val_type = "monetary",
                     cerfa_field = u'7UC',
-                    start = 2012)),
+                    start = datetime.date(2012, 1, 1))),
 
-    build_column_couple('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = 2011)),  # vérifier <=2011
-    build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = 2011)),  # vérifier <=2011
+    build_column_couple('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = datetime.date(2011,12,31))),  # vérifier <=2011
 
     # Souscription de parts de fonds communs de placement dans l'innovation,
     # de fonds d'investissement de proximité
@@ -1386,24 +1410,24 @@ column_by_name = collections.OrderedDict((
 #                     label = u"Souscriptions au capital de SOFICA 48 %",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7GN',
-#                     end = 2011)),  # TODO: vérifier <=2011
+#                     end = datetime.date(2011,12,31))),  # TODO: vérifier <=2011
 #     build_column_couple('f7fn', IntCol(entity = 'foy',
 #                     label = u"Souscriptions au capital de SOFICA 40 %",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7FN',
-#                     end = 2011)),  # TODO: vérifier <=2011
+#                     end = datetime.date(2011,12,31))),  # TODO: vérifier <=2011
 
     build_column_couple('f7gn', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital de SOFICA 36 %",
                     val_type = "monetary",
                     cerfa_field = u'7GN',
-                    start = 2012)),
+                    start = datetime.date(2012, 1, 1))),
 
     build_column_couple('f7fn', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital de SOFICA 30 %",
                     val_type = "monetary",
                     cerfa_field = u'7FN',
-                    start = 2012)),
+                    start = datetime.date(2012, 1, 1))),
 
     # Intérêts d'emprunt pour reprise de société
     build_column_couple('f7fh', IntCol(entity = 'foy', label = u"Intérêts d'emprunt pour reprise de société", val_type = "monetary")),
