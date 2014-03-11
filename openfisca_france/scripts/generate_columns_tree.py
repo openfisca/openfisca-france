@@ -60,18 +60,18 @@ class PrettyPrinter(pprint.PrettyPrinter):
 pretty_printer = PrettyPrinter()
 
 
-def cleanup_tree(tree):
+def cleanup_tree(entity, tree):
     children = []
     for child in (tree.get('children') or []):
         if isinstance(child, basestring):
             # Child is a column name.
             column = data.column_by_name.get(child)
-            if column is not None and is_valid_column(column):
+            if column is not None and column.entity == entity and is_valid_column(column):
                 children.append(child)
         else:
             assert isinstance(child, dict), child
             if child.get('label') != u'Autres':
-                child = cleanup_tree(child)
+                child = cleanup_tree(entity, child)
                 if child is not None:
                     children.append(child)
     if not children:
@@ -108,7 +108,7 @@ def main():
     columns_name_tree_by_entity = collections.OrderedDict(
         (entity, columns_name_tree)
         for entity, columns_name_tree in (
-            (entity1, cleanup_tree(columns_name_tree1))
+            (entity1, cleanup_tree(entity1, columns_name_tree1))
             for entity1, columns_name_tree1 in columns_name_tree_by_entity.iteritems()
             )
         if columns_name_tree is not None
