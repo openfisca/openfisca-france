@@ -170,6 +170,16 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f1tv""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans
                     u"""f1tw""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans
                     u"""f1tx""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans
+                    u"""f3vd""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
+                    u"""f3vf""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
+                    u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
+                    u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
+                    u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
+                    u"""f5qm""",  # Agents généraux d’assurances: indemnités de cessation d’activité
+                    u"""f6ps""",  # Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)
+                    u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
+                    u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
+                    u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""etr""",
                     u"""coloc""",  # Vie en colocation
@@ -269,14 +279,9 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Plus-values de cession de valeurs mobilières, droits sociaux et gains assimilés"""),
                 ('children', [
                     'f3vc',  # Produits et plus-values exonérés provenant de structure de capital-risque
-                    'f3vd',  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
                     'f3ve',  # Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %
-                    'f3vf',  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
                     'f3vl',  # Distributions par des sociétés de capital-risque taxables à 19 %
-                    'f3vi',  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
                     'f3vm',  # Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %
-                    'f3vj',  # Gains imposables sur option dans la catégorie des salaires
-                    'f3va',  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
                     'f3vg',  # Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés
                     'f3vh',  # Perte de l'année de perception des revenus
                     'f3vt',  # Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %
@@ -302,12 +307,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     ]),
                 ]),
             collections.OrderedDict([
-                ('label', u"""Section 5"""),
-                ('children', [
-                    'f5qm',  # Agents généraux d’assurances: indemnités de cessation d’activité
-                    ]),
-                ]),
-            collections.OrderedDict([
                 ('label', u"""Charges déductibles"""),
                 ('children', [
                     'f6de',  # CSG déductible calculée sur les revenus du patrimoine
@@ -320,9 +319,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f6eu',  # Frais d'accueil de personnes de plus de 75 ans dans le besoin
                     'f6ev',  # Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit
                     'f6dd',  # Déductions diverses
-                    'f6ps',  # Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)
-                    'f6rs',  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
-                    'f6ss',  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     'f6aa',  # Souscriptions en faveur du cinéma ou de l’audiovisuel
                     'f6cc',  # Souscriptions au capital des SOFIPÊCHE
                     'f6eh',
@@ -348,7 +344,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f7xu',  # Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3
                     'f7xw',  # Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2
                     'f7xy',  # Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1
-                    'f7ac',  # Cotisations syndicales des salariées et pensionnés
                     'f7db',  # Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés
                     'f7df',  # Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés
                     'f7dq',  # Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés
