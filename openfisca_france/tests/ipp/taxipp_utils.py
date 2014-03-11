@@ -30,53 +30,45 @@ import sys
 import time
 
 from numpy import array
-from pandas import read_stata, ExcelFile, DataFrame
-
 import openfisca_france
-# from openfisca_core import model
-# from openfisca_core.simulations import SurveySimulation
-# openfisca_france.init_country()
+from openfisca_france import surveys
+from pandas import DataFrame, ExcelFile, read_stata, Series
+
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 variables_corresp = os.path.join(current_dir, 'correspondances_variables.xlsx')
 
 
-def dic_ipp2of():
+def build_ipp2of_variables():
     ''' 
     Création du dictionnaire dont les clefs sont les noms des variables IPP
     et les arguments ceux des variables OF 
     '''
     def _dic_corresp(onglet):
         names = ExcelFile(variables_corresp).parse(onglet)
-        names = array(names.loc[names['equivalence'].isin([1, 5, 8]), ['var_TAXIPP', 'var_OF']])
-        dic = {}
-        for i in range(len(names)) :
-            dic[names[i, 0]] = names[i, 1]
-        return dic
+        return dict(array(names.loc[names['equivalence'].isin([1, 5, 8]), ['var_TAXIPP', 'var_OF']]))
 
     ipp2of_input_variables = _dic_corresp('input')
     ipp2of_output_variables = _dic_corresp('output')
     return ipp2of_input_variables, ipp2of_output_variables
 
-def compare(path_dta_output, openfisca_output, dic_ipp2of_output_variables, param_scenario, simulation, threshold = 1.5, verbose = True):
+
+def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation, threshold = 1.5, verbose = True):
     '''
     Fonction qui comparent les calculs d'OF et et de TaxIPP
     Gestion des outputs
     '''
-    openfisca_input = simulation.input_table.table
-    dta_output = path_dta_output
-    ipp_output = read_stata(dta_output).sort(['id_foyf', 'id_indiv'], ascending = [True, False])
-    ipp2of_output_variables = dic_ipp2of_output_variables
+    ipp_output = read_stata(path_dta_output).sort(['id_foyf', 'id_indiv'], ascending = [True, False])
     if 'salbrut' in param_scenario.items() :
         if param_scenario['option'] == 'salbrut':
             del ipp2of_output_variables['sal_brut']
 
     scenario = param_scenario['scenario']
-    if 'activite' in param_scenario.items():
+    if 'activite' in param_scenario:
         act = param_scenario['activite']
     else:
         act = 0
-    if 'activite_C' in param_scenario.items():
+    if 'activite_C' in param_scenario:
         act_conj = param_scenario['activite_C']
     else:
         act_conj = 0
@@ -103,32 +95,40 @@ def compare(path_dta_output, openfisca_output, dic_ipp2of_output_variables, para
     check_list += check_list_minima + check_list_commun + check_list_af + check_list_cap
 
     def _relevant_input_variables(simulation):
-        dataframe = simulation.input_table.table
         input_variables = list()
-        for name, col in simulation.column_by_name.iteritems():
-            if not all(dataframe[name] == col._default):
+        for name, col in simulation.tax_benefit_system.column_by_name.iteritems():
+            holder = simulation.get_holder(name, default = None)
+            if holder is not None and not all(holder.array == col._default):
                 input_variables.append(name)
         return input_variables
 
-    def _conflict_by_entity(simulation, ent, of_var, ipp_var, pb_calcul, output1 = openfisca_output, input1 = openfisca_input, output2 = ipp_output):
-        output2.index = output1[input1['quimen'].isin([0, 1])].index
-        if ent == 'ind':
-            output1 = output1.loc[input1['quimen'].isin([0, 1]), of_var]
-            output2 = output2[ipp_var]
-        else :
-            output1 = output1.loc[ input1['qui' + ent] == 0, of_var]
-            output2 = output2.loc[ input1['qui' + ent] == 0, ipp_var]
-            input1 = input1.loc[ input1['qui' + ent] == 0, :]
+    def _conflict_by_entity(simulation, of_var_holder, ipp_var, pb_calcul, ipp_output = ipp_output):
+        of_var_series = Series(of_var_holder.array)
 
-        conflict = ((output2.abs() - output1.abs()).abs() > threshold)
-        if (len(output2[conflict]) != 0) :
+        entity = of_var_holder.entity
+        if entity.is_persons_entity:
+            quimen_series = Series(simulation.get_holder('quimen').array)
+            of_var_series = of_var_series[quimen_series.isin([0, 1])].reset_index(drop = True)
+            ipp_var_series = ipp_output[ipp_var]
+        else :
+            quient_series = Series(simulation.get_holder('qui' + entity.symbol).array)
+            ipp_var_series = ipp_output[ipp_var][quient_series == 0]
+
+        conflict = ((ipp_var_series.abs() - of_var_series.abs()).abs() > threshold)
+        if (len(ipp_var_series[conflict]) != 0) :
             if verbose:
-                print "Le calcul de " + of_var + " pose problème : "
-                from pandas import DataFrame
-                # print DataFrame( {"IPP": output2, "OF": output1, "diff.": output2-output1.abs()} ).to_string()
-                print DataFrame({"IPP": output2[conflict], "OF": output1[conflict], "diff.": output2[conflict] - output1[conflict].abs()}).to_string()
+                print u"Le calcul de {} pose problème : ".format(of_var)
+                print DataFrame({
+                    "IPP": ipp_var_series[conflict],
+                    "OF": of_var_series[conflict],
+#                    "diff.": ipp_output[conflict].abs() - of_var_series[conflict].abs(),
+                    }).to_string()
                 relevant_variables = _relevant_input_variables(simulation)
-                print input1.loc[conflict[conflict == True].index, relevant_variables].to_string()
+                input1 = DataFrame(
+                    (variable, simulation.get_holder(variable).array)
+                    for variable in relevant_variables
+                    )
+                print input1.loc[conflict[conflict == True].index].to_string()
             pb_calcul += [of_var]
 #        if of_var == 'taxes_sal':
 #            print "taxes_sal", output1.to_string
@@ -137,14 +137,14 @@ def compare(path_dta_output, openfisca_output, dic_ipp2of_output_variables, para
     pb_calcul = []
     for ipp_var in check_list:  # in ipp2of_output_variables.keys(): #
         of_var = ipp2of_output_variables[ipp_var]
-        entity = simulation.prestation_by_name[of_var].entity
-        _conflict_by_entity(simulation, str(entity), of_var, ipp_var, pb_calcul)
+        of_var_holder = simulation.compute(of_var)
+        _conflict_by_entity(simulation, of_var_holder, ipp_var, pb_calcul)
     if verbose:
         print pb_calcul
     return pb_calcul
 
-def run_OF(dic_input, path_dta_input, param_scenario = None, dic = None, datesim = None, option = 'test_dta'):
 
+def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = None, datesim = None, option = 'test_dta'):
     '''
     Lance le calculs sur OF à partir des cas-types issues de TaxIPP
     input : base .dta issue de l'étape précédente
@@ -179,35 +179,31 @@ def run_OF(dic_input, path_dta_input, param_scenario = None, dic = None, datesim
         datesim = dict_scenar['datesim']
         param_scenario = dict_scenar
 
-    if 'salbrut' in param_scenario.items() :
-        if param_scenario['option'] == 'salbrut':
-            TaxBenefitSystem = openfisca_france.init_country(start_from = "brut")
-            tax_benefit_system = TaxBenefitSystem()
-            del dic_input['sal_irpp_old']
-            dic_input['sal_brut'] = 'salbrut'
-        else :
-            TaxBenefitSystem = openfisca_france.init_country()
-            tax_benefit_system = TaxBenefitSystem()
-
+    if 'salbrut' in param_scenario.items() and param_scenario['option'] == 'salbrut':
+        TaxBenefitSystem = openfisca_france.init_country(start_from = "brut")
+        tax_benefit_system = TaxBenefitSystem()
+        del ipp2of_input_variables['sal_irpp_old']
+        ipp2of_input_variables['sal_brut'] = 'salbrut'
     else :
         TaxBenefitSystem = openfisca_france.init_country()
         tax_benefit_system = TaxBenefitSystem()
 
-    openfisca_survey = build_input_OF(data_IPP, dic_input)
+    openfisca_survey = build_input_OF(data_IPP, ipp2of_input_variables, tax_benefit_system)
     openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy','noi'])
-    simulation = SurveySimulation()
-    simulation.set_config(year = datesim,
-                          survey_filename = openfisca_survey,
-                          param_file = os.path.join(os.path.dirname(model.PARAM_FILE), 'param.xml'))
-    simulation.set_param()
-    simulation.compute()
+    simulation = surveys.new_simulation_from_survey_data_frame(
+#        debug = True,
+        survey = openfisca_survey,
+        tax_benefit_system = tax_benefit_system,
+        year = datesim,
+        )
 
     if option == 'list_dta':
-        return simulation, simulation.output_table.table, param_scenario
+        return simulation, param_scenario
     else:
-        return simulation, simulation.output_table.table
+        return simulation
 
-def build_input_OF(data, dic_var):
+
+def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
 
     def _qui(data, entity):
         qui = "qui" + entity
@@ -300,11 +296,16 @@ def build_input_OF(data, dic_var):
         data.loc[(data['nbh'] / 12 <= 151) & (data['nbh'] / 12 > 77), 'partiel2'] = 1
         return data
 
-    data.rename(columns = dic_var, inplace = True)
-
+    data.rename(columns = ipp2of_input_variables, inplace = True)
     data["agem"] = 12 * data["age"]
     data['quifoy'] = _qui(data, 'foy')
+    min_idfoy = data["idfoy"].min()
+    if min_idfoy > 0:
+        data["idfoy"] -= min_idfoy
     data['quimen'] = _qui(data, 'men')
+    min_idmen = data["idmen"].min()
+    if min_idmen > 0:
+        data["idmen"] -= min_idmen
     data["idfam"] = data["idmen"]
     data["quifam"] = data['quimen']
 
@@ -316,14 +317,12 @@ def build_input_OF(data, dic_var):
     data = _var_to_ppe(data)
     data = _var_to_pfam(data)
 
-    not_in_OF = [ "p1", "nbh", "nbh_sal", "loge_proprio", "loge_locat", "loge_autr", "loyer_fictif", "loyer_verse", "loyer_marche", "pens_alim_ver_foy", "sal_brut", "sal_h_brut",
-                 "bail_prive", "bail_pers_phys", "loyer_conso", "proprio_men", "locat_men", "loge_men", "proprio_empr_men", "loyer_fictif_men",
-                 "bail_prive_men", "bail_pers_phys_men", "loyer_marche_men", "loyer_conso_men",
-                    "nonsalexo_irpp", "nonsal_brut_cn", "nonsal_brut_cn_foy", "nonsal_brut", "nonsal_h_brut"]  # variables non-salariés, "ba_irpp",  "bic_irpp",  "bnc_irpp",
-    other_vars_to_drop = ["couple", "decl", "conj", "pac", "proprio_empr", "proprio", "locat", "nonsal_irpp", "nadul",
-                  "loge", "marie", "change", "pondv", "concu", "cohab", "nenf_concu", "num_indf", "npers", "age_conj", "n_foy_men", "public"]
-    vars_to_drop = [var for var in (other_vars_to_drop + not_in_OF) if var in data.columns]
-    data = data.drop(vars_to_drop, axis = 1)
-    data.rename(columns = {"id_conj" : "conj"}, inplace = True)
-    return data
+    variables_to_drop = [
+        variable
+        for variable in data.columns
+        if variable not in tax_benefit_system.column_by_name
+        ]
+    data = data.drop(variables_to_drop, axis = 1)
+#    data.rename(columns = {"id_conj" : "conj"}, inplace = True)
 
+    return data
