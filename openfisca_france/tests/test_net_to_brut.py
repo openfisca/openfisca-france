@@ -34,101 +34,96 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
+def test_case_study(year = 2013, verbose = False):
+    '''
+    Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
+    with the one obtained from running openfisca satrting with a "salaire brut"
+    '''
 
-# These tests do not work. Should check more salbrut_fron_salnet
+    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
 
+        maxrev = 50000
 
-# def test_case_study(year = 2013, verbose = False):
-#     '''
-#     Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
-#     with the one obtained from running openfisca satrting with a "salaire brut"
-#     '''
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 3) ],
+            parent1 = dict(
+                birth = datetime.date(year - 40, 1, 1),
+                primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
+                type_sal = CAT[type_sal_category],
+                ),
+            year = year,
+            ).new_simulation(debug = True)
 
-#     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
+        df_b2n = DataFrame(dict(salnet = simulation.calculate('salnet'),
+                                salbrut = simulation.calculate('salbrut'),
+                                ))
 
-#         maxrev = 50000
+        from openfisca_france.model.inversion_revenus import _salbrut_from_salnet
+        saln = df_b2n['salnet'].get_values()
+        hsup = simulation.calculate('hsup')
+        type_sal = simulation.calculate('type_sal')
+#        primes = simulation.calculate('primes')
+        defaultP = simulation.default_compact_legislation
+        df_n2b = DataFrame({'salnet': saln, 'salbrut' : _salbrut_from_salnet(saln, hsup, type_sal, defaultP) })
 
-#         simulation = tax_benefit_system.new_scenario().init_single_entity(
-#             axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 3) ],
-#             parent1 = dict(
-#                 birth = datetime.date(year - 40, 1, 1),
-#                 primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
-#                 type_sal = CAT[type_sal_category],
-#                 ),
-#             year = year,
-#             ).new_simulation(debug = True)
+        for var in ['salnet', 'salbrut']:
+            passed = ((df_b2n[var] - df_n2b[var]).abs() < .01).all()
 
-#         df_b2n = DataFrame(dict(salnet = simulation.calculate('salnet'),
-#                                 salbrut = simulation.calculate('salbrut'),
-#                                 ))
-
-#         from openfisca_france.model.inversion_revenus import _salbrut_from_salnet
-#         saln = df_b2n['salnet'].get_values()
-#         hsup = simulation.calculate('hsup')
-#         type_sal = simulation.calculate('type_sal')
-# #        primes = simulation.calculate('primes')
-#         defaultP = simulation.default_compact_legislation
-#         df_n2b = DataFrame({'salnet': saln, 'salbrut' : _salbrut_from_salnet(saln, hsup, type_sal, defaultP) })
-
-#         for var in ['salnet', 'salbrut']:
-#             passed = ((df_b2n[var] - df_n2b[var]).abs() < .01).all()
-
-#             if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
-#                 print "Brut to net"
-#                 print (df_b2n[['salbrut', 'salnet' ]] / 12).to_string()
-#                 print "Net to brut"
-#                 print (df_n2b / 12).to_string()
-#                 assert passed, "difference in %s for %s" % (var, type_sal_category)
+            if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
+                print "Brut to net"
+                print (df_b2n[['salbrut', 'salnet' ]] / 12).to_string()
+                print "Net to brut"
+                print (df_n2b / 12).to_string()
+                assert passed, "difference in %s for %s" % (var, type_sal_category)
 
 
-# def test_cho_rst(year = 2013, verbose = False):
-#     '''
-#     Tests that _chobrut which computes "chômage brut" from "net" yields an amount compatible
-#     with the one obtained from running openfisca satrting with a "chômage brut"
-#     '''
-#     remplacement = {'chonet' : 'chobrut', 'rstnet': 'rstbrut'}
+def test_cho_rst(year = 2013, verbose = False):
+    '''
+    Tests that _chobrut which computes "chômage brut" from "net" yields an amount compatible
+    with the one obtained from running openfisca satrting with a "chômage brut"
+    '''
+    remplacement = {'chonet' : 'chobrut', 'rstnet': 'rstbrut'}
 
-#     for var, varbrut in remplacement.iteritems():
+    for var, varbrut in remplacement.iteritems():
 
-#         maxrev = 24000
+        maxrev = 24000
 
-#         simulation = tax_benefit_system.new_scenario().init_single_entity(
-#             axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
-#             parent1 = dict(
-#                 birth = datetime.date(year - 40, 1, 1),
-#                 ),
-#             year = year,
-#             ).new_simulation(debug = True)
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
+            parent1 = dict(
+                birth = datetime.date(year - 40, 1, 1),
+                ),
+            year = year,
+            ).new_simulation(debug = True)
 
-#         df_b2n = DataFrame({var: simulation.calculate(var),
-#                             varbrut : simulation.calculate(varbrut),
-#                             })
+        df_b2n = DataFrame({var: simulation.calculate(var),
+                            varbrut : simulation.calculate(varbrut),
+                            })
 
-#         varn = df_b2n[var].get_values()
-#         csg_rempl = varn * 0 
+        varn = df_b2n[var].get_values()
+        csg_rempl = simulation.calculate('csg_rempl')
+        defaultP = simulation.default_compact_legislation
+        if var == "chonet":
+            from openfisca_france.model.inversion_revenus import _chobrut_from_chonet as _varn_to_brut
+        elif var == "rstnet":
+            from openfisca_france.model.inversion_revenus import _rstbrut_from_rstnet as _varn_to_brut
 
-#         defaultP = simulation.default_compact_legislation
-#         if var == "chonet":
-#             from openfisca_france.model.inversion_revenus import _chobrut_from_chonet as _varn_to_brut
-#         elif var == "rstnet":
-#             from openfisca_france.model.inversion_revenus import _rstbrut_from_rstnet as _varn_to_brut
+        df_n2b = DataFrame({var: varn, varbrut : _varn_to_brut(varn, csg_rempl, defaultP) })
 
-#         df_n2b = DataFrame({var: varn, varbrut : _varn_to_brut(varn, csg_rempl, defaultP) })
+        if verbose:
+            print df_n2b.to_string()
+            print df_b2n.to_string()
 
-#         if verbose:
-#             print df_n2b.to_string()
-#             print df_b2n.to_string()
+        for variable in [var, varbrut]:
+            passed = ((df_b2n[variable] - df_n2b[variable]).abs() < 1).all()
 
-#         for variable in [var, varbrut]:
-#             passed = ((df_b2n[variable] - df_n2b[variable]).abs() < 1).all()
+            if (not passed) or verbose:
+                print "Brut to imposable"
+                print (df_b2n[[varbrut, var ]] / 12).to_string()
+                print "Imposable to brut"
+                print (df_n2b / 12).to_string()
 
-#             if (not passed) or verbose:
-#                 print "Brut to imposable"
-#                 print (df_b2n[[varbrut, var ]] / 12).to_string()
-#                 print "Imposable to brut"
-#                 print (df_n2b / 12).to_string()
-
-#             assert passed, "difference in %s " % (var)
+            assert passed, "difference in %s " % (var)
 
 
 
@@ -137,6 +132,6 @@ if __name__ == '__main__':
     import logging
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     import nose
-#    nose.core.runmodule(argv = [__file__, '-v'])
-    test_case_study(2013, verbose = False)
+    nose.core.runmodule(argv = [__file__, '-v'])
+#     test_case_study(2013, verbose = False)
 #     test_cho_rst(2013, verbose = False)

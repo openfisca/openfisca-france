@@ -131,7 +131,7 @@ def _salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
 
     salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
     csg_deduc = scaleBaremes(_defaultP.csg.act.deduc, plaf_ss)
-    csg_impos = scaleBaremes(_defaultP.csg.act.deduc, plaf_ss)
+    csg_impos = scaleBaremes(_defaultP.csg.act.impos, plaf_ss)
     crds = scaleBaremes(_defaultP.crds.act, plaf_ss)
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
@@ -185,7 +185,7 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss) # crds.rst est la CRDS sur les revenus de remplacement
+    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement
 
     taux_plein = combineBaremes(csg['plein'])
     taux_reduit = combineBaremes(csg['reduit'])
