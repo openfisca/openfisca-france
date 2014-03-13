@@ -106,7 +106,7 @@ def _alloc(self, af_holder, _P):
     '''
     Allocations familiales imposables
     '''
-    # TODO:  
+    # TODO: remove frome here it is a reforme
     af = self.cast_from_entity_to_role(af_holder, role = VOUS)
     af = self.sum_by_roles(af)
     P = _P.ir.autre
@@ -214,10 +214,10 @@ def _rev_cat_tspr(self, tspr_holder, indu_plaf_abat_pen):
     return tspr + indu_plaf_abat_pen
 
 
-def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar, f2as):
+def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar): # TODO: check this, f2as): and correct in data.py
     year = _P.datesim.year
     return f2aa * (year == 2009) + f2al * (year == 2009 | year == 2010) + f2am * (year == 2009 | year == 2010 | year == 2011) + f2an * (year == 2010 | year == 2011 | year == 2012) + \
-                  f2aq * (year == 2011 | year == 2012 | year == 2013) + f2ar * (year == 2012 | year == 2013 | year == 2014) + f2as * (year == 2013 | year == 2014 | year == 2015)
+                  f2aq * (year == 2011 | year == 2012 | year == 2013) + f2ar * (year == 2012 | year == 2013 | year == 2014) # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
 
 
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P):
@@ -342,7 +342,7 @@ def _csg_deduc_patrimoine_simulated(rev_cat_rfon, rev_cap_bar, rto, _P):
     '''
     taux = _P.csg.capital.deduc
     patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
-    log.info(taux * patrimoine_deduc)
+#    log.info(taux * patrimoine_deduc)
     return taux * patrimoine_deduc
 
 def _csg_deduc(rbg, csg_deduc_patrimoine):  # f6de
@@ -483,11 +483,14 @@ def _cont_rev_loc(f4bl, _P):
     P = _P.ir.crl
     return round(P.taux * (f4bl >= P.seuil) * f4bl)
 
-def _teicaa(f5qm, f5rm, _P):
+def _teicaa(self, f5qm_holder, _P): # f5rm
 
     """
     Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
     """
+    f5qm = self.filter_role(f5qm_holder, role = VOUS)
+    f5rm = self.filter_role(f5qm_holder, role = CONJ)
+    
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
@@ -527,13 +530,20 @@ def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
     else:
         return 0 * assiette_service
 
-def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi, f3vf, f3vd, f3sd, f3si, f3sf, f3sa, rpns_pvce_holder, _P):
+def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P): # f3sd is in f3vd holder
     """
     Taxation des plus value
     TODO: f3vt, 2013 f3Vg au barème / tout refaire
     """
+    
     rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
-
+    f3vd = self.filter_role(f3vd_holder, role = VOUS)
+    f3sd = self.filter_role(f3vd_holder, role = CONJ)
+    f3vi = self.filter_role(f3vi_holder, role = VOUS)
+    f3si = self.filter_role(f3vi_holder, role = CONJ)
+    f3vf = self.filter_role(f3vf_holder, role = VOUS)
+    f3sf = self.filter_role(f3vf_holder, role = CONJ)
+    # TODO: remove this todo use sum for all fields after checking
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
     rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
@@ -604,27 +614,31 @@ def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
         entity = 'foyer_fiscal', role = VOUS)
 
-def _rfr(self, rni, alloc, f3va, f3vi, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder, rev_cap_lib, f3vz):
+def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder, rev_cap_lib, f3vz):
     '''
     Revenu fiscal de référence
     f3vg -> rev_cat_pv -> ... -> rni
     '''
+
+    f3va = self.sum_by_roles(f3va_holder)
+    f3vi = self.sum_by_roles(f3vi_holder)
+    
     rpns_exon = self.sum_by_roles(rpns_exon_holder)
     rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
 
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 
-def _glo(self, f1tv, f1tw, f1tx, f3vf_holder, f3vi_holder, f3vj_holder, f3vk_holder):
-    # TODO: f1uv, f1uw, f1ux deletion to check
+def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj):
+    # f1tv contient f1uv
+    # f1tw contient f1uw
+    # f1tx contient f1ux
+    # f3vf contient f3sf
+    # f3vi contient f3si
+    # f3vj contient f3vk voir data.py TODO: rename
     '''
     Gains de levée d'option
     '''
-    f3vf = self.cast_from_entity_to_role(f3vf_holder, role = VOUS)
-    f3vi = self.cast_from_entity_to_role(f3vi_holder, role = VOUS)
-    f3vj = self.cast_from_entity_to_role(f3vj_holder, role = VOUS)
-    f3vk = self.cast_from_entity_to_role(f3vk_holder, role = VOUS)
-
-    return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj + f3vk  # + f1uv + f1uw + f1ux
+    return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
 def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, _P):
     """

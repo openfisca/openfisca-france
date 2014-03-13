@@ -141,11 +141,23 @@ def _cd_doment(f6eh, _P):
     '''
     return f6eh
 
-def _cd_eparet(f6ps, f6rs, f6ss, f6pt, f6rt, f6st, f6pu, f6ru, f6su, _P):
+def _cd_eparet(self, f6ps_holder, f6rs_holder, f6ss_holder, _P):
     '''
     Épargne retraite - PERP, PRÉFON, COREM et CGOS
     2004-
     '''
+    f6ps = self.filter_role(f6ps_holder, role = VOUS)
+    f6pt = self.filter_role(f6ps_holder, role = CONJ)
+    f6pu = self.filter_role(f6ps_holder, role = PAC1)
+
+    f6rs = self.filter_role(f6rs_holder, role = VOUS)
+    f6rt = self.filter_role(f6rs_holder, role = CONJ)
+    f6ru = self.filter_role(f6rs_holder, role = PAC1)
+
+    f6ss = self.filter_role(f6ss_holder, role = VOUS)
+    f6st = self.filter_role(f6ss_holder, role = CONJ)
+    f6su = self.filter_role(f6ss_holder, role = PAC1)
+    
     # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
     # le formulaire 2041 GX
     return ((f6ps == 0) * (f6rs + f6ss) +

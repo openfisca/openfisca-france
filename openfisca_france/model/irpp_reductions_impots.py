@@ -102,11 +102,15 @@ def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
     # TODO: note de bas de page
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
-def _cotsyn(self, f7ac, f7ae, f7ag, sal_holder, cho_holder, rst_holder, _P):
+def _cotsyn(self, f7ac_holder, sal_holder, cho_holder, rst_holder, _P): # TODO: change f7ac and use split_by_roles
     '''
     Cotisations syndicales
     2002-
     '''
+    f7ac = self.filter_role(f7ac_holder, role = VOUS)
+    f7ae = self.filter_role(f7ac_holder, role = CONJ)
+    f7ag = self.filter_role(f7ac_holder, role = PAC1)
+    
     cho = self.split_by_roles(cho_holder)
     rst = self.split_by_roles(rst_holder)
     sal = self.split_by_roles(sal_holder)

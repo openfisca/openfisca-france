@@ -147,7 +147,7 @@ def _rstbrut(rsti, csg_rempl, _defaultP):
     rst_reduit = P.reduit.deduc.inverse()
     rstbrut = ((csg_rempl == 1) * rsti + (csg_rempl == 2) * rst_reduit.calc(rsti)
                 + (csg_rempl == 3) * rst_plein.calc(rsti))
-    log.info(csg_rempl)
+#    log.info(csg_rempl)
     return rstbrut
 
 

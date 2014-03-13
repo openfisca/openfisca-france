@@ -36,6 +36,7 @@ import uuid
 
 import numpy as np
 from openfisca_core import legislations, simulations
+
 from . import conv, entities
 
 
@@ -570,9 +571,15 @@ class Scenario(object):
 
     @classmethod
     def make_json_to_instance(cls, cache_dir = None, tax_benefit_system = None):
-        self = cls()
-        self.tax_benefit_system = tax_benefit_system
-        return self.make_json_or_python_to_attributes(cache_dir = cache_dir)
+        def json_to_instance(value, state = None):
+            if value is None:
+                return None, None
+            self = cls()
+            self.tax_benefit_system = tax_benefit_system
+            return self.make_json_or_python_to_attributes(cache_dir = cache_dir)(value = value,
+                state = state or conv.default_state)
+
+        return json_to_instance
 
     def new_simulation(self, debug = False):
         simulation = simulations.Simulation(
