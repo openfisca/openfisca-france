@@ -1109,7 +1109,7 @@
 	          <VALUE valeur="1" deb="2005-01-01" fin="2014-12-31"/>
 	        </SEUIL>
 	        <TAUX>
-	          <VALUE valeur="07" deb="2013-01-01" fin="2014-12-31"/>
+	          <VALUE valeur=".07" deb="2013-01-01" fin="2014-12-31"/>
 	          <VALUE valeur="0.065" deb="2005-01-01" fin="2012-12-31"/>
 	        </TAUX>
 	      </TRANCHE>
