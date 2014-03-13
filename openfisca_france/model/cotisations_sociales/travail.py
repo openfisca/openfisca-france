@@ -149,7 +149,7 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
 
 
 
-def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
+def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, cotpat_transport, _P):
     '''
     Cotisation sociales patronales main d'oeuvre
     TODO: A discriminer selon la taille de l'entreprise
@@ -174,7 +174,7 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
 #                        log.info(category[0])
 #                        log.info(bar._name)
 #                        log.info(temp / 12)
-    return cotpat
+    return cotpat + cotpat_transport
 
 
 def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
@@ -246,12 +246,12 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
 
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
-            cotpat_main_d_oeuvre, cotpat_transport):
+            cotpat_main_d_oeuvre):
     '''
     Cotisations sociales patronales
     '''
     return (cotpat_contrib + cotpat_noncontrib
-            + cotpat_main_d_oeuvre + cotpat_transport)
+            + cotpat_main_d_oeuvre)
 
 
 def seuil_fds(_P):

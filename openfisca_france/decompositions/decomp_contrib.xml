@@ -5,9 +5,10 @@
       <NODE desc="Salaires imposables" shortname="Sal. impos." code="sal" color= "0,115,170">
         <NODE desc="Salaires bruts" shortname="Sal. bruts" code="salbrut" color = "0,99,143">
           <NODE desc= "Salaires super bruts" shortname="Coût travail" code= "salsuperbrut" color = "0,66,92" />
-       	  <NODE desc= "Cotisations sociales patronales" shortname="Cotsoc pat" code= "cotpat" color = "249,208,211">
-       	    <NODE desc= "Cotisations sociales patronales contributtives" shortname="Cotsoc pat cont." code= "cotpat_contrib" color = "249,208,211"/>
-       	    <NODE desc= "Cotisations sociales patronales non contributives" shortname="Cotsoc pat noncont." code= "cotpat_noncontrib" color = "249,208,211"/>
+       	  <NODE desc= "Cotisations sociales patronales" shortname="Cot. pat." code= "cotpat" color = "249,208,211">
+       	    <NODE desc= "Cotisations sociales patronales contributtives" shortname="Cot. pat. contrib." code= "cotpat_contrib" color = "249,208,211"/>
+       	    <NODE desc= "Cotisations sociales patronales non contributives" shortname="Cot. pat. noncontrib." code= "cotpat_noncontrib" color = "249,208,211"/>
+       	    <NODE desc= "Cotisations sociales patronales main d'oeuvre" shortname="Cot. pat. main d'oeuvre" code= "cotpat_main_d_oeuvre" color = "249,208,211"/>
        	  </NODE>
        	  <NODE desc= "Taxe sur les salaires" shortname="Taxe sal." code= "taxes_sal"/>
    		  <NODE desc= "Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" code= "tehr"/>
