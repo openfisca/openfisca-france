@@ -97,7 +97,7 @@ column_by_name = collections.OrderedDict((
                                   QUIFOY['pac3']: u"1EK",
                                   })),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-    build_column_couple('alr', IntCol(label = u"Pensions alimentaires perçues",
+    build_column_couple('alr', IntCol(label = u"Pensions alimentaires perçues blabla",
                    val_type = "monetary",
                    cerfa_field = {QUIFOY['vous']: u"1AO",
                                   QUIFOY['conj']: u"1BO",
