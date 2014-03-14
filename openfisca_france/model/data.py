@@ -80,7 +80,7 @@ column_by_name = collections.OrderedDict((
                                    QUIFOY['pac2']: u"1DP",
                                    QUIFOY['pac3']: u"1EP",
                                    })),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    build_column_couple('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables!p",
+    build_column_couple('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AS",
                                    QUIFOY['conj']: u"1BS",
