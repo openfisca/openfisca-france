@@ -1051,6 +1051,7 @@ def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, ca
     'foy'
     note 1 enfants et résidence alternée (formulaire 2041 GV page 10)
 
+    P.conj : nb part associées au conjoint d'un couple marié ou pacsé
     P.enf1 : nb part 2 premiers enfants
     P.enf2 : nb part enfants de rang 3 ou plus
     P.inv1 : nb part supp enfants invalides (I, G)
@@ -1109,7 +1110,7 @@ def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, ca
     n7 = P.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
     # # Régime des mariés ou pacsés
-    m = 2 + enf + n2 + n4
+    m = 1 + P.conj + enf + n2 + n4
 
     # # veufs  hors jveuf
     v = 1 + enf + n2 + n3 + n5 + n6
