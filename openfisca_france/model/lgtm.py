@@ -48,7 +48,7 @@ def _al_pac(self, age_holder, smic55_holder, nbR_holder, _P):
     # P_AL.D_enfch est une dummy qui vaut 1 si les enfants sont comptés à
     # charge (cas actuel) et zéro sinon.
     nbR = self.cast_from_entity_to_role(nbR_holder, role = VOUS)
-    al_nbinv = self.sum_by_roles(nbR)
+    al_nbinv = self.sum_by_entity(nbR)
     
     age1 = P.fam.af.age1
     age2 = P.fam.cf.age2
@@ -76,7 +76,7 @@ def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, b
     boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
     br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
     etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-    rev_coll = self.sum_by_roles(rev_coll_holder)
+    rev_coll = self.sum_by_entity(rev_coll_holder)
 
     P = _P
     Pr = P.al.ressources

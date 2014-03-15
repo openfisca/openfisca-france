@@ -282,7 +282,7 @@ def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
     http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
     '''
     age = self.split_by_roles(age_holder, roles = ENFS)
-    alr = self.sum_by_roles(alr_holder)
+    alr = self.sum_by_entity(alr_holder)
     # TODO: what is rst doing here?
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 

@@ -31,11 +31,11 @@ def _tax_hab(self, zthabm, aah, aspa, asi, age_holder, isf_tot_holder, rfr_holde
     atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
     '''
     isf_tot = self.cast_from_entity_to_role(isf_tot_holder, role = VOUS)
-    isf_tot = self.sum_by_roles(isf_tot)
+    isf_tot = self.sum_by_entity(isf_tot)
     rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
-    rfr = self.sum_by_roles(rfr)
+    rfr = self.sum_by_entity(rfr)
     nbptr = self.cast_from_entity_to_role(nbptr_holder, role = VOUS)
-    nbptr = self.sum_by_roles(nbptr)
+    nbptr = self.sum_by_entity(nbptr)
     age = self.filter_role(age_holder, role = PREF)
     statmarit = self.filter_role(statmarit_holder, role = PREF)
 

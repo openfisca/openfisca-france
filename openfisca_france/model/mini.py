@@ -701,8 +701,8 @@ def _aefa(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_hol
     Pour bénéficier de la Prime de Noël 2011, vous devez être éligible pour le compte du mois de novembre 2011 ou au plus de décembre 2011, soit d’une allocation de solidarité spécifique (ASS), de la prime forfaitaire mensuelle de reprise d'activité, de l'allocation équivalent retraite (allocataire AER), du revenu de solidarité active (Bénéficiaires RSA), de l'allocation de parent isolé (API), du revenu minimum d'insertion (RMI), de l’Allocation pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
     '''
     age = self.split_by_roles(age_holder, roles = ENFS)
-    aer = self.sum_by_roles(aer_holder)
-    ass = self.sum_by_roles(ass_holder)
+    aer = self.sum_by_entity(aer_holder)
+    ass = self.sum_by_entity(ass_holder)
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     P = _P

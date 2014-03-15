@@ -155,13 +155,13 @@ def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_
     Utilisé pour calculer le montant du plafonnement de l'ISF
     Cf. http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
     '''
-    pen_net = self.sum_by_roles(pen_net_holder)
-    rag = self.sum_by_roles(rag_holder)
-    ric = self.sum_by_roles(ric_holder)
-    rpns_exon = self.sum_by_roles(rpns_exon_holder)
-    rpns_pvct = self.sum_by_roles(rpns_pvct_holder)
-    rto_net = self.sum_by_roles(rto_net_holder)
-    salcho_imp = self.sum_by_roles(salcho_imp_holder)
+    pen_net = self.sum_by_entity(pen_net_holder)
+    rag = self.sum_by_entity(rag_holder)
+    ric = self.sum_by_entity(ric_holder)
+    rpns_exon = self.sum_by_entity(rpns_exon_holder)
+    rpns_pvct = self.sum_by_entity(rpns_pvct_holder)
+    rto_net = self.sum_by_entity(rto_net_holder)
+    salcho_imp = self.sum_by_entity(salcho_imp_holder)
 
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     ## def rev_exon et rev_etranger dans data? ##
@@ -248,7 +248,7 @@ def _maj_cga(self, frag_impo, nrag_impg,
     ntimp = nrag_impg + nbic_timp +  nacc_timp + nbnc_timp
 
     maj_cga = max_(0,_P.ir.rpns.cga_taux2*(ntimp + frag_impo))
-    return self.sum_by_roles(maj_cga)
+    return self.sum_by_entity(maj_cga)
 
 
 def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo, rev_or, cd_penali, cd_eparet):
@@ -296,17 +296,17 @@ def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo,
 def _bouclier_imp_gen (self, irpp, tax_hab_holder, tax_fonc, isf_tot, cotsoc_lib_holder, cotsoc_bar_holder,
         csgsald_holder, csgsali_holder, crdssal_holder, csgchoi_holder, csgchod_holder, csgrstd_holder,
         csgrsti_holder, imp_lib): ## ajouter CSG- CRDS
-    cotsoc_bar = self.sum_by_roles(cotsoc_bar_holder)
-    cotsoc_lib = self.sum_by_roles(cotsoc_lib_holder)
-    crdssal = self.sum_by_roles(crdssal_holder)
-    csgchod = self.sum_by_roles(csgchod_holder)
-    csgchoi = self.sum_by_roles(csgchoi_holder)
-    csgsald = self.sum_by_roles(csgsald_holder)
-    csgsali = self.sum_by_roles(csgsali_holder)
-    csgrstd = self.sum_by_roles(csgrstd_holder)
-    csgrsti = self.sum_by_roles(csgrsti_holder)
+    cotsoc_bar = self.sum_by_entity(cotsoc_bar_holder)
+    cotsoc_lib = self.sum_by_entity(cotsoc_lib_holder)
+    crdssal = self.sum_by_entity(crdssal_holder)
+    csgchod = self.sum_by_entity(csgchod_holder)
+    csgchoi = self.sum_by_entity(csgchoi_holder)
+    csgsald = self.sum_by_entity(csgsald_holder)
+    csgsali = self.sum_by_entity(csgsali_holder)
+    csgrstd = self.sum_by_entity(csgrstd_holder)
+    csgrsti = self.sum_by_entity(csgrsti_holder)
     tax_hab = self.cast_from_entity_to_role(tax_hab_holder, role = PREF)
-    tax_hab = self.sum_by_roles(tax_hab)
+    tax_hab = self.sum_by_entity(tax_hab)
 
     ## ajouter Prelèvements sources/ libé
     ## ajouter crds rstd

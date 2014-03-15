@@ -108,7 +108,7 @@ def _alloc(self, af_holder, _P):
     '''
     # TODO: remove frome here it is a reforme
     af = self.cast_from_entity_to_role(af_holder, role = VOUS)
-    af = self.sum_by_roles(af)
+    af = self.sum_by_entity(af)
     P = _P.ir.autre
     return af * P.alloc_imp
 
@@ -155,8 +155,8 @@ def _indu_plaf_abat_pen(self, rev_pen_holder, pen_net_holder, _P):
     Plafonnement de l'abattement de 10% sur les pensions du foyer
     'foy'
     """
-    pen_net = self.sum_by_roles(pen_net_holder)
-    rev_pen = self.sum_by_roles(rev_pen_holder)
+    pen_net = self.sum_by_entity(pen_net_holder)
+    rev_pen = self.sum_by_entity(rev_pen_holder)
 
     P = _P.ir.tspr.abatpen
     abat = rev_pen - pen_net
@@ -209,7 +209,7 @@ def _rev_cat_tspr(self, tspr_holder, indu_plaf_abat_pen):
     Traitemens salaires pensions et rentes
     'foy'
     '''
-    tspr = self.sum_by_roles(tspr_holder)
+    tspr = self.sum_by_entity(tspr_holder)
 
     return tspr + indu_plaf_abat_pen
 
@@ -301,7 +301,7 @@ def _rev_cat_rpns(self, rpns_i_holder):
     Traitemens salaires pensions et rentes
     'foy'
     '''
-    return self.sum_by_roles(rpns_i_holder)
+    return self.sum_by_entity(rpns_i_holder)
 
 
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns, rev_cat_pv):
@@ -499,7 +499,7 @@ def _micro_social_vente(self, ebic_impv_holder):
     '''
     Assiette régime microsociale pour les ventes
     '''
-    return self.sum_by_roles(ebic_impv_holder)
+    return self.sum_by_entity(ebic_impv_holder)
     # P = _P.ir.rpns.microentreprise
     # assert (ebic_impv <= P.vente.max)
 
@@ -508,7 +508,7 @@ def _micro_social_service(self, ebic_imps_holder):
     '''
     Assiette régime microsociale pour les prestations et services
     '''
-    return self.sum_by_roles(ebic_imps_holder)
+    return self.sum_by_entity(ebic_imps_holder)
     # P = _P.ir.rpns.microentreprise
     # assert (ebic_imps <= P.servi.max)
 
@@ -518,7 +518,7 @@ def _micro_social_proflib(self, ebnc_impo_holder):
     Assiette régime microsociale pour les professions libérales
     '''
     # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
-    return self.sum_by_roles(ebnc_impo_holder)
+    return self.sum_by_entity(ebnc_impo_holder)
     # P = _P.ir.rpns.microentreprise
     # assert (ebnc_impo <= P.specialbnc.max)
 
@@ -536,7 +536,7 @@ def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_ho
     TODO: f3vt, 2013 f3Vg au barème / tout refaire
     """
     
-    rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
+    rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
     f3vd = self.filter_role(f3vd_holder, role = VOUS)
     f3sd = self.filter_role(f3vd_holder, role = CONJ)
     f3vi = self.filter_role(f3vi_holder, role = VOUS)
@@ -620,11 +620,11 @@ def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon
     f3vg -> rev_cat_pv -> ... -> rni
     '''
 
-    f3va = self.sum_by_roles(f3va_holder)
-    f3vi = self.sum_by_roles(f3vi_holder)
+    f3va = self.sum_by_entity(f3va_holder)
+    f3vi = self.sum_by_entity(f3vi_holder)
     
-    rpns_exon = self.sum_by_roles(rpns_exon_holder)
-    rpns_pvce = self.sum_by_roles(rpns_pvce_holder)
+    rpns_exon = self.sum_by_entity(rpns_exon_holder)
+    rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
 
     return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
 

@@ -81,14 +81,14 @@ def _revdisp(self, rev_trav_holder, pen_holder, rev_cap_holder, ir_lps_holder, p
     Revenu disponible - ménage
     'men'
     '''
-    ir_lps = self.sum_by_roles(ir_lps_holder)
-    pen = self.sum_by_roles(pen_holder)
+    ir_lps = self.sum_by_entity(ir_lps_holder)
+    pen = self.sum_by_entity(pen_holder)
     ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
-    ppe = self.sum_by_roles(ppe)
+    ppe = self.sum_by_entity(ppe)
     psoc = self.cast_from_entity_to_role(psoc_holder, role = CHEF)
-    psoc = self.sum_by_roles(psoc)
-    rev_cap = self.sum_by_roles(rev_cap_holder)
-    rev_trav = self.sum_by_roles(rev_trav_holder)
+    psoc = self.sum_by_entity(psoc)
+    rev_cap = self.sum_by_entity(rev_cap_holder)
+    rev_trav = self.sum_by_entity(rev_trav_holder)
 
     return rev_trav + pen + rev_cap + ir_lps + psoc + ppe + impo
 
@@ -106,7 +106,7 @@ def _revnet(self, rev_trav, pen, rev_cap):
     Revenu net du ménage
     'men'
     '''
-    return self.sum_by_roles(rev_trav + pen + rev_cap)
+    return self.sum_by_entity(rev_trav + pen + rev_cap)
 
 
 def _nivvie_net(revnet, uc):
@@ -122,7 +122,7 @@ def _revini(self, rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
     Revenu initial du ménage
     'men'
     '''
-    return self.sum_by_roles(rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib)
+    return self.sum_by_entity(rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib)
 
 
 def _nivvie_ini(revini, uc):
@@ -196,7 +196,7 @@ def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass_holder, psa, majo_rsa)
     '''
     Minima sociaux
     '''
-    ass = self.sum_by_roles(ass_holder)
+    ass = self.sum_by_entity(ass_holder)
 
     return aspa + aah + caah + asi + rsa + aefa + api + ass + psa + majo_rsa
 
@@ -212,7 +212,7 @@ def _impo(self, irpp_holder, tax_hab):
     Impôts directs
     '''
     irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
-    irpp = self.sum_by_roles(irpp)
+    irpp = self.sum_by_entity(irpp)
 
     return irpp + tax_hab
 
@@ -267,31 +267,31 @@ def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib, prelsoc_cap_bar, pre
 
 
 def _check_csk(self, prelsoc_cap_bar_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):
-    prelsoc_cap_bar = self.sum_by_roles(prelsoc_cap_bar_holder)
+    prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar_holder)
     prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = CHEF)
-    prelsoc_pv_mo = self.sum_by_roles(prelsoc_pv_mo)
+    prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo)
     prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = CHEF)
-    prelsoc_fon = self.sum_by_roles(prelsoc_fon)
+    prelsoc_fon = self.sum_by_entity(prelsoc_fon)
 
     return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
 
 def _check_csg(self, csg_cap_bar_holder, csg_pv_mo_holder, csg_fon_holder):
-    csg_cap_bar = self.sum_by_roles(csg_cap_bar_holder)
+    csg_cap_bar = self.sum_by_entity(csg_cap_bar_holder)
     csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = CHEF)
-    csg_pv_mo = self.sum_by_roles(csg_pv_mo)
+    csg_pv_mo = self.sum_by_entity(csg_pv_mo)
     csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = CHEF)
-    csg_fon = self.sum_by_roles(csg_fon)
+    csg_fon = self.sum_by_entity(csg_fon)
 
     return csg_cap_bar + csg_pv_mo + csg_fon
 
 
 def _check_crds(self, crds_cap_bar_holder, crds_pv_mo_holder, crds_fon_holder):
-    crds_cap_bar = self.sum_by_roles(crds_cap_bar_holder)
+    crds_cap_bar = self.sum_by_entity(crds_cap_bar_holder)
     crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = CHEF)
-    crds_pv_mo = self.sum_by_roles(crds_pv_mo)
+    crds_pv_mo = self.sum_by_entity(crds_pv_mo)
     crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = CHEF)
-    crds_fon = self.sum_by_roles(crds_fon)
+    crds_fon = self.sum_by_entity(crds_fon)
 
     return crds_cap_bar + crds_pv_mo + crds_fon
 
