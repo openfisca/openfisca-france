@@ -590,6 +590,7 @@ class Scenario(object):
             )
 
         column_by_name = self.tax_benefit_system.column_by_name
+        entity_by_key_plural = simulation.entity_by_key_plural
         steps_count = 1
         if self.axes is not None:
             for axis in self.axes:
@@ -597,16 +598,16 @@ class Scenario(object):
         simulation.steps_count = steps_count
         test_case = self.test_case
 
-        familles = entities.Familles(simulation = simulation)
+        familles = entity_by_key_plural[u'familles']
         familles.step_size = familles_step_size = len(test_case[u'familles'])
         familles.count = steps_count * familles_step_size
-        foyers_fiscaux = entities.FoyersFiscaux(simulation = simulation)
+        foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
         foyers_fiscaux.step_size = foyers_fiscaux_step_size = len(test_case[u'foyers_fiscaux'])
         foyers_fiscaux.count = steps_count * foyers_fiscaux_step_size
-        individus = entities.Individus(simulation = simulation)
+        individus = entity_by_key_plural[u'individus']
         individus.step_size = individus_step_size = len(test_case[u'individus'])
         individus.count = steps_count * individus_step_size
-        menages = entities.Menages(simulation = simulation)
+        menages = entity_by_key_plural[u'menages']
         menages.step_size = menages_step_size = len(test_case[u'menages'])
         menages.count = steps_count * menages_step_size
 
@@ -813,13 +814,6 @@ class Scenario(object):
                             )
                         ),
                     dtype = column._dtype)
-
-        simulation.set_entities(dict(
-            familles = familles,
-            foyers_fiscaux = foyers_fiscaux,
-            individus = individus,
-            menages = menages,
-            ))
 
         if self.axes is not None:
             if len(self.axes) == 1:

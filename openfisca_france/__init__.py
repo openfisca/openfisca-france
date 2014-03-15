@@ -61,7 +61,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
-    from . import decompositions, scenarios, utils
+    from . import decompositions, entities, scenarios, utils
     from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
     from .model.data import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
@@ -144,6 +144,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
             'menages',
             ]
         ENTITIES_INDEX = ENTITIES_INDEX
+        # entity_class_by_key_plural = entity_class_by_key_plural  # Done below to avoid "name is not defined" exception
         FILTERING_VARS = FILTERING_VARS
         # column_by_name = column_by_name  # Done below to avoid "name is not defined" exception
         # columns_name_tree_by_entity = columns_name_tree_by_entity  # Done below to avoid "name is not defined" exception
@@ -175,6 +176,10 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
 
     TaxBenefitSystem.column_by_name = column_by_name
     TaxBenefitSystem.columns_name_tree_by_entity = columns_name_tree_by_entity
+    TaxBenefitSystem.entity_class_by_key_plural = dict(
+        (entity_class.key_plural, entity_class)
+        for entity_class in entities.entity_class_by_symbol.itervalues()
+        )
     TaxBenefitSystem.preprocess_legislation_parameters = staticmethod(preprocess_legislation_parameters)
 
     TaxBenefitSystem.prestation_by_name = prestation_by_name

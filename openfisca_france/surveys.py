@@ -42,14 +42,15 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     column_by_name = tax_benefit_system.column_by_name
     for column_name, series in survey.iteritems():
         assert column_name in column_by_name, column_name
+    entity_by_key_plural = simulation.entity_by_key_plural
 
-    familles = entities.Familles(simulation = simulation)
+    familles = entity_by_key_plural[u'familles']
     familles.count = familles.step_size = familles_step_size = (survey.quifam == 0).sum()
-    foyers_fiscaux = entities.FoyersFiscaux(simulation = simulation)
+    foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
     foyers_fiscaux.count = foyers_fiscaux.step_size = foyers_fiscaux_step_size = (survey.quifoy == 0).sum()
-    individus = entities.Individus(simulation = simulation)
+    individus = entity_by_key_plural[u'individus']
     individus.count = individus.step_size = individus_step_size = len(survey)
-    menages = entities.Menages(simulation = simulation)
+    menages = entity_by_key_plural[u'menages']
     menages.count = menages.step_size = menages_step_size = (survey.quimen == 0).sum()
 
     assert 'age' in survey.columns
@@ -65,13 +66,6 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     familles.roles_count = survey['quifam'].max() + 1
     menages.roles_count = survey['quimen'].max() + 1
     foyers_fiscaux.roles_count = survey['quifoy'].max() + 1
-
-    simulation.set_entities(dict(
-        familles = familles,
-        foyers_fiscaux = foyers_fiscaux,
-        individus = individus,
-        menages = menages,
-        ))
 
     for column_name, column_series in survey.iteritems():
         holder = simulation.new_holder(column_name)
