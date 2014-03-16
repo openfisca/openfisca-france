@@ -80,7 +80,7 @@ column_by_name = collections.OrderedDict((
                                    QUIFOY['pac2']: u"1DP",
                                    QUIFOY['pac3']: u"1EP",
                                    })),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    build_column_couple('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables!p",
+    build_column_couple('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AS",
                                    QUIFOY['conj']: u"1BS",
@@ -97,7 +97,7 @@ column_by_name = collections.OrderedDict((
                                   QUIFOY['pac3']: u"1EK",
                                   })),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-    build_column_couple('alr', IntCol(label = u"Pensions alimentaires perçues",
+    build_column_couple('alr', IntCol(label = u"Pensions alimentaires perçues blabla",
                    val_type = "monetary",
                    cerfa_field = {QUIFOY['vous']: u"1AO",
                                   QUIFOY['conj']: u"1BO",
@@ -107,7 +107,7 @@ column_by_name = collections.OrderedDict((
                                   })),  # (f1ao, f1bo, f1co, f1do, f1eo)
     build_column_couple('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),
 
-    build_column_couple('hsup', IntCol(label = u"Heures supplémentaires: revenus exonérés connus",
+    build_column_couple('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
                     val_type = "monetary",
                     cerfa_field = {QUIFOY['vous']: u"1AU",
                                    QUIFOY['conj']: u"1BU",
@@ -202,11 +202,11 @@ column_by_name = collections.OrderedDict((
                                     u"Aides familiaux",
                                     u"Intérimaires",
                                     u"Apprentis",
-                                    u"CDD (hors Etat, coll.loc.), hors contrats aides",
+                                    u"CDD (hors Etat, coll.loc.), hors contrats aidés",
                                     u"Stagiaires et contrats aides (hors Etat, coll.loc.)",
                                     u"Autres contrats (hors Etat, coll.loc.)",
-                                    u"CDD (Etat, coll.loc.), hors contrats aides",
-                                    u"Stagiaires et contrats aides (Etat, coll.loc.)",
+                                    u"CDD (Etat, coll.loc.), hors contrats aidés",
+                                    u"Stagiaires et contrats aidés (Etat, coll.loc.)",
                                     u"Autres contrats (Etat, coll.loc.)",
                                     ]),
                        survey_only = True,
@@ -235,7 +235,7 @@ column_by_name = collections.OrderedDict((
                                 u"Ne sait pas",
                                 ]))),
 
-    build_column_couple('tva_ent', BoolCol(label = u"Entreprise employant le salarié paye de la TVA",
+    build_column_couple('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
                         default = True)),
 
     build_column_couple('chpub', EnumCol(label = u"Nature de l'employeur principal",
@@ -296,10 +296,10 @@ column_by_name = collections.OrderedDict((
                    entity = 'foy',
                    cerfa_field = u'N')),
 
-    build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
+    build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
                       cerfa_field = u'E', end = datetime.date(2012,12,31))),
-    build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
+    build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
                       entity = 'foy',
                       cerfa_field = u'F')),
     build_column_couple('caseG', BoolCol(label = u"Titulaire d'une pension de veuve de guerre",
@@ -343,19 +343,19 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n-2", val_type = "monetary")),  # TODO: provide in data
 
     # Rentes viagères
-    build_column_couple('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
+    build_column_couple('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1AW')),
-    build_column_couple('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
+    build_column_couple('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1BW')),
-    build_column_couple('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
+    build_column_couple('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1CW')),
-    build_column_couple('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
+    build_column_couple('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1DW')),
@@ -1234,12 +1234,12 @@ column_by_name = collections.OrderedDict((
     # build_column_couple('f7gy', IntCol()), existe ailleurs (n'existe pas en 2013 et 2012)
 
     build_column_couple('f7gw', IntCol(entity = 'foy',
-                    label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+                    label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GW',
                     start = datetime.date(2013, 1, 1))),
 
     build_column_couple('f7gx', IntCol(entity = 'foy',
-                    label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+                    label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GX',
                     start = datetime.date(2013, 1, 1))),
 
@@ -1554,7 +1554,7 @@ column_by_name = collections.OrderedDict((
 
 
     # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
-    build_column_couple('f8uy', IntCol(entity = 'foy', label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu", val_type = "monetary")),
+    build_column_couple('f8uy', IntCol(entity = 'foy', label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu", val_type = "monetary")),
 
 
     # Revenus des professions non salariées
@@ -1587,7 +1587,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('abic_defs', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kg, f5lg, f5mg)),
     build_column_couple('nbic_defn', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5kl, f5ll, f5ml)),
     build_column_couple('nbic_defs', IntCol(entity = 'ind', label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5km, f5lm, f5mm)),
-    build_column_couple('nbic_apch', IntCol(entity = 'ind', label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5ks, f5ls, f5ms)),
+    build_column_couple('nbic_apch', IntCol(entity = 'ind', label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5ks, f5ls, f5ms)),
 
     build_column_couple('macc_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)", val_type = "monetary")),  # (f5nn, f5on, f5pn)),
     build_column_couple('aacc_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5nb, f5ob, f5pb)),
@@ -1749,7 +1749,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('naf16pr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence",
                         entity = 'men',
                         enum = Enum([u"Sans objet",
-                                     u"Non renseigné",
+                                     u"Non renseignée",
                                      u"Agriculture, sylviculture et pêche",
                                      u"Industries agricoles",
                                      u"Industries des biens de consommation",
@@ -1771,7 +1771,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nafg17npr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence ",
                       entity = 'men',
                       enum = Enum([u"Sans objet",
-                                   u"Non renseigné",
+                                   u"Non renseignée",
                                    u"Agriculture, sylviculture et pêche",
                                    u"Industries extractives, énergie, eau, gestion des déchets et dépollution",
                                    u"Fabrication de denrées alimentaires, de boissons et de produits à base de tabac",
@@ -1861,13 +1861,13 @@ column_by_name = collections.OrderedDict((
 # # ISF ##
 
 # # Immeubles bâtis ##
-    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"valeur résidence principale avant abattement", val_type = "monetary")),  # #  valeur résidence principale avant abattement ##
-    build_column_couple('b1ac', IntCol(entity = 'foy', label = u"valeur autres immeubles avant abattement", val_type = "monetary")),
+    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary")), 
+    build_column_couple('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary")),
 # # non bâtis ##
-    build_column_couple('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis: bois, fôrets et parts de groupements forestiers", val_type = "monetary")),
-    build_column_couple('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis: biens ruraux loués à long termes", val_type = "monetary")),
-    build_column_couple('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis: parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary")),
-    build_column_couple('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis: autres biens", val_type = "monetary")),
+    build_column_couple('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary")),
+    build_column_couple('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis : biens ruraux loués à long termes", val_type = "monetary")),
+    build_column_couple('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary")),
+    build_column_couple('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis : autres biens", val_type = "monetary")),
 
 # # droits sociaux- valeurs mobilières-liquidités- autres meubles ##
     build_column_couple('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary")),
@@ -1877,7 +1877,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('b1cf', IntCol(entity = 'foy', label = u"Liquidités", val_type = "monetary")),
     build_column_couple('b1cg', IntCol(entity = 'foy', label = u"Autres biens meubles", val_type = "monetary")),
 
-    build_column_couple('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles: contrats d'assurance-vie", val_type = "monetary")),
+    build_column_couple('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : contrats d'assurance-vie", val_type = "monetary")),
 
 #    b1ch
 #    b1ci
