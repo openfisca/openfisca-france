@@ -505,8 +505,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
                     val_type = "monetary",
                     cerfa_field = u'2BG',
-                    start = 2012)),  # TODO: nouvelle case à créer où c'est nécessaire
-                                     # TODO: vérifier existence avant 2012
+                    start = 2012)),   # TODO: vérifier existence avant 2012
 
     ('f2aa', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
@@ -1672,7 +1671,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     cerfa_field = u'8TA')),
 
     build_column_couple('f8tb', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # différence de label entre les années à voir
+                    label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # TODO: différence de label entre les années à voir
                     val_type = "monetary",
                     cerfa_field = u'8TB')),
 
@@ -1874,61 +1873,61 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
 # réutilisation en 2013 de f7up et f7uq
 # """
     # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
-    build_column_couple('f7up', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
-                    val_type = "monetary",
-                    cerfa_field = u'7UP',
-                    end = datetime.date(2007, 12, 1))),  # vérif date de fin
+    # build_column_couple('f7up', IntCol(entity = 'foy',
+    #                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
+    #                 val_type = "monetary",
+    #                 cerfa_field = u'7UP',
+    #                 end = datetime.date(2007, 12, 1))),  # TODO: vérif date de fin
 
     build_column_couple('f7up', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: travaux",
                     val_type = "monetary",
                     cerfa_field = u'7UP',
-                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 13
+                    start = datetime.date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL",
                     val_type = "monetary",
                     cerfa_field = u'7UQ',
-                    end = datetime.date(2007, 12, 1))),  # vérif date de fin
+                    end = datetime.date(2007, 12, 1))),  # TODO: vérif date de fin
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
                     val_type = "monetary",
                     cerfa_field = u'7UQ',
-                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 13
+                    start = datetime.date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
 
     # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
     build_column_couple('f1ar', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1AR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1br', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1BR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1cr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1CR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1dr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1DR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1er', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1ER',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    cerfa_field = u'1ER',p
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     # Crédit d’impôt directive « épargne » (case 2BG)),
     build_column_couple('f2bg', IntCol(entity = 'foy',
                     label = u"Crédit d’impôt directive « épargne »",
                     val_type = "monetary",
-                    cerfa_field = u'2BG')),
+                    cerfa_field = u'2BG')),!
 
     # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
     build_column_couple('f4tq', IntCol(entity = 'foy',
@@ -2093,7 +2092,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['conj']: u"5LD",
                                         QUIFOY['pac1']: u"5MD", },
                          end = datetime.date(2012, 12, 1))),  # (f5kd, f5ld, f5md)),
-                                                              # vérifier date fin
+                                                              # TODO: vérifier date fin
 
     build_column_couple('nbic_impn', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
@@ -2113,7 +2112,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
                          end = datetime.date(2012, 12, 1))),  # (f5kj, f5lj, f5mj)),
-                                                              # vérifier date fin
+                                                              # TODO: vérifier date fin
     build_column_couple('nbic_mvct', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
                          val_type = "monetary",
@@ -2350,7 +2349,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5KZ",
                                         QUIFOY['conj']: u"5LZ",
                                         QUIFOY['pac1']: u"5MZ", })),  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
-                                                                      # intégrer f5lz , f5mz à OF
+                                                                      # TODO: intégrer f5lz , f5mz à OF
 
     build_column_couple('frag_pvct', IntCol(entity = 'ind',
                          label = u"Plus-values agricoles  à court terme (régime du forfait)",
@@ -2433,7 +2432,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5HK",
                                         QUIFOY['conj']: u"5LK",
                                         QUIFOY['pac1']: u"5JK", },
-                         end = datetime.date(2012, 12, 1))),  # vérif <=2012)),  # (f5hk, f5lk, f5jk)),
+                         end = datetime.date(2012, 12, 1))),  # TODO: vérif <=2012)),  # (f5hk, f5lk, f5jk)),
 
     build_column_couple('mbic_pvce', IntCol(entity = 'ind',
                          label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
