@@ -54,9 +54,10 @@ from . import inversion_revenus as inv_rev
 def build_simple_formula_couple(name, prestation):
     assert isinstance(name, basestring), name
     name = unicode(name)
-    prestation.formula_constructor = type(name.encode('utf-8'), (SimpleFormula,), dict(
+    prestation.formula_constructor = formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
         calculate = staticmethod(prestation._func),
         ))
+    formula_class.extract_parameters()
     del prestation._func
     if prestation.label is None:
         prestation.label = name
