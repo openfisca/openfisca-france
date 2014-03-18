@@ -40,8 +40,8 @@ def test_case_study(year = 2013, verbose = False):
     with the one obtained from running openfisca satrting with a "salaire brut"
     '''
 
-    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
-
+#    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
+    for type_sal_category in ['public_titulaire_etat']:
         maxrev = 50000
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
@@ -89,10 +89,11 @@ def test_cho_rst(year = 2013, verbose = False):
         maxrev = 24000
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
-            axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
-            parent1 = dict(
-                birth = datetime.date(year - 40, 1, 1),
-                ),
+#            axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
+            parent1 = {
+                'birth' : datetime.date(year - 40, 1, 1),
+                varbrut : maxrev,
+                },
             year = year,
             ).new_simulation(debug = True)
 
@@ -105,10 +106,14 @@ def test_cho_rst(year = 2013, verbose = False):
         defaultP = simulation.default_compact_legislation
         if var == "chonet":
             from openfisca_france.model.inversion_revenus import _chobrut_from_chonet as _varn_to_brut
+            from openfisca_france.model.inversion_revenus import _num_chobrut_from_chonet as _num_varn_to_brut
         elif var == "rstnet":
             from openfisca_france.model.inversion_revenus import _rstbrut_from_rstnet as _varn_to_brut
+            from openfisca_france.model.inversion_revenus import _num_rstbrut_from_rstnet as _num_varn_to_brut
 
-        df_n2b = DataFrame({var: varn, varbrut : _varn_to_brut(varn, csg_rempl, defaultP) })
+        num_varbrut = varbrut + "_num"
+        print csg_rempl    
+        df_n2b = DataFrame({var: varn, varbrut : _varn_to_brut(varn, csg_rempl, defaultP), num_varbrut: _num_varn_to_brut(varn, csg_rempl, defaultP)})
 
         if verbose:
             print df_n2b.to_string()
@@ -131,7 +136,7 @@ if __name__ == '__main__':
     import sys
     import logging
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v'])
-#     test_case_study(2013, verbose = False)
-#     test_cho_rst(2013, verbose = False)
+#    import nose
+#    nose.core.runmodule(argv = [__file__, '-v'])
+#    test_case_study(2013, verbose = True)
+    test_cho_rst(2013, verbose = True)

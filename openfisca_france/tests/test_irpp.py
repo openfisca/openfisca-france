@@ -26,9 +26,6 @@ import datetime
 
 import openfisca_france
 
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
-
 
 def test_irpp():
     """
@@ -162,8 +159,12 @@ def test_irpp():
             amount = item["amount"]
             irpp = item["irpp"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
-
+    
+            TaxBenefitSystem = openfisca_france.init_country()
+            tax_benefit_system = TaxBenefitSystem()
+            
             if revenu in ["rsti", "sali"]:
+
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
                     parent1 = {'birth': datetime.date(year - 40, 1, 1),
                                revenu: amount,
@@ -179,7 +180,7 @@ def test_irpp():
                     ).new_simulation(debug = True)
 
             calculated_irpp = simulation.calculate('irpp')
-            if not abs(calculated_irpp - irpp) < 1:
+        if not abs(calculated_irpp - irpp) < 1:
                 print year
                 print revenu
                 print amount

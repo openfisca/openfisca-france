@@ -108,8 +108,9 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     supp_familial_traitement = 0  # TODO: dépend de salbrut
     indemnite_residence = 0  # TODO: fix bug
 
-#     print 'sali', sali / 12
+#    print 'sali', sali / 12
     brut_etat = etat.calc(sali)
+#    print 'brut_etat', brut_etat/12 
 #     print 'impot', public_etat.calc(brut_etat) / 12
 #     print 'brut_etat', brut_etat / 12
     salbrut_etat = (brut_etat)
@@ -241,33 +242,95 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     return rstbrut
 
 
-def get_brut_from_net(net, type_sal = 0, hsup = 0, csg_rempl = 0, rev = 'sal', year = 2011):
+def brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP): 
+    '''
+    Fonction générique pour inverser numériquement
+    '''
 
-    from openfisca_core.simulations import ScenarioSimulation
-    import openfisca_france
-    openfisca_france.init_country()
+    from scipy.optimize import fsolve
+    import openfisca_france, datetime
+    year = _defaultP.datesim.year
+    
+    def brut_to_net(brut, other_vars):
+        TaxBenefitSystem = openfisca_france.init_country()
+        
+        tax_benefit_system = TaxBenefitSystem()
+        
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+        parent1.update(brut)
+        parent1.update(other_vars)
+        
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            parent1 = parent1,
+            year = year,
+            ).new_simulation(debug = True)
+        simulation.compact_legislation = _defaultP
+        simulation.default_compact_legislation = _defaultP
+        return simulation.calculate(net_variable_name)
 
-    simulation = ScenarioSimulation()
-    simulation.set_config(year = 2011, nmen = 2, x_axis = "sali", maxrev = 100)
-    simulation.set_param()
-    simulation.compute()
+    function = lambda x : brut_to_net({ brut_variable_name:x.tolist()[0]},
+                                       other_vars) - net_value
+    print 'toto'
+    return fsolve(function, net_value)
 
-    net = [net]
 
-    _defaultP = simulation.P
-    if rev == 'sal':
-        output = _salbrut_from_salnet(net, hsup, type_sal, _defaultP)
-    elif rev == 'cho':
-        output = _chobrut_from_chonet(net, csg_rempl, _defaultP)
-    elif rev == 'rst':
-        output = _rstbrut_from_rstnet(net, csg_rempl, _defaultP)
+def _num_rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
+    '''
+    Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
+    '''
+    brut_variable_name = "rstbrut"
+    net_variable_name = "rstnet"
+    net_value = rstnet.tolist()[0]
+    other_vars = dict(csg_rempl=csg_rempl.tolist()[0])
+    print 'other vars', other_vars
+    return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
+    
 
-    return output
+def _num_chobrut_from_chonet(chonet, csg_rempl, _defaultP):
+    '''
+    Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
+    '''
+    brut_variable_name = "chobrut"
+    net_variable_name = "chonet"
+    net_value = chonet.tolist()[0]
+    other_vars = dict(csg_rempl=csg_rempl.tolist()[0])
+    print 'other vars', other_vars
+    return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
+
+
+def _num_salbrut_from_salnet(salnet, primes, type_sal, _defaultP):
+    '''
+    Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
+    '''
+    other_vars = dict(primes=primes, type_sal=type_sal)
+    brut_variable_name = "salbrut"
+    net_variable_name = "salnet"
+    net_value = salnet
+    return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
 
 
 
 if __name__ == '__main__':
-    net = 1961
-    brut = get_brut_from_net(12 * net) / 12
-    print brut
-#    print get_brut_from_net(12 * 1568.80) / 12
+#     net = 1961
+#     brut = get_brut_from_net(12 * net) / 12
+#     print brut
+# #    print get_brut_from_net(12 * 1568.80) / 12
+
+
+    import openfisca_france, datetime
+    year = 2013
+    rstbrut = _num_rstbrut_from_rstnet(20000, 2, None)
+    print rstnet
+    
+    TaxBenefitSystem = openfisca_france.init_country()
+    tax_benefit_system = TaxBenefitSystem()
+    parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+    parent1.update(dict(rstbrut=rstbrut.tolist()[0], csg_rempl = 2))
+    print 'parent 1 final', parent1    
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        parent1 = parent1,
+        year = year,
+        ).new_simulation(debug = True)
+    print "brut", simulation.calculate('rstbrut')
+    print "net", simulation.calculate('rstnet')
+

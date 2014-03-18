@@ -42,41 +42,50 @@ def test_sal(year = 2013, verbose = False):
     with the one obtained from running openfisca satrting with a "salaire brut"
     '''
 
-    maxrev = 50000
-
-    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
+    maxrev = 24000
+    print TAUX_DE_PRIME
+    for type_sal_category in ['public_titulaire_etat']: # ['prive_non_cadre', 'prive_cadre']:  # , 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
-                primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
                 type_sal = CAT[type_sal_category],
                 ),
             year = year,
             ).new_simulation(debug = True)
 
+        # Brut to imposable
+        if type_sal_category == 'public_titulaire_etat':
+            primes_values = TAUX_DE_PRIME * simulation.get_holder('salbrut').array
+
+        primes_holder = simulation.get_or_new_holder('primes')
+        primes_holder.array = primes_values
+
         df_b2i = DataFrame(dict(sal = simulation.calculate('sal'),
                                 salbrut = simulation.calculate('salbrut'),
                                 ))
-
+        
+        # Imposable to brut
         from openfisca_france.model.inversion_revenus import _salbrut
         sali = df_b2i['sal'].get_values()
+        
         hsup = simulation.calculate('hsup')
         type_sal = simulation.calculate('type_sal')
-#        primes = simulation.calculate('primes')
+        primes = simulation.calculate('primes')
+        
         defaultP = simulation.default_compact_legislation
         df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut(sali, hsup, type_sal, defaultP) })
 
         for var in ['sal', 'salbrut']:
             passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
 
-            if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
-                print "Brut to imposable"
-                print (df_b2i[['salbrut', 'sal' ]] / 12).to_string()
-                print "Imposable to brut"
-                print (df_i2b / 12).to_string()
+        if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
+            print "Brut to imposable"
+            print (df_b2i[['salbrut', 'sal' ]] / 12).to_string()
+            print "Imposable to brut"
+            print (df_i2b / 12).to_string()
 
-                assert passed, "difference in %s for %s" % (var, type_sal_category)
+            assert passed, "difference in %s for %s" % (var, type_sal_category)
 
 
 def test_cho_rst(year = 2013, verbose = False):
@@ -135,5 +144,5 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_sal(2014, verbose = True)
-    test_cho_rst(2014, verbose = True)
+    test_sal(2011, verbose = False)
+#    test_cho_rst(2014, verbose = True)
