@@ -42,13 +42,14 @@ def test_case_study(year = 2013, verbose = False):
 
 #    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
     for type_sal_category in ['public_titulaire_etat']:
-        maxrev = 50000
+        maxrev = 24000
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 3) ],
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
-                primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
+#                salbrut = maxrev,
+#                primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
                 type_sal = CAT[type_sal_category],
                 ),
             year = year,
@@ -56,22 +57,28 @@ def test_case_study(year = 2013, verbose = False):
 
         df_b2n = DataFrame(dict(salnet = simulation.calculate('salnet'),
                                 salbrut = simulation.calculate('salbrut'),
+                                primes = simulation.calculate('primes')
                                 ))
-
-        from openfisca_france.model.inversion_revenus import _salbrut_from_salnet
+        reload(openfisca_france.model.inversion_revenus)
+        from openfisca_france.model.inversion_revenus import _salbrut_from_salnet, _num_salbrut_from_salnet
         saln = df_b2n['salnet'].get_values()
         hsup = simulation.calculate('hsup')
         type_sal = simulation.calculate('type_sal')
-#        primes = simulation.calculate('primes')
+        primes = simulation.calculate('primes')
         defaultP = simulation.default_compact_legislation
-        df_n2b = DataFrame({'salnet': saln, 'salbrut' : _salbrut_from_salnet(saln, hsup, type_sal, defaultP) })
+        print type(saln)
+        print saln
+        df_n2b = DataFrame({
+            'salnet': saln,
+            'salbrut' : _salbrut_from_salnet(saln, hsup, type_sal, defaultP),
+            'salbrut_num' : _num_salbrut_from_salnet(saln, hsup, type_sal, primes, defaultP) })
 
         for var in ['salnet', 'salbrut']:
             passed = ((df_b2n[var] - df_n2b[var]).abs() < .01).all()
 
             if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
                 print "Brut to net"
-                print (df_b2n[['salbrut', 'salnet' ]] / 12).to_string()
+                print (df_b2n[['salbrut', 'salnet', 'primes' ]] / 12).to_string()
                 print "Net to brut"
                 print (df_n2b / 12).to_string()
                 assert passed, "difference in %s for %s" % (var, type_sal_category)
@@ -80,7 +87,7 @@ def test_case_study(year = 2013, verbose = False):
 def test_cho_rst(year = 2013, verbose = False):
     '''
     Tests that _chobrut which computes "chômage brut" from "net" yields an amount compatible
-    with the one obtained from running openfisca satrting with a "chômage brut"
+    with the one obtained from running openfisca starting with a "chômage brut"
     '''
     remplacement = {'chonet' : 'chobrut', 'rstnet': 'rstbrut'}
 
@@ -138,5 +145,5 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 #    import nose
 #    nose.core.runmodule(argv = [__file__, '-v'])
-#    test_case_study(2013, verbose = True)
-    test_cho_rst(2013, verbose = True)
+    test_case_study(2013, verbose = True)
+#    test_cho_rst(2013, verbose = True)

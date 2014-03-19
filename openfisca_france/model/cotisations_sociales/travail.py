@@ -446,7 +446,7 @@ def _taxes_sal(salbrut, tva_ent, _P):
 
 def _tehr(salbrut, _P):
     """
-    Taxe exceptionelle sur les hauts revenus
+    Taxe exceptionnelle de solidarité sur les très hautes rémunérations
     """
     # TODO: a affiner avec condition de plafond
     #       sur le chiffre d'affaire des entreprises

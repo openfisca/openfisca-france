@@ -242,36 +242,48 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     return rstbrut
 
 
+from openfisca_france import surveys
+
 def brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP): 
     '''
     Fonction générique pour inverser numériquement
     '''
-
+    import numpy as np
     from scipy.optimize import fsolve
     import openfisca_france, datetime
     year = _defaultP.datesim.year
     
     def brut_to_net(brut, other_vars):
         TaxBenefitSystem = openfisca_france.init_country()
-        
         tax_benefit_system = TaxBenefitSystem()
         
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+        parent1 = dict(age = np.array(40).repeat(len(brut.values()[0])))
         parent1.update(brut)
         parent1.update(other_vars)
-        
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
-            parent1 = parent1,
+        print parent1
+
+        simulation = surveys.new_simulation_from_array_dict(
+            array_dict = parent1,
+            tax_benefit_system = tax_benefit_system,
             year = year,
-            ).new_simulation(debug = True)
+            )
+        
+        # simulation = tax_benefit_system.new_scenario().init_single_entity(
+        #     parent1 = parent1,
+        #     year = year,
+        #     ).new_simulation(debug = True)
+
+
         simulation.compact_legislation = _defaultP
         simulation.default_compact_legislation = _defaultP
         return simulation.calculate(net_variable_name)
 
-    function = lambda x : brut_to_net({ brut_variable_name:x.tolist()[0]},
+    function = lambda x : brut_to_net({ brut_variable_name:x},
                                        other_vars) - net_value
-    print 'toto'
-    return fsolve(function, net_value)
+
+    sol =fsolve(function, net_value)
+    print "sol", sol
+    return sol
 
 
 def _num_rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
@@ -282,7 +294,6 @@ def _num_rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     net_variable_name = "rstnet"
     net_value = rstnet.tolist()[0]
     other_vars = dict(csg_rempl=csg_rempl.tolist()[0])
-    print 'other vars', other_vars
     return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
     
 
@@ -298,11 +309,13 @@ def _num_chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
 
 
-def _num_salbrut_from_salnet(salnet, primes, type_sal, _defaultP):
+def _num_salbrut_from_salnet(salnet, hsup, type_sal, primes, _defaultP):
     '''
     Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
     '''
-    other_vars = dict(primes=primes, type_sal=type_sal)
+#    other_vars = dict(hsup=hsup.tolist()[0], type_sal=type_sal.tolist()[0], primes=primes.tolist()[0])
+    other_vars = dict(hsup=hsup, type_sal=type_sal, primes=primes)
+    print 'other vars', other_vars
     brut_variable_name = "salbrut"
     net_variable_name = "salnet"
     net_value = salnet

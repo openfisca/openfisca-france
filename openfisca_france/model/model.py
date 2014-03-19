@@ -105,7 +105,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('alleg_fillon', FloatPresta(cs_travail._alleg_fillon, label = u"Allègements Fillon sur les bas salaires")),
     build_simple_formula_couple('alleg_cice', FloatPresta(cs_travail._alleg_cice, label = u"Crédit d'impôt compétitivité emploi")),
     build_simple_formula_couple('taxes_sal', FloatPresta(cs_travail._taxes_sal, label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA")),
-    build_simple_formula_couple('tehr', FloatPresta(cs_travail._tehr, label = u"Taxes exceptionnelles sur les hauts revenus")),
+    build_simple_formula_couple('tehr', FloatPresta(cs_travail._tehr, label = u"taxe exceptionnelle de solidarité sur les très hautes rémunérations")),
     build_simple_formula_couple('salsuperbrut', FloatPresta(cs_travail._salsuperbrut, label = u"Salaires super bruts")),
 
     build_simple_formula_couple('cotsal_contrib', FloatPresta(cs_travail._cotsal_contrib, label = u"Cotisations sociales salariales contributives")),
