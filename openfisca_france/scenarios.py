@@ -271,7 +271,6 @@ class Scenario(object):
                                                     ),
                                                 conv.test_between(datetime.date(1870, 1, 1),
                                                     datetime.date(2099, 12, 31)),
-                                                conv.not_none,
                                                 ),
                                             prenom = conv.pipe(
                                                 conv.test_isinstance(basestring),
@@ -496,8 +495,9 @@ class Scenario(object):
             if error is not None:
                 return data, error
 
+            errors = {}
+
             if data['axes'] is not None:
-                errors = {}
                 for axis_index, axis in enumerate(data['axes']):
                     if axis['min'] >= axis['max']:
                         errors.setdefault('axes', {}).setdefault(axis_index, {})['max'] = state._(
@@ -507,8 +507,66 @@ class Scenario(object):
                     if axis['index'] >= len(data['test_case'][entity_class.key_plural]):
                         errors.setdefault('axes', {}).setdefault(axis_index, {})['index'] = state._(
                             u"Index must be lower than {}").format(len(data['test_case'][entity_class.key_plural]))
-                if errors:
-                    return data, errors
+
+            famille_by_id = data['test_case']['familles']
+            parents_id = set(
+                parent_id
+                for famille in data['test_case']['familles'].itervalues()
+                for parent_id in famille['parents']
+                )
+            individu_by_id = data['test_case']['individus']
+            data, errors = conv.struct(
+                dict(
+                     test_case = conv.struct(
+                        dict(
+                            foyers_fiscaux = conv.uniform_mapping(
+                                conv.noop,
+                                conv.struct(
+                                    dict(
+                                        declarants = conv.uniform_sequence(conv.pipe(
+                                            conv.test(lambda individu_id:
+                                                individu_by_id[individu_id].get('birth') is None
+                                                or data['year'] - individu_by_id[individu_id]['birth'].year >= 18,
+                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
+                                                    u" ans",
+                                                ),
+                                            conv.test(lambda individu_id: individu_id in parents_id,
+                                                error = u"Un déclarant ou un conjoint sur la feuille d'impôt, doit être"
+                                                    u"un parent dans sa famille",
+                                                ),
+                                            )),
+                                        personnes_a_charge = conv.uniform_sequence(
+                                            conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
+                                                or individu_by_id[individu_id].get('birth') is None
+                                                or data['year'] - individu_by_id[individu_id]['birth'].year <= 25,
+                                                error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    u" 25 ans ou être invalide",
+                                                ),
+                                            ),
+                                        ),
+                                    default = conv.noop,
+                                    ),
+                                ),
+                            individus = conv.uniform_mapping(
+                                conv.noop,
+                                conv.struct(
+                                    dict(
+                                        birth = conv.test(lambda birth: data['year'] - birth.year >= 0,
+                                            error = u"L'individu doit être né au plus tard l'année de la simulation",
+                                            ),
+                                        ),
+                                    default = conv.noop,
+                                    ),
+                                ),
+                            ),
+                        default = conv.noop,
+                        ),
+                    ),
+                default = conv.noop,
+                )(data, state = state)
+
+            if errors:
+                return data, errors
 
             if data['legislation_url'] is None:
                 compact_legislation = None
@@ -841,6 +899,19 @@ class Scenario(object):
                     holder.array[axis['index']:: entity.step_size] = mesh.reshape(steps_count)
 
         return simulation
+
+    def suggest(self, state):
+        test_case = self.test_case
+        suggestions = dict()
+        for individu_id, individu in test_case['individus'].iteritems():
+            if individu.get('birth') is None:
+                is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
+                birth_year = self.year - 40 if is_parent else self.year - 10
+                birth = datetime.date(birth_year, 1, 1)
+                individu['birth'] = birth
+                suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                    'birth'] = birth.isoformat()
+        return suggestions or None
 
 #    def __init__(self):
 #        super(Scenario, self).__init__()
