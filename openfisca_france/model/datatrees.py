@@ -35,7 +35,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'statmarit',  # Statut marital
                     'sali',  # Revenus d'activité imposables
                     'choi',  # Autres revenus imposables (chômage, préretraite)
-                    'rsti',  # Pensions, retraites, rentes connues imposables!p
+                    'rsti',  # Pensions, retraites, rentes connues imposables
                     ]),
                 ]),
             collections.OrderedDict([
@@ -43,7 +43,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'activite',  # Activité
                     'fra',  # Frais réels
-                    'hsup',  # Heures supplémentaires: revenus exonérés connus
+                    'hsup',  # Heures supplémentaires : revenus exonérés connus
                     'ppe_tp_sa',  # Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_tp_ns',  # Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_du_sa',  # Prime pour l'emploi des salariés: nombre d'heures payées dans l'année
@@ -57,7 +57,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Auto-entrepreneur (ayant opté pour le versement libératoire)"""),
                 ('children', [
-                    'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)
+                    'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)
                     'ebic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)
                     'ebnc_impo',  # Revenus non commerciaux imposables (régime auto-entrepreneur)
                     ]),
@@ -69,11 +69,11 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'frag_impo',  # Revenus agricoles imposables (régime du forfait)
                     'frag_pvct',  # Plus-values agricoles  à court terme (régime du forfait)
                     'frag_pvce',  # Plus-values agricoles de cession taxables à 16% (régime du forfait)
-                    'arag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
+                    'arag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur), activités exercées en Corse
                     'arag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
                     'arag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
                     'arag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)
-                    'nrag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
+                    'nrag_exon',  # Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse
                     'nrag_impg',  # Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
                     'nrag_defi',  # Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
                     'nrag_pvce',  # Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)
@@ -131,17 +131,17 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Revenus non commerciaux professionnels"""),
                 ('children', [
                     'mbnc_exon',  # Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)
-                    'abnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                    'nbnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
+                    'abnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)
+                    'nbnc_exon',  # Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)
                     'mbnc_impo',  # Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)
-                    'abnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                    'abnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
-                    'nbnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
-                    'nbnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)
+                    'abnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)
+                    'abnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)
+                    'nbnc_impo',  # Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)
+                    'nbnc_defi',  # Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)
                     'mbnc_pvct',  # Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)
                     'mbnc_mvlt',  # Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)
                     'mbnc_pvce',  # Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)
-                    'abnc_pvce',  # Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)
+                    'abnc_pvce',  # Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)
                     'nbnc_pvce',  # Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)
                     ]),
                 ]),
@@ -163,7 +163,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""inv""",  # Invalide
                     u"""alt""",  # Enfant en garde alternée
                     u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
-                    u"""tva_ent""",  # Entreprise employant le salarié paye de la TVA
+                    u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
                     u"""code_risque""",  # Code risque pour les accidents du travail
                     u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
                     u"""boursier""",  # Elève ou étudiant boursier
@@ -180,6 +180,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
+                    u"""nbic_mvct""",  # Revenus industriels et commerciaux moins-values nettes à court terme
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""etr""",
                     u"""coloc""",  # Vie en colocation
@@ -196,7 +197,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    u"""inactif""",  # Parent incatif (PAJE-CLCA)
+                    u"""inactif""",  # Parent inactif (PAJE-CLCA)
                     u"""partiel1""",  # Parent actif à moins de 50% (PAJE-CLCA)
                     u"""partiel2""",  # Parent actif entre 50% et 80% (PAJE-CLCA)
                     u"""opt_colca""",  # Opte pour le COLCA
@@ -220,19 +221,14 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'caseK',  # Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre
                     'caseL',  # Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul
-                    'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul
+                    'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul
                     'caseN',  # Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus
                     'caseP',  # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%
-                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire: conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)
+                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)
                     'caseW',  # Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseS',  # Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseG',  # Titulaire d'une pension de veuve de guerre
-                    'nbF',  # Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés en durant la même année ou handicapés quel que soit leur âge
-                    'nbJ',  # Nombre d'enfants majeurs célibataires sans enfant
-                    'nbI',  # Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité
-                    'nbH',  # Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge
                     'caseH',  # Année de naissance des enfants à charge en garde alternée
-                    'nbG',  # Nombre d'enfants à charge titulaires de la carte d'invalidité
                     'nbN',  # Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille
                     'nbR',  # Nombre de titulaires de la carte invalidité d'au moins 80 %
                     'caseT',  # Vous êtes parent isolé au 1er janvier de l'année de perception des revenus
@@ -243,10 +239,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Traitements, salaires, primes pour l'emploi, pensions et rentes"""),
                 ('children', [
-                    'f1aw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans
-                    'f1bw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
-                    'f1cw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
-                    'f1dw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans
+                    'f1aw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans
+                    'f1bw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
+                    'f1cw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
+                    'f1dw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans
                     ]),
                 ]),
             collections.OrderedDict([
@@ -399,8 +395,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f7my',  # Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés
                     'f7ra',  # Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager
                     'f7rb',  # Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé
-                    'f7gw',  # Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt
-                    'f7gx',  # Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt
+                    'f7gw',  # Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt
+                    'f7gx',  # Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt
                     'f7xc',  # Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1
                     'f7xd',  # Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans
                     'f7xe',  # Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans
@@ -442,38 +438,38 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f7nz',  # Travaux de conservation et de restauration d’objets classés monuments historiques
                     'f7ka',  # Dépenses de protection du patrimoine naturel
                     'f7wg',  # Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1
-                    'f7uh',
+                    'f7uh',  # Dons et cotisations versés aux partis politiques
                     'f7un',  # Investissements forestiers: acquisition
                     'f7um',  # Intérêts pour paiement différé accordé aux agriculteurs
                     'f7hj',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole
                     'f7hk',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM
-                    'f7hn',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier
-                    'f7ho',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier
+                    'f7hn',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010
+                    'f7ho',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010
                     'f7hl',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)
                     'f7hm',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds
-                    'f7hr',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 (métropole et DOM ne respectant pas les plafonds)
-                    'f7hs',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM et respectant les plafonds
+                    'f7hr',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 (métropole et DOM ne respectant pas les plafonds): report de 1/9 de l'investissement
+                    'f7hs',  # Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM et respectant les plafonds: report de 1/9 de l'investissement
                     'f7la',  # Investissements locatifs neufs dispositif Scellier: report du solde de réduction d'impôt non encore imputé
-                    'f7ij',  # Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en n-1
-                    'f7il',  # Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-2
-                    'f7im',  # Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-3
-                    'f7ik',  # Reports de 1/9 de l'investissement réalisé et achevé au cours de l'année n-4
-                    'f7is',  # Report du solde de réduction d'impôt non encor imputé: année  n-4
-                    'f7gt',
+                    'f7ij',  # Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en 2011
+                    'f7il',  # Investissement destinés à la location meublée non professionnelle: promesse d'achat en 2010
+                    'f7im',  # Investissement destinés à la location meublée non professionnelle: investissement réalisés en 2010 avec promesse d'achat en 2009
+                    'f7ik',  # Reports de 1/9 de l'investissement réalisé et achevé en 2009
+                    'f7is',  # Report du solde de réduction d'impôt non encore imputé: année  n-4
+                    'f7gt',  # Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010
                     'f7xg',  # Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme
-                    'f7gu',
-                    'f7gv',
+                    'f7gu',  # Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009
+                    'f7gv',  # Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna
                     ]),
                 ]),
             collections.OrderedDict([
                 ('label', u"""Autres imputations et divers"""),
                 ('children', [
                     'f8ta',  # Retenue à la source en France ou impôt payé à l'étranger
-                    'f8tb',  # Crédit d'impôt recherche non encore remboursé
+                    'f8tb',  # Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)
                     'f8tf',  # Reprises de réductions ou de crédits d'impôt
                     'f8tg',  # Crédits d'impôt en faveur des entreprises: Investissement en Corse
                     'f8th',  # Retenue à la source élus locaux
-                    'f8tc',  # Crédit d'impôt recherche non encore remboursé (années antérieures)
+                    'f8tc',  # Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))
                     'f8td',  # Contribution exceptionnelle sur les hauts revenus
                     'f8te',  # Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé
                     'f8to',  # Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures
@@ -482,7 +478,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f8tz',  # Crédit d'impôt en faveur des entreprises: Apprentissage
                     'f8wa',  # Crédit d'impôt en faveur des entreprises: Agriculture biologique
                     'f8wb',  # Crédit d'impôt en faveur des entreprises: Prospection commerciale
-                    'f8wc',  # Crédit d'impôt en faveur des entreprises: Nouvelles technologies
+                    'f8wc',  # Crédit d'impôt en faveur des entreprises: Prêts sans intérêt
                     'f8wd',  # Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise
                     'f8we',  # Crédit d'impôt en faveur des entreprises: Intéressement
                     'f8wr',  # Crédit d'impôt en faveur des entreprises: Métiers d'art
@@ -495,12 +491,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f7uo',  # Acquisition de biens culturels
                     'f7us',  # Réduction d'impôt mécénat d'entreprise
                     'f7sb',  # Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %
-                    'f7sd',  # Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %
-                    'f7se',  # Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %
-                    'f7sh',  # Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %
-                    'f7sc',
-                    'f7up',  # Crédit d'impôt
-                    'f7uq',  # Crédit d'impôt
+                    'f7sd',  # Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation
+                    'f7se',  # Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz
+                    'f7sh',  # Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)
+                    'f7sc',  # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
+                    'f7up',  # Crédit d'impôt pour investissements forestiers: travaux
+                    'f7uq',  # Crédit d'impôt pour investissements forestiers: contrat de gestion
                     'f1ar',  # Crédit d'impôt aide à la mobilité
                     'f1br',  # Crédit d'impôt aide à la mobilité
                     'f1cr',  # Crédit d'impôt aide à la mobilité
@@ -510,7 +506,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f4tq',  # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
                     'f7sf',  # Appareils de régulation du chauffage, matériaux de calorifugeage
                     'f7si',  # Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)
-                    'f8uy',  # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
+                    'f8uy',  # Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé
                     'mbic_mvct',  # Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)
                     'macc_mvct',  # Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)
                     'mncn_mvct',  # Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)
@@ -520,19 +516,19 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Impôt de solidarité sur la fortune"""),
                 ('children', [
-                    'b1ab',  # valeur résidence principale avant abattement
-                    'b1ac',  # valeur autres immeubles avant abattement
-                    'b1bc',  # Immeubles non bâtis: bois, fôrets et parts de groupements forestiers
-                    'b1be',  # Immeubles non bâtis: biens ruraux loués à long termes
-                    'b1bh',  # Immeubles non bâtis: parts de groupements fonciers agricoles et de groupements agricoles fonciers
-                    'b1bk',  # Immeubles non bâtis: autres biens
+                    'b1ab',  # Valeur de la résidence principale avant abattement
+                    'b1ac',  # Valeur des autres immeubles avant abattement
+                    'b1bc',  # Immeubles non bâtis : bois, fôrets et parts de groupements forestiers
+                    'b1be',  # Immeubles non bâtis : biens ruraux loués à long termes
+                    'b1bh',  # Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers
+                    'b1bk',  # Immeubles non bâtis : autres biens
                     'b1cl',  # Parts et actions détenues par les salariés et mandataires sociaux
                     'b1cb',  # Parts et actions de sociétés avec engagement de conservation de 6 ans minimum
                     'b1cd',  # Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité
                     'b1ce',  # Autres valeurs mobilières
                     'b1cf',  # Liquidités
                     'b1cg',  # Autres biens meubles
-                    'b1co',  # Autres biens meubles: contrats d'assurance-vie
+                    'b1co',  # Autres biens meubles : contrats d'assurance-vie
                     'b2gh',  # Total du passif et autres déductions
                     'b2mt',  # Réductions pour investissements directs dans une société
                     'b2ne',  # Réductions pour investissements directs dans une société
