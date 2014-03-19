@@ -11,7 +11,8 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, logical_xor as xor_, maximum as max_, minimum as min_, round
+from numpy import (int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
+    maximum as max_, minimum as min_, round)
 
 from .data import QUIFOY
 
@@ -51,11 +52,38 @@ VOUS = QUIFOY['vous']
 # # Initialisation de quelques variables utiles pour la suite
 ###############################################################################
 
+
 def _nb_adult(marpac, celdiv, veuf):
     return 2 * marpac + 1 * (celdiv | veuf)
 
+
 def _nb_pac(nbF, nbJ, nbR):
     return nbF + nbJ + nbR
+
+
+def _nbF(self, age, alt, inv, quifoy):
+    enfant_a_charge = and_(quifoy >= 2, or_(age < 18, inv), not_(alt))
+    return self.sum_by_entity(enfant_a_charge.astype(int16))
+
+
+def _nbG(self, alt, inv, quifoy):
+    enfant_a_charge_invalide = and_(quifoy >= 2, inv, not_(alt))
+    return self.sum_by_entity(enfant_a_charge_invalide.astype(int16))
+
+
+def _nbH(self, age, alt, inv, quifoy):
+    enfant_a_charge_garde_alternee = and_(quifoy >= 2, or_(age < 18, inv), alt)
+    return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16))
+
+
+def _nbI(self, alt, inv, quifoy):
+    enfant_a_charge_garde_alternee_invalide = and_(quifoy >= 2, inv, alt)
+    return self.sum_by_entity(enfant_a_charge_garde_alternee_invalide.astype(int16))
+
+
+def _nbJ(self, age, inv, quifoy):
+    majeur_celibataire_sans_enfant = and_(quifoy >= 2, age >= 18, not_(inv))
+    return self.sum_by_entity(majeur_celibataire_sans_enfant.astype(int16))
 
 
 def _marpac(self, statmarit_holder):

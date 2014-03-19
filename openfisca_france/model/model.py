@@ -181,6 +181,24 @@ prestation_by_name = collections.OrderedDict((
     # Impôt sur le revenu
     ############################################################
 
+    build_simple_formula_couple('nbF', IntPresta(ir._nbF, cerfa_field = u'F', entity = 'foy',
+        label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des"
+            u" revenus, ou nés en durant la même année ou handicapés quel que soit leur âge")),
+    build_simple_formula_couple('nbG', IntPresta(ir._nbG, cerfa_field = u'G', entity = 'foy',
+        label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité")),
+    # TODO: vérifier si c'est bien ça pour la nbH et la caseH qui suit
+    build_simple_formula_couple('nbH', IntPresta(ir._nbH, cerfa_field = u'H', entity = 'foy',
+        label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de"
+            u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge")),
+    build_simple_formula_couple('nbI', IntPresta(ir._nbI, cerfa_field = u'I', entity = 'foy',
+        label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité")),
+    build_simple_formula_couple('nbJ', IntPresta(ir._nbJ, cerfa_field = u'J', entity = 'foy',
+        label = u"Nombre d'enfants majeurs célibataires sans enfant")),
+#    build_simple_formula_couple('nbN', IntPresta(ir._nbN, cerfa_field = u'N', entity = 'foy',
+#        label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille")),
+#    build_simple_formula_couple('nbR', IntPresta(ir._nbR, cerfa_field = u'R', entity = 'foy',
+#        label = u"Nombre de titulaires de la carte invalidité d'au moins 80 %")),
+
     build_simple_formula_couple('marpac', BoolPresta(ir._marpac, entity = 'foy')),
     build_simple_formula_couple('celdiv', BoolPresta(ir._celdiv, entity = 'foy')),
     build_simple_formula_couple('veuf', BoolPresta(ir._veuf, entity = 'foy')),
