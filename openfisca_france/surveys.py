@@ -88,30 +88,29 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, ar
         debug = debug,
         tax_benefit_system = tax_benefit_system,
         )
-    
-    assert len(set([len(x) for x in array_dict.itervalues() if len(x) !=1]) ) == 1, 'Arrays do not have the same size'
+
+    assert len(set([len(x) for x in array_dict.itervalues() if len(x) != 1])) == 1, 'Arrays do not have the same size'
 
     global_count = len(array_dict.values()[0])
-    print 'global_count', global_count
     provided_keys = array_dict.keys()
-    
+
     for role_var in ['quifam', 'quifoy', 'quimen']:
         if role_var not in provided_keys:
-            array_dict[role_var] = np.zeros(global_count, dtype=int)
+            array_dict[role_var] = np.zeros(global_count, dtype = int)
 
     for id_var in ['idfam', 'idfoy', 'idmen', 'noi']:
         if id_var not in provided_keys:
-            array_dict[id_var] = np.arange(global_count, dtype=int)
+            array_dict[id_var] = np.arange(global_count, dtype = int)
 
     if 'age' in provided_keys and 'agem' not in provided_keys:
-        array_dict['agem'] = 12*array_dict['age']
+        array_dict['agem'] = 12 * array_dict['age']
     elif 'agem' in provided_keys and 'age' not in provided_keys:
-        array_dict['age'] = array_dict['agem']//12
+        array_dict['age'] = array_dict['agem'] // 12
 
     column_by_name = tax_benefit_system.column_by_name
     for column_name, array in array_dict.iteritems():
         assert column_name in column_by_name, column_name
-        
+
     entity_by_key_plural = simulation.entity_by_key_plural
 
     familles = entity_by_key_plural[u'familles']
@@ -137,18 +136,13 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, ar
     menages.roles_count = array_dict['quimen'].max() + 1
     foyers_fiscaux.roles_count = array_dict['quifoy'].max() + 1
 
-    print familles.roles_count 
-    print menages.roles_count
-    print foyers_fiscaux.roles_count
-
-    
     for column_name, column_array in array_dict.iteritems():
         holder = simulation.new_holder(column_name)
         entity = holder.entity
         if holder.entity.is_persons_entity:
             array = column_array
         else:
-            array = column_array[survey['qui' + entity.symbol].values == 0]
+            array = column_array[array_dict['qui' + entity.symbol].values == 0]
         assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
             entity.count)
         holder.array = np.array(array, dtype = holder.column._dtype)

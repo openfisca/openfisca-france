@@ -27,6 +27,7 @@ from __future__ import division
 
 import logging
 
+
 from numpy import zeros, logical_not as not_
 from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
@@ -110,7 +111,7 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
 
 #    print 'sali', sali / 12
     brut_etat = etat.calc(sali)
-#    print 'brut_etat', brut_etat/12 
+#    print 'brut_etat', brut_etat/12
 #     print 'impot', public_etat.calc(brut_etat) / 12
 #     print 'brut_etat', brut_etat / 12
     salbrut_etat = (brut_etat)
@@ -186,7 +187,7 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement
+    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement donc valable aussi pour le chômage
 
     taux_plein = combineBaremes(csg['plein'])
     taux_reduit = combineBaremes(csg['reduit'])
@@ -196,7 +197,6 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     chom_reduit = taux_reduit.inverse()
 
     chobrut = (csg_rempl == 1) * chonet + (csg_rempl == 2) * chom_reduit.calc(chonet) + (csg_rempl == 3) * chom_plein.calc(chonet)
-
     isexo = exo_csg_chom(chobrut, csg_rempl, _defaultP)
     chobrut = not_(isexo) * chobrut + (isexo) * chonet
     return chobrut
@@ -211,8 +211,8 @@ def _rstbrut(rsti, csg_rempl, _defaultP):
     Calcule les pensions de retraites brutes à partir des pensions imposables
     '''
     P = _defaultP.csg.retraite
-    rst_plein = P.plein.deduc.inverse()  # TODO: rajouter la non  déductible dans param
-    rst_reduit = P.reduit.deduc.inverse()  #
+    rst_plein = P.plein.deduc.inverse()
+    rst_reduit = P.reduit.deduc.inverse()
     rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
     return rstbrut
 
@@ -242,37 +242,30 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     return rstbrut
 
 
-from openfisca_france import surveys
-
-def brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP): 
+def brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP):
     '''
     Fonction générique pour inverser numériquement
     '''
     import numpy as np
     from scipy.optimize import fsolve
-    import openfisca_france, datetime
+    import openfisca_france
+    from openfisca_france import surveys
+
     year = _defaultP.datesim.year
-    
+
     def brut_to_net(brut, other_vars):
         TaxBenefitSystem = openfisca_france.init_country()
         tax_benefit_system = TaxBenefitSystem()
-        
+
         parent1 = dict(age = np.array(40).repeat(len(brut.values()[0])))
         parent1.update(brut)
         parent1.update(other_vars)
-        print parent1
 
         simulation = surveys.new_simulation_from_array_dict(
             array_dict = parent1,
             tax_benefit_system = tax_benefit_system,
             year = year,
             )
-        
-        # simulation = tax_benefit_system.new_scenario().init_single_entity(
-        #     parent1 = parent1,
-        #     year = year,
-        #     ).new_simulation(debug = True)
-
 
         simulation.compact_legislation = _defaultP
         simulation.default_compact_legislation = _defaultP
@@ -280,9 +273,7 @@ def brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _d
 
     function = lambda x : brut_to_net({ brut_variable_name:x},
                                        other_vars) - net_value
-
-    sol =fsolve(function, net_value)
-    print "sol", sol
+    sol = fsolve(function, net_value)
     return sol
 
 
@@ -292,10 +283,10 @@ def _num_rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     '''
     brut_variable_name = "rstbrut"
     net_variable_name = "rstnet"
-    net_value = rstnet.tolist()[0]
-    other_vars = dict(csg_rempl=csg_rempl.tolist()[0])
+    net_value = rstnet
+    other_vars = dict(csg_rempl = csg_rempl)
     return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
-    
+
 
 def _num_chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     '''
@@ -303,47 +294,46 @@ def _num_chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     '''
     brut_variable_name = "chobrut"
     net_variable_name = "chonet"
-    net_value = chonet.tolist()[0]
-    other_vars = dict(csg_rempl=csg_rempl.tolist()[0])
-    print 'other vars', other_vars
+    net_value = chonet
+    other_vars = dict(csg_rempl = csg_rempl)
     return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
 
 
-def _num_salbrut_from_salnet(salnet, hsup, type_sal, primes, _defaultP):
+def _num_salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
     '''
     Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
     '''
-#    other_vars = dict(hsup=hsup.tolist()[0], type_sal=type_sal.tolist()[0], primes=primes.tolist()[0])
-    other_vars = dict(hsup=hsup, type_sal=type_sal, primes=primes)
-    print 'other vars', other_vars
-    brut_variable_name = "salbrut"
-    net_variable_name = "salnet"
+    import numpy as np
+    from scipy.optimize import fsolve
+    import openfisca_france
+    from openfisca_france import surveys
+
+    year = _defaultP.datesim.year
     net_value = salnet
-    return brut_to_net(brut_variable_name, net_variable_name, net_value, other_vars, _defaultP)
+    net_variable_name = "salnet"
+    other_vars = dict(hsup = hsup, type_sal = type_sal)
+
+    def _salbrut_to_salnet(brut, other_vars):
+        TaxBenefitSystem = openfisca_france.init_country()
+        tax_benefit_system = TaxBenefitSystem()
+        parent1 = dict(age = np.array(40).repeat(len(brut.values()[0])))
+        parent1.update(brut)
+        parent1.update(other_vars)
+        print parent1
+        simulation = surveys.new_simulation_from_array_dict(
+            array_dict = parent1,
+            tax_benefit_system = tax_benefit_system,
+            year = year,
+            )
+        simulation.compact_legislation = _defaultP
+        simulation.default_compact_legislation = _defaultP
+        return simulation.calculate(net_variable_name)
+
+    function = lambda x : _salbrut_to_salnet({ 'salbrut': x, 'primes': TAUX_DE_PRIME * x * (type_sal >= 2) }, other_vars) - net_value
+    salbrut = fsolve(function, net_value)
+    return salbrut
 
 
-
-if __name__ == '__main__':
-#     net = 1961
-#     brut = get_brut_from_net(12 * net) / 12
-#     print brut
-# #    print get_brut_from_net(12 * 1568.80) / 12
-
-
-    import openfisca_france, datetime
-    year = 2013
-    rstbrut = _num_rstbrut_from_rstnet(20000, 2, None)
-    print rstnet
-    
-    TaxBenefitSystem = openfisca_france.init_country()
-    tax_benefit_system = TaxBenefitSystem()
-    parent1 = dict(birth = datetime.date(year - 40, 1, 1))
-    parent1.update(dict(rstbrut=rstbrut.tolist()[0], csg_rempl = 2))
-    print 'parent 1 final', parent1    
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        parent1 = parent1,
-        year = year,
-        ).new_simulation(debug = True)
-    print "brut", simulation.calculate('rstbrut')
-    print "net", simulation.calculate('rstnet')
+def _primes_from_salbrut(salbrut, type_sal):
+    return salbrut * TAUX_DE_PRIME * (type_sal >= 2)
 
