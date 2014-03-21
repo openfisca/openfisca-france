@@ -75,13 +75,6 @@ def _mhsup(hsup):
 def _type_sal(titc, statut, chpub, cadre):
     '''
     Catégorie de salarié
-    0: prive_non_cadre
-    1: prive_cadre
-    2: public_titulaire_etat
-    3: public_titulaire_militaire
-    4: public_titulaire_territoriale
-    5: public_titulaire_hospitaliere
-    6: public_non_titulaire
     '''
     cadre = (statut == 8) * (chpub > 3) * cadre
     # noncadre = (statut ==8)*(chpub>3)*not_(cadre)
