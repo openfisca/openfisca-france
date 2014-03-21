@@ -900,11 +900,12 @@ class Scenario(object):
 
         return simulation
 
-    def suggest(self, state):
+    def suggest(self):
         test_case = self.test_case
         suggestions = dict()
         for individu_id, individu in test_case['individus'].iteritems():
             if individu.get('birth') is None:
+                # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
                 birth_year = self.year - 40 if is_parent else self.year - 10
                 birth = datetime.date(birth_year, 1, 1)
