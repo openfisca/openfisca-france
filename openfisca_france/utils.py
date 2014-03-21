@@ -24,8 +24,7 @@ This file is part of openFisca.
 
 from __future__ import division
 
-from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol, Prestation, BoolPresta,
-    IntPresta, EnumPresta)
+from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol)
 
 
 def check_consistency(table_simu, dataframe, corrige = True):
@@ -38,7 +37,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
     dataframe : dataframe object that we want to compare
     corrige : if corrige is True, the function tries to correct errors in datatable by passing default values
     '''
-    #check_inputs_enumcols(simulation):
+    # check_inputs_enumcols(simulation):
     # TODO: eventually should be a method of SurveySimulation specific for france
 
 
@@ -64,91 +63,91 @@ def check_consistency(table_simu, dataframe, corrige = True):
             if serie.isnull().any() or simu_serie.isnull().any():
                 is_ok = False
                 if serie.isnull().any():
-                    message += "Some missing values in dataframe column %s, \n" %var
+                    message += "Some missing values in dataframe column %s, \n" % var
                 if simu_serie.isnull().any():
-                    message += 'Some missing values in input_table column %s \n' %var
+                    message += 'Some missing values in input_table column %s \n' % var
                 cnt = len(set(simu_serie.isnull())) - len(set(serie.isnull()))
                 if 0 < cnt:
-                    message += "Warning : %s More NA's in simulation than in original dataframe for %s \n" %(str(cnt), var)
+                    message += "Warning : %s More NA's in simulation than in original dataframe for %s \n" % (str(cnt), var)
 
                 if corrige:
                     try:
-                        message += "Filling NA's with default values for %s... \n" %var
+                        message += "Filling NA's with default values for %s... \n" % var
                         serie[serie.isnull()] = varcol._default
                         message += "Done \n"
                     except:
-                        message += " Cannot fill NA for column %s, maybe _.default doesn't exist \n" %var
+                        message += " Cannot fill NA for column %s, maybe _.default doesn't exist \n" % var
 
-            if not corrige: # On ne modifie pas la série donc on peut l'amputer, elle n'est pas en return
+            if not corrige:  # On ne modifie pas la série donc on peut l'amputer, elle n'est pas en return
                 serie = serie[serie.notnull()]
 
             # Then checks if all values are of specified datatype
             # verify type, force type
 
-            if isinstance(varcol, EnumCol) or isinstance(varcol, EnumPresta):
+            if isinstance(varcol, EnumCol):
                 try:
                     if set(serie.unique()) > set(sorted(varcol.enum._nums.values())):
-                        message +=  "Some variables out of range for EnumCol variable %s : \n" %var
+                        message += "Some variables out of range for EnumCol variable %s : \n" % var
                         message += str(set(serie.unique()) - set(sorted(varcol.enum._nums.values()))) + "\n"
-                        #print varcol.enum._nums
-                        #print sorted(serie.unique()), "\n"
+                        # print varcol.enum._nums
+                        # print sorted(serie.unique()), "\n"
                         is_ok = False
 
                 except:
                     is_ok = False
-                    message += "Error : no _num attribute for EnumCol.enum %s \n" %var
-                    #print varcol.enum
-                    #print sorted(serie.unique()), "\n"
+                    message += "Error : no _num attribute for EnumCol.enum %s \n" % var
+                    # print varcol.enum
+                    # print sorted(serie.unique()), "\n"
                 try:
                     varcol.enum._vars
 
                 except:
                     is_ok = False
-                    message += "Error : no _var attribute for EnumCol.enum %s \n" %var
-                    #print varcol.enum
-                    #print sorted(serie.unique())
-                    #print "\n"
+                    message += "Error : no _var attribute for EnumCol.enum %s \n" % var
+                    # print varcol.enum
+                    # print sorted(serie.unique())
+                    # print "\n"
                 try:
                     n = varcol.enum._count
                     if n < len(set(serie.unique())):
-                        message += "More types of enum than expected : %s ( expected : %s) \n" %(str(set(serie.unique())), str(n))
+                        message += "More types of enum than expected : %s ( expected : %s) \n" % (str(set(serie.unique())), str(n))
                 except:
-                    message += "Error : no _count attribute for EnumCol.enum %s \n" %var
+                    message += "Error : no _count attribute for EnumCol.enum %s \n" % var
                 try:
                     varcol.enum
                 except:
                     is_ok = False
-                    message += "Error : not enum attribute for EnumCol %s ! \n" %var
+                    message += "Error : not enum attribute for EnumCol %s ! \n" % var
                     # Never happening, enum attribute is initialized to None at least
 
-            if isinstance(varcol, IntCol) or isinstance(varcol, IntPresta):
+            if isinstance(varcol, IntCol):
                 if serie.dtype not in ('int', 'int16', 'int32', 'int64'):
                     is_ok = False
-                    #print serie[serie.notnull()]
-                    message += "Some values in column %s are not integer as wanted: %s \n" %(var, serie.dtype)
+                    # print serie[serie.notnull()]
+                    message += "Some values in column %s are not integer as wanted: %s \n" % (var, serie.dtype)
                     stash = []
                     for v in serie:
                         if not isinstance(v, int):
                             stash.append(v)
                     message += str(list(set(stash))) + " \n"
                     if corrige:
-                        message += "Warning, forcing type integer for %s..." %var
+                        message += "Warning, forcing type integer for %s..." % var
                         try:
                             serie = serie.astype(varcol._dtype)
                             message += "Done \n"
                         except:
                             message += "sorry, cannot force type.\n"
                 else:
-                    message += "Values for %s are in range [%s,%s]\n" %(var,str(serie.min()),str(serie.max()))
+                    message += "Values for %s are in range [%s,%s]\n" % (var, str(serie.min()), str(serie.max()))
 
 
-            if isinstance(varcol, BoolCol) or isinstance(varcol, BoolPresta):
+            if isinstance(varcol, BoolCol):
                 if serie.dtype != 'bool':
                     is_ok = False
-                    #print serie[serie.notnull()]
-                    message += "Some values in column %s are not boolean as wanted \n" %var
+                    # print serie[serie.notnull()]
+                    message += "Some values in column %s are not boolean as wanted \n" % var
                     if corrige:
-                        message += "Warning, forcing type boolean for %s..." %var
+                        message += "Warning, forcing type boolean for %s..." % var
                         try:
                             serie = serie.astype(varcol._dtype)
                             message += "Done \n"
@@ -159,43 +158,43 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 if not serie.dtype in ('int', 'int16', 'int32', 'int64'):
                     is_ok = False
                     message += "Age variable %s not of type int: \n"
-                    stash = list(set(serie.value) - set(range(serie.min(), serie.max()+1)))
+                    stash = list(set(serie.value) - set(range(serie.min(), serie.max() + 1)))
                     message += str(stash) + "\n"
-                    message += "Total frequency for non-integers for %s is %s \n" %(var, str(len(stash)))
+                    message += "Total frequency for non-integers for %s is %s \n" % (var, str(len(stash)))
                     if corrige:
                         pass
 
-                if not serie.isin(range(-1,156)).all(): # Pas plus vieux que 100 ans ?
+                if not serie.isin(range(-1, 156)).all():  # Pas plus vieux que 100 ans ?
                     is_ok = False
-                    #print serie[serie.notnull()]
-                    message +=  "Age variable %s not in wanted range: \n" %var
-                    stash = list(set(serie.unique()) - set(range(-1,156)))
+                    # print serie[serie.notnull()]
+                    message += "Age variable %s not in wanted range: \n" % var
+                    stash = list(set(serie.unique()) - set(range(-1, 156)))
                     message += str(stash) + "\n"
-                    message += "Total frequency of outranges for %s is %s \n"%(var,str(len(stash)))
+                    message += "Total frequency of outranges for %s is %s \n" % (var, str(len(stash)))
                     del stash
                     if corrige:
                         try:
-                            message += "Fixing the outranges for %s... " %var
-                            tmp = serie[serie.isin(range(-1,156))]
-                            serie[~(serie.isin(range(-1,156)))] = tmp.median()
+                            message += "Fixing the outranges for %s... " % var
+                            tmp = serie[serie.isin(range(-1, 156))]
+                            serie[~(serie.isin(range(-1, 156)))] = tmp.median()
                             message += "Done \n"
                             del tmp
                         except:
                             message += "sorry, cannot fix outranges.\n"
 
             if isinstance(varcol, FloatCol):
-                if serie.dtype not in ('float','float32','float64','float16'):
+                if serie.dtype not in ('float', 'float32', 'float64', 'float16'):
                     is_ok = False
-                    message +=  "Some values in column %s are not float as wanted \n" %var
-                    stash = list(set(serie.unique()) - set(range(serie.min(), serie.max()+1)))
+                    message += "Some values in column %s are not float as wanted \n" % var
+                    stash = list(set(serie.unique()) - set(range(serie.min(), serie.max() + 1)))
                     message += str(stash) + "\n"
-                    message += "Total frequency for non-integers for %s is %s \n" %(var, str(len(stash)))
+                    message += "Total frequency for non-integers for %s is %s \n" % (var, str(len(stash)))
 
             if isinstance(varcol, DateCol):
                 if serie.dtype != 'np.datetime64':
                     is_ok = False
-                    #print serie[serie.notnull()]
-                    message +=  "Some values in column %s are not of type date as wanted \n" %var
+                    # print serie[serie.notnull()]
+                    message += "Some values in column %s are not of type date as wanted \n" % var
 
             if corrige:
                 dataframe[var] = serie
@@ -207,7 +206,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
         except:
             is_ok = False
             missing_variables.append(var)
-            #message = "Oh no ! Something went wrong in the tests. You may have coded like a noob"
+            # message = "Oh no ! Something went wrong in the tests. You may have coded like a noob"
 
     # TODO : Then, comparaison between datatable and table_simu.table ?
 
@@ -227,4 +226,4 @@ def check_consistency(table_simu, dataframe, corrige = True):
     else:
         return
 
-    #NotImplementedError
+    # NotImplementedError
