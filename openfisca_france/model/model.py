@@ -83,7 +83,17 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
 
     # Salaires
-    build_simple_formula_couple('type_sal', EnumCol(function = cs_travail._type_sal, label = u"Catégorie de salariés")),
+    build_simple_formula_couple('type_sal', EnumCol(function = cs_travail._type_sal, label = u"Catégorie de salarié",
+        enum = Enum([
+            u"prive_non_cadre",
+            u"prive_cadre",
+            u"public_titulaire_etat",
+            u"public_titulaire_militaire",
+            u"public_titulaire_territoriale",
+            u"public_titulaire_hospitaliere",
+            u"public_non_titulaire",
+             ]),
+         )),
     build_simple_formula_couple('salbrut', FloatCol(function = inv_rev._salbrut, label = u"Salaire brut ou traitement indiciaire brut")),
     build_simple_formula_couple('primes', FloatCol(function = cs_travail._primes, label = u"Primes et indemnités des fonctionnaires")),
     build_simple_formula_couple('sal_h_b', FloatCol(function = cs_travail._sal_h_b, label = u"Salaire horaire brut")),
