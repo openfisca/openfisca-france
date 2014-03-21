@@ -99,7 +99,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('sal_h_b', FloatCol(function = cs_travail._sal_h_b, label = u"Salaire horaire brut")),
     build_simple_formula_couple('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
                                     label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
-                                    enum = Enum([u"Non pertienent",
+                                    enum = Enum([u"Non pertinent",
                                                  u"Moins de 10 salariés",
                                                  u"De 10 à 19 salariés",
                                                  u"De 20 à 249 salariés",
