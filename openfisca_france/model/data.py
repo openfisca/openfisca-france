@@ -160,12 +160,6 @@ column_by_name = collections.OrderedDict((
     build_column_couple('age', AgesCol(label = u"Âge" , val_type = "age")),
     build_column_couple('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
 
-    build_column_couple('zone_apl', EnumCol(label = u"Zone apl",
-                         entity = 'men',
-                         enum = Enum([u"Non renseigné",
-                                      u"Zone 1",
-                                      u"Zone 2",
-                                      u"Zone 3", ]), default = 2,)),
     build_column_couple('loyer', IntCol(label = u"Loyer mensuel",
                      entity = 'men',
                      val_type = "monetary")),  # Loyer mensuel

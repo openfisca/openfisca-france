@@ -504,6 +504,15 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('alset', FloatPresta(lg._alset, entity = 'fam', label = u"Allocation logement sociale étudiante")),
     build_simple_formula_couple('apl', FloatPresta(lg._apl, entity = 'fam', label = u"Aide personalisée au logement")),
     build_simple_formula_couple('crds_lgtm', FloatPresta(lg._crds_lgtm, entity = 'fam', label = u"CRDS (allocation logement)")),
+    build_simple_formula_couple('zone_apl', EnumPresta(lg._zone_apl, default = 2, entity = 'men',
+        enum = Enum([
+            u"Non renseigné",
+            u"Zone 1",
+            u"Zone 2",
+            u"Zone 3",
+            ]),
+        label = u"Zone APL",
+        )),
 
     ############################################################
     # RSA/RMI

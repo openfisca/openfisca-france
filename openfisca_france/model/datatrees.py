@@ -566,7 +566,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'zone_apl',  # Zone apl
                     'loyer',  # Loyer mensuel
                     'so',  # Statut d'occupation
                     'code_postal',  # Code postal du lieu de résidence
