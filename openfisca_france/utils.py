@@ -24,7 +24,7 @@ This file is part of openFisca.
 
 from __future__ import division
 
-from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgesCol, FloatCol, DateCol)
+from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgeCol, FloatCol, DateCol)
 
 
 def check_consistency(table_simu, dataframe, corrige = True):
@@ -154,7 +154,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                         except:
                             message += "sorry, cannot force type.\n"
 
-            if isinstance(varcol, AgesCol):
+            if isinstance(varcol, AgeCol):
                 if not serie.dtype in ('int', 'int16', 'int32', 'int64'):
                     is_ok = False
                     message += "Age variable %s not of type int: \n"

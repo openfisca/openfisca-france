@@ -11,7 +11,7 @@ from __future__ import division
 
 import logging
 
-from numpy import (int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
+from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 
 from .data import QUIFOY
@@ -51,6 +51,14 @@ VOUS = QUIFOY['vous']
 ###############################################################################
 # # Initialisation de quelques variables utiles pour la suite
 ###############################################################################
+
+
+def _age(birth, _P):
+    return (datetime64(_P.datesim) - birth).astype('timedelta64[Y]')
+
+
+def _agem(birth, _P):
+    return (datetime64(_P.datesim) - birth).astype('timedelta64[M]')
 
 
 def _nb_adult(marpac, celdiv, veuf):
