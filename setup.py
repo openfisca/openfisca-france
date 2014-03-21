@@ -60,6 +60,7 @@ setup(
         'numpy',
         'OpenFisca-Core >= 0.3dev',
         'pandas >= 0.13',
+        'scipy >= 0.12',
         ],
     packages = find_packages(),
     zip_safe = False,
