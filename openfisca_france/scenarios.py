@@ -29,7 +29,6 @@ import itertools
 import json
 import logging
 import os
-import re
 import time
 import urllib2
 import uuid
@@ -42,7 +41,6 @@ from . import conv, entities
 
 log = logging.getLogger(__name__)
 N_ = lambda message: message
-year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]\d|3[0-1]))?)?$')
 
 
 class Scenario(object):
@@ -247,43 +245,12 @@ class Scenario(object):
                             conv.pipe(
                                 conv.test_isinstance(dict),
                                 conv.struct(
-                                    dict(itertools.chain(
-                                        dict(
-                                            birth = conv.pipe(
-                                                conv.condition(
-                                                    conv.test_isinstance(datetime.date),
-                                                    conv.noop,
-                                                    conv.condition(
-                                                        conv.test_isinstance(int),
-                                                        conv.pipe(
-                                                            conv.test_between(1870, 2099),
-                                                            conv.function(lambda year: datetime.date(year, 1, 1)),
-                                                            ),
-                                                        conv.pipe(
-                                                            conv.test_isinstance(basestring),
-                                                            conv.test(year_or_month_or_day_re.match,
-                                                                error = N_(u'Invalid year')),
-                                                            conv.function(lambda birth: u'-'.join((
-                                                                birth.split(u'-') + [u'01', u'01'])[:3])),
-                                                            conv.iso8601_input_to_date,
-                                                            ),
-                                                        ),
-                                                    ),
-                                                conv.test_between(datetime.date(1870, 1, 1),
-                                                    datetime.date(2099, 12, 31)),
-                                                ),
-                                            prenom = conv.pipe(
-                                                conv.test_isinstance(basestring),
-                                                conv.cleanup_line,
-                                                ),
-                                            ).iteritems(),
-                                        (
-                                            (column.name, column.json_to_python)
-                                            for column in column_by_name.itervalues()
-                                            if column.entity == 'ind' and column.name not in ('age', 'agem',
-                                                'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
-                                            ),
-                                        )),
+                                    dict(
+                                        (column.name, column.json_to_python)
+                                        for column in column_by_name.itervalues()
+                                        if column.entity == 'ind' and column.name not in ('age', 'agem',
+                                            'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
+                                        ),
                                     drop_none_values = True,
                                     ),
                                 ),
