@@ -120,7 +120,7 @@ def _aspa_elig(age, inv, activite, _P):
     'ind'
     '''
     P = _P.minim.aspa
-    out = ((age >= P.age_min) | ((age >= P.age_ina) & inv)) & (activite == 3)
+    out = ((age >= P.age_min) | ((age >= P.age_ina) & inv)) & (activite >= 3)  # TODO: affiner cette condition
     return out
 
 def _asi_elig(aspa_elig, inv, activite):
@@ -128,10 +128,13 @@ def _asi_elig(aspa_elig, inv, activite):
     Éligibilité individuelle à l'ASI
     'ind'
     '''
-    return (inv & (activite == 3)) & not_(aspa_elig)
+    return (inv & (activite >= 3)) & not_(aspa_elig)  # TODO: affiner cette condition
 
 
 def _asi_aspa_nb_alloc(self, aspa_elig_holder, asi_elig_holder):
+    '''
+    Nombre d'allocataire à l'ASI
+    '''
     asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
     aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
