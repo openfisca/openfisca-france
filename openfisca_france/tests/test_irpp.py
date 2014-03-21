@@ -181,11 +181,11 @@ def test_irpp():
 
             calculated_irpp = simulation.calculate('irpp')
         if not abs(calculated_irpp - irpp) < 1:
-                print year
-                print revenu
-                print amount
-                print "OpenFisca :", abs(calculated_irpp)
-                print "Real value :", irpp
+            print year
+            print revenu
+            print amount
+            print "OpenFisca :", abs(calculated_irpp)
+            print "Real value :", irpp
             assert abs(calculated_irpp - irpp) < 1, "error in irpp for revenu %s in year %s \n" % (revenu, year)
 
 
