@@ -25,7 +25,7 @@
 
 import collections
 
-from openfisca_core.columns import IntCol, EnumCol, BoolCol, AgesCol, FloatCol
+from openfisca_core.columns import IntCol, EnumCol, BoolCol, AgeCol, FloatCol
 from openfisca_core.enumerations import Enum
 
 def build_column_couple(name, column):
@@ -170,9 +170,9 @@ column_by_name = collections.OrderedDict((
                         entity = "foy",
                         label = u"Jours décomptés au titre de cette déclaration")),
 
-    ('age', AgesCol(label = u"Âge" , val_type = "age")),
+    ('age', AgeCol(label = u"Âge" , val_type = "age")),
 
-    ('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
+    ('agem', AgeCol(label = u"Âge (en mois)", val_type = "months")),
 
     ('zone_apl', EnumCol(label = u"Zone apl",
                          entity = 'men',

@@ -26,7 +26,7 @@
 import collections
 from datetime import date
 
-from openfisca_core.columns import BoolCol, EnumCol, FloatCol, IntCol
+from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
 
 from .. import entities
@@ -180,6 +180,9 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
     # Impôt sur le revenu
     ############################################################
+
+    build_simple_formula_couple('age', AgeCol(function = ir._age, label = u"Âge" , val_type = "age")),
+    build_simple_formula_couple('agem', AgeCol(function = ir._agem, label = u"Âge (en mois)", val_type = "months")),
 
     build_simple_formula_couple('nbF', IntCol(function = ir._nbF, cerfa_field = u'F', entity = 'foy',
         label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des"

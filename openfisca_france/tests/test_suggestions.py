@@ -57,6 +57,18 @@ def test_birth():
         2,
         4,
         ]
+    assert simulation.calculate('age').tolist() == [
+        40,
+        10,
+        12,
+        18,
+        ]
+    assert simulation.calculate('agem').tolist() == [
+        40 * 12,
+        10 * 12,
+        12 * 12,
+        18 * 12,
+        ]
 
 
 if __name__ == '__main__':

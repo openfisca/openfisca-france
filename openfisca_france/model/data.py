@@ -26,7 +26,7 @@
 import collections
 import datetime
 
-from openfisca_core.columns import AgesCol, BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
+from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum
 
 from .. import entities
@@ -157,8 +157,6 @@ column_by_name = collections.OrderedDict((
     build_column_couple('jour_xyz', IntCol(default = 360,
                         entity = "foy",
                         label = u"Jours décomptés au titre de cette déclaration")),
-    build_column_couple('age', AgesCol(label = u"Âge" , val_type = "age")),
-    build_column_couple('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
     build_column_couple('birth', DateCol(label = u"Année de naissance")),
     build_column_couple('prenom', StrCol(label = u"Prénom")),
 
