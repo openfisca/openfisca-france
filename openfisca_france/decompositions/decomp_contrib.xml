@@ -105,7 +105,7 @@
       <NODE desc= "CRDS (prestations familiales)" shortname="CRDS fam." code="crds_pfam" color = "229,48,56"/>
     </NODE>
     <NODE desc= "Minima sociaux" shortname="Min. sociaux" code = "mini" color = "240,138,76">
-      <NODE desc= "Minimum vieillesse" shortname="Min. viellesse" code='aspa' color = "249,193,148"/>
+      <NODE desc= "Allocation de solidarité aux personnes agées" shortname="ASPA" code='aspa' color = "249,193,148"/>
       <NODE desc= "Allocation adulte handicapé" shortname="AAH" code='aah' color = "244,160,80"/>
       <NODE desc= "Complément de l'allocation adulte handicapé" shortname="CAAH" code='caah' color = "244,160,80"/>
       <NODE desc= "Allocation supplémentaire d'invalidité" shortname="ASI" code='asi' color = "244,160,80"/>
