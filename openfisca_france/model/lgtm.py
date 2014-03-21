@@ -8,8 +8,12 @@
 
 from __future__ import division
 
-from numpy import ceil, floor, logical_not as not_, maximum as max_, minimum as min_, round
+import cPickle
 
+from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
+import pkg_resources
+
+from .. import data as data_resources
 from .data import QUIFAM, QUIMEN, QUIFOY
 from .pfam import nb_enf
 
@@ -18,6 +22,10 @@ CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 PART = QUIFAM['part']
 VOUS = QUIFOY['vous']
+
+
+zone_apl_by_code_postal = None
+
 
 def _al_pac(self, age_holder, smic55_holder, nbR_holder, _P):
     '''
@@ -287,3 +295,21 @@ def _crds_lgtm(al, _P):
     CRDS des allocations logement
     '''
     return -al*_P.fam.af.crds
+
+
+def _zone_apl(code_postal):
+    """Retrouve la zone d'allocation personnelle au logement de la commune."""
+    global zone_apl_by_code_postal
+    if zone_apl_by_code_postal is None:
+        with pkg_resources.resource_stream(data_resources.__name__, 'code_apl') as code_apl_file:
+            zone_apl_by_code_postal = dict(
+                (int(code_postal_str), int(zone))
+                for code_postal_str, (name, zone) in cPickle.load(code_apl_file).iteritems()
+                )
+    return fromiter(
+        (
+            zone_apl_by_code_postal.get(code_postal_cell, 2)
+            for code_postal_cell in code_postal
+            ),
+        dtype = int16,
+        )
