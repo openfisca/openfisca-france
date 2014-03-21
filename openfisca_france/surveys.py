@@ -34,7 +34,7 @@ from . import entities
 def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, survey = None, tax_benefit_system = None, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
-        date = datetime.date(year, 1, 1),
+        date = datetime.date(year, 5, 1),
         debug = debug,
         tax_benefit_system = tax_benefit_system,
         )
