@@ -32,6 +32,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
+                    'prenom',  # Prénom
+                    'birth',  # Année de naissance
                     'statmarit',  # Statut marital
                     'sali',  # Revenus d'activité imposables
                     'choi',  # Autres revenus imposables (chômage, préretraite)
