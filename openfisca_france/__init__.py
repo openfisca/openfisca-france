@@ -56,12 +56,12 @@ WEIGHT_INI = "wprm_init"
 
 def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de = False, start_from = 'imposable'):
     """Create a country-specific TaxBenefitSystem."""
-    from openfisca_core.columns import Prestation
+    from openfisca_core.columns import FloatCol
     from openfisca_core import taxbenefitsystems as core_taxbenefitsystems
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
-    from . import decompositions, entities, scenarios, utils
+    from . import decompositions, entities, scenarios  # utils
     from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
     from .model.data import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
@@ -112,7 +112,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
     if simulate_f6de:
         del column_by_name['f6de']
         csg_deduc_patrimoine_simulated = prestation_by_name.pop('csg_deduc_patrimoine_simulated')
-        prestation_by_name['csg_deduc_patrimoine'] = Prestation(
+        prestation_by_name['csg_deduc_patrimoine'] = FloatCol(
             csg_deduc_patrimoine_simulated._func,
             entity = csg_deduc_patrimoine_simulated.entity,
             label = csg_deduc_patrimoine_simulated.label,
@@ -131,7 +131,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
     class TaxBenefitSystem(core_taxbenefitsystems.AbstractTaxBenefitSystem):
         """French tax benefit system"""
         AGGREGATES_DEFAULT_VARS = AGGREGATES_DEFAULT_VARS
-        check_consistency = staticmethod(utils.check_consistency)
+        check_consistency = None  # staticmethod(utils.check_consistency)
         CURRENCY = CURRENCY
         DATA_DIR = DATA_DIR
         DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
