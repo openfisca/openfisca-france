@@ -4,10 +4,14 @@ virtualenv:
   system_site_packages: true
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq python-numpy python-pandas python-scipy python-tables
+  - sudo apt-get install -qq libhdf5-serial-dev  # For PyTables
+  - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran  # For SciPY
 install:
+  - pip install cython  # For PyTables
   - pip install isodate  # For Biryani1 datetimeconv
   - pip install -e git+https://github.com/etalab/biryani.git@biryani1#egg=Biryani1  # For OpenFisca-Core
+  - pip install numpy  # For numexpr
+  - pip install numexpr  # For PyTables
   - pip install -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
   - pip install xlrd  # For IPP tests
   - pip install -r requirements.txt
