@@ -37,7 +37,7 @@ from .cotisations_sociales import capital as cs_capital
 from .cotisations_sociales import travail as cs_travail
 from .cotisations_sociales import remplacement as cs_remplac
 from .cotisations_sociales import lps as cs_lps  # TODO: remove frome here
-
+from . import inversion_revenus as inv_rev
 from . import irpp as ir
 from . import irpp_charges_deductibles as cd
 from . import irpp_credits_impots as ci
@@ -48,7 +48,6 @@ from . import lgtm as lg
 from . import mini as ms
 from . import pfam as pf
 from . import th as th
-from . import inversion_revenus as inv_rev
 
 
 def build_simple_formula_couple(name, prestation):
