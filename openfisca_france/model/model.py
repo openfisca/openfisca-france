@@ -28,9 +28,9 @@ from datetime import date
 
 from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
+from openfisca_core.formulas import SimpleFormula
 
 from .. import entities
-from ..formulas import SimpleFormula
 from . import calage as cl
 from . import common as cm
 from .cotisations_sociales import capital as cs_capital
