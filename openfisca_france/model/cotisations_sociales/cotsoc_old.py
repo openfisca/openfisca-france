@@ -59,10 +59,6 @@ log = logging.getLogger(__name__)
 # a = {'sal':sal, 'pat':pat, 'csg':csg, 'crds':crds, 'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps, 'ir': P.ir, 'prelsoc': P.prelsoc}
 # return Dicts2Object(**a)
 
-from ... import DEBUG_COTSOC
-
-DEBUG = DEBUG_COTSOC
-
 
 def _mhsup(hsup):
     """
@@ -388,8 +384,7 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, _P):
             for bar in sal[category[0]].itervalues():
                 is_noncontrib = (bar.option == "noncontrib")
                 is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale']) * (bar._name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-                if DEBUG:
-                    is_noncontrib = ((bar.option == "noncontrib") and (bar._name in ["famille", "maladie"]))
+                is_noncontrib = ((bar.option == "noncontrib") and (bar._name in ["famille", "maladie"]))
                 temp = -(iscat * bar.calc(salbrut - hsup)) * is_noncontrib * not_(is_exempt_fds)
                 cotsal += temp
     return cotsal

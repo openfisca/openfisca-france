@@ -41,7 +41,6 @@ AGGREGATES_DEFAULT_VARS = [
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
 DATA_DIR = os.path.join(COUNTRY_DIR, 'data')
-DEBUG_COTSOC = True
 ENTITIES_INDEX = ['men', 'fam', 'foy']
 FILTERING_VARS = ["champm"]
 REVENUES_CATEGORIES = {
