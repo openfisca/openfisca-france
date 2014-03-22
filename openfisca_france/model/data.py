@@ -270,11 +270,11 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nbN', IntCol(cerfa_field = u'N', entity = 'foy',
         label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille")),
     build_column_couple('nbR', IntCol(cerfa_field = u'R', entity = 'foy',
-        label = u"Nombre de titulaires de la carte invalidité d'au moins 80 %")),
+        label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %")),
 
     build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
-                      cerfa_field = u'E', end = datetime.date(2012,12,31))),
+                      cerfa_field = u'E', end = datetime.date(2012, 12, 31))),
     build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
                       entity = 'foy',
                       cerfa_field = u'F')),
@@ -291,7 +291,7 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('caseK', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre",
                       entity = 'foy',
-                      cerfa_field = u'K', end = datetime.date(2011,12,31))),
+                      cerfa_field = u'K', end = datetime.date(2011, 12, 31))),
 
     build_column_couple('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul",
                       entity = 'foy',
@@ -479,7 +479,7 @@ column_by_name = collections.OrderedDict((
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 #
-   build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = datetime.date(2011,12,31))),  # TODO: vérifier existence <=2011
+   build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = datetime.date(2011, 12, 31))),  # TODO: vérifier existence <=2011
 
     build_column_couple('f2dm', IntCol(entity = 'foy',
                     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
@@ -895,7 +895,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7dl', IntCol(entity = 'foy',
                     label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés",
                     cerfa_field = u'7DL')),
-                                   
+
     # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale
     build_column_couple('f7vy', IntCol(entity = 'foy',
                     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité",
@@ -1098,13 +1098,13 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements réalisés en n-1, total réduction d’impôt",
                     val_type = "monetary",
                     cerfa_field = u'7UR',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier les années antérieures
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier les années antérieures
 
     build_column_couple('f7oz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6",
                     val_type = "monetary",
                     cerfa_field = u'7OZ',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier les années antérieures
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier les années antérieures
 
     build_column_couple('f7pz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
@@ -1122,7 +1122,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
                     val_type = "monetary",
                     cerfa_field = u'7RZ',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier années antérieures.
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier années antérieures.
 
 # TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
 #     build_column_couple('f7sz', IntCol(entity = 'foy',
@@ -1141,12 +1141,12 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7fy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
                     cerfa_field = u'7FY',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
 
     build_column_couple('f7gy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
                     cerfa_field = u'7GY',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
 
 
 # TODO: 7jy réutilisée en 2013
@@ -1164,12 +1164,12 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7hy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
                     cerfa_field = u'7HY',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
 
     build_column_couple('f7ky', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
                     cerfa_field = u'7KY',
-                    end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
+                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
 
 # 7iy réutilisée en 2013
 #
@@ -1337,8 +1337,8 @@ column_by_name = collections.OrderedDict((
                     start = datetime.date(2013, 1, 1))),
 
     # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
-    build_column_couple('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
 # en 2013 et 2012, 7uc se rapporte à autre chose, réutilisation de la case
 #    build_column_couple('f7uc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UC', end = datetime.date(2011,12,31))),  # vérifier <=2011
@@ -1349,14 +1349,14 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7UC',
                     start = datetime.date(2012, 1, 1))),
 
-    build_column_couple('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = datetime.date(2011,12,31))),  # vérifier <=2011
-    build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = datetime.date(2011,12,31))),  # vérifier <=2011
+    build_column_couple('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
     # Souscription de parts de fonds communs de placement dans l'innovation,
     # de fonds d'investissement de proximité
@@ -2417,196 +2417,196 @@ column_by_name = collections.OrderedDict((
                                         QUIFOY['conj']: u"5RJ",
                                         QUIFOY['pac1']: u"5SJ", })),  # (f5qj, f5rj, f5sj)),
 
-###
+# ##
 # CASES MANQUANTES PRESENTENT DANS LA DECLARATION DES REVENUS 2013
-###
+# ##
 # A CREER ET A INTEGRER DANS OF
 
 
-### VOS REVENUS
+# ## VOS REVENUS
 
-#revenu de solidarité active
+# revenu de solidarité active
 # pour le foyer:1BL
 # 1ere PAC: 1CB
 # 2ème PAC: 1DQ
 
-#pensions, retraites, rentes, rentes viagères à titre onéreux
+# pensions, retraites, rentes, rentes viagères à titre onéreux
 # Pensions de retraite en capital taxables à 7.5%
 # vous:1AT
 # conj:1BT
 
-#gains de levée d'options, revenus éxonérés ou non imposables en France, revenus exceptionnels ou différés
-    #gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 28/9/2012
+# gains de levée d'options, revenus éxonérés ou non imposables en France, revenus exceptionnels ou différés
+    # gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 28/9/2012
     # imposables en salaires:
     # vous:1TT
     # conj:1UT
 
-    #gains et distributions provenant de parts ou actions de carried-interest, déclarés cases 1AJ ou 1BJ, soumis à la contribution salariale de 30 %
+    # gains et distributions provenant de parts ou actions de carried-interest, déclarés cases 1AJ ou 1BJ, soumis à la contribution salariale de 30 %
     # vous:1NY
     # conj:1OY
-    
-    #agents d'assurance: salaires éxonérés
+
+    # agents d'assurance: salaires éxonérés
     # vous:1AQ
     # conj:1BQ
-    
-    #salariés impatriés: salaires et primes éxonérés
+
+    # salariés impatriés: salaires et primes éxonérés
     # vous:1DY
     # conj:1EY
-    
-    #salaires imposables à l'étranger, non déclarés cases 1Aj ou 1BJ, retenus pour le calcul de la prime pour l'emploi
+
+    # salaires imposables à l'étranger, non déclarés cases 1Aj ou 1BJ, retenus pour le calcul de la prime pour l'emploi
     # vous:1LZ
     # conj:1MZ
-    
-    #sommes éxonérées transférées du CET au PERCO ou à un régime supplémentaire d'entreprise
+
+    # sommes éxonérées transférées du CET au PERCO ou à un régime supplémentaire d'entreprise
     # vous: 1SM
     # conj:1DN
-    
-#salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
-#(n'indiquez pas ces revenus ligne 8TI (2042) ni ligne 1LZ et 1MZ).
-    
-    #total de vos salaires
+
+# salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
+# (n'indiquez pas ces revenus ligne 8TI (2042) ni ligne 1LZ et 1MZ).
+
+    # total de vos salaires
     # vous:1AC
     # conj:1BC
-    # pac1:1CC 
+    # pac1:1CC
     # pac2:1DC
-    
-    #montant de l'impôt acquitté à l'étranger
+
+    # montant de l'impôt acquitté à l'étranger
     # vous:1AD
     # conj:1BD
-    # pac1:1CD 
+    # pac1:1CD
     # pac2:1DD
 
-    #frais rééls
+    # frais rééls
     # vous:1AE
     # conj:1BE
     # pac1:1CE
     # pac2:1DE
 
-    #pour recevoir la PPE: activité à temps plein exercée à l'étranger toute l'année
+    # pour recevoir la PPE: activité à temps plein exercée à l'étranger toute l'année
     # vous:1AX
     # conj:1BX
-    # pac1:1CX 
+    # pac1:1CX
     # pac2:1DX
 
-    #pour recevoir la PPE: sinon, nombre d'heures payées dans l'année
+    # pour recevoir la PPE: sinon, nombre d'heures payées dans l'année
     # vous:1AG
     # conj:1BG
-    # pac1:1CG 
+    # pac1:1CG
     # pac2:1DG
 
-    #pensions exonérées de source étrangère: total des pensions nettes encaissées    
+    # pensions exonérées de source étrangère: total des pensions nettes encaissées
     # vous:1AH
     # conj:1BH
-    # pac1:1CH 
+    # pac1:1CH
     # pac2:1DH
-    
-#revenus exceptionnels ou différés à imposer selon le système du quotient
+
+# revenus exceptionnels ou différés à imposer selon le système du quotient
 # montant total des revenus à imposer selon le système du quotient: 0XX
 
 
-#plus-values et gains divers
-    #gains de cession de bons de souscription de parts de créateurs d'entreprise taxable à 19 %:3SJ
-    #gains de cession de bons de souscription de parts de créateurs d'entreprise taxable à 30 %:3SK
-    #gains de cession de valeurs mobilières, de droits sociaux et assimilés: 
-        #plus-value imposable:3VG
-        #perte 2013:3VH
-        #abattement net pour durée de détention appliquée:
-            #sur des plus-values:3SG
-            #sur des moins-values:3SH
-        #abattement net pour durée de détention renforcée appliquée:
-            #sur des plus-values:3SL
-            #sur des moins-values:3SM
-    #gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 16/10/2007, soumis à la contributin salariale de 10%:
+# plus-values et gains divers
+    # gains de cession de bons de souscription de parts de créateurs d'entreprise taxable à 19 %:3SJ
+    # gains de cession de bons de souscription de parts de créateurs d'entreprise taxable à 30 %:3SK
+    # gains de cession de valeurs mobilières, de droits sociaux et assimilés:
+        # plus-value imposable:3VG
+        # perte 2013:3VH
+        # abattement net pour durée de détention appliquée:
+            # sur des plus-values:3SG
+            # sur des moins-values:3SH
+        # abattement net pour durée de détention renforcée appliquée:
+            # sur des plus-values:3SL
+            # sur des moins-values:3SM
+    # gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 16/10/2007, soumis à la contributin salariale de 10%:
     # vous:3VN
     # conj:3SN
-    #impatriés: cessions de titres détenus à l'étranger (report de la déclaration 2047 IMP)
-        #plus-values exonérées (50 %):3VQ
-        #moins-values non imputables (50 %):3VR
-    #plus-values en report d'imposition (art 150-0 D ter du CGI):3WE
-        #plus-values taxables à 24 %:3SB
-    #plus-values en report d'imposition (art 150-0 B ter du CGI):3WH
-    #transfert du domicile hors de France, report de la déclaration 2074 ET:
-        #plus-values et créances dont l'imposition est en sursis de paiement:
-            #plus-values imposables:3WA
-            #plus-values taxables à 19 %:3WF
-        #plus-values et créances dont l'imposition ne bénéficie pas du sursis de paiement:
-            #plus-values imposables:3WB
-            #plus-values taxables à 19 %:3WG
-            #abattement pour durée de détention:3WD
-            #plus-values imposables (art 150-0 D ter bis du CGI):3WI
-            #plus-values taxables à 19 % (art 150-0 D ter bis du CGI):3WJ
-    #plus-values de cession de titres de jeunes entreprises innovantes exonérées:3VP
-    #plus-values exonérées de cession de participations supérieures à 25 % au sein du groupe familial:3VY
-    #plus-values de cession d'une résidence secondaire exonérée sous condition de remploi:3VW
-    #plus-values réalisées par les non-résidents:
-        #plus-values de cession de droits sociaux art 244 bis B du CGI et distributions de sociétés de capital-risque:3SE
-    
-#revenus fonciers
-    #amortissement "Robien" et "Borloo neuf" déduit des revenus fonciers 2013 (investissements réalisés en 2009):4BY
-    #taxe sur les loyers élevés (report de la déclaration 2042 LE):4BH
-    
-#revenus agricoles
-    #revenus des exploitants forestiers (régime du forfait)
+    # impatriés: cessions de titres détenus à l'étranger (report de la déclaration 2047 IMP)
+        # plus-values exonérées (50 %):3VQ
+        # moins-values non imputables (50 %):3VR
+    # plus-values en report d'imposition (art 150-0 D ter du CGI):3WE
+        # plus-values taxables à 24 %:3SB
+    # plus-values en report d'imposition (art 150-0 B ter du CGI):3WH
+    # transfert du domicile hors de France, report de la déclaration 2074 ET:
+        # plus-values et créances dont l'imposition est en sursis de paiement:
+            # plus-values imposables:3WA
+            # plus-values taxables à 19 %:3WF
+        # plus-values et créances dont l'imposition ne bénéficie pas du sursis de paiement:
+            # plus-values imposables:3WB
+            # plus-values taxables à 19 %:3WG
+            # abattement pour durée de détention:3WD
+            # plus-values imposables (art 150-0 D ter bis du CGI):3WI
+            # plus-values taxables à 19 % (art 150-0 D ter bis du CGI):3WJ
+    # plus-values de cession de titres de jeunes entreprises innovantes exonérées:3VP
+    # plus-values exonérées de cession de participations supérieures à 25 % au sein du groupe familial:3VY
+    # plus-values de cession d'une résidence secondaire exonérée sous condition de remploi:3VW
+    # plus-values réalisées par les non-résidents:
+        # plus-values de cession de droits sociaux art 244 bis B du CGI et distributions de sociétés de capital-risque:3SE
+
+# revenus fonciers
+    # amortissement "Robien" et "Borloo neuf" déduit des revenus fonciers 2013 (investissements réalisés en 2009):4BY
+    # taxe sur les loyers élevés (report de la déclaration 2042 LE):4BH
+
+# revenus agricoles
+    # revenus des exploitants forestiers (régime du forfait)
     # vous:5HD
     # conj:5ID
     # pac1:5JD
-    #régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur:
-        #jeunes agriculteurs, abattement de 50% ou 100% (à vérifier sur la déclaration papier):
+    # régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur:
+        # jeunes agriculteurs, abattement de 50% ou 100% (à vérifier sur la déclaration papier):
         # vous:5HZ
         # conj:5IZ
         # pac1:5JZ
-    #déficits agricoles des années antérieures du foyer non encore déduits:
+    # déficits agricoles des années antérieures du foyer non encore déduits:
     # 2007:5QF
     # 2008:5QG
     # 2009:5QN
     # 2010:5QO
     # 2011:5QP
     # 2012:5QQ
-    
-#revenus non commerciaux professionnels:
-    #régime de la déclaratin contrôlée, revenus bénéficiant de l'abattement association agrée ou viseur
-        #jeunes créateurs abattement 50 %:
+
+# revenus non commerciaux professionnels:
+    # régime de la déclaratin contrôlée, revenus bénéficiant de l'abattement association agrée ou viseur
+        # jeunes créateurs abattement 50 %:
         # vous:5QL
         # conj:5RL
         # pac1:5SL
-        #honoraires de prospection commerciale exonérs:
+        # honoraires de prospection commerciale exonérs:
         # vous:5TF
         # conj:5UF
-        # pac1:5VF    
-    #régime de la déclaratin contrôlée, revenus ne bénéficiant pas de l'abattement association agrée
-        #honoraires de prospection commerciale exonérs:
+        # pac1:5VF
+    # régime de la déclaratin contrôlée, revenus ne bénéficiant pas de l'abattement association agrée
+        # honoraires de prospection commerciale exonérs:
         # vous:5TI
         # conj:5UI
         # pac1:5VI
-        
-#revenus non commerciaux non professionnels
-    #régime déclaratif spécial ou micro BNC (recettes brutes sans déduction d'abattement)
-        #revenus nets exonérés
+
+# revenus non commerciaux non professionnels
+    # régime déclaratif spécial ou micro BNC (recettes brutes sans déduction d'abattement)
+        # revenus nets exonérés
         # vous:5TH
         # conj:5UH
         # pac1:5VH
-    #régime de la déclaration contrôlée
-        #revenus exonérés avec AA ou viseur
+    # régime de la déclaration contrôlée
+        # revenus exonérés avec AA ou viseur
         # vous:5HK
         # conj:5JK
         # pac1:5LK
-        #revenus imposables avec AA ou viseur
+        # revenus imposables avec AA ou viseur
         # vous:5JG
         # conj:5RF
         # pac1:5SF
-        #déficits avec AA ou viseur
+        # déficits avec AA ou viseur
         # vous:5JJ
         # conj:5RG
         # pac1:5SG
-        #inventeurs et auteurs de logiciels: produits taxables à 16 % avec AA ou viseur
+        # inventeurs et auteurs de logiciels: produits taxables à 16 % avec AA ou viseur
         # vous:5TC
         # conj:5UC
         # pac1:5VC
-        #jeunes créateurs abattement de 50 %, avec AA ou viseur
+        # jeunes créateurs abattement de 50 %, avec AA ou viseur
         # vous:5SV
         # conj:5SW
         # pac1:5SX
-    #déficits des années antérieures non encore déduite=s:
+    # déficits des années antérieures non encore déduite=s:
     # 2007:5HT
     # 2008:5IT
     # 2009:5JT
@@ -2614,54 +2614,54 @@ column_by_name = collections.OrderedDict((
     # 2011:5LT
     # 2012:5MT
 
-#revenus à imposer aux prélèvements sociaux
-    #revenus nets:
+# revenus à imposer aux prélèvements sociaux
+    # revenus nets:
     # vous:5HY
     # conj:5IY
     # pac1:5JY
-    #plus-values à long terme exonérées en cas de départ à la retraite
+    # plus-values à long terme exonérées en cas de départ à la retraite
     # vous:5HG
     # conj:5IG
-    
-#revenus industriels et commerciaux professionnels
-    #régime du bénéfice réel:
-        #locations meublées avec CGA ou viseur:
+
+# revenus industriels et commerciaux professionnels
+    # régime du bénéfice réel:
+        # locations meublées avec CGA ou viseur:
         # vous:5HA
         # conj:5IA
         # pac1:5JA
-        #locations meublées sans CGA:
+        # locations meublées sans CGA:
         # vous:5KA
         # conj:5LA
-        # pac1:5MA 
-        #déficit locations meublées avec CGA ou viseur:
+        # pac1:5MA
+        # déficit locations meublées avec CGA ou viseur:
         # vous:5QA
         # conj:5RA
         # pac1:5SA
-    
-#revenus industriels et commerciaux non professionnels
-    #déficits industriels et commerciaux non professionnels des années antérieures non encore déduits
+
+# revenus industriels et commerciaux non professionnels
+    # déficits industriels et commerciaux non professionnels des années antérieures non encore déduits
     # 2007:5RN
     # 2008:5RO
     # 2009:5RP
     # 2010:5RQ
     # 2011:5RR
     # 2012:5RW
-    
-#locations meublées non professionnelles
-    #régime du bénéfice réel
-        #revenus imposables avec CGA ou viseur:
+
+# locations meublées non professionnelles
+    # régime du bénéfice réel
+        # revenus imposables avec CGA ou viseur:
         # vous:5NA
         # conj:5OA
         # pac1:5PA
-        #déficits avec CGA ou viseur:
+        # déficits avec CGA ou viseur:
         # vous:5NY
         # conj:5OY
         # pac1:5PY
-        #déficits sans CGA:
+        # déficits sans CGA:
         # vous:5NZ
         # conj:5OZ
         # pac1:5PZ
-        #déficits des années antérieures non encore déduits:
+        # déficits des années antérieures non encore déduits:
         # 2003:5GA
         # 2004:5GB
         # 2005:5GC
@@ -2672,175 +2672,175 @@ column_by_name = collections.OrderedDict((
         # 2010:5GH
         # 2011:5GI
         # 2012:5GJ
-        
-### CHARGES ET IMPUTATIONS DIVERSES    
 
-    #epargne retraite PERP et produits assimilés (PREFON, COREM et C.G.O.S)
-        #plafond de déduction non utilisé sur les revenus de 2010
+# ## CHARGES ET IMPUTATIONS DIVERSES
+
+    # epargne retraite PERP et produits assimilés (PREFON, COREM et C.G.O.S)
+        # plafond de déduction non utilisé sur les revenus de 2010
         # vous:6PS
         # conj:6PT
         # pac1:6PU
-        #plafond de déduction non utilisé sur les revenus de 2011
+        # plafond de déduction non utilisé sur les revenus de 2011
         # vous:6PS
         # conj:6PT
         # pac1:6PU
-        #plafond de déduction non utilisé sur les revenus de 2012
+        # plafond de déduction non utilisé sur les revenus de 2012
         # vous:6PS
         # conj:6PT
         # pac1:6PU
-        #vous souhaitez bénéficier du plafond de votre conjoint, cochez la case:6QR
-        #si vous êtes nouvellement domicilié en France en 2013 après avoir résidé à l'étranger au cours des 3 années précédentes:6QW
-        #Détermination du plafond de déduction pour les revenus 2013 au titre de l'Epargne Retraite (PERP, Préfon et assimilés):   
+        # vous souhaitez bénéficier du plafond de votre conjoint, cochez la case:6QR
+        # si vous êtes nouvellement domicilié en France en 2013 après avoir résidé à l'étranger au cours des 3 années précédentes:6QW
+        # Détermination du plafond de déduction pour les revenus 2013 au titre de l'Epargne Retraite (PERP, Préfon et assimilés):
           # Cotisations versées en 2013 aux régimes obligatoires d'entreprise de retraite  supplémentaire "article 83", PERCO et, pour leur montant total ou partiel,
-          # celles versées aux régimes ou contrats facultatifs de retraite "Madelin" et "Madelin agricole":  
-          # vous:6QS   
-          # conj:6QT   
-          # pac1:6QU   
+          # celles versées aux régimes ou contrats facultatifs de retraite "Madelin" et "Madelin agricole":
+          # vous:6QS
+          # conj:6QT
+          # pac1:6QU
 
-### CHARGES OUVRANT DROIT A REDUCTION OU CREDIT D'IMPOT
-    #dons à des organismes d'intérêt général établis dans l'Etat européen:
-        #dons à des organismes d'aides aux personnes:7VA
-        #dons à des autres organismes:7VC
-    #dépenses en faveur de la qualité environnementale de l'habitation principale
-        #vous avez réalisé des dépenses d'isolation thermique des murs donnant sur l'extérieur, travaux effectués sur au moins la moitié de la surface totale des murs: 7WC
-        #vous avez réalisé des dépenses d'isolation thermique des toitures, travaux effectués sur la totalité de la toiture:7VG
-        #isolation thermique:
-            #matériaux d'isolation des murs (montant acquisition et pose):7SG
-            #matériaux d'isolation thermique des parois vitrées (montant):7SJ
-            #volets isolants (montant):7SK
-            #porte d'entrée donnant sur l'extérieur (montant):7SL
-        #equipement de production d'énergie utilisant une source d'énergie renouvelable
-            #Équipements de production d'électricité utilisant l'énergie radiative du soleil (panneaux photovoltaïques):7SM    
-            #Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent:7SN    
-            #Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent:7SO    
-            #Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur:7SP   
-            #Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur (y compris le coût de la pose de l'échangeur de chaleur souterrain):7SQ  
-            #Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques):7SR  
-            #Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires (chauffe-eaux solaires...):7SS   
-            #Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (énergie éolienne, hydraulique…):7ST   
-        #Autres dépenses
-            # Équipements de récupération et de traitement des eaux pluviales:7SU   
-            #Diagnostic de performance énergétique:7SV    
-            #Équipements de raccordement à un réseau de chaleur:7SW   
-    #dépenses en faveur de la qualité environnementale des habitations données en location
-        #montant du crédit d'impôt calculé:7SZ
-    #travaux de prévention des risques technologiques dans les logements données en location (report 2041 gr)
-        #dépenses réalisées en 2013:7WR
-    #travaux de restauration immobilière: loi Malraux
-        #opérations engagées avant le 1/1/2011:
-            #dans un secteur sauvegardé ou assimilé:7RD
-            #dans une zone de protection du patrimoine architectural, urbain et paysager (ZPPAUP) ou une aire de mise en valeur de l'architecture et du patrimoine (AMVAP):7RC
-        #opérations engagées en 2012:
-            #dans un secteur sauvegardé ou assimilé:7RF
-            #dans une zone de protection du patrimoine architectural, urbain et paysager (ZPPAUP) ou une aire de mise en valeur de l'architecture et du patrimoine (AMVAP):7RE
-        #opérations engagées en 2013:
-            #dans un secteur sauvegardé ou assimilé:7SY
-            #dans une zone de protection du patrimoine architectural, urbain et paysager (ZPPAUP) ou une aire de mise en valeur de l'architecture et du patrimoine (AMVAP):7SX
-    #dépenses de protection du patrimoine naturel
-        #report de réduction d'impôt non encore imputée de l'année 2010:7KB
-        #report de réduction d'impôt non encore imputée de l'année 2011:7KC            
-        #report de réduction d'impôt non encore imputée de l'année 2012:7KD
-    #investissement locatifs: loi Duflot
-        #investissement réalisés et achevés en 2013:
-            #en métropole:7GH
-            #outre-mer:7GI
-    #investissement locatifs neufs: loi Scellier
-        #investissement achevés ou acquis en 2013:
-            #investissements réalisés de 1/1/2013 au 31/03/2013 avec engagement de réalisation en 2012:
-                #Métropole, logement BBC:7FA
-                #Métropole, logement non-BBC:7FB
-                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7FC
-                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7FD
-            #investissements réalisés en 2012 avec engagement de réalisation de l'investissement à compter du 1/1/2012:
-                #Métropole, logement BBC:7JA
-                #Métropole, logement non-BBC:7JF
-                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JK
-                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JO
-            #investissements réalisés en 2012 avec engagement de réalisation de l'investissement en 2011:
-                #Métropole, logement BBC:7JB
-                #Métropole, logement non-BBC:7JG
-                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JL
-                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JP
-            #investissements réalisés en 2012, logement acquis en l'état de futur achévement avec contrat de réservation enregistré au plus tard le 31/12/2011:
-                #investissements réalisés du 1/1/2012 au 31/3/2012:
-                    #Métropole, logement BBC:7JD
-                    #Métropole, logement non-BBC:7JH
-                    #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JM
-                    #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JQ
-                #investissements réalisés du 1/4/2012 au 31/12/2012:
-                    #Métropole, logement BBC:7JE
-                    #Métropole, logement non-BBC:7JJ
-                    #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JN
-                    #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JR                                
-            #investissements réalisés en 2011 avec engagement de réalisation de l'investissement à compter du 1/1/2011:
-                #Métropole, logement BBC:7NA
-                #Métropole, logement non-BBC:7NF
-                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NK
-                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NP
-            #investissements réalisés en 2011 avec engagement de réalisation de l'investissement en 2010:
-                #Métropole, logement BBC:7NB
-                #Métropole, logement non-BBC:7NG
-                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NL
-                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NQ
-            #investissements réalisés en 2011, logement acquis en l'état de futur achévement avec contrat de réservation enregistré au plus tard le 31/12/2010:
-                #investissements réalisés du 1/1/2011 au 31/1/2011:
-                    #Métropole, logement BBC:7NC
-                    #Métropole, logement non-BBC:7NH
-                    #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NM
-                    #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NR
-                #investissements réalisés du 1/2/2011 au 31/3/2011:
-                    #Métropole, logement BBC:7ND
-                    #Métropole, logement non-BBC:7NI
-                    #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NN
-                    #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NS                                               
-                #investissements réalisés du 1/4/2011 au 31/12/2011:
-                    #Métropole, logement BBC:7NE
-                    #Métropole, logement non-BBC:7NJ
-                    #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NO
-                    #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NT
-            #report concernant les investissements achevés ou acquis au cours des années antérieures:
-                #investissements achevés en 2012: report de 1/9 de la réduction d'impôt:
-                    #investissements réalisés en 2012:
-                        #investissements réalisés en 2012, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GS
-                        #investissements réalisés en 2012 avec promesse d'achat en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GK
-                    #investissements réalisés en 2011:
-                        #investissements réalisés en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GL
-                        #investissements réalisés en 2011 avec promesse d'achat en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GP
-                    #investissements réalisés en 2010:
-                        #investissements réalisés en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GS
-                #investissements achevés en 2011: report de 1/9 de la réduction d'impôt:
-                    #investissements réalisés en 2011:
-                        #investissements réalisés en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7HA
-                        #investissements réalisés en 2011 avec promesse d'achat en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7HB
-                    #investissements réalisés en 2010:
-                        #investissements réalisés en 2010, en Métropole et dans les DOM-COM:7HD
-                        #investissements réalisés en 2010 avec promesse d'achat avant le 1/1/2010, en Métropole et dans les DOM-COM:7HE
-                    #investissements réalisés en 2009, en Métropole et dans les DOM-COM:7HF
-                #investissements réalisés et achevés en 2011: report de 1/5 de la réduction d'impôt:
-                    #investissement en Polynésie, Nouvelle Calédonie, dans les îles Wallis et Futuna:7HG                    
-                    #investissement en Polynésie, Nouvelle Calédonie, dans les îles Wallis et Futuna avec promesse d'achat en 2010:7HH
-            #investissements achevés en 2010:report de 1/9 de l'investissement:
-                #investissement réalisés et achevés en 2010, en Métropole:7HV
-                #investissement réalisés et achevés en 2010, dans les DOM-COM:7HW
-                #investissement réalisés et achevés en 2010, en Métropole avec promesse d'achat avant le 1/1/2010:7HX                
-                #investissement réalisés et achevés en 2010, dans les DOM-COM avec promesse d'achat avant le 1/1/2010:7HZ                     
-            #investissements réalisés en 2009 et achevés en 2010:
-                #investissement réalisés en 2009 et achevés en 2010, en Métropole en 2009, dans les DOM du 1/1/2009 au 26/5/2009, dans les DOM du 27/5/2009 au 30/12/2009 lorsqu'ils ne respectent pas les plafonds spécifiques:7HT
-                #investissement réalisés et achevés en 2010, dans les DOM-COM du 27/5/2009 au 31/12/2009 respectant les plafonds spécifiques:7HU
-            #report du solde des réductions d'impôts non encore imputé
-                #investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1/1/2010:
-                    #report de l'année 2010:7LB
-                    #report de l'année 2011:7LE
-                    #report de l'année 2012:7LM
-                #investissements réalisés et achevés en 2010, ou réalisés en 2010 et achevés en 2011, ou rélisés et achevés en 2011 avec engagement en 2010:
-                    #report de l'année 2010:7LC
-                    #report de l'année 2011:7LD
-                    #report de l'année 2012:7LS
-                #investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2011:7LF
-                #investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2012:7LZ                    
-                #investissements réalisés et achevés en 2012: report du solde de réduction d'impôt de l'année 2012:7MG
-    #investissement destinés à la location meublée non professionnelle: loi Censi-Bouvard
-            #investissement réalisés en 2013:
+# ## CHARGES OUVRANT DROIT A REDUCTION OU CREDIT D'IMPOT
+    # dons à des organismes d'intérêt général établis dans l'Etat européen:
+        # dons à des organismes d'aides aux personnes:7VA
+        # dons à des autres organismes:7VC
+    # dépenses en faveur de la qualité environnementale de l'habitation principale
+        # vous avez réalisé des dépenses d'isolation thermique des murs donnant sur l'extérieur, travaux effectués sur au moins la moitié de la surface totale des murs: 7WC
+        # vous avez réalisé des dépenses d'isolation thermique des toitures, travaux effectués sur la totalité de la toiture:7VG
+        # isolation thermique:
+            # matériaux d'isolation des murs (montant acquisition et pose):7SG
+            # matériaux d'isolation thermique des parois vitrées (montant):7SJ
+            # volets isolants (montant):7SK
+            # porte d'entrée donnant sur l'extérieur (montant):7SL
+        # equipement de production d'énergie utilisant une source d'énergie renouvelable
+            # Équipements de production d'électricité utilisant l'énergie radiative du soleil (panneaux photovoltaïques):7SM
+            # Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent:7SN
+            # Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent:7SO
+            # Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur:7SP
+            # Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur (y compris le coût de la pose de l'échangeur de chaleur souterrain):7SQ
+            # Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques):7SR
+            # Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires (chauffe-eaux solaires...):7SS
+            # Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (énergie éolienne, hydraulique…):7ST
+        # Autres dépenses
+            # Équipements de récupération et de traitement des eaux pluviales:7SU
+            # Diagnostic de performance énergétique:7SV
+            # Équipements de raccordement à un réseau de chaleur:7SW
+    # dépenses en faveur de la qualité environnementale des habitations données en location
+        # montant du crédit d'impôt calculé:7SZ
+    # travaux de prévention des risques technologiques dans les logements données en location (report 2041 gr)
+        # dépenses réalisées en 2013:7WR
+    # travaux de restauration immobilière: loi Malraux
+        # opérations engagées avant le 1/1/2011:
+            # dans un secteur sauvegardé ou assimilé:7RD
+            # dans une zone de protection du patrimoine architectural, urbain et paysager (ZPPAUP) ou une aire de mise en valeur de l'architecture et du patrimoine (AMVAP):7RC
+        # opérations engagées en 2012:
+            # dans un secteur sauvegardé ou assimilé:7RF
+            # dans une zone de protection du patrimoine architectural, urbain et paysager (ZPPAUP) ou une aire de mise en valeur de l'architecture et du patrimoine (AMVAP):7RE
+        # opérations engagées en 2013:
+            # dans un secteur sauvegardé ou assimilé:7SY
+            # dans une zone de protection du patrimoine architectural, urbain et paysager (ZPPAUP) ou une aire de mise en valeur de l'architecture et du patrimoine (AMVAP):7SX
+    # dépenses de protection du patrimoine naturel
+        # report de réduction d'impôt non encore imputée de l'année 2010:7KB
+        # report de réduction d'impôt non encore imputée de l'année 2011:7KC
+        # report de réduction d'impôt non encore imputée de l'année 2012:7KD
+    # investissement locatifs: loi Duflot
+        # investissement réalisés et achevés en 2013:
+            # en métropole:7GH
+            # outre-mer:7GI
+    # investissement locatifs neufs: loi Scellier
+        # investissement achevés ou acquis en 2013:
+            # investissements réalisés de 1/1/2013 au 31/03/2013 avec engagement de réalisation en 2012:
+                # Métropole, logement BBC:7FA
+                # Métropole, logement non-BBC:7FB
+                # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7FC
+                # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7FD
+            # investissements réalisés en 2012 avec engagement de réalisation de l'investissement à compter du 1/1/2012:
+                # Métropole, logement BBC:7JA
+                # Métropole, logement non-BBC:7JF
+                # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JK
+                # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JO
+            # investissements réalisés en 2012 avec engagement de réalisation de l'investissement en 2011:
+                # Métropole, logement BBC:7JB
+                # Métropole, logement non-BBC:7JG
+                # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JL
+                # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JP
+            # investissements réalisés en 2012, logement acquis en l'état de futur achévement avec contrat de réservation enregistré au plus tard le 31/12/2011:
+                # investissements réalisés du 1/1/2012 au 31/3/2012:
+                    # Métropole, logement BBC:7JD
+                    # Métropole, logement non-BBC:7JH
+                    # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JM
+                    # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JQ
+                # investissements réalisés du 1/4/2012 au 31/12/2012:
+                    # Métropole, logement BBC:7JE
+                    # Métropole, logement non-BBC:7JJ
+                    # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7JN
+                    # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7JR
+            # investissements réalisés en 2011 avec engagement de réalisation de l'investissement à compter du 1/1/2011:
+                # Métropole, logement BBC:7NA
+                # Métropole, logement non-BBC:7NF
+                # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NK
+                # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NP
+            # investissements réalisés en 2011 avec engagement de réalisation de l'investissement en 2010:
+                # Métropole, logement BBC:7NB
+                # Métropole, logement non-BBC:7NG
+                # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NL
+                # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NQ
+            # investissements réalisés en 2011, logement acquis en l'état de futur achévement avec contrat de réservation enregistré au plus tard le 31/12/2010:
+                # investissements réalisés du 1/1/2011 au 31/1/2011:
+                    # Métropole, logement BBC:7NC
+                    # Métropole, logement non-BBC:7NH
+                    # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NM
+                    # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NR
+                # investissements réalisés du 1/2/2011 au 31/3/2011:
+                    # Métropole, logement BBC:7ND
+                    # Métropole, logement non-BBC:7NI
+                    # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NN
+                    # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NS
+                # investissements réalisés du 1/4/2011 au 31/12/2011:
+                    # Métropole, logement BBC:7NE
+                    # Métropole, logement non-BBC:7NJ
+                    # DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7NO
+                    # Polynésie, Nouvelle Calédonie, Wallis et Futuna:7NT
+            # report concernant les investissements achevés ou acquis au cours des années antérieures:
+                # investissements achevés en 2012: report de 1/9 de la réduction d'impôt:
+                    # investissements réalisés en 2012:
+                        # investissements réalisés en 2012, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GS
+                        # investissements réalisés en 2012 avec promesse d'achat en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GK
+                    # investissements réalisés en 2011:
+                        # investissements réalisés en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GL
+                        # investissements réalisés en 2011 avec promesse d'achat en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GP
+                    # investissements réalisés en 2010:
+                        # investissements réalisés en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GS
+                # investissements achevés en 2011: report de 1/9 de la réduction d'impôt:
+                    # investissements réalisés en 2011:
+                        # investissements réalisés en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7HA
+                        # investissements réalisés en 2011 avec promesse d'achat en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7HB
+                    # investissements réalisés en 2010:
+                        # investissements réalisés en 2010, en Métropole et dans les DOM-COM:7HD
+                        # investissements réalisés en 2010 avec promesse d'achat avant le 1/1/2010, en Métropole et dans les DOM-COM:7HE
+                    # investissements réalisés en 2009, en Métropole et dans les DOM-COM:7HF
+                # investissements réalisés et achevés en 2011: report de 1/5 de la réduction d'impôt:
+                    # investissement en Polynésie, Nouvelle Calédonie, dans les îles Wallis et Futuna:7HG
+                    # investissement en Polynésie, Nouvelle Calédonie, dans les îles Wallis et Futuna avec promesse d'achat en 2010:7HH
+            # investissements achevés en 2010:report de 1/9 de l'investissement:
+                # investissement réalisés et achevés en 2010, en Métropole:7HV
+                # investissement réalisés et achevés en 2010, dans les DOM-COM:7HW
+                # investissement réalisés et achevés en 2010, en Métropole avec promesse d'achat avant le 1/1/2010:7HX
+                # investissement réalisés et achevés en 2010, dans les DOM-COM avec promesse d'achat avant le 1/1/2010:7HZ
+            # investissements réalisés en 2009 et achevés en 2010:
+                # investissement réalisés en 2009 et achevés en 2010, en Métropole en 2009, dans les DOM du 1/1/2009 au 26/5/2009, dans les DOM du 27/5/2009 au 30/12/2009 lorsqu'ils ne respectent pas les plafonds spécifiques:7HT
+                # investissement réalisés et achevés en 2010, dans les DOM-COM du 27/5/2009 au 31/12/2009 respectant les plafonds spécifiques:7HU
+            # report du solde des réductions d'impôts non encore imputé
+                # investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1/1/2010:
+                    # report de l'année 2010:7LB
+                    # report de l'année 2011:7LE
+                    # report de l'année 2012:7LM
+                # investissements réalisés et achevés en 2010, ou réalisés en 2010 et achevés en 2011, ou rélisés et achevés en 2011 avec engagement en 2010:
+                    # report de l'année 2010:7LC
+                    # report de l'année 2011:7LD
+                    # report de l'année 2012:7LS
+                # investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2011:7LF
+                # investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2012:7LZ
+                # investissements réalisés et achevés en 2012: report du solde de réduction d'impôt de l'année 2012:7MG
+    # investissement destinés à la location meublée non professionnelle: loi Censi-Bouvard
+            # investissement réalisés en 2013:
                 #
 
 # pfam only
@@ -3058,7 +3058,7 @@ column_by_name = collections.OrderedDict((
 # # ISF ##
 
 # # Immeubles bâtis ##
-    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary")), 
+    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary")),
     build_column_couple('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary")),
 # # non bâtis ##
     build_column_couple('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary")),
