@@ -105,7 +105,6 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
 
                 if not all(holder.array == col.default):
                     if len(holder.array) == len_indiv:
-
                         input_variables['ind'].append(name)
                     elif len(holder.array) == len_men:
                         input_variables['men'].append(name)
