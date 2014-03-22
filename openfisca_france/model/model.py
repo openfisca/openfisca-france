@@ -50,24 +50,24 @@ from . import pfam as pf
 from . import th as th
 
 
-def build_simple_formula_couple(name, prestation):
+def build_simple_formula_couple(name, column):
     assert isinstance(name, basestring), name
     name = unicode(name)
-    prestation.formula_constructor = formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
-        calculate = staticmethod(prestation._func),
+    column.formula_constructor = formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
+        function = staticmethod(column._func),
         ))
     formula_class.extract_parameters()
-    del prestation._func
-    if prestation.label is None:
-        prestation.label = name
-    assert prestation.name is None
-    prestation.name = name
+    del column._func
+    if column.label is None:
+        column.label = name
+    assert column.name is None
+    column.name = name
 
-    entity_column_by_name = entities.entity_class_by_symbol[prestation.entity].column_by_name
+    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
     assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = prestation
+    entity_column_by_name[name] = column
 
-    return (name, prestation)
+    return (name, column)
 
 
 prestation_by_name = collections.OrderedDict((
