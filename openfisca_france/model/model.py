@@ -54,10 +54,10 @@ def build_simple_formula_couple(name, column):
     assert isinstance(name, basestring), name
     name = unicode(name)
     column.formula_constructor = formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
-        function = staticmethod(column._func),
+        function = staticmethod(column.function),
         ))
     formula_class.extract_parameters()
-    del column._func
+    del column.function
     if column.label is None:
         column.label = name
     assert column.name is None

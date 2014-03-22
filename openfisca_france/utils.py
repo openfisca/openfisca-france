@@ -73,7 +73,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 if corrige:
                     try:
                         message += "Filling NA's with default values for %s... \n" % var
-                        serie[serie.isnull()] = varcol._default
+                        serie[serie.isnull()] = varcol.default
                         message += "Done \n"
                     except:
                         message += " Cannot fill NA for column %s, maybe _.default doesn't exist \n" % var
@@ -133,7 +133,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     if corrige:
                         message += "Warning, forcing type integer for %s..." % var
                         try:
-                            serie = serie.astype(varcol._dtype)
+                            serie = serie.astype(varcol.dtype)
                             message += "Done \n"
                         except:
                             message += "sorry, cannot force type.\n"
@@ -149,7 +149,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     if corrige:
                         message += "Warning, forcing type boolean for %s..." % var
                         try:
-                            serie = serie.astype(varcol._dtype)
+                            serie = serie.astype(varcol.dtype)
                             message += "Done \n"
                         except:
                             message += "sorry, cannot force type.\n"
