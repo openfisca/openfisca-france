@@ -250,10 +250,10 @@ def _rev_cat_tspr(self, tspr_holder, indu_plaf_abat_pen):
     return tspr + indu_plaf_abat_pen
 
 
-def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar): # TODO: check this, f2as): and correct in data.py
+def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar):  # TODO: check this, f2as): and correct in data.py
     year = _P.datesim.year
     return f2aa * (year == 2009) + f2al * (year == 2009 | year == 2010) + f2am * (year == 2009 | year == 2010 | year == 2011) + f2an * (year == 2010 | year == 2011 | year == 2012) + \
-                  f2aq * (year == 2011 | year == 2012 | year == 2013) + f2ar * (year == 2012 | year == 2013 | year == 2014) # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
+                  f2aq * (year == 2011 | year == 2012 | year == 2013) + f2ar * (year == 2012 | year == 2013 | year == 2014)  # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
 
 
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P):
@@ -519,14 +519,14 @@ def _cont_rev_loc(f4bl, _P):
     P = _P.ir.crl
     return round(P.taux * (f4bl >= P.seuil) * f4bl)
 
-def _teicaa(self, f5qm_holder, _P): # f5rm
+def _teicaa(self, f5qm_holder, _P):  # f5rm
 
     """
     Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
     """
     f5qm = self.filter_role(f5qm_holder, role = VOUS)
     f5rm = self.filter_role(f5qm_holder, role = CONJ)
-    
+
     bareme = _P.ir.teicaa
     return bareme.calc(f5qm) + bareme.calc(f5rm)
 
@@ -566,12 +566,12 @@ def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P):
     else:
         return 0 * assiette_service
 
-def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P): # f3sd is in f3vd holder
+def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P):  # f3sd is in f3vd holder
     """
     Taxation des plus value
     TODO: f3vt, 2013 f3Vg au barème / tout refaire
     """
-    
+
     rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
     f3vd = self.filter_role(f3vd_holder, role = VOUS)
     f3sd = self.filter_role(f3vd_holder, role = CONJ)
@@ -579,7 +579,7 @@ def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_ho
     f3si = self.filter_role(f3vi_holder, role = CONJ)
     f3vf = self.filter_role(f3vf_holder, role = VOUS)
     f3sf = self.filter_role(f3vf_holder, role = CONJ)
-    # TODO: remove this todo use sum for all fields after checking
+    #  TODO: remove this todo use sum for all fields after checking
     P = _P.ir.plus_values
         # revenus taxés à un taux proportionnel
     rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
@@ -658,7 +658,7 @@ def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon
 
     f3va = self.sum_by_entity(f3va_holder)
     f3vi = self.sum_by_entity(f3vi_holder)
-    
+
     rpns_exon = self.sum_by_entity(rpns_exon_holder)
     rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
 
@@ -1153,6 +1153,7 @@ def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, ca
 
     # # celib div
     c = 1 + enf + n2 + n3 + n6 + n7
+
     return (marpac | jveuf) * m + (veuf & not_(jveuf)) * v + celdiv * c
 
 ###############################################################################
