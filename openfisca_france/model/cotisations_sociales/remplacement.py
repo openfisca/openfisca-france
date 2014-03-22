@@ -54,7 +54,7 @@ def exo_csg_chom(chobrut, csg_rempl, _P):
                         + csgchod_sans_exo(chobrut, csg_rempl, _P)
                         + csgchoi_sans_exo(chobrut, csg_rempl, _P)
                         + crdscho_sans_exo(chobrut, csg_rempl, _P))
-    nbh_travail = 151.67  # TODO: depuis 2001 mais avant ?
+    nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
     cho_seuil_exo = _P.csg.chom.min_exo * nbh_travail * _P.cotsoc.gen.smic_h_b
     return (chonet_sans_exo <= 12 * cho_seuil_exo)  # annuel
 
