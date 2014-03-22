@@ -98,7 +98,7 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
         input_variables = list()
         for name, col in simulation.tax_benefit_system.column_by_name.iteritems():
             holder = simulation.get_holder(name, default = None)
-            if holder is not None and not all(holder.array == col._default):
+            if holder is not None and not all(holder.array == col.default):
                 input_variables.append(name)
         return input_variables
 
