@@ -329,7 +329,6 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         return data
 
     data.rename(columns = ipp2of_input_variables, inplace = True)
-    data["agem"] = 12 * data["age"]
     data['quifoy'] = _qui(data, 'foy')
     min_idfoy = data["idfoy"].min()
     if min_idfoy > 0:
