@@ -497,19 +497,43 @@ class Scenario(object):
                                                 error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
                                                     u" ans",
                                                 ),
+                                            conv.test(lambda individu_id:
+                                                individu_by_id[individu_id].get('age') is None
+                                                or individu_by_id[individu_id]['age'] >= 18,
+                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
+                                                    u" ans",
+                                                ),
+                                            conv.test(lambda individu_id:
+                                                individu_by_id[individu_id].get('agem') is None
+                                                or individu_by_id[individu_id]['agem'] >= 18 * 12,
+                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
+                                                    u" ans",
+                                                ),
                                             conv.test(lambda individu_id: individu_id in parents_id,
                                                 error = u"Un déclarant ou un conjoint sur la feuille d'impôt, doit être"
                                                     u"un parent dans sa famille",
                                                 ),
                                             )),
-                                        personnes_a_charge = conv.uniform_sequence(
+                                        personnes_a_charge = conv.uniform_sequence(conv.pipe(
                                             conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
                                                 or individu_by_id[individu_id].get('birth') is None
                                                 or data['year'] - individu_by_id[individu_id]['birth'].year <= 25,
                                                 error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                     u" 25 ans ou être invalide",
                                                 ),
-                                            ),
+                                            conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
+                                                or individu_by_id[individu_id].get('age') is None
+                                                or individu_by_id[individu_id]['age'] <= 25,
+                                                error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    u" 25 ans ou être invalide",
+                                                ),
+                                            conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
+                                                or individu_by_id[individu_id].get('agem') is None
+                                                or individu_by_id[individu_id]['agem'] <= 25 * 12,
+                                                error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    u" 25 ans ou être invalide",
+                                                ),
+                                            )),
                                         ),
                                     default = conv.noop,
                                     ),
@@ -523,6 +547,7 @@ class Scenario(object):
                                             ),
                                         ),
                                     default = conv.noop,
+                                    drop_none_values = 'missing',
                                     ),
                                 ),
                             ),
@@ -746,7 +771,8 @@ class Scenario(object):
         used_columns_name = set(
             key
             for individu in test_case[u'individus'].itervalues()
-            for key in individu
+            for key, value in individu.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'ind' and column_name in used_columns_name \
@@ -766,7 +792,8 @@ class Scenario(object):
         used_columns_name = set(
             key
             for famille in test_case[u'familles'].itervalues()
-            for key in famille
+            for key, value in famille.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'fam' and column_name in used_columns_name:
@@ -785,7 +812,8 @@ class Scenario(object):
         used_columns_name = set(
             key
             for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
-            for key in foyer_fiscal
+            for key, value in foyer_fiscal.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'foy' and column_name in used_columns_name:
@@ -804,7 +832,8 @@ class Scenario(object):
         used_columns_name = set(
             key
             for menage in test_case[u'menages'].itervalues()
-            for key in menage
+            for key, value in menage.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'men' and column_name in used_columns_name:
@@ -850,7 +879,7 @@ class Scenario(object):
         test_case = self.test_case
         suggestions = dict()
         for individu_id, individu in test_case['individus'].iteritems():
-            if individu.get('birth') is None:
+            if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
                 # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
                 birth_year = self.year - 40 if is_parent else self.year - 10

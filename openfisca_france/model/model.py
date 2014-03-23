@@ -28,7 +28,7 @@ from datetime import date
 
 from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import SimpleFormula
+from openfisca_core.formulas import AlternativeFormula, SimpleFormula
 
 from .. import entities
 from . import calage as cl
@@ -50,9 +50,38 @@ from . import pfam as pf
 from . import th as th
 
 
+def build_alternative_formula_couple(name, functions, column):
+    assert isinstance(name, basestring), name
+    name = unicode(name)
+    assert isinstance(functions, list), functions
+    assert column.function is None
+
+    alternative_formulas_constructor = []
+    for function in functions:
+        formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
+            function = staticmethod(function),
+            ))
+        formula_class.extract_parameters()
+        alternative_formulas_constructor.append(formula_class)
+    column.formula_constructor = formula_class = type(name.encode('utf-8'), (AlternativeFormula,), dict(
+        alternative_formulas_constructor = alternative_formulas_constructor,
+        ))
+    if column.label is None:
+        column.label = name
+    assert column.name is None
+    column.name = name
+
+    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
+    assert name not in entity_column_by_name, name
+    entity_column_by_name[name] = column
+
+    return (name, column)
+
+
 def build_simple_formula_couple(name, column):
     assert isinstance(name, basestring), name
     name = unicode(name)
+
     column.formula_constructor = formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
         function = staticmethod(column.function),
         ))
@@ -190,8 +219,22 @@ prestation_by_name = collections.OrderedDict((
     # Impôt sur le revenu
     ############################################################
 
-    build_simple_formula_couple('age', AgeCol(function = ir._age, label = u"Âge" , val_type = "age")),
-    build_simple_formula_couple('agem', AgeCol(function = ir._agem, label = u"Âge (en mois)", val_type = "months")),
+    build_alternative_formula_couple(
+        'age',
+        [
+            ir._age_from_birth,
+            ir._age_from_agem,
+            ],
+        AgeCol(label = u"Âge (en années)", val_type = "age"),
+        ),
+    build_alternative_formula_couple(
+        'agem',
+        [
+            ir._agem_from_birth,
+            ir._agem_from_age,
+            ],
+        AgeCol(label = u"Âge (en mois)", val_type = "months"),
+        ),
 
     build_simple_formula_couple('nbF', IntCol(function = ir._nbF, cerfa_field = u'F', entity = 'foy',
         label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des"

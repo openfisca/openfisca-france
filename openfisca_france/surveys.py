@@ -76,12 +76,13 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
             array = column_series.values[survey['qui' + entity.symbol].values == 0]
         assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
             entity.count)
-        holder.array = np.array(array, dtype = holder.column._dtype)
+        holder.array = np.array(array, dtype = holder.column.dtype)
 
     return simulation
 
 
-def new_simulation_from_array_dict(compact_legislation = None, debug = False, array_dict = None, tax_benefit_system = None, year = None):
+def new_simulation_from_array_dict(compact_legislation = None, debug = False, array_dict = None,
+        tax_benefit_system = None, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
         date = datetime.date(year, 1, 1),
@@ -101,11 +102,6 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, ar
     for id_var in ['idfam', 'idfoy', 'idmen', 'noi']:
         if id_var not in provided_keys:
             array_dict[id_var] = np.arange(global_count, dtype = int)
-
-    if 'age' in provided_keys and 'agem' not in provided_keys:
-        array_dict['agem'] = 12 * array_dict['age']
-    elif 'agem' in provided_keys and 'age' not in provided_keys:
-        array_dict['age'] = array_dict['agem'] // 12
 
     column_by_name = tax_benefit_system.column_by_name
     for column_name, array in array_dict.iteritems():
@@ -145,7 +141,7 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, ar
             array = column_array[array_dict['qui' + entity.symbol].values == 0]
         assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
             entity.count)
-        holder.array = np.array(array, dtype = holder.column._dtype)
+        holder.array = np.array(array, dtype = holder.column.dtype)
 
     return simulation
 

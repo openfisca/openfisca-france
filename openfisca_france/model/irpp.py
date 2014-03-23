@@ -53,11 +53,19 @@ VOUS = QUIFOY['vous']
 ###############################################################################
 
 
-def _age(birth, _P):
+def _age_from_agem(agem):
+    return agem // 12
+
+
+def _age_from_birth(birth, _P):
     return (datetime64(_P.datesim) - birth).astype('timedelta64[Y]')
 
 
-def _agem(birth, _P):
+def _agem_from_age(age):
+    return age * 12
+
+
+def _agem_from_birth(birth, _P):
     return (datetime64(_P.datesim) - birth).astype('timedelta64[M]')
 
 
