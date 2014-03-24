@@ -511,7 +511,7 @@ class Scenario(object):
                                                 ),
                                             conv.test(lambda individu_id: individu_id in parents_id,
                                                 error = u"Un déclarant ou un conjoint sur la feuille d'impôt, doit être"
-                                                    u"un parent dans sa famille",
+                                                    u" un parent dans sa famille",
                                                 ),
                                             )),
                                         personnes_a_charge = conv.uniform_sequence(conv.pipe(
