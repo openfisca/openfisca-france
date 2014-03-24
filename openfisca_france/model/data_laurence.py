@@ -2096,6 +2096,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['pac1']: u"5MD", },
                          end = datetime.date(2011, 12, 31))),  # (f5kd, f5ld, f5md)),
                                                               # TODO: vérifier date fin
+
     build_column_couple('nbic_impn', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",
@@ -2115,6 +2116,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['pac1']: u"5MJ", },
                          end = datetime.date(2011, 12, 31))),  # (f5kj, f5lj, f5mj)),
                                                               # TODO: vérifier date fin
+
     build_column_couple('nbic_mvct', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
                          val_type = "monetary",
@@ -2446,8 +2448,6 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['pac1']: u"5LK", },
                          start = datetime.date(2012, 1, 1))),  # (f5hk, f5jk, f5lk)),
                                                               # TODO: à intégrer dans OF en modifiant les prog à partir de 2012 et 2013 puisque ce ne sont pas les mêmes revenus
-
-
     build_column_couple('mbic_pvce', IntCol(entity = 'ind',
                          label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
                          val_type = "monetary",
