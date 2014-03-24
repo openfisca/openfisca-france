@@ -24,6 +24,7 @@
 
 
 import os
+import pkg_resources
 import sys
 
 from pandas import DataFrame
@@ -34,9 +35,14 @@ tax_benefit_system = TaxBenefitSystem()
 
 from openfisca_france.tests.ipp.taxipp_utils import build_ipp2of_variables, run_OF, compare
 
-ipp_dir = os.path.join(os.path.dirname(__file__), 'ipp')
+
+openfisca_france_location = pkg_resources.get_distribution('openfisca-france').location
+ipp_dir = os.path.join(openfisca_france_location, 'openfisca_france', 'tests', 'ipp')
+print ipp_dir
 
 def list_dta(selection):
+    if selection is None:
+        selection = ""
     input = []
     output = []
     for filename in os.listdir(os.path.join(ipp_dir, "base_IPP")):
@@ -65,7 +71,7 @@ def test_from_taxipp(selection = None, threshold = 1, list_input = None, list_ou
             pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold,
                 verbose = verbose)
             assert len(pbs) == 1, \
-                "Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
+                "Avec la base dta {}\n  et un seuil de {} les problemes suivants ont ete identifies :\n{}".format(
                 input_file_path, threshold, pbs)
             last_param_scenario = param_scenario
 
@@ -74,4 +80,5 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
-    test_from_taxipp(selection = "marie_aise", verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
+#    test_from_taxipp(selection = "marie_aise", verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
+    test_from_taxipp(selection = None, threshold = 1, list_input = None, list_output = None, verbose = False)

@@ -68,7 +68,7 @@ def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
 
     taux_special_invalide = .1  # 10% si l'abattement est voté est en vigueur
 
-    taux_imposition = .10  # TODO taux d'imposition vté par les colloc
+    taux_imposition = .10  # TODO: taux d'imposition vté par les colloc
 
     # abattements pour l'habitation principale
 
