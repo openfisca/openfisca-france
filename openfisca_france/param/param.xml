@@ -395,9 +395,14 @@
     <CODE description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" code="add_pat" format="percent">
       <VALUE valeur=".003" deb="2004-07-01" fin="2013-12-31"/>
     </CODE>
-      <CODE description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" code="add_ret" format="percent">
-      <VALUE valeur=".003" deb="2013-04-01" fin="2013-12-31"/>
-    </CODE>
+    <NODE description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" code="add_ret" >
+	    <CODE description="Taux pour les pensions" code="tx" format="percent">
+      		<VALUE valeur=".003" deb="2013-04-01" fin="2013-12-31"/>
+   		</CODE>
+	    <CODE description="Seuil d'exonération (ir)" code="seuil_irpp" format="float">
+      		<VALUE valeur="61" deb="2013-04-01" fin="2013-12-31"/>
+   		</CODE>
+    </NODE>
     <CODE description="Contribution au financement du revenu de solidarité active" code="rsa" format="percent">
       <VALUE valeur=".011" deb="2009-01-01" fin="2011-12-31"/>
       <VALUE valeur=".02" deb="2012-01-01" fin="2013-12-31"/>
