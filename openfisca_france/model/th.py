@@ -46,8 +46,8 @@ def _exonere_taxe_habitation(self, zthabm, aah, aspa, asi, age_holder, isf_tot_h
     return not_(elig)
 
 
-def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
 
+def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
     # Documentation voir http://www2.impots.gouv.fr/documentation/2013/idl/files/assets/common/downloads/publication.pdf
     # Variables TODO: à inclure dans la fonction
     valeur_locative_brute = 0
@@ -110,7 +110,7 @@ def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
     # Pour bénéficier de cet abattement, les contribuables doivent remplir deux conditions :
 
     abattement_special_modeste = (valeur_locative_brute <= ((seuil_elig_special_modeste + seuil_elig_special_modeste_add * (pac_enf + pac_asc)) * valeur_locative_moyenne)
-        ) * (rfr_n_1 <= 100  # TODO
+ #       ) * (rfr_n_1 <= 100  # TODO
         ) * taux_special_modeste * valeur_locative_moyenne
 
     #     abattement facultatif en faveur des personnes handicapées ou invalides.

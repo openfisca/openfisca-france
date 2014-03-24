@@ -102,8 +102,10 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
             # print name, col
             holder = simulation.get_holder(name, default = None)
             if holder is not None and holder.array is not None:
-                if not all(holder.array == col._default):
+
+                if not all(holder.array == col.default):
                     if len(holder.array) == len_indiv:
+
                         input_variables['ind'].append(name)
                     elif len(holder.array) == len_men:
                         input_variables['men'].append(name)
@@ -357,5 +359,5 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         ]
     data = data.drop(variables_to_drop, axis = 1)
 #    data.rename(columns = {"id_conj" : "conj"}, inplace = True)
-
+    data['agem'] = data['age'] * 12
     return data
