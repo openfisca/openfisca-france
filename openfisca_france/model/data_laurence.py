@@ -1250,7 +1250,7 @@ mettons nous 6AA ou seulement AA ?
                     end = 2011)),  # TODO vérifier date <=2011
 
     ('f7iy', IntCol(entity = 'foy',
-                    label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
+                    label = u"Report du solde de réduction d'impôt de l'année 2012 non encore imputé sur les investissements réalisés",
                     cerfa_field = u'7IY',
                     start = 2013)),
 
@@ -2935,12 +2935,322 @@ montant total des revenus à imposer selon le système du quotient: 0XX
                 #investissements réalisés et achevés en 2012: report du solde de réduction d'impôt de l'année 2012:7MG
     #investissement destinés à la location meublée non professionnelle: loi Censi-Bouvard
             #investissement réalisés en 2013:
-                #
+                #engagement de réalisation de l'investissement en 2013:7JT
+                #engagement de réalisation de l'investissement en 2012:7JU
+            #investissement réalisés en 2012:
+                #engagement de réalisation de l'investissement en 2012:7ID
+                #promesse d'achat en 2011:7IE
+                #logement acquis en l'état de futur achèvement avec contrat de réservation enregistré au plus tard le 31/12/2011:
+                    #investissement réalisé 1/1/2012 au 31/03/2012:7IF
+                    #investissement réalisé 1/4/2012 au 31/12/2012:7IG
+            #investissement réalisés en 2011:
+                #logement acquis en l'état de futur achèvement avec contrat de réservation enregistré au plus tard le 31/12/2010:
+                    #investissement réalisé 1/1/2011 au 31/03/2011:7IN
+                    #investissement réalisé 1/4/2011 au 31/12/2011:7IV
+            #investissement réalisés en 2010:
+                #promesse d'achat en 2009:7IW
+            #investissement réalisés en 2009:7IO
+    #report de 1/9 de la réduction d'impôt des:
+        #investissements réalisés et achevés en 2012
+            #réalisés en 2012:7JV
+            #réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011:7JW
+            #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7JX
+        #investissements achevés en 2011: report de 1/9 de la réduction d'impôt:
+            #réalisés en 2011:7IA
+            #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7IB
+            #réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009:7IC    
+        #investissements achevés en 2010: report de 1/9 de l'investissement:
+            #réalisés en 2010:7IP
+            #réalisés en 2010 avec promesse d'achat en 2009:7IQ
+            #réalisés en 2009:7IR    
+    #report du solde de réduction d'impôt non encore imputé:
+        #investissements réalisés et achevés en 2009, réalisés en 2009 et achevés en 2010, réalisés et achevés en 2010 avec engagement avant le 1/1/2010
+            #report du solde de réduction d'impôt de l'année 2010:7IU
+            #report du solde de réduction d'impôt de l'année 2011:7IX
+         #investissements réalisés et achevés en 2010, réalisés en 2010 et achevés en 2011, réalisés et achevés en 2011 avec engagement en 2010
+            #report du solde de réduction d'impôt de l'année 2010:7IT
+            #report du solde de réduction d'impôt de l'année 2011:7IH
+            #report du solde de réduction d'impôt de l'année 2012:7JC                                           
+        #investissements réalisés et achevés en 2011, réalisés en 2011 et achevés en 2011 ou 2012, réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012
+            #report du solde de réduction d'impôt de l'année 2011:7IZ
+            #report du solde de réduction d'impôt de l'année 2012:7JI                                           
+        #investissements réalisés et achevés en 2012            
+            #report du solde de réduction d'impôt de l'année 2012:7JS
+    #Vos autres charges ouvrant droit à réduction d'impôt ou à crédit d'impôt 
+        #sommes versées pour l'emploi d'un salarié à domicile
+            #si vous avez engagé les dépenses pour un ascendant bénéficiaire de l'APA:7DD
+            #souscription au capital de petites entreprises en phase  d'amorçage, de démarrage ou d'expansion: reports des versements 2012:7CQ
+            #investissements forestiers:
+                #assurance:7UL
+                #si les travaux sont consécutifs à un sinistre:7UT
+                #report des dépenses de travaux de l'année 2009:
+                    #hors sinistre:7UU
+                    #après sinistre:7TE
+                #report des dépenses de travaux de l'année 2010:
+                    #hors sinistre:7UV
+                    #après sinistre:7TF
+                #report des dépenses de travaux de l'année 2011:
+                    #hors sinistre:7UW
+                    #après sinistre:7TG
+                #report des dépenses de travaux de l'année 2012:
+                    #hors sinistre:7UX
+                    #après sinistre:7TH
+            #investissement locatif dans le secteur touristique:
+                #acquisition d'un logement neuf:
+                    #report des dépenses d'investissement effectuées en 2010:7XP 
+                    #report des dépenses d'investissement effectuées en 2012:7UY
+                #réhabilitation d'un logement
+                    #report des dépenses d'investissement effectuées en 2010:7XQ
+                    #report des dépenses d'investissement effectuées en 2011:7XV
+                    #report des dépenses d'investissement effectuées en 2012:7UZ
+            #investissement locatif dans une résidence hôtelière à vocation sociale                                                        
+                #report des dépenses d'investissement de 2010:7XR
+                
+        #reprises de réductions d'impôt, autres imputations, conventions internationales, divers:
+            #crédit d'impôt compétitivité, emploi: montant non encore cédé:
+                #entreprises bénéficiant de la restitution immédiate:8TL
+                #autres entreprises:8UW
+            #investissement en Corse:
+                #entreprises bénéficiant de le restitution immédiate:8TS
+            #élus locaux: indemnités de fonction soumises à la retenue à la source:
+                vous:8BY   
+                conj:8CY
+             #Personnes domiciliées en France percevant des revenus de l'étranger    
+                  #Revenus exonérés (y compris salaires et primes des détachés à l'étranger) retenus pour le calcul du taux effectif:8TI   
+                  #Revenus d'activité et de remplacement de source étrangère:   
+                      #Revenus imposables à la CSG et à la CRDS:   
+                          #salaires au taux de 7,5 %:8TR  
+                          #revenus non salariaux au taux de 7,5 %: 8TQ  
+                          #pensions, indemnités de maladie, etc au taux de 6,6 %: 8TV  
+                          #pensions, indemnités de maladie, etc au taux de 6.2 %: 8TW  
+                          #pensions, indemnités de maladie, etc au taux de 3,8 %: 8TX  
+                  #Revenus étrangers imposables en France, ouvrant droit à un crédit d'impôt égal au montant de l'impôt français:8TK   
+             #Personnes non domiciliées en France:    
+                  #Revenus de sources française et étrangère à prendre en compte pour le calcul du taux moyen d'imposition:8TM   
+                  #Impôt sur plus-values en sursis de paiement en cas de transfert du domicile hors de france: 8TN   
+             #Plus-values en report d'imposition non expiré: 8UT   
+             #Crédit d'impôt égal aux prélèvements forfaitaires et retenues à la source non libératoires effectués à Mayotte en 2013: 8UV    
 
-
-
-
-
+###AUTRES CHARGES OUVRANT DROIT A REDUCTION D'IMPOT : Investissements outre-mer       
+    #Vous optez pour le plafonnement des réductions d'impôt pour investissements outre-mer à 11% du revenu imposable (15% (1) ou 13% (2) pour certains investissements):HQA  
+          (1).Investissements dans le logement social ; investissements immobiliers engagés avant le 1.1.2011 ; investissements dans le cadre d'une entreprise agréés avant le 5.12.2010.
+          (2).Investissements dans le logement (article 199 undecies A) engagés avant le 1.1.2012 et investissements dans le cadre d'une entreprise (article 199 undecies B) agréés avant le 28.9.2011.  
+  
+    #Investissements outre-mer dans le logement social : montant de la reduction d'impôt  
+        #Investissements réalisés en 2013 
+            #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
+                #En 2010: HRA  
+                #En 2011: HRB  
+                #En 2012: HRC  
+            #Autres investissements: HRD  
+        #Report de réductions d'impôt non imputées les années antérieures:   
+            #Investissements réalisés en 2009: HKG  
+            #Investissements réalisés en 2010: 
+                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HKH  
+                #Autres investissements: HKI   
+            #Investissements réalisés en 2011:
+                #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #En 2009: HQN  
+                    #En 2010: HQU   
+            #Autres investissements: HQK   
+            #Investissements réalisés en 2012:
+                #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:   
+                    #En 2009: HQJ  
+                    #En 2010: HQS   
+                    #En 2011: HQW   
+                #Autres investissements: HQX   
+    #Investissements outre-mer dans le logement et autres secteurs d'activité : montant de la réduction d'impôt 
+        #Investissements réalisés jusqu'au 31/12/2008: HQB   
+        #Investissements réalisés en 2009 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQC   
+            #Autres investissements: HQL   
+        #Investissements réalisés en 2010 
+            #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Avant 2009: HQT  
+                #En 2009: HQM   
+            #Autres investissements: HQD   
+        #Investissements réalisés en 2011: 
+            #Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #avant 2009: HOA  
+                #en 2009: HOB  
+                #en 2010: HOC  
+            #Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #avant 2009: HOH  
+                #en 2009: HOI   
+                #en 2010: HOJ  
+            #Autres investissements: HOK   
+        #Investissements réalisés en 2012:  
+            #Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+                #avant 2009: HOL  
+                #en 2009: HOM  
+                #en 2010: HON  
+            #Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #avant 2009: HOO  
+                #en 2009: HOP   
+                #en 2010: HOQ  
+                #en 2011: HOR  
+            #Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
+                #avant 2009: HOS  
+                #en 2009: HOT   
+                #en 2010: HOU  
+                #en 2011: HOV  
+            #Autres investissements: HOW   
+        #Investissements réalisés en 2013:    
+            #Investissements immobiliers engagés avant le 1.1.2011: HOD  
+            #Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #en 2010: HOE  
+                #en 2011: HOF  
+            #Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #en 2010  HOG  
+                #en 2011  HOX  
+                #en 2012  HOY  
+            #Autres investissements: HOZ   
+    #Investissements outre-mer dans le cadre de l'entreprise:  
+        #Investissements réalisés en 2013
+            #Investissements agréés du 5.12.2010 au 27.9.2011, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                    #en 2010 à hauteur de 52,63%: HSA  
+                    #en 2010 à hauteur de 62,5%: HSB  
+                    #en 2011 à hauteur de 52,63%: HSF  
+                    #en 2011 à hauteur de 62,5%: HSG  
+                #Investissements dans votre entreprise:
+                    #en 2010: HSC  
+                    #en 2011: HSH  
+                #Investissements dans votre entreprise avec exploitation directe:  
+                    #montant de la réduction d’impôt calculée:
+                        #en 2010: HSD  
+                        #en 2011: HSI  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013:
+                        #en 2010: HSE  
+                        #en 2011: HSJ  
+        #Autres investissements:
+            #Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:  
+                #en 2010 à hauteur de 52,63%: HSK  
+                #en 2010 à hauteur de 62,5%: HSL  
+                #en 2011 à hauteur de 52,63%: HSP  
+                #en 2011 à hauteur de 62,5%: HSQ  
+            #Investissements dans votre entreprise:
+                #en 2010: HSM  
+                #en 2011: HSR  
+            #Investissements dans votre entreprise avec exploitation directe:
+                #montant de la réduction d’impôt calculée:
+                    #en 2010: HSN  
+                    #en 2011: HSS  
+                #montant de la réduction d’impôt dont vous demandez l’imputation en 2013:
+                #en 2010: HSO  
+                #en 2011: HST  
+            #Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:
+                    #à hauteur de 52,63%: HSU  
+                    #à hauteur de 62,5%: HSV  
+                #Investissements dans votre entreprise: HSW  
+                #Investissements dans votre entreprise avec exploitation directe :   
+                    #montant de la réduction d’impôt calculé: HSX  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HSY      
+        #Investissements autres que ceux des lignes précédentes  
+            #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:
+                #à hauteur de 52,63%: HSZ  
+                #à hauteur de 62,5%: HTA  
+            #Investissements dans votre entreprise:
+                #Investissements dans votre entreprise avec exploitation directe : HTB  
+                    #montant de la réduction d’impôt calculé: HTC  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HTD  
+    #REPORT DE RÉDUCTIONS D'IMPÔT NON IMPUTÉES LES ANNEES ANTÉRIEURES 
+        #Investissements réalisés en 2008: HQZ  
+        #Investissements réalisés en 2009: 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMM  
+            #Autres investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                #à hauteur de 50%: HLG  
+                #à hauteur de 60%  HMA  
+            #Autres investissements dans votre entreprise: HKS  
+        #Investissements réalisés en 2010: 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMN  
+            #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 50%: HLH  
+                    #à hauteur de 60%: HMB   
+                #Investissements dans votre entreprise: HKT  
+            #Autres investissements réalisés en 2010:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 50%: HLI   
+                    #à hauteur de 60%:  HMC   
+                #Investissements dans votre entreprise: HKU  
+        #Investissements réalisés en 2011: 
+            #Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010: 
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQV  
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                        #à hauteur de 50%: HQO   
+                        #à hauteur de 60%: HQP   
+                    #investissements dans votre entreprise: HQR  
+                #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                        #à hauteur de 50%: HQF   
+                        #à hauteur de 60%: HQG  
+                    #Investissements dans votre entreprise: HQI  
+        #Autres investissements: 
+            #Investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQE  
+            #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 52,63%: HPA  
+                    #à hauteur de 62,5%: HPB  
+                #Investissements dans votre entreprise HPD   
+            #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 52,63%: HPE  
+                    #à hauteur de 62,5%: HPF  
+                #Investissements dans votre entreprise: HPH   
+            #Investissements autres que ceux des lignes précédentes:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 52,63%: HPI  
+                    #à hauteur de 62,5%: HPJ  
+            #Investissements dans votre entreprise: HPL   
+        #Investissements réalisés en 2012:
+            #Investissements agréés avant le 28.9.2011:  
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HPM   
+                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 50 %: HPN  
+                        #à hauteur de 60 %: HPO   
+                    #investissements dans votre entreprise: HPP   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPR   
+                #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 50 %: HPS  
+                        #à hauteur de 60 %: HPT   
+                    #investissements dans votre entreprise: HPU   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPW   
+                #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 52,63 %: HPX  
+                        #à hauteur de 62,5 %: HPY   
+                    #investissements dans votre entreprise: HRG   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRI   
+        #Autres investissements: 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: HRJ   
+            #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                    #à hauteur de 52,63 %: HRK  
+                    #à hauteur de 62,5 %: HRL   
+                #investissements dans votre entreprise: HRM   
+                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRO   
+            #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                    #à hauteur de 52,63 %: HRP  
+                    #à hauteur de 62,5 %: HRQ   
+                #investissements dans votre entreprise: HRR   
+                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRT   
+        #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+            #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                #à hauteur de 52,63 %: HRU  
+                #à hauteur de 62,5 %: HRV   
+            #investissements dans votre entreprise: HRW   
+            #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRY   
+        #Investissements autres que ceux des lignes précédentes: 
+            #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+               #à hauteur de 52,63 %: HNU  
+               #à hauteur de 62,5 %: HNV   
+            #investissements dans votre entreprise: HNW   
+            #investissements dans votre entreprise avec exploitation directe: HNY           
 """
 
 
