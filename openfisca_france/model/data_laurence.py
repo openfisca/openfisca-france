@@ -565,20 +565,20 @@ je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle j
                                    QUIFOY['conj']: u"3SD",
                                    })),  # (f3vd, f3sd)
 
-    ('f3ve', IntCol(entity = 'foy',
+    build_column_couple('f3ve', IntCol(entity = 'foy',
                     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
                     val_type = "monetary",
                     cerfa_field = u'3VE',
-                    start = 2013)),
+                    start = date.datetime (2013, 1, 1))),
 """
 réutilisation case 3VE en 2013
 
                                           
-    ('f3ve', IntCol(entity = 'foy',
+    build_column_couple('f3ve', IntCol(entity = 'foy',
                     label = u"Plus-values de cession de droits sociaux réalisées par des personnes domiciliées dans les DOM",
                     val_type = "monetary",
                     cerfa_field = u'3VE',
-                    end = 2012)),
+                    end =date.datetime (2012,12,31))),
 """
 
 
@@ -595,18 +595,18 @@ si on garde le même nom avec des start-end, et si on intégre la variable parto
 ça rendra le modéle un peu moins clair parce qu'il y aura le même nom de variable pour des choses différentes et dans des calculs ne se rapportant pas aux mêmes choses, 
 mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calculs ? qu'en penses-tu ? 
 
-    ('f3vl', IntCol(entity = 'foy', 
+    build_column_couple('f3vl', IntCol(entity = 'foy', 
                     label = u"Distributions par des sociétés de capital-risque taxables à 24 %", 
                     val_type = "monetary",
                     cerfa_field = u'3VL',
-                    start = 2009,
-                    end = 2009)),#vérifier avant 2009
-                                          
-    ('f3vl', IntCol(entity = 'foy', 
+                    start = date.datetime (2009, 1, 1),
+                    end = date.datetime (2009, 12, 31))),#vérifier avant 2009
+                                           
+    build_column_couple('f3vl', IntCol(entity = 'foy', 
                     label = u"Distributions par des sociétés de capital-risque taxables à 19 %", 
                     val_type = "monetary",
                     cerfa_field = u'3VL',
-                    start = 2012)),# vérifier pour 2011 et 2010
+                    start =date.datetime (2012, 1, 1))),# vérifier pour 2011 et 2010
 """
 
     ('f3vi', IntCol(entity = 'ind',
@@ -654,19 +654,19 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
     ('f3vu', IntCol(entity = 'foy',
                     end = 2009)),  # vérifier pour 2010 et 2011
 
-    ('f3vv', IntCol(entity = 'foy',
+    build_column_couple('f3vv', IntCol(entity = 'foy',
                     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
                     val_type = "monetary",
                     cerfa_field = u'3VV',
-                    start = 2013)),  # TODO: à revoir :ok pour 2013, correspond à autre chose en 2009, vérifier 2010 et 2011
+                    start = date.datetime (2013, 1, 1))),  # TODO: à revoir :ok pour 2013, correspond à autre chose en 2009, vérifier 2010 et 2011
 
     ('f3sa', IntCol(entity = 'foy', end = 2009)),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
 
-    ('f3vz', IntCol(entity = 'foy',
+    build_column_couple('f3vz', IntCol(entity = 'foy',
                     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
                     val_type = "monetary",
                     cerfa_field = u'3VZ',
-                    start = 2011)),  # TODO: vérifier avant 2012
+                    start = date.datime (2011, 1, 1))),  # TODO: vérifier avant 2012
 
     # Revenus fonciers
     ('f4ba', IntCol(entity = 'foy',
@@ -679,7 +679,7 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
                     val_type = "monetary",
                     cerfa_field = u'4BB')),
 
-    ('f4bc', IntCol(entity = 'foy',
+    build_column_couple('f4bc', IntCol(entity = 'foy',
                     label = u"Déficit imputable sur le revenu global",
                     val_type = "monetary",
                     cerfa_field = u'4BC')),
@@ -689,7 +689,7 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
                     val_type = "monetary",
                     cerfa_field = u'4BD')),
 
-    ('f4be', IntCol(entity = 'foy',
+    build_column_couple('f4be', IntCol(entity = 'foy',
                     label = u"Micro foncier: recettes brutes sans déduire d'abattement",
                     val_type = "monetary",
                     cerfa_field = u'4BE')),
@@ -1112,40 +1112,40 @@ mettons nous 6AA ou seulement AA ?
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés",
                     cerfa_field = u'7WE')),
 
-    ('f7wg', IntCol(entity = 'foy',
+    build_column_couple('f7wg', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
                     val_type = "monetary",
                     cerfa_field = u'7WG',
-                    start = 2012)),  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
-                                    # TODO vérifier pour les années précédentes
-"""                                         
+                    start = date.datetime (2012, 1, 1))),  # TODO: nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
+                                    # TODO: vérifier pour les années précédentes
+
     # Intérêts d'emprunts
-    ('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7WG')), # cf pour quelle année
-"""
-    ('f7wq', IntCol(entity = 'foy',
+#    build_column_couple    ('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7WG')), #TODO: cf pour quelle année
+
+    build_column_couple('f7wq', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées (dépenses du1/1/2012 au 3/4/2012)",
                     cerfa_field = u'7WQ',
-                    start = 2012,
-                    end = 2012)),  # TODO: vérifier année de début
+                    start = date.datetime (2012, 1, 1),
+                    end = date.datetime (2012, 12, 31))),  # TODO: vérifier année de début
 
-    ('f7wt', IntCol(entity = 'foy',
+    build_column_couple('f7wt', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
-                    start = 2012,
+                    start = date.datetime (2012, 1, 1),
                     cerfa_field = u'7WT')),
 
-    ('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
-                    start = 2012,
-                    cerfa_field = u'7WH')),  # TODO vérifier année de début
+    build_column_couple('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
+                    start = date.datetime (2012, 1, 1),
+                    cerfa_field = u'7WH')),  # TODO: vérifier année de début
 
-    ('f7wk', BoolCol(entity = 'foy',
+    build_column_couple('f7wk', BoolCol(entity = 'foy',
                      label = u"Votre habitation principale est une maison individuelle",
                      cerfa_field = u'7WK',
-                     start = 2012)),
+                     start = date.datetime (2012, 1, 1))),
 
-    ('f7wf', IntCol(entity = 'foy',
+    build_column_couple('f7wf', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/2012",
-                    end = 2012,
-                    cerfa_field = u'7WF')),  # TODO vérifier les années précédentes
+                    end = date.datetime (2012, 12, 31),
+                    cerfa_field = u'7WF')),  # TODO: vérifier les années précédentes
 
     # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
     ('f7wi', IntCol(entity = 'foy',
@@ -1183,11 +1183,11 @@ mettons nous 6AA ou seulement AA ?
                     cerfa_field = u'7PZ',
                     end = 2012)),  # TODO vérifier les années antérieures
 
-    ('f7qz', IntCol(entity = 'foy',
+    build_column_couple('f7qz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer réalisés en 2008 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7QZ',
-                    end = 2012)),  # TODO vérifier les années antérieures
+                    end = date.datetime (2012, 12, 31))),  # TODO vérifier les années antérieures
 
     ('f7rz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
@@ -1390,11 +1390,11 @@ f7xn cf années <= à 2011 (possible erreur dans le label pour ces dates, à vé
                     val_type = "monetary",
                     cerfa_field = u'7CN')),
 
-    ('f7cc', IntCol(entity = 'foy',
+    build_column_couple('f7cc', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1",
                     val_type = "monetary",
                     cerfa_field = u'7CC',
-                    start = 2013)),  # TODO: nouvelle variable à intégrer dans OF
+                    start = date.datetime (2013, 1, 1))),  # TODO: nouvelle variable à intégrer dans OF
 
     ('f7cu', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",
@@ -1458,7 +1458,7 @@ en 2013 et 2012, 7uc se rapporte à autre chose, réutilisation de la case
                     val_type = "monetary",
                     cerfa_field = u'7FM')),
 
-    ('f7fl', IntCol(entity = 'foy',
+    build_column_couple('f7fl', IntCol(entity = 'foy',
                     label = u"Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer",
                     val_type = "monetary",
                     cerfa_field = u'7FL')),
