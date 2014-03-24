@@ -629,7 +629,10 @@ prestation_by_name = collections.OrderedDict((
     # Taxe d'habitation
     ############################################################
 
-    build_simple_formula_couple('tax_hab', FloatCol(function = th._tax_hab, entity = 'men', label = u"Taxe d'habitation")),
+    build_simple_formula_couple('exonere_taxe_habitation', BoolCol(function = th._exonere_taxe_habitation,
+        default = True, entity = 'men', label = u"Exonération de la taxe d'habitation")),
+    build_simple_formula_couple('tax_hab', FloatCol(function = th._tax_hab, entity = 'men',
+        label = u"Taxe d'habitation")),
 
     ############################################################
     # Unité de consommation du ménage

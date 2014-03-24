@@ -315,8 +315,12 @@ column_by_name = collections.OrderedDict((
                       entity = 'foy',
                       cerfa_field = u'W')),
 
-    build_column_couple('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n-2", val_type = "monetary")),  # TODO: provide in data
-    build_column_couple('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n-2", val_type = "monetary")),  # TODO: provide in data
+    build_column_couple('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
+        val_type = "monetary")),
+    build_column_couple('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
+        val_type = "monetary")),
+    build_column_couple('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
+        val_type = "monetary")),
 
     # Rentes viagères
     build_column_couple('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",

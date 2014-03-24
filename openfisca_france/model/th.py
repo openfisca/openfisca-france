@@ -46,7 +46,7 @@ def _exonere_taxe_habitation(self, zthabm, aah, aspa, asi, age_holder, isf_tot_h
     return not_(elig)
 
 
-def _tax_hab(self, zthabm, eligibilite_taxe_habitation, nbF, nbJ, rfr_n_1):
+def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
 
     # Documentation voir http://www2.impots.gouv.fr/documentation/2013/idl/files/assets/common/downloads/publication.pdf
     # Variables TODO: à inclure dans la fonction
