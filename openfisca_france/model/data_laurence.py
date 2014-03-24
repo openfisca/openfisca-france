@@ -501,13 +501,6 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'2AB')),
 
-    ('f2bg', IntCol(entity = 'foy',
-                    label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
-                    val_type = "monetary",
-                    cerfa_field = u'2BG',
-                    start = 2012)),  # TODO: nouvelle case à créer où c'est nécessaire
-                                     # TODO: vérifier existence avant 2012
-
     ('f2aa', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
@@ -575,7 +568,19 @@ je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle j
     ('f3ve', IntCol(entity = 'foy',
                     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
                     val_type = "monetary",
-                    cerfa_field = u'3VE')),
+                    cerfa_field = u'3VE',
+                    start = 2013)),
+"""
+réutilisation case 3VE en 2013
+
+                                          
+    ('f3ve', IntCol(entity = 'foy',
+                    label = u"Plus-values de cession de droits sociaux réalisées par des personnes domiciliées dans les DOM",
+                    val_type = "monetary",
+                    cerfa_field = u'3VE',
+                    end = 2012)),
+"""
+
 
     ('f3vf', IntCol(entity = 'ind',
                     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %",
@@ -593,16 +598,15 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
     ('f3vl', IntCol(entity = 'foy', 
                     label = u"Distributions par des sociétés de capital-risque taxables à 24 %", 
                     val_type = "monetary",
-                    cerfa_field = u'3VL'
+                    cerfa_field = u'3VL',
                     start = 2009,
                     end = 2009)),#vérifier avant 2009
                                           
     ('f3vl', IntCol(entity = 'foy', 
                     label = u"Distributions par des sociétés de capital-risque taxables à 19 %", 
                     val_type = "monetary",
-                    cerfa_field = u'3VL'
-                    start = 2012,
-                    end = 2013)),# vérifier pour 2011 et 2010
+                    cerfa_field = u'3VL',
+                    start = 2012)),# vérifier pour 2011 et 2010
 """
 
     ('f3vi', IntCol(entity = 'ind',
@@ -653,21 +657,15 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
     ('f3vv', IntCol(entity = 'foy',
                     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
                     val_type = "monetary",
-                    cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
-
-    ('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
-                                       # correspond à autre chose en 2009, vérifier 2011,2010
+                    cerfa_field = u'3VV',
+                    start = 2013)),  # TODO: à revoir :ok pour 2013, correspond à autre chose en 2009, vérifier 2010 et 2011
 
     ('f3sa', IntCol(entity = 'foy', end = 2009)),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
-
-    ('f3sf', IntCol(entity = 'foy')),  # déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
-
-    ('f3sd', IntCol(entity = 'foy')),  # déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
     ('f3vz', IntCol(entity = 'foy',
                     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
                     val_type = "monetary",
-                    cerfa_field = u'3VV',
+                    cerfa_field = u'3VZ',
                     start = 2011)),  # TODO: vérifier avant 2012
 
     # Revenus fonciers
@@ -684,7 +682,7 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
     ('f4bc', IntCol(entity = 'foy',
                     label = u"Déficit imputable sur le revenu global",
                     val_type = "monetary",
-                    cerfa_field = u'7BC')),
+                    cerfa_field = u'4BC')),
 
     ('f4bd', IntCol(entity = 'foy',
                     label = u"Déficits antérieurs non encore imputés",
@@ -692,7 +690,7 @@ mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calcu
                     cerfa_field = u'4BD')),
 
     ('f4be', IntCol(entity = 'foy',
-                    label = u"Micro foncier: recettes brutes sans abattement",
+                    label = u"Micro foncier: recettes brutes sans déduire d'abattement",
                     val_type = "monetary",
                     cerfa_field = u'4BE')),
 
@@ -1117,31 +1115,35 @@ mettons nous 6AA ou seulement AA ?
     ('f7wg', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
                     val_type = "monetary",
-                    cerfa_field = u'7',
+                    cerfa_field = u'7WG',
                     start = 2012)),  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
                                     # TODO vérifier pour les années précédentes
 """                                         
     # Intérêts d'emprunts
-    ('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7')), # cf pour quelle année
-
-    ('f7wq', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées", cerfa_field = u'7')),
+    ('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7WG')), # cf pour quelle année
 """
+    ('f7wq', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées (dépenses du1/1/2012 au 3/4/2012)",
+                    cerfa_field = u'7WQ',
+                    start = 2012,
+                    end = 2012)),  # TODO: vérifier année de début
 
     ('f7wt', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
-                    start = 2013,
-                    cerfa_field = u'7WT')),  # TODO vérifier année de début
+                    start = 2012,
+                    cerfa_field = u'7WT')),
 
     ('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
-                    start = 2013,
+                    start = 2012,
                     cerfa_field = u'7WH')),  # TODO vérifier année de début
 
     ('f7wk', BoolCol(entity = 'foy',
                      label = u"Votre habitation principale est une maison individuelle",
-                     cerfa_field = u'7WK')),
+                     cerfa_field = u'7WK',
+                     start = 2012)),
 
     ('f7wf', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1",
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/2012",
                     end = 2012,
                     cerfa_field = u'7WF')),  # TODO vérifier les années précédentes
 
@@ -1182,7 +1184,7 @@ mettons nous 6AA ou seulement AA ?
                     end = 2012)),  # TODO vérifier les années antérieures
 
     ('f7qz', IntCol(entity = 'foy',
-                    label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
+                    label = u"Investissements outre-mer réalisés en 2008 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7QZ',
                     end = 2012)),  # TODO vérifier les années antérieures
@@ -1391,7 +1393,8 @@ f7xn cf années <= à 2011 (possible erreur dans le label pour ces dates, à vé
     ('f7cc', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1",
                     val_type = "monetary",
-                    cerfa_field = u'7CC')),  # TODO: nouvelle variable à intégrer dans OF
+                    cerfa_field = u'7CC',
+                    start = 2013)),  # TODO: nouvelle variable à intégrer dans OF
 
     ('f7cu', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",
@@ -1487,13 +1490,11 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
 
 
 
-# """
-# DEBUT de ce qui reste à vérifier
-# """
     # Intérêts d'emprunt pour reprise de société
     build_column_couple('f7fh', IntCol(entity = 'foy',
                     label = u"Intérêts d'emprunt pour reprise de société",
-                    val_type = "monetary", cerfa_field = u'7FH')),
+                    val_type = "monetary",
+                    cerfa_field = u'7FH')),
 
     # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)),
     build_column_couple('f7ff', IntCol(entity = 'foy',
@@ -1525,7 +1526,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Intérêts des prêts à la consommation",
                     val_type = "monetary",
                     cerfa_field = u'7UH',
-                    end = datetime.date(2012, 12, 1))),  # verif <=2012
+                    end = datetime.date(2011, 12, 31))),  # verif <=2011
 
     build_column_couple('f7uh', IntCol(entity = 'foy',
                     label = u"Dons et cotisations versés aux partis politiques",
@@ -1627,42 +1628,42 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
                     val_type = "monetary",
                     cerfa_field = u'7GT',
-                    end = datetime.date(2012, 12, 1))),  # vérif <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérif <=2011
 
     build_column_couple('f7gt', IntCol(entity = 'foy',
                     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010",
                     val_type = "monetary",
                     cerfa_field = u'7GT',
-                    start = datetime.date(2013, 1, 1))),  # vérif <=2012
+                    start = datetime.date(2013, 1, 1))),  # vérif <=2011
 
     build_column_couple('f7gu', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
                     val_type = "monetary",
                     cerfa_field = u'7GU',
-                    end = datetime.date(2012, 12, 1))),  # vérif <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérif <=2011
 
     build_column_couple('f7gu', IntCol(entity = 'foy',
                     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
                     val_type = "monetary",
                     cerfa_field = u'7GU',
-                    start = datetime.date(2013, 1, 1))),  # vérif <=2012
+                    start = datetime.date(2013, 1, 1))),  # vérif <=2011
 
     build_column_couple('f7gv', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
                     val_type = "monetary",
                     cerfa_field = u'7GV',
-                    end = datetime.date(2012, 12, 1))),  # vérif <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérif <=2011
 
     build_column_couple('f7gv', IntCol(entity = 'foy',
                     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
                     val_type = "monetary",
                     cerfa_field = u'7GV',
-                    start = datetime.date(2013, 1, 1))),  # vérif <=2012
+                    start = datetime.date(2013, 1, 1))),  # vérif <=2011
 
     build_column_couple('f7xg', IntCol(entity = 'foy', label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme",
                     val_type = "monetary",
                     cerfa_field = u'7XG',
-                    end = datetime.date(2012, 12, 1))),  # vérif <=2012
+                    end = datetime.date(2012, 12, 31))),  # vérif <=2011
 
     # Avoir fiscaux et crédits d'impôt
     # f2ab déjà disponible
@@ -1698,7 +1699,8 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
 
     build_column_couple('f8td', IntCol(entity = 'foy',
                     label = u"Contribution exceptionnelle sur les hauts revenus",
-                    cerfa_field = u'8TD')),
+                    cerfa_field = u'8TD',
+                    start = datetime.date(2013, 1, 1))),
 
     build_column_couple('f8te', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé",
@@ -1741,13 +1743,13 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
                     val_type = "monetary",
                     cerfa_field = u'8WC',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f8wc', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",
                     val_type = "monetary",
                     cerfa_field = u'8WC',
-                    start = datetime.date(2013, 1, 1))),
+                    start = datetime.date(2012, 1, 1))),
 
     build_column_couple('f8wd', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise",
@@ -1768,7 +1770,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes",
                     val_type = "monetary",
                     cerfa_field = u'8WS',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f8wt', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs",
@@ -1784,19 +1786,19 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac",
                     val_type = "monetary",
                     cerfa_field = u'8WV',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2012, 12, 31))),  # verif<=2011
 
     build_column_couple('f8wx', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise",
                     val_type = "monetary",
                     cerfa_field = u'8WX',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f8wy', IntCol(entity = 'foy',
                     label = u"",
                     val_type = "monetary",
                     cerfa_field = u'8WY',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     # Acquisition de biens culturels
     build_column_couple('f7uo', IntCol(entity = 'foy',
@@ -1820,53 +1822,53 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %",
                    val_type = "monetary",
                    cerfa_field = u'7SB',
-                   end = datetime.date(2012, 12, 1))),  # verif<=2012
+                   end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f7sc', IntCol(entity = 'foy',
                    label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale",
                    val_type = "monetary",
                    cerfa_field = u'7SC',
-                   end = datetime.date(2012, 12, 1))),  # verif<=2012
+                   end = datetime.date(2011, 12, 31))),  # verif<=2011
 
 # """
-# réutilisation de case pour 2013
+# réutilisation de case pour 2012-2013
 # """
 
     build_column_couple('f7sd', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %",
                     val_type = "monetary",
                     cerfa_field = u'7SD',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f7sd', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation",
                     val_type = "monetary",
                     cerfa_field = u'7SD',
-                    start = datetime.date(2013, 1, 1))),  # verif<=2012 et vérifier autres prog comportant f7sd
+                    start = datetime.date(2012, 1, 1))),  # verif<=2011 et vérifier autres prog comportant f7sd
 
     build_column_couple('f7se', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %",
                     val_type = "monetary",
                     cerfa_field = u'7SE',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f7se', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz",
                     val_type = "monetary",
                     cerfa_field = u'7SE',
-                    start = datetime.date(2013, 1, 1))),  # verif<=2012
+                    start = datetime.date(2012, 1, 1))),  # verif<=2011 et vérifier autres prog comportant f7se
 
     build_column_couple('f7sh', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %",
                     val_type = "monetary",
                     cerfa_field = u'7SH',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+                    end = datetime.date(2011, 12, 31))),  # verif<=2011
 
     build_column_couple('f7sh', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)",
                     val_type = "monetary",
                     cerfa_field = u'7SH',
-                    start = datetime.date(2013, 1, 1))),  # verif<=2012
+                    start = datetime.date(2012, 1, 1))),  # verif<=2011
 
     # ('f7wg', IntCol() déjà disponible
 
@@ -1878,51 +1880,51 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
                     val_type = "monetary",
                     cerfa_field = u'7UP',
-                    end = datetime.date(2007, 12, 1))),  # vérif date de fin
+                    end = datetime.date(2007, 12, 31))),  # vérif date de fin
 
     build_column_couple('f7up', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: travaux",
                     val_type = "monetary",
                     cerfa_field = u'7UP',
-                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 13
+                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 12 et 13
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL",
                     val_type = "monetary",
                     cerfa_field = u'7UQ',
-                    end = datetime.date(2007, 12, 1))),  # vérif date de fin
+                    end = datetime.date(2007, 12, 31))),  # vérif date de fin
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
                     val_type = "monetary",
                     cerfa_field = u'7UQ',
-                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 13
+                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 12 et 13
 
     # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
     build_column_couple('f1ar', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1AR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
     build_column_couple('f1br', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1BR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
     build_column_couple('f1cr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1CR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
     build_column_couple('f1dr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1DR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
     build_column_couple('f1er', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1ER',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2011, 12, 31))),  # vérifier <=2011
 
     # Crédit d’impôt directive « épargne » (case 2BG)),
     build_column_couple('f2bg', IntCol(entity = 'foy',
@@ -1934,7 +1936,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
     build_column_couple('f4tq', IntCol(entity = 'foy',
                     label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail",
                     val_type = "monetary",
-                    cerfa_field = u'4TQ')),  # vérif libéllé, en 2013=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
+                    cerfa_field = u'4TQ')),  # vérif libéllé, en 2013 et 2012=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
                                            # pour lesquels la cessation ou l'interruption de la location est intervenue en 2013 et qui ont été
                                            # soumis à la taxe additionnelle au droit de bail
 
@@ -2092,7 +2094,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5KD",
                                         QUIFOY['conj']: u"5LD",
                                         QUIFOY['pac1']: u"5MD", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kd, f5ld, f5md)),
+                         end = datetime.date(2011, 12, 31))),  # (f5kd, f5ld, f5md)),
                                                               # vérifier date fin
 
     build_column_couple('nbic_impn', IntCol(entity = 'ind',
@@ -2112,7 +2114,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5KJ",
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kj, f5lj, f5mj)),
+                         end = datetime.date(2011, 12, 31))),  # (f5kj, f5lj, f5mj)),
                                                               # vérifier date fin
     build_column_couple('nbic_mvct', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
@@ -2120,7 +2122,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5KJ",
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
-                         start = datetime.date(2013, 1, 1))),  # (f5kj, f5lj, f5mj)),
+                         start = datetime.date(2012, 1, 1))),  # (f5kj, f5lj, f5mj)),
                                                               # vérifier date début #####à intégrer dans OF#######
 
     build_column_couple('abic_defn', IntCol(entity = 'ind',
@@ -2136,8 +2138,8 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5KG",
                                         QUIFOY['conj']: u"5LG",
                                         QUIFOY['pac1']: u"5MG", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kg, f5lg, f5mg)),
-                                                              # vérif <=2012
+                         end = datetime.date(2011, 12, 31))),  # (f5kg, f5lg, f5mg)),
+                                                              # vérif <=2011
 
     build_column_couple('nbic_defn', IntCol(entity = 'ind',
                          label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
@@ -2149,7 +2151,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
     build_column_couple('nbic_defs', IntCol(entity = 'ind',
                          label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KL",
+                         cerfa_field = {QUIFOY['vous']: u"5KM",
                                         QUIFOY['conj']: u"5LM",
                                         QUIFOY['pac1']: u"5MM", })),  # (f5km, f5lm, f5mm)),
 
@@ -2333,8 +2335,8 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)",
                          val_type = "monetary",
                          cerfa_field = u'5HU',
-                         end = datetime.date(2012, 12, 1))),  # (f5hu)),
-                                                              # vérif <=2012
+                         end = datetime.date(2011, 12, 31))),  # (f5hu)),
+                                                              # vérif <=2011
 
     build_column_couple('macc_mvct', IntCol(entity = 'foy', label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)",
                          val_type = "monetary",
@@ -2343,7 +2345,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
     build_column_couple('mncn_mvct', IntCol(entity = 'foy',
                          label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)",
                          val_type = "monetary",
-                         cerfa_field = u'JU')),  # (f5ju)),
+                         cerfa_field = u'5JU')),  # (f5ju)),
 
     build_column_couple('mbnc_mvct', IntCol(entity = 'foy', label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)",
                          val_type = "monetary",
@@ -2433,7 +2435,18 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5HK",
                                         QUIFOY['conj']: u"5LK",
                                         QUIFOY['pac1']: u"5JK", },
-                         end = datetime.date(2012, 12, 1))),  # vérif <=2012)),  # (f5hk, f5lk, f5jk)),
+                         end = datetime.date(2011, 12, 31))),  # vérif <=2011)),  et vérif si lk est bien le cjt ou la pac  # (f5hk, f5lk, f5jk)),
+
+# réutilisation 2012 et 2013 des cases 5HK,5LK et 5JK dans les revenus non commerciaux non professionnels
+
+    build_column_couple('nrag_pvce', IntCol(entity = 'ind',
+                         label = u"Revenus non commerciaux non professionnels exonérés (Régime de la déclaration contrôlée, avec AA ou viseur)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5HK",
+                                        QUIFOY['conj']: u"5JK",
+                                        QUIFOY['pac1']: u"5LK", },
+                         end = datetime.date(2012, 12, 31))),  # (f5hk, f5jk, f5lk)),
+                                                              # TODO: à intégrer dans OF en modifiant les prog à partir de 2012 et 2013 puisque ce ne sont pas les mêmes revenus
 
     build_column_couple('mbic_pvce', IntCol(entity = 'ind',
                          label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
@@ -2513,7 +2526,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['pac1']: u"5SJ", })),  # (f5qj, f5rj, f5sj)),
 
 """
-CASES MANQUANTES PRESENTENT DANS LA DECLARATION DES REVENUS 2013
+CASES MANQUANTES PRESENTENT DANS LA DECLARATION DES REVENUS 2013 et 2012
 """
 # A CREER ET A INTEGRER DANS OF
 
@@ -2556,6 +2569,11 @@ conj:1BT
     vous: 1SM
     conj:1DN
     
+    #fonctionnaires d'organisations internationales: rémunérations exonérées
+    vous: 1TY
+    conj:1UY
+    end = datetime.date(2012, 12, 31),
+    
 #salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
 (n'indiquez pas ces revenus ligne 8TI (2042) ni ligne 1LZ et 1MZ).
     
@@ -2564,72 +2582,89 @@ conj:1BT
     conj:1BC
     pac1:1CC 
     pac2:1DC
+    start = datetime.date(2013, 1, 1),    
     
     #montant de l'impôt acquitté à l'étranger
     vous:1AD
     conj:1BD
     pac1:1CD 
     pac2:1DD
-
+    start = datetime.date(2013, 1, 1),
+    
     #frais rééls
     vous:1AE
     conj:1BE
     pac1:1CE
     pac2:1DE
-
+    start = datetime.date(2013, 1, 1),
+    
     #pour recevoir la PPE: activité à temps plein exercée à l'étranger toute l'année
     vous:1AX
     conj:1BX
     pac1:1CX 
     pac2:1DX
-
+    start = datetime.date(2013, 1, 1),
+    
     #pour recevoir la PPE: sinon, nombre d'heures payées dans l'année
     vous:1AG
     conj:1BG
     pac1:1CG 
     pac2:1DG
-
+    start = datetime.date(2013, 1, 1),
+    
     #pensions exonérées de source étrangère: total des pensions nettes encaissées    
     vous:1AH
     conj:1BH
     pac1:1CH 
     pac2:1DH
+    start = datetime.date(2013, 1, 1),
     
 #revenus exceptionnels ou différés à imposer selon le système du quotient
 montant total des revenus à imposer selon le système du quotient: 0XX
 
-
 #plus-values et gains divers
     #gains de cession de bons de souscription de parts de créateurs d'entreprise taxable à 19 %:3SJ
     #gains de cession de bons de souscription de parts de créateurs d'entreprise taxable à 30 %:3SK
+
     #gains de cession de valeurs mobilières, de droits sociaux et assimilés: 
-        #plus-value imposable:3VG
-        #perte 2013:3VH
         #abattement net pour durée de détention appliquée:
             #sur des plus-values:3SG
             #sur des moins-values:3SH
+            start = datetime.date(2013, 1, 1),            
         #abattement net pour durée de détention renforcée appliquée:
             #sur des plus-values:3SL
             #sur des moins-values:3SM
+            start = datetime.date(2013, 1, 1),
+    #gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 16.10.2007, soumis à la contribution salariale de 8 %   
+        vous:3VO
+        conj:3SO
+        end = datetime.date(2012, 12, 31),                                   
     #gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 16/10/2007, soumis à la contributin salariale de 10%:
-    vous:3VN
-    conj:3SN
+        vous:3VN
+        conj:3SN
+    #gains d'acquisition d'actions gratuites attribuées à compter du 16/10/2007, soumis à la contribution salariale de 2,5%   
+        vous:3VS
+        conj:3SS
+        end = datetime.date(2012, 12, 31),                                       
     #impatriés: cessions de titres détenus à l'étranger (report de la déclaration 2047 IMP)
         #plus-values exonérées (50 %):3VQ
         #moins-values non imputables (50 %):3VR
-    #plus-values en report d'imposition (art 150-0 D ter du CGI):3WE
-        #plus-values taxables à 24 %:3SB
-    #plus-values en report d'imposition (art 150-0 B ter du CGI):3WH
+    #plus-values en report d'imposition (art 150-0 D ter du CGI):3WE    
+        #plus-values taxables à 24 %:3SB    
+    #plus-values en report d'imposition (art 150-0 B ter du CGI):3WH             start = datetime.date(2013, 1, 1),    
+    #plus-values dont le report à expiré en 2012:
+        #plus-values taxables à 19 %:3SC    end = datetime.date(2012, 12, 31),
     #transfert du domicile hors de France, report de la déclaration 2074 ET:
         #plus-values et créances dont l'imposition est en sursis de paiement:
             #plus-values imposables:3WA
-            #plus-values taxables à 19 %:3WF
+            #plus-values taxables à 19 %:3WF             start = datetime.date(2013, 1, 1),
+            #abattement pour durée de détention en cas de départ à la retraite d'un dirigeant:3WC    end = datetime.date(2012, 12, 31),   
         #plus-values et créances dont l'imposition ne bénéficie pas du sursis de paiement:
             #plus-values imposables:3WB
-            #plus-values taxables à 19 %:3WG
+            #plus-values taxables à 19 %:3WG             start = datetime.date(2013, 1, 1),
             #abattement pour durée de détention:3WD
-            #plus-values imposables (art 150-0 D ter bis du CGI):3WI
-            #plus-values taxables à 19 % (art 150-0 D ter bis du CGI):3WJ
+            #plus-values imposables (art 150-0 D ter bis du CGI):3WI            start = datetime.date(2013, 1, 1),
+            #plus-values taxables à 19 % (art 150-0 D ter bis du CGI):3WJ            start = datetime.date(2013, 1, 1),
     #plus-values de cession de titres de jeunes entreprises innovantes exonérées:3VP
     #plus-values exonérées de cession de participations supérieures à 25 % au sein du groupe familial:3VY
     #plus-values de cession d'une résidence secondaire exonérée sous condition de remploi:3VW
@@ -2646,7 +2681,7 @@ montant total des revenus à imposer selon le système du quotient: 0XX
     conj:5ID
     pac1:5JD
     #régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur:
-        #jeunes agriculteurs, abattement de 50% ou 100% (à vérifier sur la déclaration papier):
+        #jeunes agriculteurs, abattement de 50% ou 100% :
         vous:5HZ
         conj:5IZ
         pac1:5JZ
@@ -2681,10 +2716,6 @@ montant total des revenus à imposer selon le système du quotient: 0XX
         conj:5UH
         pac1:5VH
     #régime de la déclaration contrôlée
-        #revenus exonérés avec AA ou viseur
-        vous:5HK
-        conj:5JK
-        pac1:5LK
         #revenus imposables avec AA ou viseur
         vous:5JG
         conj:5RF
@@ -2771,22 +2802,10 @@ montant total des revenus à imposer selon le système du quotient: 0XX
 ### CHARGES ET IMPUTATIONS DIVERSES    
 
     #epargne retraite PERP et produits assimilés (PREFON, COREM et C.G.O.S)
-        #plafond de déduction non utilisé sur les revenus de 2010
-        vous:6PS
-        conj:6PT
-        pac1:6PU
-        #plafond de déduction non utilisé sur les revenus de 2011
-        vous:6PS
-        conj:6PT
-        pac1:6PU
-        #plafond de déduction non utilisé sur les revenus de 2012
-        vous:6PS
-        conj:6PT
-        pac1:6PU
         #vous souhaitez bénéficier du plafond de votre conjoint, cochez la case:6QR
         #si vous êtes nouvellement domicilié en France en 2013 après avoir résidé à l'étranger au cours des 3 années précédentes:6QW
         #Détermination du plafond de déduction pour les revenus 2013 au titre de l'Epargne Retraite (PERP, Préfon et assimilés):   
-          Cotisations versées en 2013 aux régimes obligatoires d'entreprise de retraite  supplémentaire "article 83", PERCO et, pour leur montant total ou partiel,
+          Cotisations versées en 2013(ou 2012 pour les revenus 2012) aux régimes obligatoires d'entreprise de retraite  supplémentaire "article 83", PERCO et, pour leur montant total ou partiel,
           celles versées aux régimes ou contrats facultatifs de retraite "Madelin" et "Madelin agricole":  
           vous:6QS   
           conj:6QT   
@@ -2795,7 +2814,7 @@ montant total des revenus à imposer selon le système du quotient: 0XX
 ### CHARGES OUVRANT DROIT A REDUCTION OU CREDIT D'IMPOT
     #dons à des organismes d'intérêt général établis dans l'Etat européen:
         #dons à des organismes d'aides aux personnes:7VA
-        #dons à des autres organismes:7VC
+        #dons à des autres organismes:7VC                
     #dépenses en faveur de la qualité environnementale de l'habitation principale
         #vous avez réalisé des dépenses d'isolation thermique des murs donnant sur l'extérieur, travaux effectués sur au moins la moitié de la surface totale des murs: 7WC
         #vous avez réalisé des dépenses d'isolation thermique des toitures, travaux effectués sur la totalité de la toiture:7VG
@@ -2817,6 +2836,29 @@ montant total des revenus à imposer selon le système du quotient: 0XX
             # Équipements de récupération et de traitement des eaux pluviales:7SU   
             #Diagnostic de performance énergétique:7SV    
             #Équipements de raccordement à un réseau de chaleur:7SW   
+    #dépenses en faveur de la qualité environnementale de l'habitation principale cases manquantes sur la déclaration des revenus 2012
+        #vous avez réalisé une seule catégorie de travaux dans votre habitation principale située dans un immeuble collectif, portez le montant des dépenses dans les rubriques 7TT à 7TY en fonction du taux du crédit d'impôt  applicable            
+            #Dépenses ouvrant droit au crédit d'impôt au taux de 10%: 7TT    end = datetime.date(2012, 12, 31),           
+            #Dépenses ouvrant droit au crédit d'impôt au taux de 11%: 7TU    end = datetime.date(2012, 12, 31),          
+            #Dépenses ouvrant droit au crédit d'impôt au taux de 15%: 7TV    end = datetime.date(2012, 12, 31),          
+            #Dépenses ouvrant droit au crédit d'impôt au taux de 17%: 7TW    end = datetime.date(2012, 12, 31),          
+            #Dépenses ouvrant droit au crédit d'impôt au taux de 26%: 7TX    end = datetime.date(2012, 12, 31),          
+            #Dépenses ouvrant droit au crédit d'impôt au taux de 32%: 7TY    end = datetime.date(2012, 12, 31),                  
+        #Vous avez réalisé un bouquet de travaux ou si votre habitation principale est une maison individuelle cochez les cases adéquates (7WH à 7VG) et portez le montant des dépenses aux rubriques concernées (7SD à 7SW)  
+            #Vous avez réalisé des dépenses d'isolation thermique des parois vitrées 
+                #vous avez engagé les dépenses à compter du 4.4.2012: 7WS    end = datetime.date(2012, 12, 31),                   
+            #Vous avez réalisé des dépenses d'acquisition de volets isolants
+                #vous avez engagé les dépenses (accepté un devis et versé un acompte) avant le 1.1.2012: 7WU    end = datetime.date(2012, 12, 31),         
+                #vous avez engagé les dépenses en 2012: 7WV    end = datetime.date(2012, 12, 31),         
+            #Vous avez réalisé des dépenses d'acquisition de portes d'entrée donnant sur l'extérieur 
+                #vous avez engagé les dépenses (accepté un devis et versé un acompte) avant le 1.1.2012: 7WW    end = datetime.date(2012, 12, 31),         
+                #vous avez engagé les dépenses en 2012: 7WX    end = datetime.date(2012, 12, 31),         
+            #Vous avez réalisé des dépenses d'isolation thermique des murs donnant sur l'extérieur
+                #vous avez engagé les dépenses (accepté un devis et versé un acompte) avant le 4.4.2012: 7WA    end = datetime.date(2012, 12, 31),         
+                #vous avez engagé les dépenses du 4.4.2012 au 31.12.2012: 7WB    end = datetime.date(2012, 12, 31),         
+            #Vous avez réalisé des dépenses d'isolation thermique des toitures 
+                #vous avez engagé les dépenses (accepté un devis et versé un acompte) avant le 4.4.2012: 7VE    end = datetime.date(2012, 12, 31),         
+                #vous avez engagé les dépenses du 4.4.2012 au 31.12.2012: 7VF    end = datetime.date(2012, 12, 31),                             
     #dépenses en faveur de la qualité environnementale des habitations données en location
         #montant du crédit d'impôt calculé:7SZ
     #travaux de prévention des risques technologiques dans les logements données en location (report 2041 gr)
@@ -2837,15 +2879,15 @@ montant total des revenus à imposer selon le système du quotient: 0XX
         #report de réduction d'impôt non encore imputée de l'année 2012:7KD
     #investissement locatifs: loi Duflot
         #investissement réalisés et achevés en 2013:
-            #en métropole:7GH
-            #outre-mer:7GI
+            #en métropole:7GH start = datetime.date(2013, 1, 1),
+            #outre-mer:7GI    start = datetime.date(2013, 1, 1),
     #investissement locatifs neufs: loi Scellier
         #investissement achevés ou acquis en 2013:
             #investissements réalisés de 1/1/2013 au 31/03/2013 avec engagement de réalisation en 2012:
-                #Métropole, logement BBC:7FA
-                #Métropole, logement non-BBC:7FB
-                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7FC
-                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7FD
+                #Métropole, logement BBC:7FA    start = datetime.date(2013, 1, 1),
+                #Métropole, logement non-BBC:7FB    start = datetime.date(2013, 1, 1),
+                #DOM, St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7FC    start = datetime.date(2013, 1, 1),
+                #Polynésie, Nouvelle Calédonie, Wallis et Futuna:7FD    start = datetime.date(2013, 1, 1),
             #investissements réalisés en 2012 avec engagement de réalisation de l'investissement à compter du 1/1/2012:
                 #Métropole, logement BBC:7JA
                 #Métropole, logement non-BBC:7JF
@@ -2896,11 +2938,11 @@ montant total des revenus à imposer selon le système du quotient: 0XX
             #report concernant les investissements achevés ou acquis au cours des années antérieures:
                 #investissements achevés en 2012: report de 1/9 de la réduction d'impôt:
                     #investissements réalisés en 2012:
-                        #investissements réalisés en 2012, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GS
-                        #investissements réalisés en 2012 avec promesse d'achat en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GK
+                        #investissements réalisés en 2012, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GJ    start = datetime.date(2013, 1, 1),
+                        #investissements réalisés en 2012 avec promesse d'achat en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GK    start = datetime.date(2013, 1, 1),
                     #investissements réalisés en 2011:
-                        #investissements réalisés en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GL
-                        #investissements réalisés en 2011 avec promesse d'achat en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GP
+                        #investissements réalisés en 2011, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GL    start = datetime.date(2013, 1, 1),
+                        #investissements réalisés en 2011 avec promesse d'achat en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GP    start = datetime.date(2013, 1, 1),
                     #investissements réalisés en 2010:
                         #investissements réalisés en 2010, en Métropole, dans les DOM, à St-Barthélemy, St-Martin, St-Pierre-et-Miquelon:7GS
                 #investissements achevés en 2011: report de 1/9 de la réduction d'impôt:
@@ -2926,18 +2968,18 @@ montant total des revenus à imposer selon le système du quotient: 0XX
                 #investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1/1/2010:
                     #report de l'année 2010:7LB
                     #report de l'année 2011:7LE
-                    #report de l'année 2012:7LM
+                    #report de l'année 2012:7LM    start = datetime.date(2013, 1, 1),
                 #investissements réalisés et achevés en 2010, ou réalisés en 2010 et achevés en 2011, ou rélisés et achevés en 2011 avec engagement en 2010:
                     #report de l'année 2010:7LC
                     #report de l'année 2011:7LD
-                    #report de l'année 2012:7LS
+                    #report de l'année 2012:7LS    start = datetime.date(2013, 1, 1),
                 #investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2011:7LF
-                #investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2012:7LZ                    
-                #investissements réalisés et achevés en 2012: report du solde de réduction d'impôt de l'année 2012:7MG
+                #investissements réalisés et achevés en 2011: report du solde de réduction d'impôt de l'année 2012:7LZ    start = datetime.date(2013, 1, 1),                  
+                #investissements réalisés et achevés en 2012: report du solde de réduction d'impôt de l'année 2012:7MG    start = datetime.date(2013, 1, 1),
     #investissement destinés à la location meublée non professionnelle: loi Censi-Bouvard
             #investissement réalisés en 2013:
-                #engagement de réalisation de l'investissement en 2013:7JT
-                #engagement de réalisation de l'investissement en 2012:7JU
+                #engagement de réalisation de l'investissement en 2013:7JT    start = datetime.date(2013, 1, 1),
+                #engagement de réalisation de l'investissement en 2012:7JU    start = datetime.date(2013, 1, 1),
             #investissement réalisés en 2012:
                 #engagement de réalisation de l'investissement en 2012:7ID
                 #promesse d'achat en 2011:7IE
@@ -2953,9 +2995,9 @@ montant total des revenus à imposer selon le système du quotient: 0XX
             #investissement réalisés en 2009:7IO
     #report de 1/9 de la réduction d'impôt des:
         #investissements réalisés et achevés en 2012
-            #réalisés en 2012:7JV
-            #réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011:7JW
-            #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7JX
+            #réalisés en 2012:7JV    start = datetime.date(2013, 1, 1),
+            #réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011:7JW    start = datetime.date(2013, 1, 1),
+            #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7JX    start = datetime.date(2013, 1, 1),
         #investissements achevés en 2011: report de 1/9 de la réduction d'impôt:
             #réalisés en 2011:7IA
             #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7IB
@@ -2971,16 +3013,16 @@ montant total des revenus à imposer selon le système du quotient: 0XX
          #investissements réalisés et achevés en 2010, réalisés en 2010 et achevés en 2011, réalisés et achevés en 2011 avec engagement en 2010
             #report du solde de réduction d'impôt de l'année 2010:7IT
             #report du solde de réduction d'impôt de l'année 2011:7IH
-            #report du solde de réduction d'impôt de l'année 2012:7JC                                           
+            #report du solde de réduction d'impôt de l'année 2012:7JC    start = datetime.date(2013, 1, 1),                                           
         #investissements réalisés et achevés en 2011, réalisés en 2011 et achevés en 2011 ou 2012, réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012
             #report du solde de réduction d'impôt de l'année 2011:7IZ
-            #report du solde de réduction d'impôt de l'année 2012:7JI                                           
+            #report du solde de réduction d'impôt de l'année 2012:7JI    start = datetime.date(2013, 1, 1),                                           
         #investissements réalisés et achevés en 2012            
-            #report du solde de réduction d'impôt de l'année 2012:7JS
+            #report du solde de réduction d'impôt de l'année 2012:7JS    start = datetime.date(2013, 1, 1),
     #Vos autres charges ouvrant droit à réduction d'impôt ou à crédit d'impôt 
         #sommes versées pour l'emploi d'un salarié à domicile
             #si vous avez engagé les dépenses pour un ascendant bénéficiaire de l'APA:7DD
-            #souscription au capital de petites entreprises en phase  d'amorçage, de démarrage ou d'expansion: reports des versements 2012:7CQ
+            #souscription au capital de petites entreprises en phase  d'amorçage, de démarrage ou d'expansion: reports des versements 2012 (2011 pour la déclaration des revenus de 2012):7CQ
             #investissements forestiers:
                 #assurance:7UL
                 #si les travaux sont consécutifs à un sinistre:7UT
@@ -2994,23 +3036,29 @@ montant total des revenus à imposer selon le système du quotient: 0XX
                     #hors sinistre:7UW
                     #après sinistre:7TG
                 #report des dépenses de travaux de l'année 2012:
-                    #hors sinistre:7UX
-                    #après sinistre:7TH
+                    #hors sinistre:7UX    start = datetime.date(2013, 1, 1),
+                    #après sinistre:7TH    start = datetime.date(2013, 1, 1),
             #investissement locatif dans le secteur touristique:
                 #acquisition d'un logement neuf:
                     #report des dépenses d'investissement effectuées en 2010:7XP 
-                    #report des dépenses d'investissement effectuées en 2012:7UY
+                    #report des dépenses d'investissement effectuées en 2012:7UY    start = datetime.date(2013, 1, 1),
                 #réhabilitation d'un logement
                     #report des dépenses d'investissement effectuées en 2010:7XQ
                     #report des dépenses d'investissement effectuées en 2011:7XV
-                    #report des dépenses d'investissement effectuées en 2012:7UZ
+                    #report des dépenses d'investissement effectuées en 2012:7UZ    start = datetime.date(2013, 1, 1),
+                #Travaux de reconstruction, d'agrandissement, de réparation ou d'amélioration payés en 2012
+                    #Travaux engagés avant le 1.1.2011 
+                        #Dans un village résidentiel de tourisme 7XA    end = datetime.date(2012, 12, 31),
+                        #Dans une résidence de tourisme classée ou un meublé tourisme 7XB    end = datetime.date(2012, 12, 31),  
+                    #Travaux engagés à compter du 1.1.2012 : 
+                        #Dans un village résidentiel de tourisme 7XX    end = datetime.date(2012, 12, 31),   
+                        #Dans une résidence de tourisme classée ou un meublé tourisme 7XZ    end = datetime.date(2012, 12, 31),                                    
             #investissement locatif dans une résidence hôtelière à vocation sociale                                                        
-                #report des dépenses d'investissement de 2010:7XR
-                
+                #report des dépenses d'investissement de 2010:7XR                
         #reprises de réductions d'impôt, autres imputations, conventions internationales, divers:
             #crédit d'impôt compétitivité, emploi: montant non encore cédé:
-                #entreprises bénéficiant de la restitution immédiate:8TL
-                #autres entreprises:8UW
+                #entreprises bénéficiant de la restitution immédiate:8TL    start = datetime.date(2013, 1, 1),
+                #autres entreprises:8UW    start = datetime.date(2013, 1, 1),
             #investissement en Corse:
                 #entreprises bénéficiant de le restitution immédiate:8TS
             #élus locaux: indemnités de fonction soumises à la retenue à la source:
@@ -3030,228 +3078,353 @@ montant total des revenus à imposer selon le système du quotient: 0XX
                   #Revenus de sources française et étrangère à prendre en compte pour le calcul du taux moyen d'imposition:8TM   
                   #Impôt sur plus-values en sursis de paiement en cas de transfert du domicile hors de france: 8TN   
              #Plus-values en report d'imposition non expiré: 8UT   
-             #Crédit d'impôt égal aux prélèvements forfaitaires et retenues à la source non libératoires effectués à Mayotte en 2013: 8UV    
+             #Crédit d'impôt égal aux prélèvements forfaitaires et retenues à la source non libératoires effectués à Mayotte en 2013: 8UV    start = datetime.date(2013, 1, 1),    
 
-###AUTRES CHARGES OUVRANT DROIT A REDUCTION D'IMPOT : Investissements outre-mer       
-    #Vous optez pour le plafonnement des réductions d'impôt pour investissements outre-mer à 11% du revenu imposable (15% (1) ou 13% (2) pour certains investissements):HQA  
+###AUTRES CHARGES OUVRANT DROIT A REDUCTION D'IMPOT : Investissements outre-mer
+###Pour la déclaration des revenus de 2013, les cases ont changé de nom, elles sont passées de 7.. à H.. (par ex:7QA à HQA)        
+    #Vous optez pour le plafonnement des réductions d'impôt pour investissements outre-mer à 11% du revenu imposable (15% (1) ou 13% (2) pour certains investissements):HQA start = datetime.date(2013, 1, 1),
+                                                                                                                                                                        7QA end = datetime.date(2012, 12, 31),     
           (1).Investissements dans le logement social ; investissements immobiliers engagés avant le 1.1.2011 ; investissements dans le cadre d'une entreprise agréés avant le 5.12.2010.
           (2).Investissements dans le logement (article 199 undecies A) engagés avant le 1.1.2012 et investissements dans le cadre d'une entreprise (article 199 undecies B) agréés avant le 28.9.2011.  
   
     #Investissements outre-mer dans le logement social : montant de la reduction d'impôt  
         #Investissements réalisés en 2013 
             #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
-                #En 2010: HRA  
-                #En 2011: HRB  
-                #En 2012: HRC  
-            #Autres investissements: HRD  
+                #En 2010: HRA    start = datetime.date(2013, 1, 1),  
+                #En 2011: HRB    start = datetime.date(2013, 1, 1),  
+                #En 2012: HRC    start = datetime.date(2013, 1, 1),
+            #Autres investissements: HRD    start = datetime.date(2013, 1, 1),  
         #Report de réductions d'impôt non imputées les années antérieures:   
-            #Investissements réalisés en 2009: HKG  
+            #Investissements réalisés en 2009: HKG    start = datetime.date(2013, 1, 1), 
+            #Investissements réalisés en 2009: 7KG    end = datetime.date(2012, 12, 31),             
             #Investissements réalisés en 2010: 
-                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HKH  
-                #Autres investissements: HKI   
+                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HKH    start = datetime.date(2013, 1, 1),  
+                                                                                                                                                                7KH    end = datetime.date(2012, 12, 31),         
+                #Autres investissements: HKI    start = datetime.date(2013, 1, 1),
+                                         7KI    end = datetime.date(2012, 12, 31), 
             #Investissements réalisés en 2011:
                 #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
-                    #En 2009: HQN  
-                    #En 2010: HQU   
-            #Autres investissements: HQK   
+                    #En 2009: HQN    start = datetime.date(2013, 1, 1),
+                              7QN    end = datetime.date(2012, 12, 31), 
+                    #En 2010: HQU    start = datetime.date(2013, 1, 1),
+                              7QU    end = datetime.date(2012, 12, 31), 
+            #Autres investissements: HQK    start = datetime.date(2013, 1, 1), 
+                                     7QK    end = datetime.date(2012, 12, 31), 
             #Investissements réalisés en 2012:
                 #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:   
-                    #En 2009: HQJ  
-                    #En 2010: HQS   
-                    #En 2011: HQW   
-                #Autres investissements: HQX   
+                    #En 2009: HQJ    start = datetime.date(2013, 1, 1),
+                              7QJ    end = datetime.date(2012, 12, 31),   
+                    #En 2010: HQS    start = datetime.date(2013, 1, 1),
+                              7QS    end = datetime.date(2012, 12, 31), 
+                    #En 2011: HQW    start = datetime.date(2013, 1, 1),
+                              7QW    end = datetime.date(2012, 12, 31), 
+                #Autres investissements: HQX    start = datetime.date(2013, 1, 1),
+                                         7QX    end = datetime.date(2012, 12, 31),    
     #Investissements outre-mer dans le logement et autres secteurs d'activité : montant de la réduction d'impôt 
-        #Investissements réalisés jusqu'au 31/12/2008: HQB   
+        #Investissements réalisés jusqu'au 31/12/2008: HQB    start = datetime.date(2013, 1, 1),   
+                                                       7QB    end = datetime.date(2012, 12, 31), 
         #Investissements réalisés en 2009 
-            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQC   
-            #Autres investissements: HQL   
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQC    start = datetime.date(2013, 1, 1),   
+                                                                                                                                                               7QC    end = datetime.date(2012, 12, 31), 
+            #Autres investissements: HQL    start = datetime.date(2013, 1, 1), 
+                                     7QL    end = datetime.date(2012, 12, 31), 
         #Investissements réalisés en 2010 
             #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
-                #Avant 2009: HQT  
-                #En 2009: HQM   
-            #Autres investissements: HQD   
+                #Avant 2009: HQT    start = datetime.date(2013, 1, 1),  
+                             7QT    end = datetime.date(2012, 12, 31), 
+                #En 2009: HQM    start = datetime.date(2013, 1, 1),   
+                          7QM    end = datetime.date(2012, 12, 31), 
+            #Autres investissements: HQD    start = datetime.date(2013, 1, 1),
+                                     7QD    end = datetime.date(2012, 12, 31), 
         #Investissements réalisés en 2011: 
             #Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
-                #avant 2009: HOA  
-                #en 2009: HOB  
-                #en 2010: HOC  
+                #avant 2009: HOA    start = datetime.date(2013, 1, 1), 
+                             7OA    end = datetime.date(2012, 12, 31), 
+                #en 2009: HOB    start = datetime.date(2013, 1, 1),  
+                          7OB    end = datetime.date(2012, 12, 31), 
+                #en 2010: HOC    start = datetime.date(2013, 1, 1),  
+                          7OC    end = datetime.date(2012, 12, 31), 
             #Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
-                #avant 2009: HOH  
-                #en 2009: HOI   
-                #en 2010: HOJ  
-            #Autres investissements: HOK   
+                #avant 2009: HOH    start = datetime.date(2013, 1, 1),
+                             7OH    end = datetime.date(2012, 12, 31), 
+                #en 2009: HOI    start = datetime.date(2013, 1, 1),   
+                          7OI    end = datetime.date(2012, 12, 31), 
+                #en 2010: HOJ    start = datetime.date(2013, 1, 1),  
+                          7OJ    end = datetime.date(2012, 12, 31), 
+            #Autres investissements: HOK    start = datetime.date(2013, 1, 1),
+                                     7OK    end = datetime.date(2012, 12, 31), 
         #Investissements réalisés en 2012:  
             #Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
-                #avant 2009: HOL  
-                #en 2009: HOM  
-                #en 2010: HON  
+                #avant 2009: HOL    start = datetime.date(2013, 1, 1),  
+                             7OL    end = datetime.date(2012, 12, 31), 
+                #en 2009: HOM    start = datetime.date(2013, 1, 1),  
+                          7OM    end = datetime.date(2012, 12, 31), 
+                #en 2010: HON    start = datetime.date(2013, 1, 1),  
+                          7ON    end = datetime.date(2012, 12, 31), 
             #Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
-                #avant 2009: HOO  
-                #en 2009: HOP   
-                #en 2010: HOQ  
-                #en 2011: HOR  
+                #avant 2009: HOO    start = datetime.date(2013, 1, 1),  
+                             7OO    end = datetime.date(2012, 12, 31), 
+                #en 2009: HOP    start = datetime.date(2013, 1, 1),   
+                          7OP    end = datetime.date(2012, 12, 31),  
+                #en 2010: HOQ    start = datetime.date(2013, 1, 1),  
+                          7OQ    end = datetime.date(2012, 12, 31),   
+                #en 2011: HOR    start = datetime.date(2013, 1, 1),  
+                          7OR    end = datetime.date(2012, 12, 31), 
             #Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
-                #avant 2009: HOS  
-                #en 2009: HOT   
-                #en 2010: HOU  
-                #en 2011: HOV  
-            #Autres investissements: HOW   
+                #avant 2009: HOS    start = datetime.date(2013, 1, 1),
+                             7OS    end = datetime.date(2012, 12, 31), 
+                #en 2009: HOT    start = datetime.date(2013, 1, 1),   
+                          7OT    end = datetime.date(2012, 12, 31), 
+                #en 2010: HOU    start = datetime.date(2013, 1, 1), 
+                          7OU    end = datetime.date(2012, 12, 31), 
+                #en 2011: HOV    start = datetime.date(2013, 1, 1), 
+                          7OV    end = datetime.date(2012, 12, 31), 
+            #Autres investissements: HOW    start = datetime.date(2013, 1, 1), 
+                                     7OW    end = datetime.date(2012, 12, 31), 
         #Investissements réalisés en 2013:    
-            #Investissements immobiliers engagés avant le 1.1.2011: HOD  
+            #Investissements immobiliers engagés avant le 1.1.2011: HOD    start = datetime.date(2013, 1, 1),  
             #Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
-                #en 2010: HOE  
-                #en 2011: HOF  
+                #en 2010: HOE    start = datetime.date(2013, 1, 1),  
+                #en 2011: HOF    start = datetime.date(2013, 1, 1),  
             #Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
-                #en 2010  HOG  
-                #en 2011  HOX  
-                #en 2012  HOY  
-            #Autres investissements: HOZ   
+                #en 2010  HOG    start = datetime.date(2013, 1, 1),  
+                #en 2011  HOX    start = datetime.date(2013, 1, 1),  
+                #en 2012  HOY    start = datetime.date(2013, 1, 1),  
+            #Autres investissements: HOZ    start = datetime.date(2013, 1, 1),   
     #Investissements outre-mer dans le cadre de l'entreprise:  
+        #Investissements réalisés en 2012
+            #Investissements agréés avant le 28/9/2011
+                #Investissements ayant fait l’objet avant 2009 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:7PM    end = datetime.date(2012, 12, 31),                
+                #Investissements ayant fait l’objet en 2009 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 50%: 7PN    end = datetime.date(2012, 12, 31),  
+                        #à hauteur de 60%: 7PO    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise:7PP    end = datetime.date(2012, 12, 31),                  
+                #Investissements dans votre entreprise avec exploitation directe:  
+                    #montant de la réduction d’impôt calculée:7PQ    end = datetime.date(2012, 12, 31),
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2012:7PR    end = datetime.date(2012, 12, 31),
+                #Investissements ayant fait l’objet en 2010 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 50%: 7PS    end = datetime.date(2012, 12, 31),  
+                        #à hauteur de 60%: 7PT    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise:7PU    end = datetime.date(2012, 12, 31),                  
+                #Investissements dans votre entreprise avec exploitation directe:  
+                    #montant de la réduction d’impôt calculée:7PV    end = datetime.date(2012, 12, 31),
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2012:7PW    end = datetime.date(2012, 12, 31),
+                #Investissements ayant fait l’objet en 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 52.63%: 7PX    end = datetime.date(2012, 12, 31),  
+                        #à hauteur de 62.5%: 7PY    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise:7RG    end = datetime.date(2012, 12, 31),                  
+                #Investissements dans votre entreprise avec exploitation directe:  
+                    #montant de la réduction d’impôt calculée:7RH    end = datetime.date(2012, 12, 31),
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2012:7RI    end = datetime.date(2012, 12, 31),       
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 7RJ    end = datetime.date(2012, 12, 31),   
+                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                        #à hauteur de 52,63 %: 7RK    end = datetime.date(2012, 12, 31),  
+                        #à hauteur de 62,5 %: 7RL     end = datetime.date(2012, 12, 31),
+                    #investissements dans votre entreprise: 7RM    end = datetime.date(2012, 12, 31),   
+                    #investissements dans votre entreprise avec exploitation directe : 
+                        #montant de la réduction d'impôt calculée: 7RN    end = datetime.date(2012, 12, 31),
+                        #montant de la réduction d'impôt dont vous demandez l'imputation en 2012: 7RO    end = datetime.date(2012, 12, 31),   
+                #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 52,63 %: 7RP    end = datetime.date(2012, 12, 31),  
+                        #à hauteur de 62,5 %: 7RQ    end = datetime.date(2012, 12, 31),   
+                    #investissements dans votre entreprise: 7RR    end = datetime.date(2012, 12, 31),   
+                    #investissements dans votre entreprise avec exploitation directe : 
+                        #montant de la réduction d'impôt calculée: 7RS    end = datetime.date(2012, 12, 31),  
+                        #montant de la réduction d'impôt dont vous demandez l'imputation en 2012: 7RT    end = datetime.date(2012, 12, 31),   
+                #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 52,63 % 7RU    end = datetime.date(2012, 12, 31),  
+                        #à hauteur de 62,5 % 7RV    end = datetime.date(2012, 12, 31),   
+                    #investissements dans votre entreprise: 7RW    end = datetime.date(2012, 12, 31),   
+                    #investissements dans votre entreprise avec exploitation directe : 
+                        #montant de la réduction d'impôt calculée: 7RX    end = datetime.date(2012, 12, 31),  
+                        #montant de la réduction d'impôt dont vous demandez l'imputation en 2012: 7RY    end = datetime.date(2012, 12, 31),   
+                    #Investissements autres que ceux des lignes précédentes 
+                        #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                            #à hauteur de 52,63 %: 7NU    end = datetime.date(2012, 12, 31),  
+                            #à hauteur de 62,5 %: 7NV    end = datetime.date(2012, 12, 31),   
+                        #investissements dans votre entreprise: 7NW    end = datetime.date(2012, 12, 31),   
+                        #investissements dans votre entreprise avec exploitation directe : 
+                            #montant de la réduction d'impôt calculée: 7NX    end = datetime.date(2012, 12, 31),  
+                            #montant de la réduction d'impôt dont vous demandez l'imputation en 2012: 7NY    end = datetime.date(2012, 12, 31),   
         #Investissements réalisés en 2013
             #Investissements agréés du 5.12.2010 au 27.9.2011, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                    #en 2010 à hauteur de 52,63%: HSA  
-                    #en 2010 à hauteur de 62,5%: HSB  
-                    #en 2011 à hauteur de 52,63%: HSF  
-                    #en 2011 à hauteur de 62,5%: HSG  
+                    #en 2010 à hauteur de 52,63%: HSA    start = datetime.date(2013, 1, 1),  
+                    #en 2010 à hauteur de 62,5%: HSB    start = datetime.date(2013, 1, 1),  
+                    #en 2011 à hauteur de 52,63%: HSF    start = datetime.date(2013, 1, 1),  
+                    #en 2011 à hauteur de 62,5%: HSG    start = datetime.date(2013, 1, 1),  
                 #Investissements dans votre entreprise:
-                    #en 2010: HSC  
-                    #en 2011: HSH  
+                    #en 2010: HSC    start = datetime.date(2013, 1, 1),  
+                    #en 2011: HSH    start = datetime.date(2013, 1, 1),  
                 #Investissements dans votre entreprise avec exploitation directe:  
                     #montant de la réduction d’impôt calculée:
-                        #en 2010: HSD  
-                        #en 2011: HSI  
+                        #en 2010: HSD    start = datetime.date(2013, 1, 1),  
+                        #en 2011: HSI    start = datetime.date(2013, 1, 1),  
                     #montant de la réduction d’impôt dont vous demandez l’imputation en 2013:
-                        #en 2010: HSE  
-                        #en 2011: HSJ  
+                        #en 2010: HSE    start = datetime.date(2013, 1, 1),  
+                        #en 2011: HSJ    start = datetime.date(2013, 1, 1),  
         #Autres investissements:
             #Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:  
-                #en 2010 à hauteur de 52,63%: HSK  
-                #en 2010 à hauteur de 62,5%: HSL  
-                #en 2011 à hauteur de 52,63%: HSP  
-                #en 2011 à hauteur de 62,5%: HSQ  
+                #en 2010 à hauteur de 52,63%: HSK    start = datetime.date(2013, 1, 1),  
+                #en 2010 à hauteur de 62,5%: HSL    start = datetime.date(2013, 1, 1),  
+                #en 2011 à hauteur de 52,63%: HSP    start = datetime.date(2013, 1, 1),  
+                #en 2011 à hauteur de 62,5%: HSQ    start = datetime.date(2013, 1, 1),  
             #Investissements dans votre entreprise:
-                #en 2010: HSM  
-                #en 2011: HSR  
+                #en 2010: HSM    start = datetime.date(2013, 1, 1),  
+                #en 2011: HSR    start = datetime.date(2013, 1, 1),  
             #Investissements dans votre entreprise avec exploitation directe:
                 #montant de la réduction d’impôt calculée:
-                    #en 2010: HSN  
-                    #en 2011: HSS  
+                    #en 2010: HSN    start = datetime.date(2013, 1, 1),  
+                    #en 2011: HSS    start = datetime.date(2013, 1, 1),  
                 #montant de la réduction d’impôt dont vous demandez l’imputation en 2013:
-                #en 2010: HSO  
-                #en 2011: HST  
+                #en 2010: HSO    start = datetime.date(2013, 1, 1),  
+                #en 2011: HST    start = datetime.date(2013, 1, 1),  
             #Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:
-                    #à hauteur de 52,63%: HSU  
-                    #à hauteur de 62,5%: HSV  
-                #Investissements dans votre entreprise: HSW  
+                    #à hauteur de 52,63%: HSU    start = datetime.date(2013, 1, 1),  
+                    #à hauteur de 62,5%: HSV    start = datetime.date(2013, 1, 1),  
+                #Investissements dans votre entreprise: HSW    start = datetime.date(2013, 1, 1),  
                 #Investissements dans votre entreprise avec exploitation directe :   
-                    #montant de la réduction d’impôt calculé: HSX  
-                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HSY      
+                    #montant de la réduction d’impôt calculé: HSX    start = datetime.date(2013, 1, 1),  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HSY    start = datetime.date(2013, 1, 1),      
         #Investissements autres que ceux des lignes précédentes  
             #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:
-                #à hauteur de 52,63%: HSZ  
-                #à hauteur de 62,5%: HTA  
+                #à hauteur de 52,63%: HSZ    start = datetime.date(2013, 1, 1),  
+                #à hauteur de 62,5%: HTA    start = datetime.date(2013, 1, 1),  
             #Investissements dans votre entreprise:
-                #Investissements dans votre entreprise avec exploitation directe : HTB  
-                    #montant de la réduction d’impôt calculé: HTC  
-                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HTD  
+                #Investissements dans votre entreprise avec exploitation directe : HTB    start = datetime.date(2013, 1, 1),  
+                    #montant de la réduction d’impôt calculé: HTC    start = datetime.date(2013, 1, 1),  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HTD    start = datetime.date(2013, 1, 1),  
     #REPORT DE RÉDUCTIONS D'IMPÔT NON IMPUTÉES LES ANNEES ANTÉRIEURES 
-        #Investissements réalisés en 2008: HQZ  
+        #Investissements réalisés en 2008: HQZ    start = datetime.date(2013, 1, 1),  
         #Investissements réalisés en 2009: 
-            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMM  
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMM    start = datetime.date(2013, 1, 1),
+                                                                                                                                                               7MM    end = datetime.date(2012, 12, 31),
             #Autres investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                #à hauteur de 50%: HLG  
-                #à hauteur de 60%  HMA  
-            #Autres investissements dans votre entreprise: HKS  
+                #à hauteur de 50%: HLG    start = datetime.date(2013, 1, 1),
+                                   7LG    end = datetime.date(2012, 12, 31),
+                #à hauteur de 60%  HMA    start = datetime.date(2013, 1, 1), 
+                                   7MA    end = datetime.date(2012, 12, 31),
+            #Autres investissements dans votre entreprise: HKS    start = datetime.date(2013, 1, 1), 
+                                                           7KS    end = datetime.date(2012, 12, 31),  
         #Investissements réalisés en 2010: 
-            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMN  
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMN    start = datetime.date(2013, 1, 1),
+                                                                                                                                                               7MN    end = datetime.date(2012, 12, 31), 
             #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                    #à hauteur de 50%: HLH  
-                    #à hauteur de 60%: HMB   
-                #Investissements dans votre entreprise: HKT  
+                    #à hauteur de 50%: HLH    start = datetime.date(2013, 1, 1),  
+                                       7LH    end = datetime.date(2012, 12, 31),
+                    #à hauteur de 60%: HMB    start = datetime.date(2013, 1, 1),
+                                       7MB    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise: HKT    start = datetime.date(2013, 1, 1),
+                                                        7KT    end = datetime.date(2012, 12, 31),
             #Autres investissements réalisés en 2010:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                    #à hauteur de 50%: HLI   
-                    #à hauteur de 60%:  HMC   
-                #Investissements dans votre entreprise: HKU  
+                    #à hauteur de 50%: HLI    start = datetime.date(2013, 1, 1),   
+                                       7LI    end = datetime.date(2012, 12, 31),
+                    #à hauteur de 60%:  HMC    start = datetime.date(2013, 1, 1),
+                                        7MC    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise: HKU    start = datetime.date(2013, 1, 1),
+                                                        7KU    end = datetime.date(2012, 12, 31),
         #Investissements réalisés en 2011: 
             #Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010: 
-                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQV  
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQV    start = datetime.date(2013, 1, 1),
+                                                                                                                                                                   7QV    end = datetime.date(2012, 12, 31), 
                     #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                        #à hauteur de 50%: HQO   
-                        #à hauteur de 60%: HQP   
-                    #investissements dans votre entreprise: HQR  
+                        #à hauteur de 50%: HQO    start = datetime.date(2013, 1, 1),   
+                                           7QO    end = datetime.date(2012, 12, 31),
+                        #à hauteur de 60%: HQP    start = datetime.date(2013, 1, 1),
+                                           7QP    end = datetime.date(2012, 12, 31),
+                    #investissements dans votre entreprise: HQR    start = datetime.date(2013, 1, 1), 
+                                                            7QR    end = datetime.date(2012, 12, 31),
                 #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                     #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                        #à hauteur de 50%: HQF   
-                        #à hauteur de 60%: HQG  
-                    #Investissements dans votre entreprise: HQI  
+                        #à hauteur de 50%: HQF    start = datetime.date(2013, 1, 1),  
+                                           7QF    end = datetime.date(2012, 12, 31),
+                        #à hauteur de 60%: HQG    start = datetime.date(2013, 1, 1), 
+                                           7QG    end = datetime.date(2012, 12, 31),
+                    #Investissements dans votre entreprise: HQI    start = datetime.date(2013, 1, 1),  
+                                                            7QI    end = datetime.date(2012, 12, 31),
         #Autres investissements: 
-            #Investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQE  
+            #Investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQE    start = datetime.date(2013, 1, 1),
+                                                                                                                                                                   7QE    end = datetime.date(2012, 12, 31),
             #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                    #à hauteur de 52,63%: HPA  
-                    #à hauteur de 62,5%: HPB  
-                #Investissements dans votre entreprise HPD   
+                    #à hauteur de 52,63%: HPA    start = datetime.date(2013, 1, 1),  
+                                          7PA    end = datetime.date(2012, 12, 31),
+                    #à hauteur de 62,5%: HPB    start = datetime.date(2013, 1, 1), 
+                                         7PB    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise HPD    start = datetime.date(2013, 1, 1), 
+                                                       7PD    end = datetime.date(2012, 12, 31),
             #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                    #à hauteur de 52,63%: HPE  
-                    #à hauteur de 62,5%: HPF  
-                #Investissements dans votre entreprise: HPH   
+                    #à hauteur de 52,63%: HPE    start = datetime.date(2013, 1, 1),
+                                          7PE    end = datetime.date(2012, 12, 31),
+                    #à hauteur de 62,5%: HPF    start = datetime.date(2013, 1, 1), 
+                                         7PF    end = datetime.date(2012, 12, 31),
+                #Investissements dans votre entreprise: HPH    start = datetime.date(2013, 1, 1),   
+                                                        7PH    end = datetime.date(2012, 12, 31),
             #Investissements autres que ceux des lignes précédentes:
                 #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
-                    #à hauteur de 52,63%: HPI  
-                    #à hauteur de 62,5%: HPJ  
-            #Investissements dans votre entreprise: HPL   
+                    #à hauteur de 52,63%: HPI    start = datetime.date(2013, 1, 1),
+                                          7PI    end = datetime.date(2012, 12, 31),
+                    #à hauteur de 62,5%: HPJ    start = datetime.date(2013, 1, 1),  
+                                         7PJ    end = datetime.date(2012, 12, 31),
+            #Investissements dans votre entreprise: HPL    start = datetime.date(2013, 1, 1),
+                                                    7PL    end = datetime.date(2012, 12, 31),
         #Investissements réalisés en 2012:
             #Investissements agréés avant le 28.9.2011:  
-                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HPM   
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HPM    start = datetime.date(2013, 1, 1),   
                 #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                     #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                        #à hauteur de 50 %: HPN  
-                        #à hauteur de 60 %: HPO   
-                    #investissements dans votre entreprise: HPP   
-                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPR   
+                        #à hauteur de 50 %: HPN    start = datetime.date(2013, 1, 1),  
+                        #à hauteur de 60 %: HPO    start = datetime.date(2013, 1, 1),   
+                    #investissements dans votre entreprise: HPP    start = datetime.date(2013, 1, 1),   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPR    start = datetime.date(2013, 1, 1),   
                 #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                     #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                        #à hauteur de 50 %: HPS  
-                        #à hauteur de 60 %: HPT   
-                    #investissements dans votre entreprise: HPU   
-                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPW   
+                        #à hauteur de 50 %: HPS    start = datetime.date(2013, 1, 1),  
+                        #à hauteur de 60 %: HPT    start = datetime.date(2013, 1, 1),   
+                    #investissements dans votre entreprise: HPU    start = datetime.date(2013, 1, 1),   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPW    start = datetime.date(2013, 1, 1),   
                 #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
                     #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                        #à hauteur de 52,63 %: HPX  
-                        #à hauteur de 62,5 %: HPY   
-                    #investissements dans votre entreprise: HRG   
-                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRI   
+                        #à hauteur de 52,63 %: HPX    start = datetime.date(2013, 1, 1),  
+                        #à hauteur de 62,5 %: HPY    start = datetime.date(2013, 1, 1),   
+                    #investissements dans votre entreprise: HRG    start = datetime.date(2013, 1, 1),   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRI    start = datetime.date(2013, 1, 1),   
         #Autres investissements: 
-            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: HRJ   
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: HRJ    start = datetime.date(2013, 1, 1),   
             #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
                 #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                    #à hauteur de 52,63 %: HRK  
-                    #à hauteur de 62,5 %: HRL   
-                #investissements dans votre entreprise: HRM   
-                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRO   
+                    #à hauteur de 52,63 %: HRK    start = datetime.date(2013, 1, 1),  
+                    #à hauteur de 62,5 %: HRL    start = datetime.date(2013, 1, 1),   
+                #investissements dans votre entreprise: HRM    start = datetime.date(2013, 1, 1),   
+                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRO    start = datetime.date(2013, 1, 1),   
             #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
                 #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                    #à hauteur de 52,63 %: HRP  
-                    #à hauteur de 62,5 %: HRQ   
-                #investissements dans votre entreprise: HRR   
-                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRT   
+                    #à hauteur de 52,63 %: HRP    start = datetime.date(2013, 1, 1),  
+                    #à hauteur de 62,5 %: HRQ    start = datetime.date(2013, 1, 1),   
+                #investissements dans votre entreprise: HRR    start = datetime.date(2013, 1, 1),   
+                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRT    start = datetime.date(2013, 1, 1),   
         #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
             #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-                #à hauteur de 52,63 %: HRU  
-                #à hauteur de 62,5 %: HRV   
-            #investissements dans votre entreprise: HRW   
-            #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRY   
+                #à hauteur de 52,63 %: HRU    start = datetime.date(2013, 1, 1),  
+                #à hauteur de 62,5 %: HRV    start = datetime.date(2013, 1, 1),   
+            #investissements dans votre entreprise: HRW    start = datetime.date(2013, 1, 1),   
+            #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRY    start = datetime.date(2013, 1, 1),   
         #Investissements autres que ceux des lignes précédentes: 
             #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
-               #à hauteur de 52,63 %: HNU  
-               #à hauteur de 62,5 %: HNV   
-            #investissements dans votre entreprise: HNW   
-            #investissements dans votre entreprise avec exploitation directe: HNY           
+               #à hauteur de 52,63 %: HNU    start = datetime.date(2013, 1, 1),  
+               #à hauteur de 62,5 %: HNV    start = datetime.date(2013, 1, 1),   
+            #investissements dans votre entreprise: HNW    start = datetime.date(2013, 1, 1),   
+            #investissements dans votre entreprise avec exploitation directe: HNY    start = datetime.date(2013, 1, 1),           
 """
 
 
