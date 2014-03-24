@@ -1187,7 +1187,7 @@ mettons nous 6AA ou seulement AA ?
                     label = u"Investissements outre-mer réalisés en 2008 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7QZ',
-                    end = date.datetime (2012, 12, 31))),  # TODO vérifier les années antérieures
+                    end = date.datetime (2012, 12, 31))),  # TODO: vérifier les années antérieures
 
     ('f7rz', IntCol(entity = 'foy',
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
