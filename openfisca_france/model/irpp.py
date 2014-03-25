@@ -89,7 +89,7 @@ def _nbG(self, alt, inv, quifoy):
 
 def _nbH(self, age, alt, inv, quifoy):
     enfant_a_charge_garde_alternee = and_(quifoy >= 2, or_(age < 18, inv), alt)
-    return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16))
+    return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16)) * 0
 
 
 def _nbI(self, alt, inv, quifoy):
@@ -1304,7 +1304,7 @@ def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holde
     ppe_tot = (ppe_tot != 0) * max_(P.versmin, ppe_tot)
     # from pandas import DataFrame
     # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj, 8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
-    # print DataFrame(decompo).to_string()
+    # ppe DataFrame(decompo).to_string()
 
     return ppe_tot
 
