@@ -71,7 +71,7 @@ def test_from_taxipp(selection = None, threshold = 1, list_input = None, list_ou
             pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold,
                 verbose = verbose)
             assert len(pbs) == 0, \
-                "Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
+                u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
                 input_file_path, threshold, pbs)
             last_param_scenario = param_scenario
 
