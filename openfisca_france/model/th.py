@@ -11,7 +11,7 @@ from __future__ import division
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_
 
-from .data import QUIMEN, QUIFOY
+from .input_variables.base import QUIMEN, QUIFOY
 
 
 PREF = QUIMEN['pref']
@@ -46,7 +46,6 @@ def _exonere_taxe_habitation(self, zthabm, aah, aspa, asi, age_holder, isf_tot_h
     return not_(elig)
 
 
-
 def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
     # Documentation voir http://www2.impots.gouv.fr/documentation/2013/idl/files/assets/common/downloads/publication.pdf
     # Variables TODO: à inclure dans la fonction
@@ -68,7 +67,7 @@ def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
 
     taux_special_invalide = .1  # 10% si l'abattement est voté est en vigueur
 
-    taux_imposition = .10  # TODO: taux d'imposition vté par les colloc
+    taux_imposition = .10  # TODO: taux d'imposition voté par les colloc
 
     # abattements pour l'habitation principale
 

@@ -122,6 +122,7 @@ prestation_by_name = collections.OrderedDict((
             u"public_non_titulaire",
              ]),
          )),
+
     build_alternative_formula_couple(
         'salbrut',
         [
@@ -131,6 +132,7 @@ prestation_by_name = collections.OrderedDict((
             ],
         FloatCol(label = u"Salaire brut ou traitement indiciaire brut"),
         ),
+
     build_simple_formula_couple('primes', FloatCol(function = cs_travail._primes, label = u"Primes et indemnités des fonctionnaires")),
     build_simple_formula_couple('sal_h_b', FloatCol(function = cs_travail._sal_h_b, label = u"Salaire horaire brut")),
     build_simple_formula_couple('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
@@ -187,6 +189,7 @@ prestation_by_name = collections.OrderedDict((
             ],
         FloatCol(label = u"Allocations chômage brutes"),
         ),
+
     build_simple_formula_couple('csgchod', FloatCol(function = cs_remplac._csgchod, label = u"CSG déductible sur les allocations chômage")),
     build_simple_formula_couple('csgchoi', FloatCol(function = cs_remplac._csgchoi, label = u"CSG imposable sur les allocations chômage")),
     build_simple_formula_couple('crdscho', FloatCol(function = cs_remplac._crdscho, label = u"CRDS sur les allocations chômage")),
@@ -203,6 +206,7 @@ prestation_by_name = collections.OrderedDict((
             ],
         FloatCol(label = u"Pensions de retraite brutes"),
         ),
+
     build_simple_formula_couple('csgrstd', FloatCol(function = cs_remplac._csgrstd, label = u"CSG déductible sur les pensions de retraite")),
     build_simple_formula_couple('csgrsti', FloatCol(function = cs_remplac._csgrsti, label = u"CSG imposable sur les pensions de retraite")),
     build_simple_formula_couple('crdsrst', FloatCol(function = cs_remplac._crdsrst, label = u"CRDS sur les pensions de retraite")),
@@ -439,7 +443,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('rfr_rvcm', FloatCol(function = ir._rfr_rvcm, entity = 'foy')),
 
 #    build_simple_formula_couple('alv', FloatCol(function = ir._alv)),
-    build_simple_formula_couple('glo', FloatCol(function = ir._glo, label =u"Gain de levée d'options")),
+    build_simple_formula_couple('glo', FloatCol(function = ir._glo, label = u"Gain de levée d'options")),
     build_simple_formula_couple('rag', FloatCol(function = ir._rag)),
     build_simple_formula_couple('ric', FloatCol(function = ir._ric)),
     build_simple_formula_couple('rac', FloatCol(function = ir._rac)),

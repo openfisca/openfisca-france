@@ -62,7 +62,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
 
     from . import decompositions, entities, scenarios  # utils
     from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
-    from .model.data import column_by_name
+    from .model.input_variables import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
     from .model.model import prestation_by_name
     if qt:

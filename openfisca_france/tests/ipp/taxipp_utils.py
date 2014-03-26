@@ -38,7 +38,6 @@ from pandas import DataFrame, ExcelFile, read_stata, Series
 current_dir = os.path.dirname(os.path.realpath(__file__))
 variables_corresp = os.path.join(current_dir, 'correspondances_variables.xlsx')
 
-
 def build_ipp2of_variables():
     ''' 
     Création du dictionnaire dont les clefs sont les noms des variables IPP
@@ -60,9 +59,10 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
     '''
     ipp_output = read_stata(path_dta_output).sort(['id_foyf', 'id_indiv'], ascending = [True, False]).reset_index()
     if 'salbrut' in param_scenario.items() :
-        if param_scenario['option'] == 'salbrut':
+        if param_scenario['option'] == 'brut':
             del ipp2of_output_variables['sal_brut']
-
+            del ipp2of_output_variables['chom_brut']
+            del ipp2of_output_variables['rst_brut']
     scenario = param_scenario['scenario']
     if 'activite' in param_scenario:
         act = param_scenario['activite']
@@ -73,18 +73,19 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
     else:
         act_conj = 0
 
-    check_list_commun = ['isf_foy', 'irpp_net_foy', 'irpp_bar_foy', 'ppe_brut_foy', 'ppe_net_foy', 'irpp_ds_foy']  # # 'decote_irpp_foy',
-    check_list_minima = ['rsa_foys', 'rsa_act_foys', 'mv_foys', 'rsa_logt', 'y_rmi_rsa']
+    check_list_commun = ['isf_foy', 'irpp_tot_foy', 'irpp_bar_foy', 'ppe_brut_foy', 'ppe_net_foy', 'irpp_ds_foy', 'taxe_HR_foy']  # # 'decote_irpp_foy',
+    check_list_minima = ['rsa_foys', 'rsa_act_foys', 'mv_foys', 'rsa_logt']  # , 'y_rmi_rsa'
     check_list_af = ['paje_foys', 'paje_base_foys', 'paje_clca_foys', 'af_foys', 'nenf_prest', 'biact_or_isole', 'alf_foys', 'ars_foys', 'asf_foys', 'api', 'apje_foys']  # 'af_diff', 'af_maj',
-    check_list_sal = ['csp_exo', 'csg_sal_ded', 'css', 'css_co', 'css_nco', 'crds_sal', 'csg_sal_nonded', 'sal_irpp', 'sal_brut', 'csp_mo_vt', 'csp_nco', 'csp_co', 'vt', 'mo', 'sal_superbrut', 'sal_net', 'ts', 'tehr']  # 'csg_sal_ded'] #, 'irpp_net_foy', 'af_foys']- cotisations salariales : 'css', 'css_nco', 'css_co', 'sal_superbrut' 'csp',
+    check_list_sal = ['csp_exo', 'csg_sal_ded', 'css', 'css_co', 'css_nco', 'crds_sal', 'csg_sal_nonded', 'sal_irpp', 'sal_brut', 'csp_mo_vt', 'csp_nco', 'csp_co', 'vtmo', 'sal_superbrut', 'sal_net', 'ts', 'tehr']  # 'csg_sal_ded'] #, 'irpp_net_foy', 'af_foys']- cotisations salariales : 'css', 'css_nco', 'css_co', 'sal_superbrut' 'csp',
     # 'decote_irpp_foy' : remarque par d'équivalence Taxipp
     check_list_chom = ['csg_chom_ded', 'chom_irpp', 'chom_brut', 'csg_chom_nonded', 'crds_chom']
     check_list_ret = ['csg_pens_ded', 'pension_irpp', 'pension_net', 'csg_pens_nonded', 'crds_pens']
     check_list_cap = ['isf_foy', 'isf_brut_foy', 'isf_net_foy', 'csg_patr_foy', 'crds_patr_foy', 'csk_patr_foy', 'csg_plac_foy', 'crds_plac_foy', 'csk_plac_foy']
 
     if 'salbrut' in param_scenario.items() :
-        if param_scenario['option'] == 'salbrut':
+        if param_scenario['option'] == 'brut':
             check_list_sal.remove('sal_brut')
+            check_list_chom.remove('chom_brut')
 
     id_list = act + act_conj
     lists = {0 : check_list_sal, 1: check_list_sal + check_list_chom, 2: check_list_chom, 3 : check_list_sal + check_list_ret, 4 : check_list_chom + check_list_ret, 6 : check_list_ret}
@@ -102,7 +103,6 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
             # print name, col
             holder = simulation.get_holder(name, default = None)
             if holder is not None and holder.array is not None:
-
                 if not all(holder.array == col.default):
                     if len(holder.array) == len_indiv:
                         input_variables['ind'].append(name)
@@ -110,7 +110,6 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
                         input_variables['men'].append(name)
                     else:
                         input_variables['foy'].append(name)
-
         return input_variables
 
     def _conflict_by_entity(simulation, of_var_holder, ipp_var, pb_calcul, ipp_output = ipp_output):
@@ -212,11 +211,13 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
         datesim = dict_scenar['datesim']
         param_scenario = dict_scenar
 
-    if 'salbrut' in param_scenario.items() and param_scenario['option'] == 'salbrut':
+    if  'option' in param_scenario.keys() and param_scenario['option'] == 'brut':
         TaxBenefitSystem = openfisca_france.init_country(start_from = "brut")
         tax_benefit_system = TaxBenefitSystem()
         del ipp2of_input_variables['sal_irpp_old']
         ipp2of_input_variables['sal_brut'] = 'salbrut'
+        ipp2of_input_variables['chom_brut'] = 'chobrut'
+        ipp2of_input_variables['pension_brut'] = 'rstbrut'
     else :
         TaxBenefitSystem = openfisca_france.init_country()
         tax_benefit_system = TaxBenefitSystem()

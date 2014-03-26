@@ -33,7 +33,7 @@ from numpy import (logical_not as not_, logical_or as or_, maximum as max_, mini
 from openfisca_core.baremes import BaremeDict, scaleBaremes
 from openfisca_core.enumerations import Enum
 
-from ..data import QUIFAM, QUIFOY, QUIMEN
+from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN
 from .preprocessing import build_pat, build_sal
 
 

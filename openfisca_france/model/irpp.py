@@ -14,7 +14,7 @@ import logging
 from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 
-from .data import QUIFOY
+from .input_variables.base import QUIFOY
 
 
 CONJ = QUIFOY['conj']
@@ -1304,7 +1304,7 @@ def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holde
     ppe_tot = (ppe_tot != 0) * max_(P.versmin, ppe_tot)
     # from pandas import DataFrame
     # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj, 8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
-    # print DataFrame(decompo).to_string()
+    # ppe DataFrame(decompo).to_string()
 
     return ppe_tot
 

@@ -14,7 +14,9 @@ from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as 
 import pkg_resources
 
 from .. import data as data_resources
-from .data import QUIFAM, QUIMEN, QUIFOY
+
+from .input_variables.base import QUIFAM, QUIMEN, QUIFOY
+
 from .pfam import nb_enf
 
 
@@ -57,11 +59,11 @@ def _al_pac(self, age_holder, smic55_holder, nbR_holder, _P):
     # charge (cas actuel) et zéro sinon.
     nbR = self.cast_from_entity_to_role(nbR_holder, role = VOUS)
     al_nbinv = self.sum_by_entity(nbR)
-    
+
     age1 = P.fam.af.age1
     age2 = P.fam.cf.age2
     al_nbenf = nb_enf(age, smic55, age1, age2)
-    al_pac = P.al.autres.D_enfch*(al_nbenf + al_nbinv) #  TODO: manque invalides
+    al_pac = P.al.autres.D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
     # TODO: il faudrait probablement définir les AL pour un ménage et non
     # pour une famille
     return al_pac
@@ -94,19 +96,19 @@ def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, b
     etuCP = (etu[CHEF]) & (etu[PART])
     # Boursiers
     # TODO: distinguer boursier foyer/boursier locatif
-    etuCB = etu[CHEF]&boursier[CHEF]
-    etuPB = etu[PART]&boursier[PART]
+    etuCB = etu[CHEF] & boursier[CHEF]
+    etuPB = etu[PART] & boursier[PART]
     # self.etu = (self.etu[CHEF]>=1)|(self.etuP>=1)
 
-    revCatVous = max_(br_pf_i[CHEF],etuC*(Pr.dar_4-(etuCB)*Pr.dar_5))
-    revCatConj = max_(br_pf_i[PART],etuP*(Pr.dar_4-(etuPB)*Pr.dar_5))
-    revCatVsCj = not_(etuCP)*(revCatVous + revCatConj) + \
-                    etuCP*max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 -(etuCB|etuPB)*Pr.dar_5 + Pr.dar_7)
+    revCatVous = max_(br_pf_i[CHEF], etuC * (Pr.dar_4 - (etuCB) * Pr.dar_5))
+    revCatConj = max_(br_pf_i[PART], etuP * (Pr.dar_4 - (etuPB) * Pr.dar_5))
+    revCatVsCj = not_(etuCP) * (revCatVous + revCatConj) + \
+                    etuCP * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etuCB | etuPB) * Pr.dar_5 + Pr.dar_7)
 
     # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier), les inclure dans le calcul
     # somme des revenus catégoriels après abatement
     revCat = revCatVsCj + rev_coll
-    
+
     # TODO: charges déductibles : pension alimentaires et abatements spéciaux
     revNet = revCat
 
@@ -114,7 +116,7 @@ def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, b
     # personnes (enfant, ascendants ou grands infirmes).
 
     # abattement forfaitaire double activité
-    abatDoubleAct = biact*Pr.dar_1
+    abatDoubleAct = biact * Pr.dar_1
 
     # TODO: neutralisation des ressources
     # ...
@@ -128,7 +130,7 @@ def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, b
 
     # Base ressource des aides au logement (arrondies aux 100 euros supérieurs)
 
-    br_al = ceil(max_(revNet - abatDoubleAct,0)/100)*100
+    br_al = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
 
     return br_al
 
@@ -159,33 +161,33 @@ def _al(self, concub, br_al, so, loyer, coloc_holder, isol, al_pac, zone_apl, na
     #   SO==5 : Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel.
     #   sO==6 : Logé gratuitement par des parents, des amis ou l'employeur
 
-    loca = (3 <= so)&(5 >= so)
-    acce = so==1
+    loca = (3 <= so) & (5 >= so)
+    acce = so == 1
     rmi = P.al.rmi
     bmaf = P.fam.af.bmaf_n_2
 
-    ## aides au logement pour les locataires
+    # # aides au logement pour les locataires
     # loyer mensuel;
     L1 = loyer
     # loyer plafond;
-    lp_taux = (not_(coloc))*1 + coloc*P.al.loyers_plafond.colocation
+    lp_taux = (not_(coloc)) * 1 + coloc * P.al.loyers_plafond.colocation
 
     z1 = P.al.loyers_plafond.zone1
     z2 = P.al.loyers_plafond.zone2
     z3 = P.al.loyers_plafond.zone3
 
-    Lz1 = ((isol)*(al_pac==0)*z1.L1 + (concub)*(al_pac==0)*z1.L2 + (al_pac>0)*z1.L3 + (al_pac>1)*(al_pac-1)*z1.L4)*lp_taux
-    Lz2 = ((isol)*(al_pac==0)*z2.L1 + (concub)*(al_pac==0)*z2.L2 + (al_pac>0)*z2.L3 + (al_pac>1)*(al_pac-1)*z2.L4)*lp_taux
-    Lz3 = ((isol)*(al_pac==0)*z3.L1 + (concub)*(al_pac==0)*z3.L2 + (al_pac>0)*z3.L3 + (al_pac>1)*(al_pac-1)*z3.L4)*lp_taux
+    Lz1 = ((isol) * (al_pac == 0) * z1.L1 + (concub) * (al_pac == 0) * z1.L2 + (al_pac > 0) * z1.L3 + (al_pac > 1) * (al_pac - 1) * z1.L4) * lp_taux
+    Lz2 = ((isol) * (al_pac == 0) * z2.L1 + (concub) * (al_pac == 0) * z2.L2 + (al_pac > 0) * z2.L3 + (al_pac > 1) * (al_pac - 1) * z2.L4) * lp_taux
+    Lz3 = ((isol) * (al_pac == 0) * z3.L1 + (concub) * (al_pac == 0) * z3.L2 + (al_pac > 0) * z3.L3 + (al_pac > 1) * (al_pac - 1) * z3.L4) * lp_taux
 
-    L2 = Lz1*(zone_apl==1) + Lz2*(zone_apl==2) + Lz3*(zone_apl==3)
+    L2 = Lz1 * (zone_apl == 1) + Lz2 * (zone_apl == 2) + Lz3 * (zone_apl == 3)
     # loyer retenu
-    L = min_(L1,L2)
+    L = min_(L1, L2)
 
     # forfait de charges
     P_fc = P.al.forfait_charges
-    C = not_(coloc)*(P_fc.fc1 + al_pac*P_fc.fc2) + \
-          ( coloc)*((isol*0.5 + concub)*P_fc.fc1 + al_pac*P_fc.fc2)
+    C = not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) + \
+          (coloc) * ((isol * 0.5 + concub) * P_fc.fc1 + al_pac * P_fc.fc2)
 
     # dépense éligible
     E = L + C
@@ -194,51 +196,51 @@ def _al(self, concub, br_al, so, loyer, coloc_holder, isol, al_pac, zone_apl, na
     R = br_al
 
     # Plafond RO
-    R1 = P.al.R1.taux1*rmi*(isol)*(al_pac==0) + \
-         P.al.R1.taux2*rmi*(concub)*(al_pac==0) + \
-         P.al.R1.taux3*rmi*(al_pac==1) + \
-         P.al.R1.taux4*rmi*(al_pac>=2) + \
-         P.al.R1.taux5*rmi*(al_pac>2)*(al_pac-2)
+    R1 = P.al.R1.taux1 * rmi * (isol) * (al_pac == 0) + \
+         P.al.R1.taux2 * rmi * (concub) * (al_pac == 0) + \
+         P.al.R1.taux3 * rmi * (al_pac == 1) + \
+         P.al.R1.taux4 * rmi * (al_pac >= 2) + \
+         P.al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
 
-    R2 = P.al.R2.taux4*bmaf*(al_pac>=2) + \
-         P.al.R2.taux5*bmaf*(al_pac>2)*(al_pac-2)
+    R2 = P.al.R2.taux4 * bmaf * (al_pac >= 2) + \
+         P.al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)
 
-    Ro = round(12*(R1-R2)*(1-P.al.autres.abat_sal));
+    Ro = round(12 * (R1 - R2) * (1 - P.al.autres.abat_sal));
 
-    Rp = max_(0, R - Ro );
+    Rp = max_(0, R - Ro);
 
     # Participation personnelle
-    Po = max_(P.al.pp.taux*E, P.al.pp.min);
+    Po = max_(P.al.pp.taux * E, P.al.pp.min);
 
     # Taux de famille
-    TF = P.al.TF.taux1*(isol)*(al_pac==0) + \
-         P.al.TF.taux2*(concub)*(al_pac==0) + \
-         P.al.TF.taux3*(al_pac==1) + \
-         P.al.TF.taux4*(al_pac==2) + \
-         P.al.TF.taux5*(al_pac==3) + \
-         P.al.TF.taux6*(al_pac>=4) + \
-         P.al.TF.taux7*(al_pac>4)*(al_pac-4)
+    TF = P.al.TF.taux1 * (isol) * (al_pac == 0) + \
+         P.al.TF.taux2 * (concub) * (al_pac == 0) + \
+         P.al.TF.taux3 * (al_pac == 1) + \
+         P.al.TF.taux4 * (al_pac == 2) + \
+         P.al.TF.taux5 * (al_pac == 3) + \
+         P.al.TF.taux6 * (al_pac >= 4) + \
+         P.al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
 
     # Loyer de référence
-    L_Ref = z2.L1*(isol)*(al_pac==0) + \
-            z2.L2*(concub)*(al_pac==0) + \
-            z2.L3*(al_pac>=1) + \
-            z2.L4*(al_pac>1)*(al_pac-1)
+    L_Ref = z2.L1 * (isol) * (al_pac == 0) + \
+            z2.L2 * (concub) * (al_pac == 0) + \
+            z2.L3 * (al_pac >= 1) + \
+            z2.L4 * (al_pac > 1) * (al_pac - 1)
 
     RL = L / L_Ref
 
     # TODO: paramètres en dur ??
-    TL = max_(max_(0,P.al.TL.taux2*(RL-0.45)),P.al.TL.taux3*(RL-0.75)+P.al.TL.taux2*(0.75-0.45))
+    TL = max_(max_(0, P.al.TL.taux2 * (RL - 0.45)), P.al.TL.taux3 * (RL - 0.75) + P.al.TL.taux2 * (0.75 - 0.45))
 
-    Tp= TF + TL
+    Tp = TF + TL
 
-    PP = Po + Tp*Rp
-    al_loc = max_(0,E - PP)*loca
-    al_loc = al_loc*(al_loc>=P.al.autres.nv_seuil)
+    PP = Po + Tp * Rp
+    al_loc = max_(0, E - PP) * loca
+    al_loc = al_loc * (al_loc >= P.al.autres.nv_seuil)
 
-    ## TODO: APL pour les accédants à la propriété
-    al_acc = 0*acce
-    ## APL (tous)
+    # # TODO: APL pour les accédants à la propriété
+    al_acc = 0 * acce
+    # # APL (tous)
 
     if _P.ir.autre.charge_loyer.active:
         al = 12 * (al_loc + al_acc) * not_(nat_imp)
@@ -251,7 +253,7 @@ def _alf(al, al_pac, so):
     '''
     Allocation logement familiale
     '''
-    alf = (al_pac>=1)*(so != 3)*al  # TODO: également pour les jeunes ménages et femems enceints
+    alf = (al_pac >= 1) * (so != 3) * al  # TODO: également pour les jeunes ménages et femems enceints
     return alf
 
 
@@ -261,7 +263,7 @@ def _als_nonet(self, al, al_pac, etu_holder, so):
     '''
     etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
 
-    als = (al_pac==0)*(so != 3)*not_(etu[CHEF]|etu[PART])*al
+    als = (al_pac == 0) * (so != 3) * not_(etu[CHEF] | etu[PART]) * al
     return als
 
 
@@ -271,7 +273,7 @@ def _alset(self, al, al_pac, etu_holder, so):
     '''
     etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
 
-    alset = (al_pac==0)*(so != 3)*(etu[CHEF] | etu[PART])*al
+    alset = (al_pac == 0) * (so != 3) * (etu[CHEF] | etu[PART]) * al
     return alset
 
 
@@ -287,14 +289,14 @@ def _apl(al, so):
     Aide personalisée au logement (réservée aux logements conventionné, surtout des HLM,
     et financé par le fonds national de l'habitation)
     '''
-    #TODO:
-    return al*(so == 3)
+    # TODO:
+    return al * (so == 3)
 
 def _crds_lgtm(al, _P):
     '''
     CRDS des allocations logement
     '''
-    return -al*_P.fam.af.crds
+    return -al * _P.fam.af.crds
 
 
 def _zone_apl(code_postal):
