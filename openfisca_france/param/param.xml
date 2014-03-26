@@ -321,9 +321,6 @@
      </BAREME>
    </NODE>
    <NODE description="Revenus du capital" code="capital">
-     <CODE description="Seuil de non recouvrement" code="nonimp" format="integer" type="monetary">
-       <VALUE valeur="61" deb="2002-01-01" fin="2013-12-31"/>
-     </CODE>
      <CODE description="Taux global" code="glob" format="percent">
        <VALUE valeur="0.075" deb="2000-01-01" fin="2003-12-31"/>
        <VALUE valeur="0.082" deb="2004-01-01" fin="2013-12-31"/>
@@ -3194,6 +3191,9 @@
     </CODE>
       </NODE>
     </NODE>
+    <CODE description="Seuil de recouvrement" code="seuil_recouvrement" format="integer" type="monetary">
+       <VALUE valeur="61" deb="2002-01-01" fin="2013-12-31"/>
+     </CODE>
     <NODE code="credits_impot" description="Crédits d'impôt">
       <NODE code="divide" description="Dividendes">
         <CODE description="Plafond" code="max" format="integer" type="monetary">

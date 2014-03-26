@@ -16,11 +16,11 @@
 #
 # OpenFisca is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 import os
@@ -70,8 +70,8 @@ def test_from_taxipp(selection = None, threshold = 1, list_input = None, list_ou
         if str(param_scenario) != str(last_param_scenario) :
             pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold,
                 verbose = verbose)
-            assert len(pbs) == 1, \
-                "Avec la base dta {}\n  et un seuil de {} les problemes suivants ont ete identifies :\n{}".format(
+            assert len(pbs) == 0, \
+                "Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
                 input_file_path, threshold, pbs)
             last_param_scenario = param_scenario
 
@@ -80,5 +80,7 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
+
 #    test_from_taxipp(selection = "marie_aise", verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
     test_from_taxipp(selection = None, threshold = 1, list_input = None, list_output = None, verbose = False)
+#    test_from_taxipp(selection = "", threshold = 2, verbose = False)

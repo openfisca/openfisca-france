@@ -2435,6 +2435,7 @@ column_by_name = collections.OrderedDict((
                                         QUIFOY['conj']: u"5RJ",
                                         QUIFOY['pac1']: u"5SJ", })),  # (f5qj, f5rj, f5sj)),
 
+
 # """
 # CASES MANQUANTES PRESENTENT DANS LA DECLARATION DES REVENUS 2013 et 2012
 # """
@@ -3345,6 +3346,7 @@ column_by_name = collections.OrderedDict((
 #                #à hauteur de 62,5 %: HNV    start = datetime.date(2013, 1, 1),
 #             #investissements dans votre entreprise: HNW    start = datetime.date(2013, 1, 1),
 #             #investissements dans votre entreprise avec exploitation directe: HNY    start = datetime.date(2013, 1, 1),
+
 # pfam only
     build_column_couple('inactif', BoolCol(entity = 'fam',
                         label = u"Parent inactif (PAJE-CLCA)")),

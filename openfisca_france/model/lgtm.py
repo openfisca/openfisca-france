@@ -14,7 +14,9 @@ from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as 
 import pkg_resources
 
 from .. import data as data_resources
+
 from .input_variables.base import QUIFAM, QUIMEN, QUIFOY
+
 from .pfam import nb_enf
 
 

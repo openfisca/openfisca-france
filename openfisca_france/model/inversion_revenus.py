@@ -27,6 +27,7 @@ from __future__ import division
 
 import logging
 
+
 from numpy import zeros, logical_not as not_
 from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
 from scipy.optimize import fsolve
@@ -298,3 +299,7 @@ def _num_salbrut_from_salnet(self, agem, salnet, hsup, type_sal, _defaultP):
         year = _defaultP.datesim.year,
         ) - salnet
     return fsolve(function, salnet)
+
+def _primes_from_salbrut(salbrut, type_sal):
+    return salbrut * TAUX_DE_PRIME * (type_sal >= 2)
+

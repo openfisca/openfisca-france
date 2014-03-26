@@ -25,9 +25,11 @@
 
 import numpy as np
 
+
 import openfisca_france
 from openfisca_france import surveys
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from openfisca_france import surveys
 
 
 TaxBenefitSystem = openfisca_france.init_country()
