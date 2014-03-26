@@ -28,7 +28,7 @@ from __future__ import division
 from numpy import arange, floor, logical_not as not_
 from openfisca_core.statshelpers import mark_weighted_percentiles
 
-from .data import QUIFAM, QUIFOY, QUIMEN
+from .input_variables.base import QUIFAM, QUIFOY, QUIMEN
 
 
 CHEF = QUIFAM['chef']

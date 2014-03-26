@@ -23,26 +23,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core.enumerations import Enum
+from . import  data1, data2, data3, data4, data5, data6, data7, data8, data_survey
 
-from .. import entities
+column_by_name = data1.column_by_name.copy()
 
-QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
-QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
-QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
+for col_by_name in [
+    data2.column_by_name,
+    data3.column_by_name,
+    data4.column_by_name,
+    data5.column_by_name,
+    data6.column_by_name,
+    data7.column_by_name,
+    data8.column_by_name,
+    data_survey.column_by_name,
+    ]:
 
-
-def build_column_couple(name, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
-
+    column_by_name.update(col_by_name)

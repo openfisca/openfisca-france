@@ -514,7 +514,21 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f3ve', IntCol(entity = 'foy',
                     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
                     val_type = "monetary",
-                    cerfa_field = u'3VE')),
+                    cerfa_field = u'3VE',
+                    start = date.datetime (2013, 1, 1))),
+# """
+# réutilisation case 3VE en 2013
+
+
+#    build_column_couple('f3ve', IntCol(entity = 'foy',
+#                    label = u"Plus-values de cession de droits sociaux réalisées par des personnes domiciliées dans les DOM",
+#                    val_type = "monetary",
+#                    cerfa_field = u'3VE',
+#                    end =date.datetime (2012, 12, 31))),
+# """
+
+
+
 
     build_column_couple('f3vf', IntCol(entity = 'ind',
                     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %",
@@ -623,7 +637,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f4bc', IntCol(entity = 'foy',
                     label = u"Déficit imputable sur le revenu global",
                     val_type = "monetary",
-                    cerfa_field = u'7BC')),
+                    cerfa_field = u'4BC')),
 
     build_column_couple('f4bd', IntCol(entity = 'foy',
                     label = u"Déficits antérieurs non encore imputés",

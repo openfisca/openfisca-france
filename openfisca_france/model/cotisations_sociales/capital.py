@@ -11,9 +11,7 @@ from __future__ import division
 
 import logging
 
-from openfisca_core.enumerations import Enum
-
-from ..data import QUIFOY
+from ..input_variables.base import QUIFOY
 
 
 log = logging.getLogger(__name__)

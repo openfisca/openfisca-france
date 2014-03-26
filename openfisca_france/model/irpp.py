@@ -14,7 +14,7 @@ import logging
 from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 
-from .data import QUIFOY
+from .input_variables.base import QUIFOY
 
 
 CONJ = QUIFOY['conj']

@@ -12,7 +12,7 @@ from numpy import (floor, maximum as max_, where,
                    logical_not as not_, logical_and as and_,
                    logical_or as or_)
 
-from .data import QUIFAM, QUIFOY
+from .input_variables.base import QUIFAM, QUIFOY
 from .pfam import nb_enf, age_en_mois_benjamin
 
 
