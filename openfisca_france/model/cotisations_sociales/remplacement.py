@@ -185,11 +185,14 @@ def _crdsrst(rstbrut, csg_rempl, _P):
     return -crds['rst'].calc(rstbrut) * not_(isexo)
 
 
-def _casa(rstbrut, irpp_n_2, irpp, csg_rempl, _P):
+def _casa(self, rstbrut, irpp_holder, csg_rempl, _P):  # TODO: irpp_n_2
     """
     Contribution additionnelle de solidarité et d'autonomie
     """
-    casa = (csg_rempl == 3) * _P.prelsoc.add_ret * rstbrut * (irpp > _P.ir_seuil_recouvrement)
+    # TODO: replace irpp by irpp_n_2
+
+    irpp = self.cast_from_entity_to_roles(irpp_holder)
+    casa = (csg_rempl == 3) * _P.prelsoc.add_ret * rstbrut * (irpp > _P.ir.seuil_recouvrement)
 
     return -casa
 
