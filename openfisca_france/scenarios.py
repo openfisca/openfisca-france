@@ -665,7 +665,7 @@ class Scenario(object):
             (individu_id, individu_index)
             for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
             )
-#        individus.new_holder('id').array = np.array(
+#        individus.get_or_new_holder('id').array = np.array(
 #            [
 #                individu_id + (u'-{}'.format(step_index) if step_index > 0 else u'')
 #                for step_index in range(steps_count)
@@ -673,9 +673,9 @@ class Scenario(object):
 #                ],
 #            dtype = object)
         #
-        individus.new_holder('idfam').array = idfam_array = np.empty(steps_count * individus_step_size,
+        individus.get_or_new_holder('idfam').array = idfam_array = np.empty(steps_count * individus_step_size,
             dtype = column_by_name['idfam'].dtype)  # famille_index
-        individus.new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_step_size,
+        individus.get_or_new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_step_size,
             dtype = column_by_name['quifam'].dtype)  # famille_role
         familles_roles_count = 0
         for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
@@ -702,9 +702,9 @@ class Scenario(object):
                     familles_roles_count = famille_roles_count
         familles.roles_count = familles_roles_count
         #
-        individus.new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_step_size,
+        individus.get_or_new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_step_size,
             dtype = column_by_name['idfoy'].dtype)  # foyer_fiscal_index
-        individus.new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_step_size,
+        individus.get_or_new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_step_size,
             dtype = column_by_name['quifoy'].dtype)  # foyer_fiscal_role
         foyers_fiscaux_roles_count = 0
         for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
@@ -732,9 +732,9 @@ class Scenario(object):
                     foyers_fiscaux_roles_count = foyer_fiscal_roles_count
         foyers_fiscaux.roles_count = foyers_fiscaux_roles_count
         #
-        individus.new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_step_size,
+        individus.get_or_new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_step_size,
             dtype = column_by_name['idmen'].dtype)  # menage_index
-        individus.new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_step_size,
+        individus.get_or_new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_step_size,
             dtype = column_by_name['quimen'].dtype)  # menage_role
         menages_roles_count = 0
         for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
@@ -763,9 +763,9 @@ class Scenario(object):
                     menages_roles_count = menage_roles_count
         menages.roles_count = menages_roles_count
         #
-        individus.new_holder('noi').array = np.arange(steps_count * individus_step_size,
+        individus.get_or_new_holder('noi').array = np.arange(steps_count * individus_step_size,
             dtype = column_by_name['noi'].dtype)
-#        individus.new_holder('prenom').array = np.array(
+#        individus.get_or_new_holder('prenom').array = np.array(
 #            [individu['prenom'] for individu in test_case[u'individus'].itervalues()],
 #            dtype = object)
         used_columns_name = set(
@@ -785,10 +785,10 @@ class Scenario(object):
                         for individu in test_case[u'individus'].itervalues()
                         )
                     )
-                individus.new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                individus.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
                     if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
-#        familles.new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
+#        familles.get_or_new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
         used_columns_name = set(
             key
             for famille in test_case[u'familles'].itervalues()
@@ -805,10 +805,10 @@ class Scenario(object):
                         for famille in test_case[u'familles'].itervalues()
                         )
                     )
-                familles.new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                familles.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
                     if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
-#        foyers_fiscaux.new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
+#        foyers_fiscaux.get_or_new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
         used_columns_name = set(
             key
             for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
@@ -825,10 +825,10 @@ class Scenario(object):
                         for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
                         )
                     )
-                foyers_fiscaux.new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                foyers_fiscaux.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
                     if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
-#        menages.new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
+#        menages.get_or_new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
         used_columns_name = set(
             key
             for menage in test_case[u'menages'].itervalues()
@@ -845,7 +845,7 @@ class Scenario(object):
                         for menage in test_case[u'menages'].itervalues()
                         )
                     )
-                menages.new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                menages.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
                     if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
         if self.axes is not None:

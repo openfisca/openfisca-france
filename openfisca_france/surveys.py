@@ -64,7 +64,7 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     menages.roles_count = survey['quimen'].max() + 1
 
     for column_name, column_series in survey.iteritems():
-        holder = simulation.new_holder(column_name)
+        holder = simulation.get_or_new_holder(column_name)
         entity = holder.entity
         if holder.entity.is_persons_entity:
             array = column_series.values
@@ -127,7 +127,7 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, ar
     foyers_fiscaux.roles_count = array_dict['quifoy'].max() + 1
 
     for column_name, column_array in array_dict.iteritems():
-        holder = simulation.new_holder(column_name)
+        holder = simulation.get_or_new_holder(column_name)
         entity = holder.entity
         if holder.entity.is_persons_entity:
             array = column_array
