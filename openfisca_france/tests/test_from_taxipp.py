@@ -38,7 +38,7 @@ from openfisca_france.tests.ipp.taxipp_utils import build_ipp2of_variables, run_
 
 openfisca_france_location = pkg_resources.get_distribution('openfisca-france').location
 ipp_dir = os.path.join(openfisca_france_location, 'openfisca_france', 'tests', 'ipp')
-print ipp_dir
+
 
 def list_dta(selection):
     if selection is None:
@@ -82,5 +82,5 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
 
 #    test_from_taxipp(selection = "marie_aise", verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
-    test_from_taxipp(selection = None, threshold = 1, list_input = None, list_output = None, verbose = False)
+    test_from_taxipp(selection = None, threshold = 2, list_input = None, list_output = None, verbose = False)
 #    test_from_taxipp(selection = "", threshold = 2, verbose = False)

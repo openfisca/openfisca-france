@@ -224,7 +224,7 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
 
     openfisca_survey = build_input_OF(data_IPP, ipp2of_input_variables, tax_benefit_system)
     openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy','noi'])
-    print datesim
+    # print datesim
     simulation = surveys.new_simulation_from_survey_data_frame(
 #        debug = True,
         survey = openfisca_survey,

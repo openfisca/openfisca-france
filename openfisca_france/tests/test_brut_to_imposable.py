@@ -36,15 +36,14 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def test_sal(year = 2013, verbose = False):
+def test_sal(year = 2014, verbose = False):
     '''
-    Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatbe
-    with the one obtained from running openfisca satrting with a "salaire brut"
+    Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
+    with the one obtained from running openfisca starting with a "salaire brut"
     '''
 
     maxrev = 24000
-    print TAUX_DE_PRIME
-    for type_sal_category in ['public_titulaire_etat']: # ['prive_non_cadre', 'prive_cadre']:  # , 
+    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
             parent1 = dict(
@@ -58,23 +57,23 @@ def test_sal(year = 2013, verbose = False):
         if type_sal_category == 'public_titulaire_etat':
             primes_values = TAUX_DE_PRIME * simulation.get_holder('salbrut').array
 
-        primes_holder = simulation.get_or_new_holder('primes')
-        primes_holder.array = primes_values
+            primes_holder = simulation.get_or_new_holder('primes')
+            primes_holder.array = primes_values
 
         df_b2i = DataFrame(dict(sal = simulation.calculate('sal'),
                                 salbrut = simulation.calculate('salbrut'),
                                 ))
-        
+
         # Imposable to brut
-        from openfisca_france.model.inversion_revenus import _salbrut
+        from openfisca_france.model.inversion_revenus import _salbrut_from_sali
         sali = df_b2i['sal'].get_values()
-        
+
         hsup = simulation.calculate('hsup')
         type_sal = simulation.calculate('type_sal')
         primes = simulation.calculate('primes')
-        
+
         defaultP = simulation.default_compact_legislation
-        df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut(sali, hsup, type_sal, defaultP) })
+        df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut_from_sali(sali, hsup, type_sal, defaultP) })
 
         for var in ['sal', 'salbrut']:
             passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
@@ -88,7 +87,7 @@ def test_sal(year = 2013, verbose = False):
             assert passed, "difference in %s for %s" % (var, type_sal_category)
 
 
-def test_cho_rst(year = 2013, verbose = False):
+def test_cho_rst(year = 2014, verbose = False):
     '''
     Tests that _chobrut which computes "chômage brut" from "imposable" yields an amount compatbe
     with the one obtained from running openfisca satrting with a "chômage brut"
@@ -117,9 +116,9 @@ def test_cho_rst(year = 2013, verbose = False):
 
         defaultP = simulation.default_compact_legislation
         if var == "cho":
-            from openfisca_france.model.inversion_revenus import _chobrut as _vari_to_brut
+            from openfisca_france.model.inversion_revenus import _chobrut_from_choi as _vari_to_brut
         elif var == "rst":
-            from openfisca_france.model.inversion_revenus import _rstbrut as _vari_to_brut
+            from openfisca_france.model.inversion_revenus import _rstbrut_from_rsti as _vari_to_brut
 
         df_i2b = DataFrame({var: vari, varbrut : _vari_to_brut(vari, csg_rempl, defaultP) })
 
@@ -144,5 +143,5 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_sal(2011, verbose = False)
-#    test_cho_rst(2014, verbose = True)
+    test_sal(2013, verbose = False)
+    test_cho_rst(2014, verbose = True)
