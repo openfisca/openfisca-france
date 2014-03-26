@@ -89,7 +89,7 @@ def _nbG(self, alt, inv, quifoy):
 
 def _nbH(self, age, alt, inv, quifoy):
     enfant_a_charge_garde_alternee = and_(quifoy >= 2, or_(age < 18, inv), alt)
-    return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16)) * 0
+    return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16))
 
 
 def _nbI(self, alt, inv, quifoy):
