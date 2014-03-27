@@ -97,7 +97,7 @@ def build_dated_formula_couple(name, dated_functions, column):
             )
         formula_class.extract_parameters()
         dated_formulas_class.append(dict(
-            end = dated_function['end']
+            end = dated_function['end'],
             formula_class = formula_class,
             start = dated_function['start'],
             ))
