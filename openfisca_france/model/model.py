@@ -28,7 +28,7 @@ from datetime import date
 
 from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import AlternativeFormula, SimpleFormula
+from openfisca_core.formulas import AlternativeFormula, SelectFormula, SimpleFormula
 
 from .. import entities
 from . import calage as cl
@@ -65,6 +65,34 @@ def build_alternative_formula_couple(name, functions, column):
         alternative_formulas_constructor.append(formula_class)
     column.formula_constructor = formula_class = type(name.encode('utf-8'), (AlternativeFormula,), dict(
         alternative_formulas_constructor = alternative_formulas_constructor,
+        ))
+    if column.label is None:
+        column.label = name
+    assert column.name is None
+    column.name = name
+
+    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
+    assert name not in entity_column_by_name, name
+    entity_column_by_name[name] = column
+
+    return (name, column)
+
+
+def build_select_formula_couple(name, main_variable_function_couples, column):
+    assert isinstance(name, basestring), name
+    name = unicode(name)
+    assert isinstance(main_variable_function_couples, list), main_variable_function_couples
+    assert column.function is None
+
+    formula_constructor_by_main_variable = collections.OrderedDict()
+    for main_variable, function in main_variable_function_couples:
+        formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
+            function = staticmethod(function),
+            ))
+        formula_class.extract_parameters()
+        formula_constructor_by_main_variable[main_variable] = formula_class
+    column.formula_constructor = formula_class = type(name.encode('utf-8'), (SelectFormula,), dict(
+        formula_constructor_by_main_variable = formula_constructor_by_main_variable,
         ))
     if column.label is None:
         column.label = name
@@ -123,12 +151,12 @@ prestation_by_name = collections.OrderedDict((
              ]),
          )),
 
-    build_alternative_formula_couple(
+    build_select_formula_couple(
         'salbrut',
         [
-            inv_rev._salbrut_from_sali,
-            # inv_rev._salbrut_from_salnet,
-            inv_rev._num_salbrut_from_salnet,
+            ('sali', inv_rev._salbrut_from_sali),
+            # ('salnet', inv_rev._salbrut_from_salnet),
+            ('salnet', inv_rev._num_salbrut_from_salnet),
             ],
         FloatCol(label = u"Salaire brut ou traitement indiciaire brut"),
         ),
@@ -180,12 +208,12 @@ prestation_by_name = collections.OrderedDict((
         label = u"Revenu net des cotisations sociales pour le régime microsocial", start = date(2009, 1, 1))),
 
     # Allocations chômage
-    build_alternative_formula_couple(
+    build_select_formula_couple(
         'chobrut',
         [
-            inv_rev._chobrut_from_choi,
-            # inv_rev._chobrut_from_chonet,
-            inv_rev._num_chobrut_from_chonet,
+            ('choi', inv_rev._chobrut_from_choi),
+            # ('chonet', inv_rev._chobrut_from_chonet),
+            ('chonet', inv_rev._num_chobrut_from_chonet),
             ],
         FloatCol(label = u"Allocations chômage brutes"),
         ),
@@ -197,12 +225,12 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('chonet', FloatCol(function = cs_remplac._chonet, label = u"Allocations chômage nettes")),
 
     # Pensions
-    build_alternative_formula_couple(
+    build_select_formula_couple(
         'rstbrut',
         [
-            inv_rev._rstbrut_from_rsti,
-            # inv_rev._rstbrut_from_rstnet,
-            inv_rev._num_rstbrut_from_rstnet,
+            ('rsti', inv_rev._rstbrut_from_rsti),
+            # ('rstnet', inv_rev._rstbrut_from_rstnet),
+            ('rstnet', inv_rev._num_rstbrut_from_rstnet),
             ],
         FloatCol(label = u"Pensions de retraite brutes"),
         ),
