@@ -17,6 +17,59 @@ from .input_variables.base import QUIFOY
 VOUS = QUIFOY['vous']
 
 
+def _credits_impot_2002(creimp, accult, prlire, aidper, acqgpl, drbail):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2002 """
+    return creimp + accult + prlire + aidper + acqgpl + drbail
+
+
+def _credits_impot_2003_2004(creimp, accult, mecena, prlire, aidper, acqgpl, drbail):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2003 et 2004 """
+    return creimp + accult + mecena + prlire + aidper + acqgpl + drbail
+
+
+def _credits_impot_2005_2006(creimp, divide, direpa, accult, mecena, prlire, aidper,
+    quaenv, acqgpl, drbail, ci_garext, preetu, assloy, aidmob, jeunes):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2005 et 2006 """
+    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
+        quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
+
+
+def _credits_impot_2007(creimp, divide, direpa, accult, mecena, prlire, aidper,
+    quaenv, acqgpl, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2007 """
+    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
+        quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
+        aidmob + jeunes)
+
+
+def _credits_impot_2008(creimp, divide, direpa, accult, mecena, prlire, aidper,
+    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2008 """
+    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
+        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + aidmob + jeunes)
+
+
+def _credits_impot_2009(creimp, divide, direpa, accult, mecena, prlire, aidper,
+    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2009 """
+    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
+        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
+
+
+def _credits_impot_2010(creimp, accult, percvm, direpa, mecena, prlire, aidper,
+    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2008 """
+    return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
+        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
+
+
+def _credits_impot_2011(creimp, accult, percvm, direpa, mecena, prlire, aidper,
+    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):  # TODO: check because totally unchecked
+    return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
+        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
+        autent)  # TODO: check because totally unchecked
+
+
 def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
            quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy,
            autent, acqgpl, divide, aidmob, jeunes, _P):

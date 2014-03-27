@@ -28,7 +28,7 @@ from datetime import date
 
 from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import AlternativeFormula, SelectFormula, SimpleFormula
+from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula
 
 from .. import entities
 from . import calage as cl
@@ -48,6 +48,44 @@ from . import lgtm as lg
 from . import mini as ms
 from . import pfam as pf
 from . import th as th
+
+
+def build_dated_formula_couple(name, dated_functions, column):
+    assert isinstance(name, basestring), name
+    name = unicode(name)
+    assert isinstance(dated_functions, list), dated_functions
+    assert column.function is None
+
+    dated_formulas_class_informations = []
+    for dated_function in dated_functions:
+        assert isinstance(dated_function, dict), dated_function
+
+        formula_class = type(
+            name.encode('utf-8'),
+            (SimpleFormula,),
+            dict(function = staticmethod(dated_function['function'],),
+        ))
+        formula_class.extract_parameters()
+        dated_formulas_class_informations.append(dict(
+            formula_class = formula_class,
+            start = dated_function['start'],
+            end = dated_function['end']
+            ))
+
+    column.formula_constructor = formula_class = type(name.encode('utf-8'), (DatedFormula,), dict(
+        dated_formulas_class_informations = dated_formulas_class_informations,
+        ))
+
+    if column.label is None:
+        column.label = name
+    assert column.name is None
+    column.name = name
+
+    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
+    assert name not in entity_column_by_name, name
+    entity_column_by_name[name] = column
+
+    return (name, column)
 
 
 def build_alternative_formula_couple(name, functions, column):
@@ -463,7 +501,30 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('jeunes', FloatCol(function = ci._jeunes, entity = 'foy', start = date(2005, 1, 1), end = date(2008, 12, 31))),
 
-    build_simple_formula_couple('credits_impot', FloatCol(function = ci._credits_impot, entity = 'foy')),
+    build_dated_formula_couple(
+        'credits_impot',
+        [dict(start = date(2002, 1, 1),
+             end = date(2002, 12, 31),
+             function = ci._credits_impot_2002,
+             ),
+         dict(start = date(2003, 1, 1),
+             end = date(2002, 1, 1),
+             function = ci._credits_impot_2002,
+             ),
+         dict(start = date(2003, 1, 1),
+             end = date(2004, 12, 31),
+             function = ci._credits_impot_2003_2004,
+             ),
+         dict(start = date(2005, 1, 1),
+             end = date(2006, 12, 31),
+             function = ci._credits_impot_2005_2006,
+             ),
+         dict(start = date(2002, 1, 1),
+             end = date(2002, 1, 1),
+             function = ci._credits_impot_2002,
+             ),
+        ]                ,
+        FloatCol(entity = 'foy')),
 
     build_simple_formula_couple('irpp', FloatCol(function = ir._irpp, entity = 'foy', label = u"Impôt sur le revenu des personnes physiques")),
 
