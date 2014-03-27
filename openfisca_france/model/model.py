@@ -50,44 +50,6 @@ from . import pfam as pf
 from . import th as th
 
 
-def build_dated_formula_couple(name, dated_functions, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    assert isinstance(dated_functions, list), dated_functions
-    assert column.function is None
-
-    dated_formulas_class_informations = []
-    for dated_function in dated_functions:
-        assert isinstance(dated_function, dict), dated_function
-
-        formula_class = type(
-            name.encode('utf-8'),
-            (SimpleFormula,),
-            dict(function = staticmethod(dated_function['function'],),
-        ))
-        formula_class.extract_parameters()
-        dated_formulas_class_informations.append(dict(
-            formula_class = formula_class,
-            start = dated_function['start'],
-            end = dated_function['end']
-            ))
-
-    column.formula_constructor = formula_class = type(name.encode('utf-8'), (DatedFormula,), dict(
-        dated_formulas_class_informations = dated_formulas_class_informations,
-        ))
-
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
-
-
 def build_alternative_formula_couple(name, functions, column):
     assert isinstance(name, basestring), name
     name = unicode(name)
@@ -103,6 +65,45 @@ def build_alternative_formula_couple(name, functions, column):
         alternative_formulas_constructor.append(formula_class)
     column.formula_constructor = formula_class = type(name.encode('utf-8'), (AlternativeFormula,), dict(
         alternative_formulas_constructor = alternative_formulas_constructor,
+        ))
+    if column.label is None:
+        column.label = name
+    assert column.name is None
+    column.name = name
+
+    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
+    assert name not in entity_column_by_name, name
+    entity_column_by_name[name] = column
+
+    return (name, column)
+
+
+def build_dated_formula_couple(name, dated_functions, column):
+    assert isinstance(name, basestring), name
+    name = unicode(name)
+    assert isinstance(dated_functions, list), dated_functions
+    assert column.function is None
+
+    dated_formulas_class = []
+    for dated_function in dated_functions:
+        assert isinstance(dated_function, dict), dated_function
+
+        formula_class = type(
+            name.encode('utf-8'),
+            (SimpleFormula,),
+            dict(
+                function = staticmethod(dated_function['function']),
+                ),
+            )
+        formula_class.extract_parameters()
+        dated_formulas_class.append(dict(
+            end = dated_function['end']
+            formula_class = formula_class,
+            start = dated_function['start'],
+            ))
+
+    column.formula_constructor = formula_class = type(name.encode('utf-8'), (DatedFormula,), dict(
+        dated_formulas_class = dated_formulas_class,
         ))
     if column.label is None:
         column.label = name
