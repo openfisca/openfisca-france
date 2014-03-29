@@ -9,34 +9,36 @@
 
 from __future__ import division
 
+import logging
+
 from numpy import logical_not as not_, maximum as max_, minimum as min_
 
 from .input_variables.base import QUIFOY
 
-
+log = logging.getLogger(__name__)
 VOUS = QUIFOY['vous']
 
 
 def _credits_impot_2002(creimp, accult, prlire, aidper, acqgpl, drbail):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2002 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
     return creimp + accult + prlire + aidper + acqgpl + drbail
 
 
 def _credits_impot_2003_2004(creimp, accult, mecena, prlire, aidper, acqgpl, drbail):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2003 et 2004 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
     return creimp + accult + mecena + prlire + aidper + acqgpl + drbail
 
 
 def _credits_impot_2005_2006(creimp, divide, direpa, accult, mecena, prlire, aidper,
     quaenv, acqgpl, drbail, ci_garext, preetu, assloy, aidmob, jeunes):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2005 et 2006 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
     return (creimp + divide + direpa + accult + mecena + prlire + aidper +
         quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
 
 
 def _credits_impot_2007(creimp, divide, direpa, accult, mecena, prlire, aidper,
     quaenv, acqgpl, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2007 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
     return (creimp + divide + direpa + accult + mecena + prlire + aidper +
         quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
         aidmob + jeunes)
@@ -44,68 +46,45 @@ def _credits_impot_2007(creimp, divide, direpa, accult, mecena, prlire, aidper,
 
 def _credits_impot_2008(creimp, divide, direpa, accult, mecena, prlire, aidper,
     quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2008 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
     return (creimp + divide + direpa + accult + mecena + prlire + aidper +
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + aidmob + jeunes)
 
 
 def _credits_impot_2009(creimp, divide, direpa, accult, mecena, prlire, aidper,
     quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2009 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
     return (creimp + divide + direpa + accult + mecena + prlire + aidper +
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
 
 
 def _credits_impot_2010(creimp, accult, percvm, direpa, mecena, prlire, aidper,
     quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):
-    """ Crédits d'impôt crédités l'impôt sur les revenus de 2008 """
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
     return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
 
 
 def _credits_impot_2011(creimp, accult, percvm, direpa, mecena, prlire, aidper,
     quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):  # TODO: check because totally unchecked
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
+    log.warning("Beware because totally unchecked")
     return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
         autent)  # TODO: check because totally unchecked
 
 
-def _credits_impot(creimp, accult, percvm, direpa, mecena, prlire, aidper,
-           quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy,
-           autent, acqgpl, divide, aidmob, jeunes, _P):
-    if _P.datesim.year == 2002:
-        niches = (creimp + accult + prlire + aidper + acqgpl + drbail)
-    elif _P.datesim.year == 2003:
-        niches = (creimp + accult + mecena + prlire + aidper + acqgpl + drbail)
-    elif _P.datesim.year == 2004:
-        niches = (creimp + accult + mecena + prlire + aidper + acqgpl + drbail)
-    elif _P.datesim.year == 2005:
-        niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
-    elif _P.datesim.year == 2006:
-        niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
-    elif _P.datesim.year == 2007:
-        niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
-                  aidmob + jeunes)
-    elif _P.datesim.year == 2008:
-        niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + aidmob +
-                  jeunes)
-    elif _P.datesim.year == 2009:
-        niches = (creimp + divide + direpa + accult + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
-    elif _P.datesim.year == 2010:
-        niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
-                  autent)
-    elif _P.datesim.year >= 2011:
-        niches = (creimp + accult + percvm + direpa + mecena + prlire + aidper +
-                  quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
-                  autent)  # TODO: check because totally unchecked
+def _credits_impot_2012(ip_net):
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
+    log.warning("Not implemented return 0")
+    return ip_net * 0
 
-    return niches
+
+def _credits_impot_2013(ip_net):
+    """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
+    log.warning("Not implemented return 0")
+    return ip_net * 0
+
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
     return nbF + nbJ + nbR + nbH / 2

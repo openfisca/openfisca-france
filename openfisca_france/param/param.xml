@@ -2760,7 +2760,7 @@
           <VALUE valeur="0.10" deb="2001-01-01" fin="2001-12-31"/>
           <VALUE valeur="0.20" deb="2002-01-01" fin="2013-12-31"/>
         </CODE>
-        <CODE description="Plafond en niveau" code="max_niv" format="integer">
+        <CODE description="Plafond en niveau par foyer" code="max_niv" format="integer">
           <VALUE valeur="15000" deb="2012-01-01" fin="2013-12-31"/> 
         </CODE>
       </NODE>

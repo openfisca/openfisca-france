@@ -9,86 +9,213 @@
 
 from __future__ import division
 
-from numpy import minimum as min_, maximum as max_, zeros, logical_not as not_
+import logging
+
+from numpy import minimum as min_, maximum as max_, logical_not as not_
 
 from .input_variables.base import QUIFOY
 
 
+log = logging.getLogger(__name__)
+VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 PAC1 = QUIFOY['pac1']
-taille = 0
-VOUS = QUIFOY['vous']
 
 
-def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
-               prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
-               daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
-               locmeu, doment, domsoc, intemp, garext, assvie, invrev, intcon,
-               ecodev, _P):
+def _reductions_2002(ip_net, donapd, dfppce, saldom, cotsyn, prcomp, spfcpi, cappme, intemp,
+                invfor, garext, daepad, rsceha, assvie, invrev, domlog, adhcga, ecpess, doment):
     '''
-    Renvoie la liste des réductions d'impôt à intégrer en fonction de l'année
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
     '''
-    if   _P.datesim.year == 2002:
-        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
-                invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga +
-                ecpess + doment)
-    elif _P.datesim.year == 2003:
-        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
-                repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog +
-                adhcga + ecpess + doment)
-    elif _P.datesim.year == 2004:
-        total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intcon +
-                repsoc + invfor + garext + daepad + rsceha + assvie + invlst + domlog +
-                adhcga + ecpess + doment)
-    elif _P.datesim.year == 2005:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme +
-                intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga +
-                ecpess + doment)
-    elif _P.datesim.year == 2006:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
+    total_reductions = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
+                invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + ecpess + doment)
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2003_2004(ip_net, donapd, dfppce, saldom, cotsyn, prcomp, spfcpi, cappme, intemp,
+                repsoc, invfor, garext, daepad, rsceha, assvie, invrev, domlog, adhcga, ecpess, doment):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
+    '''
+    total_reductions = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
+                repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + ecpess + doment)
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2005(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, cappme,
+                intcon, repsoc, invfor, daepad, rsceha, invlst, domlog, adhcga, ecpess, doment):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
+    '''
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme +
+                intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga + ecpess + doment)
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2006(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, sofica,
+                cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog,
+                adhcga, ecpess, doment):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
+    '''
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
                 cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
                 adhcga + ecpess + doment)
-    elif _P.datesim.year == 2007:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2007(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, sofica,
+                cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog,
+                adhcga, creaen, ecpess, doment):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
+    '''
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
                 cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
                 adhcga + creaen + ecpess + doment)
-    elif _P.datesim.year == 2008:
-        total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist +
+
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2008(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, mohist,
+                sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst,
+                domlog, adhcga, creaen, ecpess, doment):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
+    '''
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist +
                 sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst +
                 domlog + adhcga + creaen + ecpess + doment)
-    elif _P.datesim.year == 2009:
-        total = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr +
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2009(ip_net, donapd, dfppce, cotsyn, resimm, sofipe, ecodev, saldom, intagr,
+                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
+                daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
+                locmeu, doment):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
+    '''
+    total_reductions = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr +
                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
                 locmeu + doment)
-    elif _P.datesim.year == 2010:
-        total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2010(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
+                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
+                daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
+                locmeu, doment, domsoc):  # TODO: check (sees checked) and report in Niches.xls
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
+    '''
+    total_reductions = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
                 locmeu + doment + domsoc)  # TODO: check (sees checked) and report in Niches.xls
-    elif _P.datesim.year == 2011:
-        total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
-                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
-                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
-                locmeu + doment + domsoc)  # TODO: Check because totally unchecked 2011
-    else:
-        return ip_net * 0
-    return min_(ip_net, total)
+    return min_(ip_net, total_reductions)
 
-def _donapd(f7ud, _P):
+
+def _reductions_2011(ip_net):
     '''
-    Dons effectués à  des organises d'aide aux personnes en difficulté
-    2002-
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
+    '''
+    total_reductions = ip_net * 0
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2012(ip_net):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
+    '''
+    total_reductions = ip_net * 0
+    return min_(ip_net, total_reductions)
+
+
+def _reductions_2013(ip_net):
+    '''
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
+    '''
+    total_reductions = ip_net * 0
+    return min_(ip_net, total_reductions)
+
+
+# def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
+#                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
+#                daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
+#                locmeu, doment, domsoc, intemp, garext, assvie, invrev, intcon,
+#                ecodev, _P):
+#     '''
+#     Renvoie la somme des réductions d'impôt à intégrer en fonction de l'année
+#     '''
+#     if   _P.datesim.year == 2002:
+#         total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
+#                 invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga +
+#                 ecpess + doment)
+#     elif _P.datesim.year == 2003:
+#         total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
+#                 repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog +
+#                 adhcga + ecpess + doment)
+#     elif _P.datesim.year == 2004:
+#         total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intcon +
+#                 repsoc + invfor + garext + daepad + rsceha + assvie + invlst + domlog +
+#                 adhcga + ecpess + doment)
+#     elif _P.datesim.year == 2005:
+#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme +
+#                 intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga +
+#                 ecpess + doment)
+#     elif _P.datesim.year == 2006:
+#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
+#                 cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
+#                 adhcga + ecpess + doment)
+#     elif _P.datesim.year == 2007:
+#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
+#                 cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
+#                 adhcga + creaen + ecpess + doment)
+#     elif _P.datesim.year == 2008:
+#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist +
+#                 sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst +
+#                 domlog + adhcga + creaen + ecpess + doment)
+#     elif _P.datesim.year == 2009:
+#         total = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr +
+#                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
+#                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
+#                 locmeu + doment)
+#     elif _P.datesim.year == 2010:
+#         total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
+#                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
+#                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
+#                 locmeu + doment + domsoc)  # TODO: check (sees checked) and report in Niches.xls
+#     elif _P.datesim.year == 2011:
+#         total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
+#                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
+#                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
+#                 locmeu + doment + domsoc)  # TODO: Check because totally unchecked 2011
+#     else:
+#         return ip_net * 0
+#     return min_(ip_net, total)
+
+def _donapd_2002_2010(f7ud, _P):
+    '''
+    Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
     '''
     P = _P.ir.reductions_impots.donapd
 
     return P.taux * min_(f7ud, P.max)
 
-def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
+def _donapd_2011_2013(f7ud, f7va, _P):
+    '''
+    Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
+    '''
+    P = _P.ir.reductions_impots.donapd
+    return P.taux * min_(f7ud, f7va, P.max)
+
+
+def _dfppce_2002_2010(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
     '''
     Dons aux autres oeuvres et dons effectués pour le financement des partis
-    politiques et des compagnes électorales
-    2002-
+    politiques et des campagnes électorales (2002-2010)
     '''
     P = _P.ir.reductions_impots.dfppce
     base = f7uf
@@ -101,6 +228,21 @@ def _dfppce(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):
     return P.taux * min_(base, max1)
     # TODO: note de bas de page
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
+
+
+def _dfppce_2011_2013(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, _P):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales (2011-2013)
+    '''
+    P = _P.ir.reductions_impots.dfppce
+    base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
+    # TODO: note de bas de page
+    # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
+    #       Introduire plsu de détails dans la déclaration pour séparer les dons aux partis poitiques
+    #       et aux candidats des autres dons
 
 def _cotsyn(self, f7ac_holder, sal_holder, cho_holder, rst_holder, _P):  # TODO: change f7ac and use split_by_roles
     '''

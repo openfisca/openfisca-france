@@ -26,6 +26,7 @@ from __future__ import division
 
 from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgeCol, FloatCol, DateCol)
 
+import openfisca_france
 
 def check_consistency(table_simu, dataframe, corrige = True):
     '''
@@ -227,3 +228,24 @@ def check_consistency(table_simu, dataframe, corrige = True):
         return
 
     # NotImplementedError
+
+from openfisca_core.formulas import DatedFormula, SimpleFormula 
+
+
+def list_ultimate_dependancies(variable_name, date):
+    TaxBenefitSystem = openfisca_france.init_country()
+
+    column = TaxBenefitSystem.prestation_by_name[variable_name]
+
+
+    column_formula_type = column.__dict__['formula_constructor'].__bases__
+    if DatedFormula in column_formula_type:
+        
+        
+
+
+
+
+if __name__ == '__main__':
+    from datetime import date
+    list_ultimate_dependancies('donapd', date(2002, 1, 1))
