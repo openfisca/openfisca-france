@@ -140,10 +140,13 @@ def _reductions_2013(ip_net, donapd_2011_2013, dfppce_2011_2013, cotsyn, resimm,
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = ip_net + donapd_2011_2013 +
+    total_reductions = (ip_net + donapd_2011_2013 + dfppce_2011_2013 + cotsyn + resimm + patnat,
+                     ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr,
+                     cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli,
+                     locmeu)
     return min_(ip_net, total_reductions)
     # TODO: mécénat d'entreprise 7US voir  mecena dans crédits d'impôt
-    # TODO Biens culturels           7UO voir  accult dans crédits d'impôt
+    # TODO Biens culturels       7UO voir  accult dans crédits d'impôt
 
 def _donapd_2002_2010(f7ud, _P):
     '''
