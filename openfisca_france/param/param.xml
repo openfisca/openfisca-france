@@ -2787,10 +2787,21 @@
           <VALUE valeur="0.30" deb="2012-01-01" fin="2013-12-31"/> 
         </CODE>
         <CODE description="Taux_RC" code="taux_rc" format="percent">
-          <VALUE valeur="0.30" deb="2011-01-01" fin="2013-12-31"/> # TODO: check 2013
+          <VALUE valeur="0.30" deb="2011-01-01" fin="2013-12-31"/> 
         </CODE>
         <CODE description="Taux_RD" code="taux_rd" format="percent">
-          <VALUE valeur="0.4" deb="2011-01-01" fin="2013-12-31"/> # TODO: check 2013
+          <VALUE valeur="0.4" deb="2011-01-01" fin="2013-12-31"/> 
+        <CODE description="Taux_RE" code="taux_re" format="percent">
+          <VALUE valeur="0.22" deb="2012-01-01" fin="2013-12-31"/> 
+        </CODE>
+        <CODE description="Taux_RF" code="taux_rf" format="percent">
+          <VALUE valeur="0.30" deb="2012-01-01" fin="2013-12-31"/> 
+        </CODE>
+	<CODE description="Taux_SX" code="taux_re" format="percent">
+          <VALUE valeur="0.22" deb="2013-01-01" fin="2013-12-31"/> 
+        </CODE>
+        <CODE description="Taux_SY" code="taux_rf" format="percent">
+          <VALUE valeur="0.30" deb="2013-01-01" fin="2013-12-31"/> 
         </CODE>
         <CODE description="Plafond" code="max" format="integer" type="monetary">
           <VALUE valeur="100000" deb="2009-01-01" fin="2013-12-31"/> 

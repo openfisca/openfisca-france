@@ -125,83 +125,31 @@ def _reductions_2011(ip_net):
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2012(ip_net):
+def _reductions_2012(ip_net, donapd_2011_2013, dfppce_2011_2013, cotsyn, resimm, patnat):
     '''
-    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
+    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012 TODO: complete
     '''
     total_reductions = ip_net * 0
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2013(ip_net):
+def _reductions_2013(ip_net, donapd_2011_2013, dfppce_2011_2013, cotsyn, resimm, patnat,
+                     ecpess, garext, saldom, daepad, rsceha, prcomp, repsoc, intagr,
+                     cappme, spfcpi, sofica, adhcga, creaen, deffor, invfor, invlst, scelli,
+                     locmeu):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = ip_net * 0
+    total_reductions = ip_net + donapd_2011_2013 +
     return min_(ip_net, total_reductions)
-
-
-# def _reductions(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
-#                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
-#                daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
-#                locmeu, doment, domsoc, intemp, garext, assvie, invrev, intcon,
-#                ecodev, _P):
-#     '''
-#     Renvoie la somme des réductions d'impôt à intégrer en fonction de l'année
-#     '''
-#     if   _P.datesim.year == 2002:
-#         total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
-#                 invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga +
-#                 ecpess + doment)
-#     elif _P.datesim.year == 2003:
-#         total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
-#                 repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog +
-#                 adhcga + ecpess + doment)
-#     elif _P.datesim.year == 2004:
-#         total = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intcon +
-#                 repsoc + invfor + garext + daepad + rsceha + assvie + invlst + domlog +
-#                 adhcga + ecpess + doment)
-#     elif _P.datesim.year == 2005:
-#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme +
-#                 intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga +
-#                 ecpess + doment)
-#     elif _P.datesim.year == 2006:
-#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
-#                 cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
-#                 adhcga + ecpess + doment)
-#     elif _P.datesim.year == 2007:
-#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
-#                 cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
-#                 adhcga + creaen + ecpess + doment)
-#     elif _P.datesim.year == 2008:
-#         total = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist +
-#                 sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst +
-#                 domlog + adhcga + creaen + ecpess + doment)
-#     elif _P.datesim.year == 2009:
-#         total = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr +
-#                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
-#                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
-#                 locmeu + doment)
-#     elif _P.datesim.year == 2010:
-#         total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
-#                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
-#                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
-#                 locmeu + doment + domsoc)  # TODO: check (sees checked) and report in Niches.xls
-#     elif _P.datesim.year == 2011:
-#         total = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
-#                 prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
-#                 daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
-#                 locmeu + doment + domsoc)  # TODO: Check because totally unchecked 2011
-#     else:
-#         return ip_net * 0
-#     return min_(ip_net, total)
+    # TODO: mécénat d'entreprise 7US voir  mecena dans crédits d'impôt
+    # TODO Biens culturels           7UO voir  accult dans crédits d'impôt
 
 def _donapd_2002_2010(f7ud, _P):
     '''
     Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
     '''
     P = _P.ir.reductions_impots.donapd
-
     return P.taux * min_(f7ud, P.max)
 
 def _donapd_2011_2013(f7ud, f7va, _P):
@@ -241,13 +189,12 @@ def _dfppce_2011_2013(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, _P):
     return P.taux * min_(base, max1)
     # TODO: note de bas de page
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
-    #       Introduire plsu de détails dans la déclaration pour séparer les dons aux partis poitiques
+    #       Introduire plus de détails dans la déclaration pour séparer les dons aux partis poitiques
     #       et aux candidats des autres dons
 
 def _cotsyn(self, f7ac_holder, sal_holder, cho_holder, rst_holder, _P):  # TODO: change f7ac and use split_by_roles
     '''
-    Cotisations syndicales
-    2002-
+    Cotisations syndicales (2002-2013)
     '''
     f7ac = self.filter_role(f7ac_holder, role = VOUS)
     f7ae = self.filter_role(f7ac_holder, role = CONJ)
@@ -274,7 +221,7 @@ def _resimm(f7ra, f7rb, _P):
     Travaux de restauration immobilière (cases 7RA et 7RB)
     2009-
     '''
-    # TODO: add f7re, f7rf...
+    # TODO: add f7rc, f7rd, f7re, f7rf, f7sx, f7sy ... param inserted DONE
     P = _P.ir.reductions_impots.resimm
     max1 = P.max
     max2 = max_(max1 - f7rb, 0)
@@ -285,6 +232,7 @@ def _patnat(f7ka, _P):
     Dépenses de protections du patrimoine naturel (case 7KA)
     2010-
     '''
+    # TODO: add fka, f7kb, f7kc, f7kd ...
     P = _P.ir.reductions_impots.patnat
     max1 = P.max
     return P.taux * min_(f7ka, max1)
@@ -312,18 +260,6 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
     '''
     Sommes versées pour l'emploi d'un salariés à  domicile
     2002-
-    En 2006 : Le plafond des dépenses ouvrant droit à réduction d’impôt est de
-    12 000 € majoré de 1 500 € par enfant mineur compté à charge (750 €
-    si l’enfant est en résidence alternée), par enfant rattaché (que le rattachement
-    prenne la forme d’une majoration du quotient familial ou d’un
-    abattement), par membre du foyer fiscal âgé de plus de 65 ans ou par
-    ascendant âgé de plus de 65 ans bénéficiant de l’APA lorsque vous supportez
-    personnellement les frais au titre de l’emploi d’un salarié travaillant
-    chez l’ascendant. Ce plafond ne peut excéder 15 000 €. Le plafond
-    est de 20 000 € si un membre de votre foyer fiscal est titulaire de
-    la carte d’invalidité d’au moins 80 % ou d’une pension d’invalidité de 3e
-    catégorie ou si vous percevez un complément d’allocation d’éducation
-    spéciale pour l’un de vos enfants à charge.
     '''
     P = _P.ir.reductions_impots.saldom
 
@@ -346,7 +282,7 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
 
-    elif _P.datesim.year >= 2009:  # TODO: Check 2011, 2012, 2013 and later"
+    elif 2009 <= _P.datesim.year <= 2013:  
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
@@ -369,7 +305,7 @@ def _intagr(f7um, marpac, _P):
 def _prcomp(f7wm, f7wn, f7wo, f7wp, _P):
     '''
     Prestations compensatoires
-    2002-2010
+    2002-
     '''
     P = _P.ir.reductions_impots.prcomp
     div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
@@ -403,13 +339,12 @@ def _spfcpi(marpac, f7gq, f7fq, f7fm, f7fl, _P):
                 P.taux1 * min_(f7fq, max1) +
                 P.taux2 * min_(f7fm, max1))
 
-    elif _P.datesim.year <= 2011:
+    elif _P.datesim.year <= 2013:
         return (P.taux1 * min_(f7gq, max1) +
                 P.taux1 * min_(f7fq, max1) +
                 P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
-    else:
-        return f7gq * 0  # TODO:
+    
 
 def _mohist(f7nz, _P):
     '''
@@ -484,6 +419,7 @@ def _invfor(marpac, f7un, _P):
     '''
     Investissements forestiers
     '''
+    # TODO: 7UN, 7UP, 7UQ, 7UT, 7UU et 7TE
     P = _P.ir.reductions_impots.invfor
     if _P.datesim.year <= 2002:
         seuil = P.seuil * (marpac + 1)
@@ -527,6 +463,7 @@ def _deffor(f7uc, _P):
 def _daepad(f7cd, f7ce, _P):
     '''
     Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
+    ?-
     '''
     P = _P.ir.reductions_impots.daepad
     return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
@@ -621,13 +558,12 @@ def _adhcga(f7ff, f7fg, _P):
     2002-
     '''
     P = _P.ir.reductions_impots.adhcga
-
     return min_(f7ff, P.max * f7fg)
 
 def _creaen(f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P):
     '''
     Aide aux créateurs et repreneurs d'entreprises
-    TODO...
+    ?-
     '''
     P = _P.ir.reductions_impots.creaen
     if _P.datesim.year <= 2008:
@@ -638,7 +574,10 @@ def _creaen(f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P):
     elif _P.datesim.year >= 2010:
         return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
                 P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
-
+    elif _P.datesim.year >= 2012:
+        return (P.base * (f7ly / 2) +
+                P.hand * (f7my / 2))
+    
 
 def _ecpess(f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, _P):
     '''
@@ -654,6 +593,7 @@ def _scelli(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P):
     Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
     2009-2010
     '''
+    # TODO: à compléter
     # il est possible de cummuler différents dispositifs scelleir
     # dans la limite d'un seul investissment par an
     P = _P.ir.reductions_impots.scelli
