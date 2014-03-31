@@ -39,7 +39,7 @@ import os
 import pprint
 import sys
 
-from openfisca_france.model import data
+from openfisca_france.model.input_variables import column_by_name
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
 except ImportError:
@@ -65,7 +65,7 @@ def cleanup_tree(entity, tree):
     for child in (tree.get('children') or []):
         if isinstance(child, basestring):
             # Child is a column name.
-            column = data.column_by_name.get(child)
+            column = column_by_name.get(child)
             if column is not None and column.entity == entity and is_valid_column(column):
                 children.append(child)
         else:
@@ -119,7 +119,7 @@ def main():
         for column_name in iter_placed_tree(columns_name_tree)
         )
 
-    for name, column in data.column_by_name.iteritems():
+    for name, column in column_by_name.iteritems():
         if not is_valid_column(column):
             continue
         if name in placed_columns_name:
@@ -190,7 +190,7 @@ def write_tree(tree_file, tree, level = 1):
                 if isinstance(child, basestring):
                     tree_file.write(pretty_printer.pformat(child))
                     tree_file.write(',')
-                    column = data.column_by_name[child]
+                    column = column_by_name[child]
                     label = column.label
                     if label is not None:
                         label = label.strip() or None

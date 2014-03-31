@@ -209,7 +209,7 @@ def _donapd_2011_2013(f7ud, f7va, _P):
     Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
     '''
     P = _P.ir.reductions_impots.donapd
-    return P.taux * min_(f7ud, f7va, P.max)
+    return P.taux * min_(f7ud + f7va, P.max)
 
 
 def _dfppce_2002_2010(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P):

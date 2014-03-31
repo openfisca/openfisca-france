@@ -229,23 +229,48 @@ def check_consistency(table_simu, dataframe, corrige = True):
 
     # NotImplementedError
 
-from openfisca_core.formulas import DatedFormula, SimpleFormula 
+from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula 
 
 
-def list_ultimate_dependancies(variable_name, date):
+def list_ultimate_dependancies(variable_name, date, input_variables = []):
+
     TaxBenefitSystem = openfisca_france.init_country()
+    tax_benefit_system = TaxBenefitSystem()
 
-    column = TaxBenefitSystem.prestation_by_name[variable_name]
+    if variable_name not in TaxBenefitSystem.prestation_by_name:
+
+        input_variables.append(variable_name)
+        pass
+    else:
+        column = TaxBenefitSystem.prestation_by_name[variable_name]
+        column_formula_type = column.formula_constructor.__bases__
+
+        if AlternativeFormula in column_formula_type:
+            formula = column.formula_constructor.alternative_formulas_constructor[0]
+            formula.extract_parameters()
+
+        elif DatedFormula in column_formula_type:
+            dated_formula_classes = column.formula_constructor.dated_formulas_class
+            formula = [dated_formula_class['formula_class'] for dated_formula_class in dated_formula_classes if dated_formula_class['start'] <= date <= dated_formula_class['end']][0]
+
+        elif SelectFormula in column_formula_type:
+            formula = column.formula_constructor.formula_constructor_by_main_variable.items()[0][1]
+
+        elif SimpleFormula in column_formula_type:
+            formula = column.formula_constructor
+            formula.extract_parameters()
 
 
-    column_formula_type = column.__dict__['formula_constructor'].__bases__
-    if DatedFormula in column_formula_type:
-        
-        
+        formula.set_dependencies(column, tax_benefit_system)
 
-
-
-
+        for variable_name in  formula.parameters:
+            list_ultimate_dependancies(variable_name, date, input_variables = input_variables)
+    
+    print input_variables
+    
 if __name__ == '__main__':
     from datetime import date
-    list_ultimate_dependancies('donapd', date(2002, 1, 1))
+    list_ultimate_dependancies('donapd', date(2012, 1, 1))
+    # list_ultimate_dependancies('decote', date(2012, 1, 1))
+    list_ultimate_dependancies('salbrut', date(2012, 1, 1))
+    list_ultimate_dependancies('age', date(2012, 1, 1))
