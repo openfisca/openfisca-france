@@ -125,7 +125,7 @@ def _reductions_2011(ip_net):
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2012(ip_net, donapd_2011_2013, dfppce_2011_2013, cotsyn, resimm, patnat):
+def _reductions_2012(ip_net, donapd, dfppce, cotsyn, resimm, patnat):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012 TODO: complete
     '''
@@ -133,16 +133,16 @@ def _reductions_2012(ip_net, donapd_2011_2013, dfppce_2011_2013, cotsyn, resimm,
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2013(ip_net, donapd_2011_2013, dfppce_2011_2013, cotsyn, resimm, patnat,
+def _reductions_2013(ip_net, donapd, dfppce, cotsyn, resimm, patnat,
                      ecpess, garext, saldom, daepad, rsceha, prcomp, repsoc, intagr,
                      cappme, spfcpi, sofica, adhcga, creaen, deffor, invfor, invlst, scelli,
                      locmeu):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = (ip_net + donapd_2011_2013 + dfppce_2011_2013 + cotsyn + resimm + patnat,
-                     ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr,
-                     cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli,
+    total_reductions = (ip_net + donapd + dfppce + cotsyn + resimm + patnat +
+                     ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr +
+                     cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli +
                      locmeu)
     return min_(ip_net, total_reductions)
     # TODO: mécénat d'entreprise 7US voir  mecena dans crédits d'impôt
@@ -293,7 +293,8 @@ def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
-
+    else:
+        return f7df * 0
     return P.taux * min_(f7df, max1)
 
 def _intagr(f7um, marpac, _P):
@@ -347,7 +348,8 @@ def _spfcpi(marpac, f7gq, f7fq, f7fm, f7fl, _P):
                 P.taux1 * min_(f7fq, max1) +
                 P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
-    
+    else:
+        return f7gq * 0
 
 def _mohist(f7nz, _P):
     '''

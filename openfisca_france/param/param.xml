@@ -2791,16 +2791,17 @@
         </CODE>
         <CODE description="Taux_RD" code="taux_rd" format="percent">
           <VALUE valeur="0.4" deb="2011-01-01" fin="2013-12-31"/> 
-        <CODE description="Taux_RE" code="taux_re" format="percent">
+        </CODE>
+	<CODE description="Taux_RE" code="taux_re" format="percent">
           <VALUE valeur="0.22" deb="2012-01-01" fin="2013-12-31"/> 
         </CODE>
         <CODE description="Taux_RF" code="taux_rf" format="percent">
           <VALUE valeur="0.30" deb="2012-01-01" fin="2013-12-31"/> 
         </CODE>
-	<CODE description="Taux_SX" code="taux_re" format="percent">
+	<CODE description="Taux_SX" code="taux_sx" format="percent">
           <VALUE valeur="0.22" deb="2013-01-01" fin="2013-12-31"/> 
         </CODE>
-        <CODE description="Taux_SY" code="taux_rf" format="percent">
+        <CODE description="Taux_SY" code="taux_sy" format="percent">
           <VALUE valeur="0.30" deb="2013-01-01" fin="2013-12-31"/> 
         </CODE>
         <CODE description="Plafond" code="max" format="integer" type="monetary">
@@ -5416,8 +5417,8 @@
    </NODE>
    <NODE description="Investissement PME" code="pme">
     <CODE description="Plafond pour investissement dans les PME" code="max" format="integer" type="monetary"> ## ce type de réductions apparaît seulement en 2008 ##
-      <VALUE valeur="0" deb="2002-01-01" fin="2007-12-31"/> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
-      <VALUE valeur="50000000" deb="2008-01-01" fin="2008-12-31"/> ## no upperbound before 2009- set arbitrarily large##
+      # <VALUE valeur="0" deb="2002-01-01" fin="2007-12-31"/> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
+      # <VALUE valeur="50000000" deb="2008-01-01" fin="2008-12-31"/> ## no upperbound before 2009- set arbitrarily large##
       <VALUE valeur="50000" deb="2009-01-01" fin="2010-12-31"/>
       <VALUE valeur="45000" deb="2011-01-01" fin="2013-12-31"/>
     </CODE>
