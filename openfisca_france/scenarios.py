@@ -29,7 +29,6 @@ import itertools
 import json
 import logging
 import os
-import re
 import time
 import urllib2
 import uuid
@@ -42,7 +41,6 @@ from . import conv, entities
 
 log = logging.getLogger(__name__)
 N_ = lambda message: message
-year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]\d|3[0-1]))?)?$')
 
 
 class Scenario(object):
@@ -247,44 +245,12 @@ class Scenario(object):
                             conv.pipe(
                                 conv.test_isinstance(dict),
                                 conv.struct(
-                                    dict(itertools.chain(
-                                        dict(
-                                            birth = conv.pipe(
-                                                conv.condition(
-                                                    conv.test_isinstance(datetime.date),
-                                                    conv.noop,
-                                                    conv.condition(
-                                                        conv.test_isinstance(int),
-                                                        conv.pipe(
-                                                            conv.test_between(1870, 2099),
-                                                            conv.function(lambda year: datetime.date(year, 1, 1)),
-                                                            ),
-                                                        conv.pipe(
-                                                            conv.test_isinstance(basestring),
-                                                            conv.test(year_or_month_or_day_re.match,
-                                                                error = N_(u'Invalid year')),
-                                                            conv.function(lambda birth: u'-'.join((
-                                                                birth.split(u'-') + [u'01', u'01'])[:3])),
-                                                            conv.iso8601_input_to_date,
-                                                            ),
-                                                        ),
-                                                    ),
-                                                conv.test_between(datetime.date(1870, 1, 1),
-                                                    datetime.date(2099, 12, 31)),
-                                                conv.not_none,
-                                                ),
-                                            prenom = conv.pipe(
-                                                conv.test_isinstance(basestring),
-                                                conv.cleanup_line,
-                                                ),
-                                            ).iteritems(),
-                                        (
-                                            (column.name, column.json_to_python)
-                                            for column in column_by_name.itervalues()
-                                            if column.entity == 'ind' and column.name not in ('age', 'agem',
-                                                'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
-                                            ),
-                                        )),
+                                    dict(
+                                        (column.name, column.json_to_python)
+                                        for column in column_by_name.itervalues()
+                                        if column.entity == 'ind' and column.name not in (
+                                            'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
+                                        ),
                                     drop_none_values = True,
                                     ),
                                 ),
@@ -465,7 +431,7 @@ class Scenario(object):
                                             name = conv.pipe(
                                                 conv.test_isinstance(basestring),
                                                 conv.test_in(column_by_name),
-                                                conv.test(lambda column_name: column_by_name[column_name]._dtype in (
+                                                conv.test(lambda column_name: column_by_name[column_name].dtype in (
                                                     np.float32, np.int16, np.int32),
                                                     error = N_(u'Invalid type for axe: integer or float expected')),
                                                 conv.not_none,
@@ -496,8 +462,9 @@ class Scenario(object):
             if error is not None:
                 return data, error
 
+            errors = {}
+
             if data['axes'] is not None:
-                errors = {}
                 for axis_index, axis in enumerate(data['axes']):
                     if axis['min'] >= axis['max']:
                         errors.setdefault('axes', {}).setdefault(axis_index, {})['max'] = state._(
@@ -507,8 +474,91 @@ class Scenario(object):
                     if axis['index'] >= len(data['test_case'][entity_class.key_plural]):
                         errors.setdefault('axes', {}).setdefault(axis_index, {})['index'] = state._(
                             u"Index must be lower than {}").format(len(data['test_case'][entity_class.key_plural]))
-                if errors:
-                    return data, errors
+
+            famille_by_id = data['test_case']['familles']
+            parents_id = set(
+                parent_id
+                for famille in data['test_case']['familles'].itervalues()
+                for parent_id in famille['parents']
+                )
+            individu_by_id = data['test_case']['individus']
+            data, errors = conv.struct(
+                dict(
+                     test_case = conv.struct(
+                        dict(
+                            foyers_fiscaux = conv.uniform_mapping(
+                                conv.noop,
+                                conv.struct(
+                                    dict(
+                                        declarants = conv.uniform_sequence(conv.pipe(
+                                            conv.test(lambda individu_id:
+                                                individu_by_id[individu_id].get('birth') is None
+                                                or data['year'] - individu_by_id[individu_id]['birth'].year >= 18,
+                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
+                                                    u" ans",
+                                                ),
+                                            conv.test(lambda individu_id:
+                                                individu_by_id[individu_id].get('age') is None
+                                                or individu_by_id[individu_id]['age'] >= 18,
+                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
+                                                    u" ans",
+                                                ),
+                                            conv.test(lambda individu_id:
+                                                individu_by_id[individu_id].get('agem') is None
+                                                or individu_by_id[individu_id]['agem'] >= 18 * 12,
+                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
+                                                    u" ans",
+                                                ),
+                                            conv.test(lambda individu_id: individu_id in parents_id,
+                                                error = u"Un déclarant ou un conjoint sur la feuille d'impôt, doit être"
+                                                    u" un parent dans sa famille",
+                                                ),
+                                            )),
+                                        personnes_a_charge = conv.uniform_sequence(conv.pipe(
+                                            conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
+                                                or individu_by_id[individu_id].get('birth') is None
+                                                or data['year'] - individu_by_id[individu_id]['birth'].year <= 25,
+                                                error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    u" 25 ans ou être invalide",
+                                                ),
+                                            conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
+                                                or individu_by_id[individu_id].get('age') is None
+                                                or individu_by_id[individu_id]['age'] <= 25,
+                                                error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    u" 25 ans ou être invalide",
+                                                ),
+                                            conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
+                                                or individu_by_id[individu_id].get('agem') is None
+                                                or individu_by_id[individu_id]['agem'] <= 25 * 12,
+                                                error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    u" 25 ans ou être invalide",
+                                                ),
+                                            )),
+                                        ),
+                                    default = conv.noop,
+                                    ),
+                                ),
+                            individus = conv.uniform_mapping(
+                                conv.noop,
+                                conv.struct(
+                                    dict(
+                                        birth = conv.test(lambda birth: data['year'] - birth.year >= 0,
+                                            error = u"L'individu doit être né au plus tard l'année de la simulation",
+                                            ),
+                                        ),
+                                    default = conv.noop,
+                                    drop_none_values = 'missing',
+                                    ),
+                                ),
+                            ),
+                        default = conv.noop,
+                        ),
+                    ),
+                default = conv.noop,
+                )(data, state = state)
+
+            if errors:
+                return data, errors
 
             if data['legislation_url'] is None:
                 compact_legislation = None
@@ -590,6 +640,7 @@ class Scenario(object):
             )
 
         column_by_name = self.tax_benefit_system.column_by_name
+        entity_by_key_plural = simulation.entity_by_key_plural
         steps_count = 1
         if self.axes is not None:
             for axis in self.axes:
@@ -597,16 +648,16 @@ class Scenario(object):
         simulation.steps_count = steps_count
         test_case = self.test_case
 
-        familles = entities.Familles(simulation = simulation)
+        familles = entity_by_key_plural[u'familles']
         familles.step_size = familles_step_size = len(test_case[u'familles'])
         familles.count = steps_count * familles_step_size
-        foyers_fiscaux = entities.FoyersFiscaux(simulation = simulation)
+        foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
         foyers_fiscaux.step_size = foyers_fiscaux_step_size = len(test_case[u'foyers_fiscaux'])
         foyers_fiscaux.count = steps_count * foyers_fiscaux_step_size
-        individus = entities.Individus(simulation = simulation)
+        individus = entity_by_key_plural[u'individus']
         individus.step_size = individus_step_size = len(test_case[u'individus'])
         individus.count = steps_count * individus_step_size
-        menages = entities.Menages(simulation = simulation)
+        menages = entity_by_key_plural[u'menages']
         menages.step_size = menages_step_size = len(test_case[u'menages'])
         menages.count = steps_count * menages_step_size
 
@@ -614,28 +665,7 @@ class Scenario(object):
             (individu_id, individu_index)
             for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
             )
-        individus.new_holder('age').array = np.fromiter(
-            (
-                self.year - individu['birth'].year
-                for step_index in range(steps_count)
-                for individu in test_case[u'individus'].itervalues()
-                ),
-            dtype = column_by_name['age']._dtype)
-        individus.new_holder('agem').array = np.fromiter(
-            (
-                (self.year - individu['birth'].year) * 12 + 1 - individu['birth'].month
-                for step_index in range(steps_count)
-                for individu in test_case[u'individus'].itervalues()
-                ),
-            dtype = column_by_name['agem']._dtype)
-#        individus.new_holder('birth').array = np.fromiter(
-#            (
-#                individu['birth'].isoformat()
-#                for step_index in range(steps_count)
-#                for individu in test_case[u'individus'].itervalues()
-#                ),
-#            dtype = 'S10')
-#        individus.new_holder('id').array = np.array(
+#        individus.get_or_new_holder('id').array = np.array(
 #            [
 #                individu_id + (u'-{}'.format(step_index) if step_index > 0 else u'')
 #                for step_index in range(steps_count)
@@ -643,10 +673,10 @@ class Scenario(object):
 #                ],
 #            dtype = object)
         #
-        individus.new_holder('idfam').array = idfam_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['idfam']._dtype)  # famille_index
-        individus.new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['quifam']._dtype)  # famille_role
+        individus.get_or_new_holder('idfam').array = idfam_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['idfam'].dtype)  # famille_index
+        individus.get_or_new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['quifam'].dtype)  # famille_role
         familles_roles_count = 0
         for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
             parents_id = famille.pop(u'parents')
@@ -672,10 +702,10 @@ class Scenario(object):
                     familles_roles_count = famille_roles_count
         familles.roles_count = familles_roles_count
         #
-        individus.new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['idfoy']._dtype)  # foyer_fiscal_index
-        individus.new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['quifoy']._dtype)  # foyer_fiscal_role
+        individus.get_or_new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['idfoy'].dtype)  # foyer_fiscal_index
+        individus.get_or_new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['quifoy'].dtype)  # foyer_fiscal_role
         foyers_fiscaux_roles_count = 0
         for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
             declarants_id = foyer_fiscal.pop(u'declarants')
@@ -702,10 +732,10 @@ class Scenario(object):
                     foyers_fiscaux_roles_count = foyer_fiscal_roles_count
         foyers_fiscaux.roles_count = foyers_fiscaux_roles_count
         #
-        individus.new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['idmen']._dtype)  # menage_index
-        individus.new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['quimen']._dtype)  # menage_role
+        individus.get_or_new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['idmen'].dtype)  # menage_index
+        individus.get_or_new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['quimen'].dtype)  # menage_role
         menages_roles_count = 0
         for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
             personne_de_reference_id = menage.pop(u'personne_de_reference')
@@ -733,93 +763,90 @@ class Scenario(object):
                     menages_roles_count = menage_roles_count
         menages.roles_count = menages_roles_count
         #
-        individus.new_holder('noi').array = np.arange(steps_count * individus_step_size,
-            dtype = column_by_name['noi']._dtype)
-#        individus.new_holder('prenom').array = np.array(
+        individus.get_or_new_holder('noi').array = np.arange(steps_count * individus_step_size,
+            dtype = column_by_name['noi'].dtype)
+#        individus.get_or_new_holder('prenom').array = np.array(
 #            [individu['prenom'] for individu in test_case[u'individus'].itervalues()],
 #            dtype = object)
         used_columns_name = set(
             key
             for individu in test_case[u'individus'].itervalues()
-            for key in individu
+            for key, value in individu.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'ind' and column_name in used_columns_name \
-                    and column_name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen'):
-                individus.new_holder(column_name).array = np.fromiter(
-                    (
-                        cell if cell is not None else column._default
-                        for cell in (
-                            individu.get(column_name)
-                            for step_index in range(steps_count)
-                            for individu in test_case[u'individus'].itervalues()
-                            )
-                        ),
-                    dtype = column._dtype)
+                    and column_name not in ('idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen'):
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        individu.get(column_name)
+                        for step_index in range(steps_count)
+                        for individu in test_case[u'individus'].itervalues()
+                        )
+                    )
+                individus.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
-#        familles.new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
+#        familles.get_or_new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
         used_columns_name = set(
             key
             for famille in test_case[u'familles'].itervalues()
-            for key in famille
+            for key, value in famille.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'fam' and column_name in used_columns_name:
-                familles.new_holder(column_name).array = np.fromiter(
-                    (
-                        cell if cell is not None else column._default
-                        for cell in (
-                            famille.get(column_name)
-                            for step_index in range(steps_count)
-                            for famille in test_case[u'familles'].itervalues()
-                            )
-                        ),
-                    dtype = column._dtype)
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        famille.get(column_name)
+                        for step_index in range(steps_count)
+                        for famille in test_case[u'familles'].itervalues()
+                        )
+                    )
+                familles.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
-#        foyers_fiscaux.new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
+#        foyers_fiscaux.get_or_new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
         used_columns_name = set(
             key
             for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
-            for key in foyer_fiscal
+            for key, value in foyer_fiscal.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'foy' and column_name in used_columns_name:
-                foyers_fiscaux.new_holder(column_name).array = np.fromiter(
-                    (
-                        cell if cell is not None else column._default
-                        for cell in (
-                            foyer_fiscal.get(column_name)
-                            for step_index in range(steps_count)
-                            for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
-                            )
-                        ),
-                    dtype = column._dtype)
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                       foyer_fiscal.get(column_name)
+                        for step_index in range(steps_count)
+                        for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
+                        )
+                    )
+                foyers_fiscaux.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
-#        menages.new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
+#        menages.get_or_new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
         used_columns_name = set(
             key
             for menage in test_case[u'menages'].itervalues()
-            for key in menage
+            for key, value in menage.iteritems()
+            if value is not None
             )
         for column_name, column in column_by_name.iteritems():
             if column.entity == 'men' and column_name in used_columns_name:
-                menages.new_holder(column_name).array = np.fromiter(
-                    (
-                        cell if cell is not None else column._default
-                        for cell in (
-                            menage.get(column_name)
-                            for step_index in range(steps_count)
-                            for menage in test_case[u'menages'].itervalues()
-                            )
-                        ),
-                    dtype = column._dtype)
-
-        simulation.set_entities(dict(
-            familles = familles,
-            foyers_fiscaux = foyers_fiscaux,
-            individus = individus,
-            menages = menages,
-            ))
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        menage.get(column_name)
+                        for step_index in range(steps_count)
+                        for menage in test_case[u'menages'].itervalues()
+                        )
+                    )
+                menages.get_or_new_holder(column_name).array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
 
         if self.axes is not None:
             if len(self.axes) == 1:
@@ -828,8 +855,8 @@ class Scenario(object):
                 holder = simulation.get_or_new_holder(axis['name'])
                 if holder.array is None:
                     column = entity.column_by_name[axis['name']]
-                    holder.array = np.empty(entity.count, dtype = column._dtype)
-                    holder.array.fill(column._default)
+                    holder.array = np.empty(entity.count, dtype = column.dtype)
+                    holder.array.fill(column.default)
                 holder.array[axis['index']:: entity.step_size] = np.linspace(axis['min'], axis['max'], axis['count'])
             else:
                 axes_linspaces = [
@@ -842,48 +869,26 @@ class Scenario(object):
                     holder = simulation.get_or_new_holder(axis['name'])
                     if holder.array is None:
                         column = entity.column_by_name[axis['name']]
-                        holder.array = np.empty(entity.count, dtype = column._dtype)
-                        holder.array.fill(column._default)
+                        holder.array = np.empty(entity.count, dtype = column.dtype)
+                        holder.array.fill(column.default)
                     holder.array[axis['index']:: entity.step_size] = mesh.reshape(steps_count)
 
         return simulation
 
-#    def __init__(self):
-#        super(Scenario, self).__init__()
-
-#        self.indiv = {}
-#        # indiv est un dict de dict. La clé est le noi de l'individu
-#        # Exemple :
-#        # 0: {'quifoy': 'vous', 'noi': 0, 'quifam': 'parent 1', 'noipref': 0, 'noidec': 0,
-#        # 'birth': date(1980, 1, 1), 'quimen': 'pref', 'noichef': 0}
-#        self.declar = {}
-#        # declar est un dict de dict. La clé est le noidec.
-#        self.famille = {}
-
-#        # menage est un dict de dict la clé est la pref
-#        self.menage = {0:{'loyer':500, 'so':4, 'code_postal':69001, 'zone_apl':2, 'zthabm' :0}}
-
-#        # on ajoute un individu, déclarant et chef de famille
-#        self.addIndiv(0, datetime(1975, 1, 1).date(), 'vous', 'chef')
-
-#        self.nmen = None
-#        self.x_axis = None
-#        self.maxrev = None
-#        self.same_rev_couple = None
-#        self.year = None
-
-#    def check_consistency(self):
-#        '''
-#Vérifie que le ménage entré est valide
-#'''
-#        for noi, vals in self.indiv.iteritems():
-#            age = self.year - vals['birth'].year
-#            if age < 0:
-#                return u"L'année de naissance doit être antérieure à celle de la simulation (voir Fichier->Paramètres pour régler la date de la simulation"
-#            if vals['quifoy'] in ('vous', 'conj'):
-#                if age < 18: return u'Le déclarant et son éventuel conjoint doivent avoir plus de 18 ans'
-#            else:
-#                if age > 25 and (vals['inv'] == 0): return u'Les personnes à charges doivent avoir moins de 25 ans si elles ne sont pas invalides'
-#            if vals['quifoy'] == 'conj' and not vals['quifam'] == 'part':
-#                return u"Un conjoint sur la déclaration d'impôt doit être le partenaire dans la famille"
-#        return ''
+    def suggest(self):
+        test_case = self.test_case
+        suggestions = dict()
+        for individu_id, individu in test_case['individus'].iteritems():
+            if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
+                # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
+                is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
+                birth_year = self.year - 40 if is_parent else self.year - 10
+                birth = datetime.date(birth_year, 1, 1)
+                individu['birth'] = birth
+                suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                    'birth'] = birth.isoformat()
+            if individu.get('activite') is None:
+                if self.year - individu['birth'].year < 16:
+                    suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                        'activite'] = individu['activite'] = 2  # Étudiant, élève
+        return suggestions or None

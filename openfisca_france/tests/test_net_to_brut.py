@@ -22,116 +22,109 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division
 
-import datetime
-from pandas import DataFrame
+import numpy as np
+
 
 import openfisca_france
+from openfisca_france import surveys
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from openfisca_france import surveys
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def test_case_study(year = 2013, verbose = False):
-    '''
-    Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
-    with the one obtained from running openfisca satrting with a "salaire brut"
-    '''
-
-    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # , 'public_titulaire_etat']:
-
-        maxrev = 50000
-
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
-            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 3) ],
-            parent1 = dict(
-                birth = datetime.date(year - 40, 1, 1),
-                primes = TAUX_DE_PRIME * maxrev if type_sal_category == 'public_titulaire_etat' else None,
-                type_sal = CAT[type_sal_category],
-                ),
-            year = year,
-            ).new_simulation(debug = True)
-
-        df_b2n = DataFrame(dict(salnet = simulation.calculate('salnet'),
-                                salbrut = simulation.calculate('salbrut'),
-                                ))
-
-        from openfisca_france.model.inversion_revenus import _salbrut_from_salnet
-        saln = df_b2n['salnet'].get_values()
-        hsup = simulation.calculate('hsup')
-        type_sal = simulation.calculate('type_sal')
-#        primes = simulation.calculate('primes')
-        defaultP = simulation.default_compact_legislation
-        df_n2b = DataFrame({'salnet': saln, 'salbrut' : _salbrut_from_salnet(saln, hsup, type_sal, defaultP) })
-
-        for var in ['salnet', 'salbrut']:
-            passed = ((df_b2n[var] - df_n2b[var]).abs() < .01).all()
-
-            if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
-                print "Brut to net"
-                print (df_b2n[['salbrut', 'salnet' ]] / 12).to_string()
-                print "Net to brut"
-                print (df_n2b / 12).to_string()
-                assert passed, "difference in %s for %s" % (var, type_sal_category)
+def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
+    simulation = surveys.new_simulation_from_array_dict(
+        array_dict = dict(
+            age = np.array(40).repeat(count),
+            chobrut = np.linspace(chobrut_min, chobrut_max, count),
+            ),
+        debug = True,
+        tax_benefit_system = tax_benefit_system,
+        year = year,
+        )
+    chobrut_holder = simulation.get_holder('chobrut')
+    chobrut = chobrut_holder.array
+    chonet = simulation.calculate('chonet')
+    # Now that net has been computed, remove brut and recompute it from net.
+    del chobrut_holder.array
+    new_chobrut = simulation.calculate('chobrut')
+    assert abs(new_chobrut - chobrut).all() < 0.1, str((chobrut, new_chobrut))
 
 
-def test_cho_rst(year = 2013, verbose = False):
-    '''
-    Tests that _chobrut which computes "chômage brut" from "net" yields an amount compatible
-    with the one obtained from running openfisca satrting with a "chômage brut"
-    '''
-    remplacement = {'chonet' : 'chobrut', 'rstnet': 'rstbrut'}
+def test_chonet_to_chobrut():
+    count = 11
+    chobrut_max = 24000
+    chobrut_min = 0
+    for year in range(2006, 2015):
+        yield check_chonet_to_chobrut, count, chobrut_max, chobrut_min, year
 
-    for var, varbrut in remplacement.iteritems():
 
-        maxrev = 24000
+def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
+    simulation = surveys.new_simulation_from_array_dict(
+        array_dict = dict(
+            age = np.array(40).repeat(count),
+            rstbrut = np.linspace(rstbrut_min, rstbrut_max, count),
+            ),
+        debug = True,
+        tax_benefit_system = tax_benefit_system,
+        year = year,
+        )
+    rstbrut_holder = simulation.get_holder('rstbrut')
+    rstbrut = rstbrut_holder.array
+    rstnet = simulation.calculate('rstnet')
+    # Now that net has been computed, remove brut and recompute it from net.
+    del rstbrut_holder.array
+    new_rstbrut = simulation.calculate('rstbrut')
+    assert abs(new_rstbrut - rstbrut).all() < 0.1, str((rstbrut, new_rstbrut))
 
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
-            axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
-            parent1 = dict(
-                birth = datetime.date(year - 40, 1, 1),
-                ),
-            year = year,
-            ).new_simulation(debug = True)
 
-        df_b2n = DataFrame({var: simulation.calculate(var),
-                            varbrut : simulation.calculate(varbrut),
-                            })
+def test_rstnet_to_rstbrut():
+    count = 11
+    rstbrut_max = 24000
+    rstbrut_min = 0
+    for year in range(2006, 2015):
+        yield check_rstnet_to_rstbrut, count, rstbrut_max, rstbrut_min, year
 
-        varn = df_b2n[var].get_values()
-        csg_rempl = simulation.calculate('csg_rempl')
-        defaultP = simulation.default_compact_legislation
-        if var == "chonet":
-            from openfisca_france.model.inversion_revenus import _chobrut_from_chonet as _varn_to_brut
-        elif var == "rstnet":
-            from openfisca_france.model.inversion_revenus import _rstbrut_from_rstnet as _varn_to_brut
 
-        df_n2b = DataFrame({var: varn, varbrut : _varn_to_brut(varn, csg_rempl, defaultP) })
+def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
+    simulation = surveys.new_simulation_from_array_dict(
+        array_dict = dict(
+            age = np.array(40).repeat(count),
+            primes = TAUX_DE_PRIME * np.linspace(salbrut_min, salbrut_max, count) * (type_sal >= 2),
+            salbrut = np.linspace(salbrut_min, salbrut_max, count),
+            type_sal = np.array(type_sal).repeat(count),
+            ),
+        debug = True,
+        tax_benefit_system = tax_benefit_system,
+        year = year,
+        )
+    salbrut_holder = simulation.get_holder('salbrut')
+    salbrut = salbrut_holder.array
+    salnet = simulation.calculate('salnet')
+    # Now that net has been computed, remove brut and recompute it from net.
+    del salbrut_holder.array
+    new_salbrut = simulation.calculate('salbrut')
+    assert abs(new_salbrut - salbrut).all() < 0.1, str((salbrut, new_salbrut))
 
-        if verbose:
-            print df_n2b.to_string()
-            print df_b2n.to_string()
 
-        for variable in [var, varbrut]:
-            passed = ((df_b2n[variable] - df_n2b[variable]).abs() < 1).all()
-
-            if (not passed) or verbose:
-                print "Brut to imposable"
-                print (df_b2n[[varbrut, var ]] / 12).to_string()
-                print "Imposable to brut"
-                print (df_n2b / 12).to_string()
-
-            assert passed, "difference in %s " % (var)
-
+def test_salnet_to_salbrut():
+    count = 11
+    salbrut_max = 48000
+    salbrut_min = 0
+    for year in range(2006, 2015):
+        for type_sal in CAT._vars:
+            yield check_salnet_to_salbrut, count, salbrut_max, salbrut_min, type_sal, year
 
 
 if __name__ == '__main__':
-    import sys
     import logging
+    import sys
+
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v'])
-#     test_case_study(2013, verbose = False)
-#     test_cho_rst(2013, verbose = False)
+    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salnet_to_salbrut):
+        for function_and_arguments in test():
+            function_and_arguments[0](*function_and_arguments[1:])

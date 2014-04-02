@@ -28,32 +28,9 @@ import datetime
 import numpy as np
 from openfisca_core import simulations
 
-from . import entities
 
-
-def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, survey = None, tax_benefit_system = None, year = None):
-    simulation = simulations.Simulation(
-        compact_legislation = compact_legislation,
-        date = datetime.date(year, 1, 1),
-        debug = debug,
-        tax_benefit_system = tax_benefit_system,
-        )
-
-    column_by_name = tax_benefit_system.column_by_name
-    for column_name, series in survey.iteritems():
-        assert column_name in column_by_name, column_name
-
-    familles = entities.Familles(simulation = simulation)
-    familles.count = familles.step_size = familles_step_size = (survey.quifam == 0).sum()
-    foyers_fiscaux = entities.FoyersFiscaux(simulation = simulation)
-    foyers_fiscaux.count = foyers_fiscaux.step_size = foyers_fiscaux_step_size = (survey.quifoy == 0).sum()
-    individus = entities.Individus(simulation = simulation)
-    individus.count = individus.step_size = individus_step_size = len(survey)
-    menages = entities.Menages(simulation = simulation)
-    menages.count = menages.step_size = menages_step_size = (survey.quimen == 0).sum()
-
-    assert 'age' in survey.columns
-    assert 'agem' in survey.columns
+def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, survey = None,
+        tax_benefit_system = None, year = None):
     assert 'idfam' in survey.columns
     assert 'idfoy' in survey.columns
     assert 'idmen' in survey.columns
@@ -62,19 +39,32 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     assert 'quifoy' in survey.columns
     assert 'quimen' in survey.columns
 
-    familles.roles_count = survey['quifam'].max() + 1
-    menages.roles_count = survey['quimen'].max() + 1
-    foyers_fiscaux.roles_count = survey['quifoy'].max() + 1
+    column_by_name = tax_benefit_system.column_by_name
+    for column_name in survey:
+        assert column_name in column_by_name, 'Unknown column "{}" in survey'.format(column_name)
 
-    simulation.set_entities(dict(
-        familles = familles,
-        foyers_fiscaux = foyers_fiscaux,
-        individus = individus,
-        menages = menages,
-        ))
+    simulation = simulations.Simulation(
+        compact_legislation = compact_legislation,
+        date = datetime.date(year, 5, 1),
+        debug = debug,
+        tax_benefit_system = tax_benefit_system,
+        )
+    entity_by_key_plural = simulation.entity_by_key_plural
+
+    familles = entity_by_key_plural[u'familles']
+    familles.count = familles.step_size = familles_step_size = (survey.quifam == 0).sum()
+    familles.roles_count = survey['quifam'].max() + 1
+    foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
+    foyers_fiscaux.count = foyers_fiscaux.step_size = foyers_fiscaux_step_size = (survey.quifoy == 0).sum()
+    foyers_fiscaux.roles_count = survey['quifoy'].max() + 1
+    individus = entity_by_key_plural[u'individus']
+    individus.count = individus.step_size = individus_step_size = len(survey)
+    menages = entity_by_key_plural[u'menages']
+    menages.count = menages.step_size = menages_step_size = (survey.quimen == 0).sum()
+    menages.roles_count = survey['quimen'].max() + 1
 
     for column_name, column_series in survey.iteritems():
-        holder = simulation.new_holder(column_name)
+        holder = simulation.get_or_new_holder(column_name)
         entity = holder.entity
         if holder.entity.is_persons_entity:
             array = column_series.values
@@ -82,7 +72,70 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
             array = column_series.values[survey['qui' + entity.symbol].values == 0]
         assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
             entity.count)
-        holder.array = np.array(array, dtype = holder.column._dtype)
+        holder.array = np.array(array, dtype = holder.column.dtype)
+
+    return simulation
+
+
+def new_simulation_from_array_dict(compact_legislation = None, debug = False, array_dict = None,
+        tax_benefit_system = None, year = None):
+    simulation = simulations.Simulation(
+        compact_legislation = compact_legislation,
+        date = datetime.date(year, 1, 1),
+        debug = debug,
+        tax_benefit_system = tax_benefit_system,
+        )
+
+    assert len(set([len(x) for x in array_dict.itervalues() if len(x) != 1])) == 1, 'Arrays do not have the same size'
+
+    global_count = len(array_dict.values()[0])
+    provided_keys = array_dict.keys()
+
+    for role_var in ['quifam', 'quifoy', 'quimen']:
+        if role_var not in provided_keys:
+            array_dict[role_var] = np.zeros(global_count, dtype = int)
+
+    for id_var in ['idfam', 'idfoy', 'idmen', 'noi']:
+        if id_var not in provided_keys:
+            array_dict[id_var] = np.arange(global_count, dtype = int)
+
+    column_by_name = tax_benefit_system.column_by_name
+    for column_name, array in array_dict.iteritems():
+        assert column_name in column_by_name, column_name
+
+    entity_by_key_plural = simulation.entity_by_key_plural
+
+    familles = entity_by_key_plural[u'familles']
+    familles.count = familles.step_size = familles_step_size = (array_dict['quifam'] == 0).sum()
+    foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
+    foyers_fiscaux.count = foyers_fiscaux.step_size = foyers_fiscaux_step_size = (array_dict['quifoy'] == 0).sum()
+    individus = entity_by_key_plural[u'individus']
+    individus.count = individus.step_size = individus_step_size = global_count
+    menages = entity_by_key_plural[u'menages']
+    menages.count = menages.step_size = menages_step_size = (array_dict['quimen'] == 0).sum()
+
+    assert 'idfam' in array_dict.keys()
+    assert 'idfoy' in array_dict.keys()
+    assert 'idmen' in array_dict.keys()
+    assert 'noi' in array_dict.keys()
+    assert 'quifam' in array_dict.keys()
+    assert 'quifoy' in array_dict.keys()
+    assert 'quimen' in array_dict.keys()
+
+    familles.roles_count = array_dict['quifam'].max() + 1
+    menages.roles_count = array_dict['quimen'].max() + 1
+    foyers_fiscaux.roles_count = array_dict['quifoy'].max() + 1
+
+    for column_name, column_array in array_dict.iteritems():
+        holder = simulation.get_or_new_holder(column_name)
+        entity = holder.entity
+        if holder.entity.is_persons_entity:
+            array = column_array
+        else:
+            array = column_array[array_dict['qui' + entity.symbol].values == 0]
+        assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
+            entity.count)
+        holder.array = np.array(array, dtype = holder.column.dtype)
 
     return simulation
 

@@ -11,9 +11,7 @@ from __future__ import division
 
 import logging
 
-from openfisca_core.enumerations import Enum
-
-from ..data import QUIFOY
+from ..input_variables.base import QUIFOY
 
 
 log = logging.getLogger(__name__)
@@ -35,10 +33,6 @@ VOUS = QUIFOY['vous']
 #      'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps,
 #      'ir': P.ir, 'prelsoc': P.prelsoc}
 # return Dicts2Object(**a)
-
-
-from ... import DEBUG_COTSOC
-DEBUG = DEBUG_COTSOC
 
 
 def _mhsup(hsup):
@@ -73,8 +67,6 @@ def _prelsoc_cap_bar(self, rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
-#    if DEBUG:
-#        return - rev_cap_bar*0
     P = _P.prelsoc
     if _P.datesim.year < 2006:
         total = P.base_pat
@@ -200,8 +192,6 @@ def _prelsoc_cap_lib(self, rev_cap_lib, _P):
     Calcule le prélèvement social sur les revenus du capital
     soumis au prélèvement libératoire
     '''
-#    if DEBUG:
-#        return - rev_cap_lib*0
     P = _P.prelsoc
     if _P.datesim.year < 2006:
         total = P.base_pat

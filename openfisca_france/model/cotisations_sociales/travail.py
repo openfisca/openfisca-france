@@ -33,7 +33,7 @@ from numpy import (logical_not as not_, logical_or as or_, maximum as max_, mini
 from openfisca_core.baremes import BaremeDict, scaleBaremes
 from openfisca_core.enumerations import Enum
 
-from ..data import QUIFAM, QUIFOY, QUIMEN
+from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN
 from .preprocessing import build_pat, build_sal
 
 
@@ -75,13 +75,6 @@ def _mhsup(hsup):
 def _type_sal(titc, statut, chpub, cadre):
     '''
     Catégorie de salarié
-    0: prive_non_cadre
-    1: prive_cadre
-    2: public_titulaire_etat
-    3: public_titulaire_militaire
-    4: public_titulaire_territoriale
-    5: public_titulaire_hospitaliere
-    6: public_non_titulaire
     '''
     cadre = (statut == 8) * (chpub > 3) * cadre
     # noncadre = (statut ==8)*(chpub>3)*not_(cadre)
@@ -149,7 +142,7 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
 
 
 
-def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, _P):
+def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, cotpat_transport, _P):
     '''
     Cotisation sociales patronales main d'oeuvre
     TODO: A discriminer selon la taille de l'entreprise
@@ -174,7 +167,7 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
 #                        log.info(category[0])
 #                        log.info(bar._name)
 #                        log.info(temp / 12)
-    return cotpat
+    return cotpat + cotpat_transport
 
 
 def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
@@ -246,12 +239,12 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
 
 
 def _cotpat(cotpat_contrib, cotpat_noncontrib,
-            cotpat_main_d_oeuvre, cotpat_transport):
+            cotpat_main_d_oeuvre):
     '''
     Cotisations sociales patronales
     '''
     return (cotpat_contrib + cotpat_noncontrib
-            + cotpat_main_d_oeuvre + cotpat_transport)
+            + cotpat_main_d_oeuvre)
 
 
 def seuil_fds(_P):
@@ -446,7 +439,7 @@ def _taxes_sal(salbrut, tva_ent, _P):
 
 def _tehr(salbrut, _P):
     """
-    Taxe exceptionelle sur les hauts revenus
+    Taxe exceptionnelle de solidarité sur les très hautes rémunérations
     """
     # TODO: a affiner avec condition de plafond
     #       sur le chiffre d'affaire des entreprises

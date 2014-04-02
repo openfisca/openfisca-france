@@ -27,10 +27,14 @@ from __future__ import division
 
 import logging
 
+
 from numpy import zeros, logical_not as not_
 from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
+from scipy.optimize import fsolve
+
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
 from openfisca_france.model.cotisations_sociales.remplacement import exo_csg_chom
+from openfisca_france import surveys
 
 
 log = logging.getLogger(__name__)
@@ -53,7 +57,8 @@ log = logging.getLogger(__name__)
 # # Salaires
 ############################################################################
 
-def _salbrut(sali, hsup, type_sal, _defaultP):
+
+def _salbrut_from_sali(sali, hsup, type_sal, _defaultP):
     '''
     Calcule le salaire brut à partir du salaire imposable
     sauf pour les fonctionnaires où il renvoie le tratement indiciaire brut
@@ -108,8 +113,9 @@ def _salbrut(sali, hsup, type_sal, _defaultP):
     supp_familial_traitement = 0  # TODO: dépend de salbrut
     indemnite_residence = 0  # TODO: fix bug
 
-#     print 'sali', sali / 12
+#    print 'sali', sali / 12
     brut_etat = etat.calc(sali)
+#    print 'brut_etat', brut_etat/12
 #     print 'impot', public_etat.calc(brut_etat) / 12
 #     print 'brut_etat', brut_etat / 12
     salbrut_etat = (brut_etat)
@@ -159,7 +165,7 @@ def _salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
 # # Allocations chômage
 ############################################################################
 
-def _chobrut(choi, csg_rempl, _defaultP):
+def _chobrut_from_choi(choi, csg_rempl, _defaultP):
     '''
     Calcule les allocations chômage brute à partir des allocations imposables
     '''
@@ -185,7 +191,7 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
     csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement
+    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement donc valable aussi pour le chômage
 
     taux_plein = combineBaremes(csg['plein'])
     taux_reduit = combineBaremes(csg['reduit'])
@@ -195,7 +201,6 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     chom_reduit = taux_reduit.inverse()
 
     chobrut = (csg_rempl == 1) * chonet + (csg_rempl == 2) * chom_reduit.calc(chonet) + (csg_rempl == 3) * chom_plein.calc(chonet)
-
     isexo = exo_csg_chom(chobrut, csg_rempl, _defaultP)
     chobrut = not_(isexo) * chobrut + (isexo) * chonet
     return chobrut
@@ -205,13 +210,14 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
 # # Pensions
 ############################################################################
 
-def _rstbrut(rsti, csg_rempl, _defaultP):
+
+def _rstbrut_from_rsti(rsti, csg_rempl, _defaultP):
     '''
     Calcule les pensions de retraites brutes à partir des pensions imposables
     '''
     P = _defaultP.csg.retraite
-    rst_plein = P.plein.deduc.inverse()  # TODO: rajouter la non  déductible dans param
-    rst_reduit = P.reduit.deduc.inverse()  #
+    rst_plein = P.plein.deduc.inverse()
+    rst_reduit = P.reduit.deduc.inverse()
     rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
     return rstbrut
 
@@ -241,33 +247,59 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     return rstbrut
 
 
-def get_brut_from_net(net, type_sal = 0, hsup = 0, csg_rempl = 0, rev = 'sal', year = 2011):
-
-    from openfisca_core.simulations import ScenarioSimulation
-    import openfisca_france
-    openfisca_france.init_country()
-
-    simulation = ScenarioSimulation()
-    simulation.set_config(year = 2011, nmen = 2, x_axis = "sali", maxrev = 100)
-    simulation.set_param()
-    simulation.compute()
-
-    net = [net]
-
-    _defaultP = simulation.P
-    if rev == 'sal':
-        output = _salbrut_from_salnet(net, hsup, type_sal, _defaultP)
-    elif rev == 'cho':
-        output = _chobrut_from_chonet(net, csg_rempl, _defaultP)
-    elif rev == 'rst':
-        output = _rstbrut_from_rstnet(net, csg_rempl, _defaultP)
-
-    return output
+def brut_to_net(year = None, net_variable_name = None, tax_benefit_system = None, **kwargs):
+    simulation = surveys.new_simulation_from_array_dict(
+        array_dict = kwargs,
+        tax_benefit_system = tax_benefit_system.__class__(),
+        year = year,
+        )
+    return simulation.calculate(net_variable_name)
 
 
+def _num_rstbrut_from_rstnet(self, rstnet, csg_rempl, _defaultP):
+    '''
+    Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
+    '''
+    function = lambda x: brut_to_net(
+        csg_rempl = csg_rempl,
+        net_variable_name = 'rstnet',
+        rstbrut = x,
+        tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
+        year = _defaultP.datesim.year,
+        ) - rstnet
+    return fsolve(function, rstnet)
 
-if __name__ == '__main__':
-    net = 1961
-    brut = get_brut_from_net(12 * net) / 12
-    print brut
-#    print get_brut_from_net(12 * 1568.80) / 12
+
+def _num_chobrut_from_chonet(self, chonet, csg_rempl, _defaultP):
+    '''
+    Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
+    '''
+    function = lambda x: brut_to_net(
+        chobrut = x,
+        csg_rempl = csg_rempl,
+        net_variable_name = 'chonet',
+        tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
+        year = _defaultP.datesim.year,
+        ) - chonet
+    return fsolve(function, chonet)
+
+
+def _num_salbrut_from_salnet(self, agem, salnet, hsup, type_sal, _defaultP):
+    '''
+    Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
+    '''
+    function = lambda x: brut_to_net(
+        agem = agem,
+        hsup = hsup,
+        net_variable_name = 'salnet',
+        primes = TAUX_DE_PRIME * x * (type_sal >= 2),
+        salbrut = x,
+        tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
+        type_sal = type_sal,
+        year = _defaultP.datesim.year,
+        ) - salnet
+    return fsolve(function, salnet)
+
+def _primes_from_salbrut(salbrut, type_sal):
+    return salbrut * TAUX_DE_PRIME * (type_sal >= 2)
+

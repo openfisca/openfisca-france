@@ -16,23 +16,26 @@
 #
 # OpenFisca is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core import formulas
+from . import  data1, data2, data3, data4, data5, data6, data7, data8, data_survey
 
+column_by_name = data1.column_by_name.copy()
 
-class FormulaMixin(object):
-    pass
+for col_by_name in [
+    data2.column_by_name,
+    data3.column_by_name,
+    data4.column_by_name,
+    data5.column_by_name,
+    data6.column_by_name,
+    data7.column_by_name,
+    data8.column_by_name,
+    data_survey.column_by_name,
+    ]:
 
-
-class Formula(FormulaMixin, formulas.AbstractFormula):
-    pass
-
-
-class SimpleFormula(FormulaMixin, formulas.AbstractSimpleFormula):
-    pass
+    column_by_name.update(col_by_name)

@@ -55,11 +55,16 @@ setup(
     url = 'https://github.com/openfisca/openfisca-france',
 
     data_files = [],
+    extras_require = dict(
+        tests = [
+            'pandas >= 0.13',
+            ],
+        ),
     install_requires = [
         'Biryani1[datetimeconv] >= 0.9dev',
         'numpy',
         'OpenFisca-Core >= 0.3dev',
-        'pandas >= 0.13',
+        'scipy >= 0.12',
         ],
     packages = find_packages(),
     zip_safe = False,

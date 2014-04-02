@@ -11,7 +11,7 @@ from __future__ import division
 from numpy import (round, floor, zeros, maximum as max_, minimum as min_,
                    logical_not as not_)
 
-from .data import QUIFAM, QUIFOY
+from .input_variables.base import QUIFAM, QUIFOY
 
 
 CHEF = QUIFAM['chef']
@@ -128,19 +128,16 @@ def _br_pf(self, br_pf_i_holder, rev_coll_holder):
     return br_pf
 
 
-def _af_nbenf(self, agem_holder, smic55_holder, _P):
+def _af_nbenf(self, age_holder, smic55_holder, _P):
     '''
     Nombre d'enfants dans la familles au sens des allocations familiales
     'fam'
     '''
-    agem = self.split_by_roles(agem_holder, roles = ENFS)
+    age = self.split_by_roles(age_holder, roles = ENFS)
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     P = _P.fam.af
-    for key, val in agem.iteritems():
-        agem[key] = val // 12
-
-    af_nbenf = nb_enf(agem, smic55, P.age1, P.age2)
+    af_nbenf = nb_enf(age, smic55, P.age1, P.age2)
     return af_nbenf
 
 
@@ -282,7 +279,7 @@ def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
     http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
     '''
     age = self.split_by_roles(age_holder, roles = ENFS)
-    alr = self.sum_by_roles(alr_holder)
+    alr = self.sum_by_entity(alr_holder)
     # TODO: what is rst doing here?
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 

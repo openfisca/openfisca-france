@@ -321,9 +321,6 @@
      </BAREME>
    </NODE>
    <NODE description="Revenus du capital" code="capital">
-     <CODE description="Seuil de non recouvrement" code="nonimp" format="integer" type="monetary">
-       <VALUE valeur="61" deb="2002-01-01" fin="2013-12-31"/>
-     </CODE>
      <CODE description="Taux global" code="glob" format="percent">
        <VALUE valeur="0.075" deb="2000-01-01" fin="2003-12-31"/>
        <VALUE valeur="0.082" deb="2004-01-01" fin="2013-12-31"/>
@@ -1109,7 +1106,7 @@
 	          <VALUE valeur="1" deb="2005-01-01" fin="2014-12-31"/>
 	        </SEUIL>
 	        <TAUX>
-	          <VALUE valeur="07" deb="2013-01-01" fin="2014-12-31"/>
+	          <VALUE valeur=".07" deb="2013-01-01" fin="2014-12-31"/>
 	          <VALUE valeur="0.065" deb="2005-01-01" fin="2012-12-31"/>
 	        </TAUX>
 	      </TRANCHE>
@@ -2618,6 +2615,9 @@
       </CODE>
     </NODE>
     <NODE code="quotient_familial" description="Parts de quotient familial">
+      <CODE description="Conjoint d'un couple marié ou pacsé" code="conj">
+        <VALUE valeur="1" deb="2002-01-01" fin="2013-12-31"/>
+      </CODE>
       <CODE description="Enfant de rang 1 ou 2" code="enf1">
         <VALUE valeur="0.5" deb="2002-01-01" fin="2013-12-31"/>
       </CODE>
@@ -3191,6 +3191,9 @@
     </CODE>
       </NODE>
     </NODE>
+    <CODE description="Seuil de recouvrement" code="seuil_recouvrement" format="integer" type="monetary">
+       <VALUE valeur="61" deb="2002-01-01" fin="2013-12-31"/>
+     </CODE>
     <NODE code="credits_impot" description="Crédits d'impôt">
       <NODE code="divide" description="Dividendes">
         <CODE description="Plafond" code="max" format="integer" type="monetary">

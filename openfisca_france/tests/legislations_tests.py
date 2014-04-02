@@ -35,7 +35,7 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def test_legislation_xml_file():
+def check_legislation_xml_file(year):
     legislation_tree = xml.etree.ElementTree.parse(tax_benefit_system.PARAM_FILE)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
@@ -64,7 +64,7 @@ def test_legislation_xml_file():
             unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
 
-    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datetime.date(2006, 1, 1))
+    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datetime.date(year, 1, 1))
     dated_legislation_json, errors = legislations.validate_dated_legislation_json(dated_legislation_json,
         state = conv.default_state)
     if errors is not None:
@@ -80,6 +80,11 @@ def test_legislation_xml_file():
     compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
     if tax_benefit_system.preprocess_legislation_parameters is not None:
         tax_benefit_system.preprocess_legislation_parameters(compact_legislation)
+
+
+def test_legislation_xml_file():
+    for year in range(2006, 2015):
+        yield check_legislation_xml_file, year
 
 
 if __name__ == '__main__':

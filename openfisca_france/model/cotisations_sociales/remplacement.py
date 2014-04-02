@@ -54,7 +54,7 @@ def exo_csg_chom(chobrut, csg_rempl, _P):
                         + csgchod_sans_exo(chobrut, csg_rempl, _P)
                         + csgchoi_sans_exo(chobrut, csg_rempl, _P)
                         + crdscho_sans_exo(chobrut, csg_rempl, _P))
-    nbh_travail = 151.67  # TODO: depuis 2001 mais avant ?
+    nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
     cho_seuil_exo = _P.csg.chom.min_exo * nbh_travail * _P.cotsoc.gen.smic_h_b
     return (chonet_sans_exo <= 12 * cho_seuil_exo)  # annuel
 
@@ -88,7 +88,7 @@ def crdscho_sans_exo(chobrut, csg_rempl, _P):
     CRDS sur les allocations chômage sans exo
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    crds = scaleBaremes(_P.crds.rst, plaf_ss)
+    crds = scaleBaremes(_P.crds.act, plaf_ss)  # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
     return -crds.calc(chobrut) * (2 <= csg_rempl)
 
 
@@ -185,12 +185,16 @@ def _crdsrst(rstbrut, csg_rempl, _P):
     return -crds['rst'].calc(rstbrut) * not_(isexo)
 
 
-def _casa(rstbrut, csg_rempl, _P):
+def _casa(self, rstbrut, irpp_holder, csg_rempl, _P):  # TODO: irpp_n_2
     """
     Contribution additionnelle de solidarité et d'autonomie
     """
-    return (csg_rempl == 3) * _P.prelsoc.add_ret * rstbrut
+    # TODO: replace irpp by irpp_n_2
 
+    irpp = self.cast_from_entity_to_roles(irpp_holder)
+    casa = (csg_rempl == 3) * _P.prelsoc.add_ret * rstbrut * (irpp > _P.ir.seuil_recouvrement)
+
+    return -casa
 
 def _rst(rstbrut, csgrstd):
     '''

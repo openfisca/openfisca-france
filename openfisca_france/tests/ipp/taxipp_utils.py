@@ -38,7 +38,6 @@ from pandas import DataFrame, ExcelFile, read_stata, Series
 current_dir = os.path.dirname(os.path.realpath(__file__))
 variables_corresp = os.path.join(current_dir, 'correspondances_variables.xlsx')
 
-
 def build_ipp2of_variables():
     ''' 
     Création du dictionnaire dont les clefs sont les noms des variables IPP
@@ -58,11 +57,12 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
     Fonction qui comparent les calculs d'OF et et de TaxIPP
     Gestion des outputs
     '''
-    ipp_output = read_stata(path_dta_output).sort(['id_foyf', 'id_indiv'], ascending = [True, False])
+    ipp_output = read_stata(path_dta_output).sort(['id_foyf', 'id_indiv'], ascending = [True, False]).reset_index()
     if 'salbrut' in param_scenario.items() :
-        if param_scenario['option'] == 'salbrut':
+        if param_scenario['option'] == 'brut':
             del ipp2of_output_variables['sal_brut']
-
+            del ipp2of_output_variables['chom_brut']
+            del ipp2of_output_variables['rst_brut']
     scenario = param_scenario['scenario']
     if 'activite' in param_scenario:
         act = param_scenario['activite']
@@ -73,18 +73,19 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
     else:
         act_conj = 0
 
-    check_list_commun = ['isf_foy', 'irpp_net_foy', 'irpp_bar_foy', 'ppe_brut_foy', 'ppe_net_foy', 'irpp_ds_foy']  # # 'decote_irpp_foy',
-    check_list_minima = ['rsa_foys', 'rsa_act_foys', 'mv_foys', 'rsa_logt', 'y_rmi_rsa']
+    check_list_commun = ['isf_foy', 'irpp_tot_foy', 'irpp_bar_foy', 'ppe_brut_foy', 'ppe_net_foy', 'irpp_ds_foy', 'taxe_HR_foy']  # # 'decote_irpp_foy',
+    check_list_minima = ['rsa_foys', 'rsa_act_foys', 'mv_foys', 'rsa_logt']  # , 'y_rmi_rsa'
     check_list_af = ['paje_foys', 'paje_base_foys', 'paje_clca_foys', 'af_foys', 'nenf_prest', 'biact_or_isole', 'alf_foys', 'ars_foys', 'asf_foys', 'api', 'apje_foys']  # 'af_diff', 'af_maj',
-    check_list_sal = ['csp_exo', 'csg_sal_ded', 'css', 'css_co', 'css_nco', 'crds_sal', 'csg_sal_nonded', 'sal_irpp', 'sal_brut', 'csp_mo_vt', 'csp_nco', 'csp_co', 'vt', 'mo', 'sal_superbrut', 'sal_net', 'ts', 'tehr']  # 'csg_sal_ded'] #, 'irpp_net_foy', 'af_foys']- cotisations salariales : 'css', 'css_nco', 'css_co', 'sal_superbrut' 'csp',
+    check_list_sal = ['csp_exo', 'csg_sal_ded', 'css', 'css_co', 'css_nco', 'crds_sal', 'csg_sal_nonded', 'sal_irpp', 'sal_brut', 'csp_mo_vt', 'csp_nco', 'csp_co', 'vtmo', 'sal_superbrut', 'sal_net', 'ts', 'tehr']  # 'csg_sal_ded'] #, 'irpp_net_foy', 'af_foys']- cotisations salariales : 'css', 'css_nco', 'css_co', 'sal_superbrut' 'csp',
     # 'decote_irpp_foy' : remarque par d'équivalence Taxipp
     check_list_chom = ['csg_chom_ded', 'chom_irpp', 'chom_brut', 'csg_chom_nonded', 'crds_chom']
     check_list_ret = ['csg_pens_ded', 'pension_irpp', 'pension_net', 'csg_pens_nonded', 'crds_pens']
     check_list_cap = ['isf_foy', 'isf_brut_foy', 'isf_net_foy', 'csg_patr_foy', 'crds_patr_foy', 'csk_patr_foy', 'csg_plac_foy', 'crds_plac_foy', 'csk_plac_foy']
 
     if 'salbrut' in param_scenario.items() :
-        if param_scenario['option'] == 'salbrut':
+        if param_scenario['option'] == 'brut':
             check_list_sal.remove('sal_brut')
+            check_list_chom.remove('chom_brut')
 
     id_list = act + act_conj
     lists = {0 : check_list_sal, 1: check_list_sal + check_list_chom, 2: check_list_chom, 3 : check_list_sal + check_list_ret, 4 : check_list_chom + check_list_ret, 6 : check_list_ret}
@@ -95,40 +96,71 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
     check_list += check_list_minima + check_list_commun + check_list_af + check_list_cap
 
     def _relevant_input_variables(simulation):
-        input_variables = list()
+        input_variables = {'ind': list(), 'foy': list(), 'men': list()}
+        len_indiv = len(simulation.get_holder('noi', default = None).array)
+        len_men = len(simulation.get_holder('loyer', default = None).array)
         for name, col in simulation.tax_benefit_system.column_by_name.iteritems():
+            # print name, col
             holder = simulation.get_holder(name, default = None)
-            if holder is not None and not all(holder.array == col._default):
-                input_variables.append(name)
+            if holder is not None and holder.array is not None:
+                if not all(holder.array == col.default):
+                    if len(holder.array) == len_indiv:
+                        input_variables['ind'].append(name)
+                    elif len(holder.array) == len_men:
+                        input_variables['men'].append(name)
+                    else:
+                        input_variables['foy'].append(name)
         return input_variables
 
     def _conflict_by_entity(simulation, of_var_holder, ipp_var, pb_calcul, ipp_output = ipp_output):
         of_var_series = Series(of_var_holder.array)
-
         entity = of_var_holder.entity
         if entity.is_persons_entity:
             quimen_series = Series(simulation.get_holder('quimen').array)
             of_var_series = of_var_series[quimen_series.isin([0, 1])].reset_index(drop = True)
             ipp_var_series = ipp_output[ipp_var]
+            # print ipp_var
+            # print ipp_var_series
+            # print of_var_series
+            # print "\n"
         else :
             quient_series = Series(simulation.get_holder('qui' + entity.symbol).array)
-            ipp_var_series = ipp_output[ipp_var][quient_series == 0]
+            quient_0 = quient_series[quient_series == 0]
+            quient_1 = quient_series[quient_series == 1]
+            long = range(len(quient_0))
+            if len(quient_1) > 0:
+                long = [2 * x for x in long]
+            ipp_var_series = ipp_output.loc[long, ipp_var].reset_index(drop = True)
 
         conflict = ((ipp_var_series.abs() - of_var_series.abs()).abs() > threshold)
+        idmen = simulation.get_holder('idmen').array
+        conflict_selection = DataFrame({'idmen' : idmen, 'idfoy' : simulation.get_holder('idfoy').array})
+        conflict_men = conflict_selection.loc[conflict[conflict == True].index, 'idmen'].drop_duplicates().values
+        conflict_foy = conflict_selection.loc[conflict[conflict == True].index, 'idfoy'].drop_duplicates().values
         if (len(ipp_var_series[conflict]) != 0) :
             if verbose:
                 print u"Le calcul de {} pose problème : ".format(of_var)
                 print DataFrame({
                     "IPP": ipp_var_series[conflict],
                     "OF": of_var_series[conflict],
-#                    "diff.": ipp_output[conflict].abs() - of_var_series[conflict].abs(),
+                    "diff.": ipp_var_series[conflict].abs() - of_var_series[conflict].abs(),
                     }).to_string()
                 relevant_variables = _relevant_input_variables(simulation)
-                input1 = DataFrame(
-                    (variable, simulation.get_holder(variable).array)
-                    for variable in relevant_variables
-                    )
-                print input1.loc[conflict[conflict == True].index].to_string()
+                print relevant_variables
+                input = {}
+                for entity in ['ind', 'men', 'foy']:
+                    dic = {}
+                    for variable in relevant_variables[entity] :
+                        dic[variable] = simulation.get_holder(variable).array
+                    input[entity] = DataFrame(dic)
+                print "Variables individuelles associées à ce ménage:"
+                print input['ind'].loc[input['ind']['idmen'].isin(conflict_men)].to_string()  # .loc[conflict[conflict == True].index].to_string()
+                if not input['men'].empty:
+                    print "Variables associées au ménage:"
+                    print input['men'].loc[conflict_men].to_string()
+                if not input['foy'].empty:
+                    print "Variables associées au foyer fiscal:"
+                    print input['foy'].loc[conflict_foy].to_string()
             pb_calcul += [of_var]
 #        if of_var == 'taxes_sal':
 #            print "taxes_sal", output1.to_string
@@ -179,17 +211,20 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
         datesim = dict_scenar['datesim']
         param_scenario = dict_scenar
 
-    if 'salbrut' in param_scenario.items() and param_scenario['option'] == 'salbrut':
+    if  'option' in param_scenario.keys() and param_scenario['option'] == 'brut':
         TaxBenefitSystem = openfisca_france.init_country(start_from = "brut")
         tax_benefit_system = TaxBenefitSystem()
         del ipp2of_input_variables['sal_irpp_old']
         ipp2of_input_variables['sal_brut'] = 'salbrut'
+        ipp2of_input_variables['chom_brut'] = 'chobrut'
+        ipp2of_input_variables['pension_brut'] = 'rstbrut'
     else :
         TaxBenefitSystem = openfisca_france.init_country()
         tax_benefit_system = TaxBenefitSystem()
 
     openfisca_survey = build_input_OF(data_IPP, ipp2of_input_variables, tax_benefit_system)
     openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy','noi'])
+    # print datesim
     simulation = surveys.new_simulation_from_survey_data_frame(
 #        debug = True,
         survey = openfisca_survey,
@@ -297,7 +332,6 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         return data
 
     data.rename(columns = ipp2of_input_variables, inplace = True)
-    data["agem"] = 12 * data["age"]
     data['quifoy'] = _qui(data, 'foy')
     min_idfoy = data["idfoy"].min()
     if min_idfoy > 0:
@@ -316,6 +350,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
     data["caseN"] = _compl(data["caseN"])
     data = _var_to_ppe(data)
     data = _var_to_pfam(data)
+    data['inv'] = 0
 
     variables_to_drop = [
         variable
@@ -324,5 +359,5 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         ]
     data = data.drop(variables_to_drop, axis = 1)
 #    data.rename(columns = {"id_conj" : "conj"}, inplace = True)
-
+    data['agem'] = data['age'] * 12
     return data

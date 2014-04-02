@@ -25,7 +25,7 @@
 
 import collections
 
-from openfisca_core.columns import IntCol, EnumCol, BoolCol, AgesCol, FloatCol
+from openfisca_core.columns import IntCol, EnumCol, BoolCol, AgeCol, FloatCol
 from openfisca_core.enumerations import Enum
 
 def build_column_couple(name, column):
@@ -170,9 +170,9 @@ column_by_name = collections.OrderedDict((
                         entity = "foy",
                         label = u"Jours décomptés au titre de cette déclaration")),
 
-    ('age', AgesCol(label = u"Âge" , val_type = "age")),
+    ('age', AgeCol(label = u"Âge" , val_type = "age")),
 
-    ('agem', AgesCol(label = u"Âge (en mois)", val_type = "months")),
+    ('agem', AgeCol(label = u"Âge (en mois)", val_type = "months")),
 
     ('zone_apl', EnumCol(label = u"Zone apl",
                          entity = 'men',
@@ -505,8 +505,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
                     val_type = "monetary",
                     cerfa_field = u'2BG',
-                    start = 2012)),  # TODO: nouvelle case à créer où c'est nécessaire
-                                     # TODO: vérifier existence avant 2012
+                    start = 2012)),   # TODO: vérifier existence avant 2012
 
     ('f2aa', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
@@ -544,11 +543,7 @@ column_by_name = collections.OrderedDict((
 je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
  
 """
-<<<<<<< HEAD
-    ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = 2011)),  # TODO vérifier existence <=2011
-=======
     ('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = 2011)),  # TODO: vérifier existence <=2011
->>>>>>> 8b1d9828ff7d71b834b929ef9424ff2db8988fcc
 
     ('f2dm', IntCol(entity = 'foy',
                     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
@@ -804,11 +799,7 @@ mettons nous 6AA ou seulement AA ?
                     val_type = "monetary",
                     start = 2005,
                     end = 2005,
-<<<<<<< HEAD
-                    cerfa_field = u'AA')),  # ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
-=======
                     cerfa_field = u'AA')),  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
->>>>>>> 8b1d9828ff7d71b834b929ef9424ff2db8988fcc
 
     # Souscriptions au capital des SOFIPÊCHE
     ('f6cc', IntCol(entity = 'foy',
@@ -1259,7 +1250,7 @@ mettons nous 6AA ou seulement AA ?
                     end = 2011)),  # TODO vérifier date <=2011
 
     ('f7iy', IntCol(entity = 'foy',
-                    label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
+                    label = u"Report du solde de réduction d'impôt de l'année 2012 non encore imputé sur les investissements réalisés",
                     cerfa_field = u'7IY',
                     start = 2013)),
 
@@ -1495,100 +1486,6 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
 
 
 
-<<<<<<< HEAD
-
-
-
-    # Intérêts d'emprunt pour reprise de société
-    ('f7fh', IntCol(entity = 'foy', label = u"Intérêts d'emprunt pour reprise de société", val_type = "monetary", cerfa_field = u'7')),
-
-    # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)),
-    ('f7ff', IntCol(entity = 'foy', label = u"Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)", val_type = "monetary", cerfa_field = u'7')),
-    ('f7fg', IntCol(entity = 'foy', label = u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations", cerfa_field = u'7')),
-
-    # Travaux de conservation et de restauration d’objets classés monuments historiques
-    ('f7nz', IntCol(entity = 'foy', label = u"Travaux de conservation et de restauration d’objets classés monuments historiques", val_type = "monetary" , cerfa_field = u'7')),
-
-    # Dépenses de protection du patrimoine naturel
-    ('f7ka', IntCol(entity = 'foy', label = u"Dépenses de protection du patrimoine naturel", val_type = "monetary", cerfa_field = u'7')),
-
-
-    # Intérêts des prêts à la consommation (case UH)),
-    ('f7uh', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7')),
-
-    # Investissements forestiers
-    ('f7un', IntCol(entity = 'foy', label = u"Investissements forestiers: acquisition", val_type = "monetary", cerfa_field = u'7')),
-
-    # Intérêts pour paiement différé accordé aux agriculteurs
-    ('f7um', IntCol(entity = 'foy', label = u"Intérêts pour paiement différé accordé aux agriculteurs", val_type = "monetary", cerfa_field = u'7')),
-
-    # Investissements locatifs neufs : Dispositif Scellier:
-    ('f7hj', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole", val_type = "monetary", cerfa_field = u'7')),
-    ('f7hk', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM", val_type = "monetary", cerfa_field = u'7')),
-    ('f7hn', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier", val_type = "monetary", cerfa_field = u'7')),
-    ('f7ho', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier", val_type = "monetary", cerfa_field = u'7')),
-    ('f7hl', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)", val_type = "monetary", cerfa_field = u'7')),
-    ('f7hm', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds", val_type = "monetary", cerfa_field = u'7')),
-    ('f7hr', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 (métropole et DOM ne respectant pas les plafonds)", val_type = "monetary", cerfa_field = u'7')),
-    ('f7hs', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM et respectant les plafonds", val_type = "monetary", cerfa_field = u'7')),
-    ('f7la', IntCol(entity = 'foy', label = u"Investissements locatifs neufs dispositif Scellier: report du solde de réduction d'impôt non encore imputé", val_type = "monetary", cerfa_field = u'7')),
-
-    # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-    ('f7ij', IntCol(entity = 'foy', label = u"Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en n-1", val_type = "monetary", cerfa_field = u'7')),
-    ('f7il', IntCol(entity = 'foy', label = u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-2", val_type = "monetary", cerfa_field = u'7')),
-    ('f7im', IntCol(entity = 'foy', label = u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en n-3", val_type = "monetary", cerfa_field = u'7')),
-    ('f7ik', IntCol(entity = 'foy', label = u"Reports de 1/9 de l'investissement réalisé et achevé au cours de l'année n-4", val_type = "monetary", cerfa_field = u'7')),
-    ('f7is', IntCol(entity = 'foy', label = u"Report du solde de réduction d'impôt non encor imputé: année  n-4", val_type = "monetary", cerfa_field = u'7')),
-
-    # Investissements locatifs dans les résidences de tourisme situées dans une zone de
-    # revitalisation rurale
-    ('f7gt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7')),
-    ('f7xg', IntCol(entity = 'foy', label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme", val_type = "monetary", cerfa_field = u'7')),
-    ('f7gu', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7')),
-    ('f7gv', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7')),
-
-
-
-
-
-
-
-
-
-    # Avoir fiscaux et crédits d'impôt
-    # f2ab déjà disponible
-    ('f8ta', IntCol(entity = 'foy', label = u"Retenue à la source en France ou impôt payé à l'étranger", val_type = "monetary")),
-    ('f8tb', IntCol(entity = 'foy', label = u"Crédit d'impôt recherche non encore remboursé", val_type = "monetary")),
-    ('f8tf', IntCol(entity = 'foy', label = u"Reprises de réductions ou de crédits d'impôt", val_type = "monetary")),
-    ('f8tg', IntCol(entity = 'foy', label = u"Crédits d'impôt en faveur des entreprises: Investissement en Corse", val_type = "monetary")),
-    ('f8th', IntCol(entity = 'foy', label = u"Retenue à la source élus locaux", val_type = "monetary")),
-    ('f8tc', IntCol(entity = 'foy', label = u"Crédit d'impôt recherche non encore remboursé (années antérieures)", val_type = "monetary")),
-    ('f8td', IntCol(entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus")),
-    ('f8te', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé", val_type = "monetary")),
-    ('f8to', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures", val_type = "monetary")),
-    ('f8tp', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt", val_type = "monetary")),
-    ('f8uz', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Famille", val_type = "monetary")),
-    ('f8tz', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Apprentissage", val_type = "monetary")),
-    ('f8wa', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Agriculture biologique", val_type = "monetary")),
-    ('f8wb', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Prospection commerciale", val_type = "monetary")),
-    ('f8wc', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies", val_type = "monetary")),
-    ('f8wd', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise", val_type = "monetary")),
-    ('f8we', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Intéressement", val_type = "monetary")),
-    ('f8wr', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art", val_type = "monetary")),
-    ('f8ws', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes", val_type = "monetary")),
-    ('f8wt', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs", val_type = "monetary")),
-    ('f8wu', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur", val_type = "monetary")),
-    ('f8wv', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac", val_type = "monetary")),
-    ('f8wx', IntCol(entity = 'foy', label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise", val_type = "monetary")),
-    ('f8wy', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-
-    # Acquisition de biens culturels
-    ('f7uo', IntCol(entity = 'foy', label = u"Acquisition de biens culturels", val_type = "monetary")),
-
-
-    # Mécénat d'entreprise
-    ('f7us', IntCol(entity = 'foy', label = u"Réduction d'impôt mécénat d'entreprise", val_type = "monetary")),
-=======
 # """
 # DEBUT de ce qui reste à vérifier
 # """
@@ -1774,7 +1671,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     cerfa_field = u'8TA')),
 
     build_column_couple('f8tb', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # différence de label entre les années à voir
+                    label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # TODO: différence de label entre les années à voir
                     val_type = "monetary",
                     cerfa_field = u'8TB')),
 
@@ -1911,39 +1808,12 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     label = u"Réduction d'impôt mécénat d'entreprise",
                     val_type = "monetary",
                     cerfa_field = u'7US')),
->>>>>>> 8b1d9828ff7d71b834b929ef9424ff2db8988fcc
 
     # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
     # ('f7wf', IntCol() déjà disponible
     # ('f7wh', IntCol() déjà disponible
     # ('f7wk', IntCol() déjà disponible
     # ('f7wq', IntCol() déjà disponible
-<<<<<<< HEAD
-    ('f7sb', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %", val_type = "monetary")),
-    ('f7sd', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %", val_type = "monetary")),
-    ('f7se', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %", val_type = "monetary")),
-    ('f7sh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %", val_type = "monetary")),
-    # ('f7wg', IntCol() déjà disponible
-    ('f7sc', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-
-    # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
-    ('f7up', IntCol(entity = 'foy', label = u"Crédit d'impôt", val_type = "monetary")),
-    ('f7uq', IntCol(entity = 'foy', label = u"Crédit d'impôt", val_type = "monetary")),
-
-    # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
-    ('f1ar', IntCol(entity = 'foy', label = u"Crédit d'impôt aide à la mobilité")),
-    ('f1br', IntCol(entity = 'foy', label = u"Crédit d'impôt aide à la mobilité")),
-    ('f1cr', IntCol(entity = 'foy', label = u"Crédit d'impôt aide à la mobilité")),
-    ('f1dr', IntCol(entity = 'foy', label = u"Crédit d'impôt aide à la mobilité")),
-    ('f1er', IntCol(entity = 'foy', label = u"Crédit d'impôt aide à la mobilité")),
-
-    # Crédit d’impôt directive « épargne » (case 2BG)),
-    ('f2bg', IntCol(entity = 'foy', label = u"Crédit d’impôt directive « épargne »", val_type = "monetary")),
-
-    # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
-    ('f4tq', IntCol(entity = 'foy', label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail", val_type = "monetary")),
-
-=======
 
     build_column_couple('f7sb', IntCol(entity = 'foy',
                    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %",
@@ -2003,61 +1873,61 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
 # réutilisation en 2013 de f7up et f7uq
 # """
     # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
-    build_column_couple('f7up', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
-                    val_type = "monetary",
-                    cerfa_field = u'7UP',
-                    end = datetime.date(2007, 12, 1))),  # vérif date de fin
+    # build_column_couple('f7up', IntCol(entity = 'foy',
+    #                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
+    #                 val_type = "monetary",
+    #                 cerfa_field = u'7UP',
+    #                 end = datetime.date(2007, 12, 1))),  # TODO: vérif date de fin
 
     build_column_couple('f7up', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: travaux",
                     val_type = "monetary",
                     cerfa_field = u'7UP',
-                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 13
+                    start = datetime.date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL",
                     val_type = "monetary",
                     cerfa_field = u'7UQ',
-                    end = datetime.date(2007, 12, 1))),  # vérif date de fin
+                    end = datetime.date(2007, 12, 1))),  # TODO: vérif date de fin
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
                     val_type = "monetary",
                     cerfa_field = u'7UQ',
-                    start = datetime.date(2008, 1, 1))),  # vérif date début, ok pour 13
+                    start = datetime.date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
 
     # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
     build_column_couple('f1ar', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1AR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1br', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1BR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1cr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1CR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1dr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1DR',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     build_column_couple('f1er', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1ER',
-                    end = datetime.date(2012, 12, 1))),  # vérifier <=2012
+                    cerfa_field = u'1ER',p
+                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
 
     # Crédit d’impôt directive « épargne » (case 2BG)),
     build_column_couple('f2bg', IntCol(entity = 'foy',
                     label = u"Crédit d’impôt directive « épargne »",
                     val_type = "monetary",
-                    cerfa_field = u'2BG')),
+                    cerfa_field = u'2BG')),!
 
     # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
     build_column_couple('f4tq', IntCol(entity = 'foy',
@@ -2066,112 +1936,12 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                     cerfa_field = u'4TQ')),  # vérif libéllé, en 2013=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
                                            # pour lesquels la cessation ou l'interruption de la location est intervenue en 2013 et qui ont été
                                            # soumis à la taxe additionnelle au droit de bail
->>>>>>> 8b1d9828ff7d71b834b929ef9424ff2db8988fcc
 
     # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
     # f7wf
     # f7wi
     # f7wj
     # f7wl
-<<<<<<< HEAD
-    ('f7sf', IntCol(entity = 'foy', label = u"Appareils de régulation du chauffage, matériaux de calorifugeage", val_type = "monetary")),
-    ('f7si', IntCol(entity = 'foy', label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)", val_type = "monetary")),
-
-
-
-    # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
-    ('f8uy', IntCol(entity = 'foy', label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu", val_type = "monetary")),
-
-
-    # Revenus des professions non salariées
-
-    ('frag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés (régime du forfait)", val_type = "monetary")),  # (f5hn, f5in, f5jn)),
-    ('frag_impo', IntCol(entity = 'ind', label = u"Revenus agricoles imposables (régime du forfait)", val_type = "monetary")),  # (f5ho, f5io, f5jo)),
-    ('arag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hb, f5ib, f5jb)),
-    ('arag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hc, f5ic, f5jc)),
-    ('arag_defi', IntCol(entity = 'ind', label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hf, f5if, f5jf)),
-    ('nrag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hh, f5ih, f5jh)),
-    ('nrag_impg', IntCol(entity = 'ind', label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hi, f5ii, f5ji)),
-    ('nrag_defi', IntCol(entity = 'ind', label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hl, f5il, f5jl)),
-    ('nrag_ajag', IntCol(entity = 'ind', label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hm, f5im, f5jm)),
-
-    # Autoentrepreneur
-    ('ebic_impv', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime auto-entrepreneur)", val_type = "monetary")),  # (f5ta, f5ua, f5va)),
-    ('ebic_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)", val_type = "monetary")),  # (f5tb, f5ub, f5vb)),
-    ('ebnc_impo', IntCol(entity = 'ind', label = u"Revenus non commerciaux imposables (régime auto-entrepreneur)", val_type = "monetary")),  # (f5te, f5ue, f5ve)),
-
-    ('mbic_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)", val_type = "monetary")),  # (f5kn, f5ln, f5mn)),
-    ('abic_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kb, f5lb, f5mb)),
-    ('nbic_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5kh, f5lh, f5mh)),
-    ('mbic_impv', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)", val_type = "monetary")),  # (f5ko, f5lo, f5mo)),
-    ('mbic_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)", val_type = "monetary")),  # (f5kp, f5lp, f5mp)),
-    ('abic_impn', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kc, f5lc, f5mc)),
-    ('abic_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kd, f5ld, f5md)),
-    ('nbic_impn', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5ki, f5li, f5mi)),
-    ('nbic_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5kj, f5lj, f5mj)),
-    ('abic_defn', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kf, f5lf, f5mf)),
-    ('abic_defs', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5kg, f5lg, f5mg)),
-    ('nbic_defn', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5kl, f5ll, f5ml)),
-    ('nbic_defs', IntCol(entity = 'ind', label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5km, f5lm, f5mm)),
-    ('nbic_apch', IntCol(entity = 'ind', label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5ks, f5ls, f5ms)),
-
-    ('macc_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)", val_type = "monetary")),  # (f5nn, f5on, f5pn)),
-    ('aacc_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5nb, f5ob, f5pb)),
-    ('nacc_exon', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5nh, f5oh, f5ph)),
-    ('macc_impv', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)", val_type = "monetary")),  # (f5no, f5oo, f5po)),
-    ('macc_imps', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)", val_type = "monetary")),  # (f5np, f5op, f5pp)),
-    ('aacc_impn', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5nc, f5oc, f5pc)),
-    ('aacc_imps', IntCol(entity = 'ind', label = u"Locations meublées non professionnelles (régime micro entreprise)", val_type = "monetary")),  # (f5nd, f5od, f5pd)),
-    ('aacc_defn', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5nf, f5of, f5pf)),
-    ('aacc_defs', IntCol(entity = 'ind', label = u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)", val_type = "monetary")),  # (f5ng, f5og, f5pg)),
-    ('nacc_impn', IntCol(entity = 'ind', label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5ni, f5oi, f5pi)),
-    ('nacc_imps', IntCol(entity = 'ind', label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)", val_type = "monetary")),  # (f5nj, f5oj, f5pj)),
-    ('nacc_defn', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5nl, f5ol, f5pl)),
-    ('nacc_defs', IntCol(entity = 'ind', label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5nm, f5om, f5pm)),
-    ('mncn_impo', IntCol(entity = 'ind', label = u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5ku, f5lu, f5mu)),
-    ('cncn_bene', IntCol(entity = 'ind', label = u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)", val_type = "monetary")),  # (f5sn, f5ns, f5os)),
-    ('cncn_defi', IntCol(entity = 'ind', label = u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)", val_type = "monetary")),  # (f5sp, f5nu, f5ou, f5sr)),
-
-    ('mbnc_exon', IntCol(entity = 'ind', label = u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5hp, f5ip, f5jp)),
-    ('abnc_exon', IntCol(entity = 'ind', label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type = "monetary")),  # (f5qb, f5rb, f5sb)),
-    ('nbnc_exon', IntCol(entity = 'ind', label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type = "monetary")),  # (f5qh, f5rh, f5sh)),
-    ('mbnc_impo', IntCol(entity = 'ind', label = u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5hq, f5iq, f5jq)),
-    ('abnc_impo', IntCol(entity = 'ind', label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type = "monetary")),  # (f5qc, f5rc, f5sc)),
-    ('abnc_defi', IntCol(entity = 'ind', label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type = "monetary")),  # (f5qe, f5re, f5se)),
-    ('nbnc_impo', IntCol(entity = 'ind', label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type = "monetary")),  # (f5qi, f5ri, f5si)),
-    ('nbnc_defi', IntCol(entity = 'ind', label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée. Revenus ne bénéficiant pas de l'abattement association agrée)", val_type = "monetary")),  # (f5qk, f5rk, f5sk)),
-
-    ('mbic_mvct', IntCol(entity = 'foy', label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)", val_type = "monetary")),  # (f5hu)),
-    ('macc_mvct', IntCol(entity = 'foy', label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)", val_type = "monetary")),  # (f5iu)),
-    ('mncn_mvct', IntCol(entity = 'foy', label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5ju)),
-    ('mbnc_mvct', IntCol(entity = 'foy', label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5kz
-
-    ('frag_pvct', IntCol(entity = 'ind', label = u"Plus-values agricoles  à court terme (régime du forfait)", val_type = "monetary")),  # (f5hw, f5iw, f5jw)),
-    ('mbic_pvct', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)", val_type = "monetary")),  # (f5kx, f5lx, f5mx)),
-    ('macc_pvct', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)", val_type = "monetary")),  # (f5nx, f5ox, f5px)),
-    ('mbnc_pvct', IntCol(entity = 'ind', label = u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5hv, f5iv, f5jv)),
-    ('mncn_pvct', IntCol(entity = 'ind', label = u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5ky, f5ly, f5my)),
-
-    ('mbic_mvlt', IntCol(entity = 'ind', label = u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)", val_type = "monetary")),  # (f5kr, f5lr, f5mr)),
-    ('macc_mvlt', IntCol(entity = 'ind', label = u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)", val_type = "monetary")),  # (f5nr, f5or, f5pr)),
-    ('mncn_mvlt', IntCol(entity = 'ind', label = u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5kw, f5lw, f5mw)),
-    ('mbnc_mvlt', IntCol(entity = 'ind', label = u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5hs, f5is, f5js)),
-
-    ('frag_pvce', IntCol(entity = 'ind', label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)", val_type = "monetary")),  # (f5hx, f5ix, f5jx)),
-    ('arag_pvce', IntCol(entity = 'ind', label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5he, f5ie, f5je)),
-    ('nrag_pvce', IntCol(entity = 'ind', label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)", val_type = "monetary")),  # (f5hk, f5lk, f5jk)),
-    ('mbic_pvce', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type = "monetary")),  # (f5kq, f5lq, f5mq)),
-    ('abic_pvce', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5ke, f5le, f5me)),
-    ('nbic_pvce', IntCol(entity = 'ind', label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)", val_type = "monetary")),  # (f5kk, f5ik, f5mk)),
-    ('macc_pvce', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)", val_type = "monetary")),  # (f5nq, f5oq, f5pq)),
-    ('aacc_pvce', IntCol(entity = 'ind', label = u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)", val_type = "monetary")),  # (f5ne, f5oe, f5pe)),
-    ('nacc_pvce', IntCol(entity = 'ind', label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5nk, f5ok, f5pk)),
-    ('mncn_pvce', IntCol(entity = 'ind', label = u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5kv, f5lv, f5mv)),
-    ('cncn_pvce', IntCol(entity = 'ind', label = u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)", val_type = "monetary")),  # (f5so, f5nt, f5ot)),
-    ('mbnc_pvce', IntCol(entity = 'ind', label = u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)", val_type = "monetary")),  # (f5hr, f5ir, f5jr)),
-    ('abnc_pvce', IntCol(entity = 'ind', label = u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée. Revenus bénéficiant de l'abattement association agrée ou viseur)", val_type = "monetary")),  # (f5qd, f5rd, f5sd)),
-    ('nbnc_pvce', IntCol(entity = 'ind', label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)", val_type = "monetary")),  # (f5qj, f5rj, f5sj)),
-=======
     build_column_couple('f7sf', IntCol(entity = 'foy',
                     label = u"Appareils de régulation du chauffage, matériaux de calorifugeage",
                     val_type = "monetary",
@@ -2322,7 +2092,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['conj']: u"5LD",
                                         QUIFOY['pac1']: u"5MD", },
                          end = datetime.date(2012, 12, 1))),  # (f5kd, f5ld, f5md)),
-                                                              # vérifier date fin
+                                                              # TODO: vérifier date fin
 
     build_column_couple('nbic_impn', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
@@ -2342,7 +2112,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
                          end = datetime.date(2012, 12, 1))),  # (f5kj, f5lj, f5mj)),
-                                                              # vérifier date fin
+                                                              # TODO: vérifier date fin
     build_column_couple('nbic_mvct', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
                          val_type = "monetary",
@@ -2579,7 +2349,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5KZ",
                                         QUIFOY['conj']: u"5LZ",
                                         QUIFOY['pac1']: u"5MZ", })),  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
-                                                                      # intégrer f5lz , f5mz à OF
+                                                                      # TODO: intégrer f5lz , f5mz à OF
 
     build_column_couple('frag_pvct', IntCol(entity = 'ind',
                          label = u"Plus-values agricoles  à court terme (régime du forfait)",
@@ -2662,7 +2432,7 @@ Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait a
                          cerfa_field = {QUIFOY['vous']: u"5HK",
                                         QUIFOY['conj']: u"5LK",
                                         QUIFOY['pac1']: u"5JK", },
-                         end = datetime.date(2012, 12, 1))),  # vérif <=2012)),  # (f5hk, f5lk, f5jk)),
+                         end = datetime.date(2012, 12, 1))),  # TODO: vérif <=2012)),  # (f5hk, f5lk, f5jk)),
 
     build_column_couple('mbic_pvce', IntCol(entity = 'ind',
                          label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
@@ -3165,17 +2935,326 @@ montant total des revenus à imposer selon le système du quotient: 0XX
                 #investissements réalisés et achevés en 2012: report du solde de réduction d'impôt de l'année 2012:7MG
     #investissement destinés à la location meublée non professionnelle: loi Censi-Bouvard
             #investissement réalisés en 2013:
-                #
+                #engagement de réalisation de l'investissement en 2013:7JT
+                #engagement de réalisation de l'investissement en 2012:7JU
+            #investissement réalisés en 2012:
+                #engagement de réalisation de l'investissement en 2012:7ID
+                #promesse d'achat en 2011:7IE
+                #logement acquis en l'état de futur achèvement avec contrat de réservation enregistré au plus tard le 31/12/2011:
+                    #investissement réalisé 1/1/2012 au 31/03/2012:7IF
+                    #investissement réalisé 1/4/2012 au 31/12/2012:7IG
+            #investissement réalisés en 2011:
+                #logement acquis en l'état de futur achèvement avec contrat de réservation enregistré au plus tard le 31/12/2010:
+                    #investissement réalisé 1/1/2011 au 31/03/2011:7IN
+                    #investissement réalisé 1/4/2011 au 31/12/2011:7IV
+            #investissement réalisés en 2010:
+                #promesse d'achat en 2009:7IW
+            #investissement réalisés en 2009:7IO
+    #report de 1/9 de la réduction d'impôt des:
+        #investissements réalisés et achevés en 2012
+            #réalisés en 2012:7JV
+            #réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011:7JW
+            #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7JX
+        #investissements achevés en 2011: report de 1/9 de la réduction d'impôt:
+            #réalisés en 2011:7IA
+            #réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010:7IB
+            #réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009:7IC    
+        #investissements achevés en 2010: report de 1/9 de l'investissement:
+            #réalisés en 2010:7IP
+            #réalisés en 2010 avec promesse d'achat en 2009:7IQ
+            #réalisés en 2009:7IR    
+    #report du solde de réduction d'impôt non encore imputé:
+        #investissements réalisés et achevés en 2009, réalisés en 2009 et achevés en 2010, réalisés et achevés en 2010 avec engagement avant le 1/1/2010
+            #report du solde de réduction d'impôt de l'année 2010:7IU
+            #report du solde de réduction d'impôt de l'année 2011:7IX
+         #investissements réalisés et achevés en 2010, réalisés en 2010 et achevés en 2011, réalisés et achevés en 2011 avec engagement en 2010
+            #report du solde de réduction d'impôt de l'année 2010:7IT
+            #report du solde de réduction d'impôt de l'année 2011:7IH
+            #report du solde de réduction d'impôt de l'année 2012:7JC                                           
+        #investissements réalisés et achevés en 2011, réalisés en 2011 et achevés en 2011 ou 2012, réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012
+            #report du solde de réduction d'impôt de l'année 2011:7IZ
+            #report du solde de réduction d'impôt de l'année 2012:7JI                                           
+        #investissements réalisés et achevés en 2012            
+            #report du solde de réduction d'impôt de l'année 2012:7JS
+    #Vos autres charges ouvrant droit à réduction d'impôt ou à crédit d'impôt 
+        #sommes versées pour l'emploi d'un salarié à domicile
+            #si vous avez engagé les dépenses pour un ascendant bénéficiaire de l'APA:7DD
+            #souscription au capital de petites entreprises en phase  d'amorçage, de démarrage ou d'expansion: reports des versements 2012:7CQ
+            #investissements forestiers:
+                #assurance:7UL
+                #si les travaux sont consécutifs à un sinistre:7UT
+                #report des dépenses de travaux de l'année 2009:
+                    #hors sinistre:7UU
+                    #après sinistre:7TE
+                #report des dépenses de travaux de l'année 2010:
+                    #hors sinistre:7UV
+                    #après sinistre:7TF
+                #report des dépenses de travaux de l'année 2011:
+                    #hors sinistre:7UW
+                    #après sinistre:7TG
+                #report des dépenses de travaux de l'année 2012:
+                    #hors sinistre:7UX
+                    #après sinistre:7TH
+            #investissement locatif dans le secteur touristique:
+                #acquisition d'un logement neuf:
+                    #report des dépenses d'investissement effectuées en 2010:7XP 
+                    #report des dépenses d'investissement effectuées en 2012:7UY
+                #réhabilitation d'un logement
+                    #report des dépenses d'investissement effectuées en 2010:7XQ
+                    #report des dépenses d'investissement effectuées en 2011:7XV
+                    #report des dépenses d'investissement effectuées en 2012:7UZ
+            #investissement locatif dans une résidence hôtelière à vocation sociale                                                        
+                #report des dépenses d'investissement de 2010:7XR
+                
+        #reprises de réductions d'impôt, autres imputations, conventions internationales, divers:
+            #crédit d'impôt compétitivité, emploi: montant non encore cédé:
+                #entreprises bénéficiant de la restitution immédiate:8TL
+                #autres entreprises:8UW
+            #investissement en Corse:
+                #entreprises bénéficiant de le restitution immédiate:8TS
+            #élus locaux: indemnités de fonction soumises à la retenue à la source:
+                vous:8BY   
+                conj:8CY
+             #Personnes domiciliées en France percevant des revenus de l'étranger    
+                  #Revenus exonérés (y compris salaires et primes des détachés à l'étranger) retenus pour le calcul du taux effectif:8TI   
+                  #Revenus d'activité et de remplacement de source étrangère:   
+                      #Revenus imposables à la CSG et à la CRDS:   
+                          #salaires au taux de 7,5 %:8TR  
+                          #revenus non salariaux au taux de 7,5 %: 8TQ  
+                          #pensions, indemnités de maladie, etc au taux de 6,6 %: 8TV  
+                          #pensions, indemnités de maladie, etc au taux de 6.2 %: 8TW  
+                          #pensions, indemnités de maladie, etc au taux de 3,8 %: 8TX  
+                  #Revenus étrangers imposables en France, ouvrant droit à un crédit d'impôt égal au montant de l'impôt français:8TK   
+             #Personnes non domiciliées en France:    
+                  #Revenus de sources française et étrangère à prendre en compte pour le calcul du taux moyen d'imposition:8TM   
+                  #Impôt sur plus-values en sursis de paiement en cas de transfert du domicile hors de france: 8TN   
+             #Plus-values en report d'imposition non expiré: 8UT   
+             #Crédit d'impôt égal aux prélèvements forfaitaires et retenues à la source non libératoires effectués à Mayotte en 2013: 8UV    
 
-
-
-
-
+###AUTRES CHARGES OUVRANT DROIT A REDUCTION D'IMPOT : Investissements outre-mer       
+    #Vous optez pour le plafonnement des réductions d'impôt pour investissements outre-mer à 11% du revenu imposable (15% (1) ou 13% (2) pour certains investissements):HQA  
+          (1).Investissements dans le logement social ; investissements immobiliers engagés avant le 1.1.2011 ; investissements dans le cadre d'une entreprise agréés avant le 5.12.2010.
+          (2).Investissements dans le logement (article 199 undecies A) engagés avant le 1.1.2012 et investissements dans le cadre d'une entreprise (article 199 undecies B) agréés avant le 28.9.2011.  
+  
+    #Investissements outre-mer dans le logement social : montant de la reduction d'impôt  
+        #Investissements réalisés en 2013 
+            #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
+                #En 2010: HRA  
+                #En 2011: HRB  
+                #En 2012: HRC  
+            #Autres investissements: HRD  
+        #Report de réductions d'impôt non imputées les années antérieures:   
+            #Investissements réalisés en 2009: HKG  
+            #Investissements réalisés en 2010: 
+                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HKH  
+                #Autres investissements: HKI   
+            #Investissements réalisés en 2011:
+                #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #En 2009: HQN  
+                    #En 2010: HQU   
+            #Autres investissements: HQK   
+            #Investissements réalisés en 2012:
+                #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:   
+                    #En 2009: HQJ  
+                    #En 2010: HQS   
+                    #En 2011: HQW   
+                #Autres investissements: HQX   
+    #Investissements outre-mer dans le logement et autres secteurs d'activité : montant de la réduction d'impôt 
+        #Investissements réalisés jusqu'au 31/12/2008: HQB   
+        #Investissements réalisés en 2009 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQC   
+            #Autres investissements: HQL   
+        #Investissements réalisés en 2010 
+            #Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Avant 2009: HQT  
+                #En 2009: HQM   
+            #Autres investissements: HQD   
+        #Investissements réalisés en 2011: 
+            #Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #avant 2009: HOA  
+                #en 2009: HOB  
+                #en 2010: HOC  
+            #Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #avant 2009: HOH  
+                #en 2009: HOI   
+                #en 2010: HOJ  
+            #Autres investissements: HOK   
+        #Investissements réalisés en 2012:  
+            #Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+                #avant 2009: HOL  
+                #en 2009: HOM  
+                #en 2010: HON  
+            #Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #avant 2009: HOO  
+                #en 2009: HOP   
+                #en 2010: HOQ  
+                #en 2011: HOR  
+            #Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
+                #avant 2009: HOS  
+                #en 2009: HOT   
+                #en 2010: HOU  
+                #en 2011: HOV  
+            #Autres investissements: HOW   
+        #Investissements réalisés en 2013:    
+            #Investissements immobiliers engagés avant le 1.1.2011: HOD  
+            #Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #en 2010: HOE  
+                #en 2011: HOF  
+            #Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #en 2010  HOG  
+                #en 2011  HOX  
+                #en 2012  HOY  
+            #Autres investissements: HOZ   
+    #Investissements outre-mer dans le cadre de l'entreprise:  
+        #Investissements réalisés en 2013
+            #Investissements agréés du 5.12.2010 au 27.9.2011, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                    #en 2010 à hauteur de 52,63%: HSA  
+                    #en 2010 à hauteur de 62,5%: HSB  
+                    #en 2011 à hauteur de 52,63%: HSF  
+                    #en 2011 à hauteur de 62,5%: HSG  
+                #Investissements dans votre entreprise:
+                    #en 2010: HSC  
+                    #en 2011: HSH  
+                #Investissements dans votre entreprise avec exploitation directe:  
+                    #montant de la réduction d’impôt calculée:
+                        #en 2010: HSD  
+                        #en 2011: HSI  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013:
+                        #en 2010: HSE  
+                        #en 2011: HSJ  
+        #Autres investissements:
+            #Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:  
+                #en 2010 à hauteur de 52,63%: HSK  
+                #en 2010 à hauteur de 62,5%: HSL  
+                #en 2011 à hauteur de 52,63%: HSP  
+                #en 2011 à hauteur de 62,5%: HSQ  
+            #Investissements dans votre entreprise:
+                #en 2010: HSM  
+                #en 2011: HSR  
+            #Investissements dans votre entreprise avec exploitation directe:
+                #montant de la réduction d’impôt calculée:
+                    #en 2010: HSN  
+                    #en 2011: HSS  
+                #montant de la réduction d’impôt dont vous demandez l’imputation en 2013:
+                #en 2010: HSO  
+                #en 2011: HST  
+            #Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:
+                    #à hauteur de 52,63%: HSU  
+                    #à hauteur de 62,5%: HSV  
+                #Investissements dans votre entreprise: HSW  
+                #Investissements dans votre entreprise avec exploitation directe :   
+                    #montant de la réduction d’impôt calculé: HSX  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HSY      
+        #Investissements autres que ceux des lignes précédentes  
+            #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt:
+                #à hauteur de 52,63%: HSZ  
+                #à hauteur de 62,5%: HTA  
+            #Investissements dans votre entreprise:
+                #Investissements dans votre entreprise avec exploitation directe : HTB  
+                    #montant de la réduction d’impôt calculé: HTC  
+                    #montant de la réduction d’impôt dont vous demandez l’imputation en 2013: HTD  
+    #REPORT DE RÉDUCTIONS D'IMPÔT NON IMPUTÉES LES ANNEES ANTÉRIEURES 
+        #Investissements réalisés en 2008: HQZ  
+        #Investissements réalisés en 2009: 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMM  
+            #Autres investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                #à hauteur de 50%: HLG  
+                #à hauteur de 60%  HMA  
+            #Autres investissements dans votre entreprise: HKS  
+        #Investissements réalisés en 2010: 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HMN  
+            #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 50%: HLH  
+                    #à hauteur de 60%: HMB   
+                #Investissements dans votre entreprise: HKT  
+            #Autres investissements réalisés en 2010:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 50%: HLI   
+                    #à hauteur de 60%:  HMC   
+                #Investissements dans votre entreprise: HKU  
+        #Investissements réalisés en 2011: 
+            #Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010: 
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQV  
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                        #à hauteur de 50%: HQO   
+                        #à hauteur de 60%: HQP   
+                    #investissements dans votre entreprise: HQR  
+                #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                        #à hauteur de 50%: HQF   
+                        #à hauteur de 60%: HQG  
+                    #Investissements dans votre entreprise: HQI  
+        #Autres investissements: 
+            #Investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HQE  
+            #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 52,63%: HPA  
+                    #à hauteur de 62,5%: HPB  
+                #Investissements dans votre entreprise HPD   
+            #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 52,63%: HPE  
+                    #à hauteur de 62,5%: HPF  
+                #Investissements dans votre entreprise: HPH   
+            #Investissements autres que ceux des lignes précédentes:
+                #Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt:
+                    #à hauteur de 52,63%: HPI  
+                    #à hauteur de 62,5%: HPJ  
+            #Investissements dans votre entreprise: HPL   
+        #Investissements réalisés en 2012:
+            #Investissements agréés avant le 28.9.2011:  
+                #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%: HPM   
+                #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 50 %: HPN  
+                        #à hauteur de 60 %: HPO   
+                    #investissements dans votre entreprise: HPP   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPR   
+                #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 50 %: HPS  
+                        #à hauteur de 60 %: HPT   
+                    #investissements dans votre entreprise: HPU   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HPW   
+                #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%:
+                    #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                        #à hauteur de 52,63 %: HPX  
+                        #à hauteur de 62,5 %: HPY   
+                    #investissements dans votre entreprise: HRG   
+                    #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRI   
+        #Autres investissements: 
+            #Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: HRJ   
+            #Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                    #à hauteur de 52,63 %: HRK  
+                    #à hauteur de 62,5 %: HRL   
+                #investissements dans votre entreprise: HRM   
+                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRO   
+            #Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %:
+                #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                    #à hauteur de 52,63 %: HRP  
+                    #à hauteur de 62,5 %: HRQ   
+                #investissements dans votre entreprise: HRR   
+                #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRT   
+        #Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %: 
+            #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+                #à hauteur de 52,63 %: HRU  
+                #à hauteur de 62,5 %: HRV   
+            #investissements dans votre entreprise: HRW   
+            #investissements dans votre entreprise avec exploitation directe : montant de la réduction d'impôt dont vous demandez l'imputation en 2012: HRY   
+        #Investissements autres que ceux des lignes précédentes: 
+            #investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt: 
+               #à hauteur de 52,63 %: HNU  
+               #à hauteur de 62,5 %: HNV   
+            #investissements dans votre entreprise: HNW   
+            #investissements dans votre entreprise avec exploitation directe: HNY           
 """
 
 
 
->>>>>>> 8b1d9828ff7d71b834b929ef9424ff2db8988fcc
 
 # pfam only
     ('inactif', BoolCol(entity = 'fam',

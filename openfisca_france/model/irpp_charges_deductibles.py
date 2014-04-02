@@ -13,7 +13,7 @@ import logging
 
 from numpy import logical_not as not_, minimum as min_, maximum as max_
 
-from .data import QUIFOY, QUIMEN
+from .input_variables.base import QUIFOY, QUIMEN
 
 
 log = logging.getLogger(__name__)
@@ -76,7 +76,7 @@ def _charges_deduc_reforme(charge_loyer):
 
 def _charge_loyer(self, loyer_holder, nbptr, _P):
     loyer = self.cast_from_entity_to_role(loyer_holder, role = PREF)
-    loyer = self.sum_by_roles(loyer)
+    loyer = self.sum_by_entity(loyer)
 
     plaf = _P.ir.autre.charge_loyer.plaf
     plaf_nbp = _P.ir.autre.charge_loyer.plaf_nbp
@@ -157,7 +157,7 @@ def _cd_eparet(self, f6ps_holder, f6rs_holder, f6ss_holder, _P):
     f6ss = self.filter_role(f6ss_holder, role = VOUS)
     f6st = self.filter_role(f6ss_holder, role = CONJ)
     f6su = self.filter_role(f6ss_holder, role = PAC1)
-    
+
     # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
     # le formulaire 2041 GX
     return ((f6ps == 0) * (f6rs + f6ss) +
