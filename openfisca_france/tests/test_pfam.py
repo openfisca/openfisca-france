@@ -228,7 +228,7 @@ def test_af3m1():
 def check_af31f06(year):
     '''
     test avec 3 enfants
-    2 bébés et un de 20 ans en 2006  puis 20 ans en 2008 et enfin 20 ans en 2009(test forfait)
+    2 bébés et un de 20 ans en 2006  puis 21 ans en 2007, puis 22 ans en 2008 et enfin 23 ans en 2009 (test forfait)
     montant AF annuel brut de CRDS
     '''
     expected_af_by_year = {2006: 2305.80, 2007: 1436.64, 2008: 1451.04, 2009: 1494.48}
@@ -237,7 +237,7 @@ def check_af31f06(year):
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
-            dict(birth = datetime.date(1986, 1, 1)),
+            dict(birth = datetime.date(1985, 12, 31)),
             dict(birth = datetime.date(2005, 1, 1)),
             dict(birth = datetime.date(2005, 1, 1)),
             ],
