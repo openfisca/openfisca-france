@@ -318,7 +318,7 @@ def look_for(variable, year):
         
 if __name__ == '__main__':
     from datetime import date
-#    print list_ultimate_dependancies('donapd', date(2012, 1, 1))
+    print list_ultimate_dependancies('donapd', date(2012, 1, 1))
 #    print list_ultimate_dependancies('decote', date(2012, 1, 1))
 #    print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
 #    print list_ultimate_dependancies('age', date(2012, 1, 1))
