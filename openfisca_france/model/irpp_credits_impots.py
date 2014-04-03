@@ -37,7 +37,7 @@ def _credits_impot_2005_2006(creimp, divide, direpa, accult, mecena, prlire, aid
 
 
 def _credits_impot_2007(creimp, divide, direpa, accult, mecena, prlire, aidper,
-    quaenv, acqgpl, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
+        quaenv, acqgpl, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
     return (creimp + divide + direpa + accult + mecena + prlire + aidper +
         quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
@@ -68,26 +68,27 @@ def _credits_impot_2010(creimp, accult, percvm, direpa, mecena, prlire, aidper,
 def _credits_impot_2011(creimp, accult, percvm, direpa, mecena, prlire, aidper,
     quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):  # TODO: check because totally unchecked
     """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
-    log.warning("Beware because totally unchecked")
+    log.warning("TODO: totally unchecked")
     return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
-        autent)  # TODO: check because totally unchecked
+        autent)
 
 
-def _credits_impot_2012(ip_net):
+def _credits_impot_2012(prlire):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
-    log.warning("Not implemented return 0")
-    return ip_net * 0
+    log.warning("TODO: incomplete")
+    return prlire
 
 
 def _credits_impot_2013(ip_net):
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-    log.warning("Not implemented return 0")
+    log.warning("TODO: not implemented, returns 0")
     return ip_net * 0
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
     return nbF + nbJ + nbR + nbH / 2
+
 
 def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx, f8wy, _P):
     '''
@@ -126,9 +127,12 @@ def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8
     elif _P.datesim.year == 2010:
         return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
-    elif _P.datesim.year == 2011:  # TODO: check because totally unchecked
+    elif _P.datesim.year == 2011:
+        log.warning("TODO: totally unchecked")
         return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+
     else:
+        log.warning("TODO: not implemented, returns 0")
         return f2ab * 0  # TODO: 2012
 
 def _divide(marpac, f2dc, f2gr, _P):

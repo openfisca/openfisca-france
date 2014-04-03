@@ -165,10 +165,10 @@ def test_irpp():
             amount = item["amount"]
             irpp = item["irpp"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
-    
+
             TaxBenefitSystem = openfisca_france.init_country()
             tax_benefit_system = TaxBenefitSystem()
-            
+
             if revenu in ["rsti", "sali"]:
 
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
@@ -184,7 +184,6 @@ def test_irpp():
                     foyer_fiscal = {revenu: amount},
                     year = year,
                     ).new_simulation(debug = True)
-
             yield check_irpp, amount, irpp, revenu, simulation, year
 
 
@@ -192,9 +191,9 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    import nose
+#    import nose
 #    nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
-    test_irpp()
 
-
+    for function_and_arguments in test_irpp():
+        function_and_arguments[0](*function_and_arguments[1:])
