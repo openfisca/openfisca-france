@@ -878,6 +878,7 @@ class Scenario(object):
     def suggest(self):
         test_case = self.test_case
         suggestions = dict()
+
         for individu_id, individu in test_case['individus'].iteritems():
             if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
                 # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
@@ -900,4 +901,5 @@ class Scenario(object):
                 if single_parent.get('caseT') is None:
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(single_parent_id,
                         {})['caseT'] = single_parent['caseT'] = True
+
         return suggestions or None

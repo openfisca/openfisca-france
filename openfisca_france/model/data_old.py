@@ -515,7 +515,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
                     val_type = "monetary",
                     cerfa_field = u'3VE',
-                    start = date.datetime (2013, 1, 1))),
+                    start = datetime.date(2013, 1, 1))),
 # """
 # réutilisation case 3VE en 2013
 
@@ -524,7 +524,7 @@ column_by_name = collections.OrderedDict((
 #                    label = u"Plus-values de cession de droits sociaux réalisées par des personnes domiciliées dans les DOM",
 #                    val_type = "monetary",
 #                    cerfa_field = u'3VE',
-#                    end =date.datetime (2012, 12, 31))),
+#                    end = datetime.date(2012, 12, 31))),
 # """
 
 
