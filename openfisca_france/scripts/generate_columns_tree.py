@@ -39,6 +39,7 @@ import os
 import pprint
 import sys
 
+from openfisca_france import model
 from openfisca_france.model.input_variables import column_by_name
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
@@ -134,7 +135,7 @@ def main():
             entity_children.append(last_entity_child)
         last_entity_child.setdefault('children', []).append(name)
 
-    datatrees_module_path = os.path.join(os.path.dirname(data.__file__), 'datatrees.py') 
+    datatrees_module_path = os.path.join(os.path.dirname(model.__file__), 'datatrees.py') 
     with open(datatrees_module_path, 'w') as datatree_file:
         datatree_file.write('''\
 # -*- coding: utf-8 -*-
