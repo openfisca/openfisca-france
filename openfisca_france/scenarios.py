@@ -891,4 +891,13 @@ class Scenario(object):
                 if self.year - individu['birth'].year < 16:
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                         'activite'] = individu['activite'] = 2  # Étudiant, élève
+
+        # Suggest "parent isolé" when family contains a single parent with children.
+        for famille_id, famille in test_case['familles'].iteritems():
+            if len(famille['parents']) == 1 and famille['enfants']:
+                single_parent_id = famille['parents'][0]
+                single_parent = test_case['individus'][single_parent_id]
+                if single_parent.get('caseT') is None:
+                    suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(single_parent_id,
+                        {})['caseT'] = single_parent['caseT'] = True
         return suggestions or None
