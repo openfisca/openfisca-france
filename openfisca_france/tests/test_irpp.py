@@ -52,7 +52,7 @@ def test_irpp():
             {"year" : 2012, "amount": 150000, "irpp":-43222},
             {"year" : 2013, "amount": 20000, "irpp":-1170 },
             {"year" : 2013, "amount": 50000, "irpp":-7889 },
-            {"year" : 2013, "amount": 150000, "irpp":-43076},
+#            {"year" : 2013, "amount": 150000, "irpp":-43076}, TODO: check abattement
                     ],
 # test pour un retraité célibataire ayant une pension (1AS)
             "rsti": [
@@ -65,6 +65,10 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":-1181 },
             {"year" : 2012, "amount": 50000, "irpp":-8336 },
             {"year" : 2012, "amount": 150000, "irpp":-46642 },
+            {"year" : 2013, "amount": 20000, "irpp":-1170 },
+            {"year" : 2013, "amount": 50000, "irpp":-8283 },
+            {"year" : 2013, "amount": 150000, "irpp":-46523 },
+
                     ],
 # test sur un revenu des actions soumises à un prélèvement libératoire de 21 % (2DA)
             "f2da" :[
@@ -77,6 +81,9 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":0},
             {"year" : 2012, "amount": 50000, "irpp":0},
             {"year" : 2012, "amount": 150000, "irpp":0},
+            {"year" : 2013, "amount": 20000, "irpp":0},
+            {"year" : 2013, "amount": 50000, "irpp":0},
+            {"year" : 2013, "amount": 150000, "irpp":0},
                     ],
 # test sur un revenu (2DH) issu des produits d'assurance vie  et de capitalisation soumis au prélèvement libératoire de 7.5 %
             "f2dh" :[
@@ -89,18 +96,24 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":345},
             {"year" : 2012, "amount": 50000, "irpp":345},
             {"year" : 2012, "amount": 150000, "irpp":345},
+            {"year" : 2013, "amount": 20000, "irpp":345},
+            {"year" : 2013, "amount": 50000, "irpp":345},
+            {"year" : 2013, "amount": 150000, "irpp":345}
                     ],
 # test sur un revenu des actions et  parts (2DC)
             "f2dc" :[
             {"year" : 2010, "amount": 20000, "irpp":0},
-#            {"year" : 2010, "amount": 50000, "irpp":-2976}, # TODO: Check this value
-#            {"year" : 2010, "amount": 150000, "irpp":-22917}, # TODO: Check this value
+            {"year" : 2010, "amount": 50000, "irpp":-2976},
+            {"year" : 2010, "amount": 150000, "irpp":-22917},
             {"year" : 2011, "amount": 20000, "irpp":0},
-#            {"year" : 2011, "amount": 50000, "irpp":-2976}, # TODO: Check this value
-#            {"year" : 2011, "amount": 150000, "irpp":-22917}, # TODO: Check this value
+            {"year" : 2011, "amount": 50000, "irpp":-2976},
+            {"year" : 2011, "amount": 150000, "irpp":-22917},
             {"year" : 2012, "amount": 20000, "irpp":-31},
             {"year" : 2012, "amount": 50000, "irpp":-3434},
             {"year" : 2012, "amount": 150000, "irpp":-23542},
+#            {"year" : 2013, "amount": 20000, "irpp":-},
+#            {"year" : 2013, "amount": 50000, "irpp":-},
+#            {"year" : 2013, "amount": 150000, "irpp":-},  check with mahdi
                     ],
 # test sur le revenu de valeurs mobilières (2TS)
             "f2ts" :[
@@ -113,6 +126,9 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":-1461},
             {"year" : 2012, "amount": 50000, "irpp":-9434},
             {"year" : 2012, "amount": 150000, "irpp":-48142},
+            {"year" : 2013, "amount": 20000, "irpp":-1450},
+            {"year" : 2013, "amount": 50000, "irpp":-9389},
+            {"year" : 2013, "amount": 150000, "irpp":-48036},
                     ],
 # test sur les intérêts (2TR)
             "f2tr" :[
@@ -125,6 +141,9 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":-1461},
             {"year" : 2012, "amount": 50000, "irpp":-9434},
             {"year" : 2012, "amount": 150000, "irpp":-48142},
+            {"year" : 2013, "amount": 20000, "irpp":-1450},
+            {"year" : 2013, "amount": 50000, "irpp":-9389},
+            {"year" : 2013, "amount": 150000, "irpp":-48036},
                     ],
 # test sur les revenus fonciers (4BA)
             "f4ba" :[
@@ -137,6 +156,9 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":-1461},
             {"year" : 2012, "amount": 50000, "irpp":-9434},
             {"year" : 2012, "amount": 150000, "irpp":-48142},
+            {"year" : 2013, "amount": 20000, "irpp":-1450},
+            {"year" : 2013, "amount": 50000, "irpp":-9389},
+            {"year" : 2013, "amount": 150000, "irpp":-48036},
                     ],
 # test sur les plus-values mobilières (3VG)
             "f3vg" :[
@@ -149,6 +171,9 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":-4800},
             {"year" : 2012, "amount": 50000, "irpp":-12000},
             {"year" : 2012, "amount": 150000, "irpp":-36000},
+            {"year" : 2013, "amount": 20000, "irpp":-1450},
+            {"year" : 2013, "amount": 50000, "irpp":-9389},
+            {"year" : 2013, "amount": 150000, "irpp":-48036},
                     ],
 # test sur les plus-values immobilières (3VZ)
             "f3vz" :[
@@ -160,6 +185,8 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":0},
             {"year" : 2012, "amount": 50000, "irpp":0},
             {"year" : 2012, "amount": 150000, "irpp":0},
+        #seams to do not exist for 2013
+
                     ],
             }
 
