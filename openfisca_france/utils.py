@@ -229,7 +229,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
 
     # NotImplementedError
 
-from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula 
+from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula
 
 
 def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, input_variables = None):
@@ -282,6 +282,7 @@ def list_ultimate_dependancies(variable_name, date):
     return sorted(result)
     #    print input_variables
 
+
 def look_for(variable, year):
     import re
     matched = re.match('^f[1-8][a-z]{2}', variable)
@@ -307,15 +308,16 @@ def look_for(variable, year):
          url_section = "reductions_s.htm#"
     if section_number =="8":
          url_section = "autres_imputations_s.htm#"
-         
+
     if section_number in ["3","4"]:
         url = url_base + url_section
     else:
         url = url_base + url_section + case
-    webbrowser.open(url,new=1)
 
-    
-        
+    webbrowser.open(url,new=2)
+
+
+
 if __name__ == '__main__':
     from datetime import date
     print list_ultimate_dependancies('donapd', date(2012, 1, 1))
@@ -323,5 +325,5 @@ if __name__ == '__main__':
 #    print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
 #    print list_ultimate_dependancies('age', date(2012, 1, 1))
 
-    year = 2013
-    look_for("f7ac", year)
+    for year in range(2013, 2009,-1):
+        look_for("f7ac", year)

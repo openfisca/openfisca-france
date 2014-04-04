@@ -140,7 +140,7 @@ def _reductions_2013(ip_net, donapd, dfppce, cotsyn, resimm, patnat,
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = (ip_net + donapd + dfppce + cotsyn + resimm + patnat +
+    total_reductions = (donapd + dfppce + cotsyn + resimm + patnat +
                      ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr +
                      cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli +
                      locmeu)
@@ -150,14 +150,14 @@ def _reductions_2013(ip_net, donapd, dfppce, cotsyn, resimm, patnat,
 
 def _donapd_2002_2010(f7ud, _P):
     '''
-    Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
+    Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
     '''
     P = _P.ir.reductions_impots.donapd
     return P.taux * min_(f7ud, P.max)
 
 def _donapd_2011_2013(f7ud, f7va, _P):
     '''
-    Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
+    Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
     '''
     P = _P.ir.reductions_impots.donapd
     return P.taux * min_(f7ud + f7va, P.max)
@@ -261,7 +261,7 @@ def _ecodev(f7uh, rbg_int, _P):
 
 def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P):
     '''
-    Sommes versées pour l'emploi d'un salariés à  domicile
+    Sommes versées pour l'emploi d'un salariés à  domicile
     2002-
     '''
     P = _P.ir.reductions_impots.saldom
@@ -598,7 +598,7 @@ def _scelli(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P):
     Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
     2009-2010
     '''
-    # TODO: à compléter
+    # TODO: à compléter
     # il est possible de cummuler différents dispositifs scelleir
     # dans la limite d'un seul investissment par an
     P = _P.ir.reductions_impots.scelli
