@@ -27,6 +27,12 @@ import datetime
 import openfisca_france
 
 
+def check_irpp(amount, irpp, revenu, simulation, year):
+    calculated_irpp = simulation.calculate('irpp')
+    assert abs(calculated_irpp - irpp) < 1, "Error in irpp for revenu {} = {} in year {}: Got {}, expected {}".format(
+        revenu, amount, year, calculated_irpp, irpp)
+
+
 def test_irpp():
     """
     test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 €
@@ -159,10 +165,10 @@ def test_irpp():
             amount = item["amount"]
             irpp = item["irpp"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
-    
+
             TaxBenefitSystem = openfisca_france.init_country()
             tax_benefit_system = TaxBenefitSystem()
-            
+
             if revenu in ["rsti", "sali"]:
 
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
@@ -178,24 +184,16 @@ def test_irpp():
                     foyer_fiscal = {revenu: amount},
                     year = year,
                     ).new_simulation(debug = True)
-
-            calculated_irpp = simulation.calculate('irpp')
-        if not abs(calculated_irpp - irpp) < 1:
-            print year
-            print revenu
-            print amount
-            print "OpenFisca :", abs(calculated_irpp)
-            print "Real value :", irpp
-            assert abs(calculated_irpp - irpp) < 1, "error in irpp for revenu %s in year %s \n" % (revenu, year)
+            yield check_irpp, amount, irpp, revenu, simulation, year
 
 
 if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    import nose
+#    import nose
 #    nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
-    test_irpp()
 
-
+    for function_and_arguments in test_irpp():
+        function_and_arguments[0](*function_and_arguments[1:])
