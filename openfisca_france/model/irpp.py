@@ -159,7 +159,7 @@ def _alloc(self, af_holder, alloc_imp = law.ir.autre.alloc_imp):
 
 
 def _rev_sal(sal, cho):
-    '''  
+    '''
     Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)
     'ind'
     '''
@@ -272,13 +272,13 @@ def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar):  # TODO: check this, f
 def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P,
         finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
     """
-    REVENUS DES VALEURS ET CAPITAUX MOBILIERS
+    Revenus des valeurs et capitaux mobiliers
     """
     if _P.datesim.year > 2004:
         f2gr = 0
 
     # Add f2da to f2dc and f2ee to f2tr when no PFL
-    if finpfl:
+    if _P.datesim.year >= 2013:
         f2dc_bis = f2dc + f2da
         f2tr_bis = f2tr + f2ee
     else:
@@ -428,7 +428,7 @@ def _ir_ss_qf(ir_brut, rni, nb_adult, bareme = law.ir.bareme):
 
 def _ir_plaf_qf(ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH,
         caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, plafond_qf = law.ir.plafond_qf):
-    ''' 
+    '''
     Impôt après plafonnement du quotient familial et réduction complémentaire
     '''
     A = ir_ss_qf
@@ -593,7 +593,7 @@ def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_ho
     f3si = self.filter_role(f3vi_holder, role = CONJ)
     f3vf = self.filter_role(f3vf_holder, role = VOUS)
     f3sf = self.filter_role(f3vf_holder, role = CONJ)
-    #  TODO: remove this todo use sum for all fields after checking
+    #  TODO: remove this todo use sum for all fields after checking
         # revenus taxés à un taux proportionnel
     rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
     out = (plus_values.pvce * rpns_pvce +
@@ -1223,7 +1223,7 @@ def _ppe_base(self, ppe_rev, ppe_coef_tp, ppe_coef_holder):
 
 def _ppe_elig_i(ppe_rev, ppe_coef_tp, ppe = law.ir.credits_impot.ppe):
     '''
-    Eligibilité individuelle à la ppe 
+    Eligibilité individuelle à la ppe
     Attention : condition de plafonnement introduite dans ppe brute
     'ind'
     '''

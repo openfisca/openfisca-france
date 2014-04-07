@@ -80,10 +80,10 @@ def _credits_impot_2012(prlire):
     return prlire
 
 
-def _credits_impot_2013(ip_net):
+def _credits_impot_2013(prlire):
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-    log.warning("TODO: not implemented, returns 0")
-    return ip_net * 0
+    log.warning("TODO: not complete")
+    return prlire
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
@@ -179,7 +179,7 @@ def _mecena(f7us):
 def _prlire(f2dh, f2ch, marpac, _P):
     '''
     Prélèvement libératoire à restituer (case 2DH)
-    2002-2012
+    2002-2013
     '''
     plaf_resid = max_(_P.ir.rvcm.abat_assvie - f2ch, 0)
     return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
