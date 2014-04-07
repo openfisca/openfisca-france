@@ -2391,7 +2391,7 @@
         <VALUE valeur="104655" deb="2010-01-01" fin="2010-12-31"/>
         <VALUE valeur="106225" deb="2011-01-01" fin="2013-12-31"/>
       </CODE>
-      <CODE description="Déficit foncier art 156-I-3° du CGI" code="def_fonc_seuil" format="integer" type="monetary">
+      <CODE description="Déficit foncier art 156-I-3 du CGI" code="def_fonc_seuil" format="integer" type="monetary">
         <VALUE valeur="10700" deb="2002-01-01" fin="2014-12-31"/>
       </CODE>
       <NODE description="Régime microentreprise/Spécial bnc" code="microentreprise">
@@ -2496,7 +2496,7 @@
           <VALUE valeur="3359" deb="2010-01-01" fin="2013-12-31"/>
         </CODE>
       </NODE>
-      <NODE description="Déduction pour versements sur PERP" code="acc75a">
+      <NODE description="Déduction pour versements sur PERP" code="deduc_perp">
         <CODE description="Minimum par personne" code="min" format="integer" type="monetary">
           <VALUE valeur="3019" deb="2004-01-01" fin="2004-12-31"/>
           <VALUE valeur="3107" deb="2005-01-01" fin="2005-12-31"/>
