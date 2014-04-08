@@ -2343,8 +2343,7 @@
       </CODE>
       <CODE description="Abattement capitaux mobiliers - Taux" code="abatmob_taux" format="percent">
         <VALUE valeur="0.5" deb="1997-01-01" fin="2005-12-31"/>
-        <VALUE valeur="0.6" deb="2006-01-01" fin="2011-12-31"/>
-        <VALUE valeur="0.4" deb="2012-01-01" fin="2013-12-31"/>
+        <VALUE valeur="0.4" deb="2006-01-01" fin="2013-12-31"/>
       </CODE>
       <CODE description="Abattement capitaux mobiliers - Max" code="abatmob" format="integer" type="monetary">
         <VALUE valeur="1220" deb="2001-01-01" fin="2005-12-31"/> #TODO: check doesn't seams consitent with fiche de calcul

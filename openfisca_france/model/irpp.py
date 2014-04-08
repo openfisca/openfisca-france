@@ -287,10 +287,10 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     # # Calcul du revenu catégoriel
     # 1.2 Revenus des valeurs et capitaux mobiliers
     b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
-    TOT1 = f2ch - b12
+    TOT1 = f2ch - b12 # c12
     # Part des frais s'imputant sur les revenus déclarés case DC
     den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
-    F1 = f2ca / den * f2dc_bis
+    F1 = f2ca / den * f2dc_bis # f12
     # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
     # partie négative (à déduire des autres revenus nets de frais d'abattements
     g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)

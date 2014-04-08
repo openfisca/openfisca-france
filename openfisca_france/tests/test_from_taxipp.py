@@ -35,7 +35,6 @@ tax_benefit_system = TaxBenefitSystem()
 
 from openfisca_france.tests.ipp.taxipp_utils import build_ipp2of_variables, run_OF, compare
 
-
 openfisca_france_location = pkg_resources.get_distribution('openfisca-france').location
 ipp_dir = os.path.join(openfisca_france_location, 'openfisca_france', 'tests', 'ipp')
 
@@ -51,14 +50,26 @@ def list_dta(selection):
             input.append(file_path)
         elif filename.startswith("base_IPP_output") and filename.endswith(selection + ".dta"):
             output.append(file_path)
+
     return input, output
 
 
-def test_from_taxipp(selection = None, threshold = 1, list_input = None, list_output = None, verbose = False):
+def comparison_taxipp(selection = None, threshold = 2, verbose = False):
+    assert selection is not None, "selection should be not None"
+    list_input, list_output = list_dta(selection)
+    ipp2of_input_variables, ipp2of_output_variables = build_ipp2of_variables()
+    last_param_scenario = "rien"
+    for input_file_path, output_file_path in zip(list_input, list_output):
+        print input_file_path
+        check_comparison(ipp2of_input_variables, input_file_path, output_file_path, ipp2of_output_variables,
+                         last_param_scenario, threshold, verbose)
+
+
+def test_from_taxipp(threshold = 2, list_input = None, list_output = None, verbose = False):
     # selection : dernier mot avant le .dta : "actif-chomeur", "ISF", "famille_modeste"
-    if not list_input :
-        list_input, list_output = list_dta(selection)
-    elif not list_output:
+    if list_input is None:
+        list_input, list_output = list_dta(selection = None)
+    elif list_output is None:
         list_output = [
             file_path.replace('input', 'output')
             for file_path in list_input
@@ -83,10 +94,8 @@ if __name__ == '__main__':
     import sys
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
 
-#    test_from_taxipp(selection = "marie_aise", verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
-#    test_from_taxipp(selection = None, threshold = 2, list_input = None, list_output = None, verbose = False)
-#    test_from_taxipp(selection = "", threshold = 2, verbose = False)
+    comparison_taxipp(selection = "_marie_actif-chomeur", verbose = True)
 
 
-    for function_and_arguments in test_from_taxipp():
-        function_and_arguments[0](*function_and_arguments[1:])
+    # for function_and_arguments in test_from_taxipp():
+    #     function_and_arguments[0](*function_and_arguments[1:])
