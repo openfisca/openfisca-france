@@ -79,27 +79,27 @@ def _nb_pac(nbF, nbJ, nbR):
 
 
 def _nbF(self, age, alt, inv, quifoy):
-    enfant_a_charge = and_(quifoy >= 2, or_(age < 18, inv), not_(alt))
+    enfant_a_charge = and_(and_(quifoy >= 2, or_(age < 18, inv)), not_(alt))
     return self.sum_by_entity(enfant_a_charge.astype(int16))
 
 
 def _nbG(self, alt, inv, quifoy):
-    enfant_a_charge_invalide = and_(quifoy >= 2, inv, not_(alt))
+    enfant_a_charge_invalide = and_(and_(quifoy >= 2, inv), not_(alt))
     return self.sum_by_entity(enfant_a_charge_invalide.astype(int16))
 
 
 def _nbH(self, age, alt, inv, quifoy):
-    enfant_a_charge_garde_alternee = and_(quifoy >= 2, or_(age < 18, inv), alt)
+    enfant_a_charge_garde_alternee = and_(and_(quifoy >= 2, or_(age < 18, inv)), alt)
     return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16))
 
 
 def _nbI(self, alt, inv, quifoy):
-    enfant_a_charge_garde_alternee_invalide = and_(quifoy >= 2, inv, alt)
+    enfant_a_charge_garde_alternee_invalide = and_(and_(quifoy >= 2, inv), alt)
     return self.sum_by_entity(enfant_a_charge_garde_alternee_invalide.astype(int16))
 
 
 def _nbJ(self, age, inv, quifoy):
-    majeur_celibataire_sans_enfant = and_(quifoy >= 2, age >= 18, not_(inv))
+    majeur_celibataire_sans_enfant = and_(and_(quifoy >= 2, age >= 18), not_(inv))
     return self.sum_by_entity(majeur_celibataire_sans_enfant.astype(int16))
 
 
