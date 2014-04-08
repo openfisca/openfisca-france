@@ -7,7 +7,8 @@
 # (see openfisca/__init__.py for details)
 
 
-from numpy import ( maximum as max_, minimum as min_) 
+from numpy import maximum as max_, minimum as min_
+from openfisca_core.accessors import law
 
 
 ########################################################################
@@ -18,6 +19,7 @@ from numpy import ( maximum as max_, minimum as min_)
 # Taxe sur la cession à titre onéreux de terrains nus rendus constructibles (CGI, art.1605 nonies)
 # 2048-IMM-SD
 ########################################################################
+
 
 def _plus_value_brute(prix_pv_immo, charges_pv_immo, frais_pv_immo, prix_acqu_immo,
                       charges_aqu_immo, frais_acqu_immo, const_acqu_immo, voirie_acqu_immo):
@@ -45,20 +47,18 @@ def _plus_value_brute(prix_pv_immo, charges_pv_immo, frais_pv_immo, prix_acqu_im
     return prix_cess_corr-valeur_venale
 
 
-def _plus_value_nette(plus_value_brute, dur_det_immo, _P):
+def _plus_value_nette(plus_value_brute, dur_det_immo, _P, pv_immo = law.ir.pv_immo):
     """
     Calcul de la plus value immobilière nette
     """
     # 40. ABATTEMENT POUR DUREE DE DETENTION
     # 41. NOMBRE D’ANNEES DE DETENTION AU-DELA DE LA 5EME ANNEE
-    P = _P.irpp.pv_immo
-    
-    if P.datesim: # TODO:
-        taux_reduc = max_(dur_det_immo - P.ann_det1, 0)*P.taux1
+    if _P.datesim: # TODO:
+        taux_reduc = max_(dur_det_immo - pv_immo.ann_det1, 0) * pv_immo.taux1
     else:
-        taux_reduc = ( max_(dur_det_immo - P.ann_det3, 0)*P.taux3 +
-                       max_( min_(dur_det_immo, P.ann_det3) - P.ann_det2, 0)*P.taux2  +
-                       max_( min_(dur_det_immo, P.ann_det2) - P.ann_det1, 0)*P.taux1 )
+        taux_reduc = ( max_(dur_det_immo - pv_immo.ann_det3, 0) * pv_immo.taux3 +
+                       max_( min_(dur_det_immo, pv_immo.ann_det3) - pv_immo.ann_det2, 0) * pv_immo.taux2  +
+                       max_( min_(dur_det_immo, pv_immo.ann_det2) - pv_immo.ann_det1, 0) * pv_immo.taux1 )
                        
     taux_reduc = min_(taux_reduc, 1.0)
     pv_impos = (1-taux_reduc)*plus_value_brute
@@ -77,16 +77,15 @@ def _plus_value_nette(plus_value_brute, dur_det_immo, _P):
 #il convient de remplir les lignes 10 à 46 pour chacune des fractions (utiliser plusieurs 2048-IMM-SD page 2).
     return pv_net_impos
 
-def _ir_pv_immo(f3vz, _P):
+
+def _ir_pv_immo(f3vz, pv_immo = law.ir.pv_immo):
     """
     Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
     """
-    
-    P = _P.ir.pv_immo
     # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
     # (VOIR TABLEAU PAGE 3).
     # if resident
-    impo = P.taux*f3vz 
+    impo = pv_immo.taux*f3vz 
 #    62. MONTANT DU PAR LES AUTRES NON-RESIDENTS (VOIR TABLEAU PAGE 3 ET REMPLIR PAGE 4 SI NECESSAIRE)
 #    IMPOSITION A 33,1/3% DES PERSONNES PHYSIQUES [(LIGNE 50 OU LIGNE 53) X 33,1/3%] = = €
 #    IMPOSITION A 15% OU 19% OU 33,1/3% DES PERSONNES MORALES NON ASSUJETTIES A L’IR, ETABLIES DANS UN ETAT
