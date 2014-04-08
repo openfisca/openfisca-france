@@ -555,7 +555,60 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('ppe', FloatCol(function = ir._ppe, entity = 'foy', label = u"Prime pour l'emploi")),
 
     # Autres crédits d'impôts
-    build_simple_formula_couple('creimp', FloatCol(function = ci._creimp, entity = 'foy')),
+#    build_simple_formula_couple('creimp', FloatCol(function = ci._creimp, entity = 'foy')), #TODO : adrien transform as credit_impot
+
+    build_dated_formula_couple(
+        'creimp',                        #TODO: Change name to credits_impot (before, take care of imputations)
+    [dict(start = date(2002, 1, 1),
+             end = date(2002, 12, 31),
+             function = ci._creimp_2002,
+             ),
+    dict(start = date(2003, 1, 1),
+             end = date(2003, 12, 31),
+             function = ci._creimp_2003,
+             ),
+    dict(start = date(2004, 1, 1),
+             end = date(2004, 12, 31),
+             function = ci._creimp_2004,
+             ),
+    dict(start = date(2005, 1, 1),
+             end = date(2005, 12, 31),
+             function = ci._creimp_2005,
+             ),
+
+    dict(start = date(2006, 1, 1),
+             end = date(2006, 12, 31),
+             function = ci._creimp_2006,
+             ),
+    dict(start = date(2007, 1, 1),
+             end = date(2007, 12, 31),
+             function = ci._creimp_2007,
+             ),
+    dict(start = date(2008, 1, 1),
+             end = date(2008, 12, 31),
+             function = ci._creimp_2008,
+             ),
+    dict(start = date(2009, 1, 1),
+             end = date(2009, 12, 31),
+             function = ci._creimp_2009,
+             ),
+    dict(start = date(2010, 1, 1),
+             end = date(2011, 12, 31),
+             function = ci._creimp_2010_2011,
+             ),
+
+#    dict(start = date(2012, 1, 1),
+#             end = date(2012, 12, 31),
+#             function = ci._creimp_2012,
+#             ),
+#
+#    dict(start = date(2013, 1, 1),
+#             end = date(2013, 12, 31),
+#             function = ci._creimp_2013,
+#             ),
+        ],
+        FloatCol(entity = 'foy')),
+
     build_simple_formula_couple('accult', FloatCol(function = ci._accult, entity = 'foy')),
     build_simple_formula_couple('percvm', FloatCol(function = ci._percvm, entity = 'foy', start = date(2010, 1, 1))),
     build_simple_formula_couple('direpa', FloatCol(function = ci._direpa, entity = 'foy')),
@@ -577,7 +630,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('jeunes', FloatCol(function = ci._jeunes, entity = 'foy', start = date(2005, 1, 1), end = date(2008, 12, 31))),
 
     build_dated_formula_couple(
-        'credits_impot',
+        'credits_impot',  # TODO: Change name to imputations
         [dict(start = date(2002, 1, 1),
              end = date(2002, 12, 31),
              function = ci._credits_impot_2002,

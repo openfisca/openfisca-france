@@ -90,50 +90,129 @@ def _nb_pac2(nbF, nbJ, nbR, nbH):
     return nbF + nbJ + nbR + nbH / 2
 
 
-def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx, f8wy, _P):
-    '''
-    Avoir fiscaux et crédits d'impôt
-    2002-
-    '''
 
-    if _P.datesim.year == 2002:
-        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
 
-    elif _P.datesim.year == 2003:
-        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
+def _credits_impot_2005_2006(creimp, divide, direpa, accult, mecena, prlire, aidper,
+    quaenv, acqgpl, drbail, ci_garext, preetu, assloy, aidmob, jeunes):
+    """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
+    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
+        quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
 
-    elif _P.datesim.year == 2004:
-        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz)
 
-    elif _P.datesim.year == 2005:
-        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8we)
 
-    elif _P.datesim.year == 2006:
-        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
-                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
+def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th):
+    '''Avoir fiscaux et crédits d'impôt 2002 '''
+    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
 
-    elif _P.datesim.year == 2007:
-        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
-                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+def _creimp_2003(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp):
+    '''Avoir fiscaux et crédits d'impôt 2003 '''
+    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
 
-    elif _P.datesim.year == 2008:
-        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
-                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+def _creimp_2004(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz):
+    '''Avoir fiscaux et crédits d'impôt 2004 '''
+    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz)
 
-    elif _P.datesim.year == 2009:
-        return (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp
-                   + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
+def _creimp_2005(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc,
+                   f8we):
+    '''Avoir fiscaux et crédits d'impôt 2005 '''
+    return  (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb +
+    f8wc + f8we)
 
-    elif _P.datesim.year == 2010:
-        return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+def _creimp_2006(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8we,
+                  f8wr, f8ws, f8wt, f8wu):
+    '''Avoir fiscaux et crédits d'impôt 2006 '''
+    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc +
+            f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
 
-    elif _P.datesim.year == 2011:
-        log.warning("TODO: totally unchecked")
-        return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+def _creimp_2007(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8wr,
+                   f8ws, f8wt, f8wu, f8wv, f8wx):
+    '''Avoir fiscaux et crédits d'impôt 2007 '''
+    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc +
+            f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
-    else:
-        log.warning("TODO: not implemented, returns 0")
-        return f2ab * 0  # TODO: 2012
+def _creimp_2008(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc,
+                  f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx):
+    '''Avoir fiscaux et crédits d'impôt 2008'''
+    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc +
+
+            f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+def _creimp_2009(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wd, f8we, f8wr, f8ws, f8wt,
+                  f8wu, f8wv, f8wx, f8wy):
+    '''Avoir fiscaux et crédits d'impôt 2009'''
+    return  (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr +
+            f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
+
+def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wd,
+                  f8we, f8wr, f8wt, f8wu, f8wv):
+    '''Avoir fiscaux et crédits d'impôt 2011 '''
+    return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we +
+           f8wr + f8wt + f8wu + f8wv)
+
+
+
+
+
+
+
+
+
+
+
+
+
+#def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx, f8wy, _P):
+#    '''
+#    Avoir fiscaux et crédits d'impôt
+#    2002-
+#    '''
+#
+#    if _P.datesim.year == 2002:
+#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
+#
+#    elif _P.datesim.year == 2003:
+#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
+#
+#    elif _P.datesim.year == 2004:
+#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz)
+#
+#    elif _P.datesim.year == 2005:
+#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8we)
+#
+#
+#
+#    elif _P.datesim.year == 2006:
+#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
+#                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
+#
+#    elif _P.datesim.year == 2007:
+#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
+#                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+#
+#
+#
+#    elif _P.datesim.year == 2008:
+#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
+#                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+#
+#
+#    elif _P.datesim.year == 2009:
+#        return (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp
+#                   + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
+#
+#
+#    elif _P.datesim.year == 2010:
+#        return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+#
+#
+#
+#    elif _P.datesim.year == 2011:
+#        log.warning("TODO: totally unchecked")
+#        return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+#
+#
+#    else:
+#        log.warning("TODO: not implemented, returns 0")
+#        return f2ab * 0  # TODO: 2012
 
 def _divide(marpac, f2dc, f2gr, _P):
     '''
