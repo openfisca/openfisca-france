@@ -427,7 +427,7 @@ def _invfor(marpac, f7un, _P, P = law.ir.reductions_impots.invfor):
         return P.taux * min_(f7un, seuil)
 
 
-def _garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, P = law.ir.reductions_impots.garext):
+def _garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P, P = law.ir.reductions_impots.garext):
     '''
     Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
     et GE, GF, GG
