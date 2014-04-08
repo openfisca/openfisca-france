@@ -876,12 +876,12 @@ class Scenario(object):
                         'activite'] = individu['activite'] = 2  # Étudiant, élève
 
         # Suggest "parent isolé" when family contains a single parent with children.
-        for famille_id, famille in test_case['familles'].iteritems():
-            if len(famille['parents']) == 1 and famille['enfants']:
-                single_parent_id = famille['parents'][0]
-                single_parent = test_case['individus'][single_parent_id]
-                if single_parent.get('caseT') is None:
-                    suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(single_parent_id,
-                        {})['caseT'] = single_parent['caseT'] = True
+        for foyer_fiscal_id, foyer_fiscal in test_case['foyers_fiscaux'].iteritems():
+            if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
+                single_declarant_id = foyer_fiscal['declarants'][0]
+                single_declarant = test_case['individus'][single_declarant_id]
+                if foyer_fiscal.get('caseT') is None:
+                    suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(foyer_fiscal_id,
+                        {})['caseT'] = foyer_fiscal['caseT'] = True
 
         return suggestions or None
