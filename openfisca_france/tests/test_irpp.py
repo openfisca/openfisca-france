@@ -84,9 +84,9 @@ def test_irpp():
             {"year" : 2012, "amount": 20000, "irpp":0},
             {"year" : 2012, "amount": 50000, "irpp":0},
             {"year" : 2012, "amount": 150000, "irpp":0},
-            {"year" : 2013, "amount": 20000, "irpp":0},
-            {"year" : 2013, "amount": 50000, "irpp":0},
-            {"year" : 2013, "amount": 150000, "irpp":0},
+#            {"year" : 2013, "amount": 20000, "irpp":0},
+#            {"year" : 2013, "amount": 50000, "irpp":0},
+#            {"year" : 2013, "amount": 150000, "irpp":0},TODO: check mahdi if 2DA exist in 2013
                     ],
 # test sur un revenu (2DH) issu des produits d'assurance vie  et de capitalisation soumis au prélèvement libératoire de 7.5 %
             "f2dh" :[
@@ -118,7 +118,7 @@ def test_irpp():
             {"year" : 2012, "amount": 150000, "irpp":-23542},
 #            {"year" : 2013, "amount": 20000, "irpp":-},
 #            {"year" : 2013, "amount": 50000, "irpp":-},
-#            {"year" : 2013, "amount": 150000, "irpp":-},  check with mahdi
+#            {"year" : 2013, "amount": 150000, "irpp":-},  TODO: check with mahdi
                     ],
 # test sur le revenu de valeurs mobilières (2TS)
             "f2ts" :[

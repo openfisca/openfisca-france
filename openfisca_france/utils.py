@@ -28,6 +28,10 @@ from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgeCol, FloatCol, 
 
 import openfisca_france
 
+
+BROWSER_NAME = 'iceweasel'
+
+
 def check_consistency(table_simu, dataframe, corrige = True):
     '''
     Studies dataframe columns as described in a simulation table columns attribute, and should eventually
@@ -314,7 +318,8 @@ def look_for(variable, year):
     else:
         url = url_base + url_section + case
 
-    webbrowser.open(url,new=2)
+    browser = webbrowser.get(BROWSER_NAME)
+    browser.open_new_tab(url)
 
 
 
@@ -325,5 +330,5 @@ if __name__ == '__main__':
 #    print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
 #    print list_ultimate_dependancies('age', date(2012, 1, 1))
 
-    for year in range(2013, 2009,-1):
+    for year in range(2013, 2006,-1):
         look_for("f7ac", year)
