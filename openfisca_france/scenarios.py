@@ -685,13 +685,7 @@ class Scenario(object):
                 individu_index = individu_index_by_id[parents_id[0]]
                 idfam_array[step_index * individus_step_size + individu_index] = step_index * familles_step_size + famille_index
                 quifam_array[step_index * individus_step_size + individu_index] = 0  # chef
-                famille_roles_count = 1
-                if len(parents_id) > 1:
-                    individu_index = individu_index_by_id[parents_id[1]]
-                    idfam_array[step_index * individus_step_size + individu_index] \
-                        = step_index * familles_step_size + famille_index
-                    quifam_array[step_index * individus_step_size + individu_index] = 1  # part
-                    famille_roles_count += 1
+                famille_roles_count = 2
                 for enfant_index, enfant_id in enumerate(enfants_id):
                     individu_index = individu_index_by_id[enfant_id]
                     idfam_array[step_index * individus_step_size + individu_index] \
@@ -715,13 +709,7 @@ class Scenario(object):
                 idfoy_array[step_index * individus_step_size + individu_index] \
                     = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
                 quifoy_array[step_index * individus_step_size + individu_index] = 0  # vous
-                foyer_fiscal_roles_count = 1
-                if len(declarants_id) > 1:
-                    individu_index = individu_index_by_id[declarants_id[1]]
-                    idfoy_array[step_index * individus_step_size + individu_index] \
-                        = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
-                    quifoy_array[step_index * individus_step_size + individu_index] = 1  # conj
-                    foyer_fiscal_roles_count += 1
+                foyer_fiscal_roles_count = 2
                 for personne_a_charge_index, personne_a_charge_id in enumerate(personnes_a_charge_id):
                     individu_index = individu_index_by_id[personne_a_charge_id]
                     idfoy_array[step_index * individus_step_size + individu_index] \
@@ -746,13 +734,7 @@ class Scenario(object):
                 individu_index = individu_index_by_id[personne_de_reference_id]
                 idmen_array[step_index * individus_step_size + individu_index] = step_index * menages_step_size + menage_index
                 quimen_array[step_index * individus_step_size + individu_index] = 0  # pref
-                menage_roles_count = 1
-                if conjoint_id is not None:
-                    individu_index = individu_index_by_id[conjoint_id]
-                    idmen_array[step_index * individus_step_size + individu_index] \
-                        = step_index * menages_step_size + menage_index
-                    quimen_array[step_index * individus_step_size + individu_index] = 1  # cref
-                    menage_roles_count += 1
+                menage_roles_count = 2
                 for enfant_index, enfant_id in enumerate(itertools.chain(enfants_id, autres_id)):
                     individu_index = individu_index_by_id[enfant_id]
                     idmen_array[step_index * individus_step_size + individu_index] \
