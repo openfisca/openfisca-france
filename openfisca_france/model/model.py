@@ -560,7 +560,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('percvm', FloatCol(function = ci._percvm, entity = 'foy', start = date(2010, 1, 1))),
     build_simple_formula_couple('direpa', FloatCol(function = ci._direpa, entity = 'foy')),
     build_simple_formula_couple('mecena', FloatCol(function = ci._mecena, entity = 'foy', start = date(2003, 1, 1))),
-    build_simple_formula_couple('prlire', FloatCol(function = ci._prlire, entity = 'foy', label = u"Prélèvement libératoire à restituer (case 2DH)", end = date(2012, 12, 31))),
+    build_simple_formula_couple('prlire', FloatCol(function = ci._prlire, entity = 'foy', label = u"Prélèvement libératoire à restituer (case 2DH)", end = date(2013, 12, 31))),
     build_simple_formula_couple('aidper', FloatCol(function = ci._aidper, entity = 'foy')),
     build_simple_formula_couple('quaenv', FloatCol(function = ci._quaenv, entity = 'foy', start = date(2005, 1, 1))),
     build_simple_formula_couple('drbail', FloatCol(function = ci._drbail, entity = 'foy')),

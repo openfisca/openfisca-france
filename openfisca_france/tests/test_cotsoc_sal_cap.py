@@ -37,24 +37,6 @@ def test_cotsoc():
     """
 
     cotsoc_cap = {
-    # test pour un célibataire ayant un revenu salarial (1AJ)
-    #            "sali": [
-    #            {"year" : 2010, "amount": 20000, "irpp":-1181 },
-    #            {"year" : 2011, "amount": 20000, "irpp":-1181 },
-    #            {"year" : 2010, "amount": 50000, "irpp":-7934 },
-    #            {"year" : 2011, "amount": 50000, "irpp":-7934 },
-    #            {"year" : 2010, "amount": 150000, "irpp":-42338},
-    #            {"year" : 2011, "amount": 150000, "irpp":-42338}
-    #                    ],
-    # test pour un retraité célibataire ayant une pension (1AS)
-    #            "rsti": [
-    #            {"year" : 2010, "amount": 20000, "irpp":-1181 },
-    #            {"year" : 2011, "amount": 20000, "irpp":-1181 },
-    #            {"year" : 2010, "amount": 50000, "irpp":-8336 },
-    #            {"year" : 2011, "amount": 50000, "irpp":-8336 },
-    #            {"year" : 2010, "amount": 150000, "irpp":-46642 },
-    #            {"year" : 2011, "amount": 150000, "irpp":-46642 },
-    #                    ],
     # test sur un revenu des actions soumises à un prélèvement libératoire de 21 % (2DA)
             "f2da" : [
             {"year" : 2012, "amount": 20000,
@@ -72,16 +54,7 @@ def test_cotsoc():
                  "csg_cap_lib":-.082 * 20000,
                  "crds_cap_lib":-.005 * 20000 } }
                     ],
-    # # test sur un revenu (2DH) issu des produits d'assurance vie
-    # # et de capitalisation soumis au prélèvement libératoire de 7.5 %
-    #            "f2dh" :[
-    #            {"year" : 2010, "amount": 20000, "irpp":345},
-    #            {"year" : 2011, "amount": 20000, "irpp":345},
-    #            {"year" : 2010, "amount": 50000, "irpp":345},
-    #            {"year" : 2011, "amount": 50000, "irpp":345},
-    #            {"year" : 2010, "amount": 150000, "irpp":345},
-    #            {"year" : 2011, "amount": 150000, "irpp":345},
-    # Célibataire sans enfant                   ],
+    # Célibataire sans enfant
     # test sur un revenu des actions et  parts (2DC)
             "f2dc" :[
             {"year" : 2013, "amount": 20000,
