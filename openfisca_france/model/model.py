@@ -535,7 +535,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('iaidrdi', FloatCol(function = ir._iaidrdi, entity = 'foy')),
     build_simple_formula_couple('teicaa', FloatCol(function = ir._teicaa, entity = 'foy')),
     build_simple_formula_couple('cont_rev_loc', FloatCol(function = ir._cont_rev_loc, entity = 'foy', start = date(2001, 1, 1))),
-    build_simple_formula_couple('iai', FloatCol(function = ir._iai, entity = 'foy')),
+    build_simple_formula_couple('iai', FloatCol(function = ir._iai, entity = 'foy', label = u"Impôt avant imputations")),
     build_simple_formula_couple('cehr', FloatCol(function = ir._cehr, entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus")),
  #   build_simple_formula_couple('cesthra', FloatCol(function = ir._cesthra, entity = 'foy', start = date(2013, 1, 1))), PLF 2013, amendement rejeté
     build_simple_formula_couple('imp_lib', FloatCol(function = ir._imp_lib, entity = 'foy', end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
@@ -621,9 +621,11 @@ prestation_by_name = collections.OrderedDict((
         ],
         FloatCol(entity = 'foy')),
 
-    build_simple_formula_couple('irpp', FloatCol(function = ir._irpp, entity = 'foy', label = u"Impôt sur le revenu des personnes physiques")),
+    build_simple_formula_couple('irpp', FloatCol(function = ir._irpp, entity = 'foy',
+        label = u"Impôt sur le revenu des personnes physiques")),
 
-    build_simple_formula_couple('rfr', FloatCol(function = ir._rfr, entity = 'foy')),
+    build_simple_formula_couple('rfr', FloatCol(function = ir._rfr, entity = 'foy',
+        label = u"Revenu fiscal de référence")),
     build_simple_formula_couple('rfr_rvcm', FloatCol(function = ir._rfr_rvcm, entity = 'foy')),
 
 #    build_simple_formula_couple('alv', FloatCol(function = ir._alv)),
