@@ -1,3 +1,5 @@
+
+*~
 .project
 .pydevproject
 .settings/
@@ -10,4 +12,3 @@ openfisca_france/data/survey_old.h5
 *.pyc
 *.pyo
 *~
-

@@ -66,14 +66,16 @@ def test_from_taxipp(selection = None, threshold = 1, list_input = None, list_ou
     ipp2of_input_variables, ipp2of_output_variables = build_ipp2of_variables()
     last_param_scenario = "rien"
     for input_file_path, output_file_path in zip(list_input, list_output):
-        simulation, param_scenario = run_OF(ipp2of_input_variables, path_dta_input = input_file_path, option = 'list_dta')
-        if str(param_scenario) != str(last_param_scenario) :
-            pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold,
-                verbose = verbose)
-            assert len(pbs) == 0, \
-                u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
-                input_file_path, threshold, pbs)
-            last_param_scenario = param_scenario
+        yield check_comparison, ipp2of_input_variables, input_file_path, output_file_path, ipp2of_output_variables, \
+            last_param_scenario, threshold, verbose
+
+
+def check_comparison(ipp2of_input_variables, input_file_path, output_file_path, ipp2of_output_variables, last_param_scenario = "rien", threshold = 1, verbose = False):
+    simulation, param_scenario = run_OF(ipp2of_input_variables, path_dta_input = input_file_path, option = 'list_dta')
+    if str(param_scenario) != str(last_param_scenario) :
+        pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold, verbose = verbose)
+        assert len(pbs) == 0, u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(input_file_path, threshold, pbs)
+        last_param_scenario = param_scenario
 
 
 if __name__ == '__main__':
@@ -82,5 +84,9 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
 
 #    test_from_taxipp(selection = "marie_aise", verbose = True)  # list_input = ['base_IPP_input_concubin_10-02-14 16h37.dta'],
-    test_from_taxipp(selection = None, threshold = 2, list_input = None, list_output = None, verbose = False)
+#    test_from_taxipp(selection = None, threshold = 2, list_input = None, list_output = None, verbose = False)
 #    test_from_taxipp(selection = "", threshold = 2, verbose = False)
+
+
+    for function_and_arguments in test_from_taxipp():
+        function_and_arguments[0](*function_and_arguments[1:])
