@@ -26,6 +26,7 @@
 from __future__ import division
 
 from numpy import (maximum as max_, minimum as min_)
+from openfisca_core.accessors import law
 
 from .input_variables.base import QUIFAM, QUIFOY, QUIMEN
 
@@ -39,18 +40,18 @@ VOUS = QUIFOY['vous']
 
 # 1 ACTIF BRUT
 
-def _isf_imm_bati(b1ab, b1ac, _P):
+
+def _isf_imm_bati(b1ab, b1ac, P = law.isf.res_princ):
     '''
     Immeubles bâtis
     '''
-    P = _P.isf.res_princ
     return (1 - P.taux) * b1ab + b1ac
 
-def _isf_imm_non_bati(b1bc, b1be, b1bh, b1bk, _P):
+
+def _isf_imm_non_bati(b1bc, b1be, b1bh, b1bk, P = law.isf.nonbat):
     '''
     Immeubles non bâtis
     '''
-    P = _P.isf.nonbat
     # forêts
     b1bd = b1bc * P.taux_f
     # bien ruraux loués à long terme
@@ -64,70 +65,72 @@ def _isf_imm_non_bati(b1bc, b1be, b1bh, b1bk, _P):
 
 # # droits sociaux- valeurs mobilières- liquidités- autres meubles ##
 
-def _isf_actions_sal(b1cl, _P):  # # non présent en 2005##
+
+def _isf_actions_sal(b1cl, P = law.isf.droits_soc):  # # non présent en 2005##
     '''
     Parts ou actions détenues par les salariés et mandataires sociaux
     '''
-    P = _P.isf.droits_soc
     return  b1cl * P.taux1
 
-def _isf_droits_sociaux(isf_actions_sal, b1cb, b1cd, b1ce, b1cf, b1cg, _P):
-    P = _P.isf.droits_soc
+
+def _isf_droits_sociaux(isf_actions_sal, b1cb, b1cd, b1ce, b1cf, b1cg, P = law.isf.droits_soc):
     # parts ou actions de sociétés avec engagement de 6 ans conservation minimum
     b1cc = b1cb * P.taux2
     return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
 
-def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, _P):
+
+def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, P = law.isf.forf_mob):
     '''
-    TO DO: Gérer les trois option meubles meublants
+    TODO: Gérer les trois option meubles meublants
     '''
     total = isf_imm_bati + isf_imm_non_bati + isf_droits_sociaux
-    P = _P.isf.forf_mob
     forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
     actif_brut = total + forf_mob
     return actif_brut - b2gh
 
+
 # # calcul de l'impôt par application du barème ##
 
-def _isf_iai(ass_isf, _P):
-    bar = _P.isf.bareme
+
+def _isf_iai(ass_isf, _P, bar = law.isf.bareme):
     if _P.datesim.year > 2010:
         ass_isf = (ass_isf >= bar.seuils[1]) * ass_isf
     bar.t_x()
     return bar.calc(ass_isf)
 
+
 def _isf_avant_reduction(isf_iai, decote_isf):
     return isf_iai - decote_isf
 
-def _isf_reduc_pac(nb_pac, nbH, _P):
+
+def _isf_reduc_pac(nb_pac, nbH, P = law.isf.reduc_pac):
     '''
     Réductions pour personnes à charges
     '''
-    P = _P.isf.reduc_pac
     return P.reduc_1 * nb_pac + P.reduc_2 * nbH
 
-def _isf_inv_pme(b2mt, b2ne, b2mv, b2nf, b2mx, b2na, _P):
+
+def _isf_inv_pme(b2mt, b2ne, b2mv, b2nf, b2mx, b2na, P = law.isf.pme):
     '''
     Réductions pour investissements dans les PME
     à partir de 2008!
     '''
-    P = _P.isf.pme
     inv_dir_soc = b2mt * P.taux2 + b2ne * P.taux1
     holdings = b2mv * P.taux2 + b2nf * P.taux1
     fip = b2mx * P.taux1
     fcpi = b2na * P.taux1
     return holdings + fip + fcpi + inv_dir_soc
 
-def _isf_org_int_gen(b2nc, _P):
+
+def _isf_org_int_gen(b2nc, P = law.isf.pme):
     # TODO: rajouter ng (dons à certains organismes d'intérêt général)
-    P = _P.isf.pme
     return b2nc * P.taux2
 
-def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, _P):
+
+def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, borne_max = law.isf.pme.max):
     '''
     Montant de l'impôt avant plafonnement
     '''
-    borne_max = _P.isf.pme.max
     return max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
@@ -148,7 +151,8 @@ def _tot_impot(self, irpp, isf_avant_plaf, crds_holder, csg_holder, prelsoc_cap_
 
 
 def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_cap_bar, fon, ric_holder, rag_holder,
-        rpns_exon_holder, rpns_pvct_holder, rev_cap_lib, imp_lib, _P) :  # TODO: ric? benef indu et comm
+        rpns_exon_holder, rpns_pvct_holder, rev_cap_lib, imp_lib, P = law.isf.plafonnement):
+        # TODO: ric? benef indu et comm
     '''
     Revenus et produits perçus (avant abattement), 
     Utilisé pour calculer le montant du plafonnement de l'ISF
@@ -165,23 +169,22 @@ def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     # # def rev_exon et rev_etranger dans data? ##
     pt = max_(salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon, 0)
-    P = _P.isf.plafonnement
     return pt * P.taux
 
 
-def _decote_isf(ass_isf, _P):
+def _decote_isf(ass_isf, _P, P = law.isf.decote):
     '''
     Décote d el'ISF
     '''
     if _P.datesim.year >= 2013:
-        P = _P.isf.decote
         elig = (ass_isf >= P.min) & (ass_isf <= P.max)
         LB = P.base - P.taux * ass_isf
         return LB * elig
     else:
         return 0 * ass_isf
 
-def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
+
+def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
     """
     Impôt sur la fortune après plafonnement
     """
@@ -189,7 +192,6 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P):
     # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
     # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
-    P = _P.isf.plaf
     # Plafonnement supprimé pour l'année 2012
     if _P.datesim.year <= 2011:
         plafonnement = max_(tot_impot - revetproduits, 0)
@@ -211,9 +213,11 @@ def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
     # # rs est le montant des impôts acquittés hors de France ##
     return min_(-((isf_apres_plaf - b4rs) * ((-irpp) > 0) + (isf_avant_plaf - b4rs) * ((-irpp) <= 0)), 0)
 
+
 # # BOUCLIER FISCAL ##
 
 # # calcul de l'ensemble des revenus du contribuable ##
+
 
 # TODO: à reintégrer dans irpp
 def _rvcm_plus_abat(rev_cat_rvcm, rfr_rvcm):
@@ -227,7 +231,7 @@ def _rvcm_plus_abat(rev_cat_rvcm, rfr_rvcm):
 def _maj_cga(self, frag_impo, nrag_impg,
             nbic_impn, nbic_imps, nbic_defn, nbic_defs,
             nacc_impn, nacc_imps, nacc_defn, nacc_defs,
-            nbnc_impo, nbnc_defi, _P):
+            nbnc_impo, nbnc_defi, P = law.ir.rpns):
     '''
     Majoration pour non adhésion à un centre de gestion agréé
     'foy'
@@ -246,7 +250,7 @@ def _maj_cga(self, frag_impo, nrag_impg,
     # # Totaux
     ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
 
-    maj_cga = max_(0, _P.ir.rpns.cga_taux2 * (ntimp + frag_impo))
+    maj_cga = max_(0, P.cga_taux2 * (ntimp + frag_impo))
     return self.sum_by_entity(maj_cga)
 
 
@@ -327,12 +331,13 @@ def _restitutions(ppe, restit_imp):
     '''
     return ppe + restit_imp
 
+
 def _bouclier_sumimp(bouclier_imp_gen, restitutions):
     '''
     Somme totale des impôts moins restitutions et degrèvements
     '''
     return -bouclier_imp_gen + restitutions
 
-def _bouclier_fiscal(bouclier_sumimp, bouclier_rev, _P):
-    P = _P.bouclier_fiscal
+
+def _bouclier_fiscal(bouclier_sumimp, bouclier_rev, P = law.bouclier_fiscal):
     return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))
