@@ -29,7 +29,7 @@ import numpy as np
 from openfisca_core import simulations
 
 
-def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, survey = None,
+def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, debug_all = False, survey = None,
         tax_benefit_system = None, year = None):
     assert 'idfam' in survey.columns
     assert 'idfoy' in survey.columns
@@ -47,6 +47,7 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
         compact_legislation = compact_legislation,
         date = datetime.date(year, 5, 1),
         debug = debug,
+        debug_all = debug_all,
         tax_benefit_system = tax_benefit_system,
         )
     entity_by_key_plural = simulation.entity_by_key_plural
@@ -77,12 +78,13 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     return simulation
 
 
-def new_simulation_from_array_dict(compact_legislation = None, debug = False, array_dict = None,
+def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
         tax_benefit_system = None, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
         date = datetime.date(year, 1, 1),
         debug = debug,
+        debug_all = debug_all,
         tax_benefit_system = tax_benefit_system,
         )
 

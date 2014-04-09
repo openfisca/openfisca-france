@@ -631,11 +631,12 @@ class Scenario(object):
 
         return json_to_instance
 
-    def new_simulation(self, debug = False):
+    def new_simulation(self, debug = False, debug_all = False):
         simulation = simulations.Simulation(
             compact_legislation = self.compact_legislation,
             date = datetime.date(self.year, 1, 1),
             debug = debug,
+            debug_all = debug_all,
             tax_benefit_system = self.tax_benefit_system,
             )
 
