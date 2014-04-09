@@ -329,7 +329,7 @@ def _ars(self, age_holder, af_nbenf, smic55_holder, br_pf, _P):
                      P.ars.tx1518 * enf_lycee)
     # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
     # ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
-    ars = max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / arsnbenf))
+    ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / max_(1, arsnbenf)))
     # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
     return ars * (ars >= P.ars.seuil_nv)
