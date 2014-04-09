@@ -31,19 +31,7 @@ from openfisca_core.enumerations import Enum
 
 from base import QUIFOY, QUIFAM, QUIMEN, build_column_couple
 
-# Socio-economic data
-# Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
 column_by_name = collections.OrderedDict((
-    build_column_couple('noi', IntCol(label = u"Numéro d'ordre individuel")),
-
-    build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),  # 600001, 600002,
-    build_column_couple('idfoy', IntCol(label = u"Identifiant du foyer")),  # idmen + noi du déclarant
-    build_column_couple('idfam', IntCol(label = u"Identifiant de la famille")),  # idmen + noi du chef de famille
-
-    build_column_couple('quimen', EnumCol(QUIMEN)),
-    build_column_couple('quifoy', EnumCol(QUIFOY)),
-    build_column_couple('quifam', EnumCol(QUIFAM)),
-
     build_column_couple('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
                        cerfa_field = {QUIFOY['vous']: u"1AI",
                                       QUIFOY['conj']: u"1BI",
@@ -148,9 +136,6 @@ column_by_name = collections.OrderedDict((
                     entity = 'foy',
                     val_type = "monetary",
                     cerfa_field = u'1DW')),
-
-
-
 
     build_column_couple('jour_xyz', IntCol(default = 360,
                         entity = "foy",
@@ -1215,101 +1200,5 @@ column_by_name = collections.OrderedDict((
 #                #à hauteur de 62,5 %: HNV    start = datetime.date(2013, 1, 1),
 #             #investissements dans votre entreprise: HNW    start = datetime.date(2013, 1, 1),
 #             #investissements dans votre entreprise avec exploitation directe: HNY    start = datetime.date(2013, 1, 1),
-# pfam only
-    build_column_couple('inactif', BoolCol(entity = 'fam',
-                        label = u"Parent inactif (PAJE-CLCA)")),
 
-    build_column_couple('partiel1', BoolCol(entity = 'fam',
-                         label = u"Parent actif à moins de 50% (PAJE-CLCA)")),
-
-    build_column_couple('partiel2', BoolCol(entity = 'fam',
-                         label = u"Parent actif entre 50% et 80% (PAJE-CLCA)")),
-
-    build_column_couple('categ_inv', IntCol(label = u"Catégorie de handicap (AEEH)")),
-
-    build_column_couple('opt_colca', BoolCol(entity = 'fam',
-                          label = u"Opte pour le COLCA")),
-
-    build_column_couple('empl_dir', BoolCol(entity = 'fam',
-                         label = u"Emploi direct (CLCMG)")),
-
-    build_column_couple('ass_mat', BoolCol(entity = 'fam',
-                        label = u"Assistante maternelle (CLCMG)")),
-
-    build_column_couple('gar_dom', BoolCol(entity = 'fam',
-                        label = u"Garde à domicile (CLCMG)")),
-
-
-
-# # ISF ##
-
-# # Immeubles bâtis ##
-    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary")),
-    build_column_couple('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary")),
-# # non bâtis ##
-    build_column_couple('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary")),
-    build_column_couple('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis : biens ruraux loués à long termes", val_type = "monetary")),
-    build_column_couple('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary")),
-    build_column_couple('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis : autres biens", val_type = "monetary")),
-
-# # droits sociaux- valeurs mobilières-liquidités- autres meubles ##
-    build_column_couple('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary")),
-    build_column_couple('b1cb', IntCol(entity = 'foy', label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type = "monetary")),
-    build_column_couple('b1cd', IntCol(entity = 'foy', label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type = "monetary")),
-    build_column_couple('b1ce', IntCol(entity = 'foy', label = u"Autres valeurs mobilières", val_type = "monetary")),
-    build_column_couple('b1cf', IntCol(entity = 'foy', label = u"Liquidités", val_type = "monetary")),
-    build_column_couple('b1cg', IntCol(entity = 'foy', label = u"Autres biens meubles", val_type = "monetary")),
-
-    build_column_couple('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : contrats d'assurance-vie", val_type = "monetary")),
-
-#    b1ch
-#    b1ci
-#    b1cj
-#    b1ck
-
-
-# # passifs et autres réduc ##
-    build_column_couple('b2gh', IntCol(entity = 'foy', label = u"Total du passif et autres déductions", val_type = "monetary")),
-
-# # réductions ##
-    build_column_couple('b2mt', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary")),
-    build_column_couple('b2ne', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary")),
-    build_column_couple('b2mv', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings" , val_type = "monetary")),
-    build_column_couple('b2nf', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings", val_type = "monetary")),
-    build_column_couple('b2mx', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FIP", val_type = "monetary")),
-    build_column_couple('b2na', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type = "monetary")),
-    build_column_couple('b2nc', IntCol(entity = 'foy', label = u"Réductions pour dons à certains organismes d'intérêt général", val_type = "monetary")),
-
-# #  montant impôt acquitté hors de France ##
-    build_column_couple('b4rs', IntCol(entity = 'foy', label = u"Montant de l'impôt acquitté hors de France", val_type = "monetary")),
-
-# # BOUCLIER FISCAL ##
-
-    build_column_couple('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    build_column_couple('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-
-    build_column_couple('tax_fonc', IntCol(entity = 'foy', label = u"Taxe foncière", val_type = "monetary")),
-    build_column_couple('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-
-
-
-    build_column_couple('etr', IntCol()),
-    build_column_couple('coloc', BoolCol(label = u"Vie en colocation")),
-    build_column_couple('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
-                 entity = 'ind',
-                 enum = Enum([u"Non renseigné/non pertinent",
-                              u"Exonéré",
-                              u"Taux réduit",
-                              u"Taux plein"]),
-                default = 3)),
-
-    build_column_couple('aer', IntCol(label = u"Allocation équivalent retraite (AER)")),  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
-    build_column_couple('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)")),
-    build_column_couple('f5sq', IntCol()),
-
-    build_column_couple('zthabm', IntCol(entity = 'men')),  # TODO: Devrait être renommée tax_hab
-
-    build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
-
-    # ('tax_hab', IntCol()),
     ))

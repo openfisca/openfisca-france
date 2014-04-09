@@ -162,6 +162,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
+                    u"""categ_inv""",  # Catégorie de handicap (AEEH)
+                    u"""coloc""",  # Vie en colocation
+                    u"""aer""",  # Allocation équivalent retraite (AER)
+                    u"""ass""",  # Allocation de solidarité spécifique (ASS)
+                    u"""f5sq""",
+                    u"""adoption""",  # Enfant adopté
                     u"""inv""",  # Invalide
                     u"""alt""",  # Enfant en garde alternée
                     u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
@@ -173,13 +179,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f1tw""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans
                     u"""f1tx""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans
                     u"""sal_pen_exo_etr""",  # Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
-                    u"""categ_inv""",  # Catégorie de handicap (AEEH)
-                    u"""etr""",
-                    u"""coloc""",  # Vie en colocation
-                    u"""aer""",  # Allocation équivalent retraite (AER)
-                    u"""ass""",  # Allocation de solidarité spécifique (ASS)
-                    u"""f5sq""",
-                    u"""adoption""",  # Enfant adopté
                     u"""f3vd""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
                     u"""f3vf""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
                     u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
@@ -191,6 +190,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
+                    u"""etr""",
                     ]),
                 ]),
             ]),

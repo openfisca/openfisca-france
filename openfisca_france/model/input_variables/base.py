@@ -22,6 +22,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import collections
+
+
+from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum
 
 from ... import entities
@@ -45,3 +49,63 @@ def build_column_couple(name, column):
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
 QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
+
+
+# Socio-economic data
+# Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
+column_by_name = collections.OrderedDict((
+    build_column_couple('noi', IntCol(label = u"Numéro d'ordre individuel")),
+
+    build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),  # 600001, 600002,
+    build_column_couple('idfoy', IntCol(label = u"Identifiant du foyer")),  # idmen + noi du déclarant
+    build_column_couple('idfam', IntCol(label = u"Identifiant de la famille")),  # idmen + noi du chef de famille
+
+    build_column_couple('quimen', EnumCol(QUIMEN)),
+    build_column_couple('quifoy', EnumCol(QUIFOY)),
+    build_column_couple('quifam', EnumCol(QUIFAM)),
+
+    # Prestations familiales
+    build_column_couple('inactif', BoolCol(entity = 'fam',
+                        label = u"Parent inactif (PAJE-CLCA)")),
+
+    build_column_couple('partiel1', BoolCol(entity = 'fam',
+                         label = u"Parent actif à moins de 50% (PAJE-CLCA)")),
+
+    build_column_couple('partiel2', BoolCol(entity = 'fam',
+                         label = u"Parent actif entre 50% et 80% (PAJE-CLCA)")),
+
+    build_column_couple('categ_inv', IntCol(label = u"Catégorie de handicap (AEEH)")),
+
+    build_column_couple('opt_colca', BoolCol(entity = 'fam',
+                          label = u"Opte pour le COLCA")),
+
+    build_column_couple('empl_dir', BoolCol(entity = 'fam',
+                         label = u"Emploi direct (CLCMG)")),
+
+    build_column_couple('ass_mat', BoolCol(entity = 'fam',
+                        label = u"Assistante maternelle (CLCMG)")),
+
+    build_column_couple('gar_dom', BoolCol(entity = 'fam',
+                        label = u"Garde à domicile (CLCMG)")),
+
+    # Autres
+    build_column_couple('coloc', BoolCol(label = u"Vie en colocation")),
+    build_column_couple('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
+                 entity = 'ind',
+                 enum = Enum([u"Non renseigné/non pertinent",
+                              u"Exonéré",
+                              u"Taux réduit",
+                              u"Taux plein"]),
+                default = 3)),
+
+    build_column_couple('aer', IntCol(label = u"Allocation équivalent retraite (AER)")),  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
+    build_column_couple('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)")),
+    build_column_couple('f5sq', IntCol()),
+
+    build_column_couple('zthabm', IntCol(entity = 'men')),  # TODO: Devrait être renommée tax_hab
+
+    build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
+
+    # ('tax_hab', IntCol()),
+
+    ))
