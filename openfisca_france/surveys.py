@@ -30,7 +30,7 @@ from openfisca_core import simulations
 
 
 def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, debug_all = False, survey = None,
-        tax_benefit_system = None, year = None):
+        tax_benefit_system = None, trace = False, year = None):
     assert 'idfam' in survey.columns
     assert 'idfoy' in survey.columns
     assert 'idmen' in survey.columns
@@ -49,6 +49,7 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
         debug = debug,
         debug_all = debug_all,
         tax_benefit_system = tax_benefit_system,
+        trace = trace,
         )
     entity_by_key_plural = simulation.entity_by_key_plural
 
@@ -79,13 +80,14 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
 
 
 def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
-        tax_benefit_system = None, year = None):
+        tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
         date = datetime.date(year, 1, 1),
         debug = debug,
         debug_all = debug_all,
         tax_benefit_system = tax_benefit_system,
+        trace = trace,
         )
 
     assert len(set([len(x) for x in array_dict.itervalues() if len(x) != 1])) == 1, 'Arrays do not have the same size'
