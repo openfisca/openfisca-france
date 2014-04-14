@@ -65,39 +65,31 @@ def _credits_impot_2010(creimp, accult, percvm, direpa, mecena, prlire, aidper,
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
 
 
-def _credits_impot_2011(creimp, accult, percvm, direpa, mecena, prlire, aidper,
-    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):  # TODO: check because totally unchecked
+def _credits_impot_2011(prlire, creimp, accult ):  # TODO: check because totally unchecked
     """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
     log.warning("TODO: totally unchecked")
-    return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
-        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
-        autent)
+    return prlire + creimp + accult
 
 
-def _credits_impot_2012(prlire):
+def _credits_impot_2012(prlire, creimp, accult ):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
     log.warning("TODO: incomplete")
-    return prlire
+    return prlire + creimp + accult
 
 
-def _credits_impot_2013(prlire):
+def _credits_impot_2013(prlire, creimp, accult ):
+#TODO: missing 1 niche
+#TODO: create new function for f3VV (new legislation : non-resident_45%)
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
     log.warning("TODO: not complete")
-    return prlire
+    return prlire + creimp + accult
+
+
+
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
     return nbF + nbJ + nbR + nbH / 2
-
-
-
-
-def _credits_impot_2005_2006(creimp, divide, direpa, accult, mecena, prlire, aidper,
-    quaenv, acqgpl, drbail, ci_garext, preetu, assloy, aidmob, jeunes):
-    """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
-    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
-        quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
-
 
 
 def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th):
@@ -185,7 +177,7 @@ def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8uz
 #                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
 #
 #    elif _P.datesim.year == 2007:
-#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
+#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8thhttp://www3.finances.gouv.fr/calcul_impot/2012/complet/index.htm
 #                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 #
 #
@@ -224,14 +216,12 @@ def _divide(marpac, f2dc, f2gr, _P):
     max1 = P.max * (marpac + 1)
     return min_(P.taux * (f2dc + f2gr), max1)
 
-def _percvm(f3vv, _P):
+def _percvm(f3vv_end_2010, _P):
     '''
     Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
-    2010-
+    -2010
     '''
-    # TODO: check 2011
-    if _P.datesim.year >= 2011:
-        return 0 * f3vv
+    # TODO: check when it starts
     return _P.ir.credits_impot.percvm.taux * f3vv
 
 def _direpa(f2bg):

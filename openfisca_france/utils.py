@@ -288,6 +288,8 @@ def list_ultimate_dependancies(variable_name, date):
 
 
 def look_for(variable, year):
+
+    '''Attention les liens changent entre la version simplifiée'''
     import re
     matched = re.match('^f[1-8][a-z]{2}', variable)
 
@@ -299,7 +301,8 @@ def look_for(variable, year):
     print "case", case
     import webbrowser
     url_base = "http://www3.finances.gouv.fr/calcul_impot/" + str(year+1) + "/aides/"
-
+    if section_number == "2":
+        url_section = "capitaux_mobiliers.htm#"
     if section_number == "3":
         url_section = "gains_c.htm"
     if section_number == "4":
@@ -307,11 +310,11 @@ def look_for(variable, year):
     # if section_number =="5":
     #      url_section = "charges_s.htm#"
     if section_number =="6":
-         url_section = "charges_s.htm#"
+         url_section = "charges.htm#"
     if section_number =="7":
-         url_section = "reductions_s.htm#"
+         url_section = "reductions.htm#"
     if section_number =="8":
-         url_section = "autres_imputations_s.htm#"
+         url_section = "autres_imputations.htm#"
 
     if section_number in ["3","4"]:
         url = url_base + url_section
@@ -330,5 +333,5 @@ if __name__ == '__main__':
 #    print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
 #    print list_ultimate_dependancies('age', date(2012, 1, 1))
 
-    for year in range(2013, 2006,-1):
-        look_for("f7ac", year)
+    for year in range(2013, 2009,-1):
+        look_for("f2bg", year)
