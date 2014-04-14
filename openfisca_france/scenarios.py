@@ -377,7 +377,7 @@ class Scenario(object):
                 error = {}
             for individu_id in remaining_individus_id:
                 error.setdefault('individus', {})[individu_id] = state._(u"Individual is missing from {}").format(
-                    u' & '.join(
+                    state._(u' & ').join(
                         word
                         for word in [
                             u'familles' if individu_id in familles_individus_id else None,
