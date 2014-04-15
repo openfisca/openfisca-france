@@ -222,7 +222,7 @@ def _percvm(f3vv_end_2010, _P):
     -2010
     '''
     # TODO: check when it starts
-    return _P.ir.credits_impot.percvm.taux * f3vv
+    return _P.ir.credits_impot.percvm.taux * f3vv_end_2010
 
 def _direpa(f2bg):
     '''
