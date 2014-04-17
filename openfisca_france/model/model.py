@@ -1034,7 +1034,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('cotsoc_bar', FloatCol(function = cm._cotsoc_bar, label = u"Cotisations sociales sur les revenus du capital imposés au barème")),
     build_simple_formula_couple('cotsoc_lib', FloatCol(function = cm._cotsoc_lib, label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire")),
     build_simple_formula_couple('rev_cap', FloatCol(function = cm._rev_cap, label = u"Revenus du patrimoine", url = u"http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital")),
-    build_simple_formula_couple('psoc', FloatCol(function = cm._psoc, entity = 'fam', label = u"Total des prestations sociales"), url = u"http://fr.wikipedia.org/wiki/Prestation_sociale"),
+    build_simple_formula_couple('psoc', FloatCol(function = cm._psoc, entity = 'fam', label = u"Total des prestations sociales", url = u"http://fr.wikipedia.org/wiki/Prestation_sociale")),
     build_simple_formula_couple('prelsoc_cap', FloatCol(function = cm._prelsoc_cap, label = u"Prélèvements sociaux sur les revenus du capital", url = u"ttp://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS")),
     build_simple_formula_couple('pfam', FloatCol(function = cm._pfam, entity = 'fam', label = u"Total des prestations familiales", url = u"http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html")),
     build_simple_formula_couple('mini', FloatCol(function = cm._mini, entity = 'fam', label = u"Minima sociaux", url = u"http://fr.wikipedia.org/wiki/Minima_sociaux")),
