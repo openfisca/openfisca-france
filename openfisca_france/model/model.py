@@ -284,22 +284,22 @@ prestation_by_name = collections.OrderedDict((
     # Revenus du capital soumis au prélèvement libératoire
     build_simple_formula_couple('csg_cap_lib', FloatCol(function = cs_capital._csg_cap_lib, label = u"CSG sur les revenus du capital soumis au prélèvement libératoire", url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e")),
     build_simple_formula_couple('crds_cap_lib', FloatCol(function = cs_capital._crds_cap_lib, label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire", url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale")),
-    build_simple_formula_couple('prelsoc_cap_lib', FloatCol(function = cs_capital._prelsoc_cap_lib, label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot;jsessionid=NDKR1GKWZPH3FQFIEMQSFFWAVARXAIV1?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&communaute=1&impot=CS&paf_gear_id=500018&temNvlPopUp=true")),
+    build_simple_formula_couple('prelsoc_cap_lib', FloatCol(function = cs_capital._prelsoc_cap_lib, label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS")),
 
     # Revenus du capital soumis au barème
     build_simple_formula_couple('csg_cap_bar', FloatCol(function = cs_capital._csg_cap_bar, label = u"CSG sur les revenus du capital soumis au barème", url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e")),
     build_simple_formula_couple('crds_cap_bar', FloatCol(function = cs_capital._crds_cap_bar, label = u"CRDS sur les revenus du capital soumis au barème", url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale")),
-    build_simple_formula_couple('prelsoc_cap_bar', FloatCol(function = cs_capital._prelsoc_cap_bar, label = u"Prélèvements sociaux sur les revenus du capital soumis au barème", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot;jsessionid=NDKR1GKWZPH3FQFIEMQSFFWAVARXAIV1?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&communaute=1&impot=CS&paf_gear_id=500018&temNvlPopUp=true")),
+    build_simple_formula_couple('prelsoc_cap_bar', FloatCol(function = cs_capital._prelsoc_cap_bar, label = u"Prélèvements sociaux sur les revenus du capital soumis au barème", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS")),
 
     # Revenus fonciers (sur les foyers)
     build_simple_formula_couple('csg_fon', FloatCol(function = cs_capital._csg_fon, entity = "foy", label = u"CSG sur les revenus fonciers", url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e")),
     build_simple_formula_couple('crds_fon', FloatCol(function = cs_capital._crds_fon, entity = "foy", label = u"CRDS sur les revenus fonciers", url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml")),
-    build_simple_formula_couple('prelsoc_fon', FloatCol(function = cs_capital._prelsoc_fon, entity = "foy", label = u"Prélèvements sociaux sur les revenus fonciers", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot;jsessionid=NDKR1GKWZPH3FQFIEMQSFFWAVARXAIV1?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&communaute=1&impot=CS&paf_gear_id=500018&temNvlPopUp=true")),
+    build_simple_formula_couple('prelsoc_fon', FloatCol(function = cs_capital._prelsoc_fon, entity = "foy", label = u"Prélèvements sociaux sur les revenus fonciers", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS")),
 
     # Plus values de cessions de valeurs mobilières
     build_simple_formula_couple('csg_pv_mo', FloatCol(function = cs_capital._csg_pv_mo, entity = "foy", label = u"CSG sur les plus-values de cession de valeurs mobilières", url = u"http://vosdroits.service-public.fr/particuliers/F21618.xhtml")),
     build_simple_formula_couple('crds_pv_mo', FloatCol(function = cs_capital._crds_pv_mo, entity = "foy", label = u"CRDS sur les plus-values de cession de valeurs mobilières", url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale")),
-    build_simple_formula_couple('prelsoc_pv_mo', FloatCol(function = cs_capital._prelsoc_pv_mo, entity = "foy", label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot;jsessionid=NDKR1GKWZPH3FQFIEMQSFFWAVARXAIV1?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&communaute=1&impot=CS&paf_gear_id=500018&temNvlPopUp=true")),
+    build_simple_formula_couple('prelsoc_pv_mo', FloatCol(function = cs_capital._prelsoc_pv_mo, entity = "foy", label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS")),
 
     # Plus-values immobilières
     build_simple_formula_couple('csg_pv_immo', FloatCol(function = cs_capital._csg_pv_immo, entity = "foy", label = u"CSG sur les plus-values immobilières", url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e")),
@@ -538,7 +538,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('iai', FloatCol(function = ir._iai, entity = 'foy', label = u"Impôt avant imputations")),
     build_simple_formula_couple('cehr', FloatCol(function = ir._cehr, entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus")),
  #   build_simple_formula_couple('cesthra', FloatCol(function = ir._cesthra, entity = 'foy', start = date(2013, 1, 1))), PLF 2013, amendement rejeté
-    build_simple_formula_couple('imp_lib', FloatCol(function = ir._imp_lib, entity = 'foy', url = u"http://www.impots.gouv.fr/portal/dgi/public/popup;jsessionid=LCT2K5DJHYKG5QFIEIPSFFQ?typePage=cpr02&sfid=501&espId=1&communaute=1&impot=CS&temNvlPopUp=true", end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
+    build_simple_formula_couple('imp_lib', FloatCol(function = ir._imp_lib, entity = 'foy', url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS", end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
     build_simple_formula_couple('assiette_vente', FloatCol(function = ir._micro_social_vente, entity = 'foy', start = date(2009, 1, 1))),
     build_simple_formula_couple('assiette_service', FloatCol(function = ir._micro_social_service, entity = 'foy', start = date(2009, 1, 1))),
     build_simple_formula_couple('assiette_proflib', FloatCol(function = ir._micro_social_proflib, entity = 'foy', start = date(2009, 1, 1))),
@@ -707,7 +707,7 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('ir_pv_immo', FloatCol(function = immo._ir_pv_immo,
                               entity = 'foy',
-                              label = u"Impôt sur le revenu afférent à la plus-value immobilière", url = u"http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157&temNvlPopUp=true")),
+                              label = u"Impôt sur le revenu afférent à la plus-value immobilière", url = u"http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157")),
 
     ############################################################
     # Impôt de solidarité sur la fortune
@@ -1035,7 +1035,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('cotsoc_lib', FloatCol(function = cm._cotsoc_lib, label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire")),
     build_simple_formula_couple('rev_cap', FloatCol(function = cm._rev_cap, label = u"Revenus du patrimoine", url = u"http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital")),
     build_simple_formula_couple('psoc', FloatCol(function = cm._psoc, entity = 'fam', label = u"Total des prestations sociales"), url = u"http://fr.wikipedia.org/wiki/Prestation_sociale"),
-    build_simple_formula_couple('prelsoc_cap', FloatCol(function = cm._prelsoc_cap, label = u"Prélèvements sociaux sur les revenus du capital", url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot;jsessionid=NDKR1GKWZPH3FQFIEMQSFFWAVARXAIV1?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&communaute=1&impot=CS&paf_gear_id=500018&temNvlPopUp=true")),
+    build_simple_formula_couple('prelsoc_cap', FloatCol(function = cm._prelsoc_cap, label = u"Prélèvements sociaux sur les revenus du capital", url = u"ttp://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS")),
     build_simple_formula_couple('pfam', FloatCol(function = cm._pfam, entity = 'fam', label = u"Total des prestations familiales", url = u"http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html")),
     build_simple_formula_couple('mini', FloatCol(function = cm._mini, entity = 'fam', label = u"Minima sociaux", url = u"http://fr.wikipedia.org/wiki/Minima_sociaux")),
     build_simple_formula_couple('logt', FloatCol(function = cm._logt, entity = 'fam', label = u"Allocations logements", url = u"http://vosdroits.service-public.fr/particuliers/N20360.xhtml" )),
