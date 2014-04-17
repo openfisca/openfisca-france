@@ -178,7 +178,7 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
 
     # Salaires
-    build_simple_formula_couple('type_sal', EnumCol(function = cs_travail._type_sal, label = u"Catégorie de salarié",
+    build_simple_formula_couple('type_sal', EnumCol(function = cs_travail._type_sal, label = u"Catégorie de salarié", url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France"
         enum = Enum([
             u"prive_non_cadre",
             u"prive_cadre",
@@ -200,22 +200,23 @@ prestation_by_name = collections.OrderedDict((
         FloatCol(label = u"Salaire brut ou traitement indiciaire brut", url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"),
         ),
 
-    build_simple_formula_couple('primes', FloatCol(function = cs_travail._primes, label = u"Primes et indemnités des fonctionnaires")),
-    build_simple_formula_couple('sal_h_b', FloatCol(function = cs_travail._sal_h_b, label = u"Salaire horaire brut")),
+    build_simple_formula_couple('primes', FloatCol(function = cs_travail._primes, label = u"Primes et indemnités des fonctionnaires", url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml")),
+    build_simple_formula_couple('sal_h_b', FloatCol(function = cs_travail._sal_h_b, label = u"Salaire horaire brut", url = u"http://www.les-horaires.fr/pratique/smic-horaire.php")),
     build_simple_formula_couple('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
                                     label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
+                                    url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
                                     enum = Enum([u"Non pertinent",
                                                  u"Moins de 10 salariés",
                                                  u"De 10 à 19 salariés",
                                                  u"De 20 à 249 salariés",
                                                  u"Plus de 250 salariés"]))),
 
-    build_simple_formula_couple('cotpat_contrib', FloatCol(function = cs_travail._cotpat_contrib, label = u"Cotisations sociales patronales contributives")),
-    build_simple_formula_couple('taux_accident_travail', FloatCol(function = cs_travail._taux_accident_travail, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
-    build_simple_formula_couple('cotpat_accident', FloatCol(function = cs_travail._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles")),
-    build_simple_formula_couple('cotpat_noncontrib', FloatCol(function = cs_travail._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives")),
-    build_simple_formula_couple('cotpat_main_d_oeuvre', FloatCol(function = cs_travail._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre")),
-    build_simple_formula_couple('cotpat_transport', FloatCol(function = cs_travail._cotpat_transport, label = u"Cotisations sociales patronales: versement transport")),
+    build_simple_formula_couple('cotpat_contrib', FloatCol(function = cs_travail._cotpat_contrib, label = u"Cotisations sociales patronales contributives", url = u"http://fr.wikipedia.org/wiki/Cotisations_sociales")),
+    build_simple_formula_couple('taux_accident_travail', FloatCol(function = cs_travail._taux_accident_travail, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles", url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument")),
+    build_simple_formula_couple('cotpat_accident', FloatCol(function = cs_travail._cotpat_accident, label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles", url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument")),
+    build_simple_formula_couple('cotpat_noncontrib', FloatCol(function = cs_travail._cotpat_noncontrib, label = u"Cotisations sociales patronales non contributives", url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument")),
+    build_simple_formula_couple('cotpat_main_d_oeuvre', FloatCol(function = cs_travail._cotpat_main_d_oeuvre, label = u"Cotisations sociales patronales main d'oeuvre", url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument")),
+    build_simple_formula_couple('cotpat_transport', FloatCol(function = cs_travail._cotpat_transport, label = u"Cotisations sociales patronales: versement transport", url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument")),
     build_simple_formula_couple('cotpat', FloatCol(function = cs_travail._cotpat, label = u"Cotisations sociales patronales", url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=254&definition=Cotisations+patronales")),
     build_simple_formula_couple('alleg_fillon', FloatCol(function = cs_travail._alleg_fillon, label = u"Allègements Fillon sur les bas salaires", url = u"http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/l-allegement-de-charges-patronales,1031.html")),
     build_simple_formula_couple('alleg_cice', FloatCol(function = cs_travail._alleg_cice, label = u"Crédit d'impôt compétitivité emploi", url = u"http://www.economie.gouv.fr/ma-competitivite/quest-que-credit-dimpot-pour-competitivite-et-lemploi")),
@@ -225,7 +226,7 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('cotsal_contrib', FloatCol(function = cs_travail._cotsal_contrib, label = u"Cotisations sociales salariales contributives", url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=255&definition=Cotisations+salariales")),
     build_simple_formula_couple('cotsal_noncontrib', FloatCol(function = cs_travail._cotsal_noncontrib, label = u"Cotisations sociales non salariales non-contributives")),
-    build_simple_formula_couple('cotsal', FloatCol(function = cs_travail._cotsal, label = u"Cotisations sociales salariales")),
+    build_simple_formula_couple('cotsal', FloatCol(function = cs_travail._cotsal, label = u"Cotisations sociales salariales", url = u"http://vosdroits.service-public.fr/particuliers/F2302.xhtml#N100F8")),
 
     build_simple_formula_couple('csgsald', FloatCol(function = cs_travail._csgsald, label = u"CSG déductible sur les salaires", url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml")),
     build_simple_formula_couple('csgsali', FloatCol(function = cs_travail._csgsali, label = u"CSG imposables sur les salaires", url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml")),
@@ -234,17 +235,17 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('salnet', FloatCol(function = cs_travail._salnet, label = u"Salaires nets d'après définition INSEE", url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html")),
 
     # Fonctionnaires
-    build_simple_formula_couple('indemnite_residence', FloatCol(function = cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)")),
+    build_simple_formula_couple('indemnite_residence', FloatCol(function = cs_travail._indemnite_residence, label = u"Indemnité de résidence (fonction publique)", url = u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48")),
     build_simple_formula_couple('supp_familial_traitement', FloatCol(function = cs_travail._supp_familial_traitement,
-        label = u"Supplément familial de traitement (fonction publique)", start = date(2011, 1, 1))),  # TODO: check this curious starting date
-    build_simple_formula_couple('cot_pat_pension_civile', FloatCol(function = cs_travail._cot_pat_pension_civile, label = u"Cotisation patronale pension civile")),
-    build_simple_formula_couple('cot_sal_pension_civile', FloatCol(function = cs_travail._cot_sal_pension_civile, label = u"Cotisation salariale pension civile")),
-    build_simple_formula_couple('cot_pat_rafp', FloatCol(function = cs_travail._cot_pat_rafp, label = u"Cotisation patronale RAFP")),
-    build_simple_formula_couple('cot_sal_rafp', FloatCol(function = cs_travail._cot_sal_rafp, label = u"Cotisation salariale RAFP")),
+        label = u"Supplément familial de traitement (fonction publique)", url= u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48", start = date(2011, 1, 1))),  # TODO: check this curious starting date
+    build_simple_formula_couple('cot_pat_pension_civile', FloatCol(function = cs_travail._cot_pat_pension_civile, label = u"Cotisation patronale pension civile", url = u"http://www.ac-besancon.fr/spip.php?article2662")),
+    build_simple_formula_couple('cot_sal_pension_civile', FloatCol(function = cs_travail._cot_sal_pension_civile, label = u"Cotisation salariale pension civile", url = u"http://www.ac-besancon.fr/spip.php?article2662")),
+    build_simple_formula_couple('cot_pat_rafp', FloatCol(function = cs_travail._cot_pat_rafp, label = u"Cotisation patronale RAFP", url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223")),
+    build_simple_formula_couple('cot_sal_rafp', FloatCol(function = cs_travail._cot_sal_rafp, label = u"Cotisation salariale RAFP", url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223")),
 
     # Revenus non-salariés
     build_simple_formula_couple('rev_microsocial', FloatCol(function = cs_travail._rev_microsocial,
-        label = u"Revenu net des cotisations sociales pour le régime microsocial", start = date(2009, 1, 1))),
+        label = u"Revenu net des cotisations sociales pour le régime microsocial", url = u"http://www.apce.com/pid6137/regime-micro-social.html", start = date(2009, 1, 1))),
 
     # Allocations chômage
     build_select_formula_couple(
@@ -277,9 +278,9 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('csgrstd', FloatCol(function = cs_remplac._csgrstd, label = u"CSG déductible sur les pensions de retraite", url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null")),
     build_simple_formula_couple('csgrsti', FloatCol(function = cs_remplac._csgrsti, label = u"CSG imposable sur les pensions de retraite", url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null")),
     build_simple_formula_couple('crdsrst', FloatCol(function = cs_remplac._crdsrst, label = u"CRDS sur les pensions de retraite", url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension")),
-    build_simple_formula_couple('rst', FloatCol(function = cs_remplac._rst, label = u"Pensions de retraite imposables")),
+    build_simple_formula_couple('rst', FloatCol(function = cs_remplac._rst, label = u"Pensions de retraite imposables", url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml")),
     build_simple_formula_couple('rstnet', FloatCol(function = cs_remplac._rstnet, label = u"Pensions de retraite nettes", url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml")),
-    build_simple_formula_couple('casa', FloatCol(function = cs_remplac._casa, label = u"Contribution additionnelle de solidarité et d'autonomie", start = date(2013, 4, 1))),
+    build_simple_formula_couple('casa', FloatCol(function = cs_remplac._casa, label = u"Contribution additionnelle de solidarité et d'autonomie", url = u"http://www.service-public.fr/actualites/002691.html", start = date(2013, 4, 1))),
 
     # Revenus du capital soumis au prélèvement libératoire
     build_simple_formula_couple('csg_cap_lib', FloatCol(function = cs_capital._csg_cap_lib, label = u"CSG sur les revenus du capital soumis au prélèvement libératoire", url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e")),
@@ -304,7 +305,7 @@ prestation_by_name = collections.OrderedDict((
     # Plus-values immobilières
     build_simple_formula_couple('csg_pv_immo', FloatCol(function = cs_capital._csg_pv_immo, entity = "foy", label = u"CSG sur les plus-values immobilières", url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e")),
     build_simple_formula_couple('crds_pv_immo', FloatCol(function = cs_capital._crds_pv_immo, entity = "foy", label = u"CRDS sur les plus-values immobilières", url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale")),
-    build_simple_formula_couple('prelsoc_pv_immo', FloatCol(function = cs_capital._prelsoc_pv_immo, entity = "foy", label = u"Prélèvements sociaux sur les plus-values immobilières")),
+    build_simple_formula_couple('prelsoc_pv_immo', FloatCol(function = cs_capital._prelsoc_pv_immo, entity = "foy", label = u"Prélèvements sociaux sur les plus-values immobilières", url = u"http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere")),
 
     # Réforme Landais-Pikettty-Saez TODO: move out form here
     build_simple_formula_couple('base_csg', FloatCol(function = cs_lps._base_csg)),
@@ -353,11 +354,11 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('celdiv', BoolCol(function = ir._celdiv, entity = 'foy')),
     build_simple_formula_couple('veuf', BoolCol(function = ir._veuf, entity = 'foy')),
     build_simple_formula_couple('jveuf', BoolCol(function = ir._jveuf, entity = 'foy')),
-    build_simple_formula_couple('nbptr', FloatCol(function = ir._nbptr, entity = 'foy', label = u"Nombre de parts")),
-    build_simple_formula_couple('rbg', FloatCol(function = ir._rbg, entity = 'foy', label = u"Revenu brut global")),
+    build_simple_formula_couple('nbptr', FloatCol(function = ir._nbptr, entity = 'foy', label = u"Nombre de parts", url = u"http://vosdroits.service-public.fr/particuliers/F2705.xhtml")),
+    build_simple_formula_couple('rbg', FloatCol(function = ir._rbg, entity = 'foy', label = u"Revenu brut global", url = u"http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html")),
 
     # charges déductibles
-    build_simple_formula_couple('cd_penali', FloatCol(function = cd._cd_penali, entity = 'foy')),
+    build_simple_formula_couple('cd_penali', FloatCol(function = cd._cd_penali, entity = 'foy', url = u"http://frederic.anne.free.fr/Cours/ITV.htm")),
     build_simple_formula_couple('cd_acc75a', FloatCol(function = cd._cd_acc75a, entity = 'foy')),
     build_simple_formula_couple('cd_percap', FloatCol(function = cd._cd_percap, entity = 'foy', start = date(2002, 1, 1), end = date(2006, 12, 31))),
     build_simple_formula_couple('cd_deddiv', FloatCol(function = cd._cd_deddiv, entity = 'foy')),
@@ -368,22 +369,22 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('cd_ecodev', FloatCol(function = cd._cd_ecodev, entity = 'foy', start = date(2007, 1, 1), end = date(2008, 12, 31))),
     build_simple_formula_couple('cd_grorep', FloatCol(function = cd._cd_grorep, entity = 'foy', start = date(2009, 1, 1))),
 
-    build_simple_formula_couple('charges_deduc_reforme', FloatCol(function = cd._charges_deduc_reforme, entity = 'foy')),
-    build_simple_formula_couple('charge_loyer', FloatCol(function = cd._charge_loyer, entity = 'foy')),
+    build_simple_formula_couple('charges_deduc_reforme', FloatCol(function = cd._charges_deduc_reforme, entity = 'foy', url = u"http://www.bfmtv.com/economie/reforme-fiscale-csg-bientot-plus-deductible-l-impot-revenu-700700.html")),
+    build_simple_formula_couple('charge_loyer', FloatCol(function = cd._charge_loyer, entity = 'foy', url = u"http://vosdroits.service-public.fr/particuliers/F1991.xhtml")),
 
     build_simple_formula_couple('rbg_int', FloatCol(function = cd._rbg_int, entity = 'foy', label = u"Revenu brut global intermédiaire")),
-    build_simple_formula_couple('cd1', FloatCol(function = cd._cd1, entity = 'foy', label = u"Charges déductibles non plafonnées")),
-    build_simple_formula_couple('cd2', FloatCol(function = cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002, 1, 1), end = date(2008, 12, 31))),
-    build_simple_formula_couple('charges_deduc', FloatCol(function = cd._charges_deduc, entity = 'foy', label = u"Charges déductibles")),
+    build_simple_formula_couple('cd1', FloatCol(function = cd._cd1, entity = 'foy', label = u"Charges déductibles non plafonnées", url = u"http://impotsurlerevenu.org/definitions/215-charge-deductible.php")),
+    build_simple_formula_couple('cd2', FloatCol(function = cd._cd2, entity = 'foy', label = u"Charges déductibles plafonnées", start = date(2002, 1, 1), end = date(2008, 12, 31), url = u"http://impotsurlerevenu.org/definitions/215-charge-deductible.php")),
+    build_simple_formula_couple('charges_deduc', FloatCol(function = cd._charges_deduc, entity = 'foy', label = u"Charges déductibles", url = u"http://impotsurlerevenu.org/definitions/215-charge-deductible.php")),
 
-    build_simple_formula_couple('rfr_cd', FloatCol(function = cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence")),  # TODO:
+    build_simple_formula_couple('rfr_cd', FloatCol(function = cd._rfr_cd, entity = 'foy', label = u"Charges déductibles entrant dans le revenus fiscal de référence", url = u"http://impotsurlerevenu.org/definitions/215-charge-deductible.php")),  # TODO:
 
-    build_simple_formula_couple('rng', FloatCol(function = ir._rng, entity = 'foy', label = u"Revenu net global")),
-    build_simple_formula_couple('rni', FloatCol(function = ir._rni, entity = 'foy', label = u"Revenu net imposable")),
+    build_simple_formula_couple('rng', FloatCol(function = ir._rng, entity = 'foy', label = u"Revenu net global", url = u"http://impotsurlerevenu.org/definitions/114-revenu-net-global.php")),
+    build_simple_formula_couple('rni', FloatCol(function = ir._rni, entity = 'foy', label = u"Revenu net imposable", url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php")),
 
-    build_simple_formula_couple('abat_spe', FloatCol(function = ir._abat_spe, entity = 'foy', label = u"Abattements spéciaux")),
-    build_simple_formula_couple('alloc', FloatCol(function = ir._alloc, entity = 'foy', label = u"Allocation familiale pour l'ir")),
-    build_simple_formula_couple('deficit_ante', FloatCol(function = ir._deficit_ante, entity = 'foy', label = u"Déficit global antérieur")),
+    build_simple_formula_couple('abat_spe', FloatCol(function = ir._abat_spe, entity = 'foy', label = u"Abattements spéciaux", url = u"http://bofip.impots.gouv.fr/bofip/2036-PGP")),
+    build_simple_formula_couple('alloc', FloatCol(function = ir._alloc, entity = 'foy', label = u"Allocation familiale pour l'ir", url = u"http://vosdroits.service-public.fr/particuliers/F3153.xhtml")),
+    build_simple_formula_couple('deficit_ante', FloatCol(function = ir._deficit_ante, entity = 'foy', label = u"Déficit global antérieur", url = u"http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php")),
 
     build_simple_formula_couple('rev_sal', FloatCol(function = ir._rev_sal)),
     build_simple_formula_couple('salcho_imp', FloatCol(function = ir._salcho_imp)),
@@ -393,21 +394,21 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('abat_sal_pen', FloatCol(function = ir._abat_sal_pen, start = date(2002, 1, 1), end = date(2005, 12, 31))),
     build_simple_formula_couple('sal_pen_net', FloatCol(function = ir._sal_pen_net)),
     build_simple_formula_couple('rto', FloatCol(function = ir._rto, label = u'Rentes viagères (rentes à titre onéreux)', url = u"http://fr.wikipedia.org/wiki/Rente_viag%C3%A8re")),
-    build_simple_formula_couple('rto_net', FloatCol(function = ir._rto_net, label = u'Rentes viagères après abattements')),
+    build_simple_formula_couple('rto_net', FloatCol(function = ir._rto_net, label = u'Rentes viagères après abattements', url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere")),
     build_simple_formula_couple('tspr', FloatCol(function = ir._tspr)),
 
-    build_simple_formula_couple('rev_cat_tspr', FloatCol(function = ir._rev_cat_tspr, entity = 'foy', label = u"Revenu catégoriel - Salaires, pensions et rentes")),
-    build_simple_formula_couple('rev_cat_rvcm', FloatCol(function = ir._rev_cat_rvcm, entity = 'foy', label = u'Revenu catégoriel - Capitaux')),
-    build_simple_formula_couple('rev_cat_rpns', FloatCol(function = ir._rev_cat_rpns, entity = 'foy', label = u'Revenu catégoriel - Rpns')),
-    build_simple_formula_couple('rev_cat_rfon', FloatCol(function = ir._rev_cat_rfon, entity = 'foy', label = u'Revenu catégoriel - Foncier')),
-    build_simple_formula_couple('rev_cat_pv', FloatCol(function = ir._rev_cat_pv, entity = 'foy', label = u'Revenu catégoriel - Plus-values', start = date(2013, 1, 1))),
-    build_simple_formula_couple('rev_cat', FloatCol(function = ir._rev_cat, entity = 'foy', label = u"Revenus catégoriels")),
+    build_simple_formula_couple('rev_cat_tspr', FloatCol(function = ir._rev_cat_tspr, entity = 'foy', label = u"Revenu catégoriel - Salaires, pensions et rentes", url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm")),
+    build_simple_formula_couple('rev_cat_rvcm', FloatCol(function = ir._rev_cat_rvcm, entity = 'foy', label = u'Revenu catégoriel - Capitaux', url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm")),
+    build_simple_formula_couple('rev_cat_rpns', FloatCol(function = ir._rev_cat_rpns, entity = 'foy', label = u'Revenu catégoriel - Rpns', url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm")),
+    build_simple_formula_couple('rev_cat_rfon', FloatCol(function = ir._rev_cat_rfon, entity = 'foy', label = u'Revenu catégoriel - Foncier', url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm")),
+    build_simple_formula_couple('rev_cat_pv', FloatCol(function = ir._rev_cat_pv, entity = 'foy', label = u'Revenu catégoriel - Plus-values', url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm", start = date(2013, 1, 1))),
+    build_simple_formula_couple('rev_cat', FloatCol(function = ir._rev_cat, entity = 'foy', label = u"Revenus catégoriels", url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm")),
 
-    build_simple_formula_couple('deficit_rcm', FloatCol(function = ir._deficit_rcm, entity = 'foy', label = u'Deficit capitaux mobiliers')),
+    build_simple_formula_couple('deficit_rcm', FloatCol(function = ir._deficit_rcm, entity = 'foy', label = u'Deficit capitaux mobiliers', url = u"http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php")),
     build_simple_formula_couple('csg_deduc_patrimoine_simulated', FloatCol(function = ir._csg_deduc_patrimoine_simulated, entity = 'foy',
-        label = u'Csg déductible sur le patrimoine simulée')),
-    build_simple_formula_couple('csg_deduc_patrimoine', FloatCol(function = ir._csg_deduc_patrimoine, entity = 'foy', label = u'Csg déductible sur le patrimoine')),
-    build_simple_formula_couple('csg_deduc', FloatCol(function = ir._csg_deduc, entity = 'foy', label = u'Csg déductible sur le patrimoine')),
+        label = u'Csg déductible sur le patrimoine simulée', url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS")),
+    build_simple_formula_couple('csg_deduc_patrimoine', FloatCol(function = ir._csg_deduc_patrimoine, entity = 'foy', label = u'Csg déductible sur le patrimoine', url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS")),
+    build_simple_formula_couple('csg_deduc', FloatCol(function = ir._csg_deduc, entity = 'foy', label = u'Csg déductible sur le patrimoine', url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS")),
 
     build_simple_formula_couple('plus_values', FloatCol(function = ir._plus_values, entity = 'foy')),
     build_simple_formula_couple('ir_brut', FloatCol(function = ir._ir_brut, entity = 'foy')),
@@ -535,14 +536,14 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('iaidrdi', FloatCol(function = ir._iaidrdi, entity = 'foy')),
     build_simple_formula_couple('teicaa', FloatCol(function = ir._teicaa, entity = 'foy')),
     build_simple_formula_couple('cont_rev_loc', FloatCol(function = ir._cont_rev_loc, entity = 'foy', start = date(2001, 1, 1))),
-    build_simple_formula_couple('iai', FloatCol(function = ir._iai, entity = 'foy', label = u"Impôt avant imputations")),
-    build_simple_formula_couple('cehr', FloatCol(function = ir._cehr, entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus")),
+    build_simple_formula_couple('iai', FloatCol(function = ir._iai, entity = 'foy', label = u"Impôt avant imputations", url = u"http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html")),
+    build_simple_formula_couple('cehr', FloatCol(function = ir._cehr, entity = 'foy', label = u"Contribution exceptionnelle sur les hauts revenus", url = u"http://www.legifrance.gouv.fr/affichCode.do;jsessionid=628E40FC9013EE737EF6B4149575F2AA.tpdjo13v_3?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019&dateTexte=")),
  #   build_simple_formula_couple('cesthra', FloatCol(function = ir._cesthra, entity = 'foy', start = date(2013, 1, 1))), PLF 2013, amendement rejeté
     build_simple_formula_couple('imp_lib', FloatCol(function = ir._imp_lib, entity = 'foy', url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS", end = date(2012, 12, 31)),),  # TODO: Check - de 2000euros
     build_simple_formula_couple('assiette_vente', FloatCol(function = ir._micro_social_vente, entity = 'foy', start = date(2009, 1, 1))),
     build_simple_formula_couple('assiette_service', FloatCol(function = ir._micro_social_service, entity = 'foy', start = date(2009, 1, 1))),
     build_simple_formula_couple('assiette_proflib', FloatCol(function = ir._micro_social_proflib, entity = 'foy', start = date(2009, 1, 1))),
-    build_simple_formula_couple('microsocial', FloatCol(function = ir._micro_social, entity = 'foy')),
+    build_simple_formula_couple('microsocial', FloatCol(function = ir._micro_social, entity = 'foy', url = u"http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social")),
 
     # Prime pour l'emploi
     build_simple_formula_couple('ppe_coef', FloatCol(function = ir._ppe_coef, entity = 'foy')),
@@ -682,7 +683,7 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('rfr_rvcm', FloatCol(function = ir._rfr_rvcm, entity = 'foy')),
 
 #    build_simple_formula_couple('alv', FloatCol(function = ir._alv)),
-    build_simple_formula_couple('glo', FloatCol(function = ir._glo, label = u"Gain de levée d'options")),
+    build_simple_formula_couple('glo', FloatCol(function = ir._glo, label = u"Gain de levée d'options", url = u"http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites")),
     build_simple_formula_couple('rag', FloatCol(function = ir._rag, url = u"http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50")),
     build_simple_formula_couple('ric', FloatCol(function = ir._ric, url = u"http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50")),
     build_simple_formula_couple('rac', FloatCol(function = ir._rac, url = u"http://vosdroits.service-public.fr/particuliers/F1225.xhtml")),
@@ -779,11 +780,11 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('af_nbenf', FloatCol(function = pf._af_nbenf, entity = 'fam', label = u"Nombre d'enfant au sens des AF")),
     build_simple_formula_couple('af_base', FloatCol(function = pf._af_base, entity = 'fam', label = 'Allocations familiales - Base')),
-    build_simple_formula_couple('af_majo', FloatCol(function = pf._af_majo, entity = 'fam', label = 'Allocations familiales - Majoration pour age')),
-    build_simple_formula_couple('af_forf', FloatCol(function = pf._af_forf, entity = 'fam', label = 'Allocations familiales - Forfait 20 ans', start = date(2003, 7, 1))),
+    build_simple_formula_couple('af_majo', FloatCol(function = pf._af_majo, entity = 'fam', label = 'Allocations familiales - Majoration pour age', url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0")),
+    build_simple_formula_couple('af_forf', FloatCol(function = pf._af_forf, entity = 'fam', label = 'Allocations familiales - Forfait 20 ans', url = u"http://www.cleiss.fr/docs/regimes/regime_france4.html", start = date(2003, 7, 1))),
     build_simple_formula_couple('af', FloatCol(function = pf._af, entity = 'fam', label = u"Allocations familiales", url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0")),
 
-    build_simple_formula_couple('cf_temp', FloatCol(function = pf._cf, entity = 'fam', label = u"Complément familial avant d'éventuels cumuls")),
+    build_simple_formula_couple('cf_temp', FloatCol(function = pf._cf, entity = 'fam', label = u"Complément familial avant d'éventuels cumuls", url = u"http://vosdroits.service-public.fr/particuliers/F13214.xhtml")),
     build_simple_formula_couple('asf_elig', BoolCol(function = pf._asf_elig, entity = 'fam')),
     build_simple_formula_couple('asf', FloatCol(function = pf._asf, entity = 'fam', label = u"Allocation de soutien familial", url = u"http://vosdroits.service-public.fr/particuliers/F815.xhtml")),
 
@@ -795,8 +796,8 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('paje_nais', FloatCol(function = pf._paje_nais, entity = 'fam', label = u"Allocation de naissance de la PAJE", start = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F2550.xhtml")),
     build_simple_formula_couple('paje_clca', FloatCol(function = pf._paje_clca, entity = 'fam', label = u"PAJE - Complément de libre choix d'activité", start = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F313.xhtml")),
-    build_simple_formula_couple('paje_clca_taux_plein', BoolCol(function = pf._paje_clca_taux_plein, entity = 'fam', label = u"Indicatrice Clca taux plein", start = date(2004, 1, 1))),
-    build_simple_formula_couple('paje_clca_taux_partiel', BoolCol(function = pf._paje_clca_taux_partiel, entity = 'fam', label = u"Indicatrice Clca taux partiel", start = date(2004, 1, 1))),
+    build_simple_formula_couple('paje_clca_taux_plein', BoolCol(function = pf._paje_clca_taux_plein, entity = 'fam', label = u"Indicatrice Clca taux plein", start = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F313.xhtml")),
+    build_simple_formula_couple('paje_clca_taux_partiel', BoolCol(function = pf._paje_clca_taux_partiel, entity = 'fam', label = u"Indicatrice Clca taux partiel", start = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F313.xhtml")),
     build_simple_formula_couple('paje_colca', FloatCol(function = pf._paje_colca, entity = 'fam', label = u"PAJE - Complément optionnel de libre choix d'activité", start = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F15110.xhtml")),
     build_simple_formula_couple('paje_clmg', FloatCol(function = pf._paje_clmg, entity = 'fam', label = u"PAJE - Complément de libre choix du mode de garde", start = date(2004, 1, 1), url = u"http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde")),
     build_simple_formula_couple('paje', FloatCol(function = pf._paje, entity = 'fam', label = u"PAJE - Ensemble des prestations", start = date(2004, 1, 1), url = u"http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0")),
@@ -805,10 +806,10 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('cf', FloatCol(function = pf._cf_cumul, entity = 'fam', label = u"Complément familial", url = u"http://vosdroits.service-public.fr/particuliers/F13214.xhtml")),
     build_simple_formula_couple('aeeh', FloatCol(function = pf._aeeh, entity = 'fam', label = u"Allocation d'éducation de l'enfant handicapé", url = u"http://vosdroits.service-public.fr/particuliers/N14808.xhtml")),
 
-    build_simple_formula_couple('ape_temp', FloatCol(function = pf._ape, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1, 1))),
-    build_simple_formula_couple('apje_temp', FloatCol(function = pf._apje, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1, 1))),
-    build_simple_formula_couple('ape', FloatCol(function = pf._ape_cumul, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1, 1))),
-    build_simple_formula_couple('apje', FloatCol(function = pf._apje_cumul, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1, 1))),
+    build_simple_formula_couple('ape_temp', FloatCol(function = pf._ape, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1, 1), url = u"http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France")),
+    build_simple_formula_couple('apje_temp', FloatCol(function = pf._apje, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F2552.xhtml")),
+    build_simple_formula_couple('ape', FloatCol(function = pf._ape_cumul, entity = 'fam', label = u"Allocation parentale d'éducation", end = date(2004, 1, 1), url = u"http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France")),
+    build_simple_formula_couple('apje', FloatCol(function = pf._apje_cumul, entity = 'fam', label = u"Allocation pour le jeune enfant", end = date(2004, 1, 1), url = u"http://vosdroits.service-public.fr/particuliers/F2552.xhtml")),
 
     build_simple_formula_couple('crds_pfam', FloatCol(function = pf._crds_pfam, entity = 'fam', label = u"CRDS (prestations familiales)", url = u"http://www.cleiss.fr/docs/regimes/regime_francea1.html")),
 
@@ -898,7 +899,7 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
 
     build_simple_formula_couple('exonere_taxe_habitation', BoolCol(function = th._exonere_taxe_habitation,
-        default = True, entity = 'men', label = u"Exonération de la taxe d'habitation")),
+        default = True, entity = 'men', label = u"Exonération de la taxe d'habitation", url = u"http://vosdroits.service-public.fr/particuliers/F42.xhtml")),
     build_simple_formula_couple('tax_hab', FloatCol(function = th._tax_hab, entity = 'men',
         label = u"Taxe d'habitation",
         url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50")),
