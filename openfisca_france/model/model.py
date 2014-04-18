@@ -1017,10 +1017,11 @@ prestation_by_name = collections.OrderedDict((
 
     build_dated_formula_couple('creimp',  #TODO: Change name to credits_impot (before, take care of imputations)
         [
-            dict(start = date(2002, 1, 1),
-                     end = date(2002, 12, 31),
-                     function = ci._creimp_2002,
-                     ),
+            dict(  #right way to ident dictionary
+                start = date(2002, 1, 1),
+                end = date(2002, 12, 31),
+                function = ci._creimp_2002,
+                ),
             dict(start = date(2003, 1, 1),
                      end = date(2003, 12, 31),
                      function = ci._creimp_2003,
