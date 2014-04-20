@@ -32,11 +32,10 @@ import openfisca_france
 
 
 TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
 
 
 def check_legislation_xml_file(year):
-    legislation_tree = xml.etree.ElementTree.parse(tax_benefit_system.PARAM_FILE)
+    legislation_tree = xml.etree.ElementTree.parse(TaxBenefitSystem.PARAM_FILE)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
 
@@ -78,6 +77,8 @@ def check_legislation_xml_file(year):
             ).encode('utf-8'))
 
     compact_legislation = legislations.compact_dated_node_json(dated_legislation_json)
+    # Create tax_benefit system only now, to be able to debug XML validation errors in above code.
+    tax_benefit_system = TaxBenefitSystem()
     if tax_benefit_system.preprocess_legislation_parameters is not None:
         tax_benefit_system.preprocess_legislation_parameters(compact_legislation)
 
