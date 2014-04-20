@@ -1,127 +1,127 @@
-<NODE desc="Revenu disponible" shortname="Rev. disp." code="revdisp" color="0,0,255" typevar='2' > # TODO: missing indemnite_residence and sft
-  <NODE desc="Revenus nets" shortname="Rev. nets" code="rev_net" color="0,155,204">  # TODO: change color
-    <NODE desc="Revenu du travail" shortname="Rev. travail" code="rev_trav" color="0,155,204">
-      <NODE desc="Salaires nets" shortname="Sal. nets" code="salnet" color="0,138,201">
-        <NODE desc="Salaires imposables" shortname="Sal. impos." code="sal" color="0,115,170">
-          <NODE desc="Salaires bruts" shortname="Sal. bruts" code="salbrut" color="0,99,143">
-            <NODE desc="Salaires super bruts" shortname="Coût travail" code="salsuperbrut" color="0,66,92" />
-             <NODE desc="Cotisations sociales patronales" shortname="Cotsoc pat" code="cotpat" color="249,208,211"/>
-             <NODE desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." code="alleg_fillon"/>
-             <NODE desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" code="alleg_cice"/>
-             <NODE desc="Taxe sur les salaires" shortname="Taxe sal." code="taxes_sal"/>
-             <NODE desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" code="tehr"/>
-            </NODE>
-          <NODE desc="Cotisations sociales salariées" shortname="Cotsoc sal" code="cotsal" color="243,166,171"/>
-          <NODE desc="CSG déductible (salaires)" shortname="CSG deduc" code="csgsald" color="235,114,118"/>
-          <NODE desc="Heures supplémentaires éxonérées" shortname="Heures sup" code="mhsup" color="0,115,170"/>
+<NODE code="revdisp" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp." typevar="2"> # TODO: missing indemnite_residence and sft
+  <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  # TODO: change color
+    <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
+      <NODE code="salnet" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
+        <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
+          <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
+            <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
+            <NODE code="cotpat" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
+            <NODE code="alleg_fillon" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
+            <NODE code="alleg_cice" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
+            <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
+            <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
+          </NODE>
+          <NODE code="cotsal" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" />
+          <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG deduc" />
+          <NODE code="mhsup" color="0,115,170" desc="Heures supplémentaires éxonérées" shortname="Heures sup" />
         </NODE>
-        <NODE desc="CSG non déductible (salaires)" shortname="CSG imp. sal." code="csgsali" color="235,114,118"/>
-        <NODE desc="CRDS (salaires)" shortname="CRDS sal." code="crdssal" color="229,48,56"/>
-        <NODE desc="Heures supplémentaires" shortname="Heures sup" code="hsup" color="0,115,170"/>
+        <NODE code="csgsali" color="235,114,118" desc="CSG non déductible (salaires)" shortname="CSG imp. sal." />
+        <NODE code="crdssal" color="229,48,56" desc="CRDS (salaires)" shortname="CRDS sal." />
+        <NODE code="hsup" color="0,115,170" desc="Heures supplémentaires" shortname="Heures sup" />
       </NODE>
-      <NODE desc="Revenus agricoles" shortname="Rev. agric." code="rag"/>
-      <NODE desc="Revenus industriels et commerciaux" shortname="R. ind. comm." code="ric"/>
-      <NODE desc="Revenus non commerciaux" shortname="R. non comm." code="rnc"/>
+      <NODE code="rag" desc="Revenus agricoles" shortname="Rev. agric." />
+      <NODE code="ric" desc="Revenus industriels et commerciaux" shortname="R. ind. comm." />
+      <NODE code="rnc" desc="Revenus non commerciaux" shortname="R. non comm." />
     </NODE>
-    <NODE desc="Pensions" shortname="Pensions" code="pen" color="97,75,150">
-      <NODE desc="Chômage net" shortname="Chômage net" code="chonet" color="136,120,178">
-        <NODE desc="Chômage" shortname="Chômage decl." code="cho">
-          <NODE desc="Chômage brut" shortname="Chômage brut" code="chobrut"/>
-          <NODE desc="CSG déductible (chômage)" shortname="CSG déd. chôm." code="csgchod" color="235,114,118"/>
+    <NODE code="pen" color="97,75,150" desc="Pensions" shortname="Pensions">
+      <NODE code="chonet" color="136,120,178" desc="Chômage net" shortname="Chômage net">
+        <NODE code="cho" desc="Chômage" shortname="Chômage decl.">
+          <NODE code="chobrut" desc="Chômage brut" shortname="Chômage brut" />
+          <NODE code="csgchod" color="235,114,118" desc="CSG déductible (chômage)" shortname="CSG déd. chôm." />
         </NODE>
-        <NODE desc="CSG non déductible (chômage)" shortname="CSG imp. chôm." code="csgchoi" color="235,114,118"/>
-        <NODE desc="CRDS (chômage)" shortname="CRDS chôm." code="crdscho" color="229,48,56"/>
+        <NODE code="csgchoi" color="235,114,118" desc="CSG non déductible (chômage)" shortname="CSG imp. chôm." />
+        <NODE code="crdscho" color="229,48,56" desc="CRDS (chômage)" shortname="CRDS chôm." />
       </NODE>
-      <NODE desc="Retraites nettes" shortname="Retraites nettes" code="rstnet" color="87,88,138">
-        <NODE desc="Retraites" shortname="Retr. décl." code="rst">
-          <NODE desc="Retraites brutes" shortname="Retr. brutes" code="rstbrut"/>
-          <NODE desc="CSG déductible (retraite)" shortname="CSG déd. ret." code="csgrstd" color="235,114,118"/>
+      <NODE code="rstnet" color="87,88,138" desc="Retraites nettes" shortname="Retraites nettes">
+        <NODE code="rst" desc="Retraites" shortname="Retr. décl.">
+          <NODE code="rstbrut" desc="Retraites brutes" shortname="Retr. brutes" />
+          <NODE code="csgrstd" color="235,114,118" desc="CSG déductible (retraite)" shortname="CSG déd. ret." />
         </NODE>
-        <NODE desc="CSG non déductible (pensions)" shortname="CSG imp. pens." code="csgrsti" color="235,114,118"/>
-        <NODE desc="CRDS (pensions)" shortname="CRDS (pens.)" code="crdsrst" color="229,48,56"/>
+        <NODE code="csgrsti" color="235,114,118" desc="CSG non déductible (pensions)" shortname="CSG imp. pens." />
+        <NODE code="crdsrst" color="229,48,56" desc="CRDS (pensions)" shortname="CRDS (pens.)" />
       </NODE>
-      <NODE desc="Pensions alimentaires reçues" shortname="P. alim. reç." code="alr" color="136,120,178"/>
-      <NODE desc="Pensions alimentaires versée" shortname="P. alim. vers." code="alv" color="136,120,178"/>
-      <NODE desc="Rentes viagères" shortname="Rentes viag." code="rto" color="125,185,86"/>
+      <NODE code="alr" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
+      <NODE code="alv" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
+      <NODE code="rto" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
     </NODE>
-    <NODE desc="Revenus du capital net" shortname="Rev. cap. net" code="rev_cap_net" color="255,222,48">
-      <NODE desc="Revenus du capital brut" shortname="Rev. cap. brut" code="rev_cap_brut" color="255,222,48">
-        <NODE desc="Revenus fonciers" shortname="Rev. fonciers" code='fon' color="255,245,155"/>
-        <NODE desc="Plus-values de cessions de valeurs mobilières" shortname="Plus.-values mo." code='f3vg' color="255,245,155"/>
-        <NODE desc="Plus-values immobilières" shortname="Plus.-values immo." code='f3vz' color="255,245,155"/>
-        <NODE desc="Revenus du capital soumis au barème" shortname="Rev cap bar" code='rev_cap_bar' color="255,239,103"/>
-        <NODE desc="Revenus du capital soumis au prélèvement libératoire" shortname="Rev cap lib" code='rev_cap_lib' color="255,233,28"/>
-      <NODE desc="Revenus accessoires" shortname="Rev. accesoires" code='rac' color="247,221,0"/>
+    <NODE code="rev_cap_net" color="255,222,48" desc="Revenus du capital net" shortname="Rev. cap. net">
+      <NODE code="rev_cap_brut" color="255,222,48" desc="Revenus du capital brut" shortname="Rev. cap. brut">
+        <NODE code="fon" color="255,245,155" desc="Revenus fonciers" shortname="Rev. fonciers" />
+        <NODE code="f3vg" color="255,245,155" desc="Plus-values de cessions de valeurs mobilières" shortname="Plus.-values mo." />
+        <NODE code="f3vz" color="255,245,155" desc="Plus-values immobilières" shortname="Plus.-values immo." />
+        <NODE code="rev_cap_bar" color="255,239,103" desc="Revenus du capital soumis au barème" shortname="Rev cap bar" />
+        <NODE code="rev_cap_lib" color="255,233,28" desc="Revenus du capital soumis au prélèvement libératoire" shortname="Rev cap lib" />
+        <NODE code="rac" color="247,221,0" desc="Revenus accessoires" shortname="Rev. accesoires" />
       </NODE>
-      <NODE desc="Cotisations sociales sur les revenus du capital" shortname="Cotsoc. capital" code="cotsoc_cap" color="243,166,171">
-        <NODE desc="Prélèvement social sur les revenus du capital" shortname="Pr. s. cap." code="prelsoc_cap" color="243,166,171">
-          <NODE desc="Prélèvement social sur les revenus fonciers" shortname="Pr. s. foncier" code="prelsoc_fon" color="243,166,171"/>
-      <NODE desc="Prélèvement social sur les plus-values de cessions de valeurs mobilières" shortname="Prel. soc. p.-v. mo." code="prelsoc_pv_mo" color="243,166,171"/>        
-          <NODE desc="Prélèvement social sur les plus-values immobilières" shortname="Prel. soc. p.-v." code="prelsoc_pv_immo" color="243,166,171"/>
-          <NODE desc="Prélèvement social sur les revenus du capital soumis au barème" shortname="Pr. s. cap. bar." code="prelsoc_cap_bar" color="243,166,171"/>
-          <NODE desc="Prélèvement social sur les revenus du capital soumis au prélèvement libératoire" shortname="Prel. soc. lib." code="prelsoc_cap_lib" color="243,166,171"/>
+      <NODE code="cotsoc_cap" color="243,166,171" desc="Cotisations sociales sur les revenus du capital" shortname="Cotsoc. capital">
+        <NODE code="prelsoc_cap" color="243,166,171" desc="Prélèvement social sur les revenus du capital" shortname="Pr. s. cap.">
+          <NODE code="prelsoc_fon" color="243,166,171" desc="Prélèvement social sur les revenus fonciers" shortname="Pr. s. foncier" />
+          <NODE code="prelsoc_pv_mo" color="243,166,171" desc="Prélèvement social sur les plus-values de cessions de valeurs mobilières" shortname="Prel. soc. p.-v. mo." />
+          <NODE code="prelsoc_pv_immo" color="243,166,171" desc="Prélèvement social sur les plus-values immobilières" shortname="Prel. soc. p.-v." />
+          <NODE code="prelsoc_cap_bar" color="243,166,171" desc="Prélèvement social sur les revenus du capital soumis au barème" shortname="Pr. s. cap. bar." />
+          <NODE code="prelsoc_cap_lib" color="243,166,171" desc="Prélèvement social sur les revenus du capital soumis au prélèvement libératoire" shortname="Prel. soc. lib." />
         </NODE>
-        <NODE desc="CSG des revenus du capital" shortname="CSG cap." code="csg_cap" color="235,114,118">
-          <NODE desc="CSG (revenus fonciers)" shortname="CSG foncier" code="csg_fon" color="235,114,118"/>
-          <NODE desc="CSG (plus-values de cessions de valeurs mobilières)" shortname="CSG p.-v. mo." code="csg_pv_mo" color="235,114,118"/>
-          <NODE desc="CSG (plus-values immobilières)" shortname="CSG p.-v. immo." code="csg_pv_immo" color="235,114,118"/>
-          <NODE desc="CSG (revenus du capital au barème)" shortname="CSG cap. bar." code="csg_cap_bar" color="235,114,118"/>
-          <NODE desc="CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." code="csg_cap_lib" color="235,114,118"/>
+        <NODE code="csg_cap" color="235,114,118" desc="CSG des revenus du capital" shortname="CSG cap.">
+          <NODE code="csg_fon" color="235,114,118" desc="CSG (revenus fonciers)" shortname="CSG foncier" />
+          <NODE code="csg_pv_mo" color="235,114,118" desc="CSG (plus-values de cessions de valeurs mobilières)" shortname="CSG p.-v. mo." />
+          <NODE code="csg_pv_immo" color="235,114,118" desc="CSG (plus-values immobilières)" shortname="CSG p.-v. immo." />
+          <NODE code="csg_cap_bar" color="235,114,118" desc="CSG (revenus du capital au barème)" shortname="CSG cap. bar." />
+          <NODE code="csg_cap_lib" color="235,114,118" desc="CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." />
         </NODE>
-        <NODE desc="CRDS" shortname="CRDS cap." code="crds_cap" color="229,48,56">      
-          <NODE desc="CRDS (revenus fonciers)" shortname="CRDS foncier" code="crds_fon" color="229,48,56"/>
-          <NODE desc="CRDS (plus-values de cessions de valeurs mobilières)" shortname="CRDS p.-v. mo." code="crds_pv_mo" color="229,48,56"/>
-          <NODE desc="CRDS (plus-values immobilières)" shortname="CRDS p.-v. immo." code="crds_pv_immo" color="229,48,56"/>
-          <NODE desc="CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." code="crds_cap_bar" color="229,48,56"/>
-          <NODE desc="CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." code="crds_cap_lib" color="229,48,56"/>
-        </NODE>    
+        <NODE code="crds_cap" color="229,48,56" desc="CRDS" shortname="CRDS cap.">
+          <NODE code="crds_fon" color="229,48,56" desc="CRDS (revenus fonciers)" shortname="CRDS foncier" />
+          <NODE code="crds_pv_mo" color="229,48,56" desc="CRDS (plus-values de cessions de valeurs mobilières)" shortname="CRDS p.-v. mo." />
+          <NODE code="crds_pv_immo" color="229,48,56" desc="CRDS (plus-values immobilières)" shortname="CRDS p.-v. immo." />
+          <NODE code="crds_cap_bar" color="229,48,56" desc="CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." />
+          <NODE code="crds_cap_lib" color="229,48,56" desc="CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." />
+        </NODE>
       </NODE>
-      <NODE desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." code="imp_lib" color="232,79,95"/>
+      <NODE code="imp_lib" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
     </NODE>
   </NODE>
-  <NODE desc="Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" code="ir_lps" color="232,79,95"/>
-  <NODE desc="Prestations sociales" shortname="Prest. soc." code="psoc" color="255,102,63">
-    <NODE desc="Prestations familiales" shortname="Prest. fam." code="pfam" color="83,170,49">
-      <NODE desc="Allocations familiales" shortname="Alloc. fam." code='af' color="181,213,154"/>
-      <NODE desc="Complément familial" shortname="Compl. fam." code='cf' color="125,185,86"/>
-      <NODE desc="Allocation de rentrée scolaire" shortname="ARS" code="ars" color="91,172,38"/>
-      <NODE desc="Allocation d'éducation de l'enfant handicapé" shortname="AEEH" code='aeeh' color="80,160,38"/>
-      <NODE desc="Prestation d'accueil du jeune enfant" shortname="PAJE" code="paje" color="77,144,34">
-        <NODE desc="Paje - Allocation de base" shortname="PAJE" code='paje_base'/>
-        <NODE desc="Paje - Prime de naissance" shortname="Prime naiss." code='paje_nais'/>
-        <NODE desc="Paje - Complément de libre choix d'activité" shortname="CLCA" code='paje_clca'/>
-        <NODE desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" code="paje_colca"/>
-        <NODE desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" code='paje_clmg'/>
+  <NODE code="ir_lps" color="232,79,95" desc="Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" />
+  <NODE code="psoc" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc.">
+    <NODE code="pfam" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
+      <NODE code="af" color="181,213,154" desc="Allocations familiales" shortname="Alloc. fam." />
+      <NODE code="cf" color="125,185,86" desc="Complément familial" shortname="Compl. fam." />
+      <NODE code="ars" color="91,172,38" desc="Allocation de rentrée scolaire" shortname="ARS" />
+      <NODE code="aeeh" color="80,160,38" desc="Allocation d'éducation de l'enfant handicapé" shortname="AEEH" />
+      <NODE code="paje" color="77,144,34" desc="Prestation d'accueil du jeune enfant" shortname="PAJE">
+        <NODE code="paje_base" desc="Paje - Allocation de base" shortname="PAJE" />
+        <NODE code="paje_nais" desc="Paje - Prime de naissance" shortname="Prime naiss." />
+        <NODE code="paje_clca" desc="Paje - Complément de libre choix d'activité" shortname="CLCA" />
+        <NODE code="paje_colca" desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" />
+        <NODE code="paje_clmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
       </NODE>
-      <NODE desc="Allocation de soutien familial" shortname="ASF" code="asf" color="77,144,34"/>
-      <NODE desc="CRDS (prestations familiales)" shortname="CRDS fam." code="crds_pfam" color="229,48,56"/>
+      <NODE code="asf" color="77,144,34" desc="Allocation de soutien familial" shortname="ASF" />
+      <NODE code="crds_pfam" color="229,48,56" desc="CRDS (prestations familiales)" shortname="CRDS fam." />
     </NODE>
-    <NODE desc="Minima sociaux" shortname="Min. sociaux" code="mini" color="240,138,76">
-      <NODE desc="Allocation de solidarité aux personnes agées" shortname="ASPA" code='aspa' color="249,193,148"/>
-      <NODE desc="Allocation adulte handicapé" shortname="AAH" code='aah' color="244,160,80"/>
-      <NODE desc="Complément de l'allocation adulte handicapé" shortname="CAAH" code='caah' color="244,160,80"/>
-      <NODE desc="Allocation supplémentaire d'invalidité" shortname="ASI" code='asi' color="244,160,80"/>
-      <NODE desc="Revenu de solidarité active" shortname="RSA" code='rsa' color="239,130,19"/>
-      <NODE desc="Prime de solidarité active" shortname="PSA" code='psa' color="239,130,19"/>
-      <NODE desc="Aide exceptionelle de fin d'année" shortname="AEFA" code='aefa' color="237,119,3"/>
-      <NODE desc="Allocation parent isolé" shortname="API" code='api' color="208,112,4"/>
+    <NODE code="mini" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
+      <NODE code="aspa" color="249,193,148" desc="Allocation de solidarité aux personnes agées" shortname="ASPA" />
+      <NODE code="aah" color="244,160,80" desc="Allocation adulte handicapé" shortname="AAH" />
+      <NODE code="caah" color="244,160,80" desc="Complément de l'allocation adulte handicapé" shortname="CAAH" />
+      <NODE code="asi" color="244,160,80" desc="Allocation supplémentaire d'invalidité" shortname="ASI" />
+      <NODE code="rsa" color="239,130,19" desc="Revenu de solidarité active" shortname="RSA" />
+      <NODE code="psa" color="239,130,19" desc="Prime de solidarité active" shortname="PSA" />
+      <NODE code="aefa" color="237,119,3" desc="Aide exceptionelle de fin d'année" shortname="AEFA" />
+      <NODE code="api" color="208,112,4" desc="Allocation parent isolé" shortname="API" />
     </NODE>
-    <NODE desc="Prestations logement" shortname="Prest. logement" code="logt" color="255,222,48">
-      <NODE desc="Aide personalisée au logement" shortname="APL" code='apl' color="255,245,155" />
-      <NODE desc="Allocation logement social" shortname="ALS" code='als' color="255,239,103"/>
-      <NODE desc="Allocation de logement familiale" shortname="ALF" code='alf' color="255,233,28"/>
-      <NODE desc="Allocation logement étudiant" shortname="AL étudiant" code='alset' color="247,221,0" />
-      <NODE desc="CRDS (allocation logement)" shortname="CRDS log." code="crds_lgtm" color="229,48,56"/>
+    <NODE code="logt" color="255,222,48" desc="Prestations logement" shortname="Prest. logement">
+      <NODE code="apl" color="255,245,155" desc="Aide personalisée au logement" shortname="APL" />
+      <NODE code="als" color="255,239,103" desc="Allocation logement social" shortname="ALS" />
+      <NODE code="alf" color="255,233,28" desc="Allocation de logement familiale" shortname="ALF" />
+      <NODE code="alset" color="247,221,0" desc="Allocation logement étudiant" shortname="AL étudiant" />
+      <NODE code="crds_lgtm" color="229,48,56" desc="CRDS (allocation logement)" shortname="CRDS log." />
     </NODE>
   </NODE>
-  <NODE desc="Prime pour l'emploi" shortname="PPE" code="ppe" color="182,34,131"/>
-  <NODE desc="Impôts directs" shortname="Impôts directs" code="impo" color="232,79,95">
-    <NODE desc="Impôt sur le revenu" shortname="IRPP" code="irpp" color="232,79,95"/>
-    <NODE desc="Impôt sur le revenu afférent à la plus-value immobilière" shortname="IR immo." code="ir_pv_immo" color="232,79,95"/>
-    <NODE desc="ISF net" shortname="ISF net" code="isf net" color="182,34,131">
-      <NODE desc="Impôt de solidarité sur la fortune" shortname="ISF" code="isf_tot" color="232,79,95"/>
-      <NODE desc="Bouclier fiscal" shortname="Bouclier fiscal" code="bouclier_fiscal" color="182,34,131"/>
-    </NODE>  
-    <NODE desc="Taxe d'habitation" shortname="TH" code="tax_hab" color="232,79,95"/>
-  </NODE>  
-</NODE> 
+  <NODE code="ppe" color="182,34,131" desc="Prime pour l'emploi" shortname="PPE" />
+  <NODE code="impo" color="232,79,95" desc="Impôts directs" shortname="Impôts directs">
+    <NODE code="irpp" color="232,79,95" desc="Impôt sur le revenu" shortname="IRPP" />
+    <NODE code="ir_pv_immo" color="232,79,95" desc="Impôt sur le revenu afférent à la plus-value immobilière" shortname="IR immo." />
+    <NODE code="isf net" color="182,34,131" desc="ISF net" shortname="ISF net">
+      <NODE code="isf_tot" color="232,79,95" desc="Impôt de solidarité sur la fortune" shortname="ISF" />
+      <NODE code="bouclier_fiscal" color="182,34,131" desc="Bouclier fiscal" shortname="Bouclier fiscal" />
+    </NODE>
+    <NODE code="tax_hab" color="232,79,95" desc="Taxe d'habitation" shortname="TH" />
+  </NODE>
+</NODE>

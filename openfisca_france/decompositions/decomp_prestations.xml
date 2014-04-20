@@ -1,34 +1,34 @@
-<NODE desc="Prestations sociales" shortname="Prest. soc." code="psoc" color="255,102,63"  typevar="2">
-    <NODE desc="Prestations familiales" shortname="Prest. fam." code="pfam" color="83,170,49">
-      <NODE desc="Allocations familiales" shortname="Alloc. fam." code='af' color="181,213,154"/>
-      <NODE desc="Complément familial" shortname="Compl. fam." code='cf' color="125,185,86"/>
-      <NODE desc="Allocation de rentrée scolaire" shortname="ARS" code="ars" color="91,172,38"/>
-      <NODE desc="Allocation d'éducation de l'enfant handicapé" shortname="AEEH" code='aeeh' color="80,160,38"/>
-      <NODE desc="Prestation d'accueil du jeune enfant" shortname="PAJE" code="paje" color="77,144,34">
-        <NODE desc="Paje - Allocation de base" shortname="PAJE" code='paje_base'/>
-        <NODE desc="Paje - Prime de naissance" shortname="Prime naiss." code='paje_nais'/>
-        <NODE desc="Paje - Complément de libre choix d'activité" shortname="CLCA" code='paje_clca'/>
-        <NODE desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" code="paje_colca"/>
-        <NODE desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" code='paje_clmg'/>
-      </NODE>
-      <NODE desc="Allocation de soutien familial" shortname="ASF" code="asf" color="77,144,34"/>
-      <NODE desc="CRDS (prestations familiales)" shortname="CRDS fam." code="crds_pfam" color="229,48,56"/>
+<NODE code="psoc" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc." typevar="2">
+  <NODE code="pfam" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
+    <NODE code="af" color="181,213,154" desc="Allocations familiales" shortname="Alloc. fam." />
+    <NODE code="cf" color="125,185,86" desc="Complément familial" shortname="Compl. fam." />
+    <NODE code="ars" color="91,172,38" desc="Allocation de rentrée scolaire" shortname="ARS" />
+    <NODE code="aeeh" color="80,160,38" desc="Allocation d'éducation de l'enfant handicapé" shortname="AEEH" />
+    <NODE code="paje" color="77,144,34" desc="Prestation d'accueil du jeune enfant" shortname="PAJE">
+      <NODE code="paje_base" desc="Paje - Allocation de base" shortname="PAJE" />
+      <NODE code="paje_nais" desc="Paje - Prime de naissance" shortname="Prime naiss." />
+      <NODE code="paje_clca" desc="Paje - Complément de libre choix d'activité" shortname="CLCA" />
+      <NODE code="paje_colca" desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" />
+      <NODE code="paje_clmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
     </NODE>
-    <NODE desc="Minima sociaux" shortname="Min. sociaux" code="mini" color="240,138,76">
-      <NODE desc="Minimum vieillesse" shortname="Min. viellesse" code='aspa' color="249,193,148"/>
-      <NODE desc="Allocation adulte handicapé" shortname="AAH" code='aah' color="244,160,80"/>
-      <NODE desc="Complément de l'allocation adulte handicapé" shortname="CAAH" code='caah' color="244,160,80"/>
-      <NODE desc="Allocation supplémentaire d'invalidité" shortname="ASI" code='asi' color="244,160,80"/>
-      <NODE desc="Revenu de solidarité active" shortname="RSA" code='rsa' color="239,130,19"/>
-      <NODE desc="Prime de solidarité active" shortname="PSA" code='psa' color="239,130,19"/>
-      <NODE desc="Aide exceptionelle de fin d'année" shortname="AEFA" code='aefa' color="237,119,3"/>
-      <NODE desc="Allocation parent isolé" shortname="API" code='api' color="208,112,4"/>
-    </NODE>
-    <NODE desc="Prestations logement" shortname="Prest. logement" code="logt" color="255,222,48">
-      <NODE desc="Aide personalisée au logement" shortname="APL" code='apl' color="255,245,155" />
-      <NODE desc="Allocation logement social" shortname="ALS" code='als' color="255,239,103"/>
-      <NODE desc="Allocation de logement familiale" shortname="ALF" code='alf' color="255,233,28"/>
-      <NODE desc="Allocation logement étudiant" shortname="AL étudiant" code='alset' color="247,221,0" />
-      <NODE desc="CRDS (allocation logement)" shortname="CRDS log." code="crds_lgtm" color="229,48,56"/>
-    </NODE>
+    <NODE code="asf" color="77,144,34" desc="Allocation de soutien familial" shortname="ASF" />
+    <NODE code="crds_pfam" color="229,48,56" desc="CRDS (prestations familiales)" shortname="CRDS fam." />
+  </NODE>
+  <NODE code="mini" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
+    <NODE code="aspa" color="249,193,148" desc="Minimum vieillesse" shortname="Min. viellesse" />
+    <NODE code="aah" color="244,160,80" desc="Allocation adulte handicapé" shortname="AAH" />
+    <NODE code="caah" color="244,160,80" desc="Complément de l'allocation adulte handicapé" shortname="CAAH" />
+    <NODE code="asi" color="244,160,80" desc="Allocation supplémentaire d'invalidité" shortname="ASI" />
+    <NODE code="rsa" color="239,130,19" desc="Revenu de solidarité active" shortname="RSA" />
+    <NODE code="psa" color="239,130,19" desc="Prime de solidarité active" shortname="PSA" />
+    <NODE code="aefa" color="237,119,3" desc="Aide exceptionelle de fin d'année" shortname="AEFA" />
+    <NODE code="api" color="208,112,4" desc="Allocation parent isolé" shortname="API" />
+  </NODE>
+  <NODE code="logt" color="255,222,48" desc="Prestations logement" shortname="Prest. logement">
+    <NODE code="apl" color="255,245,155" desc="Aide personalisée au logement" shortname="APL" />
+    <NODE code="als" color="255,239,103" desc="Allocation logement social" shortname="ALS" />
+    <NODE code="alf" color="255,233,28" desc="Allocation de logement familiale" shortname="ALF" />
+    <NODE code="alset" color="247,221,0" desc="Allocation logement étudiant" shortname="AL étudiant" />
+    <NODE code="crds_lgtm" color="229,48,56" desc="CRDS (allocation logement)" shortname="CRDS log." />
+  </NODE>
 </NODE>
