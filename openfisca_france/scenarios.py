@@ -606,7 +606,7 @@ class Scenario(object):
                         else:
                             new_famille[u'enfants'].append(individu_id)
                         if new_famille_id is None:
-                            new_famille_id = uuid.uuid4()
+                            new_famille_id = unicode(uuid.uuid4())
                             test_case[u'familles'][new_famille_id] = new_famille
                         familles_individus_id.remove(individu_id)
 
@@ -695,7 +695,7 @@ class Scenario(object):
                         else:
                             new_foyer_fiscal[u'personnes_a_charge'].append(individu_id)
                         if new_foyer_fiscal_id is None:
-                            new_foyer_fiscal_id = uuid.uuid4()
+                            new_foyer_fiscal_id = unicode(uuid.uuid4())
                             test_case[u'foyers_fiscaux'][new_foyer_fiscal_id] = new_foyer_fiscal
                         foyers_fiscaux_individus_id.remove(individu_id)
 
@@ -788,7 +788,7 @@ class Scenario(object):
                         else:
                             new_menage[u'enfants'].append(individu_id)
                         if new_menage_id is None:
-                            new_menage_id = uuid.uuid4()
+                            new_menage_id = unicode(uuid.uuid4())
                             test_case[u'menages'][new_menage_id] = new_menage
                         menages_individus_id.remove(individu_id)
 
