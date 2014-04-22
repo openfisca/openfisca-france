@@ -245,6 +245,7 @@ class Scenario(object):
 
             self.axes = data['axes']
             self.compact_legislation = compact_legislation
+            self.legislation_url = data['legislation_url']
             self.test_case = data['test_case']
             self.year = data['year']
             return self, None
@@ -1202,6 +1203,76 @@ class Scenario(object):
                         {})['caseT'] = foyer_fiscal['caseT'] = True
 
         return suggestions or None
+
+    def to_json(self):
+        self_json = collections.OrderedDict()
+        if self.axes is not None:
+            self_json['axes'] = self.axes
+        if self.legislation_url is not None:
+            self_json['legislation_url'] = self.legislation_url
+
+        test_case = self.test_case
+        if test_case is not None:
+            column_by_name = self.tax_benefit_system.column_by_name
+            test_case_json = collections.OrderedDict()
+
+            familles_json = collections.OrderedDict()
+            for famille_id, famille in (test_case.get('familles') or {}).iteritems():
+                famille_json = collections.OrderedDict()
+                for column_name, variable_value in famille.iteritems():
+                    column = column_by_name.get(column_name)
+                    if column is not None and column.entity == 'fam':
+                        variable_value_json = column.transform_value_to_json(variable_value)
+                        if variable_value_json is not None:
+                            famille_json[column_name] = variable_value_json
+                familles_json[famille_id] = famille_json
+            if familles_json:
+                test_case_json['familles'] = familles_json
+
+            foyers_fiscaux_json = collections.OrderedDict()
+            for foyer_fiscal_id, foyer_fiscal in (test_case.get('foyers_fiscaux') or {}).iteritems():
+                foyer_fiscal_json = collections.OrderedDict()
+                for column_name, variable_value in foyer_fiscal.iteritems():
+                    column = column_by_name.get(column_name)
+                    if column is not None and column.entity == 'foy':
+                        variable_value_json = column.transform_value_to_json(variable_value)
+                        if variable_value_json is not None:
+                            foyer_fiscal_json[column_name] = variable_value_json
+                foyers_fiscaux_json[foyer_fiscal_id] = foyer_fiscal_json
+            if foyers_fiscaux_json:
+                test_case_json['foyers_fiscaux'] = foyers_fiscaux_json
+
+            individus_json = collections.OrderedDict()
+            for individu_id, individu in (test_case.get('individus') or {}).iteritems():
+                individu_json = collections.OrderedDict()
+                for column_name, variable_value in individu.iteritems():
+                    column = column_by_name.get(column_name)
+                    if column is not None and column.entity == 'ind':
+                        variable_value_json = column.transform_value_to_json(variable_value)
+                        if variable_value_json is not None:
+                            individu_json[column_name] = variable_value_json
+                individus_json[individu_id] = individu_json
+            if individus_json:
+                test_case_json['individus'] = individus_json
+
+            menages_json = collections.OrderedDict()
+            for menage_id, menage in (test_case.get('menages') or {}).iteritems():
+                menage_json = collections.OrderedDict()
+                for column_name, variable_value in menage.iteritems():
+                    column = column_by_name.get(column_name)
+                    if column is not None and column.entity == 'men':
+                        variable_value_json = column.transform_value_to_json(variable_value)
+                        if variable_value_json is not None:
+                            menage_json[column_name] = variable_value_json
+                menages_json[menage_id] = menage_json
+            if menages_json:
+                test_case_json['menages'] = menages_json
+
+            self_json['test_case'] = test_case_json
+
+        if self.year is not None:
+            self_json['year'] = self.year
+        return self_json
 
 
 def find_famille_and_role(test_case, individu_id):
