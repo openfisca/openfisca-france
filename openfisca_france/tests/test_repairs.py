@@ -24,6 +24,7 @@
 
 
 import datetime
+import json
 
 import openfisca_france
 
@@ -47,6 +48,7 @@ def test_2_parents_2_enfants():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
@@ -95,6 +97,7 @@ def test_famille_1_parent_3_enfants():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
@@ -143,6 +146,7 @@ def test_famille_2_parents_2_enfants():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
@@ -191,6 +195,7 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
@@ -239,6 +244,7 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
@@ -287,6 +293,7 @@ def test_menage_1_personne_de_reference_3_enfants():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
@@ -336,6 +343,7 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),

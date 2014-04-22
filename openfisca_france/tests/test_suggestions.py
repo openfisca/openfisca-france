@@ -24,6 +24,7 @@
 
 
 import datetime
+import json
 
 import openfisca_france
 
@@ -44,6 +45,7 @@ def test_birth():
         year = year,
         )
     scenario.suggest()
+    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
     assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
