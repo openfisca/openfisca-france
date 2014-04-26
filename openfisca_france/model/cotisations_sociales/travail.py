@@ -30,7 +30,7 @@ import logging
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_,
                    zeros)
 
-from openfisca_core.baremes import BaremeDict, scaleBaremes
+from openfisca_core.taxscales import TaxScaleDict, scaleTaxScales
 from openfisca_core.enumerations import Enum
 
 from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN
@@ -320,7 +320,7 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
+    sal = scaleTaxScales(TaxScaleDict('sal', _P.cotsoc.sal), plaf_ss)
     assiette = min_(base_imposable / 12 , plaf_ass * tib)
     # Même régime pour etat et colloc
     cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
@@ -369,7 +369,7 @@ def _csgsald(salbrut, primes, indemnite_residence, supp_familial_traitement, hsu
     CSG deductible sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scaleBaremes(_P.csg.act.deduc, plaf_ss)
+    csg = scaleTaxScales(_P.csg.act.deduc, plaf_ss)
     return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
 
 
@@ -378,7 +378,7 @@ def _csgsali(salbrut, hsup, primes, indemnite_residence, supp_familial_traitemen
     CSG imposable sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scaleBaremes(_P.csg.act.impos, plaf_ss)
+    csg = scaleTaxScales(_P.csg.act.impos, plaf_ss)
     return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
 
 
@@ -387,7 +387,7 @@ def _crdssal(salbrut, hsup, primes, indemnite_residence, supp_familial_traitemen
     CRDS sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    crds = scaleBaremes(_P.crds.act, plaf_ss)
+    crds = scaleTaxScales(_P.crds.act, plaf_ss)
     return -12 * crds.calc((salbrut - hsup + primes + indemnite_residence + supp_familial_traitement) / 12)
 
 
@@ -509,7 +509,7 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: use build_pat
-    pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
+    pat = scaleTaxScales(TaxScaleDict('pat', _P.cotsoc.pat), plaf_ss)
     assiette = min_(base_imposable / 12, plaf_ass * tib)
 
     bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']

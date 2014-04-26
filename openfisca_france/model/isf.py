@@ -92,11 +92,11 @@ def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, P =
 # # calcul de l'impôt par application du barème ##
 
 
-def _isf_iai(ass_isf, _P, bar = law.isf.bareme):
+def _isf_iai(ass_isf, _P, bareme = law.isf.bareme):
     if _P.datesim.year > 2010:
-        ass_isf = (ass_isf >= bar.seuils[1]) * ass_isf
-    bar.t_x()
-    return bar.calc(ass_isf)
+        ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
+    bareme.t_x()
+    return bareme.calc(ass_isf)
 
 
 def _isf_avant_reduction(isf_iai, decote_isf):
@@ -138,7 +138,7 @@ def _isf_avant_plaf(isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc
 def _tot_impot(self, irpp, isf_avant_plaf, crds_holder, csg_holder, prelsoc_cap_holder):
     '''
     Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF
-    Utilisé pour calculer le montant du plafonnement de l'ISF 
+    Utilisé pour calculer le montant du plafonnement de l'ISF
     '''
     crds = self.split_by_roles(crds_holder, roles = [VOUS, CONJ])
     csg = self.split_by_roles(csg_holder, roles = [VOUS, CONJ])
@@ -154,7 +154,7 @@ def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_
         rpns_exon_holder, rpns_pvct_holder, rev_cap_lib, imp_lib, P = law.isf.plafonnement):
         # TODO: ric? benef indu et comm
     '''
-    Revenus et produits perçus (avant abattement), 
+    Revenus et produits perçus (avant abattement),
     Utilisé pour calculer le montant du plafonnement de l'ISF
     Cf. http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
     '''

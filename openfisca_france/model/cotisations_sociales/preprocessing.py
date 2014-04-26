@@ -28,7 +28,7 @@ from __future__ import division
 import copy
 import logging
 
-from openfisca_core.baremes import BaremeDict, scaleBaremes
+from openfisca_core.taxscales import TaxScaleDict, scaleTaxScales
 from openfisca_core.enumerations import Enum
 from openfisca_core.legislations import CompactNode
 
@@ -61,7 +61,7 @@ def build_pat(_P):
     à partir des informations contenues dans P.cotsoc.pat
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    pat = scaleBaremes(BaremeDict('pat', _P.cotsoc.pat), plaf_ss)
+    pat = scaleTaxScales(TaxScaleDict('pat', _P.cotsoc.pat), plaf_ss)
 
     for bareme in ['apprentissage', 'apprentissage_add']:
         pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
@@ -128,7 +128,7 @@ def build_sal(_P):
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
 
-    sal = scaleBaremes(BaremeDict('sal', _P.cotsoc.sal), plaf_ss)
+    sal = scaleTaxScales(TaxScaleDict('sal', _P.cotsoc.sal), plaf_ss)
     sal['noncadre'].update(sal['commun'])
     sal['cadre'].update(sal['commun'])
 
@@ -162,7 +162,7 @@ def build_sal(_P):
 
 def preprocess_legislation_parameters(legislation):
     '''
-    Preprocess the legislation_parameters to build the cotisations sociales baremes
+    Preprocess the legislation_parameters to build the cotisations sociales taxscales (barèmes)
     '''
     sal = build_sal(legislation)
     pat = build_pat(legislation)
@@ -174,4 +174,3 @@ def preprocess_legislation_parameters(legislation):
         for category, bareme in bareme_dict.iteritems():
             if category in CAT._nums:
                 cotsoc_dict[cotisation_name].__dict__[category] = bareme
-

@@ -29,7 +29,8 @@ import logging
 
 
 from numpy import zeros, logical_not as not_
-from openfisca_core.baremes import Bareme, BaremeDict, combineBaremes, scaleBaremes
+from openfisca_core.taxscales import TaxScale, TaxScaleDict, combineTaxScales, scaleTaxScales
+
 from scipy.optimize import fsolve
 
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
@@ -66,8 +67,8 @@ def _salbrut_from_sali(sali, hsup, type_sal, _defaultP):
     '''
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
 
-    salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
-    csg = scaleBaremes(BaremeDict('csg', _defaultP.csg), plaf_ss)
+    salarie = scaleTaxScales(TaxScaleDict('sal', _defaultP.cotsoc.sal), plaf_ss)
+    csg = scaleTaxScales(TaxScaleDict('csg', _defaultP.csg), plaf_ss)
 
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
@@ -76,12 +77,12 @@ def _salbrut_from_sali(sali, hsup, type_sal, _defaultP):
 
     # Salariés du privé
 
-    noncadre = combineBaremes(salarie['noncadre'])
-    cadre = combineBaremes(salarie['cadre'])
+    noncadre = combineTaxScales(salarie['noncadre'])
+    cadre = combineTaxScales(salarie['cadre'])
 
     # On ajoute la CSG deductible
-    noncadre.addBareme(csg['act']['deduc'])
-    cadre.addBareme(csg['act']['deduc'])
+    noncadre.addTaxScale(csg['act']['deduc'])
+    cadre.addTaxScale(csg['act']['deduc'])
 
     nca = noncadre.inverse()
     cad = cadre.inverse()
@@ -97,15 +98,15 @@ def _salbrut_from_sali(sali, hsup, type_sal, _defaultP):
     salarie['fonc']["etat"].update({'excep_solidarite' : salarie['fonc']['commun']['solidarite']})
 
     public_etat = salarie['fonc']["etat"]['pension']
-#    public_colloc = combineBaremes(salarie['fonc']["colloc"]) TODO:
+#    public_colloc = combineTaxScales(salarie['fonc']["colloc"]) TODO:
 
     # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
     # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
-    bareme_csg_titulaire_etat = (csg['act']['deduc']).multTaux(1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
-    public_etat.addBareme(bareme_csg_titulaire_etat)
-    bareme_prime = Bareme(name = "taux de prime")
-    bareme_prime.addTranche(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
-    public_etat.addBareme(bareme_prime)
+    bareme_csg_titulaire_etat = (csg['act']['deduc']).multRates(1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
+    public_etat.addTaxScale(bareme_csg_titulaire_etat)
+    bareme_prime = TaxScale(name = "taux de prime")
+    bareme_prime.addBracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
+    public_etat.addTaxScale(bareme_prime)
 
     etat = public_etat.inverse()
 
@@ -135,22 +136,22 @@ def _salbrut_from_salnet(salnet, hsup, type_sal, _defaultP):
     '''
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
 
-    salarie = scaleBaremes(BaremeDict('sal', _defaultP.cotsoc.sal), plaf_ss)
-    csg_deduc = scaleBaremes(_defaultP.csg.act.deduc, plaf_ss)
-    csg_impos = scaleBaremes(_defaultP.csg.act.impos, plaf_ss)
-    crds = scaleBaremes(_defaultP.crds.act, plaf_ss)
+    salarie = scaleTaxScales(TaxScaleDict('sal', _defaultP.cotsoc.sal), plaf_ss)
+    csg_deduc = scaleTaxScales(_defaultP.csg.act.deduc, plaf_ss)
+    csg_impos = scaleTaxScales(_defaultP.csg.act.impos, plaf_ss)
+    crds = scaleTaxScales(_defaultP.crds.act, plaf_ss)
     salarie['noncadre'].update(salarie['commun'])
     salarie['cadre'].update(salarie['commun'])
 
     # Salariés du privé
-    prive_non_cadre = combineBaremes(salarie['noncadre'])
-    prive_cadre = combineBaremes(salarie['cadre'])
+    prive_non_cadre = combineTaxScales(salarie['noncadre'])
+    prive_cadre = combineTaxScales(salarie['cadre'])
 
     # On ajoute la CSG deductible et imposable
     for bareme in [prive_non_cadre, prive_cadre]:
-        bareme.addBareme(csg_deduc)
-        bareme.addBareme(csg_impos)
-        bareme.addBareme(crds)
+        bareme.addTaxScale(csg_deduc)
+        bareme.addTaxScale(csg_impos)
+        bareme.addTaxScale(crds)
 
     inversed_bareme = {'prive_non_cadre': prive_non_cadre.inverse(),
                        'prive_cadre' : prive_cadre.inverse()}
@@ -171,7 +172,7 @@ def _chobrut_from_choi(choi, csg_rempl, _defaultP):
     '''
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
+    csg = scaleTaxScales(TaxScaleDict('csg', P), plaf_ss)
     taux_plein = csg['plein']['deduc']
     taux_reduit = csg['reduit']['deduc']
 
@@ -190,13 +191,13 @@ def _chobrut_from_chonet(chonet, csg_rempl, _defaultP):
     '''
     P = _defaultP.csg.chom
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement donc valable aussi pour le chômage
+    csg = scaleTaxScales(TaxScaleDict('csg', P), plaf_ss)
+    crds = scaleTaxScales(_defaultP.crds.rst, plaf_ss)  # crds.rst est la CRDS sur les revenus de remplacement donc valable aussi pour le chômage
 
-    taux_plein = combineBaremes(csg['plein'])
-    taux_reduit = combineBaremes(csg['reduit'])
-    taux_plein.addBareme(crds)
-    taux_reduit.addBareme(crds)
+    taux_plein = combineTaxScales(csg['plein'])
+    taux_reduit = combineTaxScales(csg['reduit'])
+    taux_plein.addTaxScale(crds)
+    taux_reduit.addTaxScale(crds)
     chom_plein = taux_plein.inverse()
     chom_reduit = taux_reduit.inverse()
 
@@ -228,18 +229,18 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
     '''
     P = _defaultP.csg.retraite
     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    csg = scaleBaremes(BaremeDict('csg', P), plaf_ss)
-    crds = scaleBaremes(_defaultP.crds.rst, plaf_ss)
-    taux_plein = combineBaremes(csg['plein'])
-    taux_reduit = combineBaremes(csg['reduit'])
-    taux_plein.addBareme(crds)
-    taux_reduit.addBareme(crds)
+    csg = scaleTaxScales(TaxScaleDict('csg', P), plaf_ss)
+    crds = scaleTaxScales(_defaultP.crds.rst, plaf_ss)
+    taux_plein = combineTaxScales(csg['plein'])
+    taux_reduit = combineTaxScales(csg['reduit'])
+    taux_plein.addTaxScale(crds)
+    taux_reduit.addTaxScale(crds)
 
     if hasattr(_defaultP.prelsoc, 'add_ret'):
-        casa = Bareme(name = "casa")
-        casa.addTranche(0, _defaultP.prelsoc.add_ret)
-        taux_plein.addBareme(casa)
-        taux_reduit.addBareme(casa)
+        casa = TaxScale(name = "casa")
+        casa.addBracket(0, _defaultP.prelsoc.add_ret)
+        taux_plein.addTaxScale(casa)
+        taux_reduit.addTaxScale(casa)
 
     rst_plein = taux_plein.inverse()
     rst_reduit = taux_reduit.inverse()
@@ -302,4 +303,3 @@ def _num_salbrut_from_salnet(self, agem, salnet, hsup, type_sal, _defaultP):
 
 def _primes_from_salbrut(salbrut, type_sal):
     return salbrut * TAUX_DE_PRIME * (type_sal >= 2)
-
