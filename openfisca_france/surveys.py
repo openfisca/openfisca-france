@@ -68,7 +68,7 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     for column_name, column_series in survey.iteritems():
         holder = simulation.get_or_new_holder(column_name)
         entity = holder.entity
-        if holder.entity.is_persons_entity:
+        if entity.is_persons_entity:
             array = column_series.values
         else:
             array = column_series.values[survey['qui' + entity.symbol].values == 0]
