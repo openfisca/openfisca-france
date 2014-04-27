@@ -13,7 +13,7 @@ import logging
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_, ones
 
-from openfisca_core.taxscales import TaxScaleDict, scaleTaxScales
+from openfisca_core.taxscales import TaxScaleDict, scale_tax_scales
 
 
 log = logging.getLogger(__name__)
@@ -64,7 +64,7 @@ def csgchod_sans_exo(chobrut, csg_rempl, _P):
     CSG déductible sur les allocations chômage sans exo
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    csg = scaleTaxScales(TaxScaleDict('csg', _P.csg.chom), plaf_ss)
+    csg = scale_tax_scales(TaxScaleDict('csg', _P.csg.chom), plaf_ss)
     taux_plein = csg['plein']['deduc'].calc(chobrut)
     taux_reduit = csg['reduit']['deduc'].calc(chobrut)
     csgchod = (csg_rempl == 2) * taux_reduit + (csg_rempl == 3) * taux_plein
@@ -76,7 +76,7 @@ def csgchoi_sans_exo(chobrut, csg_rempl, _P):
     CSG imposable sur les allocations chômage sans exo
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    csg = scaleTaxScales(TaxScaleDict('csg', _P.csg.chom), plaf_ss)
+    csg = scale_tax_scales(TaxScaleDict('csg', _P.csg.chom), plaf_ss)
     taux_plein = csg['plein']['impos'].calc(chobrut)
     taux_reduit = csg['reduit']['impos'].calc(chobrut)
     csgchoi = (csg_rempl == 2) * taux_reduit + (csg_rempl == 3) * taux_plein
@@ -88,7 +88,7 @@ def crdscho_sans_exo(chobrut, csg_rempl, _P):
     CRDS sur les allocations chômage sans exo
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    crds = scaleTaxScales(_P.crds.act, plaf_ss)  # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
+    crds = scale_tax_scales(_P.crds.act, plaf_ss)  # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
     return -crds.calc(chobrut) * (2 <= csg_rempl)
 
 
@@ -156,7 +156,7 @@ def _csgrstd(rstbrut, csg_rempl, _P):
     CSG déductible sur les retraites
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    csg = scaleTaxScales(TaxScaleDict('csg', _P.csg.retraite), plaf_ss)
+    csg = scale_tax_scales(TaxScaleDict('csg', _P.csg.retraite), plaf_ss)
     taux_plein = csg['plein']['deduc'].calc(rstbrut)
     taux_reduit = csg['reduit']['deduc'].calc(rstbrut)
     csgrstd = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
@@ -168,7 +168,7 @@ def _csgrsti(rstbrut, csg_rempl, _P):
     CSG imposable sur les pensions de retraite
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    csg = scaleTaxScales(TaxScaleDict('csg', _P.csg.retraite), plaf_ss)
+    csg = scale_tax_scales(TaxScaleDict('csg', _P.csg.retraite), plaf_ss)
     taux_plein = csg['plein']['impos'].calc(rstbrut)
     taux_reduit = csg['reduit']['impos'].calc(rstbrut)
     csgrsti = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
@@ -180,7 +180,7 @@ def _crdsrst(rstbrut, csg_rempl, _P):
     CRDS sur les pensions
     '''
     plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    crds = scaleTaxScales(TaxScaleDict('crds', _P.crds.rst), plaf_ss)
+    crds = scale_tax_scales(TaxScaleDict('crds', _P.crds.rst), plaf_ss)
     isexo = (csg_rempl == 1)
     return -crds['rst'].calc(rstbrut) * not_(isexo)
 

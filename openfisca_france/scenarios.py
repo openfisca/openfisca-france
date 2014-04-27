@@ -602,7 +602,9 @@ class Scenario(object):
 
                     if individu_id in familles_individus_id:
                         # L'individu n'est toujours pas affecté à une famille.
-                        if len(new_famille[u'parents']) < 2:
+                        individu = test_case['individus'][individu_id]
+                        age = find_age(individu)
+                        if len(new_famille[u'parents']) < 2 and (age is None or age >= 18):
                             new_famille[u'parents'].append(individu_id)
                         else:
                             new_famille[u'enfants'].append(individu_id)
