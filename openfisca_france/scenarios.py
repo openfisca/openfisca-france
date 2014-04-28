@@ -602,7 +602,9 @@ class Scenario(object):
 
                     if individu_id in familles_individus_id:
                         # L'individu n'est toujours pas affecté à une famille.
-                        if len(new_famille[u'parents']) < 2:
+                        individu = test_case['individus'][individu_id]
+                        age = find_age(individu, year)
+                        if len(new_famille[u'parents']) < 2 and (age is None or age >= 18):
                             new_famille[u'parents'].append(individu_id)
                         else:
                             new_famille[u'enfants'].append(individu_id)
@@ -691,7 +693,9 @@ class Scenario(object):
 
                     if individu_id in foyers_fiscaux_individus_id:
                         # L'individu n'est toujours pas affecté à un foyer fiscal.
-                        if len(new_foyer_fiscal[u'declarants']) < 2:
+                        individu = test_case['individus'][individu_id]
+                        age = find_age(individu, year)
+                        if len(new_foyer_fiscal[u'declarants']) < 2 and (age is None or age >= 18):
                             new_foyer_fiscal[u'declarants'].append(individu_id)
                         else:
                             new_foyer_fiscal[u'personnes_a_charge'].append(individu_id)
@@ -826,6 +830,13 @@ class Scenario(object):
                             conv.noop,
                             conv.struct(
                                 dict(
+                                    enfants = conv.uniform_sequence(
+                                        conv.test(lambda individu_id:
+                                            find_age(individu_by_id[individu_id], year, default = 0) <= 25,
+                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                u" 25 ans ou être invalide",
+                                            ),
+                                        ),
                                     parents = conv.pipe(
                                         conv.empty_to_none,
                                         conv.not_none,
@@ -852,20 +863,7 @@ class Scenario(object):
                                             )),
                                         conv.uniform_sequence(conv.pipe(
                                             conv.test(lambda individu_id:
-                                                individu_by_id[individu_id].get('birth') is None
-                                                or year - individu_by_id[individu_id]['birth'].year >= 18,
-                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
-                                                    u" ans",
-                                                ),
-                                            conv.test(lambda individu_id:
-                                                individu_by_id[individu_id].get('age') is None
-                                                or individu_by_id[individu_id]['age'] >= 18,
-                                                error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
-                                                    u" ans",
-                                                ),
-                                            conv.test(lambda individu_id:
-                                                individu_by_id[individu_id].get('agem') is None
-                                                or individu_by_id[individu_id]['agem'] >= 18 * 12,
+                                                find_age(individu_by_id[individu_id], year, default = 100) >= 18,
                                                 error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
                                                     u" ans",
                                                 ),
@@ -875,26 +873,13 @@ class Scenario(object):
                                                 ),
                                             )),
                                         ),
-                                    personnes_a_charge = conv.uniform_sequence(conv.pipe(
+                                    personnes_a_charge = conv.uniform_sequence(
                                         conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
-                                            or individu_by_id[individu_id].get('birth') is None
-                                            or year - individu_by_id[individu_id]['birth'].year <= 25,
+                                            or find_age(individu_by_id[individu_id], year, default = 0) < 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                 u" 25 ans ou être invalide",
                                             ),
-                                        conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
-                                            or individu_by_id[individu_id].get('age') is None
-                                            or individu_by_id[individu_id]['age'] <= 25,
-                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                u" 25 ans ou être invalide",
-                                            ),
-                                        conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
-                                            or individu_by_id[individu_id].get('agem') is None
-                                            or individu_by_id[individu_id]['agem'] <= 25 * 12,
-                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                u" 25 ans ou être invalide",
-                                            ),
-                                        )),
+                                        ),
                                     ),
                                 default = conv.noop,
                                 ),
@@ -1315,3 +1300,19 @@ def find_menage_and_role(test_case, individu_id):
             if individu_id in menage[role]:
                 return menage_id, menage, role
     return None, None, None
+
+
+def find_age(individu, year, default = None):
+    birth = individu.get('birth')
+    if birth is not None:
+        return year - birth.year
+    age = individu.get('age')
+    if age is not None:
+        return age
+    age = individu.get('age')
+    if age is not None:
+        return age
+    agem = individu.get('agem')
+    if agem is not None:
+        return age / 12.0
+    return default
