@@ -816,7 +816,6 @@ class Scenario(object):
                 return test_case, error
 
             # Third validation step
-            famille_by_id = test_case['familles']
             parents_id = set(
                 parent_id
                 for famille in test_case['familles'].itervalues()
@@ -868,8 +867,8 @@ class Scenario(object):
                                                     u" ans",
                                                 ),
                                             conv.test(lambda individu_id: individu_id in parents_id,
-                                                error = u"Un déclarant ou un conjoint sur la feuille d'impôt, doit être"
-                                                    u" un parent dans sa famille",
+                                                error = u"Un déclarant ou un conjoint sur la déclaration d'impôt, doit"
+                                                    u" être un parent dans sa famille",
                                                 ),
                                             )),
                                         ),
@@ -1193,11 +1192,9 @@ class Scenario(object):
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                         'activite'] = individu['activite'] = 2  # Étudiant, élève
 
-        # Suggest "parent isolé" when family contains a single parent with children.
+        # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
         for foyer_fiscal_id, foyer_fiscal in test_case['foyers_fiscaux'].iteritems():
             if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
-                single_declarant_id = foyer_fiscal['declarants'][0]
-                single_declarant = test_case['individus'][single_declarant_id]
                 if foyer_fiscal.get('caseT') is None:
                     suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(foyer_fiscal_id,
                         {})['caseT'] = foyer_fiscal['caseT'] = True
