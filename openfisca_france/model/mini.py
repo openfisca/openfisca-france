@@ -118,7 +118,7 @@ def _br_mv(self, br_mv_i_holder):
 
 def _aspa_elig(age, inv, activite, P = law.minim.aspa):
     '''
-    Eligibitié individuelle à l'ASPA
+    Eligibitié individuelle à l'ASPA (Allocation de solidarité aux personnes agées)
     'ind'
     '''
     out = ((age >= P.age_min) | ((age >= P.age_ina) & inv)) & (activite >= 3)  # TODO: affiner cette condition
@@ -127,7 +127,7 @@ def _aspa_elig(age, inv, activite, P = law.minim.aspa):
 
 def _asi_elig(aspa_elig, inv, activite):
     '''
-    Éligibilité individuelle à l'ASI
+    Éligibilité individuelle à l'ASI (Allocation supplémentaire d'invalidité)
     'ind'
     '''
     return (inv & (activite >= 3)) & not_(aspa_elig)  # TODO: affiner cette condition
