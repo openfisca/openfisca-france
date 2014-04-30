@@ -31,15 +31,10 @@ import datetime
 import openfisca_france
 
 
-#def check_irpp(amount, irpp, revenu, simulation, year):
-#    calculated_irpp = simulation.calculate('irpp')
-#    assert abs(calculated_irpp - irpp) < 1, "Error in irpp for revenu {} = {} in year {}: Got {}, expected {}".format(
-#        revenu, amount, year, calculated_irpp, irpp)
-
 def test_rsa():
-    '''test pour un célibataire avec son age variant entre 18 et 25 ans'''
+    '''test rsa pour un célibataire avec différent sali'''
 
-    # test pour un célibataire ayant un revenu salarial (1AJ)
+
     tests_list = [
         {"year": 2014, "amount": 0, "rsa": 439},
         {"year": 2014, "amount": 5000, "rsa": 281},
@@ -71,11 +66,10 @@ def test_rsa():
 
 
 
-#        if test['rsa'] != calculated_rsa :
+
 
         assert abs(calculated_rsa - test['rsa']) < error_margin, 'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
-##        u'Variable "{} = {}. Expected: {}'.format(
-#        variable, calculated_value, expected_value)
+
         print calculated_rsa
 
 if __name__ == '__main__':
@@ -83,7 +77,7 @@ if __name__ == '__main__':
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
-#    test_rsa()
+    test_rsa()
 
 
 
@@ -281,9 +275,6 @@ def test_rsa_couple():
 #        ]
 #
     error_margin = 1
-#    year = 2014
-#    age = 29
-#    revenu = "sali"
     for test in tests_list:
         print test
 #        amount = test["amountdeclarant"]
@@ -318,28 +309,7 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#    import nose
-#    nose.core.runmodule(argv = [__file__, '-v'])
-#    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
-
-#    for function_and_arguments in test_irpp():
-#        function_and_arguments[0](*function_and_arguments[1:])
-
+#TODO:  Reste des tests RSA codés par Thimothés à coder sous forme de test
 
 
 
