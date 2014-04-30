@@ -1188,7 +1188,7 @@ class Scenario(object):
                 suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                     'birth'] = birth.isoformat()
             if individu.get('activite') is None:
-                if self.year - individu['birth'].year < 16:
+                if find_age(individu, self.year) < 16:
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                         'activite'] = individu['activite'] = 2  # Étudiant, élève
 
