@@ -1216,6 +1216,12 @@ class Scenario(object):
             familles_json = collections.OrderedDict()
             for famille_id, famille in (test_case.get('familles') or {}).iteritems():
                 famille_json = collections.OrderedDict()
+                parents = famille.get('parents')
+                if parents:
+                    famille_json['parents'] = parents
+                enfants = famille.get('enfants')
+                if enfants:
+                    famille_json['enfants'] = enfants
                 for column_name, variable_value in famille.iteritems():
                     column = column_by_name.get(column_name)
                     if column is not None and column.entity == 'fam':
@@ -1229,6 +1235,12 @@ class Scenario(object):
             foyers_fiscaux_json = collections.OrderedDict()
             for foyer_fiscal_id, foyer_fiscal in (test_case.get('foyers_fiscaux') or {}).iteritems():
                 foyer_fiscal_json = collections.OrderedDict()
+                declarants = foyer_fiscal_json.get('declarants')
+                if declarants:
+                    foyer_fiscal_json_json['declarants'] = declarants
+                personnes_a_charge = foyer_fiscal_json.get('personnes_a_charge')
+                if personnes_a_charge:
+                    foyer_fiscal_json_json['personnes_a_charge'] = personnes_a_charge
                 for column_name, variable_value in foyer_fiscal.iteritems():
                     column = column_by_name.get(column_name)
                     if column is not None and column.entity == 'foy':
@@ -1255,6 +1267,18 @@ class Scenario(object):
             menages_json = collections.OrderedDict()
             for menage_id, menage in (test_case.get('menages') or {}).iteritems():
                 menage_json = collections.OrderedDict()
+                personne_de_reference = menage.get('personne_de_reference')
+                if personne_de_reference is not None:
+                    menage_json['personne_de_reference'] = personne_de_reference
+                conjoint = menage.get('conjoint')
+                if conjoint is not None:
+                    menage_json['conjoint'] = conjoint
+                enfants = menage.get('enfants')
+                if enfants:
+                    menage_json['enfants'] = enfants
+                autres = menage.get('autres')
+                if autres:
+                    menage_json['autres'] = autres
                 for column_name, variable_value in menage.iteritems():
                     column = column_by_name.get(column_name)
                     if column is not None and column.entity == 'men':
