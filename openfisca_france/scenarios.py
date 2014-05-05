@@ -1235,12 +1235,12 @@ class Scenario(object):
             foyers_fiscaux_json = collections.OrderedDict()
             for foyer_fiscal_id, foyer_fiscal in (test_case.get('foyers_fiscaux') or {}).iteritems():
                 foyer_fiscal_json = collections.OrderedDict()
-                declarants = foyer_fiscal_json.get('declarants')
+                declarants = foyer_fiscal.get('declarants')
                 if declarants:
-                    foyer_fiscal_json_json['declarants'] = declarants
-                personnes_a_charge = foyer_fiscal_json.get('personnes_a_charge')
+                    foyer_fiscal_json['declarants'] = declarants
+                personnes_a_charge = foyer_fiscal.get('personnes_a_charge')
                 if personnes_a_charge:
-                    foyer_fiscal_json_json['personnes_a_charge'] = personnes_a_charge
+                    foyer_fiscal_json['personnes_a_charge'] = personnes_a_charge
                 for column_name, variable_value in foyer_fiscal.iteritems():
                     column = column_by_name.get(column_name)
                     if column is not None and column.entity == 'foy':
