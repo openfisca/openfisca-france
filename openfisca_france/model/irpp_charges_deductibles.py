@@ -30,44 +30,70 @@ PREF = QUIMEN['pref']
 def _rfr_cd(cd_acc75a, cd_doment, cd_eparet, cd_sofipe):
     return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
+def _cd1_2002(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment):
+	'''
+	Renvoie la liste des charges déductibles avant rbg_int pour 2002
+	'''
+	niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
+	return niches1
 
-def _cd1(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment, cd_eparet, cd_grorep, _P):
-    '''
-    Renvoie la liste des charges déductibles à intégrer en fonction de l'année
-    niches1 : niches avant le rbg_int
-    niches2 : niches après le rbg_int
-    niches3 : indices des niches à ajouter au revenu fiscal de référence
-    '''
-    if _P.datesim.year in (2002, 2003):
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
-    elif _P.datesim.year in (2004, 2005):
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
-    elif _P.datesim.year == 2006:
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
-    elif _P.datesim.year in (2007, 2008):
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
-    elif _P.datesim.year in (2009, 2010, 2011, 2012, 2013, 2014):
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+def _cd1_2004(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment, cd_eparet):
+	'''
+	Renvoie la liste des charges déductibles avant rbg_int pour 2004
+	'''
+	niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
+	return niches1
 
-    if _P.datesim.year > 2013:
-        log.error("Charges déductibles to be checked because not defined for %s", _P.datesim.year)
+def _cd1_2006(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_eparet):
+	'''
+	Renvoie la liste des charges déductibles avant rbg_int pour 2006
+	'''
+	niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
+	return niches1
 
-    return niches1
+def _cd1_2007(cd_penali, cd_acc75a, cd_deddiv, cd_eparet):
+	'''
+	Renvoie la liste des charges déductibles avant rbg_int pour 2007
+	'''
+	niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
+	return niches1
 
-def _cd2(cd_ecodev, cd_sofipe, cd_cinema, _P):
-    '''
-    Renvoie la liste des charges déductibles à intégrer en fonction de l'année
-    niches1 : niches avant le rbg_int
-    niches2 : niches après le rbg_int
-    niches3 : indices des niches à ajouter au revenu fiscal de référence
-    '''
-    if _P.datesim.year in (2002, 2003, 2004, 2005):
-        niches2 = cd_sofipe + cd_cinema
-    elif _P.datesim.year == 2006:
-        niches2 = cd_sofipe
-    elif _P.datesim.year in (2007, 2008):
-        niches2 = cd_ecodev
-    return niches2
+def _cd1_2009(cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
+	'''
+	Renvoie la liste des charges déductibles avant rbg_int pour 2009
+	'''
+	niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+	return niches1
+
+def _cd1_2014(cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
+	'''
+	Renvoie la liste des charges déductibles avant rbg_int pour 2014
+	'''
+	niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+	log.error("Charges déductibles to be checked because not defined for %s", 2014)
+	return niches1
+
+
+def _cd2_2002(cd_sofipe, cd_cinema):
+	'''
+	Renvoie la liste des charges déductibles à intégrer après le rbg_int
+	'''
+	niches2 = cd_sofipe + cd_cinema
+	return niches2
+
+def _cd2_2006(cd_sofipe):
+	'''
+	Renvoie la liste des charges déductibles à intégrer après le rbg_int
+	'''
+	niches2 = cd_sofipe
+	return niches2
+
+def _cd2_2007(cd_ecodev):
+	'''
+	Renvoie la liste des charges déductibles à intégrer après le rbg_int
+	'''
+	niches2 = cd_ecodev
+	return niches2
 
 def _rbg_int(rbg, cd1):
     return max_(rbg - cd1, 0)
