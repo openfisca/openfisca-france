@@ -1335,5 +1335,5 @@ def find_age(individu, year, default = None):
         return age
     agem = individu.get('agem')
     if agem is not None:
-        return age / 12.0
+        return agem / 12.0
     return default
