@@ -609,7 +609,10 @@ class Scenario(object):
                         else:
                             new_famille[u'enfants'].append(individu_id)
                         if new_famille_id is None:
-                            new_famille_id = unicode(uuid.uuid4())
+                            for new_famille_id_int in itertools.count(1):
+                                new_famille_id = unicode(new_famille_id_int)
+                                if new_famille_id not in test_case[u'familles']:
+                                    break
                             test_case[u'familles'][new_famille_id] = new_famille
                         familles_individus_id.remove(individu_id)
 
@@ -700,7 +703,10 @@ class Scenario(object):
                         else:
                             new_foyer_fiscal[u'personnes_a_charge'].append(individu_id)
                         if new_foyer_fiscal_id is None:
-                            new_foyer_fiscal_id = unicode(uuid.uuid4())
+                            for new_foyer_fiscal_id_int in itertools.count(1):
+                                new_foyer_fiscal_id = unicode(new_foyer_fiscal_id_int)
+                                if new_foyer_fiscal_id not in test_case[u'foyers_fiscaux']:
+                                    break
                             test_case[u'foyers_fiscaux'][new_foyer_fiscal_id] = new_foyer_fiscal
                         foyers_fiscaux_individus_id.remove(individu_id)
 
@@ -793,7 +799,10 @@ class Scenario(object):
                         else:
                             new_menage[u'enfants'].append(individu_id)
                         if new_menage_id is None:
-                            new_menage_id = unicode(uuid.uuid4())
+                            for new_menage_id_int in itertools.count(1):
+                                new_menage_id = unicode(new_menage_id_int)
+                                if new_menage_id not in test_case[u'menages']:
+                                    break
                             test_case[u'menages'][new_menage_id] = new_menage
                         menages_individus_id.remove(individu_id)
 
