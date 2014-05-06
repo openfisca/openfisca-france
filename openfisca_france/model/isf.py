@@ -92,12 +92,14 @@ def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, P =
 # # calcul de l'impôt par application du barème ##
 
 
-def _isf_iai(ass_isf, _P, bareme = law.isf.bareme):
-    if _P.datesim.year > 2010:
-        ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
+def _isf_iai_2011_(ass_isf, _P, bareme = law.isf.bareme):
+    ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
     bareme.t_x()
     return bareme.calc(ass_isf)
 
+def _isf_iai__2010(ass_isf, _P, bareme = law.isf.bareme):
+    bareme.t_x()
+    return bareme.calc(ass_isf)
 
 def _isf_avant_reduction(isf_iai, decote_isf):
     return isf_iai - decote_isf
@@ -172,19 +174,15 @@ def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_
     return pt * P.taux
 
 
-def _decote_isf(ass_isf, _P, P = law.isf.decote):
+def _decote_isf_2013_(ass_isf, _P, P = law.isf.decote):
     '''
     Décote d el'ISF
     '''
-    if _P.datesim.year >= 2013:
-        elig = (ass_isf >= P.min) & (ass_isf <= P.max)
-        LB = P.base - P.taux * ass_isf
-        return LB * elig
-    else:
-        return 0 * ass_isf
+    elig = (ass_isf >= P.min) & (ass_isf <= P.max)
+    LB = P.base - P.taux * ass_isf
+    return LB * elig
 
-
-def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
+def _isf_apres_plaf__2011(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
     """
     Impôt sur la fortune après plafonnement
     """
@@ -193,21 +191,38 @@ def _isf_apres_plaf(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.pl
     # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
     # Plafonnement supprimé pour l'année 2012
-    if _P.datesim.year <= 2011:
-        plafonnement = max_(tot_impot - revetproduits, 0)
-        limitationplaf = (
-                          (isf_avant_plaf <= P.seuil1) * plafonnement +
-                          (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
-                          (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement))
-        return max_(isf_avant_plaf - limitationplaf, 0)
+    plafonnement = max_(tot_impot - revetproduits, 0)
+    limitationplaf = (
+                      (isf_avant_plaf <= P.seuil1) * plafonnement +
+                      (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
+                      (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement))
+    return max_(isf_avant_plaf - limitationplaf, 0)
 
-    elif _P.datesim.year == 2012:
-        return isf_avant_plaf
+def _isf_apres_plaf_2012(isf_avant_plaf, _P, P = law.isf.plaf):
+    """
+    Impôt sur la fortune après plafonnement
+    """
+    # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
+    # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
+    # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
-    else:
-        plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
-        return max_(isf_avant_plaf - plafond, 0)
+    # Plafonnement supprimé pour l'année 2012
 
+    return isf_avant_plaf
+
+
+def _isf_apres_plaf_2013_(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
+    """
+    Impôt sur la fortune après plafonnement
+    """
+    # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
+    # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
+    # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
+
+    # Plafonnement supprimé pour l'année 2012
+
+    plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
+    return max_(isf_avant_plaf - plafond, 0)
 
 def _isf_tot(b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
     # # rs est le montant des impôts acquittés hors de France ##

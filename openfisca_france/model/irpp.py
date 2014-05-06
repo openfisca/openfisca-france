@@ -258,32 +258,39 @@ def _rev_cat_tspr(self, tspr_holder, indu_plaf_abat_pen):
     return tspr + indu_plaf_abat_pen
 
 
-def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar):  # TODO: check this, f2as): and correct in data.py
-    year = _P.datesim.year
-    return (f2aa * (year == 2009)
-        + f2al * (year == 2009 | year == 2010)
-        + f2am * (year == 2009 | year == 2010 | year == 2011)
-        + f2an * (year == 2010 | year == 2011 | year == 2012)
-        + f2aq * (year == 2011 | year == 2012 | year == 2013)
-        + f2ar * (year == 2012 | year == 2013 | year == 2014))
+def _deficit_rcm_2009(_P, f2aa, f2al, f2am):  # TODO: check this, f2as): and correct in data.py
+    return f2aa + f2al + f2am
+
+def _deficit_rcm_2010(_P, f2al, f2am, f2an):  # TODO: check this, f2as): and correct in data.py
+
+    return f2al + f2am + f2an
+
+def _deficit_rcm_2011(_P, f2am, f2an, f2aq):  # TODO: check this, f2as): and correct in data.py
+    
+    return f2am + f2an + f2aq
+
+def _deficit_rcm_2012(_P,f2an, f2aq, f2ar):  # TODO: check this, f2as): and correct in data.py
+
+    return f2an + f2ar + f2aq
+
+def _deficit_rcm_2013(_P, f2aq, f2ar):  # TODO: check this, f2as): and correct in data.py
+
+    return f2aq + f2ar
         # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
 
+def _deficit_rcm_2014(_P, f2ar):  # TODO: check this, f2as): and correct in data.py
+    year = _P.datesim.year
+    return f2ar
+        # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
 
-def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, _P,
+def _rev_cat_rvcm__2004(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, _P,
         finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
     """
     Revenus des valeurs et capitaux mobiliers
     """
-    if _P.datesim.year > 2004:
-        f2gr = 0
 
-    # Add f2da to f2dc and f2ee to f2tr when no PFL
-    if _P.datesim.year >= 2013:
-        f2dc_bis = f2dc + f2da
-        f2tr_bis = f2tr + f2ee
-    else:
-        f2dc_bis = f2dc
-        f2tr_bis = f2tr
+    f2dc_bis = f2dc
+    f2tr_bis = f2tr
     # # Calcul du revenu catégoriel
     # 1.2 Revenus des valeurs et capitaux mobiliers
     b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
@@ -310,7 +317,75 @@ def _rev_cat_rvcm(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr,
     DEF = deficit_rcm
     return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
+def _rev_cat_rvcm_2005_2012(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr,
+        finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
+    """
+    Revenus des valeurs et capitaux mobiliers
+    """
 
+    # Add f2da to f2dc and f2ee to f2tr when no PFL
+    f2dc_bis = f2dc
+    f2tr_bis = f2tr
+    # # Calcul du revenu catégoriel
+    # 1.2 Revenus des valeurs et capitaux mobiliers
+    b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
+    TOT1 = f2ch - b12 # c12
+    # Part des frais s'imputant sur les revenus déclarés case DC
+    den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
+    F1 = f2ca / den * f2dc_bis # f12
+    # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
+    # partie négative (à déduire des autres revenus nets de frais d'abattements
+    g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+    # partie positive
+    g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+    rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+
+    # Abattements, limité au revenu
+    h12 = rvcm.abatmob * (1 + marpac)
+    TOT2 = max_(0, rev - h12)
+    # i121= -min_(0,rev - h12)
+
+    # Part des frais s'imputant sur les revenus déclarés ligne TS
+    F2 = f2ca - F1
+    TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
+
+    DEF = deficit_rcm
+    return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+
+def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, 
+        finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
+    """
+    Revenus des valeurs et capitaux mobiliers
+    """
+    # Add f2da to f2dc and f2ee to f2tr when no PFL
+    f2dc_bis = f2dc + f2da
+    f2tr_bis = f2tr + f2ee
+
+    # # Calcul du revenu catégoriel
+    # 1.2 Revenus des valeurs et capitaux mobiliers
+    b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
+    TOT1 = f2ch - b12 # c12
+    # Part des frais s'imputant sur les revenus déclarés case DC
+    den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
+    F1 = f2ca / den * f2dc_bis # f12
+    # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
+    # partie négative (à déduire des autres revenus nets de frais d'abattements
+    g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+    # partie positive
+    g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+    rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+
+    # Abattements, limité au revenu
+    h12 = rvcm.abatmob * (1 + marpac)
+    TOT2 = max_(0, rev - h12)
+    # i121= -min_(0,rev - h12)
+
+    # Part des frais s'imputant sur les revenus déclarés ligne TS
+    F2 = f2ca - F1
+    TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
+
+    DEF = deficit_rcm
+    return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
 def _rfr_rvcm(f2dc, f2fu, f2da, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
     '''
@@ -571,15 +646,12 @@ def _micro_social_proflib(self, ebnc_impo_holder):
     # assert (ebnc_impo <= P.specialbnc.max)
 
 
-def _micro_social(assiette_service, assiette_proflib, assiette_vente, _P, microsocial = law.ir.rpns.microsocial):
-    if _P.datesim.year >= 2009:
-        return assiette_service * microsocial.servi + assiette_vente * microsocial.vente + assiette_proflib \
+def _micro_social_2009_(assiette_service, assiette_proflib, assiette_vente, _P, microsocial = law.ir.rpns.microsocial):
+    return assiette_service * microsocial.servi + assiette_vente * microsocial.vente + assiette_proflib \
             * microsocial.bnc
-    else:
-        return 0 * assiette_service
 
 
-def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P,
+def _plus_values__2007(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P,
         plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
     """
     Taxation des plus value
@@ -602,21 +674,84 @@ def _plus_values(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_ho
            plus_values.pea * f3vm +
            plus_values.taux3 * f3vi +
            plus_values.taux4 * f3vf)
-    if _P.datesim.year >= 2008:
-        # revenus taxés à un taux proportionnel
-        rdp += f3vd
-        out += plus_values.taux1 * f3vd
-    if _P.datesim.year == 2012:
-#        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 * max_(
-#            0, f3vg - f3vh)
-        out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
-            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * f3sa)
-            # TODO: chek this rpns missing ?
-    if _P.datesim.year > 2012:
-        out = f3vg * 0  # TODO: completely undone
 
     return round(out)
 
+def _plus_values_2008_2011(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P,
+        plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
+    """
+    Taxation des plus value
+    TODO: f3vt, 2013 f3Vg au barème / tout refaire
+    """
+
+    rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
+    f3vd = self.filter_role(f3vd_holder, role = VOUS)
+    f3sd = self.filter_role(f3vd_holder, role = CONJ)
+    f3vi = self.filter_role(f3vi_holder, role = VOUS)
+    f3si = self.filter_role(f3vi_holder, role = CONJ)
+    f3vf = self.filter_role(f3vf_holder, role = VOUS)
+    f3sf = self.filter_role(f3vf_holder, role = CONJ)
+    #  TODO: remove this todo use sum for all fields after checking
+        # revenus taxés à un taux proportionnel
+    rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
+    out = (plus_values.pvce * rpns_pvce +
+           plus_values.taux1 * max_(0, f3vg - f3vh) +
+           plus_values.caprisque * f3vl +
+           plus_values.pea * f3vm +
+           plus_values.taux3 * f3vi +
+           plus_values.taux4 * f3vf)
+        # revenus taxés à un taux proportionnel
+    rdp += f3vd
+    out += plus_values.taux1 * f3vd
+
+    return round(out)
+
+
+def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P,
+        plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
+    """
+    Taxation des plus value
+    TODO: f3vt, 2013 f3Vg au barème / tout refaire
+    """
+
+    rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
+    f3vd = self.filter_role(f3vd_holder, role = VOUS)
+    f3sd = self.filter_role(f3vd_holder, role = CONJ)
+    f3vi = self.filter_role(f3vi_holder, role = VOUS)
+    f3si = self.filter_role(f3vi_holder, role = CONJ)
+    f3vf = self.filter_role(f3vf_holder, role = VOUS)
+    f3sf = self.filter_role(f3vf_holder, role = CONJ)
+    #  TODO: remove this todo use sum for all fields after checking
+        # revenus taxés à un taux proportionnel
+    rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
+    out = (plus_values.pvce * rpns_pvce +
+           plus_values.taux1 * max_(0, f3vg - f3vh) +
+           plus_values.caprisque * f3vl +
+           plus_values.pea * f3vm +
+           plus_values.taux3 * f3vi +
+           plus_values.taux4 * f3vf)
+
+        # revenus taxés à un taux proportionnel
+    rdp += f3vd
+    out += plus_values.taux1 * f3vd
+#        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 * max_(
+#            0, f3vg - f3vh)
+    out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
+            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * f3sa)
+            # TODO: chek this rpns missing ?
+
+    return round(out)
+
+
+def _plus_values_2013_(self, f3vg, _P,  plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
+    """
+    Taxation des plus value
+    TODO: f3vt, 2013 f3Vg au barème / tout refaire
+    """
+
+    out = f3vg * 0  # TODO: completely undone
+
+    return round(out)
 def _iai(iaidrdi, plus_values, cont_rev_loc, teicaa):
     '''
     impôt avant imputation de l'irpp
@@ -705,16 +840,19 @@ def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, finp
         # We add f2da an f2ee to allow for comparaison between years
 
 
-def _rev_cap_lib(f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
+def _rev_cap_lib__2007(f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
     '''
     Revenu du capital imposé au prélèvement libératoire
     '''
-    if _P.datesim.year <= 2007:
-        out = f2dh + f2ee
-    else:
-        out = f2da + f2dh + f2ee
+    out = f2dh + f2ee
     return out * not_(finpfl)
 
+def _rev_cap_lib_2008_(f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
+    '''
+    Revenu du capital imposé au prélèvement libératoire
+    '''
+    out = f2da + f2dh + f2ee
+    return out * not_(finpfl)
 
 def _avf(f2ab):
     '''
@@ -723,18 +861,22 @@ def _avf(f2ab):
     return f2ab
 
 
-def _imp_lib(f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl,
+def _imp_lib__2007(f2dh, f2ee, _P, 
         prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
     '''
     Prelèvement libératoire sur les revenus du capital
     '''
-    if _P.datesim.year <= 2007:
-        out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
-    else:
-        out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
-            - prelevement_liberatoire.assvie * f2dh
+    out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
     return out
 
+def _imp_lib_2008_(f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl,
+        prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
+    '''
+    Prelèvement libératoire sur les revenus du capital
+    '''
+    out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
+            - prelevement_liberatoire.assvie * f2dh
+    return out
 
 def _fon(f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfoncier):
     '''

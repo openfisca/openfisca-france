@@ -140,19 +140,24 @@ def _cd_acc75a(f6eu, f6ev, acc75a = law.ir.charges_deductibles.acc75a):
     return min_(f6eu, amax)
 
 
-def _cd_percap(f6cb, f6da, marpac, _P, percap = law.ir.charges_deductibles.percap):
+def _cd_percap_2002(f6cb, marpac, _P, percap = law.ir.charges_deductibles.percap):
     '''
     Pertes en capital consécutives à la souscription au capital de sociétés
     nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
     complémentaire)
     '''
-    if _P.datesim.year <= 2002:
-        max_cb = percap.max_cb * (1 + marpac)
-        return min_(f6cb, max_cb)
-    elif _P.datesim.year <= 2006:
-        max_cb = percap.max_cb * (1 + marpac)
-        max_da = percap.max_da * (1 + marpac)
-        return min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
+    max_cb = percap.max_cb * (1 + marpac)
+    return min_(f6cb, max_cb)
+
+def _cd_percap_2003_2006(f6cb, f6da, marpac, _P, percap = law.ir.charges_deductibles.percap):
+    '''
+    Pertes en capital consécutives à la souscription au capital de sociétés
+    nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
+    complémentaire)
+    '''
+    max_cb = percap.max_cb * (1 + marpac)
+    max_da = percap.max_da * (1 + marpac)
+    return min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
 
 
 def _cd_deddiv(f6dd):

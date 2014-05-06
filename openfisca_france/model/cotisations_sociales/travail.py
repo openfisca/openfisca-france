@@ -405,7 +405,7 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     dit allègement Fillon
     '''
     if _P.datesim.year >= 2007:
-        # TO DO: deal with taux between 2005 and 2007
+        # TODO: deal with taux between 2005 and 2007
         P = _P.cotsoc
         taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
         alleg_fillon = (taux_fillon * salbrut
