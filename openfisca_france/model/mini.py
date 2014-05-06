@@ -314,7 +314,6 @@ def _br_rmi_pf(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, a
         out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
     else:
         out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
-
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
 
@@ -410,7 +409,6 @@ def _br_rmi(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder):
     br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
     br_rmi_ms = self.split_by_roles(br_rmi_ms_holder, roles = [CHEF, PART])
     br_rmi_pf = self.split_by_roles(br_rmi_pf_holder, roles = [CHEF, PART])
-
     br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] +
               br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART])
     return br_rmi
@@ -482,7 +480,6 @@ def _rsa(self, rsa_socle, ra_rsa_holder, forf_log, br_rmi, P = law.minim.rmi):
     'fam'
     '''
     ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
-
     RSA = max_(0, rsa_socle + P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) - forf_log - br_rmi)
     rsa = RSA * (RSA >= 12 * P.rsa_nv)
     return rsa
