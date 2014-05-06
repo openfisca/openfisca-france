@@ -1183,7 +1183,7 @@ class Scenario(object):
 
         return simulation
 
-    def suggest(self):
+    def suggest(self, preserve_scenario = False):
         test_case = self.test_case
         suggestions = dict()
 
@@ -1193,20 +1193,27 @@ class Scenario(object):
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
                 birth_year = self.year - 40 if is_parent else self.year - 10
                 birth = datetime.date(birth_year, 1, 1)
-                individu['birth'] = birth
+                if not preserve_scenario:
+                    individu['birth'] = birth
                 suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                     'birth'] = birth.isoformat()
             if individu.get('activite') is None:
                 if find_age(individu, self.year) < 16:
+                    activite = 2  # Étudiant, élève
+                    if not preserve_scenario:
+                        individu['activite'] = activite
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                        'activite'] = individu['activite'] = 2  # Étudiant, élève
+                        'activite'] = activite
 
         # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
         for foyer_fiscal_id, foyer_fiscal in test_case['foyers_fiscaux'].iteritems():
             if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
                 if foyer_fiscal.get('caseT') is None:
+                    case_t = True
+                    if not preserve_scenario:
+                        foyer_fiscal['caseT'] = case_t
                     suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(foyer_fiscal_id,
-                        {})['caseT'] = foyer_fiscal['caseT'] = True
+                        {})['caseT'] = case_t
 
         return suggestions or None
 
