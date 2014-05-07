@@ -1198,8 +1198,9 @@ class Scenario(object):
                     'birth'] = birth.isoformat()
             if individu.get('activite') is None:
                 if find_age(individu, self.year) < 16:
+                    individu['activite'] = 2  # Étudiant, élève
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                        'activite'] = individu['activite'] = 2  # Étudiant, élève
+                        'activite'] = u'2'  # Étudiant, élève
 
         # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
         for foyer_fiscal_id, foyer_fiscal in test_case['foyers_fiscaux'].iteritems():
