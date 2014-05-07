@@ -28,9 +28,8 @@ from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgeCol, FloatCol, 
 
 import openfisca_france
 
-
-BROWSER_NAME = 'chromium-browser'
-
+#BROWSER_NAME = 'iceweasel'
+BROWSER_NAME = 'chromium'
 
 def check_consistency(table_simu, dataframe, corrige = True):
     '''
