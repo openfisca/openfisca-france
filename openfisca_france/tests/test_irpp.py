@@ -191,7 +191,6 @@ def test_irpp():
             {"year" : 2013, "amount": 20000, "irpp":0},
             {"year" : 2013, "amount": 50000, "irpp":0},
             {"year" : 2013, "amount": 150000, "irpp":0},
-        # f3vz seams to do not exist for 2013
 
                     ],
             }
