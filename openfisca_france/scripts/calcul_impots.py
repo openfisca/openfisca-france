@@ -61,7 +61,6 @@ def main():
 
     page_doc = etree.parse(response, etree.HTMLParser())
     fields = collections.OrderedDict()
-    fields = collections.OrderedDict()
     for element in page_doc.xpath('//input[@type="hidden"][@name]'):
         tag = element.tag.lower()
         parent = element.getparent()
@@ -84,7 +83,8 @@ def main():
             name = name,
             value = float(element.get('value').strip()),
             )
-    print fields
+    import json
+    print json.dumps(fields, encoding = 'utf-8', ensure_ascii = False, indent = 2)
 
     return 0
 

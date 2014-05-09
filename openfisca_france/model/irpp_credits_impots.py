@@ -65,24 +65,24 @@ def _credits_impot_2010(creimp, accult, percvm, direpa, mecena, prlire, aidper,
         quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
 
 
-def _credits_impot_2011(prlire, creimp, accult ):  # TODO: check because totally unchecked
+def _credits_impot_2011(prlire, creimp, accult, preetu ):  # TODO: check because totally unchecked
     """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
     log.warning("TODO: totally unchecked")
-    return prlire + creimp + accult
+    return prlire + creimp + accult + preetu
 
 
-def _credits_impot_2012(prlire, creimp, accult ):
+def _credits_impot_2012(prlire, creimp, accult, preetu ):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
     log.warning("TODO: incomplete")
-    return prlire + creimp + accult
+    return prlire + creimp + accult + preetu
 
 
-def _credits_impot_2013(prlire, creimp, accult ):
+def _credits_impot_2013(prlire, creimp, accult, preetu ):
 #TODO: missing 1 niche
 #TODO: create new function for f3VV (new legislation : non-resident_45%)
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
     log.warning("TODO: not complete")
-    return prlire + creimp + accult
+    return prlire + creimp + accult + preetu
 
 
 
@@ -471,8 +471,7 @@ def _preetu_2005(f7uk, _P):
     '''
     P = _P.ir.credits_impot.preetu
 
-    max1 = P.max
-    return P.taux * min_(f7uk, max1)
+    return P.taux * min_(f7uk, P.max)
 
 def _preetu_2006_2007(f7uk, f7vo, _P):
     '''
@@ -491,7 +490,7 @@ def _preetu_2008_(f7uk, f7vo, f7td, _P):
     '''
     P = _P.ir.credits_impot.preetu
 
-    max1 = P.max * (1 + f7vo)  # TODO check if it is not (f7vo) instead for ALL OR SOME YEARS (2011 for example)
+    max1 = P.max * f7vo  # TODO check if it is not (f7vo) instead for ALL OR SOME YEARS (2011 for example)
     return P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)  # TODO:
 
 def _saldom2_2007_2008(nb_pac2, f7db, f7dg, f7dl, _P):
