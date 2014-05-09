@@ -63,20 +63,32 @@ def _crds_cap_bar(self, rev_cap_bar, _P):
         entity = 'foyer_fiscal', role = VOUS)
 
 
-def _prelsoc_cap_bar(self, rev_cap_bar, _P):
+def _prelsoc_cap_bar__2005(self, rev_cap_bar, _P):
+    '''
+    Calcule le prélèvement social sur les revenus du capital soumis au barème
+    '''
+    P = _P.prelsoc    
+    total = P.base_pat
+    return self.cast_from_entity_to_role(-rev_cap_bar * total,
+        entity = 'foyer_fiscal', role = VOUS)
+
+def _prelsoc_cap_bar_2006_2008(self, rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
     P = _P.prelsoc
-    if _P.datesim.year < 2006:
-        total = P.base_pat
-    elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add_pat
-    else:
-        total = P.base_pat + P.add_pat + P.rsa
+    total = P.base_pat + P.add_pat
     return self.cast_from_entity_to_role(-rev_cap_bar * total,
         entity = 'foyer_fiscal', role = VOUS)
 
+def _prelsoc_cap_bar_2009_(self, rev_cap_bar, _P):
+    '''
+    Calcule le prélèvement social sur les revenus du capital soumis au barème
+    '''
+    P = _P.prelsoc    
+    total = P.base_pat + P.add_pat + P.rsa
+    return self.cast_from_entity_to_role(-rev_cap_bar * total,
+        entity = 'foyer_fiscal', role = VOUS)
 # plus-values de valeurs mobilières
 
 
@@ -94,18 +106,31 @@ def _crds_pv_mo(f3vg, _P):
     return -f3vg * _P.crds.capital
 
 
-def _prelsoc_pv_mo(f3vg, _P):
+def _prelsoc_pv_mo__2005(f3vg, _P):
+    """
+    Calcule le prélèvement social sur les plus-values
+    de cession de valeurs mobilières
+    """
+    P = _P.prelsoc    
+    total = P.base_pat
+    return -f3vg * total
+
+def _prelsoc_pv_mo_2006_2008(f3vg, _P):
     """
     Calcule le prélèvement social sur les plus-values
     de cession de valeurs mobilières
     """
     P = _P.prelsoc
-    if _P.datesim.year < 2006:
-        total = P.base_pat
-    elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add_pat
-    else:
-        total = P.base_pat + P.add_pat + P.rsa
+    total = P.base_pat + P.add_pat
+    return -f3vg * total
+
+def _prelsoc_pv_mo_2009_(f3vg, _P):
+    """
+    Calcule le prélèvement social sur les plus-values
+    de cession de valeurs mobilières
+    """
+    P = _P.prelsoc
+    total = P.base_pat + P.add_pat + P.rsa
     return -f3vg * total
 
 
@@ -125,19 +150,31 @@ def _crds_pv_immo(f3vz, _P):
     return -f3vz * _P.crds.capital
 
 
-def _prelsoc_pv_immo(f3vz, _P):
+def _prelsoc_pv_immo__2005(f3vz, _P):
     """
     Calcule le prélèvement social sur les plus-values de cession immobilière
     """
     P = _P.prelsoc
-    if _P.datesim.year < 2006:
-        total = P.base_pat
-    elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add_pat
-    else:
-        total = P.base_pat + P.add_pat + P.rsa
+    total = P.base_pat
+    
     return -f3vz * total
 
+def _prelsoc_pv_immo_2006_2008(f3vz, _P):
+    """
+    Calcule le prélèvement social sur les plus-values de cession immobilière
+    """
+    P = _P.prelsoc
+    total = P.base_pat + P.add_pat
+    
+    return -f3vz * total
+
+def _prelsoc_pv_immo_2009_(f3vz, _P):
+    """
+    Calcule le prélèvement social sur les plus-values de cession immobilière
+    """
+    P = _P.prelsoc
+    total = P.base_pat + P.add_pat + P.rsa
+    return -f3vz * total
 
 # revenus fonciers
 def _csg_fon(rev_cat_rfon, _P):
@@ -155,18 +192,33 @@ def _crds_fon(rev_cat_rfon, _P):
     return -rev_cat_rfon * _P.crds.capital
 
 
-def _prelsoc_fon(rev_cat_rfon, _P):
+def _prelsoc_fon__2005(rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
     Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
     '''
     P = _P.prelsoc
-    if _P.datesim.year < 2006:
-        total = P.base_pat
-    elif _P.datesim.year < 2009:
-        total = P.base_pat + P.add_pat
-    else:
-        total = P.base_pat + P.add_pat + P.rsa
+    total = P.base_pat
+    
+    return -rev_cat_rfon * total
+
+def _prelsoc_fon_2006_2008(rev_cat_rfon, _P):
+    '''
+    Calcule le prélèvement social sur les revenus fonciers
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    '''
+    P = _P.prelsoc
+    total = P.base_pat + P.add_pat
+
+    return -rev_cat_rfon * total
+
+def _prelsoc_fon_2009_(rev_cat_rfon, _P):
+    '''
+    Calcule le prélèvement social sur les revenus fonciers
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    '''
+    P = _P.prelsoc
+    total = P.base_pat + P.add_pat + P.rsa
     return -rev_cat_rfon * total
 
 # revenus du capital soumis au prélèvement libératoire

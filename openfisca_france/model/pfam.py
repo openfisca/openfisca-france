@@ -587,7 +587,7 @@ def _cf_cumul(paje_base_temp, apje_temp, ape_temp, cf_temp):
 ############################################################################
 
 
-def _aeeh(self, age_holder, inv_holder, isol, categ_inv_holder, _P):
+def _aeeh_2003_(self, age_holder, inv_holder, isol, categ_inv_holder, _P):
     '''
     Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
 
@@ -610,10 +610,7 @@ def _aeeh(self, age_holder, inv_holder, isol, categ_inv_holder, _P):
     for enfant in age.iterkeys():
         enfhand = inv[enfant] * (age[enfant] < P.aeeh.age) / 12
         categ = categ_inv[enfant]
-        if _P.datesim.year <= 2002:
-            aeeh += 0 * enfhand  # TODO:
-        else:
-            aeeh += enfhand * (P.af.bmaf * (P.aeeh.base +
+        aeeh += enfhand * (P.af.bmaf * (P.aeeh.base +
                               P.aeeh.cpl1 * (categ == 1) +
                               (categ == 2) * (P.aeeh.cpl2 + P.aeeh.maj2 * isole) +
                               (categ == 3) * (P.aeeh.cpl3 + P.aeeh.maj3 * isole) +
@@ -634,6 +631,42 @@ def _aeeh(self, age_holder, inv_holder, isol, categ_inv_holder, _P):
     # Ces allocations ne sont pas soumis à la CRDS
     return 12 * aeeh  # annualisé
 
+def _aeeh__2002(self, age_holder, inv_holder, isol, categ_inv_holder, _P):
+    '''
+    Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
+
+    Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
+    le coût du handicap de l'enfant,
+    la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
+    l'embauche d'une tierce personne rémunérée.
+
+    Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit son activité
+    professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
+    '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    categ_inv = self.split_by_roles(categ_inv_holder, roles = ENFS)
+    inv = self.split_by_roles(inv_holder, roles = ENFS)
+
+    P = _P.fam
+    isole = isol
+
+    aeeh = 0
+    for enfant in age.iterkeys():
+        enfhand = inv[enfant] * (age[enfant] < P.aeeh.age) / 12
+        categ = categ_inv[enfant]
+        aeeh += 0 * enfhand  # TODO:
+
+# L'attribution de l'AEEH de base et de ses compléments éventuels ne fait pas obstacle au
+# versement des prestations familiales.
+# L'allocation de présence parentale peut être cumulée avec l'AEEH de base, mais pas avec son
+# complément ni avec la majoration de parent isolé.
+# Tous les éléments de la prestattion de compensation du handicap (PCH) sont également ouverts
+# aux bénéficiaires de l'AEEH de base, sous certaines conditions, mais ce cumul est exclusif du
+# complément de l'AEEH. Les parents d'enfants handicapés doivent donc choisir entre le versement
+# du complément d'AEEH et la PCH.
+
+    # Ces allocations ne sont pas soumis à la CRDS
+    return 12 * aeeh  # annualisé
 
 def _ape(self, age_holder, smic55_holder, inactif, partiel1, partiel2, _P):
     '''

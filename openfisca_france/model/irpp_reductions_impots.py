@@ -162,22 +162,64 @@ def _donapd_2011_2013(f7ud, f7va, P = law.ir.reductions_impots.donapd):
     return P.taux * min_(f7ud + f7va, P.max)
 
 
-def _dfppce_2002_2010(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P, P = law.ir.reductions_impots.dfppce):
-    '''
-    Dons aux autres oeuvres et dons effectués pour le financement des partis
-    politiques et des campagnes électorales (2002-2010)
-    '''
-    base = f7uf
-    if _P.datesim.year >= 2004: base += f7xs
-    if _P.datesim.year >= 2005: base += f7xt
-    if _P.datesim.year >= 2006: base += f7xu
-    if _P.datesim.year >= 2007: base += f7xw
-    if _P.datesim.year >= 2008: base += f7xy
-    max1 = P.max * rbg_int
-    return P.taux * min_(base, max1)
+#pour tous les dfppce:
     # TODO: note de bas de page
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
+def _dfppce_2002_2003(rbg_int, f7uf, _P, P = law.ir.reductions_impots.dfppce):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales
+    '''
+    base = f7uf
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
+
+def _dfppce_2004(rbg_int, f7uf, f7xs, _P, P = law.ir.reductions_impots.dfppce):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales
+    '''
+    base = f7uf + f7xs
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
+
+def _dfppce_2005(rbg_int, f7uf, f7xs, f7xt, _P, P = law.ir.reductions_impots.dfppce):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales
+    '''
+    base = f7uf + f7xs + f7xt
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
+
+
+def _dfppce_2006(rbg_int, f7uf, f7xs, f7xt, f7xu, _P, P = law.ir.reductions_impots.dfppce):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales
+    '''
+    base = f7uf + f7xs + f7xt + f7xu
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
+
+def _dfppce_2007(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, _P, P = law.ir.reductions_impots.dfppce):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales
+    '''
+    base = f7uf + f7xs + f7xt + f7xu + f7xw
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
+
+def _dfppce_2008_2010(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P, P = law.ir.reductions_impots.dfppce):
+    '''
+    Dons aux autres oeuvres et dons effectués pour le financement des partis
+    politiques et des campagnes électorales
+    '''
+    base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
+    max1 = P.max * rbg_int
+    return P.taux * min_(base, max1)
 
 def _dfppce_2011_2013(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P = law.ir.reductions_impots.dfppce):
     '''
@@ -238,15 +280,20 @@ def _patnat(f7ka, P = law.ir.reductions_impots.patnat):
     max1 = P.max
     return P.taux * min_(f7ka, max1)
 
-def _sofipe(marpac, rbg_int, f7gs, _P, P = law.ir.reductions_impots.sofipe):
+def _sofipe_2009_2010(marpac, rbg_int, f7gs, _P, P = law.ir.reductions_impots.sofipe):
     """
     Souscription au capital d’une SOFIPECHE (case 7GS)
-    2009-2011
+    2009
     """
-    if _P.datesim.year >= 2011:
-        return rbg_int * 0
     max1 = min_(P.max * (marpac + 1), P.base * rbg_int)  # page3 ligne 18
     return P.taux * min_(f7gs, max1)
+
+def _sofipe_2011(rbg_int):
+    """
+    Souscription au capital d’une SOFIPECHE (case 7GS)
+    2010-2011
+    """
+    return rbg_int * 0
 
 def _ecodev(f7uh, rbg_int, P = law.ir.reductions_impots.ecodev):
     '''
@@ -255,40 +302,63 @@ def _ecodev(f7uh, rbg_int, P = law.ir.reductions_impots.ecodev):
     '''
     return min_(f7uh, min_(P.base * rbg_int, P.max))  # page3 ligne 18
 
-def _saldom(nb_pac2, f7db, f7df, f7dg, f7dl, f7dq, _P, P = law.ir.reductions_impots.saldom):
+def _saldom_2002_2004(f7df, f7dg, _P, P = law.ir.reductions_impots.saldom):
     '''
     Sommes versées pour l'emploi d'un salariés à  domicile
-    2002-
+    2002-2004
     '''
     isinvalid = f7dg
-
-    if _P.datesim.year in (2002, 2003, 2004):
-        max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
-    elif _P.datesim.year in (2005, 2006):
-        nbpacmin = nb_pac2 + f7dl
-        maxBase = P.max1
-        maxDuMaxNonInv = P.max2
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        max1 = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-    elif _P.datesim.year in (2007, 2008):
-        nbpacmin = nb_pac2 + f7dl
-        maxBase = P.max1
-        maxDuMaxNonInv = P.max2
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        max1 = maxEffectif - min_(f7db, maxEffectif)
-    elif 2009 <= _P.datesim.year <= 2013:  
-        annee1 = f7dq
-        nbpacmin = nb_pac2 + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
-        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        max1 = maxEffectif - min_(f7db, maxEffectif)
-    else:
-        return f7df * 0
+    max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
     return P.taux * min_(f7df, max1)
 
+def _saldom_2005_2006(nb_pac2, f7df, f7dl, f7dg, _P, P = law.ir.reductions_impots.saldom):
+    '''
+    Sommes versées pour l'emploi d'un salariés à  domicile
+    2005-2006
+    '''
+    isinvalid = f7dg
+    nbpacmin = nb_pac2 + f7dl
+    maxBase = P.max1
+    maxDuMaxNonInv = P.max2
+    maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+    max1 = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+    return P.taux * min_(f7df, max1)
+
+def _saldom_2007_2008(nb_pac2, f7db, f7df, f7dl, f7dg, _P, P = law.ir.reductions_impots.saldom):
+    '''
+    Sommes versées pour l'emploi d'un salariés à  domicile
+    2007-2008
+    '''
+    isinvalid = f7dg
+    nbpacmin = nb_pac2 + f7dl
+    maxBase = P.max1
+    maxDuMaxNonInv = P.max2
+    maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+    maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+    max1 = maxEffectif - min_(f7db, maxEffectif)
+    return P.taux * min_(f7df, max1)
+
+def _saldom_2009_2013(nb_pac2, f7db, f7df, f7dl, f7dq, f7dg, _P, P = law.ir.reductions_impots.saldom):
+    '''
+    Sommes versées pour l'emploi d'un salariés à  domicile
+    2009-2013
+    '''
+    isinvalid = f7dg
+    annee1 = f7dq
+    nbpacmin = nb_pac2 + f7dl
+    maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
+    maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
+    maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+    maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+    max1 = maxEffectif - min_(f7db, maxEffectif)
+    return P.taux * min_(f7df, max1)
+
+def _saldom_2014(f7df):
+    '''
+    Sommes versées pour l'emploi d'un salariés à  domicile
+    2014
+    '''
+    return f7df * 0
 
 def _intagr(f7um, marpac, P = law.ir.reductions_impots.intagr):
     '''
@@ -316,33 +386,51 @@ def _prcomp(f7wm, f7wn, f7wo, f7wp, P = law.ir.reductions_impots.prcomp):
                               max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
              P.taux * f7wp)
 
-
-def _spfcpi(marpac, f7gq, f7fq, f7fm, f7fl, _P, P = law.ir.reductions_impots.spfcpi):
+def _spfcpi_2002(marpac, f7gq, _P, P = law.ir.reductions_impots.spfcpi):
     '''
     Souscription de parts de fonds communs de placement dans l'innovation,
     de fonds d'investissement de proximité
-    2002-
+    2002
     '''
     max1 = P.max * (marpac + 1)
+    return P.taux1 * min_(f7gq, max1)
 
-    if _P.datesim.year <= 2002:
-        return P.taux1 * min_(f7gq, max1)
-    elif _P.datesim.year <= 2006:
-        return (P.taux1 * min_(f7gq, max1) +
-                P.taux1 * min_(f7fq, max1))
-    elif _P.datesim.year <= 2010:
-        return (P.taux1 * min_(f7gq, max1) +
+def _spfcpi_2003_2006(marpac, f7gq, f7fq, _P, P = law.ir.reductions_impots.spfcpi):
+    '''
+    Souscription de parts de fonds communs de placement dans l'innovation,
+    de fonds d'investissement de proximité
+    2003-2006
+    '''
+    max1 = P.max * (marpac + 1)
+    return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
+
+def _spfcpi_2007_2010(marpac, f7gq, f7fq, f7fm, _P, P = law.ir.reductions_impots.spfcpi):
+    '''
+    Souscription de parts de fonds communs de placement dans l'innovation,
+    de fonds d'investissement de proximité
+    2007-2010
+    '''
+    max1 = P.max * (marpac + 1)
+    return (P.taux1 * min_(f7gq, max1) +
                 P.taux1 * min_(f7fq, max1) +
                 P.taux2 * min_(f7fm, max1))
 
-    elif _P.datesim.year <= 2013:
-        return (P.taux1 * min_(f7gq, max1) +
-                P.taux1 * min_(f7fq, max1) +
-                P.taux2 * min_(f7fm, max1) +
-                P.taux3 * min_(f7fl, max1))
-    else:
-        return f7gq * 0
+def _spfcpi_2011_2013(marpac, f7gq, f7fq, f7fm, f7fl, _P, P = law.ir.reductions_impots.spfcpi):
+    '''
+    Souscription de parts de fonds communs de placement dans l'innovation,
+    de fonds d'investissement de proximité
+    2011-2013
+    '''
+    max1 = P.max * (marpac + 1)
+    return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) + P.taux3 * min_(f7fl, max1))
 
+def _spfcpi_2014(f7gq):
+    '''
+    Souscription de parts de fonds communs de placement dans l'innovation,
+    de fonds d'investissement de proximité
+    2014
+    '''
+    return f7gq * 0
 
 def _mohist(f7nz, P = law.ir.reductions_impots.mohist):
     '''
@@ -361,29 +449,68 @@ def _sofica(f7gn, f7fn, rng, P = law.ir.reductions_impots.sofica):
     max1 = min_(0, max0 - f7gn)
     return P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
 
-
-def _cappme(marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P, P = law.ir.reductions_impots.cappme):
+def _cappme_2002(marpac, f7cf, _P, P = law.ir.reductions_impots.cappme):
     '''
     Souscriptions au capital des PME
-    2002-
+    2002
     '''
     base = f7cf
-    if _P.datesim.year >= 2003: base += f7cl
-    if _P.datesim.year >= 2004: base += f7cm
-    if _P.datesim.year >= 2005: base += f7cn
     seuil = P.seuil * (marpac + 1)
+    return P.taux * min_(base, seuil)
 
-    if _P.datesim.year <= 2008:
-        return P.taux * min_(base, seuil)
-    elif _P.datesim.year <= 2010:
-        seuil_tpe = P.seuil_tpe * (marpac + 1)
-        return P.taux * (min_(base, seuil) + min_(f7cu, seuil_tpe))
-    elif _P.datesim.year <= 2011:
-        seuil_tpe = P.seuil_tpe * (marpac + 1)
-        return P.taux * (min_(base, seuil) + min_(f7cu, seuil_tpe))  # TODO: Modify and add f7cq, check taux
-    else:
-        return f7cu * 0
+def _cappme_2003(marpac, f7cf, f7cl, _P, P = law.ir.reductions_impots.cappme):
+    '''
+    Souscriptions au capital des PME
+    2003
+    '''
+    base = f7cf + f7cl
+    seuil = P.seuil * (marpac + 1)
+    return P.taux * min_(base, seuil)
 
+def _cappme_2004(marpac, f7cf, f7cl, f7cm, _P, P = law.ir.reductions_impots.cappme):
+    '''
+    Souscriptions au capital des PME
+    2004
+    '''
+    base = f7cf + f7cl + f7cm
+    seuil = P.seuil * (marpac + 1)
+    return P.taux * min_(base, seuil)
+
+def _cappme_2005_2008(marpac, f7cf, f7cl, f7cm, f7cn, _P, P = law.ir.reductions_impots.cappme):
+    '''
+    Souscriptions au capital des PME
+    2005-2008
+    '''
+    base = f7cf + f7cl + f7cm + f7cn
+    seuil = P.seuil * (marpac + 1)
+    return P.taux * min_(base, seuil)
+
+def _cappme_2009_2010(marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P, P = law.ir.reductions_impots.cappme):
+    '''
+    Souscriptions au capital des PME
+    2009-2010
+    '''
+    base = f7cf + f7cl + f7cm + f7cn
+    seuil = P.seuil * (marpac + 1)
+    seuil_tpe = P.seuil_tpe * (marpac + 1)
+    return P.taux * (min_(base, seuil) + min_(f7cu, seuil_tpe))
+
+def _cappme_2011(marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P, P = law.ir.reductions_impots.cappme):
+    '''
+    Souscriptions au capital des PME
+    2011
+    '''
+    base = f7cf + f7cl + f7cm + f7cn
+    seuil = P.seuil * (marpac + 1)
+    seuil_tpe = P.seuil_tpe * (marpac + 1)
+    return P.taux * (min_(base, seuil) + min_(f7cu, seuil_tpe)) # TODO: Modify and add f7cq, check taux
+
+def _cappme_2012_2014(f7cu, _P, P = law.ir.reductions_impots.cappme):
+    '''
+    Souscriptions au capital des PME
+    2012-
+    '''
+    return f7cu * 0
 
 def _intemp(nb_pac, f7wg, P = law.ir.reductions_impots.intemp):
     '''
@@ -411,43 +538,52 @@ def _repsoc(marpac, f7fh, P = law.ir.reductions_impots.repsoc):
     seuil = P.seuil * (marpac + 1)
     return P.taux * min_(f7fh, seuil)
 
-
-def _invfor(marpac, f7un, _P, P = law.ir.reductions_impots.invfor):
+def _invfor_2002(marpac, f7un, _P, P = law.ir.reductions_impots.invfor):
     '''
-    Investissements forestiers
+    Investissements forestiers pour 2002
     '''
     # TODO: 7UN, 7UP, 7UQ, 7UT, 7UU et 7TE
-    if _P.datesim.year <= 2002:
-        seuil = P.seuil * (marpac + 1)
-        return P.taux * min_(f7un, seuil)
-    elif _P.datesim.year <= 2008:
-        return P.taux * f7un
-    else:
-        seuil = 0  # TODO vérifier la notice à partir de 2009
-        return P.taux * min_(f7un, seuil)
+    seuil = P.seuil * (marpac + 1)
+    return P.taux * min_(f7un, seuil)
 
+def _invfor_2003_2008(f7un, _P, P = law.ir.reductions_impots.invfor):
+    '''
+    Investissements forestiers pour 2003-2008
+    '''
+    # TODO: 7UN, 7UP, 7UQ, 7UT, 7UU et 7TE
+    return P.taux * f7un
 
-def _garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P, P = law.ir.reductions_impots.garext):
+def _invfor_2009_2014(f7un, _P, P = law.ir.reductions_impots.invfor):
+    '''
+    Investissements forestiers pour 2009-
+    '''
+    # TODO: 7UN, 7UP, 7UQ, 7UT, 7UU et 7TE
+    seuil = 0  # TODO vérifier la notice à partir de 2009
+    return P.taux * min_(f7un, seuil)
+
+def _garext_2002(f7ga, f7gb, f7gc, _P, P = law.ir.reductions_impots.garext):
     '''
     Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
     et GE, GF, GG
-    2002-2005
+    2002
+    '''
+    max1 = P.max
+    return P.taux * (min_(f7ga, max1) +  min_(f7gb, max1) +  min_(f7gc, max1))
+
+def _garext_2003_2005(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P, P = law.ir.reductions_impots.garext):
+    '''
+    Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
+    et GE, GF, GG
+    2003-2005
     '''
     max1 = P.max
     max2 = P.max / 2
-
-    if _P.datesim.year <= 2002:
-        return P.taux * (min_(f7ga, max1) +
-                       min_(f7gb, max1) +
-                       min_(f7gc, max1))
-    elif _P.datesim.year <= 2005:
-        return P.taux * (min_(f7ga, max1) +
+    return P.taux * (min_(f7ga, max1) +
                        min_(f7gb, max1) +
                        min_(f7gc, max1) +
                        min_(f7ge, max2) +
                        min_(f7gf, max2) +
                        min_(f7gg, max2))
-
 
 def _deffor(f7uc, P = law.ir.reductions_impots.deffor):
     '''
@@ -496,22 +632,17 @@ def _invrev(marpac, f7gs, f7gt, f7xg, f7gu, f7gv, P = law.ir.reductions_impots.i
              P.taux_xg * min_(f7xg, P.seuil_xg * (1 + marpac)) / 4 +
              P.taux_gt * f7gt + P.taux_gt * f7gv)
 
-
-def _invlst(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P,
+def _invlst_2004(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P,
         P = law.ir.reductions_impots.invlst):
     '''
     Investissements locatifs dans le secteur touristique
-    2004-
+    2004
     '''
     seuil1 = P.seuil1 * (1 + marpac)
     seuil2 = P.seuil2 * (1 + marpac)
     seuil3 = P.seuil3 * (1 + marpac)
 
-    if _P.datesim.year == 2011:  # TODO formula and params !!
-        return 0 * f7xc
-
-    if _P.datesim.year == 2004: xc = P.taux_xc * min_(f7xc, seuil1 / 4)
-    else: xc = P.taux_xc * min_(f7xc, seuil1 / 6)
+    xc = P.taux_xc * min_(f7xc, seuil1 / 4)
     xd = P.taux_xd * f7xd
     xe = P.taux_xe * min_(f7xe, seuil1 / 6)
     xf = P.taux_xf * f7xf
@@ -527,26 +658,88 @@ def _invlst(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, 
 
     return xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo
 
+def _invlst_2005_2010(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P,
+        P = law.ir.reductions_impots.invlst):
+    '''
+    Investissements locatifs dans le secteur touristique
+    2005-2010
+    '''
+    seuil1 = P.seuil1 * (1 + marpac)
+    seuil2 = P.seuil2 * (1 + marpac)
+    seuil3 = P.seuil3 * (1 + marpac)
 
-def _domlog(f7ua, f7ub, f7uc, f7ui, f7uj, f7qb, f7qc, f7qd, f7ql, f7qt, f7qm, _P, P = law.ir.reductions_impots.domlog):
+    xc = P.taux_xc * min_(f7xc, seuil1 / 6)
+    xd = P.taux_xd * f7xd
+    xe = P.taux_xe * min_(f7xe, seuil1 / 6)
+    xf = P.taux_xf * f7xf
+    xg = P.taux_xg * min_(f7xg, seuil2)
+    xh = P.taux_xh * min_(f7xh, seuil3)
+    xi = P.taux_xi * min_(f7xi, seuil1 / 4)
+    xj = P.taux_xj * f7xj
+    xk = P.taux_xk * f7xk
+    xl = P.taux_xl * min_(f7xl, seuil1 / 6)
+    xm = P.taux_xm * f7xm
+    xn = P.taux_xn * min_(f7xn, seuil1 / 6)
+    xo = P.taux_xo * f7xo
+
+    return xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo
+
+def _invlst_2011(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P,
+        P = law.ir.reductions_impots.invlst):
+    '''
+    Investissements locatifs dans le secteur touristique
+    2011-
+    '''
+# TODO formula and params !!
+    return 0 * f7xc
+
+def _domlog_2002(f7ub, f7uc, f7uj, _P, P = law.ir.reductions_impots.domlog):
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
-    2002-2009
+    2002
     TODO: Plafonnement sur la notice
     '''
-    if _P.datesim.year <= 2002:
-        return P.taux1 * f7uj + P.taux2 * (f7uc + f7ub + f7uc)
-    elif _P.datesim.year <= 2004:
-        return P.taux1 * f7uj + P.taux2 * (f7uc + f7ub + f7uc) + f7ui
-    elif _P.datesim.year <= 2007:
-        return P.taux1 * f7uj + P.taux2 * (f7uc + f7ub) + f7ui
-    elif _P.datesim.year <= 2008:
-        return f7ui
-    elif _P.datesim.year <= 2009:
-        return f7qb + f7qc + f7qd
-    elif _P.datesim.year <= 2010:
-        return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
+    return P.taux1 * f7uj + P.taux2 * (f7uc + f7ub + f7uc)
 
+def _domlog_2003_2004(f7ub, f7uc, f7ui, f7uj, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2003-2004
+    TODO: Plafonnement sur la notice
+    '''
+    return P.taux1 * f7uj + P.taux2 * (f7uc + f7ub + f7uc) + f7ui
+
+def _domlog_2005_2007(f7ub, f7uc, f7ui, f7uj, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2005-2007
+    TODO: Plafonnement sur la notice
+    '''
+    return P.taux1 * f7uj + P.taux2 * (f7uc + f7ub) + f7ui
+
+def _domlog_2008(f7ui, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2008
+    TODO: Plafonnement sur la notice
+    '''
+    return f7ui
+
+def _domlog_2009(f7qb, f7qc, f7qd, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2009
+    TODO: Plafonnement sur la notice
+    '''
+    return f7qb + f7qc + f7qd
+
+def _domlog_2010(f7qb, f7qc, f7qd, f7ql, f7qt, f7qm, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2002
+    TODO: Plafonnement sur la notice
+    '''
+    return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
 
 def _adhcga(f7ff, f7fg, P = law.ir.reductions_impots.adhcga):
     '''
@@ -555,24 +748,36 @@ def _adhcga(f7ff, f7fg, P = law.ir.reductions_impots.adhcga):
     '''
     return min_(f7ff, P.max * f7fg)
 
-
-def _creaen(f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P, P = law.ir.reductions_impots.creaen):
+def _creaen_2006_2008(f7fy, f7gy, _P, P = law.ir.reductions_impots.creaen):
     '''
     Aide aux créateurs et repreneurs d'entreprises
-    ?-
+    2006-2008
     '''
-    if _P.datesim.year <= 2008:
-        return (P.base * f7fy + P.hand * f7gy)
-    elif _P.datesim.year == 2009:
-        return (P.base * ((f7jy + f7fy) + f7hy / 2) +
-                P.hand * ((f7ky + f7gy) + f7iy / 2))
-    elif _P.datesim.year >= 2010:
-        return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
-                P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
-    elif _P.datesim.year >= 2012:
-        return (P.base * (f7ly / 2) +
-                P.hand * (f7my / 2))
+    return (P.base * f7fy + P.hand * f7gy)
 
+def _creaen_2009(f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, _P, P = law.ir.reductions_impots.creaen):
+    '''
+    Aide aux créateurs et repreneurs d'entreprises
+    2009
+    '''
+    return (P.base * ((f7jy + f7fy) + f7hy / 2) +
+                P.hand * ((f7ky + f7gy) + f7iy / 2))
+
+def _creaen_2010_2011(f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P, P = law.ir.reductions_impots.creaen):
+    '''
+    Aide aux créateurs et repreneurs d'entreprises
+    2010-2011
+    '''
+    return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
+                P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
+
+def _creaen_2012_2014(f7ly, f7my, _P, P = law.ir.reductions_impots.creaen):
+    '''
+    Aide aux créateurs et repreneurs d'entreprises
+    2012-
+    '''
+    return (P.base * (f7ly / 2) +
+                P.hand * (f7my / 2))
 
 def _ecpess(f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P = law.ir.reductions_impots.ecpess):
     '''
@@ -582,27 +787,34 @@ def _ecpess(f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P = law.ir.reductions_impots.ecp
             P.lyc * (f7ec + f7ed / 2) +
             P.sup * (f7ef + f7eg / 2))
 
-
-def _scelli(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P, P = law.ir.reductions_impots.scelli):
+def _scelli_2009(f7hj, f7hk, _P, P = law.ir.reductions_impots.scelli):
     '''
     Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
-    2009-2010
+    2009
     '''
     # TODO: à compléter
     # il est possible de cummuler différents dispositifs scelleir
     # dans la limite d'un seul investissment par an
     # taux1 25%
     # taux2 40%
-    if _P.datesim.year == 2009:
-        return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
-    elif _P.datesim.year == 2010:
-        return (max_(
+    return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
+
+def _scelli_2010(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P, P = law.ir.reductions_impots.scelli):
+    '''
+    Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
+    2010
+    '''
+    # TODO: à compléter
+    # il est possible de cummuler différents dispositifs scelleir
+    # dans la limite d'un seul investissment par an
+    # taux1 25%
+    # taux2 40%
+    return (max_(
             max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)),
             max_(P.taux1 * min_(P.max, f7hn), P.taux2 * min_(P.max, f7ho))
                       ) / 9 +
             max_(P.taux1 * min_(P.max, f7hl), P.taux2 * min_(P.max, f7hm)) / 9 +
             max_(f7hr, f7hs) + f7la)
-
 
 def _locmeu(f7ij, f7il, f7im, f7ik, f7is, P = law.ir.reductions_impots.locmeu):
     '''

@@ -142,19 +142,14 @@ def _asi_aspa_nb_alloc(self, aspa_elig_holder, asi_elig_holder):
 
     return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
-
-def _aspa_pure(self, aspa_elig_holder, marpac_holder, concub, maries, asi_aspa_nb_alloc, br_mv, _P, P = law.minim):
+def _aspa_pure__2006(self, aspa_elig_holder, maries, asi_aspa_nb_alloc, br_mv, _P, P = law.minim):
     '''
     Calcule l'ASPA lorsqu'il y a un ou deux bénéficiaire de l'ASPA et aucun bénéficiaire de l'ASI
     '''
     aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-    marpac = self.cast_from_entity_to_role(marpac_holder, role = VOUS)
-    marpac = self.any_by_roles(marpac)
     # La notion de couple change au 1er janvier 2007 (réforme de 2006)
-    if _P.datesim.year >= 2007:
-        couple = marpac | concub
-    else:
-        couple = maries
+
+    couple = maries
 
     elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
     elig2 = (aspa_elig[CHEF] & aspa_elig[PART]) * couple  # couple d'allocataire
@@ -180,6 +175,41 @@ def _aspa_pure(self, aspa_elig_holder, marpac_holder, concub, maries, asi_aspa_n
     elig_indiv = (aspa_elig[CHEF] + aspa_elig[PART])
     return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2)  # annualisé
 
+
+def _aspa_pure_2007_(self, aspa_elig_holder, marpac_holder, concub, asi_aspa_nb_alloc, br_mv, _P, P = law.minim):
+    '''
+    Calcule l'ASPA lorsqu'il y a un ou deux bénéficiaire de l'ASPA et aucun bénéficiaire de l'ASI
+    '''
+    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+    marpac = self.cast_from_entity_to_role(marpac_holder, role = VOUS)
+    marpac = self.any_by_roles(marpac)
+    # La notion de couple change au 1er janvier 2007 (réforme de 2006)
+
+    couple = marpac | concub
+
+    elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
+    elig2 = (aspa_elig[CHEF] & aspa_elig[PART]) * couple  # couple d'allocataire
+#     elig = elig1 | elig2
+#
+#     montant_max = elig1 * P.aspa.montant_seul + elig2 * P.aspa.montant_couple
+#     ressources = elig * (br_mv + montant_max)
+#     plafond_ressources = elig1 * (P.aspa.plaf_seul * not_(couple) + P.aspa.plaf_couple * couple) + elig2 * P.aspa.plaf_couple
+#     depassement = ressources - plafond_ressources
+#
+#     montant_servi_aspa = max_(montant_max - depassement, 0) / 12
+
+    diff_plaf = P.aspa.plaf_couple - P.aspa.plaf_seul
+
+    plafond_ressources = (elig1 * not_(couple)) * P.aspa.plaf_seul + (elig2 | elig1 * couple) * P.aspa.plaf_couple
+    montant_max = (elig1 * not_(couple)) * P.aspa.montant_seul + elig2 * P.aspa.montant_couple \
+        + (elig1 * couple) * ((br_mv <= diff_plaf) * (P.aspa.montant_seul + br_mv) \
+        + (br_mv > diff_plaf) * P.aspa.montant_couple)
+    montant_servi_aspa = max_(montant_max - br_mv, 0) * (br_mv <= plafond_ressources) / 12
+    # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
+    # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
+    # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
+    elig_indiv = (aspa_elig[CHEF] + aspa_elig[PART])
+    return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2)  # annualisé
 
 def _asi_pure(self, asi_elig_holder, marpac_holder, maries, asi_aspa_nb_alloc, br_mv, P = law.minim):
     '''
@@ -304,16 +334,23 @@ def _ra_rsa(sal, hsup, rpns, etr):
     return sal + hsup + rpns + etr
 
 
-def _br_rmi_pf(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, apje, ape, _P, P = law.minim):
+def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, _P, P = law.minim):
+    """
+    Prestations familiales inclues dans la base ressource RSA/RMI
+    TO DO: Add mva (majoration vie autonome),
+    """
+    out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
+    return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
+
+
+def _br_rmi_pf_2004_(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, _P, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
     TO DO: Add mva (majoration vie autonome),
     """
 
-    if _P.datesim.year < 2004:  # taking care of the existence of the paje/ape/apje
-        out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
-    else:
-        out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+    out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
 
@@ -324,6 +361,7 @@ def _br_rmi_ms(self, aspa, asi, aah, caah):
     """
     return self.cast_from_entity_to_role(aspa + asi + aah + caah,
         entity = 'famille', role = CHEF)
+
 
 def _br_rmi_i(self, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
     '''
@@ -676,7 +714,7 @@ def _api(self, agem_holder, age_holder, smic55_holder, isol, forf_log, br_rmi, a
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
 
 
-def _aefa(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, _P, af = law.fam.af,
+def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, _P, af = law.fam.af,
         P = law.minim.aefa):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
@@ -714,7 +752,49 @@ def _aefa(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_hol
               + nbPAC * P.tx_supp * (nb_par <= 2)
               + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0))
 
-    if _P.datesim.year == 2008: aefa += condition * P.forf2008
+    aefa_maj = P.mon_seul * maj
+    aefa = max_(aefa_maj, aefa)
+    return aefa
+
+def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, _P, af = law.fam.af,
+        P = law.minim.aefa):
+    '''
+    Aide exceptionelle de fin d'année (prime de Noël)
+
+    Insituée en 1998
+    Apparaît sous le nom de complément de rmi dans les ERF
+
+    Le montant de l’aide mentionnée à l’article 1er versée aux bénéficiaires de l’allocation de solidarité
+    spécifique à taux majoré servie aux allocataires âgés de cinquante-cinq ans ou plus justifiant de vingt années
+    d’activité salariée, aux allocataires âgés de cinquante-sept ans et demi ou plus justifiant de dix années d’activité
+    salariée ainsi qu’aux allocataires justifiant d’au moins 160 trimestres validés dans les régimes d’assurance
+    vieillesse ou de périodes reconnues équivalentes est égal à
+
+
+    Pour bénéficier de la Prime de Noël 2011, vous devez être éligible pour le compte du mois de novembre 2011 ou au plus de décembre 2011, soit d’une allocation de solidarité spécifique (ASS), de la prime forfaitaire mensuelle de reprise d'activité, de l'allocation équivalent retraite (allocataire AER), du revenu de solidarité active (Bénéficiaires RSA), de l'allocation de parent isolé (API), du revenu minimum d'insertion (RMI), de l’Allocation pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
+    '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    aer = self.sum_by_entity(aer_holder)
+    ass = self.sum_by_entity(ass_holder)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
+    dummy_ass = ass > 0
+    dummy_aer = aer > 0
+    dummy_api = api > 0
+    dummy_rmi = rsa > 0
+
+    maj = 0  # TODO
+
+    condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
+
+    if hasattr(af, "age3"): nbPAC = nb_enf(age, smic55, af.age1, af.age3)
+    else: nbPAC = af_nbenf
+    # TODO check nombre de PAC pour une famille
+    aefa = condition * P.mon_seul * (1 + (nb_par == 2) * P.tx_2p
+              + nbPAC * P.tx_supp * (nb_par <= 2)
+              + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0))
+
+    aefa += condition * P.forf2008
 
     aefa_maj = P.mon_seul * maj
     aefa = max_(aefa_maj, aefa)
@@ -802,7 +882,7 @@ def _aah(self, br_pf_i_holder, br_aah, inv_holder, age_holder, smic55_holder, co
     return eligib * max_(plaf_aah - br_aah, 0)  # annualisé
 
 
-def _caah(aah, asi, br_aah, al, _P, P = law.minim):
+def _caah__2005(aah, asi, _P, P = law.minim):
     '''
     Complément d'allocation adulte handicapé
     '''
@@ -828,9 +908,7 @@ def _caah(aah, asi, br_aah, al, _P, P = law.minim):
 #       ressources pour les personnes handicapées (GRPH) et l’AAH
 
     elig_cpl = ((aah > 0) | (asi > 0))  # TODO: éligibilité logement indépendant
-    if _P.datesim.year >= 2006:
-        compl = elig_cpl * max_(P.caah.grph - (aah + br_aah) / 12, 0)
-    else : compl = P.caah.cpltx * P.aah.montant * elig_cpl
+    compl = P.caah.cpltx * P.aah.montant * elig_cpl
         # En fait perdure jusqu'en 2008
 
 
@@ -848,13 +926,59 @@ def _caah(aah, asi, br_aah, al, _P, P = law.minim):
 # Choix entre la majoration ou la garantie de ressources
 # La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes handicapées.
 # La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de l'autre.
-    if _P.datesim.year >= 2006:
-        elig_mva = (al > 0) * ((aah > 0) | (asi > 0))  # TODO: complêter éligibilité
-        mva = P.caah.mva * elig_mva * 0
-    else: mva = 0
+    mva = 0
     caah = max_(compl, mva)
     return 12 * caah  # annualisé
 
+def _caah_2006_(aah, asi, br_aah, al, _P, P = law.minim):
+    '''
+    Complément d'allocation adulte handicapé
+    '''
+# Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
+# suivantes :
+# - percevoir l’allocation aux adultes handicapés à taux normal ou en
+#    complément d’une pension d’invalidité, d’une pension de vieillesse ou
+#    d’une rente accident du travail ;
+# - avoir un taux d’incapacité égal ou supérieur à 80 % ;
+# - avoir une capacité de travail, appréciée par la commission des droits et
+#    de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
+# - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
+#    du dépôt de la demande de complément ;
+# - disposer d’un logement indépendant.
+# A noter : une personne hébergée par un particulier à son domicile n’est pas
+# considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
+# de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
+# de solidarité.
+
+#       Complément de ressources Le complément de ressources est
+#       destiné aux personnes handicapées dans l’incapacité de
+#       travailler Il est égal à la différence entre la garantie de
+#       ressources pour les personnes handicapées (GRPH) et l’AAH
+
+    elig_cpl = ((aah > 0) | (asi > 0))  # TODO: éligibilité logement indépendant
+    compl = elig_cpl * max_(P.caah.grph - (aah + br_aah) / 12, 0)
+
+        # En fait perdure jusqu'en 2008
+
+
+    # Majoration pour la vie autonome
+    # La majoration pour la vie autonome est destinée à permettre aux personnes, en capacité de travailler et au chômage
+    # en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
+
+#        Conditions d'attribution
+# La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions suivantes :
+# - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente accident du travail,
+# - avoir un taux d'incapacité au moins égal à 80 %,
+# - disposer d'un logement indépendant,
+# - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par un Pacs au titulaire du droit,
+# - ne pas percevoir de revenu d'activité à caractère professionnel propre.
+# Choix entre la majoration ou la garantie de ressources
+# La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes handicapées.
+# La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de l'autre.
+    elig_mva = (al > 0) * ((aah > 0) | (asi > 0))  # TODO: complêter éligibilité
+    mva = P.caah.mva * elig_mva * 0
+    caah = max_(compl, mva)
+    return 12 * caah  # annualisé
 
 def _ass(self, br_pf, cho_holder, concub, ass = law.chomage.ass):
     '''
