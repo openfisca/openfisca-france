@@ -29,7 +29,7 @@ from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgeCol, FloatCol, 
 import openfisca_france
 
 
-BROWSER_NAME = 'iceweasel'
+BROWSER_NAME = 'chromium-browser'
 
 
 def check_consistency(table_simu, dataframe, corrige = True):
@@ -334,4 +334,4 @@ if __name__ == '__main__':
 #    print list_ultimate_dependancies('age', date(2012, 1, 1))
 
     for year in range(2013, 2009,-1):
-        look_for("f2bg", year)
+        look_for("f2am", year)
