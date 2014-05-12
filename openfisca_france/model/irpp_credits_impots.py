@@ -19,73 +19,56 @@ log = logging.getLogger(__name__)
 VOUS = QUIFOY['vous']
 
 
-def _credits_impot_2002(creimp, accult, prlire, aidper, acqgpl, drbail):
+def _credits_impot_2002(accult, acqgpl, aidper, creimp, drbail, prlire):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
-    return creimp + accult + prlire + aidper + acqgpl + drbail
+    return accult + acqgpl + aidper + creimp + drbail + prlire #TODO: complete
 
 
-def _credits_impot_2003_2004(creimp, accult, mecena, prlire, aidper, acqgpl, drbail):
+def _credits_impot_2003_2004(accult, acqgpl, aidper, creimp, drbail, mecena, prlire):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
-    return creimp + accult + mecena + prlire + aidper + acqgpl + drbail
+    return accult + acqgpl + aidper + creimp + drbail + mecena + prlire #TODO: complete
 
 
-def _credits_impot_2005_2006(creimp, divide, direpa, accult, mecena, prlire, aidper,
-    quaenv, acqgpl, drbail, ci_garext, preetu, assloy, aidmob, jeunes):
+def _credits_impot_2005_2006(accult, acqgpl, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, jeunes, mecena, preetu, prlire, quaenv):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
-    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
-        quaenv + acqgpl + drbail + ci_garext + preetu + assloy + aidmob + jeunes)
+    return accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + jeunes + mecena + preetu + prlire + quaenv
 
 
-def _credits_impot_2007(creimp, divide, direpa, accult, mecena, prlire, aidper,
-        quaenv, acqgpl, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
+def _credits_impot_2007(accult, acqgpl, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, inthab, jeunes, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
-    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
-        quaenv + acqgpl + drbail + ci_garext + preetu + saldom2 + inthab + assloy +
-        aidmob + jeunes)
+    return accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + jeunes + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2008(creimp, divide, direpa, accult, mecena, prlire, aidper,
-    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, aidmob, jeunes):
+def _credits_impot_2008(accult, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, inthab, jeunes, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
-    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
-        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + aidmob + jeunes)
+    return accult + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + jeunes + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2009(creimp, divide, direpa, accult, mecena, prlire, aidper,
-    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):
+def _credits_impot_2009(accult, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
-    return (creimp + divide + direpa + accult + mecena + prlire + aidper +
-        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
+    return accult + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2010(creimp, accult, percvm, direpa, mecena, prlire, aidper,
-    quaenv, drbail, ci_garext, preetu, saldom2, inthab, assloy, autent):
+def _credits_impot_2010(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, jeunes, mecena, percvm, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
-    return (creimp + accult + percvm + direpa + mecena + prlire + aidper +
-        quaenv + drbail + ci_garext + preetu + saldom2 + inthab + assloy + autent)
+    return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + percvm + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2011(prlire, creimp, accult, preetu ):  # TODO: check because totally unchecked
+def _credits_impot_2011(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):  
     """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
-    log.warning("TODO: totally unchecked")
-    return prlire + creimp + accult + preetu
+    return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2012(prlire, creimp, accult, preetu ):
+def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
-    log.warning("TODO: incomplete")
-    return prlire + creimp + accult + preetu
+    return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2013(prlire, creimp, accult, preetu ):
+def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
 #TODO: missing 1 niche
 #TODO: create new function for f3VV (new legislation : non-resident_45%)
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-    log.warning("TODO: not complete")
-    return prlire + creimp + accult + preetu
-
-
-
+    return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
@@ -227,6 +210,7 @@ def _percvm(f3vv_end_2010, _P):
 def _direpa(f2bg):
     '''
     Crédit d’impôt directive « épargne » (case 2BG)
+    2006- (?)
     '''
     return f2bg
 
@@ -248,7 +232,7 @@ def _mecena(f7us):
 def _prlire(f2dh, f2ch, marpac, _P):
     '''
     Prélèvement libératoire à restituer (case 2DH)
-    2002-2013
+    2002-
     '''
     plaf_resid = max_(_P.ir.rvcm.abat_assvie - f2ch, 0)
     return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
@@ -493,10 +477,10 @@ def _preetu_2008_(f7uk, f7vo, f7td, _P):
     max1 = P.max * f7vo  # TODO check if it is not (f7vo) instead for ALL OR SOME YEARS (2011 for example)
     return P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)  # TODO:
 
-def _saldom2_2007_2008(nb_pac2, f7db, f7dg, f7dl, _P):
+def _saldom2_2007_2008(nb_pac2, f7db, f7dg, f7dl, _P): #TODO: avant 2007
     '''
     Crédit d’impôt emploi d’un salarié à domicile (cases 7DB, 7DG)
-    2007-2008
+    2007-2008 
     '''
     P = _P.ir.reductions_impots.saldom
 
@@ -658,11 +642,11 @@ def _jeunes(self, age_holder, nbptr, rfr, marpac, _P):  # TODO: Replace VOUS in 
     '''
     Crédit d'impôt en faveur des jeunes
     2005-2008
-    TODO: What is rev?
+
     rfr de l'année où jeune de moins de 26 à travaillé six mois
     '''
     age = self.filter_role(age_holder, role = VOUS)
-
+    #TODO: What is rev?
     rev = 0
     P = _P.ir.credits_impot.jeunes
     elig = (age > P.age) * (rfr > P.rfr_plaf * (marpac * P.rfr_mult + not_(marpac)) + max_(0, nbptr - 2) * .5 * P.rfr_maj)
