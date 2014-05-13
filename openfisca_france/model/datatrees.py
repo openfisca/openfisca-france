@@ -33,7 +33,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
                     'prenom',  # Prénom
-                    'birth',  # Année de naissance
+                    'birth',  # Date de naissance
                     'statmarit',  # Statut marital
                     'sali',  # Revenus d'activité imposables
                     'choi',  # Autres revenus imposables (chômage, préretraite)
@@ -172,7 +172,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""alt""",  # Enfant en garde alternée
                     u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
                     u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
-                    u"""code_risque""",  # Code risque pour les accidents du travail
                     u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
                     u"""boursier""",  # Elève ou étudiant boursier
                     u"""f1tv""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans
@@ -553,6 +552,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
                     u"""f2ck""",  # Crédit d'impôt égal au prélèvement forfaitaire déjà versé
                     u"""f2dm""",  # Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %
+                    u"""f3vv_end_2010""",  # Pertes ouvrant droit au crédit d’impôt de 19 %
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hm""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures

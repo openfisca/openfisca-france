@@ -182,7 +182,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
                         default = True)),
 
-    build_column_couple('code_risque', EnumCol(label = u"Code risque pour les accidents du travail")),  # TODO: complete label and add relevant default
+#    build_column_couple('code_risque', EnumCol(label = u"Code risque pour les accidents du travail")),  # TODO: Complete label, add enum and relevant default.
 
     build_column_couple('exposition_accident', EnumCol(label = u"Exposition au risque pour les accidents du travail",
                             enum = Enum([u"Faible",
