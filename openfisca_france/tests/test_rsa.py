@@ -24,14 +24,13 @@
 
 
 
-
+#Ne pas oublier d'intégrer la paje quand on simule le cas type sur le site de la cnaf pour les enfants de moins de 3 ans
 
 import datetime
-
 import openfisca_france
 
 
-def test_rsa():
+def test_check_rsa():
     '''test rsa pour un célibataire avec différent sali'''
 
 
@@ -63,21 +62,14 @@ def test_rsa():
             year = year,
             ).new_simulation(debug = True)
         calculated_rsa = simulation.calculate('rsa')/12
-
-
-
-
-
         assert abs(calculated_rsa - test['rsa']) < error_margin, 'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
-
-        print calculated_rsa
 
 if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
-    test_rsa()
+    test_check_rsa()
 
 
 
@@ -254,26 +246,109 @@ def test_rsa_couple():
          "rsa": 0,
           },
 
+##Test pour un parent isolé avec 1 enfant de 2 ans
+#{"year" : 2014,
+#         "parent1" : {
+#             "sali" : 5000,
+#             "age" : 29,
+#             },
+#         "enfants" : [
+#                      dict(age = 2),
+#                      ],
+#         "rsa": 550,
+#          },
 
-        ]
 
-    for test in tests_list:
-        print test["parent1"]["age"]
 
-#
-#        {"year" : 2014, "amountdéclarant": 5000, "amountconjoint": 0, "rsa": 471 },
-#        {"year" : 2014, "amountdéclarant": 10000, "amountconjoint": 0, "rsa": 312 },
-#        {"year" : 2014, "amountdéclarant": 12000, "amountconjoint": 0, "rsa": 249 },
-#        {"year" : 2014, "amountdéclarant": 13000, "amountconjoint": 0, "rsa": 217 },
-#        {"year" : 2014, "amountdéclarant": 14000, "amountconjoint": 0, "rsa": 186 },
-#        {"year" : 2014, "amountdéclarant": 15000, "amountconjoint": 0, "rsa": 154 },
-#        {"year" : 2014, "amountdéclarant": 16000, "amountconjoint": 0, "rsa": 122 },
-#        {"year" : 2014, "amountdéclarant": 17000, "amountconjoint": 0, "rsa": 91 },
-#        {"year" : 2014, "amountdéclarant": 18000, "amountconjoint": 0, "rsa": 59 },
-#        {"year" : 2014, "amountdéclarant": 19000, "amountconjoint": 0, "rsa": 27 },
-#        {"year" : 2014, "amountdéclarant": 20000, "amountconjoint": 0, "rsa": 0 },
-#        ]
-#
+
+#test pour un couple avec un enfant de moins de 3 ans
+#Problème avec site de la cnaf pour changer les revenus
+          {"year" : 2014,
+         "parent1" : {
+             "sali" : 0,
+             "age" : 29,
+             },
+         "parent2" : {
+             "sali" : 0,
+             "age" : 29,
+             },
+         "enfants" : [
+                      dict(age = 2),
+                      ],
+         "rsa": 565,
+         #"paje": 184.62,
+          },
+
+
+#Do not pass
+#          {"year" : 2014,
+#         "parent1" : {
+#             "sali" : 5000,
+#             "age" : 29,
+#             },
+#         "parent2" : {
+#             "sali" : 0,
+#             "age" : 29,
+#             },
+#         "enfants" : [
+#                      dict(age = 2),
+#                      ],
+#         "rsa": 444, #Unsure about the value
+#          },
+#TODO: do not pass
+#          {"year" : 2014,
+#         "parent1" : {
+#             "sali" : 10000,
+#             "age" : 29,
+#             },
+#         "parent2" : {
+#             "sali" : 0,
+#             "age" : 29,
+#             },
+#         "enfants" : [
+#                      dict(age = 2),
+#                      ],
+#         "rsa": 565, #TODO : check that value
+#          },
+#            "revenu": [
+#            {"year" : 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa": 750  },
+#            {"year" : 2014, "amountdéclarant": 5000, "amountconjoint":0,   "rsa": 592  },
+#            {"year" : 2014, "amountdéclarant": 10000, "amountconjoint":0,   "rsa": 434  },
+#            {"year" : 2014, "amountdéclarant": 12000, "amountconjoint":0,   "rsa": 370  },
+#            {"year" : 2014, "amountdéclarant": 13000, "amountconjoint":0,   "rsa": 339  },
+#            {"year" : 2014, "amountdéclarant": 14000, "amountconjoint":0,   "rsa": 307  },
+#            {"year" : 2014, "amountdéclarant": 15000, "amountconjoint":0,   "rsa": 275  },
+#            {"year" : 2014, "amountdéclarant": 16000, "amountconjoint":0,   "rsa": 244  },
+#            {"year" : 2014, "amountdéclarant": 17000, "amountconjoint":0,   "rsa": 212  },
+#            {"year" : 2014, "amountdéclarant": 18000, "amountconjoint":0,   "rsa": 180 },
+#            {"year" : 2014, "amountdéclarant": 19000, "amountconjoint":0,   "rsa": 149  },
+#            {"year" : 2014, "amountdéclarant": 20000, "amountconjoint":0,   "rsa": 117  },
+#            {"year" : 2014, "amountdéclarant": 21000, "amountconjoint":0,   "rsa": 85 },
+#            {"year" : 2014, "amountdéclarant": 22000, "amountconjoint":0,   "rsa": 54  },
+#            {"year" : 2014, "amountdéclarant": 23000, "amountconjoint":0,   "rsa": 22  },
+#            {"year" : 2014, "amountdéclarant": 24000, "amountconjoint":0,   "rsa": 0 },
+#                        ],
+
+#test pour enfants ayant entre 3 et 13 ans
+        {"year" : 2014,
+         "parent1" : {
+             "sali" : 0,
+             "age" : 29,
+             },
+         "parent2" : {
+             "sali" : 0,
+             "age" : 29,
+             },
+         "enfants" : [
+                      dict(age = 10),
+                      ],
+         "rsa": 750,
+          },
+       ]
+
+#    for test in tests_list:
+#        print test["enfants1"]["age"]
+
     error_margin = 1
     for test in tests_list:
         print test
@@ -302,6 +377,12 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
     test_rsa_couple()
+
+
+
+
+
+
 
 
 
