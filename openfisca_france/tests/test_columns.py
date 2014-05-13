@@ -31,14 +31,24 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def check(enum_column):
-    assert enum_column.enum, u'Column {} has no enum'.format(enum_column.name).encode('utf-8')
+def check_input_column_consumers(column):
+    if column.name not in (
+            'idfam',
+            'idfoy',
+            'idmen',
+            'noi',
+            'prenom',
+            'quifam',
+            'quifoy',
+            'quimen',
+            ):
+        assert column.consumers, u'Input column {} has no consumer'.format(column.name).encode('utf-8')
 
 
 def test():
     for column in tax_benefit_system.column_by_name.itervalues():
-        if isinstance(column, columns.EnumCol):
-            yield check, column
+        if column.formula_constructor is None:
+            yield check_input_column_consumers, column
 
 
 if __name__ == '__main__':
