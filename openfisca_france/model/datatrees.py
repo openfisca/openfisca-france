@@ -167,7 +167,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""aer""",  # Allocation équivalent retraite (AER)
                     u"""ass""",  # Allocation de solidarité spécifique (ASS)
                     u"""f5sq""",
-                    u"""adoption""",  # Enfant adopté
                     u"""inv""",  # Invalide
                     u"""alt""",  # Enfant en garde alternée
                     u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
@@ -177,14 +176,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f1tv""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans
                     u"""f1tw""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans
                     u"""f1tx""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans
-                    u"""sal_pen_exo_etr""",  # Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
                     u"""f3vd""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
                     u"""f3vf""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
                     u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
                     u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
                     u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
                     u"""f5qm""",  # Agents généraux d’assurances: indemnités de cessation d’activité
-                    u"""nbic_mvct""",  # Revenus industriels et commerciaux moins-values nettes à court terme
                     u"""f6ps""",  # Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)
                     u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
@@ -550,19 +547,11 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
-                    u"""f2ck""",  # Crédit d'impôt égal au prélèvement forfaitaire déjà versé
-                    u"""f2dm""",  # Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %
                     u"""f3vv_end_2010""",  # Pertes ouvrant droit au crédit d’impôt de 19 %
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
-                    u"""f6hm""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f7va""",  # Dons à des organismes d'aides aux personnes établis dans un Etat européen
                     u"""f7vc""",  # Dons à des autres organismes établis dans un Etat européen
-                    u"""f7vv""",  # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes
-                    u"""f7vu""",  # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité
-                    u"""f7vt""",  # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes
-                    u"""f7wt""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement
-                    u"""f7cc""",  # Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1
                     ]),
                 ]),
             ]),

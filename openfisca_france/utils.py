@@ -268,7 +268,7 @@ def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, i
             formula = column.formula_constructor
             formula.extract_parameters()
 
-        formula.set_dependencies(column, tax_benefit_system)
+        formula.set_dependencies(column, tax_benefit_system.column_by_name)
 
         for variable_name in  formula.parameters:
             find_ultimate_dependancies(variable_name, date, input_variables = input_variables)

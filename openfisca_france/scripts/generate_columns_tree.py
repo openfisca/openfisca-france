@@ -40,11 +40,12 @@ import pprint
 import sys
 
 from openfisca_france import model
-from openfisca_france.model.input_variables import column_by_name
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
 except ImportError:
     columns_name_tree_by_entity = collections.OrderedDict()
+from openfisca_france.model.input_variables import column_by_name
+from openfisca_france.model.model import prestation_by_name
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -105,6 +106,13 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
+    all_column_by_name = column_by_name.copy()
+    all_column_by_name.update(prestation_by_name)
+    for column in all_column_by_name.itervalues():
+        formula_class = column.formula_constructor
+        if formula_class is not None:
+            formula_class.set_dependencies(column, all_column_by_name)
+
     global columns_name_tree_by_entity
     columns_name_tree_by_entity = collections.OrderedDict(
         (entity, columns_name_tree)
@@ -122,6 +130,9 @@ def main():
 
     for name, column in column_by_name.iteritems():
         if not is_valid_column(column):
+            continue
+        if not column.consumers and name not in ('prenom',):
+            # Ignore input columns not used in formulas.
             continue
         if name in placed_columns_name:
             continue

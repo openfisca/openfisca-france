@@ -23,7 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core import columns
 import openfisca_france
 
 
@@ -49,7 +48,3 @@ def test():
     for column in tax_benefit_system.column_by_name.itervalues():
         if column.formula_constructor is None:
             yield check_input_column_consumers, column
-
-
-if __name__ == '__main__':
-    test()
