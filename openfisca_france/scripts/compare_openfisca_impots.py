@@ -48,26 +48,17 @@ log = logging.getLogger(app_name)
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
-
-def main():
-    parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
-    args = parser.parse_args()
-    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
-
+def define_scenario(year):
     scenario = tax_benefit_system.new_scenario()
-    year = 2013
     scenario.init_single_entity(
-#        parent1 = dict(
-#            birth = datetime.date(year - 40, 1, 1),
-#            sali = 50000,
-#            ),
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
             cadre = True,
             sali = 24000,
             statmarit = u'Célibataire',
+#            rsti=1000,
+#            fra=1000,
             ),
         enfants = [
             dict(
@@ -77,18 +68,44 @@ def main():
             dict(
                 activite = u'Étudiant, élève',
                 birth = '2000-04-17',
+#                ppe_tp_sa=1,
                 ),
             ],
+        foyer_fiscal = dict(
+#                f7is = 1000,
+#                nbN = 5,
+#                caseT = 0,
+#                caseF = 5,
+#                f2dc=5000,
+#                f2ca=2000,
+#                f3vg=1000,
+#                f4ba=500,
+#                f6gu=800,
+#                f7uh=2000,
+#                f7wj=300,
+            ),
         year = year,
         )
     scenario.suggest()
+    return scenario
+    
+
+def main():
+    year = 2013
+
+    parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    args = parser.parse_args()
+    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+    scenario = define_scenario(year)
     foyer_fiscal = copy.deepcopy(scenario.test_case['foyers_fiscaux'].values()[0])
     impots_arguments = transform_scenario_to_impots_arguments(scenario)
     simulation = scenario.new_simulation(debug = True)
 
-    request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-2014.cgi', headers = {
+    request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-'+str(year+1)+'.cgi', headers = {
         'User-Agent': 'OpenFisca-Script',
         })
+
     response = urllib2.urlopen(request, urllib.urlencode(impots_arguments))
 
     page_doc = etree.parse(response, etree.HTMLParser())
@@ -115,6 +132,7 @@ def main():
             name = name,
             value = float(element.get('value').strip()),
             )
+    import json
     for code, field in fields.iteritems():
         if code == 'IAVIM':
             # Impôt avant imputations
@@ -133,6 +151,10 @@ def main():
             openfisca_value = simulation.calculate('irpp')
         elif code == 'IREST':
             # Montant net à restituer
+            continue
+        elif code == 'ITRED':
+            # Total des réductions d'impôt
+            openfisca_value = simulation.calculate('reductions')
             continue
         elif code == 'NAPCRP':
             # Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d'activité et de remplacement
@@ -179,7 +201,7 @@ def main():
         openfisca_simple_value = abs(openfisca_simple_value)
         assert abs(field['value'] - openfisca_simple_value) <= 1, \
             u'For {} ({}). Expected: {}. Got: {} ({}). Fields: {}'.format(code, field['name'], field['value'],
-                openfisca_simple_value, openfisca_value, fields).encode('utf-8')
+                openfisca_simple_value, openfisca_value, json.dumps(fields, encoding = 'utf-8', ensure_ascii = False, indent = 2)).encode('utf-8')
 
     return 0
 
@@ -231,7 +253,7 @@ def transform_scenario_to_impots_arguments(scenario):
             personne_a_charge = individus[personne_a_charge_id].copy()
 
             birth = personne_a_charge.pop('birth')
-            impots_arguments['0F{}'.format(chr(ord('A') + personne_a_charge_index))] = str(birth.year)
+            impots_arguments['0F{}'.format(personne_a_charge_index)] = str(birth.year) 
 
             personne_a_charge.pop('statmarit', None)
 
@@ -255,8 +277,10 @@ def transform_scenario_to_impots_arguments(scenario):
                 continue
             column = tax_benefit_system.column_by_name[column_code]
             cerfa_field = column.cerfa_field
-            assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-            impots_arguments[cerfa_field[declarant_index]] = str(value)
+            assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
+            impots_arguments[cerfa_field] = str(value)
+    import json
+    print json.dumps(impots_arguments, encoding = 'utf-8', ensure_ascii = False, indent = 2)
 
     return impots_arguments
 

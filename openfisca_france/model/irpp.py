@@ -165,6 +165,7 @@ def _rev_sal(sal, cho):
     '''
     return sal + cho
 
+
 def _salcho_imp(rev_sal, cho_ld, fra, abatpro = law.ir.tspr.abatpro):
     """
     Salaires après abattements
@@ -174,12 +175,28 @@ def _salcho_imp(rev_sal, cho_ld, fra, abatpro = law.ir.tspr.abatpro):
     abatfor = round(min_(max_(abatpro.taux * rev_sal, amin), abatpro.max))
     return (fra > abatfor) * (rev_sal - fra) + (fra <= abatfor) * max_(0, rev_sal - abatfor)
 
+
+def _rev_act_sal(sali):
+    ''' Revenus d'activités salariées'''
+    return sali #TODO: vérifier cette définition
+
+def _rev_act_nonsal(rpns_i):
+    ''' Revenus d'activités non salariées '''
+    return rpns_i #TODO: vérifier cette définition
+
+
+def _rev_act(rev_act_nonsal, rev_act_sal):
+    ''' Revenus d'activités '''
+    return rev_act_nonsal + rev_act_sal
+
+
 def _rev_pen(alr, alr_decl, rst):
     """
     Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)
     'ind'
     """
     return alr * alr_decl + rst
+
 
 def _pen_net(rev_pen, abatpen = law.ir.tspr.abatpen):
     """
@@ -257,31 +274,8 @@ def _rev_cat_tspr(self, tspr_holder, indu_plaf_abat_pen):
 
     return tspr + indu_plaf_abat_pen
 
-
-def _deficit_rcm_2009(_P, f2aa, f2al, f2am):  # TODO: check this, f2as): and correct in data.py
-    return f2aa + f2al + f2am
-
-def _deficit_rcm_2010(_P, f2al, f2am, f2an):  # TODO: check this, f2as): and correct in data.py
-
-    return f2al + f2am + f2an
-
-def _deficit_rcm_2011(_P, f2am, f2an, f2aq):  # TODO: check this, f2as): and correct in data.py
-    
-    return f2am + f2an + f2aq
-
-def _deficit_rcm_2012(_P,f2an, f2aq, f2ar):  # TODO: check this, f2as): and correct in data.py
-
-    return f2an + f2ar + f2aq
-
-def _deficit_rcm_2013(_P, f2aq, f2ar):  # TODO: check this, f2as): and correct in data.py
-
-    return f2aq + f2ar
-        # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
-
-def _deficit_rcm_2014(_P, f2ar):  # TODO: check this, f2as): and correct in data.py
-    year = _P.datesim.year
-    return f2ar
-        # TODO: check this f2as * (year == 2013 | year == 2014 | year == 2015)
+def _deficit_rcm(_P, f2aa, f2al, f2am, f2an, f2aq, f2ar):
+    return f2aa + f2al + f2am + f2an + f2aq + f2ar
 
 def _rev_cat_rvcm__2004(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, _P,
         finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
@@ -352,13 +346,13 @@ def _rev_cat_rvcm_2005_2012(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f
     DEF = deficit_rcm
     return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, f2da, f2ee, 
+def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2tr, f2da, f2ee, 
         finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
     """
     Revenus des valeurs et capitaux mobiliers
     """
     # Add f2da to f2dc and f2ee to f2tr when no PFL
-    f2dc_bis = f2dc + f2da
+    f2dc_bis = f2dc + f2da #TODO: l'abattement de 40% est déduit uniquement en l'absence de revenus déclarés en case 2DA
     f2tr_bis = f2tr + f2ee
 
     # # Calcul du revenu catégoriel
@@ -373,7 +367,7 @@ def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go,
     g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
     # partie positive
     g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-    rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+    rev = g12b + f2fu * (1 - rvcm.abatmob_taux)
 
     # Abattements, limité au revenu
     h12 = rvcm.abatmob * (1 + marpac)
@@ -387,7 +381,7 @@ def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go,
     DEF = deficit_rcm
     return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-def _rfr_rvcm(f2dc, f2fu, f2da, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
+def _rfr_rvcm(marpac, f2dc, f2ts, f2ca, f2gr, f2fu, f2da, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
     '''
     Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
     '''
@@ -395,8 +389,19 @@ def _rfr_rvcm(f2dc, f2fu, f2da, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm
         f2dc_bis = f2dc + f2da
     else:
         f2dc_bis = f2dc
-    # # TODO: manque le sous total i121 (dans la fonction _rev_cat_rvcm)
-    i121 = 0
+
+    # Calcul de i121
+    # Part des frais s'imputant sur les revenus déclarés case DC
+    den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
+    F1 = f2ca / den * f2dc_bis # f12
+    # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
+    # partie positive
+    g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+    rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+
+    # Abattements, limité au revenu
+    h12 = rvcm.abatmob * (1 + marpac)
+    i121= -min_(0,rev - h12)
     return max_((rvcm.abatmob_taux) * (f2dc_bis + f2fu) - i121, 0)
 
 
@@ -422,7 +427,7 @@ def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfonci
 
 def _rev_cat_rpns(self, rpns_i_holder):
     '''
-    Traitemens salaires pensions et rentes
+    Revenus personnels non salariés
     'foy'
     '''
     return self.sum_by_entity(rpns_i_holder)
@@ -480,6 +485,7 @@ def _rng(rbg, csg_deduc, charges_deduc):
     return max_(0, rbg - csg_deduc - charges_deduc)
 
 def _rni(rng, abat_spe):
+    ''' Revenu net imposable ou déficit à reporter'''
     return rng - abat_spe
 
 
@@ -1342,7 +1348,7 @@ def _ppe_rev(sal, hsup, rpns, ppe = law.ir.credits_impot.ppe):
     # Revenu d'activité salarié
     rev_sa = sal + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
     # Revenu d'activité non salarié
-    rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns
+    rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns #TODO: très bizarre la partie min(0,rpns) - après vérification c'est dans la loi
     return rev_sa + rev_ns
 
 
@@ -1465,6 +1471,7 @@ def _ppe(self, ppe_brute, rsa_act_i_holder):
     PPE effectivement versée
     'foy'
     """
+#TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
     rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
 
 #   On retranche le RSA activité de la PPE

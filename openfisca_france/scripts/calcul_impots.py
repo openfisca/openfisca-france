@@ -61,6 +61,70 @@ def main():
 
     page_doc = etree.parse(response, etree.HTMLParser())
     fields = collections.OrderedDict()
+
+#    fieldsOpenFisca = collections.OrderedDict()
+
+#    def fillFields(code, value):
+#        if code == 'IAVIM':
+#            # Impôt avant imputations
+#            fieldsOpenFisca['iai']=value
+#        elif code == 'IDEC':
+#            # Décote
+#            fieldsOpenFisca['decote']=value
+#        elif code == 'IDRS2':
+#            # Droits simples
+#            fieldsOpenFisca['ir_plaf_qf']=value
+#        elif code == 'IINET':
+#            # Montant net à payer
+#            pass
+#        elif code == 'IINETIR':
+#            # Impôt sur le revenu net
+#            fieldsOpenFisca['irpp']=value
+#        elif code == 'IREST':
+#            # Montant net à restituer
+#            pass
+#        elif code == 'ITRED':
+#            # Total des réductions d'impôt
+#            fieldsOpenFisca['reductions']=value
+#            pass
+#        elif code == 'NAPCRP':
+#            # Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d'activité et de remplacement
+#            # de source étrangère)
+#            # TODO
+#            pass
+#        elif code == 'NBPT':
+#            # Nombre de parts
+#            fieldsOpenFisca['nbptr']=value
+#        elif code == 'PERPPLAFTV':
+#            # Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1
+#            # TODO
+#            pass
+#        elif code == 'PPETOT':
+#            # Prime pour l'emploi
+#            fieldsOpenFisca['ppe']=value
+#        elif code == 'REVKIRE':
+#            # Revenu fiscal de référence
+#            fieldsOpenFisca['rfr']=value
+#        elif code == 'RNICOL':
+#            # Revenu net imposable ou déficit à reporter
+#            fieldsOpenFisca['rni']=value
+#        elif code == 'RRBG':
+#            # Revenu brut global ou déficit
+#            fieldsOpenFisca['rbg']=value
+#        elif code == 'TOTPAC':
+#            # Nombre de personnes à charge
+#            fieldsOpenFisca['personnes_a_charge']=value
+#        elif code == 'TXMARJ':
+#            # Taux marginal d'imposition (revenus soumis au barème)
+#            # TODO
+#            pass
+#        elif code == 'TXMOYIMP':
+#            # Taux moyen d'imposition
+#            # TODO
+#            pass
+#        else:
+#            raise KeyError(u'Unexpected code {} = {}'.format(code, value).encode('utf-8'))
+
     for element in page_doc.xpath('//input[@type="hidden"][@name]'):
         tag = element.tag.lower()
         parent = element.getparent()
@@ -83,8 +147,10 @@ def main():
             name = name,
             value = float(element.get('value').strip()),
             )
+#        fillFields(code,element.get('value'))
     import json
     print json.dumps(fields, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+#    print json.dumps(fieldsOpenFisca, encoding = 'utf-8', ensure_ascii = False, indent = 2)
 
     return 0
 
