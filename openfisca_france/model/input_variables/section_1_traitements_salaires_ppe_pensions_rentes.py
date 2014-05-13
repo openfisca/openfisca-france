@@ -187,8 +187,8 @@ column_by_name = collections.OrderedDict((
     build_column_couple('exposition_accident', EnumCol(label = u"Exposition au risque pour les accidents du travail",
                             enum = Enum([u"Faible",
                                    u"Moyen",
-                                   u"Elevé",
-                                   u"Très elevé",
+                                   u"Élevé",
+                                   u"Très élevé",
                                    ]))),
 
     build_column_couple('boursier', BoolCol(label = u"Elève ou étudiant boursier")),
