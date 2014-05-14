@@ -3296,7 +3296,7 @@
         </CODE>
         <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer">
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" /> # TODO: 400 par pac
-    </CODE>
+        </CODE>
         <CODE code="pac2" description="Majoration du plafond pour le 2nd enfant" format="integer">
           <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
           <VALUE deb="2008-01-01" fin="2013-12-31" valeur="400" />
@@ -3333,6 +3333,7 @@
         </CODE>
         <CODE code="taux_sc" description="Taux (SC)" format="percent">
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.40" />
+          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.13" />
         </CODE>
         <CODE code="taux_sd" description="Taux (SD)" format="percent">
           <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.40" />
