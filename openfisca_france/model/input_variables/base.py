@@ -64,6 +64,13 @@ column_by_name = collections.OrderedDict((
     build_column_couple('quifoy', EnumCol(QUIFOY)),
     build_column_couple('quifam', EnumCol(QUIFAM)),
 
+    build_column_couple('birth', DateCol(label = u"Date de naissance")),
+
+    build_column_couple('nom_famille', StrCol(entity = 'fam', label = u"Nom")),
+    build_column_couple('nom_foyer_fiscal', StrCol(entity = 'foy', label = u"Nom")),
+    build_column_couple('nom_individu', StrCol(label = u"Prénom")),
+    build_column_couple('nom_menage', StrCol(entity = 'men', label = u"Nom")),
+
     # Prestations familiales
     build_column_couple('inactif', BoolCol(entity = 'fam',
                         label = u"Parent inactif (PAJE-CLCA)")),

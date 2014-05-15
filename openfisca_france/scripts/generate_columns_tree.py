@@ -131,7 +131,12 @@ def main():
     for name, column in column_by_name.iteritems():
         if not is_valid_column(column):
             continue
-        if not column.consumers and name not in ('prenom',):
+        if not column.consumers and name not in (
+                'nom_famille',
+                'nom_foyer_fiscal',
+                'nom_individu',
+                'nom_menage',
+                ):
             # Ignore input columns not used in formulas.
             continue
         if name in placed_columns_name:

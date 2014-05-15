@@ -141,9 +141,6 @@ column_by_name = collections.OrderedDict((
                         entity = "foy",
                         label = u"Jours décomptés au titre de cette déclaration")),
 
-    build_column_couple('birth', DateCol(label = u"Date de naissance")),
-    build_column_couple('prenom', StrCol(label = u"Prénom")),
-
     build_column_couple('loyer', IntCol(label = u"Loyer mensuel",
                      entity = 'men',
                      val_type = "monetary")),  # Loyer mensuel

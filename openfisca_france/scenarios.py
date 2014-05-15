@@ -1073,8 +1073,8 @@ class Scenario(object):
         #
         individus.get_or_new_holder('noi').array = np.arange(steps_count * individus_step_size,
             dtype = column_by_name['noi'].dtype)
-#        individus.get_or_new_holder('prenom').array = np.array(
-#            [individu['prenom'] for individu in test_case[u'individus'].itervalues()],
+#        individus.get_or_new_holder('nom_individu').array = np.array(
+#            [individu['nom_individu'] for individu in test_case[u'individus'].itervalues()],
 #            dtype = object)
         used_columns_name = set(
             key
