@@ -607,7 +607,6 @@ def _rsceha(nb_pac2, nbR, f7gz, P = law.ir.reductions_impots.rsceha):
     2002-
     '''
     max1 = P.seuil1 + (nb_pac2 - nbR) * P.seuil2
-    # TODO: verifier la formule précédente
     return P.taux * min_(f7gz, max1)
 
 

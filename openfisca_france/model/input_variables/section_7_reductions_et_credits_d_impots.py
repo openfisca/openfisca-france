@@ -310,6 +310,11 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'7WL')),
 
+    build_column_couple('f7wr', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques",
+                    val_type = "monetary",
+                    cerfa_field = u'7WR')),
+
     # Investissements dans les DOM-TOM dans le cadre d'une entrepise
     build_column_couple('f7ur', IntCol(entity = 'foy',
                     label = u"Investissements réalisés en n-1, total réduction d’impôt",
@@ -940,7 +945,39 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'7SI')),
 
+    build_column_couple('f7tu', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TU')),
 
+    build_column_couple('f7tt', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TT')),
 
+    build_column_couple('f7tv', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TV')),
+
+    build_column_couple('f7tx', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TX')),
+
+    build_column_couple('f7ty', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TY')),
+
+    build_column_couple('f7tz', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TZ')),
+
+    build_column_couple('f7tw', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TW')),
 
     ))

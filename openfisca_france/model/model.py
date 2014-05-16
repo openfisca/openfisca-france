@@ -1388,15 +1388,14 @@ prestation_by_name = collections.OrderedDict((
                      function = ci._creimp_2010_2011,
                      ),
 
-#            dict(start = date(2012, 1, 1),
-#                     end = date(2012, 12, 31),
-#                     function = ci._creimp_2012,
-#                     ),
-#
-#            dict(start = date(2013, 1, 1),
-#                     end = date(2013, 12, 31),
-#                     function = ci._creimp_2013,
-#                     ),
+            dict(start = date(2012, 1, 1),
+                     end = date(2012, 12, 31),
+                     function = ci._creimp_2012,
+                     ),      
+            dict(start = date(2013, 1, 1),
+                     end = date(2013, 12, 31),
+                     function = ci._creimp_2013,
+                     ),
             ],
         FloatCol(entity = 'foy')),
 

@@ -312,7 +312,7 @@ column_by_name = collections.OrderedDict((
                    entity = 'foy',
                    cerfa_field = u'G')),  # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche
 
-    ('nbF', IntCol(label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge",
+    ('nbF', IntCol(label = u"Nombre d'enfants à charge non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge",
                    entity = 'foy',
                    cerfa_field = u'F')),
 

@@ -19,7 +19,7 @@ from openfisca_core.accessors import law
 # Taxe sur la cession à titre onéreux de terrains nus rendus constructibles (CGI, art.1605 nonies)
 # 2048-IMM-SD
 ########################################################################
-
+#TODO: create new function for f3VV (new legislation : non-resident_45%)
 
 def _plus_value_brute(prix_pv_immo, charges_pv_immo, frais_pv_immo, prix_acqu_immo,
                       charges_aqu_immo, frais_acqu_immo, const_acqu_immo, voirie_acqu_immo):

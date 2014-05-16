@@ -6,6 +6,7 @@
 # Licensed under the terms of the GPL (version 3 or later) license
 # (see openfisca/__init__.py for details)
 
+#TODO: 7ac, 7ae, 7ag, 8tl, 8uw, corse, 8tz à 8wu, 2ck, 8ti, 8tk, 8te
 
 from __future__ import division
 
@@ -66,117 +67,12 @@ def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, creimp, direp
 
 def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
 #TODO: missing 1 niche
-#TODO: create new function for f3VV (new legislation : non-resident_45%)
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
     return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
-    return nbF + nbJ + nbR + nbH / 2
-
-
-def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th):
-    '''Avoir fiscaux et crédits d'impôt 2002 '''
-    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
-
-def _creimp_2003(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp):
-    '''Avoir fiscaux et crédits d'impôt 2003 '''
-    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
-
-def _creimp_2004(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz):
-    '''Avoir fiscaux et crédits d'impôt 2004 '''
-    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz)
-
-def _creimp_2005(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc,
-                   f8we):
-    '''Avoir fiscaux et crédits d'impôt 2005 '''
-    return  (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb +
-    f8wc + f8we)
-
-def _creimp_2006(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8we,
-                  f8wr, f8ws, f8wt, f8wu):
-    '''Avoir fiscaux et crédits d'impôt 2006 '''
-    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc +
-            f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
-
-def _creimp_2007(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8wr,
-                   f8ws, f8wt, f8wu, f8wv, f8wx):
-    '''Avoir fiscaux et crédits d'impôt 2007 '''
-    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc +
-            f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
-
-def _creimp_2008(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc,
-                  f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx):
-    '''Avoir fiscaux et crédits d'impôt 2008'''
-    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc +
-
-            f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
-def _creimp_2009(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wd, f8we, f8wr, f8ws, f8wt,
-                  f8wu, f8wv, f8wx, f8wy):
-    '''Avoir fiscaux et crédits d'impôt 2009'''
-    return  (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr +
-            f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
-
-def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wd,
-                  f8we, f8wr, f8wt, f8wu, f8wv):
-    '''Avoir fiscaux et crédits d'impôt 2011 '''
-    return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we +
-           f8wr + f8wt + f8wu + f8wv)
-
-
-#def _creimp(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8tc, f8td, f8te, f8to, f8tp, f8uz, f8tz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx, f8wy, _P):
-#    '''
-#    Avoir fiscaux et crédits d'impôt
-#    2002-
-#    '''
-#
-#    if _P.datesim.year == 2002:
-#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
-#
-#    elif _P.datesim.year == 2003:
-#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
-#
-#    elif _P.datesim.year == 2004:
-#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz)
-#
-#    elif _P.datesim.year == 2005:
-#        return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8we)
-#
-#
-#
-#    elif _P.datesim.year == 2006:
-#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
-#                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
-#
-#    elif _P.datesim.year == 2007:
-#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8thhttp://www3.finances.gouv.fr/calcul_impot/2012/complet/index.htm
-#                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
-#
-#
-#
-#    elif _P.datesim.year == 2008:
-#        return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th
-#                   + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
-#
-#
-#    elif _P.datesim.year == 2009:
-#        return (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp
-#                   + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
-#
-#
-#    elif _P.datesim.year == 2010:
-#        return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
-#
-#
-#
-#    elif _P.datesim.year == 2011:
-#        log.warning("TODO: totally unchecked")
-#        return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8uz + f8tz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
-#
-#
-#    else:
-#        log.warning("TODO: not implemented, returns 0")
-#        return f2ab * 0  # TODO: 2012
+    return nbF + nbJ + nbR - nbH / 2
 
 
 def _accult(f7uo, _P):
@@ -204,7 +100,10 @@ def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
     Crédit d'impôt aide à la mobilité
     2005-2008
     '''
-    return (f1ar + f1br + f1cr + f1dr + f1er) * _P.ir.credits_impot.aidmob.montantdef _aidper_2002_2003(marpac, nb_pac2, f7wi, _P):
+    return (f1ar + f1br + f1cr + f1dr + f1er) * _P.ir.credits_impot.aidmob.montant
+
+
+def _aidper_2002_2003(marpac, nb_pac2, nbH, f7wi, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
     (cases 7WI, 7WJ, 7WL et 7SF).
@@ -212,22 +111,30 @@ def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
     '''
     P = _P.ir.credits_impot.aidper
 
-    n = nb_pac2
-    max0 = P.max * (1 + marpac) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac3 * (max_(n - 2, 0))
+    n = nb_pac2 - nbH/2
+    max0 = (P.max * (1 + marpac) + 
+        P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac3 * (max_(n - 2, 0)) +
+        ((n >= 2) * P.pac3 * nbH + 
+        (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1) ) * (nbH >= 1) + 
+        (n == 0) * (P.pac1 + (nbH > 1) * P.pac2 * (nbH - 1) + (nbH > 2) * P.pac3 * (nbH - 2)) * (nbH >= 1)) / 2)
 
-    return P.taux_wi * min_(f7wi, max0)  # TODO: enfant en résidence altérnée
+    return P.taux_wi * min_(f7wi, max0) 
 
 
-def _aidper_2004_2005(marpac, nb_pac2, f7wi, f7wj, _P):
+def _aidper_2004_2005(marpac, nb_pac2, nbH, f7wi, f7wj, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    (cases 7WI, 7WJ, 7WL et 7SF).
+    (cases 7WI, 7WJ).
     2004-2005
     '''
     P = _P.ir.credits_impot.aidper
 
-    n = nb_pac2
-    max0 = P.max * (1 + marpac) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac3 * (max_(n - 2, 0))
+    n = nb_pac2 - nbH/2
+    max0 = (P.max * (1 + marpac) + 
+        P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac3 * (max_(n - 2, 0)) +
+        ((n >= 2) * P.pac3 * nbH + 
+        (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1) ) * (nbH >= 1) + 
+        (n == 0) * (P.pac1 + (nbH > 1) * P.pac2 * (nbH - 1) + (nbH > 2) * P.pac3 * (nbH - 2)) * (nbH >= 1)) / 2)
 
     max1 = max_(0, max0 - f7wj)
     return (P.taux_wj * min_(f7wj, max0) +
@@ -236,7 +143,7 @@ def _aidper_2004_2005(marpac, nb_pac2, f7wi, f7wj, _P):
 def _aidper_2006_2009(marpac, nb_pac2, f7wi, f7wj, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    (cases 7WI, 7WJ, 7WL).
+    (cases 7WI, 7WJ).
     2006-2009
     cf. cerfa 50796
     '''
@@ -248,54 +155,48 @@ def _aidper_2006_2009(marpac, nb_pac2, f7wi, f7wj, _P):
     return (P.taux_wj * min_(f7wj, max0) +
                 P.taux_wi * min_(f7wi, max1))
 
-def _aidper_2010_2011(marpac, nb_pac2, f7wj, f7wl, f7sf, f7si, f7wi, _P):
+def _aidper_2010_2011(marpac, nb_pac2, f7sf, f7wi, f7wj, f7wl, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    (cases 7WI, 7WJ, 7WL).
+    (cases 7SF, 7WI, 7WJ, 7WL).
     2010-2011
     '''
     P = _P.ir.credits_impot.aidper
-    #TODO: manage f7sf/f7si
     max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
-    max1 = max_(0, max0 - f7wl)
-    max2 = max1
-#    max2 = max_(0, max1 - f7sf)
-    max3 = max_(0, max2 - f7wj)
-    return P.taux_wl * min_(f7wl, max0) + P.taux_wj * min_(f7wj, max2)  + P.taux_wi * min_(f7wi, max3) # + P.taux_sf * min_(f7sf, max1)
+    max1 = max_(0, max0 - f7wl - f7sf)
+    max2 = max_(0, max1 - f7wj)
+    return P.taux_wl * min_(f7wl+f7sf, max0) + P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2)
 
 
-def _aidper_2012(marpac, nb_pac2, f7wj, f7wl, f7sf, f7si, f7wi, _P):
+def _aidper_2012(marpac, nb_pac2, f7wi, f7wj, f7wl, f7wr, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    (cases 7WI, 7WJ, 7WL).
+    (cases 7WI, 7WJ, 7WL, 7WR).
     2012
     '''
     P = _P.ir.credits_impot.aidper
-    #TODO: manage f7sf/f7si
+    # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements (7sa) et de la nature des travaux, c'est un peu le bordel)
     max00 = P.max * (1 + marpac)
     max0 = max00 + P.pac1 * nb_pac2
     max1 = max_(0, max0 - max_(0,f7wl-max00))
-    max2 = max1
-#    max2 = max_(0, max1 - f7sf)
-    max3 = max_(0, max2 - f7wj)
-    return P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj * min_(f7wj, max2)  + P.taux_wi * min_(f7wi, max3) # + P.taux_sf * min_(f7sf, max1)
+    max2 = max_(0, max1 - f7wj)
+    return P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2)
 
 
-def _aidper_2013(marpac, nb_pac2, f7wj, f7wl, f7sf, f7si, _P):
+def _aidper_2013(marpac, nb_pac2, f7wj, f7wl, f7wr, f7sf, f7si, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
     (cases 7WI, 7WJ, 7WL).
     2013
     '''
     P = _P.ir.credits_impot.aidper
-    #TODO: manage f7sf/f7si
+    # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des travaux, c'est un peu le bordel)
     max00 = P.max * (1 + marpac)
     max0 = max00 + P.pac1 * nb_pac2
     max1 = max_(0, max0 - max_(0,f7wl-max00))
-    max2 = max1
-#    max2 = max_(0, max1 - f7sf)
-    return P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj * min_(f7wj, max2) # + P.taux_sf * min_(f7sf, max1)
+
+    return P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj * min_(f7wj, max1) 
 
 
 def _assloy(f4bf, _P):
@@ -327,6 +228,62 @@ def _ci_garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
                           min_(f7ge, max1 / 2) +
                           min_(f7gf, max1 / 2) +
                           min_(f7gg, max1 / 2))
+
+
+def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th):
+    '''Avoir fiscaux et crédits d'impôt 2002 '''
+    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
+
+
+def _creimp_2003(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp):
+    '''Avoir fiscaux et crédits d'impôt 2003 '''
+    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
+
+
+def _creimp_2004(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz):
+    '''Avoir fiscaux et crédits d'impôt 2004 '''
+    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz)
+
+
+def _creimp_2005(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8we):
+    '''Avoir fiscaux et crédits d'impôt 2005 '''
+    return  (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8we)
+
+
+def _creimp_2006(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu):
+    '''Avoir fiscaux et crédits d'impôt 2006 '''
+    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
+
+
+def _creimp_2007(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8wd, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx):
+    '''Avoir fiscaux et crédits d'impôt 2007 '''
+    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+
+
+def _creimp_2008(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx):
+    '''Avoir fiscaux et crédits d'impôt 2008'''
+    return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
+
+
+def _creimp_2009(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx, f8wy):
+#TODO: D'où sort le 8WY ?
+    '''Avoir fiscaux et crédits d'impôt 2009'''
+    return  (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
+
+
+def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8wt, f8wu, f8wv):
+    '''Avoir fiscaux et crédits d'impôt 2011 '''
+    return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+
+
+def _creimp_2012(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8wt, f8wu, f8wv):#TODO: 8ts, 8td, 8te
+    '''Avoir fiscaux et crédits d'impôt 2012 '''
+    return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+
+
+def _creimp_2013(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8tz, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8wt, f8wu): # Dans la fiche de calcul ces crédits d'impôts n'apparaissent pas TODO: 8tl, 8uw
+    '''Avoir fiscaux et crédits d'impôt 2013 '''
+    return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
 
 
 def _direpa(f2bg):
@@ -365,8 +322,7 @@ def _inthab_2008(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vy, f7vz, _P):
     P = _P.ir.credits_impot.inthab
 
     invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-    nb = nb_pac2
-    max0 = P.max * (marpac + 1) * (1 + invalide) + nb * P.add
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
 
     max1 = max_(max0 - f7vy, 0)
     return (P.taux1 * min_(f7vy, max0) +
@@ -381,8 +337,7 @@ def _inthab_2009(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vx, f7vy, f7vz, _P):
     P = _P.ir.credits_impot.inthab
 
     invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-    nb = nb_pac2
-    max0 = P.max * (marpac + 1) * (1 + invalide) + nb * P.add
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
 
     max1 = max_(max0 - f7vx, 0)
     max2 = max_(max1 - f7vy, 0)
@@ -398,8 +353,7 @@ def _inthab_2010(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz
     P = _P.ir.credits_impot.inthab
 
     invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-    nb = nb_pac2
-    max0 = P.max * (marpac + 1) * (1 + invalide) + nb * P.add
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
 
     max1 = max_(max0 - f7vx, 0)
     max2 = max_(max1 - f7vy, 0)
@@ -417,8 +371,7 @@ def _inthab_2011_(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7v
     P = _P.ir.credits_impot.inthab
 
     invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-    nb = nb_pac2
-    max0 = P.max * (marpac + 1) * (1 + invalide) + nb * P.add
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
 
     max1 = max_(max0 - f7vx, 0)
     max2 = max_(max1 - f7vy, 0)
@@ -468,7 +421,6 @@ def _percvm(f3vv_end_2010, _P):
     Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
     -2010
     '''
-    # TODO: check when it starts
     return _P.ir.credits_impot.percvm.taux * f3vv_end_2010
 
 
@@ -513,11 +465,11 @@ def _prlire(f2dh, f2ch, marpac, _P):
     return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
-def _quaenv_2005(marpac, nb_pac2, f7wf, f7wh, f7wg, _P):
+def _quaenv_2005(marpac, nb_pac2, f7wf, f7wg, f7wh, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
-    2005-
+    (cases 7WF, 7WG, 7WH)
+    2005
     '''
     P = _P.ir.credits_impot.quaenv
 
@@ -534,8 +486,8 @@ def _quaenv_2005(marpac, nb_pac2, f7wf, f7wh, f7wg, _P):
 def _quaenv_2006_2008(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wq, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
-    2005-
+    (cases 7WF, 7WG, 7WH, 7WQ)
+    2006-2008
     '''
     P = _P.ir.credits_impot.quaenv
 
@@ -553,7 +505,7 @@ def _quaenv_2006_2008(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wq, _P):
 def _quaenv_2009(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wk, f7sb, f7sc, f7sd, f7se, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
+    (cases 7WF, 7WG, 7WH, 7WK, 7WQ, 7SB, 7SC, 7SD, 7SE)
     2009
     '''
     P = _P.ir.credits_impot.quaenv
@@ -583,7 +535,6 @@ def _quaenv_2010_2011(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se,
     2010-2011
     '''
     P = _P.ir.credits_impot.quaenv
-    #TODO: cf. 2041 GR (cerfa 50794) pour 7SA à 7SE, voir 2042 QE pour 2013
     max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
     max1 = max_(0, max0 - f7wf)
@@ -602,30 +553,42 @@ def _quaenv_2010_2011(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se,
                 P.taux_wq * min_(f7wq, max6) +
                 P.taux_sh * min_(f7sh, max7))
 
-
-def _quaenv_2012(marpac, nb_pac2, f7sd, f7se, f7sh, _P):
+#TODO: tout reprendre à partir de la 2042 QE
+def _quaenv_2012(marpac, nb_pac2, f7tt, f7tu, f7tv, f7tw, f7tx, f7ty, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
+    (cases 7TT, 7TU, 7TV, 7TW, 7TX, 7TY)
     2012
     '''
     P = _P.ir.credits_impot.quaenv
-    #TODO: cf. 2041 GR (cerfa 50794) pour 7SA à 7SE, voir 2042 QE pour 2013 
+
     max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+    max1 = max_(0, max0 - f7ty)
+    max2 = max_(0, max1 - f7tx)
+    max3 = max_(0, max2 - f7tw)
+    max4 = max_(0, max3 - f7tv)
+    max5 = max_(0, max4 - f7tu)
 
-    max2 = max_(0, max0 - f7se)
-    max4 = max_(0, max2 - f7sd)
-    return P.taux_se * min_(f7se, max0) + P.taux_sd * min_(f7sd, max2) + P.taux_sh * min_(f7sh, max4)
+    return P.taux_ty * min_(f7ty, max0) + P.taux_tx * min_(f7tx, max1) + P.taux_tw * min_(f7tw, max2) + P.taux_tv * min_(f7tv, max3) + P.taux_tu * min_(f7tu, max4) + P.taux_tt * min_(f7tt, max5)
 
 
-def _quaenv_2013(f7wf, _P):
+def _quaenv_2013(f7vt, f7vu, f7vv, f7vw, f7vx, f7vy, f7vz, caseP, caseF, nbG, nbR, marpac, nb_pac2, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
+    (cases 7VT, 7VU, 7VV, 7VW, 7VX, 7VY, 7VY, 7VZ)
     2013
     '''
-    #TODO: cf. 2041 GR (cerfa 50794) pour 7SA à 7SE, voir 2042 QE pour 2013
-    return 0*f7wf
+
+    P = _P.ir.credits_impot.quaenv
+    invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.pac1
+    max1 = max_(0, max0 - f7vy - f7vx)
+    max2 = max_(0, max1 - f7vw)
+    max3 = max_(0, max2 - f7vu)
+    max4 = max_(0, max3 - f7vz)
+    max5 = max_(0, max4 - f7vv)
+
+    return P.taux_vy * min_(f7vy+f7vx, max0) + P.taux_vw* min_(f7vw, max1) + P.taux_vu * min_(f7vu, max2) + P.taux_vz * min_(f7vz, max3) + P.taux_vv * min_(f7vv, max4) + P.taux_vt * min_(f7vt, max5) 
 
 def _saldom2_2007_2008(nb_pac2, f7db, f7dg, f7dl, _P):
     '''

@@ -84,6 +84,11 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'8TP')),
 
+    build_column_couple('f8ts', IntCol(entity = 'foy',
+                    label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt",
+                    val_type = "monetary",
+                    cerfa_field = u'8TS')),
+
     build_column_couple('f8uz', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Famille",
                     val_type = "monetary",
