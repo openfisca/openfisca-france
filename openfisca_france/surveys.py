@@ -31,17 +31,16 @@ from openfisca_core import simulations
 
 def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, debug_all = False, survey = None,
         tax_benefit_system = None, trace = False, year = None):
-    assert 'idfam' in survey.columns
-    assert 'idfoy' in survey.columns
-    assert 'idmen' in survey.columns
-    assert 'noi' in survey.columns
-    assert 'quifam' in survey.columns
-    assert 'quifoy' in survey.columns
-    assert 'quimen' in survey.columns
+
+    for id_variable in ['idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen']:
+        assert id_variable in survey.columns
+        survey[id_variable] = survey[id_variable].astype('int')
 
     column_by_name = tax_benefit_system.column_by_name
     for column_name in survey:
-        assert column_name in column_by_name, 'Unknown column "{}" in survey'.format(column_name)
+        if column_name not in column_by_name:
+            print 'Unknown column "{}" in survey, dropped from input table'.format(column_name)
+            survey.drop(column_name, axis = 1, inplace = True)
 
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
