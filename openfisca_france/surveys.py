@@ -24,22 +24,25 @@
 
 
 import datetime
+import logging
 
 import numpy as np
 from openfisca_core import simulations
 
 
+log = logging.getLogger(__name__)
+
+
 def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, debug_all = False, survey = None,
         tax_benefit_system = None, trace = False, year = None):
 
-    for id_variable in ['idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen']:
+    for id_variable in ['idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen']:
         assert id_variable in survey.columns
-        survey[id_variable] = survey[id_variable].astype('int')
 
     column_by_name = tax_benefit_system.column_by_name
     for column_name in survey:
         if column_name not in column_by_name:
-            print 'Unknown column "{}" in survey, dropped from input table'.format(column_name)
+            log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
             survey.drop(column_name, axis = 1, inplace = True)
 
     simulation = simulations.Simulation(
@@ -68,7 +71,7 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
         holder = simulation.get_or_new_holder(column_name)
         entity = holder.entity
         if entity.is_persons_entity:
-            array = column_series.values
+            array = column_series.values.astype(holder.column.dtype)
         else:
             array = column_series.values[survey['qui' + entity.symbol].values == 0]
         assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
