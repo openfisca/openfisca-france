@@ -25,6 +25,8 @@ PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
 VOUS = QUIFOY['vous']
 
+#TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
+#TODO: 8ti et 8tk (cerfa 2047)
 
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)

@@ -6,7 +6,6 @@
 # Licensed under the terms of the GPL (version 3 or later) license
 # (see openfisca/__init__.py for details)
 
-#TODO: 7ac, 7ae, 7ag, 8tl, 8uw, corse, 8tz à 8wu, 2ck, 8ti, 8tk, 8te
 
 from __future__ import division
 
@@ -22,12 +21,12 @@ VOUS = QUIFOY['vous']
 
 def _credits_impot_2002(accult, acqgpl, aidper, creimp, drbail, prlire):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
-    return accult + acqgpl + aidper + creimp + drbail + prlire #TODO: complete
+    return accult + acqgpl + aidper + creimp + drbail + prlire
 
 
 def _credits_impot_2003_2004(accult, acqgpl, aidper, creimp, drbail, mecena, prlire):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
-    return accult + acqgpl + aidper + creimp + drbail + mecena + prlire #TODO: complete
+    return accult + acqgpl + aidper + creimp + drbail + mecena + prlire
 
 
 def _credits_impot_2005_2006(accult, acqgpl, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, jeunes, mecena, preetu, prlire, quaenv):
@@ -60,15 +59,15 @@ def _credits_impot_2011(accult, aidper, assloy, autent, ci_garext, creimp, direp
     return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
+def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, cotsyn, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
-    return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
+    return accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
+def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, cotsyn, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
 #TODO: missing 1 niche
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-    return accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
+    return accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
@@ -230,24 +229,24 @@ def _ci_garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
                           min_(f7gg, max1 / 2))
 
 
-def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th):
+def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th):
     '''Avoir fiscaux et crédits d'impôt 2002 '''
-    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th)
+    return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th)
 
 
-def _creimp_2003(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp):
+def _creimp_2003(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th, f8to, f8tp):
     '''Avoir fiscaux et crédits d'impôt 2003 '''
-    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp)
+    return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th + f8to - f8tp)
 
 
-def _creimp_2004(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz):
+def _creimp_2004(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz):
     '''Avoir fiscaux et crédits d'impôt 2004 '''
-    return (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz)
+    return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz)
 
 
-def _creimp_2005(f2ab, f8ta, f8tb, f8tc, f8td, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8we):
+def _creimp_2005(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8we):
     '''Avoir fiscaux et crédits d'impôt 2005 '''
-    return  (f2ab + f8ta + f8tb + f8tc + f8td + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8we)
+    return  (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8we)
 
 
 def _creimp_2006(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8ws, f8wt, f8wu):
@@ -265,10 +264,9 @@ def _creimp_2008(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8t
     return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
 
-def _creimp_2009(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx, f8wy):
-#TODO: D'où sort le 8WY ?
+def _creimp_2009(f2ab, f8ta, f8tb, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8ws, f8wt, f8wu, f8wv, f8wx):
     '''Avoir fiscaux et crédits d'impôt 2009'''
-    return  (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx + f8wy)
+    return  (f2ab + f8ta + f8tb - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
 
 def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8wt, f8wu, f8wv):
@@ -276,20 +274,20 @@ def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8tz
     return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
 
-def _creimp_2012(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8wt, f8wu, f8wv):#TODO: 8ts, 8td, 8te
+def _creimp_2012(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8wt, f8wu, f8wv):
     '''Avoir fiscaux et crédits d'impôt 2012 '''
     return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
 
-def _creimp_2013(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8tz, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8wt, f8wu): # Dans la fiche de calcul ces crédits d'impôts n'apparaissent pas TODO: 8tl, 8uw
+def _creimp_2013(f2ab, f2ck, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8tl, f8to, f8tp, f8ts, f8tz, f8uw, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8wt, f8wu):
     '''Avoir fiscaux et crédits d'impôt 2013 '''
-    return (f2ab + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+    return (f2ab + f2ck + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
 
 
 def _direpa(f2bg):
     '''
     Crédit d’impôt directive « épargne » (case 2BG)
-    2006- (?)
+    2006-
     '''
     return f2bg
 

@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import collections
-import datetime
+from datetime import date
 
 from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 
@@ -36,7 +36,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
                     entity = 'foy',
                     val_type = "monetary",
-                    cerfa_field = u'2DA', end = datetime.date(2012, 12, 31))),  # à vérifier sur la nouvelle déclaration des revenus 2013
+                    cerfa_field = u'2DA', end = date(2012, 12, 31))),  # à vérifier sur la nouvelle déclaration des revenus 2013
 
     build_column_couple('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
                     entity = 'foy',
@@ -96,7 +96,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé",
                     val_type = "monetary",
                     cerfa_field = u'2CK',
-                    start = datetime.date(2013, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
+                    start = date(2013, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
 
     build_column_couple('f2ab', IntCol(entity = 'foy',
                     label = u"Crédits d'impôt sur valeurs étrangères",
@@ -107,8 +107,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
                     val_type = "monetary",
                     cerfa_field = u'2BG',
-                    start = datetime.date(2012, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire
-                                     # TODO: vérifier existence avant 2012
+                    start = date(2006, 1, 1))), 
 
     build_column_couple('f2aa', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
@@ -129,36 +128,36 @@ column_by_name = collections.OrderedDict((
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
                     cerfa_field = u'2AN',
-                    start = datetime.date(2010, 1, 1))),
+                    start = date(2010, 1, 1))),
 
     build_column_couple('f2aq', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
                     cerfa_field = u'2AQ',
-                    start = datetime.date(2011, 1, 1))),
+                    start = date(2011, 1, 1))),
 
     build_column_couple('f2ar', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
                     cerfa_field = u'2AR',
-                    start = datetime.date(2012, 1, 1))),
+                    start = date(2012, 1, 1))),
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 #
-    build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = datetime.date(2011, 12, 31))),  # TODO: vérifier existence <=2011
+    build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = date(2011, 12, 31))),  # TODO: vérifier existence <=2011
 
     build_column_couple('f2dm', IntCol(entity = 'foy',
                     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
                     val_type = "monetary",
                     cerfa_field = u'2DM',
-                    start = datetime.date(2012, 1, 1))),  # TODO: nouvelle case à utiliser où c'est nécessaire
+                    start = date(2012, 1, 1))),  # TODO: nouvelle case à utiliser où c'est nécessaire
                                      # TODO: vérifier existence avant 2012
 
     build_column_couple('f2gr', IntCol(entity = 'foy',
                     label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
                     val_type = "monetary",
                     cerfa_field = u'2GR',
-                    start = datetime.date(2009, 1, 1),
-                    end = datetime.date(2009, 12, 31))),  # TODO: vérifier existence à partir de 2011
+                    start = date(2009, 1, 1),
+                    end = date(2009, 12, 31))),  # TODO: vérifier existence à partir de 2011
 
     ))

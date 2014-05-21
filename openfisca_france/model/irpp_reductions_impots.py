@@ -126,7 +126,7 @@ def _reductions_2011(ip_net):
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2012(ip_net, donapd, dfppce, cotsyn, resimm, patnat):
+def _reductions_2012(ip_net, donapd, dfppce, resimm, patnat):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012 TODO: complete
     '''
@@ -141,7 +141,7 @@ def _reductions_2013(ip_net, donapd, dfppce, cotsyn, resimm, patnat,
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = (donapd + dfppce + cotsyn + resimm + patnat +
+    total_reductions = (donapd + dfppce + resimm + patnat +
                      ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr +
                      cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli +
                      locmeu)
@@ -236,6 +236,7 @@ def _dfppce_2011_2013(rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P = law
 
 
 def _cotsyn(self, f7ac_holder, sal_holder, cho_holder, rst_holder, P = law.ir.reductions_impots.cotsyn):
+    # becomes a credit d'impot in 2012
         # TODO: change f7ac and use split_by_roles
     '''
     Cotisations syndicales (2002-2013)
