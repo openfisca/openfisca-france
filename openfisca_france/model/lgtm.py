@@ -132,13 +132,25 @@ def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, b
     return br_al
 
 
-def _al(self, concub, br_al, so, loyer, coloc_holder, isol, al_pac, zone_apl, nat_imp_holder, al = law.al,
-        charge_loyer = law.ir.autre.charge_loyer, fam = law.fam):
+def _al(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_holder, nat_imp_holder,
+        al = law.al,
+        charge_loyer = law.ir.autre.charge_loyer,
+        fam = law.fam):
     '''
     Formule des aides aux logements en secteur locatif
-    Attention, cette fonction calcule l'aide mensuelle
+    Attention, cette fonction calcule l'aide mensuelle et la multiplie par 12
+    'fam'
     '''
+    # variable ménage à redistribuer
+    so = self.cast_from_entity_to_roles(so_holder)
+    so = self.filter_role(so, role = CHEF)
+    loyer = self.cast_from_entity_to_roles(loyer_holder)
+    loyer = self.filter_role(loyer, role = CHEF)
+    zone_apl = self.cast_from_entity_to_roles(zone_apl_holder)
+    zone_apl = self.filter_role(zone_apl, role = CHEF)
+    # Variables individuelles
     coloc = self.any_by_roles(coloc_holder)
+    # Variables du foyer fiscal
     nat_imp = self.cast_from_entity_to_roles(nat_imp_holder)
     nat_imp = self.any_by_roles(nat_imp)
 
@@ -247,30 +259,40 @@ def _al(self, concub, br_al, so, loyer, coloc_holder, isol, al_pac, zone_apl, na
 
     return al
 
-def _alf(al, al_pac, so):
+def _alf(self, al, al_pac, so_holder):
     '''
     Allocation logement familiale
     '''
+    # variable ménage à redistribuer
+    so = self.cast_from_entity_to_roles(so_holder)
+    so = self.filter_role(so, role = CHEF)
+
     alf = (al_pac >= 1) * (so != 3) * al  # TODO: également pour les jeunes ménages et femems enceints
     return alf
 
 
-def _als_nonet(self, al, al_pac, etu_holder, so):
+def _als_nonet(self, al, al_pac, etu_holder, so_holder):
     '''
     Allocation logement sociale (non étudiante)
     '''
-    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+    # variable ménage à redistribuer
+    so = self.cast_from_entity_to_roles(so_holder)
+    so = self.filter_role(so, role = CHEF)
 
+    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
     als = (al_pac == 0) * (so != 3) * not_(etu[CHEF] | etu[PART]) * al
     return als
 
 
-def _alset(self, al, al_pac, etu_holder, so):
+def _alset(self, al, al_pac, etu_holder, so_holder):
     '''
     Allocation logement sociale étudiante
     '''
-    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+    # variable ménage à redistribuer
+    so = self.cast_from_entity_to_roles(so_holder)
+    so = self.filter_role(so, role = CHEF)
 
+    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
     alset = (al_pac == 0) * (so != 3) * (etu[CHEF] | etu[PART]) * al
     return alset
 
@@ -282,12 +304,15 @@ def _als(als_nonet, alset):
     return als_nonet + alset
 
 
-def _apl(al, so):
+def _apl(self, al, so_holder):
     '''
     Aide personalisée au logement (réservée aux logements conventionné, surtout des HLM,
     et financé par le fonds national de l'habitation)
     '''
     # TODO:
+    # variable ménage à redistribuer
+    so = self.cast_from_entity_to_roles(so_holder)
+    so = self.filter_role(so, role = CHEF)
     return al * (so == 3)
 
 
