@@ -5478,4 +5478,64 @@
       <VALUE deb="2007-01-01" fin="2010-12-31" valeur="0.5" /> # Suppression du bouclier fiscal à compter des revenus réalisés en 2011. #
     </CODE>
   </NODE>
+  <NODE code="cmu" description="Couverture Maladie Universelle">
+    <CODE code="age_limite_pac" description="Âge limite des personnes à charge" format="integer">
+      <VALUE deb="2013-01-01" fin="2014-12-31" valeur="25" /> # Date de début inconnue ? Début de la CMU ?
+    </CODE>
+    <CODE code="plafond_base" description="Plafond annuel pour une personne seule" format="float" type="monetary">
+      <VALUE deb="2013-06-17" fin="2014-12-31" valeur="8592.96" />
+    </CODE>
+    <CODE code="abattement_chomage" description="Abattement sur les revenus d'activité en cas de chômage" format="percent">
+      <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.3" /> # Date de début inconnue ? Début de la CMU ?
+    </CODE>
+    <CODE code="coeff_p2" description="Coefficient de majoration pour une deuxième personne" format="percent">
+      <VALUE deb="2008-01-31" fin="2014-12-31" valeur="0.5" />
+    </CODE>
+    <CODE code="coeff_p3_p4" description="Coefficient de majoration pour une troisième ou quatrième personne" format="percent">
+      <VALUE deb="2008-01-31" fin="2014-12-31" valeur="0.3" />
+    </CODE>
+    <CODE code="coeff_p5_plus" description="Coefficient de majoration par personne supplémentaire" format="percent">
+      <VALUE deb="2008-01-31" fin="2014-12-31" valeur="0.4" />
+    </CODE>
+    <NODE code="forfait_logement" description="Forfait logement pour propriétaire ou occupant à titre gratuit">
+      <CODE code="taux_1p" description="Pourcentage du RSA socle pour une personne (pour une personne)" format="percent">
+        <VALUE deb="2013-09-01" fin="2014-12-31" valeur="0.12" />
+      </CODE>
+      <CODE code="taux_2p" description="Pourcentage du RSA socle pour deux personnes (pour deux personnes)" format="percent">
+        <VALUE deb="2013-09-01" fin="2014-12-31" valeur="0.14" />
+      </CODE>
+      <CODE code="taux_3p_plus" description="Pourcentage du RSA socle pour trois personnes (pour trois et plus personnes)" format="percent">
+        <VALUE deb="2013-09-01" fin="2014-12-31" valeur="0.14" />
+      </CODE>
+    </NODE>
+    <NODE code="forfait_logement_al" description="Forfait logement pour bénéficiaire d'une aide au logement">
+      <CODE code="taux_1p" description="Pourcentage du RSA socle pour une personne (pour une personne)" format="percent">
+        <VALUE deb="2013-09-01" fin="2014-12-31" valeur="0.12" />
+      </CODE>
+      <CODE code="taux_2p" description="Pourcentage du RSA socle pour deux personnes (pour deux personnes)" format="percent">
+        <VALUE deb="2013-09-01" fin="2014-12-31" valeur="0.16" />
+      </CODE>
+      <CODE code="taux_3p_plus" description="Pourcentage du RSA socle pour trois personnes (pour trois et plus personnes)" format="percent">
+        <VALUE deb="2013-09-01" fin="2014-12-31" valeur="0.165" />
+      </CODE>
+    </NODE>
+    <CODE code="majoration_dom" description="Majoration pour certains départements d'outre-mer" format="percent">
+      <VALUE deb="2013-06-17" fin="2014-12-31" valeur="0.113" />
+    </CODE>
+    <CODE code="majoration_plafond_acs" description="Majoration pour du plafond CMU pour l'ACS" format="percent">
+      <VALUE deb="2013-12-23" fin="2015-12-31" valeur="0.35" />
+    </CODE>
+    <CODE code="acs_moins_16_ans" description="ACS pour une personne âgée de moins de 16 ans" format="float" type="monetary">
+      <VALUE deb="2013-12-23" fin="2015-12-31" valeur="100" />
+    </CODE>
+    <CODE code="acs_16_49_ans" description="ACS pour une personne âgée de 16 à 49 ans" format="float" type="monetary">
+      <VALUE deb="2013-12-23" fin="2015-12-31" valeur="200" />
+    </CODE>
+    <CODE code="acs_50_59_ans" description="ACS pour une personne âgée de 50 à 59 ans" format="float" type="monetary">
+      <VALUE deb="2013-12-23" fin="2015-12-31" valeur="350" />
+    </CODE>
+    <CODE code="acs_plus_60_ans" description="ACS pour une personne âgée de plus de 60 ans" format="float" type="monetary">
+      <VALUE deb="2013-12-23" fin="2015-12-31" valeur="550" />
+    </CODE>
+  </NODE>
 </NODE>

@@ -44,6 +44,7 @@ from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectForm
 
 from .. import entities
 from . import calage as cl
+from . import cmu as cmu
 from . import common as cm
 from .cotisations_sociales import capital as cs_capital
 from .cotisations_sociales import travail as cs_travail
@@ -2447,5 +2448,52 @@ prestation_by_name = collections.OrderedDict((
         entity = 'men')),
     build_simple_formula_couple('check_crds', FloatCol(function = cm._check_crds,
         entity = 'men')),
+
+    ############################################################
+    # Couverture Maladie Universelle
+    ############################################################
+
+    build_simple_formula_couple('acs_montant', FloatCol(function = cmu._acs_montant,
+        label = u"Montant de l'ACS en cas d'éligibilité",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_forfait_logement_base', FloatCol(function = cmu._cmu_forfait_logement_base,
+        label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_forfait_logement_al', FloatCol(function = cmu._cmu_forfait_logement_al,
+        label = u"Forfait logement applicable en cas d'aide au logement",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_nbp_foyer', IntCol(function = cmu._cmu_nbp_foyer,
+        label = u"Nombre de personnes dans le foyer CMU",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_c_plafond', FloatCol(function = cmu._cmu_c_plafond,
+        label = u"Plafond de ressources pour l'éligibilité à la CMU-C",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('acs_plafond', FloatCol(function = cmu._acs_plafond,
+        label = u"Plafond de ressources pour l'éligibilité à l'ACS",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_br_i', FloatCol(function = cmu._cmu_br_i,
+        label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS",
+        )),
+    build_simple_formula_couple('cmu_br', FloatCol(function = cmu._cmu_br,
+        label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_nb_pac', IntCol(function = cmu._cmu_nb_pac,
+        label = u"Nombre de personnes à charge au titre de la CMU",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('cmu_c', BoolCol(function = cmu._cmu_c,
+        label = u"Éligibilité à la CMU-C",
+        entity = 'fam',
+        )),
+    build_simple_formula_couple('acs', FloatCol(function = cmu._acs,
+        label = u"Montant de l'Aide pour une Complémentaire Santé",
+        entity = 'fam')),
 
     ))
