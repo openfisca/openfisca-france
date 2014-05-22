@@ -1202,12 +1202,26 @@ class Scenario(object):
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                         'activite'] = u'2'  # Étudiant, élève
 
-        # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
         for foyer_fiscal_id, foyer_fiscal in test_case['foyers_fiscaux'].iteritems():
             if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
+                # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
                 if foyer_fiscal.get('caseT') is None:
                     suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(foyer_fiscal_id,
                         {})['caseT'] = foyer_fiscal['caseT'] = True
+            elif len(foyer_fiscal['declarants']) == 2:
+                # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
+                # "statmarit".
+                statmarit = 5  # PACSé
+                for individu_id in foyer_fiscal['declarants']:
+                    individu = test_case['individus'][individu_id]
+                    if individu.get('statmarit') == 1:  # Marié
+                        statmarit = 1
+                for individu_id in foyer_fiscal['declarants']:
+                    individu = test_case['individus'][individu_id]
+                    if individu.get('statmarit') is None:
+                        individu['statmarit'] = statmarit
+                        suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                            'statmarit'] = unicode(statmarit)
 
         return suggestions or None
 
