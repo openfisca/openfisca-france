@@ -346,7 +346,7 @@ def _rev_cat_rvcm_2005_2012(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f
     DEF = deficit_rcm
     return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2tr, f2da, f2ee, 
+def _rev_cat_rvcm_2013_(marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2tr, f2da, f2ee,
         finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
     """
     Revenus des valeurs et capitaux mobiliers
@@ -867,7 +867,7 @@ def _avf(f2ab):
     return f2ab
 
 
-def _imp_lib__2007(f2dh, f2ee, _P, 
+def _imp_lib__2007(f2dh, f2ee, _P,
         prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
     '''
     Prelèvement libératoire sur les revenus du capital

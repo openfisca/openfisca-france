@@ -43,7 +43,11 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
     for column_name in survey:
         if column_name not in column_by_name:
             log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
-            survey.drop(column_name, axis = 1, inplace = True)
+            survey.drop(column_name, axis = 1, inplace = True)  # TODO: effet de bords ?
+    for column_name in survey:
+        if column_by_name[column_name].formula_constructor is not None:
+            log.info('Column "{}" in survey set to be calculated, dropped from input table'.format(column_name))
+            survey.drop(column_name, axis = 1, inplace = True)  # TODO: effet de bords ?
 
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
@@ -73,12 +77,15 @@ def new_simulation_from_survey_data_frame(compact_legislation = None, debug = Fa
         if entity.is_persons_entity:
             array = column_series.values.astype(holder.column.dtype)
         else:
-            array = column_series.values[survey['qui' + entity.symbol].values == 0]
+            array = column_series.values[survey['qui' + entity.symbol].values == 0].astype(holder.column.dtype)
         assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
             entity.count)
         holder.array = np.array(array, dtype = holder.column.dtype)
 
     return simulation
+
+# Create a validation/conversion step
+# introduce an assert when loading in place of astype
 
 
 def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
