@@ -237,9 +237,7 @@ def _creimp_exc_2008(rni, nbptr, iai, mohist, elig_creimp_exc_2008):
     #TODO: gérer les DOM-TOM, corriger les formules, inclure 7KA
     montant = iai * 0
     rpp = rni / nbptr
-    if elig_creimp_exc_2008 and mohist < 10700 and rpp <= 12475 :
-        montant = (ones(iai.size)) * round((2/3) * min_(12475, iai) * (rpp < 11674) + (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802))
-    return montant
+    return iai * 0 #+ elig_creimp_exc_2008 * (mohist < 10700) * (rpp <= 12475) * (round((2/3) * min_(12475, iai) * (rpp < 11674) + (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
 
 
 def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th):
@@ -501,8 +499,8 @@ def _prlire(f2dh, f2ch, marpac, _P):
     2002-
     '''
     plaf_resid = max_(_P.ir.rvcm.abat_assvie - f2ch, 0)
-    return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
-
+    return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid) / 2
+#TODO: vérifier le /2 (complètement inventé)
 
 def _quaenv_2005(marpac, nb_pac2, f7wf, f7wg, f7wh, _P):
     '''

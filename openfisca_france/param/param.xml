@@ -3395,7 +3395,7 @@
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.26" />
         </CODE>
         <CODE code="taux_ty" description="Taux (TY)" format="percent">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.32" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.32" />
         </CODE>
         <CODE code="taux_vt" description="Taux (VT)" format="percent">
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.10" />

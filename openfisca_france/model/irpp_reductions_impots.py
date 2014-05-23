@@ -593,8 +593,7 @@ def _cappme_2009_2010(marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P, P = law.ir.reduc
     '''
     base = f7cf + f7cl + f7cm + f7cn + f7cu
     seuil = P.seuil * (marpac + 1)
-    if f7uc > 0:
-        seuil = P.seuil_tpe * (marpac + 1)
+    seuil = P.seuil_tpe * (marpac + 1) * (f7cu > 0) + P.seuil * (marpac + 1) * (f7cu <= 0)
     return P.taux * min_(base, seuil)
 
 
@@ -604,9 +603,7 @@ def _cappme_2011(marpac, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P = law.ir.redu
     2011
     '''
     base = f7cl + f7cm + f7cn + f7cq
-    seuil = P.seuil * (marpac + 1)
-    if f7uc > 0:
-        seuil = P.seuil_tpe * (marpac + 1)
+    seuil = P.seuil_tpe * (marpac + 1) * (f7cu > 0) + P.seuil * (marpac + 1) * (f7cu <= 0)
     max0 = max_(seuil - base, 0)
     return P.taux2 * min_(base, seuil) + P.taux * min_(max0, f7cf + f7cu)
 

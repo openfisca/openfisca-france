@@ -801,11 +801,8 @@ def _irpp(iai, credits_impot, cehr, microsocial, P = law.ir.recouvrement):
     '''
     # log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
     pre_result = iai - credits_impot + cehr + microsocial
-    if iai > P.seuil:
-        result = iai * 0 * (pre_result < P.min) * (pre_result > 0) + -pre_result * ((pre_result <= 0) + (pre_result >= P.min) - (pre_result >= P.min) * (pre_result <= 0))
-    else:
-        result = -pre_result * (pre_result < 0) + 0 * iai * (pre_result >= 0)
-    return result
+    return (iai > P.seuil) * iai * 0 * (pre_result < P.min) * (pre_result > 0) + -pre_result * ((pre_result <= 0) + (pre_result >= P.min) - (pre_result >= P.min) * (pre_result <= 0)) + (iai <= P.seuil) * (-pre_result) * (pre_result < 0) + 0 * iai * (pre_result >= 0)
+
 
 
 ###############################################################################
