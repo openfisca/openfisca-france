@@ -54,18 +54,24 @@ setup(
     long_description = '\n'.join(doc_lines[2:]),
     url = 'https://github.com/openfisca/openfisca-france',
 
-    data_files = [],
+    data_files = [
+        ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
+        ],
     extras_require = dict(
         tests = [
             'pandas >= 0.13',
             ],
         ),
     install_requires = [
+        'Babel >= 0.9.4',
         'Biryani1[datetimeconv] >= 0.9dev',
         'numpy',
         'OpenFisca-Core >= 0.3dev',
         'scipy >= 0.12',
         ],
+    message_extractors = {'openfisca_france': [
+        ('**.py', 'python', None),
+        ]},
     packages = find_packages(),
     zip_safe = False,
     )

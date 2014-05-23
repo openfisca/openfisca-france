@@ -1,0 +1,111 @@
+# Translations template for OpenFisca-France.
+# Copyright (C) 2014 OpenFisca Team
+# This file is distributed under the same license as the OpenFisca-France
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenFisca-France 0.3dev\n"
+"Report-Msgid-Bugs-To: contact@openfisca.fr\n"
+"POT-Creation-Date: 2014-05-21 11:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: openfisca_france/scenarios.py:141
+msgid "Invalid type for axe: integer or float expected"
+msgstr ""
+
+#: openfisca_france/scenarios.py:185
+msgid "Max value must be greater than min value"
+msgstr ""
+
+#: openfisca_france/scenarios.py:190
+msgid "Index must be lower than {}"
+msgstr ""
+
+#: openfisca_france/scenarios.py:220
+msgid "HTTP Error while retrieving legislation JSON"
+msgstr ""
+
+#: openfisca_france/scenarios.py:222
+msgid "Error while retrieving legislation JSON"
+msgstr ""
+
+#: openfisca_france/scenarios.py:814
+msgid "Individual is missing from {}"
+msgstr ""
+
+#: openfisca_france/scenarios.py:815
+msgid " & "
+msgstr ""
+
+#: openfisca_france/scenarios.py:852
+msgid "A \"famille\" must have at most 2 \"parents\""
+msgstr ""
+
+#: openfisca_france/scenarios.py:870
+msgid "A \"foyer_fiscal\" must have at most 2 \"declarants\""
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:412
+msgid "Open a test case"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:437
+msgid "Save a test case"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:448
+msgid "Computing test case ..."
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:465
+msgid "Test case results are updated"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:528
+msgid "Composer"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:555
+msgid "&Open composition..."
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:556
+#: openfisca_france/widgets/Composition.py:559
+msgid "Open composition file"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:561
+msgid "&Save composition"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:562
+#: openfisca_france/widgets/Composition.py:566
+msgid "Save current composition"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:571
+#: openfisca_france/widgets/Composition.py:576
+msgid "Compute test case"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:578
+msgid "Varying revenues"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:581
+msgid "Single test case"
+msgstr ""
+
+#: openfisca_france/widgets/Composition.py:585
+msgid "Reform mode"
+msgstr ""
+
