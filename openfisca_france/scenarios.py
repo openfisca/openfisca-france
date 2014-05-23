@@ -981,6 +981,7 @@ class Scenario(object):
             dtype = column_by_name['quifam'].dtype)  # famille_role
         familles_roles_count = 0
         for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
+            famille = famille.copy()
             parents_id = famille.pop(u'parents')
             enfants_id = famille.pop(u'enfants')
             for step_index in range(steps_count):
@@ -1009,6 +1010,7 @@ class Scenario(object):
             dtype = column_by_name['quifoy'].dtype)  # foyer_fiscal_role
         foyers_fiscaux_roles_count = 0
         for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
+            foyer_fiscal = foyer_fiscal.copy()
             declarants_id = foyer_fiscal.pop(u'declarants')
             personnes_a_charge_id = foyer_fiscal.pop(u'personnes_a_charge')
             for step_index in range(steps_count):
@@ -1038,6 +1040,7 @@ class Scenario(object):
             dtype = column_by_name['quimen'].dtype)  # menage_role
         menages_roles_count = 0
         for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
+            menage = menage.copy()
             personne_de_reference_id = menage.pop(u'personne_de_reference')
             conjoint_id = menage.pop(u'conjoint')
             enfants_id = menage.pop(u'enfants')
