@@ -1,0 +1,63 @@
+{
+  "resultat_officiel": {}, 
+  "scenario": {
+    "test_case": {
+      "familles": {
+        "0": {
+          "enfants": [
+            "ind2", 
+            "ind3"
+          ], 
+          "parents": [
+            "ind0", 
+            "ind1"
+          ]
+        }
+      }, 
+      "foyers_fiscaux": {
+        "0": {
+          "declarants": [
+            "ind0", 
+            "ind1"
+          ], 
+          "f7vo": 1500, 
+          "personnes_a_charge": [
+            "ind2", 
+            "ind3"
+          ]
+        }
+      }, 
+      "individus": {
+        "ind0": {
+          "activite": 0, 
+          "birth": "1970-01-01", 
+          "cadre": true, 
+          "sali": 24000, 
+          "statmarit": 2
+        }, 
+        "ind1": {
+          "birth": "1969-01-01"
+        }, 
+        "ind2": {
+          "activite": 2, 
+          "birth": "2002-02-01"
+        }, 
+        "ind3": {
+          "activite": 2, 
+          "birth": "2000-04-17"
+        }
+      }, 
+      "menages": {
+        "0": {
+          "conjoint": "ind1", 
+          "enfants": [
+            "ind2", 
+            "ind3"
+          ], 
+          "personne_de_reference": "ind0"
+        }
+      }
+    }, 
+    "year": 2009
+  }
+}

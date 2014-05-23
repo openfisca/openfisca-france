@@ -201,6 +201,12 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'8WY',
                     end = date(2012, 12, 31))),  # verif<=2012
 
+    build_column_couple('elig_creimp_exc_2008', IntCol(entity = 'foy', #TODO: coder http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf B.12
+                    default = 1,
+                    label = u"Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008",
+                    val_type = 'monetary',
+                    start = date(2008, 1, 1),
+                    end = date(2008, 12, 31))),
     # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
     build_column_couple('f8uy', IntCol(entity = 'foy',
                     label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé",

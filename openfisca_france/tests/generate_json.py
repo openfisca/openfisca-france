@@ -40,7 +40,7 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def define_scenario():
-    year = 2008
+    year = 2013
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
         parent1 = dict(
@@ -61,7 +61,7 @@ def define_scenario():
                 ),
             ],
         foyer_fiscal = dict(
-                f8ta = 2000,
+                f8ta =0,
             ),
         year = year,
         )
@@ -75,13 +75,15 @@ def add_official(scenario, fichier, tested = False):
     return { 'scenario' : json_scenario , 'resultat_officiel' : fields }
     
 
-def export_json(scenario, tested = False):
+def export_json(scenario, tested = True):
     json_scenario = scenario.to_json()
     string_scenario = json.dumps(json_scenario,encoding='utf-8',ensure_ascii=False,indent=2,sort_keys=True)
     h = hashlib.sha256(string_scenario).hexdigest()
     if not os.path.isfile(os.path.join('json', h + '.json')):
         with codecs.open(os.path.join('json', h + '.json'),'w', encoding='utf-8') as fichier: #TODO: scenario > single entity
-            json.dump(add_official(scenario, h, tested),fichier,encoding='utf-8',ensure_ascii=False,indent=2,sort_keys=True)  
+            json.dump(add_official(scenario, h, tested),fichier,encoding='utf-8',ensure_ascii=False,indent=2,sort_keys=True) 
+    else:
+        compare(scenario, tested, h) 
 
 
 def main():

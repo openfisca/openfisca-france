@@ -1,0 +1,144 @@
+{
+  "resultat_officiel": {
+    "CIDEVDUR": {
+      "code": "CIDEVDUR", 
+      "name": "?", 
+      "value": 375.0
+    }, 
+    "IAVIM": {
+      "code": "IAVIM", 
+      "name": "Impôt avant imputations", 
+      "value": 441.0
+    }, 
+    "IDEC": {
+      "code": "IDEC", 
+      "name": "Décote", 
+      "value": 129.0
+    }, 
+    "IDRS2": {
+      "code": "IDRS2", 
+      "name": "Droits simples", 
+      "value": 570.0
+    }, 
+    "IINET": {
+      "code": "IINET", 
+      "name": "Montant net à payer", 
+      "value": 66.0
+    }, 
+    "IREST": {
+      "code": "IREST", 
+      "name": "Montant net à restituer", 
+      "value": 0.0
+    }, 
+    "NAPCR": {
+      "code": "NAPCR", 
+      "name": "nom inconnu", 
+      "value": 0.0
+    }, 
+    "NBP": {
+      "code": "NBP", 
+      "name": "Nombre de parts", 
+      "value": 2.0
+    }, 
+    "PERPPLAFTV": {
+      "code": "PERPPLAFTV", 
+      "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
+      "value": 3107.0
+    }, 
+    "PPETOT": {
+      "code": "PPETOT", 
+      "name": "Prime pour l'emploi", 
+      "value": 0.0
+    }, 
+    "REVKIRE": {
+      "code": "REVKIRE", 
+      "name": "Revenu fiscal de réfgrepérence", 
+      "value": 21600.0
+    }, 
+    "RNI": {
+      "code": "RNI", 
+      "name": "?", 
+      "value": 21600.0
+    }, 
+    "RRBG": {
+      "code": "RRBG", 
+      "name": "Revenu brut global ou déficit", 
+      "value": 21600.0
+    }, 
+    "TOTPAC": {
+      "code": "TOTPAC", 
+      "name": "Nombre de personnes à charge", 
+      "value": 2.0
+    }, 
+    "TXMARJ": {
+      "code": "TXMARJ", 
+      "name": "Taux marginal d'imposition", 
+      "value": 5.5
+    }, 
+    "TXMOYIMP": {
+      "code": "TXMOYIMP", 
+      "name": "Taux moyen d'imposition", 
+      "value": 0.31
+    }
+  }, 
+  "scenario": {
+    "test_case": {
+      "familles": {
+        "0": {
+          "enfants": [
+            "ind2", 
+            "ind3"
+          ], 
+          "parents": [
+            "ind0", 
+            "ind1"
+          ]
+        }
+      }, 
+      "foyers_fiscaux": {
+        "0": {
+          "declarants": [
+            "ind0", 
+            "ind1"
+          ], 
+          "f7wh": 1500, 
+          "personnes_a_charge": [
+            "ind2", 
+            "ind3"
+          ]
+        }
+      }, 
+      "individus": {
+        "ind0": {
+          "activite": 0, 
+          "birth": "1970-01-01", 
+          "cadre": true, 
+          "sali": 24000, 
+          "statmarit": 2
+        }, 
+        "ind1": {
+          "birth": "1966-01-01"
+        }, 
+        "ind2": {
+          "activite": 2, 
+          "birth": "2002-02-01"
+        }, 
+        "ind3": {
+          "activite": 2, 
+          "birth": "2000-04-17"
+        }
+      }, 
+      "menages": {
+        "0": {
+          "conjoint": "ind1", 
+          "enfants": [
+            "ind2", 
+            "ind3"
+          ], 
+          "personne_de_reference": "ind0"
+        }
+      }
+    }, 
+    "year": 2006
+  }
+}

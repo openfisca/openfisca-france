@@ -27,6 +27,7 @@ VOUS = QUIFOY['vous']
 
 #TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
 #TODO: 8ti et 8tk (cerfa 2047)
+#TODO: recouvrement (quand on doit 30€ d'impôts sur OF, ça devient 0€ en vrai)
 
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
@@ -477,14 +478,17 @@ def _csg_deduc_patrimoine_simulated(rev_cat_rfon, rev_cap_bar, rto, taux = law.c
     patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
     return taux * patrimoine_deduc
 
+
 def _csg_deduc(rbg, csg_deduc_patrimoine):  # f6de
     ''' CSG déductible '''
     # min_(f6de, max_(rbg, 0))
     return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
+
 def _rng(rbg, csg_deduc, charges_deduc):
     ''' Revenu net global (total 20) '''
     return max_(0, rbg - csg_deduc - charges_deduc)
+
 
 def _rni(rng, abat_spe):
     ''' Revenu net imposable ou déficit à reporter'''
@@ -587,13 +591,13 @@ def _decote(ir_plaf_qf, decote = law.ir.decote):
     return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
 
 
-def _nat_imp(irpp):
+def _nat_imp(iai, credits_impot, cehr, microsocial):
     '''
     Renvoie True si le foyer est imposable, False sinon
     '''
     # def _nat_imp(rni, nbptr, non_imposable = law.ir.non_imposable):
     # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
-    return irpp > 0
+    return (iai - credits_impot + cehr + microsocial) > 0
 
 def _ip_net(ir_plaf_qf, decote):
     '''
@@ -760,6 +764,8 @@ def _plus_values_2013_(self, f3vg, _P,  plus_values = law.ir.plus_values):  # f3
     out = f3vg * 0  # TODO: completely undone
 
     return round(out)
+
+
 def _iai(iaidrdi, plus_values, cont_rev_loc, teicaa):
     '''
     impôt avant imputation de l'irpp
@@ -773,6 +779,7 @@ def _cehr(rfr, nb_adult, bareme = law.ir.cehr):
     'foy'
     '''
     return bareme.calc(rfr / nb_adult) * nb_adult
+
 
 def _cesthra(self, sal_holder, bareme = law.ir.cesthra):
     '''
@@ -788,12 +795,17 @@ def _cesthra(self, sal_holder, bareme = law.ir.cesthra):
     return cesthra
 
 
-def _irpp(iai, credits_impot, cehr, microsocial):
+def _irpp(iai, credits_impot, cehr, microsocial, P = law.ir.recouvrement):
     '''
-    Montant avant seuil de recouvrement (hors ppe)
+    Montant après seuil de recouvrement (hors ppe)
     '''
     # log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
-    return -(iai - credits_impot + cehr + microsocial)
+    pre_result = iai - credits_impot + cehr + microsocial
+    if iai > P.seuil:
+        result = iai * 0 * (pre_result < P.min) * (pre_result > 0) + -pre_result * ((pre_result <= 0) + (pre_result >= P.min) - (pre_result >= P.min) * (pre_result <= 0))
+    else:
+        result = -pre_result * (pre_result < 0) + 0 * iai * (pre_result >= 0)
+    return result
 
 
 ###############################################################################

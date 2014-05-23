@@ -2819,13 +2819,13 @@
       <NODE code="resimm" description="Travaux de restauration immobilière">
         <CODE code="taux_ra" description="Taux_RA" format="percent">
           <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.3" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.27" />
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.22" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="0.27" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.22" />
         </CODE>
         <CODE code="taux_rb" description="Taux_RB" format="percent">
           <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.4" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.36" />
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.30" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="0.36" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.30" /> <!-- vérifier les taux -->
         </CODE>
         <CODE code="taux_rc" description="Taux_RC" format="percent">
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.30" />
@@ -2978,12 +2978,18 @@
           <VALUE deb="2011-01-01" fin="2012-12-31" valeur="0.22" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
         </CODE>
+        <CODE code="taux2" description="Taux 2" format="percent">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
+        </CODE>
+        <CODE code="taux3" description="Taux 3" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
+        </CODE>
         <CODE code="seuil" description="Seuil" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="5717" />
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="20000" />
         </CODE>
         <CODE code="seuil_tpe" description="Seuil TPE" format="integer" type="monetary">
-          <VALUE deb="2009-01-01" fin="2012-12-31" valeur="50000" />
+          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="50000" />
         </CODE>
       </NODE>
       <NODE code="intcon" description="Intérêts des prêts à la consommation (UH)">
@@ -3020,14 +3026,27 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
           <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
         </CODE>
+        <CODE code="report10" description="Report des excédents 2010" format="percent" type="monetary">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
+        </CODE>
+        <CODE code="report11" description="Report des excédents 2011" format="percent" type="monetary">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.22" />
+        </CODE>
+        <CODE code="report12" description="Report des excédents 2011" format="percent" type="monetary">
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
+        </CODE>
+        <CODE code="taux_ass" description="Taux pour les assurances" format="percent" type="monetary">
+          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.9" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.76" />
+        </CODE>
         <CODE code="seuil" description="Seuil" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2013-12-31" valeur="5700" />
         </CODE>
         <CODE code="ifortra_seuil" description="" format="integer" type="monetary">
-          <VALUE deb="2009-01-01" fin="2012-12-31" valeur="6250" />
+          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="6250" />
         </CODE>
         <CODE code="iforges_seuil" description="" format="integer" type="monetary">
-          <VALUE deb="2009-01-01" fin="2012-12-31" valeur="2000" />
+          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="2000" />
         </CODE>
       </NODE>
       <NODE code="garext" description="Garde des enfants à l'extérieur du domicile">
@@ -3242,9 +3261,14 @@
         </CODE>
       </NODE>
     </NODE>
-    <CODE code="seuil_recouvrement" description="Seuil de recouvrement" format="integer" type="monetary">
-      <VALUE deb="2002-01-01" fin="2013-12-31" valeur="61" />
-    </CODE>
+    <NODE code="recouvrement" description="Mise en recouvrement de l'impôt">
+        <CODE code="seuil" description="Seuil de recouvrement avant imputations" format="integer" type="monetary">
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="61" />
+        </CODE>
+        <CODE code="min" description="Seuil de recouvrement après imputations" format="integer" type="monetary">
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="12" />
+        </CODE>
+    </NODE>
     <NODE code="credits_impot" description="Crédits d'impôt">
       <NODE code="divide" description="Dividendes">
         <CODE code="max" description="Plafond" format="integer" type="monetary">
@@ -3380,7 +3404,7 @@
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.15" />
         </CODE>
         <CODE code="taux_vz" description="Taux (VZ)" format="percent">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.20" />
+          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.20" />
         </CODE>
         <CODE code="taux_vu" description="Taux (VU)" format="percent">
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.25" />
@@ -3453,6 +3477,9 @@
         </CODE>
         <CODE code="taux5" description="Taux 5" format="percent">
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.15" />
+        </CODE>
+        <CODE code="taux6" description="Taux 6" format="percent">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.1" />
         </CODE>
         <CODE code="max" description="Plafond" format="integer" type="monetary">
           <VALUE deb="2007-01-01" fin="2013-12-31" valeur="3750" />

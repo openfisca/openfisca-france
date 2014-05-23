@@ -45,14 +45,14 @@ def define_scenario(year, column_code):
         "statmarit": u'Célibataire',
         }
     enfants = [
-        dict(
-            activite = u'Étudiant, élève',
-            birth = '2002-02-01',
-            ),
-        dict(
-            activite = u'Étudiant, élève',
-            birth = '2000-04-17',
-            ),
+#        dict(
+#            activite = u'Étudiant, élève',
+#            birth = '2002-02-01',
+#            ),
+#        dict(
+#            activite = u'Étudiant, élève',
+#            birth = '2000-04-17',
+#            ),
         ]
     famille = dict()
     menage = dict()

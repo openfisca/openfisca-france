@@ -11,7 +11,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, maximum as max_, minimum as min_
+from numpy import logical_not as not_, maximum as max_, minimum as min_, size, ones
 
 from .input_variables.base import QUIFOY
 
@@ -39,9 +39,9 @@ def _credits_impot_2007(accult, acqgpl, aidmob, aidper, assloy, ci_garext, creim
     return accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + jeunes + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2008(accult, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, inthab, jeunes, mecena, preetu, prlire, quaenv, saldom2):
+def _credits_impot_2008(accult, aidmob, aidper, assloy, ci_garext, creimp, creimp_exc_2008, divide, direpa, drbail, inthab, jeunes, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
-    return accult + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + jeunes + mecena + preetu + prlire + quaenv + saldom2
+    return accult + aidmob + aidper + assloy + ci_garext + creimp + creimp_exc_2008 + divide + direpa + drbail + inthab + jeunes + mecena + preetu + prlire + quaenv + saldom2
 
 
 def _credits_impot_2009(accult, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
@@ -64,10 +64,10 @@ def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, cotsyn, creim
     return accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
 
 
-def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, cotsyn, creimp, direpa, drbail, inthab, mecena, preetu, prlire, quaenv, saldom2):
+def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, cotsyn, creimp, direpa, drbail, inthab, mecena, preetu, prlire, saldom2):
 #TODO: missing 1 niche
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-    return accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena + preetu + prlire + quaenv + saldom2
+    return accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena + preetu + prlire + saldom2
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
@@ -229,6 +229,19 @@ def _ci_garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
                           min_(f7gg, max1 / 2))
 
 
+def _creimp_exc_2008(rni, nbptr, iai, mohist, elig_creimp_exc_2008):
+    '''
+    Crédit d'impôt exceptionnel sur les revenus 2008
+    http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf
+    '''
+    #TODO: gérer les DOM-TOM, corriger les formules, inclure 7KA
+    montant = iai * 0
+    rpp = rni / nbptr
+    if elig_creimp_exc_2008 and mohist < 10700 and rpp <= 12475 :
+        montant = (ones(iai.size)) * round((2/3) * min_(12475, iai) * (rpp < 11674) + (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802))
+    return montant
+
+
 def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th):
     '''Avoir fiscaux et crédits d'impôt 2002 '''
     return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th)
@@ -314,7 +327,7 @@ def _drbail(f4tq, _P):
 
 def _inthab_2008(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vy, f7vz, _P):
     '''
-    Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
+    Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VX, 7VY et 7VZ)
     2008
     '''
     P = _P.ir.credits_impot.inthab
@@ -329,7 +342,7 @@ def _inthab_2008(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vy, f7vz, _P):
 
 def _inthab_2009(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vx, f7vy, f7vz, _P):
     '''
-    Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
+    Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VX, 7VY et 7VZ)
     2009
     '''
     P = _P.ir.credits_impot.inthab
@@ -361,10 +374,10 @@ def _inthab_2010(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz
                 P.taux2 * min_(f7vw, max2) +
                 P.taux3 * min_(f7vz, max3))
 
-def _inthab_2011_(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7vz, _P):
+def _inthab_2011(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vu, f7vw, f7vv, f7vx, f7vy, f7vz, _P):
     '''
     Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
-    2011-
+    2011
     '''
     P = _P.ir.credits_impot.inthab
 
@@ -374,11 +387,39 @@ def _inthab_2011_(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vw, f7vx, f7vy, f7v
     max1 = max_(max0 - f7vx, 0)
     max2 = max_(max1 - f7vy, 0)
     max3 = max_(max2 - f7vw, 0)
+    max4 = max_(max3 - f7vu, 0)
+    max5 = max_(max4 - f7vz, 0)
     return (P.taux1 * min_(f7vx, max0) +
                 P.taux1 * min_(f7vy, max1) +
                 P.taux2 * min_(f7vw, max2) +
-                P.taux3 * min_(f7vz, max3))
+                P.taux3 * min_(f7vu, max3) +
+                P.taux4 * min_(f7vz, max4) +
+                P.taux5 * min_(f7vv, max5))
 
+
+def _inthab_2012_2013(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vt, f7vu, f7vv, f7vw, f7vx, f7vy, f7vz, _P):
+    '''
+    Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
+    2011
+    '''
+    P = _P.ir.credits_impot.inthab
+
+    invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+
+    max1 = max_(max0 - f7vx, 0)
+    max2 = max_(max1 - f7vy, 0)
+    max3 = max_(max2 - f7vw, 0)
+    max4 = max_(max3 - f7vu, 0)
+    max5 = max_(max4 - f7vz, 0)
+    max6 = max_(max5 - f7vv, 0)
+    return (P.taux1 * min_(f7vx, max0) +
+                P.taux1 * min_(f7vy, max1) +
+                P.taux2 * min_(f7vw, max2) +
+                P.taux3 * min_(f7vu, max3) +
+                P.taux4 * min_(f7vz, max4) +
+                P.taux5 * min_(f7vv, max5) +
+                P.taux6 * min_(f7vt, max6))
 
 def _jeunes_2005_2008(self, jeunes_ind_holder):
     return self.sum_by_entity(jeunes_ind_holder)
@@ -500,7 +541,7 @@ def _quaenv_2006_2008(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wq, _P):
                 P.taux_wq * min_(f7wq, max3))
 
 
-def _quaenv_2009(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wk, f7sb, f7sc, f7sd, f7se, _P):
+def _quaenv_2009(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wk, f7wq, f7sb, f7sc, f7sd, f7se, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
     (cases 7WF, 7WG, 7WH, 7WK, 7WQ, 7SB, 7SC, 7SD, 7SE)
@@ -516,6 +557,7 @@ def _quaenv_2009(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wk, f7sb, f7sc, f7sd, f7se
     max5 = max_(0, max4 - f7wg)
     max6 = max_(0, max5 - f7sc)
     max7 = max_(0, max6 - f7wh)
+    max8 = max_(0, max7 - f7sb)
     return (P.taux_wf * min_(f7wf, max0) +
                 P.taux_se * min_(f7se, max1) +
                 P.taux_wk * min_(f7wk, max2) +
@@ -523,7 +565,8 @@ def _quaenv_2009(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wk, f7sb, f7sc, f7sd, f7se
                 P.taux_wg * min_(f7wg, max4) +
                 P.taux_sc * min_(f7sc, max5) +
                 P.taux_wh * min_(f7wh, max6) +
-                P.taux_sb * min_(f7sb, max7))
+                P.taux_sb * min_(f7sb, max7) +
+                P.taux_wq * min_(f7wq, max8)) # TODO: Ce 7WQ n'apparaît pas dans la notice, mais on le met pour être en accord avec le simulateur de la DGFiP
 
 
 def _quaenv_2010_2011(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se, f7sh, _P):
@@ -551,7 +594,7 @@ def _quaenv_2010_2011(marpac, nb_pac2, f7wf, f7wh, f7wk, f7wq, f7sb, f7sd, f7se,
                 P.taux_wq * min_(f7wq, max6) +
                 P.taux_sh * min_(f7sh, max7))
 
-#TODO: tout reprendre à partir de la 2042 QE
+#TODO: tout reprendre à partir de la 2042 QE, faire quaenv 2012 et 2013
 def _quaenv_2012(marpac, nb_pac2, f7tt, f7tu, f7tv, f7tw, f7tx, f7ty, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de la qualité environnementale
@@ -569,24 +612,6 @@ def _quaenv_2012(marpac, nb_pac2, f7tt, f7tu, f7tv, f7tw, f7tx, f7ty, _P):
 
     return P.taux_ty * min_(f7ty, max0) + P.taux_tx * min_(f7tx, max1) + P.taux_tw * min_(f7tw, max2) + P.taux_tv * min_(f7tv, max3) + P.taux_tu * min_(f7tu, max4) + P.taux_tt * min_(f7tt, max5)
 
-
-def _quaenv_2013(f7vt, f7vu, f7vv, f7vw, f7vx, f7vy, f7vz, caseP, caseF, nbG, nbR, marpac, nb_pac2, _P):
-    '''
-    Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    (cases 7VT, 7VU, 7VV, 7VW, 7VX, 7VY, 7VY, 7VZ)
-    2013
-    '''
-
-    P = _P.ir.credits_impot.quaenv
-    invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.pac1
-    max1 = max_(0, max0 - f7vy - f7vx)
-    max2 = max_(0, max1 - f7vw)
-    max3 = max_(0, max2 - f7vu)
-    max4 = max_(0, max3 - f7vz)
-    max5 = max_(0, max4 - f7vv)
-
-    return P.taux_vy * min_(f7vy+f7vx, max0) + P.taux_vw* min_(f7vw, max1) + P.taux_vu * min_(f7vu, max2) + P.taux_vz * min_(f7vz, max3) + P.taux_vv * min_(f7vv, max4) + P.taux_vt * min_(f7vt, max5) 
 
 def _saldom2_2007_2008(nb_pac2, f7db, f7dg, f7dl, _P):
     '''

@@ -30,6 +30,7 @@
 
 import argparse
 import collections
+import json
 import logging
 import os
 import sys
@@ -53,21 +54,21 @@ def define_scenario(year):
             activite = u'Actif occupé',
             birth = 1970,
             cadre = True,
-            sali = 24000,
+            sali = 100000,
             statmarit = u'Célibataire',
             ),
         enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                birth = '2002-02-01',
-                ),
-            dict(
-                activite = u'Étudiant, élève',
-                birth = '2000-04-17',
-                ),
+#            dict(
+#                activite = u'Étudiant, élève',
+#                birth = '2002-02-01',
+#                ),
+#            dict(
+#                activite = u'Étudiant, élève',
+#                birth = '2000-04-17',
+#                ),
             ],
         foyer_fiscal = dict(
-                f7wi = 2000,
+                f7up = 6250, #TODO: pb avec f2ck
             ),
         year = year,
         )
@@ -83,7 +84,7 @@ def main():
 
     year = 2013
     scenario = define_scenario(year)
-    compare(scenario)
+    compare(scenario, tested = True)
     return 0
 
 
@@ -102,41 +103,56 @@ def compare(scenario, tested = False, fichier = ''):
 
     page_doc = etree.parse(response, etree.HTMLParser())
     fields = collections.OrderedDict()
-    for element in page_doc.xpath('//input[@type="hidden"][@name]'):
-        names = {   'CIGE': u'Crédit aides aux personnes',
-                    'IAVIM': u'Impôt avant imputations',
-                    'IDEC': u'Décote',
-                    'IDRS2': u'Droits simples',
-                    'IINET': u'Montant net à payer',
-                    'IINETIR': u'Impôt sur le revenu net',
-                    'IREST': u'Montant net à restituer',
-                    'ITRED': u'Total des réductions d\'impôt',
-                    'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
-                    'NBPT': u'Nombre de parts',
-                    'NBP': u'Nombre de parts',
-                    'PERPPLAFTV': u'Plafond de déduction pour les revenus 2014 au titre de l\'épargne retraite, pour déclarant 1',
-                    'PPETOT': u'Prime pour l\'emploi',
-                    'REVKIRE': u'Revenu fiscal de référence',
-                    'RNICOL': u'Revenu net imposable ou déficit à reporter',
-                    'RRBG': u'Revenu brut global ou déficit',
-                    'TOTPAC': u'Nombre de personnes à charge',
-                    'TXMARJ': u'Taux marginal d\'imposition',
-                    'TXMOYIMP': u'Taux moyen d\'imposition',
-                    'IRETS' : u'?',#TODO
-                    'IRESTIR': u'?',#TODO (f8tb)
-                    'CIRELANCE': u'?',#TODO (f8tb)
-                    'RNI': u'?'#TODO
-                } 
+    names = {   'CIGE': u'Crédit aides aux personnes',
+                'IAVIM': u'Impôt avant imputations',
+                'IDEC': u'Décote',
+                'IDRS2': u'Droits simples',
+                'IINET': u'Montant net à payer',
+                'IINETIR': u'Impôt sur le revenu net',
+                'IREST': u'Montant net à restituer',
+                'ITRED': u'Total des réductions d\'impôt',
+                'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
+                'NBPT': u'Nombre de parts',
+                'NBP': u'Nombre de parts',
+                'PERPPLAFTV': u'Plafond de déduction pour les revenus 2014 au titre de l\'épargne retraite, pour déclarant 1',
+                'PPETOT': u'Prime pour l\'emploi',
+                'REVKIRE': u'Revenu fiscal de référence',
+                'RNICOL': u'Revenu net imposable ou déficit à reporter',
+                'RRBG': u'Revenu brut global ou déficit',
+                'TOTPAC': u'Nombre de personnes à charge',
+                'TXMARJ': u'Taux marginal d\'imposition',
+                'TXMOYIMP': u'Taux moyen d\'imposition',
+                'IRETS' : u'?',#TODO
+                'IRESTIR': u'?',#TODO (f8tb)
+                'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
+                'RNI': u'?',#TODO
+                'CIRCM': u'?',#TODO (f2dc)
+                'BCSG': u'?',#TODO (f2dc)
+                'BRDS': u'?',#TODO (f2dc)
+                'NAPCS': u'?',#TODO (f2dc)
+                'NAPRD': u'?',#TODO (f2dc)
+                'NAPPS': u'?',#TODO (f2dc)
+                'CICA': u'?',#TODO (f4tq)
+                'CIHABPRIN': u'?',#TODO (f7vy)
+                'CIPRETUD': u'?',#TODO (f7uk)
+                'I2DH': u'?',#TODO (f2dh)
+                'BPRS': u'?',#TODO (f2ch)
+                'CIDEVDUR': u'?',#TODO (f7wf)
+                'CIADCRE': u'?',#TODO (f7dg)      
+                'RFOR': u'?',#TODO (f7up)            
+            }
+    for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
         code = element.get('name')
         fields[code] = {
             'code' : code,
             'name' : names[code] if (code in names) else u'nom inconnu',
             'value' : float(element.get('value').replace(" ","")),
-            }
+            } 
     if tested:
         for code, field in fields.iteritems():
             compare_variable(code,field,simulation,totpac, year, fichier)
-
+#            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+#    print simulation.calculate('irpp')
     return fields
 
 
@@ -164,7 +180,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 openfisca_value = simulation.calculate('rbg')
             elif code == 'TOTPAC':
                 openfisca_value = len(totpac or [])
-            elif code == 'IREST' or code == 'ITRED' or code == 'NAPCRP' or code == 'PERPPLAFTV' or code == 'TXMARJ' or code == 'TXMOYIMP' or code == 'IRETS' or code == 'NAPCR' or code == 'CIGE' or code == 'CIRELANCE' or code == 'RNI':
+            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTV', 'RFOR', 'RNI', 'TXMARJ', 'TXMOYIMP'):
                 continue 
             else:
                 print 'Code inconnu :', code
@@ -176,7 +192,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 openfisca_simple_value = openfisca_simple_value[0]
             openfisca_simple_value = abs(openfisca_simple_value)
             if not abs(field['value'] - openfisca_simple_value) < 2:
-                print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], field['value'], openfisca_simple_value).encode('utf-8') # + u'Fields: {}'.format(json.dumps(fields, encoding = 'utf-8', ensure_ascii = False, indent = 2)).encode('utf-8')
+                print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], field['value'], openfisca_simple_value).encode('utf-8')
 
 
 def transform_scenario_to_impots_arguments(scenario):
