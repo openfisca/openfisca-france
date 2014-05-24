@@ -33,61 +33,77 @@ from openfisca_core import simulations
 log = logging.getLogger(__name__)
 
 
-def new_simulation_from_survey_data_frame(compact_legislation = None, debug = False, debug_all = False, survey = None,
-        tax_benefit_system = None, trace = False, year = None):
+class SurveyScenario(object):
+    axes = None
+    compact_legislation = None
+    input_data_frame = None
+    tax_benefit_system = None
+    year = None
 
-    for id_variable in ['idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen']:
-        assert id_variable in survey.columns
+    def init_from_data_frame(self, input_data_frame = None, tax_benefit_system = None, year = None):
+        assert input_data_frame is not None
+        self.input_data_frame = input_data_frame
+        assert tax_benefit_system is not None
+        self.tax_benefit_system = tax_benefit_system
+        assert year is not None
+        self.year = year
+        return self
 
-    column_by_name = tax_benefit_system.column_by_name
-    for column_name in survey:
-        if column_name not in column_by_name:
-            log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
-            survey.drop(column_name, axis = 1, inplace = True)  # TODO: effet de bords ?
-    for column_name in survey:
-        if column_by_name[column_name].formula_constructor is not None:
-            log.info('Column "{}" in survey set to be calculated, dropped from input table'.format(column_name))
-            survey.drop(column_name, axis = 1, inplace = True)  # TODO: effet de bords ?
+    def new_simulation(self, debug = False, debug_all = False, trace = False):
+        tax_benefit_system = self.tax_benefit_system
+        input_data_frame = self.input_data_frame
 
-    simulation = simulations.Simulation(
-        compact_legislation = compact_legislation,
-        date = datetime.date(year, 5, 1),
-        debug = debug,
-        debug_all = debug_all,
-        tax_benefit_system = tax_benefit_system,
-        trace = trace,
-        )
-    entity_by_key_plural = simulation.entity_by_key_plural
+        simulation = simulations.Simulation(
+            compact_legislation = self.compact_legislation,
+            date = datetime.date(self.year, 1, 1),
+            debug = debug,
+            debug_all = debug_all,
+            tax_benefit_system = self.tax_benefit_system,
+            trace = trace,
+            )
 
-    familles = entity_by_key_plural[u'familles']
-    familles.count = familles.step_size = familles_step_size = (survey.quifam == 0).sum()
-    familles.roles_count = survey['quifam'].max() + 1
-    foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
-    foyers_fiscaux.count = foyers_fiscaux.step_size = foyers_fiscaux_step_size = (survey.quifoy == 0).sum()
-    foyers_fiscaux.roles_count = survey['quifoy'].max() + 1
-    individus = entity_by_key_plural[u'individus']
-    individus.count = individus.step_size = individus_step_size = len(survey)
-    menages = entity_by_key_plural[u'menages']
-    menages.count = menages.step_size = menages_step_size = (survey.quimen == 0).sum()
-    menages.roles_count = survey['quimen'].max() + 1
+        symbols_other_than_ind = [entity.symbol for entity in simulation.entity_by_key_singular.values()]
+        symbols_other_than_ind.remove('ind')
+        id_variables = ["id{}".format(symbol) for symbol in symbols_other_than_ind]
+        role_variables = ["qui{}".format(symbol) for symbol in symbols_other_than_ind]
+        for id_variable in id_variables + role_variables:
+            assert id_variable in self.input_data_frame.columns
 
-    for column_name, column_series in survey.iteritems():
-        holder = simulation.get_or_new_holder(column_name)
-        entity = holder.entity
-        if entity.is_persons_entity:
-            array = column_series.values.astype(holder.column.dtype)
-        else:
-            array = column_series.values[survey['qui' + entity.symbol].values == 0].astype(holder.column.dtype)
-        assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
-            entity.count)
-        holder.array = np.array(array, dtype = holder.column.dtype)
+        column_by_name = tax_benefit_system.column_by_name
+        for column_name in input_data_frame:
+            if column_name not in column_by_name:
+                log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
+                input_data_frame.drop(column_name, axis = 1, inplace = True)  # TODO: effet de bords ?
+        for column_name in input_data_frame:
+            if column_by_name[column_name].formula_constructor is not None:
+                log.info('Column "{}" in survey set to be calculated, dropped from input table'.format(column_name))
+                input_data_frame.drop(column_name, axis = 1, inplace = True)  # TODO: effet de bords ?
 
-    return simulation
+        for entity in simulation.entity_by_key_singular.values():
+            if entity.is_persons_entity:
+                entity.count = entity.step_size = len(input_data_frame)
+            else:
+                entity.count = entity.step_size = (input_data_frame["qui{}".format(entity.symbol)] == 0).sum()
+                entity.roles_count = input_data_frame["qui{}".format(entity.symbol)].max() + 1
+#       TODO: Create a validation/conversion step
+#       TODO: introduce an assert when loading in place of astype
+        for column_name, column_series in input_data_frame.iteritems():
+            holder = simulation.get_or_new_holder(column_name)
+            entity = holder.entity
+            if entity.is_persons_entity:
+                array = column_series.values.astype(holder.column.dtype)
+            else:
+                array = column_series.values[input_data_frame['qui' + entity.symbol].values == 0].astype(
+                    holder.column.dtype)
+            assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(
+                column_name,
+                array.size,
+                entity.count)
+            holder.array = np.array(array, dtype = holder.column.dtype)
+        return simulation
 
-# Create a validation/conversion step
-# introduce an assert when loading in place of astype
 
-
+# TODO: clean this one
 def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
         tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
