@@ -44,7 +44,9 @@ def check_input_column_consumers(column):
             'quifoy',
             'quimen',
             ):
-        assert column.consumers, u'Input column {} has no consumer'.format(column.name).encode('utf-8')
+        if not(column.survey_only):
+            assert column.consumers,\
+                u'Input column {} has no consumer'.format(column.name).encode('utf-8')
 
 
 def test():

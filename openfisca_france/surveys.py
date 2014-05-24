@@ -33,6 +33,10 @@ from openfisca_core import simulations
 log = logging.getLogger(__name__)
 
 
+def adapt_tax_benefi_system_to_survey(tax_benefit_system):
+    pass
+
+
 class SurveyScenario(object):
     axes = None
     compact_legislation = None

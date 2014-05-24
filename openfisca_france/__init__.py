@@ -25,32 +25,16 @@
 
 import os
 
-
-AGGREGATES_DEFAULT_VARS = [
-    'cotsoc_noncontrib', 'csg', 'crds',
-    'irpp', 'ppe', 'ppe_brute',
-    'af', 'af_base', 'af_majo', 'af_forf', 'cf',
-    'paje_base', 'paje_nais', 'paje_clca', 'paje_clmg',
-    'ars', 'aeeh', 'asf', 'aspa',
-    'aah', 'caah',
-    'rsa', 'rsa_act', 'aefa', 'api', 'majo_rsa', 'psa',
-    'logt', 'alf', 'als', 'apl',
-    ]
-    # ajouter csgd pour le calcul des agrégats erfs
-    # ajouter rmi pour le calcul des agrégats erfs
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
 DATA_DIR = os.path.join(COUNTRY_DIR, 'data')
 ENTITIES_INDEX = ['men', 'fam', 'foy']
-FILTERING_VARS = ["champm"]
 REVENUES_CATEGORIES = {
     'brut': ['salbrut', 'chobrut', 'rstbrut', 'alr', 'alv', 'rev_cap_brut', 'fon'],
     'imposable': ['sal', 'cho', 'rst', 'alr', 'alv', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
     'net': ['salnet', 'chonet', 'rstnet', 'alr', 'alv', 'rev_cap_net', 'fon'],
     'superbrut': ['salsuperbrut', 'chobrut', 'rstbrut', 'alr', 'alv', 'rev_cap_brut', 'fon'],
     }
-WEIGHT = "wprm"
-WEIGHT_INI = "wprm_init"
 
 
 def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de = False, start_from = 'imposable'):
@@ -129,7 +113,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
 
     class TaxBenefitSystem(core_taxbenefitsystems.AbstractTaxBenefitSystem):
         """French tax benefit system"""
-        AGGREGATES_DEFAULT_VARS = AGGREGATES_DEFAULT_VARS
         check_consistency = None  # staticmethod(utils.check_consistency)
         CURRENCY = CURRENCY
         DATA_DIR = DATA_DIR
@@ -144,7 +127,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
             ]
         ENTITIES_INDEX = ENTITIES_INDEX
         # entity_class_by_key_plural = entity_class_by_key_plural  # Done below to avoid "name is not defined" exception
-        FILTERING_VARS = FILTERING_VARS
         # column_by_name = column_by_name  # Done below to avoid "name is not defined" exception
         # columns_name_tree_by_entity = columns_name_tree_by_entity  # Done below to avoid "name is not defined" exception
         PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
@@ -154,24 +136,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         REV_TYP = None  # utils.REV_TYP  # Not defined for France
         REVENUES_CATEGORIES = REVENUES_CATEGORIES
         Scenario = scenarios.Scenario
-        WEIGHT = WEIGHT
-        WEIGHT_INI = WEIGHT_INI
-
-        def preproc_inputs(self, datatable):
-            """Preprocess inputs table: country specific manipulations
-
-            Parameters
-            ----------
-            datatable : a DataTable object
-                        the DataTable containing the input variables of the model
-
-            """
-            try:
-                datatable.propagate_to_members(WEIGHT, 'ind')
-            #    datatable.propagate_to_members('rfr_n_2', 'ind')
-            #    datatable.propagate_to_members('nbptr_n_2', 'ind')
-            except:
-                pass
 
     TaxBenefitSystem.column_by_name = column_by_name
     TaxBenefitSystem.columns_name_tree_by_entity = columns_name_tree_by_entity
