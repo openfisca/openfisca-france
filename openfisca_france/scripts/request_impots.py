@@ -44,8 +44,6 @@ def main():
 #        '0F1': 1990, # âge de la première personne à charge
         '0BT': 0, # case T
         '1AJ': 60000,
-        '7UP': 6250,
-        '7UL': 6250
     }
 
     request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-'+str(year+1)+'.cgi', headers = {
@@ -57,13 +55,16 @@ def main():
     page_doc = etree.parse(response, etree.HTMLParser())
     fields = collections.OrderedDict()
     names = {   'CIGE': u'Crédit aides aux personnes',
+                'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
                 'IAVIM': u'Impôt avant imputations',
                 'IDEC': u'Décote',
                 'IDRS2': u'Droits simples',
                 'IINET': u'Montant net à payer',
                 'IINETIR': u'Impôt sur le revenu net',
                 'IREST': u'Montant net à restituer',
+                'IRESTIR': u'Impôt sur le revenu net',
                 'ITRED': u'Total des réductions d\'impôt',
+                'I2DH': u'Prélèvement libératoire de 7,5%',
                 'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
                 'NBPT': u'Nombre de parts',
                 'NBP': u'Nombre de parts',
@@ -76,8 +77,6 @@ def main():
                 'TXMARJ': u'Taux marginal d\'imposition',
                 'TXMOYIMP': u'Taux moyen d\'imposition',
                 'IRETS' : u'?',#TODO
-                'IRESTIR': u'?',#TODO (f8tb)
-                'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
                 'RNI': u'?',#TODO
                 'CIRCM': u'?',#TODO (f2dc)
                 'BCSG': u'?',#TODO (f2dc)
@@ -88,11 +87,11 @@ def main():
                 'CICA': u'?',#TODO (f4tq)
                 'CIHABPRIN': u'?',#TODO (f7vy)
                 'CIPRETUD': u'?',#TODO (f7uk)
-                'I2DH': u'?',#TODO (f2dh)
                 'BPRS': u'?',#TODO (f2ch)
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg) 
-                'RFOR': u'?',#TODO (f7up)         
+                'RFOR': u'?',#TODO (f7up)       
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)      
             }
     for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
         code = element.get('name')

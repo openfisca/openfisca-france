@@ -52,9 +52,9 @@ def define_scenario(year):
     scenario.init_single_entity(
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1970,
+            birth = 1973,
             cadre = True,
-            sali = 100000,
+            sali = 15000,
             statmarit = u'Célibataire',
             ),
         enfants = [
@@ -68,7 +68,8 @@ def define_scenario(year):
 #                ),
             ],
         foyer_fiscal = dict(
-#                f7up = 6250, #TODO: pb avec f2ck
+                f8ta = 700, #TODO: pb avec f2ck
+
             ),
         year = year,
         )
@@ -82,7 +83,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2013
+    year = 2012
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
@@ -104,13 +105,16 @@ def compare(scenario, tested = False, fichier = ''):
     page_doc = etree.parse(response, etree.HTMLParser())
     fields = collections.OrderedDict()
     names = {   'CIGE': u'Crédit aides aux personnes',
+                'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
                 'IAVIM': u'Impôt avant imputations',
                 'IDEC': u'Décote',
                 'IDRS2': u'Droits simples',
                 'IINET': u'Montant net à payer',
                 'IINETIR': u'Impôt sur le revenu net',
                 'IREST': u'Montant net à restituer',
+                'IRESTIR': u'Impôt sur le revenu net',
                 'ITRED': u'Total des réductions d\'impôt',
+                'I2DH': u'Prélèvement libératoire de 7,5%',
                 'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
                 'NBPT': u'Nombre de parts',
                 'NBP': u'Nombre de parts',
@@ -123,8 +127,6 @@ def compare(scenario, tested = False, fichier = ''):
                 'TXMARJ': u'Taux marginal d\'imposition',
                 'TXMOYIMP': u'Taux moyen d\'imposition',
                 'IRETS' : u'?',#TODO
-                'IRESTIR': u'?',#TODO (f8tb)
-                'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
                 'RNI': u'?',#TODO
                 'CIRCM': u'?',#TODO (f2dc)
                 'BCSG': u'?',#TODO (f2dc)
@@ -135,11 +137,11 @@ def compare(scenario, tested = False, fichier = ''):
                 'CICA': u'?',#TODO (f4tq)
                 'CIHABPRIN': u'?',#TODO (f7vy)
                 'CIPRETUD': u'?',#TODO (f7uk)
-                'I2DH': u'?',#TODO (f2dh)
                 'BPRS': u'?',#TODO (f2ch)
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg)      
-                'RFOR': u'?',#TODO (f7up)            
+                'RFOR': u'?',#TODO (f7up)    
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)        
             }
     for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
         code = element.get('name')
@@ -164,7 +166,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 openfisca_value = simulation.calculate('decote')
             elif code == 'IDRS2':
                 openfisca_value = simulation.calculate('ir_plaf_qf')
-            elif code == 'IINETIR' or code == 'IINET':
+            elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
                 openfisca_value = simulation.calculate('irpp')
             elif code == 'ITRED':
                 openfisca_value = simulation.calculate('reductions')
@@ -180,7 +182,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 openfisca_value = simulation.calculate('rbg')
             elif code == 'TOTPAC':
                 openfisca_value = len(totpac or [])
-            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTV', 'RFOR', 'RNI', 'TXMARJ', 'TXMOYIMP'):
+            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RFOR', 'RNI', 'TXMARJ', 'TXMOYIMP'):
                 continue 
             else:
                 print 'Code inconnu :', code

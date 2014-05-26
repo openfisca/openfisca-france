@@ -11,7 +11,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, maximum as max_, minimum as min_, size, ones
+from numpy import logical_not as not_, maximum as max_, minimum as min_, size, ones, around
 
 from .input_variables.base import QUIFOY
 
@@ -65,7 +65,7 @@ def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, cotsyn, creim
 
 
 def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, cotsyn, creimp, direpa, drbail, inthab, mecena, preetu, prlire, saldom2):
-#TODO: missing 1 niche
+#TODO: missing 1 niche (8TE)
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
     return accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena + preetu + prlire + saldom2
 
@@ -235,9 +235,8 @@ def _creimp_exc_2008(rni, nbptr, iai, mohist, elig_creimp_exc_2008):
     http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf
     '''
     #TODO: gérer les DOM-TOM, corriger les formules, inclure 7KA
-    montant = iai * 0
     rpp = rni / nbptr
-    return iai * 0 #+ elig_creimp_exc_2008 * (mohist < 10700) * (rpp <= 12475) * (round((2/3) * min_(12475, iai) * (rpp < 11674) + (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
+    return elig_creimp_exc_2008 * (mohist < 10700) * (rpp <= 12475) * around((2/3) * min_(12475, iai) * (rpp < 11674) + (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802))
 
 
 def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th):
@@ -293,7 +292,7 @@ def _creimp_2012(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8t
 def _creimp_2013(f2ab, f2ck, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8tl, f8to, f8tp, f8ts, f8tz, f8uw, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8wt, f8wu):
     '''Avoir fiscaux et crédits d'impôt 2013 '''
     return (f2ab + f2ck + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
-
+#TODO: vérifier f8ta
 
 def _direpa(f2bg):
     '''
@@ -497,10 +496,11 @@ def _prlire(f2dh, f2ch, marpac, _P):
     '''
     Prélèvement libératoire à restituer (case 2DH)
     2002-
+    http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
     '''
-    plaf_resid = max_(_P.ir.rvcm.abat_assvie - f2ch, 0)
-    return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid) / 2
-#TODO: vérifier le /2 (complètement inventé)
+    plaf_resid = max_(_P.ir.rvcm.abat_assvie * (1 + marpac) - f2ch, 0)
+    return _P.ir.credits_impot.prlire.taux * min_(f2dh/2, plaf_resid)
+
 
 def _quaenv_2005(marpac, nb_pac2, f7wf, f7wg, f7wh, _P):
     '''

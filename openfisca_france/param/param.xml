@@ -3380,19 +3380,19 @@
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.15" />
         </CODE>
         <CODE code="taux_tt" description="Taux (TT)" format="percent">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.10" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.10" />
         </CODE>
         <CODE code="taux_tu" description="Taux (TU)" format="percent">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.11" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.11" />
         </CODE>
         <CODE code="taux_tv" description="Taux (TV)" format="percent">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.15" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.15" />
         </CODE>
         <CODE code="taux_tw" description="Taux (TW)" format="percent">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.17" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.17" />
         </CODE>
         <CODE code="taux_tx" description="Taux (TX)" format="percent">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.26" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.26" />
         </CODE>
         <CODE code="taux_ty" description="Taux (TY)" format="percent">
           <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.32" />
