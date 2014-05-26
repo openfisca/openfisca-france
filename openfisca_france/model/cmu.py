@@ -69,7 +69,7 @@ def _acs_plafond(cmu_c_plafond, P = law.cmu):
     '''
     Calcule le plafond de ressources pour l'ACS
     '''
-    return cmu_c_plafond * P.majoration_plafond_acs
+    return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
 def _cmu_br_i(activite, sali, choi, rsti, alr, P = law.cmu):
