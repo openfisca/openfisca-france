@@ -472,6 +472,20 @@ column_by_name = collections.OrderedDict((
                     start = date(2013, 1, 1))),
 
     # Investissements locatifs dans le secteur de touristique
+    build_column_couple('f7xa', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans un village résidentiel de tourisme",
+                    val_type = "monetary",
+                    cerfa_field = u'7XA',
+                    start = date(2011, 1, 1),
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7xb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée",
+                    val_type = "monetary",
+                    cerfa_field = u'7XB',
+                    start = date(2011, 1, 1),
+                    end = date(2012, 12, 31))),
+
     build_column_couple('f7xc', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1",
                     val_type = "monetary",
@@ -542,6 +556,33 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7XO')),
+
+    build_column_couple('f7xp', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XP')),
+
+    build_column_couple('f7xq', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XQ')),
+
+    build_column_couple('f7xr', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XR')),
+
+    build_column_couple('f7xx', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme",
+                    val_type = "monetary",
+                    cerfa_field = u'7XX',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7xz', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans une résidence de tourisme classée ou un meublé tourisme",
+                    val_type = "monetary",
+                    cerfa_field = u'7XZ',
+                    start = date(2012, 1, 1))),
 
     # Souscriptions au capital des PME
     build_column_couple('f7cf', IntCol(entity = 'foy',

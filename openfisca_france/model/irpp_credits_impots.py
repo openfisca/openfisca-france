@@ -292,7 +292,7 @@ def _creimp_2012(f2ab, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8to, f8tp, f8ts, f8t
 def _creimp_2013(f2ab, f2ck, f8ta, f8tb, f8tc, f8tf, f8tg, f8th, f8tl, f8to, f8tp, f8ts, f8tz, f8uw, f8uz, f8wa, f8wb, f8wc, f8wd, f8we, f8wr, f8wt, f8wu):
     '''Avoir fiscaux et crédits d'impôt 2013 '''
     return (f2ab + f2ck + f8ta + f8tb + f8tc - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
-#TODO: vérifier f8ta
+#TODO: vérifier f8ta (il semblerait que c'est une réduction d'impôts)
 
 def _direpa(f2bg):
     '''
@@ -499,7 +499,7 @@ def _prlire(f2dh, f2ch, marpac, _P):
     http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
     '''
     plaf_resid = max_(_P.ir.rvcm.abat_assvie * (1 + marpac) - f2ch, 0)
-    return _P.ir.credits_impot.prlire.taux * min_(f2dh/2, plaf_resid)
+    return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
 def _quaenv_2005(marpac, nb_pac2, f7wf, f7wg, f7wh, _P):

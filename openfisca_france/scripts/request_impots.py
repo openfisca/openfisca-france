@@ -91,7 +91,12 @@ def main():
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg) 
                 'RFOR': u'?',#TODO (f7up)       
-                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)      
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)    
+                'RTOURNEUF': u'?', #TODO (f7xc)  
+                'RTOUR': u'?', #TODO (f7xd)
+                'RTOURTRA': u'?',#TODO (f7xd)
+                'RTOURHOT': u'?',#TODO (f7xc) 
+                'RTOURES': u'?',#TODO (f7xc) 
             }
     for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
         code = element.get('name')

@@ -112,7 +112,7 @@ def test_irpp():
             {"year" : 2011, "amount": 20000, "irpp":0},
             {"year" : 2011, "amount": 50000, "irpp":-2976},
             {"year" : 2011, "amount": 150000, "irpp":-22917},
-            {"year" : 2012, "amount": 20000, "irpp":-31},
+            {"year" : 2012, "amount": 20000, "irpp":0},
             {"year" : 2012, "amount": 50000, "irpp":-3434},
             {"year" : 2012, "amount": 150000, "irpp":-23542},
 #            {"year" : 2013, "amount": 20000, "irpp":-},

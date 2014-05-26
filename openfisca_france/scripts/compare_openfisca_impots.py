@@ -30,6 +30,7 @@
 
 import argparse
 import collections
+import cStringIO
 import json
 import logging
 import os
@@ -54,7 +55,7 @@ def define_scenario(year):
             activite = u'Actif occupé',
             birth = 1973,
             cadre = True,
-            sali = 15000,
+            sali = 150000,
             statmarit = u'Célibataire',
             ),
         enfants = [
@@ -67,9 +68,9 @@ def define_scenario(year):
 #                birth = '2000-04-17',
 #                ),
             ],
-        foyer_fiscal = dict(
-                f8ta = 700, #TODO: pb avec f2ck
-
+        foyer_fiscal = dict( #TODO: pb avec f2ck
+                f7xq = 30000,
+                f7xi = 30000
             ),
         year = year,
         )
@@ -83,7 +84,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2012
+    year = 2010
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
@@ -101,8 +102,10 @@ def compare(scenario, tested = False, fichier = ''):
         })
 
     response = urllib2.urlopen(request, urllib.urlencode(impots_arguments))
-
-    page_doc = etree.parse(response, etree.HTMLParser())
+    response_html = response.read()
+    if 'Erreur' in response_html:
+        raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
+    page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
     fields = collections.OrderedDict()
     names = {   'CIGE': u'Crédit aides aux personnes',
                 'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
@@ -141,7 +144,12 @@ def compare(scenario, tested = False, fichier = ''):
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg)      
                 'RFOR': u'?',#TODO (f7up)    
-                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)        
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)  
+                'RTOURNEUF': u'?', #TODO (f7xc)
+                'RTOUR': u'?',#TODO (f7xd)
+                'RTOURTRA': u'?',#TODO (f7xc) 
+                'RTOURHOT': u'?',#TODO (f7xc) 
+                'RTOURES': u'?',#TODO (f7xc) 
             }
     for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
         code = element.get('name')
@@ -153,8 +161,10 @@ def compare(scenario, tested = False, fichier = ''):
     if tested:
         for code, field in fields.iteritems():
             compare_variable(code,field,simulation,totpac, year, fichier)
-            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
-#    print simulation.calculate('irpp')
+#            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+#    print simulation.calculate('reductions')
+#    print fields['ITRED']['value']
+   
     return fields
 
 
@@ -167,7 +177,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
             elif code == 'IDRS2':
                 openfisca_value = simulation.calculate('ir_plaf_qf')
             elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
-                openfisca_value = simulation.calculate('irpp')
+                openfisca_value = -simulation.calculate('irpp')
             elif code == 'ITRED':
                 openfisca_value = simulation.calculate('reductions')
             elif code == 'NBPT' or code == 'NBP':
@@ -182,7 +192,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 openfisca_value = simulation.calculate('rbg')
             elif code == 'TOTPAC':
                 openfisca_value = len(totpac or [])
-            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RFOR', 'RNI', 'TXMARJ', 'TXMOYIMP'):
+            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RFOR', 'RNI', 'RTOUR', 'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RTOURTRA', 'TXMARJ', 'TXMOYIMP'):
                 continue 
             else:
                 print 'Code inconnu :', code
@@ -192,7 +202,6 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
                     field['name'], field['value'], openfisca_value).encode('utf-8')
                 openfisca_simple_value = openfisca_simple_value[0]
-            openfisca_simple_value = abs(openfisca_simple_value)
             if not abs(field['value'] - openfisca_simple_value) < 2:
                 print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], field['value'], openfisca_simple_value).encode('utf-8')
 
@@ -263,16 +272,13 @@ def transform_scenario_to_impots_arguments(scenario):
             impots_arguments['0BT'] = '1'
 
         for column_code, value in foyer_fiscal.iteritems():
-            if column_code in (
-                    ):
-                continue
             column = tax_benefit_system.column_by_name[column_code]
             cerfa_field = column.cerfa_field
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
-            impots_arguments[cerfa_field] = str(value)
+            impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else str(value)
 
-   # print json.dumps(impots_arguments, encoding = 'utf-8', ensure_ascii = False, indent = 2)
-
+#    print json.dumps(impots_arguments, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+    
     return impots_arguments
 
 

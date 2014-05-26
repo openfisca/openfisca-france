@@ -1,0 +1,5 @@
+7XE (bool) nécessite 7XL (non nul)
+7XD (bool) nécessite 7XC (non nul)
+Une au maximum de ces variables est non nulle : 7XC, 7XF, 7XI, 7XL, 7XJ, 7XM
+7XN ne peut être non nul si une des variables suivante l'est :  7XC,7XF,7XI,7XG,7XH,7XL,7XM,7XJ,7XK,7XO
+Le montant pour les variables suivantes ne peut dépasser 33 333 : 7XF, 7XI, 7XM, 7XJ, 7XO, 7XK

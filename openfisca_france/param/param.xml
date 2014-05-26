@@ -3090,9 +3090,15 @@
         </CODE>
       </NODE>
       <NODE code="invlst" description="Investissements locatifs dans le secteur touristique">
+        <CODE code="taux_xa" description="Taux (XA)" format="percent">
+            <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.4" />
+        </CODE>
+        <CODE code="taux_xb" description="Taux (XB)" format="percent">
+            <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.2" />
+        </CODE>
         <CODE code="taux_xc" description="Taux (XC)" format="percent"># TODO: check boxes (XC...XO) over the years
-      <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.25" /># TODO: check 2013
-    </CODE>
+          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.25" /># TODO: check 2013
+        </CODE>
         <CODE code="taux_xd" description="Taux (XD)" format="percent">
           <VALUE deb="2004-01-01" fin="2006-12-31" valeur="0.15" />
           <VALUE deb="2007-01-01" fin="2013-12-31" valeur="0.00" />
@@ -3110,12 +3116,12 @@
           <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.10" />
           <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.40" />
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.36" /># TODO: check 2013
-    </CODE>
+        </CODE>
         <CODE code="taux_xh" description="Taux (XH)" format="percent">
           <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.10" />
           <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.20" />
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.18" /># TODO: check 2013
-     </CODE>
+        </CODE>
         <CODE code="taux_xi" description="Taux (XI)" format="percent">
           <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.20" />
           <VALUE deb="2005-01-01" fin="2009-12-31" valeur="0.00" />
@@ -3146,6 +3152,21 @@
         <CODE code="taux_xo" description="Taux (XO)" format="percent">
           <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.00" />
           <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.25" />
+        </CODE>
+        <CODE code="taux_xp" description="Taux (XP)" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.25" />
+        </CODE>
+        <CODE code="taux_xq" description="Taux (XQ)" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.20" />
+        </CODE>
+        <CODE code="taux_xr" description="Taux (XR)" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.25" />
+        </CODE>
+        <CODE code="taux_xx" description="Taux (XX)" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.3" />
+        </CODE>
+        <CODE code="taux_xz" description="Taux (XZ)" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.15" />
         </CODE>
         <CODE code="seuil1" description="Seuil1" format="integer" type="monetary">
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="50000" />

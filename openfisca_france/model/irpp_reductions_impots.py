@@ -11,7 +11,7 @@ from __future__ import division
 
 import logging
 
-from numpy import minimum as min_, maximum as max_, logical_not as not_, ones, size
+from numpy import minimum as min_, maximum as max_, logical_not as not_, ones, size, around
 from openfisca_core.accessors import law
 
 from .input_variables.base import QUIFOY
@@ -836,7 +836,7 @@ def _invlst_2004(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f
     xn = P.taux_xn * min_(f7xn, seuil1 / 6)
     xo = P.taux_xo * f7xo
 
-    return xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo
+    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
 
 def _invlst_2005_2010(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P,
@@ -854,8 +854,8 @@ def _invlst_2005_2010(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7
     xe = P.taux_xe * min_(f7xe, seuil1 / 6)
     xf = P.taux_xf * f7xf
     xg = P.taux_xg * min_(f7xg, seuil2)
-    xh = P.taux_xh * min_(f7xh, seuil3)
-    xi = P.taux_xi * min_(f7xi, seuil1 / 4)
+    xh = P.taux_xh * min_(f7xh, seuil2 - f7xg)
+    xi = P.taux_xi * f7xi
     xj = P.taux_xj * f7xj
     xk = P.taux_xk * f7xk
     xl = P.taux_xl * min_(f7xl, seuil1 / 6)
@@ -863,10 +863,10 @@ def _invlst_2005_2010(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7
     xn = P.taux_xn * min_(f7xn, seuil1 / 6)
     xo = P.taux_xo * f7xo
 
-    return xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo
+    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
 
-def _invlst_2011(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P, P = law.ir.reductions_impots.invlst):
+def _invlst_2011(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, _P, P = law.ir.reductions_impots.invlst):
     '''
     Investissements locatifs dans le secteur touristique
     2011
@@ -879,17 +879,78 @@ def _invlst_2011(marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f
     xd = P.taux_xd * f7xd
     xe = P.taux_xe * min_(f7xe, seuil1 / 6)
     xf = P.taux_xf * f7xf
-    xg = P.taux_xg * min_(f7xg, seuil2)
-    xh = P.taux_xh * min_(f7xh, seuil3)
-    xi = P.taux_xi * min_(f7xi, seuil1 / 4)
-    xj = P.taux_xj * f7xj
+    xa = P.taux_xa * min_(f7xa, seuil2)
+    xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
+    xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg)
+    xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb)
+    xi = P.taux_xi * (f7xi + f7xp)
+    xj = P.taux_xj * (f7xj + f7xq)
     xk = P.taux_xk * f7xk
     xl = P.taux_xl * min_(f7xl, seuil1 / 6)
     xm = P.taux_xm * f7xm
-    xn = P.taux_xn * min_(f7xn, seuil1 / 6)
-    xo = P.taux_xo * f7xo
+    xo = P.taux_xo * (f7xo + f7xr)
 
-    return xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo
+    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xo)
+
+
+def _invlst_2012(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f
+xz, _P, P = law.ir.reductions_impots.invlst):
+    '''
+    Investissements locatifs dans le secteur touristique
+    2011
+    '''
+    seuil1 = P.seuil1 * (1 + marpac)
+    seuil2 = P.seuil2 * (1 + marpac)
+    seuil3 = P.seuil3 * (1 + marpac)
+
+    xc = P.taux_xc * min_(f7xc, seuil1 / 6)
+    xd = P.taux_xd * f7xd
+    xe = P.taux_xe * min_(f7xe, seuil1 / 6)
+    xf = P.taux_xf * f7xf
+    xa = P.taux_xa * min_(f7xa, seuil2)
+    xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
+    xx = P.taux_xx * min_(f7xx, seuil2 - f7xa - f7xg)
+    xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg - f7xx)
+    xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb - f7xx)
+    xz = P.taux_xz * min_(f7xz, seuil2  - f7xa - f7xg - f7xb - f7xx - f7xh)
+    xi = P.taux_xi * (f7xi + f7xp + f7xn)
+    xj = P.taux_xj * (f7xj + f7xq + f7xv)
+    xk = P.taux_xk * f7xk
+    xl = P.taux_xl * min_(f7xl, seuil1 / 6)
+    xm = P.taux_xm * f7xm
+    xo = P.taux_xo * (f7xo + f7xr)
+
+    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xo)
+
+
+def _invlst_2013(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f
+xz, _P, P = law.ir.reductions_impots.invlst):
+    '''
+    Investissements locatifs dans le secteur touristique
+    2011
+    '''
+    seuil1 = P.seuil1 * (1 + marpac)
+    seuil2 = P.seuil2 * (1 + marpac)
+    seuil3 = P.seuil3 * (1 + marpac)
+
+    xc = P.taux_xc * min_(f7xc, seuil1 / 6)
+    xd = P.taux_xd * f7xd
+    xe = P.taux_xe * min_(f7xe, seuil1 / 6)
+    xf = P.taux_xf * f7xf
+    xa = P.taux_xa * min_(f7xa, seuil2)
+    xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
+    xx = P.taux_xx * min_(f7xx, seuil2 - f7xa - f7xg)
+    xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg - f7xx)
+    xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb - f7xx)
+    xz = P.taux_xz * min_(f7xz, seuil2  - f7xa - f7xg - f7xb - f7xx - f7xh)
+    xi = P.taux_xi * (f7xi + f7xp + f7xn)
+    xj = P.taux_xj * (f7xj + f7xq + f7xv)
+    xk = P.taux_xk * f7xk
+    xl = P.taux_xl * min_(f7xl, seuil1 / 6)
+    xm = P.taux_xm * f7xm
+    xo = P.taux_xo * (f7xo + f7xr)
+
+    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xo)
 #TODO: ci-dessus
 
 def _domlog_2002(f7ub, f7uc, f7uj, _P, P = law.ir.reductions_impots.domlog):
