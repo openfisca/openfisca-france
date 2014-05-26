@@ -115,7 +115,7 @@ def _cmu_nb_pac(self, age_holder, P = law.cmu):
 
 def _cmu_c(cmu_c_plafond, cmu_br):
     '''
-    Détermine si le droit à la CMU complémentaire
+    Détermine si le foyer a droit à la CMU complémentaire
     '''
     return cmu_br <= cmu_c_plafond
 
