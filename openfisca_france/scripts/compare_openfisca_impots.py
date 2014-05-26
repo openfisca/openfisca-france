@@ -68,7 +68,7 @@ def define_scenario(year):
 #                ),
             ],
         foyer_fiscal = dict(
-                f7up = 6250, #TODO: pb avec f2ck
+#                f7up = 6250, #TODO: pb avec f2ck
             ),
         year = year,
         )
@@ -151,7 +151,7 @@ def compare(scenario, tested = False, fichier = ''):
     if tested:
         for code, field in fields.iteritems():
             compare_variable(code,field,simulation,totpac, year, fichier)
-#            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 #    print simulation.calculate('irpp')
     return fields
 
