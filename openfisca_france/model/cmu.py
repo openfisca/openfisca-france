@@ -26,7 +26,7 @@ def _acs_montant(self, age_holder, P = law.cmu):
     '''
     ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
     ages_pac = self.split_by_roles(age_holder, roles = ENFS)
-    return ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
+    return 12 * ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
        (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
        nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
        nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
