@@ -33,16 +33,13 @@ from openfisca_core import simulations
 log = logging.getLogger(__name__)
 
 
-def adapt_tax_benefi_system_to_survey(tax_benefit_system):
-    pass
-
-
 class SurveyScenario(object):
     axes = None
     compact_legislation = None
     input_data_frame = None
     tax_benefit_system = None
     year = None
+    weight_column_name_by_entity_symbol = dict()
 
     def init_from_data_frame(self, input_data_frame = None, tax_benefit_system = None, year = None):
         assert input_data_frame is not None
@@ -51,6 +48,10 @@ class SurveyScenario(object):
         self.tax_benefit_system = tax_benefit_system
         assert year is not None
         self.year = year
+        self.weight_column_name_by_entity_symbol['men'] = 'wprm'
+        self.weight_column_name_by_entity_symbol['fam'] = 'weight_fam'
+        self.weight_column_name_by_entity_symbol['foy'] = 'weight_foy'
+        self.weight_column_name_by_entity_symbol['ind'] = 'weight_ind'
         return self
 
     def new_simulation(self, debug = False, debug_all = False, trace = False):
@@ -104,12 +105,12 @@ class SurveyScenario(object):
                 array.size,
                 entity.count)
             holder.array = np.array(array, dtype = holder.column.dtype)
-        return simulation
 
+        return simulation
 
 # TODO: clean this one
 def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
-        tax_benefit_system = None, trace = False, year = None):
+                                   tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
         date = datetime.date(year, 1, 1),

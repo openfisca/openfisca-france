@@ -1000,7 +1000,7 @@ prestation_by_name = collections.OrderedDict((
              ),
     ],
     FloatCol(entity = 'foy')),
-    build_dated_formula_couple('sofipe', 
+    build_dated_formula_couple('sofipe',
 	[
          dict(start = date(2009, 1, 1),
              end = date(2010, 12, 31),
@@ -1471,7 +1471,7 @@ prestation_by_name = collections.OrderedDict((
             dict(start = date(2012, 1, 1),
                      end = date(2012, 12, 31),
                      function = ci._creimp_2012,
-                     ),      
+                     ),
             dict(start = date(2013, 1, 1),
                      end = date(2013, 12, 31),
                      function = ci._creimp_2013,
@@ -2328,64 +2328,81 @@ prestation_by_name = collections.OrderedDict((
                                        u"Six personnes et plus"],
         start = 1))),
 
-     build_simple_formula_couple('cplx', BoolCol(function = cl._cplx,
+    build_simple_formula_couple('cplx', BoolCol(function = cl._cplx,
         entity = 'men',
         label = u"Indicatrice de ménage complexe",
         )),
 
-     build_simple_formula_couple('act_cpl', IntCol(function = cl._act_cpl,
+    build_simple_formula_couple('act_cpl', IntCol(function = cl._act_cpl,
                            entity = 'men',
                            label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint",
         )),
 
-     build_simple_formula_couple('cohab', BoolCol(function = cl._cohab,
+    build_simple_formula_couple('cohab', BoolCol(function = cl._cohab,
                           entity = 'men',
                           label = u"Vie en couple",
         )),
 
-     build_simple_formula_couple('act_enf', IntCol(function = cl._act_enf,
+    build_simple_formula_couple('act_enf', IntCol(function = cl._act_enf,
         entity = 'men',
                            label = u"Nombre d'enfants actifs",
         )),
 
-     build_simple_formula_couple('typmen15', EnumCol(function = cl._typmen15,
-        label = u"Type de ménage",
-        entity = 'men',
-                           enum = Enum([u"Personne seule active",
-                                        u"Personne seule inactive",
-                                        u"Familles monoparentales, parent actif",
-                                        u"Familles monoparentales, parent inactif et au moins un enfant actif",
-                                        u"Familles monoparentales, tous inactifs",
-                                        u"Couples sans enfant, 1 actif",
-                                        u"Couples sans enfant, 2 actifs",
-                                        u"Couples sans enfant, tous inactifs",
-                                        u"Couples avec enfant, 1 membre du couple actif",
-                                        u"Couples avec enfant, 2 membres du couple actif",
-                                        u"Couples avec enfant, couple inactif et au moins un enfant actif",
-                                        u"Couples avec enfant, tous inactifs",
-                                        u"Autres ménages, 1 actif",
-                                        u"Autres ménages, 2 actifs ou plus",
-                                        u"Autres ménages, tous inactifs"],
-        start = 1))),
+    build_simple_formula_couple(
+        'typmen15',
+        EnumCol(
+            function = cl._typmen15,
+            label = u"Type de ménage",
+            entity = 'men',
+            enum = Enum(
+                [
+                    u"Personne seule active",
+                    u"Personne seule inactive",
+                    u"Familles monoparentales, parent actif",
+                    u"Familles monoparentales, parent inactif et au moins un enfant actif",
+                    u"Familles monoparentales, tous inactifs",
+                    u"Couples sans enfant, 1 actif",
+                    u"Couples sans enfant, 2 actifs",
+                    u"Couples sans enfant, tous inactifs",
+                    u"Couples avec enfant, 1 membre du couple actif",
+                    u"Couples avec enfant, 2 membres du couple actif",
+                    u"Couples avec enfant, couple inactif et au moins un enfant actif",
+                    u"Couples avec enfant, tous inactifs",
+                    u"Autres ménages, 1 actif",
+                    u"Autres ménages, 2 actifs ou plus",
+                    u"Autres ménages, tous inactifs"
+                    ],
+                start = 1,
+                ),
+            ),
+        ),
 
-     build_simple_formula_couple('decile', EnumCol(function = cm._decile,
-                           entity = 'men',
-                           label = u"Décile de niveau de vie disponible",
-                           enum = Enum([u"Hors champ"
-                                          u"1er décile",
-                                          u"2nd décile",
-                                          u"3e décile",
-                                          u"4e décile",
-                                          u"5e décile",
-                                          u"6e décile",
-                                          u"7e décile",
-                                          u"8e décile",
-                                          u"9e décile",
-                                          u"10e décile"]),
-                           survey_only = True,
-                           )),
+    build_simple_formula_couple(
+        'decile',
+        EnumCol(
+            function = cm._decile,
+            entity = 'men',
+            label = u"Décile de niveau de vie disponible",
+            enum = Enum(
+                [
+                    u"Hors champ"
+                    u"1er décile",
+                    u"2nd décile",
+                    u"3e décile",
+                    u"4e décile",
+                    u"5e décile",
+                    u"6e décile",
+                    u"7e décile",
+                    u"8e décile",
+                    u"9e décile",
+                    u"10e décile"
+                    ]
+                ),
+            survey_only = True,
+            ),
+        ),
 
-     build_simple_formula_couple('decile_net', EnumCol(function = cm._decile_net,
+    build_simple_formula_couple('decile_net', EnumCol(function = cm._decile_net,
                                entity = 'men',
                                label = u"Décile de niveau de vie net",
                                enum = Enum([u"Hors champ"
@@ -2402,7 +2419,7 @@ prestation_by_name = collections.OrderedDict((
                                survey_only = True,
                                )),
 
-     build_simple_formula_couple('pauvre40', EnumCol(function = cm._pauvre40,
+    build_simple_formula_couple('pauvre40', EnumCol(function = cm._pauvre40,
                              entity = 'men',
                              label = u"Pauvreté monétaire au seuil de 40%",
                              enum = Enum([u"Ménage au dessus du seuil de pauvreté à 40%",
@@ -2410,7 +2427,7 @@ prestation_by_name = collections.OrderedDict((
                              survey_only = True,
                              )),
 
-     build_simple_formula_couple('pauvre50', EnumCol(function = cm._pauvre50,
+    build_simple_formula_couple('pauvre50', EnumCol(function = cm._pauvre50,
                              entity = 'men',
                              label = u"Pauvreté monétaire au seuil de 50%",
                              enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
@@ -2418,14 +2435,51 @@ prestation_by_name = collections.OrderedDict((
                              survey_only = True,
                              )),
 
-     build_simple_formula_couple('pauvre60', EnumCol(function = cm._pauvre60,
-                             entity = 'men',
-                             label = u"Pauvreté monétaire au seuil de 60%",
-                             enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
-                                          u"Ménage en dessous du seuil de pauvreté à 50%"]),
-                             survey_only = True,
-                             )),
+    build_simple_formula_couple(
+         'pauvre60',
+         EnumCol(
+             function = cm._pauvre60,
+             entity = 'men',
+             label = u"Pauvreté monétaire au seuil de 60%",
+             enum = Enum(
+                 [
+                     u"Ménage au dessus du seuil de pauvreté à 50%",
+                     u"Ménage en dessous du seuil de pauvreté à 50%"
+                     ],
+                 ),
+             survey_only = True,
+             )
+         ),
 
+    build_simple_formula_couple(
+         'weight_ind',
+         FloatCol(
+             function = cm._weight_ind,
+             entity = 'ind',
+             label = u"Poids de l'individu",
+             survey_only = True,
+             )
+         ),
+
+    build_simple_formula_couple(
+         'weight_foy',
+         FloatCol(
+             function = cm._weight_foy,
+             entity = 'foy',
+             label = u"Poids du foyer",
+             survey_only = True,
+             )
+         ),
+
+    build_simple_formula_couple(
+         'weight_fam',
+         FloatCol(
+             function = cm._weight_fam,
+             entity = 'fam',
+             label = u"Poids de la famille",
+             survey_only = True,
+             )
+         ),
     ############################################################
     # Totaux
     ############################################################
@@ -2520,11 +2574,9 @@ prestation_by_name = collections.OrderedDict((
         entity = 'men')),
     build_simple_formula_couple('check_crds', FloatCol(function = cm._check_crds,
         entity = 'men')),
-
     ############################################################
     # Couverture Maladie Universelle
     ############################################################
-
     build_dated_formula_couple('acs_montant',
                 [
             dict(
@@ -2579,5 +2631,4 @@ prestation_by_name = collections.OrderedDict((
     build_simple_formula_couple('acs', FloatCol(function = cmu._acs,
         label = u"Montant de l'Aide pour une Complémentaire Santé",
         entity = 'fam')),
-
     ))

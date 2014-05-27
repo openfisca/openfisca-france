@@ -31,7 +31,7 @@ from .input_variables.base import QUIFAM, QUIFOY, QUIMEN
 
 
 CHEF = QUIFAM['chef']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+ENFS = [QUIFAM['enf{}'.format(i)] for i in range(1, 10)]
 PART = QUIFAM['part']
 VOUS = QUIFOY['vous']
 
@@ -48,7 +48,6 @@ def mark_weighted_percentiles(a, labels, weights, method, return_quantiles=False
     # labels[i] inserted into spot j if a[j] falls in x-tile i.
     # The number of xtiles requested is inferred from the length of 'labels'.
 
-
     # First method, "vanilla" weights from Wikipedia article.
     if method == 1:
 
@@ -62,20 +61,19 @@ def mark_weighted_percentiles(a, labels, weights, method, return_quantiles=False
         # and it is assumed to be linearly spaced between 0 and 1
         # so 5 labels implies quintiles, for example.
         num_categories = len(labels)
-        breaks = linspace(0, 1, num_categories+1)
+        breaks = linspace(0, 1, num_categories + 1)
 
         # Compute the percentile values at each explicit data point in a.
         cu_weights = cumsum(tmp_weights)
-        p_vals = (1.0/cu_weights[-1])*(cu_weights - 0.5*tmp_weights)
+        p_vals = (1.0 / cu_weights[-1]) * (cu_weights - 0.5 * tmp_weights)
 
         # Set up the output array.
         ret = repeat(0, len(a))
-        if(len(a)<num_categories):
+        if(len(a) < num_categories):
             return ret
 
         # Set up the array for the values at the breakpoints.
         quantiles = []
-
 
         # Find the two indices that bracket the breakpoint percentiles.
         # then do interpolation on the two a_vals for those indices, using
@@ -85,33 +83,34 @@ def mark_weighted_percentiles(a, labels, weights, method, return_quantiles=False
                 i_low = 0
                 i_high = 0
             elif brk >= p_vals[-1]:
-                i_low = N-1
-                i_high = N-1
+                i_low = N - 1
+                i_high = N - 1
             else:
-                for ii in range(N-1):
-                    if (p_vals[ii] <= brk) and (brk < p_vals[ii+1]):
-                        i_low  = ii
+                for ii in range(N - 1):
+                    if (p_vals[ii] <= brk) and (brk < p_vals[ii + 1]):
+                        i_low = ii
                         i_high = ii + 1
 
             if i_low == i_high:
                 v = tmp_a[i_low]
             else:
                 # If there are two brackets, then apply the formula as per Wikipedia.
-                v = tmp_a[i_low] + ((brk-p_vals[i_low])/(p_vals[i_high]-p_vals[i_low]))*(tmp_a[i_high]-tmp_a[i_low])
+                v = (tmp_a[i_low] +
+                    ((brk - p_vals[i_low]) / (p_vals[i_high] - p_vals[i_low])) * (tmp_a[i_high] - tmp_a[i_low]))
 
             # Append the result.
             quantiles.append(v)
 
         # Now that the weighted breakpoints are set, just categorize
         # the elements of a with logical indexing.
-        for i in range(0, len(quantiles)-1):
+        for i in range(0, len(quantiles) - 1):
             lower = quantiles[i]
-            upper = quantiles[i+1]
-            ret[and_(a>=lower, a<upper)] = labels[i]
+            upper = quantiles[i + 1]
+            ret[and_(a >= lower, a < upper)] = labels[i]
 
         #make sure upper and lower indices are marked
-        ret[a<=quantiles[0]] = labels[0]
-        ret[a>=quantiles[-1]] = labels[-1]
+        ret[a <= quantiles[0]] = labels[0]
+        ret[a >= quantiles[-1]] = labels[-1]
 
         return ret
 
@@ -123,20 +122,19 @@ def mark_weighted_percentiles(a, labels, weights, method, return_quantiles=False
         tmp_a = a[sort_indx].copy()
         tmp_weights = weights[sort_indx].copy()
 
-
         num_categories = len(labels)
-        breaks = linspace(0, 1, num_categories+1)
+        breaks = linspace(0, 1, num_categories + 1)
 
         cu_weights = cumsum(tmp_weights)
 
         # Formula from stats.stackexchange.com post.
         s_vals = [0.0]
-        for ii in range(1,N):
-            s_vals.append(ii*tmp_weights[ii] + (N-1)*cu_weights[ii-1])
+        for ii in range(1, N):
+            s_vals.append(ii * tmp_weights[ii] + (N - 1) * cu_weights[ii - 1])
         s_vals = asarray(s_vals)
 
         # Normalized s_vals for comapring with the breakpoint.
-        norm_s_vals = (1.0/s_vals[-1])*s_vals
+        norm_s_vals = (1.0 / s_vals[-1]) * s_vals
 
         # Set up the output variable.
         ret = repeat(0, N)
@@ -146,7 +144,6 @@ def mark_weighted_percentiles(a, labels, weights, method, return_quantiles=False
         # Set up space for the values at the breakpoints.
         quantiles = []
 
-
         # Find the two indices that bracket the breakpoint percentiles.
         # then do interpolation on the two a_vals for those indices, using
         # interp-weights that involve the cumulative sum of weights.
@@ -155,31 +152,33 @@ def mark_weighted_percentiles(a, labels, weights, method, return_quantiles=False
                 i_low = 0
                 i_high = 0
             elif brk >= norm_s_vals[-1]:
-                i_low = N-1
-                i_high = N-1
+                i_low = N - 1
+                i_high = N - 1
             else:
-                for ii in range(N-1):
-                    if (norm_s_vals[ii] <= brk) and (brk < norm_s_vals[ii+1]):
-                        i_low  = ii
+                for ii in range(N - 1):
+                    if (norm_s_vals[ii] <= brk) and (brk < norm_s_vals[ii + 1]):
+                        i_low = ii
                         i_high = ii + 1
 
             if i_low == i_high:
                 v = tmp_a[i_low]
             else:
                 # Interpolate as in the method 1 method, but using the s_vals instead.
-                v = tmp_a[i_low] + (((brk*s_vals[-1])-s_vals[i_low])/(s_vals[i_high]-s_vals[i_low]))*(tmp_a[i_high]-tmp_a[i_low])
+                v = (tmp_a[i_low] +
+                    (((brk * s_vals[-1]) - s_vals[i_low]) /
+                        (s_vals[i_high] - s_vals[i_low])) * (tmp_a[i_high] - tmp_a[i_low]))
             quantiles.append(v)
 
         # Now that the weighted breakpoints are set, just categorize
         # the elements of a as usual.
-        for i in range(0, len(quantiles)-1):
+        for i in range(0, len(quantiles) - 1):
             lower = quantiles[i]
-            upper = quantiles[i+1]
+            upper = quantiles[i + 1]
             ret[and_(a >= lower, a < upper)] = labels[i]
 
         #make sure upper and lower indices are marked
-        ret[a<=quantiles[0]] = labels[0]
-        ret[a>=quantiles[-1]] = labels[-1]
+        ret[a <= quantiles[0]] = labels[0]
+        ret[a >= quantiles[-1]] = labels[-1]
 
         if return_quantiles:
             return ret, quantiles
@@ -299,17 +298,20 @@ def _rev_trav(rev_sal, rag, ric, rnc):
     '''
     return rev_sal + rag + ric + rnc
 
+
 def _pen(chonet, rstnet, alr, alv, rto):
     '''
     Pensions
     '''
     return chonet + rstnet + alr + alv + rto
 
+
 def _cotsoc_bar(csg_cap_bar, prelsoc_cap_bar, crds_cap_bar):
     '''
     Cotisations sociales sur les revenus du capital imposés au barème
     '''
     return csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
+
 
 def _cotsoc_lib(csg_cap_lib, prelsoc_cap_lib, crds_cap_lib):
     '''
@@ -336,11 +338,13 @@ def _psoc(pfam, mini, logt):
     '''
     return pfam + mini + logt
 
+
 def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     '''
     Prestations familiales
     '''
     return af + cf + ars + aeeh + paje + asf + crds_pfam
+
 
 def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass_holder, psa, majo_rsa):
     '''
@@ -349,6 +353,7 @@ def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass_holder, psa, majo_rsa)
     ass = self.sum_by_entity(ass_holder)
 
     return aspa + aah + caah + asi + rsa + aefa + api + ass + psa + majo_rsa
+
 
 def _logt(apl, als, alf, crds_lgtm):
     '''
@@ -368,7 +373,7 @@ def _impo(self, irpp_holder, tax_hab):
 
 
 def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar, crds_cap_lib, crds_pfam_holder,
-        crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
+          crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
     '''
     Contribution au remboursement de la dette sociale
     '''
@@ -385,7 +390,7 @@ def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar, crds_c
 
 
 def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_holder, csg_cap_lib, csg_cap_bar,
-        csg_pv_mo_holder, csg_pv_immo_holder):
+         csg_pv_mo_holder, csg_pv_immo_holder):
     """
     Contribution sociale généralisée
     """
@@ -405,7 +410,7 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
 
 
 def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo_holder,
-        prelsoc_pv_immo_holder):
+                 prelsoc_pv_immo_holder):
     """
     Prélèvements sociaux sur les revenus du capital
     """
@@ -499,6 +504,7 @@ def _pauvre50(nivvie, champm, wprm):
     threshold = .5 * values[1]
     return (nivvie <= threshold) * champm
 
+
 def _pauvre60(nivvie, champm, wprm):
     '''
     Indicatrice de pauvreté à 60% du niveau de vie median
@@ -510,3 +516,14 @@ def _pauvre60(nivvie, champm, wprm):
     threshold = .6 * values[1]
     return (nivvie <= threshold) * champm
 
+
+def _weight_ind(self, wprm_holder):
+    return self.cast_from_entity_to_roles(wprm_holder)
+
+
+def _weight_fam(self, weight_ind_holder):
+    return self.filter_role(weight_ind_holder, role = CHEF)
+
+
+def _weight_foy(self, weight_ind_holder):
+    return self.filter_role(weight_ind_holder, role = VOUS)
