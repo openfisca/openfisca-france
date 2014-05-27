@@ -23,6 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import collections
+from datetime import date
 
 
 from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
@@ -112,6 +113,10 @@ column_by_name = collections.OrderedDict((
     build_column_couple('zthabm', IntCol(entity = 'men')),  # TODO: Devrait être renommée tax_hab
 
     build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
+
+    build_column_couple('elig_creimp_jeunes', BoolCol(entity = "ind", label = u"Éligible au crédit d'impôt jeunes",
+                        start = date(2005, 1, 1),
+                        end = date(2008, 1, 1))), #Sert à savoir si son secteur d'activité permet au jeune de bénéficier du crédit impôts jeunes
 
     # ('tax_hab', IntCol()),
 

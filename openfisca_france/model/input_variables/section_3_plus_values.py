@@ -148,7 +148,8 @@ column_by_name = collections.OrderedDict((
                      cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
 
     build_column_couple('f3vv_end_2010', IntCol(entity = 'foy',
-                     end = datetime.date(2009, 12, 31),  # TODO: check when it starts
+                     start = datetime.date(2010, 1, 1),
+                     end = datetime.date(2010, 12, 31),
                      label = u"Pertes ouvrant droit au crédit d’impôt de 19 % ",
                      val_type = "monetary",
                      cerfa_field = u'3VV')),

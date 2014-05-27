@@ -23,16 +23,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#TODO: reduce margin error from 2 to 0 by coding the floor and round rules
 
 """Compare income taxes computed by finances.gouv.fr web simulator with OpenFisca results."""
 
 
 import argparse
 import collections
-import copy
-import datetime
+import cStringIO
+import json
 import logging
-import math
 import os
 import sys
 import urllib
@@ -53,36 +53,24 @@ def define_scenario(year):
     scenario.init_single_entity(
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1970,
+            birth = 1973,
             cadre = True,
-            sali = 24000,
+            sali = 150000,
             statmarit = u'Célibataire',
-#            rsti=1000,
-#            fra=1000,
             ),
         enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                birth = '2002-02-01',
-                ),
-            dict(
-                activite = u'Étudiant, élève',
-                birth = '2000-04-17',
-#                ppe_tp_sa=1,
-                ),
+#            dict(
+#                activite = u'Étudiant, élève',
+#                birth = '2002-02-01',
+#                ),
+#            dict(
+#                activite = u'Étudiant, élève',
+#                birth = '2000-04-17',
+#                ),
             ],
-        foyer_fiscal = dict(
-#                f7is = 1000,
-#                nbN = 5,
-#                caseT = 0,
-#                caseF = 5,
-#                f2dc=5000,
-#                f2ca=2000,
-#                f3vg=1000,
-#                f4ba=500,
-#                f6gu=800,
-#                f7uh=2000,
-#                f7wj=300,
+        foyer_fiscal = dict( #TODO: pb avec f2ck
+                f7xq = 30000,
+                f7xi = 30000
             ),
         year = year,
         )
@@ -91,14 +79,21 @@ def define_scenario(year):
     
 
 def main():
-    year = 2013
-
     parser = argparse.ArgumentParser(description = __doc__)
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+
+    year = 2010
     scenario = define_scenario(year)
-    foyer_fiscal = copy.deepcopy(scenario.test_case['foyers_fiscaux'].values()[0])
+    compare(scenario, tested = True)
+    return 0
+
+
+def compare(scenario, tested = False, fichier = ''):
+    year = scenario.year
+    totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
+
     impots_arguments = transform_scenario_to_impots_arguments(scenario)
     simulation = scenario.new_simulation(debug = True)
 
@@ -107,103 +102,108 @@ def main():
         })
 
     response = urllib2.urlopen(request, urllib.urlencode(impots_arguments))
-
-    page_doc = etree.parse(response, etree.HTMLParser())
+    response_html = response.read()
+    if 'Erreur' in response_html:
+        raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
+    page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
     fields = collections.OrderedDict()
-    for element in page_doc.xpath('//input[@type="hidden"][@name]'):
-        tag = element.tag.lower()
-        parent = element.getparent()
-        parent_tag = parent.tag.lower()
-        if parent_tag == 'table':
-            tr = parent[parent.index(element) - 1]
-            assert tr.tag.lower() == 'tr', tr
-        else:
-            assert parent_tag == 'tr'
-            tr = parent
-        while True:
-            name = etree.tostring(tr[1], encoding = unicode, method = 'text').strip().rstrip(u'*').rstrip()
-            if name:
-                break
-            table = tr.getparent()
-            tr = table[table.index(tr) - 1]
+    names = {   'CIGE': u'Crédit aides aux personnes',
+                'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
+                'IAVIM': u'Impôt avant imputations',
+                'IDEC': u'Décote',
+                'IDRS2': u'Droits simples',
+                'IINET': u'Montant net à payer',
+                'IINETIR': u'Impôt sur le revenu net',
+                'IREST': u'Montant net à restituer',
+                'IRESTIR': u'Impôt sur le revenu net',
+                'ITRED': u'Total des réductions d\'impôt',
+                'I2DH': u'Prélèvement libératoire de 7,5%',
+                'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
+                'NBPT': u'Nombre de parts',
+                'NBP': u'Nombre de parts',
+                'PERPPLAFTV': u'Plafond de déduction pour les revenus 2014 au titre de l\'épargne retraite, pour déclarant 1',
+                'PPETOT': u'Prime pour l\'emploi',
+                'REVKIRE': u'Revenu fiscal de référence',
+                'RNICOL': u'Revenu net imposable ou déficit à reporter',
+                'RRBG': u'Revenu brut global ou déficit',
+                'TOTPAC': u'Nombre de personnes à charge',
+                'TXMARJ': u'Taux marginal d\'imposition',
+                'TXMOYIMP': u'Taux moyen d\'imposition',
+                'IRETS' : u'?',#TODO
+                'RNI': u'?',#TODO
+                'CIRCM': u'?',#TODO (f2dc)
+                'BCSG': u'?',#TODO (f2dc)
+                'BRDS': u'?',#TODO (f2dc)
+                'NAPCS': u'?',#TODO (f2dc)
+                'NAPRD': u'?',#TODO (f2dc)
+                'NAPPS': u'?',#TODO (f2dc)
+                'CICA': u'?',#TODO (f4tq)
+                'CIHABPRIN': u'?',#TODO (f7vy)
+                'CIPRETUD': u'?',#TODO (f7uk)
+                'BPRS': u'?',#TODO (f2ch)
+                'CIDEVDUR': u'?',#TODO (f7wf)
+                'CIADCRE': u'?',#TODO (f7dg)      
+                'RFOR': u'?',#TODO (f7up)    
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)  
+                'RTOURNEUF': u'?', #TODO (f7xc)
+                'RTOUR': u'?',#TODO (f7xd)
+                'RTOURTRA': u'?',#TODO (f7xc) 
+                'RTOURHOT': u'?',#TODO (f7xc) 
+                'RTOURES': u'?',#TODO (f7xc) 
+            }
+    for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
         code = element.get('name')
-        fields[code] = dict(
-            code = code,
-            name = name,
-            value = float(element.get('value').strip()),
-            )
-    import json
-    for code, field in fields.iteritems():
-        if code == 'IAVIM':
-            # Impôt avant imputations
-            openfisca_value = simulation.calculate('iai')
-        elif code == 'IDEC':
-            # Décote
-            openfisca_value = simulation.calculate('decote')
-        elif code == 'IDRS2':
-            # Droits simples
-            openfisca_value = simulation.calculate('ir_plaf_qf')
-        elif code == 'IINET':
-            # Montant net à payer
-            continue
-        elif code == 'IINETIR':
-            # Impôt sur le revenu net
-            openfisca_value = simulation.calculate('irpp')
-        elif code == 'IREST':
-            # Montant net à restituer
-            continue
-        elif code == 'ITRED':
-            # Total des réductions d'impôt
-            openfisca_value = simulation.calculate('reductions')
-            continue
-        elif code == 'NAPCRP':
-            # Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d'activité et de remplacement
-            # de source étrangère)
-            # TODO
-            continue
-        elif code == 'NBPT':
-            # Nombre de parts
-            openfisca_value = simulation.calculate('nbptr')
-        elif code == 'PERPPLAFTV':
-            # Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1
-            # TODO
-            continue
-        elif code == 'PPETOT':
-            # Prime pour l'emploi
-            openfisca_value = simulation.calculate('ppe')
-        elif code == 'REVKIRE':
-            # Revenu fiscal de référence
-            openfisca_value = simulation.calculate('rfr')
-        elif code == 'RNICOL':
-            # Revenu net imposable ou déficit à reporter
-            openfisca_value = simulation.calculate('rni')
-        elif code == 'RRBG':
-            # Revenu brut global ou déficit
-            openfisca_value = simulation.calculate('rbg')
-        elif code == 'TOTPAC':
-            # Nombre de personnes à charge
-            openfisca_value = len(foyer_fiscal.get('personnes_a_charge') or [])
-        elif code == 'TXMARJ':
-            # Taux marginal d'imposition (revenus soumis au barème)
-            # TODO
-            continue
-        elif code == 'TXMOYIMP':
-            # Taux moyen d'imposition
-            # TODO
-            continue
-        else:
-            raise KeyError(u'Unexpected code {} = {} ({})'.format(code, field['value'], field['name']).encode('utf-8'))
-        openfisca_simple_value = openfisca_value
-        if isinstance(openfisca_simple_value, np.ndarray):
-            assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
-                field['name'], field['value'], openfisca_value).encode('utf-8')
-            openfisca_simple_value = openfisca_simple_value[0]
-        openfisca_simple_value = abs(openfisca_simple_value)
-        assert abs(field['value'] - openfisca_simple_value) <= 1, \
-            u'For {} ({}). Expected: {}. Got: {} ({}). Fields: {}'.format(code, field['name'], field['value'],
-                openfisca_simple_value, openfisca_value, json.dumps(fields, encoding = 'utf-8', ensure_ascii = False, indent = 2)).encode('utf-8')
+        fields[code] = {
+            'code' : code,
+            'name' : names[code] if (code in names) else u'nom inconnu',
+            'value' : float(element.get('value').replace(" ","")),
+            } 
+    if tested:
+        for code, field in fields.iteritems():
+            compare_variable(code,field,simulation,totpac, year, fichier)
+#            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+#    print simulation.calculate('reductions')
+#    print fields['ITRED']['value']
+   
+    return fields
 
-    return 0
+
+def compare_variable(code,field,simulation,totpac, year, fichier = ''):
+    for a in range(0,1):
+            if code == 'IAVIM':
+                openfisca_value = simulation.calculate('iai')
+            elif code == 'IDEC':
+                openfisca_value = simulation.calculate('decote')
+            elif code == 'IDRS2':
+                openfisca_value = simulation.calculate('ir_plaf_qf')
+            elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
+                openfisca_value = -simulation.calculate('irpp')
+            elif code == 'ITRED':
+                openfisca_value = simulation.calculate('reductions')
+            elif code == 'NBPT' or code == 'NBP':
+                openfisca_value = simulation.calculate('nbptr')
+            elif code == 'PPETOT':
+                openfisca_value = simulation.calculate('ppe')
+            elif code == 'REVKIRE':
+                openfisca_value = simulation.calculate('rfr')
+            elif code == 'RNICOL':
+                openfisca_value = simulation.calculate('rni')
+            elif code == 'RRBG':
+                openfisca_value = simulation.calculate('rbg')
+            elif code == 'TOTPAC':
+                openfisca_value = len(totpac or [])
+            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RFOR', 'RNI', 'RTOUR', 'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RTOURTRA', 'TXMARJ', 'TXMOYIMP'):
+                continue 
+            else:
+                print 'Code inconnu :', code
+                continue
+            openfisca_simple_value = openfisca_value
+            if isinstance(openfisca_simple_value, np.ndarray):
+                assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
+                    field['name'], field['value'], openfisca_value).encode('utf-8')
+                openfisca_simple_value = openfisca_simple_value[0]
+            if not abs(field['value'] - openfisca_simple_value) < 2:
+                print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], field['value'], openfisca_simple_value).encode('utf-8')
 
 
 def transform_scenario_to_impots_arguments(scenario):
@@ -272,16 +272,13 @@ def transform_scenario_to_impots_arguments(scenario):
             impots_arguments['0BT'] = '1'
 
         for column_code, value in foyer_fiscal.iteritems():
-            if column_code in (
-                    ):
-                continue
             column = tax_benefit_system.column_by_name[column_code]
             cerfa_field = column.cerfa_field
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
-            impots_arguments[cerfa_field] = str(value)
-    import json
-    print json.dumps(impots_arguments, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+            impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else str(value)
 
+#    print json.dumps(impots_arguments, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+    
     return impots_arguments
 
 

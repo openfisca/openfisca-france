@@ -310,6 +310,11 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'7WL')),
 
+    build_column_couple('f7wr', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques",
+                    val_type = "monetary",
+                    cerfa_field = u'7WR')),
+
     # Investissements dans les DOM-TOM dans le cadre d'une entrepise
     build_column_couple('f7ur', IntCol(entity = 'foy',
                     label = u"Investissements réalisés en n-1, total réduction d’impôt",
@@ -417,7 +422,37 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7rb', IntCol(entity = 'foy',
                     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
                     val_type = "monetary",
-                    cerfa_field = u'7RB')),  # 2012 et 2013 ok
+                    cerfa_field = u'7RB')),
+
+    build_column_couple('f7rc', IntCol(entity = 'foy',
+                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                    val_type = "monetary",
+                    cerfa_field = u'7RC')),
+
+    build_column_couple('f7rd', IntCol(entity = 'foy',
+                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                    val_type = "monetary",
+                    cerfa_field = u'7RD')),
+
+    build_column_couple('f7re', IntCol(entity = 'foy',
+                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                    val_type = "monetary",
+                    cerfa_field = u'7RE')), 
+
+    build_column_couple('f7rf', IntCol(entity = 'foy',
+                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                    val_type = "monetary",
+                    cerfa_field = u'7RF')),
+
+    build_column_couple('f7sx', IntCol(entity = 'foy',
+                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                    val_type = "monetary",
+                    cerfa_field = u'7SX')),
+
+    build_column_couple('f7sy', IntCol(entity = 'foy',
+                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                    val_type = "monetary",
+                    cerfa_field = u'7SY')), # 2012 et 2013 ok
 
 
 # TOOD: f7gw et f7gx ne se rapporte pas a de l'assurance vie en 2013
@@ -437,6 +472,20 @@ column_by_name = collections.OrderedDict((
                     start = date(2013, 1, 1))),
 
     # Investissements locatifs dans le secteur de touristique
+    build_column_couple('f7xa', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans un village résidentiel de tourisme",
+                    val_type = "monetary",
+                    cerfa_field = u'7XA',
+                    start = date(2011, 1, 1),
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7xb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée",
+                    val_type = "monetary",
+                    cerfa_field = u'7XB',
+                    start = date(2011, 1, 1),
+                    end = date(2012, 12, 31))),
+
     build_column_couple('f7xc', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1",
                     val_type = "monetary",
@@ -508,6 +557,33 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'7XO')),
 
+    build_column_couple('f7xp', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XP')),
+
+    build_column_couple('f7xq', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XQ')),
+
+    build_column_couple('f7xr', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XR')),
+
+    build_column_couple('f7xx', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme",
+                    val_type = "monetary",
+                    cerfa_field = u'7XX',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7xz', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans une résidence de tourisme classée ou un meublé tourisme",
+                    val_type = "monetary",
+                    cerfa_field = u'7XZ',
+                    start = date(2012, 1, 1))),
+
     # Souscriptions au capital des PME
     build_column_couple('f7cf', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion",
@@ -532,7 +608,12 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7cc', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1",
                     val_type = "monetary",
-                    cerfa_field = u'7CC')),  # TODO: nouvelle variable à intégrer dans OF
+                    cerfa_field = u'7CC')),
+
+    build_column_couple('f7cq', IntCol(entity = 'foy',
+                    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1pour les start-up",
+                    val_type = "monetary",
+                    cerfa_field = u'7CQ')),
 
     build_column_couple('f7cu', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",
@@ -647,7 +728,23 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7ka', IntCol(entity = 'foy',
                     label = u"Dépenses de protection du patrimoine naturel",
                     val_type = "monetary",
-                    cerfa_field = u'7KA')),
+                    cerfa_field = u'7KA',
+                    start = date(2010, 1, 1))),
+    build_column_couple('f7kb', IntCol(entity = 'foy',
+                    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+                    val_type = "monetary",
+                    cerfa_field = u'7KB',
+                    start = date(2011, 1, 1))),
+    build_column_couple('f7kc', IntCol(entity = 'foy',
+                    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+                    val_type = "monetary",
+                    cerfa_field = u'7KC',
+                    start = date(2012, 1, 1))),
+    build_column_couple('f7kd', IntCol(entity = 'foy',
+                    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+                    val_type = "monetary",
+                    cerfa_field = u'7KD',
+                    start = date(2013, 1, 1))),
 
     # Intérêts des prêts à la consommation (case UH)),
     # build_column_couple('f7uh', IntCol(entity = 'foy',
@@ -667,6 +764,51 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements forestiers: acquisition",
                     val_type = "monetary",
                     cerfa_field = u'7UN')),
+
+    build_column_couple('f7ul', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7UL')),
+
+    build_column_couple('f7uu', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7UU')),
+
+    build_column_couple('f7uv', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7UV')),
+
+    build_column_couple('f7uw', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7UW')),
+
+    build_column_couple('f7th', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7TH')),
+
+    build_column_couple('f7ux', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7UX')),
+
+    build_column_couple('f7tg', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7TG')),
+
+    build_column_couple('f7tf', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7TF')),
+
+    build_column_couple('f7ut', IntCol(entity = 'foy',
+                    label = u"Investissements forestiers",
+                    val_type = "monetary",
+                    cerfa_field = u'7UT')),
 
     # Intérêts pour paiement différé accordé aux agriculteurs
     build_column_couple('f7um', IntCol(entity = 'foy',
@@ -895,27 +1037,27 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f1ar', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1AR',
-                    end = date(2012, 12, 1))),  # TODO: vérifier <=2012
+                    end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
     build_column_couple('f1br', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1BR',
-                    end = date(2012, 12, 1))),  # TODO: vérifier <=2012
+                    end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
     build_column_couple('f1cr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1CR',
-                    end = date(2012, 12, 1))),  # TODO: vérifier <=2012
+                    end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
     build_column_couple('f1dr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1DR',
-                    end = date(2012, 12, 1))),  # TODO: vérifier <=2012
+                    end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
     build_column_couple('f1er', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité",
                     cerfa_field = u'1ER',
-                    end = date(2012, 12, 1))),  # TODO: vérifier <=2012
+                    end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
     # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
     build_column_couple('f4tq', IntCol(entity = 'foy',
@@ -940,7 +1082,44 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'7SI')),
 
+    build_column_couple('f7te', IntCol(entity = 'foy',
+                    label = u"Dépenses d'investissement forestier",
+                    val_type = "monetary",
+                    cerfa_field = u'7TE')),
 
+    build_column_couple('f7tu', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TU')),
 
+    build_column_couple('f7tt', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TT')),
+
+    build_column_couple('f7tv', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TV')),
+
+    build_column_couple('f7tx', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TX')),
+
+    build_column_couple('f7ty', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TY')),
+
+    build_column_couple('f7tz', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TZ')),
+
+    build_column_couple('f7tw', IntCol(entity = 'foy',
+                    label = u"Dépenses de travaux dans l'habitation principale",
+                    val_type = "monetary",
+                    cerfa_field = u'7TW')),
 
     ))
