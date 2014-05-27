@@ -3264,13 +3264,31 @@
       </NODE>
       <NODE code="scelli" description="Investissements locatifs neufs: dispositif SCELLIER">
         <CODE code="taux1" description="Taux 1" format="percent">
-          <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
+          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
         <CODE code="taux2" description="Taux 2" format="percent">
-          <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.40" />
+          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.40" />
+        </CODE>
+        <CODE code="taux13" description="Taux 13%" format="percent">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.13" />
+        </CODE>
+        <CODE code="taux22" description="Taux 22%" format="percent">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.22" />
+        </CODE>
+        <CODE code="taux15" description="Taux 15%" format="percent">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.15" />
+        </CODE>
+        <CODE code="taux36" description="Taux 36%" format="percent">
+          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.36" />
+        </CODE>
+        <CODE code="taux6" description="Taux 6%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.06" />
+        </CODE>
+        <CODE code="taux24" description="Taux 24%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" />
         </CODE>
         <CODE code="max" description="Plafond" format="integer" type="monetary">
-          <VALUE deb="2009-01-01" fin="2010-12-31" valeur="300000" />
+          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="300000" />
         </CODE>
       </NODE>
       <NODE code="locmeu" description="Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences (cases 7IJ à 7IS">

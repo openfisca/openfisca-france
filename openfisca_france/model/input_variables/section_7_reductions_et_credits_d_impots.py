@@ -22,7 +22,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+#TODO: add start and end dates
 import collections
 from datetime import date
 
@@ -454,13 +454,6 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'7SY')), # 2012 et 2013 ok
 
-
-# TOOD: f7gw et f7gx ne se rapporte pas a de l'assurance vie en 2013
-    # Assurance-vie
-#     build_column_couple('f7gw', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GW', end = date(2011,12,31))),  # TODO: cf pour <=2011
-#     build_column_couple('f7gx', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GX', end = date(2011,12,31))),  # TODO: cf pour <=2011
-    # build_column_couple('f7gy', IntCol()), existe ailleurs (n'existe pas en 2013 et 2012)
-
     build_column_couple('f7gw', IntCol(entity = 'foy',
                     label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GW',
@@ -570,7 +563,13 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7xr', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
-                    cerfa_field = u'7XR')),
+cerfa_field = u'7XR')),
+
+    build_column_couple('f7xv', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7XV',
+                    start = date(2012, 1, 1))),                    
 
     build_column_couple('f7xx', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme",
@@ -584,6 +583,18 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7XZ',
                     start = date(2012, 1, 1))),
 
+    build_column_couple('f7uy', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7UY',
+                    start = date(2013, 1, 1))),        
+
+    build_column_couple('f7uz', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
+                    val_type = "monetary",
+                    cerfa_field = u'7UZ',
+                    start = date(2013, 1, 1))),    
+    
     # Souscriptions au capital des PME
     build_column_couple('f7cf', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion",
@@ -621,12 +632,6 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7CU')),
 
 # TODO: en 2013 et 2012 plus de sofipêche (pourtant présent dans param à ces dates...), case 7gs réutilisée
-    # Souscription au capital d’une SOFIPECHE
-#     build_column_couple('f7gs', IntCol(entity = 'foy',
-#                     label = u"Souscription au capital d’une SOFIPECHE",
-#                     val_type = "monetary",
-#                     cerfa_field = u'7GS',
-#                     end = date(2011,12,31))),
 
     build_column_couple('f7gs', IntCol(entity = 'foy',
                     label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
@@ -848,19 +853,415 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7HM')),
 
     build_column_couple('f7hr', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 (métropole et DOM ne respectant pas les plafonds): report de 1/9 de l'investissement",
+                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques",
                     val_type = "monetary",
                     cerfa_field = u'7HR')),
 
     build_column_couple('f7hs', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM et respectant les plafonds: report de 1/9 de l'investissement",
+                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques",
                     val_type = "monetary",
                     cerfa_field = u'7HS')),
 
     build_column_couple('f7la', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: report du solde de réduction d'impôt non encore imputé",
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2009",
                     val_type = "monetary",
                     cerfa_field = u'7LA')),
+
+    build_column_couple('f7lb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7LB',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7lc', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7LC',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ld', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7LD',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7le', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7LE',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7lf', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7LF',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7ls', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7LS',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7lm', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7LM',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7lz', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7LZ',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7mg', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7MG',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7na', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7NA',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, ",
+                    val_type = "monetary",
+                    cerfa_field = u'7NB',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nc', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7NC',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nd', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7ND',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ne', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7NE',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nf', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, ",
+                    val_type = "monetary",
+                    cerfa_field = u'7NF',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ng', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, ",
+                    val_type = "monetary",
+                    cerfa_field = u'7NG',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nh', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7NH',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ni', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7NI',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nj', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7NJ',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nk', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7NK',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nl', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7NL',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nm', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7NM',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nn', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7NN',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7no', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7NO',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7np', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7NP',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nq', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7NQ',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nr', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7NR',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ns', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7NS',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7nt', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7NT',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7hv', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole",
+                    val_type = "monetary",
+                    cerfa_field = u'7HV',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7hw', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM",
+                    val_type = "monetary",
+                    cerfa_field = u'7HW',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7hx', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7HX',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7hz', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d'achat avant le 1.1.2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7HZ',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ht', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques",
+                    val_type = "monetary",
+                    cerfa_field = u'7HT',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7hu', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques",
+                    val_type = "monetary",
+                    cerfa_field = u'7HU',
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ha', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7HA',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7hb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011, avec promesse d'achat en 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7HB',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7hg', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7HG',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7hh', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna avec promesse d'achat en 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7HH',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7hd', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM",
+                    val_type = "monetary",
+                    cerfa_field = u'7HD',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7he', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d'achat avant le 1.1.2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7HE',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7hf', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, Investissements réalisés en 2009 en métropole et dans les DOM-COM",
+                    val_type = "monetary",
+                    cerfa_field = u'7HF',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7ja', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JA',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JB',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jd', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JD',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7je', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, BBC ",
+                    val_type = "monetary",
+                    cerfa_field = u'7JE',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jf', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JF',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jg', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JG',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jh', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JH',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jj', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7JJ',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jk', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7JK',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jl', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7JL',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jm', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7JM',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jn', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7JN',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jo', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7JO',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jp', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7JP',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jq', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7JQ',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7jr', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7JR',
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7gj', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7GJ',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7gk', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7GK',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7gl', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7GL',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7gp', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2010s",
+                    val_type = "monetary",
+                    cerfa_field = u'7GP',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7fa', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7FA',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7fb', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, non-BBC",
+                    val_type = "monetary",
+                    cerfa_field = u'7FB',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7fc', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                    val_type = "monetary",
+                    cerfa_field = u'7FC',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7fd', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna",
+                    val_type = "monetary",
+                    cerfa_field = u'7FD',
+                    start = date(2013, 1, 1))),
 
     # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
     build_column_couple('f7ij', IntCol(entity = 'foy',
@@ -894,11 +1295,6 @@ column_by_name = collections.OrderedDict((
 # """
 # réutilisation de cases en 2013
 # """
-    # build_column_couple('f7gt', IntCol(entity = 'foy',
-    #                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7GT',
-    #                 end = date(2012, 12, 1))),  # vérif <=2012
 
     build_column_couple('f7gt', IntCol(entity = 'foy',
                     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010",
@@ -906,23 +1302,11 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7GT',
                     start = date(2013, 1, 1))),  # vérif <=2012
 
-    # build_column_couple('f7gu', IntCol(entity = 'foy',
-    #                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7GU',
-    #                 end = date(2012, 12, 1))),  # vérif <=2012
-
     build_column_couple('f7gu', IntCol(entity = 'foy',
                     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
                     val_type = "monetary",
                     cerfa_field = u'7GU',
                     start = date(2013, 1, 1))),  # vérif <=2012
-
-    # build_column_couple('f7gv', IntCol(entity = 'foy',
-    #                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7GV',
-    #                 end = date(2012, 12, 1))),  # vérif <=2012
 
     build_column_couple('f7gv', IntCol(entity = 'foy',
                     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",

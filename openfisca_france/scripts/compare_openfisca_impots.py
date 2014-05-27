@@ -55,7 +55,7 @@ def define_scenario(year):
             activite = u'Actif occupé',
             birth = 1973,
             cadre = True,
-            sali = 150000,
+            sali = 90000,
             statmarit = u'Célibataire',
             ),
         enfants = [
@@ -69,8 +69,17 @@ def define_scenario(year):
 #                ),
             ],
         foyer_fiscal = dict( #TODO: pb avec f2ck
-                f7xq = 30000,
-                f7xi = 30000
+                f7nf = 80000,
+                f7hk = 80000,
+                f7hl = 80000,
+                f7hv = 80000,
+                f7hu = 80000,
+                f7hr = 80000,
+                f7jk = 80000,
+                f7la = 80000,
+                f7ha = 80000,
+                f7gj = 80000,
+                f7gs = 80000,
             ),
         year = year,
         )
@@ -84,7 +93,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2010
+    year = 2013
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
@@ -144,7 +153,11 @@ def compare(scenario, tested = False, fichier = ''):
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg)      
                 'RFOR': u'?',#TODO (f7up)    
-                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)  
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+                'RCEL': u'?',#TODO (scellier)
+                'RCELHJK': u'?',#TODO (scellier)
+                'RCELREPHR': u'?',#TODO (scellier)
+                'RCELRREDLA': u'?',#TODO (scellier)
                 'RTOURNEUF': u'?', #TODO (f7xc)
                 'RTOUR': u'?',#TODO (f7xd)
                 'RTOURTRA': u'?',#TODO (f7xc) 
@@ -163,7 +176,7 @@ def compare(scenario, tested = False, fichier = ''):
             compare_variable(code,field,simulation,totpac, year, fichier)
 #            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 #    print simulation.calculate('reductions')
-#    print fields['ITRED']['value']
+    print fields['ITRED']['value']
    
     return fields
 
@@ -192,7 +205,7 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                 openfisca_value = simulation.calculate('rbg')
             elif code == 'TOTPAC':
                 openfisca_value = len(totpac or [])
-            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RFOR', 'RNI', 'RTOUR', 'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RTOURTRA', 'TXMARJ', 'TXMOYIMP'):
+            elif code in ('BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CIDEVDUR', 'CIGE', 'CIHABPRIN', 'CIPRETUD', 'CIRCM', 'CIRELANCE', 'I2DH', 'IREST', 'IRESTIR', 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RCEL', 'RCELHJK', 'RCELREPHR', 'RCELRREDLA', 'RFOR', 'RNI', 'RTOUR', 'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RTOURTRA', 'TXMARJ', 'TXMOYIMP'):
                 continue 
             else:
                 print 'Code inconnu :', code

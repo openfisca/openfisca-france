@@ -23,98 +23,69 @@ CONJ = QUIFOY['conj']
 PAC1 = QUIFOY['pac1']
 
 
-def _reductions_2002(ip_net, donapd, dfppce, saldom, cotsyn, prcomp, spfcpi, cappme, intemp,
-                invfor, garext, daepad, rsceha, assvie, invrev, domlog, adhcga, ecpess, doment):
+def _reductions_2002(ip_net, donapd, dfppce, saldom, cotsyn, prcomp, spfcpi, cappme, intemp, invfor, garext, daepad, rsceha, assvie, invrev, domlog, adhcga, ecpess, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
     '''
-    total_reductions = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
-                invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + ecpess + doment)
+    total_reductions = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp + invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + ecpess + doment)
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2003_2004(ip_net, donapd, dfppce, saldom, cotsyn, prcomp, spfcpi, cappme, intemp,
-                repsoc, invfor, garext, daepad, rsceha, assvie, invrev, domlog, adhcga, ecpess, doment):
+def _reductions_2003_2004(ip_net, donapd, dfppce, saldom, cotsyn, prcomp, spfcpi, cappme, intemp, repsoc, invfor, garext, daepad, rsceha, assvie, invrev, domlog, adhcga, ecpess, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
     '''
-    total_reductions = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp +
-                repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + ecpess + doment)
+    total_reductions = (donapd + dfppce + saldom + cotsyn + prcomp + spfcpi + cappme + intemp + repsoc + invfor + garext + daepad + rsceha + assvie + invrev + domlog + adhcga + ecpess + doment)
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2005(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, cappme,
-                intcon, repsoc, invfor, daepad, rsceha, invlst, domlog, adhcga, ecpess, doment):
+def _reductions_2005(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, cappme, intcon, repsoc, invfor, daepad, rsceha, invlst, domlog, adhcga, ecpess, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
     '''
-    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme +
-                intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga + ecpess + doment)
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + cappme + intcon + repsoc + invfor + daepad + rsceha + invlst + domlog + adhcga + ecpess + doment)
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2006(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, sofica,
-                cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog,
-                adhcga, ecpess, doment):
+def _reductions_2006(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog, adhcga, ecpess, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
     '''
-    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
-                cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
                 adhcga + ecpess + doment)
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2007(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, sofica,
-                cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog,
-                adhcga, creaen, ecpess, doment):
+def _reductions_2007(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
     '''
-    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica +
-                cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog +
-                adhcga + creaen + ecpess + doment)
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + doment)
 
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2008(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, mohist,
-                sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst,
-                domlog, adhcga, creaen, ecpess, doment):
+def _reductions_2008(ip_net, donapd, dfppce, cotsyn, saldom, intagr, prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
     '''
-    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist +
-                sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst +
-                domlog + adhcga + creaen + ecpess + doment)
+    total_reductions = (donapd + dfppce + cotsyn + saldom + intagr + prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + doment)
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2009(ip_net, donapd, dfppce, cotsyn, resimm, sofipe, ecodev, saldom, intagr,
-                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
-                daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
-                locmeu, doment):
+def _reductions_2009(ip_net, donapd, dfppce, cotsyn, resimm, sofipe, ecodev, saldom, intagr, prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli, locmeu, doment):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
     '''
-    total_reductions = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr +
-                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
-                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
-                locmeu + doment)
+    total_reductions = (donapd + dfppce + cotsyn + resimm + sofipe + ecodev + saldom + intagr + prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + locmeu + doment)
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2010(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr,
-                prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor,
-                daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli,
-                locmeu, doment, domsoc):  # TODO: check (sees checked) and report in Niches.xls
+def _reductions_2010(ip_net, donapd, dfppce, cotsyn, resimm, patnat, sofipe, saldom, intagr, prcomp, spfcpi, mohist, sofica, cappme, repsoc, invfor, deffor, daepad, rsceha, invlst, domlog, adhcga, creaen, ecpess, scelli, locmeu, doment, domsoc):  # TODO: check (sees checked) and report in Niches.xls
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
     '''
-    total_reductions = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr +
-                prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor +
-                daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli +
-                locmeu + doment + domsoc)  # TODO: check (sees checked) and report in Niches.xls
+    total_reductions = (donapd + dfppce + cotsyn + resimm + patnat + sofipe + saldom + intagr + prcomp + spfcpi + mohist + sofica + cappme + repsoc + invfor + deffor + daepad + rsceha + invlst + domlog + adhcga + creaen + ecpess + scelli + locmeu + doment + domsoc)  # TODO: check (sees checked) and report in Niches.xls
     return min_(ip_net, total_reductions)
 
 
@@ -134,17 +105,11 @@ def _reductions_2012(ip_net, donapd, dfppce, resimm, patnat):
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2013(ip_net, donapd, dfppce, cotsyn, resimm, patnat,
-                     ecpess, garext, saldom, daepad, rsceha, prcomp, repsoc, intagr,
-                     cappme, spfcpi, sofica, adhcga, creaen, deffor, invfor, invlst, scelli,
-                     locmeu):
+def _reductions_2013(ip_net, donapd, dfppce, cotsyn, resimm, patnat, ecpess, garext, saldom, daepad, rsceha, prcomp, repsoc, intagr, cappme, spfcpi, sofica, adhcga, creaen, deffor, invfor, invlst, scelli, locmeu):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = (donapd + dfppce + resimm + patnat +
-                     ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr +
-                     cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli +
-                     locmeu)
+    total_reductions = (donapd + dfppce + resimm + patnat + ecpess + garext + saldom + daepad + rsceha + prcomp + repsoc + intagr + cappme + spfcpi + sofica + adhcga + creaen + deffor + invfor + invlst + scelli + locmeu)
     return min_(ip_net, total_reductions)
     # TODO: mécénat d'entreprise 7US voir  mecena dans crédits d'impôt
     # TODO Biens culturels       7UO voir  accult dans crédits d'impôt
@@ -876,82 +841,54 @@ def _invlst_2011(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f
     seuil3 = P.seuil3 * (1 + marpac)
 
     xc = P.taux_xc * min_(f7xc, seuil1 / 6)
-    xd = P.taux_xd * f7xd
-    xe = P.taux_xe * min_(f7xe, seuil1 / 6)
-    xf = P.taux_xf * f7xf
     xa = P.taux_xa * min_(f7xa, seuil2)
     xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
     xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg)
     xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb)
-    xi = P.taux_xi * (f7xi + f7xp)
-    xj = P.taux_xj * (f7xj + f7xq)
-    xk = P.taux_xk * f7xk
+    xi = P.taux_xi * (f7xf + f7xi + f7xp)
+    xj = P.taux_xj * (f7xm + f7xj + f7xq)
     xl = P.taux_xl * min_(f7xl, seuil1 / 6)
-    xm = P.taux_xm * f7xm
-    xo = P.taux_xo * (f7xo + f7xr)
+    xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xo)
+    return around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
 
 
-def _invlst_2012(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f
-xz, _P, P = law.ir.reductions_impots.invlst):
+def _invlst_2012(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f7xz, _P, P = law.ir.reductions_impots.invlst):
     '''
     Investissements locatifs dans le secteur touristique
-    2011
+    2012
     '''
     seuil1 = P.seuil1 * (1 + marpac)
     seuil2 = P.seuil2 * (1 + marpac)
     seuil3 = P.seuil3 * (1 + marpac)
 
     xc = P.taux_xc * min_(f7xc, seuil1 / 6)
-    xd = P.taux_xd * f7xd
-    xe = P.taux_xe * min_(f7xe, seuil1 / 6)
-    xf = P.taux_xf * f7xf
     xa = P.taux_xa * min_(f7xa, seuil2)
     xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
     xx = P.taux_xx * min_(f7xx, seuil2 - f7xa - f7xg)
     xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg - f7xx)
     xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb - f7xx)
     xz = P.taux_xz * min_(f7xz, seuil2  - f7xa - f7xg - f7xb - f7xx - f7xh)
-    xi = P.taux_xi * (f7xi + f7xp + f7xn)
-    xj = P.taux_xj * (f7xj + f7xq + f7xv)
-    xk = P.taux_xk * f7xk
+    xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn)
+    xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv)
     xl = P.taux_xl * min_(f7xl, seuil1 / 6)
-    xm = P.taux_xm * f7xm
-    xo = P.taux_xo * (f7xo + f7xr)
+    xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xo)
+    return around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
 
 
-def _invlst_2013(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f
-xz, _P, P = law.ir.reductions_impots.invlst):
+def _invlst_2013(marpac, f7uy,  f7uz, f7xf, f7xi, f7xj, f7xk, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, _P, P = law.ir.reductions_impots.invlst):
     '''
     Investissements locatifs dans le secteur touristique
-    2011
+    2013
     '''
-    seuil1 = P.seuil1 * (1 + marpac)
-    seuil2 = P.seuil2 * (1 + marpac)
-    seuil3 = P.seuil3 * (1 + marpac)
 
-    xc = P.taux_xc * min_(f7xc, seuil1 / 6)
-    xd = P.taux_xd * f7xd
-    xe = P.taux_xe * min_(f7xe, seuil1 / 6)
-    xf = P.taux_xf * f7xf
-    xa = P.taux_xa * min_(f7xa, seuil2)
-    xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
-    xx = P.taux_xx * min_(f7xx, seuil2 - f7xa - f7xg)
-    xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg - f7xx)
-    xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb - f7xx)
-    xz = P.taux_xz * min_(f7xz, seuil2  - f7xa - f7xg - f7xb - f7xx - f7xh)
-    xi = P.taux_xi * (f7xi + f7xp + f7xn)
-    xj = P.taux_xj * (f7xj + f7xq + f7xv)
-    xk = P.taux_xk * f7xk
-    xl = P.taux_xl * min_(f7xl, seuil1 / 6)
-    xm = P.taux_xm * f7xm
-    xo = P.taux_xo * (f7xo + f7xr)
+    xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn + f7uy)
+    xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
+    xo = P.taux_xo * f7xk + (f7xo + f7xr)
 
-    return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xo)
-#TODO: ci-dessus
+    return around(xi + xj + xo)
+
 
 def _domlog_2002(f7ub, f7uc, f7uj, _P, P = law.ir.reductions_impots.domlog):
     '''
@@ -1059,35 +996,120 @@ def _ecpess(f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P = law.ir.reductions_impots.ecp
             P.sup * (f7ef + f7eg / 2))
 
 
-def _scelli_2009(f7hj, f7hk, _P, P = law.ir.reductions_impots.scelli):
+def maxi(a, b, *args):
+    if not args:
+        return max_(a, b)
+    else:
+        return max_(a, maxi(b, *args))
+
+
+def _scelli_2009(f7hj, f7hk, P = law.ir.reductions_impots.scelli):
     '''
     Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
     2009
     '''
-    # TODO: à compléter
-    # il est possible de cummuler différents dispositifs scelleir
-    # dans la limite d'un seul investissment par an
-    # taux1 25%
-    # taux2 40%
     return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
 
 
-def _scelli_2010(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, _P, P = law.ir.reductions_impots.scelli):
+def _scelli_2010(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, P = law.ir.reductions_impots.scelli):
     '''
-    Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
+    Investissements locatif neufs : Dispositif Scellier 
     2010
     '''
-    # TODO: à compléter
-    # il est possible de cummuler différents dispositifs scelleir
-    # dans la limite d'un seul investissment par an
-    # taux1 25%
-    # taux2 40%
     return (max_(
-            max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)),
-            max_(P.taux1 * min_(P.max, f7hn), P.taux2 * min_(P.max, f7ho))
-                      ) / 9 +
-            max_(P.taux1 * min_(P.max, f7hl), P.taux2 * min_(P.max, f7hm)) / 9 +
-            max_(f7hr, f7hs) + f7la)
+                max_(P.taux1 * min_(P.max, f7hj), 
+                P.taux2 * min_(P.max, f7hk)),
+                max_(P.taux1 * min_(P.max, f7hn), 
+                P.taux2 * min_(P.max, f7ho))) / 9 +
+            max_(
+                P.taux1 * min_(P.max, f7hl), 
+                P.taux2 * min_(P.max, f7hm)) / 9 +
+            max_(P.taux1 * f7hr, P.taux2 * f7hs) + 
+            f7la)
+
+
+def _scelli_2011(f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7la, f7lb, f7lc, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
+    '''
+    Investissements locatif neufs : Dispositif Scellier
+    2011
+    '''
+    return (min_(P.max, maxi(
+                P.taux13 * max_(f7nf, f7nj) / 9,
+                P.taux15 * max_(f7ng, f7ni) / 9,
+                P.taux22 * max_(f7na, f7ne) / 9,
+                P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+            min_(P.max, maxi(
+                P.taux1 * max_(f7hj, f7hn), 
+                P.taux2 * max_(f7hk, f7ho))) / 9 +
+            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 + 
+            min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
+            min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
+            min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+            f7la + f7lb + f7lc
+            )
+
+
+def _scelli_2012(f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
+    '''
+    Investissements locatif neufs : Dispositif Scellier 
+    2012
+    '''
+    return (min_(P.max, maxi(
+                P.taux13 * max_(f7nf, f7nj) / 9,
+                P.taux15 * max_(f7ng, f7ni) / 9,
+                P.taux22 * max_(f7na, f7ne) / 9,
+                P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+            min_(P.max, maxi(
+                P.taux1 * max_(f7hj, f7hn), 
+                P.taux2 * max_(f7hk, f7ho))) / 9 +
+            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 + 
+            min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
+            min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
+            min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+            f7la + f7lb + f7lc + f7ld + f7le + f7lf +
+            f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
+            min_(P.max, maxi(
+                P.taux6 * max_(f7jf, f7jj) / 9,
+                P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
+                P.taux22 * maxi(f7jb, f7jd) / 9,
+                P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
+                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+            )
+
+
+def _scelli_2013(f7fa, f7fb, f7fc, f7fd, f7gj, f7gk, f7gl, f7gp, f7gs, f7gt, f7gu, f7gv, f7gw, f7gx, f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7lm, f7ls, f7lz, f7mg, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
+    '''
+    Investissements locatif neufs : Dispositif Scellier
+    2013
+    '''
+    return (min_(P.max, maxi(
+                P.taux13 * max_(f7nf, f7nj) / 9,
+                P.taux15 * max_(f7ng, f7ni) / 9,
+                P.taux22 * max_(f7na, f7ne) / 9,
+                P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+            min_(P.max, maxi(
+                P.taux1 * max_(f7hj, f7hn), 
+                P.taux2 * max_(f7hk, f7ho))) / 9 +
+            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 + 
+            min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
+            min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
+            min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+            f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg +
+            f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
+            f7gj + f7gk + f7hl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw +
+            min_(P.max, maxi(
+                P.taux6 * max_(f7jf, f7jj, f7fb) / 9,
+                P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+                P.taux22 * maxi(f7jb, f7jd) / 9,
+                P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+            )
 
 
 def _locmeu(f7ij, f7il, f7im, f7ik, f7is, P = law.ir.reductions_impots.locmeu):
