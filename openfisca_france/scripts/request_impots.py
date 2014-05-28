@@ -35,7 +35,7 @@ from lxml import etree
 
 def main():
 
-    year = 2011
+    year = 2013
     impots_arguments = {
         'pre_situation_residence': 'M',  # Métropole
         '0DA': 1970,
@@ -44,6 +44,7 @@ def main():
 #        '0F1': 1990, # âge de la première personne à charge
         '0BT': 0, # case T
         '1AJ': 60000,
+        '7MG': 1000
     }
 
     request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-'+str(year+1)+'.cgi', headers = {
@@ -91,7 +92,11 @@ def main():
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg) 
                 'RFOR': u'?',#TODO (f7up)       
-                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)    
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+                'RCEL': u'?',#TODO (scellier)
+                'RCELHJK': u'?',#TODO (scellier)
+                'RCELREPHR': u'?',#TODO (scellier)
+                'RCELRREDLA': u'?',#TODO (scellier)
                 'RTOURNEUF': u'?', #TODO (f7xc)  
                 'RTOUR': u'?', #TODO (f7xd)
                 'RTOURTRA': u'?',#TODO (f7xd)
