@@ -5520,8 +5520,7 @@
     </NODE>
     <NODE code="forfait_logement_al" description="Forfait logement pour bénéficiaire d'une aide au logement">
       <CODE code="taux_1p" description="Pourcentage du RSA socle pour une personne (pour une personne)" format="percent">
-        <VALUE deb="2000-01-01" fin="2008-01-31" valeur="0.12" />
-        <VALUE deb="2008-02-01" fin="2014-12-31" valeur="0.12" />
+        <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.12" />
       </CODE>
       <CODE code="taux_2p" description="Pourcentage du RSA socle pour deux personnes (pour deux personnes)" format="percent">
         <VALUE deb="2000-01-01" fin="2008-01-31" valeur="0.14" />
@@ -5533,7 +5532,7 @@
       </CODE>
     </NODE>
     <CODE code="majoration_plafond_acs" description="Majoration pour du plafond CMU pour l'ACS" format="percent">
-      <VALUE deb="2005-01-01" fin="2016-12-31" valeur="0.15" />
+      <VALUE deb="2005-01-01" fin="2006-12-31" valeur="0.15" />
       <VALUE deb="2007-01-01" fin="2010-12-31" valeur="0.20" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.30" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.35" />
