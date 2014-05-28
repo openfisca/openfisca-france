@@ -20,9 +20,17 @@ ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['
 VOUS = QUIFOY['vous']
 
 
-def _acs_montant(self, age_holder, P = law.cmu):
+def _acs_montant__2009():
     '''
-    Calcule le montant de l'ACS en cas d'éligibilité
+    Calcule le montant de l'ACS en cas d'éligibilité (jusqu'au 31 juillet 2009)
+    '''
+    # TODO
+    return 0
+
+
+def _acs_montant_2009_(self, age_holder, P = law.cmu):
+    '''
+    Calcule le montant de l'ACS en cas d'éligibilité (à compter du 1 août 2009)
     '''
     ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
     ages_pac = self.split_by_roles(age_holder, roles = ENFS)

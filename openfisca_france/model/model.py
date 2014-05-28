@@ -2453,8 +2453,20 @@ prestation_by_name = collections.OrderedDict((
     # Couverture Maladie Universelle
     ############################################################
 
-    build_simple_formula_couple('acs_montant', FloatCol(function = cmu._acs_montant,
-        label = u"Montant de l'ACS en cas d'éligibilité",
+    build_dated_formula_couple('acs_montant',
+                [
+            dict(
+                start = date(2000, 1, 1),
+                end = date(2009, 7, 31),
+                function = cmu._acs_montant__2009,
+            ),
+            dict(
+                start = date(2009, 8, 1),
+                end = date(2014, 12, 31),
+                function = cmu._acs_montant_2009_,
+            ),
+        ],
+        FloatCol(label = u"Montant de l'ACS en cas d'éligibilité",
         entity = 'fam',
         )),
     build_simple_formula_couple('cmu_forfait_logement_base', FloatCol(function = cmu._cmu_forfait_logement_base,
