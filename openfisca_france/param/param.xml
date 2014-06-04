@@ -2978,10 +2978,13 @@
           <VALUE deb="2011-01-01" fin="2012-12-31" valeur="0.22" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
         </CODE>
-        <CODE code="taux2" description="Taux 2" format="percent">
+        <CODE code="taux25" description="Taux 25%" format="percent">
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
-        <CODE code="taux3" description="Taux 3" format="percent">
+        <CODE code="taux22" description="Taux 22%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.22" />
+        </CODE>
+        <CODE code="taux18" description="Taux 18%" format="percent">
           <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
         </CODE>
         <CODE code="seuil" description="Seuil" format="integer" type="monetary">
@@ -3299,6 +3302,17 @@
           <VALUE deb="2009-01-01" fin="2010-12-31" valeur="300000" />
         </CODE>
       </NODE>
+      <NODE code="duflot" description="Investissements locatifs intermédiaires">
+        <CODE code="taux_m" description="Taux métropole" format="percent">
+          <VALUE deb="2013-01-01" fin="2016-12-31" valeur="0.18" />
+        </CODE>
+        <CODE code="taux_om" description="Taux outre-mer" format="percent">
+          <VALUE deb="2013-01-01" fin="2016-12-31" valeur="0.29" />
+        </CODE>
+        <CODE code="plafond" description="Plafond" format="integer" type="monetary">
+          <VALUE deb="2013-01-01" fin="2016-12-31" valeur="300000" />
+        </CODE>
+      </NODE>
     </NODE>
     <NODE code="recouvrement" description="Mise en recouvrement de l'impôt">
         <CODE code="seuil" description="Seuil de recouvrement avant imputations" format="integer" type="monetary">
@@ -3358,12 +3372,10 @@
       </NODE>
       <NODE code="quaenv" description="Dépenses en faveur des économies d'énergies">
         <CODE code="max" description="Plafond" format="integer" type="monetary">
-          <VALUE deb="2005-01-01" fin="2012-12-31" valeur="8000" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3750" />
+          <VALUE deb="2005-01-01" fin="2013-12-31" valeur="8000" />
         </CODE>
         <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer">
-          <VALUE deb="2002-01-01" fin="2012-12-31" valeur="400" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="500" />
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />
         </CODE>
         <CODE code="pac2" description="Majoration du plafond pour le 2nd enfant" format="integer">
           <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
@@ -3453,6 +3465,36 @@
         </CODE>
         <CODE code="taux_vy" description="Taux (VY)" format="percent">
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.40" />
+        </CODE>
+        <CODE code="taux10" description="Taux 10%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.10" />
+        </CODE>
+        <CODE code="taux11" description="Taux 11%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.11" />
+        </CODE>
+        <CODE code="taux15" description="Taux 15%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.15" />
+        </CODE>
+        <CODE code="taux17" description="Taux 17%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.17" />
+        </CODE>
+        <CODE code="taux18" description="Taux 18%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
+        </CODE>
+        <CODE code="taux23" description="Taux 23%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.23" />
+        </CODE>
+        <CODE code="taux26" description="Taux 26%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.26" />
+        </CODE>
+        <CODE code="taux32" description="Taux 32%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.32" />
+        </CODE>
+        <CODE code="taux34" description="Taux 34%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.34" />
+        </CODE>
+        <CODE code="taux40" description="Taux 40%" format="percent">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.40" />
         </CODE>
       </NODE>
       <NODE code="acqgpl" description="Dépenses d'acquisition ou de transformation d'un véhicule GPL ou mixte">

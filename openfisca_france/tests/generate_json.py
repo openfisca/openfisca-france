@@ -75,13 +75,14 @@ def add_official(scenario, fichier, tested = False):
     return { 'scenario' : json_scenario , 'resultat_officiel' : fields }
     
 
-def export_json(scenario, tested = True):
+def export_json(scenario, var = "", tested = True):
     json_scenario = scenario.to_json()
     string_scenario = json.dumps(json_scenario,encoding='utf-8',ensure_ascii=False,indent=2,sort_keys=True)
-    h = hashlib.sha256(string_scenario).hexdigest()
-    if not os.path.isfile(os.path.join('json', h + '.json')):
-        with codecs.open(os.path.join('json', h + '.json'),'w', encoding='utf-8') as fichier: #TODO: scenario > single entity
-            json.dump(add_official(scenario, h, tested),fichier,encoding='utf-8',ensure_ascii=False,indent=2,sort_keys=True) 
+    h = var + hashlib.sha256(string_scenario).hexdigest() 
+    if not os.path.isfile(os.path.join('json', h + '.json')):#TODO: scenario > single entity
+        with codecs.open(os.path.join('json', h + '.json'),'w', encoding='utf-8') as fichier: 
+            json.dump(add_official(scenario, h, tested), fichier, encoding='utf-8', ensure_ascii=False, indent=2,
+                sort_keys=True) 
     else:
         compare(scenario, tested, h) 
 

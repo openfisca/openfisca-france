@@ -259,28 +259,141 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7WP')),
 
     # Dépenses en faveur de la qualité environnementale de l'habitation principale
-    build_column_couple('f7we', IntCol(entity = 'foy',
+    build_column_couple('f7we', BoolCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés",
                     cerfa_field = u'7WE')),
 
-    build_column_couple('f7wg', IntCol(entity = 'foy',
+    build_column_couple('f7wg', BoolCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
                     val_type = "monetary",
                     cerfa_field = u'7WG',
-                    start = date(2012, 1, 1))),  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
+                    start = date(2012, 1, 1))),
+
+    build_column_couple('f7wa', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs avant le 03/04/2012",
+                    cerfa_field = u'7WA')),
+
+    build_column_couple('f7wb', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs à compter du 04/04/2012",
+                    cerfa_field = u'7WB')),
+
+    build_column_couple('f7wc', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique sur plus de la moitié de la surface des murs extérieurs",
+                    cerfa_field = u'7WC')),
+
+    build_column_couple('f7ve', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture avant le 04/04/2012",
+                    cerfa_field = u'7VE')),
+
+    build_column_couple('f7vf', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture à compter du 04/04/2012",
+                    cerfa_field = u'7VF')),
+
+    build_column_couple('f7vg', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture",
+                    cerfa_field = u'7VG')),
+
+    build_column_couple('f7sg', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des murs (acquisitionn et pose)",
+                    cerfa_field = u'7SG')),
+
+    build_column_couple('f7sj', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des parois vitrées",
+                    cerfa_field = u'7SJ')),
+
+    build_column_couple('f7sk', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants",
+                    cerfa_field = u'7SK')),
+
+    build_column_couple('f7sl', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur",
+                    cerfa_field = u'7SL')),
+
+    build_column_couple('f7sm', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de production d'électricité utilisant l'énergie radiative du soleil",
+                    cerfa_field = u'7SM')),
+
+    build_column_couple('f7sn', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent",
+                    cerfa_field = u'7SN')),
+
+    build_column_couple('f7so', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent",
+                    cerfa_field = u'7SO')),
+
+    build_column_couple('f7sp', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur",
+                    cerfa_field = u'7SP')),
+
+    build_column_couple('f7sq', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur",
+                    cerfa_field = u'7SQ')),
+
+    build_column_couple('f7sr', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)",
+                    cerfa_field = u'7SR')),
+
+    build_column_couple('f7ss', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires",
+                    cerfa_field = u'7SS')),
+
+    build_column_couple('f7st', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (éolien, hydraulique)",
+                    cerfa_field = u'7ST')),
+
+    build_column_couple('f7su', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de récupération et de traitement des eaux pluviales",
+                    cerfa_field = u'7SU')),
+
+    build_column_couple('f7sv', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Diagnostic de performance énergétique",
+                    cerfa_field = u'7SV')),
+
+    build_column_couple('f7sw', IntCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de raccordement à un réseau de chaleur",
+                    cerfa_field = u'7SW')),
+
+                  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
                                     # TODO vérifier pour les années précédentes
 # TODO: CHECK
     # Intérêts d'emprunts
 #     build_column_couple('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7')), # cf pour quelle année
 #
-     build_column_couple('f7wq', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées", cerfa_field = u'7WQ')),
+     build_column_couple('f7wq', BoolCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées du 01/01/2012 au 03/04/2012",
+                    cerfa_field = u'7WQ')),
 
-    build_column_couple('f7wt', IntCol(entity = 'foy',
+    build_column_couple('f7ws', BoolCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolations des parois vitrées à compter du 04/04/2012",
+                    start = date(2013, 1, 1), # TODO vérifier année de début
+                    cerfa_field = u'7WS')),
+
+    build_column_couple('f7wt', BoolCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
                     start = date(2013, 1, 1),
                     cerfa_field = u'7WT')),  # TODO vérifier année de début
 
-    build_column_couple('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
+    build_column_couple('f7wu', BoolCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets avant 2012",
+                    start = date(2013, 1, 1), # TODO vérifier année de début
+                    cerfa_field = u'7WU')),
+
+    build_column_couple('f7wv', BoolCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012",
+                    start = date(2013, 1, 1), # TODO vérifier année de début
+                    cerfa_field = u'7WV')),
+
+    build_column_couple('f7ww', BoolCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012",
+                    start = date(2013, 1, 1), # TODO vérifier année de début
+                    cerfa_field = u'7WW')),
+
+    build_column_couple('f7wx', BoolCol(entity = 'foy',
+                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes en 2012",
+                    start = date(2013, 1, 1), # TODO vérifier année de début
+                    cerfa_field = u'7WX')),
+
+    build_column_couple('f7wh', BoolCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
                     start = date(2013, 1, 1),
                     cerfa_field = u'7WH')),  # TODO vérifier année de début
 
@@ -288,7 +401,7 @@ column_by_name = collections.OrderedDict((
                      label = u"Votre habitation principale est une maison individuelle",
                      cerfa_field = u'7WK')),
 
-    build_column_couple('f7wf', IntCol(entity = 'foy',
+    build_column_couple('f7wf', BoolCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1",
                     end = date(2012, 12, 31),
                     cerfa_field = u'7WF')),  # TODO vérifier les années précédentes
@@ -347,11 +460,6 @@ column_by_name = collections.OrderedDict((
                     end = date(2011, 12, 31))),  # TODO: vérifier années antérieures.
 
 # TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
-#     build_column_couple('f7sz', IntCol(entity = 'foy',
-#                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-2",
-#                     val_type = "monetary",
-#                     cerfa_field = u'7SZ',
-#                     end = date(2011,12,31))),  # TODO: vérifier années <=2011.
 
     build_column_couple('f7sz', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location",
@@ -372,11 +480,6 @@ column_by_name = collections.OrderedDict((
 
 
 # TODO: 7jy réutilisée en 2013
-#
-#     build_column_couple('f7jy', IntCol(entity = 'foy',
-#                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et ayant pris fin en n-1",
-#                     cerfa_field = u'7JY',
-#                     end = date(2011,12,31))),
 
      build_column_couple('f7jy', IntCol(entity = 'foy',
                     label = u"Report de 1/9 des investissements réalisés l'année de perception des revenus déclarés -3 ou -4",
@@ -437,7 +540,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f7re', IntCol(entity = 'foy',
                     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
                     val_type = "monetary",
-                    cerfa_field = u'7RE')), 
+                    cerfa_field = u'7RE')),
 
     build_column_couple('f7rf', IntCol(entity = 'foy',
                     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
@@ -455,12 +558,12 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7SY')), # 2012 et 2013 ok
 
     build_column_couple('f7gw', IntCol(entity = 'foy',
-                    label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+                    label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GW',
                     start = date(2013, 1, 1))),
 
     build_column_couple('f7gx', IntCol(entity = 'foy',
-                    label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+                    label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
                     cerfa_field = u'7GX',
                     start = date(2013, 1, 1))),
 
@@ -533,12 +636,6 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7XM')),
 
 # TODO: f7xn cf années <= à 2011 (possible erreur dans le label pour ces dates, à vérifier)
-#      build_column_couple('f7xn', IntCol(entity = 'foy',
-#                     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: investissement réalisé en n-1",
-#                     val_type = "monetary",
-#                     cerfa_field = u'7XN',
-#                     end = date(2011,12,31))),
-
     build_column_couple('f7xn', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
@@ -569,7 +666,7 @@ cerfa_field = u'7XR')),
                     label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7XV',
-                    start = date(2012, 1, 1))),                    
+                    start = date(2012, 1, 1))),
 
     build_column_couple('f7xx', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme",
@@ -587,14 +684,14 @@ cerfa_field = u'7XR')),
                     label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7UY',
-                    start = date(2013, 1, 1))),        
+                    start = date(2013, 1, 1))),
 
     build_column_couple('f7uz', IntCol(entity = 'foy',
                     label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
                     val_type = "monetary",
                     cerfa_field = u'7UZ',
-                    start = date(2013, 1, 1))),    
-    
+                    start = date(2013, 1, 1))),
+
     # Souscriptions au capital des PME
     build_column_couple('f7cf', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion",
@@ -684,18 +781,6 @@ cerfa_field = u'7XR')),
                     cerfa_field = u'7FL')),
 
     # Souscriptions au capital de SOFICA
-    # Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait aucun impact (si les param sont bons) puisque les cases ne changent pas
-#     build_column_couple('f7gn', IntCol(entity = 'foy',
-#                     label = u"Souscriptions au capital de SOFICA 48 %",
-#                     val_type = "monetary",
-#                     cerfa_field = u'7GN',
-#                     end = date(2011,12,31))),  # TODO: vérifier <=2011
-#     build_column_couple('f7fn', IntCol(entity = 'foy',
-#                     label = u"Souscriptions au capital de SOFICA 40 %",
-#                     val_type = "monetary",
-#                     cerfa_field = u'7FN',
-#                     end = date(2011,12,31))),  # TODO: vérifier <=2011
-
     build_column_couple('f7gn', IntCol(entity = 'foy',
                     label = u"Souscriptions au capital de SOFICA 36 %",
                     val_type = "monetary",
@@ -750,13 +835,6 @@ cerfa_field = u'7XR')),
                     val_type = "monetary",
                     cerfa_field = u'7KD',
                     start = date(2013, 1, 1))),
-
-    # Intérêts des prêts à la consommation (case UH)),
-    # build_column_couple('f7uh', IntCol(entity = 'foy',
-    #                 label = u"Intérêts des prêts à la consommation",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7UH',
-    #                 end = date(2012, 12, 1))),  # verif <=2012
 
     build_column_couple('f7uh', IntCol(entity = 'foy',
                     label = u"Dons et cotisations versés aux partis politiques",
@@ -1333,10 +1411,6 @@ cerfa_field = u'7XR')),
                     cerfa_field = u'7US')),
 
     # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    # ('f7wf', IntCol() déjà disponible
-    # ('f7wh', IntCol() déjà disponible
-    # ('f7wk', IntCol() déjà disponible
-    # ('f7wq', IntCol() déjà disponible
 
     build_column_couple('f7sb', IntCol(entity = 'foy',
                    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %",
@@ -1354,35 +1428,17 @@ cerfa_field = u'7XR')),
 # réutilisation de case pour 2013
 # """
 
-    # build_column_couple('f7sd', IntCol(entity = 'foy',
-    #                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7SD',
-    #                 end = date(2012, 12, 1))),  # TODO: verif<=2012
-
     build_column_couple('f7sd', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation",
                     val_type = "monetary",
                     cerfa_field = u'7SD',
                     start = date(2013, 1, 1))),  # TODO: verif<=2012 et vérifier autres prog comportant f7sd
 
-    # build_column_couple('f7se', IntCol(entity = 'foy',
-    #                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7SE',
-    #                 end = date(2012, 12, 1))),  # TODO: verif<=2012
-
     build_column_couple('f7se', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz",
                     val_type = "monetary",
                     cerfa_field = u'7SE',
                     start = date(2013, 1, 1))),  # TODO: verif<=2012
-
-    # build_column_couple('f7sh', IntCol(entity = 'foy',
-    #                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7SH',
-    #                 end = date(2012, 12, 1))),  # TODO: verif<=2012
 
     build_column_couple('f7sh', IntCol(entity = 'foy',
                     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)",
@@ -1393,23 +1449,12 @@ cerfa_field = u'7XR')),
     # ('f7wg', IntCol() déjà disponible
 
     # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
-    # build_column_couple('f7up', IntCol(entity = 'foy',
-    #                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7UP',
-    #                 end = date(2007, 12, 1))),  # TODO: vérif date de fin
 
     build_column_couple('f7up', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: travaux",
                     val_type = "monetary",
                     cerfa_field = u'7UP',
                     start = date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
-
-    # build_column_couple('f7uq', IntCol(entity = 'foy',
-    #                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7UQ',
-    #                 end = date(2007, 12, 1))),  # TODO: vérif date de fin
 
     build_column_couple('f7uq', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
@@ -1452,10 +1497,7 @@ cerfa_field = u'7XR')),
                                            # soumis à la taxe additionnelle au droit de bail
 
     # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    # f7wf
-    # f7wi
-    # f7wj
-    # f7wl
+
     build_column_couple('f7sf', IntCol(entity = 'foy',
                     label = u"Appareils de régulation du chauffage, matériaux de calorifugeage",
                     val_type = "monetary",
@@ -1506,4 +1548,20 @@ cerfa_field = u'7XR')),
                     val_type = "monetary",
                     cerfa_field = u'7TW')),
 
+    # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Duflot)
+
+    build_column_couple('f7gh', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs intermédiaires en métropole",
+                    val_type = "monetary",
+                    cerfa_field = u'7GH')),
+
+    build_column_couple('f7gi', IntCol(entity = 'foy',
+                    label = u"Investissements locatifs intermédiaires outre-mer",
+                    val_type = "monetary",
+                    cerfa_field = u'7GI')),
+
     ))
+    # ('f7wf', IntCol() déjà disponible
+    # ('f7wh', IntCol() déjà disponible
+    # ('f7wk', IntCol() déjà disponible
+    # ('f7wq', IntCol() déjà disponible

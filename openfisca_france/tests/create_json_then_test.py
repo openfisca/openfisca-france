@@ -68,7 +68,7 @@ def define_scenario(year, column_code):
 
     scenario.init_single_entity(
         parent1 = parent1,
-        parent2 = dict(),
+#        parent2 = dict(),
         enfants = enfants,
         famille = famille,
         menage = menage,
@@ -83,8 +83,8 @@ def main():
     column_code = raw_input("Which variable would you like to test ? ")
     assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"
     for year in range(2005,2014):
-        scenario = define_scenario(year,column_code)  
-        export_json(scenario, True)
+        scenario = define_scenario(year,column_code)
+        export_json(scenario, var = column_code, tested = True)
     return 0
 
 

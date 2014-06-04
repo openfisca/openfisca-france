@@ -35,7 +35,7 @@ from lxml import etree
 
 def main():
 
-    year = 2013
+    year = 2012
     impots_arguments = {
         'pre_situation_residence': 'M',  # Métropole
         '0DA': 1970,
@@ -43,11 +43,12 @@ def main():
         '0CF': 0, # nombre de personnes à charge
 #        '0F1': 1990, # âge de la première personne à charge
         '0BT': 0, # case T
-        '1AJ': 60000,
-        '7MG': 1000
+        '1AJ': 100000,
+        '7CQ': 45000,
+        '7CF': 45000,
     }
 
-    request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-'+str(year+1)+'.cgi', headers = {
+    request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
         'User-Agent': 'OpenFisca-Script',
         })
 
@@ -90,30 +91,32 @@ def main():
                 'CIPRETUD': u'?',#TODO (f7uk)
                 'BPRS': u'?',#TODO (f2ch)
                 'CIDEVDUR': u'?',#TODO (f7wf)
-                'CIADCRE': u'?',#TODO (f7dg) 
-                'RFOR': u'?',#TODO (f7up)       
+                'CIADCRE': u'?',#TODO (f7dg)
+                'RFOR': u'?',#TODO (f7up)
                 'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
                 'RCEL': u'?',#TODO (scellier)
                 'RCELHJK': u'?',#TODO (scellier)
                 'RCELREPHR': u'?',#TODO (scellier)
                 'RCELRREDLA': u'?',#TODO (scellier)
-                'RTOURNEUF': u'?', #TODO (f7xc)  
+                'RNOUV': u'?',#TODO (cappme)
+                'RRESTIMO': u'?',#TODO (7rd)
+                'RTOURNEUF': u'?', #TODO (f7xc)
                 'RTOUR': u'?', #TODO (f7xd)
                 'RTOURTRA': u'?',#TODO (f7xd)
-                'RTOURHOT': u'?',#TODO (f7xc) 
-                'RTOURES': u'?',#TODO (f7xc) 
+                'RTOURHOT': u'?',#TODO (f7xc)
+                'RTOURES': u'?',#TODO (f7xc)
             }
-    for element in page_doc.xpath('//input[@type="hidden"][@name]'): 
+    for element in page_doc.xpath('//input[@type="hidden"][@name]'):
         code = element.get('name')
         fields[code] = {
             'code' : code,
             'name' : names[code] if (code in names) else u'nom inconnu',
             'value' : float(element.get('value').replace(" ","")),
             }
-    for code in ('IINET', 'ITRED'):
+    for code in ('ITRED',):
         print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 
 
 if __name__ == "__main__":
-    sys.exit(main())
-
+#    sys.exit(main())
+    main()
