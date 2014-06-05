@@ -464,7 +464,7 @@ def _rmi_nbp(self, age_holder, smic55_holder, nb_par , P = law.minim.rmi):
     return nb_par + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
 
 
-def _forf_log(so, rmi_nbp, P = law.minim):
+def _forf_log(rmi_nbp, P = law.minim):
     '''
     Forfait logement intervenant dans le calcul du Rmi ou du Rsa
     'fam'
