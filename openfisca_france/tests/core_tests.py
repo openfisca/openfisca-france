@@ -69,7 +69,6 @@ def check_1_parent_2_enfants(year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
-            cadre = True,
             statmarit = u'Célibataire',
             ),
         enfants = [
@@ -107,7 +106,6 @@ def check_1_parent_2_enfants_1_column(column_name, year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
-            cadre = True,
             statmarit = u'Célibataire',
             ),
         enfants = [

@@ -644,7 +644,7 @@ def _invfor_2009(marpac, f7un, f7up, f7uq, _P, P = law.ir.reductions_impots.invf
     '''
     Investissements forestiers pour 2009
     '''
-    
+
     return P.taux * (min_(f7un, P.seuil * (marpac + 1)) + min_(f7up, P.ifortra_seuil * (marpac + 1)) + min_(f7uq, P.iforges_seuil * (marpac + 1)))
 
 
@@ -653,8 +653,8 @@ def _invfor_2010(marpac, f7te, f7un, f7up, f7uq, f7uu, _P, P = law.ir.reductions
     Investissements forestiers pour 2010
     '''
     return (P.taux * (
-        min_(f7un, P.seuil * (marpac + 1)) + 
-        min_(f7up + f7uu + f7te, P.ifortra_seuil * (marpac + 1)) + 
+        min_(f7un, P.seuil * (marpac + 1)) +
+        min_(f7up + f7uu + f7te, P.ifortra_seuil * (marpac + 1)) +
         min_(f7uq, P.iforges_seuil * (marpac + 1))))
 
 
@@ -665,8 +665,8 @@ def _invfor_2011(marpac, f7te, f7tf, f7ul, f7un, f7up, f7uq, f7uu, f7uv, _P, P =
     max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
     max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
     return (P.taux * (
-        min_(f7un, P.seuil * (marpac + 1)) + 
-        min_(f7up, max1) + 
+        min_(f7un, P.seuil * (marpac + 1)) +
+        min_(f7up, max1) +
         min_(f7uq, P.iforges_seuil * (marpac + 1))) +
         P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
         P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
@@ -680,8 +680,8 @@ def _invfor_2012(marpac, f7te, f7tf, f7tg, f7ul, f7un, f7up, f7uq, f7uu, f7uv, f
     max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
     max2 = max_(0, max1 - f7tg - f7uw)
     return (P.taux * (
-        min_(f7un, P.seuil * (marpac + 1)) + 
-        min_(f7up, max2) + 
+        min_(f7un, P.seuil * (marpac + 1)) +
+        min_(f7up, max2) +
         min_(f7uq, P.iforges_seuil * (marpac + 1))) +
         P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
         P.report11 * min_(f7tg + f7uw, max1) +
@@ -697,8 +697,8 @@ def _invfor_2013(marpac, f7te, f7tf, f7tg, f7th, f7ul, f7un, f7up, f7uq, f7uu, f
     max2 = max_(0, max1 - f7tg - f7uw)
     max3 = max_(0, max2 - f7th - f7ux)
     return (P.taux * (
-        min_(f7un, P.seuil * (marpac + 1)) + 
-        min_(f7up, max3) + 
+        min_(f7un, P.seuil * (marpac + 1)) +
+        min_(f7up, max3) +
         min_(f7uq, P.iforges_seuil * (marpac + 1))) +
         P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
         P.report11 * min_(f7tg + f7uw, max1) +
@@ -868,7 +868,7 @@ def _invlst_2012(marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f
     xx = P.taux_xx * min_(f7xx, seuil2 - f7xa - f7xg)
     xb = P.taux_xb * min_(f7xb, seuil2 - f7xa - f7xg - f7xx)
     xh = P.taux_xh * min_(f7xh, seuil2 - f7xa - f7xg - f7xb - f7xx)
-    xz = P.taux_xz * min_(f7xz, seuil2  - f7xa - f7xg - f7xb - f7xx - f7xh)
+    xz = P.taux_xz * min_(f7xz, seuil2 - f7xa - f7xg - f7xb - f7xx - f7xh)
     xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn)
     xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv)
     xl = P.taux_xl * min_(f7xl, seuil1 / 6)
@@ -1013,18 +1013,18 @@ def _scelli_2009(f7hj, f7hk, P = law.ir.reductions_impots.scelli):
 
 def _scelli_2010(f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, P = law.ir.reductions_impots.scelli):
     '''
-    Investissements locatif neufs : Dispositif Scellier 
+    Investissements locatif neufs : Dispositif Scellier
     2010
     '''
     return (max_(
-                max_(P.taux1 * min_(P.max, f7hj), 
+                max_(P.taux1 * min_(P.max, f7hj),
                 P.taux2 * min_(P.max, f7hk)),
-                max_(P.taux1 * min_(P.max, f7hn), 
+                max_(P.taux1 * min_(P.max, f7hn),
                 P.taux2 * min_(P.max, f7ho))) / 9 +
             max_(
-                P.taux1 * min_(P.max, f7hl), 
+                P.taux1 * min_(P.max, f7hl),
                 P.taux2 * min_(P.max, f7hm)) / 9 +
-            max_(P.taux1 * f7hr, P.taux2 * f7hs) + 
+            max_(P.taux1 * f7hr, P.taux2 * f7hs) +
             f7la)
 
 
@@ -1041,9 +1041,9 @@ def _scelli_2011(f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7h
                 P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
                 P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
             min_(P.max, maxi(
-                P.taux1 * max_(f7hj, f7hn), 
+                P.taux1 * max_(f7hj, f7hn),
                 P.taux2 * max_(f7hk, f7ho))) / 9 +
-            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 + 
+            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
             min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
             min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
             min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
@@ -1053,7 +1053,7 @@ def _scelli_2011(f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7h
 
 def _scelli_2012(f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
     '''
-    Investissements locatif neufs : Dispositif Scellier 
+    Investissements locatif neufs : Dispositif Scellier
     2012
     '''
     return (min_(P.max, maxi(
@@ -1064,9 +1064,9 @@ def _scelli_2012(f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7h
                 P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
                 P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
             min_(P.max, maxi(
-                P.taux1 * max_(f7hj, f7hn), 
+                P.taux1 * max_(f7hj, f7hn),
                 P.taux2 * max_(f7hk, f7ho))) / 9 +
-            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 + 
+            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
             min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
             min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
             min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
@@ -1094,9 +1094,9 @@ def _scelli_2013(f7fa, f7fb, f7fc, f7fd, f7gj, f7gk, f7gl, f7gp, f7gs, f7gt, f7g
                 P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
                 P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
             min_(P.max, maxi(
-                P.taux1 * max_(f7hj, f7hn), 
+                P.taux1 * max_(f7hj, f7hn),
                 P.taux2 * max_(f7hk, f7ho))) / 9 +
-            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 + 
+            min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
             min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
             min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
             min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +

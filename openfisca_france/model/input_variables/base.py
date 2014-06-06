@@ -57,9 +57,9 @@ QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', '
 column_by_name = collections.OrderedDict((
     build_column_couple('noi', IntCol(label = u"Numéro d'ordre individuel")),
 
-    build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),  # 600001, 600002,
-    build_column_couple('idfoy', IntCol(label = u"Identifiant du foyer")),  # idmen + noi du déclarant
-    build_column_couple('idfam', IntCol(label = u"Identifiant de la famille")),  # idmen + noi du chef de famille
+    build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),
+    build_column_couple('idfoy', IntCol(label = u"Identifiant du foyer")),
+    build_column_couple('idfam', IntCol(label = u"Identifiant de la famille")),
 
     build_column_couple('quimen', EnumCol(QUIMEN)),
     build_column_couple('quifoy', EnumCol(QUIFOY)),
@@ -71,7 +71,41 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nom_foyer_fiscal', StrCol(entity = 'foy', label = u"Nom")),
     build_column_couple('nom_individu', StrCol(label = u"Prénom")),
     build_column_couple('nom_menage', StrCol(entity = 'men', label = u"Nom")),
+    build_column_couple(
+        'type_sal',
+        EnumCol(
+            label = u"Catégorie de salarié",
+            enum = Enum(
+                [
+                    u"prive_non_cadre",
+                    u"prive_cadre",
+                    u"public_titulaire_etat",
+                    u"public_titulaire_militaire",
+                    u"public_titulaire_territoriale",
+                    u"public_titulaire_hospitaliere",
+                    u"public_non_titulaire",
+                    ],
+                ),
+            )
+        ),
 
+    build_column_couple(
+        'taille_entreprise',
+        EnumCol(
+            enum = Enum(
+                [
+                    u"Non pertinent",
+                    u"Moins de 10 salariés",
+                    u"De 10 à 19 salariés",
+                    u"De 20 à 249 salariés",
+                    u"Plus de 250 salariés",
+                    ],
+                ),
+            default = 0,
+            label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
+            url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
+            )
+        ),
     # Prestations familiales
     build_column_couple('inactif', BoolCol(entity = 'fam',
                         label = u"Parent inactif (PAJE-CLCA)")),

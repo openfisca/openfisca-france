@@ -27,7 +27,6 @@ import os
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
-DATA_DIR = os.path.join(COUNTRY_DIR, 'data')
 ENTITIES_INDEX = ['men', 'fam', 'foy']
 REVENUES_CATEGORIES = {
     'brut': ['salbrut', 'chobrut', 'rstbrut', 'alr', 'alv', 'rev_cap_brut', 'fon'],
@@ -79,13 +78,13 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         for variable in survey_only_variables:
             del column_by_name[variable]
 
-        survey_only_variables = [
-            name
-            for name, prestation in prestation_by_name.iteritems()
-            if prestation.survey_only
-            ]
-        for variable in survey_only_variables:
-            del prestation_by_name[variable]
+#        survey_only_variables = [
+#            name
+#            for name, prestation in prestation_by_name.iteritems()
+#            if prestation.survey_only
+#            ]
+#        for variable in survey_only_variables:
+#            del prestation_by_name[variable]
 
         needed_columns = ['type_sal', 'primes']
         for variable in needed_columns:
@@ -115,7 +114,6 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         """French tax benefit system"""
         check_consistency = None  # staticmethod(utils.check_consistency)
         CURRENCY = CURRENCY
-        DATA_DIR = DATA_DIR
         DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
         DECOMP_DIR = os.path.dirname(os.path.abspath(decompositions.__file__))
         DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE

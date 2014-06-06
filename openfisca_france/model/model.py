@@ -185,19 +185,19 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
 
     # Salaires
-    build_simple_formula_couple('type_sal', EnumCol(function = cs_travail._type_sal,
-        label = u"Catégorie de salarié",
-        enum = Enum([
-            u"prive_non_cadre",
-            u"prive_cadre",
-            u"public_titulaire_etat",
-            u"public_titulaire_militaire",
-            u"public_titulaire_territoriale",
-            u"public_titulaire_hospitaliere",
-            u"public_non_titulaire",
-             ]),
-         url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
-         )),
+#    build_simple_formula_couple('type_sal', EnumCol(function = cs_travail._type_sal,
+#        label = u"Catégorie de salarié",
+#        enum = Enum([
+#            u"prive_non_cadre",
+#            u"prive_cadre",
+#            u"public_titulaire_etat",
+#            u"public_titulaire_militaire",
+#            u"public_titulaire_territoriale",
+#            u"public_titulaire_hospitaliere",
+#            u"public_non_titulaire",
+#             ]),
+#         url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
+#         )),
 
     build_select_formula_couple(
         'salbrut',
@@ -218,17 +218,18 @@ prestation_by_name = collections.OrderedDict((
         label = u"Salaire horaire brut",
         url = u"http://www.les-horaires.fr/pratique/smic-horaire.php",
         )),
-    build_simple_formula_couple('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
-        enum = Enum([
-            u"Non pertinent",
-            u"Moins de 10 salariés",
-            u"De 10 à 19 salariés",
-            u"De 20 à 249 salariés",
-            u"Plus de 250 salariés",
-            ]),
-        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
-        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
-        )),
+
+#    build_simple_formula_couple('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
+#        enum = Enum([
+#            u"Non pertinent",
+#            u"Moins de 10 salariés",
+#            u"De 10 à 19 salariés",
+#            u"De 20 à 249 salariés",
+#            u"Plus de 250 salariés",
+#            ]),
+#        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
+#        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
+#        )),
 
     build_simple_formula_couple('cotpat_contrib', FloatCol(function = cs_travail._cotpat_contrib,
         label = u"Cotisations sociales patronales contributives",
@@ -2311,12 +2312,6 @@ prestation_by_name = collections.OrderedDict((
         entity = 'men',
         label = u"Type de ménage",
         )),
-    build_simple_formula_couple('nb_ageq0', IntCol(function = cl._nb_ageq0,
-                           entity = 'men',
-                           label = u"Effectifs des tranches d'âge quiquennal",
-                           survey_only = True,
-                           )),
-
     build_simple_formula_couple('nbinde', EnumCol(function = cl._nbinde,
                           label = u"Nombre d'individus dans le ménage",
         entity = 'men',
@@ -2376,110 +2371,6 @@ prestation_by_name = collections.OrderedDict((
                 ),
             ),
         ),
-
-    build_simple_formula_couple(
-        'decile',
-        EnumCol(
-            function = cm._decile,
-            entity = 'men',
-            label = u"Décile de niveau de vie disponible",
-            enum = Enum(
-                [
-                    u"Hors champ"
-                    u"1er décile",
-                    u"2nd décile",
-                    u"3e décile",
-                    u"4e décile",
-                    u"5e décile",
-                    u"6e décile",
-                    u"7e décile",
-                    u"8e décile",
-                    u"9e décile",
-                    u"10e décile"
-                    ]
-                ),
-            survey_only = True,
-            ),
-        ),
-
-    build_simple_formula_couple('decile_net', EnumCol(function = cm._decile_net,
-                               entity = 'men',
-                               label = u"Décile de niveau de vie net",
-                               enum = Enum([u"Hors champ"
-                                            u"1er décile",
-                                            u"2nd décile",
-                                            u"3e décile",
-                                            u"4e décile",
-                                            u"5e décile",
-                                            u"6e décile",
-                                            u"7e décile",
-                                            u"8e décile",
-                                            u"9e décile",
-                                            u"10e décile"]),
-                               survey_only = True,
-                               )),
-
-    build_simple_formula_couple('pauvre40', EnumCol(function = cm._pauvre40,
-                             entity = 'men',
-                             label = u"Pauvreté monétaire au seuil de 40%",
-                             enum = Enum([u"Ménage au dessus du seuil de pauvreté à 40%",
-                                          u"Ménage en dessous du seuil de pauvreté à 40%"]),
-                             survey_only = True,
-                             )),
-
-    build_simple_formula_couple('pauvre50', EnumCol(function = cm._pauvre50,
-                             entity = 'men',
-                             label = u"Pauvreté monétaire au seuil de 50%",
-                             enum = Enum([u"Ménage au dessus du seuil de pauvreté à 50%",
-                                          u"Ménage en dessous du seuil de pauvreté à 50%"]),
-                             survey_only = True,
-                             )),
-
-    build_simple_formula_couple(
-         'pauvre60',
-         EnumCol(
-             function = cm._pauvre60,
-             entity = 'men',
-             label = u"Pauvreté monétaire au seuil de 60%",
-             enum = Enum(
-                 [
-                     u"Ménage au dessus du seuil de pauvreté à 50%",
-                     u"Ménage en dessous du seuil de pauvreté à 50%"
-                     ],
-                 ),
-             survey_only = True,
-             )
-         ),
-
-    build_simple_formula_couple(
-         'weight_ind',
-         FloatCol(
-             function = cm._weight_ind,
-             entity = 'ind',
-             label = u"Poids de l'individu",
-             survey_only = True,
-             )
-         ),
-
-    build_simple_formula_couple(
-         'weight_foy',
-         FloatCol(
-             function = cm._weight_foy,
-             entity = 'foy',
-             label = u"Poids du foyer",
-             survey_only = True,
-             )
-         ),
-
-    build_simple_formula_couple(
-         'weight_fam',
-         FloatCol(
-             function = cm._weight_fam,
-             entity = 'fam',
-             label = u"Poids de la famille",
-             survey_only = True,
-             )
-         ),
     ############################################################
     # Totaux
     ############################################################

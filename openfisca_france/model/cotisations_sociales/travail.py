@@ -72,45 +72,6 @@ def _mhsup(hsup):
 ############################################################################
 
 
-def _type_sal(titc, statut, chpub, cadre):
-    '''
-    Catégorie de salarié
-    '''
-    cadre = (statut == 8) * (chpub > 3) * cadre
-    # noncadre = (statut ==8)*(chpub>3)*not_(cadre)
-
-    # etat_stag = (chpub==1)*(titc == 1)
-    etat_tit = (chpub == 1) * (titc == 2)
-    etat_cont = (chpub == 1) * (titc == 3)
-
-    militaire = 0  # TODO:
-
-    # colloc_stag = (chpub==2)*(titc == 1)
-    colloc_tit = (chpub == 2) * (titc == 2)
-    colloc_cont = (chpub == 2) * (titc == 3)
-
-    # hosp_stag = (chpub==2)*(titc == 1)
-    hosp_tit = (chpub == 2) * (titc == 2)
-    hosp_cont = (chpub == 2) * (titc == 3)
-
-    contract = (colloc_cont + hosp_cont + etat_cont) > 1
-
-    return (0 + 1 * cadre + 2 * etat_tit + 3 * militaire
-            + 4 * colloc_tit + 5 * hosp_tit + 6 * contract)
-
-
-def _taille_entreprise(nbsala):
-    '''
-    0 : "Non pertinent"
-    1 : "Moins de 10 salariés"
-    2 : "De 10 à 19 salariés"
-    3 : "De 20 à 199 salariés"
-    4 : "Plus de 200 salariés"
-    '''
-    return (0 + 1 * (nbsala >= 1) + 1 * (nbsala >= 4) + 1 * (nbsala >= 5)
-              + 1 * (nbsala >= 7))
-
-
 def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pat_rafp, cot_pat_pension_civile, _P):
     '''
     Cotisation sociales patronales contributives

@@ -470,11 +470,12 @@ def _csg_deduc_patrimoine(f6de):
     return max_(f6de, 0)
 
 
-def _csg_deduc_patrimoine_simulated(rev_cat_rfon, rev_cap_bar, rto, taux = law.csg.capital.deduc):
+def _csg_deduc_patrimoine_simulated(self, rev_cat_rfon, rev_cap_bar, rto_holder, taux = law.csg.capital.deduc):
     '''
     Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
     http://bofip.impots.gouv.fr/bofip/887-PGP
     '''
+    rto = self.sum_by_entity(rto_holder)
     patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
     return taux * patrimoine_deduc
 
@@ -801,11 +802,11 @@ def _irpp(iai, credits_impot, cehr, microsocial, P = law.ir.recouvrement):
     '''
     # log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
     pre_result = iai - credits_impot + cehr + microsocial
-    return ((iai > P.seuil) * 
-                ((pre_result < P.min) * (pre_result > 0) * iai * 0 + 
-                ((pre_result <= 0) + (pre_result >= P.min)) * (-pre_result)) + 
-             (iai <= P.seuil) * 
-                ((pre_result < 0) * (-pre_result) + 
+    return ((iai > P.seuil) *
+                ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
+                ((pre_result <= 0) + (pre_result >= P.min)) * (-pre_result)) +
+             (iai <= P.seuil) *
+                ((pre_result < 0) * (-pre_result) +
                 (pre_result >= 0) * 0 * iai ))
 
 

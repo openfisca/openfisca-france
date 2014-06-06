@@ -33,19 +33,40 @@ from openfisca_core import simulations
 log = logging.getLogger(__name__)
 
 
+def adapt_to_survey(tax_benefit_system_class):
+    # Add survey specific column
+    from openfisca_france_data.model.input_variables.survey_variables import column_by_name as survey_column_by_name
+    from openfisca_france_data.model.model import prestation_by_name as survey_prestation_by_name
+
+    for column_by_name in [survey_column_by_name]:
+        tax_benefit_system_class.column_by_name.update(column_by_name)
+
+    for prestation_by_name in [survey_prestation_by_name]:
+        tax_benefit_system_class.column_by_name.update(prestation_by_name)
+
+    del tax_benefit_system_class.column_by_name['birth']
+    tax_benefit_system_class.column_by_name['agem'].formula_constructor = None
+    tax_benefit_system_class.column_by_name['agem'].function = None
+    tax_benefit_system_class.column_by_name['age'].formula_constructor = None
+    tax_benefit_system_class.column_by_name['age'].function = None
+
+
 class SurveyScenario(object):
     axes = None
     compact_legislation = None
     input_data_frame = None
     tax_benefit_system = None
+    tax_benefit_system_class = None
     year = None
     weight_column_name_by_entity_symbol = dict()
 
-    def init_from_data_frame(self, input_data_frame = None, tax_benefit_system = None, year = None):
+    def init_from_data_frame(self, input_data_frame = None, tax_benefit_system_class = None, year = None):
         assert input_data_frame is not None
         self.input_data_frame = input_data_frame
-        assert tax_benefit_system is not None
-        self.tax_benefit_system = tax_benefit_system
+        assert tax_benefit_system_class is not None
+        self.tax_benefit_system_class = tax_benefit_system_class
+        adapt_to_survey
+        self.tax_benefit_system = tax_benefit_system_class()
         assert year is not None
         self.year = year
         self.weight_column_name_by_entity_symbol['men'] = 'wprm'
@@ -56,6 +77,7 @@ class SurveyScenario(object):
 
     def new_simulation(self, debug = False, debug_all = False, trace = False):
         tax_benefit_system = self.tax_benefit_system
+        adapt_to_survey(tax_benefit_system)
         input_data_frame = self.input_data_frame
 
         simulation = simulations.Simulation(
@@ -106,9 +128,10 @@ class SurveyScenario(object):
                 entity.count)
             holder.array = np.array(array, dtype = holder.column.dtype)
 
+        self.simulation = simulation
         return simulation
 
-# TODO: clean this one
+
 def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
                                    tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
