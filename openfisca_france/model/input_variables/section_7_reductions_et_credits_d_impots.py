@@ -754,6 +754,7 @@ cerfa_field = u'7XR')),
     build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qk', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QK', end = date(2011, 12, 31))), 
     build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = date(2011, 12, 31))),  # vérifier <=2011
@@ -1343,29 +1344,124 @@ cerfa_field = u'7XR')),
 
     # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
     build_column_couple('f7ij', IntCol(entity = 'foy',
-                    label = u"Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en 2011",
+                    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011",
                     val_type = "monetary",
                     cerfa_field = u'7IJ')),
 
     build_column_couple('f7il', IntCol(entity = 'foy',
-                    label = u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en 2010",
+                    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, promesse d'achat en 2010",
                     val_type = "monetary",
                     cerfa_field = u'7IL')),
 
     build_column_couple('f7im', IntCol(entity = 'foy',
-                    label = u"Investissement destinés à la location meublée non professionnelle: investissement réalisés en 2010 avec promesse d'achat en 2009",
+                    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 et achevés en 2012 avec promesse d'achat en 2009",
                     val_type = "monetary",
                     cerfa_field = u'7IM')),
 
     build_column_couple('f7ik', IntCol(entity = 'foy',
-                    label = u"Reports de 1/9 de l'investissement réalisé et achevé en 2009",
+                    label = u"Investissements destinés à la location meublée non professionnelle : Reports de 1/9 de l'investissement réalisé et achevé en 2009",
                     val_type = "monetary",
                     cerfa_field = u'7IK')),
 
+    build_column_couple('f7in', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IN')),
+
+    build_column_couple('f7iv', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.4.2011 au 31.12.2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IV')),
+
+    build_column_couple('f7iw', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7IW')),
+
+    build_column_couple('f7io', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : ",
+                    val_type = "monetary",
+                    cerfa_field = u'7IO')),
+
+    build_column_couple('f7ip', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : ",
+                    val_type = "monetary",
+                    cerfa_field = u'7IP')),
+
+    build_column_couple('f7ir', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : ",
+                    val_type = "monetary",
+                    cerfa_field = u'7IR')),
+
+    build_column_couple('f7iq', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : ",
+                    val_type = "monetary",
+                    cerfa_field = u'7IQ')),
+
+    build_column_couple('f7iu', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : ",
+                    val_type = "monetary",
+                    cerfa_field = u'7IU')),
+
+    build_column_couple('f7it', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : ",
+                    val_type = "monetary",
+                    cerfa_field = u'7IT')),
+
     build_column_couple('f7is', IntCol(entity = 'foy',
-                    label = u"Report du solde de réduction d'impôt non encore imputé: année  n-4",
+                    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé: année  n-4",
                     val_type = "monetary",
                     cerfa_field = u'7IS')),
+
+    build_column_couple('f7ia', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IA')),
+
+    build_column_couple('f7ib', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7IB')),
+
+    build_column_couple('f7ic', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2011 avec promesse d'achat en 2009 ou réalisés en 2009",
+                    val_type = "monetary",
+                    cerfa_field = u'7IC')),
+
+    build_column_couple('f7id', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Engagement de réalisation de l'investissement en 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7ID')),
+
+    build_column_couple('f7ie', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Promesse d'achat en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IE')),
+
+    build_column_couple('f7if', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012, investissement réalisé du 1.1.2012 au 31.3.2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7IF')),
+
+    build_column_couple('f7ig', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7IG')),
+
+    build_column_couple('f7ix', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d'impôt de l'année 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IX')),
+
+    build_column_couple('f7ih', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IH')),
+
+    build_column_couple('f7iz', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : nvestissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7IZ')),
 
     # Investissements locatifs dans les résidences de tourisme situées dans une zone de
     # revitalisation rurale
@@ -1463,28 +1559,28 @@ cerfa_field = u'7XR')),
                     start = date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
 
     # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
-    build_column_couple('f1ar', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
+    build_column_couple('f1ar', BoolCol(entity = 'foy',
+                    label = u"Crédit d'impôt aide à la mobilité : le déclarant déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1AR',
                     end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
-    build_column_couple('f1br', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
+    build_column_couple('f1br', BoolCol(entity = 'foy',
+                    label = u"Crédit d'impôt aide à la mobilité : le conjoint déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1BR',
                     end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
-    build_column_couple('f1cr', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
+    build_column_couple('f1cr', BoolCol(entity = 'foy',
+                    label = u"Crédit d'impôt aide à la mobilité : la 1ère personne à charge déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1CR',
                     end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
-    build_column_couple('f1dr', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
+    build_column_couple('f1dr', BoolCol(entity = 'foy',
+                    label = u"Crédit d'impôt aide à la mobilité : la 2è personne à charge déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1DR',
                     end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
-    build_column_couple('f1er', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
+    build_column_couple('f1er', BoolCol(entity = 'foy',
+                    label = u"Crédit d'impôt aide à la mobilité : la 3è personne à charge déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1ER',
                     end = date(2012, 12, 31))),  # TODO: vérifier <=2012
 
@@ -1499,7 +1595,7 @@ cerfa_field = u'7XR')),
     # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
 
     build_column_couple('f7sf', IntCol(entity = 'foy',
-                    label = u"Appareils de régulation du chauffage, matériaux de calorifugeage",
+                    label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)",
                     val_type = "monetary",
                     cerfa_field = u'7SF')),
 

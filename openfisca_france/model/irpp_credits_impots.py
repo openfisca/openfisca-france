@@ -80,11 +80,11 @@ def _credits_impot_2012(accult, aidper, assloy, autent, ci_garext, cotsyn, creim
 
 
 def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, cotsyn, creimp, direpa, drbail, inthab, mecena,
-            preetu, prlire, saldom2):
+            preetu, prlire, quaenv, saldom2):
 
     """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
     return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
-            preetu + prlire + saldom2)
+            preetu + prlire + quaenv + saldom2)
 
 
 def _nb_pac2(nbF, nbJ, nbR, nbH):
@@ -122,7 +122,7 @@ def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
 def _aidper_2002_2003(marpac, nb_pac2, nbH, f7wi, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    (cases 7WI, 7WJ, 7WL et 7SF).
+    (cases 7WI, 7WJ, 7WL).
     2002-2003
     '''
     P = _P.ir.credits_impot.aidper
@@ -202,7 +202,7 @@ def _aidper_2012(marpac, nb_pac2, f7wi, f7wj, f7wl, f7wr, _P):
             P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2))
 
 
-def _aidper_2013(marpac, nb_pac2, f7wj, f7wl, f7wr, f7sf, f7si, _P):
+def _aidper_2013(marpac, nb_pac2, f7wj, f7wl, f7wr, _P):
     '''
     Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
     (cases 7WI, 7WJ, 7WL).

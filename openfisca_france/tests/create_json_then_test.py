@@ -23,6 +23,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+## Ce script crée un fichier json comprenant le scenario et le résultat officiel de la simulation
+## Que le fichier existe déjà ou non, ce script teste ensuite si le résultat officiel correspond au résultat OpenFisca
+## Si un long message d'erreur apparaît, il faut supprimer le fichier créé (qui est vide)
 
 import openfisca_france
 import sys
@@ -65,7 +68,6 @@ def define_scenario(year, column_code):
         famille[column_code] = 1500
     elif entity == 'men':
         menage[column_code] = 1500
-
     scenario.init_single_entity(
         parent1 = parent1,
 #        parent2 = dict(),
