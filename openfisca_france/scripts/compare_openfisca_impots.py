@@ -185,6 +185,11 @@ def compare(scenario, tested = False, fichier = ''):
         'RCELRREDLC': u'?',#TODO (f7lc)
         'RCELRREDLZ': u'?',#TODO (f7lz)
         'RCONS': u'?',#TODO (7uh)
+        'RCODJT': u'?',#TODO (7jt)
+        'RCODJU': u'?',#TODO (7jt)
+        'RCODJV': u'?',#TODO (7jv)
+        'RCODJW': u'?',#TODO (7jw)
+        'RCODJX': u'?',#TODO (7jx)
         'RCOLENT': u'?',#TODO (7ls)
         'RDIFAGRI': u'?',#TODO (7um)
         'RDONS': u'?',#TODO (7uf)
@@ -194,6 +199,16 @@ def compare(scenario, tested = False, fichier = ''):
         'RILMIB': u'?',#TODO (7ib)
         'RILMIC': u'?',#TODO (7ic)
         'RILMIH': u'?',#TODO (7ih)
+        'RILMJI': u'?',#TODO (7ji)
+        'RILMJS': u'?',#TODO (7ji)
+        'RFIPC': u'?',#TODO 
+        'RILMJX': u'?',#TODO 
+        'RILMJV': u'?',#TODO
+        'RILMJW': u'?',#TODO 
+        'RCELREPHG': u'?',#TODO 
+        'RCELREPGV': u'?',#TODO 
+        'RCELRREDLM': u'?',#TODO 
+        'RCELRREDMG': u'?',#TODO 
         'RFORET': u'?',#TODO (f7uc)
         'RINVDOMTOMLG': u'?',#TODO (f7ui)
         'RTELEIR': u'?',#TODO (7ul)
@@ -250,7 +265,15 @@ def compare(scenario, tested = False, fichier = ''):
         'RREDMEUB': u'?',#TODO (7is)
         'RREPA': u'?',#TODO (7ud)
         'RRPRESCOMP': u'?',#TODO (7wp)
+        'RRESIMEUB': u'?',#TODO (7io)
+        'RREPMEU': u'?',#TODO (7ip)
         'RPRESCOMPREP': u'?',#TODO (7wp)
+        'RREPNPRO': u'?',#TODO (7ir)
+        'RPROREP': u'?',#TODO (7is)
+        'RINVRED': u'?',#TODO (7it)
+        'RREDREP': u'?',#TODO (7iu)
+        'RILMIX': u'?',#TODO (7ix)
+        'RILMIZ': u'?',#TODO (7iz)
         'RRIRENOV': u'?',#TODO (7nz)
         'RSOCREPR': u'?',#TODO (7fh)
         'RSOUFIP':  u'?',#TODO (7fq)
@@ -314,7 +337,9 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                     'RCELHJK', 'RCELREPHR', 'RCELRREDLA', 'RRESIVIEU', 'RMEUBLE', 'RREDMEUB', 'RSOCREPR', 'RRPRESCOMP',
                     'RCONS', 'RPECHE', 'RCELREPGS', 'RCELREPGU', 'RCELREPGT', 'RPATNAT', 'RPATNATOT', 'RPRESCOMPREP',
                     'RDIFAGRI', 'REI', 'RFOR', 'RTELEIR', 'RTOURREP', 'RTOUREPA', 'RTOUHOTR', 'RRESINEUV',
-                    'RFORET', 'RHEBE', 'RILMIC', 'RILMIB',
+                    'RFORET', 'RHEBE', 'RILMIC', 'RILMIB', 'RRESIMEUB', 'RREPMEU', 'RREPNPRO',
+                    'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 
+                    'RILMIZ', 'RILMJI', 'RILMJS', 'RCODJT', 'RCODJU', 'RCODJV', 'RCODJW', 'RCODJX',
                     'RIDOMENT', 'RIDOMPROE1', 'RIDOMPROE2', 'RLOGDOM', 'RREPA', 'RDUFLOGIH',
                     'RIDOMPROE3', 'RIDOMPROE4', 'RIDOMPROE5', 'RTITPRISE', 'RRDOM', 'RINVDOMTOMLG', 'RCOTFOR',
                     'RNI', 'RNOUV', 'RRESTIMO', 'RTOUR', 'RCELRREDLC', 'RCELRREDLB', 'RCELNBGL', 'RCELFD',
@@ -324,7 +349,8 @@ def compare_variable(code,field,simulation,totpac, year, fichier = ''):
                     'RCELREPGJ', 'RCELREPGK', 'RCELREPGL', 'RCELREPGP', 'RSOUFIP', 'RCODELOP',
                     'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR', 
                     'RCELREPHD', 'RCELREPHE', 'RCELREPHF', 'RCELREPHH', 'RCEL2012', 'RCELJBGL', 'RCOLENT',
-                    'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP'):
+                    'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP',
+                    'RFIPC', 'RILMJX', 'RILMJV', 'RCELREPGV', 'RCELRREDLM', 'RCELRREDMG', 'RILMJW', 'RCELREPHG'):
                 continue
             else:
                 print 'Code inconnu :', code

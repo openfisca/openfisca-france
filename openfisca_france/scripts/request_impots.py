@@ -198,8 +198,29 @@ def main():
                 'RREDMEUB': u'?',#TODO (7is)
                 'RREPA': u'?',#TODO (7ud)
                 'RRPRESCOMP': u'?',#TODO (7wp)
+                'RRESIMEUB': u'?',#TODO (7io)
+                'RREPMEU': u'?',#TODO (7ip)
+                'RINVRED': u'?',#TODO (7it)
+                'RREDREP': u'?',#TODO (7iu)
+                'RILMIX': u'?',#TODO (7ix)
+                'RILMIZ': u'?',#TODO (7iz)
+                'RILMJI': u'?',#TODO (7ji)
+                'RILMJS': u'?',#TODO (7ji)
+                'RCODJT': u'?',#TODO (7jt)
+                'RCODJU': u'?',#TODO (7jt)
+                'RCODJV': u'?',#TODO (7jv)
+                'RCODJW': u'?',#TODO (7jw)
+                'RCODJX': u'?',#TODO (7jx)
                 'RPRESCOMPREP': u'?',#TODO (7wp)
+                'RCELRREDLM': u'?',#TODO 
                 'RRIRENOV': u'?',#TODO (7nz)
+                'RFIPC': u'?',#TODO 
+                'RILMJX': u'?',#TODO 
+                'RILMJV': u'?',#TODO 
+                'RCELREPHG': u'?',#TODO 
+                'RILMJW': u'?',#TODO 
+                'RCELREPGV': u'?',#TODO 
+                'RCELRREDMG': u'?',#TODO 
                 'RSOCREPR': u'?',#TODO (7fh)
                 'RSOUFIP':  u'?',#TODO (7fq)
                 'RSURV': u'?',#TODO (7gz)

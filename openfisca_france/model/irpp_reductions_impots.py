@@ -132,13 +132,13 @@ def _reductions_2012(adhcga, cappme, creaen, daepad, deffor, dfppce, doment, dom
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, donapd, duflot, ecpess, garext,
+def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, domlog, donapd, duflot, ecpess, garext,
             intagr, invfor, invlst, ip_net, locmeu, mecena, mohist, patnat, prcomp, repsoc, resimm, rsceha,
             saldom, scelli, sofica, spfcpi):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
-    total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + donapd + duflot +
+    total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + domlog + donapd + duflot +
     ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
     saldom + scelli + sofica + spfcpi)
     return min_(ip_net, total_reductions)
@@ -431,13 +431,41 @@ def _doment_2005_2008(f7ur, f7oz, f7pz, f7qz, f7rz, f7sz):
     return  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
 #TODO: vérifier pour 2002
 #TODO: 7ur 2009-2012, 7ls 2010 (cf. simulateur DOM-TOM)
-#TODO: pb 7oz 2012, 7rz 2011-2012, 7sz 2005
+#TODO: pb 7rz 2011-2012, 7sz 2005
+#TODO: plafonnement (7qa), 2013
+
+def _doment_2009(f7oz, f7pz, f7qz, f7rz, f7sz, f7qe, f7qf, f7qg, f7qh, f7qi, f7qj):
+    '''
+    Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+    '''
+    return  f7oz + f7pz + f7qz + f7rz + f7sz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj
+
+
+def _doment_2010(f7oz, f7pz, f7qz, f7rz, f7sz, f7qe, f7qf, f7qg, f7qh, f7qi, f7qj, f7qo, f7qp, f7qq, f7qr, f7qs, f7mm, f7ma, f7lg, f7ks, f7ls):
+    '''
+    Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+    '''
+    return f7oz + f7pz + f7qz + f7rz + f7sz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj + f7qo + f7qp + f7qq + f7qr + f7qs + f7mm + f7ma + f7lg + f7ks + f7ls
+
+
+def _doment_2011(f7ks, f7kt, f7ku, f7lg, f7lh, f7li, f7ls, f7mm, f7ma, f7mb, f7mc, f7mn, f7oz, f7pa, f7pb, f7pd, f7pe, f7pf, f7ph, f7pi, f7pj, f7pl, f7pz, f7qz, f7qe, f7qf, f7qg, f7qh, f7qi, f7qo, f7qp, f7qq, f7qr, f7qv):
+    '''
+    Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+    '''
+    return f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ls + f7mb + f7mn + f7mc + f7mm + f7ma +  f7oz + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qh + f7qi + f7qo + f7qp + f7qq + f7qr + f7qe + f7qv
+
+
+def _doment_2012(f7ks, f7kt, f7ku, f7lg, f7lh, f7li, f7ma, f7mb, f7mc, f7mm, f7mn, f7nu, f7nv, f7nw, f7ny, f7pa, f7pb, f7pd, f7pe, f7pf, f7ph, f7pi, f7pj, f7pl, f7pm, f7pn, f7po, f7pp, f7pr, f7ps, f7pt, f7pu, f7pw, f7px, f7py, f7pz, f7qe, f7qf, f7qg, f7qi, f7qo, f7qp, f7qr, f7qv, f7qz, f7rg, f7ri, f7rj, f7rk, f7rl, f7rm, f7ro, f7rp, f7rq, f7rr, f7rt, f7ru, f7rv, f7rw, f7rx, f7ry):
+    '''
+    Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+    '''
+    return f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma + f7mb + f7mc + f7mm + f7mn +  f7pz + f7nu + f7nv + f7nw + f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr + f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw
+
 
 def _domlog_2002(f7ua, f7ub, f7uc, f7uj, _P, P = law.ir.reductions_impots.domlog):
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
     2002
-    TODO: Plafonnement sur la notice
     '''
     return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
 
@@ -446,7 +474,6 @@ def _domlog_2003_2004(f7ua, f7ub, f7uc, f7ui, f7uj, _P, P = law.ir.reductions_im
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
     2003-2004
-    TODO: Plafonnement sur la notice
     '''
     return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
 
@@ -455,7 +482,6 @@ def _domlog_2005_2007(f7ua, f7ub, f7uc, f7ui, f7uj, _P, P = law.ir.reductions_im
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
     2005-2007
-    TODO: Plafonnement sur la notice
     '''
     return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
 #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
@@ -464,38 +490,63 @@ def _domlog_2008(f7ui, _P, P = law.ir.reductions_impots.domlog):
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
     2008
-    TODO: Plafonnement sur la notice
     '''
     return f7ui
 
 
-def _domlog_2009(f7qb, f7qc, f7qd, _P, P = law.ir.reductions_impots.domlog):
+def _domlog_2009(f7qb, f7qc, f7qd, f7qk, _P, P = law.ir.reductions_impots.domlog):
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
     2009
-    TODO: Plafonnement sur la notice
     '''
-    return f7qb + f7qc + f7qd
+    return f7qb + f7qc + f7qd + f7qk / 2
 
 
 def _domlog_2010(f7qb, f7qc, f7qd, f7ql, f7qt, f7qm, _P, P = law.ir.reductions_impots.domlog):
     '''
     Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
-    2002
+    2010
     TODO: Plafonnement sur la notice
     '''
     return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
-#TODO: pb 7qb/7qc/7qd/7ql/7qt 2009-2010
 
-def _domsoc(f7qb, f7qc, f7ql, f7qt, f7qm, f7qd):
+
+def _domlog_2011(f7qb, f7qc, f7qd, f7ql, f7qm, f7qt, f7oa, f7ob, f7oc, f7oh, f7oi, f7oj, f7ok, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2011
+    TODO: Plafonnement sur la notice
+    '''
+    return f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok
+
+
+def _domlog_2012(f7qb, f7qc, f7qd, f7ql, f7qm, f7qt, f7oa, f7ob, f7oc, f7oh, f7oi, f7oj, f7ok, f7ol, f7om, f7on, f7oo, f7op, f7oq, f7or, f7os, f7ot, f7ou, f7ov, f7ow, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2012
+    TODO: Plafonnement sur la notice
+    '''
+    return f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om + f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow
+
+
+def _domlog_2013(fhod, fhoe, fhof, fhog, fhox, fhoy, fhoz, f7qb, f7qc, f7qd, f7ql, f7qm, f7qt, f7oa, f7ob, f7oc, f7oh, f7oi, f7oj, f7ok, f7ol, f7om, f7on, f7oo, f7op, f7oq, f7or, f7os, f7ot, f7ou, f7ov, f7ow, _P, P = law.ir.reductions_impots.domlog):
+    '''
+    Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+    2012
+    TODO: Plafonnement sur la notice
+    '''
+    return f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om + f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow + fhod + fhoe + fhof + fhog + fhox + fhoy + fhoz
+
+
+def _domsoc(f7qn, f7qk, f7qu, f7kg, f7kh, f7ki, f7qj, f7qs, f7qw, f7qx):
     '''
     Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
     2010-
     TODO plafonnement à 15% f7qa / liens avec autres investissments ?
     '''
-    return  f7qb + f7qc + f7ql + f7qt + f7qm + f7qd
+    return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 # Vérifier pour 2009
-
+#TODO: 7qa
 def _donapd_2002_2010(f7ud, P = law.ir.reductions_impots.donapd):
     '''
     Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
@@ -842,8 +893,20 @@ def _locmeu_2012(f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7i
         f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz)
 
 
-def _locmeu_2013(f7il):
-    return f7il
+def _locmeu_2013(f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, f7ix, f7iy, f7iz, f7jc, f7ji, f7js, f7jt, f7ju, f7jv, f7jw, f7jx, f7jy, P = law.ir.reductions_impots.locmeu):
+    '''
+    Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+    2013
+    '''
+    m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+    m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + 
+            min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) + 
+            P.taux11 * min_(P.max, f7jt + f7ju) +
+            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 + 
+        P.taux * max_(f7ik + f7ip, f7ir + f7iq) + 
+        f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc + f7ji + f7js)
+
 
 def _mecena(f7us):
     '''

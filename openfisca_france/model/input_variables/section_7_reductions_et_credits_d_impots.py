@@ -457,7 +457,330 @@ column_by_name = collections.OrderedDict((
                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
                     val_type = "monetary",
                     cerfa_field = u'7RZ',
-                    end = date(2011, 12, 31))),  # TODO: vérifier années antérieures.
+                    end = date(2011, 12, 31))),  # TODO: vérifier années antérieures. 
+
+    build_column_couple('f7qv', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010, nvestissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%",
+                    val_type = "monetary",
+                    cerfa_field = u'7QV',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7qo', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 50%",
+                    val_type = "monetary",
+                    cerfa_field = u'7QO',
+                    end = date(2009, 12, 31))), 
+
+    build_column_couple('f7qp', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 60%",
+                    val_type = "monetary",
+                    cerfa_field = u'7QP',
+                    end = date(2009, 12, 31))),
+
+    build_column_couple('f7pa', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+                    val_type = "monetary",
+                    cerfa_field = u'7PA',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pb', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+                    val_type = "monetary",
+                    cerfa_field = u'7PB',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pc', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
+                    val_type = "monetary",
+                    cerfa_field = u'7PC',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pd', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7PD',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7qe', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%",
+                    val_type = "monetary",
+                    cerfa_field = u'7QE',
+                    end = date(2009, 12, 31))), 
+
+    build_column_couple('f7pe', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+                    val_type = "monetary",
+                    cerfa_field = u'7PE',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pf', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+                    val_type = "monetary",
+                    cerfa_field = u'7PF',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pg', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
+                    val_type = "monetary",
+                    cerfa_field = u'7PG',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7ph', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7PH',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pi', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+                    val_type = "monetary",
+                    cerfa_field = u'7PI',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pj', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+                    val_type = "monetary",
+                    cerfa_field = u'7PJ',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pk', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
+                    val_type = "monetary",
+                    cerfa_field = u'7PK',
+                    end = date(2011, 12, 31))), 
+
+    build_column_couple('f7pl', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7PL',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7pm', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%",
+                    cerfa_field = u'7PM',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pn', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
+                    cerfa_field = u'7PN',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7po', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
+                    cerfa_field = u'7PO',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pp', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise",
+                    cerfa_field = u'7PP',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pq', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7PQ',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pr', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7PR',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7ps', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
+                    cerfa_field = u'7PS',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pt', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
+                    cerfa_field = u'7PT',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pu', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise",
+                    cerfa_field = u'7PU',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pv', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7PV',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7pw', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7PW',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7px', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %",
+                    cerfa_field = u'7PX',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7py', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+                    cerfa_field = u'7PY',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rg', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise",
+                    cerfa_field = u'7RG',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rh', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7RH',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7ri', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7RI',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rj', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : 	Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %",
+                    cerfa_field = u'7RJ',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rk', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+                    cerfa_field = u'7RK',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rl', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+                    cerfa_field = u'7RL',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rm', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise",
+                    cerfa_field = u'7RM',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rn', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7RN',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7ro', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7RO',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rp', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+                    cerfa_field = u'7RP',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rq', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+                    cerfa_field = u'7RQ',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rr', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise",
+                    cerfa_field = u'7RR',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rs', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7RS',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rt', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7RT',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7ru', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+                    cerfa_field = u'7RU',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rv', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+                    cerfa_field = u'7RV',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rw', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise",
+                    cerfa_field = u'7RW',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7rx', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7RX',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7ry', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7RY',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7nu', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+                    cerfa_field = u'7NU',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7nv', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+                    cerfa_field = u'7NV',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7nw', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise",
+                    cerfa_field = u'7NW',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7nx', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+                    cerfa_field = u'7NX',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7ny', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+                    cerfa_field = u'7NY',
+                    end = date(2012, 12, 31))),
+
+    build_column_couple('f7mn', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%",
+                    val_type = "monetary",
+                    cerfa_field = u'7MN',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7lh', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
+                    val_type = "monetary",
+                    cerfa_field = u'7LH',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7mb', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
+                    val_type = "monetary",
+                    cerfa_field = u'7MB',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7kt', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise",
+                    val_type = "monetary",
+                    cerfa_field = u'7KT',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7li', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
+                    val_type = "monetary",
+                    cerfa_field = u'7LI',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7mc', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
+                    val_type = "monetary",
+                    cerfa_field = u'7MC',
+                    end = date(2011, 12, 31))),
+
+    build_column_couple('f7ku', IntCol(entity = 'foy',
+                    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise",
+                    val_type = "monetary",
+                    cerfa_field = u'7KU',
+                    end = date(2011, 12, 31))),
 
 # TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
 
@@ -478,14 +801,6 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'7GY',
                     end = date(2011, 12, 31))),  # TODO: vérifier date <=2011
 
-
-# TODO: 7jy réutilisée en 2013
-
-     build_column_couple('f7jy', IntCol(entity = 'foy',
-                    label = u"Report de 1/9 des investissements réalisés l'année de perception des revenus déclarés -3 ou -4",
-                    cerfa_field = u'7JY',
-                    start = date(2013, 1, 1))),
-
     build_column_couple('f7hy', IntCol(entity = 'foy',
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
                     cerfa_field = u'7HY',
@@ -495,13 +810,6 @@ column_by_name = collections.OrderedDict((
                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
                     cerfa_field = u'7KY',
                     end = date(2011, 12, 31))),  # TODO: vérifier date <=2011
-
-# 7iy réutilisée en 2013
-#
-#     build_column_couple('f7iy', IntCol(entity = 'foy',
-#                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
-#                     cerfa_field = u'7IY',
-#                     end = date(2011,12,31))),  # TODO: vérifier date <=2011
 
     build_column_couple('f7iy', IntCol(entity = 'foy',
                     label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
@@ -754,10 +1062,190 @@ cerfa_field = u'7XR')),
     build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7qk', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QK', end = date(2011, 12, 31))), 
+    build_column_couple('f7qk', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QK', end = date(2009, 12, 31))),
+    build_column_couple('f7qn', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QN', end = date(2010, 12, 31))),
+    build_column_couple('f7kg', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KG', end = date(2010, 12, 31))), 
     build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = date(2011, 12, 31))),  # vérifier <=2011
     build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = date(2011, 12, 31))),  # vérifier <=2011
+    build_column_couple('f7qu', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QU')),
+    build_column_couple('f7ki', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KI')),
+    build_column_couple('f7qj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QJ')),
+    build_column_couple('f7qw', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QW')),
+    build_column_couple('f7qx', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QX')),
+    build_column_couple('f7qf', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QF')),
+    build_column_couple('f7qg', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QG')),
+    build_column_couple('f7qh', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QH')),
+    build_column_couple('f7qi', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QI')),
+    build_column_couple('f7qq', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QQ')),
+    build_column_couple('f7qr', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QR')),
+    build_column_couple('f7qs', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QS')),
+    build_column_couple('f7mm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7MM')),
+    build_column_couple('f7lg', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7LG')),
+    build_column_couple('f7ma', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7MA')),
+    build_column_couple('f7ks', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KS')),
+    build_column_couple('f7kh', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KH')),
+
+    build_column_couple('f7oa', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OA', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ob', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OB', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7oc', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OC', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7oh', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OH', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7oi', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OI', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7oj', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OJ', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ok', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OK', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ol', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OL', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7om', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OM', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7on', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7ON', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7oo', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OO', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7op', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OP', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7oq', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OQ', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7or', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OR', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7os', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OS', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ot', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OT', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ou', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OU', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ov', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OV', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('f7ow', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, ", 
+                    val_type = "monetary", 
+                    cerfa_field = u'7OW', 
+                    start = date(2011, 1, 1))),
+
+    build_column_couple('fhod', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOD', 
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('fhoe', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOE', 
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('fhof', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOF', 
+                    start = date(2013, 1, 1))),
+
+
+    build_column_couple('fhog', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOG', 
+                    start = date(2013, 1, 1))),
+
+
+    build_column_couple('fhox', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOX', 
+                    start = date(2013, 1, 1))),
+
+
+    build_column_couple('fhoy', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOY', 
+                    start = date(2013, 1, 1))),
+
+
+    build_column_couple('fhoz', IntCol(entity = 'foy', 
+                    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Autres investissements", 
+                    val_type = "monetary", 
+                    cerfa_field = u'HOZ', 
+                    start = date(2013, 1, 1))),
+
 
     # Souscription de parts de fonds communs de placement dans l'innovation,
     # de fonds d'investissement de proximité
@@ -1463,6 +1951,60 @@ cerfa_field = u'7XR')),
                     val_type = "monetary",
                     cerfa_field = u'7IZ')),
 
+    build_column_couple('f7jt', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2013",
+                    val_type = "monetary",
+                    cerfa_field = u'7JT',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7ju', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7JU',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7jv', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7JV',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7jw', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011",
+                    val_type = "monetary",
+                    cerfa_field = u'7JW',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7jx', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010",
+                    val_type = "monetary",
+                    cerfa_field = u'7JX',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7jy', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009",
+                    val_type = "monetary",
+                    cerfa_field = u'7JY',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7jc', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7JC',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7ji', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d'impôt de l'année 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7JI',
+                    start = date(2013, 1, 1))),
+
+    build_column_couple('f7js', IntCol(entity = 'foy',
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012",
+                    val_type = "monetary",
+                    cerfa_field = u'7JS',
+                    start = date(2013, 1, 1))),
+
     # Investissements locatifs dans les résidences de tourisme situées dans une zone de
     # revitalisation rurale
 
@@ -1563,7 +2105,7 @@ cerfa_field = u'7XR')),
                     label = u"Crédit d'impôt aide à la mobilité : le déclarant déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1AR',
                     end = date(2012, 12, 31))),  # TODO: vérifier <=2012
-
+#TODO: QUIFOY
     build_column_couple('f1br', BoolCol(entity = 'foy',
                     label = u"Crédit d'impôt aide à la mobilité : le conjoint déménage à plus de 200 km pour son emploi",
                     cerfa_field = u'1BR',

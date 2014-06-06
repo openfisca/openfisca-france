@@ -38,6 +38,19 @@ Le montant pour les variables suivantes ne peut dépasser 99 999 : 7HR, 7HS (7HR
 7um < 2tr
 7wn < 7wm
 7ud < 521
+7hy < 7iy
+7ny < 7nx
+7pd < 7pc
+7ph < 7pg
+7pl < 7pk
+7pr < 7pq
+7pw < 7pv
+7ri < 7rh
+7ro < 7rn
+7rt < 7rs
+7ry < 7rx
+7qi < 7qh
+7qr < 7qq
 
 Nécessite une autre case : 2ab, 2bg, 2ck, 4bf, 7uo, 7us, 8tb, 8tc, 8td, 8te, 8tg, 8ts, 8tz, 8uz, 8uy, 8wa, 8wb, 8wc, 8wd, 8we, 8wr, 8ws, 8wt, 8wu, 8wv, 8wx
 

@@ -30,6 +30,7 @@
 import openfisca_france
 import sys
 from generate_json import export_json
+import os
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -82,11 +83,14 @@ def define_scenario(year, column_code):
 
 
 def main():
-    column_code = raw_input("Which variable would you like to test ? ")
-    assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"
-    for year in range(2005,2014):
-        scenario = define_scenario(year,column_code)
-        export_json(scenario, var = column_code, tested = True)
+    os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % ( 1, 2))
+#    column_code = raw_input("Which variable would you like to test ? ")
+#    assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"
+
+    for column_code in ('f7nu', 'f7nv', 'f7nw', 'f7nx', 'f7oz', 'f7pa', 'f7pb', 'f7pc', 'f7pe', 'f7pf', 'f7pg', 'f7pi', 'f7pj', 'f7pk', 'f7pm', 'f7pn', 'f7po', 'f7pp', 'f7pq', 'f7ps', 'f7pt', 'f7pu', 'f7pv', 'f7px', 'f7py', 'f7rg', 'f7rh', 'f7rj', 'f7rk', 'f7rl', 'f7rm', 'f7rn', 'f7rp', 'f7rq', 'f7rr', 'f7rs', 'f7ru', 'f7rv', 'f7rw', 'f7rx', 'f7pz', 'f7qz', 'f7qe', 'f7qf', 'f7qg', 'f7qo', 'f7qp', 'f7qv', 'f7mm', 'f7ma', 'f7mb', 'f7mn', 'f7lg', 'f7lh', 'f7ks', 'f7kt', 'f7li', 'f7mc', 'f7ku'):
+        for year in range(2005,2014):
+            scenario = define_scenario(year,column_code)
+            export_json(scenario, var = column_code, tested = True)
     return 0
 
 
