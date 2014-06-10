@@ -4097,16 +4097,16 @@
     </NODE>
     <NODE code="ars" description="Allocation de rentrée scolaire">
       <CODE code="agep" description="Âge d'entrée à l'école primaire" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="6" />
+        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="6" />
       </CODE>
       <CODE code="agec" description="Âge d'entrée au collège" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="11" />
+        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="11" />
       </CODE>
       <CODE code="agel" description="Âge d'entrée au lycée" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="15" />
+        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="15" />
       </CODE>
       <CODE code="ages" description="Âge de sortie du lycée" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="18" />
+        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="18" />
       </CODE>
       <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="12027" />
@@ -4121,43 +4121,28 @@
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="17669" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="17846" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="18221" />
-        <VALUE deb="2014-01-01" fin="2014-03-31" valeur="18567" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="18567" />
       </CODE>
       <CODE code="plaf_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
       </CODE>
       <CODE code="tx0610" description="Taux pour les écoliers (en % de bmaf)" format="percent">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
         <VALUE deb="2008-01-01" fin="2012-09-02" valeur="0.725" />
-        <VALUE deb="2012-09-03" fin="2014-03-31" valeur="0.8972" />
-      </CODE>
-      <CODE code="enf0610" description="Montant pour les écoliers" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="284.37" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="356.20" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="360.47" />
+        <VALUE deb="2012-09-03" fin="2015-03-31" valeur="0.8972" />
       </CODE>
       <CODE code="tx1114" description="Taux pour les collégiens (en % de bmaf)" format="percent">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
         <VALUE deb="2008-01-01" fin="2012-08-31" valeur="0.7649" />
-        <VALUE deb="2012-09-01" fin="2014-03-31" valeur="0.9467" />
-      </CODE>
-      <CODE code="enf1114" description="Montant pour les collégiens" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="300.66" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="375.85" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="380.36" />
+        <VALUE deb="2012-09-01" fin="2015-03-31" valeur="0.9467" />
       </CODE>
       <CODE code="tx1518" description="Taux pour les lycéens (en % de bmaf)" format="percent">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
         <VALUE deb="2008-01-01" fin="2012-09-02" valeur="0.7915" />
-        <VALUE deb="2012-09-03" fin="2014-03-31" valeur="0.9795" />
-      </CODE>
-      <CODE code="enf1518" description="Montant pour les lycéens" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="311.11" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="388.87" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="393.54" />
+        <VALUE deb="2012-09-03" fin="2015-03-31" valeur="0.9795" />
       </CODE>
       <CODE code="seuil_nv" description="Seuil de non versement" format="integer" type="monetary">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="15" />
+        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="15" />
       </CODE>
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
