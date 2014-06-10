@@ -3993,9 +3993,9 @@
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="389.20" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="389.20" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="395.04" />
-        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="399" />
-        <VALUE deb="2015-01-01" fin="2016-12-31" valeur="403.79" />
-        <VALUE deb="2016-01-01" fin="2017-12-31" valeur="406.21" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="399" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="403.79" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="406.21" />
       </CODE>
       <CODE code="crds" description="Taux de crds" format="percent">
         <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
