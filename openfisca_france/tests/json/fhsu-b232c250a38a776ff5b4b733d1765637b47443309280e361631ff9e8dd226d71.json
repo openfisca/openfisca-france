@@ -3,17 +3,22 @@
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 2101.0
+      "value": 174.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
       "name": "Droits simples", 
-      "value": 2121.0
+      "value": 1674.0
     }, 
     "IINET": {
       "code": "IINET", 
       "name": "Montant net à payer", 
-      "value": 2101.0
+      "value": 174.0
+    }, 
+    "IINETIR": {
+      "code": "IINETIR", 
+      "name": "Impôt sur le revenu net", 
+      "value": 174.0
     }, 
     "IREST": {
       "code": "IREST", 
@@ -23,22 +28,22 @@
     "ITRED": {
       "code": "ITRED", 
       "name": "Total des réductions d'impôt", 
-      "value": 20.0
+      "value": 1500.0
     }, 
-    "NAPCR": {
-      "code": "NAPCR", 
-      "name": "nom inconnu", 
+    "NAPCRP": {
+      "code": "NAPCRP", 
+      "name": "Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d'activité et de remplacement", 
       "value": 0.0
     }, 
-    "NBP": {
-      "code": "NBP", 
+    "NBPT": {
+      "code": "NBPT", 
       "name": "Nombre de parts", 
       "value": 1.0
     }, 
     "PERPPLAFTV": {
       "code": "PERPPLAFTV", 
       "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
-      "value": 3019.0
+      "value": 3703.0
     }, 
     "PPETOT": {
       "code": "PPETOT", 
@@ -48,32 +53,27 @@
     "REVKIRE": {
       "code": "REVKIRE", 
       "name": "Revenu fiscal de référence", 
-      "value": 17280.0
+      "value": 21600.0
     }, 
-    "RNI": {
-      "code": "RNI", 
-      "name": "?", 
-      "value": 17280.0
+    "RNICOL": {
+      "code": "RNICOL", 
+      "name": "Revenu net imposable ou déficit à reporter", 
+      "value": 21600.0
     }, 
     "RRBG": {
       "code": "RRBG", 
       "name": "Revenu brut global ou déficit", 
-      "value": 17280.0
-    }, 
-    "RTELEIR": {
-      "code": "RTELEIR", 
-      "name": "nom inconnu", 
-      "value": 20.0
+      "value": 21600.0
     }, 
     "TXMARJ": {
       "code": "TXMARJ", 
       "name": "Taux marginal d'imposition", 
-      "value": 28.26
+      "value": 14.0
     }, 
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 9.73
+      "value": 0.81
     }
   }, 
   "scenario": {
@@ -90,7 +90,7 @@
           "declarants": [
             "ind0"
           ], 
-          "f7ul": 1500
+          "fhsu": 1500
         }
       }, 
       "individus": {
@@ -108,6 +108,6 @@
         }
       }
     }, 
-    "year": 2005
+    "year": 2013
   }
 }

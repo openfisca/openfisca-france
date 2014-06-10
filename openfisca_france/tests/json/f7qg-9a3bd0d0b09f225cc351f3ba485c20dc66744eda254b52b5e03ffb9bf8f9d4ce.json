@@ -3,7 +3,7 @@
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 1674.0
+      "value": 174.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
@@ -13,17 +13,22 @@
     "IINET": {
       "code": "IINET", 
       "name": "Montant net à payer", 
-      "value": 1674.0
+      "value": 174.0
     }, 
     "IINETIR": {
       "code": "IINETIR", 
       "name": "Impôt sur le revenu net", 
-      "value": 1674.0
+      "value": 174.0
     }, 
     "IREST": {
       "code": "IREST", 
       "name": "Montant net à restituer", 
       "value": 0.0
+    }, 
+    "ITRED": {
+      "code": "ITRED", 
+      "name": "Total des réductions d'impôt", 
+      "value": 1500.0
     }, 
     "NAPCRP": {
       "code": "NAPCRP", 
@@ -44,6 +49,11 @@
       "code": "PPETOT", 
       "name": "Prime pour l'emploi", 
       "value": 0.0
+    }, 
+    "RCOLENT": {
+      "code": "RCOLENT", 
+      "name": "?", 
+      "value": 1500.0
     }, 
     "REVKIRE": {
       "code": "REVKIRE", 
@@ -68,7 +78,7 @@
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 7.75
+      "value": 0.81
     }
   }, 
   "scenario": {

@@ -37,11 +37,11 @@ def _credits_impot_2005_2006(accult, acqgpl, aidmob, aidper, assloy, ci_garext, 
             mecena + preetu + prlire + quaenv)
 
 
-def _credits_impot_2007(accult, acqgpl, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, jeunes,
-            mecena, preetu, prlire, quaenv, saldom2):
+def _credits_impot_2007(accult, acqgpl, aidmob, aidper, assloy, ci_garext, creimp, divide, direpa, drbail, inthab,
+            jeunes, mecena, preetu, prlire, quaenv, saldom2):
     """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
-    return (accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + jeunes +
-            mecena + preetu + prlire + quaenv + saldom2)
+    return (accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab +
+            jeunes + mecena + preetu + prlire + quaenv + saldom2)
 
 
 def _credits_impot_2008(accult, aidmob, aidper, assloy, ci_garext, creimp, creimp_exc_2008, divide, direpa, drbail,
@@ -307,8 +307,8 @@ def _creimp_2008(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8t
 def _creimp_2009(f2ab, f8ta, f8tb, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we, f8wr, f8ws,
             f8wt, f8wu, f8wv, f8wx):
     '''Avoir fiscaux et crédits d'impôt 2009'''
-    return  (f2ab + f8ta + f8tb + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd + f8we + f8wr +
-            f8ws + f8wt + f8wu + f8wv + f8wx)
+    return  (f2ab + f8ta + f8tb + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd +
+            f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
 
 def _creimp_2010_2011(f2ab, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8to, f8tp, f8tz, f8uz, f8wa, f8wb, f8wd, f8we,
@@ -358,6 +358,16 @@ def _drbail(f4tq, _P):
     '''
     P = _P.ir.credits_impot.drbail
     return P.taux * f4tq
+
+
+def _inthab_2007(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7uh, P = law.ir.credits_impot.inthab):
+    '''
+    Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7UH)
+    2007
+    '''
+    invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+    max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+    return P.taux1 * min_(max0, f7uh)
 
 
 def _inthab_2008(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vy, f7vz, _P):

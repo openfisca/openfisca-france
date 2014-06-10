@@ -3,27 +3,22 @@
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 1674.0
+      "value": 72.0
+    }, 
+    "IDEC": {
+      "code": "IDEC", 
+      "name": "Décote", 
+      "value": 296.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
       "name": "Droits simples", 
-      "value": 1674.0
-    }, 
-    "IINET": {
-      "code": "IINET", 
-      "name": "Montant net à payer", 
-      "value": 1674.0
+      "value": 368.0
     }, 
     "IINETIR": {
       "code": "IINETIR", 
       "name": "Impôt sur le revenu net", 
-      "value": 1674.0
-    }, 
-    "IREST": {
-      "code": "IREST", 
-      "name": "Montant net à restituer", 
-      "value": 0.0
+      "value": 72.0
     }, 
     "NAPCRP": {
       "code": "NAPCRP", 
@@ -33,12 +28,12 @@
     "NBPT": {
       "code": "NBPT", 
       "name": "Nombre de parts", 
-      "value": 1.0
+      "value": 2.5
     }, 
     "PERPPLAFTV": {
       "code": "PERPPLAFTV", 
       "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
-      "value": 3703.0
+      "value": 3637.0
     }, 
     "PPETOT": {
       "code": "PPETOT", 
@@ -60,21 +55,30 @@
       "name": "Revenu brut global ou déficit", 
       "value": 21600.0
     }, 
+    "TOTPAC": {
+      "code": "TOTPAC", 
+      "name": "Nombre de personnes à charge", 
+      "value": 2.0
+    }, 
     "TXMARJ": {
       "code": "TXMARJ", 
       "name": "Taux marginal d'imposition", 
-      "value": 14.0
+      "value": 5.5
     }, 
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 7.75
+      "value": 0.33
     }
   }, 
   "scenario": {
     "test_case": {
       "familles": {
         "0": {
+          "enfants": [
+            "ind2", 
+            "ind3"
+          ], 
           "parents": [
             "ind0"
           ]
@@ -82,10 +86,16 @@
       }, 
       "foyers_fiscaux": {
         "0": {
+          "caseT": true, 
           "declarants": [
             "ind0"
           ], 
-          "f7kt": 1500
+          "f7rx": 15000, 
+          "f7rz": 10000, 
+          "personnes_a_charge": [
+            "ind2", 
+            "ind3"
+          ]
         }
       }, 
       "individus": {
@@ -95,14 +105,26 @@
           "cadre": true, 
           "sali": 24000, 
           "statmarit": 2
+        }, 
+        "ind2": {
+          "activite": 2, 
+          "birth": "2002-02-01"
+        }, 
+        "ind3": {
+          "activite": 2, 
+          "birth": "2000-04-17"
         }
       }, 
       "menages": {
         "0": {
+          "enfants": [
+            "ind2", 
+            "ind3"
+          ], 
           "personne_de_reference": "ind0"
         }
       }
     }, 
-    "year": 2013
+    "year": 2012
   }
 }

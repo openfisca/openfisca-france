@@ -3,17 +3,27 @@
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 1685.0
+      "value": 1674.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
       "name": "Droits simples", 
-      "value": 1685.0
+      "value": 1674.0
+    }, 
+    "IINET": {
+      "code": "IINET", 
+      "name": "Montant net à payer", 
+      "value": 1674.0
     }, 
     "IINETIR": {
       "code": "IINETIR", 
       "name": "Impôt sur le revenu net", 
-      "value": 1685.0
+      "value": 1674.0
+    }, 
+    "IREST": {
+      "code": "IREST", 
+      "name": "Montant net à restituer", 
+      "value": 0.0
     }, 
     "NAPCRP": {
       "code": "NAPCRP", 
@@ -28,7 +38,7 @@
     "PERPPLAFTV": {
       "code": "PERPPLAFTV", 
       "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
-      "value": 3637.0
+      "value": 3703.0
     }, 
     "PPETOT": {
       "code": "PPETOT", 
@@ -58,7 +68,7 @@
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 7.8
+      "value": 7.75
     }
   }, 
   "scenario": {
@@ -75,7 +85,7 @@
           "declarants": [
             "ind0"
           ], 
-          "f7vc": 1500
+          "fhsi": 1500
         }
       }, 
       "individus": {
@@ -93,6 +103,6 @@
         }
       }
     }, 
-    "year": 2012
+    "year": 2013
   }
 }

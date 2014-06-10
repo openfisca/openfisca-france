@@ -440,6 +440,8 @@ def transform_scenario_to_impots_arguments(scenario):
                 impots_arguments['7UG'] = str(value) # bug dans le site des impots
             if column_code == 'f7ud':
                 impots_arguments['7UE'] = str(value) # bug dans le site des impots
+            if column_code == 'f7vc':
+                impots_arguments['7VD'] = str(value) # bug dans le site des impots
             column = tax_benefit_system.column_by_name[column_code]
             cerfa_field = column.cerfa_field
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code

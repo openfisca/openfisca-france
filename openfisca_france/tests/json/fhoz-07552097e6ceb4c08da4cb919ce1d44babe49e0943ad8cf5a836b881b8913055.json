@@ -50,15 +50,15 @@
       "name": "Prime pour l'emploi", 
       "value": 0.0
     }, 
-    "RCOLENT": {
-      "code": "RCOLENT", 
-      "name": "?", 
-      "value": 1500.0
-    }, 
     "REVKIRE": {
       "code": "REVKIRE", 
       "name": "Revenu fiscal de référence", 
       "value": 21600.0
+    }, 
+    "RLOGDOM": {
+      "code": "RLOGDOM", 
+      "name": "?", 
+      "value": 1500.0
     }, 
     "RNICOL": {
       "code": "RNICOL", 
@@ -95,7 +95,7 @@
           "declarants": [
             "ind0"
           ], 
-          "f7px": 1500
+          "fhoz": 1500
         }
       }, 
       "individus": {
