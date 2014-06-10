@@ -4329,19 +4329,22 @@
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
         </CODE>
         <CODE code="sansab_tx_inactif" description="Taux pour les personnes inactives ne percevant pas l'allocation de base de la PAJE" format="percent">
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="1.4257" />
+          <VALUE deb="2004-01-01" fin="2014-03-31" valeur="1.4257" />
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.9662" />
         </CODE>
         <CODE code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE">
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.9662" />
         </CODE>
         <CODE code="sansab_tx_partiel1" description="Taux pour les personnes à temps partiel inf. à 50% ne percevant pas l'allocation de base de la PAJE">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.0841" />
+          <VALUE deb="2004-01-01" fin="2014-03-31" valeur="1.0841" />
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.6246" />
         </CODE>
         <CODE code="avecab_tx_partiel1" description="Taux pour les personnes à temps partiel inf. à 50% percevant l'allocation de base de la PAJE">
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.6246" />
         </CODE>
         <CODE code="sansab_tx_partiel2" description="Taux pour les personnes à temps partiel 50%-80% ne percevant pas l'allocation de base de la PAJE">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.8198" />
+          <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0.8198" />
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3603" />
         </CODE>
         <CODE code="avecab_tx_partiel2" description="Taux pour les personnes à temps partiel 50pc-80pc percevant l'allocation de base de la PAJE">
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.3603" />
