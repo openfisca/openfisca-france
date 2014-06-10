@@ -4162,10 +4162,12 @@
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
       <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent maquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.225" />
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.225" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
       </CODE>
       <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.3" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
       </CODE>
     </NODE>
     <NODE code="ape" description="Allocation parentale d'éducation (APE)">
