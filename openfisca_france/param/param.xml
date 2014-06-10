@@ -5163,6 +5163,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8907.34" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="9325.98" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="9503.89" />
       </CODE>
       <CODE code="montant_couple" description="Montant annuel pour un couple marié" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.78818" />
@@ -5178,6 +5179,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="14181.30" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.10" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
       </CODE>
       <CODE code="plaf_seul" description="Plafond de ressources annuelles pour une personne seule" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
@@ -5193,6 +5195,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8907.34" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="9325.98" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="9503.89" />
       </CODE>
       <CODE code="plaf_couple" description="Plafond de ressources annuelles pour un couple" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.79786" />
@@ -5208,6 +5211,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="14181.30" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.1" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
       </CODE>
       <CODE code="maj_3enf" description="Majoration pour 3 enfants" format="percent">
         <VALUE code="maj_3enf" deb="2002-01-01" fin="2013-03-31" valeur="0.1" />
