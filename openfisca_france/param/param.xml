@@ -4552,21 +4552,6 @@
     </NODE>
   </NODE>
   <NODE code="al" description="Allocations logement">
-    <CODE code="bmaf" description="Base mensuelle de calcul des allocations familiale n-2" format="float" type="monetary">
-      <VALUE deb="2002-01-01" fin="2003-06-30" valeur="334.84" />
-      <VALUE deb="2003-07-01" fin="2004-06-30" valeur="341.87" />
-      <VALUE deb="2004-07-01" fin="2005-08-31" valeur="347.68" />
-      <VALUE deb="2005-09-01" fin="2006-12-31" valeur="353.59" />
-      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="361.37" />
-      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="367.87" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="374.12" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="377.86" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="389.20" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="389.20" />
-      <VALUE deb="2013-01-01" fin="2013-03-31" valeur="395.04" />
-      <VALUE deb="2013-04-01" fin="2014-03-31" valeur="399.00" />
-      <VALUE deb="2014-04-01" fin="2015-03-31" valeur="403.79" />
-    </CODE>
     <CODE code="rmi" description="Revenu minimum d'insertion puis rsa socle n-2" format="float" type="monetary">
       <VALUE deb="2002-01-01" fin="2003-06-30" valeur="397.60" />
       <VALUE deb="2003-07-01" fin="2004-06-30" valeur="405.62" />
