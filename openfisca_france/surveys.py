@@ -55,6 +55,7 @@ class SurveyScenario(object):
     axes = None
     compact_legislation = None
     input_data_frame = None
+    simulation = None
     tax_benefit_system = None
     tax_benefit_system_class = None
     year = None
