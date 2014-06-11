@@ -116,12 +116,12 @@ def _br_mv(self, br_mv_i_holder):
 # TODO: ajouter taux de la majoration pour 3 enfants 10% (D811-12) ?
 #       P.aspa.maj_3enf = 0.10;
 
-def _aspa_elig(age, inv, activite, P = law.minim.aspa):
+def _aspa_elig(age, inv, activite, P = law.minim):
     '''
     Eligibitié individuelle à l'ASPA (Allocation de solidarité aux personnes agées)
     'ind'
     '''
-    out = ((age >= P.age_min) | ((age >= P.age_ina) & inv)) & (activite >= 3)  # TODO: affiner cette condition
+    out = ((age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)) & (activite >= 3)  # TODO: affiner cette condition
     return out
 
 
