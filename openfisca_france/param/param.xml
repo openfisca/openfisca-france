@@ -5309,13 +5309,12 @@
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
       </CODE>
       <CODE code="age_legal_retraite" description="Âge légal de départ à la retraite" format="float" type="age">
-        <VALUE deb="1983-07-01" fin="2011-06-30" valeur="60" />
-        <VALUE deb="2011-07-01" fin="2012-06-30" valeur="60.33" />
-        <VALUE deb="2012-07-01" fin="2013-06-30" valeur="60.66" />
-        <VALUE deb="2013-07-01" fin="2014-06-30" valeur="61" />
-        <VALUE deb="2014-07-01" fin="2015-06-30" valeur="61.33" />
-        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="61.66" />
-        <VALUE deb="2016-07-01" fin="2050-06-30" valeur="62" />
+        <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />
+        <VALUE deb="2011-11-01" fin="2012-09-30" valeur="60.33" />
+        <VALUE deb="2012-10-01" fin="2014-03-31" valeur="60.75" />
+        <VALUE deb="2014-04-01" fin="2015-07-31" valeur="61.167" />
+        <VALUE deb="2015-08-01" fin="2016-12-31" valeur="61.583" />
+        <VALUE deb="2017-01-01" fin="2050-06-30" valeur="62" />
       </CODE>
     </NODE>
     <NODE code="caah" description="Complément de l'allocation pour adulte handicapé (CAAH)">
