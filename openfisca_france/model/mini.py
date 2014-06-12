@@ -61,9 +61,7 @@ def _br_mv(self, br_mv_i_holder):
     de l'aide apportée ou susceptible d'être apportée par les personnes tenues à l'obligation alimentaire.
     '''
     br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-
-    br_mv = br_mv_i[CHEF] + br_mv_i[PART]
-    return br_mv
+    return br_mv_i[CHEF] + br_mv_i[PART]
 
 
 #    Bloc ASPA/ASI
