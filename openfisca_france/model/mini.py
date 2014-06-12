@@ -157,7 +157,7 @@ def _aspa_couple_2007_(concub):
 
 def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
     '''
-    Calcule l'ASPA lorsqu'il y a un ou deux bénéficiaire de l'ASPA et aucun bénéficiaire de l'ASI
+    Calcule l'allocation de solidarité aux personnes âgées (ASPA)
     '''
     # TODO: Avant la réforme de 2007 n'était pas considéré comme un couple les individus en concubinage ou pacsés.
     # La base de ressources doit pouvoir être individualisée pour refletter ça.
