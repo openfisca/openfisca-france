@@ -5212,6 +5212,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8096.33" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="8266.35" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="8373.81" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="8424.05" />
       </CODE>
       <CODE code="montant_seul" description="Montant annuel personne seule (TODO à compléter)" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0" />
@@ -5227,6 +5228,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="4656.69" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="4754.45" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="4816.28" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="4845.17" />
       </CODE>
       <CODE code="plaf_couple" description="Plafond de ressources (allocation comprise) pour un couple" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.79786" />
@@ -5243,6 +5245,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="14181.30" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.10" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
       </CODE>
       <CODE code="montant_couple" description="Montant annuel couple (à compléter)" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0" />
@@ -5258,6 +5261,7 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="7684.25" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="7845.61" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="7947.60" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="7995.28" />
       </CODE>
     </NODE>
     <NODE code="aefa" description="Aide exceptionnelle de fin d'année">
