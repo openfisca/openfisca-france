@@ -176,20 +176,20 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
 
     elig = elig1 | elig2 | elig3 | elig4
 
-    montant_max = elig1 * P.aspa.montant_seul
-    + elig2 * P.aspa.montant_couple
-    + elig3 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-    + elig4 * P.asi.montant_seul + P.aspa.montant_couple / 2
+    montant_max = (elig1 * P.aspa.montant_seul
+        + elig2 * P.aspa.montant_couple
+        + elig3 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
+        + elig4 * P.asi.montant_seul + P.aspa.montant_couple / 2)
 
     ressources = br_mv + montant_max
 
-    plafond_ressources = elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-        + (elig2 | elig3 | elig4) * P.aspa.plaf_couple
+    plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
+        + (elig2 | elig3 | elig4) * P.aspa.plaf_couple)
 
     depassement = ressources - plafond_ressources
 
-    diff = (elig1 | elig2) * montant_max - depassement
-        + (elig3 | elig4) * P.aspa.montant_couple / 2 - depassement / 2
+    diff = ((elig1 | elig2) * montant_max - depassement
+        + (elig3 | elig4) * P.aspa.montant_couple / 2 - depassement / 2)
 
     montant_servi_aspa = max_(diff, 0) / 12
 
@@ -219,25 +219,25 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
 
     elig = elig1 | elig2 | elig3 | elig4 | elig5
 
-    montant_max = elig1 * P.asi.montant_seul
+    montant_max = (elig1 * P.asi.montant_seul
         + elig2 * P.asi.montant_couple
         + elig3 * 2 * P.asi.montant_seul
         + elig4 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig5 * P.asi.montant_seul + P.aspa.montant_couple / 2
+        + elig5 * P.asi.montant_seul + P.aspa.montant_couple / 2)
 
     ressources = br_mv + montant_max
 
-    plafond_ressources = elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
+    plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
         + elig2 * P.asi.plaf_couple
         + elig3 * P.asi.plaf_couple
         + elig4 * P.aspa.plaf_couple
-        + elig5 * P.aspa.plaf_couple
+        + elig5 * P.aspa.plaf_couple)
 
     depassement = ressources - plafond_ressources
 
-    diff = (elig1 | elig2 | elig3) * montant_max - depassement
+    diff = ((elig1 | elig2 | elig3) * montant_max - depassement
         + elig4 * P.asi.montant_couple / 2 - depassement / 2
-        + elig5 * P.asi.montant_seul - depassement / 2
+        + elig5 * P.asi.montant_seul - depassement / 2)
 
     montant_servi_asi = max_(diff, 0) / 12
 
