@@ -2201,8 +2201,6 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('asi_aspa_nb_alloc', FloatCol(function = ms._asi_aspa_nb_alloc,
         entity = 'fam')),
-    build_simple_formula_couple('asi_aspa_elig', BoolCol(function = ms._asi_aspa_elig,
-        entity = 'fam')),
     build_simple_formula_couple('asi_elig', BoolCol(function = ms._asi_elig,
         label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité",
         )),

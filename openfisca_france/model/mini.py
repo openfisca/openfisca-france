@@ -248,16 +248,6 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
     return 12 * elig * (asi_elig[CHEF] + asi_elig[PART]) * montant_servi_asi * ((elig1 | elig4 | elig5) + (elig2 | elig3) / 2)  # annualisé
 
 
-def _asi_aspa_elig(self, aspa_elig_holder, asi_elig_holder):
-    '''
-    Éligibilité des membres de la famille à l'ASPA et à l'ASI
-    '''
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-
-    return ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF]))
-
-
 ############################################################################
 # RSA / RMI
 ############################################################################
