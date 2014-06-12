@@ -121,8 +121,9 @@ def _aspa_elig(age, inv, activite, P = law.minim):
     Eligibitié individuelle à l'ASPA (Allocation de solidarité aux personnes agées)
     'ind'
     '''
-    out = ((age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)) & (activite >= 3)  # TODO: affiner cette condition
-    return out
+    condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
+    condition_activite = (activite == 3)
+    return condition_age & condition_activite
 
 
 def _asi_elig(aspa_elig, inv, activite):
@@ -130,7 +131,7 @@ def _asi_elig(aspa_elig, inv, activite):
     Éligibilité individuelle à l'ASI (Allocation supplémentaire d'invalidité)
     'ind'
     '''
-    return (inv & (activite >= 3)) & not_(aspa_elig)  # TODO: affiner cette condition
+    return inv & (activite >= 3) & not_(aspa_elig)
 
 
 def _asi_aspa_nb_alloc(self, aspa_elig_holder, asi_elig_holder):
