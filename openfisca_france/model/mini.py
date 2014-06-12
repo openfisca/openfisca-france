@@ -188,27 +188,52 @@ def _aspa_pure(self, aspa_elig_holder, aspa_couple, asi_aspa_nb_alloc, br_mv, _P
     return 12 * elig_indiv * montant_servi_aspa * (elig1 + elig2)  # annualisé
 
 
-def _asi_pure(self, asi_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
+def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
     '''
-    Calcule l'ASI lorsqu'il y a un ou deux bénéficiaire de l'ASI et aucun bénéficiaire de l'ASPA
+    Calcule l'allocation supplémentaire d'invalidité (ASI)
     '''
     asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-    elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))  # un seul éligible
-    elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries  # couple d'éligible marié
-    elig3 = (asi_elig[CHEF] & asi_elig[PART]) * (concub & not_(maries))  # couple d'éligible non marié
-    elig = elig1 | elig2 | elig3
+    # Un seul éligible
+    elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
+    # Couple d'éligibles mariés
+    elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries
+    # Couple d'éligibles non mariés
+    elig3 = (asi_elig[CHEF] & asi_elig[PART]) * not_(maries)
+    # Un seul éligible et époux éligible ASPA
+    elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
+    # Un seul éligible et conjoint non marié éligible ASPA
+    elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
 
-    montant_max = elig1 * P.asi.montant_seul + elig2 * P.asi.montant_couple + elig3 * 2 * P.asi.montant_seul
-    ressources = elig * (br_mv + montant_max)
-    plafond_ressources = elig1 * (P.asi.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub) + elig2 * P.aspa.plaf_couple + elig3 * P.asi.plaf_couple
+    elig = elig1 | elig2 | elig3 | elig4 | elig5
+
+    montant_max = elig1 * P.asi.montant_seul
+        + elig2 * P.asi.montant_couple
+        + elig3 * 2 * P.asi.montant_seul
+        + elig4 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
+        + elig5 * P.asi.montant_seul + P.aspa.montant_couple / 2
+
+    ressources = br_mv + montant_max
+
+    plafond_ressources = elig1 * (P.asi.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
+        + elig2 * P.aspa.plaf_couple
+        + elig3 * P.asi.plaf_couple
+        + elig4 * P.aspa.plaf_couple
+        + elig5 * P.aspa.plaf_couple
+
     depassement = ressources - plafond_ressources
-    montant_servi_asi = max_(montant_max - depassement, 0) / 12
+
+    diff = (elig1 | elig2 | elig3) * montant_max - depassement
+        + elig4 * P.asi.montant_couple / 2 - depassement / 2
+        + elig5 * P.asi.montant_seul - depassement / 2
+
+    montant_servi_asi = max_(diff, 0) / 12
 
     # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
     # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
     # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    return 12 * (asi_elig[CHEF] + asi_elig[PART]) * montant_servi_asi * (elig1 * 1 + elig2 / 2 + elig3 / 2)  # annualisé
+    return 12 * elig * (asi_elig[CHEF] + asi_elig[PART]) * montant_servi_asi * ((elig1 | elig4 | elig5) + (elig2 | elig3) / 2)  # annualisé
 
 
 def _asi_aspa_elig(self, aspa_elig_holder, asi_elig_holder):
@@ -219,18 +244,6 @@ def _asi_aspa_elig(self, aspa_elig_holder, asi_elig_holder):
     aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
     return ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF]))
-
-
-def _asi_coexist_aspa(asi_aspa_elig, maries, br_mv, P = law.minim):
-    '''
-    Montant de l'ASI quand une personne perçoit l'ASI et l'autre l'ASPA
-    '''
-    montant_max = where(maries, P.asi.montant_couple / 2 + P.aspa.montant_couple / 2, P.asi.montant_seul + P.aspa.montant_couple / 2)
-    ressources = br_mv + montant_max
-    plafond_ressources = P.aspa.plaf_couple
-    depassement = ressources - plafond_ressources
-    montant_servi_asi = max_(where(maries, P.asi.montant_couple / 2 - depassement / 2, P.asi.montant_seul - depassement / 2), 0) / 12
-    return 12 * asi_aspa_elig * montant_servi_asi # annualisé
 
 
 def _aspa_coexist_asi(asi_aspa_elig, maries, concub, br_mv, P = law.minim):
@@ -256,9 +269,6 @@ def _aspa_coexist_asi(asi_aspa_elig, maries, concub, br_mv, P = law.minim):
 
 def _aspa(aspa_pure, aspa_coexist_asi):
     return aspa_pure + aspa_coexist_asi
-
-def _asi(asi_pure, asi_coexist_aspa):
-    return asi_pure + asi_coexist_aspa
 
 
 ############################################################################
