@@ -216,8 +216,8 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
 
     ressources = br_mv + montant_max
 
-    plafond_ressources = elig1 * (P.asi.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-        + elig2 * P.aspa.plaf_couple
+    plafond_ressources = elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
+        + elig2 * P.asi.plaf_couple
         + elig3 * P.asi.plaf_couple
         + elig4 * P.aspa.plaf_couple
         + elig5 * P.aspa.plaf_couple
