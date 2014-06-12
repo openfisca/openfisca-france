@@ -5196,7 +5196,7 @@
         <VALUE code="age_min" deb="2002-01-01" fin="2014-03-31" valeur="65" />
       </CODE>
     </NODE>
-    <NODE code="asi" description="Allocation supplémentaire d'invalidité (à compléter: avant 1er janvier 2006)">
+    <NODE code="asi" description="Allocation supplémentaire d'invalidité">
       <CODE code="plaf_seul" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="7102.56671" />
@@ -5214,7 +5214,7 @@
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="8373.81" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="8424.05" />
       </CODE>
-      <CODE code="montant_seul" description="Montant annuel personne seule (TODO à compléter)" format="float" type="monetary">
+      <CODE code="montant_seul" description="Montant annuel personne seule" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0" />
@@ -5247,7 +5247,7 @@
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
       </CODE>
-      <CODE code="montant_couple" description="Montant annuel couple (à compléter)" format="float" type="monetary">
+      <CODE code="montant_couple" description="Montant annuel couple" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0" />
