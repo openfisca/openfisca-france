@@ -221,27 +221,16 @@ def _asi_aspa_elig(self, aspa_elig_holder, asi_elig_holder):
     return ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF]))
 
 
-def _asi_coexist_aspa(asi_aspa_elig, maries, concub, br_mv, P = law.minim):
+def _asi_coexist_aspa(asi_aspa_elig, maries, br_mv, P = law.minim):
     '''
     Montant de l'ASI quand une personne perçoit l'ASI et l'autre l'ASPA
     '''
-    # Les persones sont mariées
-    index = asi_aspa_elig * maries
-    montant_max = where(index, (.5 * P.asi.montant_couple + .5 * P.aspa.montant_couple), 0)
-    ressources = where(index, br_mv + montant_max, 0)
-    plafond_ressources = where(index, P.aspa.plaf_couple, 0)
+    montant_max = where(maries, P.asi.montant_couple / 2 + P.aspa.montant_couple / 2, P.asi.montant_seul + P.aspa.montant_couple / 2)
+    ressources = br_mv + montant_max
+    plafond_ressources = P.aspa.plaf_couple
     depassement = ressources - plafond_ressources
-    montant_servi_asi_m = where(index, max_(.5 * P.asi.montant_couple - 0.5 * depassement, 0), 0) / 12
-
-    # Les deux persones ne sont pas mariées mais concubins ou pacsés
-    index = asi_aspa_elig * (concub & not_(maries))
-    montant_max = where(index, P.asi.montant_seul + .5 * P.aspa.montant_couple , 0)
-    ressources = where(index, br_mv + montant_max, 0)
-    plafond_ressources = where(index, P.aspa.plaf_couple, 0)
-    depassement = ressources - plafond_ressources
-    montant_servi_asi_c = where(index, max_(P.asi.montant_seul - 0.5 * depassement, 0), 0) / 12
-
-    return 12 * (montant_servi_asi_m + montant_servi_asi_c)  # annualisé
+    montant_servi_asi = max_(where(maries, P.asi.montant_couple / 2 - depassement / 2, P.asi.montant_seul - depassement / 2), 0) / 12
+    return 12 * asi_aspa_elig * montant_servi_asi # annualisé
 
 
 def _aspa_coexist_asi(asi_aspa_elig, maries, concub, br_mv, P = law.minim):
