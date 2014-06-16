@@ -23,10 +23,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+## Ce script crée un fichier json comprenant le scenario et le résultat officiel de la simulation
+## Que le fichier existe déjà ou non, ce script teste ensuite si le résultat officiel correspond au résultat OpenFisca
+## Si un long message d'erreur apparaît, il faut supprimer le fichier créé (qui est vide)
 
 import openfisca_france
 import sys
 from generate_json import export_json
+import os
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -65,10 +69,9 @@ def define_scenario(year, column_code):
         famille[column_code] = 1500
     elif entity == 'men':
         menage[column_code] = 1500
-
     scenario.init_single_entity(
         parent1 = parent1,
-        parent2 = dict(),
+#        parent2 = dict(),
         enfants = enfants,
         famille = famille,
         menage = menage,
@@ -80,11 +83,13 @@ def define_scenario(year, column_code):
 
 
 def main():
+#    for column_code in ('f7nu', 'f7nv', 'f7nw', 'f7nx', 'f7oz', 'f7pa', 'f7pb', 'f7pc', 'f7pe', 'f7pf', 'f7pg', 'f7pi', 'f7pj', 'f7pk', 'f7pm', 'f7pn', 'f7po', 'f7pp', 'f7pq', 'f7ps', 'f7pt', 'f7pu', 'f7pv', 'f7px', 'f7py', 'f7rg', 'f7rh', 'f7rj', 'f7rk', 'f7rl', 'f7rm', 'f7rn', 'f7rp', 'f7rq', 'f7rr', 'f7rs', 'f7ru', 'f7rv', 'f7rw', 'f7rx', 'f7pz', 'f7qz', 'f7qe', 'f7qf', 'f7qg', 'f7qo', 'f7qp', 'f7qv', 'f7mm', 'f7ma', 'f7mb', 'f7mn', 'f7lg', 'f7lh', 'f7ks', 'f7kt', 'f7li', 'f7mc', 'f7ku'): # jusqu'en 2012
+#    for column_code in ('fhsa', 'fhsb', 'fhsf', 'fhsg', 'fhsc', 'fhsh', 'fhsd', 'fhsi', 'fhsk', 'fhsl', 'fhsp', 'fhsq', 'fhsm', 'fhsr', 'fhsn', 'fhss', 'fhsu', 'fhsv', 'fhsw', 'fhsx', 'fhsz', 'fhta', 'fhtb', 'fhtc', 'fhoz', 'fhpa', 'fhpb', 'fhpc', 'fhpe', 'fhpf', 'fhpg', 'fhpi', 'fhpj', 'fhpk', 'fhpm', 'fhpn', 'fhpo', 'fhpp', 'fhpq', 'fhps', 'fhpt', 'fhpu', 'fhpv', 'fhpx', 'fhpy', 'fhrg', 'fhrh', 'fhrj', 'fhrk', 'fhrl', 'fhrm', 'fhrn', 'fhrp', 'fhrq', 'fhrr', 'fhrs', 'fhru', 'fhrv', 'fhrw', 'fhrx', 'fhpz', 'fhqz', 'fhqe', 'fhqf', 'fhqg', 'fhqo', 'fhqp', 'fhqv', 'fhmm', 'fhma', 'fhmb', 'fhmn', 'fhlg', 'fhlh', 'fhks', 'fhkt', 'fhli', 'fhmc', 'fhku'): # 2013 uniquement
     column_code = raw_input("Which variable would you like to test ? ")
-    assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"
+    assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"        
     for year in range(2005,2014):
-        scenario = define_scenario(year,column_code)  
-        export_json(scenario, True)
+        scenario = define_scenario(year,column_code)
+        export_json(scenario, var = column_code, tested = True)
     return 0
 
 

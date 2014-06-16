@@ -36,15 +36,19 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def test():
-    path = 'json'
+    path = os.path.join(os.path.dirname(__file__), 'json')
+    err = 1
     for fichier in os.listdir(path):
-        with open(os.path.join(path,fichier)) as officiel:
-
-            content = json.load(officiel)
+        with open(os.path.join(path, fichier)) as officiel:
+            try:
+                content = json.load(officiel)
+            except:
+                print fichier
             official_result = content['resultat_officiel']
             json_scenario = content['scenario']
 
-            scenario, error = tax_benefit_system.Scenario.make_json_to_instance(tax_benefit_system = tax_benefit_system)(json_scenario)
+            scenario, error = tax_benefit_system.Scenario.make_json_to_instance(
+                tax_benefit_system = tax_benefit_system)(json_scenario)
 
             year = json_scenario['year']
             totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
@@ -52,10 +56,13 @@ def test():
             if error is not None:
                 print 'error:', fichier, error
                 continue
-            simulation = scenario.new_simulation(debug = True)
+            simulation = scenario.new_simulation()
 
             for code, field in official_result.iteritems():
-                compare_variable(code,field,simulation,totpac,fichier, year)
+                compare_variable(code, field, simulation, totpac, fichier, year)
+                if compare_variable(code, field, simulation, totpac, fichier, year):
+                    err = 0
+    assert err, "Erreur"
 
 
 if __name__ == "__main__":

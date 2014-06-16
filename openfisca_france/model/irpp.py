@@ -27,7 +27,6 @@ VOUS = QUIFOY['vous']
 
 #TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
 #TODO: 8ti et 8tk (cerfa 2047)
-#TODO: recouvrement (quand on doit 30€ d'impôts sur OF, ça devient 0€ en vrai)
 
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
