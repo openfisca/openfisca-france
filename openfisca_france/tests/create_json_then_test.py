@@ -31,7 +31,9 @@ import openfisca_france
 import sys
 from generate_json import export_json
 import os
+from datetime import date
 
+from openfisca_core import conv
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
@@ -41,10 +43,13 @@ def define_scenario(year, column_code):
     column = tax_benefit_system.column_by_name[column_code]
     entity = column.entity
 
+    start = 1990 if column.start == None else column.start.year
+    end = 2050 if column.end == None else column.end.year
+    value = 1500 if conv.test_between(start, end)(year)[1] == None else 0
+
     parent1 = {
         "activite": u'Actif occupé',
         "birth": 1970,
-        "cadre": True,
         "sali": 24000,
         "statmarit": u'Célibataire',
         }
@@ -62,13 +67,13 @@ def define_scenario(year, column_code):
     menage = dict()
     foyer_fiscal = dict()
     if entity == 'ind':
-        parent1[column_code] = 1500
+        parent1[column_code] = value
     elif entity == 'foy':
-        foyer_fiscal[column_code] = 1500
+        foyer_fiscal[column_code] = value
     elif entity == 'fam':
-        famille[column_code] = 1500
+        famille[column_code] = value
     elif entity == 'men':
-        menage[column_code] = 1500
+        menage[column_code] = value
     scenario.init_single_entity(
         parent1 = parent1,
 #        parent2 = dict(),
@@ -87,7 +92,7 @@ def main():
 #    for column_code in ('fhsa', 'fhsb', 'fhsf', 'fhsg', 'fhsc', 'fhsh', 'fhsd', 'fhsi', 'fhsk', 'fhsl', 'fhsp', 'fhsq', 'fhsm', 'fhsr', 'fhsn', 'fhss', 'fhsu', 'fhsv', 'fhsw', 'fhsx', 'fhsz', 'fhta', 'fhtb', 'fhtc', 'fhoz', 'fhpa', 'fhpb', 'fhpc', 'fhpe', 'fhpf', 'fhpg', 'fhpi', 'fhpj', 'fhpk', 'fhpm', 'fhpn', 'fhpo', 'fhpp', 'fhpq', 'fhps', 'fhpt', 'fhpu', 'fhpv', 'fhpx', 'fhpy', 'fhrg', 'fhrh', 'fhrj', 'fhrk', 'fhrl', 'fhrm', 'fhrn', 'fhrp', 'fhrq', 'fhrr', 'fhrs', 'fhru', 'fhrv', 'fhrw', 'fhrx', 'fhpz', 'fhqz', 'fhqe', 'fhqf', 'fhqg', 'fhqo', 'fhqp', 'fhqv', 'fhmm', 'fhma', 'fhmb', 'fhmn', 'fhlg', 'fhlh', 'fhks', 'fhkt', 'fhli', 'fhmc', 'fhku'): # 2013 uniquement
     column_code = raw_input("Which variable would you like to test ? ")
     assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"        
-    for year in range(2005,2014):
+    for year in range(2007,2014):
         scenario = define_scenario(year,column_code)
         export_json(scenario, var = column_code, tested = True)
     return 0

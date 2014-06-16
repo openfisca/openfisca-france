@@ -55,19 +55,19 @@ def define_scenario(year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,
-            cadre = True,
+#            cadre = True,
             sali = 90000,
             statmarit = u'Célibataire',
             ),
         enfants = [
-#            dict(
-#                activite = u'Étudiant, élève',
-#                birth = '2002-02-01',
-#                ),
-#            dict(
-#                activite = u'Étudiant, élève',
-#                birth = '2000-04-17',
-#                ),
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '2002-02-01',
+                ),
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '2000-04-17',
+                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
 #                f7cn = 1500,
@@ -129,6 +129,7 @@ def compare(scenario, tested = False, fichier = ''):
         'REVKIRE': u'Revenu fiscal de référence',
         'RNICOL': u'Revenu net imposable ou déficit à reporter',
         'RRBG': u'Revenu brut global ou déficit',
+        'TEFF': u'?',#TODO (ebnc_impo)
         'TOTPAC': u'Nombre de personnes à charge',
         'TXMARJ': u'Taux marginal d\'imposition',
         'TXMOYIMP': u'Taux moyen d\'imposition',
@@ -154,6 +155,7 @@ def compare(scenario, tested = False, fichier = ''):
         'CIMOBIL': u'?',#TODO (f1ar)
         'CIPERT': u'?',#TODO (f3vv)
         'IAVF2': u'?',#TODO (f8th)
+        'IPROP': u'?',#TODO (rpns)
         'RFOR': u'?',#TODO (f7up)
         'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
         'RHEBE': u'?',#TODO (7ce)
@@ -297,7 +299,7 @@ def compare(scenario, tested = False, fichier = ''):
             }
     if tested:
         for code, field in fields.iteritems():
-            compare_variable(code,field,simulation,totpac, year, fichier)
+            compare_variable(code, field, simulation, totpac, year, fichier)
 #            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 #    print simulation.calculate('reductions')
 #    print fields['ITRED']['value']
@@ -305,67 +307,67 @@ def compare(scenario, tested = False, fichier = ''):
     return fields
 
 
-def compare_variable(code,field,simulation,totpac, year, fichier = ''):
+def compare_variable(code, field, simulation, totpac, year, fichier = ''):
     for a in range(0,1):
-            if code == 'IAVIM':
-                openfisca_value = simulation.calculate('iai')
-            elif code == 'IDEC':
-                openfisca_value = simulation.calculate('decote')
-            elif code == 'IDRS2':
-                openfisca_value = simulation.calculate('ir_plaf_qf')
-            elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
-                openfisca_value = -simulation.calculate('irpp')
-            elif code == 'ITRED':
-                openfisca_value = simulation.calculate('reductions')
-            elif code == 'NBPT' or code == 'NBP':
-                openfisca_value = simulation.calculate('nbptr')
-            elif code == 'PPETOT':
-                openfisca_value = simulation.calculate('ppe')
-            elif code == 'REVKIRE':
-                openfisca_value = simulation.calculate('rfr')
-            elif code == 'RNICOL':
-                openfisca_value = simulation.calculate('rni')
-            elif code == 'RRBG':
-                openfisca_value = simulation.calculate('rbg')
-            elif code == 'TOTPAC':
-                openfisca_value = len(totpac or [])
-            elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
-                    'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA',
-                    'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
-                    'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'RRIRENOV', 'RCELHL', 'RLOCIDEFG',
-                    'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RAH', 'RCEL', 'RCELREPGX', 'RCELREPGW', 'RDONS',
-                    'RCELHJK', 'RCELREPHR', 'RCELRREDLA', 'RRESIVIEU', 'RMEUBLE', 'RREDMEUB', 'RSOCREPR', 'RRPRESCOMP',
-                    'RCONS', 'RPECHE', 'RCELREPGS', 'RCELREPGU', 'RCELREPGT', 'RPATNAT', 'RPATNATOT', 'RPRESCOMPREP',
-                    'RDIFAGRI', 'REI', 'RFOR', 'RTELEIR', 'RTOURREP', 'RTOUREPA', 'RTOUHOTR', 'RRESINEUV',
-                    'RFORET', 'RHEBE', 'RILMIC', 'RILMIB', 'RRESIMEUB', 'RREPMEU', 'RREPNPRO',
-                    'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 
-                    'RILMIZ', 'RILMJI', 'RILMJS', 'RCODJT', 'RCODJU', 'RCODJV', 'RCODJW', 'RCODJX',
-                    'RIDOMENT', 'RIDOMPROE1', 'RIDOMPROE2', 'RLOGDOM', 'RREPA', 'RDUFLOGIH',
-                    'RIDOMPROE3', 'RIDOMPROE4', 'RIDOMPROE5', 'RTITPRISE', 'RRDOM', 'RINVDOMTOMLG', 'RCOTFOR',
-                    'RNI', 'RNOUV', 'RRESTIMO', 'RTOUR', 'RCELRREDLC', 'RCELRREDLB', 'RCELNBGL', 'RCELFD',
-                    'RCELLIER', 'RCELHNO', 'RCELHM', 'RCELHR', 'RCELRREDLS', 'RCELRREDLZ', 'RCELFABC',
-                    'RCELREPHS', 'RCELNBGL', 'RCELCOM', 'RCELNQ', 'RCELRREDLD', 'RCELRREDLE',  'RCELRREDLF',
-                    'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RCELREPHR', 'RCINE', 'RFCPI', 'RINNO', 'RAA',
-                    'RCELREPGJ', 'RCELREPGK', 'RCELREPGL', 'RCELREPGP', 'RSOUFIP', 'RCODELOP',
-                    'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR', 
-                    'RCELREPHD', 'RCELREPHE', 'RCELREPHF', 'RCELREPHH', 'RCEL2012', 'RCELJBGL', 'RCOLENT',
-                    'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP',
-                    'RFIPC', 'RILMJX', 'RILMJV', 'RCELREPGV', 'RCELRREDLM', 'RCELRREDMG', 'RILMJW', 'RCELREPHG'):
-                continue
-            else:
-                print 'Code inconnu :', code
-                continue
-            openfisca_simple_value = openfisca_value
-            if isinstance(openfisca_simple_value, np.ndarray):
-                assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
-                    field['name'], field['value'], openfisca_value).encode('utf-8')
-                openfisca_simple_value = openfisca_simple_value[0]
-            if not abs(field['value'] - openfisca_simple_value) < 2:
-                print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], \
-                field['value'], openfisca_simple_value).encode('utf-8')
-                return 1
-            else:
-                return 0
+        if code == 'IAVIM':
+            openfisca_value = simulation.calculate('iai')
+        elif code == 'IDEC':
+            openfisca_value = simulation.calculate('decote')
+        elif code == 'IDRS2':
+            openfisca_value = simulation.calculate('ir_plaf_qf')
+        elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
+            openfisca_value = -simulation.calculate('irpp')
+        elif code == 'ITRED':
+            openfisca_value = simulation.calculate('reductions')
+        elif code == 'NBPT' or code == 'NBP':
+            openfisca_value = simulation.calculate('nbptr')
+        elif code == 'PPETOT':
+            openfisca_value = simulation.calculate('ppe')
+        elif code == 'REVKIRE':
+            openfisca_value = simulation.calculate('rfr')
+        elif code == 'RNICOL':
+            openfisca_value = simulation.calculate('rni')
+        elif code == 'RRBG':
+            openfisca_value = simulation.calculate('rbg')
+        elif code == 'TOTPAC':
+            openfisca_value = len(totpac or [])
+        elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
+                'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA',
+                'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
+                'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'RRIRENOV', 'RCELHL', 'RLOCIDEFG',
+                'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RAH', 'RCEL', 'RCELREPGX', 'RCELREPGW', 'RDONS',
+                'RCELHJK', 'RCELREPHR', 'RCELRREDLA', 'RRESIVIEU', 'RMEUBLE', 'RREDMEUB', 'RSOCREPR', 'RRPRESCOMP',
+                'RCONS', 'RPECHE', 'RCELREPGS', 'RCELREPGU', 'RCELREPGT', 'RPATNAT', 'RPATNATOT', 'RPRESCOMPREP',
+                'RDIFAGRI', 'REI', 'RFOR', 'RTELEIR', 'RTOURREP', 'RTOUREPA', 'RTOUHOTR', 'RRESINEUV',
+                'RFORET', 'RHEBE', 'RILMIC', 'RILMIB', 'RRESIMEUB', 'RREPMEU', 'RREPNPRO', 'TEFF',
+                'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 
+                'RILMIZ', 'RILMJI', 'RILMJS', 'RCODJT', 'RCODJU', 'RCODJV', 'RCODJW', 'RCODJX',
+                'RIDOMENT', 'RIDOMPROE1', 'RIDOMPROE2', 'RLOGDOM', 'RREPA', 'RDUFLOGIH', 'IPROP',
+                'RIDOMPROE3', 'RIDOMPROE4', 'RIDOMPROE5', 'RTITPRISE', 'RRDOM', 'RINVDOMTOMLG', 'RCOTFOR',
+                'RNI', 'RNOUV', 'RRESTIMO', 'RTOUR', 'RCELRREDLC', 'RCELRREDLB', 'RCELNBGL', 'RCELFD',
+                'RCELLIER', 'RCELHNO', 'RCELHM', 'RCELHR', 'RCELRREDLS', 'RCELRREDLZ', 'RCELFABC',
+                'RCELREPHS', 'RCELNBGL', 'RCELCOM', 'RCELNQ', 'RCELRREDLD', 'RCELRREDLE',  'RCELRREDLF',
+                'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RCELREPHR', 'RCINE', 'RFCPI', 'RINNO', 'RAA',
+                'RCELREPGJ', 'RCELREPGK', 'RCELREPGL', 'RCELREPGP', 'RSOUFIP', 'RCODELOP',
+                'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR', 
+                'RCELREPHD', 'RCELREPHE', 'RCELREPHF', 'RCELREPHH', 'RCEL2012', 'RCELJBGL', 'RCOLENT',
+                'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP',
+                'RFIPC', 'RILMJX', 'RILMJV', 'RCELREPGV', 'RCELRREDLM', 'RCELRREDMG', 'RILMJW', 'RCELREPHG'):
+            continue
+        else:
+            print 'Code inconnu :', code
+            continue
+        openfisca_simple_value = openfisca_value
+        if isinstance(openfisca_simple_value, np.ndarray):
+            assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
+                field['name'], field['value'], openfisca_value).encode('utf-8')
+            openfisca_simple_value = openfisca_simple_value[0]
+        if not abs(field['value'] - openfisca_simple_value) < 2:
+            print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], \
+            field['value'], openfisca_simple_value).encode('utf-8')
+            return 1
+        else:
+            return 0
 
 
 def transform_scenario_to_impots_arguments(scenario):

@@ -33,6 +33,10 @@ from base import QUIFOY, build_column_couple
 
 column_by_name = collections.OrderedDict((
 
+# Nomenclature : première lettre : (e : auto-entrepreneur / m : micro entreprise, déclaratif spécial / n : bénéfice réel sans CGA / a : bénéfice réel avec CGA ou viseur / f : forfait / c : déclaration contrôlée)
+# trois lettres suivantes : catégorie du revenu ( rag : agricole / bic : industriel et commercial pro / bnc : non commercial pro / acc : industriel et commercial non pro / ncn : non commercial non pro)
+# après l'underscore : abbréviation du label de la case
+
     build_column_couple('f5qm', IntCol(entity = 'ind',
                     label = u"Agents généraux d’assurances: indemnités de cessation d’activité",
                     val_type = "monetary",
@@ -125,6 +129,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('ebic_imps', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)",
                          val_type = "monetary",
+                         start = datetime.date(2009, 1, 1),
                          cerfa_field = {QUIFOY['vous']: u"5TB",
                                         QUIFOY['conj']: u"5UB",
                                         QUIFOY['pac1']: u"5VB", })),  # (f5tb, f5ub, f5vb)),
@@ -184,11 +189,11 @@ column_by_name = collections.OrderedDict((
                          cerfa_field = {QUIFOY['vous']: u"5KD",
                                         QUIFOY['conj']: u"5LD",
                                         QUIFOY['pac1']: u"5MD", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kd, f5ld, f5md)),
+                         end = datetime.date(2009, 12, 31))),  # (f5kd, f5ld, f5md)),
                                                               # TODO: vérifier date fin
 
     build_column_couple('nbic_impn', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
+                         label = u"Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",
                          cerfa_field = {QUIFOY['vous']: u"5KI",
                                         QUIFOY['conj']: u"5LI",
@@ -199,20 +204,20 @@ column_by_name = collections.OrderedDict((
 # réutilisation cases 2013
 # """
     build_column_couple('nbic_imps', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)",
+                         label = u"Revenus industriels et commerciaux professionnels imposables: régime simplifié sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",
                          cerfa_field = {QUIFOY['vous']: u"5KJ",
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kj, f5lj, f5mj)),
+                         end = datetime.date(2009, 12, 31))), # TODO: c'est 5HU pour les années anciennes
                                                               # TODO: vérifier date fin
     build_column_couple('nbic_mvct', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
+                         label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme",
                          val_type = "monetary",
                          cerfa_field = {QUIFOY['vous']: u"5KJ",
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
-                         start = datetime.date(2013, 1, 1))),  # (f5kj, f5lj, f5mj)),
+                         start = datetime.date(2012, 1, 1))),  # (f5kj, f5lj, f5mj)),
                                                               # vérifier date début #####à intégrer dans OF#######
 
     build_column_couple('abic_defn', IntCol(entity = 'ind',
@@ -228,7 +233,7 @@ column_by_name = collections.OrderedDict((
                          cerfa_field = {QUIFOY['vous']: u"5KG",
                                         QUIFOY['conj']: u"5LG",
                                         QUIFOY['pac1']: u"5MG", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kg, f5lg, f5mg)),
+                         end = datetime.date(2009, 12, 1))),  # (f5kg, f5lg, f5mg)),
                                                               # vérif <=2012
 
     build_column_couple('nbic_defn', IntCol(entity = 'ind',
@@ -297,9 +302,10 @@ column_by_name = collections.OrderedDict((
     build_column_couple('aacc_imps', IntCol(entity = 'ind',
                          label = u"Locations meublées non professionnelles (régime micro entreprise)",
                          val_type = "monetary",
+                         start = datetime.date(2011, 1, 1),
                          cerfa_field = {QUIFOY['vous']: u"5ND",
                                         QUIFOY['conj']: u"5OD",
-                                        QUIFOY['pac1']: u"5PD", })),  # (f5nd, f5od, f5pd)),
+                                        QUIFOY['pac1']: u"5PD", })),  # (f5nd, f5od, f5pd)), #TODO: avant 2010
 
     build_column_couple('aacc_defn', IntCol(entity = 'ind',
                          label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
@@ -425,7 +431,7 @@ column_by_name = collections.OrderedDict((
                          label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)",
                          val_type = "monetary",
                          cerfa_field = u'5HU',
-                         end = datetime.date(2012, 12, 1))),  # (f5hu)),
+                         end = datetime.date(2012, 12, 31))),  # (f5hu)),
                                                               # vérif <=2012
 
     build_column_couple('macc_mvct', IntCol(entity = 'foy', label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)",
@@ -437,9 +443,9 @@ column_by_name = collections.OrderedDict((
                          val_type = "monetary",
                          cerfa_field = u'JU')),  # (f5ju)),
 
-    build_column_couple('mbnc_mvct', IntCol(entity = 'foy', label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)",
+    build_column_couple('mbnc_mvct', IntCol(entity = 'ind', label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)",
                          val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KZ",
+                         cerfa_field = {QUIFOY['vous']: u"5KZ", #TODO: pb cerfa field
                                         QUIFOY['conj']: u"5LZ",
                                         QUIFOY['pac1']: u"5MZ", })),  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
                                                                       # TODO: intégrer f5lz , f5mz à OF
@@ -525,7 +531,7 @@ column_by_name = collections.OrderedDict((
                          cerfa_field = {QUIFOY['vous']: u"5HK",
                                         QUIFOY['conj']: u"5LK",
                                         QUIFOY['pac1']: u"5JK", },
-                         end = datetime.date(2012, 12, 1))),  # TODO: vérif <=2012)),  # (f5hk, f5lk, f5jk)),
+                         end = datetime.date(2012, 12, 1))),  # TODO: vérif <=2012)),  # (f5hk, f5lk, f5jk) codent autre chose sur d'autres années),
 
     build_column_couple('mbic_pvce', IntCol(entity = 'ind',
                          label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
@@ -603,5 +609,268 @@ column_by_name = collections.OrderedDict((
                          cerfa_field = {QUIFOY['vous']: u"5QJ",
                                         QUIFOY['conj']: u"5RJ",
                                         QUIFOY['pac1']: u"5SJ", })),  # (f5qj, f5rj, f5sj)),
+
+    build_column_couple('arag_sjag', IntCol(entity = 'ind',
+                         label = u"Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5HZ",
+                                        QUIFOY['conj']: u"5IZ",
+                                        QUIFOY['pac1']: u"5JZ", })), 
+
+    build_column_couple('abic_impm', IntCol(entity = 'ind',
+                         label = u"Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5HA",
+                                        QUIFOY['conj']: u"5IA",
+                                        QUIFOY['pac1']: u"5JA", })), 
+
+    build_column_couple('nbic_impm', IntCol(entity = 'ind',
+                         label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5KA",
+                                        QUIFOY['conj']: u"5LA",
+                                        QUIFOY['pac1']: u"5MA", })), 
+
+    build_column_couple('abic_defm', IntCol(entity = 'ind',
+                         label = u"Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5QA",
+                                        QUIFOY['conj']: u"5RA",
+                                        QUIFOY['pac1']: u"5SA", })), 
+
+    build_column_couple('alnp_imps', IntCol(entity = 'ind',
+                         label = u"Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5NA",
+                                        QUIFOY['conj']: u"5OA",
+                                        QUIFOY['pac1']: u"5PA", })), 
+
+    build_column_couple('alnp_defs', IntCol(entity = 'ind',
+                         label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5NY",
+                                        QUIFOY['conj']: u"5OY",
+                                        QUIFOY['pac1']: u"5PY", })), 
+
+    build_column_couple('nlnp_defs', IntCol(entity = 'ind',
+                         label = u"Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5NZ",
+                                        QUIFOY['conj']: u"5OZ",
+                                        QUIFOY['pac1']: u"5PZ", })), 
+
+    build_column_couple('cbnc_assc', IntCol(entity = 'ind',
+                         label = u"Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5QM",
+                                        QUIFOY['conj']: u"5RM", })), 
+
+    build_column_couple('abnc_proc', IntCol(entity = 'ind',
+                         label = u"Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5TF",
+                                        QUIFOY['conj']: u"5UF",
+                                        QUIFOY['pac1']: u"5VF", })), 
+
+    build_column_couple('nbnc_proc', IntCol(entity = 'ind',
+                         label = u"Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5TI",
+                                        QUIFOY['conj']: u"5UI",
+                                        QUIFOY['pac1']: u"5VI", })), 
+
+    build_column_couple('mncn_exon', IntCol(entity = 'ind',
+                         label = u"Revenus nets exonérés non commerciaux non professionnels (régime déclaratif spécial ou micro BNC)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5TH",
+                                        QUIFOY['conj']: u"5UH",
+                                        QUIFOY['pac1']: u"5VH", })), 
+
+    build_column_couple('cncn_aimp', IntCol(entity = 'ind',
+                         label = u"Revenus imposables non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5JG",
+                                        QUIFOY['conj']: u"5RF",
+                                        QUIFOY['pac1']: u"5SF", })), 
+
+    build_column_couple('cncn_adef', IntCol(entity = 'ind',
+                         label = u"Déficits non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5JJ",
+                                        QUIFOY['conj']: u"5RG",
+                                        QUIFOY['pac1']: u"5SG", })), 
+
+    build_column_couple('cncn_info', IntCol(entity = 'ind',
+                         label = u"Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5TC",
+                                        QUIFOY['conj']: u"5UC",
+                                        QUIFOY['pac1']: u"5VC", })), 
+
+    build_column_couple('cncn_jcre', IntCol(entity = 'ind',
+                         label = u"Jeunes créateurs : abattement de 50%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5SV",
+                                        QUIFOY['conj']: u"5SW",
+                                        QUIFOY['pac1']: u"5SX", })),  
+
+    build_column_couple('revimpres', IntCol(entity = 'ind',
+                         label = u"Revenus nets à imposer aux prélèvements sociaux",
+                         val_type = "monetary",
+                         cerfa_field = {QUIFOY['vous']: u"5HY",
+                                        QUIFOY['conj']: u"5IY",
+                                        QUIFOY['pac1']: u"5JY", })), 
+
+    build_column_couple('pveximpres', IntCol(entity = 'ind',
+                         label = u"Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux",
+                         cerfa_field = {QUIFOY['vous']: u"5HG",
+                                        QUIFOY['conj']: u"5IG", })), 
+
+
+    build_column_couple('pvtaimpres', IntCol(entity = 'ind',
+                         label = u"Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux",
+                         cerfa_field = {QUIFOY['vous']: u"5HZ",
+                                        QUIFOY['conj']: u"5IZ",
+                                        QUIFOY['pac1']: u"5JZ", })), 
+
+    build_column_couple('f5qf', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-6)",
+                    val_type = "monetary",
+                    cerfa_field = u'5QF')),
+
+    build_column_couple('f5qg', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-5)",
+                    val_type = "monetary",
+                    cerfa_field = u'5QG')),
+
+    build_column_couple('f5qn', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-4)",
+                    val_type = "monetary",
+                    cerfa_field = u'5QN')),
+
+    build_column_couple('f5qo', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-3)",
+                    val_type = "monetary",
+                    cerfa_field = u'5QO')),
+
+    build_column_couple('f5qp', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-2)",
+                    val_type = "monetary",
+                    cerfa_field = u'5QP')),
+
+    build_column_couple('f5qq', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-1)",
+                    val_type = "monetary",
+                    cerfa_field = u'5QQ')),
+
+    build_column_couple('f5ga', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GA')),
+
+    build_column_couple('f5gb', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GB')),
+
+    build_column_couple('f5gc', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GC')),
+
+    build_column_couple('f5gd', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GD')),
+
+    build_column_couple('f5ge', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GE')),
+
+    build_column_couple('f5gf', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GF')),
+
+    build_column_couple('f5gg', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GG')),
+
+    build_column_couple('f5gh', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GH')),
+
+    build_column_couple('f5gi', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GI')),
+
+    build_column_couple('f5gj', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)",
+                    val_type = "monetary",
+                    cerfa_field = u'5GJ')),
+
+    build_column_couple('f5rn', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)",
+                    val_type = "monetary",
+                    cerfa_field = u'5RN')),
+
+    build_column_couple('f5ro', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-5)",
+                    val_type = "monetary",
+                    cerfa_field = u'5RO')),
+
+    build_column_couple('f5rp', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-4)",
+                    val_type = "monetary",
+                    cerfa_field = u'5RP')),
+
+    build_column_couple('f5rq', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-3)",
+                    val_type = "monetary",
+                    cerfa_field = u'5RQ')),
+
+    build_column_couple('f5rr', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-2)",
+                    val_type = "monetary",
+                    cerfa_field = u'5RR')),
+
+    build_column_couple('f5rw', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-1)",
+                    val_type = "monetary",
+                    cerfa_field = u'5RW')),
+
+    build_column_couple('f5ht', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)",
+                    val_type = "monetary",
+                    cerfa_field = u'5HT')),
+
+    build_column_couple('f5it', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)",
+                    val_type = "monetary",
+                    cerfa_field = u'5IT')),
+
+    build_column_couple('f5jt', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)",
+                    val_type = "monetary",
+                    cerfa_field = u'5JT')),
+
+    build_column_couple('f5kt', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)",
+                    val_type = "monetary",
+                    cerfa_field = u'5KT')),
+
+    build_column_couple('f5lt', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)",
+                    val_type = "monetary",
+                    cerfa_field = u'5LT')),
+
+    build_column_couple('f5mt', IntCol(entity = 'foy',
+                    label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)",
+                    val_type = "monetary",
+                    cerfa_field = u'5MT')),
 
     ))

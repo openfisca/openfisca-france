@@ -648,13 +648,13 @@ def _micro_social_service(self, ebic_imps_holder):
     # assert (ebic_imps <= P.servi.max)
 
 
-def _micro_social_proflib(self, ebnc_impo_holder):
+def _micro_social_proflib(self, ebnc_impo_holder, P = law.ir.rpns.microentreprise):
     '''
     Assiette régime microsociale pour les professions libérales
     '''
     # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
+    # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
     return self.sum_by_entity(ebnc_impo_holder)
-    # P = _P.ir.rpns.microentreprise
     # assert (ebnc_impo <= P.specialbnc.max)
 
 
@@ -719,7 +719,7 @@ def _plus_values_2008_2011(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holde
     return round(out)
 
 
-def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P,
+def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P,
         plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
     """
     Taxation des plus value
@@ -749,7 +749,7 @@ def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3
 #        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 * max_(
 #            0, f3vg - f3vh)
     out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
-            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * f3sa)
+            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * rpns_pvce)
             # TODO: chek this rpns missing ?
 
     return round(out)
@@ -1100,7 +1100,8 @@ def _rpns_pvct(frag_pvct, mbic_pvct, macc_pvct, mbnc_pvct, mncn_pvct):
     '''
     return frag_pvct + mbic_pvct + macc_pvct + mbnc_pvct + mncn_pvct
 
-def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
+
+def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct, nbic_mvct):
     '''
     Moins values de court terme
     'ind'
@@ -1110,8 +1111,9 @@ def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
     mbnc_mvct (f5kz)
 
     '''
-    return self.cast_from_entity_to_role(mbic_mvct + macc_mvct + mbnc_mvct + mncn_mvct,
-        entity = 'foyer_fiscal', role = VOUS)
+    return (nbic_mvct + mbnc_mvct + self.cast_from_entity_to_role(mbic_mvct + macc_mvct + mncn_mvct,
+        entity = 'foyer_fiscal', role = VOUS))
+
 
 def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     '''
@@ -1123,6 +1125,7 @@ def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     mbnc_mvlt (f5hs, f5is, f5js)
     '''
     return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
+
 
 def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
         mbic_impv, mbic_imps,
@@ -1176,7 +1179,7 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
     # regime micro entreprise
     macc_timp = abat_rnps(macc_impv, microentreprise.vente) + abat_rnps(macc_imps, microentreprise.servi)
     # Régime du bénéfice réel bénéficiant de l'abattement CGA
-    aacc_timp = max_(0, (aacc_impn + aacc_imps) - (aacc_defn + aacc_defs))
+    aacc_timp = max_(0, (aacc_impn + (aacc_imps > 0) * max_(microentreprise.servi.min, aacc_imps * microentreprise.servi.taux)) - (aacc_defn + aacc_defs))
     # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
     nacc_timp = max_(0, (nacc_impn + nacc_imps) - (nacc_defn + nacc_defs))
 
