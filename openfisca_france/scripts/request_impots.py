@@ -77,9 +77,11 @@ def main():
                 'REVKIRE': u'Revenu fiscal de référence',
                 'RNICOL': u'Revenu net imposable ou déficit à reporter',
                 'RRBG': u'Revenu brut global ou déficit',
+                'TEFF': u'?',#TODO (ebnc_impo)
                 'TOTPAC': u'Nombre de personnes à charge',
                 'TXMARJ': u'Taux marginal d\'imposition',
                 'TXMOYIMP': u'Taux moyen d\'imposition',
+                'IPROP': u'?',#TODO (rpns)
                 'IRETS' : u'?',#TODO
                 'RNI': u'?',#TODO
                 'AVFISCOPTER': u'?',#TODO (f8tf)
