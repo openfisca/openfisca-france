@@ -27,7 +27,6 @@ import os
 import pkg_resources
 import sys
 
-from pandas import DataFrame
 import openfisca_france
 
 TaxBenefitSystem = openfisca_france.init_country()
