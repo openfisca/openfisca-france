@@ -881,7 +881,7 @@ prestation_by_name = collections.OrderedDict((
               function = ir._plus_values_2008_2011,
              ),
             dict(start = date(2012, 1, 1),
-              end = date(2012, 12, 31),
+              end = date(2013, 12, 31),
               function = ir._plus_values_2012,
              ),
             dict(start = date(2013, 1, 1),
@@ -1465,6 +1465,9 @@ prestation_by_name = collections.OrderedDict((
         start = date(2009, 1, 1),
         url = u"http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social",
         )),
+    build_simple_formula_couple('taux_effectif', FloatCol(function = ir._taux_effectif,
+        entity = 'foy',
+        start = date(2009, 1, 1))),
 
     # Prime pour l'emploi
     build_simple_formula_couple('rev_act_nonsal', FloatCol(function = ir._rev_act_nonsal,

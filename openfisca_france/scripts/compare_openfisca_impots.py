@@ -55,23 +55,22 @@ def define_scenario(year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,
-#            cadre = True,
-            sali = 90000,
+            sali = 20000,
             statmarit = u'Célibataire',
+            ebnc_impo = 2000,
             ),
         enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                birth = '2002-02-01',
-                ),
-            dict(
-                activite = u'Étudiant, élève',
-                birth = '2000-04-17',
-                ),
+#            dict(
+#                activite = u'Étudiant, élève',
+#                birth = '2002-02-01',
+#                ),
+#            dict(
+#                activite = u'Étudiant, élève',
+#                birth = '2000-04-17',
+#                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
-#                f7cn = 1500,
-                f7rd = 100000
+
             ),
         year = year,
         )
@@ -85,7 +84,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2012
+    year = 2013
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
@@ -137,11 +136,12 @@ def compare(scenario, tested = False, fichier = ''):
         'RNI': u'?',#TODO
         'AVFISCOPTER': u'?',#TODO (f8tf)
         'CIRCM': u'?',#TODO (f2dc)
-        'BCSG': u'?',#TODO (f2dc)
-        'BRDS': u'?',#TODO (f2dc)
-        'NAPCS': u'?',#TODO (f2dc)
-        'NAPRD': u'?',#TODO (f2dc)
-        'NAPPS': u'?',#TODO (f2dc)
+        'BCSG': u'Base CSG',
+        'BRDS': u'Base CRDS',
+        'BPRS': u'Base prélèvement social et contributions annexes',
+        'NAPCS': u'Montant net CSG',
+        'NAPRD': u'Montant net CRDS',
+        'NAPPS': u'Montant net prélèvement social et contributions annexes',
         'CICA': u'?',#TODO (f4tq)
         'CICORSE': u'?',#TODO (f8to)
         'CIDEPENV': u'?',#TODO (f7sz)
@@ -149,13 +149,12 @@ def compare(scenario, tested = False, fichier = ''):
         'CIHABPRIN': u'?',#TODO (f7vy)
         'CIPRETUD': u'?',#TODO (f7uk)
         'CITEC': u'?',#TODO (f7wr)
-        'BPRS': u'?',#TODO (f2ch)
         'CIDEVDUR': u'?',#TODO (f7wf)
         'CIADCRE': u'?',#TODO (f7dg)
         'CIMOBIL': u'?',#TODO (f1ar)
         'CIPERT': u'?',#TODO (f3vv)
         'IAVF2': u'?',#TODO (f8th)
-        'IPROP': u'?',#TODO (rpns)
+        'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
         'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
         'RHEBE': u'?',#TODO (7ce)
@@ -297,12 +296,17 @@ def compare(scenario, tested = False, fichier = ''):
             'name': names[code] if (code in names) else u'nom inconnu',
             'value': float(element.get('value').replace(" ", "")),
             }
+    iinet = 1
     if tested:
         for code, field in fields.iteritems():
+            if code == 'IINETIR' or code == 'IRESTIR':
+                iinet = 0
             compare_variable(code, field, simulation, totpac, year, fichier)
 #            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 #    print simulation.calculate('reductions')
 #    print fields['ITRED']['value']
+        if iinet:
+            compare_variable('IINETIR', fields['IINET'], simulation, totpac, year, fichier)
 
     return fields
 
@@ -315,7 +319,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
             openfisca_value = simulation.calculate('decote')
         elif code == 'IDRS2':
             openfisca_value = simulation.calculate('ir_plaf_qf')
-        elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
+        elif code == 'IINETIR' or code == 'IRESTIR':
             openfisca_value = -simulation.calculate('irpp')
         elif code == 'ITRED':
             openfisca_value = simulation.calculate('reductions')
@@ -329,10 +333,11 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
             openfisca_value = simulation.calculate('rni')
         elif code == 'RRBG':
             openfisca_value = simulation.calculate('rbg')
+# TODO: Checker si le montant net CSG/CRDS correspond à NAPCS, NAPRDS, checker IINET
         elif code == 'TOTPAC':
             openfisca_value = len(totpac or [])
         elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
-                'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA',
+                'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA', 'IINET',
                 'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
                 'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'RRIRENOV', 'RCELHL', 'RLOCIDEFG',
                 'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RAH', 'RCEL', 'RCELREPGX', 'RCELREPGW', 'RDONS',
@@ -363,7 +368,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
                 field['name'], field['value'], openfisca_value).encode('utf-8')
             openfisca_simple_value = openfisca_simple_value[0]
         if not abs(field['value'] - openfisca_simple_value) < 2:
-            print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], \
+            print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, field['code'], field['name'], \
             field['value'], openfisca_simple_value).encode('utf-8')
             return 1
         else:

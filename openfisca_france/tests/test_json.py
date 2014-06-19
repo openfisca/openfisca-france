@@ -49,7 +49,6 @@ def test():
 
             scenario, error = tax_benefit_system.Scenario.make_json_to_instance(
                 tax_benefit_system = tax_benefit_system)(json_scenario)
-
             year = json_scenario['year']
             totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
 

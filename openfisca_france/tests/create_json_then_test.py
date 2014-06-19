@@ -46,7 +46,6 @@ def define_scenario(year, column_code):
     start = 1990 if column.start == None else column.start.year
     end = 2050 if column.end == None else column.end.year
     value = 1500 if conv.test_between(start, end)(year)[1] == None else 0
-
     parent1 = {
         "activite": u'Actif occupé',
         "birth": 1970,
@@ -90,12 +89,12 @@ def define_scenario(year, column_code):
 def main():
 #    for column_code in ('f7nu', 'f7nv', 'f7nw', 'f7nx', 'f7oz', 'f7pa', 'f7pb', 'f7pc', 'f7pe', 'f7pf', 'f7pg', 'f7pi', 'f7pj', 'f7pk', 'f7pm', 'f7pn', 'f7po', 'f7pp', 'f7pq', 'f7ps', 'f7pt', 'f7pu', 'f7pv', 'f7px', 'f7py', 'f7rg', 'f7rh', 'f7rj', 'f7rk', 'f7rl', 'f7rm', 'f7rn', 'f7rp', 'f7rq', 'f7rr', 'f7rs', 'f7ru', 'f7rv', 'f7rw', 'f7rx', 'f7pz', 'f7qz', 'f7qe', 'f7qf', 'f7qg', 'f7qo', 'f7qp', 'f7qv', 'f7mm', 'f7ma', 'f7mb', 'f7mn', 'f7lg', 'f7lh', 'f7ks', 'f7kt', 'f7li', 'f7mc', 'f7ku'): # jusqu'en 2012
 #    for column_code in ('fhsa', 'fhsb', 'fhsf', 'fhsg', 'fhsc', 'fhsh', 'fhsd', 'fhsi', 'fhsk', 'fhsl', 'fhsp', 'fhsq', 'fhsm', 'fhsr', 'fhsn', 'fhss', 'fhsu', 'fhsv', 'fhsw', 'fhsx', 'fhsz', 'fhta', 'fhtb', 'fhtc', 'fhoz', 'fhpa', 'fhpb', 'fhpc', 'fhpe', 'fhpf', 'fhpg', 'fhpi', 'fhpj', 'fhpk', 'fhpm', 'fhpn', 'fhpo', 'fhpp', 'fhpq', 'fhps', 'fhpt', 'fhpu', 'fhpv', 'fhpx', 'fhpy', 'fhrg', 'fhrh', 'fhrj', 'fhrk', 'fhrl', 'fhrm', 'fhrn', 'fhrp', 'fhrq', 'fhrr', 'fhrs', 'fhru', 'fhrv', 'fhrw', 'fhrx', 'fhpz', 'fhqz', 'fhqe', 'fhqf', 'fhqg', 'fhqo', 'fhqp', 'fhqv', 'fhmm', 'fhma', 'fhmb', 'fhmn', 'fhlg', 'fhlh', 'fhks', 'fhkt', 'fhli', 'fhmc', 'fhku'): # 2013 uniquement
-    column_code = raw_input("Which variable would you like to test ? ")
-    assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"        
-    for year in range(2007,2014):
-        scenario = define_scenario(year,column_code)
-        export_json(scenario, var = column_code, tested = True)
-    return 0
+    while 1:
+        column_code = raw_input("Which variable would you like to test ? ")
+        assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"        
+        for year in range(2007,2014):
+            scenario = define_scenario(year,column_code)
+            export_json(scenario, var = column_code, tested = True)
 
 
 if __name__ == "__main__":

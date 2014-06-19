@@ -94,14 +94,14 @@ def _prelsoc_cap_bar_2009_(self, rev_cap_bar, _P):
 
 def _csg_pv_mo(f3vg, _P):
     """
-    Calcule la CSG sur les plus-values de cession immobilière
+    Calcule la CSG sur les plus-values de cession mobilière
     """
     return -f3vg * _P.csg.capital.glob
 
 
 def _crds_pv_mo(f3vg, _P):
     """
-    Calcule la CRDS sur les plus-values de cession immobilière
+    Calcule la CRDS sur les plus-values de cession mobilière
     """
     return -f3vg * _P.crds.capital
 
