@@ -56,9 +56,6 @@ def test():
             year = json_scenario['year']
             totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
 
-            if error is not None:
-                print 'error:', fichier, error
-                continue
             simulation = scenario.new_simulation()
 
             for code, field in official_result.iteritems():

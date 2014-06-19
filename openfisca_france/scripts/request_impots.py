@@ -35,17 +35,17 @@ from lxml import etree
 
 def main():
 
-    year = 2012
+    year = 2013
     impots_arguments = {
         'pre_situation_residence': 'M',  # Métropole
         '0DA': 1970,
         'pre_situation_famille': 'C',
-        '0CF': 0, # nombre de personnes à charge
-#        '0F1': 1990, # âge de la première personne à charge
-        '0BT': 0, # case T
-        '1AJ': 100000,
-        '7CQ': 45000,
-        '7CF': 45000,
+#        '0CF': 2, # nombre de personnes à charge
+#        '0F1': 2000, # âge de la première personne à charge
+#        '0F2': 2002,
+#        '0BT': 1, # case T
+        '1AJ': 21467,
+#        '5TE': 2000,
     }
 
     request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
@@ -81,16 +81,16 @@ def main():
                 'TOTPAC': u'Nombre de personnes à charge',
                 'TXMARJ': u'Taux marginal d\'imposition',
                 'TXMOYIMP': u'Taux moyen d\'imposition',
-                'IPROP': u'?',#TODO (rpns)
                 'IRETS' : u'?',#TODO
                 'RNI': u'?',#TODO
                 'AVFISCOPTER': u'?',#TODO (f8tf)
+                'BCSG': u'Base CSG',
+                'BRDS': u'Base CRDS',
+                'BPRS': u'Base prélèvement social et contributions annexes',
+                'NAPCS': u'Montant net CSG',
+                'NAPRD': u'Montant net CRDS',
+                'NAPPS': u'Montant net prélèvement social et contributions annexes',
                 'CIRCM': u'?',#TODO (f2dc)
-                'BCSG': u'?',#TODO (f2dc)
-                'BRDS': u'?',#TODO (f2dc)
-                'NAPCS': u'?',#TODO (f2dc)
-                'NAPRD': u'?',#TODO (f2dc)
-                'NAPPS': u'?',#TODO (f2dc)
                 'CICA': u'?',#TODO (f4tq)
                 'CICORSE': u'?',#TODO (f8to)
                 'CIDEPENV': u'?',#TODO (f7sz)
@@ -98,12 +98,12 @@ def main():
                 'CIHABPRIN': u'?',#TODO (f7vy)
                 'CIPRETUD': u'?',#TODO (f7uk)
                 'CITEC': u'?',#TODO (f7wr)
-                'BPRS': u'?',#TODO (f2ch)
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg)
                 'CIMOBIL': u'?',#TODO (f1ar)
                 'CIPERT': u'?',#TODO (f3vv)
                 'IAVF2': u'?',#TODO (f8th)
+                'IPROP': u'Impôt proportionnel',
                 'RFOR': u'?',#TODO (f7up)
                 'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
                 'RHEBE': u'?',#TODO (7ce)
@@ -243,7 +243,7 @@ def main():
             'name' : names[code] if (code in names) else u'nom inconnu',
             'value' : float(element.get('value').replace(" ","")),
             }
-    for code in ('ITRED',):
+#    for code in ('ITRED',):
         print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 
 

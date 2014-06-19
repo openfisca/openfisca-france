@@ -47,7 +47,6 @@ def define_scenario():
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
-            cadre = True,
             sali = 24000,
             statmarit = u'Célibataire',
             ),
