@@ -52,7 +52,6 @@ def adapt_to_survey(tax_benefit_system_class):
 
 
 class SurveyScenario(object):
-    axes = None
     compact_legislation = None
     input_data_frame = None
     simulation = None
