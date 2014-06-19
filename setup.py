@@ -65,6 +65,7 @@ setup(
     install_requires = [
         'Babel >= 0.9.4',
         'Biryani1[datetimeconv] >= 0.9dev',
+	'jsonpatch >= 1.3'
         'numpy',
         'OpenFisca-Core >= 0.3dev',
         'scipy >= 0.12',
