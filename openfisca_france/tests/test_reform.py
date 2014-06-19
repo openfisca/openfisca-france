@@ -36,7 +36,7 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def test_parametric_reform(year):
+def test_parametric_reform(year = 2014):
     legislation_tree = xml.etree.ElementTree.parse(TaxBenefitSystem.PARAM_FILE)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(
         legislation_tree.getroot(),
