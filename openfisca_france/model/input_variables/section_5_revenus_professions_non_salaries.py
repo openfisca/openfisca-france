@@ -569,6 +569,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nbic_pvce', IntCol(entity = 'ind',
                          label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)",
                          val_type = "monetary",
+                         start = datetime.date(2008, 1, 1),
                          cerfa_field = {QUIFOY['vous']: u"5IK",
                                         QUIFOY['conj']: u"5KK",
                                         QUIFOY['pac1']: u"5MK", })),  # (f5kk, f5ik, f5mk)),
