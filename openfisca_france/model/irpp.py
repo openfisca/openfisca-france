@@ -967,7 +967,7 @@ def _rpns_pvce(frag_pvce, arag_pvce, nrag_pvce, mbic_pvce, abic_pvce,
 
 def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon, nbnc_proc,
                nbic_exon, macc_exon, aacc_exon, nacc_exon, mbnc_exon, abnc_proc,
-               abnc_exon, nbnc_exon, mncn_exon, cncn_exon, cncn_jcre, cncn_info, cga = law.ir.rpns.cga_taux2):
+               abnc_exon, nbnc_exon, mncn_exon, cncn_exon, cncn_jcre, cncn_info, nbic_pvce, cga = law.ir.rpns.cga_taux2):
     '''
     Plus values de cession
     'ind'
@@ -988,7 +988,7 @@ def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon, nbnc_proc,
 
     return (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga) +
             nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc +
-            abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info)
+            abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info + nbic_pvce)
 
 
 def _rag(frag_exon, frag_impo, arag_exon, arag_impg, arag_defi, nrag_exon, nrag_impg, nrag_defi, nrag_ajag):
