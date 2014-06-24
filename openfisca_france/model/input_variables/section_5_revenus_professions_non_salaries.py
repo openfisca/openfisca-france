@@ -190,7 +190,7 @@ column_by_name = collections.OrderedDict((
                                         QUIFOY['conj']: u"5LD",
                                         QUIFOY['pac1']: u"5MD", },
                          end = datetime.date(2009, 12, 31))),  # (f5kd, f5ld, f5md)),
-                                                              # TODO: vérifier date fin
+                                                              
 
     build_column_couple('nbic_impn', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
@@ -210,7 +210,7 @@ column_by_name = collections.OrderedDict((
                                         QUIFOY['conj']: u"5LJ",
                                         QUIFOY['pac1']: u"5MJ", },
                          end = datetime.date(2009, 12, 31))), # TODO: c'est 5HU pour les années anciennes
-                                                              # TODO: vérifier date fin
+                                                             
     build_column_couple('nbic_mvct', IntCol(entity = 'ind',
                          label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme",
                          val_type = "monetary",
@@ -467,7 +467,7 @@ column_by_name = collections.OrderedDict((
                          cerfa_field = {QUIFOY['vous']: u"5KZ", #TODO: pb cerfa field
                                         QUIFOY['conj']: u"5LZ",
                                         QUIFOY['pac1']: u"5MZ", })),  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
-                                                                      # TODO: intégrer f5lz , f5mz à OF
+                                                                    
 
     build_column_couple('frag_pvct', IntCol(entity = 'ind',
                          label = u"Plus-values agricoles  à court terme (régime du forfait)",
@@ -590,6 +590,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nacc_pvce', IntCol(entity = 'ind',
                          label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",
+                         start = datetime.date(2009, 1, 1),
                          cerfa_field = {QUIFOY['vous']: u"5NK",
                                         QUIFOY['conj']: u"5OK",
                                         QUIFOY['pac1']: u"5PK", })),  # (f5nk, f5ok, f5pk)),
@@ -625,6 +626,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('nbnc_pvce', IntCol(entity = 'ind',
                          label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",
+                         start = datetime.date(2009, 1, 1),
                          cerfa_field = {QUIFOY['vous']: u"5QJ",
                                         QUIFOY['conj']: u"5RJ",
                                         QUIFOY['pac1']: u"5SJ", })),  # (f5qj, f5rj, f5sj)),

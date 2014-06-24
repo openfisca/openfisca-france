@@ -2367,6 +2367,9 @@
       </CODE>
     </NODE>
     <NODE code="rpns" description="Revenus des professions non salariées">
+      <CODE code="taux16" description="Revenus taxés à 16% (logiciels originaux)" format="percent">
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.16" />
+      </CODE>
       <CODE code="cga_taux" description="Taux de l'abattement CGA-AA" format="percent">
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.2" />
         <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0" />

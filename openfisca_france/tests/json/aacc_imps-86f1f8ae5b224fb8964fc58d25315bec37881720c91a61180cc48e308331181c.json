@@ -84,7 +84,7 @@
       }, 
       "individus": {
         "ind0": {
-          "aacc_imps": 1500, 
+          "aacc_imps": 0, 
           "activite": 0, 
           "birth": "1970-01-01", 
           "sali": 24000, 

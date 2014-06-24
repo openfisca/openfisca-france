@@ -43,7 +43,7 @@
     "REVKIRE": {
       "code": "REVKIRE", 
       "name": "Revenu fiscal de référence", 
-      "value": 21600.0
+      "value": 23100.0
     }, 
     "RNICOL": {
       "code": "RNICOL", 
@@ -84,9 +84,9 @@
       }, 
       "individus": {
         "ind0": {
-          "abic_imps": 0, 
           "activite": 0, 
           "birth": "1970-01-01", 
+          "nbic_pvce": 1500, 
           "sali": 24000, 
           "statmarit": 2
         }

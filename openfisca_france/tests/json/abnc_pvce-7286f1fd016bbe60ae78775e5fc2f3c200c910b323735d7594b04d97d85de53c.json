@@ -2,17 +2,17 @@
   "resultat_officiel": {
     "BCSG": {
       "code": "BCSG", 
-      "name": "?", 
+      "name": "Base CSG", 
       "value": 1500.0
     }, 
     "BPRS": {
       "code": "BPRS", 
-      "name": "?", 
+      "name": "Base prélèvement social et contributions annexes", 
       "value": 1500.0
     }, 
     "BRDS": {
       "code": "BRDS", 
-      "name": "?", 
+      "name": "Base CRDS", 
       "value": 1500.0
     }, 
     "IAVIM": {
@@ -37,7 +37,7 @@
     }, 
     "IPROP": {
       "code": "IPROP", 
-      "name": "?", 
+      "name": "Impôt proportionnel", 
       "value": 240.0
     }, 
     "IREST": {
@@ -52,17 +52,17 @@
     }, 
     "NAPCS": {
       "code": "NAPCS", 
-      "name": "?", 
+      "name": "Montant net CSG", 
       "value": 123.0
     }, 
     "NAPPS": {
       "code": "NAPPS", 
-      "name": "?", 
+      "name": "Montant net prélèvement social et contributions annexes", 
       "value": 102.0
     }, 
     "NAPRD": {
       "code": "NAPRD", 
-      "name": "?", 
+      "name": "Montant net CRDS", 
       "value": 8.0
     }, 
     "NBPT": {

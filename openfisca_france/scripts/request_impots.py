@@ -25,6 +25,7 @@
 
 
 import collections
+import cStringIO
 import json
 import os
 import sys
@@ -44,8 +45,9 @@ def main():
 #        '0F1': 2000, # âge de la première personne à charge
 #        '0F2': 2002,
 #        '0BT': 1, # case T
-        '1AJ': 21467,
+        '1AJ': 24000,
 #        '5TE': 2000,
+        '5TC': 2000
     }
 
     request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
@@ -53,8 +55,10 @@ def main():
         })
 
     response = urllib2.urlopen(request, urllib.urlencode(impots_arguments))
-
-    page_doc = etree.parse(response, etree.HTMLParser())
+    response_html = response.read()
+    if 'Erreur' in response_html:
+        raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
+    page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
     fields = collections.OrderedDict()
     names = {   
                 'CIGE': u'Crédit aides aux personnes',
