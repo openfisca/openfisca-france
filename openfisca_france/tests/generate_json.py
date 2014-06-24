@@ -61,7 +61,7 @@ def define_scenario():
                 ),
             ],
         foyer_fiscal = dict(
-            f8ta = 0,
+            f8ta = 3000,
             ),
         )
     scenario.suggest()
@@ -78,12 +78,17 @@ def export_json(scenario, var = "", tested = True):
     json_scenario = scenario.to_json()
     string_scenario = json.dumps(json_scenario, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
     h = var + '-' + hashlib.sha256(string_scenario).hexdigest()
-    if not os.path.isfile(os.path.join('json', h + '.json')):  # TODO: scenario > single entity
-        with codecs.open(os.path.join('json', h + '.json'), 'w', encoding='utf-8') as fichier:
-            json.dump(add_official(scenario, h, tested), fichier, encoding='utf-8', ensure_ascii=False, indent=2,
-                      sort_keys=True)
+    h2 = var + '-' + str(scenario.year) + '-' + hashlib.sha256(string_scenario).hexdigest()
+    if not (os.path.isfile(os.path.join('json', h + '.json')) or os.path.isfile(os.path.join('json', h2 + '.json'))):#TODO: scenario > single entity
+        with codecs.open(os.path.join('json', h2 + '.json'),'w', encoding='utf-8') as fichier:
+            json.dump(add_official(scenario, h2, tested), fichier, encoding='utf-8', ensure_ascii=False, indent=2,
+                sort_keys=True)
+
     else:
-        compare(scenario, tested, h)
+        if os.path.isfile(os.path.join('json', h + '.json')):
+            compare(scenario, tested, h)
+        else:
+            compare(scenario, tested, h2)
 
 
 def main():

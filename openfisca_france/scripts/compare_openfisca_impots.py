@@ -56,9 +56,9 @@ def define_scenario(year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,
-            sali = 20000,
+            sali = 24000,
             statmarit = u'Célibataire',
-            ebnc_impo = 2000,
+            cncn_info = 2000,
             ),
         enfants = [
 #            dict(
@@ -71,7 +71,7 @@ def define_scenario(year):
 #                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
-
+            f3vg = 0,
             ),
         )
     scenario.suggest()

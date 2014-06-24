@@ -3,17 +3,17 @@
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 1957.0
+      "value": 1747.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
       "name": "Droits simples", 
-      "value": 1957.0
+      "value": 1747.0
     }, 
     "IINET": {
       "code": "IINET", 
       "name": "Montant net à payer", 
-      "value": 1957.0
+      "value": 1747.0
     }, 
     "IREST": {
       "code": "IREST", 
@@ -43,17 +43,17 @@
     "REVKIRE": {
       "code": "REVKIRE", 
       "name": "Revenu fiscal de référence", 
-      "value": 23100.0
+      "value": 21600.0
     }, 
     "RNICOL": {
       "code": "RNICOL", 
       "name": "Revenu net imposable ou déficit à reporter", 
-      "value": 23100.0
+      "value": 21600.0
     }, 
     "RRBG": {
       "code": "RRBG", 
       "name": "Revenu brut global ou déficit", 
-      "value": 23100.0
+      "value": 21600.0
     }, 
     "TXMARJ": {
       "code": "TXMARJ", 
@@ -63,7 +63,7 @@
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 8.47
+      "value": 8.09
     }
   }, 
   "scenario": {
@@ -84,7 +84,7 @@
       }, 
       "individus": {
         "ind0": {
-          "aacc_imps": 1500, 
+          "aacc_imps": 0, 
           "activite": 0, 
           "birth": "1970-01-01", 
           "sali": 24000, 

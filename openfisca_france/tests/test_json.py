@@ -37,7 +37,6 @@ from openfisca_france.scripts.compare_openfisca_impots import compare_variable
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
-
 def test():
     path = os.path.join(os.path.dirname(__file__), 'json')
     err = 1
@@ -59,9 +58,9 @@ def test():
             simulation = scenario.new_simulation()
 
             for code, field in official_result.iteritems():
-                compare_variable(code, field, simulation, totpac, fichier, year)
                 if compare_variable(code, field, simulation, totpac, fichier, year):
                     err = 0
+
     assert err, "Erreur"
 
 

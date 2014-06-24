@@ -102,6 +102,5 @@ def main():
             scenario = define_scenario(year,column_code)
             export_json(scenario, var = column_code, tested = True)
 
-
 if __name__ == "__main__":
     sys.exit(main())

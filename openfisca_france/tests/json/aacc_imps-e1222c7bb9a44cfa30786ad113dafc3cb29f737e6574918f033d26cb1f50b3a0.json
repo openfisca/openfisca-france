@@ -3,17 +3,17 @@
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 1685.0
+      "value": 1763.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
       "name": "Droits simples", 
-      "value": 1685.0
+      "value": 1763.0
     }, 
     "IINET": {
       "code": "IINET", 
       "name": "Montant net à payer", 
-      "value": 1685.0
+      "value": 1763.0
     }, 
     "IREST": {
       "code": "IREST", 
@@ -25,15 +25,15 @@
       "name": "nom inconnu", 
       "value": 0.0
     }, 
-    "NBPT": {
-      "code": "NBPT", 
+    "NBP": {
+      "code": "NBP", 
       "name": "Nombre de parts", 
       "value": 1.0
     }, 
     "PERPPLAFTV": {
       "code": "PERPPLAFTV", 
       "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
-      "value": 3535.0
+      "value": 3107.0
     }, 
     "PPETOT": {
       "code": "PPETOT", 
@@ -45,9 +45,9 @@
       "name": "Revenu fiscal de référence", 
       "value": 21600.0
     }, 
-    "RNICOL": {
-      "code": "RNICOL", 
-      "name": "Revenu net imposable ou déficit à reporter", 
+    "RNI": {
+      "code": "RNI", 
+      "name": "?", 
       "value": 21600.0
     }, 
     "RRBG": {
@@ -63,7 +63,7 @@
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 7.8
+      "value": 8.16
     }
   }, 
   "scenario": {
@@ -84,7 +84,7 @@
       }, 
       "individus": {
         "ind0": {
-          "abic_imps": 0, 
+          "aacc_imps": 0, 
           "activite": 0, 
           "birth": "1970-01-01", 
           "sali": 24000, 
@@ -97,6 +97,6 @@
         }
       }
     }, 
-    "year": 2011
+    "year": 2006
   }
 }
