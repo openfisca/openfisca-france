@@ -25,10 +25,9 @@
 
 from __future__ import division
 
-from numpy import arange, argsort, asarray, cumsum, floor, linspace, logical_and as and_, logical_not as not_, repeat
+from numpy import floor, logical_not as not_
 
-from .input_variables.base import QUIFAM, QUIFOY, QUIMEN
-
+from .input_variables.base import QUIFAM, QUIFOY
 
 CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf{}'.format(i)] for i in range(1, 10)]
