@@ -1,34 +1,19 @@
 {
   "resultat_officiel": {
-    "BCSG": {
-      "code": "BCSG", 
-      "name": "?", 
-      "value": 750.0
-    }, 
-    "BPRS": {
-      "code": "BPRS", 
-      "name": "?", 
-      "value": 750.0
-    }, 
-    "BRDS": {
-      "code": "BRDS", 
-      "name": "?", 
-      "value": 750.0
-    }, 
     "IAVIM": {
       "code": "IAVIM", 
       "name": "Impôt avant imputations", 
-      "value": 1790.0
+      "value": 1685.0
     }, 
     "IDRS2": {
       "code": "IDRS2", 
       "name": "Droits simples", 
-      "value": 1790.0
+      "value": 1685.0
     }, 
     "IINET": {
       "code": "IINET", 
       "name": "Montant net à payer", 
-      "value": 1790.0
+      "value": 1685.0
     }, 
     "IREST": {
       "code": "IREST", 
@@ -38,22 +23,7 @@
     "NAPCR": {
       "code": "NAPCR", 
       "name": "nom inconnu", 
-      "value": 102.0
-    }, 
-    "NAPCS": {
-      "code": "NAPCS", 
-      "name": "?", 
-      "value": 62.0
-    }, 
-    "NAPPS": {
-      "code": "NAPPS", 
-      "name": "?", 
-      "value": 36.0
-    }, 
-    "NAPRD": {
-      "code": "NAPRD", 
-      "name": "?", 
-      "value": 4.0
+      "value": 0.0
     }, 
     "NBPT": {
       "code": "NBPT", 
@@ -73,17 +43,17 @@
     "REVKIRE": {
       "code": "REVKIRE", 
       "name": "Revenu fiscal de référence", 
-      "value": 22350.0
+      "value": 21600.0
     }, 
     "RNICOL": {
       "code": "RNICOL", 
       "name": "Revenu net imposable ou déficit à reporter", 
-      "value": 22350.0
+      "value": 21600.0
     }, 
     "RRBG": {
       "code": "RRBG", 
       "name": "Revenu brut global ou déficit", 
-      "value": 22350.0
+      "value": 21600.0
     }, 
     "TXMARJ": {
       "code": "TXMARJ", 
@@ -93,7 +63,7 @@
     "TXMOYIMP": {
       "code": "TXMOYIMP", 
       "name": "Taux moyen d'imposition", 
-      "value": 8.01
+      "value": 7.8
     }
   }, 
   "scenario": {
@@ -109,12 +79,12 @@
         "0": {
           "declarants": [
             "ind0"
-          ]
+          ], 
+          "f5qn": 1500
         }
       }, 
       "individus": {
         "ind0": {
-          "aacc_imps": 1500, 
           "activite": 0, 
           "birth": "1970-01-01", 
           "sali": 24000, 

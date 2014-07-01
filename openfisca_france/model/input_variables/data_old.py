@@ -2153,13 +2153,6 @@ column_by_name = collections.OrderedDict((
                                         QUIFOY['conj']: u"5OI",
                                         QUIFOY['pac1']: u"5PI", })),  # (f5ni, f5oi, f5pi)),
 
-    build_column_couple('nacc_imps', IntCol(entity = 'ind',
-                         label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NJ",
-                                        QUIFOY['conj']: u"5OJ",
-                                        QUIFOY['pac1']: u"5PJ", })),  # (f5nj, f5oj, f5pj)),
-
     build_column_couple('nacc_defn', IntCol(entity = 'ind',
                          label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
                          val_type = "monetary",

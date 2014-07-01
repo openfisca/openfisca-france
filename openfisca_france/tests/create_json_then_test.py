@@ -23,9 +23,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-## Ce script crée un fichier json comprenant le scenario et le résultat officiel de la simulation
+########### DESCRIPTION ############
+## Ce script crée un fichier json comprenant le scenario et le résultat officiel de la simulation, à partir d'une variable
 ## Que le fichier existe déjà ou non, ce script teste ensuite si le résultat officiel correspond au résultat OpenFisca
 ## Si un long message d'erreur apparaît, il faut supprimer le fichier créé (qui est vide)
+## On attribue la valeur 1500 à la variable à tester dans le scenario, constitué d'une personne seule avec un salaire de 24000
+#TODO: générer des tests aléatoires : on prend 5 valeurs au hasard pour autant de variables et on crée un .json. On s'arrête d'en créer quand on trouve une erreur dans OpenFisca (qu'on affiche).
 
 import openfisca_france
 import sys

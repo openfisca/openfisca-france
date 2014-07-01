@@ -67,6 +67,7 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('f6gu', IntCol(entity = 'foy',
                     label = u"Autres pensions alimentaires versées (mineurs, ascendants)",
+                    start = datetime.date(2006, 1, 1),
                     val_type = "monetary",
                     cerfa_field = u'6GU')),
 
