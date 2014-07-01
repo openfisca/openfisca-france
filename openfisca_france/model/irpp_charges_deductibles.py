@@ -125,6 +125,7 @@ def _cd_penali(f6gi, f6gj, f6gp, f6el, f6em, f6gu, penalim = law.ir.charges_dedu
         # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
         # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
         # foyer, la déduction est limitée à 2*max
+    # S'il habite chez ses parents, max 3359, sinon 5698
     return (min_(f6gi * (1 + taux_jgt_2006), max1) +
                 min_(f6gj * (1 + taux_jgt_2006), max1) +
                 min_(f6el, max1) +

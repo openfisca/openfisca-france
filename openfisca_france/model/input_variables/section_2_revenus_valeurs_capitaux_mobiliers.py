@@ -36,7 +36,9 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
                     entity = 'foy',
                     val_type = "monetary",
-                    cerfa_field = u'2DA', end = date(2012, 12, 31))),  # à vérifier sur la nouvelle déclaration des revenus 2013
+                    cerfa_field = u'2DA',
+                    start = date(2008, 1, 1),
+                    end = date(2012, 12, 31))),  # à vérifier sur la nouvelle déclaration des revenus 2013
 
     build_column_couple('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
                     entity = 'foy',
@@ -85,6 +87,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f2bh', IntCol(entity = 'foy',
                     label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible",
                     val_type = "monetary",
+                    start = date(2007, 1, 1),
                     cerfa_field = u'2BH')),
 
     build_column_couple('f2ca', IntCol(entity = 'foy',
@@ -106,22 +109,24 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f2bg', IntCol(entity = 'foy',
                     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
                     val_type = "monetary",
-                    cerfa_field = u'2BG',
-                    start = date(2006, 1, 1))), 
+                    cerfa_field = u'2BG')), 
 
     build_column_couple('f2aa', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
+                    start = date(2007, 1, 1),
                     cerfa_field = u'2AA')),
 
     build_column_couple('f2al', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
+                    start = date(2008, 1, 1),
                     cerfa_field = u'2AL')),
 
     build_column_couple('f2am', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
                     val_type = "monetary",
+                    start = date(2009, 1, 1),
                     cerfa_field = u'2AM')),
 
     build_column_couple('f2an', IntCol(entity = 'foy',
@@ -144,20 +149,23 @@ column_by_name = collections.OrderedDict((
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 #
-    build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = date(2011, 12, 31))),  # TODO: vérifier existence <=2011
+    build_column_couple('f2as', IntCol(entity = 'foy', 
+                    label = u"Déficits des années antérieures non encore déduits: année 2012", 
+                    val_type = "monetary", 
+                    end = date(2011, 12, 31))),  # TODO: vérifier existence <=2011
 
     build_column_couple('f2dm', IntCol(entity = 'foy',
                     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
                     val_type = "monetary",
                     cerfa_field = u'2DM',
-                    start = date(2012, 1, 1))),  # TODO: nouvelle case à utiliser où c'est nécessaire
+                    start = date(2008, 1, 1))),  # TODO: nouvelle case à utiliser où c'est nécessaire
                                      # TODO: vérifier existence avant 2012
 
     build_column_couple('f2gr', IntCol(entity = 'foy',
                     label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
                     val_type = "monetary",
                     cerfa_field = u'2GR',
-                    start = date(2009, 1, 1),
+                    start = date(2005, 1, 1),
                     end = date(2009, 12, 31))),  # TODO: vérifier existence à partir de 2011
 
     ))

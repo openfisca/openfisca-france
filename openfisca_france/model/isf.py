@@ -243,7 +243,7 @@ def _rvcm_plus_abat(rev_cat_rvcm, rfr_rvcm):
 # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
 def _maj_cga(self, frag_impo, nrag_impg,
             nbic_impn, nbic_imps, nbic_defn, nbic_defs,
-            nacc_impn, nacc_imps, nacc_defn, nacc_defs,
+            nacc_impn, nacc_meup, nacc_defn, nacc_defs,
             nbnc_impo, nbnc_defi, P = law.ir.rpns):
     '''
     Majoration pour non adhésion à un centre de gestion agréé
@@ -255,7 +255,7 @@ def _maj_cga(self, frag_impo, nrag_impg,
 
     # # C revenus industriels et commerciaux non professionnels
     # (revenus accesoires du foyers en nomenclature INSEE)
-    nacc_timp = max_(0, (nacc_impn + nacc_imps) - (nacc_defn + nacc_defs))
+    nacc_timp = max_(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
 
     # regime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
     nbnc_timp = nbnc_impo - nbnc_defi

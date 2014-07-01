@@ -28,6 +28,11 @@
 """Compare income taxes computed by finances.gouv.fr web simulator with OpenFisca results."""
 
 
+########### DESCRIPTION ############
+## Ce script compare la simulation OpenFisca d'un scenario (à définir ci-dessous) avec l'officielle (DGFiP)
+## Il renvoie les erreurs d'OpenFisca : les valeurs attendues et les valeurs obtenues pour une dizaine de variables 
+## quand elles diffèrent de plus de la marge d'erreur (=2€ à ce jour)
+
 import argparse
 import collections
 import cStringIO
@@ -56,22 +61,27 @@ def define_scenario(year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,
-            sali = 24000,
-            statmarit = u'Célibataire',
-            cncn_info = 2000,
+            sali = 48000,
+            statmarit = u'Marié',
+            ),
+        parent2 = dict(
+            activite = u'Actif occupé',
+            birth = 1973,
+            statmarit = u'Marié',
             ),
         enfants = [
-#            dict(
-#                activite = u'Étudiant, élève',
-#                birth = '2002-02-01',
-#                ),
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '1993-02-01',
+                ),
 #            dict(
 #                activite = u'Étudiant, élève',
 #                birth = '2000-04-17',
 #                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
-            f3vg = 0,
+            f5rn = 5000,
+            mbic_mvct = 2000,
             ),
         )
     scenario.suggest()
@@ -84,7 +94,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2013
+    year = 2010
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
@@ -107,7 +117,8 @@ def compare(scenario, tested = False, fichier = ''):
         raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
     page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
     fields = collections.OrderedDict()
-    names = {
+    names = {  # Sert à afficher le nom des variables retournées par le script
+                #TODO: mutualiser ce dictionnaire avec request_impots, qui contient le même
         'CIGE': u'Crédit aides aux personnes',
         'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
         'IAVIM': u'Impôt avant imputations',
@@ -156,6 +167,7 @@ def compare(scenario, tested = False, fichier = ''):
         'IAVF2': u'?',#TODO (f8th)
         'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
+        'PERPPLAFTP': u'?',
         'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
         'RHEBE': u'?',#TODO (7ce)
         'RAA': u'?',#TODO (7ud)
@@ -305,14 +317,16 @@ def compare(scenario, tested = False, fichier = ''):
 #            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 #    print simulation.calculate('reductions')
 #    print fields['ITRED']['value']
-        if iinet:
+        if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
+                # normal que les résultats soient différents
             compare_variable('IINETIR', fields['IINET'], simulation, totpac, year, fichier)
 
     return fields
 
 
-def compare_variable(code, field, simulation, totpac, year, fichier = ''):
-    for a in range(0,1):
+def compare_variable(code, field, simulation, totpac, year, fichier = ''): # Compare une variable de sortie
+# Renvoie 0 si OpenFisca est en accord avec la DGFiP, 1 sinon avec un print de l'erreur
+    for a in range(0,1): # Compare les variables suivantes :
         if code == 'IAVIM':
             openfisca_value = simulation.calculate('iai')
         elif code == 'IDEC':
@@ -335,7 +349,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
             openfisca_value = simulation.calculate('rbg')
 # TODO: Checker si le montant net CSG/CRDS correspond à NAPCS, NAPRDS, checker IINET
         elif code == 'TOTPAC':
-            openfisca_value = len(totpac or [])
+            openfisca_value = len(totpac or []) # Codes ignorés pour la comparaison
         elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
                 'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA', 'IINET',
                 'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
@@ -345,7 +359,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
                 'RCONS', 'RPECHE', 'RCELREPGS', 'RCELREPGU', 'RCELREPGT', 'RPATNAT', 'RPATNATOT', 'RPRESCOMPREP',
                 'RDIFAGRI', 'REI', 'RFOR', 'RTELEIR', 'RTOURREP', 'RTOUREPA', 'RTOUHOTR', 'RRESINEUV',
                 'RFORET', 'RHEBE', 'RILMIC', 'RILMIB', 'RRESIMEUB', 'RREPMEU', 'RREPNPRO', 'TEFF',
-                'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 
+                'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 'PERPPLAFTP',
                 'RILMIZ', 'RILMJI', 'RILMJS', 'RCODJT', 'RCODJU', 'RCODJV', 'RCODJW', 'RCODJX',
                 'RIDOMENT', 'RIDOMPROE1', 'RIDOMPROE2', 'RLOGDOM', 'RREPA', 'RDUFLOGIH', 'IPROP',
                 'RIDOMPROE3', 'RIDOMPROE4', 'RIDOMPROE5', 'RTITPRISE', 'RRDOM', 'RINVDOMTOMLG', 'RCOTFOR',
@@ -367,7 +381,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
             assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
                 field['name'], field['value'], openfisca_value).encode('utf-8')
             openfisca_simple_value = openfisca_simple_value[0]
-        if not abs(field['value'] - openfisca_simple_value) < 2:
+        if not abs(field['value'] - openfisca_simple_value) < 2: # marge d'erreur 
             print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, field['code'], field['name'], \
             field['value'], openfisca_simple_value).encode('utf-8')
             return 1
@@ -375,7 +389,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''):
             return 0
 
 
-def transform_scenario_to_impots_arguments(scenario):
+def transform_scenario_to_impots_arguments(scenario): # Transforme un scenario en un json { CERFA_FIELD: Valeur }
     tax_benefit_system = scenario.tax_benefit_system
     test_case = scenario.test_case
     impots_arguments = {

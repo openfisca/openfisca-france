@@ -38,7 +38,7 @@ column_by_name = collections.OrderedDict((
                                       QUIFOY['pac1']: u"1CI",
                                       QUIFOY['pac2']: u"1DI",
                                       QUIFOY['pac3']: u"1EI",
-                                   })),  # (f1ai, f1bi, f1ci, f1di, f1ei)
+                                   })),  # Pour toutes les variables de ce type, les pac3 ne sont plus proposés après 2007
 
     build_column_couple('sali', IntCol(label = u"Revenus d'activité imposables",
                     val_type = "monetary",
@@ -88,11 +88,11 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
                     val_type = "monetary",
+                    start = datetime.date(2007, 1, 1),
                     cerfa_field = {QUIFOY['vous']: u"1AU",
                                    QUIFOY['conj']: u"1BU",
                                    QUIFOY['pac1']: u"1CU",
                                    QUIFOY['pac2']: u"1DU",
-                                   QUIFOY['pac3']: u"1EU",
                                    })),  # (f1au, f1bu, f1cu, f1du, f1eu)
 
 # pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,

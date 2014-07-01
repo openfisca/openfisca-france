@@ -32,23 +32,28 @@ from base import QUIFOY, build_column_couple
 
 column_by_name = collections.OrderedDict((
 
-    build_column_couple('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
+    build_column_couple('f3si', IntCol(entity = 'foy',
+                    start = datetime.date(2012, 1, 1))),  # TODO: parmi ces cas créer des valeurs individuelles
     #                                    # correspond à autre chose en 2009, vérifier 2011,2010
 
     build_column_couple('f3sa', IntCol(entity = 'foy', end = datetime.date(2009, 12, 31))),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
 
-    build_column_couple('f3sf', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+    build_column_couple('f3sf', IntCol(entity = 'foy',
+                    start = datetime.date(2012, 1, 1))),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
-    build_column_couple('f3sd', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+    build_column_couple('f3sd', IntCol(entity = 'foy',
+                    start = datetime.date(2012, 1, 1))),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
     build_column_couple('f3vc', IntCol(entity = 'foy',
                     label = u"Produits et plus-values exonérés provenant de structure de capital-risque",
                     val_type = "monetary",
+                    start = datetime.date(2006, 1, 1),
                     cerfa_field = u'3VC')),
 
     build_column_couple('f3vd', IntCol(entity = 'ind',
                     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %",
                     val_type = "monetary",
+                    start = datetime.date(2008, 1, 1),
                     cerfa_field = {QUIFOY['vous']: u"3VD",
                                    QUIFOY['conj']: u"3SD",
                                    })),  # (f3vd, f3sd)
@@ -56,8 +61,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f3ve', IntCol(entity = 'foy',
                     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
                     val_type = "monetary",
-                    cerfa_field = u'3VE',
-                    start = datetime.date(2013, 1, 1))),
+                    cerfa_field = u'3VE')),
 # """
 # réutilisation case 3VE en 2013
 
@@ -92,9 +96,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f3vl', IntCol(entity = 'foy',
                     label = u"Distributions par des sociétés de capital-risque taxables à 19 %",
                     val_type = "monetary",
-                    cerfa_field = u'3VL',
-                    start = datetime.date(2012, 1, 1),
-                    end = datetime.date(2013, 12, 31))),  # vérifier pour 2011 et 2010
+                    cerfa_field = u'3VL')),  # vérifier pour 2011 et 2010
 
     build_column_couple('f3vi', IntCol(entity = 'ind',
                     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %",
@@ -111,6 +113,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f3vt', IntCol(entity = 'foy',
                     label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %",
                     val_type = "monetary",
+                    start = datetime.date(2010, 1, 1),
                     cerfa_field = u'3VT')),
 
     build_column_couple('f3vj', IntCol(entity = 'ind',
@@ -123,6 +126,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f3va', IntCol(entity = 'ind',
                     label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values",
                     val_type = "monetary",
+                    start = datetime.date(2006, 1, 1),
                     cerfa_field = {QUIFOY['vous']: u"3VA",
                                    QUIFOY['conj']: u"3VB",
                                    })),  # (f3va, f3vb ))),
@@ -145,6 +149,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f3vv', IntCol(entity = 'foy',
                      label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
                      val_type = "monetary",
+                     start = datetime.date(2013, 1, 1),
                      cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
 
     build_column_couple('f3vv_end_2010', IntCol(entity = 'foy',

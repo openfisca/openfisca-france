@@ -24,6 +24,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+########### DESCRIPTION ############
+## Ce script (qui n'est pas utilisé par l'UI) sert à calculer les impôts dûs par les différentes combinaisons
+## de foyers fiscaux quand les jeunes adultes ont le choix d'être rattachés au foyer fiscal de leurs parents
+## Il prend en entrée un scenario contenant un unique foyer fiscal, où sont rattachés les enfants.
+## Il ne gère ni le cas de séparation des parents, ni les pensions alimentaires. Même si pour la séparation, il suffit
+## de faire tourner le programme deux fois en rattachant successivement les enfants au parent1 puis au parent2 ;
+## et pour les pensions il suffit d'inscrire une pension versée et reçue au sein même du foyer (mais le script n'aide pas
+## à calculer la pension optimale - qui est la plupart du temps la pension maximale (5698€ si l'enfant n'habite pas chez
+## les parents)
+#TODO: gestion des APL et autres prestations (pour l'instant on retourne l'irpp, je ne sais pas si en retournant le
+# revenu disponible on gérerait les droits aux prestations)
+
 import copy
 import logging
 import numpy as np
@@ -45,7 +57,7 @@ def split(scenario):
     foyer_fiscal = test_case['foyers_fiscaux'][0]
     individus = test_case['individus']
     year = scenario.year
-    rattachements_possibles = []
+    rattachements_possibles = [] # Contient en réalité les détachements possibles puisqu'au départ tous les membres sous rattachés au même foyer
     detachements_impossibles = []
     scenarios = []
     impots = []
@@ -53,7 +65,7 @@ def split(scenario):
     for pac_index, pac_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
         pac = individus[pac_id].copy()
         age = year - pac.pop('birth').year - 1
-        if 18 <= age < (21 + 4 * (pac['activite'] == 2)):
+        if 18 <= age < (21 + 4 * (pac['activite'] == 2)): # Exprime la condition de rattachement au foyer pour les majeurs
             rattachements_possibles.append(pac_id)
         else:
             detachements_impossibles.append(pac_id)
@@ -66,7 +78,7 @@ def split(scenario):
         scenarios.append(scenario.__class__())
         scenarios[i].__dict__ = copy.copy(scenario.__dict__)
         scenarios[i].test_case = copy.deepcopy(scenario.test_case)
-        scenarios[i].test_case['foyers_fiscaux'][0]['personnes_a_charge'] = foyers_possibles[i] + detachements_impossibles
+        scenarios[i].test_case['foyers_fiscaux'][0]['personnes_a_charge'] = foyers_possibles[i]+detachements_impossibles
         for jeune in rattachements_possibles:
             if jeune not in foyers_possibles[i]:
                 scenarios[i].test_case['foyers_fiscaux'][j] = { 'declarants': [jeune], 'personnes_a_charge': [] }
@@ -82,7 +94,7 @@ def split(scenario):
     return impots
 
 
-def partiesDe(tab):
+def partiesDe(tab): # Calcule l'ensemble des parties des éléments d'un array, sous forme d'un array d'arrays
     n = len(tab)
     if n == 0:
         return [[]]
@@ -92,7 +104,7 @@ def partiesDe(tab):
         return add(a, tab2)
 
 
-def add(a, tab):
+def add(a, tab): # Concatène un array d'arrays (tab) avec le même array où un élément (a) aura été rajouté à chaque sous-array
     n = len(tab)
     for i in range (0, n):
         b = list(tab[i])

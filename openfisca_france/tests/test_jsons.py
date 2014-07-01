@@ -23,6 +23,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+########### DESCRIPTION ############
+## Ce programme teste tous les fichiers .json créés par un script et renvoie les erreurs d'OpenFisca
 
 import json
 import os
