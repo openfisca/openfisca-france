@@ -24,27 +24,15 @@
 
 import collections
 from datetime import date
+from functools import partial
 
 
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
+from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, StrCol, build_column_couple
 from openfisca_core.enumerations import Enum
 
 from ... import entities
 
-
-def build_column_couple(name, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
+build_column_couple = partial(build_column_couple, entities = entities)
 
 
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
