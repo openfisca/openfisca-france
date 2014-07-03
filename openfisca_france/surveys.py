@@ -53,6 +53,7 @@ def adapt_to_survey(tax_benefit_system_class):
 
 class SurveyScenario(object):
     compact_legislation = None
+    inflators = None
     input_data_frame = None
     simulation = None
     tax_benefit_system = None
@@ -130,6 +131,18 @@ class SurveyScenario(object):
 
         self.simulation = simulation
         return simulation
+
+    def inflate(self, inflators = None):
+        if inflators is not None:
+            self.inflators = inflators
+        assert self.inflators is not None
+        assert self.simulation is not None
+        simulation = self.simulation
+        tax_benefit_system = self.tax_benefit_system
+        for column_name, inflator in inflators:
+            assert column_name in tax_benefit_system.column_by_name
+            holder = simulation.get_or_new_holder(column_name)
+            holder.array = inflator * holder.array
 
 
 def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,

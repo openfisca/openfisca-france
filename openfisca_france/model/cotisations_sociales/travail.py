@@ -423,11 +423,15 @@ def _salnet(sal, crdssal, csgsali):
     return sal + crdssal + csgsali
 
 
-def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement, cotpat, alleg_fillon, alleg_cice, taxes_sal, tehr):
+def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement, cotpat,
+                  alleg_fillon, alleg_cice, taxes_sal, tehr):
     """
     Salaires superbruts
     """
-    salsuperbrut = salbrut + primes + indemnite_residence + supp_familial_traitement - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
+    salsuperbrut = (
+        salbrut + primes + indemnite_residence + supp_familial_traitement
+        - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
+        )
 #    expression = ("   salbrut             %s \n"
 #                  " + cotpat              %s \n"
 #                  " + primes              %s \n"
@@ -437,10 +441,12 @@ def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement
 #                  " + taxes_sal           %s \n"
 #                  " + tehr                %s \n"
 #                  " = salsuperbut         %s") % (salbrut / 12, cotpat / 12, primes / 12, indemnite_residence / 12,
-#                                                  - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12, salsuperbrut / 12)
+#                                                  - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12,
+#                                                  salsuperbrut / 12)
 #    log.info(expression)
 
     return salsuperbrut
+
 
 def _cot_pat_pension_civile(salbrut, type_sal, _P):
     """
@@ -450,9 +456,9 @@ def _cot_pat_pension_civile(salbrut, type_sal, _P):
     pat = _P.cotsoc.cotisations_employeur.__dict__
     terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
     cot_pat_pension_civile = (
-         (type_sal == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(salbrut)
-       + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(salbrut)
-                             )
+        (type_sal == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(salbrut)
+        + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(salbrut)
+        )
     return -cot_pat_pension_civile
 
 
