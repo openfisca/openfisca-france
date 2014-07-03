@@ -27,12 +27,25 @@
 
 import collections
 from datetime import date
+from functools import partial
+
 
 from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula
+from openfisca_core.formulas import (
+    build_alternative_formula_couple,
+    build_dated_formula_couple,
+    build_select_formula_couple,
+    build_simple_formula_couple,
+    )
+from openfisca_france import entities
 
-from .. import entities
+build_alternative_formula_couple = partial(build_alternative_formula_couple, entities = entities)
+build_dated_formula_couple = partial(build_dated_formula_couple, entities = entities)
+build_select_formula_couple = partial(build_select_formula_couple, entities = entities)
+build_simple_formula_couple = partial(build_simple_formula_couple, entities = entities)
+
+
 from . import calage as cl
 from . import cmu as cmu
 from . import common as cm
