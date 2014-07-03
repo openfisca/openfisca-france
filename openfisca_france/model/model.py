@@ -53,130 +53,16 @@ from . import pfam as pf
 from . import th as th
 
 
-def build_alternative_formula_couple(name, functions, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    assert isinstance(functions, list), functions
-    assert column.function is None
-
-    alternative_formulas_constructor = []
-    for function in functions:
-        formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
-            function = staticmethod(function),
-            ))
-        formula_class.extract_parameters()
-        alternative_formulas_constructor.append(formula_class)
-    column.formula_constructor = formula_class = type(name.encode('utf-8'), (AlternativeFormula,), dict(
-        alternative_formulas_constructor = alternative_formulas_constructor,
-        ))
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
-
-
-def build_dated_formula_couple(name, dated_functions, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    assert isinstance(dated_functions, list), dated_functions
-    assert column.function is None
-
-    dated_formulas_class = []
-    for dated_function in dated_functions:
-        assert isinstance(dated_function, dict), dated_function
-
-        formula_class = type(
-            name.encode('utf-8'),
-            (SimpleFormula,),
-            dict(
-                function = staticmethod(dated_function['function']),
-                ),
-            )
-        formula_class.extract_parameters()
-        dated_formulas_class.append(dict(
-            end = dated_function['end'],
-            formula_class = formula_class,
-            start = dated_function['start'],
-            ))
-
-    column.formula_constructor = formula_class = type(name.encode('utf-8'), (DatedFormula,), dict(
-        dated_formulas_class = dated_formulas_class,
-        ))
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
-
-
-def build_select_formula_couple(name, main_variable_function_couples, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    assert isinstance(main_variable_function_couples, list), main_variable_function_couples
-    assert column.function is None
-
-    formula_constructor_by_main_variable = collections.OrderedDict()
-    for main_variable, function in main_variable_function_couples:
-        formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
-            function = staticmethod(function),
-            ))
-        formula_class.extract_parameters()
-        formula_constructor_by_main_variable[main_variable] = formula_class
-    column.formula_constructor = formula_class = type(name.encode('utf-8'), (SelectFormula,), dict(
-        formula_constructor_by_main_variable = formula_constructor_by_main_variable,
-        ))
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
-
-
-def build_simple_formula_couple(name, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-
-    column.formula_constructor = formula_class = type(name.encode('utf-8'), (SimpleFormula,), dict(
-        function = staticmethod(column.function),
-        ))
-    formula_class.extract_parameters()
-    del column.function
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
-
-
 prestation_by_name = collections.OrderedDict((
     ############################################################
     # Reproduction des pondérations
     ############################################################
-    build_simple_formula_couple('mhsup', FloatCol(function = cs_travail._mhsup,
+    build_simple_formula_couple('mhsup', FloatCol(
+        function = cs_travail._mhsup,
         url = u"http://impotsurlerevenu.org/fonctionnement-de-l-impot/209-heures-supplementaires-exonerees.php",
         )),
-    build_simple_formula_couple('alv', FloatCol(function = ir._alv,
+    build_simple_formula_couple('alv', FloatCol(
+        function = ir._alv,
         url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml",
         )),
 
@@ -206,17 +92,24 @@ prestation_by_name = collections.OrderedDict((
             # ('salnet', inv_rev._salbrut_from_salnet),
             ('salnet', inv_rev._num_salbrut_from_salnet),
             ],
-        FloatCol(label = u"Salaire brut ou traitement indiciaire brut",
+        FloatCol(
+            label = u"Salaire brut ou traitement indiciaire brut",
             url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"),
         ),
 
-    build_simple_formula_couple('primes', FloatCol(function = cs_travail._primes,
-        label = u"Primes et indemnités des fonctionnaires",
-        url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml",
+    build_simple_formula_couple(
+        'primes',
+        FloatCol(
+            function = cs_travail._primes,
+            label = u"Primes et indemnités des fonctionnaires",
+            url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml",
         )),
-    build_simple_formula_couple('sal_h_b', FloatCol(function = cs_travail._sal_h_b,
-        label = u"Salaire horaire brut",
-        url = u"http://www.les-horaires.fr/pratique/smic-horaire.php",
+    build_simple_formula_couple(
+        'sal_h_b',
+        FloatCol(
+            function = cs_travail._sal_h_b,
+            label = u"Salaire horaire brut",
+            url = u"http://www.les-horaires.fr/pratique/smic-horaire.php",
         )),
 
 #    build_simple_formula_couple('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
