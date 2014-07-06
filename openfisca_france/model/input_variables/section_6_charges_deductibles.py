@@ -53,11 +53,13 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6el', IntCol(entity = 'foy',
                     label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant",
                     val_type = "monetary",
+                    start = datetime.date(2006, 1, 1),
                     cerfa_field = u'6EL')),
 
     build_column_couple('f6em', IntCol(entity = 'foy',
                     label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant",
                     val_type = "monetary",
+                    start = datetime.date(2006, 1, 1),
                     cerfa_field = u'6EM')),
 
     build_column_couple('f6gp', IntCol(entity = 'foy',
@@ -117,7 +119,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
                     val_type = "monetary",
                     start = datetime.date(2005, 1, 1),
-                    end = datetime.date(2005, 12, 31),
+                    end = datetime.date(2006, 12, 31),
                     cerfa_field = u'6AA')),  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
     # Souscriptions au capital des SOFIPÊCHE
@@ -152,23 +154,26 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f6cb', IntCol(entity = 'foy',
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
                     val_type = "monetary",
-                    start = datetime.date(2006, 1, 1),
-                    cerfa_field = u'6CB')),  # TODO: vérifier 2011, 10, 9 ,8, 7,6, ok pou 12 et 13
+                    start = datetime.date(2009, 1, 1),
+                    cerfa_field = u'6CB')), 
                                            # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
     build_column_couple('f6hj', IntCol(entity = 'foy',
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
                     val_type = "monetary",
+                    start = datetime.date(2010, 1, 1),
                     cerfa_field = u'6HJ')),
 
     build_column_couple('f6hk', IntCol(entity = 'foy',
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
                     val_type = "monetary",
+                    start = datetime.date(2011, 1, 1),
                     cerfa_field = u'6HK')),
 
     build_column_couple('f6hl', IntCol(entity = 'foy',
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
                     val_type = "monetary",
+                    start = datetime.date(2012, 1, 1),
                     cerfa_field = u'6HL')),
 
     build_column_couple('f6hm', IntCol(entity = 'foy',

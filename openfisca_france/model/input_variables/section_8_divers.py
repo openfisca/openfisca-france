@@ -64,6 +64,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f8tc', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))",  # différence de label entre les années à voir
                     val_type = "monetary",
+                    end = date(2008, 12, 31),
                     cerfa_field = u'8TC')),
 
     build_column_couple('f8td_2002_2005', IntCol(entity = 'foy',
@@ -73,7 +74,7 @@ column_by_name = collections.OrderedDict((
                     cerfa_field = u'8TD')),
 
     build_column_couple('f8td', BoolCol(entity = 'foy',
-                    start = date(2011, 1, 1),
+                    start = date(2011, 1, 1), # 2011 ou 2013 ?
                     end = date(2014, 12, 31),
                     label = u"Revenus non imposables dépassent la moitié du RFR",
                     cerfa_field = u'8TD')),
@@ -111,6 +112,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f8ts', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt",
                     val_type = "monetary",
+                    start = date(2012, 1, 1),
                     cerfa_field = u'8TS')),
 
     build_column_couple('f8uz', IntCol(entity = 'foy',
@@ -121,6 +123,7 @@ column_by_name = collections.OrderedDict((
    build_column_couple('f8uw', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt compétitivité emploi (CICE), autres entreprises",
                     val_type = "monetary",
+                    start = date(2013, 1, 1),
                     cerfa_field = u'8UW')),
 
     build_column_couple('f8tz', IntCol(entity = 'foy',
@@ -137,69 +140,69 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédit d'impôt en faveur des entreprises: Prospection commerciale",
                     val_type = "monetary",
                     cerfa_field = u'8WB')),
-# """
-# réutilisation f8wc
-# """
-    # build_column_couple('f8wc', IntCol(entity = 'foy',
-    #                 label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'8WC',
-    #                 end = date(2012, 12, 31))),  # TODO: verif<=2012
+
+     build_column_couple('f8wc__2008', IntCol(entity = 'foy',
+                     label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
+                     val_type = "monetary",
+                     cerfa_field = u'8WC',
+                     end = date(2008, 12, 31))), 
 
     build_column_couple('f8wc', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",
                     val_type = "monetary",
                     cerfa_field = u'8WC',
-                    start = date(2013, 1, 1))),
+                    start = date(2012, 1, 1))),
 
     build_column_couple('f8wd', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise",
                     val_type = "monetary",
+                    start = date(2006, 1, 1),
                     cerfa_field = u'8WD')),
 
     build_column_couple('f8we', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Intéressement",
                     val_type = "monetary",
+                    start = date(2008, 1, 1),
                     cerfa_field = u'8WE')),
 
     build_column_couple('f8wr', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art",
                     val_type = "monetary",
+                    start = date(2006, 1, 1),
                     cerfa_field = u'8WR')),
 
     build_column_couple('f8ws', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes",
                     val_type = "monetary",
                     cerfa_field = u'8WS',
-                    end = date(2012, 12, 31))),  # verif<=2012
+                    start = date(2006, 1, 1),
+                    end = date(2009, 12, 31))),  # verif<=2012
 
     build_column_couple('f8wt', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs",
                     val_type = "monetary",
+                    start = date(2006, 1, 1),
                     cerfa_field = u'8WT')),
 
     build_column_couple('f8wu', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur",
                     val_type = "monetary",
+                    start = date(2006, 1, 1),
                     cerfa_field = u'8WU')),
 
     build_column_couple('f8wv', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac",
                     val_type = "monetary",
                     cerfa_field = u'8WV',
+                    start = date(2007, 1, 1),
                     end = date(2012, 12, 31))),  # verif<=2012
 
     build_column_couple('f8wx', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise",
                     val_type = "monetary",
                     cerfa_field = u'8WX',
-                    end = date(2012, 12, 31))),  # verif<=2012
-
-    build_column_couple('f8wy', IntCol(entity = 'foy',
-                    label = u"",
-                    val_type = "monetary",
-                    cerfa_field = u'8WY',
-                    end = date(2012, 12, 31))),  # verif<=2012
+                    start = date(2007, 1, 1),
+                    end = date(2009, 12, 31))),  # verif<=2012
 
     build_column_couple('elig_creimp_exc_2008', IntCol(entity = 'foy', #TODO: coder http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf B.12
                     default = 1,
@@ -211,6 +214,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f8uy', IntCol(entity = 'foy',
                     label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé",
                     val_type = "monetary",
+                    start = date(2009, 1, 1),
                     cerfa_field = u'8UY')),
 
 

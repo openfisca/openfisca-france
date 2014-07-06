@@ -25,6 +25,10 @@
 import collections
 from datetime import date
 
+### VARIABLES MANQUANTES dans OpenFisca : ###
+## 8TC 2011-    8WE -2006   7UP, 7UQ -2009  7LS 2010    7JY 2009-2011   7XN 2007-2010
+## 7XJ, 7XK -2007   7XD -2006   7WQ 2006-2008   7UL -2009   7IY 2009-2011   7GS 2009-2011
+## 6CH -2006    3VT ?
 
 from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum

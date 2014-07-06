@@ -504,7 +504,7 @@ def _doment_2013(fhsa, fhsb, fhsf, fhsg, fhsc, fhsh, fhse, fhsj, fhsk, fhsl, fhs
                 f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr + f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf +
                 f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp +
                 f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
-
+#TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 def _domlog_2002(f7ua, f7ub, f7uc, f7uj, _P, P = law.ir.reductions_impots.domlog):
     '''
