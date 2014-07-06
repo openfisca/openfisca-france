@@ -95,7 +95,7 @@ def main():
         var = column.cerfa_field
         if isinstance(var, dict):
             for k,v in var.iteritems():
-                if len('_' + v) > 1:
+                if len('_' + v) > 2:
                     test('_' + v)
         elif var is not None:
             if len(var) > 1:
