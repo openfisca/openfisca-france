@@ -24,7 +24,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+########### DESCRIPTION ############
+## Ce script affiche le résultat de la simulation officielle (DGFiP) en renseignant les champs CERFA_FIELDS
+## On peut choisir d'afficher seulement certaines variables en décommentant la ligne 254
+
+
 import collections
+import cStringIO
 import json
 import os
 import sys
@@ -35,17 +41,18 @@ from lxml import etree
 
 def main():
 
-    year = 2012
+    year = 2013
     impots_arguments = {
         'pre_situation_residence': 'M',  # Métropole
         '0DA': 1970,
+#        '0DB': 1970,
         'pre_situation_famille': 'C',
-        '0CF': 0, # nombre de personnes à charge
+#        '0CF': 2, # nombre de personnes à charge
 #        '0F1': 1990, # âge de la première personne à charge
-        '0BT': 0, # case T
-        '1AJ': 100000,
-        '7CQ': 45000,
-        '7CF': 45000,
+#        '0BT': 1, # case T
+        '1AJ': 48000,
+#        '5HO': 10000,
+        '5NK': 5000
     }
 
     request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
@@ -53,10 +60,13 @@ def main():
         })
 
     response = urllib2.urlopen(request, urllib.urlencode(impots_arguments))
-
-    page_doc = etree.parse(response, etree.HTMLParser())
+    response_html = response.read()
+    if 'Erreur' in response_html:
+        raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
+    page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
     fields = collections.OrderedDict()
-    names = {   
+    names = {   # Sert à afficher le nom des variables retournées par le script
+                #TODO: mutualiser ce dictionnaire avec compare_openfisca_impots, qui contient le même
                 'CIGE': u'Crédit aides aux personnes',
                 'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
                 'IAVIM': u'Impôt avant imputations',
@@ -77,18 +87,20 @@ def main():
                 'REVKIRE': u'Revenu fiscal de référence',
                 'RNICOL': u'Revenu net imposable ou déficit à reporter',
                 'RRBG': u'Revenu brut global ou déficit',
+                'TEFF': u'?',#TODO (ebnc_impo)
                 'TOTPAC': u'Nombre de personnes à charge',
                 'TXMARJ': u'Taux marginal d\'imposition',
                 'TXMOYIMP': u'Taux moyen d\'imposition',
                 'IRETS' : u'?',#TODO
                 'RNI': u'?',#TODO
                 'AVFISCOPTER': u'?',#TODO (f8tf)
+                'BCSG': u'Base CSG',
+                'BRDS': u'Base CRDS',
+                'BPRS': u'Base prélèvement social et contributions annexes',
+                'NAPCS': u'Montant net CSG',
+                'NAPRD': u'Montant net CRDS',
+                'NAPPS': u'Montant net prélèvement social et contributions annexes',
                 'CIRCM': u'?',#TODO (f2dc)
-                'BCSG': u'?',#TODO (f2dc)
-                'BRDS': u'?',#TODO (f2dc)
-                'NAPCS': u'?',#TODO (f2dc)
-                'NAPRD': u'?',#TODO (f2dc)
-                'NAPPS': u'?',#TODO (f2dc)
                 'CICA': u'?',#TODO (f4tq)
                 'CICORSE': u'?',#TODO (f8to)
                 'CIDEPENV': u'?',#TODO (f7sz)
@@ -96,12 +108,12 @@ def main():
                 'CIHABPRIN': u'?',#TODO (f7vy)
                 'CIPRETUD': u'?',#TODO (f7uk)
                 'CITEC': u'?',#TODO (f7wr)
-                'BPRS': u'?',#TODO (f2ch)
                 'CIDEVDUR': u'?',#TODO (f7wf)
                 'CIADCRE': u'?',#TODO (f7dg)
                 'CIMOBIL': u'?',#TODO (f1ar)
                 'CIPERT': u'?',#TODO (f3vv)
                 'IAVF2': u'?',#TODO (f8th)
+                'IPROP': u'Impôt proportionnel',
                 'RFOR': u'?',#TODO (f7up)
                 'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
                 'RHEBE': u'?',#TODO (7ce)
@@ -241,7 +253,7 @@ def main():
             'name' : names[code] if (code in names) else u'nom inconnu',
             'value' : float(element.get('value').replace(" ","")),
             }
-    for code in ('ITRED',):
+#    for code in ('ITRED',):
         print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 
 

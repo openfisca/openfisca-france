@@ -28,6 +28,11 @@
 """Compare income taxes computed by finances.gouv.fr web simulator with OpenFisca results."""
 
 
+########### DESCRIPTION ############
+## Ce script compare la simulation OpenFisca d'un scenario (à définir ci-dessous) avec l'officielle (DGFiP)
+## Il renvoie les erreurs d'OpenFisca : les valeurs attendues et les valeurs obtenues pour une dizaine de variables 
+## quand elles diffèrent de plus de la marge d'erreur (=2€ à ce jour)
+
 import argparse
 import collections
 import cStringIO
@@ -55,23 +60,27 @@ def define_scenario(year):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,
-            cadre = True,
-            sali = 90000,
-            statmarit = u'Célibataire',
+            sali = 48000,
+            statmarit = u'Marié',
+            ),
+        parent2 = dict(
+            activite = u'Actif occupé',
+            birth = 1973,
+            statmarit = u'Marié',
             ),
         enfants = [
-#            dict(
-#                activite = u'Étudiant, élève',
-#                birth = '2002-02-01',
-#                ),
+            dict(
+                activite = u'Étudiant, élève',
+                birth = '1993-02-01',
+                ),
 #            dict(
 #                activite = u'Étudiant, élève',
 #                birth = '2000-04-17',
 #                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
-#                f7cn = 1500,
-                f7rd = 100000
+            f5rn = 5000,
+            mbic_mvct = 2000,
             ),
         year = year,
         )
@@ -85,7 +94,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2012
+    year = 2010
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
@@ -108,7 +117,8 @@ def compare(scenario, tested = False, fichier = ''):
         raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
     page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
     fields = collections.OrderedDict()
-    names = {
+    names = {  # Sert à afficher le nom des variables retournées par le script
+                #TODO: mutualiser ce dictionnaire avec request_impots, qui contient le même
         'CIGE': u'Crédit aides aux personnes',
         'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
         'IAVIM': u'Impôt avant imputations',
@@ -129,6 +139,7 @@ def compare(scenario, tested = False, fichier = ''):
         'REVKIRE': u'Revenu fiscal de référence',
         'RNICOL': u'Revenu net imposable ou déficit à reporter',
         'RRBG': u'Revenu brut global ou déficit',
+        'TEFF': u'?',#TODO (ebnc_impo)
         'TOTPAC': u'Nombre de personnes à charge',
         'TXMARJ': u'Taux marginal d\'imposition',
         'TXMOYIMP': u'Taux moyen d\'imposition',
@@ -136,11 +147,12 @@ def compare(scenario, tested = False, fichier = ''):
         'RNI': u'?',#TODO
         'AVFISCOPTER': u'?',#TODO (f8tf)
         'CIRCM': u'?',#TODO (f2dc)
-        'BCSG': u'?',#TODO (f2dc)
-        'BRDS': u'?',#TODO (f2dc)
-        'NAPCS': u'?',#TODO (f2dc)
-        'NAPRD': u'?',#TODO (f2dc)
-        'NAPPS': u'?',#TODO (f2dc)
+        'BCSG': u'Base CSG',
+        'BRDS': u'Base CRDS',
+        'BPRS': u'Base prélèvement social et contributions annexes',
+        'NAPCS': u'Montant net CSG',
+        'NAPRD': u'Montant net CRDS',
+        'NAPPS': u'Montant net prélèvement social et contributions annexes',
         'CICA': u'?',#TODO (f4tq)
         'CICORSE': u'?',#TODO (f8to)
         'CIDEPENV': u'?',#TODO (f7sz)
@@ -148,13 +160,14 @@ def compare(scenario, tested = False, fichier = ''):
         'CIHABPRIN': u'?',#TODO (f7vy)
         'CIPRETUD': u'?',#TODO (f7uk)
         'CITEC': u'?',#TODO (f7wr)
-        'BPRS': u'?',#TODO (f2ch)
         'CIDEVDUR': u'?',#TODO (f7wf)
         'CIADCRE': u'?',#TODO (f7dg)
         'CIMOBIL': u'?',#TODO (f1ar)
         'CIPERT': u'?',#TODO (f3vv)
         'IAVF2': u'?',#TODO (f8th)
+        'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
+        'PERPPLAFTP': u'?',
         'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
         'RHEBE': u'?',#TODO (7ce)
         'RAA': u'?',#TODO (7ud)
@@ -295,80 +308,88 @@ def compare(scenario, tested = False, fichier = ''):
             'name': names[code] if (code in names) else u'nom inconnu',
             'value': float(element.get('value').replace(" ", "")),
             }
+    iinet = 1
     if tested:
         for code, field in fields.iteritems():
-            compare_variable(code,field,simulation,totpac, year, fichier)
+            if code == 'IINETIR' or code == 'IRESTIR':
+                iinet = 0
+            compare_variable(code, field, simulation, totpac, year, fichier)
 #            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
 #    print simulation.calculate('reductions')
 #    print fields['ITRED']['value']
+        if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
+                # normal que les résultats soient différents
+            compare_variable('IINETIR', fields['IINET'], simulation, totpac, year, fichier)
 
     return fields
 
 
-def compare_variable(code,field,simulation,totpac, year, fichier = ''):
-    for a in range(0,1):
-            if code == 'IAVIM':
-                openfisca_value = simulation.calculate('iai')
-            elif code == 'IDEC':
-                openfisca_value = simulation.calculate('decote')
-            elif code == 'IDRS2':
-                openfisca_value = simulation.calculate('ir_plaf_qf')
-            elif code == 'IINETIR' or code == 'IINET' or code == 'IRESTIR':
-                openfisca_value = -simulation.calculate('irpp')
-            elif code == 'ITRED':
-                openfisca_value = simulation.calculate('reductions')
-            elif code == 'NBPT' or code == 'NBP':
-                openfisca_value = simulation.calculate('nbptr')
-            elif code == 'PPETOT':
-                openfisca_value = simulation.calculate('ppe')
-            elif code == 'REVKIRE':
-                openfisca_value = simulation.calculate('rfr')
-            elif code == 'RNICOL':
-                openfisca_value = simulation.calculate('rni')
-            elif code == 'RRBG':
-                openfisca_value = simulation.calculate('rbg')
-            elif code == 'TOTPAC':
-                openfisca_value = len(totpac or [])
-            elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
-                    'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA',
-                    'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
-                    'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'RRIRENOV', 'RCELHL', 'RLOCIDEFG',
-                    'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RAH', 'RCEL', 'RCELREPGX', 'RCELREPGW', 'RDONS',
-                    'RCELHJK', 'RCELREPHR', 'RCELRREDLA', 'RRESIVIEU', 'RMEUBLE', 'RREDMEUB', 'RSOCREPR', 'RRPRESCOMP',
-                    'RCONS', 'RPECHE', 'RCELREPGS', 'RCELREPGU', 'RCELREPGT', 'RPATNAT', 'RPATNATOT', 'RPRESCOMPREP',
-                    'RDIFAGRI', 'REI', 'RFOR', 'RTELEIR', 'RTOURREP', 'RTOUREPA', 'RTOUHOTR', 'RRESINEUV',
-                    'RFORET', 'RHEBE', 'RILMIC', 'RILMIB', 'RRESIMEUB', 'RREPMEU', 'RREPNPRO',
-                    'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 
-                    'RILMIZ', 'RILMJI', 'RILMJS', 'RCODJT', 'RCODJU', 'RCODJV', 'RCODJW', 'RCODJX',
-                    'RIDOMENT', 'RIDOMPROE1', 'RIDOMPROE2', 'RLOGDOM', 'RREPA', 'RDUFLOGIH',
-                    'RIDOMPROE3', 'RIDOMPROE4', 'RIDOMPROE5', 'RTITPRISE', 'RRDOM', 'RINVDOMTOMLG', 'RCOTFOR',
-                    'RNI', 'RNOUV', 'RRESTIMO', 'RTOUR', 'RCELRREDLC', 'RCELRREDLB', 'RCELNBGL', 'RCELFD',
-                    'RCELLIER', 'RCELHNO', 'RCELHM', 'RCELHR', 'RCELRREDLS', 'RCELRREDLZ', 'RCELFABC',
-                    'RCELREPHS', 'RCELNBGL', 'RCELCOM', 'RCELNQ', 'RCELRREDLD', 'RCELRREDLE',  'RCELRREDLF',
-                    'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RCELREPHR', 'RCINE', 'RFCPI', 'RINNO', 'RAA',
-                    'RCELREPGJ', 'RCELREPGK', 'RCELREPGL', 'RCELREPGP', 'RSOUFIP', 'RCODELOP',
-                    'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR', 
-                    'RCELREPHD', 'RCELREPHE', 'RCELREPHF', 'RCELREPHH', 'RCEL2012', 'RCELJBGL', 'RCOLENT',
-                    'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP',
-                    'RFIPC', 'RILMJX', 'RILMJV', 'RCELREPGV', 'RCELRREDLM', 'RCELRREDMG', 'RILMJW', 'RCELREPHG'):
-                continue
-            else:
-                print 'Code inconnu :', code
-                continue
-            openfisca_simple_value = openfisca_value
-            if isinstance(openfisca_simple_value, np.ndarray):
-                assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
-                    field['name'], field['value'], openfisca_value).encode('utf-8')
-                openfisca_simple_value = openfisca_simple_value[0]
-            if not abs(field['value'] - openfisca_simple_value) < 2:
-                print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, code, field['name'], \
-                field['value'], openfisca_simple_value).encode('utf-8')
-                return 1
-            else:
-                return 0
+def compare_variable(code, field, simulation, totpac, year, fichier = ''): # Compare une variable de sortie
+# Renvoie 0 si OpenFisca est en accord avec la DGFiP, 1 sinon avec un print de l'erreur
+    for a in range(0,1): # Compare les variables suivantes :
+        if code == 'IAVIM':
+            openfisca_value = simulation.calculate('iai')
+        elif code == 'IDEC':
+            openfisca_value = simulation.calculate('decote')
+        elif code == 'IDRS2':
+            openfisca_value = simulation.calculate('ir_plaf_qf')
+        elif code == 'IINETIR' or code == 'IRESTIR':
+            openfisca_value = -simulation.calculate('irpp')
+        elif code == 'ITRED':
+            openfisca_value = simulation.calculate('reductions')
+        elif code == 'NBPT' or code == 'NBP':
+            openfisca_value = simulation.calculate('nbptr')
+        elif code == 'PPETOT':
+            openfisca_value = simulation.calculate('ppe')
+        elif code == 'REVKIRE':
+            openfisca_value = simulation.calculate('rfr')
+        elif code == 'RNICOL':
+            openfisca_value = simulation.calculate('rni')
+        elif code == 'RRBG':
+            openfisca_value = simulation.calculate('rbg')
+# TODO: Checker si le montant net CSG/CRDS correspond à NAPCS, NAPRDS, checker IINET
+        elif code == 'TOTPAC':
+            openfisca_value = len(totpac or []) # Codes ignorés pour la comparaison
+        elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
+                'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA', 'IINET',
+                'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
+                'IRETS', 'ITRED', 'NAPCR', 'NAPCRP', 'NAPCS', 'RRIRENOV', 'RCELHL', 'RLOCIDEFG',
+                'NAPPS', 'NAPRD', 'PERPPLAFTC', 'PERPPLAFTV', 'RAH', 'RCEL', 'RCELREPGX', 'RCELREPGW', 'RDONS',
+                'RCELHJK', 'RCELREPHR', 'RCELRREDLA', 'RRESIVIEU', 'RMEUBLE', 'RREDMEUB', 'RSOCREPR', 'RRPRESCOMP',
+                'RCONS', 'RPECHE', 'RCELREPGS', 'RCELREPGU', 'RCELREPGT', 'RPATNAT', 'RPATNATOT', 'RPRESCOMPREP',
+                'RDIFAGRI', 'REI', 'RFOR', 'RTELEIR', 'RTOURREP', 'RTOUREPA', 'RTOUHOTR', 'RRESINEUV',
+                'RFORET', 'RHEBE', 'RILMIC', 'RILMIB', 'RRESIMEUB', 'RREPMEU', 'RREPNPRO', 'TEFF',
+                'RPROREP', 'RINVRED', 'RREDREP', 'RILMIX', 'PERPPLAFTP',
+                'RILMIZ', 'RILMJI', 'RILMJS', 'RCODJT', 'RCODJU', 'RCODJV', 'RCODJW', 'RCODJX',
+                'RIDOMENT', 'RIDOMPROE1', 'RIDOMPROE2', 'RLOGDOM', 'RREPA', 'RDUFLOGIH', 'IPROP',
+                'RIDOMPROE3', 'RIDOMPROE4', 'RIDOMPROE5', 'RTITPRISE', 'RRDOM', 'RINVDOMTOMLG', 'RCOTFOR',
+                'RNI', 'RNOUV', 'RRESTIMO', 'RTOUR', 'RCELRREDLC', 'RCELRREDLB', 'RCELNBGL', 'RCELFD',
+                'RCELLIER', 'RCELHNO', 'RCELHM', 'RCELHR', 'RCELRREDLS', 'RCELRREDLZ', 'RCELFABC',
+                'RCELREPHS', 'RCELNBGL', 'RCELCOM', 'RCELNQ', 'RCELRREDLD', 'RCELRREDLE',  'RCELRREDLF',
+                'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RCELREPHR', 'RCINE', 'RFCPI', 'RINNO', 'RAA',
+                'RCELREPGJ', 'RCELREPGK', 'RCELREPGL', 'RCELREPGP', 'RSOUFIP', 'RCODELOP',
+                'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR', 
+                'RCELREPHD', 'RCELREPHE', 'RCELREPHF', 'RCELREPHH', 'RCEL2012', 'RCELJBGL', 'RCOLENT',
+                'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP',
+                'RFIPC', 'RILMJX', 'RILMJV', 'RCELREPGV', 'RCELRREDLM', 'RCELRREDMG', 'RILMJW', 'RCELREPHG'):
+            continue
+        else:
+            print 'Code inconnu :', code
+            continue
+        openfisca_simple_value = openfisca_value
+        if isinstance(openfisca_simple_value, np.ndarray):
+            assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
+                field['name'], field['value'], openfisca_value).encode('utf-8')
+            openfisca_simple_value = openfisca_simple_value[0]
+        if not abs(field['value'] - openfisca_simple_value) < 2: # marge d'erreur 
+            print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, field['code'], field['name'], \
+            field['value'], openfisca_simple_value).encode('utf-8')
+            return 1
+        else:
+            return 0
 
 
-def transform_scenario_to_impots_arguments(scenario):
+def transform_scenario_to_impots_arguments(scenario): # Transforme un scenario en un json { CERFA_FIELD: Valeur }
     tax_benefit_system = scenario.tax_benefit_system
     test_case = scenario.test_case
     impots_arguments = {

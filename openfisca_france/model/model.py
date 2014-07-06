@@ -659,6 +659,26 @@ prestation_by_name = collections.OrderedDict((
         url = u"http://impotsurlerevenu.org/definitions/215-charge-deductible.php",
         )),
 
+    build_simple_formula_couple('defrag', FloatCol(function = ir._defrag,
+        entity = 'foy',
+        label = u"Déficit agricole des années antérieures",
+        )),
+
+    build_simple_formula_couple('defacc', FloatCol(function = ir._defacc,
+        entity = 'foy',
+        label = u"Déficit industriels et commerciaux non professionnels des années antérieures",
+        )),
+
+    build_simple_formula_couple('defmeu', FloatCol(function = ir._defmeu,
+        entity = 'foy',
+        label = u"Déficit des locations meublées non professionnelles des années antérieures",
+        )),
+
+    build_simple_formula_couple('defncn', FloatCol(function = ir._defncn,
+        entity = 'foy',
+        label = u"Déficit non commerciaux non professionnels des années antérieures",
+        )),
+
     build_simple_formula_couple('rfr_cd', FloatCol(function = cd._rfr_cd,
         entity = 'foy',
         label = u"Charges déductibles entrant dans le revenus fiscal de référence",
@@ -1371,6 +1391,12 @@ prestation_by_name = collections.OrderedDict((
         start = date(2009, 1, 1),
         url = u"http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social",
         )),
+    build_simple_formula_couple('taux_effectif', FloatCol(function = ir._taux_effectif,
+        entity = 'foy',
+        start = date(2009, 1, 1))),
+    build_simple_formula_couple('microentreprise', FloatCol(function = ir._micro_entreprise,
+        entity = 'foy',
+        start = date(2009, 1, 1))),
 
     # Prime pour l'emploi
     build_simple_formula_couple('rev_act_nonsal', FloatCol(function = ir._rev_act_nonsal,

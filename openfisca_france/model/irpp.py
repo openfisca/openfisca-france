@@ -27,6 +27,8 @@ VOUS = QUIFOY['vous']
 
 #TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
 #TODO: 8ti et 8tk (cerfa 2047)
+#TODO: CSG, CRDS et prélèvements sociaux sur revenu du patrimione, d'activité et de remplacement
+#TODO: finir RPNS (prise en compte des plafonds / cases non codées : codées pour certaines années mais pas pour d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
 
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
@@ -427,12 +429,12 @@ def _rev_cat_rfon(f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfonci
     return rev_cat_rfon
 
 
-def _rev_cat_rpns(self, rpns_i_holder):
+def _rev_cat_rpns(self, nbnc_pvce_holder, mbic_mvct, rpns_i_holder, defrag, defacc, defncn, defmeu):
     '''
     Revenus personnels non salariés
     'foy'
     '''
-    return self.sum_by_entity(rpns_i_holder)
+    return self.sum_by_entity(rpns_i_holder) - self.sum_by_entity(nbnc_pvce_holder) - defrag - defncn - defacc - defmeu - mbic_mvct
 
 
 def _rev_cat(rev_cat_tspr, rev_cat_rvcm, rev_cat_rfon, rev_cat_rpns, rev_cat_pv):
@@ -453,12 +455,13 @@ def _deficit_ante(f6fa, f6fb, f6fc, f6fd, f6fe, f6fl):
     return f6fa + f6fb + f6fc + f6fd + f6fe + f6fl
 
 
-def _rbg(alloc, rev_cat, deficit_ante, f6gh):
+def _rbg(self, alloc, rev_cat, deficit_ante, f6gh, nbic_impm_holder, nacc_pvce_holder, cga = law.ir.rpns.cga_taux2):
     '''Revenu brut global
     '''
     # (Total 17)
     # sans les revenus au quotient
-    return max_(0, alloc + rev_cat + f6gh - deficit_ante)
+    nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
+    return max_(0, alloc + rev_cat + f6gh + (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga)  - deficit_ante)
 
 
 def _csg_deduc_patrimoine(f6de):
@@ -495,14 +498,15 @@ def _rni(rng, abat_spe):
     return rng - abat_spe
 
 
-def _ir_brut(nbptr, rni, bareme = law.ir.bareme):
+def _ir_brut(self, nbptr, taux_effectif, rni, bareme = law.ir.bareme):
     '''
     Impot sur le revenu avant non imposabilité et plafonnement du quotient
     'foy'
     '''
     bareme.t_x()
 #    bar._linear_taux_moy = True
-    return nbptr * bareme.calc(rni / nbptr)  # TODO: partir d'ici, petite différence avec Matlab REMOVE
+#    return nbptr * bareme.calc(rni / nbptr)
+    return  (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni# TODO: partir d'ici, petite différence avec Matlab REMOVE
 
 
 def _ir_ss_qf(ir_brut, rni, nb_adult, bareme = law.ir.bareme):
@@ -591,19 +595,20 @@ def _decote(ir_plaf_qf, decote = law.ir.decote):
     return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
 
 
-def _nat_imp(iai, credits_impot, cehr, microsocial):
+def _nat_imp(iai, credits_impot, cehr):
     '''
     Renvoie True si le foyer est imposable, False sinon
     '''
     # def _nat_imp(rni, nbptr, non_imposable = law.ir.non_imposable):
     # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
-    return (iai - credits_impot + cehr + microsocial) > 0
+    return (iai - credits_impot + cehr) > 0
 
-def _ip_net(ir_plaf_qf, decote):
+
+def _ip_net(self, ir_plaf_qf, cncn_info_holder, decote, taux = law.ir.rpns.taux16):
     '''
     irpp après décote
     '''
-    return max_(0, ir_plaf_qf - decote)
+    return max_(0, ir_plaf_qf + self.sum_by_entity(cncn_info_holder) * taux - decote)
 
 def _iaidrdi(ip_net, reductions):
     '''
@@ -648,19 +653,26 @@ def _micro_social_service(self, ebic_imps_holder):
     # assert (ebic_imps <= P.servi.max)
 
 
-def _micro_social_proflib(self, ebnc_impo_holder):
+def _micro_social_proflib(self, ebnc_impo_holder, P = law.ir.rpns.microentreprise):
     '''
     Assiette régime microsociale pour les professions libérales
     '''
     # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
+    # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
     return self.sum_by_entity(ebnc_impo_holder)
-    # P = _P.ir.rpns.microentreprise
     # assert (ebnc_impo <= P.specialbnc.max)
 
 
-def _micro_social_2009_(assiette_service, assiette_proflib, assiette_vente, _P, microsocial = law.ir.rpns.microsocial):
-    return assiette_service * microsocial.servi + assiette_vente * microsocial.vente + assiette_proflib \
-            * microsocial.bnc
+def _micro_social_2009_(assiette_service, assiette_vente, assiette_proflib, _P, microsocial = law.ir.rpns.microsocial):
+    return assiette_service * microsocial.servi + assiette_vente * microsocial.vente + assiette_proflib *microsocial.bnc
+#TODO: check this
+
+
+def _micro_entreprise(self, ebnc_impo_holder, ebic_imps_holder, ebic_impv_holder, me = law.ir.rpns.microentreprise):
+    ebnc_impo =  self.sum_by_entity(ebnc_impo_holder)
+    ebic_imps = self.sum_by_entity(ebic_imps_holder)
+    ebic_impv = self.sum_by_entity(ebic_impv_holder)
+    return ebnc_impo * (1 - me.specialbnc.taux) + ebic_imps * (1 - me.servi.taux) + ebic_impv * (1 - me.vente.taux)
 
 
 def _plus_values__2007(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P,
@@ -719,7 +731,43 @@ def _plus_values_2008_2011(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holde
     return round(out)
 
 
-def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, rpns_pvce_holder, _P,
+def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P,
+        plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
+    """
+    Taxation des plus value
+    TODO: f3vt, 2013 f3Vg au barème / tout refaire
+    """
+
+    rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
+    f3vd = self.filter_role(f3vd_holder, role = VOUS)
+    f3sd = self.filter_role(f3vd_holder, role = CONJ)
+    f3vi = self.filter_role(f3vi_holder, role = VOUS)
+    f3si = self.filter_role(f3vi_holder, role = CONJ)
+    f3vf = self.filter_role(f3vf_holder, role = VOUS)
+    f3sf = self.filter_role(f3vf_holder, role = CONJ)
+    #  TODO: remove this todo use sum for all fields after checking
+        # revenus taxés à un taux proportionnel
+    rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
+    out = (plus_values.pvce * rpns_pvce +
+           plus_values.taux1 * max_(0, f3vg - f3vh) +
+           plus_values.caprisque * f3vl +
+           plus_values.pea * f3vm +
+           plus_values.taux3 * f3vi +
+           plus_values.taux4 * f3vf)
+
+        # revenus taxés à un taux proportionnel
+    rdp += f3vd
+    out += plus_values.taux1 * f3vd
+#        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 *max_(
+#            0, f3vg - f3vh)
+    out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
+            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * rpns_pvce)
+            # TODO: chek this rpns missing ?
+
+    return round(out)
+
+
+def _plus_values_2013_(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, _P, rpns_pvce_holder,
         plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
     """
     Taxation des plus value
@@ -749,19 +797,8 @@ def _plus_values_2012(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3
 #        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 * max_(
 #            0, f3vg - f3vh)
     out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
-            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * f3sa)
-            # TODO: chek this rpns missing ?
-
-    return round(out)
-
-
-def _plus_values_2013_(self, f3vg, _P,  plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
-    """
-    Taxation des plus value
-    TODO: f3vt, 2013 f3Vg au barème / tout refaire
-    """
-
-    out = f3vg * 0  # TODO: completely undone
+            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, -f3vh) + plus_values.pvce *(rpns_pvce+f3sa))
+            # TODO: chek this 3VG
 
     return round(out)
 
@@ -795,12 +832,11 @@ def _cesthra(self, sal_holder, bareme = law.ir.cesthra):
     return cesthra
 
 
-def _irpp(iai, credits_impot, cehr, microsocial, P = law.ir.recouvrement):
+def _irpp(iai, credits_impot, cehr, P = law.ir.recouvrement):
     '''
     Montant après seuil de recouvrement (hors ppe)
     '''
-    # log.error(("\n iai: %s, \n - credits_impot: %s \n + cehr : %s \n + cesthra: %s \n + microsocial : %s \n " % (iai, -credits_impot, cehr, cesthra , microsocial)))
-    pre_result = iai - credits_impot + cehr + microsocial
+    pre_result = iai - credits_impot + cehr
     return ((iai > P.seuil) *
                 ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
                 ((pre_result <= 0) + (pre_result >= P.min)) * (-pre_result)) +
@@ -821,7 +857,8 @@ def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
     return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
         entity = 'foyer_fiscal', role = VOUS)
 
-def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder, rev_cap_lib, f3vz):
+def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder,
+        rev_cap_lib, f3vz, microentreprise):
     '''
     Revenu fiscal de référence
     f3vg -> rev_cat_pv -> ... -> rni
@@ -833,7 +870,8 @@ def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon
     rpns_exon = self.sum_by_entity(rpns_exon_holder)
     rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
 
-    return max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz
+    return (max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +
+                f3vz + microentreprise)
 
 
 def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj):
@@ -907,35 +945,31 @@ def _fon(f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfoncier):
     return f4ba - f4bb - f4bc + round(f4be * (1 - microfoncier.taux))
 
 
-def _rpns_pvce(frag_pvce, arag_pvce, nrag_pvce, mbic_pvce, abic_pvce,
-               nbic_pvce, macc_pvce, aacc_pvce, nacc_pvce, mbnc_pvce,
-               abnc_pvce, nbnc_pvce, mncn_pvce, cncn_pvce):
+def _rpns_pvce(frag_pvce, arag_pvce, mbic_pvce, abic_pvce,
+               macc_pvce, aacc_pvce, mbnc_pvce,
+               abnc_pvce, mncn_pvce, cncn_pvce):
     '''
     Plus values de cession
     'ind'
     frag_pvce (f5hx, f5ix, f5jx)
     arag_pvce (f5he, f5ie, f5je)
-    nrag_pvce (f5hk, f5lk, f5jk)
     mbic_pvce (f5kq, f5lq, f5mq)
     abic_pvce (f5ke, f5le, f5me)
-    nbic_pvce (f5kk, f5ik, f5mk)
     macc_pvce (f5nq, f5oq, f5pq)
     aacc_pvce (f5ne, f5oe, f5pe)
-    nacc_pvce (f5nk, f5ok, f5pk)
     mncn_pvce (f5kv, f5lv, f5mv)
     cncn_pvce (f5so, f5nt, f5ot)
     mbnc_pvce (f5hr, f5ir, f5jr)
     abnc_pvce (f5qd, f5rd, f5sd)
-    nbnc_pvce (f5qj, f5rj, f5sj)
     '''
 
-    return (frag_pvce + arag_pvce + nrag_pvce + mbic_pvce + abic_pvce +
-             nbic_pvce + macc_pvce + aacc_pvce + nacc_pvce + mbnc_pvce +
-             abnc_pvce + nbnc_pvce + mncn_pvce + cncn_pvce)
+    return (frag_pvce + arag_pvce + mbic_pvce + abic_pvce +
+             macc_pvce + aacc_pvce + mbnc_pvce +
+             abnc_pvce + mncn_pvce + cncn_pvce)
 
-def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon,
-               nbic_exon, macc_exon, aacc_exon, nacc_exon, mbnc_exon,
-               abnc_exon, nbnc_exon):
+def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon, nbnc_proc,
+               nbic_exon, macc_exon, aacc_exon, nacc_exon, mbnc_exon, abnc_proc, nrag_pvce, 
+               abnc_exon, nbnc_exon, mncn_exon, cncn_exon, cncn_jcre, cncn_info, nbic_pvce, cga =law.ir.rpns.cga_taux2):
     '''
     Plus values de cession
     'ind'
@@ -951,11 +985,51 @@ def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon,
     mbnc_exon (f5hp, f5ip, f5jp)
     abnc_exon (f5qb, f5rb, f5sb)
     nbnc_exon (f5qh, f5rh, f5sh)
+    nbnc_pvce (f5qj, f5rj, f5sj)
     '''
 
-    return (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon +
-            nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon +
-            abnc_exon + nbnc_exon)
+    return (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga) +
+            nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc +
+            abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info + nbic_pvce + nrag_pvce)
+
+
+def _defrag(self, f5qf, f5qg, f5qn, f5qo, f5qp, f5qq, frag_impo_holder, nrag_impg_holder, frag_fore_holder, frag_pvct_holder, arag_impg_holder, cga = law.ir.rpns.cga_taux2):
+    frag_fore = self.sum_by_entity(frag_fore_holder)
+    frag_impo = self.sum_by_entity(frag_impo_holder)
+    arag_impg = self.sum_by_entity(arag_impg_holder)   
+    nrag_impg = self.sum_by_entity(nrag_impg_holder)   
+    frag_pvct = self.sum_by_entity(frag_pvct_holder)
+    return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct) + arag_impg + frag_fore)
+
+
+def _defacc(self, f5rn, f5ro, f5rp, f5rq, f5rr, f5rw, macc_impv_holder, macc_imps_holder, nacc_impn_holder, macc_pvct_holder, aacc_impn_holder, microentreprise = law.ir.rpns.microentreprise, cga = law.ir.rpns.cga_taux2):
+    def abat_rpns(rev, P):
+        return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+
+    nacc_impn = self.sum_by_entity(nacc_impn_holder)
+    macc_pvct = self.sum_by_entity(macc_pvct_holder)
+    macc_impv = self.sum_by_entity(macc_impv_holder)
+    macc_imps = self.sum_by_entity(macc_imps_holder)
+    aacc_impn = self.sum_by_entity(aacc_impn_holder)
+    macc_timp = abat_rpns(macc_impv, microentreprise.vente) + abat_rpns(macc_imps, microentreprise.servi)
+    return min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
+
+
+def _defncn(self, f5ht, f5it, f5jt, f5kt, f5lt, f5mt, mncn_impo_holder, mncn_pvct_holder, cncn_aimp_holder, cncn_bene_holder, cga = law.ir.rpns.cga_taux2, spbnc = law.ir.rpns.microentreprise.specialbnc):
+    def abat_rpns(rev, P):
+        return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+    cncn_bene = self.sum_by_entity(cncn_bene_holder)
+    mncn_impo = self.sum_by_entity(mncn_impo_holder)
+    mncn_pvct = self.sum_by_entity(mncn_pvct_holder)
+    cncn_aimp  = self.sum_by_entity(cncn_aimp_holder)
+    return min_(f5ht + f5it + f5jt + f5kt + f5lt + f5mt, abat_rpns(mncn_impo, spbnc) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene)
+
+
+def _defmeu(self, f5ga, f5gb, f5gc, f5gd, f5ge, f5gf, f5gg, f5gh, f5gi, f5gj, alnp_imps_holder, nacc_defs_holder):
+    nacc_defs = self.sum_by_entity(nacc_defs_holder)
+    alnp_imps = self.sum_by_entity(alnp_imps_holder)
+    return min_(f5ga + f5gb + f5gc + f5gd + f5ge + f5gf + f5gg + f5gh + f5gi + f5gj, alnp_imps + nacc_defs)
+
 
 def _rag(frag_exon, frag_impo, arag_exon, arag_impg, arag_defi, nrag_exon, nrag_impg, nrag_defi, nrag_ajag):
     '''
@@ -1016,7 +1090,7 @@ def _ric(mbic_exon, mbic_impv, mbic_imps, abic_exon, nbic_exon, abic_impn, nbic_
 
 def _rac(macc_exon, macc_impv, macc_imps,
          aacc_exon, aacc_impn, aacc_imps, aacc_defn, aacc_defs,
-         nacc_exon, nacc_impn, nacc_imps, nacc_defn, nacc_defs,
+         nacc_exon, nacc_impn, nacc_defn, nacc_defs,
          mncn_impo, cncn_bene, cncn_defi, microentreprise = law.ir.rpns.microentreprise):
     '''
     Revenus accessoires individuels
@@ -1031,7 +1105,6 @@ def _rac(macc_exon, macc_impv, macc_imps,
     aacc_defn (f5nf, f5of, f5pf)
     aacc_defs (f5ng, f5og, f5pg)
     nacc_impn (f5ni, f5oi, f5pi)
-    nacc_imps (f5nj, f5oj, f5pj)
     nacc_defn (f5nl, f5ol, f5pl)
     nacc_defs (f5nm, f5om, f5pm)
     mncn_impo (f5ku, f5lu, f5mu)
@@ -1041,9 +1114,9 @@ def _rac(macc_exon, macc_impv, macc_imps,
     '''
     zacc = (macc_exon + macc_impv + macc_imps
             + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
-            + nacc_exon + nacc_impn + nacc_imps - nacc_defn - nacc_defs
+            + nacc_exon + nacc_impn - nacc_defn - nacc_defs
             + mncn_impo + cncn_bene - cncn_defi)
-
+#TODO: aacc_imps aacc_defs
     cond = (macc_impv > 0) & (macc_imps == 0)
     taux = microentreprise.vente.taux * cond + microentreprise.servi.taux * not_(cond)
 
@@ -1098,20 +1171,21 @@ def _rpns_pvct(frag_pvct, mbic_pvct, macc_pvct, mbnc_pvct, mncn_pvct):
     mbnc_pvct (f5hv, f5iv, f5jv)
     mncn_pvct (f5ky, f5ly, f5my)
     '''
-    return frag_pvct + mbic_pvct + macc_pvct + mbnc_pvct + mncn_pvct
+    return frag_pvct + macc_pvct + mbic_pvct  + mbnc_pvct + mncn_pvct
 
-def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
+
+def _rpns_mvct(self, macc_mvct, mbnc_mvct, mncn_mvct):
     '''
     Moins values de court terme
     'ind'
-    mbic_mvct (f5hu)
     macc_mvct (f5iu)
     mncn_mvct (f5ju)
     mbnc_mvct (f5kz)
 
     '''
-    return self.cast_from_entity_to_role(mbic_mvct + macc_mvct + mbnc_mvct + mncn_mvct,
-        entity = 'foyer_fiscal', role = VOUS)
+    return (mbnc_mvct + self.cast_from_entity_to_role(macc_mvct,
+        entity = 'foyer_fiscal', role = VOUS)) #  + mncn_mvct ?
+
 
 def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     '''
@@ -1124,24 +1198,26 @@ def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     '''
     return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
 
-def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
-        mbic_impv, mbic_imps,
+
+def _rpns_i(self, frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
+        mbic_impv, mbic_imps, 
         abic_impn, abic_imps, abic_defn, abic_defs,
         nbic_impn, nbic_imps, nbic_defn, nbic_defs,
-        macc_impv, macc_imps,
-        aacc_impn, aacc_imps, aacc_defn, aacc_defs,
-        nacc_impn, nacc_imps, nacc_defn, nacc_defs,
-        mbnc_impo,
-        abnc_impo, abnc_defi,
-        nbnc_impo, nbnc_defi,
-        mncn_impo, cncn_bene, cncn_defi,
-        rpns_pvct, rpns_mvct, rpns_mvlt,
-        f5sq,
+        macc_impv, macc_imps, nbic_mvct,
+        aacc_impn, aacc_defn, aacc_gits,
+        nacc_impn, nacc_defn, nacc_defs, aacc_imps,
+        mbnc_impo, nacc_meup, abic_impm, abic_defm,
+        abnc_impo, abnc_defi, nbic_impm, alnp_imps,
+        nbnc_impo, nbnc_defi, alnp_defs, cbnc_assc,
+        mncn_impo, cncn_bene, cncn_defi, abnc_proc,
+        rpns_pvct, rpns_mvct, nbnc_proc, frag_fore,
+        f5sq, mncn_exon, cncn_exon, cncn_aimp, cncn_adef,
+        cncn_info, cncn_jcre, revimpres, pveximpres, pvtaimpres,
         cga_taux2 = law.ir.rpns.cga_taux2, microentreprise = law.ir.rpns.microentreprise):
     '''
     Revenus des professions non salariées individuels
     '''
-    def abat_rnps(rev, P):
+    def abat_rpns(rev, P):
         return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
 
     # Jeunes agriculteurs montant de l'abattement de 50% ou 100%
@@ -1155,11 +1231,11 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
 #    # TODO : check 2006 cf art 156 du CGI pour 2006
 #    def_agri_ant    = min_(max_(0,rag_timp - def_agri), f5sq)
 
-    def_agri = arag_defi + nrag_defi + f5sq
+    def_agri = f5sq + arag_defi + nrag_defi
 
     # # B revenus industriels et commerciaux professionnels
     # regime micro entreprise
-    mbic_timp = abat_rnps(mbic_impv, microentreprise.vente) + abat_rnps(mbic_imps, microentreprise.servi)
+    mbic_timp = abat_rpns(mbic_impv, microentreprise.vente) + abat_rpns(mbic_imps, microentreprise.servi)
 
     # Régime du bénéfice réel bénéficiant de l'abattement CGA
     abic_timp = abic_impn + abic_imps - (abic_defn + abic_defs)
@@ -1174,15 +1250,18 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
     # (revenus accesoires du foyers en nomenclature INSEE)
 
     # regime micro entreprise
-    macc_timp = abat_rnps(macc_impv, microentreprise.vente) + abat_rnps(macc_imps, microentreprise.servi)
+    macc_timp = abat_rpns(macc_impv, microentreprise.vente) + abat_rpns(macc_imps, microentreprise.servi)
     # Régime du bénéfice réel bénéficiant de l'abattement CGA
-    aacc_timp = max_(0, (aacc_impn + aacc_imps) - (aacc_defn + aacc_defs))
+    aacc_timp = (max_(0, (aacc_impn + (aacc_gits > 0) * max_(microentreprise.servi.min, aacc_gits * 
+                    (1 - microentreprise.vente.taux)) + (aacc_imps > 0) * max_(microentreprise.servi.min, aacc_imps * 
+                    (1 - microentreprise.servi.taux)) + (nacc_meup > 0) * max_(microentreprise.servi.min, nacc_meup * 
+                    (1 - microentreprise.vente.taux)) + nacc_defs - aacc_defn)))
     # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
-    nacc_timp = max_(0, (nacc_impn + nacc_imps) - (nacc_defn + nacc_defs))
+    nacc_timp = max_(0, nacc_impn - nacc_defn)
 
     # # E revenus non commerciaux non professionnels
     # regime déclaratif special ou micro-bnc
-    mncn_timp = abat_rnps(mncn_impo, microentreprise.specialbnc)
+    mncn_timp = abat_rpns(mncn_impo, microentreprise.specialbnc)
 
     # régime de la déclaration controlée
     # total 11
@@ -1191,7 +1270,7 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
 
     # # D revenus non commerciaux professionnels
     # regime déclaratif special ou micro-bnc
-    mbnc_timp = abat_rnps(mbnc_impo, microentreprise.specialbnc)
+    mbnc_timp = abat_rpns(mbnc_impo, microentreprise.specialbnc)
 
     # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
     abnc_timp = abnc_impo - abnc_defi
@@ -1201,17 +1280,19 @@ def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
 
     # # Totaux
     atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
-    ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
+    ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp + cncn_timp
 
     majo_cga = max_(0, cga_taux2 * (ntimp + frag_impo))  # Pour ne pas avoir à majorer les déficits
     # total 6
-    rev_NS = frag_impo - def_agri + atimp + ntimp + majo_cga
+    rev_NS = frag_impo + frag_fore + atimp + ntimp + majo_cga - def_agri 
 
     # revenu net après abatement
     # total 7
-    rev_NS_mi = mbic_timp + macc_timp + mbnc_timp + mncn_timp - rpns_mvlt
+    rev_NS_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
 
-    RPNS = rev_NS + rev_NS_mi + rpns_pvct - rpns_mvct + cncn_timp
+    exon = max_(0, macc_timp + nacc_timp - rpns_mvct) - macc_timp - nacc_timp # ajout artificiel
+
+    RPNS = (rev_NS + rev_NS_mi + rpns_pvct + exon + abic_impm - abic_defm + alnp_imps + cncn_aimp - nbic_mvct)
 
     return RPNS
 
@@ -1247,6 +1328,15 @@ def _abat_spe(self, age_holder, caseP, caseF, rng, nbN, abattements_speciaux = l
     as_enf = nbN * abattements_speciaux.enf_montant
 
     return min_(rng, as_inv + as_enf)
+
+
+def _taux_effectif(self, rni, nbptr, microentreprise, abnc_proc_holder, nbnc_proc_holder, bareme = law.ir.bareme,
+        me = law.ir.rpns.microentreprise, cga = law.ir.rpns.cga_taux2):
+    abnc_proc = self.sum_by_entity(abnc_proc_holder)
+    nbnc_proc = self.sum_by_entity(nbnc_proc_holder)
+    base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
+    return ((base_fictive != 0) * nbptr * bareme.calc(base_fictive / nbptr) / max_ (1, base_fictive) + 
+                0 * (base_fictive == 0))
 
 
 ###############################################################################
@@ -1364,7 +1454,8 @@ def _ppe_rev(sal, hsup, rpns, ppe = law.ir.credits_impot.ppe):
     # Revenu d'activité salarié
     rev_sa = sal + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
     # Revenu d'activité non salarié
-    rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns #TODO: très bizarre la partie min(0,rpns) - après vérification c'est dans la loi
+    rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns 
+        #TODO: très bizarre la partie min(0,rpns) - après vérification c'est dans la loi
     return rev_sa + rev_ns
 
 
@@ -1406,10 +1497,12 @@ def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holde
     ppe_elig_i = self.split_by_roles(ppe_elig_i_holder)
     ppe_rev = self.split_by_roles(ppe_rev_holder)
 
-    eliv, elic, eli1, eli2, eli3 = ppe_elig_i[VOUS], ppe_elig_i[CONJ], ppe_elig_i[PAC1], ppe_elig_i[PAC2], ppe_elig_i[PAC3],
+    eliv, elic, eli1, eli2, eli3 = ppe_elig_i[VOUS], ppe_elig_i[CONJ], ppe_elig_i[PAC1], \
+        ppe_elig_i[PAC2], ppe_elig_i[PAC3],
     basevi, baseci = ppe_rev[VOUS], ppe_rev[CONJ]
     basev, basec, base1, base2, base3 = ppe_base[VOUS], ppe_base[CONJ], ppe_base[PAC1], ppe_base[PAC2], ppe_base[PAC1]
-    coef_tpv, coef_tpc, coef_tp1, coef_tp2, coef_tp3 = ppe_coef_tp[VOUS], ppe_coef_tp[CONJ], ppe_coef_tp[PAC1], ppe_coef_tp[PAC2], ppe_coef_tp[PAC1]
+    coef_tpv, coef_tpc, coef_tp1, coef_tp2, coef_tp3 = ppe_coef_tp[VOUS], ppe_coef_tp[CONJ], \
+        ppe_coef_tp[PAC1], ppe_coef_tp[PAC2], ppe_coef_tp[PAC1]
 
     nb_pac_ppe = max_(0, nb_pac - eli1 - eli2 - eli3)
 
@@ -1476,7 +1569,8 @@ def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holde
 
     ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
     # from pandas import DataFrame
-    # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj, 8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
+    # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj, 
+        #8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
     # ppe DataFrame(decompo).to_string()
 
     return ppe_tot
