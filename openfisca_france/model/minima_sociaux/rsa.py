@@ -1,255 +1,40 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
-
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import division
 
-from numpy import (floor, maximum as max_, where,
-                   logical_not as not_, logical_and as and_,
-                   logical_or as or_)
+from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 from openfisca_core.accessors import law
 
-from .input_variables.base import QUIFAM, QUIFOY
-from .pfam import nb_enf, age_en_mois_benjamin
-
+from ..input_variables.base import QUIFAM, QUIFOY
+from ..pfam import nb_enf, age_en_mois_benjamin
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
-
-
-############################################################################
-# ASPA /  Minimum vieillesse
-############################################################################
-def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
-    '''
-    Base ressource individuelle du minimlum vieillesse et assimilés (ASPA)
-    'ind'
-    '''
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-
-    out = (salbrut + chobrut + rstbrut + alr + rto + rpns +
-           max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
-           # max_(0,etr) +
-           )
-    return out
-
-def _br_mv(self, br_mv_i_holder):
-    '''
-    Base ressource du minimlum vieillesse et assimilés (ASPA)
-    'fam'
-
-    Ressources prises en compte
-    Tous les avantages de vieillesse et d'invalidité dont bénéficie l'intéressé sont pris en compte dans l'appréciation des ressources, de même que les revenus professionnels, les revenus des biens mobiliers et immobiliers et les biens dont il a fait donation dans les 10 années qui précèdent la demande d'Aspa.
-    L'évaluation des ressources d'un couple est effectuée de la même manière, sans faire la distinction entre les biens propres ou les biens communs des conjoints, concubins ou partenaires liés par un Pacs.
-    Ressources exclues
-    Certaines ressources ne sont toutefois pas prises en compte dans l'estimation des ressources. Il s'agit notamment :
-    de la valeur des locaux d'habitation occupés par le demandeur et les membres de sa famille vivant à son foyer lorsqu'il s'agit de sa résidence principale,
-    des prestations familiales,
-    de l'allocation de logement sociale,
-    des majorations prévues par la législation, accordées aux personnes dont l'état de santé nécessite l'aide constante d'une tierce personne,
-    de la retraite du combattant,
-    des pensions attachées aux distinctions honorifiques,
-    de l'aide apportée ou susceptible d'être apportée par les personnes tenues à l'obligation alimentaire.
-    '''
-    br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-    return br_mv_i[CHEF] + br_mv_i[PART]
-
-
-#    Bloc ASPA/ASI
-#    Allocation de solidarité aux personnes agées (ASPA)
-#    et Allocation supplémentaire d'invalidité (ASI)
-
-# ASPA crée le 1er janvier 2006
-# TODO Allocation supplémentaire avant la loi de  2006 (entrée en vigueur au 1er janvier 2007)
-
-# ASPA:
-# Anciennes allocations du minimum vieillesse remplacées par l'ASPA
-#
-# Il s'agit de :
-#    l'allocation aux vieux travailleurs salariés (AVTS),
-#    l'allocation aux vieux travailleurs non salariés,
-#    l'allocation aux mères de familles,
-#    l'allocation spéciale de vieillesse,
-#    l'allocation supplémentaire de vieillesse,
-#    l'allocation de vieillesse agricole,
-#    le secours viager,
-#    la majoration versée pour porter le montant d'une pension de vieillesse au niveau de l'AVTS,
-#    l'allocation viagère aux rapatriés âgés.
-
-# ASI:
-#        L'ASI peut être attribuée aux personnes atteintes d'une invalidité générale
-#        réduisant au moins des deux tiers leur capacité de travail ou de gain.
-#        Les personnes qui ont été reconnues atteintes d'une invalidité générale réduisant
-#        au moins des deux tiers leur capacité de travail ou de gain pour l'attribution d'un
-#        avantage d'invalidité au titre d'un régime de sécurité sociale résultant de
-#        dispositions législatives ou réglementaires sont considérées comme invalides.
-
-#        Le droit à l'ASI prend fin dès lors que le titulaire remplit la condition d'âge pour bénéficier de l'ASPA.
-#        Le titulaire de l'ASI est présumé inapte au travail pour l'attribution de l'ASPA. (cf. par analogie circulaire n° 70 SS du 05/08/1957 - circulaire Cnav 28/85 du 26/02/1985 - Lettre Cnav du 15.04.1986)
-#        Le droit à l'ASI prend donc fin au soixantième anniversaire du titulaire. En pratique, l'allocation est supprimée au premier
-#        jour du mois civil suivant le 60ème anniversaire.
-
-#        Plafond de ressources communs depuis le 1er janvier 2006
-#        Changement au 1er janvier 2009 seulement pour les personnes seules !
-#        P.aspa.plaf_couple = P.asi.plaf_couple mais P.aspa.plaf_seul = P.asi.plaf_seul
-
-#    Minimum vieillesse - Allocation de solidarité aux personnes agées (ASPA)
-# age minimum (CSS R815-2)
-# base ressource R815-25:
-#   - retraite, pensions et rentes,
-#   - allocation spéciale (L814-1);
-#   - allocation aux mères de famille (L813)
-#   - majorations pour conjoint à charge des retraites
-#   - pas de prise en compte des allocations logement, des prestations
-#   familiales, de la rente viagère rapatriée...
-# TODO: ajouter taux de la majoration pour 3 enfants 10% (D811-12) ?
-#       P.aspa.maj_3enf = 0.10;
-
-def _aspa_elig(age, inv, activite, P = law.minim):
-    '''
-    Eligibitié individuelle à l'ASPA (Allocation de solidarité aux personnes agées)
-    'ind'
-    '''
-    condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
-    condition_activite = (activite == 3)
-    return condition_age & condition_activite
-
-
-def _asi_elig(aspa_elig, inv, activite):
-    '''
-    Éligibilité individuelle à l'ASI (Allocation supplémentaire d'invalidité)
-    'ind'
-    '''
-    return inv & (activite >= 3) & not_(aspa_elig)
-
-
-def _asi_aspa_nb_alloc(self, aspa_elig_holder, asi_elig_holder):
-    '''
-    Nombre d'allocataire à l'ASI
-    '''
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-
-    return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
-
-def _aspa_couple__2006(maries):
-    '''
-    Détermine si l'on a bien affaire à un couple au sens de l'ASPA
-    '''
-    return maries
-
-
-def _aspa_couple_2007_(concub):
-    '''
-    Détermine si l'on a bien affaire à un couple au sens de l'ASPA
-    '''
-    return concub
-
-
-def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
-    '''
-    Calcule l'allocation de solidarité aux personnes âgées (ASPA)
-    '''
-    # TODO: Avant la réforme de 2007 n'était pas considéré comme un couple les individus en concubinage ou pacsés.
-    # La base de ressources doit pouvoir être individualisée pour refletter ça.
-
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-
-    # Un seul éligible
-    elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
-    # Couple d'éligibles
-    elig2 = (aspa_elig[CHEF] & aspa_elig[PART])
-    # Un seul éligible et époux éligible ASI
-    elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
-    # Un seul éligible et conjoint non marié éligible ASI
-    elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
-
-    elig = elig1 | elig2 | elig3 | elig4
-
-    montant_max = (elig1 * P.aspa.montant_seul
-        + elig2 * P.aspa.montant_couple
-        + elig3 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig4 * P.asi.montant_seul + P.aspa.montant_couple / 2)
-
-    ressources = br_mv + montant_max
-
-    plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-        + (elig2 | elig3 | elig4) * P.aspa.plaf_couple)
-
-    depassement = ressources - plafond_ressources
-
-    diff = ((elig1 | elig2) * montant_max - depassement
-        + (elig3 | elig4) * P.aspa.montant_couple / 2 - depassement / 2)
-
-    montant_servi_aspa = max_(diff, 0) / 12
-
-    # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
-    # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
-    # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
-    return 12 * elig * (aspa_elig[CHEF] + aspa_elig[PART]) * montant_servi_aspa * ((elig1 | elig3 | elig4) + elig2 / 2)  # annualisé
-
-
-def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
-    '''
-    Calcule l'allocation supplémentaire d'invalidité (ASI)
-    '''
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-
-    # Un seul éligible
-    elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
-    # Couple d'éligibles mariés
-    elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries
-    # Couple d'éligibles non mariés
-    elig3 = (asi_elig[CHEF] & asi_elig[PART]) * not_(maries)
-    # Un seul éligible et époux éligible ASPA
-    elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
-    # Un seul éligible et conjoint non marié éligible ASPA
-    elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
-
-    elig = elig1 | elig2 | elig3 | elig4 | elig5
-
-    montant_max = (elig1 * P.asi.montant_seul
-        + elig2 * P.asi.montant_couple
-        + elig3 * 2 * P.asi.montant_seul
-        + elig4 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig5 * P.asi.montant_seul + P.aspa.montant_couple / 2)
-
-    ressources = br_mv + montant_max
-
-    plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
-        + elig2 * P.asi.plaf_couple
-        + elig3 * P.asi.plaf_couple
-        + elig4 * P.aspa.plaf_couple
-        + elig5 * P.aspa.plaf_couple)
-
-    depassement = ressources - plafond_ressources
-
-    diff = ((elig1 | elig2 | elig3) * montant_max - depassement
-        + elig4 * P.asi.montant_couple / 2 - depassement / 2
-        + elig5 * P.asi.montant_seul - depassement / 2)
-
-    montant_servi_asi = max_(diff, 0) / 12
-
-    # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
-    # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    return 12 * elig * (asi_elig[CHEF] + asi_elig[PART]) * montant_servi_asi * ((elig1 | elig4 | elig5) + (elig2 | elig3) / 2)  # annualisé
-
-
-############################################################################
-# RSA / RMI
-############################################################################
 
 
 def _div_ms(self, f3vc_holder, f3ve_holder, f3vg_holder, f3vl_holder, f3vm_holder):
@@ -281,7 +66,7 @@ def _ra_rsa(sal, hsup, rpns, etr):
     return sal + hsup + rpns + etr
 
 
-def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, _P, P = law.minim):
+def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
     TO DO: Add mva (majoration vie autonome),
@@ -290,7 +75,7 @@ def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, _P, P = law.minim):
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
 
-def _br_rmi_pf_2004_(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, _P, P = law.minim):
+def _br_rmi_pf_2004_(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
     TO DO: Add mva (majoration vie autonome),
@@ -661,7 +446,7 @@ def _api(self, agem_holder, age_holder, smic55_holder, isol, forf_log, br_rmi, a
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
 
 
-def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, _P, af = law.fam.af,
+def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, af = law.fam.af,
         P = law.minim.aefa):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
@@ -703,7 +488,7 @@ def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, 
     aefa = max_(aefa_maj, aefa)
     return aefa
 
-def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, _P, af = law.fam.af,
+def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, af = law.fam.af,
         P = law.minim.aefa):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
@@ -746,232 +531,3 @@ def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, ae
     aefa_maj = P.mon_seul * maj
     aefa = max_(aefa_maj, aefa)
     return aefa
-
-
-def _br_aah(br_pf, asi, aspa):
-    '''
-    Base ressources de l'allocation adulte handicapé
-    'fam'
-    '''
-    br_aah = br_pf + asi + aspa
-    return br_aah
-
-
-def _aah(self, br_pf_i_holder, br_aah, inv_holder, age_holder, smic55_holder, concub, af_nbenf, aah = law.minim.aah,
-        aeeh = law.fam.aeeh):
-    '''
-    Allocation adulte handicapé
-
-    Conditions liées au handicap
-    La personne doit être atteinte d’un taux d’incapacité permanente :
-    - d’au moins 80 %,
-    - ou compris entre 50 et 79 %. Dans ce cas, elle doit remplir deux conditions
-    supplémentaires : être dans l’impossibilité de se procurer un emploi compte
-    tenu de son handicap et ne pas avoir travaillé depuis au moins 1 an
-    Condition de résidence
-    L'AAH peut être versée aux personnes résidant en France métropolitaine ou
-     dans les départements d'outre-mer ou à Saint-Pierre et Miquelon de façon permanente.
-     Les personnes de nationalité étrangère doivent être en possession d'un titre de séjour
-     régulier ou être titulaire d'un récépissé de renouvellement de titre de séjour.
-    Condition d'âge
-    Age minimum : Le demandeur ne doit plus avoir l'âge de bénéficier de l'allocation d'éducation de l'enfant handicapé, c'est-à-dire qu'il doit être âgé :
-    - de plus de vingt ans,
-    - ou de plus de seize ans, s'il ne remplit plus les conditions pour ouvrir droit aux allocations familiales.
-    Pour les montants http://www.handipole.org/spip.php?article666
-
-    Âge max_
-    Le versement de l'AAH prend fin à partir de l'âge minimum légal de départ à la retraite en cas d'incapacité
-    de 50 % à 79 %. À cet âge, le bénéficiaire bascule dans le régime de retraite pour inaptitude.
-    En cas d'incapacité d'au moins 80 %, une AAH différentielle (c'est-à-dire une allocation mensuelle réduite)
-    peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure au minimum vieillesse.
-
-    N'entrent pas en compte dans les ressources :
-    L'allocation compensatrice tierce personne, les allocations familiales,
-    l'allocation de logement, la retraite du combattant, les rentes viagères
-    constituées en faveur d'une personne handicapée ou dans la limite d'un
-    montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
-    lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
-    Le RMI (article R 531-10 du code de la sécurité sociale).
-    A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
-    continue à prendre en compte les ressources de votre foyer diminuées de 20%.
-    Notez, dans certaines situations, la Caf évalue forfaitairement vos
-    ressources à partir de votre revenu mensuel.
-    '''
-    age = self.split_by_roles(age_holder, roles = [CHEF, PART])
-    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-    inv = self.split_by_roles(inv_holder, roles = [CHEF, PART])
-    smic55 = self.split_by_roles(smic55_holder, roles = [CHEF, PART])
-
-#    TODO éligibilité AAH, notamment avoir le % d'incapacité ?
-
-    eligC = (((inv[CHEF]) & (age[CHEF] <= aah.age_legal_retraite)) &
-              ((age[CHEF] >= aeeh.age) | ((age[CHEF] >= 16) & (smic55[CHEF]))))
-
-    eligP = (((inv[PART]) & (age[PART] <= aah.age_legal_retraite)) &
-              ((age[PART] >= aeeh.age) | ((age[PART] >= 16) & (smic55[PART]))))
-
-    plaf_aah = 12 * aah.montant * (1 + concub + aah.tx_plaf_supp * af_nbenf)
-    eligib = (eligC | eligP)
-    # l'aah est exonérée de crds
-
-#        Cumul d'allocation
-# L'AAH peut être cumulée :
-#
-# - avec le complément d'AAH (à titre transitoire pour les derniers bénéficiaires,
-#  ce complément étant remplacé par la majoration pour la vie autonome depuis
-#  le 1er juillet 2005) ;
-# - avec la majoration pour la vie autonome ;
-# - avec le complément de ressources (dans le cadre de la garantie de ressources).
-#
-# L'AAH n'est pas cumulable avec la perception d'un avantage de vieillesse,
-# d'invalidité, ou d'accident du travail si cet avantage est d'un montant au
-# moins égal à ladite allocation.
-    return eligib * max_(plaf_aah - br_aah, 0)  # annualisé
-
-
-def _caah__2005(aah, asi, _P, P = law.minim):
-    '''
-    Complément d'allocation adulte handicapé
-    '''
-# Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
-# suivantes :
-# - percevoir l’allocation aux adultes handicapés à taux normal ou en
-#    complément d’une pension d’invalidité, d’une pension de vieillesse ou
-#    d’une rente accident du travail ;
-# - avoir un taux d’incapacité égal ou supérieur à 80 % ;
-# - avoir une capacité de travail, appréciée par la commission des droits et
-#    de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
-# - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
-#    du dépôt de la demande de complément ;
-# - disposer d’un logement indépendant.
-# A noter : une personne hébergée par un particulier à son domicile n’est pas
-# considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
-# de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
-# de solidarité.
-
-#       Complément de ressources Le complément de ressources est
-#       destiné aux personnes handicapées dans l’incapacité de
-#       travailler Il est égal à la différence entre la garantie de
-#       ressources pour les personnes handicapées (GRPH) et l’AAH
-
-    elig_cpl = ((aah > 0) | (asi > 0))  # TODO: éligibilité logement indépendant
-    compl = P.caah.cpltx * P.aah.montant * elig_cpl
-        # En fait perdure jusqu'en 2008
-
-
-    # Majoration pour la vie autonome
-    # La majoration pour la vie autonome est destinée à permettre aux personnes, en capacité de travailler et au chômage
-    # en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
-
-#        Conditions d'attribution
-# La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions suivantes :
-# - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente accident du travail,
-# - avoir un taux d'incapacité au moins égal à 80 %,
-# - disposer d'un logement indépendant,
-# - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par un Pacs au titulaire du droit,
-# - ne pas percevoir de revenu d'activité à caractère professionnel propre.
-# Choix entre la majoration ou la garantie de ressources
-# La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes handicapées.
-# La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de l'autre.
-    mva = 0
-    caah = max_(compl, mva)
-    return 12 * caah  # annualisé
-
-def _caah_2006_(aah, asi, br_aah, al, _P, P = law.minim):
-    '''
-    Complément d'allocation adulte handicapé
-    '''
-# Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
-# suivantes :
-# - percevoir l’allocation aux adultes handicapés à taux normal ou en
-#    complément d’une pension d’invalidité, d’une pension de vieillesse ou
-#    d’une rente accident du travail ;
-# - avoir un taux d’incapacité égal ou supérieur à 80 % ;
-# - avoir une capacité de travail, appréciée par la commission des droits et
-#    de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
-# - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
-#    du dépôt de la demande de complément ;
-# - disposer d’un logement indépendant.
-# A noter : une personne hébergée par un particulier à son domicile n’est pas
-# considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
-# de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
-# de solidarité.
-
-#       Complément de ressources Le complément de ressources est
-#       destiné aux personnes handicapées dans l’incapacité de
-#       travailler Il est égal à la différence entre la garantie de
-#       ressources pour les personnes handicapées (GRPH) et l’AAH
-
-    elig_cpl = ((aah > 0) | (asi > 0))  # TODO: éligibilité logement indépendant
-    compl = elig_cpl * max_(P.caah.grph - (aah + br_aah) / 12, 0)
-
-        # En fait perdure jusqu'en 2008
-
-
-    # Majoration pour la vie autonome
-    # La majoration pour la vie autonome est destinée à permettre aux personnes, en capacité de travailler et au chômage
-    # en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
-
-#        Conditions d'attribution
-# La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions suivantes :
-# - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente accident du travail,
-# - avoir un taux d'incapacité au moins égal à 80 %,
-# - disposer d'un logement indépendant,
-# - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par un Pacs au titulaire du droit,
-# - ne pas percevoir de revenu d'activité à caractère professionnel propre.
-# Choix entre la majoration ou la garantie de ressources
-# La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes handicapées.
-# La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de l'autre.
-    elig_mva = (al > 0) * ((aah > 0) | (asi > 0))  # TODO: complêter éligibilité
-    mva = P.caah.mva * elig_mva * 0
-    caah = max_(compl, mva)
-    return 12 * caah  # annualisé
-
-def _ass(self, br_pf, cho_holder, concub, ass = law.chomage.ass):
-    '''
-    Allocation de solidarité spécifique
-
-    L’Allocation de Solidarité Spécifique (ASS) est une allocation versée aux
-    personnes ayant épuisé leurs droits à bénéficier de l'assurance chômage.
-
-    Le prétendant doit avoir épuisé ses droits à l’assurance chômage.
-    Il doit être inscrit comme demandeur d’emploi et justifier de recherches actives.
-    Il doit être apte à travailler.
-    Il doit justifier de 5 ans d’activité salariée au cours des 10 ans précédant le chômage.
-    À partir de 60 ans, il doit répondre à des conditions particulières.
-     TODO majo ass et base ressource
-
-    Les ressources prises en compte pour apprécier ces plafonds, comprennent l'allocation de solidarité elle-même ainsi que les autres ressources de l'intéressé, et de son conjoint, partenaire pacsé ou concubin, soumises à impôt sur le revenu.
-    Ne sont pas prises en compte, pour déterminer le droit à ASS :
-      l'allocation d'assurance chômage précédemment perçue,
-      les prestations familiales,
-      l'allocation de logement,
-      la majoration de l'ASS,
-      la prime forfaitaire mensuelle de retour à l'emploi,
-      la pension alimentaire ou la prestation compensatoire due par l'intéressé.
-
-
-    Conditions de versement de l'ASS majorée
-        Pour les allocataires admis au bénéfice de l'ASS majorée ( avant le 1er janvier 2004) , le montant de l'ASS majorée est fixé à 22,07 € par jour.
-        Pour mémoire, jusqu'au 31 décembre 2003, pouvaient bénéficier de l'ASS majorée, les allocataires :
-        âgés de 55 ans ou plus et justifiant d'au moins 20 ans d'activité salariée,
-        ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
-        ou justifiant d'au moins 160 trimestres de cotisation retraite.
-    '''
-    cho = self.split_by_roles(cho_holder, roles = [CHEF, PART])
-
-    P = _P
-    majo = 0
-    cond_act_prec_suff = False
-    elig_ass = (cho[CHEF] | cho[PART]) & cond_act_prec_suff
-    plaf = ass.plaf_seul * not_(concub) + ass.plaf_coup * concub
-    montant_mensuel = 30 * (ass.montant_plein * not_(majo) + majo * ass.montant_maj)
-    revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
-    ass = elig_ass * (montant_mensuel * (revenus <= plaf)
-              + (revenus > plaf) * max_(plaf + montant_mensuel - revenus, 0))
-
-    return 12 * ass  # annualisé
-
-
-# TODO surle rsa hors rmi et api ?    def crds_mini():
-
