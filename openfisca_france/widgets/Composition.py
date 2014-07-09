@@ -44,68 +44,97 @@ from openfisca_france import CURRENCY  # , DATA_DIR
 _ = get_translation('openfisca_qt')
 
 
-XAXIS_PROPERTIES = { 'sali': {
-                              'name' : 'sal',
-                              'typ_tot' : {'salsuperbrut' : 'Salaire super brut',
-                                           'salbrut': 'Salaire brut',
-                                           'sal':  'Salaire imposable',
-                                           'salnet': 'Salaire net'},
-                              'typ_tot_default' : 'sal'},
-                    'choi': {
-                             'name' : 'cho',
-                             'col_name' : 'choi',
-                             'typ_tot' : {'chobrut': u"Chômage brut",
-                                          'cho':     u"Chômage",
-                                          'chonet':  u"Chômage net"},
-                             'typ_tot_default' : 'cho' },
-                    'rsti': {
-                             'name' : 'rst',
-                             'col_name' : 'rsti',
-                             'typ_tot' : {'rstbrut': u"Retraite brut",
-                                          'rst':     u"Retraite",
-                                          'rstnet':  u"Retraite net"},
-                             'typ_tot_default' : 'rst'},
-                    'f2da': {
-                             'name': 'divpfl',
-                             'col_name' : 'f2da',
-                             'typ_tot' : {'rev_cap_brut': u"Revenus des capitaux",
-                                          'rev_cap_net': u"Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'f2ee': {
-                             'name' : 'intpfl',
-                             'col_name' : 'f2ee',
-                             'typ_tot' : {'rev_cap_brut': "Revenus des capitaux",
-                                          'rev_cap_net': "Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'f2dc': {
-                             'name' : 'divb',
-                             'col_name' : 'f2dc',
-                             'typ_tot' : {'rev_cap_brut': "Revenus des capitaux",
-                                          'rev_cap_net': "Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'f2tr': {
-                             'name' : 'intb',
-                             'col_name' : 'f2tr',
-                             'typ_tot' : {'rev_cap_brut': "Revenus des capitaux",
-                                          'rev_cap_net': "Revenus des capitaux nets"},
-                             'typ_tot_default' : 'rev_cap_brut'},
-                    'alr' : {
-                             'name' : 'alr',
-                             'col_name' : 'alr',
-                             'typ_tot' : {'pen': "Pensions"},
-                             'typ_tot_default' : 'pen'},
-                    'f6gu' : {
-                             'name' : 'f6gu',
-                             'col_name' : 'f6gu',
-                             'typ_tot' : {'pen': "Pensions"},
-                             'typ_tot_default' : 'pen'},
-                    'f4ba' : {
-                             'name' : 'f4ba',
-                             'col_name' : 'f4ba',
-                             'typ_tot' : {'fon': "Revenus fonciers"},
-                             'typ_tot_default' : 'fon'},
-
-                    }
+XAXIS_PROPERTIES = {
+    'sali': {
+        'name': 'sal',
+        'typ_tot': {
+            'salsuperbrut': 'Salaire super brut',
+            'salbrut': 'Salaire brut',
+            'sal': 'Salaire imposable',
+            'salnet': 'Salaire net'
+            },
+        'typ_tot_default': 'sal',
+        },
+    'choi': {
+        'name': 'cho',
+        'col_name': 'choi',
+        'typ_tot': {
+            'chobrut': u"Chômage brut",
+            'cho': u"Chômage",
+            'chonet': u"Chômage net",
+            },
+        'typ_tot_default': 'cho'
+        },
+    'rsti': {
+        'name': 'rst',
+        'col_name': 'rsti',
+        'typ_tot': {
+            'rstbrut': u"Retraite brut",
+            'rst': u"Retraite",
+            'rstnet': u"Retraite net"
+            },
+        'typ_tot_default': 'rst'
+        },
+    'f2da': {
+        'name': 'divpfl',
+        'col_name': 'f2da',
+        'typ_tot': {
+            'rev_cap_brut': u"Revenus des capitaux",
+            'rev_cap_net': u"Revenus des capitaux nets"
+            },
+        'typ_tot_default': 'rev_cap_brut',
+        },
+    'f2ee': {
+        'name': 'intpfl',
+        'col_name': 'f2ee',
+        'typ_tot': {
+            'rev_cap_brut': "Revenus des capitaux",
+            'rev_cap_net': "Revenus des capitaux nets",
+            },
+        'typ_tot_default': 'rev_cap_brut'
+        },
+    'f2dc': {
+        'name': 'divb',
+        'col_name': 'f2dc',
+        'typ_tot': {
+            'rev_cap_brut': "Revenus des capitaux",
+            'rev_cap_net': "Revenus des capitaux nets"
+            },
+        'typ_tot_default': 'rev_cap_brut'
+        },
+    'f2tr': {
+        'name': 'intb',
+        'col_name': 'f2tr',
+        'typ_tot': {
+            'rev_cap_brut': "Revenus des capitaux",
+            'rev_cap_net': "Revenus des capitaux nets"
+            },
+        'typ_tot_default': 'rev_cap_brut'
+        },
+    'alr': {
+        'name': 'alr',
+        'col_name': 'alr',
+        'typ_tot': {
+            'pen': "Pensions"
+            },
+        'typ_tot_default': 'pen'
+        },
+    'f6gu': {
+        'name': 'f6gu',
+        'col_name': 'f6gu',
+        'typ_tot': {
+            'pen': "Pensions"
+            },
+        'typ_tot_default': 'pen'},
+    'f4ba': {
+        'name': 'f4ba',
+        'col_name': 'f4ba',
+        'typ_tot': {
+            'fon': "Revenus fonciers"
+            },
+        'typ_tot_default': 'fon'
+    },
+}
 
 
 class S:
@@ -125,12 +154,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     CONF_SECTION = 'composition'
     CONFIGWIDGET_CLASS = CompositionConfigPage
     FEATURES = QDockWidget.DockWidgetClosable | \
-               QDockWidget.DockWidgetFloatable | \
-               QDockWidget.DockWidgetMovable
+        QDockWidget.DockWidgetFloatable | \
+        QDockWidget.DockWidgetMovable
     DISABLE_ACTIONS_WHEN_HIDDEN = False
     sig_option_changed = Signal(str, object)
 
-    def __init__(self, simulation = None, parent = None):
+    def __init__(self, scenario = None, parent = None):
         super(CompositionWidget, self).__init__(parent)
         self.setupUi(self)
         if parent is not None:
@@ -140,11 +169,10 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         # Initialize xaxes
         x_axis = self.get_option('x_axis')
         axes_names = []
-        for axe in XAXIS_PROPERTIES.itervalues():
+        for col, axe in XAXIS_PROPERTIES.iteritems():
+            self.x_axis_box.addItem(col, to_qvariant(axe["name"]))  # convert col to label by using tax_benefit_system
 #            self.x_axis_box.addItem(axe.label, to_qvariant(axe.name))
-            self.x_axis_box.addItem(axe.label, to_qvariant(axe.name))
-
-            axes_names.append(axe.name)
+            axes_names.append(axe["name"])
         self.x_axis_box.setCurrentIndex(axes_names.index(x_axis))
 
         self.initialize_plugin()
@@ -157,8 +185,8 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.maxrev_box.setValue(maxrev)
         self.maxrev = maxrev
 
-        if simulation is not None:
-            self.set_simulation(simulation)
+        if scenario is not None:
+            self.set_scenario(scenario)
 
         self.connect(self.open_btn, SIGNAL('clicked()'), self.load)
         self.connect(self.save_btn, SIGNAL('clicked()'), self.save)
@@ -175,27 +203,22 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         self.rmv_btn.setEnabled(False)
         self.emit(SIGNAL("ok()"))
 
-
-
     #------ Public API ---------------------------------------------
 
-    def set_simulation(self, simulation):
+    def set_scenario(self, scenario):
         """
         Set scenario_simualtion
         """
+        # TODO fix this
         x_axis = self.get_option('x_axis')
         maxrev = self.maxrev
         nmen = self.get_option('nmen')
         self.nmen = nmen
         value = CONF.get('parameters', 'datesim')
-        datesim = datetime.strptime(value ,"%Y-%m-%d").date()
+        datesim = datetime.strptime(value, "%Y-%m-%d").date()
 
-        year = datesim.year
-        self.simulation = simulation
-        self.simulation.set_config(year = year, x_axis = x_axis, nmen = self.nmen, maxrev = maxrev, reforme = False,
-            mode ='bareme')
-        self.simulation.set_param()
-        self.scenario = self.simulation.scenario
+        self.scenario = scenario
+        self.scenario.year = datesim.year
 
     def set_x_axis(self):
         '''
@@ -203,7 +226,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         '''
         widget = self.x_axis_box
         if isinstance(widget, QComboBox):
-            data  = widget.itemData(widget.currentIndex())
+            data = widget.itemData(widget.currentIndex())
             x_axis = unicode(data)
             self.scenario.x_axis = x_axis
             self.set_option('x_axis', x_axis)
@@ -217,7 +240,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 
         if isinstance(widget, QSpinBox) or isinstance(widget, QDoubleSpinBox):
             maxrev = widget.value()
-            print "in set_maxrev :",  maxrev
+            print "in set_maxrev :", maxrev
             self.scenario.maxrev = maxrev
             self.set_option('maxrev', maxrev)
             self.maxrev = maxrev
@@ -226,7 +249,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 
     def changed(self):
         self.disconnectAll()
-        self.scenario.genNbEnf()
+#        self.scenario.genNbEnf()
         self.populate()
         self.action_compute.setEnabled(True)
         self.emit(SIGNAL('changed()'))
@@ -254,12 +277,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             box = self._listPerson[noi][S.decnum]
             box.clear()
             button = self._listPerson[noi][S.decbtn]
-            button.setText('Foyer %d' % (noidec+1))
+            button.setText('Foyer %d' % (noidec + 1))
             if vals['quifoy'] == 'vous':
-                box.addItems(['%d' % (noidec+1)])
+                box.addItems(['%d' % (noidec + 1)])
                 button.setEnabled(True)
-            else :
-                box.addItems(['%d' % (k+1) for k in declarKeys])
+            else:
+                box.addItems(['%d' % (k + 1) for k in declarKeys])
                 button.setEnabled(False)
                 box.setCurrentIndex(declarKeys.index(noidec))
 
@@ -269,9 +292,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             # retrieve the foyer combobox of individu number noi
             box = self._listPerson[noi][S.decpos]
             # set the combobox to 'vous' 'conj' or 'pac'
-            if   quifoy == 'vous': box.setCurrentIndex(0)
-            elif quifoy == 'conj': box.setCurrentIndex(1)
-            elif quifoy[:3] == 'pac': box.setCurrentIndex(2)
+            if quifoy == 'vous':
+                box.setCurrentIndex(0)
+            elif quifoy == 'conj':
+                box.setCurrentIndex(1)
+            elif quifoy[:3] == 'pac':
+                box.setCurrentIndex(2)
 
     def populateFamilleCombo(self):
         familleKeys = self.scenario.famille.keys()
@@ -280,9 +306,9 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             box = self._listPerson[noi][S.famnum]
             box.clear()
             if vals['quifam'] == 'parent 1':
-                box.addItems(['%d' % (noichef+1)])
-            else :
-                box.addItems(['%d' % (k+1) for k in familleKeys])
+                box.addItems(['%d' % (noichef + 1)])
+            else:
+                box.addItems(['%d' % (k + 1) for k in familleKeys])
                 box.setCurrentIndex(familleKeys.index(noichef))
 
     def populateQuifamCombo(self):
@@ -291,9 +317,12 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             # retrieve the foyer combobox of individu number noi
             box = self._listPerson[noi][S.fampos]
             # set the combobox to 'parent 1' 'parent 2' or 'enfant'
-            if   quifam == 'chef': box.setCurrentIndex(0)
-            elif quifam == 'part': box.setCurrentIndex(1)
-            elif quifam[:3] == 'enf': box.setCurrentIndex(2)
+            if quifam == 'chef':
+                box.setCurrentIndex(0)
+            elif quifam == 'part':
+                box.setCurrentIndex(1)
+            elif quifam[:3] == 'enf':
+                box.setCurrentIndex(2)
 
     def birthChanged(self, date):
         senderNoi = int(self.sender().objectName()[3])
@@ -303,7 +332,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     def foyerChanged(self):
         sender = self.sender()
         noi = int(sender.objectName()[3])
-        newfoyer = int(sender.currentText()[-1])-1
+        newfoyer = int(sender.currentText()[-1]) - 1
         self.scenario.modify(noi, newFoyer = newfoyer)
         self.emit(SIGNAL('compoChanged()'))
 
@@ -315,22 +344,24 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     def familleChanged(self):
         sender = self.sender()
         noi = int(sender.objectName()[3])
-        newfamille = int(sender.currentText()[-1])-1
+        newfamille = int(sender.currentText()[-1]) - 1
         self.scenario.modifyFam(noi, newFamille = newfamille)
         self.emit(SIGNAL('compoChanged()'))
 
     def quifamChanged(self, newFam):
-        if newFam == 'parent 1' : qui = 'chef'
-        elif newFam == 'parent 2' : qui = 'part'
-        elif newFam == 'enfant' : qui = 'enf'
+        if newFam == 'parent 1':
+            qui = 'chef'
+        elif newFam == 'parent 2':
+            qui = 'part'
+        elif newFam == 'enfant':
+            qui = 'enf'
         senderNoi = int(self.sender().objectName()[3])
         self.scenario.modifyFam(senderNoi, newQuifam = qui)
         self.emit(SIGNAL('compoChanged()'))
 
-
     def addPref(self):
         noi = 0
-        self._listPerson.append([QLabel('%d' % (noi+1), self),
+        self._listPerson.append([QLabel('%d' % (noi + 1), self),
                                  QDateEdit(self),
                                  QComboBox(self),
                                  QComboBox(self),
@@ -369,19 +400,25 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     def addPerson(self):
         noi = self.nbRow()
         self.addRow()
-        if noi == 1: self.scenario.addIndiv(noi, birth = date(1975,1,1), quifoy = 'conj', quifam = 'part')
-        else:        self.scenario.addIndiv(noi, birth = date(2000,1,1), quifoy = 'pac' , quifam = 'enf')
+        if noi == 1:
+            self.scenario.addIndiv(noi, birth = date(1975, 1, 1), quifoy = 'conj', quifam = 'part')
+        else:
+            self.scenario.addIndiv(noi, birth = date(2000, 1, 1), quifoy = 'pac', quifam = 'enf')
         self.emit(SIGNAL('compoChanged()'))
 
     def addRow(self):
         noi = len(self._listPerson)
-        self._listPerson.append([QLabel('%d' % (noi+1), self),
-                                 QDateEdit(self),
-                                 QComboBox(self),
-                                 QComboBox(self),
-                                 QPushButton(self),
-                                 QComboBox(self),
-                                 QComboBox(self)])
+        self._listPerson.append(
+            [
+                QLabel('%d' % (noi + 1), self),
+                QDateEdit(self),
+                QComboBox(self),
+                QComboBox(self),
+                QPushButton(self),
+                QComboBox(self),
+                QComboBox(self)
+                ]
+            )
         temp = self._listPerson[-1]
 
         temp[S.birth].setDisplayFormat(QApplication.translate("Page01", "dd MMM yyyy", None, QApplication.UnicodeUTF8))
@@ -401,16 +438,15 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         temp[S.decbtn].setObjectName('But%d' % noi)
 
         for i in xrange(7):
-            self.gridLayout.addWidget(temp[i], noi +2, i)
+            self.gridLayout.addWidget(temp[i], noi + 2, i)
             self.gridLayout.setAlignment(temp[i], Qt.AlignCenter)
-
 
         self.rmv_btn.setEnabled(True)
         if len(self.scenario.indiv) == 9:
             self.add_btn.setEnabled(False)
 
     def rmvPerson(self, noi = None):
-        if noi == None:
+        if noi is None:
             noi = self.nbRow() - 1
         self.scenario.rmvIndiv(noi)
         self.rmvRow()
@@ -425,8 +461,8 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         toDel = self._listPerson.pop()
         for widget in toDel:
             widget.setParent(None)
-        if len(self.scenario.indiv) == 1: self.rmv_btn.setEnabled(False)
-
+        if len(self.scenario.indiv) == 1:
+            self.rmv_btn.setEnabled(False)
 
     def resetScenario(self):
         '''
@@ -465,7 +501,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 
     def disconnectAll(self):
         for person in self._listPerson:
-            QObject.disconnect(person[S.birth],  SIGNAL('dateChanged(QDate)'), self.birthChanged)
+            QObject.disconnect(person[S.birth], SIGNAL('dateChanged(QDate)'), self.birthChanged)
             QObject.disconnect(person[S.decpos], SIGNAL('currentIndexChanged(QString)'), self.quifoyChanged)
             QObject.disconnect(person[S.decnum], SIGNAL('currentIndexChanged(int)'), self.foyerChanged)
             QObject.disconnect(person[S.fampos], SIGNAL('currentIndexChanged(QString)'), self.quifamChanged)
@@ -474,7 +510,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 
     def connectAll(self):
         for person in self._listPerson:
-            QObject.connect(person[S.birth],  SIGNAL('dateChanged(QDate)'), self.birthChanged)
+            QObject.connect(person[S.birth], SIGNAL('dateChanged(QDate)'), self.birthChanged)
             QObject.connect(person[S.decpos], SIGNAL('currentIndexChanged(QString)'), self.quifoyChanged)
             QObject.connect(person[S.decnum], SIGNAL('currentIndexChanged(int)'), self.foyerChanged)
             QObject.connect(person[S.fampos], SIGNAL('currentIndexChanged(QString)'), self.quifamChanged)
@@ -504,7 +540,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
                     self, "Erreur", u"Erreur lors de l'ouverture du fichier : le fichier n'est pas reconnu : \n " + e,
                     QMessageBox.Ok, QMessageBox.NoButton)
 
-
     def save(self):
         cas_type_dir = self.get_option('export_dir')
         default_fileName = os.path.join(cas_type_dir, 'sans-titre')
@@ -515,30 +550,80 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         if not fileName == '':
             self.scenario.saveFile(fileName)
 
-
     def compute(self):
         """
         Computing the test case
         """
         self.starting_long_process(_("Computing test case ..."))
+        # TODO
         # Consistency check on scenario
-        msg = self.simulation.scenario.check_consistency()
-        if msg:
-            QMessageBox.critical(self, u"Ménage non valide",
-                                 msg,
-                                 QMessageBox.Ok, QMessageBox.NoButton)
-            return False
+#        msg = self.scenario.check_consistency()
+#        if msg:
+#            QMessageBox.critical(self, u"Ménage non valide",
+#                                 msg,
+#                                 QMessageBox.Ok, QMessageBox.NoButton)
+#            return False
         # If it is consistent starts the computation
 
         self.action_compute.setEnabled(False)
 
-        P, P_default = self.main.parameters.getParam(), self.main.parameters.getParam(defaut = True)
-        self.simulation.set_param(P, P_default)
+#        P, P_default = self.main.parameters.getParam(), self.main.parameters.getParam(defaut = True)
+#        self.simulation.set_param(P, P_default)
 
-        self.simulation.compute()
+        self.scenario.compact_legislation = None
+        import openfisca_france
+        TaxBenefitSystem = openfisca_france.init_country()
+        tax_benefit_system = TaxBenefitSystem()
+
+        axes = [
+            dict(
+                count = self.nmen,
+                name = 'sali',
+                max = self.maxrev,
+                min = 0,
+                ),
+            ]
+
+        test_case = {
+            "familles": {
+                "fam0": {
+                    "parents": ['ind0'],
+                    "enfants": [],
+                    },
+                },
+            "foyers_fiscaux": {
+                "foy0": {
+                    "declarants": ['ind0'],
+                    "personnes_a_charge": [],
+                    }
+                },
+            "individus": {
+                "ind0": {
+                    "activite": 0,
+                    "birth": '1970-01-01',
+                    "statmarit": 2,
+                    },
+                },
+            "menages": {
+                "men0": {
+                    "personne_de_reference": 'ind0',
+                    "conjoint": None,
+                    "enfants": [],
+                    "autres": [],
+                    },
+                }
+            }
+
+        self.scenario = tax_benefit_system.new_scenario().init_from_attributes(
+            axes = axes,
+            test_case = test_case,
+            year = 2013,
+            )
+
+        self.scenario.simulation = self.scenario.new_simulation(debug = True)
+        self.scenario.simulation.compute('revdisp')
         self.main.refresh_test_case_plugins()
-        self.ending_long_process( _("Test case results are updated"))
-
+        self.ending_long_process(_("Test case results are updated"))
 
     def set_reform(self, reform):
         '''
@@ -573,7 +658,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             self.set_single()
         self.action_compute.setEnabled(True)
 
-
     #------ OpenfiscaPluginMixin API ---------------------------------------------
 
     def apply_plugin_settings(self, options):
@@ -584,7 +668,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             maxrev = self.get_option('maxrev')
             self.maxrev_box.setValue(maxrev)
             self.maxrev = maxrev
-            print "in apply setting :" , self.maxrev
+            print "in apply setting :", self.maxrev
         if 'x_axis' in options:
             x_axis = self.get_option('x_axis')
             axes_names = [
@@ -601,7 +685,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         is more flexible here than using a class attribute
         """
         return _("Composer")
-
 
     def get_plugin_icon(self):
         """
@@ -627,40 +710,71 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 
         # File menu actions and shortcuts
 
-        self.open_action = create_action(self, _("&Open composition..."),
-                icon='fileopen.png', tip=_("Open composition file"),
-                triggered=self.load)
-        self.register_shortcut(self.open_action, context="Composer",
-                               name=_("Open composition file"), default="Ctrl+O")
+        self.open_action = create_action(
+            self,
+            _("&Open composition..."),
+            icon='fileopen.png',
+            tip =_("Open composition file"),
+            triggered=self.load
+            )
+        self.register_shortcut(
+            self.open_action,
+            context = "Composer",
+            name = _("Open composition file"),
+            default="Ctrl+O"
+            )
 
-        self.save_action = create_action(self, _("&Save composition"),
-                icon='filesave.png', tip=_("Save current composition"),
-                triggered=self.save)
+        self.save_action = create_action(
+            self,
+            _("&Save composition"),
+            icon='filesave.png',
+            tip=_("Save current composition"),
+            triggered=self.save
+            )
 
-        self.register_shortcut(self.save_action, context="Composer",
-                               name=_("Save current composition"), default="Ctrl+S")
+        self.register_shortcut(
+            self.save_action,
+            context="Composer",
+            name=_("Save current composition"),
+            default="Ctrl+S"
+            )
 
-        self.file_menu_actions = [self.open_action, self.save_action,]
+        self.file_menu_actions = [self.open_action, self.save_action]
         self.main.file_menu_actions += self.file_menu_actions
 
-        self.action_compute = create_action(self, _('Compute test case'),
-                                                      icon = 'calculator_green.png',
-                                                      triggered = self.compute)
-        self.register_shortcut(self.action_compute,
-                               context = 'Composer',
-                                name = _('Compute test case'), default = 'F9')
+        self.action_compute = create_action(
+            self,
+            _('Compute test case'),
+            icon = 'calculator_green.png',
+            triggered = self.compute
+            )
+        self.register_shortcut(
+            self.action_compute,
+            context = 'Composer',
+            name = _('Compute test case'),
+            default = 'F9'
+            )
 
-        self.action_set_bareme = create_action(self, _('Varying revenues'),
-                                      icon = 'bareme22.png',
-                                      toggled = self.set_bareme)
-        self.action_set_single = create_action(self, _('Single test case'),
-                                        icon = 'castype22.png',
-                                        toggled = self.set_single)
+        self.action_set_bareme = create_action(
+            self,
+            _('Varying revenues'),
+            icon = 'bareme22.png',
+            toggled = self.set_bareme
+            )
+        self.action_set_single = create_action(
+            self,
+            _('Single test case'),
+            icon = 'castype22.png',
+            toggled = self.set_single
+            )
 
-        self.action_set_reform = create_action(self, _('Reform mode'),
-                                                     icon = 'comparison22.png',
-                                                     toggled = self.set_reform,
-                                                     tip = u"Différence entre la situation simulée et la situation actuelle")
+        self.action_set_reform = create_action(
+            self,
+            _('Reform mode'),
+            icon = 'comparison22.png',
+            toggled = self.set_reform,
+            tip = u"Différence entre la situation simulée et la situation actuelle"
+            )
 
         self.run_menu_actions = [self.action_compute, self.action_set_bareme,
                                  self.action_set_single, self.action_set_reform,
@@ -684,7 +798,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         Update Scenario Table
         '''
         pass
-
 
     def closing_plugin(self, cancelable=False):
         """
@@ -729,8 +842,8 @@ class Logement(QDialog, Ui_Logement):
         self.scenario = scenario
         self.spinCP.setValue(scenario.menage[0]['code_postal'])
         self.spinLoyer.setValue(scenario.menage[0]['loyer'])
-        self.comboSo.setCurrentIndex(scenario.menage[0]['so']-1) # -1 because 0 is "non renseigné"
-        self.spinTH.setValue(scenario.menage[0]['zthabm']) # -1 because 0 is "non renseigné"
+        self.comboSo.setCurrentIndex(scenario.menage[0]['so'] - 1)  # -1 because 0 is "non renseigné"
+        self.spinTH.setValue(scenario.menage[0]['zthabm'])  # -1 because 0 is "non renseigné"
 
         def update_ville(code):
             commune = get_zone(code)
@@ -753,7 +866,7 @@ class Logement(QDialog, Ui_Logement):
         self.connect(self.spinTH, SIGNAL('valueChanged(int)'), update_th)
 
         def so_changed(value):
-            if value in (0,1):
+            if value in (0, 1):
                 self.spinLoyer.setValue(0)
                 self.spinLoyer.setEnabled(False)
             else:
@@ -764,14 +877,12 @@ class Logement(QDialog, Ui_Logement):
         self.connect(self.bbox, SIGNAL("accepted()"), SLOT("accept()"))
         self.connect(self.bbox, SIGNAL("rejected()"), SLOT("reject()"))
 
-
-
     def accept(self):
-        self.scenario.menage[0].update({'loyer': int(self.spinLoyer.value()),
-                                        'so': int(self.comboSo.currentIndex()+1), # +1 because 0 is "non renseigné"
-                                        'zone_apl': int(self.spinZone.value()),
-                                        'code_postal': int(self.spinCP.value()),
-                                        'zthabm' : int(self.spinTH.value())})
+        self.scenario.menage[0].update({
+            'loyer': int(self.spinLoyer.value()),
+            'so': int(self.comboSo.currentIndex() + 1),  # +1 because 0 is "non renseigné"
+            'zone_apl': int(self.spinZone.value()),
+            'code_postal': int(self.spinCP.value()),
+            'zthabm': int(self.spinTH.value())
+            })
         QDialog.accept(self)
-
-

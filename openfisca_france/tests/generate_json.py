@@ -25,7 +25,6 @@
 
 
 import codecs
-import copy
 import hashlib
 import json
 import os
@@ -34,7 +33,6 @@ import sys
 from openfisca_france.scripts.compare_openfisca_impots import compare
 import openfisca_france
 
-#TODO: vérifier que tous les import sont nécessaires, demander à manou flake8
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
@@ -61,7 +59,7 @@ def define_scenario():
                 ),
             ],
         foyer_fiscal = dict(
-                f8ta =0,
+            f8ta =0,
             ),
         year = year,
         )
@@ -72,17 +70,17 @@ def define_scenario():
 def add_official(scenario, fichier, tested = False):
     json_scenario = scenario.to_json()
     fields = compare(scenario, tested, fichier)
-    return { 'scenario' : json_scenario , 'resultat_officiel' : fields }
+    return {'scenario': json_scenario, 'resultat_officiel': fields}
 
 
 def export_json(scenario, var = "", tested = True):
     json_scenario = scenario.to_json()
-    string_scenario = json.dumps(json_scenario,encoding='utf-8',ensure_ascii=False,indent=2,sort_keys=True)
+    string_scenario = json.dumps(json_scenario, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
     h = var + '-' + hashlib.sha256(string_scenario).hexdigest()
-    if not os.path.isfile(os.path.join('json', h + '.json')):#TODO: scenario > single entity
-        with codecs.open(os.path.join('json', h + '.json'),'w', encoding='utf-8') as fichier:
+    if not os.path.isfile(os.path.join('json', h + '.json')):  # TODO: scenario > single entity
+        with codecs.open(os.path.join('json', h + '.json'), 'w', encoding='utf-8') as fichier:
             json.dump(add_official(scenario, h, tested), fichier, encoding='utf-8', ensure_ascii=False, indent=2,
-                sort_keys=True)
+                      sort_keys=True)
     else:
         compare(scenario, tested, h)
 

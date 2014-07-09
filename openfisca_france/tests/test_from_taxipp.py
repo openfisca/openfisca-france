@@ -27,12 +27,9 @@ import os
 import pkg_resources
 import sys
 
-import openfisca_france
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
 
 from openfisca_france.tests.ipp.taxipp_utils import build_ipp2of_variables, run_OF, compare
+
 
 openfisca_france_location = pkg_resources.get_distribution('openfisca-france').location
 ipp_dir = os.path.join(openfisca_france_location, 'openfisca_france', 'tests', 'ipp')
@@ -82,7 +79,7 @@ def test_from_taxipp(threshold = 2, list_input = None, list_output = None, verbo
 
 def check_comparison(ipp2of_input_variables, input_file_path, output_file_path, ipp2of_output_variables, last_param_scenario = "rien", threshold = 1, verbose = False):
     simulation, param_scenario = run_OF(ipp2of_input_variables, path_dta_input = input_file_path, option = 'list_dta')
-    if str(param_scenario) != str(last_param_scenario) :
+    if str(param_scenario) != str(last_param_scenario):
         pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold, verbose = verbose)
         assert len(pbs) == 0, u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(input_file_path, threshold, pbs)
         last_param_scenario = param_scenario
@@ -90,7 +87,6 @@ def check_comparison(ipp2of_input_variables, input_file_path, output_file_path, 
 
 if __name__ == '__main__':
     import logging
-    import sys
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
 
     comparison_taxipp(selection = "_marie_actif-chomeur", verbose = True)
