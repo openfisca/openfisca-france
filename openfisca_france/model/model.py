@@ -2505,4 +2505,11 @@ prestation_by_name = collections.OrderedDict((
         label = u"Montant de l'Aide pour une Complémentaire Santé",
         entity = 'fam'
         )),
+    ############################################################
+    # Allocation Spécifique de Solidarité
+    ############################################################
+    # build_simple_formula_couple('ass', FloatCol(function = ass._ass,
+    #     label = u"Montant de l'Allocation Spécifique de Solidarité",
+    #     entity = 'fam'
+    #     )),
 ))

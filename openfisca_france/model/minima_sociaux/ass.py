@@ -36,7 +36,7 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _ass(self, br_pf, cho_holder, concub, ass = law.chomage.ass):
+def _ass(self, br_pf, cho_holder, concub, ass_params = law.minim.ass):
     '''
     Allocation de solidarité spécifique
 
@@ -72,8 +72,8 @@ def _ass(self, br_pf, cho_holder, concub, ass = law.chomage.ass):
     majo = 0
     cond_act_prec_suff = False
     elig_ass = (cho[CHEF] | cho[PART]) & cond_act_prec_suff
-    plaf = ass.plaf_seul * not_(concub) + ass.plaf_coup * concub
-    montant_mensuel = 30 * (ass.montant_plein * not_(majo) + majo * ass.montant_maj)
+    plaf = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
+    montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
     revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
     ass = elig_ass * (montant_mensuel * (revenus <= plaf)
               + (revenus > plaf) * max_(plaf + montant_mensuel - revenus, 0))
