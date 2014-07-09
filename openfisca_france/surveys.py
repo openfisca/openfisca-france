@@ -23,6 +23,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
+import copy
 import datetime
 import logging
 
@@ -37,18 +38,24 @@ def adapt_to_survey(tax_benefit_system_class):
     # Add survey specific column
     from openfisca_france_data.model.input_variables.survey_variables import column_by_name as survey_column_by_name
     from openfisca_france_data.model.model import prestation_by_name as survey_prestation_by_name
-
-    for column_by_name in [survey_column_by_name]:
-        tax_benefit_system_class.column_by_name.update(column_by_name)
-
-    for prestation_by_name in [survey_prestation_by_name]:
-        tax_benefit_system_class.column_by_name.update(prestation_by_name)
-
-    del tax_benefit_system_class.column_by_name['birth']
-    tax_benefit_system_class.column_by_name['agem'].formula_constructor = None
-    tax_benefit_system_class.column_by_name['agem'].function = None
-    tax_benefit_system_class.column_by_name['age'].formula_constructor = None
-    tax_benefit_system_class.column_by_name['age'].function = None
+    column_by_name = copy.deepcopy(tax_benefit_system_class.column_by_name)
+    prestation_by_name = copy.deepcopy(tax_benefit_system_class.prestation_by_name)
+    column_by_name.update(survey_column_by_name)
+    prestation_by_name.update(survey_prestation_by_name)
+    del column_by_name['birth']
+    prestation_by_name['agem'].formula_constructor = None
+    prestation_by_name['agem'].function = None
+    prestation_by_name['age'].formula_constructor = None
+    prestation_by_name['age'].function = None
+    tax_benefit_system_subclass = type(
+        'tax_benefit_system_subclass',
+        (tax_benefit_system_class,),
+        {
+            'column_by_name': column_by_name,
+            'prestation_by_name': prestation_by_name,
+            }
+        )
+    return tax_benefit_system_subclass
 
 
 class SurveyScenario(object):
@@ -66,8 +73,8 @@ class SurveyScenario(object):
         self.input_data_frame = input_data_frame
         assert tax_benefit_system_class is not None
         self.tax_benefit_system_class = tax_benefit_system_class
-        adapt_to_survey
-        self.tax_benefit_system = tax_benefit_system_class()
+        tax_benefit_system_subclass = adapt_to_survey(tax_benefit_system_class)
+        self.tax_benefit_system = tax_benefit_system_subclass()
         assert year is not None
         self.year = year
         self.weight_column_name_by_entity_symbol['men'] = 'wprm'
@@ -77,8 +84,6 @@ class SurveyScenario(object):
         return self
 
     def new_simulation(self, debug = False, debug_all = False, trace = False):
-        tax_benefit_system = self.tax_benefit_system
-        adapt_to_survey(tax_benefit_system)
         input_data_frame = self.input_data_frame
 
         simulation = simulations.Simulation(
@@ -97,7 +102,7 @@ class SurveyScenario(object):
         for id_variable in id_variables + role_variables:
             assert id_variable in self.input_data_frame.columns
 
-        column_by_name = tax_benefit_system.column_by_name
+        column_by_name = self.tax_benefit_system.column_by_name
         for column_name in input_data_frame:
             if column_name not in column_by_name:
                 log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
