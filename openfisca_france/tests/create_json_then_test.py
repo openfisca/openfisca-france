@@ -27,10 +27,15 @@
 ## Que le fichier existe déjà ou non, ce script teste ensuite si le résultat officiel correspond au résultat OpenFisca
 ## Si un long message d'erreur apparaît, il faut supprimer le fichier créé (qui est vide)
 
-import openfisca_france
-import sys
-from generate_json import export_json
+
+import datetime
 import os
+import sys
+
+import openfisca_france
+
+from generate_json import export_json
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -70,13 +75,13 @@ def define_scenario(year, column_code):
     elif entity == 'men':
         menage[column_code] = 1500
     scenario.init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = parent1,
 #        parent2 = dict(),
         enfants = enfants,
         famille = famille,
         menage = menage,
         foyer_fiscal = foyer_fiscal,
-        year = year,
         )
     scenario.suggest()
     return scenario
@@ -87,8 +92,8 @@ def main():
 #    for column_code in ('fhsa', 'fhsb', 'fhsf', 'fhsg', 'fhsc', 'fhsh', 'fhsd', 'fhsi', 'fhsk', 'fhsl', 'fhsp', 'fhsq', 'fhsm', 'fhsr', 'fhsn', 'fhss', 'fhsu', 'fhsv', 'fhsw', 'fhsx', 'fhsz', 'fhta', 'fhtb', 'fhtc', 'fhoz', 'fhpa', 'fhpb', 'fhpc', 'fhpe', 'fhpf', 'fhpg', 'fhpi', 'fhpj', 'fhpk', 'fhpm', 'fhpn', 'fhpo', 'fhpp', 'fhpq', 'fhps', 'fhpt', 'fhpu', 'fhpv', 'fhpx', 'fhpy', 'fhrg', 'fhrh', 'fhrj', 'fhrk', 'fhrl', 'fhrm', 'fhrn', 'fhrp', 'fhrq', 'fhrr', 'fhrs', 'fhru', 'fhrv', 'fhrw', 'fhrx', 'fhpz', 'fhqz', 'fhqe', 'fhqf', 'fhqg', 'fhqo', 'fhqp', 'fhqv', 'fhmm', 'fhma', 'fhmb', 'fhmn', 'fhlg', 'fhlh', 'fhks', 'fhkt', 'fhli', 'fhmc', 'fhku'): # 2013 uniquement
     column_code = raw_input("Which variable would you like to test ? ")
     assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"        
-    for year in range(2005,2014):
-        scenario = define_scenario(year,column_code)
+    for year in range(2005, 2014):
+        scenario = define_scenario(year, column_code)
         export_json(scenario, var = column_code, tested = True)
     return 0
 

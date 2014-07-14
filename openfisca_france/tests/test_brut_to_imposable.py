@@ -46,11 +46,11 @@ def test_sal(year = 2014, verbose = False):
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
+            date = datetime.date(year , 1, 1),
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
                 type_sal = CAT[type_sal_category],
                 ),
-            year = year,
             ).new_simulation(debug = True)
 
         # Brut to imposable
@@ -100,11 +100,11 @@ def test_cho_rst(year = 2014, verbose = False):
         maxrev = 24000
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
+            date = datetime.date(year , 1, 1),
             axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
                 ),
-            year = year,
             ).new_simulation(debug = True)
 
         df_b2i = DataFrame({var: simulation.calculate(var),

@@ -46,6 +46,7 @@ def test():
     # alors qu'Openfisca la caclule pour Lyon (.0175)
     tests_infos = [
         dict(
+            date = datetime.date(2012 , 1, 1),
             description = u"Célibataire public_titulaire_etat",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -56,7 +57,6 @@ def test():
             menage = dict(
                 zone_apl = 1,
                 ),
-            year = 2012,
 
             error_margin = 1,
             expected_values = dict(
@@ -78,6 +78,7 @@ def test():
                 ),
             ),
         dict(
+            date = datetime.date(2012 , 1, 1),
             description = u"Célibataire public_titulaire_territoriale",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -88,7 +89,6 @@ def test():
             menage = dict(
                 zone_apl = 1,
                 ),
-            year = 2012,
 
             error_margin = 1,
             expected_values = dict(
@@ -110,6 +110,7 @@ def test():
                 ),
             ),
         dict(
+            date = datetime.date(2012 , 1, 1),
             description = u"Célibataire public_titulaire_hospitaliere",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -120,7 +121,6 @@ def test():
             menage = dict(
                 zone_apl = 1,
                 ),
-            year = 2012,
 
             error_margin = 1,
             expected_values = dict(
@@ -144,6 +144,7 @@ def test():
                 ),
             ),
         dict(
+            date = datetime.date(2011 , 1, 1),
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -154,7 +155,6 @@ def test():
             menage = dict(
                 zone_apl = 1,
                 ),
-            year = 2011,
 
             error_margin = 1,
             expected_values = dict(
@@ -177,6 +177,7 @@ def test():
                 ),
             ),
         dict(
+            date = datetime.date(2012 , 1, 1),
             description = u"Couple 1 fonctionnaire public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -194,7 +195,6 @@ def test():
             menage = dict(
                 zone_apl = 1,
                 ),
-            year = 2012,
 
             error_margin = 2,
             expected_values = dict(
@@ -217,6 +217,7 @@ def test():
                 ),
             ),
         dict(
+            date = datetime.date(2012 , 1, 1),
             description = u"Couple 2 fonctionnaires public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -237,7 +238,6 @@ def test():
             menage = dict(
                 zone_apl = 2,
                 ),
-            year = 2012,
 
             error_margin = 2,
             expected_values = dict(

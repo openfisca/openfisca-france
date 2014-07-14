@@ -29,6 +29,7 @@ import itertools
 import json
 import logging
 import os
+import re
 import time
 import urllib2
 import uuid
@@ -41,21 +42,22 @@ from . import conv, entities
 
 log = logging.getLogger(__name__)
 N_ = lambda message: message
+year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]\d|3[0-1]))?)?$')
 
 
 class Scenario(object):
     axes = None
     compact_legislation = None
+    date = None
     tax_benefit_system = None
     test_case = None
-    year = None
 
     def init_from_attributes(self, cache_dir = None, repair = False, **attributes):
         conv.check(self.make_json_or_python_to_attributes(cache_dir = cache_dir, repair = repair))(attributes)
         return self
 
-    def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
-            parent1 = None, parent2 = None, year = None):
+    def init_single_entity(self, axes = None, date = None, enfants = None, famille = None, foyer_fiscal = None,
+            menage = None, parent1 = None, parent2 = None):
         if enfants is None:
             enfants = []
         assert parent1 is not None
@@ -84,13 +86,13 @@ class Scenario(object):
                 menage.setdefault('enfants', []).append(id)
         conv.check(self.make_json_or_python_to_attributes())(dict(
             axes = axes,
+            date = date,
             test_case = dict(
                 familles = [famille],
                 foyers_fiscaux = [foyer_fiscal],
                 individus = individus,
                 menages = [menage],
                 ),
-            year = year,
             ))
         return self
 
@@ -106,6 +108,11 @@ class Scenario(object):
             # First validation and conversion step
             data, error = conv.pipe(
                 conv.test_isinstance(dict),
+                # TODO: Remove condition below, once every calls uses "date" instead of "year".
+                conv.condition(
+                    conv.test(lambda value: 'date' not in value),
+                    conv.rename_item('year', 'date'),
+                    ),
                 conv.struct(
                     dict(
                         axes = conv.pipe(
@@ -148,17 +155,34 @@ class Scenario(object):
                                 ),
                             conv.empty_to_none,
                             ),
+                        date = conv.pipe(
+                            conv.condition(
+                                conv.test_isinstance(datetime.date),
+                                conv.noop,
+                                conv.condition(
+                                    conv.test_isinstance(int),
+                                    conv.pipe(
+                                        conv.test_between(1870, 2099),
+                                        conv.function(lambda year: datetime.date(year, 1, 1)),
+                                        ),
+                                    conv.pipe(
+                                        conv.test_isinstance(basestring),
+                                        conv.test(year_or_month_or_day_re.match, error = N_(u'Invalid date')),
+                                        conv.function(lambda birth: u'-'.join((birth.split(u'-') + [u'01', u'01'])[:3])),
+                                        conv.iso8601_input_to_date,
+                                        ),
+                                    ),
+                                ),
+                            conv.test_between(datetime.date(1870, 1, 1), datetime.date(2099, 12, 31)),
+                            # TODO: Check that date is valid in params.
+                            conv.not_none,
+                            ),
                         legislation_url = conv.pipe(
                             conv.test_isinstance(basestring),
                             conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
                             ),
                         test_case = conv.pipe(
-                            conv.test_isinstance(dict),  # Real test is done below, once year is known.
-                            conv.not_none,
-                            ),
-                        year = conv.pipe(
-                            conv.test_isinstance(int),
-                            conv.test_greater_or_equal(1900), # TODO: Check that year is valid in params.
+                            conv.test_isinstance(dict),  # Real test is done below, once date is known.
                             conv.not_none,
                             ),
                         ),
@@ -170,7 +194,7 @@ class Scenario(object):
             # Second validation and conversion step
             data, error = conv.struct(
                 dict(
-                    test_case = self.make_json_or_python_to_test_case(repair = repair, year = data['year']),
+                    test_case = self.make_json_or_python_to_test_case(date = data['date'], repair = repair),
                     ),
                 default = conv.noop,
                 )(data, state = state)
@@ -233,9 +257,9 @@ class Scenario(object):
                         with open(legislation_file_path, 'w') as legislation_file:
                             legislation_file.write(unicode(json.dumps(legislation_json, encoding = 'utf-8',
                                 ensure_ascii = False, indent = 2)).encode('utf-8'))
-                datesim = datetime.date(data['year'], 1, 1)
                 if legislation_json.get('datesim') is None:
-                    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json, datesim)
+                    dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json,
+                        data['date'])
                 else:
                     dated_legislation_json = legislation_json
                     legislation_json = None
@@ -245,15 +269,15 @@ class Scenario(object):
 
             self.axes = data['axes']
             self.compact_legislation = compact_legislation
+            self.date = data['date']
             self.legislation_url = data['legislation_url']
             self.test_case = data['test_case']
-            self.year = data['year']
             return self, None
 
         return json_or_python_to_attributes
 
-    def make_json_or_python_to_test_case(self, repair = False, year = None):
-        assert year is not None
+    def make_json_or_python_to_test_case(self, date = None, repair = False):
+        assert date is not None
 
         def json_or_python_to_test_case(value, state = None):
             if value is None:
@@ -603,7 +627,7 @@ class Scenario(object):
                     if individu_id in familles_individus_id:
                         # L'individu n'est toujours pas affecté à une famille.
                         individu = test_case['individus'][individu_id]
-                        age = find_age(individu, year)
+                        age = find_age(individu, date)
                         if len(new_famille[u'parents']) < 2 and (age is None or age >= 18):
                             new_famille[u'parents'].append(individu_id)
                         else:
@@ -694,7 +718,7 @@ class Scenario(object):
                     if individu_id in foyers_fiscaux_individus_id:
                         # L'individu n'est toujours pas affecté à un foyer fiscal.
                         individu = test_case['individus'][individu_id]
-                        age = find_age(individu, year)
+                        age = find_age(individu, date)
                         if len(new_foyer_fiscal[u'declarants']) < 2 and (age is None or age >= 18):
                             new_foyer_fiscal[u'declarants'].append(individu_id)
                         else:
@@ -831,7 +855,7 @@ class Scenario(object):
                                 dict(
                                     enfants = conv.uniform_sequence(
                                         conv.test(lambda individu_id:
-                                            find_age(individu_by_id[individu_id], year, default = 0) <= 25,
+                                            find_age(individu_by_id[individu_id], date, default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                 u" 25 ans ou être invalide",
                                             ),
@@ -862,7 +886,7 @@ class Scenario(object):
                                             )),
                                         conv.uniform_sequence(conv.pipe(
                                             conv.test(lambda individu_id:
-                                                find_age(individu_by_id[individu_id], year, default = 100) >= 18,
+                                                find_age(individu_by_id[individu_id], date, default = 100) >= 18,
                                                 error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
                                                     u" ans",
                                                 ),
@@ -874,7 +898,7 @@ class Scenario(object):
                                         ),
                                     personnes_a_charge = conv.uniform_sequence(
                                         conv.test(lambda individu_id: individu_by_id[individu_id].get('inv', False)
-                                            or find_age(individu_by_id[individu_id], year, default = 0) < 25,
+                                            or find_age(individu_by_id[individu_id], date, default = 0) < 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                 u" 25 ans ou être invalide",
                                             ),
@@ -890,8 +914,8 @@ class Scenario(object):
                         conv.noop,
                         conv.struct(
                             dict(
-                                birth = conv.test(lambda birth: year - birth.year >= 0,
-                                    error = u"L'individu doit être né au plus tard l'année de la simulation",
+                                birth = conv.test(lambda birth: date - birth >= datetime.timedelta(0),
+                                    error = u"L'individu doit être né au plus tard le jour de la simulation",
                                     ),
                                 ),
                             default = conv.noop,
@@ -934,7 +958,7 @@ class Scenario(object):
     def new_simulation(self, debug = False, debug_all = False, trace = False):
         simulation = simulations.Simulation(
             compact_legislation = self.compact_legislation,
-            date = datetime.date(self.year, 1, 1),
+            date = self.date,
             debug = debug,
             debug_all = debug_all,
             tax_benefit_system = self.tax_benefit_system,
@@ -1185,13 +1209,13 @@ class Scenario(object):
             if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
                 # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
-                birth_year = self.year - 40 if is_parent else self.year - 10
+                birth_year = self.date.year - 40 if is_parent else self.date.year - 10
                 birth = datetime.date(birth_year, 1, 1)
                 individu['birth'] = birth
                 suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                     'birth'] = birth.isoformat()
             if individu.get('activite') is None:
-                if find_age(individu, self.year) < 16:
+                if find_age(individu, self.date) < 16:
                     individu['activite'] = 2  # Étudiant, élève
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                         'activite'] = u'2'  # Étudiant, élève
@@ -1223,6 +1247,8 @@ class Scenario(object):
         self_json = collections.OrderedDict()
         if self.axes is not None:
             self_json['axes'] = self.axes
+        if self.date is not None:
+            self_json['date'] = self.date.isoformat()
         if self.legislation_url is not None:
             self_json['legislation_url'] = self.legislation_url
 
@@ -1308,9 +1334,6 @@ class Scenario(object):
                 test_case_json['menages'] = menages_json
 
             self_json['test_case'] = test_case_json
-
-        if self.year is not None:
-            self_json['year'] = self.year
         return self_json
 
 
@@ -1341,10 +1364,13 @@ def find_menage_and_role(test_case, individu_id):
     return None, None, None
 
 
-def find_age(individu, year, default = None):
+def find_age(individu, date, default = None):
     birth = individu.get('birth')
     if birth is not None:
-        return year - birth.year
+        age = date.year - birth.year
+        if date.month < birth.month or date.month == birth.month and date.day < birth.day:
+            age -= 1
+        return age
     age = individu.get('age')
     if age is not None:
         return age

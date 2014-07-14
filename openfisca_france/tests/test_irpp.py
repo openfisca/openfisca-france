@@ -213,17 +213,19 @@ def test_irpp():
             if revenu in ["rsti", "sali"]:
 
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
-                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
-                               revenu: amount,
-                               },
-                    year = year,
+                    date = datetime.date(year , 1, 1),
+                    parent1 = {
+                        'birth': datetime.date(year - 40, 1, 1),
+                        revenu: amount,
+                        },
                     ).new_simulation(debug = True)
             elif revenu in fiscal_values:
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
-                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
-                               },
+                    date = datetime.date(year , 1, 1),
+                    parent1 = {
+                        'birth': datetime.date(year - 40, 1, 1),
+                        },
                     foyer_fiscal = {revenu: amount},
-                    year = year,
                     ).new_simulation(debug = True)
 
             yield check_irpp, amount, irpp, revenu, simulation, year

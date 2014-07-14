@@ -36,13 +36,13 @@ tax_benefit_system = TaxBenefitSystem()
 def test_birth():
     year = 2013
     scenario = tax_benefit_system.new_scenario().init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(),
         enfants = [
             dict(),
             dict(birth = datetime.date(year - 12, 1, 1)),
             dict(birth = datetime.date(year - 18, 1, 1)),
             ],
-        year = year,
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)

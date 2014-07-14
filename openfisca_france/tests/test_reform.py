@@ -25,12 +25,13 @@
 
 import copy
 import datetime
-import jsonpatch
 import xml.etree.ElementTree
 
+import jsonpatch
 from openfisca_core import conv, legislationsxml
 from openfisca_core.reforms import Reform
 import openfisca_france
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -77,8 +78,8 @@ def test_parametric_reform(year = 2014):
                 min = 0,
                 ),
             ],
+        date = datetime.date(year , 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        year = year,
         ).new_simulation(debug = True)
     assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .0001
     tax_benefit_system.apply_reform(reform = reform)
@@ -99,8 +100,8 @@ def test_parametric_reform(year = 2014):
                 min = 0,
                 ),
             ],
+        date = datetime.date(year , 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        year = year,
         ).new_simulation(debug = True)
     assert max(abs(simulation2.calculate('impo') - [0., -13900.20019531, -29446.52929688])) < .0001
 

@@ -35,8 +35,8 @@ tax_benefit_system = TaxBenefitSystem()
 def test_age_from_agem():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(agem = 40 * 12 + 6),
-        year = year,
         ).new_simulation(debug = True)
     assert simulation.calculate('age') == 40
 
@@ -44,8 +44,8 @@ def test_age_from_agem():
 def test_age_from_birth():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        year = year,
         ).new_simulation(debug = True)
     assert simulation.calculate('age') == 40
     assert simulation.calculate('agem') == 40 * 12
@@ -54,8 +54,8 @@ def test_age_from_birth():
 def test_agem_from_age():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(age = 40),
-        year = year,
         ).new_simulation(debug = True)
     assert simulation.calculate('agem') == 40 * 12
 
@@ -63,8 +63,8 @@ def test_agem_from_age():
 def test_agem_from_birth():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        year = year,
         ).new_simulation(debug = True)
     assert simulation.calculate('agem') == 40 * 12
     assert simulation.calculate('age') == 40

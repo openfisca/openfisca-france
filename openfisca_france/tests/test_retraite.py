@@ -25,7 +25,6 @@
 
 from __future__ import division
 
-
 import datetime
 
 import openfisca_france
@@ -72,10 +71,6 @@ def test_couple(verbose = False):
               },
                   ]
 
-    passed = True
-    for test in tests_list:
-        year = test["year"]
-
     TaxBenefitSystem = openfisca_france.init_country()
     tax_benefit_system = TaxBenefitSystem()
     passed = True
@@ -99,11 +94,11 @@ def test_couple(verbose = False):
                 foyer_fiscal[variable] = value
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
+            date = datetime.date(year , 1, 1),
             parent1 = parent1,
             parent2 = parent2,
             menage = menage,
             foyer_fiscal = foyer_fiscal,
-            year = year,
             ).new_simulation(debug = True)
 
         for variable, value in test['output_vars'].iteritems():

@@ -43,8 +43,8 @@ def check_1_parent(year = 2013):
                 min = 0,
                 ),
             ],
+        date = datetime.date(year , 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        year = year,
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
     sali = simulation.get_holder('sali').new_test_case_array()
@@ -66,6 +66,7 @@ def check_1_parent_2_enfants(year):
                 min = 0,
                 ),
             ],
+        date = datetime.date(year , 1, 1),
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
@@ -81,7 +82,6 @@ def check_1_parent_2_enfants(year):
                 birth = '1990-04-17',
                 ),
             ],
-        year = year,
         ).new_simulation(debug = True)
     sali = simulation.get_holder('sali').new_test_case_array()
     assert (sali - np.linspace(0, 24000, 3)).all() == 0, sali
@@ -103,6 +103,7 @@ def check_1_parent_2_enfants_1_column(column_name, year):
                 min = 0,
                 ),
             ],
+        date = datetime.date(year , 1, 1),
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
@@ -118,7 +119,6 @@ def check_1_parent_2_enfants_1_column(column_name, year):
                 birth = '1990-04-17',
                 ),
             ],
-        year = year,
         ).new_simulation(debug = True)
     simulation.calculate(column_name)
 
@@ -132,8 +132,8 @@ def test_1_parent_2_enfants_1_column():
 
 #def check_survey(year = 2013):
 #    simulation = tax_benefit_system.new_scenario().init_single_entity(
+#        date = datetime.date(year , 1, 1),
 #        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-#        year = year,
 #        ).new_simulation(debug = True)
 #    simulation.calculate('revdisp')
 

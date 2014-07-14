@@ -52,6 +52,7 @@ tax_benefit_system = TaxBenefitSystem()
 def define_scenario(year):
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,
@@ -73,7 +74,6 @@ def define_scenario(year):
 #                f7cn = 1500,
                 f7rd = 100000
             ),
-        year = year,
         )
     scenario.suggest()
     return scenario

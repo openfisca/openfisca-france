@@ -29,8 +29,6 @@ import datetime
 import openfisca_france
 
 
-
-
 def test_cotsoc():
     """
     Cotisations sur les revenus du capital
@@ -248,11 +246,10 @@ def test_cotsoc():
                 TaxBenefitSystem = openfisca_france.init_country()
                 tax_benefit_system = TaxBenefitSystem()
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
+                    date = datetime.date(year , 1, 1),
                     parent1 = parent1,
                     foyer_fiscal = foyer_fiscal,
-                    year = year,
                     ).new_simulation(debug = True)
-
 
                 val = simulation.calculate(var)
                 difference = abs(val - value)

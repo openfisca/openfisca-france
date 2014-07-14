@@ -76,6 +76,7 @@ def test_nonsal_celib(verbose = True):
 
 # def test_nonsal_famille():  # TODO: buggy tests CHECK
 #     tests_infos = dict(
+#         date = datetime.date(2013 , 1, 1),
 #         description = u"Couple de microentrepreneur",
 #         parent1 = dict(
 #             birth = datetime.date(1972, 1, 1),
@@ -92,7 +93,6 @@ def test_nonsal_celib(verbose = True):
 #         menage = dict(
 #             zone_apl = 1,
 #             ),
-#         year = 2013,
 #         error_margin = 2,
 #         expected_values = dict(
 #             rev_microsocial = (20000 + 10000) - (2820 + 1410),

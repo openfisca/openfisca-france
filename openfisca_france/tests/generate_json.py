@@ -25,6 +25,7 @@
 
 
 import codecs
+import datetime
 import hashlib
 import json
 import os
@@ -32,6 +33,7 @@ import sys
 
 from openfisca_france.scripts.compare_openfisca_impots import compare
 import openfisca_france
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -41,6 +43,7 @@ def define_scenario():
     year = 2013
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
@@ -59,9 +62,8 @@ def define_scenario():
                 ),
             ],
         foyer_fiscal = dict(
-            f8ta =0,
+            f8ta = 0,
             ),
-        year = year,
         )
     scenario.suggest()
     return scenario

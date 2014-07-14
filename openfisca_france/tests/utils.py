@@ -24,7 +24,9 @@
 
 
 import datetime
+
 import openfisca_france
+
 
 def process_tests_list(tests_list, verbose = False, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
     TaxBenefitSystem = openfisca_france.init_country()
@@ -38,7 +40,7 @@ def process_tests_list(tests_list, verbose = False, monthly_amount = False, defa
             error_margin = test.pop("error_margin", default_error_margin)
 
         simulation = simulation_from_test(test)
-        
+
         for variable, expected_value in test['output_vars'].iteritems():
             calculated_value = (simulation.calculate(variable)).sum() / (1 * (not monthly_amount) + 12 * monthly_amount)
             assert abs(calculated_value - expected_value) < error_margin, u'Variable "{} = {}. Expected: {}'.format(
@@ -67,12 +69,12 @@ def simulation_from_test(test, verbose = False, monthly_amount = False, default_
             foyer_fiscal[variable] = value
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
+        date = datetime.date(year , 1, 1),
         parent1 = parent1,
         menage = menage,
         foyer_fiscal = foyer_fiscal,
-        year = year,
         ).new_simulation(debug = True)
-    
+
     return simulation
 
 
