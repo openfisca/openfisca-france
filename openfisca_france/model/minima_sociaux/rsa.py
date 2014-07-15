@@ -213,7 +213,7 @@ def _forf_log(rmi_nbp, P = law.minim):
     return 12 * (tx_fl * P.rmi.rmi)
 
 
-def _rsa_socle(self, age_holder, nb_par, rmi_nbp, P = law.minim):
+def _rsa_socle(self, age_holder, activite_holder, nb_par, rmi_nbp, P = law.minim):
     '''
     Rsa socle / Rmi
     'fam'
@@ -226,8 +226,9 @@ def _rsa_socle(self, age_holder, nb_par, rmi_nbp, P = law.minim):
     enfant atteigne trois ans.
     '''
     age = self.split_by_roles(age_holder, roles = [CHEF, PART])
+    activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
 
-    eligib = (age[CHEF] >= 25) | (age[PART] >= 25)
+    eligib = ((age[CHEF] >= 25) * not_(activite[CHEF] == 2)) | ((age[PART] >= 25) * not_(activite[PART] == 2))
     tx_rmi = (1 + (rmi_nbp >= 2) * P.rmi.txp2
                  + (rmi_nbp >= 3) * P.rmi.txp3
                  + (rmi_nbp >= 4) * ((nb_par == 1) * P.rmi.txps + (nb_par != 1) * P.rmi.txp3)
