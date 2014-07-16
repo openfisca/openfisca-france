@@ -109,72 +109,6 @@ def _br_rmi_i(self, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_
 def _br_rmi(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder):
     """
     Base ressources du Rmi ou du Rsa
-
-    Sont pris en compte:
-    1 L’ensemble des revenus tirés d’une activité salariée ou non salariée ;
-    2 Les revenus tirés de stages de formation professionnelle ;
-    3 Les revenus tirés de stages réalisés en application de l’article 9 de
-      la loi no  2006-396 du 31 mars 2006 pour l’égalité des chances ;
-    4 L’aide légale ou conventionnelle aux salariés en chômage partiel ;
-    5 Les indemnités perçues à l’occasion des congés légaux de maternité, de paternité ou d’adoption ;
-    6 Les indemnités journalières de sécurité sociale, de base et complémentaires, perçues en cas d’incapacité
-      physique médicalement constatée de continuer ou de reprendre le travail, d’accident du travail ou de maladie
-      professionnelle pendant une durée qui ne peut excéder trois mois à compter de l’arrêt de travail
-
-    On ne tient pas compte:
-    1 De la prime à la naissance ou à l’adoption mentionnée à l’article L. 531-2 du code de la sécurité
-      sociale ;
-    2 De l’allocation de base mentionnée à l’article L. 531-3 du code de la sécurité sociale due pour le mois
-      au cours duquel intervient la naissance ou, dans les situations visées à l’article L. 262-9 du présent code,
-      jusqu’au dernier jour du mois civil au cours duquel l’enfant atteint l’âge de trois mois ;
-    3 De la majoration pour âge des allocations familiales mentionnée à l’article L. 521-3 du code de la
-      sécurité sociale ainsi que de l’allocation forfaitaire instituée par le second alinéa de l’article L. 521-1 du même
-      code ;
-    4 De l’allocation de rentrée scolaire mentionnée à l’article L. 543-1 du code de la sécurité sociale ;
-    5 Du complément de libre choix du mode de garde mentionné aux articles L. 531-5 à L. 531-9 du code de
-      la sécurité sociale ;16 avril 2009 JOURNAL OFFICIEL DE LA RÉPUBLIQUE
-      FRANÇAISE Texte 3 sur 110.
-    6 De l’allocation d’éducation de l’enfant handicapé et de ses compléments mentionnés à l’article L. 541-1
-      du code de la sécurité sociale, de la majoration spécifique pour personne isolée mentionnée à l’article L. 541-4
-      du même code ainsi que de la prestation de compensation du handicap lorsqu’elle est perçue en application de
-      l’article 94 de la loi no 2007-1786 du 19 décembre 2007 de financement de la sécurité sociale pour 2008 ;
-    7 De l’allocation journalière de présence parentale mentionnée à l’article L. 544-1 du code de la sécurité sociale ;
-    8 Des primes de déménagement prévues par les articles L. 542-8 du code de la sécurité sociale et L. 351-5
-      du code de la construction et de l’habitation ;
-    9 De la prestation de compensation mentionnée à l’article L. 245-1 ou de l’allocation compensatrice
-      prévue au chapitre V du titre IV du livre II du code de l’action sociale et des familles dans sa rédaction antérieure
-      à la loi no 2005-102 du 11 février 2005 pour l’égalité des droits et des chances, la participation et la
-      citoyenneté des personnes handicapées, lorsque l’une ou l’autre sert à rémunérer un tiers ne faisant pas partie
-      du foyer du bénéficiaire du revenu de solidarité active ;
-    10 Des prestations en nature dues au titre des assurances maladie, maternité, accidents du travail et
-       maladies professionnelles ou au titre de l’aide médicale de l’Etat ;
-    11 De l’allocation de remplacement pour maternité prévue par les articles L. 613-19-1 et L. 722-8-1 du
-       code de la sécurité sociale et L. 732-10 du code rural ;
-    12 De l’indemnité en capital attribuée à la victime d’un accident du travail prévue à l’article L. 434-1 du
-       code de la sécurité sociale ;
-    13 De la prime de rééducation et du prêt d’honneur mentionnés à l’article R. 432-10 du code de la sécurité
-       sociale ;
-    14 Des aides et secours financiers dont le montant ou la périodicité n’ont pas de caractère régulier ainsi
-       que des aides et secours affectés à des dépenses concourant à l’insertion du bénéficiaire et de sa famille,
-       notamment dans les domaines du logement, des transports, de l’éducation et de la formation ;
-    15 De la prime de retour à l’emploi et de l’aide personnalisée de retour à l’emploi mentionnées
-       respectivement aux articles L. 5133-1 et L. 5133-8 du code du travail ainsi que de l’allocation mentionnée à
-       l’article L. 5131-6 du même code ;
-    16 Des bourses d’études ainsi que de l’allocation pour la diversité dans la fonction publique ;
-    17 Des frais funéraires mentionnés à l’article L. 435-1 du code de la sécurité sociale ;
-    18 Du capital décès servi par un régime de sécurité sociale ;
-    19 De l’allocation du fonds de solidarité en faveur des anciens combattants d’Afrique du Nord prévue à
-       l’article 125 de la loi no 91-1322 de finances pour 1992 ;
-    20 De l’aide spécifique en faveur des conjoints survivants de nationalité française des membres des
-       formations supplétives et assimilés, mentionnée aux premier et troisième alinéas de l’article 10 de la loi
-       no 94-488 du 11 juin 1994 relative aux rapatriés, anciens membres des formations supplétives et assimilés ou
-       victimes de la captivité en Algérie ;
-    21 De l’allocation de reconnaissance instituée par l’article 47 de la loi no 99-1173 de finances rectificative pour 1999 ;
-    22 Des mesures de réparation mentionnées à l’article 2 du décret no 2000-657 du 13 juillet 2000 instituant
-       une mesure de réparation pour les orphelins dont les parents ont été victimes de persécutions antisémites ;
-    23 Des mesures de réparation mentionnées à l’article 2 du décret no 2004-751 du 27 juillet 2004 instituant
-       une aide financière en reconnaissance des souffrances endurées par les orphelins dont les parents ont été
-       victimes d’actes de barbarie durant la Deuxième Guerre mondiale
     """
     br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
     br_rmi_ms = self.split_by_roles(br_rmi_ms_holder, roles = [CHEF, PART])
@@ -211,6 +145,41 @@ def _forf_log(rmi_nbp, P = law.minim):
              (rmi_nbp == 2) * FL.taux2 +
              (rmi_nbp >= 3) * FL.taux3)
     return 12 * (tx_fl * P.rmi.rmi)
+
+
+def _crds_mini(rsa_act, P = law.fam.af.crds):
+    """
+    CRDS sur les minima sociaux
+    """
+    return -P * rsa_act
+
+
+def _rsa_act(rsa, rmi):
+    '''
+    Calcule le montant du RSA activité
+    Note: le partage en moitié est un point de législation, pas un choix arbitraire
+    '''
+    res = max_(rsa - rmi, 0)
+    return res
+
+
+def _rsa_act_i(self, rsa_act_holder, concub_holder, maries_holder, quifam, idfam):
+    '''
+    Calcule le montant du RSA activité.
+
+    Note: le partage en moitié est un point de législation, pas un choix arbitraire.
+    '''
+    concub = self.cast_from_entity_to_roles(concub_holder)
+    maries = self.cast_from_entity_to_roles(maries_holder)
+    rsa_act = self.cast_from_entity_to_roles(rsa_act_holder)
+
+    conj = or_(concub, maries)
+    rsa_act_i = 0 * quifam
+    chef_filter = quifam == 0
+    rsa_act_i[chef_filter] = rsa_act[chef_filter] / (1 + conj[chef_filter])
+    partenaire_filter = quifam == 1
+    rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
+    return rsa_act_i
 
 
 def _rsa_socle(self, age_holder, activite_holder, nb_par, rmi_nbp, P = law.minim):
@@ -328,64 +297,6 @@ def _majo_rsa(self, rsa_socle, agem_holder, age_holder, smic55_holder, isol, for
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
 
 
-def _psa(self, api, rsa, activite_holder, af_nbenf, al, P = law.minim.rmi):
-    '''
-    Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
-
-    Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié en janvier,
-    février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour les ex-bénéficiaires du Rmi ou de l’Api),
-    de la prime forfaitaire mensuelle au titre du Rmi ou de l’Api
-    ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et d’être âgé de plus de 25 ans
-    ou d’avoir au moins un enfant à charge).
-    La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
-    '''
-    activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
-
-    dummy_api = api > 0
-    dummy_rmi = rsa > 0
-    dummy_al = and_(al > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
-
-    condition = (dummy_api + dummy_rmi + dummy_al > 0)
-    psa = condition * P.psa
-
-    return psa
-
-
-def _rsa_act(rsa, rmi):
-    '''
-    Calcule le montant du RSA activité
-    Note: le partage en moitié est un point de législation, pas un choix arbitraire
-    '''
-    res = max_(rsa - rmi, 0)
-    return res
-
-
-def _rsa_act_i(self, rsa_act_holder, concub_holder, maries_holder, quifam, idfam):
-    '''
-    Calcule le montant du RSA activité.
-
-    Note: le partage en moitié est un point de législation, pas un choix arbitraire.
-    '''
-    concub = self.cast_from_entity_to_roles(concub_holder)
-    maries = self.cast_from_entity_to_roles(maries_holder)
-    rsa_act = self.cast_from_entity_to_roles(rsa_act_holder)
-
-    conj = or_(concub, maries)
-    rsa_act_i = 0 * quifam
-    chef_filter = quifam == 0
-    rsa_act_i[chef_filter] = rsa_act[chef_filter] / (1 + conj[chef_filter])
-    partenaire_filter = quifam == 1
-    rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
-    return rsa_act_i
-
-
-def _crds_mini(rsa_act, P = law.fam.af.crds):
-    """
-    CRDS sur les minima sociaux
-    """
-    return -P * rsa_act
-
-
 def _api(self, agem_holder, age_holder, smic55_holder, isol, forf_log, br_rmi, af_majo, rsa, af = law.fam.af,
         api = law.minim.api):
     """
@@ -447,6 +358,29 @@ def _api(self, agem_holder, age_holder, smic55_holder, isol, forf_log, br_rmi, a
     # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
 
 
+def _psa(self, api, rsa, activite_holder, af_nbenf, al, P = law.minim.rmi):
+    '''
+    Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
+
+    Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié en janvier,
+    février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour les ex-bénéficiaires du Rmi ou de l’Api),
+    de la prime forfaitaire mensuelle au titre du Rmi ou de l’Api
+    ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et d’être âgé de plus de 25 ans
+    ou d’avoir au moins un enfant à charge).
+    La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
+    '''
+    activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+
+    dummy_api = api > 0
+    dummy_rmi = rsa > 0
+    dummy_al = and_(al > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
+
+    condition = (dummy_api + dummy_rmi + dummy_al > 0)
+    psa = condition * P.psa
+
+    return psa
+
+
 def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, af = law.fam.af,
         P = law.minim.aefa):
     '''
@@ -488,6 +422,7 @@ def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, 
     aefa_maj = P.mon_seul * maj
     aefa = max_(aefa_maj, aefa)
     return aefa
+
 
 def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, af = law.fam.af,
         P = law.minim.aefa):
