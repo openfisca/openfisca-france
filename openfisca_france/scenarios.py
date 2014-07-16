@@ -24,7 +24,6 @@
 
 
 import collections
-from copy import deepcopy
 import datetime
 import itertools
 import json
@@ -222,7 +221,7 @@ class Scenario(AbstractScenario):
                     legislation_filename = '{}.json'.format(legislation_uuid_hex[2:])
                     legislation_file_path = os.path.join(legislation_dir, legislation_filename)
                     if os.path.exists(legislation_file_path) \
-                            and os.path.getmtime(legislation_file_path) > time.time() - 900: # 15 minutes
+                            and os.path.getmtime(legislation_file_path) > time.time() - 900:  # 15 minutes
                         with open(legislation_file_path) as legislation_file:
                             try:
                                 legislation_json = json.load(legislation_file,
