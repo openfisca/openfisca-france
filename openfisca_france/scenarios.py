@@ -52,7 +52,7 @@ class Scenario(AbstractScenario):
     test_case = None
 
     def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
-                           parent1 = None, parent2 = None, year = None):
+                           parent1 = None, parent2 = None, date = None):
         if enfants is None:
             enfants = []
         assert parent1 is not None
