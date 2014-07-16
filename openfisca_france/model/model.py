@@ -65,6 +65,7 @@ from .minima_sociaux import aah
 from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
+from .prestations_familiales import af
 from . import pfam as pf
 from . import th as th
 
@@ -1890,24 +1891,24 @@ prestation_by_name = collections.OrderedDict((
         entity = 'fam',
         label = 'Base ressource des prestations familiales')),
 
-    build_simple_formula_couple('af_nbenf', FloatCol(function = pf._af_nbenf,
+    build_simple_formula_couple('af_nbenf', FloatCol(function = af._af_nbenf,
         entity = 'fam',
         label = u"Nombre d'enfant au sens des AF",
         )),
-    build_simple_formula_couple('af_base', FloatCol(function = pf._af_base,
+    build_simple_formula_couple('af_base', FloatCol(function = af._af_base,
         entity = 'fam',
         label = 'Allocations familiales - Base')),
-    build_simple_formula_couple('af_majo', FloatCol(function = pf._af_majo,
+    build_simple_formula_couple('af_majo', FloatCol(function = af._af_majo,
         entity = 'fam',
         label = 'Allocations familiales - Majoration pour age',
         url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
         )),
-    build_simple_formula_couple('af_forf', FloatCol(function = pf._af_forf,
+    build_simple_formula_couple('af_forf', FloatCol(function = af._af_forf,
         entity = 'fam',
         label = 'Allocations familiales - Forfait 20 ans',
         url = u"http://www.cleiss.fr/docs/regimes/regime_france4.html",
         start = date(2003, 7, 1))),
-    build_simple_formula_couple('af', FloatCol(function = pf._af,
+    build_simple_formula_couple('af', FloatCol(function = af._af,
         entity = 'fam',
         label = u"Allocations familiales",
         url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
