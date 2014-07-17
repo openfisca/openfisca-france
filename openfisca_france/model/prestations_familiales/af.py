@@ -24,7 +24,7 @@
 
 from __future__ import division
 
-from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import (round, floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 from openfisca_core.accessors import law
 
 from ..input_variables.base import QUIFAM, QUIFOY
