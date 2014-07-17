@@ -67,6 +67,7 @@ from .minima_sociaux import ass
 from .minima_sociaux import rsa
 from .prestations_familiales import af
 from .prestations_familiales import paje
+from .prestations_familiales import cf
 from . import pfam as pf
 from . import th as th
 
@@ -1915,7 +1916,7 @@ prestation_by_name = collections.OrderedDict((
         url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
         )),
 
-    build_simple_formula_couple('cf_temp', FloatCol(function = pf._cf,
+    build_simple_formula_couple('cf_temp', FloatCol(function = cf._cf,
         entity = 'fam',
         label = u"Complément familial avant d'éventuels cumuls",
         url = u"http://vosdroits.service-public.fr/particuliers/F13214.xhtml",
@@ -1990,7 +1991,7 @@ prestation_by_name = collections.OrderedDict((
         )),
 
 
-    build_simple_formula_couple('cf', FloatCol(function = pf._cf_cumul,
+    build_simple_formula_couple('cf', FloatCol(function = cf._cf_cumul,
         entity = 'fam',
         label = u"Complément familial",
         url = u"http://vosdroits.service-public.fr/particuliers/F13214.xhtml",

@@ -133,39 +133,6 @@ def _br_pf(self, br_pf_i_holder, rev_coll_holder):
 ############################################################################
 
 
-def _cf(self, age_holder, br_pf, isol, biact, smic55_holder, _P):
-    """
-    Complément familial
-    Vous avez au moins 3 enfants à charge tous âgés de plus de 3 ans.
-    Vos ressources ne dépassent pas certaines limites.
-    Vous avez peut-être droit au Complément Familial à partir du mois
-    suivant les 3 ans du 3ème, 4ème, etc. enfant.
-
-    # TODO:
-    # En théorie, il faut comparer les revenus de l'année n-2 à la bmaf de
-    # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
-    # pouvoir déflater les revenus de l'année courante pour en tenir compte.
-    """
-    age = self.split_by_roles(age_holder, roles = ENFS)
-    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-
-    P = _P.fam
-    bmaf = P.af.bmaf
-    bmaf2 = P.af.bmaf_n_2
-    cf_nbenf = nb_enf(age, smic55, P.cf.age1, P.cf.age2)
-
-    cf_base_n_2 = P.cf.tx * bmaf2
-    cf_base = P.cf.tx * bmaf
-
-    cf_plaf_tx = 1 + P.cf.plaf_tx1 * min_(cf_nbenf, 2) + P.cf.plaf_tx2 * max_(cf_nbenf - 2, 0)
-    cf_majo = isol | biact
-    cf_plaf = P.cf.plaf * cf_plaf_tx + P.cf.plaf_maj * cf_majo
-    cf_plaf2 = cf_plaf + 12 * cf_base_n_2
-
-    cf = (cf_nbenf >= 3) * ((br_pf <= cf_plaf) * cf_base +
-                             (br_pf > cf_plaf) * max_(cf_plaf2 - br_pf, 0) / 12.0)
-    return 12 * cf
-
 def _asf_elig(self, caseT_holder, caseL_holder):
     '''
     Eligibilté à l'allocation de soutien familial (ASF)
@@ -244,14 +211,6 @@ def _ars(self, age_holder, af_nbenf, smic55_holder, br_pf, _P):
     # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
     return ars * (ars >= P.ars.seuil_nv)
-
-
-def _cf_cumul(paje_base_temp, apje_temp, ape_temp, cf_temp):
-    '''
-    L'allocation de base de la paje n'est pas cumulable avec le complément familial
-    '''
-    cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
-    return round(cf_brut, 2)
 
 
 ############################################################################
