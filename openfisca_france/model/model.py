@@ -65,6 +65,7 @@ from .minima_sociaux import aah
 from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
+from .prestations_familiales import aeeh
 from .prestations_familiales import af
 from .prestations_familiales import ars
 from .prestations_familiales import asf
@@ -2002,11 +2003,11 @@ prestation_by_name = collections.OrderedDict((
         [
             dict(start = date(2002, 1, 1),
               end = date(2002, 12, 31),
-              function = pf._aeeh__2002,
+              function = aeeh._aeeh__2002,
              ),
             dict(start = date(2003, 1, 1),
               end = date(2015, 12, 31),
-              function = pf._aeeh_2003_,
+              function = aeeh._aeeh_2003_,
              ),
         ],
         FloatCol(entity='fam',
