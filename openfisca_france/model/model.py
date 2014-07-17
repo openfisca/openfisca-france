@@ -61,7 +61,10 @@ from . import irpp_plus_values_immo as immo
 from . import irpp_reductions_impots as ri
 from . import isf as isf
 from . import lgtm as lg
-from . import mini as ms
+from .minima_sociaux import aah
+from .minima_sociaux import asi_aspa
+from .minima_sociaux import ass
+from .minima_sociaux import rsa
 from . import pfam as pf
 from . import th as th
 
@@ -2097,88 +2100,88 @@ prestation_by_name = collections.OrderedDict((
     # RSA/RMI
     ############################################################
 
-    build_simple_formula_couple('div_ms', FloatCol(function = ms._div_ms)),
-    build_simple_formula_couple('rfon_ms', FloatCol(function = ms._rfon_ms)),
+    build_simple_formula_couple('div_ms', FloatCol(function = rsa._div_ms)),
+    build_simple_formula_couple('rfon_ms', FloatCol(function = rsa._rfon_ms)),
 
-    build_simple_formula_couple('ra_rsa', FloatCol(function = ms._ra_rsa,
+    build_simple_formula_couple('ra_rsa', FloatCol(function = rsa._ra_rsa,
         label = u"Revenus d'activité du Rsa",
         )),
-    build_simple_formula_couple('br_rmi_i', FloatCol(function = ms._br_rmi_i)),
-    build_simple_formula_couple('br_rmi_ms', FloatCol(function = ms._br_rmi_ms)),
+    build_simple_formula_couple('br_rmi_i', FloatCol(function = rsa._br_rmi_i)),
+    build_simple_formula_couple('br_rmi_ms', FloatCol(function = rsa._br_rmi_ms)),
     build_dated_formula_couple('br_rmi_pf',
         [
             dict(start = date(2002, 1, 1),
               end = date(2003, 12, 31),
-              function = ms._br_rmi_pf__2003,
+              function = rsa._br_rmi_pf__2003,
              ),
             dict(start = date(2004, 1, 1),
               end = date(2015, 12, 31), #TODO: actualiser la date (si la loi n'a pas changé)
-              function = ms._br_rmi_pf_2004_,
+              function = rsa._br_rmi_pf_2004_,
              ),
         ],
         FloatCol(entity='ind')),
-    build_simple_formula_couple('br_rmi', FloatCol(function = ms._br_rmi,
+    build_simple_formula_couple('br_rmi', FloatCol(function = rsa._br_rmi,
         entity = 'fam',
         label = u"Base ressources du Rmi/Rsa",
         )),
 
-    build_simple_formula_couple('rmi_nbp', FloatCol(function = ms._rmi_nbp,
+    build_simple_formula_couple('rmi_nbp', FloatCol(function = rsa._rmi_nbp,
         entity = 'fam',
         label = u"Nombre de personne à charge au sens du Rmi/Rsa",
         )),
-    build_simple_formula_couple('forf_log', FloatCol(function = ms._forf_log,
+    build_simple_formula_couple('forf_log', FloatCol(function = rsa._forf_log,
         entity = 'fam')),
-    build_simple_formula_couple('rsa_socle', FloatCol(function = ms._rsa_socle,
+    build_simple_formula_couple('rsa_socle', FloatCol(function = rsa._rsa_socle,
         entity = 'fam',
         label = u"RSA socle",
         )),
-    build_simple_formula_couple('rmi', FloatCol(function = ms._rmi,
+    build_simple_formula_couple('rmi', FloatCol(function = rsa._rmi,
         entity = 'fam',
         label = u"Revenu de solidarité active - socle",
         )),
-    build_simple_formula_couple('rsa', FloatCol(function = ms._rsa,
+    build_simple_formula_couple('rsa', FloatCol(function = rsa._rsa,
         entity = 'fam',
         label = u"Revenu de solidarité active",
         url = u"http://vosdroits.service-public.fr/particuliers/N19775.xhtml",
         )),
-    build_simple_formula_couple('majo_rsa', FloatCol(function = ms._majo_rsa,
+    build_simple_formula_couple('majo_rsa', FloatCol(function = rsa._majo_rsa,
         entity = 'fam',
         label = u"Majoration pour parent isolé du Revenu de solidarité active socle",
-        start = date(2009, 7, 1))),
-    build_simple_formula_couple('rsa_act', FloatCol(function = ms._rsa_act,
+        start = date(2009, 6, 1))),
+    build_simple_formula_couple('rsa_act', FloatCol(function = rsa._rsa_act,
         entity = 'fam',
         label = u"Revenu de solidarité active - activité",
-        start = date(2009, 7, 1))),
-    build_simple_formula_couple('rsa_act_i', FloatCol(function = ms._rsa_act_i)),
-    build_simple_formula_couple('psa', FloatCol(function = ms._psa,
+        start = date(2009, 6, 1))),
+    build_simple_formula_couple('rsa_act_i', FloatCol(function = rsa._rsa_act_i)),
+    build_simple_formula_couple('psa', FloatCol(function = rsa._psa,
         entity = 'fam',
         label = u"Prime de solidarité active",
         start = date(2009, 1, 1),
         end = date(2009, 12, 31),
         url = u"http://www.service-public.fr/actualites/001077.html",
         )),
-    build_simple_formula_couple('api', FloatCol(function = ms._api,
+    build_simple_formula_couple('api', FloatCol(function = rsa._api,
         entity = 'fam',
-        end = date(2009, 7, 1),
+        end = date(2009, 5, 30),
         label = u"Allocation de parent isolé",
         url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
         )),
-    build_simple_formula_couple('crds_mini', FloatCol(function = ms._crds_mini,
+    build_simple_formula_couple('crds_mini', FloatCol(function = rsa._crds_mini,
         entity = 'fam',
-        start = date(2009, 7, 1))),
+        start = date(2009, 6, 1))),
     build_dated_formula_couple('aefa',
         [
             dict(start = date(2002, 1, 1),
               end = date(2007, 12, 31),
-              function = ms._aefa__2008_,
+              function = rsa._aefa__2008_,
              ),
             dict(start = date(2009, 1, 1),
               end = date(2015, 12, 31),#TODO: actualiser la date (si la loi n'a pas changé)
-              function = ms._aefa__2008_,
+              function = rsa._aefa__2008_,
              ),
             dict(start = date(2008, 1, 1),
               end = date(2008, 12, 31),
-              function = ms._aefa_2008,
+              function = rsa._aefa_2008,
              ),
         ],
         FloatCol(entity='fam',
@@ -2188,20 +2191,20 @@ prestation_by_name = collections.OrderedDict((
     # ASPA/ASI, Minimum vieillesse
     ############################################################
 
-    build_simple_formula_couple('br_mv_i', FloatCol(function = ms._br_mv_i,
+    build_simple_formula_couple('br_mv_i', FloatCol(function = asi_aspa._br_mv_i,
         label = u"Base ressources du minimum vieillesse/ASPA",
         )),
-    build_simple_formula_couple('br_mv', FloatCol(function = ms._br_mv,
+    build_simple_formula_couple('br_mv', FloatCol(function = asi_aspa._br_mv,
         entity = 'fam',
         label = u"Base ressources du minimum vieillesse/ASPA",
         )),
 
-    build_simple_formula_couple('asi_aspa_nb_alloc', FloatCol(function = ms._asi_aspa_nb_alloc,
+    build_simple_formula_couple('asi_aspa_nb_alloc', FloatCol(function = asi_aspa._asi_aspa_nb_alloc,
         entity = 'fam')),
-    build_simple_formula_couple('asi_elig', BoolCol(function = ms._asi_elig,
+    build_simple_formula_couple('asi_elig', BoolCol(function = asi_aspa._asi_elig,
         label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité",
         )),
-    build_simple_formula_couple('asi', FloatCol(function = ms._asi,
+    build_simple_formula_couple('asi', FloatCol(function = asi_aspa._asi,
         entity = 'fam',
         label = u"Allocation supplémentaire d'invalidité",
         start = date(2007, 1, 1),
@@ -2210,23 +2213,23 @@ prestation_by_name = collections.OrderedDict((
         # En 2007, Transformation du MV et de L'ASI en ASPA et ASI. La prestation ASPA calcule bien l'ancien MV
         # mais TODO manque l'ancienne ASI
 
-    build_simple_formula_couple('aspa_elig', BoolCol(function = ms._aspa_elig,
+    build_simple_formula_couple('aspa_elig', BoolCol(function = asi_aspa._aspa_elig,
         label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées",
         )),
     build_dated_formula_couple('aspa_couple',
         [
             dict(start = date(2002, 1, 1),
               end = date(2006, 12, 31),
-              function = ms._aspa_couple__2006,
+              function = asi_aspa._aspa_couple__2006,
              ),
             dict(start = date(2007, 1, 1),
               end = date(2015, 12, 31),
-              function = ms._aspa_couple_2007_,
+              function = asi_aspa._aspa_couple_2007_,
              ),
         ],
         BoolCol(entity='fam',
         label = u"Couple au sens de l'ASPA")),
-    build_simple_formula_couple('aspa', FloatCol(function = ms._aspa,
+    build_simple_formula_couple('aspa', FloatCol(function = asi_aspa._aspa,
         entity = 'fam',
         label = u"Allocation de solidarité aux personnes agées",
         url = u"http://vosdroits.service-public.fr/particuliers/F16871.xhtml",
@@ -2236,11 +2239,11 @@ prestation_by_name = collections.OrderedDict((
     # Allocation adulte handicapé
     ############################################################
 
-    build_simple_formula_couple('br_aah', FloatCol(function = ms._br_aah,
+    build_simple_formula_couple('br_aah', FloatCol(function = aah._br_aah,
         entity = 'fam',
         label = u"Base ressources de l'allocation adulte handicapé",
         )),
-    build_simple_formula_couple('aah', FloatCol(function = ms._aah,
+    build_simple_formula_couple('aah', FloatCol(function = aah._aah,
         entity = 'fam',
         label = u"Allocation adulte handicapé",
         url = u"http://vosdroits.service-public.fr/particuliers/N12230.xhtml",
@@ -2249,11 +2252,11 @@ prestation_by_name = collections.OrderedDict((
         [
             dict(start = date(2002, 1, 1),
               end = date(2005, 12, 31),
-              function = ms._caah__2005,
+              function = aah._caah__2005,
              ),
             dict(start = date(2006, 1, 1),
               end = date(2015, 12, 31), #TODO:actualiser la date (si la loi n'a pas changé)
-              function = ms._caah_2006_,
+              function = aah._caah_2006_,
              ),
         ],
         FloatCol(entity='fam',
@@ -2500,5 +2503,13 @@ prestation_by_name = collections.OrderedDict((
         )),
     build_simple_formula_couple('acs', FloatCol(function = cmu._acs,
         label = u"Montant de l'Aide pour une Complémentaire Santé",
-        entity = 'fam')),
-    ))
+        entity = 'fam'
+        )),
+    ############################################################
+    # Allocation Spécifique de Solidarité
+    ############################################################
+    # build_simple_formula_couple('ass', FloatCol(function = ass._ass,
+    #     label = u"Montant de l'Allocation Spécifique de Solidarité",
+    #     entity = 'fam'
+    #     )),
+))

@@ -291,7 +291,7 @@ def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
     asf_nbenf = nb_enf(age, smic55, P.af.age1, P.af.age2)
     asf_nbenfa = asf_nbenf
 
-    asf_brut = round(isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1), 2)
+    asf_brut = isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1)
 
     no_alr = not_(alr > 0)
     return asf_brut * no_alr
