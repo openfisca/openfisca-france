@@ -66,6 +66,7 @@ from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
 from .prestations_familiales import af
+from .prestations_familiales import ars
 from .prestations_familiales import asf
 from .prestations_familiales import paje
 from .prestations_familiales import cf
@@ -1930,7 +1931,7 @@ prestation_by_name = collections.OrderedDict((
         url = u"http://vosdroits.service-public.fr/particuliers/F815.xhtml",
         )),
 
-    build_simple_formula_couple('ars', FloatCol(function = pf._ars,
+    build_simple_formula_couple('ars', FloatCol(function = ars._ars,
         entity = 'fam',
         label = u"Allocation de rentrée scolaire",
         url = u"http://vosdroits.service-public.fr/particuliers/F1878.xhtml",
