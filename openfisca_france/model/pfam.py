@@ -132,49 +132,6 @@ def _br_pf(self, br_pf_i_holder, rev_coll_holder):
 # Complément familial
 ############################################################################
 
-
-def _asf_elig(self, caseT_holder, caseL_holder):
-    '''
-    Eligibilté à l'allocation de soutien familial (ASF)
-    '''
-    caseT = self.cast_from_entity_to_role(caseT_holder, role = VOUS)
-    caseT = self.any_by_roles(caseT)
-    caseL = self.cast_from_entity_to_role(caseL_holder, role = VOUS)
-    caseL = self.any_by_roles(caseL)
-    return caseT | caseL
-
-
-def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, _P):
-    '''
-    Allocation de soutien familial
-
-    L’ASF permet d’aider le conjoint survivant ou le parent isolé ayant la garde
-    d’un enfant et les familles ayant à la charge effective et permanente un enfant
-    orphelin.
-    Vous avez au moins un enfant à votre charge. Vous êtes son père ou sa mère et vous vivez seul(e),
-    ou vous avez recueilli cet enfant et vous vivez seul ou en couple.
-
-    http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
-    '''
-    age = self.split_by_roles(age_holder, roles = ENFS)
-    alr = self.sum_by_entity(alr_holder)
-    # TODO: what is rst doing here?
-    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-
-    # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
-    # action devant le TGI pour complêter l'éligibilité
-
-    # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
-    P = _P.fam
-    asf_nbenf = nb_enf(age, smic55, P.af.age1, P.af.age2)
-    asf_nbenfa = asf_nbenf
-
-    asf_brut = isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1)
-
-    no_alr = not_(alr > 0)
-    return asf_brut * no_alr
-
-
 def _ars(self, age_holder, af_nbenf, smic55_holder, br_pf, _P):
     '''
     Allocation de rentrée scolaire brute de CRDS

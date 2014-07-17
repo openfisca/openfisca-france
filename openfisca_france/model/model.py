@@ -66,6 +66,7 @@ from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
 from .prestations_familiales import af
+from .prestations_familiales import asf
 from .prestations_familiales import paje
 from .prestations_familiales import cf
 from . import pfam as pf
@@ -1921,9 +1922,9 @@ prestation_by_name = collections.OrderedDict((
         label = u"Complément familial avant d'éventuels cumuls",
         url = u"http://vosdroits.service-public.fr/particuliers/F13214.xhtml",
         )),
-    build_simple_formula_couple('asf_elig', BoolCol(function = pf._asf_elig,
+    build_simple_formula_couple('asf_elig', BoolCol(function = asf._asf_elig,
         entity = 'fam')),
-    build_simple_formula_couple('asf', FloatCol(function = pf._asf,
+    build_simple_formula_couple('asf', FloatCol(function = asf._asf,
         entity = 'fam',
         label = u"Allocation de soutien familial",
         url = u"http://vosdroits.service-public.fr/particuliers/F815.xhtml",

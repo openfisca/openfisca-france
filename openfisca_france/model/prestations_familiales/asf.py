@@ -1,0 +1,78 @@
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
+#
+# This file is part of OpenFisca.
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+from __future__ import division
+
+from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
+from openfisca_core.accessors import law
+
+from ..input_variables.base import QUIFAM, QUIFOY
+from ..pfam import nb_enf
+
+CHEF = QUIFAM['chef']
+PART = QUIFAM['part']
+ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+VOUS = QUIFOY['vous']
+CONJ = QUIFOY['conj']
+
+
+def _asf_elig(self, caseT_holder, caseL_holder):
+    '''
+    Eligibilité à l'allocation de soutien familial (ASF)
+    '''
+    caseT = self.cast_from_entity_to_role(caseT_holder, role = VOUS)
+    caseT = self.any_by_roles(caseT)
+    caseL = self.cast_from_entity_to_role(caseL_holder, role = VOUS)
+    caseL = self.any_by_roles(caseL)
+    return caseT | caseL
+
+
+def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, P = law.fam):
+    '''
+    Allocation de soutien familial
+
+    L’ASF permet d’aider le conjoint survivant ou le parent isolé ayant la garde
+    d’un enfant et les familles ayant à la charge effective et permanente un enfant
+    orphelin.
+    Vous avez au moins un enfant à votre charge. Vous êtes son père ou sa mère et vous vivez seul(e),
+    ou vous avez recueilli cet enfant et vous vivez seul ou en couple.
+
+    http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
+    '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    alr = self.sum_by_entity(alr_holder)
+    # TODO: what is rst doing here?
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
+    # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
+    # action devant le TGI pour complêter l'éligibilité
+
+    # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
+    asf_nbenf = nb_enf(age, smic55, P.af.age1, P.af.age2)
+    asf_nbenfa = asf_nbenf
+
+    asf_brut = isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1)
+
+    no_alr = not_(alr > 0)
+    return asf_brut * no_alr
