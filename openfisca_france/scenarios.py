@@ -28,16 +28,18 @@ import datetime
 import itertools
 import json
 import logging
+import numpy as np
 import os
 import re
 import time
 import urllib2
 import uuid
 
-import numpy as np
-from openfisca_core import legislations, simulations
 
-from . import conv, entities
+from openfisca_core import conv, legislations, simulations
+from openfisca_core.scenarios import AbstractScenario
+
+from . import entities
 
 
 log = logging.getLogger(__name__)
@@ -45,19 +47,12 @@ N_ = lambda message: message
 year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]\d|3[0-1]))?)?$')
 
 
-class Scenario(object):
+class Scenario(AbstractScenario):
     axes = None
-    compact_legislation = None
-    date = None
-    tax_benefit_system = None
     test_case = None
 
-    def init_from_attributes(self, cache_dir = None, repair = False, **attributes):
-        conv.check(self.make_json_or_python_to_attributes(cache_dir = cache_dir, repair = repair))(attributes)
-        return self
-
-    def init_single_entity(self, axes = None, date = None, enfants = None, famille = None, foyer_fiscal = None,
-            menage = None, parent1 = None, parent2 = None):
+    def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
+                           parent1 = None, parent2 = None, date = None):
         if enfants is None:
             enfants = []
         assert parent1 is not None
@@ -73,7 +68,7 @@ class Scenario(object):
                 individu = individu.copy()
                 individu['id'] = id = 'ind{}'.format(index)
             individus.append(individu)
-            if index <= 1 :
+            if index <= 1:
                 famille.setdefault('parents', []).append(id)
                 foyer_fiscal.setdefault('declarants', []).append(id)
                 if index == 0:
@@ -226,7 +221,7 @@ class Scenario(object):
                     legislation_filename = '{}.json'.format(legislation_uuid_hex[2:])
                     legislation_file_path = os.path.join(legislation_dir, legislation_filename)
                     if os.path.exists(legislation_file_path) \
-                            and os.path.getmtime(legislation_file_path) > time.time() - 900: # 15 minutes
+                            and os.path.getmtime(legislation_file_path) > time.time() - 900:  # 15 minutes
                         with open(legislation_file_path) as legislation_file:
                             try:
                                 legislation_json = json.load(legislation_file,
@@ -950,21 +945,12 @@ class Scenario(object):
                 return None, None
             self = cls()
             self.tax_benefit_system = tax_benefit_system
-            return self.make_json_or_python_to_attributes(cache_dir = cache_dir, repair = repair)(value = value,
-                state = state or conv.default_state)
-
+            return self.make_json_or_python_to_attributes(cache_dir = cache_dir, repair = repair)(
+                value = value, state = state or conv.default_state)
         return json_to_instance
 
-    def new_simulation(self, debug = False, debug_all = False, trace = False):
-        simulation = simulations.Simulation(
-            compact_legislation = self.compact_legislation,
-            date = self.date,
-            debug = debug,
-            debug_all = debug_all,
-            tax_benefit_system = self.tax_benefit_system,
-            trace = trace,
-            )
-
+    def fill_simulation(self, simulation):
+        assert isinstance(simulation, simulations.Simulation)
         column_by_name = self.tax_benefit_system.column_by_name
         entity_by_key_plural = simulation.entity_by_key_plural
         steps_count = 1
@@ -1146,7 +1132,7 @@ class Scenario(object):
                 cells_iter = (
                     cell if cell is not None else column.default
                     for cell in (
-                       foyer_fiscal.get(column_name)
+                        foyer_fiscal.get(column_name)
                         for step_index in range(steps_count)
                         for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
                         )
@@ -1335,6 +1321,11 @@ class Scenario(object):
 
             self_json['test_case'] = test_case_json
         return self_json
+
+
+
+
+# Finders
 
 
 def find_famille_and_role(test_case, individu_id):

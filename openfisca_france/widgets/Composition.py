@@ -44,99 +44,6 @@ from openfisca_france import CURRENCY  # , DATA_DIR
 _ = get_translation('openfisca_qt')
 
 
-XAXIS_PROPERTIES = {
-    'sali': {
-        'name': 'sal',
-        'typ_tot': {
-            'salsuperbrut': 'Salaire super brut',
-            'salbrut': 'Salaire brut',
-            'sal': 'Salaire imposable',
-            'salnet': 'Salaire net'
-            },
-        'typ_tot_default': 'sal',
-        },
-    'choi': {
-        'name': 'cho',
-        'col_name': 'choi',
-        'typ_tot': {
-            'chobrut': u"Chômage brut",
-            'cho': u"Chômage",
-            'chonet': u"Chômage net",
-            },
-        'typ_tot_default': 'cho'
-        },
-    'rsti': {
-        'name': 'rst',
-        'col_name': 'rsti',
-        'typ_tot': {
-            'rstbrut': u"Retraite brut",
-            'rst': u"Retraite",
-            'rstnet': u"Retraite net"
-            },
-        'typ_tot_default': 'rst'
-        },
-    'f2da': {
-        'name': 'divpfl',
-        'col_name': 'f2da',
-        'typ_tot': {
-            'rev_cap_brut': u"Revenus des capitaux",
-            'rev_cap_net': u"Revenus des capitaux nets"
-            },
-        'typ_tot_default': 'rev_cap_brut',
-        },
-    'f2ee': {
-        'name': 'intpfl',
-        'col_name': 'f2ee',
-        'typ_tot': {
-            'rev_cap_brut': "Revenus des capitaux",
-            'rev_cap_net': "Revenus des capitaux nets",
-            },
-        'typ_tot_default': 'rev_cap_brut'
-        },
-    'f2dc': {
-        'name': 'divb',
-        'col_name': 'f2dc',
-        'typ_tot': {
-            'rev_cap_brut': "Revenus des capitaux",
-            'rev_cap_net': "Revenus des capitaux nets"
-            },
-        'typ_tot_default': 'rev_cap_brut'
-        },
-    'f2tr': {
-        'name': 'intb',
-        'col_name': 'f2tr',
-        'typ_tot': {
-            'rev_cap_brut': "Revenus des capitaux",
-            'rev_cap_net': "Revenus des capitaux nets"
-            },
-        'typ_tot_default': 'rev_cap_brut'
-        },
-    'alr': {
-        'name': 'alr',
-        'col_name': 'alr',
-        'typ_tot': {
-            'pen': "Pensions"
-            },
-        'typ_tot_default': 'pen'
-        },
-    'f6gu': {
-        'name': 'f6gu',
-        'col_name': 'f6gu',
-        'typ_tot': {
-            'pen': "Pensions"
-            },
-        'typ_tot_default': 'pen'},
-    'f4ba': {
-        'name': 'f4ba',
-        'col_name': 'f4ba',
-        'typ_tot': {
-            'fon': "Revenus fonciers"
-            },
-        'typ_tot_default': 'fon'
-    },
-}
-
-
 class S:
     name = 0
     birth = 1
@@ -158,6 +65,97 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         QDockWidget.DockWidgetMovable
     DISABLE_ACTIONS_WHEN_HIDDEN = False
     sig_option_changed = Signal(str, object)
+    XAXIS_PROPERTIES = {
+        'sali': {
+            'name': 'sal',
+            'typ_tot': {
+                'salsuperbrut': 'Salaire super brut',
+                'salbrut': 'Salaire brut',
+                'sal': 'Salaire imposable',
+                'salnet': 'Salaire net'
+                },
+            'typ_tot_default': 'sal',
+            },
+        'choi': {
+            'name': 'cho',
+            'col_name': 'choi',
+            'typ_tot': {
+                'chobrut': u"Chômage brut",
+                'cho': u"Chômage",
+                'chonet': u"Chômage net",
+                },
+            'typ_tot_default': 'cho'
+            },
+        'rsti': {
+            'name': 'rst',
+            'col_name': 'rsti',
+            'typ_tot': {
+                'rstbrut': u"Retraite brut",
+                'rst': u"Retraite",
+                'rstnet': u"Retraite net"
+                },
+            'typ_tot_default': 'rst'
+            },
+        'f2da': {
+            'name': 'divpfl',
+            'col_name': 'f2da',
+            'typ_tot': {
+                'rev_cap_brut': u"Revenus des capitaux",
+                'rev_cap_net': u"Revenus des capitaux nets"
+                },
+            'typ_tot_default': 'rev_cap_brut',
+            },
+        'f2ee': {
+            'name': 'intpfl',
+            'col_name': 'f2ee',
+            'typ_tot': {
+                'rev_cap_brut': "Revenus des capitaux",
+                'rev_cap_net': "Revenus des capitaux nets",
+                },
+            'typ_tot_default': 'rev_cap_brut'
+            },
+        'f2dc': {
+            'name': 'divb',
+            'col_name': 'f2dc',
+            'typ_tot': {
+                'rev_cap_brut': "Revenus des capitaux",
+                'rev_cap_net': "Revenus des capitaux nets"
+                },
+            'typ_tot_default': 'rev_cap_brut'
+            },
+        'f2tr': {
+            'name': 'intb',
+            'col_name': 'f2tr',
+            'typ_tot': {
+                'rev_cap_brut': "Revenus des capitaux",
+                'rev_cap_net': "Revenus des capitaux nets"
+                },
+            'typ_tot_default': 'rev_cap_brut'
+            },
+        'alr': {
+            'name': 'alr',
+            'col_name': 'alr',
+            'typ_tot': {
+                'pen': "Pensions"
+                },
+            'typ_tot_default': 'pen'
+            },
+        'f6gu': {
+            'name': 'f6gu',
+            'col_name': 'f6gu',
+            'typ_tot': {
+                'pen': "Pensions"
+                },
+            'typ_tot_default': 'pen'},
+        'f4ba': {
+            'name': 'f4ba',
+            'col_name': 'f4ba',
+            'typ_tot': {
+                'fon': "Revenus fonciers"
+                },
+            'typ_tot_default': 'fon'
+        },
+    }
 
     def __init__(self, scenario = None, parent = None):
         super(CompositionWidget, self).__init__(parent)
@@ -169,7 +167,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         # Initialize xaxes
         x_axis = self.get_option('x_axis')
         axes_names = []
-        for col, axe in XAXIS_PROPERTIES.iteritems():
+        for col, axe in self.XAXIS_PROPERTIES.iteritems():
             self.x_axis_box.addItem(col, to_qvariant(axe["name"]))  # convert col to label by using tax_benefit_system
 #            self.x_axis_box.addItem(axe.label, to_qvariant(axe.name))
             axes_names.append(axe["name"])
@@ -619,27 +617,29 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             test_case = test_case,
             year = 2013,
             )
-
+        print self.scenario.test_case
         self.scenario.simulation = self.scenario.new_simulation(debug = True)
         self.scenario.simulation.compute('revdisp')
+
+        self.main.scenario = self.scenario
         self.main.refresh_test_case_plugins()
         self.ending_long_process(_("Test case results are updated"))
 
     def set_reform(self, reform):
         '''
-        Toggle reform mode for test case
+        Toggle reform mode for test case  # TODO should be in another widget
         '''
         if (not reform) and self.action_set_reform.isChecked():
             self.action_set_reform.toggle()
         if (not self.action_set_reform.isChecked()) and reform:
             self.action_set_reform.toggle()
 
-        self.simulation.set_config(reforme = reform, maxrev=self.maxrev)
+        self.scenario.set_config(reforme = reform, maxrev=self.maxrev)
         self.action_compute.setEnabled(True)
 
     def set_single(self, is_single = True):
         if is_single:
-            self.simulation.set_config(nmen = 1, mode = 'castype') # TODO: this might be removed ??
+            self.scenario.set_config(nmen = 1, mode = 'castype') # TODO: this might be removed ??
             self.action_compute.setEnabled(True)
             self.action_set_bareme.setChecked(False)
         else:
@@ -650,7 +650,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     def set_bareme(self, is_bareme = True):
         if is_bareme:
             nmen = self.get_option('nmen')
-            self.simulation.set_config(nmen = nmen, mode = 'bareme') # # TODO: this might be removed ??
+            self.scenario.set_config(nmen = nmen, mode = 'bareme') # # TODO: this might be removed ??
             self.action_compute.setEnabled(True)
             self.action_set_single.setChecked(False)
         else:
@@ -673,7 +673,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             x_axis = self.get_option('x_axis')
             axes_names = [
                 axe.name
-                for axe in XAXIS_PROPERTIES.itervalues()
+                for axe in self.XAXIS_PROPERTIES.itervalues()
                 ]
             self.x_axis_box.setCurrentIndex(axes_names.index(x_axis))
 

@@ -25,10 +25,10 @@
 
 import copy
 import datetime
-import xml.etree.ElementTree
 
 import jsonpatch
-from openfisca_core import conv, legislationsxml
+
+from openfisca_core import legislations
 from openfisca_core.reforms import Reform
 import openfisca_france
 
@@ -38,38 +38,24 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def test_parametric_reform(year = 2014):
-    legislation_tree = xml.etree.ElementTree.parse(TaxBenefitSystem.PARAM_FILE)
-    legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(
-        legislation_tree.getroot(),
-        state = conv.default_state
+
+    dated_legislation_json_src = legislations.generate_dated_legislation_json(
+        tax_benefit_system.legislation_json,
+        datetime.date(year, 1, 1)
         )
-    _, legislation_json = legislationsxml.transform_node_xml_json_to_json(legislation_xml_json)
 
-    legislation_json_src = legislation_json
-#    import json
-#    with open("/tmp/src.json", "w") as f:
-#        f.write(
-#            json.dumps(legislation_json_src, ensure_ascii = False, encoding = "utf8", indent = 2).encode("utf8"))
-#    print str((legislation_json_src['children']['ir']['children']['bareme']['slices'][0]['rate'],))
-#    print str((legislation_json_src['children']['ir']['children']['bareme']['slices'][1]['rate'],))
-    legislation_json_reform = copy.deepcopy(legislation_json_src)
-    legislation_json_reform['children']['ir']['children']['bareme']['slices'][0]['rate'][-1]['value'] = 1
+    reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
+    assert reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] == 0
+    reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] = 1
 
-    # import json_delta
-    # json_delta: bug with ordered dicts
-    #difference = json_delta.diff(p, p_copy)
+    reform = Reform(
+        name = "IR_100_tranche_1",
+        label = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
+        reform_dated_legislation_json = reform_dated_legislation_json,
+        reference_dated_legislation_json = dated_legislation_json_src
+        )
 
-#    from dictdiffer import diff, patch, swap, revert
-#    difference = diff(p, p_copy)
-#    print difference (ugly)
-
-    legislation_json_patch = jsonpatch.make_patch(legislation_json_src, legislation_json_reform)
-    print legislation_json_patch
-
-    reform = Reform(name = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
-                    legislation_json_patch = legislation_json_patch)
-
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    scenario = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 3,
@@ -78,32 +64,16 @@ def test_parametric_reform(year = 2014):
                 min = 0,
                 ),
             ],
-        date = datetime.date(year , 1, 1),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        ).new_simulation(debug = True)
+        date = datetime.date(year, 1, 1),
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1)))
+
+    simulation = scenario.new_simulation(debug = True)
     assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .0001
-    tax_benefit_system.apply_reform(reform = reform)
-#    with open("/tmp/reform.json", "w") as f:
-#        f.write(
-#            json.dumps(
-#                tax_benefit_system.legislation_json,
-#                ensure_ascii = False,
-#                encoding = "utf8",
-#                indent = 2,
-#                ).encode("utf8"))
-    simulation2 = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [
-            dict(
-                count = 3,
-                name = 'sali',
-                max = 100000,
-                min = 0,
-                ),
-            ],
-        date = datetime.date(year , 1, 1),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        ).new_simulation(debug = True)
-    assert max(abs(simulation2.calculate('impo') - [0., -13900.20019531, -29446.52929688])) < .0001
+
+    scenario.add_reform(reform)
+    reform_simulation = scenario.new_reform_simulation(debug = True)
+    print reform_simulation.compact_legislation is not None
+    assert max(abs(reform_simulation.calculate('impo') - [0., -13900.20019531, -29446.52929688])) < .0001
 
 
 if __name__ == '__main__':
