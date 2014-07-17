@@ -113,3 +113,102 @@ def _aged(self, age_holder, smic55_holder, br_pf, ape_taux_partiel, dep_trim, P 
        + (br_pf <= P.aged.revenus_plaf) * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf1, 0))
     aged6 = elig2 * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf2, 0)
     return 12 * (aged3 + aged6)  # annualisé
+
+
+def _ape(self, age_holder, smic55_holder, inactif, partiel1, partiel2, P = law.fam):
+    '''
+    Allocation parentale d'éducation
+    'fam'
+
+    L’allocation parentale d’éducation s’adresse aux parents qui souhaitent arrêter ou
+    réduire leur activité pour s’occuper de leurs jeunes enfants, à condition que ceux-ci
+    soient nés avant le 01/01/2004. En effet, pour les enfants nés depuis cette date,
+    dans le cadre de la Prestation d’Accueil du Jeune Enfant, les parents peuvent bénéficier
+    du « complément de libre choix d’activité. »
+
+    Les personnes en couple peuvent toutes deux bénéficier de l’APE à taux plein, mais pas en même temps. En revanche,
+    elles peuvent cumuler deux taux partiels, à condition que leur total ne dépasse pas le montant du taux plein.
+
+    TODO: cumul,  adoption, triplés,
+    Cumul d'allocations : Cette allocation n'est pas cumulable pour un même ménage avec
+    - une autre APE (sauf à taux partiel),
+    - ou l'allocation pour jeune enfant (APJE) versée à partir de la naissance,
+    - ou le complément familial,
+    - ou l'allocation d’adulte handicapé (AAH).
+    Enfin, il est à noter que cette allocation n’est pas cumulable avec :
+    - une pension d’invalidité ou une retraite ;
+    - des indemnités journalières de maladie, de maternité ou d’accident du travail ;
+    - des allocations chômage. Il est tout de même possible de demander aux ASSEDIC la suspension de ces dernières pour
+      percevoir l’APE.
+
+    L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour les
+    professions non salariées.
+    '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
+    elig = (nb_enf(age, smic55, 0, P.ape.age - 1) >= 1) & (nb_enf(age, smic55, 0, P.af.age2) >= 2)
+    # Inactif
+    # Temps partiel 1
+    # Salarié:
+    # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise
+    # VRP ou non salarié travaillant à temps partiel:
+    # Temps de travail ne dépassant pas 76 heures par mois et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
+    # partiel1 = zeros((12,self.taille))
+
+    # Temps partiel 2
+    # Salarié:
+    # Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
+    # Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
+    #  (smic_8.27*169*136 %)
+    ape = elig * (inactif * P.ape.tx_inactif + partiel1 * P.ape.tx_50 + partiel2 * P.ape.tx_80)
+    # Cummul APE APJE CF
+    return 12 * ape  # annualisé
+
+
+def _apje(self, br_pf, age_holder, smic55_holder, isol, biact, P = law.fam):
+    '''
+    Allocation pour jeune enfant
+    '''
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
+    # TODO: APJE courte voir doc ERF 2006
+    nbenf = nb_enf(age, smic55, 0, P.apje.age - 1)
+    bmaf = P.af.bmaf
+    bmaf_n_2 = P.af.bmaf_n_2
+    base = round(P.apje.taux * bmaf, 2)
+    base2 = round(P.apje.taux * bmaf_n_2, 2)
+
+    plaf_tx = (nbenf > 0) + P.apje.plaf_tx1 * min_(nbenf, 2) + P.apje.plaf_tx2 * max_(nbenf - 2, 0)
+    majo = isol | biact
+    plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
+    plaf2 = plaf + 12 * base2
+
+    apje = (nbenf >= 1) * ((br_pf <= plaf) * base
+                            + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
+
+    # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
+    # Cette allocation est verséE du 5ème mois de grossesse jusqu’au mois précédant le 3ème anniversaire de l’enfant.
+
+    # Non cumul APE APJE CF
+    #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes.
+    #    L’APJE est alors versée du 5ème mois de grossesse jusqu’à la naissance de l’enfant.
+    #  - Le CF
+    return 12 * apje  # annualisé
+
+
+def _ape_cumul(apje_temp, ape_temp, cf_temp):
+    '''
+    L'allocation de base de la paje n'est pas cumulable avec le complément familial
+    '''
+    ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
+    return round(ape, 2)
+
+
+def _apje_cumul(apje_temp, ape_temp, cf_temp):
+    '''
+    L'APJE n'est pas cumulable avec le complément familial et l'APE
+    '''
+    apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
+    return round(apje, 2)

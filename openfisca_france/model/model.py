@@ -66,6 +66,7 @@ from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
 from .prestations_familiales import af
+from .prestations_familiales import paje
 from . import pfam as pf
 from . import th as th
 
@@ -2008,25 +2009,25 @@ prestation_by_name = collections.OrderedDict((
         FloatCol(entity='fam',
         label = u"Allocation d'éducation de l'enfant handicapé",
         url = u"http://vosdroits.service-public.fr/particuliers/N14808.xhtml")),
-    build_simple_formula_couple('ape_temp', FloatCol(function = pf._ape,
+    build_simple_formula_couple('ape_temp', FloatCol(function = paje._ape,
         entity = 'fam',
         label = u"Allocation parentale d'éducation",
         end = date(2004, 1, 1),
         url = u"http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France",
         )),
-    build_simple_formula_couple('apje_temp', FloatCol(function = pf._apje,
+    build_simple_formula_couple('apje_temp', FloatCol(function = paje._apje,
         entity = 'fam',
         label = u"Allocation pour le jeune enfant",
         end = date(2004, 1, 1),
         url = u"http://vosdroits.service-public.fr/particuliers/F2552.xhtml",
         )),
-    build_simple_formula_couple('ape', FloatCol(function = pf._ape_cumul,
+    build_simple_formula_couple('ape', FloatCol(function = paje._ape_cumul,
         entity = 'fam',
         label = u"Allocation parentale d'éducation",
         end = date(2004, 1, 1),
         url = u"http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France",
         )),
-    build_simple_formula_couple('apje', FloatCol(function = pf._apje_cumul,
+    build_simple_formula_couple('apje', FloatCol(function = paje._apje_cumul,
         entity = 'fam',
         label = u"Allocation pour le jeune enfant",
         end = date(2004, 1, 1),
