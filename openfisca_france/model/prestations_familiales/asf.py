@@ -37,7 +37,7 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _asf_elig(self, caseT_holder, caseL_holder):
+def _asf_elig(self, isol, caseT_holder, caseL_holder, alr_holder):
     '''
     Eligibilité à l'allocation de soutien familial (ASF)
     '''
@@ -45,10 +45,25 @@ def _asf_elig(self, caseT_holder, caseL_holder):
     caseT = self.any_by_roles(caseT)
     caseL = self.cast_from_entity_to_role(caseL_holder, role = VOUS)
     caseL = self.any_by_roles(caseL)
-    return caseT | caseL
+    alr = self.sum_by_entity(alr_holder)
+
+    return isol * (caseT | caseL) * not_(alr > 0)
 
 
-def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, P = law.fam):
+def _asf_nbenf(self, age_holder, smic55_holder, P = law.fam):
+    '''
+    Nombre d'enfants ouvrant l'éligibilité à l'allocation de soutien familial (ASF)
+    '''
+
+    # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
+    # action devant le TGI pour complêter l'éligibilité
+    age = self.split_by_roles(age_holder, roles = ENFS)
+    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
+    return nb_enf(age, smic55, P.af.age1, P.af.age2)
+
+
+def _asf(asf_elig, asf_nbenf, P = law.fam):
     '''
     Allocation de soutien familial
 
@@ -60,19 +75,6 @@ def _asf(self, age_holder, isol, asf_elig, smic55_holder, alr_holder, P = law.fa
 
     http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
     '''
-    age = self.split_by_roles(age_holder, roles = ENFS)
-    alr = self.sum_by_entity(alr_holder)
-    # TODO: what is rst doing here?
-    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-
-    # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
-    # action devant le TGI pour complêter l'éligibilité
 
     # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
-    asf_nbenf = nb_enf(age, smic55, P.af.age1, P.af.age2)
-    asf_nbenfa = asf_nbenf
-
-    asf_brut = isol * asf_elig * max_(0, asf_nbenfa * 12 * P.af.bmaf * P.asf.taux1)
-
-    no_alr = not_(alr > 0)
-    return asf_brut * no_alr
+    return asf_elig * max_(0, asf_nbenf * 12 * P.af.bmaf * P.asf.taux1)

@@ -4200,7 +4200,7 @@
       </CODE>
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
-      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent maquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
+      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.225" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
       </CODE>
@@ -5044,6 +5044,14 @@
       <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
         <VALUE deb="1977-10-01" fin="2014-12-31" valeur="25" />
       </CODE>
+      <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial">
+        <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.225" />
+        </CODE>
+        <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3" />
+        </CODE>
+      </NODE>
       <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé">
         <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent">
           <VALUE deb="2009-06-01" fin="2014-12-31" valeur="1.284" />

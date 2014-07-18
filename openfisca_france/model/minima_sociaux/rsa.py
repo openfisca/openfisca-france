@@ -66,6 +66,15 @@ def _ra_rsa(sal, hsup, rpns, etr):
     return sal + hsup + rpns + etr
 
 
+def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
+    '''
+    Allocation de soutien familial forfaitisée pour le RSA
+    '''
+
+    # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
+    return asf_elig * max_(0, asf_nbenf * 12 * bmaf * forfait_asf.taux1)
+
+
 def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
@@ -75,13 +84,24 @@ def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
 
-def _br_rmi_pf_2004_(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
+def _br_rmi_pf_2004_2014(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
     TO DO: Add mva (majoration vie autonome),
     """
 
     out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+
+    return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
+
+
+def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
+    """
+    Prestations familiales inclues dans la base ressource RSA/RMI
+    TO DO: Add mva (majoration vie autonome),
+    """
+
+    out = P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
 
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
