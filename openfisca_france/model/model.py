@@ -1926,7 +1926,7 @@ prestation_by_name = collections.OrderedDict((
         )),
     build_simple_formula_couple('asf_elig', BoolCol(function = asf._asf_elig,
         entity = 'fam')),
-    build_simple_formula_couple('asf_nbenf', BoolCol(function = asf._asf_nbenf,
+    build_simple_formula_couple('asf_nbenf', IntCol(function = asf._asf_nbenf,
         entity = 'fam')),
     build_simple_formula_couple('asf', FloatCol(function = asf._asf,
         entity = 'fam',
