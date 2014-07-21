@@ -26,7 +26,7 @@
 import copy
 import datetime
 
-import jsonpatch
+import json
 
 from openfisca_core import legislations
 from openfisca_core.reforms import Reform
@@ -43,6 +43,7 @@ def test_parametric_reform(year = 2014):
         tax_benefit_system.legislation_json,
         datetime.date(year, 1, 1)
         )
+    print unicode(json.dumps(dated_legislation_json_src, ensure_ascii = False, indent = 2))
 
     reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
     assert reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] == 0
