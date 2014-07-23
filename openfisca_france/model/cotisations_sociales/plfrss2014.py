@@ -131,3 +131,10 @@ def alleg_plfrss2014_public(salbrut, P):
     + parametres.taux_10 * ( parametres.seuil_8 < salbrut <= parametres.seuil_9)
     + parametres.taux_10 * ( parametres.seuil_9 < salbrut <= parametres.seuil_10)
     + parametres.taux_11 * (parametres.seuil_10 < salbrut <= parametres.seuil_11)
+
+
+def reduction_impot_execptionnelle(rfr, nb_adult, nb_part, _P)
+    parametres = _P.plfr2014.reduction_impot_exceptionnelle
+    plafond = parametres.seuil * nb_adult + (nb_part - nb_adult) * 2 * parametres.majoration_seuil
+    montant = parametres.montant_plafond * nb_adult
+    reduction = min_(max_(plafond + montant - rfr , 0), montant)

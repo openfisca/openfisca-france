@@ -850,7 +850,7 @@ def _glo(self, f1tv, f1tw, f1tx, f3vf, f3vi, f3vj):
 
 
 def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, finpfl = law.ir.autre.finpfl,
-        majGO = law.ir.rvcm.majGO):
+                 majGO = law.ir.rvcm.majGO):
     """
     Revenus du capital imposés au barème
     """
@@ -869,12 +869,14 @@ def _rev_cap_lib__2007(f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
     out = f2dh + f2ee
     return out * not_(finpfl)
 
+
 def _rev_cap_lib_2008_(f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
     '''
     Revenu du capital imposé au prélèvement libératoire
     '''
     out = f2da + f2dh + f2ee
     return out * not_(finpfl)
+
 
 def _avf(f2ab):
     '''
@@ -884,21 +886,23 @@ def _avf(f2ab):
 
 
 def _imp_lib__2007(f2dh, f2ee, _P,
-        prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
+                   prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
     '''
     Prelèvement libératoire sur les revenus du capital
     '''
     out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
     return out
 
+
 def _imp_lib_2008_(f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl,
-        prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
+                   prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
     '''
     Prelèvement libératoire sur les revenus du capital
     '''
     out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
-            - prelevement_liberatoire.assvie * f2dh
+        - prelevement_liberatoire.assvie * f2dh
     return out
+
 
 def _fon(f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfoncier):
     '''
@@ -928,10 +932,10 @@ def _rpns_pvce(frag_pvce, arag_pvce, nrag_pvce, mbic_pvce, abic_pvce,
     abnc_pvce (f5qd, f5rd, f5sd)
     nbnc_pvce (f5qj, f5rj, f5sj)
     '''
-
     return (frag_pvce + arag_pvce + nrag_pvce + mbic_pvce + abic_pvce +
-             nbic_pvce + macc_pvce + aacc_pvce + nacc_pvce + mbnc_pvce +
-             abnc_pvce + nbnc_pvce + mncn_pvce + cncn_pvce)
+            nbic_pvce + macc_pvce + aacc_pvce + nacc_pvce + mbnc_pvce +
+            abnc_pvce + nbnc_pvce + mncn_pvce + cncn_pvce)
+
 
 def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon,
                nbic_exon, macc_exon, aacc_exon, nacc_exon, mbnc_exon,
@@ -957,6 +961,7 @@ def _rpns_exon(frag_exon, arag_exon, nrag_exon, mbic_exon, abic_exon,
             nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon +
             abnc_exon + nbnc_exon)
 
+
 def _rag(frag_exon, frag_impo, arag_exon, arag_impg, arag_defi, nrag_exon, nrag_impg, nrag_defi, nrag_ajag):
     '''
     Revenus agricoles
@@ -976,9 +981,10 @@ def _rag(frag_exon, frag_impo, arag_exon, arag_impg, arag_defi, nrag_exon, nrag_
             nrag_exon + nrag_impg - nrag_defi +
             nrag_ajag)
 
+
 def _ric(mbic_exon, mbic_impv, mbic_imps, abic_exon, nbic_exon, abic_impn, nbic_impn,
-        abic_imps, nbic_imps, abic_defn, nbic_defn, abic_defs, nbic_defs, nbic_apch,
-        microentreprise = law.ir.rpns.microentreprise):
+         abic_imps, nbic_imps, abic_defn, nbic_defn, abic_defs, nbic_defs, nbic_apch,
+         microentreprise = law.ir.rpns.microentreprise):
     '''
     Bénéfices industriels et commerciaux
     'ind'
@@ -998,18 +1004,19 @@ def _ric(mbic_exon, mbic_impv, mbic_imps, abic_exon, nbic_exon, abic_impn, nbic_
     nbic_apch (f5ks, f5ls, f5ms)
     '''
     zbic = (mbic_exon + mbic_impv + mbic_imps
-        + abic_exon + nbic_exon
-        + abic_impn + nbic_impn
-        + abic_imps + nbic_imps
-        - abic_defn - nbic_defn
-        - abic_defs - nbic_defs
-        + nbic_apch)
+            + abic_exon + nbic_exon
+            + abic_impn + nbic_impn
+            + abic_imps + nbic_imps
+            - abic_defn - nbic_defn
+            - abic_defs - nbic_defs
+            + nbic_apch)
 
     cond = (mbic_impv > 0) & (mbic_imps == 0)
     taux = microentreprise.vente.taux * cond + microentreprise.servi.taux * not_(cond)
 
-    cbic = min_(mbic_impv + mbic_imps + mbic_exon, max_(microentreprise.vente.min,
-        round(mbic_impv * microentreprise.vente.taux + mbic_imps * microentreprise.servi.taux + mbic_exon * taux)))
+    cbic = min_(mbic_impv + mbic_imps + mbic_exon,
+                max_(microentreprise.vente.min,
+                     round(mbic_impv * microentreprise.vente.taux + mbic_imps * microentreprise.servi.taux + mbic_exon * taux)))
 
     return zbic - cbic
 
@@ -1056,7 +1063,7 @@ def _rac(macc_exon, macc_impv, macc_imps,
 
 
 def _rnc(mbnc_exon, mbnc_impo, abnc_exon, nbnc_exon, abnc_impo, nbnc_impo, abnc_defi, nbnc_defi,
-        specialbnc = law.ir.rpns.microentreprise.specialbnc):
+         specialbnc = law.ir.rpns.microentreprise.specialbnc):
     '''
     Revenus non commerciaux individuels
     'ind'
@@ -1100,6 +1107,7 @@ def _rpns_pvct(frag_pvct, mbic_pvct, macc_pvct, mbnc_pvct, mncn_pvct):
     '''
     return frag_pvct + mbic_pvct + macc_pvct + mbnc_pvct + mncn_pvct
 
+
 def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
     '''
     Moins values de court terme
@@ -1111,7 +1119,8 @@ def _rpns_mvct(self, mbic_mvct, macc_mvct, mbnc_mvct, mncn_mvct):
 
     '''
     return self.cast_from_entity_to_role(mbic_mvct + macc_mvct + mbnc_mvct + mncn_mvct,
-        entity = 'foyer_fiscal', role = VOUS)
+                                         entity = 'foyer_fiscal', role = VOUS)
+
 
 def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     '''
@@ -1124,20 +1133,21 @@ def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):
     '''
     return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
 
+
 def _rpns_i(frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi,
-        mbic_impv, mbic_imps,
-        abic_impn, abic_imps, abic_defn, abic_defs,
-        nbic_impn, nbic_imps, nbic_defn, nbic_defs,
-        macc_impv, macc_imps,
-        aacc_impn, aacc_imps, aacc_defn, aacc_defs,
-        nacc_impn, nacc_imps, nacc_defn, nacc_defs,
-        mbnc_impo,
-        abnc_impo, abnc_defi,
-        nbnc_impo, nbnc_defi,
-        mncn_impo, cncn_bene, cncn_defi,
-        rpns_pvct, rpns_mvct, rpns_mvlt,
-        f5sq,
-        cga_taux2 = law.ir.rpns.cga_taux2, microentreprise = law.ir.rpns.microentreprise):
+            mbic_impv, mbic_imps,
+            abic_impn, abic_imps, abic_defn, abic_defs,
+            nbic_impn, nbic_imps, nbic_defn, nbic_defs,
+            macc_impv, macc_imps,
+            aacc_impn, aacc_imps, aacc_defn, aacc_defs,
+            nacc_impn, nacc_imps, nacc_defn, nacc_defs,
+            mbnc_impo,
+            abnc_impo, abnc_defi,
+            nbnc_impo, nbnc_defi,
+            mncn_impo, cncn_bene, cncn_defi,
+            rpns_pvct, rpns_mvct, rpns_mvlt,
+            f5sq,
+            cga_taux2 = law.ir.rpns.cga_taux2, microentreprise = law.ir.rpns.microentreprise):
     '''
     Revenus des professions non salariées individuels
     '''
@@ -1240,9 +1250,10 @@ def _abat_spe(self, age_holder, caseP, caseF, rng, nbN, abattements_speciaux = l
     ageV, ageC = age[VOUS], age[CONJ]
     invV, invC = caseP, caseF
     nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
-               1 * (((ageC >= 65) | invC) & (ageC > 0)))
+                  1 * (((ageC >= 65) | invC) & (ageC > 0))
+                  )
     as_inv = (nb_elig_as * abattements_speciaux.inv_montant * ((rng <= abattements_speciaux.inv_max1)
-        + ((rng > abattements_speciaux.inv_max1) & (rng <= abattements_speciaux.inv_max2)) * 0.5))
+              + ((rng > abattements_speciaux.inv_max1) & (rng <= abattements_speciaux.inv_max2)) * 0.5))
 
     as_enf = nbN * abattements_speciaux.enf_montant
 
@@ -1255,7 +1266,7 @@ def _abat_spe(self, age_holder, caseP, caseF, rng, nbN, abattements_speciaux = l
 
 
 def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, caseP, caseW, caseG, caseE, caseK, caseN,
-        caseF, caseS, caseL, caseT, quotient_familial = law.ir.quotient_familial):
+           caseF, caseS, caseL, caseT, quotient_familial = law.ir.quotient_familial):
     '''
     Nombre de parts du foyer
     'foy'
@@ -1282,7 +1293,7 @@ def _nbptr(nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, ca
     # # nombre de parts liées aux enfants à charge
     # que des enfants en résidence alternée
     enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH, 2) * 0.5
-        + quotient_familial.enf2 * max_(nbH - 2, 0) * 0.5)
+                                 + quotient_familial.enf2 * max_(nbH - 2, 0) * 0.5)
     # pas que des enfants en résidence alternée
     enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH, 1) * 0.5
         + quotient_familial.enf2 * max_(nbH - 1, 0) * 0.5) + (nb_pac > 1) * (quotient_familial.enf2 * nbH * 0.5))
@@ -1364,7 +1375,7 @@ def _ppe_rev(sal, hsup, rpns, ppe = law.ir.credits_impot.ppe):
     # Revenu d'activité salarié
     rev_sa = sal + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
     # Revenu d'activité non salarié
-    rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns #TODO: très bizarre la partie min(0,rpns) - après vérification c'est dans la loi
+    rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns
     return rev_sa + rev_ns
 
 
@@ -1395,7 +1406,7 @@ def _ppe_elig_i(ppe_rev, ppe_coef_tp, ppe = law.ir.credits_impot.ppe):
 
 
 def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holder, ppe_coef, ppe_coef_tp_holder, nb_pac,
-        marpac, celdiv, veuf, caseT, caseL, nbH, ppe = law.ir.credits_impot.ppe):
+               marpac, celdiv, veuf, caseT, caseL, nbH, ppe = law.ir.credits_impot.ppe):
     '''
     Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
     'foy'
@@ -1428,13 +1439,14 @@ def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holde
 #                           (cond2 & (base <= ppe.seuil2)) * (base * ppe.taux1) +
 #                           (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
 #                           (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
-        return (1 / ppe_coef) * (((base <= ppe.seuil2)) * (base) * ppe.taux1
+        return (1 / ppe_coef) * (
+            ((base <= ppe.seuil2)) * (base) * ppe.taux1
             + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2
             + ligne2 * ((base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
 
-
     def ppe_bar2(base):
-        return (1 / ppe_coef) * ((base <= ppe.seuil2) * (base) * ppe.taux1
+        return (1 / ppe_coef) * (
+            (base <= ppe.seuil2) * (base) * ppe.taux1
             + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base1) * ppe.taux2)
 
     # calcul des primes individuelles.
@@ -1452,16 +1464,16 @@ def _ppe_brute(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holde
     # Primes pour enfants à charge
     maj_pac = ppe_elig * (eliv | elic) * (
         (ligne1 & marpac & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
-            * (nb_pac_ppe + nbH * 0.5)
+        * (nb_pac_ppe + nbH * 0.5)
         + (ligne1 & (celdiv | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
         + (ligne2 & (base_monacti >= ppe.seuil1) & (base_monact <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
         + (ligne2 & (base_monact > ppe.seuil3) & (base_monact <= ppe.seuil5)) * ppe.pac
-            * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
+        * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
         + (ligne3 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil3)) * (
             (min_(nb_pac_ppe, 1) * 2 * ppe.pac + max_(nb_pac_ppe - 1, 0) * ppe.pac)
             + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + max_(nbH - 2, 0) * ppe.pac * 0.5))
         + (ligne3 & (basev > ppe.seuil3) & (basev <= ppe.seuil5)) * ppe.pac
-            * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
+        * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 
     def coef(coef_tp):
         return (coef_tp <= 0.5) * coef_tp * 1.45 + (coef_tp > 0.5) * (0.55 * coef_tp + 0.45)
@@ -1487,7 +1499,7 @@ def _ppe(self, ppe_brute, rsa_act_i_holder):
     PPE effectivement versée
     'foy'
     """
-#TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
+#   TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
     rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
 
 #   On retranche le RSA activité de la PPE
