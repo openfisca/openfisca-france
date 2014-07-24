@@ -5645,7 +5645,8 @@
       <VALUE deb="2010-07-01" fin="2011-06-30" valeur="7611.36" />
       <VALUE deb="2011-07-01" fin="2012-06-30" valeur="7771.20" />
       <VALUE deb="2012-07-01" fin="2013-06-30" valeur="7934.90" />
-      <VALUE deb="2013-07-01" fin="2014-12-31" valeur="8592.96" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8592.96" />
+      <VALUE deb="2014-07-01" fin="2015-06-30" valeur="8644.52" />
     </CODE>
     <CODE code="abattement_chomage" description="Abattement sur les revenus d'activité en cas de chômage" format="percent">
       <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.3" />
