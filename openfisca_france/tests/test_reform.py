@@ -43,7 +43,7 @@ def test_parametric_reform(year = 2014):
         tax_benefit_system.legislation_json,
         datetime.date(year, 1, 1)
         )
-    print unicode(json.dumps(dated_legislation_json_src, ensure_ascii = False, indent = 2))
+#    print unicode(json.dumps(dated_legislation_json_src, ensure_ascii = False, indent = 2))
 
     reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
     assert reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] == 0
@@ -66,7 +66,8 @@ def test_parametric_reform(year = 2014):
                 ),
             ],
         date = datetime.date(year, 1, 1),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)))
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
+        )
 
     simulation = scenario.new_simulation(debug = True)
     assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .0001

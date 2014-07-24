@@ -58,7 +58,7 @@ def _reductions_2006(adhcga, cappme, cotsyn, creaen, daepad, deffor, dfppce, dom
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
     '''
-    total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd + 
+    total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
     ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
     return min_(ip_net, total_reductions)
 
@@ -132,7 +132,7 @@ def _reductions_2012(adhcga, cappme, creaen, daepad, deffor, dfppce, doment, dom
     return min_(ip_net, total_reductions)
 
 
-def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, doment, domlog, donapd, duflot, ecpess, 
+def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, doment, domlog, donapd, duflot, ecpess,
             garext, intagr, invfor, invlst, ip_net, locmeu, mecena, mohist, patnat, prcomp, repsoc, resimm, rsceha,
             saldom, scelli, sofica, spfcpi):
     '''
@@ -447,8 +447,8 @@ def _doment_2006_2008(f7ur, f7oz, f7pz, f7qz, f7rz, f7sz):
     '''
     return  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
 #TODO: vérifier pour 2002
-#TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour 
-#la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à 
+#TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
+#la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
 #l'échéance ou paiement par voie électronique))
 
 def _doment_2009(f7oz, f7pz, f7qz, f7rz, f7sz, f7qe, f7qf, f7qg, f7qh, f7qi, f7qj):
@@ -914,7 +914,7 @@ def _locmeu_2009(f7ij, P = law.ir.reductions_impots.locmeu):
     Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
     2009
     '''
-    return P.taux * min_(P.max, f7ij) / 9 
+    return P.taux * min_(P.max, f7ij) / 9
 
 
 def _locmeu_2010(f7ij, f7ik, f7il, f7im, f7is, P = law.ir.reductions_impots.locmeu):
@@ -932,9 +932,9 @@ def _locmeu_2011(f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7i
     2011
     '''
     m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + 
-            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 + 
-        P.taux * max_(f7ik, f7ip + f7ir + f7iq) + 
+    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
+            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
+        P.taux * max_(f7ik, f7ip + f7ir + f7iq) +
         f7is + f7iu + f7it)
 
 
@@ -946,10 +946,10 @@ def _locmeu_2012(f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7i
     '''
     m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
     m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + 
-            min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) + 
-            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 + 
-        P.taux * max_(f7ik + f7ip, f7ir + f7iq) + 
+    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
+            min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
+            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
+        P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
         f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz)
 
 
@@ -962,11 +962,11 @@ def _locmeu_2013(f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7i
     '''
     m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
     m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + 
-            min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) + 
+    return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
+            min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
             P.taux11 * min_(P.max, f7jt + f7ju) +
-            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 + 
-        P.taux * max_(f7ik + f7ip, f7ir + f7iq) + 
+            P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
+        P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
         f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc +
             f7ji + f7js)
 
@@ -1279,7 +1279,7 @@ def _scelli_2013(f7fa, f7fb, f7fc, f7fd, f7gj, f7gk, f7gl, f7gp, f7gs, f7gt, f7g
             f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg +
             f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
             f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
-            ) 
+            )
 
 
 def _sofica(f7gn, f7fn, rng, P = law.ir.reductions_impots.sofica):
