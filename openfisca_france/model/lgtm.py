@@ -259,19 +259,19 @@ def _al(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac
 
     return al
 
-def _alf(self, al, al_pac, so_holder):
+def _alf(self, al, al_pac, so_holder, proprietaire_proche_famille):
     '''
     Allocation logement familiale
     '''
+    # TODO: également pour les jeunes ménages et femems enceints
     # variable ménage à redistribuer
     so = self.cast_from_entity_to_roles(so_holder)
     so = self.filter_role(so, role = CHEF)
 
-    alf = (al_pac >= 1) * (so != 3) * al  # TODO: également pour les jeunes ménages et femems enceints
-    return alf
+    return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * al
 
 
-def _als_nonet(self, al, al_pac, etu_holder, so_holder):
+def _als_nonet(self, al, al_pac, etu_holder, so_holder, proprietaire_proche_famille):
     '''
     Allocation logement sociale (non étudiante)
     '''
@@ -280,11 +280,10 @@ def _als_nonet(self, al, al_pac, etu_holder, so_holder):
     so = self.filter_role(so, role = CHEF)
 
     etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-    als = (al_pac == 0) * (so != 3) * not_(etu[CHEF] | etu[PART]) * al
-    return als
+    return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * al
 
 
-def _alset(self, al, al_pac, etu_holder, so_holder):
+def _alset(self, al, al_pac, etu_holder, so_holder, proprietaire_proche_famille):
     '''
     Allocation logement sociale étudiante
     '''
@@ -293,8 +292,7 @@ def _alset(self, al, al_pac, etu_holder, so_holder):
     so = self.filter_role(so, role = CHEF)
 
     etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-    alset = (al_pac == 0) * (so != 3) * (etu[CHEF] | etu[PART]) * al
-    return alset
+    return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * al
 
 
 def _als(als_nonet, alset):
