@@ -69,7 +69,7 @@ def _cmu_c_plafond(cmu_nbp_foyer, P = law.cmu):
     '''
     return (P.plafond_base * (1 +
         (cmu_nbp_foyer >= 2) * P.coeff_p2 +
-        min_(2, cmu_nbp_foyer - 2) * P.coeff_p3_p4 +
+        max_(0, min_(2, cmu_nbp_foyer - 2)) * P.coeff_p3_p4 +
         max_(0, cmu_nbp_foyer - 4) * P.coeff_p5_plus
     ))
 
