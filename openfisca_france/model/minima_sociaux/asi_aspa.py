@@ -38,7 +38,7 @@ CONJ = QUIFOY['conj']
 
 def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
     '''
-    Base ressource individuelle du minimlum vieillesse et assimilés (ASPA)
+    Base ressource individuelle du minimum vieillesse et assimilés (ASPA)
     'ind'
     '''
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
@@ -50,9 +50,10 @@ def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar_holder
            )
     return out
 
+
 def _br_mv(self, br_mv_i_holder):
     '''
-    Base ressource du minimlum vieillesse et assimilés (ASPA)
+    Base ressource du minimum vieillesse et assimilés (ASPA)
     'fam'
 
     Ressources prises en compte
@@ -186,8 +187,8 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
 
     montant_max = (elig1 * P.aspa.montant_seul
         + elig2 * P.aspa.montant_couple
-        + elig3 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig4 * P.asi.montant_seul + P.aspa.montant_couple / 2)
+        + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
+        + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2))
 
     ressources = br_mv + montant_max
 
