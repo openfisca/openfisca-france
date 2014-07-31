@@ -201,6 +201,13 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
 
     montant_servi_aspa = max_(diff, 0) / 12
 
+    print "montant_max: %.0f" % montant_max
+    print "ressources: %.0f" % ressources
+    print "plafond_ressources: %.0f" % plafond_ressources
+    print "depassement: %.0f" % depassement
+    print "diff: %.0f" % diff
+    print "montant_servi_aspa: %.0f" % montant_servi_aspa
+
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
