@@ -36,7 +36,7 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+def _br_mv_i(self, sali, choi, rsti, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
     '''
     Base ressource individuelle du minimum vieillesse et assimilés (ASPA)
     'ind'
@@ -44,7 +44,7 @@ def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar_holder
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
     rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-    out = (salbrut + chobrut + rstbrut + alr + rto + rpns +
+    out = (sali + choi + rsti + alr + rto + rpns +
            max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
            # max_(0,etr) +
            )
@@ -200,6 +200,13 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
         + (elig3 | elig4) * P.aspa.montant_couple / 2 - depassement / 2)
 
     montant_servi_aspa = max_(diff, 0) / 12
+
+    print "montant_max: %.0f" % montant_max
+    print "ressources: %.0f" % ressources
+    print "plafond_ressources: %.0f" % plafond_ressources
+    print "depassement: %.0f" % depassement
+    print "diff: %.0f" % diff
+    print "montant_servi_aspa: %.0f" % montant_servi_aspa
 
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
