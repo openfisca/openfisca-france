@@ -230,8 +230,8 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
     montant_max = (elig1 * P.asi.montant_seul
         + elig2 * P.asi.montant_couple
         + elig3 * 2 * P.asi.montant_seul
-        + elig4 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig5 * P.asi.montant_seul + P.aspa.montant_couple / 2)
+        + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
+        + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2))
 
     ressources = br_mv + montant_max
 
@@ -244,8 +244,8 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
     depassement = ressources - plafond_ressources
 
     diff = ((elig1 | elig2 | elig3) * montant_max - depassement
-        + elig4 * P.asi.montant_couple / 2 - depassement / 2
-        + elig5 * P.asi.montant_seul - depassement / 2)
+        + elig4 * (P.asi.montant_couple / 2 - depassement / 2)
+        + elig5 * (P.asi.montant_seul - depassement / 2))
 
     montant_servi_asi = max_(diff, 0) / 12
 
