@@ -36,23 +36,24 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _br_mv_i(self, salbrut, chobrut, rstbrut, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+def _br_mv_i(self, sali, choi, rsti, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
     '''
-    Base ressource individuelle du minimlum vieillesse et assimilés (ASPA)
+    Base ressource individuelle du minimum vieillesse et assimilés (ASPA)
     'ind'
     '''
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
     rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-    out = (salbrut + chobrut + rstbrut + alr + rto + rpns +
+    out = (sali + choi + rsti + alr + rto + rpns +
            max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
            # max_(0,etr) +
            )
     return out
 
+
 def _br_mv(self, br_mv_i_holder):
     '''
-    Base ressource du minimlum vieillesse et assimilés (ASPA)
+    Base ressource du minimum vieillesse et assimilés (ASPA)
     'fam'
 
     Ressources prises en compte
@@ -122,14 +123,13 @@ def _br_mv(self, br_mv_i_holder):
 # TODO: ajouter taux de la majoration pour 3 enfants 10% (D811-12) ?
 #       P.aspa.maj_3enf = 0.10;
 
-def _aspa_elig(age, inv, activite, P = law.minim):
+def _aspa_elig(age, inv, P = law.minim):
     '''
     Eligibitié individuelle à l'ASPA (Allocation de solidarité aux personnes agées)
     'ind'
     '''
     condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
-    condition_activite = (activite == 3)
-    return condition_age & condition_activite
+    return condition_age
 
 
 def _asi_elig(aspa_elig, inv, activite):
@@ -186,8 +186,8 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
 
     montant_max = (elig1 * P.aspa.montant_seul
         + elig2 * P.aspa.montant_couple
-        + elig3 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig4 * P.asi.montant_seul + P.aspa.montant_couple / 2)
+        + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
+        + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2))
 
     ressources = br_mv + montant_max
 
@@ -200,6 +200,13 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
         + (elig3 | elig4) * P.aspa.montant_couple / 2 - depassement / 2)
 
     montant_servi_aspa = max_(diff, 0) / 12
+
+    print "montant_max: %.0f" % montant_max
+    print "ressources: %.0f" % ressources
+    print "plafond_ressources: %.0f" % plafond_ressources
+    print "depassement: %.0f" % depassement
+    print "diff: %.0f" % diff
+    print "montant_servi_aspa: %.0f" % montant_servi_aspa
 
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
@@ -230,8 +237,8 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
     montant_max = (elig1 * P.asi.montant_seul
         + elig2 * P.asi.montant_couple
         + elig3 * 2 * P.asi.montant_seul
-        + elig4 * P.asi.montant_couple / 2 + P.aspa.montant_couple / 2
-        + elig5 * P.asi.montant_seul + P.aspa.montant_couple / 2)
+        + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
+        + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2))
 
     ressources = br_mv + montant_max
 
@@ -244,8 +251,8 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
     depassement = ressources - plafond_ressources
 
     diff = ((elig1 | elig2 | elig3) * montant_max - depassement
-        + elig4 * P.asi.montant_couple / 2 - depassement / 2
-        + elig5 * P.asi.montant_seul - depassement / 2)
+        + elig4 * (P.asi.montant_couple / 2 - depassement / 2)
+        + elig5 * (P.asi.montant_seul - depassement / 2))
 
     montant_servi_asi = max_(diff, 0) / 12
 
