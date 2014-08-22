@@ -263,7 +263,7 @@ def _alf(self, al, al_pac, so_holder, proprietaire_proche_famille):
     '''
     Allocation logement familiale
     '''
-    # TODO: également pour les jeunes ménages et femems enceints
+    # TODO: également pour les jeunes ménages et femmes enceintes
     # variable ménage à redistribuer
     so = self.cast_from_entity_to_roles(so_holder)
     so = self.filter_role(so, role = CHEF)
