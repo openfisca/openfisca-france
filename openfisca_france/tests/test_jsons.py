@@ -55,7 +55,9 @@ def test():
                 tax_benefit_system = tax_benefit_system))(json_scenario)
 
             year = json_scenario['year']
-            totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
+            print scenario
+#            print scenario.test_case.keys()
+            totpac = scenario['test_case']['foyers_fiscaux'].values()[0].get('personnes_a_charge')
 
             simulation = scenario.new_simulation()
 
