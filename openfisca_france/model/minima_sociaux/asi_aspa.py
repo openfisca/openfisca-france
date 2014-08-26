@@ -194,24 +194,17 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
     plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
         + (elig2 | elig3 | elig4) * P.aspa.plaf_couple)
 
-    depassement = ressources - plafond_ressources
+    depassement = max_(ressources - plafond_ressources, 0)
 
-    diff = ((elig1 | elig2) * montant_max - depassement
-        + (elig3 | elig4) * P.aspa.montant_couple / 2 - depassement / 2)
+    diff = ((elig1 | elig2) * (montant_max - depassement)
+        + (elig3 | elig4) * (P.aspa.montant_couple / 2 - depassement / 2))
 
     montant_servi_aspa = max_(diff, 0) / 12
-
-    print "montant_max: %.0f" % montant_max
-    print "ressources: %.0f" % ressources
-    print "plafond_ressources: %.0f" % plafond_ressources
-    print "depassement: %.0f" % depassement
-    print "diff: %.0f" % diff
-    print "montant_servi_aspa: %.0f" % montant_servi_aspa
 
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
     # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
-    return 12 * elig * (aspa_elig[CHEF] + aspa_elig[PART]) * montant_servi_aspa * ((elig1 | elig3 | elig4) + elig2 / 2)  # annualisé
+    return 12 * elig * montant_servi_aspa  # annualisé
 
 
 def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
@@ -248,9 +241,9 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
         + elig4 * P.aspa.plaf_couple
         + elig5 * P.aspa.plaf_couple)
 
-    depassement = ressources - plafond_ressources
+    depassement = max_(ressources - plafond_ressources, 0)
 
-    diff = ((elig1 | elig2 | elig3) * montant_max - depassement
+    diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
         + elig4 * (P.asi.montant_couple / 2 - depassement / 2)
         + elig5 * (P.asi.montant_seul - depassement / 2))
 
@@ -259,4 +252,4 @@ def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_al
     # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
     # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
     # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    return 12 * elig * (asi_elig[CHEF] + asi_elig[PART]) * montant_servi_asi * ((elig1 | elig4 | elig5) + (elig2 | elig3) / 2)  # annualisé
+    return 12 * elig * montant_servi_asi  # annualisé
