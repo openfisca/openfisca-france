@@ -200,13 +200,13 @@ def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     return af + cf + ars + aeeh + paje + asf + crds_pfam
 
 
-def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass_holder, psa, majo_rsa):
+def _mini(self, aspa, aah, caah, asi, rsa, aefa, api, ass_holder, psa):
     '''
     Minima sociaux
     '''
     ass = self.sum_by_entity(ass_holder)
 
-    return aspa + aah + caah + asi + rsa + aefa + api + ass + psa + majo_rsa
+    return aspa + aah + caah + asi + rsa + aefa + api + ass + psa
 
 
 def _logt(apl, als, alf, crds_lgtm):

@@ -5054,21 +5054,16 @@
       </NODE>
       <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé">
         <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent">
-          <VALUE deb="2009-06-01" fin="2014-12-31" valeur="1.284" />
-        </CODE>
-        <CODE code="pac1" description="Taux de la majoration du RSA socle pour une personne seule avec 1 enfant à charge (en pourcentage du rsa de base)" format="percent">
-          <VALUE deb="2009-07-01" fin="2014-12-31" valeur="1.712" />
+          <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
+          <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
         </CODE>
         <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
-          <VALUE deb="2009-07-01" fin="2014-12-31" valeur="0.428" />
+          <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
+          <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
         </CODE>
-        <CODE code="age" description="Limite d'âge des enfants ouvrant droit" format="integer" type="age">
+        <CODE code="age" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
           <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
           <VALUE deb="2009-06-01" fin="2014-12-31" valeur="3" />
-        </CODE>
-        <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
-          <VALUE deb="1977-10-01" fin="2009-05-31" valeur="20" />
-          <VALUE deb="2009-06-01" fin="2014-12-31" valeur="25" />
         </CODE>
       </NODE>
       <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
@@ -5099,8 +5094,7 @@
         <VALUE deb="2009-07-01" fin="2014-12-31" valeur="0.62" />
       </CODE>
       <CODE code="rsa_nv" description="Seuil de non versement" format="integer" type="monetary">
-        <VALUE deb="2002-01-01" fin="2009-06-30" valeur="6" />
-        <VALUE deb="2009-07-01" fin="2014-12-31" valeur="6" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="6" />
       </CODE>
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
