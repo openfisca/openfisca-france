@@ -60,7 +60,7 @@ def _asf_nbenf(self, age_holder, smic55_holder, P = law.fam):
     age = self.split_by_roles(age_holder, roles = ENFS)
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-    return nb_enf(age, smic55, P.af.age1, P.af.age2)
+    return nb_enf(age, smic55, P.af.age1, P.af.age3)
 
 
 def _asf(asf_elig, asf_nbenf, P = law.fam):
