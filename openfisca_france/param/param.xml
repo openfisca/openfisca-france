@@ -4611,6 +4611,8 @@
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="474.93" />
       <VALUE deb="2015-01-01" fin="2015-08-31" valeur="483.24" />
       <VALUE deb="2015-09-01" fin="2015-12-31" valeur="492.90" />
+      <VALUE deb="2016-01-01" fin="2016-08-31" valeur="499.31" />
+      <VALUE deb="2016-09-01" fin="2016-12-31" valeur="509.30" />
     </CODE>
     <NODE code="ressources" description="Dispositions applicables aux ressources">
       <CODE code="dar_1" description="Abattement R. 351-6 (double activité)" format="integer" type="monetary">
@@ -5039,7 +5041,8 @@
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="474.93" />
         <VALUE deb="2013-01-01" fin="2013-08-31" valeur="483.24" />
         <VALUE deb="2013-09-01" fin="2013-12-31" valeur="492.90" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="499.31" />
+        <VALUE deb="2014-01-01" fin="2014-08-31" valeur="499.31" />
+        <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />
       </CODE>
       <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
         <VALUE deb="1977-10-01" fin="2014-12-31" valeur="25" />
