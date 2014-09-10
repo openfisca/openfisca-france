@@ -37,7 +37,7 @@ def test_zone_1():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         date = datetime.date(year, 1, 1),
         menage = dict(
-            code_postal = 75014,
+            depcom = '75114',
             ),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
@@ -49,7 +49,7 @@ def test_zone_2():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         date = datetime.date(year, 1, 1),
         menage = dict(
-            code_postal = 69001,
+            depcom = '69381',
             ),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
@@ -61,7 +61,7 @@ def test_zone_3():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         date = datetime.date(year, 1, 1),
         menage = dict(
-            code_postal = 87620,
+            depcom = '87191',
             ),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)

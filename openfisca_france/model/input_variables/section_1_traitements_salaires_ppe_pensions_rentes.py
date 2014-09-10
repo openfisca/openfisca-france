@@ -188,9 +188,8 @@ column_by_name = collections.OrderedDict((
                                    u"Très élevé",
                                    ]))),
 
-    build_column_couple('boursier', BoolCol(label = u"Elève ou étudiant boursier")),
-    build_column_couple('code_postal', IntCol(label = u"Code postal du lieu de résidence",
-                           entity = 'men')),
+    build_column_couple('boursier', BoolCol(label = u"Élève ou étudiant boursier")),
+    build_column_couple('depcom', StrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men')),
 
     build_column_couple('statmarit', EnumCol(label = u"Statut marital",
                           default = 2,

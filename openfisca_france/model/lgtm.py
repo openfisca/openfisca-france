@@ -9,13 +9,13 @@
 
 from __future__ import division
 
-import cPickle
+import csv
 
 from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
 from openfisca_core.accessors import law
 import pkg_resources
 
-from .. import data as data_resources
+from .. import assets
 from .input_variables.base import QUIFAM, QUIMEN, QUIFOY
 from .pfam import nb_enf
 
@@ -26,7 +26,7 @@ PART = QUIFAM['part']
 VOUS = QUIFOY['vous']
 
 
-zone_apl_by_code_postal = None
+zone_apl_by_depcom = None
 
 
 def _al_pac(self, age_holder, smic55_holder, nbR_holder, af = law.fam.af, cf = law.fam.cf,
@@ -306,7 +306,7 @@ def _als(als_nonet, alset):
 
 def _apl(self, al, so_holder):
     '''
-    Aide personalisée au logement (réservée aux logements conventionné, surtout des HLM,
+    Aide personnalisée au logement (réservée aux logements conventionné, surtout des HLM,
     et financé par le fonds national de l'habitation)
     '''
     # TODO:
@@ -323,19 +323,26 @@ def _crds_lgtm(al, crds = law.fam.af.crds):
     return -al * crds
 
 
-def _zone_apl(code_postal):
-    """Retrouve la zone d'allocation personnelle au logement de la commune."""
-    global zone_apl_by_code_postal
-    if zone_apl_by_code_postal is None:
-        with pkg_resources.resource_stream(data_resources.__name__, 'code_apl') as code_apl_file:
-            zone_apl_by_code_postal = dict(
-                (int(code_postal_str), int(zone))
-                for code_postal_str, (name, zone) in cPickle.load(code_apl_file).iteritems()
-                )
+def _zone_apl(depcom):
+    """Retrouve la zone APL (aide personnalisée au logement) de la commune en fonction du depcom (code INSEE)."""
+    global zone_apl_by_depcom
+    if zone_apl_by_depcom is None:
+        csv_file = pkg_resources.resource_stream(assets.__name__, 'apl/zones_apl_2013.csv')
+        csv_reader = csv.DictReader(
+            csv_file,
+            delimiter = ';',
+            fieldnames = ('commune_uppercase', 'commune', 'code_postal', 'depcom', 'zone_apl'),
+            )
+        zone_apl_by_depcom = {
+            row['depcom']: int(row['zone_apl'])
+            for row in csv_reader
+            if row['zone_apl'].isdigit()
+            }
+    default_value = 2
     return fromiter(
         (
-            zone_apl_by_code_postal.get(code_postal_cell, 2)
-            for code_postal_cell in code_postal
+            zone_apl_by_depcom.get(depcom_cell, default_value)
+            for depcom_cell in depcom
             ),
         dtype = int16,
         )
