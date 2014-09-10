@@ -26,8 +26,6 @@
 import copy
 import datetime
 
-import json
-
 from openfisca_core import legislations
 from openfisca_core.reforms import Reform
 import openfisca_france
@@ -70,7 +68,7 @@ def test_parametric_reform(year = 2014):
         )
 
     simulation = scenario.new_simulation(debug = True)
-    assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .0001
+    assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .01
 
     scenario.add_reform(reform)
     reform_simulation = scenario.new_reform_simulation(debug = True)
