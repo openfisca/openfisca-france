@@ -139,7 +139,6 @@ column_by_name.update(collections.OrderedDict((
             )
         ),
     build_column_couple('aer', IntCol(label = u"Allocation équivalent retraite (AER)")),  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
-    build_column_couple('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)")),
     build_column_couple('f5sq', IntCol()),
 
     build_column_couple('zthabm', IntCol(entity = 'men')),  # TODO: Devrait être renommée tax_hab

@@ -124,7 +124,7 @@ def _br_rmi_ms(self, aspa, asi, aah, caah):
         entity = 'famille', role = CHEF)
 
 
-def _br_rmi_i(self, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+def _br_rmi_i(self, ass, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
     '''
     Base ressource individuelle du RSA/RMI
     'ind'
@@ -132,7 +132,7 @@ def _br_rmi_i(self, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
     rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-    return ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
+    return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
 
 
 def _br_rmi(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
