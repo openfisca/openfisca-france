@@ -2110,6 +2110,7 @@ prestation_by_name = collections.OrderedDict((
 
     build_simple_formula_couple('div_ms', FloatCol(function = rsa._div_ms)),
     build_simple_formula_couple('rfon_ms', FloatCol(function = rsa._rfon_ms)),
+    build_simple_formula_couple('enceinte_fam', BoolCol(function = rsa._enceinte_fam, entity = 'fam')),
     build_simple_formula_couple('rsa_forfait_asf', FloatCol(function = rsa._rsa_forfait_asf,
         entity = 'fam',
         label = u"Allocation de soutien familial forfaitisée pour le RSA",

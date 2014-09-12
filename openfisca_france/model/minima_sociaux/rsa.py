@@ -37,6 +37,15 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
+def _enceinte_fam(self, agem_holder, enceinte_holder):
+    agem_enf = self.split_by_roles(agem_holder, roles = ENFS)
+    enceinte = self.split_by_roles(enceinte_holder, roles = [CHEF, PART])
+
+    benjamin = age_en_mois_benjamin(agem_enf)
+    enceinte_compat = and_(benjamin < 0, benjamin > -6)
+    return or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
+
+
 def _div_ms(self, f3vc_holder, f3ve_holder, f3vg_holder, f3vl_holder, f3vm_holder):
     f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
     f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
@@ -224,21 +233,18 @@ def _rsa_socle(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = l
     return eligib * rmi.rmi * taux * 12
 
 
-def _rsa_socle_majore(self, agem_holder, age_holder, smic55_holder, nb_par, isol, rmi = law.minim.rmi):
+def _rsa_socle_majore(self, enceinte_fam, age_holder, smic55_holder, nb_par, isol, rmi = law.minim.rmi):
     '''
     Cacule le montant du RSA majoré pour isolement
     'fam'
     '''
     age_par = self.split_by_roles(age_holder, roles = [CHEF, PART])
     age_enf = self.split_by_roles(age_holder, roles = ENFS)
-    agem_enf = self.split_by_roles(agem_holder, roles = ENFS)
     smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 
     nbenf = nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
-    benjamin = age_en_mois_benjamin(agem_enf)
-    enceinte = (benjamin < 0) * (benjamin > -6)
 
-    eligib = isol * (enceinte | (nbenf > 0))
+    eligib = isol * (enceinte_fam | (nbenf > 0))
 
     taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf
 

@@ -94,6 +94,9 @@ column_by_name = collections.OrderedDict((
             url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
             )
         ),
+
+    build_column_couple('enceinte', BoolCol(entity = 'ind', label = u"Est enceinte")),
+
     # Prestations familiales
     build_column_couple('inactif', BoolCol(entity = 'fam',
                         label = u"Parent inactif (PAJE-CLCA)")),
