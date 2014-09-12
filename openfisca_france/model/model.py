@@ -2554,8 +2554,14 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
     # Allocation Spécifique de Solidarité
     ############################################################
-    # build_simple_formula_couple('ass', FloatCol(function = ass._ass,
-    #     label = u"Montant de l'Allocation Spécifique de Solidarité",
-    #     entity = 'fam'
-    #     )),
+    build_simple_formula_couple('ass', FloatCol(function = ass._ass,
+        label = u"Montant de l'Allocation Spécifique de Solidarité",
+        entity = 'fam'
+        )),
+    build_simple_formula_couple('ass_elig_i', BoolCol(function = ass._ass_elig_i,
+        label = u"Éligibilité individuelle à l'ASS",
+        )),
+    build_simple_formula_couple('chomeur', BoolCol(function = ass._chomeur,
+        label = u"Montant de l'Allocation Spécifique de Solidarité",
+        )),
 ))
