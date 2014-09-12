@@ -8,6 +8,5 @@
 /.settings
 /build
 /dist
-/openfisca_france/assets/apl/comsimp2014.txt
-/openfisca_france/assets/apl/comsimp2014.zip
-/openfisca_france/assets/apl/MEDDAT_Plaq_logement_2013_bd.pdf
+/openfisca_france/assets/apl/france2014.txt
+/openfisca_france/assets/apl/france2014.zip

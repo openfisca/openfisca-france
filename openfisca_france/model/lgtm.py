@@ -8,14 +8,14 @@
 
 
 from __future__ import division
-
 import csv
+import json
+import pkg_resources
 
 from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
 from openfisca_core.accessors import law
-import pkg_resources
 
-from .. import assets
+import openfisca_france
 from .input_variables.base import QUIFAM, QUIMEN, QUIFOY
 from .pfam import nb_enf
 
@@ -327,17 +327,25 @@ def _zone_apl(depcom):
     """Retrouve la zone APL (aide personnalisée au logement) de la commune en fonction du depcom (code INSEE)."""
     global zone_apl_by_depcom
     if zone_apl_by_depcom is None:
-        csv_file = pkg_resources.resource_stream(assets.__name__, 'apl/zones_apl_2013.csv')
-        csv_reader = csv.DictReader(
-            csv_file,
-            delimiter = ';',
-            fieldnames = ('commune_uppercase', 'commune', 'code_postal', 'depcom', 'zone_apl'),
-            )
-        zone_apl_by_depcom = {
-            row['depcom']: int(row['zone_apl'])
-            for row in csv_reader
-            if row['zone_apl'].isdigit()
-            }
+        with pkg_resources.resource_stream(
+            openfisca_france.__name__,
+            'assets/apl/20110914_zonage.csv',
+            ) as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            zone_apl_by_depcom = {
+                # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
+                row['CODGEO']: int(row['Zonage'][0])
+                for row in csv_reader
+                }
+        # Add subcommunes (arrondissements and communes associées), use the same value as their parent commune.
+        with pkg_resources.resource_stream(
+            openfisca_france.__name__,
+            'assets/apl/commune_depcom_by_subcommune_depcom.json',
+            ) as json_file:
+            commune_depcom_by_subcommune_depcom = json.load(json_file)
+            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
+                zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
+
     default_value = 2
     return fromiter(
         (
