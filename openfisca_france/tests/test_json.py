@@ -25,11 +25,14 @@
 
 
 import json
-import numpy as np
-import openfisca_france
 import os
 import sys
+
+from biryani1.baseconv import check
+import numpy as np
+import openfisca_france
 from openfisca_france.scripts.compare_openfisca_impots import compare_variable
+
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -47,8 +50,8 @@ def test():
             official_result = content['resultat_officiel']
             json_scenario = content['scenario']
 
-            scenario, error = tax_benefit_system.Scenario.make_json_to_instance(
-                tax_benefit_system = tax_benefit_system)(json_scenario)
+            scenario = check(tax_benefit_system.Scenario.make_json_to_instance(
+                tax_benefit_system = tax_benefit_system))(json_scenario)
 
             year = json_scenario['year']
             totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
