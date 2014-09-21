@@ -30,7 +30,7 @@ import logging
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_,
                    zeros)
 
-from openfisca_core.taxscales import TaxScaleDict, scale_tax_scales
+from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 from openfisca_core.enumerations import Enum
 
 from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN
@@ -83,7 +83,7 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
         if category[0] in pat.keys():
             for bar in pat[category[0]].itervalues():
                 if category[0] in ["prive_cadre", "prive_non_cadre", "public_non_titulaire", "public_titulaire_hospitaliere"]:  # TODO: move up
-                    is_contrib = (bar.option == "contrib") & (bar._name not in ['cnracl', 'rafp', 'pension'])
+                    is_contrib = (bar.option == "contrib") & (bar.name not in ['cnracl', 'rafp', 'pension'])
                     temp = -(iscat
                              * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
                              ) * is_contrib
@@ -126,7 +126,7 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
 #                if is_mo == 1:
 #                    if  category[0] == DEBUG_SAL_TYPE:
 #                        log.info(category[0])
-#                        log.info(bar._name)
+#                        log.info(bar.name)
 #                        log.info(temp / 12)
     return cotpat + cotpat_transport
 
@@ -146,7 +146,7 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
                 transport += temp
 #                if  category[0] == DEBUG_SAL_TYPE:
 #                    log.info(category[0])
-#                    log.info(bar._name)
+#                    log.info(bar.name)
 #                    log.info(temp / 12)
     return transport
 
@@ -229,7 +229,7 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
         iscat = (type_sal == category[1])
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
-                is_contrib = (bar.option == "contrib") & (bar._name not in ["rafp", "pension", "cnracl1", "cnracl2"])  # dealed by pension civile and rafp
+                is_contrib = (bar.option == "contrib") & (bar.name not in ["rafp", "pension", "cnracl1", "cnracl2"])  # dealed by pension civile and rafp
                 temp = -(iscat
                          * bar.calc(salbrut - hsup
                                     + (category[0] == 'public_non_titulaire') * (indemnite_residence + primes))
@@ -240,7 +240,7 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
 #                if  category[0] == DEBUG_SAL_TYPE:
 #                    if (temp != 0).all():
 #                        log.info(category[0])
-#                        log.info(bar._name)
+#                        log.info(bar.name)
 #                        log.info(temp / 12)
 
 #        if category[0] == DEBUG_SAL_TYPE:
@@ -281,7 +281,7 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    sal = scale_tax_scales(TaxScaleDict('sal', _P.cotsoc.sal), plaf_ss)
+    sal = scale_tax_scales(TaxScalesTree('sal', _P.cotsoc.sal), plaf_ss)
     assiette = min_(base_imposable / 12 , plaf_ass * tib)
     # Même régime pour etat et colloc
     cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
@@ -300,12 +300,12 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
         iscat = (type_sal == category[1])
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
-                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar._name == 'solidarite') * ((salbrut - hsup) / 12 <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-                is_noncontrib = (bar.option == "noncontrib")  # and (bar._name in ["famille", "maladie"])
+                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar.name == 'solidarite') * ((salbrut - hsup) / 12 <= seuil_assuj_fds)  # TODO: check assiette voir IPP
+                is_noncontrib = (bar.option == "noncontrib")  # and (bar.name in ["famille", "maladie"])
                 temp = -(iscat
                          * bar.calc(salbrut + primes + indemnite_residence
                                     - hsup + cot_sal_rafp + cot_sal_pension_civile
-                                    + cotsal_contrib * (category[0] == 'public_non_titulaire') * (bar._name == "excep_solidarite"))  # * (category[0] == 'public_non_titulaire')
+                                    + cotsal_contrib * (category[0] == 'public_non_titulaire') * (bar.name == "excep_solidarite"))  # * (category[0] == 'public_non_titulaire')
                          * is_noncontrib * not_(is_exempt_fds)
                          )
                 cotsal += temp
@@ -476,7 +476,7 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: use build_pat
-    pat = scale_tax_scales(TaxScaleDict('pat', _P.cotsoc.pat), plaf_ss)
+    pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), plaf_ss)
     assiette = min_(base_imposable / 12, plaf_ass * tib)
 
     bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']

@@ -383,8 +383,8 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, _P):
         if category[0] in sal:
             for bar in sal[category[0]].itervalues():
                 is_noncontrib = (bar.option == "noncontrib")
-                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale']) * (bar._name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-                is_noncontrib = ((bar.option == "noncontrib") and (bar._name in ["famille", "maladie"]))
+                is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale']) * (bar.name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
+                is_noncontrib = ((bar.option == "noncontrib") and (bar.name in ["famille", "maladie"]))
                 temp = -(iscat * bar.calc(salbrut - hsup)) * is_noncontrib * not_(is_exempt_fds)
                 cotsal += temp
     return cotsal

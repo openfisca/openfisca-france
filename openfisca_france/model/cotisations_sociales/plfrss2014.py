@@ -30,7 +30,7 @@ import logging
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_,
                    zeros)
 
-from openfisca_core.taxscales import TaxScaleDict, scale_tax_scales
+from openfisca_core.taxscales import scale_tax_scales
 from openfisca_core.enumerations import Enum
 
 from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN

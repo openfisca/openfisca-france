@@ -500,8 +500,6 @@ def _ir_brut(nbptr, rni, bareme = law.ir.bareme):
     Impot sur le revenu avant non imposabilité et plafonnement du quotient
     'foy'
     '''
-    bareme.t_x()
-#    bar._linear_taux_moy = True
     return nbptr * bareme.calc(rni / nbptr)  # TODO: partir d'ici, petite différence avec Matlab REMOVE
 
 

@@ -94,11 +94,9 @@ def _ass_isf(isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, P =
 
 def _isf_iai_2011_(ass_isf, _P, bareme = law.isf.bareme):
     ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
-    bareme.t_x()
     return bareme.calc(ass_isf)
 
 def _isf_iai__2010(ass_isf, _P, bareme = law.isf.bareme):
-    bareme.t_x()
     return bareme.calc(ass_isf)
 
 def _isf_avant_reduction(isf_iai, decote_isf):
