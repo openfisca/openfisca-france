@@ -65,10 +65,11 @@ def test_parametric_reform(year = 2015):
                                 "format": "integer",
                                 "unit": "currency",
                                 "value": 3536,
+                                },
+                            },
                         },
                     },
                 },
-            },
             "plfrss2014": {
                 "@type": "Node",
                 "description": "Projet de loi de financement de la sécurité sociale rectificative 2014",
