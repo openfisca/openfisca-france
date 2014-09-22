@@ -35,4 +35,5 @@ from . import (
     section_7_reductions_et_credits_d_impots,
     section_8_divers,
     isf,
+    patrimoine,
     )
