@@ -2162,6 +2162,10 @@ prestation_by_name = collections.OrderedDict((
              ),
         ],
         FloatCol(entity='ind')),
+    build_simple_formula_couple('rsa_base_ressources_patrimoine_i', FloatCol(function = rsa._rsa_base_ressources_patrimoine_i,
+        label = u"Base de ressources des revenus du patrimoine",
+        start = date(2014, 1, 1),
+        )),
     build_simple_formula_couple('br_rmi', FloatCol(function = rsa._br_rmi,
         entity = 'fam',
         label = u"Base ressources du Rmi/Rsa",
@@ -2550,8 +2554,14 @@ prestation_by_name = collections.OrderedDict((
     ############################################################
     # Allocation Spécifique de Solidarité
     ############################################################
-    # build_simple_formula_couple('ass', FloatCol(function = ass._ass,
-    #     label = u"Montant de l'Allocation Spécifique de Solidarité",
-    #     entity = 'fam'
-    #     )),
+    build_simple_formula_couple('ass', FloatCol(function = ass._ass,
+        label = u"Montant de l'Allocation Spécifique de Solidarité",
+        entity = 'fam'
+        )),
+    build_simple_formula_couple('ass_elig_i', BoolCol(function = ass._ass_elig_i,
+        label = u"Éligibilité individuelle à l'ASS",
+        )),
+    build_simple_formula_couple('chomeur', BoolCol(function = ass._chomeur,
+        label = u"Montant de l'Allocation Spécifique de Solidarité",
+        )),
 ))
