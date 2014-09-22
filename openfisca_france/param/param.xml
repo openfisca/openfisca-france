@@ -5111,6 +5111,17 @@
       <CODE code="D_enfch" description="Enfants comptés à charge" format="integer">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
       </CODE>
+      <NODE code="patrimoine" description="Revenus liés au patrimoine">
+        <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.5" />
+        </CODE>
+        <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.8" />
+        </CODE>
+        <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.03" />
+        </CODE>
+      </NODE>
     </NODE>
     <NODE code="api" description="Allocation parent isolé">
       <CODE code="base" description="Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)" format="percent">

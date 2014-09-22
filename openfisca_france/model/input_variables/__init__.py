@@ -33,6 +33,7 @@ from . import (base,
                section_7_reductions_et_credits_d_impots,
                section_8_divers,
                isf,
+               patrimoine,
                )
 
 column_by_name = base.column_by_name.copy()
@@ -47,6 +48,7 @@ for col_by_name in [
     section_7_reductions_et_credits_d_impots.column_by_name,
     section_8_divers.column_by_name,
     isf.column_by_name,
+    patrimoine.column_by_name,
     ]:
 
     column_by_name.update(col_by_name)
