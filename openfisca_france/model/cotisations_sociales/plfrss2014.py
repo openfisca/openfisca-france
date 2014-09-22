@@ -31,12 +31,7 @@ from functools import partial
 import logging
 from numpy import maximum as max_, minimum as min_
 
-
-<<<<<<< HEAD
-from openfisca_core.taxscales import scale_tax_scales
-=======
 from openfisca_core.columns import FloatCol
->>>>>>> Working on PLFR/PLFRSS2014 reform (WIP)
 from openfisca_core.enumerations import Enum
 import openfisca_france.model.irpp_reductions_impots as ri
 from openfisca_core.formulas import (
