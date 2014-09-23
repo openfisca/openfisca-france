@@ -81,11 +81,11 @@ def _acs_plafond(cmu_c_plafond, P = law.cmu):
     return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-def _cmu_br_i(activite, sali, choi, rsti, alr, P = law.cmu):
+def _cmu_br_i(activite, sali, choi, rsti, alr, rsa_base_ressources_patrimoine_i, P = law.cmu):
     '''
     Calcule la base de ressource d'un individu pour la CMU
     '''
-    return sali * (1 - (activite == 1) * P.abattement_chomage) + choi + rsti + alr
+    return sali * (1 - (activite == 1) * P.abattement_chomage) + choi + rsti + alr + rsa_base_ressources_patrimoine_i
 
 
 def _cmu_br(self, so_holder, apl_holder, als_holder, alf_holder, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
