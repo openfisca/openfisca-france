@@ -77,5 +77,6 @@ def _ass(self, br_pf, cho_holder, concub, ass_params = law.minim.ass):
     revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
     ass = elig_ass * (montant_mensuel * (revenus <= plaf)
               + (revenus > plaf) * max_(plaf + montant_mensuel - revenus, 0))
+    ass = ass * not_(ass / 12 < ass_params.montant_plein)
 
     return 12 * ass  # annualisé
