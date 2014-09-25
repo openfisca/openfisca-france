@@ -61,7 +61,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'ebic_impv',  # Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)
                     'ebic_imps',  # Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)
-                    'ebnc_impo',  # Revenus non commerciaux imposables (régime auto-entrepreneur)
+                    'ebnc_impo',  # Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)
                     ]),
                 ]),
             collections.OrderedDict([
@@ -95,8 +95,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'nbic_exon',  # Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)
                     'abic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
                     'abic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)
-                    'nbic_impn',  # Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                    'nbic_imps',  # Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)
+                    'nbic_impn',  # Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
+                    'nbic_imps',  # Revenus industriels et commerciaux professionnels imposables: régime simplifié sans CGA (régime du bénéfice réel)
                     'abic_defn',  # Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
                     'abic_defs',  # Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)
                     'nbic_defn',  # Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)
@@ -117,11 +117,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'aacc_impn',  # Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
                     'aacc_imps',  # Locations meublées non professionnelles (régime micro entreprise)
                     'aacc_defn',  # Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)
-                    'aacc_defs',  # Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)
+                    'aacc_defs',  # Déficits de revenus industriels et commerciaux non professionnels avec CGA (régime simplifié du bénéfice réel)
                     'nacc_impn',  # Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                    'nacc_imps',  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)
                     'nacc_defn',  # Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)
-                    'nacc_defs',  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)
+                    'nacc_defs',  # Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux avec CGA (régime du bénéfice réel)
                     'macc_pvct',  # Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)
                     'macc_mvlt',  # Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)
                     'macc_pvce',  # Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)
@@ -164,6 +163,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     u"""type_sal""",  # Catégorie de salarié
                     u"""taille_entreprise""",  # Catégorie de taille d'entreprise (pour calcul des cotisations sociales)
+                    u"""enceinte""",  # Est enceinte
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""coloc""",  # Vie en colocation
                     u"""aer""",  # Allocation équivalent retraite (AER)
@@ -184,6 +184,28 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
                     u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
                     u"""f5qm""",  # Agents généraux d’assurances: indemnités de cessation d’activité
+                    u"""nbic_mvct""",  # Revenus industriels et commerciaux professionnels moins-values nettes à court terme
+                    u"""aacc_gits""",  # Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)
+                    u"""nacc_meup""",  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)
+                    u"""mbnc_mvct""",  # Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)
+                    u"""frag_fore""",  # Revenus des exploitants forestiers (régime du forfait)
+                    u"""abic_impm""",  # Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)
+                    u"""nbic_impm""",  # Locations meublées imposables sans CGA (régime du bénéfice réel)
+                    u"""abic_defm""",  # Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)
+                    u"""alnp_imps""",  # Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)
+                    u"""alnp_defs""",  # Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)
+                    u"""cbnc_assc""",  # Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)
+                    u"""abnc_proc""",  # Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)
+                    u"""nbnc_proc""",  # Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)
+                    u"""mncn_exon""",  # Revenus nets exonérés non commerciaux non professionnels (régime déclaratif spécial ou micro BNC)
+                    u"""cncn_exon""",  # Revenus nets exonérés non commerciaux non professionnels (régime de la déclaration contrôlée)
+                    u"""cncn_aimp""",  # Revenus imposables non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)
+                    u"""cncn_adef""",  # Déficits non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)
+                    u"""cncn_info""",  # Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)
+                    u"""cncn_jcre""",  # Jeunes créateurs : abattement de 50%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)
+                    u"""revimpres""",  # Revenus nets à imposer aux prélèvements sociaux
+                    u"""pveximpres""",  # Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux
+                    u"""pvtaimpres""",  # Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux
                     u"""f6ps""",  # Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)
                     u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
@@ -490,7 +512,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f8wu',  # Crédit d'impôt en faveur des entreprises: Maître restaurateur
                     'f8wv',  # Crédit d'impôt en faveur des entreprises: Débitants de tabac
                     'f8wx',  # Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise
-                    'f8wy',
                     'f7uo',  # Acquisition de biens culturels
                     'f7us',  # Réduction d'impôt mécénat d'entreprise
                     'f7sb',  # Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %
@@ -513,7 +534,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'mbic_mvct',  # Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)
                     'macc_mvct',  # Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)
                     'mncn_mvct',  # Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)
-                    'mbnc_mvct',  # Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)
                     ]),
                 ]),
             collections.OrderedDict([
@@ -553,6 +573,34 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
                     u"""f2ck""",  # Crédit d'impôt égal au prélèvement forfaitaire déjà versé
                     u"""f3vv_end_2010""",  # Pertes ouvrant droit au crédit d’impôt de 19 %
+                    u"""f5qf""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-6)
+                    u"""f5qg""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-5)
+                    u"""f5qn""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-4)
+                    u"""f5qo""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-3)
+                    u"""f5qp""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-2)
+                    u"""f5qq""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-1)
+                    u"""f5ga""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)
+                    u"""f5gb""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)
+                    u"""f5gc""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)
+                    u"""f5gd""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)
+                    u"""f5ge""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)
+                    u"""f5gf""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)
+                    u"""f5gg""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)
+                    u"""f5gh""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)
+                    u"""f5gi""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)
+                    u"""f5gj""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)
+                    u"""f5rn""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)
+                    u"""f5ro""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-5)
+                    u"""f5rp""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-4)
+                    u"""f5rq""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-3)
+                    u"""f5rr""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-2)
+                    u"""f5rw""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-1)
+                    u"""f5ht""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)
+                    u"""f5it""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)
+                    u"""f5jt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)
+                    u"""f5kt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)
+                    u"""f5lt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)
+                    u"""f5mt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f7va""",  # Dons à des organismes d'aides aux personnes établis dans un Etat européen
@@ -863,6 +911,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""zthabm""",
+                    u"""proprietaire_proche_famille""",  # Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint
                     ]),
                 ]),
             ]),
