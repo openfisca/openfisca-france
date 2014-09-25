@@ -59,10 +59,10 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('birth', DateCol(label = u"Date de naissance")),
 
-    build_column_couple('nom_famille', StrCol(entity = 'fam', label = u"Nom")),
-    build_column_couple('nom_foyer_fiscal', StrCol(entity = 'foy', label = u"Nom")),
-    build_column_couple('nom_individu', StrCol(label = u"Prénom")),
-    build_column_couple('nom_menage', StrCol(entity = 'men', label = u"Nom")),
+    build_column_couple(entities.Familles.name_key, StrCol(entity = 'fam', label = u"Nom")),
+    build_column_couple(entities.FoyersFiscaux.name_key, StrCol(entity = 'foy', label = u"Nom")),
+    build_column_couple(entities.Individus.name_key, StrCol(label = u"Prénom")),
+    build_column_couple(entities.Menages.name_key, StrCol(entity = 'men', label = u"Nom")),
     build_column_couple(
         'type_sal',
         EnumCol(

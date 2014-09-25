@@ -31,19 +31,14 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def check_input_column_consumers(column):
-    if column.name not in (
-            'idfam',
-            'idfoy',
-            'idmen',
-            'noi',
-            'nom_famille',
-            'nom_foyer_fiscal',
-            'nom_individu',
-            'nom_menage',
-            'quifam',
-            'quifoy',
-            'quimen',
-            ):
+    column_names = ['idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen']
+    column_names.extend([
+        entities.Familles.name_key,
+        entities.FoyersFiscaux.name_key,
+        entities.Individus.name_key,
+        entities.Menages.name_key,
+        ])
+    if column.name not in column_names:
         if not(column.survey_only):
             assert column.consumers,\
                 u'Input column {} has no consumer'.format(column.name).encode('utf-8')

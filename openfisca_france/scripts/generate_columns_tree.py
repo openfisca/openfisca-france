@@ -39,6 +39,7 @@ import os
 import pprint
 import sys
 
+from openfisca_france import entities
 from openfisca_france import model
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
@@ -132,10 +133,10 @@ def main():
         if not is_valid_column(column):
             continue
         if not column.consumers and name not in (
-                'nom_famille',
-                'nom_foyer_fiscal',
-                'nom_individu',
-                'nom_menage',
+                entities.Familles.name_key,
+                entities.FoyersFiscaux.name_key,
+                entities.Individus.name_key,
+                entities.Menages.name_key,
                 ):
             # Ignore input columns not used in formulas.
             continue
@@ -151,7 +152,7 @@ def main():
             entity_children.append(last_entity_child)
         last_entity_child.setdefault('children', []).append(name)
 
-    datatrees_module_path = os.path.join(os.path.dirname(model.__file__), 'datatrees.py') 
+    datatrees_module_path = os.path.join(os.path.dirname(model.__file__), 'datatrees.py')
     with open(datatrees_module_path, 'w') as datatree_file:
         datatree_file.write('''\
 # -*- coding: utf-8 -*-
