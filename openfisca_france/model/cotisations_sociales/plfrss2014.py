@@ -128,7 +128,7 @@ def taux_alleg_plfrss2014_public(salbrut, P):
     return alleg
 
 
-def _reduction_impot_execptionnelle(rfr, nb_adult, nb_par, _P):
+def _reduction_impot_exceptionnelle(rfr, nb_adult, nb_par, _P):
     parametres = _P.plfr2014.reduction_impot_exceptionnelle
     plafond = parametres.seuil * nb_adult + (nb_par - nb_adult) * 2 * parametres.majoration_seuil
     montant = parametres.montant_plafond * nb_adult
@@ -137,23 +137,23 @@ def _reduction_impot_execptionnelle(rfr, nb_adult, nb_par, _P):
 
 def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, doment, domlog, donapd, duflot, ecpess,
                      garext, intagr, invfor, invlst, ip_net, locmeu, mecena, mohist, patnat, prcomp, repsoc, resimm,
-                     rsceha, saldom, scelli, sofica, spfcpi, reduction_impot_execptionnelle):
+                     rsceha, saldom, scelli, sofica, spfcpi, reduction_impot_exceptionnelle):
     '''
     Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
     '''
     total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
                         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +
                         prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi +
-                        reduction_impot_execptionnelle)
+                        reduction_impot_exceptionnelle)
     return min_(ip_net, total_reductions)
 
 
 def build_reform_column_by_name():
     reform_column_by_name = collections.OrderedDict((
         build_simple_formula_couple(
-            "reduction_impot_execptionnelle",
+            "reduction_impot_exceptionnelle",
             FloatCol(
-                function = _reduction_impot_execptionnelle,
+                function = _reduction_impot_exceptionnelle,
                 label = "Réduction d'impôt exceptionnelle",
                 ),
             ),
