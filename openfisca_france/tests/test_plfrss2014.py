@@ -29,7 +29,7 @@ import datetime
 
 from openfisca_core import legislations, periods
 from openfisca_core.reforms import Reform
-from openfisca_france.model.cotisations_sociales.plfrss2014 import build_reform_parameters, build_reform_column_by_name
+from openfisca_france.model.cotisations_sociales import plfrss2014
 import openfisca_france
 
 
@@ -38,24 +38,6 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def test_systemic_reform(year = 2013):
-    dated_legislation_json_src = legislations.generate_dated_legislation_json(
-        tax_benefit_system.legislation_json,
-        periods.period('year', year),
-        )
-    reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
-
-    reform_parameters = build_reform_parameters()
-    for key in reform_parameters["children"]:
-        reform_dated_legislation_json["children"][key] = reform_parameters["children"][key]
-
-    column_by_name = build_reform_column_by_name()
-
-    reform = Reform(
-        column_by_name = column_by_name,
-        name = "PLFR2014",
-        reform_dated_legislation_json = reform_dated_legislation_json,
-        reference_dated_legislation_json = dated_legislation_json_src,
-        )
 
     scenario = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
@@ -70,10 +52,37 @@ def test_systemic_reform(year = 2013):
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
 
-    simulation = scenario.new_simulation(debug = True)
-    assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .01
+    dated_legislation_json_src = legislations.generate_dated_legislation_json(
+        tax_benefit_system.legislation_json,
+        datetime.date(year, 1, 1)
+        )
+    reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
 
-    scenario.add_reform(reform)
+    for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():
+        reform_dated_legislation_json["children"][key] = key_parameters
+
+    entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(TaxBenefitSystem)
+
+    # reform = Reform(
+    #     column_by_name = column_by_name,
+    #     name = "PLFR2014",
+    #     reform_dated_legislation_json = reform_dated_legislation_json,
+    #     reference_dated_legislation_json = dated_legislation_json_src,
+    #     )
+    # assert 'plfr2014' in reform.compact_legislation.__dict__
+
+
+    simulation = scenario.new_simulation(debug = True)
+    result = simulation.calculate('impo')
+    assert max(abs(result - [0, -7889.20019531, -23435.52929688])) < .01
+    from pprint import pprint
+    pprint(result)
+
+    # scenario.add_reform(reform)
+    # reform_simulation = scenario.new_reform_simulation(debug = True)
+    # reform_result = reform_simulation.calculate('reduction_impot_exceptionnelle')
+    # from pprint import pprint
+    # pprint(reform_result)
 
 
 if __name__ == '__main__':
