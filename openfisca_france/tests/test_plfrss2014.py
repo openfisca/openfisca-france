@@ -38,7 +38,6 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def test_systemic_reform(year = 2013):
-
     scenario = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
@@ -51,7 +50,6 @@ def test_systemic_reform(year = 2013):
         date = datetime.date(year, 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
-
     reference_dated_legislation_json = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
         datetime.date(year, 1, 1)

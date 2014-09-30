@@ -32,6 +32,7 @@ from numpy import maximum as max_, minimum as min_
 from openfisca_core.columns import FloatCol
 from openfisca_core.enumerations import Enum
 import openfisca_france.model.irpp_reductions_impots as ri
+
 from openfisca_core import reforms
 from openfisca_core.formulas import build_dated_formula_couple, build_simple_formula_couple
 from openfisca_france import entities
@@ -123,6 +124,7 @@ def taux_alleg_plfrss2014_public(salbrut, P):
 
 
 def _reduction_impot_exceptionnelle(rfr, nb_adult, nb_par, _P):
+    raise 'test'
     parametres = _P.plfr2014.reduction_impot_exceptionnelle
     plafond = parametres.seuil * nb_adult + (nb_par - nb_adult) * 2 * parametres.majoration_seuil
     montant = parametres.montant_plafond * nb_adult
@@ -140,6 +142,7 @@ def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, dom
                         prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi +
                         reduction_impot_exceptionnelle)
     return min_(ip_net, total_reductions)
+
 
 
 def build_entity_class_by_key_plural(TaxBenefitSystem):
