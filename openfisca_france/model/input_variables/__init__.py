@@ -22,7 +22,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 from ..base import column_by_name
 from . import (
     base,
@@ -36,4 +35,5 @@ from . import (
     section_8_divers,
     isf,
     patrimoine,
+    indemnites_allocations,
     )
