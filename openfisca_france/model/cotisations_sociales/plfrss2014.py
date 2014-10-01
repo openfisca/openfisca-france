@@ -33,6 +33,7 @@ from numpy import maximum as max_, minimum as min_
 from openfisca_core.columns import FloatCol
 from openfisca_core.enumerations import Enum
 import openfisca_france.model.irpp_reductions_impots as ri
+from openfisca_core import reforms
 from openfisca_core.formulas import build_dated_formula_couple, build_simple_formula_couple
 from openfisca_france import entities
 
@@ -142,34 +143,23 @@ def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, dom
     return min_(ip_net, total_reductions)
 
 
-class Plfrss2014FoyersFiscaux(entities.FoyersFiscaux):
-    pass
-
-
 def build_entity_class_by_key_plural(TaxBenefitSystem):
-    class EntitiesMocker(object):
-        pass
-    EntitiesMocker.entity_class_by_symbol = entities.entity_class_by_symbol.copy()
-    Plfrss2014FoyersFiscaux.column_by_name = entities.FoyersFiscaux.column_by_name.copy()
-    EntitiesMocker.entity_class_by_symbol['foy'] = Plfrss2014FoyersFiscaux
-    assert id(EntitiesMocker.entity_class_by_symbol['foy']) != id(entities.entity_class_by_symbol['foy'])
-    assert id(EntitiesMocker.entity_class_by_symbol['foy'].column_by_name) != \
-        id(entities.entity_class_by_symbol['foy'].column_by_name)
+    reform_entity_class_by_symbol = reforms.clone_entity_classes(entities.entity_class_by_symbol, symbols = ['foy'])
+    class ReformEntities(object):
+        entity_class_by_symbol = reform_entity_class_by_symbol
 
-    build_plfrss2014_dated_formula_couple = partial(build_dated_formula_couple, entities = EntitiesMocker)
-    build_plfrss2014_simple_formula_couple = partial(build_simple_formula_couple, entities = EntitiesMocker)
-
-    build_plfrss2014_simple_formula_couple(
-        "reduction_impot_exceptionnelle",
-        FloatCol(
+    build_simple_formula_couple(
+        name = "reduction_impot_exceptionnelle",
+        column = FloatCol(
             entity = 'foy',
             function = _reduction_impot_exceptionnelle,
             label = "Réduction d'impôt exceptionnelle",
             ),
+        entities = ReformEntities,
         )
-    build_plfrss2014_dated_formula_couple(
-        'reductions',
-        [
+    build_dated_formula_couple(
+        name = 'reductions',
+        dated_functions = [
             dict(start = date(2002, 1, 1),
                  end = date(2002, 12, 31),
                  function = ri._reductions_2002,
@@ -215,14 +205,13 @@ def build_entity_class_by_key_plural(TaxBenefitSystem):
                  function = _reductions_2013,
                  ),
             ],
-        FloatCol(entity = 'foy'),
+        column = FloatCol(entity = 'foy'),
+        entities = ReformEntities,
         replace = True,
         )
 
-    plfrss2014_entity_class_by_key_plural = TaxBenefitSystem.entity_class_by_key_plural.copy()
-    assert id(plfrss2014_entity_class_by_key_plural) != id(TaxBenefitSystem.entity_class_by_key_plural)
-    plfrss2014_entity_class_by_key_plural['foyers_fiscaux'] = Plfrss2014FoyersFiscaux
-    return plfrss2014_entity_class_by_key_plural
+    reform_entity_class_by_key_plural = entities.build_entity_class_by_key_plural(reform_entity_class_by_symbol)
+    return reform_entity_class_by_key_plural
 
 
 dated_legislation_diff = {

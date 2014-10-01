@@ -42,9 +42,9 @@ def test_systemic_reform(year = 2013):
     scenario = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
-                count = 20,
-                max = 100000,
-                min = 0,
+                count = 10,
+                max = 13795*(1+.1)*(1+.03),
+                min = 13795*(1+.1)*(1-.03),
                 name = 'sali',
                 ),
             ],
@@ -70,14 +70,18 @@ def test_systemic_reform(year = 2013):
         )
 
     simulation = scenario.new_simulation(debug = True)
+    rfr = simulation.calculate('rfr')
     impo = simulation.calculate('impo')
+    print(rfr)
     print(impo)
-
+    print('-' * 20)
     scenario.add_reform(reform)
     reform_simulation = scenario.new_simulation(debug = True, reform_name = reform.name)
     reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
     print(reform_reduction_impot_exceptionnelle)
-    reform_impo = simulation.calculate('impo')
+    reform_rfr = reform_simulation.calculate('rfr')
+    reform_impo = reform_simulation.calculate('impo')
+    print(reform_rfr)
     print(reform_impo)
 
 
