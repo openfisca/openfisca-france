@@ -143,7 +143,6 @@ def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, dom
     return min_(ip_net, total_reductions)
 
 
-
 def build_entity_class_by_key_plural(TaxBenefitSystem):
     reform_entity_class_by_symbol = reforms.clone_entity_classes(entities.entity_class_by_symbol, symbols = ['foy'])
     class ReformEntities(object):
