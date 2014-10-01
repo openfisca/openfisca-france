@@ -68,11 +68,13 @@ def test_systemic_reform(year = 2013):
         )
 
     simulation = scenario.new_simulation(debug = True)
+
     rfr = simulation.calculate('rfr')
     impo = simulation.calculate('impo')
     print(rfr)
     print(impo)
     print('-' * 20)
+
     scenario.add_reform(reform)
     reform_simulation = scenario.new_simulation(debug = True, reform_name = reform.name)
     reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
