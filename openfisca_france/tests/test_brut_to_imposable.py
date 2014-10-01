@@ -72,7 +72,7 @@ def test_sal(year = 2014, verbose = False):
         type_sal = simulation.calculate('type_sal')
         primes = simulation.calculate('primes')
 
-        defaultP = simulation.default_compact_legislation
+        defaultP = simulation.reference_compact_legislation
         df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut_from_sali(sali, hsup, type_sal, defaultP) })
 
         for var in ['sal', 'salbrut']:
@@ -114,7 +114,7 @@ def test_cho_rst(year = 2014, verbose = False):
         vari = df_b2i[var].get_values()
         csg_rempl = vari * 0 + 3
 
-        defaultP = simulation.default_compact_legislation
+        defaultP = simulation.reference_compact_legislation
         if var == "cho":
             from openfisca_france.model.inversion_revenus import _chobrut_from_choi as _vari_to_brut
         elif var == "rst":

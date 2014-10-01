@@ -42,47 +42,43 @@ def test_systemic_reform(year = 2013):
     scenario = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
-                count = 3,
-                name = 'sali',
+                count = 20,
                 max = 100000,
                 min = 0,
+                name = 'sali',
                 ),
             ],
         date = datetime.date(year, 1, 1),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
 
-    dated_legislation_json_src = legislations.generate_dated_legislation_json(
+    reference_dated_legislation_json = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
         datetime.date(year, 1, 1)
         )
-    reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
-
+    reform_dated_legislation_json = copy.deepcopy(reference_dated_legislation_json)
     for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():
         reform_dated_legislation_json["children"][key] = key_parameters
 
     entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(TaxBenefitSystem)
 
-    # reform = Reform(
-    #     column_by_name = column_by_name,
-    #     name = "PLFR2014",
-    #     reform_dated_legislation_json = reform_dated_legislation_json,
-    #     reference_dated_legislation_json = dated_legislation_json_src,
-    #     )
-    # assert 'plfr2014' in reform.compact_legislation.__dict__
-
+    reform = Reform(
+        dated_legislation_json = reform_dated_legislation_json,
+        entity_class_by_key_plural = entity_class_by_key_plural,
+        name = u"PLFR2014",
+        reference_dated_legislation_json = reference_dated_legislation_json,
+        )
 
     simulation = scenario.new_simulation(debug = True)
-    result = simulation.calculate('impo')
-    assert max(abs(result - [0, -7889.20019531, -23435.52929688])) < .01
-    from pprint import pprint
-    pprint(result)
+    impo = simulation.calculate('impo')
+    print(impo)
 
-    # scenario.add_reform(reform)
-    # reform_simulation = scenario.new_reform_simulation(debug = True)
-    # reform_result = reform_simulation.calculate('reduction_impot_exceptionnelle')
-    # from pprint import pprint
-    # pprint(reform_result)
+    scenario.add_reform(reform)
+    reform_simulation = scenario.new_simulation(debug = True, reform_name = reform.name)
+    reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
+    print(reform_reduction_impot_exceptionnelle)
+    reform_impo = simulation.calculate('impo')
+    print(reform_impo)
 
 
 if __name__ == '__main__':

@@ -123,7 +123,6 @@ def taux_alleg_plfrss2014_public(salbrut, P):
 
 
 def _reduction_impot_exceptionnelle(rfr, nb_adult, nb_par, _P):
-    raise 'test'
     parametres = _P.plfr2014.reduction_impot_exceptionnelle
     plafond = parametres.seuil * nb_adult + (nb_par - nb_adult) * 2 * parametres.majoration_seuil
     montant = parametres.montant_plafond * nb_adult
