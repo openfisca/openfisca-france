@@ -55,11 +55,11 @@ CAT = Enum(['prive_non_cadre',
             'public_non_titulaire'])
 
 
-def _alleg_plfrss2014_prive(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
+def _alleg_plfrss2014_prive(salbrut, sal_h_b, type_sal, _P):
     '''
     Allègement de cotisations salariées sur les bas et moyens salaires du secteur privé
     '''
-    taux = taux_alleg_plfrss2014_prive(sal_h_b, taille_entreprise, _P)
+    taux = taux_alleg_plfrss2014_prive(sal_h_b, _P)
     allegement = taux * salbrut * (
         (type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre'])
         )
@@ -84,7 +84,7 @@ def _alleg_plfrss2014_public(salbrut, type_sal, _P):
 ############################################################################
 
 
-def taux_alleg_plfrss2014_prive(sal_h_b, taille_entreprise, P):
+def taux_alleg_plfrss2014_prive(sal_h_b, P):
     '''
     Exonération de cotisations des salariés du secteur privé PLFRSS2014
     http://www.assemblee-nationale.fr/14/projets/pl2044-ei.asp#P139_9932
