@@ -26,7 +26,6 @@
 from __future__ import division
 
 from datetime import date
-from functools import partial
 import logging
 from numpy import maximum as max_, minimum as min_
 
@@ -155,7 +154,7 @@ def build_entity_class_by_key_plural(TaxBenefitSystem):
             function = _reduction_impot_exceptionnelle,
             label = "Réduction d'impôt exceptionnelle",
             ),
-        entities = ReformEntities,
+        entity_class_by_symbol = reform_entity_class_by_symbol,
         )
     build_dated_formula_couple(
         name = 'reductions',
@@ -206,7 +205,7 @@ def build_entity_class_by_key_plural(TaxBenefitSystem):
                  ),
             ],
         column = FloatCol(entity = 'foy'),
-        entities = ReformEntities,
+        entity_class_by_symbol = reform_entity_class_by_symbol,
         replace = True,
         )
 

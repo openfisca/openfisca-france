@@ -102,7 +102,6 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
     return cotpat
 
 
-
 def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, cotpat_transport, _P):
     '''
     Cotisation sociales patronales main d'oeuvre
@@ -370,8 +369,8 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
         P = _P.cotsoc
         taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
         alleg_fillon = (taux_fillon * salbrut
-                         * ((type_sal == CAT['prive_non_cadre'])
-                                | (type_sal == CAT['prive_cadre'])))
+            * ((type_sal == CAT['prive_non_cadre'])
+                | (type_sal == CAT['prive_cadre'])))
         return alleg_fillon
     else:
         return 0 * salbrut
@@ -385,7 +384,7 @@ def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
         P = _P.cotsoc
         taux_cice = taux_exo_cice(sal_h_b, P)
         alleg_cice = (taux_cice * salbrut
-                        * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre'])))
+            * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre'])))
         return alleg_cice
     else:
         return 0 * salbrut
@@ -475,7 +474,7 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     tib = salbrut * eligibles / 12
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
-    plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: use build_pat
+    plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: build somewhere else
     pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), plaf_ss)
     assiette = min_(base_imposable / 12, plaf_ass * tib)
 
