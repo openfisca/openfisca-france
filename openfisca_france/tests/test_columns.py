@@ -24,6 +24,7 @@
 
 
 import openfisca_france
+from openfisca_france import entities
 
 
 TaxBenefitSystem = openfisca_france.init_country()

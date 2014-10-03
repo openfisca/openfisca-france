@@ -32,8 +32,6 @@ When tree already exists, don't change location of columns that have already bee
 
 import argparse
 import collections
-import itertools
-import json
 import logging
 import os
 import pprint
