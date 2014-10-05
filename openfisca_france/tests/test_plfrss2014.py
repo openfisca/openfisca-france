@@ -27,7 +27,7 @@ import copy
 import datetime
 
 
-from openfisca_core import legislations
+from openfisca_core import legislations, periods
 from openfisca_core.reforms import Reform
 from openfisca_france.model.cotisations_sociales.plfrss2014 import build_reform_parameters, build_reform_column_by_name
 import openfisca_france
@@ -40,7 +40,7 @@ tax_benefit_system = TaxBenefitSystem()
 def test_systemic_reform(year = 2013):
     dated_legislation_json_src = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
-        datetime.date(year, 1, 1)
+        periods.period_from_anything('year', year),
         )
     reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
 

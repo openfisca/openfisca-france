@@ -53,7 +53,7 @@ def _plus_value_nette(plus_value_brute, dur_det_immo, _P, pv_immo = law.ir.pv_im
     """
     # 40. ABATTEMENT POUR DUREE DE DETENTION
     # 41. NOMBRE D’ANNEES DE DETENTION AU-DELA DE LA 5EME ANNEE
-    if _P.datesim: # TODO:
+    if _P.date: # TODO:
         taux_reduc = max_(dur_det_immo - pv_immo.ann_det1, 0) * pv_immo.taux1
     else:
         taux_reduc = ( max_(dur_det_immo - pv_immo.ann_det3, 0) * pv_immo.taux3 +

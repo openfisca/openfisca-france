@@ -107,7 +107,7 @@ def _acqgpl(f7up, f7uq, _P):
     '''
     P = _P.ir.credits_impot.acqgpl
 
-    if 2002 <= _P.datesim.year <= 2007:
+    if 2002 <= _P.date.year <= 2007:
         return f7up * P.mont_up + f7uq * P.mont_uq
 
 

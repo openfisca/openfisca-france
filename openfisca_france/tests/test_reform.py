@@ -26,7 +26,7 @@
 import copy
 import datetime
 
-from openfisca_core import legislations
+from openfisca_core import legislations, periods
 from openfisca_core.reforms import Reform
 import openfisca_france
 
@@ -36,10 +36,9 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def test_parametric_reform(year = 2014):
-
     dated_legislation_json_src = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
-        datetime.date(year, 1, 1)
+        periods.period_from_anything('year', year),
         )
 #    print unicode(json.dumps(dated_legislation_json_src, ensure_ascii = False, indent = 2))
 

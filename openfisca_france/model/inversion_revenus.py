@@ -266,7 +266,7 @@ def _num_rstbrut_from_rstnet(self, rstnet, csg_rempl, _defaultP):
         net_variable_name = 'rstnet',
         rstbrut = x,
         tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
-        year = _defaultP.datesim.year,
+        year = _defaultP.date.year,
         ) - rstnet
     return fsolve(function, rstnet)
 
@@ -280,7 +280,7 @@ def _num_chobrut_from_chonet(self, chonet, csg_rempl, _defaultP):
         csg_rempl = csg_rempl,
         net_variable_name = 'chonet',
         tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
-        year = _defaultP.datesim.year,
+        year = _defaultP.date.year,
         ) - chonet
     return fsolve(function, chonet)
 
@@ -297,7 +297,7 @@ def _num_salbrut_from_salnet(self, agem, salnet, hsup, type_sal, _defaultP):
         salbrut = x,
         tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
         type_sal = type_sal,
-        year = _defaultP.datesim.year,
+        year = _defaultP.date.year,
         ) - salnet
     return fsolve(function, salnet)
 

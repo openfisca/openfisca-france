@@ -40,20 +40,18 @@ CAT = Enum(['prive_non_cadre',
             'public_titulaire_territoriale',
             'public_titulaire_hospitaliere',
             'public_non_titulaire'])
-
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
+log = logging.getLogger(__name__)
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
 
-from openfisca_core.legislations import CompactNode
 
-
-log = logging.getLogger(__name__)
 
 # TODO: contribution patronale de prévoyance complémentaire
 # Formation professionnelle (entreprise de 10 à moins de 20 salariés)
 #        salaire total 1,05%
 # Formation professionnelle (entreprise de moins de 10 salariés)
 #        salaire total 0,55%
+
 
 def build_pat(_P):
     '''
@@ -121,6 +119,7 @@ def build_pat(_P):
 #    log.info(u"Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE, pat[DEBUG_SAL_TYPE].keys()))
     return pat
 
+
 def build_sal(_P):
     '''
     Construit le dictionnaire de barèmes des cotisations salariales
@@ -141,8 +140,12 @@ def build_sal(_P):
     sal['public_titulaire_hospitaliere'] = sal['fonc']['colloc']
     sal['public_non_titulaire'] = sal['fonc']['contract']
 
-    for type_sal_category in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere',
-                               'public_non_titulaire']:
+    for type_sal_category in (
+            'public_titulaire_etat',
+            'public_titulaire_territoriale',
+            'public_titulaire_hospitaliere',
+            'public_non_titulaire',
+            ):
         sal[type_sal_category]['excep_solidarite'] = sal['fonc']['commun']['solidarite']
 
     sal['public_non_titulaire'].update(sal['commun'])

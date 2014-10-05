@@ -245,9 +245,9 @@ def _prelsoc_cap_lib(self, rev_cap_lib, _P):
     soumis au prélèvement libératoire
     '''
     P = _P.prelsoc
-    if _P.datesim.year < 2006:
+    if _P.date.year < 2006:
         total = P.base_pat
-    elif _P.datesim.year < 2009:
+    elif _P.date.year < 2009:
         total = P.base_pat + P.add_pat
     else:
         total = P.base_pat + P.add_pat + P.rsa

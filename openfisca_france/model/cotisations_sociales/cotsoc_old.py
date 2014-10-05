@@ -437,7 +437,7 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
-    if _P.datesim.year >= 2007:
+    if _P.date.year >= 2007:
         # TO DO: deal with taux between 2005 and 2007
         P = _P.cotsoc
         taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
@@ -453,7 +453,7 @@ def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
     '''
     Crédit d'imôt pour la compétitivité et l'emploi
     '''
-    if _P.datesim.year >= 2013:
+    if _P.date.year >= 2013:
         P = _P.cotsoc
         taux_cice = taux_exo_cice(sal_h_b, P)
         alleg_cice = (taux_cice * salbrut

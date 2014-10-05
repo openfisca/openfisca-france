@@ -63,7 +63,7 @@ def _age_from_agem(agem):
 
 
 def _age_from_birth(birth, _P):
-    return (datetime64(_P.datesim) - birth).astype('timedelta64[Y]')
+    return (datetime64(_P.date) - birth).astype('timedelta64[Y]')
 
 
 def _agem_from_age(age):
@@ -71,7 +71,7 @@ def _agem_from_age(age):
 
 
 def _agem_from_birth(birth, _P):
-    return (datetime64(_P.datesim) - birth).astype('timedelta64[M]')
+    return (datetime64(_P.date) - birth).astype('timedelta64[M]')
 
 
 def _nb_adult(marpac, celdiv, veuf):
@@ -890,7 +890,7 @@ def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, finp
     """
     Revenus du capital imposés au barème
     """
-    #    if _P.datesim.year <= 2011:
+    #    if _P.date.year <= 2011:
     #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
     #    elif _P.datesim.year > 2011:
     #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)

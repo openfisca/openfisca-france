@@ -36,7 +36,7 @@ import urllib2
 import uuid
 
 
-from openfisca_core import conv, legislations, simulations
+from openfisca_core import conv, legislations, periods, simulations
 from openfisca_core.scenarios import AbstractScenario
 
 from . import entities
@@ -163,7 +163,8 @@ class Scenario(AbstractScenario):
                                     conv.pipe(
                                         conv.test_isinstance(basestring),
                                         conv.test(year_or_month_or_day_re.match, error = N_(u'Invalid date')),
-                                        conv.function(lambda birth: u'-'.join((birth.split(u'-') + [u'01', u'01'])[:3])),
+                                        conv.function(lambda date_str: u'-'.join((date_str.split(u'-')
+                                            + [u'01', u'01'])[:3])),
                                         conv.iso8601_input_to_date,
                                         ),
                                     ),
@@ -252,9 +253,9 @@ class Scenario(AbstractScenario):
                         with open(legislation_file_path, 'w') as legislation_file:
                             legislation_file.write(unicode(json.dumps(legislation_json, encoding = 'utf-8',
                                 ensure_ascii = False, indent = 2)).encode('utf-8'))
-                if legislation_json.get('datesim') is None:
+                if legislation_json.get('start') is None:
                     dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json,
-                        data['date'])
+                        periods.period_from_anything('year', data['date']))
                 else:
                     dated_legislation_json = legislation_json
                     legislation_json = None
