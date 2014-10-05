@@ -40,10 +40,23 @@ from openfisca_core.formulas import (
     )
 from openfisca_france import entities
 
-build_alternative_formula_couple = partial(build_alternative_formula_couple, entities = entities)
-build_dated_formula_couple = partial(build_dated_formula_couple, entities = entities)
-build_select_formula_couple = partial(build_select_formula_couple, entities = entities)
-build_simple_formula_couple = partial(build_simple_formula_couple, entities = entities)
+
+build_alternative_formula_couple = partial(
+    build_alternative_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+build_dated_formula_couple = partial(
+    build_dated_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+build_select_formula_couple = partial(
+    build_select_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+build_simple_formula_couple = partial(
+    build_simple_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
 
 
 from . import calage as cl
