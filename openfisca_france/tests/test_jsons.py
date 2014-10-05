@@ -30,7 +30,6 @@ import json
 import os
 import sys
 
-from biryani1.baseconv import check
 import numpy as np
 import openfisca_france
 from openfisca_france.scripts.compare_openfisca_impots import compare_variable
@@ -42,17 +41,21 @@ tax_benefit_system = TaxBenefitSystem()
 def test():
     path = os.path.join(os.path.dirname(__file__), 'json')
     err = 1
-    for fichier in os.listdir(path):
-        with open(os.path.join(path, fichier)) as officiel:
+    for filename in os.listdir(path):
+        with open(os.path.join(path, filename)) as officiel:
             try:
                 content = json.load(officiel)
             except:
-                print fichier
+                print filename
+                continue
             official_result = content['resultat_officiel']
             json_scenario = content['scenario']
 
-            scenario = check(tax_benefit_system.Scenario.make_json_to_instance(
-                tax_benefit_system = tax_benefit_system))(json_scenario)
+            scenario, error = tax_benefit_system.Scenario.make_json_to_instance(
+                tax_benefit_system = tax_benefit_system)(json_scenario)
+            if error is not None:
+                print 'error:', filename, scenario, error
+                continue
 
             year = json_scenario['year']
             totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
@@ -60,7 +63,7 @@ def test():
             simulation = scenario.new_simulation()
 
             for code, field in official_result.iteritems():
-                if compare_variable(code, field, simulation, totpac, fichier, year):
+                if compare_variable(code, field, simulation, totpac, filename, year):
                     err = 0
 
     assert err, "Erreur"
