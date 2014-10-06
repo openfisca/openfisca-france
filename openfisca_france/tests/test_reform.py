@@ -38,7 +38,7 @@ tax_benefit_system = TaxBenefitSystem()
 def test_parametric_reform(year = 2014):
     dated_legislation_json_src = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
-        periods.period_from_anything('year', year),
+        periods.period('year', year),
         )
 #    print unicode(json.dumps(dated_legislation_json_src, ensure_ascii = False, indent = 2))
 

@@ -40,7 +40,7 @@ tax_benefit_system = TaxBenefitSystem()
 def test_systemic_reform(year = 2013):
     dated_legislation_json_src = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
-        periods.period_from_anything('year', year),
+        periods.period('year', year),
         )
     reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
 

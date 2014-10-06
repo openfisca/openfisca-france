@@ -255,7 +255,7 @@ class Scenario(AbstractScenario):
                                 ensure_ascii = False, indent = 2)).encode('utf-8'))
                 if legislation_json.get('start') is None:
                     dated_legislation_json = legislations.generate_dated_legislation_json(legislation_json,
-                        periods.period_from_anything('year', data['date']))
+                        periods.period('year', data['date']))
                 else:
                     dated_legislation_json = legislation_json
                     legislation_json = None
