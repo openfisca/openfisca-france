@@ -44,8 +44,7 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-def define_scenario():
-    year = 2013
+def define_scenario(year = 2013):
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
         date = datetime.date(year , 1, 1),
@@ -84,7 +83,7 @@ def export_json(scenario, var = "", tested = True): # On peut passer un scenario
     json_scenario = scenario.to_json()
     string_scenario = json.dumps(json_scenario, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
     h = var + '-' + hashlib.sha256(string_scenario).hexdigest()
-    h2 = var + '-' + str(scenario.year) + '-' + hashlib.sha256(string_scenario).hexdigest()
+    h2 = var + '-' + str(scenario.date.year) + '-' + hashlib.sha256(string_scenario).hexdigest()
 # Le fichier de sortie est nommé [variable éventuelle]-[année du scénario (sauf pour .json créés avant 05/14)]-[Hash du scenario]
     if not (os.path.isfile(os.path.join('json', h + '.json')) or os.path.isfile(os.path.join('json', h2 + '.json'))):#TODO: scenario > single entity
         with codecs.open(os.path.join('json', h2 + '.json'),'w', encoding='utf-8') as fichier:

@@ -30,12 +30,13 @@
 
 ########### DESCRIPTION ############
 ## Ce script compare la simulation OpenFisca d'un scenario (à définir ci-dessous) avec l'officielle (DGFiP)
-## Il renvoie les erreurs d'OpenFisca : les valeurs attendues et les valeurs obtenues pour une dizaine de variables 
+## Il renvoie les erreurs d'OpenFisca : les valeurs attendues et les valeurs obtenues pour une dizaine de variables
 ## quand elles diffèrent de plus de la marge d'erreur (=2€ à ce jour)
 
 import argparse
 import collections
 import cStringIO
+import datetime
 import json
 import logging
 import os
@@ -101,7 +102,7 @@ def main():
 
 
 def compare(scenario, tested = False, fichier = ''):
-    year = scenario.year
+    year = scenario.date.year
     totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
 
     impots_arguments = transform_scenario_to_impots_arguments(scenario)
@@ -214,14 +215,14 @@ def compare(scenario, tested = False, fichier = ''):
         'RILMIH': u'?',#TODO (7ih)
         'RILMJI': u'?',#TODO (7ji)
         'RILMJS': u'?',#TODO (7ji)
-        'RFIPC': u'?',#TODO 
-        'RILMJX': u'?',#TODO 
+        'RFIPC': u'?',#TODO
+        'RILMJX': u'?',#TODO
         'RILMJV': u'?',#TODO
-        'RILMJW': u'?',#TODO 
-        'RCELREPHG': u'?',#TODO 
-        'RCELREPGV': u'?',#TODO 
-        'RCELRREDLM': u'?',#TODO 
-        'RCELRREDMG': u'?',#TODO 
+        'RILMJW': u'?',#TODO
+        'RCELREPHG': u'?',#TODO
+        'RCELREPGV': u'?',#TODO
+        'RCELRREDLM': u'?',#TODO
+        'RCELRREDMG': u'?',#TODO
         'RFORET': u'?',#TODO (f7uc)
         'RINVDOMTOMLG': u'?',#TODO (f7ui)
         'RTELEIR': u'?',#TODO (7ul)
@@ -368,7 +369,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''): # Com
                 'RCELREPHS', 'RCELNBGL', 'RCELCOM', 'RCELNQ', 'RCELRREDLD', 'RCELRREDLE',  'RCELRREDLF',
                 'RTOURHOT', 'RTOURES', 'RTOURNEUF', 'RCELREPHR', 'RCINE', 'RFCPI', 'RINNO', 'RAA',
                 'RCELREPGJ', 'RCELREPGK', 'RCELREPGL', 'RCELREPGP', 'RSOUFIP', 'RCODELOP',
-                'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR', 
+                'RTOURTRA', 'TXMARJ', 'RSURV', 'RAIDE', 'RCELREPHA', 'RCELREPHB', 'RCELJP', 'RCELJOQR',
                 'RCELREPHD', 'RCELREPHE', 'RCELREPHF', 'RCELREPHH', 'RCEL2012', 'RCELJBGL', 'RCOLENT',
                 'RCELREPHT', 'RCELREPHU', 'RCELREPHV', 'RCELREPHW', 'RCELREPHX', 'RCELREPHZ', 'RCELRRED09', 'TXMOYIMP',
                 'RFIPC', 'RILMJX', 'RILMJV', 'RCELREPGV', 'RCELRREDLM', 'RCELRREDMG', 'RILMJW', 'RCELREPHG'):
@@ -381,7 +382,7 @@ def compare_variable(code, field, simulation, totpac, year, fichier = ''): # Com
             assert openfisca_simple_value.shape == (1,), u'For {} ({}). Expected: {}. Got: {}'.format(code,
                 field['name'], field['value'], openfisca_value).encode('utf-8')
             openfisca_simple_value = openfisca_simple_value[0]
-        if not abs(field['value'] - openfisca_simple_value) < 2: # marge d'erreur 
+        if not abs(field['value'] - openfisca_simple_value) < 2: # marge d'erreur
             print u'In {}. ({})\nFor {} ({}). Expected: {}. Got: {}).'.format(fichier, year, field['code'], field['name'], \
             field['value'], openfisca_simple_value).encode('utf-8')
             return 1

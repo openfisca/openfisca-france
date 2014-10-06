@@ -26,11 +26,15 @@
 ########### DESCRIPTION ############
 ## Ce programme teste tous les fichiers .json créés par un script et renvoie les erreurs d'OpenFisca
 
+import datetime
 import json
 import os
 import sys
 
-import numpy as np
+
+from biryani1.baseconv import check
+
+
 import openfisca_france
 from openfisca_france.scripts.compare_openfisca_impots import compare_variable
 
@@ -38,35 +42,37 @@ from openfisca_france.scripts.compare_openfisca_impots import compare_variable
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
+
+def compare_json(json_file):
+    content = json.load(json_file)
+    try:
+        official_result = content['resultat_officiel']
+    except:
+        print json.dumps(json_file, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+    json_scenario = content['scenario']
+
+    scenario = check(tax_benefit_system.Scenario.make_json_to_instance(
+        tax_benefit_system = tax_benefit_system))(json_scenario)
+
+    if 'year' not in json_scenario:
+        print json.dumps(json_scenario, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+        date = datetime.datetime.strptime(json_scenario['date'], "%Y-%m-%d")
+        year = date.year
+    else:
+        year = json_scenario['year']
+
+    totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
+    simulation = scenario.new_simulation()
+
+    for code, field in official_result.iteritems():
+        return compare_variable(code, field, simulation, totpac, json_file, year)
+
+
 def test():
     path = os.path.join(os.path.dirname(__file__), 'json')
-    err = 1
-    for filename in os.listdir(path):
-        with open(os.path.join(path, filename)) as officiel:
-            try:
-                content = json.load(officiel)
-            except:
-                print filename
-                continue
-            official_result = content['resultat_officiel']
-            json_scenario = content['scenario']
-
-            scenario, error = tax_benefit_system.Scenario.make_json_to_instance(
-                tax_benefit_system = tax_benefit_system)(json_scenario)
-            if error is not None:
-                print 'error:', filename, scenario, error
-                continue
-
-            year = json_scenario['year']
-            totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
-
-            simulation = scenario.new_simulation()
-
-            for code, field in official_result.iteritems():
-                if compare_variable(code, field, simulation, totpac, filename, year):
-                    err = 0
-
-    assert err, "Erreur"
+    for json_file_path in os.listdir(path):
+        with open(os.path.join(path, json_file_path)) as json_file:
+            yield compare_json, json_file
 
 
 if __name__ == "__main__":

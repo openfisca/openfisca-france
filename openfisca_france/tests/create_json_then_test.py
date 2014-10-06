@@ -38,8 +38,6 @@ import sys
 import openfisca_france
 
 from generate_json import export_json
-import os
-from datetime import date
 
 
 from openfisca_core import conv
@@ -83,7 +81,7 @@ def define_scenario(year, column_code):
     elif entity == 'men':
         menage[column_code] = value
     scenario.init_single_entity(
-        date = datetime.date(year , 1, 1),
+        date = datetime.date(year, 1, 1),
         parent1 = parent1,
 #        parent2 = dict(),
         enfants = enfants,
@@ -101,8 +99,8 @@ def main():
     while 1:
         column_code = raw_input("Which variable would you like to test ? ")
         assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"
-        for year in range(2007,2014):
-            scenario = define_scenario(year,column_code)
+        for year in range(2006,2007):
+            scenario = define_scenario(year, column_code)
             export_json(scenario, var = column_code, tested = True)
 
 if __name__ == "__main__":
