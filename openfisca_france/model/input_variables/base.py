@@ -36,7 +36,11 @@ from openfisca_core.enumerations import Enum
 
 from ... import entities
 
-build_column_couple = partial(build_column_couple, entities = entities)
+
+build_column_couple = partial(
+    build_column_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
 
 
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
