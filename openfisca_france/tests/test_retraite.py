@@ -27,49 +27,44 @@ from __future__ import division
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 
 
 def test_celib(verbose = False):
-    """
-    Test pour un célibataire
-    """
+    """Célibataire"""
     tests_list = [
-             {"year" : 2013,
-              "input_vars":
-                    {
-                     "activite": 3,
-                     "rsti" : 12500,
-                    },
-              "output_vars" :
-                     {
-                      "rst": 12500,
-                    }
-              },
-            ]
+        {
+            "year": 2013,
+            "input_vars": {
+                "activite": 3,
+                "rsti": 12500,
+                },
+            "output_vars": {
+                "rst": 12500,
+                }
+            },
+        ]
 
     from openfisca_france.tests.utils import process_tests_list
     process_tests_list(tests_list, verbose = verbose)
 
 
 def test_couple(verbose = False):
-    """
-    Couple de retraités
-    """
+    """Couple de retraités"""
     tests_list = [
-               {"year" : 2013,
-              "input_vars":
-                    {
-                     "age": 73,
-                     "activite": 3,
-                     "rsti" : 12500,
-                    },
-              "output_vars" :
-                     {
-                     "rst" : 2 * 12500,
-                    }
-              },
-                  ]
+        {
+            "year": 2013,
+            "input_vars": {
+                "age": 73,
+                "activite": 3,
+                "rsti": 12500,
+                },
+            "output_vars": {
+                "rst": 2 * 12500,
+                }
+            },
+        ]
 
     TaxBenefitSystem = openfisca_france.init_country()
     tax_benefit_system = TaxBenefitSystem()
@@ -94,7 +89,7 @@ def test_couple(verbose = False):
                 foyer_fiscal[variable] = value
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
-            date = datetime.date(year , 1, 1),
+            period = periods.period('year', year),
             parent1 = parent1,
             parent2 = parent2,
             menage = menage,
@@ -105,14 +100,18 @@ def test_couple(verbose = False):
 
             computed_value = (simulation.calculate(variable)).sum()
             test_assertion = abs(abs(computed_value) - value) < 1
-            expression = "Test failed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+            expression = "Test failed for variable %s on year %i and case %s:\n" \
+                "OpenFisca value: %s\n" \
+                " Real value: %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
 
             if not test_assertion:
                 print expression
                 passed = False
             else:
                 if verbose:
-                    expression = "Test passed for variable %s on year %i and case %s: \n OpenFisca value : %s \n Real value : %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
+                    expression = "Test passed for variable %s on year %i and case %s:\n" \
+                        "OpenFisca value: %s\n" \
+                        " Real value: %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
                     print expression
 
     assert passed, "Test failed for some variables"

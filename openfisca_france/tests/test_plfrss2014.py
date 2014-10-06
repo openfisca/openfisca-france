@@ -26,11 +26,10 @@
 import copy
 import datetime
 
-
 from openfisca_core import legislations, periods
 from openfisca_core.reforms import Reform
-from openfisca_france.model.cotisations_sociales import plfrss2014
 import openfisca_france
+from openfisca_france.model.cotisations_sociales import plfrss2014
 
 
 TaxBenefitSystem = openfisca_france.init_country()
@@ -42,17 +41,17 @@ def test_systemic_reform(year = 2013):
         axes = [
             dict(
                 count = 10,
-                max = 13795*(1+.1)*(1+.03),
-                min = 13795*(1+.1)*(1-.03),
+                max = 13795 * (1 + .1) * (1 + .03),
+                min = 13795 * (1 + .1) * (1 - .03),
                 name = 'sali',
                 ),
             ],
-        date = datetime.date(year, 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
     reference_dated_legislation_json = legislations.generate_dated_legislation_json(
         tax_benefit_system.legislation_json,
-        datetime.date(year, 1, 1)
+        periods.period('year', year),
         )
     reform_dated_legislation_json = copy.deepcopy(reference_dated_legislation_json)
     for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():

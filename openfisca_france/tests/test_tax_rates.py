@@ -23,32 +23,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import datetime
-
-from openfisca_core.simulations import marginal_tax_rate
-from openfisca_core.simulations import average_tax_rate
+from openfisca_core import periods
+from openfisca_core.simulations import average_tax_rate, marginal_tax_rate
 import openfisca_france
 
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
-
-
-def test_marginal_tax_rate():
-    year = 2013
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [
-            dict(
-                count = 10000,
-                name = 'sali',
-                max = 1000000,
-                min = 0,
-            ),
-        ],
-        date = datetime.date(year, 1, 1),
-        parent1 = dict(agem = 40 * 12 + 6),
-        ).new_simulation(debug = True)
-    assert (marginal_tax_rate(simulation, target_column_name = 'revdisp', varying_column_name = 'revdisp') == 0).all()
 
 
 def test_average_tax_rate():
@@ -62,10 +43,27 @@ def test_average_tax_rate():
                 min = 0,
             ),
         ],
-        date = datetime.date(year, 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
     assert (average_tax_rate(simulation, target_column_name = 'revdisp', varying_column_name = 'revdisp') == 0).all()
+
+
+def test_marginal_tax_rate():
+    year = 2013
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = 10000,
+                name = 'sali',
+                max = 1000000,
+                min = 0,
+            ),
+        ],
+        period = periods.period('year', year),
+        parent1 = dict(agem = 40 * 12 + 6),
+        ).new_simulation(debug = True)
+    assert (marginal_tax_rate(simulation, target_column_name = 'revdisp', varying_column_name = 'revdisp') == 0).all()
 
 
 if __name__ == '__main__':

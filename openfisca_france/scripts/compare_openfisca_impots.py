@@ -36,8 +36,6 @@
 import argparse
 import collections
 import cStringIO
-import datetime
-import json
 import logging
 import os
 import sys
@@ -46,6 +44,7 @@ import urllib2
 
 from lxml import etree
 import numpy as np
+from openfisca_core import periods
 import openfisca_france
 
 
@@ -58,7 +57,7 @@ tax_benefit_system = TaxBenefitSystem()
 def define_scenario(year):
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,

@@ -27,6 +27,7 @@ from __future__ import division
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
@@ -76,7 +77,7 @@ def test_nonsal_celib(verbose = True):
 
 # def test_nonsal_famille():  # TODO: buggy tests CHECK
 #     tests_infos = dict(
-#         date = datetime.date(2013 , 1, 1),
+#         period = periods.period('year', 2013),
 #         description = u"Couple de microentrepreneur",
 #         parent1 = dict(
 #             birth = datetime.date(1972, 1, 1),

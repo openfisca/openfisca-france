@@ -25,6 +25,7 @@
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 
 
@@ -41,7 +42,7 @@ def check_af2(year):
     expected_af_by_year = {2006: 1412.64, 2007: 1436.64, 2008: 1451.04, 2009: 1494.48}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -68,7 +69,7 @@ def check_af2b(year):
     expected_af_by_year = {2006: 1809.96, 2007: 1840.68, 2008: 2176.56, 2009: 2241.72}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -93,10 +94,10 @@ def check_af2c(year):
     pas de majo pour le premier, majo 11 ans pour le second
     montant AF annuel brut de CRDS
     '''
-    expected_af_by_year = {2006: 1809.96, 2007 : 2154.96, 2008: 0.0, 2009: 0.0}
+    expected_af_by_year = {2006: 1809.96, 2007: 2154.96, 2008: 0.0, 2009: 0.0}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -123,7 +124,7 @@ def check_af2m(year):
     expected_af_by_year = {2006: 2118.96, 2007: 2154.96, 2008: 2176.56, 2009: 2241.72}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -150,7 +151,7 @@ def check_af3(year):
     expected_af_by_year = {2006: 3222.60, 2007: 3277.32, 2008: 3310.08, 2009: 3409.32}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -178,7 +179,7 @@ def check_af3m(year):
     expected_af_by_year = {2006: 5341.56, 2007: 5432.28, 2008: 5486.64, 2009: 5651.04}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -203,10 +204,10 @@ def check_af3m1(year):
     2 bb et 1+ 14 ans (1 majo pour âge) + test limite inf du forfait puisqu'il a 19 ans en 2009
     montant AF annuel brut de CRDS
     '''
-    expected_af_by_year = {2006: 3928.92, 2007 : 3995.64, 2008: 4035.60, 2009: 4156.56}
+    expected_af_by_year = {2006: 3928.92, 2007: 3995.64, 2008: 4035.60, 2009: 4156.56}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -234,7 +235,7 @@ def check_af31f06(year):
     expected_af_by_year = {2006: 2305.80, 2007: 1436.64, 2008: 1451.04, 2009: 1494.48}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -257,10 +258,10 @@ def check_af31f08(year):
     '''
     montant AF annuel brut de CRDS
     '''
-    expected_af_by_year = {2006: 3928.92, 2007 : 3995.64, 2008: 2368.56, 2009: 1494.48}
+    expected_af_by_year = {2006: 3928.92, 2007: 3995.64, 2008: 2368.56, 2009: 1494.48}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -286,7 +287,7 @@ def check_af31f09(year):
     expected_af_by_year = {2006: 3928.92, 2007: 3995.64, 2008: 4035.60, 2009: 2439.48}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -311,10 +312,10 @@ def check_af3bis(year):
     donc,1majo en 2006, 2 majo en 2007 et un forfait en 08 (pas de majo pour l'ainé de 2 enf à charge)
     montant AF annuel brut de CRDS
     '''
-    expected_af_by_year = {2006: 4326.24, 2007 : 4399.68, 2008: 2368.56, 2009: 1494.48}
+    expected_af_by_year = {2006: 4326.24, 2007: 4399.68, 2008: 2368.56, 2009: 1494.48}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -341,10 +342,10 @@ def check_af3ter(year):
     rien en 2009
     montant AF annuel brut de CRDS
     '''
-    expected_af_by_year = {2006: 4635.24, 2007 : 2345.04, 2008: 0.0, 2009: 0.0}
+    expected_af_by_year = {2006: 4635.24, 2007: 2345.04, 2008: 0.0, 2009: 0.0}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -370,10 +371,10 @@ def check_af3qua(year):
     1 forfait 20 ans en  2008 et les al seules pour 2 enf en 2009
     montant AF annuel brut de CRDS
     '''
-    expected_af_by_year = {2006: 4326.24, 2007 : 4713.96, 2008: 2368.56, 2009: 1494.48}
+    expected_af_by_year = {2006: 4326.24, 2007: 4713.96, 2008: 2368.56, 2009: 1494.48}
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -401,7 +402,7 @@ def test_af3qua():
 #    expected_af_by_year = {2006: 6842.40, 2007 : 6958.68, 2008: 7028.16, 2009: 7239.12}
 
 #    simulation = tax_benefit_system.new_scenario().init_single_entity(
-#        date = datetime.date(year , 1, 1),
+#        period = periods.period('year', year),
 #        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
 #        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
 #        enfants = [
@@ -431,4 +432,3 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv = [__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit = False)
-

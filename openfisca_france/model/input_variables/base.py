@@ -51,22 +51,24 @@ QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', '
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
 column_by_name = collections.OrderedDict((
-    build_column_couple('noi', IntCol(label = u"Numéro d'ordre individuel")),
+    build_column_couple('noi', IntCol(is_period_invariant = True, label = u"Numéro d'ordre individuel")),
 
-    build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),
-    build_column_couple('idfoy', IntCol(label = u"Identifiant du foyer")),
-    build_column_couple('idfam', IntCol(label = u"Identifiant de la famille")),
+    build_column_couple('idmen', IntCol(is_period_invariant = True, label = u"Identifiant du ménage")),
+    build_column_couple('idfoy', IntCol(is_period_invariant = True, label = u"Identifiant du foyer")),
+    build_column_couple('idfam', IntCol(is_period_invariant = True, label = u"Identifiant de la famille")),
 
-    build_column_couple('quimen', EnumCol(QUIMEN)),
-    build_column_couple('quifoy', EnumCol(QUIFOY)),
-    build_column_couple('quifam', EnumCol(QUIFAM)),
+    build_column_couple('quimen', EnumCol(QUIMEN, is_period_invariant = True)),
+    build_column_couple('quifoy', EnumCol(QUIFOY, is_period_invariant = True)),
+    build_column_couple('quifam', EnumCol(QUIFAM, is_period_invariant = True)),
 
-    build_column_couple('birth', DateCol(label = u"Date de naissance")),
+    build_column_couple('birth', DateCol(is_period_invariant = True, label = u"Date de naissance")),
 
-    build_column_couple(entities.Familles.name_key, StrCol(entity = 'fam', label = u"Nom")),
-    build_column_couple(entities.FoyersFiscaux.name_key, StrCol(entity = 'foy', label = u"Nom")),
-    build_column_couple(entities.Individus.name_key, StrCol(label = u"Prénom")),
-    build_column_couple(entities.Menages.name_key, StrCol(entity = 'men', label = u"Nom")),
+    build_column_couple(entities.Familles.name_key, StrCol(entity = 'fam', is_period_invariant = True, label = u"Nom")),
+    build_column_couple(entities.FoyersFiscaux.name_key, StrCol(entity = 'foy', is_period_invariant = True,
+        label = u"Nom")),
+    build_column_couple(entities.Individus.name_key, StrCol(is_period_invariant = True, label = u"Prénom")),
+    build_column_couple(entities.Menages.name_key, StrCol(entity = 'men', is_period_invariant = True, label = u"Nom")),
+
     build_column_couple(
         'type_sal',
         EnumCol(

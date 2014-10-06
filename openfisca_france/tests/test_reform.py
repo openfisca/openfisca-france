@@ -26,8 +26,7 @@
 import copy
 import datetime
 
-from openfisca_core import legislations, periods
-from openfisca_core.reforms import Reform
+from openfisca_core import legislations, periods, reforms
 import openfisca_france
 
 
@@ -46,10 +45,10 @@ def test_parametric_reform(year = 2014):
     assert reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] == 0
     reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] = 1
 
-    reform = Reform(
+    reform = reforms.Reform(
         name = "IR_100_tranche_1",
         label = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
-        reform_dated_legislation_json = reform_dated_legislation_json,
+        dated_legislation_json = reform_dated_legislation_json,
         reference_dated_legislation_json = dated_legislation_json_src
         )
 
@@ -62,7 +61,7 @@ def test_parametric_reform(year = 2014):
                 min = 0,
                 ),
             ],
-        date = datetime.date(year, 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
 

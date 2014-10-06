@@ -27,6 +27,7 @@ from __future__ import division
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
 from pandas import DataFrame
@@ -45,8 +46,8 @@ def test_sal(year = 2014, verbose = False):
     maxrev = 24000
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
         simulation = tax_benefit_system.new_scenario().init_single_entity(
-            axes = [ dict(name = 'salbrut', max = maxrev, min = 0, count = 11) ],
-            date = datetime.date(year , 1, 1),
+            axes = [dict(name = 'salbrut', max = maxrev, min = 0, count = 11)],
+            period = periods.period('year', year),
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
                 type_sal = CAT[type_sal_category],
@@ -70,17 +71,17 @@ def test_sal(year = 2014, verbose = False):
 
         hsup = simulation.calculate('hsup')
         type_sal = simulation.calculate('type_sal')
-        primes = simulation.calculate('primes')
+        # primes = simulation.calculate('primes')
 
         defaultP = simulation.reference_compact_legislation
-        df_i2b = DataFrame({'sal': sali, 'salbrut' : _salbrut_from_sali(sali, hsup, type_sal, defaultP) })
+        df_i2b = DataFrame({'sal': sali, 'salbrut': _salbrut_from_sali(sali, hsup, type_sal, defaultP)})
 
         for var in ['sal', 'salbrut']:
             passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
 
         if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
             print "Brut to imposable"
-            print (df_b2i[['salbrut', 'sal' ]] / 12).to_string()
+            print (df_b2i[['salbrut', 'sal']] / 12).to_string()
             print "Imposable to brut"
             print (df_i2b / 12).to_string()
 
@@ -92,24 +93,23 @@ def test_cho_rst(year = 2014, verbose = False):
     Tests that _chobrut which computes "chômage brut" from "imposable" yields an amount compatbe
     with the one obtained from running openfisca satrting with a "chômage brut"
     '''
-    remplacement = {'cho' : 'chobrut', 'rst': 'rstbrut'}
+    remplacement = {'cho': 'chobrut', 'rst': 'rstbrut'}
 
     for var, varbrut in remplacement.iteritems():
-
-
         maxrev = 24000
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
-            date = datetime.date(year , 1, 1),
-            axes = [ dict(name = varbrut, max = maxrev, min = 0, count = 11) ],
+            axes = [dict(name = varbrut, max = maxrev, min = 0, count = 11)],
+            period = periods.period('year', year),
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
                 ),
             ).new_simulation(debug = True)
 
-        df_b2i = DataFrame({var: simulation.calculate(var),
-                            varbrut : simulation.calculate(varbrut),
-                            })
+        df_b2i = DataFrame({
+            var: simulation.calculate(var),
+            varbrut: simulation.calculate(varbrut),
+            })
 
         vari = df_b2i[var].get_values()
         csg_rempl = vari * 0 + 3
@@ -120,7 +120,7 @@ def test_cho_rst(year = 2014, verbose = False):
         elif var == "rst":
             from openfisca_france.model.inversion_revenus import _rstbrut_from_rsti as _vari_to_brut
 
-        df_i2b = DataFrame({var: vari, varbrut : _vari_to_brut(vari, csg_rempl, defaultP) })
+        df_i2b = DataFrame({var: vari, varbrut: _vari_to_brut(vari, csg_rempl, defaultP)})
 
         if verbose:
             print df_i2b.to_string()
@@ -131,7 +131,7 @@ def test_cho_rst(year = 2014, verbose = False):
 
             if (not passed) or verbose:
                 print "Brut to imposable"
-                print (df_b2i[[varbrut, var ]] / 12).to_string()
+                print (df_b2i[[varbrut, var]] / 12).to_string()
                 print "Imposable to brut"
                 print (df_i2b / 12).to_string()
 

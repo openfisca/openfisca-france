@@ -41,6 +41,7 @@ import logging
 import numpy as np
 import os
 
+from openfisca_core import periods
 import openfisca_france
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -137,7 +138,7 @@ def define_scenario(year):
 #                f7cn = 1500,
                 f7rd = 100000
             ),
-        year = year,
+        period = periods.period('year', year),
         )
     scenario.suggest()
     return scenario

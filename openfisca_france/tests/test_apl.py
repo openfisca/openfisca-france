@@ -25,6 +25,7 @@
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 
 
@@ -35,7 +36,7 @@ tax_benefit_system = TaxBenefitSystem()
 def test_zone_1():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year, 1, 1),
+        period = periods.period('year', year),
         menage = dict(
             depcom = '75114',
             ),
@@ -47,7 +48,7 @@ def test_zone_1():
 def test_zone_2():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year, 1, 1),
+        period = periods.period('year', year),
         menage = dict(
             depcom = '69381',
             ),
@@ -59,7 +60,7 @@ def test_zone_2():
 def test_zone_3():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year, 1, 1),
+        period = periods.period('year', year),
         menage = dict(
             depcom = '87191',
             ),

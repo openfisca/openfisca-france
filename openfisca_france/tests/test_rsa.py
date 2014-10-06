@@ -1,40 +1,40 @@
-## -*- coding: utf-8 -*-
-#
-#
-## OpenFisca -- A versatile microsimulation software
-## By: OpenFisca Team <contact@openfisca.fr>
-##
-## Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
-## https://github.com/openfisca
-##
-## This file is part of OpenFisca.
-##
-## OpenFisca is free software; you can redistribute it and/or modify
-## it under the terms of the GNU Affero General Public License as
-## published by the Free Software Foundation, either version 3 of the
-## License, or (at your option) any later version.
-##
-## OpenFisca is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU Affero General Public License for more details.
-##
-## You should have received a copy of the GNU Affero General Public License
-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# -*- coding: utf-8 -*-
 
 
-#Ne pas oublier d'intégrer la paje quand on simule le cas type sur le site de la cnaf pour les enfants de moins de 3 ans
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
+#
+# This file is part of OpenFisca.
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Ne pas oublier d'intégrer la paje quand on simule le cas type sur le site de la cnaf pour les enfants de moins de
+# 3 ans
 
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 
 
 def test_check_rsa():
     '''test rsa pour un célibataire avec différent sali'''
-
-
     tests_list = [
         {"year": 2014, "amount": 0, "rsa": 439},
         {"year": 2014, "amount": 5000, "rsa": 281},
@@ -56,14 +56,308 @@ def test_check_rsa():
         TaxBenefitSystem = openfisca_france.init_country()
         tax_benefit_system = TaxBenefitSystem()
         simulation = tax_benefit_system.new_scenario().init_single_entity(
-            date = datetime.date(year , 1, 1),
+            period = periods.period('year', year),
             parent1 = {
-                'birth': datetime.date(year - age  + 1, 1, 1),
-                 revenu: amount,
-                 },
+                'birth': datetime.date(year - age + 1, 1, 1),
+                revenu: amount,
+                },
             ).new_simulation(debug = True)
-        calculated_rsa = simulation.calculate('rsa')/12
-        assert abs(calculated_rsa - test['rsa']) < error_margin, 'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
+        calculated_rsa = simulation.calculate('rsa') / 12
+        assert abs(calculated_rsa - test['rsa']) < error_margin, \
+            'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
+
+
+def test_rsa_couple():
+    '''test pour un célibataire avec son age variant entre 18 et 25 ans'''
+    tests_list = [
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 0,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 629,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 5000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 471,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 10000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 312,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 12000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 249,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 13000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 217,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 14000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 186,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 15000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 154,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 16000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 122,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 17000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 91,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 18000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 59,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 19000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "rsa": 27,
+            },
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 9000,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 11000,
+                "age": 29,
+                },
+            "rsa": 0,
+            },
+        # test si le déclarant a moins 25 ans  et le conjoint plus de 25
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 400,
+                "age": 21,
+                },
+            "parent2": {
+                "sali": 3000,
+                "age": 21,
+                },
+            "rsa": 0,
+            },
+        # test pour moins de 25 ans pour les deux
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 400,
+                "age": 21,
+                },
+            "parent2": {
+                "sali": 3000,
+                "age": 21,
+                },
+            "rsa": 0,
+            },
+        # test pour un parent isolé avec 1 enfant de 2 ans
+        # {
+        #     "year": 2014,
+        #     "parent1": {
+        #         "sali": 5000,
+        #         "age": 29,
+        #         },
+        #     "enfants": [
+        #         dict(age = 2),
+        #         ],
+        #     "rsa": 550,
+        #     },
+        # test pour un couple avec un enfant de moins de 3 ans
+        # Problème avec site de la cnaf pour changer les revenus
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 0,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "enfants": [
+                dict(age = 2),
+                ],
+            "rsa": 565,
+            # "paje": 184.62,
+            },
+        # TODO: Do not pass
+        # {
+        #     "year": 2014,
+        #     "parent1": {
+        #         "sali": 5000,
+        #         "age": 29,
+        #         },
+        #     "parent2": {
+        #         "sali": 0,
+        #         "age": 29,
+        #         },
+        #     "enfants": [
+        #         dict(age = 2),
+        #         ],
+        #     "rsa": 444,  # Unsure about the value
+        #     },
+        # TODO: do not pass
+        # {
+        #     "year": 2014,
+        #     "parent1": {
+        #         "sali": 10000,
+        #         "age": 29,
+        #         },
+        #     "parent2": {
+        #         "sali": 0,
+        #         "age": 29,
+        #         },
+        #     "enfants": [
+        #         dict(age = 2),
+        #         ],
+        #     "rsa": 565,  # TODO: check that value
+        #     },
+        # "revenu": [
+        #     {"year": 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa": 750  },
+        #     {"year": 2014, "amountdéclarant": 5000, "amountconjoint":0,   "rsa": 592  },
+        #     {"year": 2014, "amountdéclarant": 10000, "amountconjoint":0,   "rsa": 434  },
+        #     {"year": 2014, "amountdéclarant": 12000, "amountconjoint":0,   "rsa": 370  },
+        #     {"year": 2014, "amountdéclarant": 13000, "amountconjoint":0,   "rsa": 339  },
+        #     {"year": 2014, "amountdéclarant": 14000, "amountconjoint":0,   "rsa": 307  },
+        #     {"year": 2014, "amountdéclarant": 15000, "amountconjoint":0,   "rsa": 275  },
+        #     {"year": 2014, "amountdéclarant": 16000, "amountconjoint":0,   "rsa": 244  },
+        #     {"year": 2014, "amountdéclarant": 17000, "amountconjoint":0,   "rsa": 212  },
+        #     {"year": 2014, "amountdéclarant": 18000, "amountconjoint":0,   "rsa": 180 },
+        #     {"year": 2014, "amountdéclarant": 19000, "amountconjoint":0,   "rsa": 149  },
+        #     {"year": 2014, "amountdéclarant": 20000, "amountconjoint":0,   "rsa": 117  },
+        #     {"year": 2014, "amountdéclarant": 21000, "amountconjoint":0,   "rsa": 85 },
+        #     {"year": 2014, "amountdéclarant": 22000, "amountconjoint":0,   "rsa": 54  },
+        #     {"year": 2014, "amountdéclarant": 23000, "amountconjoint":0,   "rsa": 22  },
+        #     {"year": 2014, "amountdéclarant": 24000, "amountconjoint":0,   "rsa": 0 },
+        #     ],
+        # test pour enfants ayant entre 3 et 13 ans
+        {
+            "year": 2014,
+            "parent1": {
+                "sali": 0,
+                "age": 29,
+                },
+            "parent2": {
+                "sali": 0,
+                "age": 29,
+                },
+            "enfants": [
+                dict(age = 10),
+                ],
+            "rsa": 750,
+            },
+        ]
+
+    error_margin = 1
+    TaxBenefitSystem = openfisca_france.init_country()
+    tax_benefit_system = TaxBenefitSystem()
+    for test in tests_list:
+        print test
+        test = test.copy()
+        test['period'] = periods.period('year', test.pop('year'))
+        target_rsa = test.pop("rsa")  # enlève rsa du dictionnaire et l'assigne a calculated_rsa
+        scenario = tax_benefit_system.new_scenario().init_single_entity(**test)
+        scenario.suggest()
+        simulation = scenario.new_simulation(debug = True)
+        calculated_rsa = simulation.calculate('rsa') / 12
+
+#        if test['rsa'] != calculated_rsa :
+
+        assert abs(calculated_rsa - target_rsa) < error_margin, \
+            'calculated_rsa {} is not equal to expected value {}'.format(target_rsa, calculated_rsa)
+        #    u'Variable "{} = {}. Expected: {}'.format(
+        #    variable, calculated_value, expected_value)
+        print calculated_rsa
 
 
 if __name__ == '__main__':
@@ -72,321 +366,10 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
     test_check_rsa()
-
-
-def test_rsa_couple():
-    '''test pour un célibataire avec son age variant entre 18 et 25 ans'''
-    tests_list = [
-        {"year": 2014,
-         "parent1": {
-             "sali": 0,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 629,
-          },
-
-        {"year": 2014,
-         "parent1": {
-             "sali": 5000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 471 ,
-          },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 10000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 312,
-          },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 12000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 249,
-          },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 13000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa":  217,
-          },
-
-         {"year": 2014,
-          "parent1": {
-             "sali": 14000,
-             "age": 29,
-             },
-          "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-          "rsa": 186,
-          },
-
-         {"year": 2014,
-          "parent1": {
-             "sali": 15000,
-             "age": 29,
-             },
-          "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-          "rsa": 154,
-           },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 16000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 122,
-          },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 17000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 91,
-          },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 18000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 59,
-          },
-
-        {"year": 2014,
-         "parent1": {
-             "sali": 19000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "rsa": 27,
-          },
-
-         {"year": 2014,
-         "parent1": {
-             "sali": 9000,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 11000,
-             "age": 29,
-             },
-         "rsa": 0,
-          },
-#test si le déclarant a moins 25 ans  et le conjoint plus de 25
-         {"year": 2014,
-         "parent1": {
-             "sali": 400,
-             "age": 21,
-             },
-         "parent2": {
-             "sali": 3000,
-             "age": 21,
-             },
-         "rsa": 0,
-          },
-
-#test pour moins de 25 ans pour les deux
-
-        {"year": 2014,
-         "parent1": {
-             "sali": 400,
-             "age": 21,
-             },
-         "parent2": {
-             "sali": 3000,
-             "age": 21,
-             },
-         "rsa": 0,
-          },
-
-##Test pour un parent isolé avec 1 enfant de 2 ans
-#{"year": 2014,
-#         "parent1": {
-#             "sali": 5000,
-#             "age": 29,
-#             },
-#         "enfants": [
-#                      dict(age = 2),
-#                      ],
-#         "rsa": 550,
-#          },
-
-
-#test pour un couple avec un enfant de moins de 3 ans
-#Problème avec site de la cnaf pour changer les revenus
-          {"year": 2014,
-         "parent1": {
-             "sali": 0,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "enfants": [
-                      dict(age = 2),
-                      ],
-         "rsa": 565,
-         #"paje": 184.62,
-          },
-
-
-#Do not pass
-#          {"year": 2014,
-#         "parent1": {
-#             "sali": 5000,
-#             "age": 29,
-#             },
-#         "parent2": {
-#             "sali": 0,
-#             "age": 29,
-#             },
-#         "enfants": [
-#                      dict(age = 2),
-#                      ],
-#         "rsa": 444, #Unsure about the value
-#          },
-#TODO: do not pass
-#          {"year": 2014,
-#         "parent1": {
-#             "sali": 10000,
-#             "age": 29,
-#             },
-#         "parent2": {
-#             "sali": 0,
-#             "age": 29,
-#             },
-#         "enfants": [
-#                      dict(age = 2),
-#                      ],
-#         "rsa": 565, #TODO : check that value
-#          },
-#            "revenu": [
-#            {"year": 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa": 750  },
-#            {"year": 2014, "amountdéclarant": 5000, "amountconjoint":0,   "rsa": 592  },
-#            {"year": 2014, "amountdéclarant": 10000, "amountconjoint":0,   "rsa": 434  },
-#            {"year": 2014, "amountdéclarant": 12000, "amountconjoint":0,   "rsa": 370  },
-#            {"year": 2014, "amountdéclarant": 13000, "amountconjoint":0,   "rsa": 339  },
-#            {"year": 2014, "amountdéclarant": 14000, "amountconjoint":0,   "rsa": 307  },
-#            {"year": 2014, "amountdéclarant": 15000, "amountconjoint":0,   "rsa": 275  },
-#            {"year": 2014, "amountdéclarant": 16000, "amountconjoint":0,   "rsa": 244  },
-#            {"year": 2014, "amountdéclarant": 17000, "amountconjoint":0,   "rsa": 212  },
-#            {"year": 2014, "amountdéclarant": 18000, "amountconjoint":0,   "rsa": 180 },
-#            {"year": 2014, "amountdéclarant": 19000, "amountconjoint":0,   "rsa": 149  },
-#            {"year": 2014, "amountdéclarant": 20000, "amountconjoint":0,   "rsa": 117  },
-#            {"year": 2014, "amountdéclarant": 21000, "amountconjoint":0,   "rsa": 85 },
-#            {"year": 2014, "amountdéclarant": 22000, "amountconjoint":0,   "rsa": 54  },
-#            {"year": 2014, "amountdéclarant": 23000, "amountconjoint":0,   "rsa": 22  },
-#            {"year": 2014, "amountdéclarant": 24000, "amountconjoint":0,   "rsa": 0 },
-#                        ],
-
-#test pour enfants ayant entre 3 et 13 ans
-        {"year": 2014,
-         "parent1": {
-             "sali": 0,
-             "age": 29,
-             },
-         "parent2": {
-             "sali": 0,
-             "age": 29,
-             },
-         "enfants": [
-                      dict(age = 10),
-                      ],
-         "rsa": 750,
-          },
-       ]
-
-    error_margin = 1
-    TaxBenefitSystem = openfisca_france.init_country()
-    tax_benefit_system = TaxBenefitSystem()
-    for test in tests_list:
-        print test
-        test = test.copy()
-        test['date'] = datetime.date(test.pop('year') , 1, 1)
-        target_rsa = test.pop("rsa") #enlève rsa du dictionnaire et l'assigne a calculated_rsa
-        scenario = tax_benefit_system.new_scenario().init_single_entity(**test)
-        scenario.suggest()
-        simulation = scenario.new_simulation(debug = True)
-        calculated_rsa = simulation.calculate('rsa')/12
-
-
-#        if test['rsa'] != calculated_rsa :
-
-        assert abs(calculated_rsa - target_rsa) < error_margin, u'calculated_rsa {} is not equal to expected value {}'.format(target_rsa, calculated_rsa)
-##        u'Variable "{} = {}. Expected: {}'.format(
-#        variable, calculated_value, expected_value)
-        print calculated_rsa
-
-if __name__ == '__main__':
-    import logging
-    import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-
     test_rsa_couple()
 
 
-
-
-
-
-
-
-
-
-
-
-
-#TODO:  Reste des tests RSA codés par Thimothés à coder sous forme de test
-
+# TODO:  Reste des tests RSA codés par Thimothés à coder sous forme de test
 
 
 #import datetime
@@ -532,14 +515,14 @@ if __name__ == '__main__':
 #            if revenu in ["rsti", "sali"]:
 #
 #                simulation = tax_benefit_system.new_scenario().init_single_entity(
-#                    date = datetime.date(year , 1, 1),
+#                    period = periods.period('year', year),
 #                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
 #                               revenu: amount,
 #                               },
 #                    ).new_simulation(debug = True)
 #            elif revenu in fiscal_values:
 #                simulation = tax_benefit_system.new_scenario().init_single_entity(
-#                    date = datetime.date(year , 1, 1),
+#                    period = periods.period('year', year),
 #                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
 #                               },
 #                    foyer_fiscal = {revenu: amount},

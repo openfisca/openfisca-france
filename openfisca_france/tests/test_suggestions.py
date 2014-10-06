@@ -26,6 +26,7 @@
 import datetime
 import json
 
+from openfisca_core import periods
 import openfisca_france
 
 
@@ -36,7 +37,7 @@ tax_benefit_system = TaxBenefitSystem()
 def test_birth():
     year = 2013
     scenario = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = dict(),
         enfants = [
             dict(),

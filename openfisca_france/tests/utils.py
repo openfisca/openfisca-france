@@ -25,15 +25,13 @@
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 
 
-def process_tests_list(tests_list, verbose = False, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
-    TaxBenefitSystem = openfisca_france.init_country()
-    tax_benefit_system = TaxBenefitSystem()
-
+def process_tests_list(tests_list, verbose = False, monthly_amount = False, default_error_margin = 1,
+        forced_error_margin = None):
     for test in tests_list:
-
         if forced_error_margin:
             error_margin = forced_error_margin
         else:
@@ -47,7 +45,8 @@ def process_tests_list(tests_list, verbose = False, monthly_amount = False, defa
                 variable, calculated_value, expected_value)
 
 
-def simulation_from_test(test, verbose = False, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
+def simulation_from_test(test, verbose = False, monthly_amount = False, default_error_margin = 1,
+        forced_error_margin = None):
     TaxBenefitSystem = openfisca_france.init_country()
     tax_benefit_system = TaxBenefitSystem()
 
@@ -64,12 +63,12 @@ def simulation_from_test(test, verbose = False, monthly_amount = False, default_
             menage[variable] = value
         elif tax_benefit_system.column_by_name[variable].entity == 'ind':
             parent1[variable] = value
-#TODO: if the person is a child
+# TODO: if the person is a child
         elif tax_benefit_system.column_by_name[variable].entity == 'foy':
             foyer_fiscal[variable] = value
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        date = datetime.date(year , 1, 1),
+        period = periods.period('year', year),
         parent1 = parent1,
         menage = menage,
         foyer_fiscal = foyer_fiscal,

@@ -26,6 +26,7 @@ from __future__ import division
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 
 
@@ -246,7 +247,7 @@ def test_cotsoc():
                 TaxBenefitSystem = openfisca_france.init_country()
                 tax_benefit_system = TaxBenefitSystem()
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
-                    date = datetime.date(year , 1, 1),
+                    period = periods.period('year', year),
                     parent1 = parent1,
                     foyer_fiscal = foyer_fiscal,
                     ).new_simulation(debug = True)

@@ -27,6 +27,7 @@ from __future__ import division
 
 import datetime
 
+from openfisca_core import periods
 import openfisca_france
 from openfisca_france.model.cotisations_sociales.travail import CAT
 
@@ -46,7 +47,7 @@ def test():
     # alors qu'Openfisca la caclule pour Lyon (.0175)
     tests_infos = [
         dict(
-            date = datetime.date(2012 , 1, 1),
+            period = periods.period('year', 2012),
             description = u"Célibataire public_titulaire_etat",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -78,7 +79,7 @@ def test():
                 ),
             ),
         dict(
-            date = datetime.date(2012 , 1, 1),
+            period = periods.period('year', 2012),
             description = u"Célibataire public_titulaire_territoriale",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -110,7 +111,7 @@ def test():
                 ),
             ),
         dict(
-            date = datetime.date(2012 , 1, 1),
+            period = periods.period('year', 2012),
             description = u"Célibataire public_titulaire_hospitaliere",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -144,7 +145,7 @@ def test():
                 ),
             ),
         dict(
-            date = datetime.date(2011 , 1, 1),
+            period = periods.period('year', 2011),
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -158,26 +159,26 @@ def test():
 
             error_margin = 1,
             expected_values = dict(
-#                cotpat = 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68,
+                # cotpat = 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68,
                 cot_pat_pension_civile = 0,
                 cot_pat_rafp = 0,
                 cotpat_transport = -2560 * 0.0175,
-#                cotsal = -(170.24 + 2.56 + 58.24 + 19.20 + 23.16),
+                # cotsal = -(170.24 + 2.56 + 58.24 + 19.20 + 23.16),
                     # viel_plaf viel_deplaf ircantecA maladie, cot excep de solidarite
                 cotsal_contrib = -(170.24 + 2.56 + 58.24),
                     # viel_plaf viel_deplaf ircantecA
                 cot_sal_pension_civile = 0,
                 cot_sal_rafp = 0,
-#                csgsald = 128.28,
+                # csgsald = 128.28,
                 csgsali = -60.36,
                 crdssal = -12.58,
                 indemnite_residence = 60,
-#                salnet = 2091.20,
-#                salsuperbrut = 3367.36 + 2000 * (0.0175 - 0.026),
+                # salnet = 2091.20,
+                # salsuperbrut = 3367.36 + 2000 * (0.0175 - 0.026),
                 ),
             ),
         dict(
-            date = datetime.date(2012 , 1, 1),
+            period = periods.period('year', 2012),
             description = u"Couple 1 fonctionnaire public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -217,7 +218,7 @@ def test():
                 ),
             ),
         dict(
-            date = datetime.date(2012 , 1, 1),
+            period = periods.period('year', 2012),
             description = u"Couple 2 fonctionnaires public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -246,15 +247,15 @@ def test():
                 cot_pat_pension_civile = -1371.80 * 2,
                 cot_pat_rafp = -20 * 2,
                 cotpat_transport = -2000 * 0.0175 * 2,
-#                cotsal = -(167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
+                # cotsal = -(167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
                     # pension rafp
                 cot_sal_pension_civile = -167.80 * 2,
                 cot_sal_rafp = -20 * 2,
                 crdssal = -12.93 * 2,
-#                csgsald = -131.94 * 2,
-#                csgsali = -62.09 * 2,
+                # csgsald = -131.94 * 2,
+                # csgsali = -62.09 * 2,
                 indemnite_residence = 240 * 2 / 12,
-#                salnet = -(2000 + 500 + 20 - 131.94 - 62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
+                # salnet = -(2000 + 500 + 20 - 131.94 - 62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
                 salsuperbrut = (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
                 supp_familial_traitement = 73.04,
                 ),
