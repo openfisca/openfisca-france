@@ -254,7 +254,7 @@ def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, i
 
         if AlternativeFormula in column_formula_type:
             formula = column.formula_constructor.alternative_formulas_constructor[0]
-            formula.extract_parameters()
+            formula.extract_variables_name()
 
         elif DatedFormula in column_formula_type:
             dated_formula_classes = column.formula_constructor.dated_formulas_class
@@ -269,11 +269,11 @@ def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, i
 
         elif SimpleFormula in column_formula_type:
             formula = column.formula_constructor
-            formula.extract_parameters()
+            formula.extract_variables_name()
 
         formula.set_dependencies(column, tax_benefit_system.column_by_name)
 
-        for variable_name in  formula.parameters:
+        for variable_name in formula.variables_name:
             find_ultimate_dependancies(variable_name, date, input_variables = input_variables)
 
     return list(input_variables)
