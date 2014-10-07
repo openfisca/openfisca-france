@@ -74,12 +74,17 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
     check_list_commun = ['isf_foy', 'irpp_tot_foy', 'irpp_bar_foy', 'ppe_brut_foy', 'ppe_net_foy', 'irpp_ds_foy',
                          'taxe_HR_foy']  # # 'decote_irpp_foy',
     check_list_minima = ['rsa_foys', 'rsa_act_foys', 'mv_foys', 'rsa_logt']  # , 'y_rmi_rsa'
-    check_list_af = ['paje_foys', 'paje_base_foys', 'paje_clca_foys', 'af_foys', 'nenf_prest', 'biact_or_isole',
-                     'alf_foys', 'ars_foys', 'asf_foys', 'api', 'apje_foys']  # 'af_diff', 'af_maj',
-    check_list_sal = ['csp_exo', 'csg_sal_ded', 'css', 'css_co', 'css_nco', 'crds_sal', 'csg_sal_nonded', 'sal_irpp',
-                      'sal_brut', 'csp_mo_vt', 'csp_nco', 'csp_co', 'vtmo', 'sal_superbrut', 'sal_net', 'ts', 'tehr']
-                      # 'csg_sal_ded'] #, 'irpp_net_foy', 'af_foys']- cotisations salariales : 'css', 'css_nco', 'css_co',
-                      # 'sal_superbrut' 'csp',
+    check_list_af = [
+        'paje_foys', 'paje_base_foys', 'paje_clca_foys', 'af_foys', 'nenf_prest', 'biact_or_isole', 'alf_foys',
+        'ars_foys', 'asf_foys', 'api', 'apje_foys',
+        # 'af_diff', 'af_maj',
+        ]
+    check_list_sal = [
+        'csp_exo', 'csg_sal_ded', 'css', 'css_co', 'css_nco', 'crds_sal', 'csg_sal_nonded', 'sal_irpp', 'sal_brut',
+        'csp_mo_vt', 'csp_nco', 'csp_co', 'vtmo', 'sal_superbrut', 'sal_net', 'ts', 'tehr',
+        # 'csg_sal_ded'] #, 'irpp_net_foy', 'af_foys']- cotisations salariales : 'css', 'css_nco', 'css_co',
+        # 'sal_superbrut' 'csp',
+        ]
     # 'decote_irpp_foy' : remarque par d'équivalence Taxipp
     check_list_chom = ['csg_chom_ded', 'chom_irpp', 'chom_brut', 'csg_chom_nonded', 'crds_chom']
     check_list_ret = ['csg_pens_ded', 'pension_irpp', 'pension_net', 'csg_pens_nonded', 'crds_pens']
@@ -166,7 +171,7 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
                     input[entity] = DataFrame(dic)
                 print "Variables individuelles associées à ce ménage:"
                 print input['ind'].loc[input['ind']['idmen'].isin(conflict_men)].to_string()
-                    # .loc[conflict[conflict == True].index].to_string()
+                # .loc[conflict[conflict == True].index].to_string()
                 if not input['men'].empty:
                     print "Variables associées au ménage:"
                     print input['men'].loc[conflict_men].to_string()
@@ -179,7 +184,7 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
 #                pdb.set_trace()
 
     pb_calcul = []
-    for ipp_var in check_list:  # in ipp2of_output_variables.keys(): #
+    for ipp_var in check_list:  # in ipp2of_output_variables.keys():
         of_var = ipp2of_output_variables[ipp_var]
         of_var_holder = simulation.compute(of_var)
         _conflict_by_entity(simulation, of_var_holder, ipp_var, pb_calcul)

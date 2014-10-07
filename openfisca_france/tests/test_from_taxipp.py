@@ -77,20 +77,19 @@ def test_from_taxipp(threshold = 2, list_input = None, list_output = None, verbo
             last_param_scenario, threshold, verbose
 
 
-def check_comparison(ipp2of_input_variables, input_file_path, output_file_path, ipp2of_output_variables, last_param_scenario = "rien", threshold = 1, verbose = False):
+def check_comparison(ipp2of_input_variables, input_file_path, output_file_path, ipp2of_output_variables,
+                     last_param_scenario = "rien", threshold = 1, verbose = False):
     simulation, param_scenario = run_OF(ipp2of_input_variables, path_dta_input = input_file_path, option = 'list_dta')
     if str(param_scenario) != str(last_param_scenario):
-        pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold, verbose = verbose)
-        assert len(pbs) == 0, u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(input_file_path, threshold, pbs)
+        pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold,
+                      verbose = verbose)
+        assert len(pbs) == 0, \
+            u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
+            input_file_path, threshold, pbs)
         last_param_scenario = param_scenario
 
 
 if __name__ == '__main__':
     import logging
     logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
-
     comparison_taxipp(selection = "_marie_actif-chomeur", verbose = True)
-
-
-    # for function_and_arguments in test_from_taxipp():
-    #     function_and_arguments[0](*function_and_arguments[1:])
