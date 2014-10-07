@@ -157,6 +157,10 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, de
                                    tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
+<<<<<<< HEAD
+=======
+#        date = datetime.date(year, 1, 1),
+>>>>>>> Period in surveys
         debug = debug,
         debug_all = debug_all,
         period = periods.period('year', year),
@@ -211,8 +215,10 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, de
             array = column_array
         else:
             array = column_array[array_dict['qui' + entity.symbol].values == 0]
-        assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(column_name, array.size,
-            entity.count)
+        assert array.size == entity.count, 'Bad size for {}: {} instead of {}'.format(
+            column_name,
+            array.size,
+            entity.count
+            )
         holder.array = np.array(array, dtype = holder.column.dtype)
-
     return simulation
