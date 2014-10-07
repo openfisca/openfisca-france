@@ -106,8 +106,9 @@ class SurveyScenario(object):
         for column_name in input_data_frame:
             if column_name not in column_by_name:
                 log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
-                # waiting for the new pandas version to hit Travis repo, inplace = True)  # TODO: effet de bords ?
+                # waiting for the new pandas version to hit Travis repo
                 input_data_frame = input_data_frame.drop(column_name, axis = 1)
+                # , inplace = True)  # TODO: effet de bords ?
         for column_name in input_data_frame:
             if column_by_name[column_name].formula_constructor is not None:
                 log.info('Column "{}" in survey set to be calculated, dropped from input table'.format(column_name))
