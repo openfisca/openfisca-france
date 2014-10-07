@@ -106,11 +106,13 @@ class SurveyScenario(object):
         for column_name in input_data_frame:
             if column_name not in column_by_name:
                 log.info('Unknown column "{}" in survey, dropped from input table'.format(column_name))
-                input_data_frame = input_data_frame.drop(column_name, axis = 1)  # waiting for the new pandas version to hit Travis repo, inplace = True)  # TODO: effet de bords ?
+                # waiting for the new pandas version to hit Travis repo, inplace = True)  # TODO: effet de bords ?
+                input_data_frame = input_data_frame.drop(column_name, axis = 1)
         for column_name in input_data_frame:
             if column_by_name[column_name].formula_constructor is not None:
                 log.info('Column "{}" in survey set to be calculated, dropped from input table'.format(column_name))
-                input_data_frame = input_data_frame.drop(column_name, axis = 1)  # , inplace = True)  # TODO: effet de bords ?
+                input_data_frame = input_data_frame.drop(column_name, axis = 1)
+                # , inplace = True)  # TODO: effet de bords ?
 
         for entity in simulation.entity_by_key_singular.values():
             if entity.is_persons_entity:
@@ -181,13 +183,13 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, de
     entity_by_key_plural = simulation.entity_by_key_plural
 
     familles = entity_by_key_plural[u'familles']
-    familles.count = familles.step_size = familles_step_size = (array_dict['quifam'] == 0).sum()
+    familles.count = familles.step_size = (array_dict['quifam'] == 0).sum()
     foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
-    foyers_fiscaux.count = foyers_fiscaux.step_size = foyers_fiscaux_step_size = (array_dict['quifoy'] == 0).sum()
+    foyers_fiscaux.count = foyers_fiscaux.step_size = (array_dict['quifoy'] == 0).sum()
     individus = entity_by_key_plural[u'individus']
-    individus.count = individus.step_size = individus_step_size = global_count
+    individus.count = individus.step_size = global_count
     menages = entity_by_key_plural[u'menages']
-    menages.count = menages.step_size = menages_step_size = (array_dict['quimen'] == 0).sum()
+    menages.count = menages.step_size = (array_dict['quimen'] == 0).sum()
 
     assert 'idfam' in array_dict.keys()
     assert 'idfoy' in array_dict.keys()
@@ -213,4 +215,3 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, de
         holder.array = np.array(array, dtype = holder.column.dtype)
 
     return simulation
-
