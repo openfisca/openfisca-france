@@ -68,8 +68,7 @@ def test_parametric_reform(year = 2014):
     simulation = scenario.new_simulation(debug = True)
     assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .01
 
-    scenario.add_reform(reform)
-    reform_simulation = scenario.new_reform_simulation(debug = True)
+    reform_simulation = scenario.new_simulation(debug = True, reform = reform)
     assert reform_simulation.compact_legislation is not None
     assert max(abs(reform_simulation.calculate('impo') - [0., -13900.20019531, -29446.52929688])) < .0001
 
