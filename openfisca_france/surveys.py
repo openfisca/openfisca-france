@@ -28,7 +28,7 @@ import datetime
 import logging
 
 import numpy as np
-from openfisca_core import simulations
+from openfisca_core import periods, simulations
 
 
 log = logging.getLogger(__name__)
@@ -85,12 +85,13 @@ class SurveyScenario(object):
 
     def new_simulation(self, debug = False, debug_all = False, trace = False):
         input_data_frame = self.input_data_frame
-
+        # TOOO Pass year to this method, not init_from_data_frame
+        period = periods.period('year', self.year)
         simulation = simulations.Simulation(
             compact_legislation = self.compact_legislation,
-            date = datetime.date(self.year, 1, 1),
             debug = debug,
             debug_all = debug_all,
+            period = period,
             tax_benefit_system = self.tax_benefit_system,
             trace = trace,
             )
