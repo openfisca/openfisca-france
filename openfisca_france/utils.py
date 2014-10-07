@@ -1,25 +1,26 @@
-# -*- coding:utf-8 -*-
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
+# -*- coding: utf-8 -*-
 
-"""
-openFisca, Logiciel libre de simulation de système socio-fiscal
-Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
 
-This file is part of openFisca.
-
-    openFisca is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    openFisca is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with openFisca.  If not, see <http://www.gnu.org/licenses/>.
-"""
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
+#
+# This file is part of OpenFisca.
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
@@ -28,8 +29,10 @@ from openfisca_core.columns import (EnumCol, IntCol, BoolCol, AgeCol, FloatCol, 
 
 import openfisca_france
 
-#BROWSER_NAME = 'iceweasel'
+
+# BROWSER_NAME = 'iceweasel'
 BROWSER_NAME = 'chromium'
+
 
 def check_consistency(table_simu, dataframe, corrige = True):
     '''
@@ -44,12 +47,9 @@ def check_consistency(table_simu, dataframe, corrige = True):
     # check_inputs_enumcols(simulation):
     # TODO: eventually should be a method of SurveySimulation specific for france
 
-
-
     is_ok = True
     message = "\n"
     missing_variables = []
-    unconsistent_variables = []
     present_variables = []
     count = 0
 
@@ -72,7 +72,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
                     message += 'Some missing values in input_table column %s \n' % var
                 cnt = len(set(simu_serie.isnull())) - len(set(serie.isnull()))
                 if 0 < cnt:
-                    message += "Warning : %s More NA's in simulation than in original dataframe for %s \n" % (str(cnt), var)
+                    message += "Warning : %s More NA's in simulation than in original dataframe for %s \n" % (
+                        str(cnt), var)
 
                 if corrige:
                     try:
@@ -114,7 +115,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 try:
                     n = varcol.enum._count
                     if n < len(set(serie.unique())):
-                        message += "More types of enum than expected : %s ( expected : %s) \n" % (str(set(serie.unique())), str(n))
+                        message += "More types of enum than expected : %s ( expected : %s) \n" % (
+                            str(set(serie.unique())), str(n))
                 except:
                     message += "Error : no _count attribute for EnumCol.enum %s \n" % var
                 try:
@@ -144,7 +146,6 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 else:
                     message += "Values for %s are in range [%s,%s]\n" % (var, str(serie.min()), str(serie.max()))
 
-
             if isinstance(varcol, BoolCol):
                 if serie.dtype != 'bool':
                     is_ok = False
@@ -159,7 +160,7 @@ def check_consistency(table_simu, dataframe, corrige = True):
                             message += "sorry, cannot force type.\n"
 
             if isinstance(varcol, AgeCol):
-                if not serie.dtype in ('int', 'int16', 'int32', 'int64'):
+                if serie.dtype not in ('int', 'int16', 'int32', 'int64'):
                     is_ok = False
                     message += "Age variable %s not of type int: \n"
                     stash = list(set(serie.value) - set(range(serie.min(), serie.max() + 1)))
@@ -204,9 +205,6 @@ def check_consistency(table_simu, dataframe, corrige = True):
                 dataframe[var] = serie
             count += 1
             del serie, varcol
-
-
-
         except:
             is_ok = False
             missing_variables.append(var)
@@ -215,7 +213,8 @@ def check_consistency(table_simu, dataframe, corrige = True):
     # TODO : Then, comparaison between datatable and table_simu.table ?
 
     if len(missing_variables) > 0:
-        message += "Some variables were not present in the datatable or caused an error:\n" + str(sorted(missing_variables)) + "\n"
+        message += "Some variables were not present in the datatable or caused an error:\n" \
+            + str(sorted(missing_variables)) + "\n"
         message += "Variables present in both tables :\n" + str(sorted(present_variables)) + "\n"
     else:
         message += "All variables were present in the datatable and were handled without error \n"
@@ -259,7 +258,11 @@ def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, i
 
         elif DatedFormula in column_formula_type:
             dated_formula_classes = column.formula_constructor.dated_formulas_class
-            formula = [dated_formula_class['formula_class'] for dated_formula_class in dated_formula_classes if dated_formula_class['start'] <= date <= dated_formula_class['end']][0]
+            formula = [
+                dated_formula_class['formula_class']
+                for dated_formula_class in dated_formula_classes
+                if dated_formula_class['start'] <= date <= dated_formula_class['end']
+                ][0]
 
         elif SelectFormula in column_formula_type:
             formula = column.formula_constructor.formula_constructor_by_main_variable.items()[0][1]
@@ -274,6 +277,7 @@ def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, i
             find_ultimate_dependancies(variable_name, date, input_variables = input_variables)
 
     return list(input_variables)
+
 
 def list_ultimate_dependancies(variable_name, date):
     result = sorted(find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, input_variables = None))
@@ -299,7 +303,7 @@ def look_for(variable, year):
     print "section", section_number
     print "case", case
     import webbrowser
-    url_base = "http://www3.finances.gouv.fr/calcul_impot/" + str(year+1) + "/aides/"
+    url_base = "http://www3.finances.gouv.fr/calcul_impot/" + str(year + 1) + "/aides/"
     if section_number == "2":
         url_section = "capitaux_mobiliers.htm#"
     if section_number == "3":
@@ -308,14 +312,14 @@ def look_for(variable, year):
         url_section = "fonciers.htm"
     # if section_number =="5":
     #      url_section = "charges_s.htm#"
-    if section_number =="6":
-         url_section = "charges.htm#"
-    if section_number =="7":
-         url_section = "reductions.htm#"
-    if section_number =="8":
-         url_section = "autres_imputations.htm#"
+    if section_number == "6":
+        url_section = "charges.htm#"
+    if section_number == "7":
+        url_section = "reductions.htm#"
+    if section_number == "8":
+        url_section = "autres_imputations.htm#"
 
-    if section_number in ["3","4"]:
+    if section_number in ["3", "4"]:
         url = url_base + url_section
     else:
         url = url_base + url_section + case
@@ -324,13 +328,12 @@ def look_for(variable, year):
     browser.open_new_tab(url)
 
 
-
 if __name__ == '__main__':
     from datetime import date
     print list_ultimate_dependancies('donapd', date(2012, 1, 1))
-#    print list_ultimate_dependancies('decote', date(2012, 1, 1))
-#    print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
-#    print list_ultimate_dependancies('age', date(2012, 1, 1))
+    # print list_ultimate_dependancies('decote', date(2012, 1, 1))
+    # print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
+    # print list_ultimate_dependancies('age', date(2012, 1, 1))
 
-    for year in range(2013, 2009,-1):
+    for year in range(2013, 2009, -1):
         look_for("f7wr", year)
