@@ -24,7 +24,6 @@
 
 
 import copy
-import datetime
 import logging
 
 import numpy as np
@@ -85,7 +84,7 @@ class SurveyScenario(object):
 
     def new_simulation(self, debug = False, debug_all = False, trace = False):
         input_data_frame = self.input_data_frame
-        # TOOO Pass year to this method, not init_from_data_frame
+        # TODO Pass year to this method, not init_from_data_frame
         period = periods.period('year', self.year)
         simulation = simulations.Simulation(
             compact_legislation = self.compact_legislation,
@@ -157,9 +156,9 @@ def new_simulation_from_array_dict(compact_legislation = None, debug = False, de
                                    tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
         compact_legislation = compact_legislation,
-        date = datetime.date(year, 1, 1),
         debug = debug,
         debug_all = debug_all,
+        period = periods.period('year', year),
         tax_benefit_system = tax_benefit_system,
         trace = trace,
         )
