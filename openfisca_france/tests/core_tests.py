@@ -49,7 +49,7 @@ def check_1_parent(year = 2013):
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
     sali = simulation.get_holder('sali').new_test_case_array(simulation.period)
-    assert (sali - np.linspace(0, 100000, 3)).all() == 0, sali
+    assert (sali - np.linspace(0, 200000, 3)== 0).all(), sali
 
 
 def test_1_parent():
@@ -149,6 +149,7 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_1_parent()
-    test_1_parent_2_enfants()
-    test_1_parent_2_enfants_1_column()
+    check_1_parent()
+#    test_1_parent()
+#    test_1_parent_2_enfants()
+#    test_1_parent_2_enfants_1_column()
