@@ -44,10 +44,11 @@ def test_sal(year = 2014, verbose = False):
     '''
 
     maxrev = 24000
+    period = periods.period('year', year)
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [dict(name = 'salbrut', max = maxrev, min = 0, count = 11)],
-            period = periods.period('year', year),
+            period = period,
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
                 type_sal = CAT[type_sal_category],
@@ -73,7 +74,7 @@ def test_sal(year = 2014, verbose = False):
         type_sal = simulation.calculate('type_sal')
         # primes = simulation.calculate('primes')
 
-        defaultP = simulation.reference_compact_legislation
+        defaultP = simulation.get_reference_compact_legislation(period)
         df_i2b = DataFrame({'sal': sali, 'salbrut': _salbrut_from_sali(sali, hsup, type_sal, defaultP)})
 
         for var in ['sal', 'salbrut']:
@@ -93,6 +94,7 @@ def test_cho_rst(year = 2014, verbose = False):
     Tests that _chobrut which computes "chômage brut" from "imposable" yields an amount compatbe
     with the one obtained from running openfisca satrting with a "chômage brut"
     '''
+    period = periods.period('year', year)
     remplacement = {'cho': 'chobrut', 'rst': 'rstbrut'}
 
     for var, varbrut in remplacement.iteritems():
@@ -100,7 +102,7 @@ def test_cho_rst(year = 2014, verbose = False):
 
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             axes = [dict(name = varbrut, max = maxrev, min = 0, count = 11)],
-            period = periods.period('year', year),
+            period = period,
             parent1 = dict(
                 birth = datetime.date(year - 40, 1, 1),
                 ),
@@ -114,7 +116,7 @@ def test_cho_rst(year = 2014, verbose = False):
         vari = df_b2i[var].get_values()
         csg_rempl = vari * 0 + 3
 
-        defaultP = simulation.reference_compact_legislation
+        defaultP = simulation.get_reference_compact_legislation(period)
         if var == "cho":
             from openfisca_france.model.inversion_revenus import _chobrut_from_choi as _vari_to_brut
         elif var == "rst":

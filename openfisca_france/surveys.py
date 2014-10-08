@@ -58,9 +58,9 @@ def adapt_to_survey(tax_benefit_system_class):
 
 
 class SurveyScenario(object):
-    compact_legislation = None
     inflators = None
     input_data_frame = None
+    legislation_json = None
     simulation = None
     tax_benefit_system = None
     tax_benefit_system_class = None
@@ -87,9 +87,9 @@ class SurveyScenario(object):
         # TODO Pass year to this method, not init_from_data_frame
         period = periods.period('year', self.year)
         simulation = simulations.Simulation(
-            compact_legislation = self.compact_legislation,
             debug = debug,
             debug_all = debug_all,
+            legislation_json = self.legislation_json,
             period = period,
             tax_benefit_system = self.tax_benefit_system,
             trace = trace,
@@ -153,12 +153,12 @@ class SurveyScenario(object):
             holder.array = inflator * holder.array
 
 
-def new_simulation_from_array_dict(compact_legislation = None, debug = False, debug_all = False, array_dict = None,
-                                   tax_benefit_system = None, trace = False, year = None):
+def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all = False, legislation_json = None,
+        tax_benefit_system = None, trace = False, year = None):
     simulation = simulations.Simulation(
-        compact_legislation = compact_legislation,
         debug = debug,
         debug_all = debug_all,
+        legislation_json = legislation_json,
         period = periods.period('year', year),
         tax_benefit_system = tax_benefit_system,
         trace = trace,

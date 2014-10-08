@@ -26,7 +26,7 @@
 import copy
 import datetime
 
-from openfisca_core import legislations, periods
+from openfisca_core import periods
 from openfisca_core.reforms import Reform
 import openfisca_france
 from openfisca_france.model.cotisations_sociales import plfrss2014
@@ -49,24 +49,22 @@ def test_systemic_reform(year = 2013):
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
-    reference_dated_legislation_json = legislations.generate_dated_legislation_json(
-        tax_benefit_system.legislation_json,
-        periods.period('year', year),
-        )
-    reform_dated_legislation_json = copy.deepcopy(reference_dated_legislation_json)
+    reference_legislation_json = tax_benefit_system.legislation_json
+    reform_legislation_json = copy.deepcopy(reference_legislation_json)
     for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():
-        reform_dated_legislation_json["children"][key] = key_parameters
+        TODO  # This should not work anymore for non dated legislation.
+        reform_legislation_json["children"][key] = key_parameters
 
     entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(TaxBenefitSystem)
 
     reform = Reform(
-        dated_legislation_json = reform_dated_legislation_json,
         entity_class_by_key_plural = entity_class_by_key_plural,
+        legislation_json = reform_legislation_json,
         name = u"PLFR2014",
-        reference_dated_legislation_json = reference_dated_legislation_json,
+        reference_legislation_json = reference_legislation_json,
         )
 
-    simulation = scenario.new_simulation(debug = True)
+    simulation = reform.new_simulation(debug = True, scenario = scenario)
 
     rfr = simulation.calculate('rfr')
     impo = simulation.calculate('impo')
@@ -74,7 +72,7 @@ def test_systemic_reform(year = 2013):
     print(impo)
     print('-' * 20)
 
-    reform_simulation = scenario.new_simulation(debug = True, reform = reform)
+    reform_simulation = reform.new_simulation(debug = True, scenario = scenario)
     reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
     print(reform_reduction_impot_exceptionnelle)
     reform_rfr = reform_simulation.calculate('rfr')

@@ -163,16 +163,16 @@ def build_sal(_P):
     return sal
 
 
-def preprocess_legislation_parameters(legislation):
+def preprocess_compact_legislation(compact_legislation):
     '''
-    Preprocess the legislation_parameters to build the cotisations sociales taxscales (barèmes)
+    Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal = build_sal(legislation)
-    pat = build_pat(legislation)
+    sal = build_sal(compact_legislation)
+    pat = build_pat(compact_legislation)
 
-    legislation.cotsoc.cotisations_employeur = CompactNode()
-    legislation.cotsoc.cotisations_salarie = CompactNode()
-    cotsoc_dict = legislation.cotsoc.__dict__
+    compact_legislation.cotsoc.cotisations_employeur = CompactNode()
+    compact_legislation.cotsoc.cotisations_salarie = CompactNode()
+    cotsoc_dict = compact_legislation.cotsoc.__dict__
     for cotisation_name, bareme_dict in (('cotisations_employeur', pat), ('cotisations_salarie', sal)):
         for category, bareme in bareme_dict.iteritems():
             if category in CAT._nums:

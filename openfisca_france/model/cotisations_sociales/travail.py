@@ -27,11 +27,11 @@ from __future__ import division
 
 import logging
 
-from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_,
-                   zeros)
-
-from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
+from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros)
+from openfisca_core import periods
+from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
+from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
 from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN
 from .preprocessing import build_pat, build_sal
@@ -150,14 +150,14 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
     return transport
 
 
-def _taux_accident_travail(exposition_accident, _P):
+def _taux_accident_travail(exposition_accident, period, accident = law.cotsoc.accident):
     '''
     Approximation du taux accident à partir de l'exposition au risque donnée
     TODO: a actualiser dans param.xml
     '''
-    if _P.date.year >= 2012:
-        P = _P.cotsoc.accident
-        return (exposition_accident == 0) * P.faible + (exposition_accident == 1) * P.moyen + (exposition_accident == 2) * P.eleve + (exposition_accident == 3) * P.treseleve
+    if periods.date(period).year >= 2012:
+        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
+            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
     else:
         return 0 * exposition_accident
 
@@ -359,15 +359,14 @@ def _sal_h_b(salbrut):
     return salbrut / nbh_travaillees
 
 
-def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
+def _alleg_fillon(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
     '''
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
-    if _P.date.year >= 2007:
+    if periods.date(period).year >= 2007:
         # TODO: deal with taux between 2005 and 2007
-        P = _P.cotsoc
-        taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, P)
+        taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, cotsoc)
         alleg_fillon = (taux_fillon * salbrut
             * ((type_sal == CAT['prive_non_cadre'])
                 | (type_sal == CAT['prive_cadre'])))
@@ -376,13 +375,12 @@ def _alleg_fillon(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
         return 0 * salbrut
 
 
-def _alleg_cice(salbrut, sal_h_b, type_sal, taille_entreprise, _P):
+def _alleg_cice(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
     '''
     Crédit d'imôt pour la compétitivité et l'emploi
     '''
-    if _P.date.year >= 2013:
-        P = _P.cotsoc
-        taux_cice = taux_exo_cice(sal_h_b, P)
+    if periods.date(period).year >= 2013:
+        taux_cice = taux_exo_cice(sal_h_b, cotsoc)
         alleg_cice = (taux_cice * salbrut
             * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre'])))
         return alleg_cice

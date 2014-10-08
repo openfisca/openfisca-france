@@ -568,7 +568,6 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
 #        P, P_default = self.main.parameters.getParam(), self.main.parameters.getParam(defaut = True)
 #        self.simulation.set_param(P, P_default)
 
-        self.scenario.compact_legislation = None
         import openfisca_france
         TaxBenefitSystem = openfisca_france.init_country()
         tax_benefit_system = TaxBenefitSystem()

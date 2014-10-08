@@ -13,6 +13,7 @@ import logging
 
 from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
+from openfisca_core import periods
 from openfisca_core.accessors import law
 
 from .input_variables.base import QUIFOY
@@ -62,16 +63,16 @@ def _age_from_agem(agem):
     return agem // 12
 
 
-def _age_from_birth(birth, _P):
-    return (datetime64(_P.date) - birth).astype('timedelta64[Y]')
+def _age_from_birth(birth, period):
+    return (datetime64(periods.date(period)) - birth).astype('timedelta64[Y]')
 
 
 def _agem_from_age(age):
     return age * 12
 
 
-def _agem_from_birth(birth, _P):
-    return (datetime64(_P.date) - birth).astype('timedelta64[M]')
+def _agem_from_birth(birth, period):
+    return (datetime64(periods.date(period)) - birth).astype('timedelta64[M]')
 
 
 def _nb_adult(marpac, celdiv, veuf):
@@ -890,10 +891,11 @@ def _rev_cap_bar(f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, finp
     """
     Revenus du capital imposés au barème
     """
-    #    if _P.date.year <= 2011:
-    #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
-    #    elif _P.datesim.year > 2011:
-    #        return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
+    # year = periods.date(period).year
+    # if year <= 2011:
+    #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
+    # elif year > 2011:
+    #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
     return f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl
     # We add f2da an f2ee to allow for comparaison between years
 

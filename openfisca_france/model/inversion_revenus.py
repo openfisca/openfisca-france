@@ -27,10 +27,9 @@ from __future__ import division
 
 import logging
 
-
 from numpy import zeros, logical_not as not_
+from openfisca_core import periods
 from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
-
 from scipy.optimize import fsolve
 
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
@@ -257,7 +256,7 @@ def brut_to_net(year = None, net_variable_name = None, tax_benefit_system = None
     return simulation.calculate(net_variable_name)
 
 
-def _num_rstbrut_from_rstnet(self, rstnet, csg_rempl, _defaultP):
+def _num_rstbrut_from_rstnet(self, rstnet, csg_rempl, period):
     '''
     Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
     '''
@@ -266,12 +265,12 @@ def _num_rstbrut_from_rstnet(self, rstnet, csg_rempl, _defaultP):
         net_variable_name = 'rstnet',
         rstbrut = x,
         tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
-        year = _defaultP.date.year,
+        year = periods.date(period).year,
         ) - rstnet
     return fsolve(function, rstnet)
 
 
-def _num_chobrut_from_chonet(self, chonet, csg_rempl, _defaultP):
+def _num_chobrut_from_chonet(self, chonet, csg_rempl, period):
     '''
     Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
     '''
@@ -280,12 +279,12 @@ def _num_chobrut_from_chonet(self, chonet, csg_rempl, _defaultP):
         csg_rempl = csg_rempl,
         net_variable_name = 'chonet',
         tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
-        year = _defaultP.date.year,
+        year = periods.date(period).year,
         ) - chonet
     return fsolve(function, chonet)
 
 
-def _num_salbrut_from_salnet(self, agem, salnet, hsup, type_sal, _defaultP):
+def _num_salbrut_from_salnet(self, agem, period, salnet, hsup, type_sal):
     '''
     Calcule les pensions de retraites brutes à partir des pensions nettes par inversion numérique
     '''
@@ -297,7 +296,7 @@ def _num_salbrut_from_salnet(self, agem, salnet, hsup, type_sal, _defaultP):
         salbrut = x,
         tax_benefit_system = self.holder.entity.simulation.tax_benefit_system,
         type_sal = type_sal,
-        year = _defaultP.date.year,
+        year = periods.date(period).year,
         ) - salnet
     return fsolve(function, salnet)
 

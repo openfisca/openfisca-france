@@ -26,7 +26,7 @@
 import copy
 import datetime
 
-from openfisca_core import legislations, periods, reforms
+from openfisca_core import periods, reforms
 import openfisca_france
 
 
@@ -35,21 +35,16 @@ tax_benefit_system = TaxBenefitSystem()
 
 
 def test_parametric_reform(year = 2014):
-    dated_legislation_json_src = legislations.generate_dated_legislation_json(
-        tax_benefit_system.legislation_json,
-        periods.period('year', year),
-        )
-#    print unicode(json.dumps(dated_legislation_json_src, ensure_ascii = False, indent = 2))
-
-    reform_dated_legislation_json = copy.deepcopy(dated_legislation_json_src)
-    assert reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] == 0
-    reform_dated_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] = 1
+    reference_legislation_json = tax_benefit_system.legislation_json
+    reform_legislation_json = copy.deepcopy(reference_legislation_json)
+    assert reform_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] == 0
+    reform_legislation_json['children']['ir']['children']['bareme']['slices'][0]['rate'] = 1
 
     reform = reforms.Reform(
         name = "IR_100_tranche_1",
         label = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
-        dated_legislation_json = reform_dated_legislation_json,
-        reference_dated_legislation_json = dated_legislation_json_src
+        legislation_json = reform_legislation_json,
+        reference_legislation_json = reference_legislation_json
         )
 
     scenario = tax_benefit_system.new_scenario().init_single_entity(
@@ -68,7 +63,7 @@ def test_parametric_reform(year = 2014):
     simulation = scenario.new_simulation(debug = True)
     assert max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])) < .01
 
-    reform_simulation = scenario.new_simulation(debug = True, reform = reform)
+    reform_simulation = reform.new_simulation(debug = True, scenario = scenario)
     assert reform_simulation.compact_legislation is not None
     assert max(abs(reform_simulation.calculate('impo') - [0., -13900.20019531, -29446.52929688])) < .0001
 

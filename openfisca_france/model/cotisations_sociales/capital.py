@@ -11,6 +11,9 @@ from __future__ import division
 
 import logging
 
+from openfisca_core import periods
+from openfisca_core.accessors import law
+
 from ..input_variables.base import QUIFOY
 
 
@@ -67,7 +70,7 @@ def _prelsoc_cap_bar__2005(self, rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
-    P = _P.prelsoc    
+    P = _P.prelsoc
     total = P.base_pat
     return self.cast_from_entity_to_role(-rev_cap_bar * total,
         entity = 'foyer_fiscal', role = VOUS)
@@ -85,7 +88,7 @@ def _prelsoc_cap_bar_2009_(self, rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
     '''
-    P = _P.prelsoc    
+    P = _P.prelsoc
     total = P.base_pat + P.add_pat + P.rsa
     return self.cast_from_entity_to_role(-rev_cap_bar * total,
         entity = 'foyer_fiscal', role = VOUS)
@@ -111,7 +114,7 @@ def _prelsoc_pv_mo__2005(f3vg, _P):
     Calcule le prélèvement social sur les plus-values
     de cession de valeurs mobilières
     """
-    P = _P.prelsoc    
+    P = _P.prelsoc
     total = P.base_pat
     return -f3vg * total
 
@@ -156,7 +159,7 @@ def _prelsoc_pv_immo__2005(f3vz, _P):
     """
     P = _P.prelsoc
     total = P.base_pat
-    
+
     return -f3vz * total
 
 def _prelsoc_pv_immo_2006_2008(f3vz, _P):
@@ -165,7 +168,7 @@ def _prelsoc_pv_immo_2006_2008(f3vz, _P):
     """
     P = _P.prelsoc
     total = P.base_pat + P.add_pat
-    
+
     return -f3vz * total
 
 def _prelsoc_pv_immo_2009_(f3vz, _P):
@@ -180,14 +183,14 @@ def _prelsoc_pv_immo_2009_(f3vz, _P):
 def _csg_fon(rev_cat_rfon, _P):
     '''
     Calcule la CSG sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
     '''
     return -rev_cat_rfon * _P.csg.capital.glob
 
 def _crds_fon(rev_cat_rfon, _P):
     '''
     Calcule la CRDS sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
     '''
     return -rev_cat_rfon * _P.crds.capital
 
@@ -195,17 +198,17 @@ def _crds_fon(rev_cat_rfon, _P):
 def _prelsoc_fon__2005(rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
     '''
     P = _P.prelsoc
     total = P.base_pat
-    
+
     return -rev_cat_rfon * total
 
 def _prelsoc_fon_2006_2008(rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
     '''
     P = _P.prelsoc
     total = P.base_pat + P.add_pat
@@ -215,7 +218,7 @@ def _prelsoc_fon_2006_2008(rev_cat_rfon, _P):
 def _prelsoc_fon_2009_(rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer 
+    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
     '''
     P = _P.prelsoc
     total = P.base_pat + P.add_pat + P.rsa
@@ -239,20 +242,19 @@ def _crds_cap_lib(self, rev_cap_lib, _P):
         entity = 'foyer_fiscal', role = VOUS)
 
 
-def _prelsoc_cap_lib(self, rev_cap_lib, _P):
+def _prelsoc_cap_lib(self, period, rev_cap_lib, prelsoc = law.prelsoc):
     '''
     Calcule le prélèvement social sur les revenus du capital
     soumis au prélèvement libératoire
     '''
-    P = _P.prelsoc
-    if _P.date.year < 2006:
-        total = P.base_pat
-    elif _P.date.year < 2009:
-        total = P.base_pat + P.add_pat
+    year = periods.date(period).year
+    if year < 2006:
+        total = prelsoc.base_pat
+    elif year < 2009:
+        total = prelsoc.base_pat + prelsoc.add_pat
     else:
-        total = P.base_pat + P.add_pat + P.rsa
-    return self.cast_from_entity_to_role(-rev_cap_lib * total,
-        entity = 'foyer_fiscal', role = VOUS)
+        total = prelsoc.base_pat + prelsoc.add_pat + prelsoc.rsa
+    return self.cast_from_entity_to_role(-rev_cap_lib * total, entity = 'foyer_fiscal', role = VOUS)
 
 
 # TODO: non_imposabilité pour les revenus au barème
@@ -263,4 +265,3 @@ def _prelsoc_cap_lib(self, rev_cap_lib, _P):
 #        table.setIndiv('csgcap_bar', csgcap_bar*verse)
 #        table.setIndiv('prelsoccap_bar', prelsoccap_bar*verse)
 #        table.setIndiv('crdscap_bar', crdscap_bar*verse)
-

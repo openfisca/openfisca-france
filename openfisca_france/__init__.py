@@ -44,7 +44,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         from openfisca_qt import widgets as qt_widgets
 
     from . import decompositions, entities, scenarios  # utils
-    from .model.cotisations_sociales.preprocessing import preprocess_legislation_parameters
+    from .model.cotisations_sociales.preprocessing import preprocess_compact_legislation
     from .model.input_variables import column_by_name
     from .model.datatrees import columns_name_tree_by_entity
     from .model.model import prestation_by_name
@@ -128,7 +128,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         # column_by_name = column_by_name  # Done below to avoid "name is not defined" exception
         # columns_name_tree_by_entity = columns_name_tree_by_entity  # Done below to avoid "name is not defined" exception
         PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
-        # preprocess_legislation_parameters = preprocess_legislation_parameters  # Done below to avoid "name is not defined" exception
+        # preprocess_compact_legislation = preprocess_compact_legislation  # Done below to avoid "name is not defined" exception
         # prestation_by_name = prestation_by_name  # Done below to avoid "name is not defined" exception
         REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
         REV_TYP = None  # utils.REV_TYP  # Not defined for France
@@ -141,7 +141,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         (entity_class.key_plural, entity_class)
         for entity_class in entities.entity_class_by_symbol.itervalues()
         )
-    TaxBenefitSystem.preprocess_legislation_parameters = staticmethod(preprocess_legislation_parameters)
+    TaxBenefitSystem.preprocess_compact_legislation = staticmethod(preprocess_compact_legislation)
 
     TaxBenefitSystem.prestation_by_name = prestation_by_name
     return TaxBenefitSystem

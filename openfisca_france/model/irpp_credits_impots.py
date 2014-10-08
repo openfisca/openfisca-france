@@ -12,9 +12,10 @@ from __future__ import division
 import logging
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_, size, ones, around, logical_or as or_
+from openfisca_core import periods
+from openfisca_core.accessors import law
 
 from .input_variables.base import QUIFOY
-from openfisca_core.accessors import law
 
 log = logging.getLogger(__name__)
 VOUS = QUIFOY['vous']
@@ -100,15 +101,13 @@ def _accult(f7uo, _P):
     return P.taux * f7uo
 
 
-def _acqgpl(f7up, f7uq, _P):
+def _acqgpl(f7up, f7uq, period, acqgpl = law.ir.credits_impot.acqgpl):
     '''
     Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
     2002-2007
     '''
-    P = _P.ir.credits_impot.acqgpl
-
-    if 2002 <= _P.date.year <= 2007:
-        return f7up * P.mont_up + f7uq * P.mont_uq
+    if 2002 <= periods.date(period).year <= 2007:
+        return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
 
 
 def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
@@ -781,4 +780,3 @@ def _saldom2_2009_(nb_pac2, f7db, f7dg, f7dl, f7dq, _P):
     maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
 
     return P.taux * min_(f7db, maxEffectif)
-
