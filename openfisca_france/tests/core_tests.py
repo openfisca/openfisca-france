@@ -24,8 +24,8 @@
 
 
 import datetime
-
 import numpy as np
+
 from openfisca_core import periods
 import openfisca_france
 
