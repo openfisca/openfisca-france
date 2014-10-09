@@ -27,7 +27,7 @@ from __future__ import division
 
 def test_deficit_rcm():
     """
-    test pour un célibataire pour un revenu salarial de 20 000 €     
+    test pour un célibataire pour un revenu salarial de 20 000 €
     """
 
 #   DÉFICITS DES REVENUS DE CAPITAUX MOBILIERS 2DC, 2AA, 2AL, 2AM, 2AN, 2AQ, 2AR
@@ -110,7 +110,7 @@ def test_deficit_rcm():
 		   	        'f2am':1000,
                     'f2an':1000,
                     'f2aq':1000,
-                    'f2ar':1000 
+                    'f2ar':1000
                     },
               "output_vars" :
                     {

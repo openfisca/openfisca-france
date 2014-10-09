@@ -27,7 +27,7 @@ from __future__ import division
 
 def test_niches():
     """
-    test pour un célibataire pour un revenu salarial de 20 000 €     
+    test pour un célibataire pour un revenu salarial de 20 000 €
     """
 
 #    CHARGES DEDUCTIBLES

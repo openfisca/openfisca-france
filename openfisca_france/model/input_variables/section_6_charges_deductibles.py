@@ -155,7 +155,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
                     val_type = "monetary",
                     start = datetime.date(2009, 1, 1),
-                    cerfa_field = u'6CB')), 
+                    cerfa_field = u'6CB')),
                                            # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
     build_column_couple('f6hj', IntCol(entity = 'foy',

@@ -73,7 +73,7 @@ def main():
             page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
             for element in page_doc.xpath('//input[@name]'):
                 code = element.get('name')
-                if code == var: 
+                if code == var:
                     t = 1
                     j = i
                     dates[var].append(year) # Si la case existe pour l'année, on rajoute l'année dans le fichier résultat

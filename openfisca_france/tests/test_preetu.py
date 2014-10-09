@@ -27,7 +27,7 @@ from __future__ import division
 
 def test_preetu():
     """
-    test pour un célibataire pour un revenu salarial de 20 000 €     
+    test pour un célibataire pour un revenu salarial de 20 000 €
     """
 
 #   CRÉDIT D'IMPÔTS PRÊTS ÉTUDIANTS 7UK, 7VO, 7TD

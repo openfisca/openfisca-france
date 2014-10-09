@@ -119,7 +119,7 @@ column_by_name = collections.OrderedDict((
                     label = u"Crédit d'impôt en faveur des entreprises: Famille",
                     val_type = "monetary",
                     cerfa_field = u'8UZ')),
- 
+
    build_column_couple('f8uw', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt compétitivité emploi (CICE), autres entreprises",
                     val_type = "monetary",
@@ -145,7 +145,7 @@ column_by_name = collections.OrderedDict((
                      label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
                      val_type = "monetary",
                      cerfa_field = u'8WC',
-                     end = date(2008, 12, 31))), 
+                     end = date(2008, 12, 31))),
 
     build_column_couple('f8wc', IntCol(entity = 'foy',
                     label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",

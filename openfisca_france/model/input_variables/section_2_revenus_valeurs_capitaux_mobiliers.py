@@ -109,7 +109,7 @@ column_by_name = collections.OrderedDict((
     build_column_couple('f2bg', IntCol(entity = 'foy',
                     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
                     val_type = "monetary",
-                    cerfa_field = u'2BG')), 
+                    cerfa_field = u'2BG')),
 
     build_column_couple('f2aa', IntCol(entity = 'foy',
                     label = u"Déficits des années antérieures non encore déduits",
@@ -149,9 +149,9 @@ column_by_name = collections.OrderedDict((
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 #
-    build_column_couple('f2as', IntCol(entity = 'foy', 
-                    label = u"Déficits des années antérieures non encore déduits: année 2012", 
-                    val_type = "monetary", 
+    build_column_couple('f2as', IntCol(entity = 'foy',
+                    label = u"Déficits des années antérieures non encore déduits: année 2012",
+                    val_type = "monetary",
                     end = date(2011, 12, 31))),  # TODO: vérifier existence <=2011
 
     build_column_couple('f2dm', IntCol(entity = 'foy',
