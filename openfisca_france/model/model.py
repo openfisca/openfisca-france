@@ -57,7 +57,7 @@ from . import irpp_plus_values_immo as immo
 from . import irpp_reductions_impots as ri
 from . import isf as isf
 from . import lgtm as lg
-from .minima_sociaux import aah
+# from .minima_sociaux import aah
 from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
@@ -2299,29 +2299,29 @@ prestation_by_name.update(collections.OrderedDict((
     # Allocation adulte handicapé
     ############################################################
 
-    build_simple_formula_couple('br_aah', FloatCol(function = aah._br_aah,
-        entity = 'fam',
-        label = u"Base ressources de l'allocation adulte handicapé",
-        )),
-    build_simple_formula_couple('aah', FloatCol(function = aah._aah,
-        entity = 'fam',
-        label = u"Allocation adulte handicapé",
-        url = u"http://vosdroits.service-public.fr/particuliers/N12230.xhtml",
-        )),
-    build_dated_formula_couple('caah',
-        [
-            dict(start = date(2002, 1, 1),
-              end = date(2005, 12, 31),
-              function = aah._caah__2005,
-             ),
-            dict(start = date(2006, 1, 1),
-              end = date(2015, 12, 31), #TODO:actualiser la date (si la loi n'a pas changé)
-              function = aah._caah_2006_,
-             ),
-        ],
-        FloatCol(entity='fam',
-        label = u"Complément de l'allocation adulte handicapé",
-        url = u"http://vosdroits.service-public.fr/particuliers/N12230.xhtml")),
+    # build_simple_formula_couple('br_aah', FloatCol(function = aah._br_aah,
+    #     entity = 'fam',
+    #     label = u"Base ressources de l'allocation adulte handicapé",
+    #     )),
+    # build_simple_formula_couple('aah', FloatCol(function = aah._aah,
+    #     entity = 'fam',
+    #     label = u"Allocation adulte handicapé",
+    #     url = u"http://vosdroits.service-public.fr/particuliers/N12230.xhtml",
+    #     )),
+    # build_dated_formula_couple('caah',
+    #     [
+    #         dict(start = date(2002, 1, 1),
+    #           end = date(2005, 12, 31),
+    #           function = aah._caah__2005,
+    #          ),
+    #         dict(start = date(2006, 1, 1),
+    #           end = date(2015, 12, 31), #TODO:actualiser la date (si la loi n'a pas changé)
+    #           function = aah._caah_2006_,
+    #          ),
+    #     ],
+    #     FloatCol(entity='fam',
+    #     label = u"Complément de l'allocation adulte handicapé",
+    #     url = u"http://vosdroits.service-public.fr/particuliers/N12230.xhtml")),
     ############################################################
     # Taxe d'habitation
     ############################################################

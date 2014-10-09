@@ -53,4 +53,7 @@ column_by_name.update(collections.OrderedDict((
 
     build_column_couple('prestation_compensatoire', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante")),
 
+    build_column_couple('aah', FloatCol(entity = 'ind', label = u"Allocation de l'adulte handicapé")),
+    build_column_couple('caah', FloatCol(entity = 'ind', label = u"Complément de l'allocation de l'adulte handicapé")),
+
     )))
