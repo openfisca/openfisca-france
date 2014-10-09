@@ -137,6 +137,6 @@ if __name__ == '__main__':
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     check_1_parent()
-#    test_1_parent()
-#    test_1_parent_2_enfants()
-#    test_1_parent_2_enfants_1_column()
+    test_1_parent()
+    test_1_parent_2_enfants()
+    test_1_parent_2_enfants_1_column()

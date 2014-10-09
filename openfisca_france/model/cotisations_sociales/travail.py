@@ -34,7 +34,6 @@ from openfisca_core.enumerations import Enum
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
 from ..input_variables.base import QUIFAM, QUIFOY, QUIMEN
-from .preprocessing import build_pat, build_sal
 
 
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
