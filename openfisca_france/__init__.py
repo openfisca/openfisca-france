@@ -44,15 +44,14 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         from openfisca_qt import widgets as qt_widgets
 
     from . import decompositions, entities, scenarios  # utils
-    from .model.cotisations_sociales.preprocessing import preprocess_compact_legislation
-    from .model.input_variables import column_by_name
-    from .model.datatrees import columns_name_tree_by_entity
+    from .model import datatrees, input_variables
+    from .model.cotisations_sociales import preprocessing
     from .model.model import prestation_by_name
     if qt:
         from .widgets.Composition import CompositionWidget
 
     assert start_from in ['brut', 'imposable']  # TODO: net
-    column_by_name = column_by_name.copy()
+    column_by_name = input_variables.column_by_name.copy()
 
     if start_from in ['brut', 'net']:
         drop_survey_only_variables = True
@@ -124,24 +123,29 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
             'menages',
             ]
         ENTITIES_INDEX = ENTITIES_INDEX
-        # entity_class_by_key_plural = entity_class_by_key_plural  # Done below to avoid "name is not defined" exception
-        # column_by_name = column_by_name  # Done below to avoid "name is not defined" exception
-        # columns_name_tree_by_entity = columns_name_tree_by_entity  # Done below to avoid "name is not defined" exception
+
+        # Declared below to avoid "name is not defined" exception
+        column_by_name = None
+        entity_class_by_key_plural = None
+        prestation_by_name = None
+
+        columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
+
         PARAM_FILE = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
-        # preprocess_compact_legislation = preprocess_compact_legislation  # Done below to avoid "name is not defined" exception
-        # prestation_by_name = prestation_by_name  # Done below to avoid "name is not defined" exception
+
+        preprocess_compact_legislation = staticmethod(preprocessing.preprocess_compact_legislation)
+
         REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
         REV_TYP = None  # utils.REV_TYP  # Not defined for France
         REVENUES_CATEGORIES = REVENUES_CATEGORIES
         Scenario = scenarios.Scenario
 
+    # Define class attributes after class declaration to avoid "name is not defined" exception
     TaxBenefitSystem.column_by_name = column_by_name
-    TaxBenefitSystem.columns_name_tree_by_entity = columns_name_tree_by_entity
     TaxBenefitSystem.entity_class_by_key_plural = dict(
         (entity_class.key_plural, entity_class)
         for entity_class in entities.entity_class_by_symbol.itervalues()
         )
-    TaxBenefitSystem.preprocess_compact_legislation = staticmethod(preprocess_compact_legislation)
-
     TaxBenefitSystem.prestation_by_name = prestation_by_name
+
     return TaxBenefitSystem
