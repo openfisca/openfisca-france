@@ -6,6 +6,7 @@
 /.project
 /.pydevproject
 /.settings
+/.spyderproject
 /build
 /dist
 /openfisca_france/assets/apl/france2014.txt
