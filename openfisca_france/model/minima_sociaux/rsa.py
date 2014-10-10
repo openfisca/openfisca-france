@@ -120,8 +120,8 @@ def _br_rmi_ms(self, aspa, asi, aah, caah):
     Minima sociaux inclus dans la base ressource RSA/RMI
     'ind'
     """
-    return self.cast_from_entity_to_role(aspa + asi + aah + caah,
-        entity = 'famille', role = CHEF)
+    return self.cast_from_entity_to_role(aspa + asi ,
+        entity = 'famille', role = CHEF) + aah + caah
 
 
 def _br_rmi_i(self, ass, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
