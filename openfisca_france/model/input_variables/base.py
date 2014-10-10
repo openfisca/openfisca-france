@@ -153,6 +153,8 @@ column_by_name.update(collections.OrderedDict((
 
     build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
 
+    build_column_couple('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Éligible à l'ASS")),
+
     build_column_couple('elig_creimp_jeunes', BoolCol(entity = "ind", label = u"Éligible au crédit d'impôt jeunes",
                         start = date(2005, 1, 1),
                         end = date(2008, 1, 1))), #Sert à savoir si son secteur d'activité permet au jeune de bénéficier du crédit impôts jeunes

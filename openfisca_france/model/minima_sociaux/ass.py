@@ -24,7 +24,7 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, logical_or as or_)
+from numpy import (maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_)
 from openfisca_core.accessors import law
 
 from ..base import QUIFAM, QUIFOY
@@ -42,11 +42,11 @@ def _chomeur(choi, activite):
   '''
   return or_(choi > 0, activite == 1)
 
-def _ass_elig_i(chomeur):
+def _ass_elig_i(chomeur, ass_precondition_remplie):
   '''
   Éligibilité individuelle à l'ASS
   '''
-  return chomeur
+  return and_(chomeur, ass_precondition_remplie)
 
 def _ass(self, br_pf, ass_elig_i_holder, concub, ass_params = law.minim.ass):
     '''
@@ -88,7 +88,7 @@ def _ass(self, br_pf, ass_elig_i_holder, concub, ass_params = law.minim.ass):
     plafond = plafond_mensuel * 12
     montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
     revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
-    
+
     ass = elig * (12 * montant_mensuel * (revenus <= plafond)
               + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0))
     ass = ass * not_(ass / 12 < ass_params.montant_plein)
