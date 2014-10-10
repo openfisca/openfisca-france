@@ -146,7 +146,7 @@ column_by_name.update(collections.OrderedDict((
     build_column_couple(
         'proprietaire_proche_famille',
         BoolCol(
-            entity = "men",
+            entity = "fam",
             label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
             )
         ),
