@@ -63,7 +63,7 @@ def check_legislation_xml_file(year):
             ).encode('utf-8'))
 
     yearly_legislation_json = legislations.generate_dated_legislation_json(legislation_json,
-        periods.period('year', year),)
+        periods.period('year', year))
     yearly_legislation_json, errors = legislations.validate_dated_legislation_json(yearly_legislation_json,
         state = conv.default_state)
     if errors is not None:
@@ -83,7 +83,7 @@ def check_legislation_xml_file(year):
         tax_benefit_system.preprocess_compact_legislation(compact_legislation)
 
     monthly_legislation_json = legislations.generate_dated_legislation_json(legislation_json,
-        periods.period('month', u'{}-01'.format(year), u'{}-12'.format(year)))
+        periods.period('month', year, year))
     monthly_legislation_json, errors = legislations.validate_dated_legislation_json(monthly_legislation_json,
         state = conv.default_state)
     if errors is not None:
