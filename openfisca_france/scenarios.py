@@ -1225,7 +1225,7 @@ class Scenario(scenarios.AbstractScenario):
         if self.legislation_url is not None:
             self_json['legislation_url'] = self.legislation_url
         if self.period is not None:
-            self_json['period'] = periods.json(self.period)
+            self_json['period'] = periods.json_str(self.period)
 
         test_case = self.test_case
         if test_case is not None:
