@@ -101,7 +101,7 @@ def main():
 
 
 def compare(scenario, tested = False, fichier = ''):
-    year = scenario.date.year
+    year = scenario.period_date.year
     totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
 
     impots_arguments = transform_scenario_to_impots_arguments(scenario)
