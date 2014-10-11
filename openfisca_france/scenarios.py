@@ -49,6 +49,256 @@ class Scenario(scenarios.AbstractScenario):
     axes = None
     test_case = None
 
+    def fill_simulation(self, simulation):
+        assert isinstance(simulation, simulations.Simulation)
+        column_by_name = self.tax_benefit_system.column_by_name
+        entity_by_key_plural = simulation.entity_by_key_plural
+        steps_count = 1
+        if self.axes is not None:
+            for axis in self.axes:
+                steps_count *= axis['count']
+        simulation.steps_count = steps_count
+        test_case = self.test_case
+
+        familles = entity_by_key_plural[u'familles']
+        familles.step_size = familles_step_size = len(test_case[u'familles'])
+        familles.count = steps_count * familles_step_size
+        foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
+        foyers_fiscaux.step_size = foyers_fiscaux_step_size = len(test_case[u'foyers_fiscaux'])
+        foyers_fiscaux.count = steps_count * foyers_fiscaux_step_size
+        individus = entity_by_key_plural[u'individus']
+        individus.step_size = individus_step_size = len(test_case[u'individus'])
+        individus.count = steps_count * individus_step_size
+        menages = entity_by_key_plural[u'menages']
+        menages.step_size = menages_step_size = len(test_case[u'menages'])
+        menages.count = steps_count * menages_step_size
+
+        individu_index_by_id = dict(
+            (individu_id, individu_index)
+            for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
+            )
+        # individus.get_or_new_holder('id').array = np.array(
+        #     [
+        #         individu_id + (u'-{}'.format(step_index) if step_index > 0 else u'')
+        #         for step_index in range(steps_count)
+        #         for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
+        #         ],
+        #     dtype = object)
+        #
+        individus.get_or_new_holder('idfam').array = idfam_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['idfam'].dtype)  # famille_index
+        individus.get_or_new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['quifam'].dtype)  # famille_role
+        familles_roles_count = 0
+        for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
+            famille = famille.copy()
+            parents_id = famille.pop(u'parents')
+            enfants_id = famille.pop(u'enfants')
+            for step_index in range(steps_count):
+                individu_index = individu_index_by_id[parents_id[0]]
+                idfam_array[step_index * individus_step_size + individu_index] = step_index * familles_step_size \
+                    + famille_index
+                quifam_array[step_index * individus_step_size + individu_index] = 0  # chef
+                famille_roles_count = 2
+                if len(parents_id) > 1:
+                    individu_index = individu_index_by_id[parents_id[1]]
+                    idfam_array[step_index * individus_step_size + individu_index] \
+                        = step_index * familles_step_size + famille_index
+                    quifam_array[step_index * individus_step_size + individu_index] = 1  # part
+                for enfant_index, enfant_id in enumerate(enfants_id):
+                    individu_index = individu_index_by_id[enfant_id]
+                    idfam_array[step_index * individus_step_size + individu_index] \
+                        = step_index * familles_step_size + famille_index
+                    quifam_array[step_index * individus_step_size + individu_index] = 2 + enfant_index  # enf
+                    famille_roles_count += 1
+                if famille_roles_count > familles_roles_count:
+                    familles_roles_count = famille_roles_count
+        familles.roles_count = familles_roles_count
+        #
+        individus.get_or_new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['idfoy'].dtype)  # foyer_fiscal_index
+        individus.get_or_new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['quifoy'].dtype)  # foyer_fiscal_role
+        foyers_fiscaux_roles_count = 0
+        for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
+            foyer_fiscal = foyer_fiscal.copy()
+            declarants_id = foyer_fiscal.pop(u'declarants')
+            personnes_a_charge_id = foyer_fiscal.pop(u'personnes_a_charge')
+            for step_index in range(steps_count):
+                individu_index = individu_index_by_id[declarants_id[0]]
+                idfoy_array[step_index * individus_step_size + individu_index] \
+                    = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
+                quifoy_array[step_index * individus_step_size + individu_index] = 0  # vous
+                foyer_fiscal_roles_count = 2
+                if len(declarants_id) > 1:
+                    individu_index = individu_index_by_id[declarants_id[1]]
+                    idfoy_array[step_index * individus_step_size + individu_index] \
+                        = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
+                    quifoy_array[step_index * individus_step_size + individu_index] = 1  # conj
+                for personne_a_charge_index, personne_a_charge_id in enumerate(personnes_a_charge_id):
+                    individu_index = individu_index_by_id[personne_a_charge_id]
+                    idfoy_array[step_index * individus_step_size + individu_index] \
+                        = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
+                    quifoy_array[step_index * individus_step_size + individu_index] = 2 + personne_a_charge_index  # pac
+                    foyer_fiscal_roles_count += 1
+                if foyer_fiscal_roles_count > foyers_fiscaux_roles_count:
+                    foyers_fiscaux_roles_count = foyer_fiscal_roles_count
+        foyers_fiscaux.roles_count = foyers_fiscaux_roles_count
+        #
+        individus.get_or_new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['idmen'].dtype)  # menage_index
+        individus.get_or_new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_step_size,
+            dtype = column_by_name['quimen'].dtype)  # menage_role
+        menages_roles_count = 0
+        for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
+            menage = menage.copy()
+            personne_de_reference_id = menage.pop(u'personne_de_reference')
+            conjoint_id = menage.pop(u'conjoint')
+            enfants_id = menage.pop(u'enfants')
+            autres_id = menage.pop(u'autres')
+            for step_index in range(steps_count):
+                individu_index = individu_index_by_id[personne_de_reference_id]
+                idmen_array[step_index * individus_step_size + individu_index] = step_index * menages_step_size \
+                    + menage_index
+                quimen_array[step_index * individus_step_size + individu_index] = 0  # pref
+                menage_roles_count = 2
+                if conjoint_id is not None:
+                    individu_index = individu_index_by_id[conjoint_id]
+                    idmen_array[step_index * individus_step_size + individu_index] \
+                        = step_index * menages_step_size + menage_index
+                    quimen_array[step_index * individus_step_size + individu_index] = 1  # cref
+                for enfant_index, enfant_id in enumerate(itertools.chain(enfants_id, autres_id)):
+                    individu_index = individu_index_by_id[enfant_id]
+                    idmen_array[step_index * individus_step_size + individu_index] \
+                        = step_index * menages_step_size + menage_index
+                    quimen_array[step_index * individus_step_size + individu_index] = 2 + enfant_index  # enf
+                    menage_roles_count += 1
+                if menage_roles_count > menages_roles_count:
+                    menages_roles_count = menage_roles_count
+        menages.roles_count = menages_roles_count
+        #
+        individus.get_or_new_holder('noi').array = np.arange(steps_count * individus_step_size,
+            dtype = column_by_name['noi'].dtype)
+#        individus.get_or_new_holder(entities.Individus.name_key).array = np.array(
+#            [individu[entities.Individus.name_key] for individu in test_case[u'individus'].itervalues()],
+#            dtype = object)
+        used_columns_name = set(
+            key
+            for individu in test_case[u'individus'].itervalues()
+            for key, value in individu.iteritems()
+            if value is not None
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'ind' and column_name in used_columns_name \
+                    and column_name not in ('idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen'):
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        individu.get(column_name)
+                        for step_index in range(steps_count)
+                        for individu in test_case[u'individus'].itervalues()
+                        )
+                    )
+                array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
+                holder = individus.get_or_new_holder(column_name)
+                holder.array = array
+
+#        familles.get_or_new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
+        used_columns_name = set(
+            key
+            for famille in test_case[u'familles'].itervalues()
+            for key, value in famille.iteritems()
+            if value is not None
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'fam' and column_name in used_columns_name:
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        famille.get(column_name)
+                        for step_index in range(steps_count)
+                        for famille in test_case[u'familles'].itervalues()
+                        )
+                    )
+                array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
+                holder = familles.get_or_new_holder(column_name)
+                holder.array = array
+
+#        foyers_fiscaux.get_or_new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
+        used_columns_name = set(
+            key
+            for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
+            for key, value in foyer_fiscal.iteritems()
+            if value is not None
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'foy' and column_name in used_columns_name:
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        foyer_fiscal.get(column_name)
+                        for step_index in range(steps_count)
+                        for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
+                        )
+                    )
+                array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
+                holder = foyers_fiscaux.get_or_new_holder(column_name)
+                holder.array = array
+
+#        menages.get_or_new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
+        used_columns_name = set(
+            key
+            for menage in test_case[u'menages'].itervalues()
+            for key, value in menage.iteritems()
+            if value is not None
+            )
+        for column_name, column in column_by_name.iteritems():
+            if column.entity == 'men' and column_name in used_columns_name:
+                cells_iter = (
+                    cell if cell is not None else column.default
+                    for cell in (
+                        menage.get(column_name)
+                        for step_index in range(steps_count)
+                        for menage in test_case[u'menages'].itervalues()
+                        )
+                    )
+                array = np.fromiter(cells_iter, dtype = column.dtype) \
+                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
+                holder = menages.get_or_new_holder(column_name)
+                holder.array = array
+
+        if self.axes is not None:
+            if len(self.axes) == 1:
+                axis = self.axes[0]
+                entity = simulation.entity_by_column_name[axis['name']]
+                holder = simulation.get_or_new_holder(axis['name'])
+                column = holder.column
+                array = holder.array
+                if array is None:
+                    array = np.empty(entity.count, dtype = column.dtype)
+                    array.fill(column.default)
+                    holder.array = array
+                array[axis['index']:: entity.step_size] = np.linspace(axis['min'], axis['max'], axis['count'])
+            else:
+                axes_linspaces = [
+                    np.linspace(axis['min'], axis['max'], axis['count'])
+                    for axis in self.axes
+                    ]
+                axes_meshes = np.meshgrid(*axes_linspaces)
+                for axis, mesh in zip(self.axes, axes_meshes):
+                    entity = simulation.entity_by_column_name[axis['name']]
+                    holder = simulation.get_or_new_holder(axis['name'])
+                    column = holder.column
+                    array = holder.array
+                    if array is None:
+                        array = np.empty(entity.count, dtype = column.dtype)
+                        array.fill(column.default)
+                        holder.array = array
+                    array[axis['index']:: entity.step_size] = mesh.reshape(steps_count)
+
     def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
             parent1 = None, parent2 = None, period = None):
         if enfants is None:
@@ -923,258 +1173,6 @@ class Scenario(scenarios.AbstractScenario):
             return self.make_json_or_python_to_attributes(cache_dir = cache_dir, repair = repair)(
                 value = value, state = state or conv.default_state)
         return json_to_instance
-
-    def fill_simulation(self, simulation):
-        assert isinstance(simulation, simulations.Simulation)
-        column_by_name = self.tax_benefit_system.column_by_name
-        entity_by_key_plural = simulation.entity_by_key_plural
-        steps_count = 1
-        if self.axes is not None:
-            for axis in self.axes:
-                steps_count *= axis['count']
-        simulation.steps_count = steps_count
-        test_case = self.test_case
-
-        familles = entity_by_key_plural[u'familles']
-        familles.step_size = familles_step_size = len(test_case[u'familles'])
-        familles.count = steps_count * familles_step_size
-        foyers_fiscaux = entity_by_key_plural[u'foyers_fiscaux']
-        foyers_fiscaux.step_size = foyers_fiscaux_step_size = len(test_case[u'foyers_fiscaux'])
-        foyers_fiscaux.count = steps_count * foyers_fiscaux_step_size
-        individus = entity_by_key_plural[u'individus']
-        individus.step_size = individus_step_size = len(test_case[u'individus'])
-        individus.count = steps_count * individus_step_size
-        menages = entity_by_key_plural[u'menages']
-        menages.step_size = menages_step_size = len(test_case[u'menages'])
-        menages.count = steps_count * menages_step_size
-
-        individu_index_by_id = dict(
-            (individu_id, individu_index)
-            for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
-            )
-        # individus.get_or_new_holder('id').array = np.array(
-        #     [
-        #         individu_id + (u'-{}'.format(step_index) if step_index > 0 else u'')
-        #         for step_index in range(steps_count)
-        #         for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
-        #         ],
-        #     dtype = object)
-        #
-        individus.get_or_new_holder('idfam').array = idfam_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['idfam'].dtype)  # famille_index
-        individus.get_or_new_holder('quifam').array = quifam_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['quifam'].dtype)  # famille_role
-        familles_roles_count = 0
-        for famille_index, famille in enumerate(test_case[u'familles'].itervalues()):
-            famille = famille.copy()
-            parents_id = famille.pop(u'parents')
-            enfants_id = famille.pop(u'enfants')
-            for step_index in range(steps_count):
-                individu_index = individu_index_by_id[parents_id[0]]
-                idfam_array[step_index * individus_step_size + individu_index] = step_index * familles_step_size \
-                    + famille_index
-                quifam_array[step_index * individus_step_size + individu_index] = 0  # chef
-                famille_roles_count = 2
-                if len(parents_id) > 1:
-                    individu_index = individu_index_by_id[parents_id[1]]
-                    idfam_array[step_index * individus_step_size + individu_index] \
-                        = step_index * familles_step_size + famille_index
-                    quifam_array[step_index * individus_step_size + individu_index] = 1  # part
-                for enfant_index, enfant_id in enumerate(enfants_id):
-                    individu_index = individu_index_by_id[enfant_id]
-                    idfam_array[step_index * individus_step_size + individu_index] \
-                        = step_index * familles_step_size + famille_index
-                    quifam_array[step_index * individus_step_size + individu_index] = 2 + enfant_index  # enf
-                    famille_roles_count += 1
-                if famille_roles_count > familles_roles_count:
-                    familles_roles_count = famille_roles_count
-        familles.roles_count = familles_roles_count
-        #
-        individus.get_or_new_holder('idfoy').array = idfoy_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['idfoy'].dtype)  # foyer_fiscal_index
-        individus.get_or_new_holder('quifoy').array = quifoy_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['quifoy'].dtype)  # foyer_fiscal_role
-        foyers_fiscaux_roles_count = 0
-        for foyer_fiscal_index, foyer_fiscal in enumerate(test_case[u'foyers_fiscaux'].itervalues()):
-            foyer_fiscal = foyer_fiscal.copy()
-            declarants_id = foyer_fiscal.pop(u'declarants')
-            personnes_a_charge_id = foyer_fiscal.pop(u'personnes_a_charge')
-            for step_index in range(steps_count):
-                individu_index = individu_index_by_id[declarants_id[0]]
-                idfoy_array[step_index * individus_step_size + individu_index] \
-                    = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
-                quifoy_array[step_index * individus_step_size + individu_index] = 0  # vous
-                foyer_fiscal_roles_count = 2
-                if len(declarants_id) > 1:
-                    individu_index = individu_index_by_id[declarants_id[1]]
-                    idfoy_array[step_index * individus_step_size + individu_index] \
-                        = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
-                    quifoy_array[step_index * individus_step_size + individu_index] = 1  # conj
-                for personne_a_charge_index, personne_a_charge_id in enumerate(personnes_a_charge_id):
-                    individu_index = individu_index_by_id[personne_a_charge_id]
-                    idfoy_array[step_index * individus_step_size + individu_index] \
-                        = step_index * foyers_fiscaux_step_size + foyer_fiscal_index
-                    quifoy_array[step_index * individus_step_size + individu_index] = 2 + personne_a_charge_index  # pac
-                    foyer_fiscal_roles_count += 1
-                if foyer_fiscal_roles_count > foyers_fiscaux_roles_count:
-                    foyers_fiscaux_roles_count = foyer_fiscal_roles_count
-        foyers_fiscaux.roles_count = foyers_fiscaux_roles_count
-        #
-        individus.get_or_new_holder('idmen').array = idmen_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['idmen'].dtype)  # menage_index
-        individus.get_or_new_holder('quimen').array = quimen_array = np.empty(steps_count * individus_step_size,
-            dtype = column_by_name['quimen'].dtype)  # menage_role
-        menages_roles_count = 0
-        for menage_index, menage in enumerate(test_case[u'menages'].itervalues()):
-            menage = menage.copy()
-            personne_de_reference_id = menage.pop(u'personne_de_reference')
-            conjoint_id = menage.pop(u'conjoint')
-            enfants_id = menage.pop(u'enfants')
-            autres_id = menage.pop(u'autres')
-            for step_index in range(steps_count):
-                individu_index = individu_index_by_id[personne_de_reference_id]
-                idmen_array[step_index * individus_step_size + individu_index] = step_index * menages_step_size \
-                    + menage_index
-                quimen_array[step_index * individus_step_size + individu_index] = 0  # pref
-                menage_roles_count = 2
-                if conjoint_id is not None:
-                    individu_index = individu_index_by_id[conjoint_id]
-                    idmen_array[step_index * individus_step_size + individu_index] \
-                        = step_index * menages_step_size + menage_index
-                    quimen_array[step_index * individus_step_size + individu_index] = 1  # cref
-                for enfant_index, enfant_id in enumerate(itertools.chain(enfants_id, autres_id)):
-                    individu_index = individu_index_by_id[enfant_id]
-                    idmen_array[step_index * individus_step_size + individu_index] \
-                        = step_index * menages_step_size + menage_index
-                    quimen_array[step_index * individus_step_size + individu_index] = 2 + enfant_index  # enf
-                    menage_roles_count += 1
-                if menage_roles_count > menages_roles_count:
-                    menages_roles_count = menage_roles_count
-        menages.roles_count = menages_roles_count
-        #
-        individus.get_or_new_holder('noi').array = np.arange(steps_count * individus_step_size,
-            dtype = column_by_name['noi'].dtype)
-#        individus.get_or_new_holder(entities.Individus.name_key).array = np.array(
-#            [individu[entities.Individus.name_key] for individu in test_case[u'individus'].itervalues()],
-#            dtype = object)
-        used_columns_name = set(
-            key
-            for individu in test_case[u'individus'].itervalues()
-            for key, value in individu.iteritems()
-            if value is not None
-            )
-        for column_name, column in column_by_name.iteritems():
-            if column.entity == 'ind' and column_name in used_columns_name \
-                    and column_name not in ('idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen'):
-                cells_iter = (
-                    cell if cell is not None else column.default
-                    for cell in (
-                        individu.get(column_name)
-                        for step_index in range(steps_count)
-                        for individu in test_case[u'individus'].itervalues()
-                        )
-                    )
-                array = np.fromiter(cells_iter, dtype = column.dtype) \
-                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
-                holder = individus.get_or_new_holder(column_name)
-                holder.array = array
-
-#        familles.get_or_new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
-        used_columns_name = set(
-            key
-            for famille in test_case[u'familles'].itervalues()
-            for key, value in famille.iteritems()
-            if value is not None
-            )
-        for column_name, column in column_by_name.iteritems():
-            if column.entity == 'fam' and column_name in used_columns_name:
-                cells_iter = (
-                    cell if cell is not None else column.default
-                    for cell in (
-                        famille.get(column_name)
-                        for step_index in range(steps_count)
-                        for famille in test_case[u'familles'].itervalues()
-                        )
-                    )
-                array = np.fromiter(cells_iter, dtype = column.dtype) \
-                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
-                holder = familles.get_or_new_holder(column_name)
-                holder.array = array
-
-#        foyers_fiscaux.get_or_new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
-        used_columns_name = set(
-            key
-            for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
-            for key, value in foyer_fiscal.iteritems()
-            if value is not None
-            )
-        for column_name, column in column_by_name.iteritems():
-            if column.entity == 'foy' and column_name in used_columns_name:
-                cells_iter = (
-                    cell if cell is not None else column.default
-                    for cell in (
-                        foyer_fiscal.get(column_name)
-                        for step_index in range(steps_count)
-                        for foyer_fiscal in test_case[u'foyers_fiscaux'].itervalues()
-                        )
-                    )
-                array = np.fromiter(cells_iter, dtype = column.dtype) \
-                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
-                holder = foyers_fiscaux.get_or_new_holder(column_name)
-                holder.array = array
-
-#        menages.get_or_new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
-        used_columns_name = set(
-            key
-            for menage in test_case[u'menages'].itervalues()
-            for key, value in menage.iteritems()
-            if value is not None
-            )
-        for column_name, column in column_by_name.iteritems():
-            if column.entity == 'men' and column_name in used_columns_name:
-                cells_iter = (
-                    cell if cell is not None else column.default
-                    for cell in (
-                        menage.get(column_name)
-                        for step_index in range(steps_count)
-                        for menage in test_case[u'menages'].itervalues()
-                        )
-                    )
-                array = np.fromiter(cells_iter, dtype = column.dtype) \
-                    if column.dtype is not object else np.array(list(cells_iter), dtype = column.dtype)
-                holder = menages.get_or_new_holder(column_name)
-                holder.array = array
-
-        if self.axes is not None:
-            if len(self.axes) == 1:
-                axis = self.axes[0]
-                entity = simulation.entity_by_column_name[axis['name']]
-                holder = simulation.get_or_new_holder(axis['name'])
-                column = holder.column
-                array = holder.array
-                if array is None:
-                    array = np.empty(entity.count, dtype = column.dtype)
-                    array.fill(column.default)
-                    holder.array = array
-                array[axis['index']:: entity.step_size] = np.linspace(axis['min'], axis['max'], axis['count'])
-            else:
-                axes_linspaces = [
-                    np.linspace(axis['min'], axis['max'], axis['count'])
-                    for axis in self.axes
-                    ]
-                axes_meshes = np.meshgrid(*axes_linspaces)
-                for axis, mesh in zip(self.axes, axes_meshes):
-                    entity = simulation.entity_by_column_name[axis['name']]
-                    holder = simulation.get_or_new_holder(axis['name'])
-                    column = holder.column
-                    array = holder.array
-                    if array is None:
-                        array = np.empty(entity.count, dtype = column.dtype)
-                        array.fill(column.default)
-                        holder.array = array
-                    array[axis['index']:: entity.step_size] = mesh.reshape(steps_count)
-
-        return simulation
 
     def suggest(self):
         test_case = self.test_case
