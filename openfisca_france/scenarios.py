@@ -26,18 +26,12 @@
 import collections
 import datetime
 import itertools
-import json
 import logging
 import numpy as np
-import os
 import re
-import time
-import urllib2
 import uuid
 
-from openfisca_core import conv, legislations, periods, scenarios, simulations
-
-from . import entities
+from openfisca_core import conv, periods, scenarios, simulations
 
 
 log = logging.getLogger(__name__)
@@ -225,115 +219,6 @@ class Scenario(scenarios.AbstractScenario):
                 ),
             ))
         return self
-
-    def make_json_or_python_to_attributes(self, cache_dir = None, repair = False):
-        column_by_name = self.tax_benefit_system.column_by_name
-
-        def json_or_python_to_attributes(value, state = None):
-            if value is None:
-                return value, None
-            if state is None:
-                state = conv.default_state
-
-            # First validation and conversion step
-            data, error = conv.pipe(
-                conv.test_isinstance(dict),
-                # TODO: Remove condition below, once every calls uses "period" instead of "date" & "year".
-                self.cleanup_period_in_json_or_python,
-                conv.struct(
-                    dict(
-                        axes = self.json_or_python_to_axes,
-                        legislation_url = conv.pipe(
-                            conv.test_isinstance(basestring),
-                            conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
-                            ),
-                        period = conv.pipe(
-                            periods.make_json_or_python_to_period(),  # TODO: Check that period is valid in params.
-                            conv.not_none,
-                            ),
-                        test_case = conv.pipe(
-                            conv.test_isinstance(dict),  # Real test is done below, once period is known.
-                            conv.not_none,
-                            ),
-                        ),
-                    ),
-                )(value, state = state)
-            if error is not None:
-                return data, error
-
-            # Second validation and conversion step
-            data, error = conv.struct(
-                dict(
-                    test_case = self.make_json_or_python_to_test_case(period = data['period'], repair = repair),
-                    ),
-                default = conv.noop,
-                )(data, state = state)
-            if error is not None:
-                return data, error
-
-            # Third validation and conversion step
-            errors = {}
-            if data['axes'] is not None:
-                for axis_index, axis in enumerate(data['axes']):
-                    if axis['min'] >= axis['max']:
-                        errors.setdefault('axes', {}).setdefault(axis_index, {})['max'] = state._(
-                            u"Max value must be greater than min value")
-                    column = column_by_name[axis['name']]
-                    entity_class = entities.entity_class_by_symbol[column.entity]
-                    if axis['index'] >= len(data['test_case'][entity_class.key_plural]):
-                        errors.setdefault('axes', {}).setdefault(axis_index, {})['index'] = state._(
-                            u"Index must be lower than {}").format(len(data['test_case'][entity_class.key_plural]))
-            if errors:
-                return data, errors
-
-            legislation_json = None
-            if data['legislation_url'] is not None:
-                if cache_dir is not None:
-                    legislation_uuid_hex = uuid.uuid5(uuid.NAMESPACE_URL, data['legislation_url'].encode('utf-8')).hex
-                    legislation_dir = os.path.join(cache_dir, 'legislations', legislation_uuid_hex[:2])
-                    legislation_filename = '{}.json'.format(legislation_uuid_hex[2:])
-                    legislation_file_path = os.path.join(legislation_dir, legislation_filename)
-                    if os.path.exists(legislation_file_path) \
-                            and os.path.getmtime(legislation_file_path) > time.time() - 900:  # 15 minutes
-                        with open(legislation_file_path) as legislation_file:
-                            try:
-                                legislation_json = json.load(legislation_file,
-                                    object_pairs_hook = collections.OrderedDict)
-                            except ValueError:
-                                log.exception('Error while reading legislation JSON file: {}'.format(
-                                    legislation_file_path))
-                if legislation_json is None:
-                    request = urllib2.Request(data['legislation_url'], headers = {
-                        'User-Agent': 'OpenFisca',
-                        })
-                    try:
-                        response = urllib2.urlopen(request)
-                    except urllib2.HTTPError:
-                        return data, dict(legislation_url = state._(u'HTTP Error while retrieving legislation JSON'))
-                    except urllib2.URLError:
-                        return data, dict(legislation_url = state._(u'Error while retrieving legislation JSON'))
-                    legislation_json, error = conv.pipe(
-                        conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
-                        legislations.validate_any_legislation_json,
-                        conv.not_none,
-                        )(response.read(), state = state)
-                    if error is not None:
-                        return data, dict(legislation_url = error)
-                    if cache_dir is not None:
-                        if not os.path.exists(legislation_dir):
-                            os.makedirs(legislation_dir)
-                        with open(legislation_file_path, 'w') as legislation_file:
-                            legislation_file.write(unicode(json.dumps(legislation_json, encoding = 'utf-8',
-                                ensure_ascii = False, indent = 2)).encode('utf-8'))
-
-            self.axes = data['axes']
-            self.legislation_json = legislation_json
-            self.legislation_url = data['legislation_url']
-            self.period = data['period']
-            self.test_case = data['test_case']
-            return self, None
-
-        return json_or_python_to_attributes
 
     def make_json_or_python_to_test_case(self, period = None, repair = False):
         assert period is not None
@@ -1010,17 +895,6 @@ class Scenario(scenarios.AbstractScenario):
             return test_case, error
 
         return json_or_python_to_test_case
-
-    @classmethod
-    def make_json_to_instance(cls, cache_dir = None, repair = False, tax_benefit_system = None):
-        def json_to_instance(value, state = None):
-            if value is None:
-                return None, None
-            self = cls()
-            self.tax_benefit_system = tax_benefit_system
-            return self.make_json_or_python_to_attributes(cache_dir = cache_dir, repair = repair)(
-                value = value, state = state or conv.default_state)
-        return json_to_instance
 
     def suggest(self):
         test_case = self.test_case

@@ -127,6 +127,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         # Declared below to avoid "name is not defined" exception
         column_by_name = None
         entity_class_by_key_plural = None
+        entity_class_by_symbol = None
         prestation_by_name = None
 
         columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
@@ -146,6 +147,7 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
         (entity_class.key_plural, entity_class)
         for entity_class in entities.entity_class_by_symbol.itervalues()
         )
+    TaxBenefitSystem.entity_class_by_symbol = entities.entity_class_by_symbol
     TaxBenefitSystem.prestation_by_name = prestation_by_name
 
     return TaxBenefitSystem

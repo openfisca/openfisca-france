@@ -91,10 +91,3 @@ entity_class_by_symbol = dict(
     ind = Individus,
     men = Menages,
     )
-
-
-def build_entity_class_by_key_plural(entity_class_by_symbol):
-    return {
-        entity_class.key_plural: entity_class
-        for symbol, entity_class in entity_class_by_symbol.iteritems()
-        }
