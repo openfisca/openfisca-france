@@ -242,48 +242,7 @@ class Scenario(scenarios.AbstractScenario):
                 self.cleanup_period_in_json_or_python,
                 conv.struct(
                     dict(
-                        axes = conv.pipe(
-                            conv.test_isinstance(list),
-                            conv.uniform_sequence(
-                                conv.pipe(
-                                    conv.test_isinstance(dict),
-                                    conv.struct(
-                                        dict(
-                                            count = conv.pipe(
-                                                conv.test_isinstance(int),
-                                                conv.test_greater_or_equal(1),
-                                                conv.not_none,
-                                                ),
-                                            index = conv.pipe(
-                                                conv.test_isinstance(int),
-                                                conv.test_greater_or_equal(0),
-                                                conv.default(0),
-                                                ),
-                                            max = conv.pipe(
-                                                conv.test_isinstance((float, int)),
-                                                conv.not_none,
-                                                ),
-                                            min = conv.pipe(
-                                                conv.test_isinstance((float, int)),
-                                                conv.not_none,
-                                                ),
-                                            name = conv.pipe(
-                                                conv.test_isinstance(basestring),
-                                                conv.test_in(column_by_name),
-                                                conv.test(lambda column_name: column_by_name[column_name].dtype in (
-                                                    np.float32, np.int16, np.int32),
-                                                    error = N_(u'Invalid type for axe: integer or float expected')),
-                                                conv.not_none,
-                                                ),
-                                            # TODO: Check that period is valid in params.
-                                            period = periods.make_json_or_python_to_period(),
-                                            ),
-                                        ),
-                                    ),
-                                drop_none_items = True,
-                                ),
-                            conv.empty_to_none,
-                            ),
+                        axes = self.json_or_python_to_axes,
                         legislation_url = conv.pipe(
                             conv.test_isinstance(basestring),
                             conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
