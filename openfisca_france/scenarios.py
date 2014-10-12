@@ -46,9 +46,6 @@ year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]
 
 
 class Scenario(scenarios.AbstractScenario):
-    axes = None
-    test_case = None
-
     def fill_simulation(self, simulation):
         assert isinstance(simulation, simulations.Simulation)
         column_by_name = self.tax_benefit_system.column_by_name
@@ -278,6 +275,8 @@ class Scenario(scenarios.AbstractScenario):
                                                     error = N_(u'Invalid type for axe: integer or float expected')),
                                                 conv.not_none,
                                                 ),
+                                            # TODO: Check that period is valid in params.
+                                            period = periods.make_json_or_python_to_period(),
                                             ),
                                         ),
                                     ),
@@ -290,7 +289,7 @@ class Scenario(scenarios.AbstractScenario):
                             conv.make_input_to_url(error_if_fragment = True, full = True, schemes = ('http', 'https')),
                             ),
                         period = conv.pipe(
-                            periods.make_json_or_python_to_period(),  # TODO: Check that date is valid in params.
+                            periods.make_json_or_python_to_period(),  # TODO: Check that period is valid in params.
                             conv.not_none,
                             ),
                         test_case = conv.pipe(
