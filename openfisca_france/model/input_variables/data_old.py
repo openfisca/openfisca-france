@@ -30,6 +30,7 @@ from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, 
 from openfisca_core.enumerations import Enum
 
 from .. import entities
+from .base import QUIFAM, QUIFOY, QUIMEN
 
 
 def build_column_couple(name, column):
@@ -45,11 +46,6 @@ def build_column_couple(name, column):
     entity_column_by_name[name] = column
 
     return (name, column)
-
-
-QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
-QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
-QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type

@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import maximum as max_
 
-from ..input_variables.base import QUIFOY
+from ..base import QUIFOY
 
 
 VOUS = QUIFOY['vous']

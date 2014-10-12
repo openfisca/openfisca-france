@@ -29,7 +29,7 @@ import datetime
 from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum
 
-from base import QUIFOY, QUIFAM, QUIMEN, build_column_couple
+from .base import QUIFOY, QUIFAM, QUIMEN, build_column_couple
 
 column_by_name = collections.OrderedDict((
     build_column_couple('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",

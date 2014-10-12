@@ -14,7 +14,7 @@ import logging
 from numpy import logical_not as not_, minimum as min_, maximum as max_
 from openfisca_core.accessors import law
 
-from .input_variables.base import QUIFOY, QUIMEN
+from .base import QUIFOY, QUIMEN
 
 
 log = logging.getLogger(__name__)

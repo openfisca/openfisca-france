@@ -11,7 +11,7 @@ from __future__ import division
 from numpy import (round, floor, zeros, maximum as max_, minimum as min_,
                    logical_not as not_)
 
-from .input_variables.base import QUIFAM, QUIFOY
+from .base import QUIFAM, QUIFOY
 
 
 CHEF = QUIFAM['chef']

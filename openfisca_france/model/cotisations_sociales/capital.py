@@ -14,7 +14,7 @@ import logging
 from openfisca_core import periods
 from openfisca_core.accessors import law
 
-from ..input_variables.base import QUIFOY
+from ..base import QUIFOY
 
 
 log = logging.getLogger(__name__)

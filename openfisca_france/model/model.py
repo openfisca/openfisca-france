@@ -29,7 +29,6 @@ import collections
 from datetime import date
 from functools import partial
 
-
 from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (
@@ -38,7 +37,8 @@ from openfisca_core.formulas import (
     build_select_formula_couple,
     build_simple_formula_couple,
     )
-from openfisca_france import entities
+
+from .. import entities
 
 
 build_alternative_formula_couple = partial(

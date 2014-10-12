@@ -22,17 +22,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
 from numpy import (round, floor, zeros, maximum as max_, minimum as min_, logical_not as not_, logical_and as and_, logical_or as or_)
 from openfisca_core.accessors import law
 
-from ..input_variables.base import QUIFAM, QUIFOY
+from ..base import QUIFAM, QUIFOY
 from ..pfam import nb_enf, age_en_mois_benjamin
+
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9']]
 VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 

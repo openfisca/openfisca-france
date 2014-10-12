@@ -27,7 +27,7 @@ from __future__ import division
 from numpy import (maximum as max_, logical_not as not_)
 from openfisca_core.accessors import law
 
-from ..input_variables.base import QUIFAM, QUIFOY
+from ..base import QUIFAM, QUIFOY
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']

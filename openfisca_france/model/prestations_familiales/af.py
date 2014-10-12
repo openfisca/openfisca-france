@@ -22,13 +22,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
 from numpy import (round, floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 from openfisca_core.accessors import law
 
-from ..input_variables.base import QUIFAM, QUIFOY
+from ..base import QUIFAM, QUIFOY
 from ..pfam import nb_enf, age_aine
+
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']

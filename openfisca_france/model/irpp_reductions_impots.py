@@ -14,7 +14,7 @@ import logging
 from numpy import minimum as min_, maximum as max_, logical_not as not_, ones, size, around
 from openfisca_core.accessors import law
 
-from .input_variables.base import QUIFOY
+from .base import QUIFOY
 
 
 log = logging.getLogger(__name__)
@@ -1365,4 +1365,3 @@ def maxi(a, b, *args):
         return max_(a, b)
     else:
         return max_(a, maxi(b, *args))
-

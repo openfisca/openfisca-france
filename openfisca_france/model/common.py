@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import floor, logical_not as not_
 
-from .input_variables.base import QUIFAM, QUIFOY
+from .base import QUIFAM, QUIFOY
 
 CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf{}'.format(i)] for i in range(1, 10)]

@@ -16,7 +16,7 @@ from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, 
 from openfisca_core import periods
 from openfisca_core.accessors import law
 
-from .input_variables.base import QUIFOY
+from .base import QUIFOY
 
 
 CONJ = QUIFOY['conj']

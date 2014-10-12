@@ -16,7 +16,7 @@ from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as 
 from openfisca_core.accessors import law
 
 import openfisca_france
-from .input_variables.base import QUIFAM, QUIMEN, QUIFOY
+from .base import QUIFAM, QUIMEN, QUIFOY
 from .pfam import nb_enf
 
 

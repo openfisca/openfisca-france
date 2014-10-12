@@ -15,7 +15,7 @@ from numpy import logical_not as not_, maximum as max_, minimum as min_, size, o
 from openfisca_core import periods
 from openfisca_core.accessors import law
 
-from .input_variables.base import QUIFOY
+from .base import QUIFOY
 
 log = logging.getLogger(__name__)
 VOUS = QUIFOY['vous']
