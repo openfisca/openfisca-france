@@ -48,25 +48,25 @@ def test_birth():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert simulation.calculate('birth').tolist() == [
+    assert_equal(simulation.calculate('birth').tolist(), [)
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 12, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert simulation.calculate('activite').tolist() == [
+    assert_equal(simulation.calculate('activite').tolist(), [)
         4,
         2,
         2,
         4,
         ]
-    assert simulation.calculate('age').tolist() == [
+    assert_equal(simulation.calculate('age').tolist(), [)
         40,
         10,
         12,
         18,
         ]
-    assert simulation.calculate('agem').tolist() == [
+    assert_equal(simulation.calculate('agem').tolist(), [)
         40 * 12,
         10 * 12,
         12 * 12,

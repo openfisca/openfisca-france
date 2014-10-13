@@ -29,6 +29,8 @@
 
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
 import openfisca_france
 
@@ -63,8 +65,7 @@ def test_check_rsa():
                 },
             ).new_simulation(debug = True)
         calculated_rsa = simulation.calculate('rsa') / 12
-        assert abs(calculated_rsa - test['rsa']) < error_margin, \
-            'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
+        assert_less(abs(calculated_rsa - test['rsa']), error_margin)
 
 
 def test_rsa_couple():
@@ -353,8 +354,7 @@ def test_rsa_couple():
 
 #        if test['rsa'] != calculated_rsa :
 
-        assert abs(calculated_rsa - target_rsa) < error_margin, \
-            'calculated_rsa {} is not equal to expected value {}'.format(target_rsa, calculated_rsa)
+        assert_less(abs(calculated_rsa - target_rsa), error_margin)
         #    u'Variable "{} = {}. Expected: {}'.format(
         #    variable, calculated_value, expected_value)
         print calculated_rsa
@@ -372,30 +372,23 @@ if __name__ == '__main__':
 # TODO:  Reste des tests RSA codés par Thimothés à coder sous forme de test
 
 
-#import datetime
+# import datetime
 #
-#import openfisca_france
+# import openfisca_france
 #
 #
-#def check_rsa(amount, irpp, revenu, simulation, year):
+# def check_rsa(amount, irpp, revenu, simulation, year):
 #    calculated_irpp = simulation.calculate('irpp')
-#    assert abs(calculated_irpp - irpp) < 1, "Error in irpp for revenu {} = {} in year {}: Got {}, expected {}".format(
-#        revenu, amount, year, calculated_irpp, irpp)
+#    assert_less(abs(calculated_irpp - irpp), 1)
 #
 #
-#
-#
-#
-#
-#
-#
-#def test_rsa():
+# def test_rsa():
 #    """
 #    test pour un célibataire pour un revenu de 0,  5000, 10000, 12000, 13 000, 14 000, 15 000 €
 #    et des revenus de différentes origines
 #    """
 #    dico = {
-## test pour un célibataire ayant un revenu salarial (1AJ)
+# # test pour un célibataire ayant un revenu salarial (1AJ)
 #            "revenu": [
 #            {"year": 2014, "amount": 0,  "rsa": 439  },
 #            {"year": 2014, "amount": 5000, "rsa": 281  },
@@ -406,13 +399,13 @@ if __name__ == '__main__':
 #            {"year": 2014, "amount": 15000, "rsa": 0},        ],
 #
 #
-##  rsa pour un couple
+# #  rsa pour un couple
 #    """
 #    test pour un couple dont seul le déclarant a un revenu, pour un revenu de ,  5000, 10000, 12000, 13 000, 14 000,
 #    15 000 € et des revenus de différentes origines
 #    """
 #
-## test pour un couple ayant un revenu salarial (1AJ)
+# # test pour un couple ayant un revenu salarial (1AJ)
 #            "revenu": [
 #            {"year": 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa": 629  },
 #            {"year": 2014, "amountdéclarant": 5000, "amountconjoint":0,   "rsa": 471  },
@@ -428,13 +421,13 @@ if __name__ == '__main__':
 #            {"year": 2014, "amountdéclarant": 20000, "amountconjoint":0,   "rsa": 0  },
 #                    ],
 #
-## rsa_couple_1enfant_entre_0_et_3_ans():
+# # rsa_couple_1enfant_entre_0_et_3_ans():
 #    """
-#    test pour un couple avec 1 enfant de moins de 3 ans, dont seul le déclarant a un revenu, pour un revenu de 0,  5000,
-#    10000, 12000, 13 000, 14 000, 15 000, 16 OOO, 17 000, 18 000, 19 000, 20 000, 22 000, 23 000, 24 000 €
+#    test pour un couple avec 1 enfant de moins de 3 ans, dont seul le déclarant a un revenu, pour un revenu de
+#    0,  5000, 10000, 12000, 13 000, 14 000, 15 000, 16 OOO, 17 000, 18 000, 19 000, 20 000, 22 000, 23 000, 24 000 €
 #    et des revenus de différentes origines
 #    """
-## test pour un couple avec 1 enfant de moins de 3 ans ayant un revenu salarial (1AJ)
+# # test pour un couple avec 1 enfant de moins de 3 ans ayant un revenu salarial (1AJ)
 #            "revenu": [
 #            {"year": 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa": 750  },
 #            {"year": 2014, "amountdéclarant": 5000, "amountconjoint":0,   "rsa": 592  },
@@ -455,13 +448,13 @@ if __name__ == '__main__':
 #                        ],
 #
 #
-##  rsa_couple_2enfants_entre_0_et_3_ans():
+# #  rsa_couple_2enfants_entre_0_et_3_ans():
 #    """
 #    test pour un couple avec 2 enfants de moins de 3 ans, dont seul le déclarant a un revenu, pour un revenu de 0,
 #    5000, 10000,  15 000, 20 000, 25 000, 30 000 €
 #    et des revenus de différentes origines
 #    """
-## test pour un couple avec 2 enfant de moins de 3 ans ayant un revenu salarial (1AJ)
+# # test pour un couple avec 2 enfant de moins de 3 ans ayant un revenu salarial (1AJ)
 #            "revenu": [
 #
 #            {"year": 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa": 900  },
@@ -473,14 +466,14 @@ if __name__ == '__main__':
 #            {"year": 2014, "amountdéclarant": 30000, "amountconjoint":0,   "rsa": 0  },
 #                    ],
 #
-## rsa_couple_3enfants_entre_0_et_3_ans:
+# # rsa_couple_3enfants_entre_0_et_3_ans:
 #    """
 #    test pour un couple avec 3 enfants de moins de 3 ans, dont seul le déclarant a un revenu, pour un revenu de 0,
 #    5000, 10000,  15 000, 20 000, 25 000, 30 000, 35 000 €
 #    et des revenus de différentes origines
 #    """
 #
-## test pour un couple avec 2 enfant de moins de 3 ans ayant un revenu salarial (1AJ)
+# # test pour un couple avec 2 enfant de moins de 3 ans ayant un revenu salarial (1AJ)
 #            "revenu": [
 #
 #            {"year": 2014, "amountdéclarant": 0, "amountconjoint":0,   "rsa":  1100 },
@@ -509,8 +502,8 @@ if __name__ == '__main__':
 #            TaxBenefitSystem = openfisca_france.init_country()
 #            tax_benefit_system = TaxBenefitSystem()
 #
-##            if revenu != "f2dc":
-##                continue
+# #            if revenu != "f2dc":
+# #                continue
 #
 #            if revenu in ["rsti", "sali"]:
 #
@@ -531,13 +524,13 @@ if __name__ == '__main__':
 #            yield check_rsa, amount, irpp, revenu, simulation, year
 #
 #
-#if __name__ == '__main__':
+# if __name__ == '__main__':
 #    import logging
 #    import sys
 #    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-##    import nose
-##    nose.core.runmodule(argv = [__file__, '-v'])
-##    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
+# #    import nose
+# #    nose.core.runmodule(argv = [__file__, '-v'])
+# #    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
 #
 #    for function_and_arguments in test_rsa():
 #        function_and_arguments[0](*function_and_arguments[1:])

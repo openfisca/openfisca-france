@@ -25,6 +25,8 @@
 
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
 import openfisca_france
 
@@ -41,8 +43,7 @@ def process_tests_list(tests_list, verbose = False, monthly_amount = False, defa
 
         for variable, expected_value in test['output_vars'].iteritems():
             calculated_value = (simulation.calculate(variable)).sum() / (1 * (not monthly_amount) + 12 * monthly_amount)
-            assert abs(calculated_value - expected_value) < error_margin, u'Variable "{} = {}. Expected: {}'.format(
-                variable, calculated_value, expected_value)
+            assert_less(abs(calculated_value - expected_value), error_margin)
 
 
 def simulation_from_test(test, verbose = False, monthly_amount = False, default_error_margin = 1,
@@ -79,5 +80,4 @@ def simulation_from_test(test, verbose = False, monthly_amount = False, default_
 
 def check_simulation_variable(description, simulation, variable, expected_value, error_margin):
     calculated_value = (simulation.calculate(variable)).sum()
-    assert abs(calculated_value - expected_value) < error_margin, u'Variable "{} = {}. Expected: {}'.format(
-        variable, calculated_value, expected_value)
+    assert(abs(calculated_value - expected_value), error_margin)

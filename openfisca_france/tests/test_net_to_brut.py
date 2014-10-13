@@ -23,13 +23,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from nose.tools import assert_less
 import numpy as np
-
 
 import openfisca_france
 from openfisca_france import surveys
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
-from openfisca_france import surveys
 
 
 TaxBenefitSystem = openfisca_france.init_country()
@@ -48,11 +47,12 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
         )
     chobrut_holder = simulation.get_holder('chobrut')
     chobrut = chobrut_holder.array
+    # FIXME is calculate useful?
     chonet = simulation.calculate('chonet')
     # Now that net has been computed, remove brut and recompute it from net.
     del chobrut_holder.array
     new_chobrut = simulation.calculate('chobrut')
-    assert abs(new_chobrut - chobrut).all() < 0.1, str((chobrut, new_chobrut))
+    assert_less(abs(new_chobrut - chobrut).all(), 0.1)
 
 
 def test_chonet_to_chobrut():
@@ -75,11 +75,12 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
         )
     rstbrut_holder = simulation.get_holder('rstbrut')
     rstbrut = rstbrut_holder.array
+    # FIXME is calculate useful?
     rstnet = simulation.calculate('rstnet')
     # Now that net has been computed, remove brut and recompute it from net.
     del rstbrut_holder.array
     new_rstbrut = simulation.calculate('rstbrut')
-    assert abs(new_rstbrut - rstbrut).all() < 0.1, str((rstbrut, new_rstbrut))
+    assert_less(abs(new_rstbrut - rstbrut).all(), 0.1
 
 
 def test_rstnet_to_rstbrut():
@@ -104,11 +105,12 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
         )
     salbrut_holder = simulation.get_holder('salbrut')
     salbrut = salbrut_holder.array
+    # FIXME is calculate useful?
     salnet = simulation.calculate('salnet')
     # Now that net has been computed, remove brut and recompute it from net.
     del salbrut_holder.array
     new_salbrut = simulation.calculate('salbrut')
-    assert abs(new_salbrut - salbrut).all() < 0.1, str((salbrut, new_salbrut))
+    assert_less(abs(new_salbrut - salbrut).all(), 0.1)
 
 
 def test_salnet_to_salbrut():

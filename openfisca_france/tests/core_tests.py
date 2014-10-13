@@ -26,6 +26,8 @@
 import datetime
 import numpy as np
 
+from nose.tools import assert_equal
+
 from openfisca_core import periods
 import openfisca_france
 
@@ -49,7 +51,7 @@ def check_1_parent(year = 2013):
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
     sali = simulation.get_holder('sali').new_test_case_array(simulation.period)
-    assert (sali - np.linspace(0, 100000, 3) == 0).all(), 'sali: {}'.format(sali)
+    assert_equal((sali - np.linspace(0, 100000, 3), 0).all(), 'sali: {}'.format(sali))
 
 
 def test_1_parent():
@@ -85,7 +87,7 @@ def check_1_parent_2_enfants(year):
             ],
         ).new_simulation(debug = True)
     sali = simulation.get_holder('sali').new_test_case_array(simulation.period)
-    assert (sali - np.linspace(0, 24000, 3) == 0).all(), 'sali: {}'.format(sali)
+    assert_equal((sali - np.linspace(0, 24000, 3), 0).all(), 'sali: {}'.format(sali))
     simulation.calculate('revdisp')
 
 

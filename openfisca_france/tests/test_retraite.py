@@ -27,6 +27,8 @@ from __future__ import division
 
 import datetime
 
+from nose.tools import assert_true
+
 from openfisca_core import periods
 import openfisca_france
 
@@ -114,7 +116,7 @@ def test_couple(verbose = False):
                         " Real value: %s \n" % (variable, year, test['input_vars'], abs(computed_value), value)
                     print expression
 
-    assert passed, "Test failed for some variables"
+    assert_true(passed)
 
 
 if __name__ == '__main__':

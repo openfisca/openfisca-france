@@ -25,6 +25,8 @@
 
 import datetime
 
+from nose.tools import assert_equal
+
 from openfisca_core import periods
 import openfisca_france
 
@@ -39,7 +41,7 @@ def test_age_from_agem():
         period = periods.period('year', year),
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
-    assert simulation.calculate('age') == 40
+    assert_equal(simulation.calculate('age'), 40)
 
 
 def test_age_from_birth():
@@ -48,8 +50,8 @@ def test_age_from_birth():
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
-    assert simulation.calculate('age') == 40
-    assert simulation.calculate('agem') == 40 * 12
+    assert_equal(simulation.calculate('age'), 40)
+    assert_equal(simulation.calculate('agem'), 40 * 12)
 
 
 def test_agem_from_age():
@@ -58,7 +60,7 @@ def test_agem_from_age():
         period = periods.period('year', year),
         parent1 = dict(age = 40),
         ).new_simulation(debug = True)
-    assert simulation.calculate('agem') == 40 * 12
+    assert_equal(simulation.calculate('agem'), 40 * 12)
 
 
 def test_agem_from_birth():
@@ -67,8 +69,8 @@ def test_agem_from_birth():
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
-    assert simulation.calculate('agem') == 40 * 12
-    assert simulation.calculate('age') == 40
+    assert_equal(simulation.calculate('agem'), 40 * 12)
+    assert_equal(simulation.calculate('age'), 40)
 
 
 if __name__ == '__main__':

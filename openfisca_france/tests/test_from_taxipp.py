@@ -27,6 +27,7 @@ import os
 import pkg_resources
 import sys
 
+from nose.tools import assert_is_not_none
 
 from openfisca_france.tests.ipp.taxipp_utils import build_ipp2of_variables, run_OF, compare
 
@@ -51,7 +52,7 @@ def list_dta(selection):
 
 
 def comparison_taxipp(selection = None, threshold = 2, verbose = False):
-    assert selection is not None, "selection should be not None"
+    assert_is_not_none(selection)
     list_input, list_output = list_dta(selection)
     ipp2of_input_variables, ipp2of_output_variables = build_ipp2of_variables()
     last_param_scenario = "rien"
@@ -83,7 +84,7 @@ def check_comparison(ipp2of_input_variables, input_file_path, output_file_path, 
     if str(param_scenario) != str(last_param_scenario):
         pbs = compare(output_file_path, ipp2of_output_variables, param_scenario, simulation, threshold,
                       verbose = verbose)
-        assert len(pbs) == 0, \
+        assert_equal(len(pbs), 0, \)
             u"Avec la base dta {}\n  et un seuil de {} les problèmes suivants ont été identifiés :\n{}".format(
             input_file_path, threshold, pbs)
         last_param_scenario = param_scenario
