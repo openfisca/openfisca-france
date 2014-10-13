@@ -200,11 +200,10 @@ def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
     return af + cf + ars + aeeh + paje + asf + crds_pfam
 
 
-def _mini(self, aspa, aah_holder, caah_holder, asi, rsa, aefa, api, ass_holder, psa):
+def _mini(self, aspa, aah_holder, caah_holder, asi, rsa, aefa, api, ass, psa):
     '''
     Minima sociaux
     '''
-    ass = self.sum_by_entity(ass_holder)
     aah = self.sum_by_entity(aah_holder)
     caah = self.sum_by_entity(caah_holder)
 

@@ -124,13 +124,14 @@ def _br_rmi_ms(self, aspa, asi, aah, caah):
         entity = 'famille', role = CHEF) + aah + caah
 
 
-def _br_rmi_i(self, ass, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+def _br_rmi_i(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
     '''
     Base ressource individuelle du RSA/RMI
     'ind'
     '''
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
     rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+    ass = self.cast_from_entity_to_roles(ass_holder)
 
     return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
 
@@ -376,7 +377,7 @@ def _psa(self, api, rsa, activite_holder, af_nbenf, al, P = law.minim.rmi):
     return psa
 
 
-def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, af = law.fam.af,
+def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass, aer_holder, api, rsa, af = law.fam.af,
         P = law.minim.aefa):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
@@ -395,7 +396,6 @@ def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, 
     '''
     age = self.split_by_roles(age_holder, roles = ENFS)
     aer = self.sum_by_entity(aer_holder)
-    ass = self.sum_by_entity(ass_holder)
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     dummy_ass = ass > 0
@@ -419,7 +419,7 @@ def _aefa__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, 
     return aefa
 
 
-def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, aer_holder, api, rsa, af = law.fam.af,
+def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass, aer_holder, api, rsa, af = law.fam.af,
         P = law.minim.aefa):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
@@ -438,7 +438,6 @@ def _aefa_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass_holder, ae
     '''
     age = self.split_by_roles(age_holder, roles = ENFS)
     aer = self.sum_by_entity(aer_holder)
-    ass = self.sum_by_entity(ass_holder)
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
     dummy_ass = ass > 0
