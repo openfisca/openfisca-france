@@ -73,5 +73,6 @@ setup(
         ('**.py', 'python', None),
         ]},
     packages = find_packages(),
+    test_suite = 'nose.collector',
     zip_safe = False,
     )
