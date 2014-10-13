@@ -26,8 +26,9 @@
 import collections
 import functools
 
-from openfisca_core.columns import build_column_couple
+from openfisca_core.columns import build_column_couple, reference_input_variable
 from openfisca_core.enumerations import Enum
+from openfisca_core.formulas import reference_formula
 
 from .. import entities
 
@@ -40,7 +41,19 @@ column_by_name = collections.OrderedDict()
 prestation_by_name = collections.OrderedDict()
 
 
+# Functions and decorators
+
+
 build_column_couple = functools.partial(
     build_column_couple,
     entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+
+
+reference_formula = reference_formula(prestation_by_name = prestation_by_name)
+
+
+reference_input_variable = functools.partial(
+    reference_input_variable,
+    column_by_name = column_by_name,
     )
