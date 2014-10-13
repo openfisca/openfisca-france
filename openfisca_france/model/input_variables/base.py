@@ -139,7 +139,6 @@ column_by_name.update(collections.OrderedDict((
             )
         ),
     build_column_couple('aer', IntCol(label = u"Allocation équivalent retraite (AER)")),  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
-    build_column_couple('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)")),
     build_column_couple('f5sq', IntCol()),
 
     build_column_couple('zthabm', IntCol(entity = 'men')),  # TODO: Devrait être renommée tax_hab
@@ -147,12 +146,14 @@ column_by_name.update(collections.OrderedDict((
     build_column_couple(
         'proprietaire_proche_famille',
         BoolCol(
-            entity = "men",
+            entity = "fam",
             label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
             )
         ),
 
     build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
+
+    build_column_couple('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Éligible à l'ASS")),
 
     build_column_couple('elig_creimp_jeunes', BoolCol(entity = "ind", label = u"Éligible au crédit d'impôt jeunes",
                         start = date(2005, 1, 1),

@@ -24,7 +24,7 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_)
+from numpy import (maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_)
 from openfisca_core.accessors import law
 
 from ..base import QUIFAM, QUIFOY
@@ -36,7 +36,19 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _ass(self, br_pf, cho_holder, concub, ass_params = law.minim.ass):
+def _chomeur(choi, activite):
+  '''
+  Indicatrice de chômage
+  '''
+  return or_(choi > 0, activite == 1)
+
+def _ass_elig_i(chomeur, ass_precondition_remplie):
+  '''
+  Éligibilité individuelle à l'ASS
+  '''
+  return and_(chomeur, ass_precondition_remplie)
+
+def _ass(self, br_pf, ass_elig_i_holder, concub, ass_params = law.minim.ass):
     '''
     Allocation de solidarité spécifique
 
@@ -67,16 +79,18 @@ def _ass(self, br_pf, cho_holder, concub, ass_params = law.minim.ass):
         ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
         ou justifiant d'au moins 160 trimestres de cotisation retraite.
     '''
-    cho = self.split_by_roles(cho_holder, roles = [CHEF, PART])
+    ass_elig_i = self.split_by_roles(ass_elig_i_holder, roles = [CHEF, PART])
 
     majo = 0
-    cond_act_prec_suff = False
-    elig_ass = (cho[CHEF] | cho[PART]) & cond_act_prec_suff
-    plaf = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
+    cond_act_prec_suff = True # Transformer en variable d'entrée
+    elig = or_(ass_elig_i[CHEF], ass_elig_i[PART])
+    plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
+    plafond = plafond_mensuel * 12
     montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
     revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
-    ass = elig_ass * (montant_mensuel * (revenus <= plaf)
-              + (revenus > plaf) * max_(plaf + montant_mensuel - revenus, 0))
+
+    ass = elig * (12 * montant_mensuel * (revenus <= plafond)
+              + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0))
     ass = ass * not_(ass / 12 < ass_params.montant_plein)
 
-    return 12 * ass  # annualisé
+    return ass  # annualisé

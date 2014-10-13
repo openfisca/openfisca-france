@@ -169,7 +169,7 @@ def _paje_clca_taux_partiel(paje_clca, partiel1):
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
-def _paje_clmg(self, aah, age_holder, smic55_holder, etu_holder, sal_holder, hsup_holder, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom,
+def _paje_clmg(self, aah_holder, age_holder, smic55_holder, etu_holder, sal_holder, hsup_holder, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom,
         paje_clca_taux_partiel, paje_clca_taux_plein, P = law.fam):
     '''
     Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
@@ -202,6 +202,7 @@ def _paje_clmg(self, aah, age_holder, smic55_holder, etu_holder, sal_holder, hsu
     hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
     sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+    aah = self.sum_by_entity(aah_holder)
 
     # condition de revenu minimal
 
