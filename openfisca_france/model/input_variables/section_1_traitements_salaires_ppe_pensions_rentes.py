@@ -26,12 +26,13 @@
 import collections
 import datetime
 
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
+from openfisca_core.columns import BoolCol, EnumCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum
 
-from .base import QUIFOY, QUIFAM, QUIMEN, build_column_couple
+from ..base import build_column_couple, column_by_name, QUIFOY
 
-column_by_name = collections.OrderedDict((
+
+column_by_name.update(collections.OrderedDict((
     build_column_couple('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
                        cerfa_field = {QUIFOY['vous']: u"1AI",
                                       QUIFOY['conj']: u"1BI",
@@ -1197,4 +1198,4 @@ column_by_name = collections.OrderedDict((
 #             #investissements dans votre entreprise: HNW    start = datetime.date(2013, 1, 1),
 #             #investissements dans votre entreprise avec exploitation directe: HNY    start = datetime.date(2013, 1, 1),
 
-    ))
+    )))

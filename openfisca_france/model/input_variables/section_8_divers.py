@@ -26,14 +26,12 @@
 import collections
 from datetime import date
 
-from openfisca_core.columns import IntCol
-from openfisca_core.columns import BoolCol
+from openfisca_core.columns import BoolCol, IntCol
 
-from base import build_column_couple
+from ..base import build_column_couple, column_by_name
 
 
-column_by_name = collections.OrderedDict((
-
+column_by_name.update(collections.OrderedDict((
     # Avoir fiscaux et crédits d'impôt
     # f2ab déjà disponible
     build_column_couple('f8ta', IntCol(entity = 'foy',
@@ -219,4 +217,4 @@ column_by_name = collections.OrderedDict((
 
 
 
-    ))
+    )))

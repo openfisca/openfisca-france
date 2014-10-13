@@ -22,31 +22,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 import collections
 from datetime import date
-from functools import partial
+
+from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, StrCol
+from openfisca_core.enumerations import Enum
+
+from ... import entities
+from ..base import build_column_couple, column_by_name, QUIFAM, QUIFOY, QUIMEN
+
 
 ### VARIABLES MANQUANTES dans OpenFisca : ###
 ## 8TC 2011-    8WE -2006   7UP, 7UQ -2009  7LS 2010    7JY 2009-2011   7XN 2007-2010
 ## 7XJ, 7XK -2007   7XD -2006   7WQ 2006-2008   7UL -2009   7IY 2009-2011   7GS 2009-2011
 ## 6CH -2006    3VT ?
 
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, StrCol, build_column_couple
-from openfisca_core.enumerations import Enum
-
-from ... import entities
-from ..base import QUIFAM, QUIFOY, QUIMEN
-
-
-build_column_couple = partial(
-    build_column_couple,
-    entity_class_by_symbol = entities.entity_class_by_symbol,
-    )
-
 
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
-column_by_name = collections.OrderedDict((
+column_by_name.update(collections.OrderedDict((
     build_column_couple('noi', IntCol(is_period_invariant = True, label = u"Numéro d'ordre individuel")),
 
     build_column_couple('idmen', IntCol(is_period_invariant = True, label = u"Identifiant du ménage")),
@@ -165,4 +160,4 @@ column_by_name = collections.OrderedDict((
 
     # ('tax_hab', IntCol()),
 
-    ))
+    )))

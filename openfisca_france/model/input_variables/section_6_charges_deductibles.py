@@ -28,10 +28,10 @@ import datetime
 
 from openfisca_core.columns import IntCol
 
-from base import QUIFOY, build_column_couple
+from ..base import build_column_couple, column_by_name, QUIFOY
 
 
-column_by_name = collections.OrderedDict((
+column_by_name.update(collections.OrderedDict((
 
     # Csg déductible
     build_column_couple('f6de', IntCol(entity = 'foy',
@@ -219,4 +219,4 @@ column_by_name = collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'6FL')),
 
-    ))
+    )))

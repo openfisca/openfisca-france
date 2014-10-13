@@ -22,17 +22,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#TODO: add start and end dates
+
+# TODO: add start and end dates
+
+
 import collections
 from datetime import date
 
 from openfisca_core.columns import BoolCol, IntCol
 
-from base import QUIFOY, build_column_couple
+from ..base import build_column_couple, column_by_name, QUIFOY
 
 
-column_by_name = collections.OrderedDict((
-
+column_by_name.update(collections.OrderedDict((
     # Dons à des organismes établis en France
     build_column_couple('f7ud', IntCol(entity = 'foy',
                     label = u"Dons à des organismes d'aide aux personnes en difficulté",
@@ -2554,4 +2556,4 @@ column_by_name = collections.OrderedDict((
                     start = date(2013, 1, 1),
                     cerfa_field = u'7GI')),
 
-    ))
+    )))

@@ -28,10 +28,10 @@ import datetime
 
 from openfisca_core.columns import IntCol
 
-from base import build_column_couple
+from ..base import build_column_couple, column_by_name
 
 
-column_by_name = collections.OrderedDict((
+column_by_name.update(collections.OrderedDict((
     # Revenus fonciers
     build_column_couple('f4ba', IntCol(entity = 'foy',
                     label = u"Revenus fonciers imposables",
@@ -66,4 +66,4 @@ column_by_name = collections.OrderedDict((
 
     build_column_couple('f4bl', IntCol(entity = 'foy', label = u"", end = datetime.date(2009, 12, 31))),  # TODO: cf 2010 2011
 
-    ))
+    )))

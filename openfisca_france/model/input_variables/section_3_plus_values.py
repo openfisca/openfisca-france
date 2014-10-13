@@ -27,11 +27,10 @@ import datetime
 
 from openfisca_core.columns import IntCol
 
-from base import QUIFOY, build_column_couple
+from ..base import build_column_couple, column_by_name, QUIFOY
 
 
-column_by_name = collections.OrderedDict((
-
+column_by_name.update(collections.OrderedDict((
     build_column_couple('f3si', IntCol(entity = 'foy',
                     start = datetime.date(2012, 1, 1))),  # TODO: parmi ces cas créer des valeurs individuelles
     #                                    # correspond à autre chose en 2009, vérifier 2011,2010
@@ -165,4 +164,4 @@ column_by_name = collections.OrderedDict((
                      cerfa_field = u'3VZ',
                      start = datetime.date(2011, 1, 1))),  # TODO: vérifier avant 2012
 
-    ))
+    )))

@@ -23,19 +23,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-## Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF
+"""Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF"""
 
 
 import collections
-import datetime
 
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
-from openfisca_core.enumerations import Enum
+from openfisca_core.columns import IntCol
 
-from .base import QUIFOY, QUIFAM, QUIMEN, build_column_couple
+from ..base import build_column_couple, column_by_name
 
-column_by_name = collections.OrderedDict((
 
+column_by_name.update(collections.OrderedDict((
 ## Immeubles bâtis
     build_column_couple('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary")),
     build_column_couple('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary")),
@@ -85,4 +83,4 @@ column_by_name = collections.OrderedDict((
     build_column_couple('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
     build_column_couple('etr', IntCol()),
 
-    ))
+    )))

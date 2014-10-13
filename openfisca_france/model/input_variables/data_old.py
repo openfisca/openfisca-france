@@ -29,27 +29,12 @@ import datetime
 from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum
 
-from .. import entities
-from .base import QUIFAM, QUIFOY, QUIMEN
+from .base import build_column_couple, column_by_name, QUIFAM, QUIFOY, QUIMEN
 
-
-def build_column_couple(name, column):
-    assert isinstance(name, basestring), name
-    name = unicode(name)
-    if column.label is None:
-        column.label = name
-    assert column.name is None
-    column.name = name
-
-    entity_column_by_name = entities.entity_class_by_symbol[column.entity].column_by_name
-    assert name not in entity_column_by_name, name
-    entity_column_by_name[name] = column
-
-    return (name, column)
 
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
-column_by_name = collections.OrderedDict((
+column_by_name.update(collections.OrderedDict((
     build_column_couple('noi', IntCol(label = u"Numéro d'ordre individuel")),
 
     build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),  # 600001, 600002,
@@ -3635,4 +3620,4 @@ column_by_name = collections.OrderedDict((
     build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
 
     # ('tax_hab', IntCol()),
-    ))
+    )))

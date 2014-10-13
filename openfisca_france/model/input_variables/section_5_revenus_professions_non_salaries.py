@@ -28,10 +28,10 @@ import datetime
 
 from openfisca_core.columns import BoolCol, IntCol
 
-from base import QUIFOY, build_column_couple
+from ..base import build_column_couple, column_by_name, QUIFOY
 
 
-column_by_name = collections.OrderedDict((
+column_by_name.update(collections.OrderedDict((
 
 # Nomenclature : première lettre : (e : auto-entrepreneur / m : micro entreprise, déclaratif spécial / n : bénéfice réel sans CGA / a : bénéfice réel avec CGA ou viseur / f : forfait / c : déclaration contrôlée)
 # trois lettres suivantes : catégorie du revenu ( rag : agricole / bic : industriel et commercial pro / bnc : non commercial pro / acc : industriel et commercial non pro / ncn : non commercial non pro)
@@ -982,4 +982,4 @@ column_by_name = collections.OrderedDict((
                     start = datetime.date(2007, 1, 1),
                     cerfa_field = u'5MT')),
 
-    ))
+    )))

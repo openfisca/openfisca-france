@@ -39,26 +39,9 @@ from openfisca_core.formulas import (
     )
 
 from .. import entities
+from .base import prestation_by_name  # Must be defined before importing other modules from model package.
 
-
-build_alternative_formula_couple = partial(
-    build_alternative_formula_couple,
-    entity_class_by_symbol = entities.entity_class_by_symbol,
-    )
-build_dated_formula_couple = partial(
-    build_dated_formula_couple,
-    entity_class_by_symbol = entities.entity_class_by_symbol,
-    )
-build_select_formula_couple = partial(
-    build_select_formula_couple,
-    entity_class_by_symbol = entities.entity_class_by_symbol,
-    )
-build_simple_formula_couple = partial(
-    build_simple_formula_couple,
-    entity_class_by_symbol = entities.entity_class_by_symbol,
-    )
-
-
+# Import model modules.
 from . import calage as cl
 from . import cmu as cmu
 from . import common as cm
@@ -88,7 +71,25 @@ from . import pfam as pf
 from . import th as th
 
 
-prestation_by_name = collections.OrderedDict((
+build_alternative_formula_couple = partial(
+    build_alternative_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+build_dated_formula_couple = partial(
+    build_dated_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+build_select_formula_couple = partial(
+    build_select_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+build_simple_formula_couple = partial(
+    build_simple_formula_couple,
+    entity_class_by_symbol = entities.entity_class_by_symbol,
+    )
+
+
+prestation_by_name.update(collections.OrderedDict((
     ############################################################
     # Reproduction des pondérations
     ############################################################
@@ -2567,4 +2568,4 @@ prestation_by_name = collections.OrderedDict((
     #     label = u"Montant de l'Allocation Spécifique de Solidarité",
     #     entity = 'fam'
     #     )),
-))
+    )))
