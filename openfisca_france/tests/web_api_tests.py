@@ -30,6 +30,7 @@ import urllib2
 import urlparse
 
 from biryani1 import baseconv, custom_conv, jsonconv, states
+from nose.tools import assert_equal
 
 
 conv = custom_conv(baseconv, jsonconv, states)
@@ -84,7 +85,7 @@ def simulate_case_study(**simulation):
             raise
         log.error(json.dumps(response_dict, ensure_ascii = False, indent = 2))
         raise
-    assert response.code == 200
+    assert_equal(response.code, 200)
     result, error = api_response_to_value(response.read(), state = conv.default_state)
     if error is not None:
         if isinstance(error, dict):
@@ -95,7 +96,7 @@ def simulate_case_study(**simulation):
     return result
 
 
-#def test_case_study():
+# def test_case_study():
 #    result = simulate_case_study(
 #        # api_key,
 #        scenarios = [
@@ -143,5 +144,5 @@ def simulate_case_study(**simulation):
 #    print unicode(json.dumps(result, ensure_ascii = False, indent = 2)).encode('utf-8')
 
 
-if __name__ == '__main__':
-    test_case_study()
+# if __name__ == '__main__':
+    # test_case_study()
