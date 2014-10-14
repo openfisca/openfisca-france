@@ -25,8 +25,6 @@
 
 import datetime
 
-from nose.tools import assert_less
-
 from openfisca_core import periods
 import openfisca_france
 
@@ -53,7 +51,8 @@ def check_af2(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af2():
@@ -79,7 +78,8 @@ def check_af2b(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af2b():
@@ -106,7 +106,8 @@ def check_af2c(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af2c():
@@ -132,7 +133,8 @@ def check_af2m(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af2m():
@@ -159,7 +161,8 @@ def check_af3(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af3():
@@ -186,7 +189,8 @@ def check_af3m(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af3m():
@@ -213,7 +217,8 @@ def check_af3m1(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af3m1():
@@ -240,7 +245,8 @@ def check_af31f06(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af31f06():
@@ -265,7 +271,8 @@ def check_af31f08(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af31f08():
@@ -290,7 +297,8 @@ def check_af31f09(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af31f09():
@@ -317,7 +325,8 @@ def check_af3bis(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af3bis():
@@ -346,7 +355,8 @@ def check_af3ter(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af3ter():
@@ -374,7 +384,8 @@ def check_af3qua(year):
             ],
         ).new_simulation(debug = True)
     af_array = simulation.calculate('af')
-    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+        expected_af_by_year[year])
 
 
 def test_af3qua():
@@ -403,7 +414,8 @@ def test_af3qua():
 #            ],
 #        ).new_simulation(debug = True)
 #    af_array = simulation.calculate('af')
-#    assert_less(abs(af_array[0] - expected_af_by_year[year]), 1e-3)
+#    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
+#        expected_af_by_year[year])
 
 
 # def test_af5():

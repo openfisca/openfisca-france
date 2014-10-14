@@ -50,25 +50,25 @@ def test_2_parents_2_enfants():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 30, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         4,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         30,
         10,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         30 * 12,
         10 * 12,
@@ -99,25 +99,25 @@ def test_famille_1_parent_3_enfants():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 12, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         2,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         10,
         12,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         10 * 12,
         12 * 12,
@@ -148,25 +148,25 @@ def test_famille_2_parents_2_enfants():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 30, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         4,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         30,
         10,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         30 * 12,
         10 * 12,
@@ -197,25 +197,25 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 12, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         2,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         10,
         12,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         10 * 12,
         12 * 12,
@@ -246,25 +246,25 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 30, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         4,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         30,
         10,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         30 * 12,
         10 * 12,
@@ -295,25 +295,25 @@ def test_menage_1_personne_de_reference_3_enfants():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 12, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         2,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         10,
         12,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         10 * 12,
         12 * 12,
@@ -345,25 +345,25 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation(debug = True)
-    assert_equal(simulation.calculate('birth').tolist(), [)
+    assert simulation.calculate('birth').tolist() == [
         datetime.date(year - 40, 1, 1),
         datetime.date(year - 30, 1, 1),
         datetime.date(year - 10, 1, 1),
         datetime.date(year - 18, 1, 1),
         ]
-    assert_equal(simulation.calculate('activite').tolist(), [)
+    assert simulation.calculate('activite').tolist() == [
         4,
         4,
         2,
         4,
         ]
-    assert_equal(simulation.calculate('age').tolist(), [)
+    assert simulation.calculate('age').tolist() == [
         40,
         30,
         10,
         18,
         ]
-    assert_equal(simulation.calculate('agem').tolist(), [)
+    assert simulation.calculate('agem').tolist() == [
         40 * 12,
         30 * 12,
         10 * 12,

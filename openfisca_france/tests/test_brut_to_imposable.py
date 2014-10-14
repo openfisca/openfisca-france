@@ -27,8 +27,6 @@ from __future__ import division
 
 import datetime
 
-from nose.tools import assert_true
-
 from openfisca_core import periods
 import openfisca_france
 from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
@@ -44,6 +42,7 @@ def test_sal(year = 2014, verbose = False):
     Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
     with the one obtained from running openfisca starting with a "salaire brut"
     '''
+
     maxrev = 24000
     period = periods.period('year', year)
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
@@ -81,13 +80,13 @@ def test_sal(year = 2014, verbose = False):
         for var in ['sal', 'salbrut']:
             passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
 
-        if not passed or type_sal_category in ['public_titulaire_etat'] or verbose:
+        if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
             print "Brut to imposable"
             print (df_b2i[['salbrut', 'sal']] / 12).to_string()
             print "Imposable to brut"
             print (df_i2b / 12).to_string()
 
-            assert_true(passed, u'Difference in {} for {}'.format(var, type_sal_category))
+            assert passed, "difference in %s for %s" % (var, type_sal_category)
 
 
 def test_cho_rst(year = 2014, verbose = False):
@@ -129,16 +128,16 @@ def test_cho_rst(year = 2014, verbose = False):
             print df_i2b.to_string()
             print df_b2i.to_string()
 
-        for variable in (var, varbrut):
+        for variable in [var, varbrut]:
             passed = ((df_b2i[variable] - df_i2b[variable]).abs() < 1).all()
 
-            if not passed or verbose:
+            if (not passed) or verbose:
                 print "Brut to imposable"
                 print (df_b2i[[varbrut, var]] / 12).to_string()
                 print "Imposable to brut"
                 print (df_i2b / 12).to_string()
 
-                assert_true(passed, u'Difference in {} '.format(var))
+                assert passed, "difference in %s " % (var)
 
 
 if __name__ == '__main__':

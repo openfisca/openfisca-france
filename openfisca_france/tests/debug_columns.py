@@ -23,8 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from nose.tools import assert_true
-
 import openfisca_france
 from openfisca_france import entities
 
@@ -42,8 +40,9 @@ def check_input_column_consumers(column):
         entities.Menages.name_key,
         ])
     if column.name not in column_names:
-        if not column.survey_only:
-            assert_true(column.consumers, u'Input column {} has no consumer'.format(column.name))
+        if not(column.survey_only):
+            assert column.consumers,\
+                u'Input column {} has no consumer'.format(column.name).encode('utf-8')
 
 
 def test():

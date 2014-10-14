@@ -25,8 +25,6 @@
 
 import datetime
 
-from nose.tools import assert_equal
-
 from openfisca_core import periods
 import openfisca_france
 
@@ -44,7 +42,7 @@ def test_zone_1():
             ),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
-    assert_equal(simulation.calculate('zone_apl'), 1)
+    assert simulation.calculate('zone_apl') == 1
 
 
 def test_zone_2():
@@ -56,7 +54,7 @@ def test_zone_2():
             ),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
-    assert_equal(simulation.calculate('zone_apl'), 2)
+    assert simulation.calculate('zone_apl') == 2
 
 
 def test_zone_3():
@@ -68,7 +66,7 @@ def test_zone_3():
             ),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
-    assert_equal(simulation.calculate('zone_apl'), 3)
+    assert simulation.calculate('zone_apl') == 3
 
 
 if __name__ == '__main__':

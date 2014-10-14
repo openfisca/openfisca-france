@@ -25,27 +25,21 @@
 
 import datetime
 
-from nose.tools import assert_less
-
 from openfisca_core import periods
 import openfisca_france
 
 
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+def check_irpp(amount, irpp, revenu, simulation, year):
+    calculated_irpp = simulation.calculate('irpp')
+    assert abs(calculated_irpp - irpp) < 1, "Error in irpp for revenu {} = {} in year {}: Got {}, expected {}".format(
+        revenu, amount, year, calculated_irpp, irpp)
 
 
 def test_irpp():
     """
-    test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 € et des revenus de différentes origines
+    test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 €
+    et des revenus de différentes origines
     """
-    def check_irpp(amount, irpp, revenu, calculated_irpp, year):
-        assert_less(
-            abs(calculated_irpp - irpp),
-            1,
-            u"revenu {} = {} in year {}: Got {}, expected {}".format(revenu, amount, year, calculated_irpp, irpp),
-            )
-
     dico = {
         # test pour un célibataire ayant un revenu salarial (1AJ)
         "sali": [
@@ -207,10 +201,16 @@ def test_irpp():
             year = item["year"]
             amount = item["amount"]
             irpp = item["irpp"]
-            fiscal_values = ("f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz")
+            fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
+
+            TaxBenefitSystem = openfisca_france.init_country()
+            tax_benefit_system = TaxBenefitSystem()
+
 #            if revenu != "f2dc":
 #                continue
-            if revenu in ("rsti", "sali"):
+
+            if revenu in ["rsti", "sali"]:
+
                 simulation = tax_benefit_system.new_scenario().init_single_entity(
                     period = periods.period('year', year),
                     parent1 = {
@@ -226,10 +226,8 @@ def test_irpp():
                         },
                     foyer_fiscal = {revenu: amount},
                     ).new_simulation(debug = True)
-            else:
-                assert False, u'Unexpected value for revenu: {!r}'.format(revenu)
-            calculated_irpp = simulation.calculate('irpp')
-            yield check_irpp, amount, irpp, revenu, calculated_irpp, year
+
+            yield check_irpp, amount, irpp, revenu, simulation, year
 
 
 if __name__ == '__main__':
