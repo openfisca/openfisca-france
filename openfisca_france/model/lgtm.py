@@ -198,6 +198,7 @@ def _al(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac
     P_fc = al.forfait_charges
     C = not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) + \
           (coloc) * ((isol * 0.5 + concub) * P_fc.fc1 + al_pac * P_fc.fc2)
+    C = round(C, 2)
 
     # dépense éligible
     E = L + C
