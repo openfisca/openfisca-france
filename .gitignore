@@ -3,11 +3,13 @@
 *.mo
 *.pyc
 *.pyo
+/.coverage
 /.project
 /.pydevproject
 /.settings
 /.spyderproject
 /build
+/cover
 /dist
 /openfisca_france/assets/apl/france2014.txt
 /openfisca_france/assets/apl/france2014.zip
