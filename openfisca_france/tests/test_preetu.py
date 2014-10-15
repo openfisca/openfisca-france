@@ -24,6 +24,8 @@
 
 from __future__ import division
 
+from . import utils
+
 
 def test_preetu():
     """
@@ -146,8 +148,7 @@ def test_preetu():
                      "irpp":-670,
                     },
               },]
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list, verbose = False)
+    utils.process_tests_list(tests_list, verbose = False)
 
 
 if __name__ == '__main__':

@@ -24,6 +24,8 @@
 
 from __future__ import division
 
+from . import utils
+
 
 def test_niches():
     """
@@ -1263,8 +1265,7 @@ def test_niches():
 #
 #    CREDITS D'IMPOTS
 #
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list, verbose = False)
+    utils.process_tests_list(tests_list, verbose = False)
 
 
 if __name__ == '__main__':

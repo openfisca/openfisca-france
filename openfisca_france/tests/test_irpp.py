@@ -26,7 +26,7 @@
 import datetime
 
 from openfisca_core import periods
-import openfisca_france
+from . import base
 
 
 def check_irpp(amount, irpp, revenu, simulation, year):
@@ -203,15 +203,12 @@ def test_irpp():
             irpp = item["irpp"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
 
-            TaxBenefitSystem = openfisca_france.init_country()
-            tax_benefit_system = TaxBenefitSystem()
-
 #            if revenu != "f2dc":
 #                continue
 
             if revenu in ["rsti", "sali"]:
 
-                simulation = tax_benefit_system.new_scenario().init_single_entity(
+                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
                     period = periods.period('year', year),
                     parent1 = {
                         'birth': datetime.date(year - 40, 1, 1),
@@ -219,7 +216,7 @@ def test_irpp():
                         },
                     ).new_simulation(debug = True)
             elif revenu in fiscal_values:
-                simulation = tax_benefit_system.new_scenario().init_single_entity(
+                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
                     period = periods.period('year', year),
                     parent1 = {
                         'birth': datetime.date(year - 40, 1, 1),

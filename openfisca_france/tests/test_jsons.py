@@ -31,16 +31,10 @@ import json
 import os
 import sys
 
-
 from biryani1.baseconv import check
 
-
-import openfisca_france
-from openfisca_france.scripts.compare_openfisca_impots import compare_variable
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from ..scripts.compare_openfisca_impots import compare_variable
+from . import base
 
 
 def compare_json(json_file):
@@ -51,8 +45,8 @@ def compare_json(json_file):
         print json.dumps(json_file, encoding = 'utf-8', ensure_ascii = False, indent = 2)
     json_scenario = content['scenario']
 
-    scenario = check(tax_benefit_system.Scenario.make_json_to_instance(
-        tax_benefit_system = tax_benefit_system))(json_scenario)
+    scenario = check(base.tax_benefit_system.Scenario.make_json_to_instance(
+        tax_benefit_system = base.tax_benefit_system))(json_scenario)
 
     if 'year' not in json_scenario:
         print json.dumps(json_scenario, encoding = 'utf-8', ensure_ascii = False, indent = 2)

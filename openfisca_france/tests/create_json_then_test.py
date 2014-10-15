@@ -36,20 +36,14 @@
 
 import sys
 
-from openfisca_core import periods
-import openfisca_france
+from openfisca_core import conv, periods
 
-from generate_json import export_json
-
-
-from openfisca_core import conv
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base, generate_json
 
 
 def define_scenario(year, column_code):
-    scenario = tax_benefit_system.new_scenario()
-    column = tax_benefit_system.column_by_name[column_code]
+    scenario = base.tax_benefit_system.new_scenario()
+    column = base.tax_benefit_system.column_by_name[column_code]
     entity = column.entity
 
     start = 1990 if column.start is None else column.start.year
@@ -100,10 +94,10 @@ def main():
     # for column_code in ('fhsa', 'fhsb', 'fhsf', 'fhsg', 'fhsc', 'fhsh', 'fhsd', 'fhsi', 'fhsk', 'fhsl', 'fhsp', 'fhsq', 'fhsm', 'fhsr', 'fhsn', 'fhss', 'fhsu', 'fhsv', 'fhsw', 'fhsx', 'fhsz', 'fhta', 'fhtb', 'fhtc', 'fhoz', 'fhpa', 'fhpb', 'fhpc', 'fhpe', 'fhpf', 'fhpg', 'fhpi', 'fhpj', 'fhpk', 'fhpm', 'fhpn', 'fhpo', 'fhpp', 'fhpq', 'fhps', 'fhpt', 'fhpu', 'fhpv', 'fhpx', 'fhpy', 'fhrg', 'fhrh', 'fhrj', 'fhrk', 'fhrl', 'fhrm', 'fhrn', 'fhrp', 'fhrq', 'fhrr', 'fhrs', 'fhru', 'fhrv', 'fhrw', 'fhrx', 'fhpz', 'fhqz', 'fhqe', 'fhqf', 'fhqg', 'fhqo', 'fhqp', 'fhqv', 'fhmm', 'fhma', 'fhmb', 'fhmn', 'fhlg', 'fhlh', 'fhks', 'fhkt', 'fhli', 'fhmc', 'fhku'): # 2013 uniquement
     while 1:
         column_code = raw_input("Which variable would you like to test ? ")
-        assert column_code in tax_benefit_system.column_by_name, "This variable doesn't exist"
+        assert column_code in base.tax_benefit_system.column_by_name, "This variable doesn't exist"
         for year in range(2006, 2007):
             scenario = define_scenario(year, column_code)
-            export_json(scenario, var = column_code, tested = True)
+            generate_json.export_json(scenario, var = column_code, tested = True)
 
 if __name__ == "__main__":
     sys.exit(main())

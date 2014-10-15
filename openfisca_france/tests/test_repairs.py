@@ -28,16 +28,12 @@ import json
 
 from nose.tools import assert_equal
 
-import openfisca_france
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def test_2_parents_2_enfants():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             individus = [
                 dict(),
@@ -92,7 +88,7 @@ def test_2_parents_2_enfants():
 
 def test_famille_1_parent_3_enfants():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             familles = [
                 dict(
@@ -153,7 +149,7 @@ def test_famille_1_parent_3_enfants():
 
 def test_famille_2_parents_2_enfants():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             familles = [
                 dict(
@@ -214,7 +210,7 @@ def test_famille_2_parents_2_enfants():
 
 def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             foyers_fiscaux = [
                 dict(
@@ -275,7 +271,7 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
 
 def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             foyers_fiscaux = [
                 dict(
@@ -336,7 +332,7 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
 
 def test_menage_1_personne_de_reference_3_enfants():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             individus = [
                 dict(),
@@ -397,7 +393,7 @@ def test_menage_1_personne_de_reference_3_enfants():
 
 def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_from_attributes(
+    scenario = base.tax_benefit_system.new_scenario().init_from_attributes(
         test_case = dict(
             individus = [
                 dict(),

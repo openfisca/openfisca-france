@@ -26,11 +26,7 @@
 import datetime
 
 from openfisca_core import periods
-import openfisca_france
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def check_af2(year):
@@ -41,7 +37,7 @@ def check_af2(year):
     '''
     expected_af_by_year = {2006: 1412.64, 2007: 1436.64, 2008: 1451.04, 2009: 1494.48}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -68,7 +64,7 @@ def check_af2b(year):
     '''
     expected_af_by_year = {2006: 1809.96, 2007: 1840.68, 2008: 2176.56, 2009: 2241.72}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -96,7 +92,7 @@ def check_af2c(year):
     '''
     expected_af_by_year = {2006: 1809.96, 2007: 2154.96, 2008: 0.0, 2009: 0.0}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -123,7 +119,7 @@ def check_af2m(year):
     '''
     expected_af_by_year = {2006: 2118.96, 2007: 2154.96, 2008: 2176.56, 2009: 2241.72}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -150,7 +146,7 @@ def check_af3(year):
     '''
     expected_af_by_year = {2006: 3222.60, 2007: 3277.32, 2008: 3310.08, 2009: 3409.32}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -178,7 +174,7 @@ def check_af3m(year):
     '''
     expected_af_by_year = {2006: 5341.56, 2007: 5432.28, 2008: 5486.64, 2009: 5651.04}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -206,7 +202,7 @@ def check_af3m1(year):
     '''
     expected_af_by_year = {2006: 3928.92, 2007: 3995.64, 2008: 4035.60, 2009: 4156.56}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -234,7 +230,7 @@ def check_af31f06(year):
     '''
     expected_af_by_year = {2006: 2305.80, 2007: 1436.64, 2008: 1451.04, 2009: 1494.48}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -260,7 +256,7 @@ def check_af31f08(year):
     '''
     expected_af_by_year = {2006: 3928.92, 2007: 3995.64, 2008: 2368.56, 2009: 1494.48}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -286,7 +282,7 @@ def check_af31f09(year):
     '''
     expected_af_by_year = {2006: 3928.92, 2007: 3995.64, 2008: 4035.60, 2009: 2439.48}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -314,7 +310,7 @@ def check_af3bis(year):
     '''
     expected_af_by_year = {2006: 4326.24, 2007: 4399.68, 2008: 2368.56, 2009: 1494.48}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -344,7 +340,7 @@ def check_af3ter(year):
     '''
     expected_af_by_year = {2006: 4635.24, 2007: 2345.04, 2008: 0.0, 2009: 0.0}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -373,7 +369,7 @@ def check_af3qua(year):
     '''
     expected_af_by_year = {2006: 4326.24, 2007: 4713.96, 2008: 2368.56, 2009: 1494.48}
 
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
@@ -401,7 +397,7 @@ def test_af3qua():
 #    '''
 #    expected_af_by_year = {2006: 6842.40, 2007 : 6958.68, 2008: 7028.16, 2009: 7239.12}
 
-#    simulation = tax_benefit_system.new_scenario().init_single_entity(
+#    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
 #        period = periods.period('year', year),
 #        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
 #        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),

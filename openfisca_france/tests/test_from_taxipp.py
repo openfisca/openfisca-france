@@ -29,7 +29,7 @@ import sys
 
 from nose.tools import assert_equal
 
-from openfisca_france.tests.ipp.taxipp_utils import build_ipp2of_variables, run_OF, compare
+from .ipp.taxipp_utils import build_ipp2of_variables, run_OF, compare
 
 
 openfisca_france_location = pkg_resources.get_distribution('openfisca-france').location

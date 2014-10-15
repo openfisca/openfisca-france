@@ -27,14 +27,12 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods
-import openfisca_france
-from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
 from pandas import DataFrame
 
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from openfisca_core import periods
+from ..model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from ..model import inversion_revenus
+from . import base
 
 
 def test_sal(year = 2014, verbose = False):
@@ -46,7 +44,7 @@ def test_sal(year = 2014, verbose = False):
     maxrev = 24000
     period = periods.period('year', year)
     for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
+        simulation = base.tax_benefit_system.new_scenario().init_single_entity(
             axes = [dict(name = 'salbrut', max = maxrev, min = 0, count = 11)],
             period = period,
             parent1 = dict(
@@ -67,7 +65,6 @@ def test_sal(year = 2014, verbose = False):
                                 ))
 
         # Imposable to brut
-        from openfisca_france.model.inversion_revenus import _salbrut_from_sali
         sali = df_b2i['sal'].get_values()
 
         hsup = simulation.calculate('hsup')
@@ -75,7 +72,10 @@ def test_sal(year = 2014, verbose = False):
         # primes = simulation.calculate('primes')
 
         defaultP = simulation.get_reference_compact_legislation(period)
-        df_i2b = DataFrame({'sal': sali, 'salbrut': _salbrut_from_sali(sali, hsup, type_sal, defaultP)})
+        df_i2b = DataFrame({
+            'sal': sali,
+            'salbrut': inversion_revenus._salbrut_from_sali(sali, hsup, type_sal, defaultP),
+            })
 
         for var in ['sal', 'salbrut']:
             passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
@@ -100,7 +100,7 @@ def test_cho_rst(year = 2014, verbose = False):
     for var, varbrut in remplacement.iteritems():
         maxrev = 24000
 
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
+        simulation = base.tax_benefit_system.new_scenario().init_single_entity(
             axes = [dict(name = varbrut, max = maxrev, min = 0, count = 11)],
             period = period,
             parent1 = dict(
@@ -118,9 +118,11 @@ def test_cho_rst(year = 2014, verbose = False):
 
         defaultP = simulation.get_reference_compact_legislation(period)
         if var == "cho":
-            from openfisca_france.model.inversion_revenus import _chobrut_from_choi as _vari_to_brut
+            _vari_to_brut = inversion_revenus._chobrut_from_choi
         elif var == "rst":
-            from openfisca_france.model.inversion_revenus import _rstbrut_from_rsti as _vari_to_brut
+            _vari_to_brut = inversion_revenus._rstbrut_from_rsti
+        else:
+            assert False, u'Unsupported value for var: {!r}'.format(var)
 
         df_i2b = DataFrame({var: vari, varbrut: _vari_to_brut(vari, csg_rempl, defaultP)})
 

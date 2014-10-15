@@ -27,7 +27,7 @@ from __future__ import division
 import datetime
 
 from openfisca_core import periods
-import openfisca_france
+from . import base, utils
 
 
 def test_cotsoc():
@@ -244,9 +244,7 @@ def test_cotsoc():
                     print revenu
                     assert False
 
-                TaxBenefitSystem = openfisca_france.init_country()
-                tax_benefit_system = TaxBenefitSystem()
-                simulation = tax_benefit_system.new_scenario().init_single_entity(
+                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
                     period = periods.period('year', year),
                     parent1 = parent1,
                     foyer_fiscal = foyer_fiscal,
@@ -339,8 +337,7 @@ def test_cotsoc_cap_celib(verbose = False):
                 },
 
         ]
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list)
+    utils.process_tests_list(tests_list)
 
 
 if __name__ == '__main__':

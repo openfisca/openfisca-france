@@ -28,16 +28,13 @@ import datetime
 from nose.tools import assert_equal
 
 from openfisca_core import periods
-import openfisca_france
 
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def test_zone_1():
     year = 2013
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         menage = dict(
             depcom = '75114',
@@ -49,7 +46,7 @@ def test_zone_1():
 
 def test_zone_2():
     year = 2013
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         menage = dict(
             depcom = '69381',
@@ -61,7 +58,7 @@ def test_zone_2():
 
 def test_zone_3():
     year = 2013
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         menage = dict(
             depcom = '87191',

@@ -25,16 +25,12 @@
 
 from openfisca_core import periods
 from openfisca_core.simulations import average_tax_rate, marginal_tax_rate
-import openfisca_france
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def test_average_tax_rate():
     year = 2013
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 100,
@@ -51,7 +47,7 @@ def test_average_tax_rate():
 
 def test_marginal_tax_rate():
     year = 2013
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 10000,

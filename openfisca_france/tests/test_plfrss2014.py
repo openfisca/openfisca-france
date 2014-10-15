@@ -28,16 +28,12 @@ import datetime
 
 from openfisca_core import periods
 from openfisca_core.reforms import Reform
-import openfisca_france
-from openfisca_france.model.cotisations_sociales import plfrss2014
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from ..model.cotisations_sociales import plfrss2014
+from . import base
 
 
 def test_systemic_reform(year = 2013):
-    scenario = tax_benefit_system.new_scenario().init_single_entity(
+    scenario = base.tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 10,
@@ -49,13 +45,13 @@ def test_systemic_reform(year = 2013):
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
-    reference_legislation_json = tax_benefit_system.legislation_json
+    reference_legislation_json = base.tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():
         TODO  # This should not work anymore for non dated legislation.
         reform_legislation_json["children"][key] = key_parameters
 
-    entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(TaxBenefitSystem)
+    entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(base.TaxBenefitSystem)
 
     reform = Reform(
         entity_class_by_key_plural = entity_class_by_key_plural,

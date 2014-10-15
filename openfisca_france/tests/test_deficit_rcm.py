@@ -24,6 +24,8 @@
 
 from __future__ import division
 
+from . import utils
+
 
 def test_deficit_rcm():
     """
@@ -117,8 +119,7 @@ def test_deficit_rcm():
                      "irpp":-1170,
                     },
               },]
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list, verbose = False)
+    utils.process_tests_list(tests_list, verbose = False)
 
 
 if __name__ == '__main__':

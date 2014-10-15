@@ -25,6 +25,8 @@
 
 from __future__ import division
 
+from . import utils
+
 
 def test_isf_celib(verbose = False):
     """
@@ -47,8 +49,7 @@ def test_isf_celib(verbose = False):
                     }
               },
             ]
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list, verbose = verbose)
+    utils.process_tests_list(tests_list, verbose = verbose)
 
 
 if __name__ == '__main__':
@@ -58,4 +59,3 @@ if __name__ == '__main__':
     import nose
     nose.core.runmodule(argv = [__file__, '-v', 'test_hauts_revenus.py'])
 #    test_isf_celib()
-

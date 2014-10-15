@@ -29,20 +29,17 @@ import os
 import xml.etree.ElementTree
 
 from openfisca_core import conv, decompositions, decompositionsxml
-import openfisca_france
 
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def test_decomposition_xml_file():
-    decomposition_tree = xml.etree.ElementTree.parse(os.path.join(tax_benefit_system.DECOMP_DIR,
-        tax_benefit_system.DEFAULT_DECOMP_FILE))
+    decomposition_tree = xml.etree.ElementTree.parse(os.path.join(base.tax_benefit_system.DECOMP_DIR,
+        base.tax_benefit_system.DEFAULT_DECOMP_FILE))
     decomposition_xml_json = conv.check(decompositionsxml.xml_decomposition_to_json)(decomposition_tree.getroot(),
         state = conv.default_state)
 
-    decomposition_xml_json, errors = decompositionsxml.make_validate_node_xml_json(tax_benefit_system)(
+    decomposition_xml_json, errors = decompositionsxml.make_validate_node_xml_json(base.tax_benefit_system)(
         decomposition_xml_json, state = conv.default_state)
     if errors is not None:
         errors = conv.embed_error(decomposition_xml_json, 'errors', errors)
@@ -56,7 +53,7 @@ def test_decomposition_xml_file():
 
     decomposition_json = decompositionsxml.transform_node_xml_json_to_json(decomposition_xml_json)
 
-    decomposition_json, errors = decompositions.make_validate_node_json(tax_benefit_system)(
+    decomposition_json, errors = decompositions.make_validate_node_json(base.tax_benefit_system)(
         decomposition_json, state = conv.default_state)
     if errors is not None:
         errors = conv.embed_error(decomposition_json, 'errors', errors)

@@ -25,15 +25,9 @@
 
 import numpy as np
 
-
-import openfisca_france
-from openfisca_france import surveys
-from openfisca_france.model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
-from openfisca_france import surveys
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from ..model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from .. import surveys
+from . import base
 
 
 def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
@@ -43,7 +37,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
             chobrut = np.linspace(chobrut_min, chobrut_max, count),
             ),
         debug = True,
-        tax_benefit_system = tax_benefit_system,
+        tax_benefit_system = base.tax_benefit_system,
         year = year,
         )
     chobrut_holder = simulation.get_holder('chobrut')
@@ -70,7 +64,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
             rstbrut = np.linspace(rstbrut_min, rstbrut_max, count),
             ),
         debug = True,
-        tax_benefit_system = tax_benefit_system,
+        tax_benefit_system = base.tax_benefit_system,
         year = year,
         )
     rstbrut_holder = simulation.get_holder('rstbrut')
@@ -99,7 +93,7 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
             type_sal = np.array(type_sal).repeat(count),
             ),
         debug = True,
-        tax_benefit_system = tax_benefit_system,
+        tax_benefit_system = base.tax_benefit_system,
         year = year,
         )
     salbrut_holder = simulation.get_holder('salbrut')

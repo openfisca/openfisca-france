@@ -28,17 +28,13 @@ import datetime
 from nose.tools import assert_less
 
 from openfisca_core import periods, reforms
-import openfisca_france
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def test_parametric_reform():
     simulation_year = 2014
     simulation_period = periods.period('year', simulation_year)
-    reference_legislation_json = tax_benefit_system.legislation_json
+    reference_legislation_json = base.tax_benefit_system.legislation_json
 
     reform_legislation_json = reforms.update_legislation(
         legislation_json = reference_legislation_json,
@@ -54,7 +50,7 @@ def test_parametric_reform():
         reference_legislation_json = reference_legislation_json
         )
 
-    scenario = tax_benefit_system.new_scenario().init_single_entity(
+    scenario = base.tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 3,

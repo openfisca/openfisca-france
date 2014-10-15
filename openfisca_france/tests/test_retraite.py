@@ -28,7 +28,7 @@ from __future__ import division
 import datetime
 
 from openfisca_core import periods
-import openfisca_france
+from . import base, utils
 
 
 def test_celib(verbose = False):
@@ -46,8 +46,7 @@ def test_celib(verbose = False):
             },
         ]
 
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list, verbose = verbose)
+    utils.process_tests_list(tests_list, verbose = verbose)
 
 
 def test_couple(verbose = False):
@@ -66,8 +65,6 @@ def test_couple(verbose = False):
             },
         ]
 
-    TaxBenefitSystem = openfisca_france.init_country()
-    tax_benefit_system = TaxBenefitSystem()
     passed = True
     for test in tests_list:
         year = test["year"]
@@ -80,15 +77,15 @@ def test_couple(verbose = False):
             if variable == "age":
                 parent1['birth'] = datetime.date(year - value, 1, 1)
                 parent2['birth'] = datetime.date(year - value, 1, 1)
-            elif tax_benefit_system.column_by_name[variable].entity == 'men':
+            elif base.tax_benefit_system.column_by_name[variable].entity == 'men':
                 menage[variable] = value
-            elif tax_benefit_system.column_by_name[variable].entity == 'ind':
+            elif base.tax_benefit_system.column_by_name[variable].entity == 'ind':
                 parent1[variable] = value
                 parent2[variable] = value
-            elif tax_benefit_system.column_by_name[variable].entity == 'foy':
+            elif base.tax_benefit_system.column_by_name[variable].entity == 'foy':
                 foyer_fiscal[variable] = value
 
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
+        simulation = base.tax_benefit_system.new_scenario().init_single_entity(
             period = periods.period('year', year),
             parent1 = parent1,
             parent2 = parent2,

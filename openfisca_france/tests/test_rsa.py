@@ -30,7 +30,7 @@
 import datetime
 
 from openfisca_core import periods
-import openfisca_france
+from . import base
 
 
 def test_check_rsa():
@@ -53,9 +53,7 @@ def test_check_rsa():
     for test in tests_list:
         print test
         amount = test["amount"]
-        TaxBenefitSystem = openfisca_france.init_country()
-        tax_benefit_system = TaxBenefitSystem()
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
+        simulation = base.tax_benefit_system.new_scenario().init_single_entity(
             period = periods.period('year', year),
             parent1 = {
                 'birth': datetime.date(year - age + 1, 1, 1),
@@ -339,14 +337,12 @@ def test_rsa_couple():
         ]
 
     error_margin = 1
-    TaxBenefitSystem = openfisca_france.init_country()
-    tax_benefit_system = TaxBenefitSystem()
     for test in tests_list:
         print test
         test = test.copy()
         test['period'] = periods.period('year', test.pop('year'))
         target_rsa = test.pop("rsa")  # enlève rsa du dictionnaire et l'assigne a calculated_rsa
-        scenario = tax_benefit_system.new_scenario().init_single_entity(**test)
+        scenario = base.tax_benefit_system.new_scenario().init_single_entity(**test)
         scenario.suggest()
         simulation = scenario.new_simulation(debug = True)
         calculated_rsa = simulation.calculate('rsa') / 12
@@ -373,8 +369,6 @@ if __name__ == '__main__':
 
 
 #import datetime
-#
-#import openfisca_france
 #
 #
 #def check_rsa(amount, irpp, revenu, simulation, year):
@@ -506,22 +500,19 @@ if __name__ == '__main__':
 #            irpp = item["irpp"]
 #            fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
 #
-#            TaxBenefitSystem = openfisca_france.init_country()
-#            tax_benefit_system = TaxBenefitSystem()
-#
 ##            if revenu != "f2dc":
 ##                continue
 #
 #            if revenu in ["rsti", "sali"]:
 #
-#                simulation = tax_benefit_system.new_scenario().init_single_entity(
+#                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
 #                    period = periods.period('year', year),
 #                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
 #                               revenu: amount,
 #                               },
 #                    ).new_simulation(debug = True)
 #            elif revenu in fiscal_values:
-#                simulation = tax_benefit_system.new_scenario().init_single_entity(
+#                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
 #                    period = periods.period('year', year),
 #                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
 #                               },

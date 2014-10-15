@@ -37,16 +37,12 @@ import os
 import sys
 
 from openfisca_core import periods
-from openfisca_france.scripts.compare_openfisca_impots import compare
-import openfisca_france
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from ..scripts.compare_openfisca_impots import compare
+from . import base
 
 
 def define_scenario(year = 2013):
-    scenario = tax_benefit_system.new_scenario()
+    scenario = base.tax_benefit_system.new_scenario()
     scenario.init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(

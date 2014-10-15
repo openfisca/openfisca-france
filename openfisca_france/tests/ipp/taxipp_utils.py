@@ -27,9 +27,10 @@ import os
 import pdb
 
 from numpy import array
-import openfisca_france
-from openfisca_france.surveys import SurveyScenario
 from pandas import DataFrame, ExcelFile, read_stata, Series
+
+from ... import init_country
+from ...surveys import SurveyScenario
 
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -230,14 +231,14 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
         param_scenario = dict_scenar
 
     if 'option' in param_scenario.keys() and param_scenario['option'] == 'brut':
-        TaxBenefitSystem = openfisca_france.init_country(start_from = "brut")
+        TaxBenefitSystem = init_country(start_from = "brut")
         tax_benefit_system = TaxBenefitSystem()
         del ipp2of_input_variables['sal_irpp_old']
         ipp2of_input_variables['sal_brut'] = 'salbrut'
         ipp2of_input_variables['chom_brut'] = 'chobrut'
         ipp2of_input_variables['pension_brut'] = 'rstbrut'
     else:
-        tax_benefit_system_class = openfisca_france.init_country()
+        tax_benefit_system_class = init_country()
         tax_benefit_system = tax_benefit_system_class()
     openfisca_survey = build_input_OF(data_IPP, ipp2of_input_variables, tax_benefit_system)
     openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy','noi'])

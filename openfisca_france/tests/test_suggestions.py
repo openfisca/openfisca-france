@@ -29,16 +29,12 @@ import json
 from nose.tools import assert_equal
 
 from openfisca_core import periods
-import openfisca_france
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+from . import base
 
 
 def test_birth():
     year = 2013
-    scenario = tax_benefit_system.new_scenario().init_single_entity(
+    scenario = base.tax_benefit_system.new_scenario().init_single_entity(
         period = periods.period('year', year),
         parent1 = dict(),
         enfants = [

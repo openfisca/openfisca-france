@@ -25,16 +25,15 @@
 
 from __future__ import division
 
-import datetime
-
-from openfisca_core import periods
-import openfisca_france
-from openfisca_france.model.cotisations_sociales.travail import CAT
+# from openfisca_core import periods
+# from ..model.cotisations_sociales.travail import CAT
+# from . import base
+from . import utils
 
 
 def test_nonsal_celib(verbose = True):
     """
-    test pour un célibataire
+    Pour un célibataire
     """
     tests_list = [
 #   Célibataires à partir de : http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
@@ -72,8 +71,7 @@ def test_nonsal_celib(verbose = True):
                     }
               },
             ]
-    from openfisca_france.tests.utils import process_tests_list
-    process_tests_list(tests_list, verbose = verbose)
+    utils.process_tests_list(tests_list, verbose = verbose)
 
 # def test_nonsal_famille():  # TODO: buggy tests CHECK
 #     tests_infos = dict(
@@ -101,15 +99,12 @@ def test_nonsal_celib(verbose = True):
 #             ),
 #         ),
 #
-#     TaxBenefitSystem = openfisca_france.init_country()
-#     tax_benefit_system = TaxBenefitSystem()
-#
 #     for test_infos in tests_infos:
 #         scenario_arguments = test_infos.copy()
 #         description = scenario_arguments.pop('description')
 #         error_margin = scenario_arguments.pop('error_margin')
 #         expected_values = scenario_arguments.pop('expected_values')
-#         simulation = tax_benefit_system.new_scenario().init_single_entity(**scenario_arguments).new_simulation(
+#         simulation = base.tax_benefit_system.new_scenario().init_single_entity(**scenario_arguments).new_simulation(
 #             debug = True)
 #         for variable, expected_value in expected_values.iteritems():
 #             yield check_simulation_variable, description, simulation, variable, expected_value, error_margin
