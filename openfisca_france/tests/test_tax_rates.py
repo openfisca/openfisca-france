@@ -41,8 +41,8 @@ def test_average_tax_rate():
                 name = 'sali',
                 max = 24000,
                 min = 0,
-            ),
-        ],
+                ),
+            ],
         period = periods.period('year', year),
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
@@ -58,8 +58,8 @@ def test_marginal_tax_rate():
                 name = 'sali',
                 max = 1000000,
                 min = 0,
-            ),
-        ],
+                ),
+            ],
         period = periods.period('year', year),
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
