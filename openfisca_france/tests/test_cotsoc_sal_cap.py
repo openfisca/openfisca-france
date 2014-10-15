@@ -26,6 +26,8 @@ from __future__ import division
 
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
 from . import base, utils
 
@@ -34,6 +36,8 @@ def test_cotsoc():
     """
     Cotisations sur les revenus du capital
     """
+    def check_result(result, expected_result, var, year):
+        assert_less(abs(result - value), 1)
 
     cotsoc_cap = {
     # test sur un revenu des actions soumises à un prélèvement libératoire de 21 % (2DA)
@@ -250,12 +254,9 @@ def test_cotsoc():
                     foyer_fiscal = foyer_fiscal,
                     ).new_simulation(debug = True)
 
-                val = simulation.calculate(var)
-                difference = abs(val - value)
-                passed = (difference < 1)
-                if not passed:
-                    expression = "Test failed for variable %s on year %i : \n OpenFisca value : %s \n Real value : %s \n" % (var, year, abs(val), value)
-                    assert passed, expression
+                result = simulation.calculate(var)
+                yield check_result, result, value, var, year
+
 
 def test_cotsoc_cap_celib(verbose = False):
     """
