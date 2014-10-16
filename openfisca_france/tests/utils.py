@@ -71,5 +71,5 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
 
 
 def check_simulation_variable(description, simulation, variable, expected_value, error_margin):
-    calculated_value = (simulation.calculate(variable)).sum()
+    calculated_value = simulation.calculate(variable).sum()
     yield check_calculation, variable, calculated_value, expected_value, error_margin
