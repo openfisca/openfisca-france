@@ -25,20 +25,19 @@
 
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
 from . import base
-
-
-def check_irpp(amount, irpp, revenu, simulation, year):
-    calculated_irpp = simulation.calculate('irpp')
-    assert abs(calculated_irpp - irpp) < 1, "Error in irpp for revenu {} = {} in year {}: Got {}, expected {}".format(
-        revenu, amount, year, calculated_irpp, irpp)
 
 
 def test_irpp():
     # test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 € et des revenus de différentes origines
 
-    dico = {
+    def check(ctx):
+        assert_less(abs(ctx['irpp'] - ctx['expected_irpp']), ctx['error_margin'])
+
+    tests_lists = {
         # test pour un célibataire ayant un revenu salarial (1AJ)
         "sali": [
             {"year": 2010, "amount": 20000, "irpp": -1181},
@@ -194,18 +193,12 @@ def test_irpp():
             ],
         }
 
-    for revenu, test_list in dico.iteritems():
+    for revenu, test_list in tests_lists.iteritems():
         for item in test_list:
             year = item["year"]
             amount = item["amount"]
-            irpp = item["irpp"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
-
-#            if revenu != "f2dc":
-#                continue
-
             if revenu in ["rsti", "sali"]:
-
                 simulation = base.tax_benefit_system.new_scenario().init_single_entity(
                     period = periods.period('year', year),
                     parent1 = {
@@ -221,8 +214,15 @@ def test_irpp():
                         },
                     foyer_fiscal = {revenu: amount},
                     ).new_simulation(debug = True)
-
-            yield check_irpp, amount, irpp, revenu, simulation, year
+            irpp = simulation.calculate('irpp')
+            ctx = {
+                'error_margin': 1,
+                'expected_irpp': item["irpp"],
+                'irpp': irpp,
+                'item': item,
+                'revenu': revenu,
+                }
+            yield check, ctx
 
 
 if __name__ == '__main__':
