@@ -42,7 +42,7 @@ def test_celib(verbose = False):
                 },
             "output_vars": {
                 "rst": 12500,
-                }
+                },
             },
         ]
 
