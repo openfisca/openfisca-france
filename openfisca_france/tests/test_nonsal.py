@@ -32,9 +32,8 @@ from . import utils
 
 
 def test_nonsal_celib(verbose = True):
-    """
-    Pour un célibataire
-    """
+    # Pour un célibataire
+
     tests_list = [
 #   Célibataires à partir de : http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
              {"year" : 2013,

@@ -33,9 +33,8 @@ from . import base, utils
 
 
 def test_cotsoc():
-    """
-    Cotisations sur les revenus du capital
-    """
+    # Cotisations sur les revenus du capital
+
     def check_result(result, expected_result, var, year):
         assert_less(abs(result - value), 1)
 
@@ -259,9 +258,8 @@ def test_cotsoc():
 
 
 def test_cotsoc_cap_celib(verbose = False):
-    """
-    test pour un célibataire
-    """
+    # test pour un célibataire
+
     tests_list = [
 #   Célibataires (pas de supplément familial de traitement
              {"year" : 2013,

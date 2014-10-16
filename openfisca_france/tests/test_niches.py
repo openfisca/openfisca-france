@@ -22,15 +22,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
 from . import utils
 
 
 def test_niches():
-    """
-    test pour un célibataire pour un revenu salarial de 20 000 €
-    """
+    # test pour un célibataire pour un revenu salarial de 20 000 €
 
     # CHARGES DEDUCTIBLES
     # test charges déductibles: pensions alimentaires "f6gi","f6gj","f6el","f6em","f6gp","f6gu".

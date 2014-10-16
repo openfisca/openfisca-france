@@ -28,9 +28,7 @@ from . import utils
 
 
 def test_deficit_rcm():
-    """
-    test pour un célibataire pour un revenu salarial de 20 000 €
-    """
+    # test pour un célibataire pour un revenu salarial de 20 000 €
 
 #   DÉFICITS DES REVENUS DE CAPITAUX MOBILIERS 2DC, 2AA, 2AL, 2AM, 2AN, 2AQ, 2AR
     tests_list = [

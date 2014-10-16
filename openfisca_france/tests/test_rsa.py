@@ -34,7 +34,8 @@ from . import base
 
 
 def test_check_rsa():
-    '''test rsa pour un célibataire avec différent sali'''
+    # test rsa pour un célibataire avec différent sali
+
     tests_list = [
         {"year": 2014, "amount": 0, "rsa": 439},
         {"year": 2014, "amount": 5000, "rsa": 281},
@@ -66,7 +67,7 @@ def test_check_rsa():
 
 
 def test_rsa_couple():
-    '''test pour un célibataire avec son age variant entre 18 et 25 ans'''
+    # test pour un célibataire avec son age variant entre 18 et 25 ans
     tests_list = [
         {
             "year": 2014,

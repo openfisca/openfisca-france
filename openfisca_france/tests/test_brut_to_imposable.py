@@ -36,10 +36,8 @@ from . import base
 
 
 def test_sal(year = 2014, verbose = False):
-    '''
-    Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
-    with the one obtained from running openfisca starting with a "salaire brut"
-    '''
+    # Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
+    # with the one obtained from running openfisca starting with a "salaire brut"
 
     maxrev = 24000
     period = periods.period('year', year)
@@ -90,10 +88,9 @@ def test_sal(year = 2014, verbose = False):
 
 
 def test_cho_rst(year = 2014, verbose = False):
-    '''
-    Tests that _chobrut which computes "chômage brut" from "imposable" yields an amount compatbe
-    with the one obtained from running openfisca satrting with a "chômage brut"
-    '''
+    # Tests that _chobrut which computes "chômage brut" from "imposable" yields an amount compatbe
+    # with the one obtained from running openfisca satrting with a "chômage brut"
+
     period = periods.period('year', year)
     remplacement = {'cho': 'chobrut', 'rst': 'rstbrut'}
 

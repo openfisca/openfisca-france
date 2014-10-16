@@ -32,7 +32,8 @@ from . import base, utils
 
 
 def test_celib(verbose = False):
-    """Célibataire"""
+    # Célibataire
+
     tests_list = [
         {
             "year": 2013,
@@ -51,7 +52,8 @@ def test_celib(verbose = False):
 
 
 def test_couple(verbose = False):
-    """Couple de retraités"""
+    # Couple de retraités
+
     tests_list = [
         {
             "year": 2013,

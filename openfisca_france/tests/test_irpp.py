@@ -36,10 +36,8 @@ def check_irpp(amount, irpp, revenu, simulation, year):
 
 
 def test_irpp():
-    """
-    test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 €
-    et des revenus de différentes origines
-    """
+    # test pour un célibataire pour un revenu de 20 000, 50 000 € et 150 000 € et des revenus de différentes origines
+
     dico = {
         # test pour un célibataire ayant un revenu salarial (1AJ)
         "sali": [

@@ -29,9 +29,8 @@ from . import utils
 
 
 def test_isf_celib(verbose = False):
-    """
-    test pour un célibataire
-    """
+    # test pour un célibataire
+
     tests_list = [
              {"year" : 2013,
               "input_vars":
