@@ -338,7 +338,9 @@ def test_cotsoc_cap_celib(verbose = False):
                 },
 
         ]
-    utils.process_tests_list(tests_list)
+
+    for check in utils.process_tests_list(tests_list):
+        yield check
 
 
 if __name__ == '__main__':

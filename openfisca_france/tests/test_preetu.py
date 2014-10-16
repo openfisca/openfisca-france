@@ -148,7 +148,9 @@ def test_preetu():
                      "irpp":-670,
                     },
               },]
-    utils.process_tests_list(tests_list, verbose = False)
+
+    for check in utils.process_tests_list(tests_list):
+        yield check
 
 
 if __name__ == '__main__':

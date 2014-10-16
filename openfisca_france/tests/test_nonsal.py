@@ -71,7 +71,10 @@ def test_nonsal_celib(verbose = True):
                     }
               },
             ]
-    utils.process_tests_list(tests_list, verbose = verbose)
+
+    for check in utils.process_tests_list(tests_list):
+        yield check
+
 
 # def test_nonsal_famille():  # TODO: buggy tests CHECK
 #     tests_infos = dict(

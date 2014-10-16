@@ -46,7 +46,8 @@ def test_celib(verbose = False):
             },
         ]
 
-    utils.process_tests_list(tests_list, verbose = verbose)
+    for check in utils.process_tests_list(tests_list):
+        yield check
 
 
 def test_couple(verbose = False):

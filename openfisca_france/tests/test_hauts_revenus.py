@@ -49,7 +49,9 @@ def test_isf_celib(verbose = False):
                     }
               },
             ]
-    utils.process_tests_list(tests_list, verbose = verbose)
+
+    for check in utils.process_tests_list(tests_list):
+        yield check
 
 
 if __name__ == '__main__':
