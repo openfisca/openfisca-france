@@ -28,27 +28,23 @@ from __future__ import division
 from . import utils
 
 
-def test_isf_celib(verbose = False):
-    # test pour un célibataire
-
+def test_isf_celibataire(verbose = False):
     tests_list = [
-             {"year" : 2013,
-              "input_vars":
-                    {
-                     "sali": 50000,
-                     "b1bc" : 5000,
-                     "b1ab": 2500000,
-                     "b2nf": 7000,
-                    },
-              "output_vars" :
-                    {
-                     "irpp":-7889,
-                     "isf_inv_pme": 3500,
-#                     "tot_impot": 2144 + 7889,  # TODO: check this value
-                    }
-              },
-            ]
-
+        {
+            "year": 2013,
+            "input_vars": {
+                "sali": 50000,
+                "b1bc": 5000,
+                "b1ab": 2500000,
+                "b2nf": 7000,
+                },
+            "output_vars": {
+                "irpp": - 7889,
+                "isf_inv_pme": 3500,
+                # "tot_impot": 2144 + 7889,  # TODO: check this value
+                },
+            },
+        ]
     for check in utils.process_tests_list(tests_list):
         yield check
 
@@ -59,4 +55,4 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     import nose
     nose.core.runmodule(argv = [__file__, '-v', 'test_hauts_revenus.py'])
-#    test_isf_celib()
+#    test_isf_celibataire()

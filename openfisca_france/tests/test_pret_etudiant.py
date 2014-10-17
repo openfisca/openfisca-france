@@ -22,89 +22,109 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division
 
 from . import utils
 
 
-def test_deficit_rcm():
+def test_pret_etudiant():
     # test pour un célibataire pour un revenu salarial de 20 000 €
 
-    # DÉFICITS DES REVENUS DE CAPITAUX MOBILIERS 2DC, 2AA, 2AL, 2AM, 2AN, 2AQ, 2AR
+    # CRÉDIT D'IMPÔTS PRÊTS ÉTUDIANTS 7UK, 7VO, 7TD
     tests_list = [
+        {
+            "year": 2005,
+            "input_vars": {
+                "sali": 20000,
+                'f7uk': 4000,
+                'f7vo': 1},
+            "output_vars": {
+                "irpp": - 1137,
+                },
+            },
+        {
+            "year": 2006,
+            "input_vars": {
+                "sali": 20000,
+                'f7uk': 4000,
+                'f7vo': 1},
+            "output_vars": {
+                "irpp": - 759,
+                },
+            },
+        {
+            "year": 2007,
+            "input_vars": {
+                "sali": 20000,
+                'f7uk': 4000,
+                'f7vo': 1},
+            "output_vars": {
+                "irpp": - 743,
+                },
+            },
+        {
+            "year": 2008,
+            "input_vars": {
+                "sali": 20000,
+                'f7td': 2000,
+                'f7uk': 4000,
+                'f7vo': 1},
+            "output_vars": {
+                "irpp": - 706,
+                },
+            },
         {
             "year": 2009,
             "input_vars": {
                 "sali": 20000,
-                'f2dc': 5000,
-                'f2aa': 1000,
-                'f2al': 1000,
-                'f2am': 1000,
-                'f2an': 1000,
-                'f2aq': 1000,
-                'f2ar': 1000},
+                'f7td': 2000,
+                'f7uk': 4000,
+                'f7vo': 1},
             "output_vars": {
-                "irpp": - 1086,
+                "irpp": - 701,
                 },
             },
         {
             "year": 2010,
             "input_vars": {
                 "sali": 20000,
-                'f2dc': 5000,
-                'f2aa': 1000,
-                'f2al': 1000,
-                'f2am': 1000,
-                'f2an': 1000,
-                'f2aq': 1000,
-                'f2ar': 1000},
+                'f7td': 2000,
+                'f7uk': 4000,
+                'f7vo': 1},
             "output_vars": {
-                "irpp": - 1181,
+                "irpp": - 681,
                 },
             },
         {
             "year": 2011,
             "input_vars": {
                 "sali": 20000,
-                'f2dc': 5000,
-                'f2aa': 1000,
-                'f2al': 1000,
-                'f2am': 1000,
-                'f2an': 1000,
-                'f2aq': 1000,
-                'f2ar': 1000},
+                'f7td': 2000,
+                'f7uk': 4000,
+                'f7vo': 1},
             "output_vars": {
-                "irpp": - 1181,
+                "irpp": - 681,
                 },
             },
         {
             "year": 2012,
             "input_vars": {
                 "sali": 20000,
-                'f2dc': 5000,
-                'f2aa': 1000,
-                'f2al': 1000,
-                'f2am': 1000,
-                'f2an': 1000,
-                'f2aq': 1000,
-                'f2ar': 1000},
+                'f7td': 2000,
+                'f7uk': 4000,
+                'f7vo': 1},
             "output_vars": {
-                "irpp": - 1181,
+                "irpp": - 681,
                 },
             },
         {
             "year": 2013,
             "input_vars": {
                 "sali": 20000,
-                'f2dc': 5000,
-                'f2aa': 1000,
-                'f2al': 1000,
-                'f2am': 1000,
-                'f2an': 1000,
-                'f2aq': 1000,
-                'f2ar': 1000},
+                'f7td': 2000,
+                'f7uk': 4000,
+                'f7vo': 1},
             "output_vars": {
-                "irpp": - 1170,
+                "irpp": - 670,
                 },
             },
         ]
@@ -120,4 +140,4 @@ if __name__ == '__main__':
 #    import nose
 #    nose.core.runmodule(argv = [__file__, '-v'])
 #    nose.core.runmodule(argv=[__file__, '-vvs', '-x', '--pdb', '--pdb-failure'], exit=False)
-    test_deficit_rcm()
+    test_pret_etudiant()

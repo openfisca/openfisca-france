@@ -152,8 +152,8 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
         conflict = ((ipp_var_series.abs() - of_var_series.abs()).abs() > threshold)
         idmen = simulation.get_holder('idmen').array
         conflict_selection = DataFrame({'idmen': idmen, 'idfoy': simulation.get_holder('idfoy').array})
-        conflict_men = conflict_selection.loc[conflict[conflict == True].index, 'idmen'].drop_duplicates().values
-        conflict_foy = conflict_selection.loc[conflict[conflict == True].index, 'idfoy'].drop_duplicates().values
+        conflict_men = conflict_selection.loc[conflict[conflict == True].index, 'idmen'].drop_duplicates().values  # noqa
+        conflict_foy = conflict_selection.loc[conflict[conflict == True].index, 'idfoy'].drop_duplicates().values  # noqa
         if (len(ipp_var_series[conflict]) != 0):
             if verbose:
                 print u"Le calcul de {} pose problème : ".format(of_var)

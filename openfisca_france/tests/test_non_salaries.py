@@ -23,53 +23,47 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from __future__ import division
-
 # from openfisca_core import periods
 # from ..model.cotisations_sociales.travail import CAT
 # from . import base
 from . import utils
 
 
-def test_nonsal_celib(verbose = True):
-    # Pour un célibataire
-
+def test_nonsal_celibataire(verbose = True):
     tests_list = [
-#   Célibataires à partir de : http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
-             {"year" : 2013,
-              "input_vars":
-                    {
-                     "ebic_impv" : 20000,
-                    },
-              "output_vars" :
-                     {
-#                      "rev_microsocial": 20000 - 2820, # TODO: BUGGY result
-                      "microsocial" : 200,
-                    }
-              },
-            {"year" : 2013,
-              "input_vars":
-                    {
-                     "ebic_imps" : 20000,
-                    },
-              "output_vars" :
-                     {
-                      "rev_microsocial": 20000 - 4920,
-                      "microsocial" : 340,
-                    }
-              },
-                               {"year" : 2013,
-              "input_vars":
-                    {
-                     "ebnc_impo" : 20000,
-                    },
-              "output_vars" :
-                     {
-                      "rev_microsocial": 20000 - 4920,
-                      "microsocial" : 440,
-                    }
-              },
-            ]
+        # Célibataires à partir de :
+        # http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise  # noqa
+        {
+            "year": 2013,
+            "input_vars": {
+                "ebic_impv": 20000,
+                },
+            "output_vars": {
+                # TODO: BUGGY result
+                "microsocial": 200,
+                },
+            },
+        {
+            "year": 2013,
+            "input_vars": {
+                "ebic_imps": 20000,
+                },
+            "output_vars": {
+                "rev_microsocial": 20000 - 4920,
+                "microsocial": 340,
+                },
+            },
+        {
+            "year": 2013,
+            "input_vars": {
+                "ebnc_impo": 20000,
+                },
+            "output_vars": {
+                "rev_microsocial": 20000 - 4920,
+                "microsocial": 440,
+                },
+            },
+        ]
 
     for check in utils.process_tests_list(tests_list):
         yield check
