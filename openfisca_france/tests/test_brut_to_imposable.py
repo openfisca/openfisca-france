@@ -113,7 +113,7 @@ def test_cho_rst(year = 2014, verbose = False):
         vari = df_b2i[var].get_values()
         csg_rempl = vari * 0 + 3
 
-        defaultP = simulation.get_reference_compact_legislation(period)
+        defaultP = simulation.get_reference_compact_legislation(periods.start_instant(period))
         if var == "cho":
             _vari_to_brut = inversion_revenus._chobrut_from_choi
         elif var == "rst":
