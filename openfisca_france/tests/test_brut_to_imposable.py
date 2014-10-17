@@ -69,7 +69,7 @@ def test_sal(year = 2014, verbose = False):
         type_sal = simulation.calculate('type_sal')
         # primes = simulation.calculate('primes')
 
-        defaultP = simulation.get_reference_compact_legislation(period)
+        defaultP = simulation.get_reference_compact_legislation(periods.start_instant(period))
         df_i2b = DataFrame({
             'sal': sali,
             'salbrut': inversion_revenus._salbrut_from_sali(sali, hsup, type_sal, defaultP),
