@@ -25,6 +25,7 @@
 
 from __future__ import division
 
+from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula
 import openfisca_france
 
 
@@ -32,11 +33,7 @@ import openfisca_france
 BROWSER_NAME = 'chromium'
 
 
-from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula
-
-
-def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, input_variables = None):
-
+def find_ultimate_dependencies(variable_name, date, tax_benefit_system = None, input_variables = None):
     if input_variables is None:
         input_variables = set()
     elif isinstance(input_variables, list):
@@ -75,13 +72,13 @@ def find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, i
         formula.set_dependencies(column, tax_benefit_system.column_by_name)
 
         for variable_name in formula.variables_name:
-            find_ultimate_dependancies(variable_name, date, input_variables = input_variables)
+            find_ultimate_dependencies(variable_name, date, input_variables = input_variables)
 
     return list(input_variables)
 
 
-def list_ultimate_dependancies(variable_name, date):
-    result = sorted(find_ultimate_dependancies(variable_name, date, tax_benefit_system = None, input_variables = None))
+def list_ultimate_dependencies(variable_name, date):
+    result = sorted(find_ultimate_dependencies(variable_name, date, tax_benefit_system = None, input_variables = None))
     for variable in result:
         print variable
         if variable[-len("_holder"):] == "_holder":
@@ -92,8 +89,7 @@ def list_ultimate_dependancies(variable_name, date):
 
 
 def look_for(variable, year):
-
-    '''Attention les liens changent entre la version simplifiée'''
+    # Attention les liens changent entre la version simplifiée
     import re
     matched = re.match('^f[1-8][a-z]{2}', variable)
 
@@ -131,10 +127,10 @@ def look_for(variable, year):
 
 if __name__ == '__main__':
     from datetime import date
-    print list_ultimate_dependancies('donapd', date(2012, 1, 1))
-    # print list_ultimate_dependancies('decote', date(2012, 1, 1))
-    # print list_ultimate_dependancies('salbrut', date(2012, 1, 1))
-    # print list_ultimate_dependancies('age', date(2012, 1, 1))
+    print list_ultimate_dependencies('donapd', date(2012, 1, 1))
+    # print list_ultimate_dependencies('decote', date(2012, 1, 1))
+    # print list_ultimate_dependencies('salbrut', date(2012, 1, 1))
+    # print list_ultimate_dependencies('age', date(2012, 1, 1))
 
     for year in range(2013, 2009, -1):
         look_for("f7wr", year)
