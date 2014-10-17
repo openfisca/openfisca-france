@@ -48,7 +48,7 @@ def test_systemic_reform(year = 2013):
     reference_legislation_json = base.tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():
-        TODO  # This should not work anymore for non dated legislation.
+        assert False, u'TODO This should not work anymore for non dated legislation.'
         reform_legislation_json["children"][key] = key_parameters
 
     entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(base.TaxBenefitSystem)

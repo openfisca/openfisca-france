@@ -42,9 +42,9 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
         )
     chobrut_holder = simulation.get_holder('chobrut')
     chobrut = chobrut_holder.array
-    chonet = simulation.calculate('chonet')
+    simulation.calculate('chonet')
     # Now that net has been computed, remove brut and recompute it from net.
-    del chobrut_holder.array
+    chobrut_holder.delete_arrays()
     new_chobrut = simulation.calculate('chobrut')
     assert abs(new_chobrut - chobrut).all() < 0.1, str((chobrut, new_chobrut))
 
@@ -69,9 +69,9 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
         )
     rstbrut_holder = simulation.get_holder('rstbrut')
     rstbrut = rstbrut_holder.array
-    rstnet = simulation.calculate('rstnet')
+    simulation.calculate('rstnet')
     # Now that net has been computed, remove brut and recompute it from net.
-    del rstbrut_holder.array
+    rstbrut_holder.delete_arrays()
     new_rstbrut = simulation.calculate('rstbrut')
     assert abs(new_rstbrut - rstbrut).all() < 0.1, str((rstbrut, new_rstbrut))
 
@@ -98,9 +98,9 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
         )
     salbrut_holder = simulation.get_holder('salbrut')
     salbrut = salbrut_holder.array
-    salnet = simulation.calculate('salnet')
+    simulation.calculate('salnet')
     # Now that net has been computed, remove brut and recompute it from net.
-    del salbrut_holder.array
+    salbrut_holder.delete_arrays()
     new_salbrut = simulation.calculate('salbrut')
     assert abs(new_salbrut - salbrut).all() < 0.1, str((salbrut, new_salbrut))
 

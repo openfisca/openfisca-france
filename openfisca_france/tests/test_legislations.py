@@ -65,11 +65,11 @@ def check_legislation_xml_file(year):
     if errors is not None:
         errors = conv.embed_error(legislation_json, 'errors', errors)
         if errors is None:
-            raise ValueError(unicode(json.dumps(yearly_legislation_json, ensure_ascii = False, indent = 2)).encode(
+            raise ValueError(unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)).encode(
                 'utf-8'))
         raise ValueError(u'{0} for: {1}'.format(
             unicode(json.dumps(errors, ensure_ascii = False, indent = 2, sort_keys = True)),
-            unicode(json.dumps(yearly_legislation_json, ensure_ascii = False, indent = 2)),
+            unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
 
     compact_legislation = legislations.compact_dated_node_json(legislation_json)
