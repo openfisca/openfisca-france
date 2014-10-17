@@ -29,10 +29,6 @@ from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectForm
 import openfisca_france
 
 
-# BROWSER_NAME = 'iceweasel'
-BROWSER_NAME = 'chromium'
-
-
 def find_ultimate_dependencies(variable_name, date, tax_benefit_system = None, input_variables = None):
     if input_variables is None:
         input_variables = set()
@@ -88,49 +84,9 @@ def list_ultimate_dependencies(variable_name, date):
     #    print input_variables
 
 
-def look_for(variable, year):
-    # Attention les liens changent entre la version simplifiée
-    import re
-    matched = re.match('^f[1-8][a-z]{2}', variable)
-
-    if matched is not None:
-        section_number = variable[1]
-        case = variable[2:4].upper()
-
-    print "section", section_number
-    print "case", case
-    import webbrowser
-    url_base = "http://www3.finances.gouv.fr/calcul_impot/" + str(year + 1) + "/aides/"
-    if section_number == "2":
-        url_section = "capitaux_mobiliers.htm#"
-    if section_number == "3":
-        url_section = "gains_c.htm"
-    if section_number == "4":
-        url_section = "fonciers.htm"
-    # if section_number =="5":
-    #      url_section = "charges_s.htm#"
-    if section_number == "6":
-        url_section = "charges.htm#"
-    if section_number == "7":
-        url_section = "reductions.htm#"
-    if section_number == "8":
-        url_section = "autres_imputations.htm#"
-
-    if section_number in ["3", "4"]:
-        url = url_base + url_section
-    else:
-        url = url_base + url_section + case
-
-    browser = webbrowser.get(BROWSER_NAME)
-    browser.open_new_tab(url)
-
-
 if __name__ == '__main__':
     from datetime import date
     print list_ultimate_dependencies('donapd', date(2012, 1, 1))
     # print list_ultimate_dependencies('decote', date(2012, 1, 1))
     # print list_ultimate_dependencies('salbrut', date(2012, 1, 1))
     # print list_ultimate_dependencies('age', date(2012, 1, 1))
-
-    for year in range(2013, 2009, -1):
-        look_for("f7wr", year)
