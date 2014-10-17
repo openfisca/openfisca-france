@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 
@@ -23,10 +24,19 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from __future__ import division
+import argparse
+import datetime
+import json
+import logging
+import os
+import sys
 
 from openfisca_core.formulas import AlternativeFormula, DatedFormula, SelectFormula, SimpleFormula
 import openfisca_france
+
+
+app_name = os.path.splitext(os.path.basename(__file__))[0]
+log = logging.getLogger(app_name)
 
 
 def find_ultimate_dependencies(variable_name, date, tax_benefit_system = None, input_variables = None):
@@ -76,17 +86,28 @@ def find_ultimate_dependencies(variable_name, date, tax_benefit_system = None, i
 def list_ultimate_dependencies(variable_name, date):
     result = sorted(find_ultimate_dependencies(variable_name, date, tax_benefit_system = None, input_variables = None))
     for variable in result:
-        print variable
         if variable[-len("_holder"):] == "_holder":
             print variable[:-len("_holder")]
             result[result.index(variable)] = variable[:-len("_holder")]
     return sorted(result)
-    #    print input_variables
 
 
-if __name__ == '__main__':
-    from datetime import date
-    print list_ultimate_dependencies('donapd', date(2012, 1, 1))
+def main():
+    mkdate = lambda datestring: datetime.datetime.strptime(datestring, '%Y-%m-%d').date()
+
+    parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('variable_name', help = u'Name of the variable to list its dependencies. Example: "donapd"')
+    parser.add_argument('date', help = u'Date to list dependencies. Example: 2012-1-1', type = mkdate)
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "Increase output verbosity")
+    args = parser.parse_args()
+    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+
+    print json.dumps(list_ultimate_dependencies(args.variable_name, args.date), encoding = 'utf-8', indent = 2)
+    # print list_ultimate_dependencies('donapd', date(2012, 1, 1))
     # print list_ultimate_dependencies('decote', date(2012, 1, 1))
     # print list_ultimate_dependencies('salbrut', date(2012, 1, 1))
     # print list_ultimate_dependencies('age', date(2012, 1, 1))
+
+
+if __name__ == '__main__':
+    sys.exit(main())
