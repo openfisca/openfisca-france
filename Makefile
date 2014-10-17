@@ -1,4 +1,7 @@
-test:
+check-tests-syntax:
+	pyflakes openfisca_france/tests
+
+test: check-tests-syntax
 	nosetests -x openfisca_france/tests
 
 test-with-cover:

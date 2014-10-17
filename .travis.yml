@@ -15,4 +15,4 @@ install:
   - pip install -e git+https://github.com/openfisca/openfisca-france-data.git#egg=OpenFisca-Core-Data  # For test_from_taxipp
   - pip install --upgrade xlrd  # For IPP tests, xlrd >= 0.9 is needed.
   - pip install -r requirements.txt
-script: nosetests openfisca_france/tests
+script: make test
