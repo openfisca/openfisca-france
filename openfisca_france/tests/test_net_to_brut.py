@@ -23,57 +23,78 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import numpy as np
+import datetime
 
-from ..model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
-from .. import surveys
+from openfisca_core import periods
+
+from ..model.cotisations_sociales.travail import CAT
 from . import base
 
 
 def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
-    simulation = surveys.new_simulation_from_array_dict(
-        array_dict = dict(
-            age = np.array(40).repeat(count),
-            chobrut = np.linspace(chobrut_min, chobrut_max, count),
+    base_simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = count,
+                name = 'chobrut',
+                max = chobrut_max,
+                min = chobrut_min,
+                ),
+            ],
+        period = periods.period('year', year),
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
             ),
-        debug = True,
-        tax_benefit_system = base.tax_benefit_system,
-        year = year,
-        )
+        ).new_simulation(debug = True)
+
+    simulation = base_simulation.clone(debug = False)
+    chobrut = simulation.get_holder('chobrut').array
+    chonet = simulation.calculate('chonet')
+
+    simulation = base_simulation.clone(debug = True)
     chobrut_holder = simulation.get_holder('chobrut')
-    chobrut = chobrut_holder.array
-    simulation.calculate('chonet')
-    # Now that net has been computed, remove brut and recompute it from net.
     chobrut_holder.delete_arrays()
+    simulation.get_or_new_holder('chonet').array = chonet
     new_chobrut = simulation.calculate('chobrut')
-    assert abs(new_chobrut - chobrut).all() < 0.1, str((chobrut, new_chobrut))
+
+    assert (abs(new_chobrut - chobrut) < 0.1).all(), str((chobrut, new_chobrut))
 
 
 def test_chonet_to_chobrut():
     count = 11
-    chobrut_max = 24000
+    chobrut_max = 50000
     chobrut_min = 0
     for year in range(2006, 2015):
         yield check_chonet_to_chobrut, count, chobrut_max, chobrut_min, year
 
 
 def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
-    simulation = surveys.new_simulation_from_array_dict(
-        array_dict = dict(
-            age = np.array(40).repeat(count),
-            rstbrut = np.linspace(rstbrut_min, rstbrut_max, count),
+    base_simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = count,
+                name = 'rstbrut',
+                max = rstbrut_max,
+                min = rstbrut_min,
+                ),
+            ],
+        period = periods.period('year', year),
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
             ),
-        debug = True,
-        tax_benefit_system = base.tax_benefit_system,
-        year = year,
-        )
+        ).new_simulation(debug = True)
+
+    simulation = base_simulation.clone(debug = False)
+    rstbrut = simulation.get_holder('rstbrut').array
+    rstnet = simulation.calculate('rstnet')
+
+    simulation = base_simulation.clone(debug = True)
     rstbrut_holder = simulation.get_holder('rstbrut')
-    rstbrut = rstbrut_holder.array
-    simulation.calculate('rstnet')
-    # Now that net has been computed, remove brut and recompute it from net.
     rstbrut_holder.delete_arrays()
+    simulation.get_or_new_holder('rstnet').array = rstnet
     new_rstbrut = simulation.calculate('rstbrut')
-    assert abs(new_rstbrut - rstbrut).all() < 0.1, str((rstbrut, new_rstbrut))
+
+    assert (abs(new_rstbrut - rstbrut) < 0.1).all(), str((rstbrut, new_rstbrut))
 
 
 def test_rstnet_to_rstbrut():
@@ -85,24 +106,33 @@ def test_rstnet_to_rstbrut():
 
 
 def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
-    simulation = surveys.new_simulation_from_array_dict(
-        array_dict = dict(
-            age = np.array(40).repeat(count),
-            primes = TAUX_DE_PRIME * np.linspace(salbrut_min, salbrut_max, count) * (type_sal >= 2),
-            salbrut = np.linspace(salbrut_min, salbrut_max, count),
-            type_sal = np.array(type_sal).repeat(count),
+    base_simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = count,
+                name = 'salbrut',
+                max = salbrut_max,
+                min = salbrut_min,
+                ),
+            ],
+        period = periods.period('year', year),
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            type_sal = type_sal,
             ),
-        debug = True,
-        tax_benefit_system = base.tax_benefit_system,
-        year = year,
-        )
+        ).new_simulation(debug = True)
+
+    simulation = base_simulation.clone(debug = False)
+    salbrut = simulation.get_holder('salbrut').array
+    salnet = simulation.calculate('salnet')
+
+    simulation = base_simulation.clone(debug = True)
     salbrut_holder = simulation.get_holder('salbrut')
-    salbrut = salbrut_holder.array
-    simulation.calculate('salnet')
-    # Now that net has been computed, remove brut and recompute it from net.
     salbrut_holder.delete_arrays()
+    simulation.get_or_new_holder('salnet').array = salnet
     new_salbrut = simulation.calculate('salbrut')
-    assert abs(new_salbrut - salbrut).all() < 0.1, str((salbrut, new_salbrut))
+
+    assert (abs(new_salbrut - salbrut) < 0.1).all(), str((salbrut, new_salbrut))
 
 
 def test_salnet_to_salbrut():
