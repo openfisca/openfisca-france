@@ -1,5 +1,5 @@
 TESTS_DIR="openfisca_france/tests"
-IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_plfrss2014.py|test_jsons.py|test_net_to_brut.py)'
+IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_plfrss2014.py|test_jsons.py)'
 
 check-tests-syntax:
 	pyflakes $(TESTS_DIR)
