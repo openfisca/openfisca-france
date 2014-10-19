@@ -164,17 +164,15 @@ def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all =
         trace = trace,
         )
 
-    assert len(set([len(x) for x in array_dict.itervalues() if len(x) != 1])) == 1, 'Arrays do not have the same size'
-
+    assert len(set(len(x) for x in array_dict.itervalues() if len(x) != 1)) == 1, 'Arrays do not have the same size'
     global_count = len(array_dict.values()[0])
-    provided_keys = array_dict.keys()
 
     for role_var in ['quifam', 'quifoy', 'quimen']:
-        if role_var not in provided_keys:
+        if role_var not in array_dict:
             array_dict[role_var] = np.zeros(global_count, dtype = int)
 
     for id_var in ['idfam', 'idfoy', 'idmen', 'noi']:
-        if id_var not in provided_keys:
+        if id_var not in array_dict:
             array_dict[id_var] = np.arange(global_count, dtype = int)
 
     column_by_name = tax_benefit_system.column_by_name
@@ -207,7 +205,7 @@ def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all =
     for column_name, column_array in array_dict.iteritems():
         holder = simulation.get_or_new_holder(column_name)
         entity = holder.entity
-        if holder.entity.is_persons_entity:
+        if entity.is_persons_entity:
             array = column_array
         else:
             array = column_array[array_dict['qui' + entity.symbol].values == 0]
@@ -217,4 +215,5 @@ def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all =
             entity.count
             )
         holder.array = np.array(array, dtype = holder.column.dtype)
+
     return simulation
