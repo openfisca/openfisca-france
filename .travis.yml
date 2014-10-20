@@ -8,8 +8,8 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq python-pandas
   - sudo apt-get install -qq python-scipy
-  - sudo apt-get install -qq pyflakes
 install:
+  - pip install flake8  # Not yet available in Debian stable
   - pip install isodate  # For Biryani1 datetimeconv
   - pip install -e git+https://github.com/etalab/biryani.git@biryani1#egg=Biryani1  # For OpenFisca-Core
   - pip install -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
