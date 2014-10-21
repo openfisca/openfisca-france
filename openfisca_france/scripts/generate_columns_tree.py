@@ -83,7 +83,7 @@ def cleanup_tree(entity, tree):
 
 
 def is_valid_column(column):
-    return column.name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen') \
+    return column.name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', quifam', 'quifoy', 'quimen') \
         and not column.survey_only
 
 

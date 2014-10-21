@@ -171,7 +171,7 @@ def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all =
         if role_var not in array_dict:
             array_dict[role_var] = np.zeros(global_count, dtype = int)
 
-    for id_var in ['idfam', 'idfoy', 'idmen', 'noi']:
+    for id_var in ['idfam', 'idfoy', 'idmen']:
         if id_var not in array_dict:
             array_dict[id_var] = np.arange(global_count, dtype = int)
 
@@ -193,7 +193,6 @@ def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all =
     assert 'idfam' in array_dict.keys()
     assert 'idfoy' in array_dict.keys()
     assert 'idmen' in array_dict.keys()
-    assert 'noi' in array_dict.keys()
     assert 'quifam' in array_dict.keys()
     assert 'quifoy' in array_dict.keys()
     assert 'quimen' in array_dict.keys()

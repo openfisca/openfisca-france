@@ -42,8 +42,6 @@ from ..base import build_column_couple, column_by_name, QUIFAM, QUIFOY, QUIMEN
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
 column_by_name.update(collections.OrderedDict((
-    build_column_couple('noi', IntCol(is_period_invariant = True, label = u"Numéro d'ordre individuel")),
-
     build_column_couple('idmen', IntCol(is_period_invariant = True, label = u"Identifiant du ménage")),
     build_column_couple('idfoy', IntCol(is_period_invariant = True, label = u"Identifiant du foyer")),
     build_column_couple('idfam', IntCol(is_period_invariant = True, label = u"Identifiant de la famille")),

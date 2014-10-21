@@ -114,8 +114,8 @@ def compare(path_dta_output, ipp2of_output_variables, param_scenario, simulation
 
     def _relevant_input_variables(simulation):
         input_variables = {'ind': list(), 'foy': list(), 'men': list()}
-        len_indiv = len(simulation.get_holder('noi', default = None).array)
-        len_men = len(simulation.get_holder('loyer', default = None).array)
+        len_indiv = simulation.entity_by_key_plural['individus'].count
+        len_men = simulation.entity_by_key_plural['menages'].count
         for name, col in simulation.tax_benefit_system.column_by_name.iteritems():
             # print name, col
             holder = simulation.get_holder(name, default = None)
@@ -241,7 +241,7 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
         tax_benefit_system_class = init_country()
         tax_benefit_system = tax_benefit_system_class()
     openfisca_survey = build_input_OF(data_IPP, ipp2of_input_variables, tax_benefit_system)
-    openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy','noi'])
+    openfisca_survey = openfisca_survey.fillna(0)  # .sort(['idfoy'])
 #    simulation = surveys.new_simulation_from_survey_data_frame(
 #        # debug = True,
 #        survey = openfisca_survey,

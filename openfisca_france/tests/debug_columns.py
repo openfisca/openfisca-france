@@ -28,7 +28,7 @@ from . import base
 
 
 def check_input_column_consumers(column):
-    column_names = ['idfam', 'idfoy', 'idmen', 'noi', 'quifam', 'quifoy', 'quimen']
+    column_names = ['idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen']
     column_names.extend([
         entities.Familles.name_key,
         entities.FoyersFiscaux.name_key,
