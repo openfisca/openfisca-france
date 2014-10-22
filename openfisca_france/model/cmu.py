@@ -97,7 +97,7 @@ class cmu_br_i(SimpleFormulaColumn):
         return sali * (1 - (activite == 1) * P.abattement_chomage) + choi + rsti + alr + rsa_base_ressources_patrimoine_i
 
     def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['sali', 'choi', 'rsti', 'alr']:
+        if variable_name in ['sali', 'choi', 'rsti', 'alr', 'rsa_base_ressources_patrimoine_i']:
             return periods.offset(output_period, -1)
         else:
             return output_period

@@ -5113,13 +5113,13 @@
       </CODE>
       <NODE code="patrimoine" description="Revenus liés au patrimoine">
         <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.5" />
+          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.5" />
         </CODE>
         <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.8" />
+          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.8" />
         </CODE>
         <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.03" />
+          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.03" />
         </CODE>
       </NODE>
     </NODE>

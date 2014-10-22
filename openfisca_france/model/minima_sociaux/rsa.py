@@ -25,9 +25,14 @@
 from __future__ import division
 
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
-from openfisca_core.accessors import law
 
-from ..base import QUIFAM, QUIFOY
+from openfisca_core.accessors import law
+from openfisca_core.columns import BoolCol, FloatCol
+from openfisca_core import periods
+from openfisca_core.formulas import SimpleFormulaColumn
+
+from ..base import QUIFAM, QUIFOY, reference_formula
+from ...entities import Familles, Individus
 from ..pfam import nb_enf, age_en_mois_benjamin
 
 CHEF = QUIFAM['chef']
@@ -149,20 +154,25 @@ def _br_rmi(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_
     return br_rmi
 
 
-def _rsa_base_ressources_patrimoine_i(interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):
-    '''
-    Base de ressources des revenus du patrimoine
-    'ind'
-    '''
+@reference_formula
+class rsa_base_ressources_patrimoine_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources des revenus du patrimoine"
+    entity_class = Individus
+    period_unit = 'month'
 
-    return (
-        interets_epargne_sur_livrets +
-        epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere +
-        revenus_capital +
-        valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
-        valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
-        revenus_locatifs
-        )
+    def function(self, interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):
+        return (
+            interets_epargne_sur_livrets +
+            epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere +
+            revenus_capital +
+            valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
+            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
+            revenus_locatifs
+            )
+
+    def get_output_period(self, period):
+        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
 
 
 def _rmi_nbp(self, age_holder, smic55_holder, nb_par , P = law.minim.rmi):
