@@ -29,7 +29,7 @@ import collections
 from datetime import date
 from functools import partial
 
-from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol
+from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol, PeriodSizeIndependentIntCol
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (
     build_alternative_formula_couple,
@@ -510,40 +510,40 @@ prestation_by_name.update(collections.OrderedDict((
         AgeCol(label = u"Âge (en mois)", val_type = "months"),
         ),
 
-    build_simple_formula_couple('nbF', IntCol(function = ir._nbF,
+    build_simple_formula_couple('nbF', PeriodSizeIndependentIntCol(function = ir._nbF,
         cerfa_field = u'F',
         entity = 'foy',
         label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des"
             u" revenus, ou nés en durant la même année ou handicapés quel que soit leur âge",
         )),
-    build_simple_formula_couple('nbG', IntCol(function = ir._nbG,
+    build_simple_formula_couple('nbG', PeriodSizeIndependentIntCol(function = ir._nbG,
         cerfa_field = u'G',
         entity = 'foy',
         label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité",
         )),
     # TODO: vérifier si c'est bien ça pour la nbH et la caseH qui suit
-    build_simple_formula_couple('nbH', IntCol(function = ir._nbH,
+    build_simple_formula_couple('nbH', PeriodSizeIndependentIntCol(function = ir._nbH,
         cerfa_field = u'H',
         entity = 'foy',
         label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de"
             u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge",
         )),
-    build_simple_formula_couple('nbI', IntCol(function = ir._nbI,
+    build_simple_formula_couple('nbI', PeriodSizeIndependentIntCol(function = ir._nbI,
         cerfa_field = u'I',
         entity = 'foy',
         label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité",
         )),
-    build_simple_formula_couple('nbJ', IntCol(function = ir._nbJ,
+    build_simple_formula_couple('nbJ', PeriodSizeIndependentIntCol(function = ir._nbJ,
         cerfa_field = u'J',
         entity = 'foy',
         label = u"Nombre d'enfants majeurs célibataires sans enfant",
         )),
-#    build_simple_formula_couple('nbN', IntCol(function = ir._nbN,
+#    build_simple_formula_couple('nbN', PeriodSizeIndependentIntCol(function = ir._nbN,
 #        cerfa_field = u'N',
 #        entity = 'foy',
 #        label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille",
 #        )),
-#    build_simple_formula_couple('nbR', IntCol(function = ir._nbR,
+#    build_simple_formula_couple('nbR', PeriodSizeIndependentIntCol(function = ir._nbR,
 #        cerfa_field = u'R',
 #        entity = 'foy',
 #        label = u"Nombre de titulaires de la carte invalidité d'au moins 80 %",
@@ -1966,7 +1966,7 @@ prestation_by_name.update(collections.OrderedDict((
         )),
     build_simple_formula_couple('asf_elig', BoolCol(function = asf._asf_elig,
         entity = 'fam')),
-    build_simple_formula_couple('asf_nbenf', IntCol(function = asf._asf_nbenf,
+    build_simple_formula_couple('asf_nbenf', PeriodSizeIndependentIntCol(function = asf._asf_nbenf,
         entity = 'fam')),
     build_simple_formula_couple('asf', FloatCol(function = asf._asf,
         entity = 'fam',
@@ -2350,7 +2350,7 @@ prestation_by_name.update(collections.OrderedDict((
     # Catégories
     ############################################################
 
-    build_simple_formula_couple('typ_men', IntCol(function = cm._typ_men,
+    build_simple_formula_couple('typ_men', PeriodSizeIndependentIntCol(function = cm._typ_men,
         entity = 'men',
         label = u"Type de ménage",
         )),
@@ -2370,7 +2370,7 @@ prestation_by_name.update(collections.OrderedDict((
         label = u"Indicatrice de ménage complexe",
         )),
 
-    build_simple_formula_couple('act_cpl', IntCol(function = cl._act_cpl,
+    build_simple_formula_couple('act_cpl', PeriodSizeIndependentIntCol(function = cl._act_cpl,
                            entity = 'men',
                            label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint",
         )),
@@ -2380,7 +2380,7 @@ prestation_by_name.update(collections.OrderedDict((
                           label = u"Vie en couple",
         )),
 
-    build_simple_formula_couple('act_enf', IntCol(function = cl._act_enf,
+    build_simple_formula_couple('act_enf', PeriodSizeIndependentIntCol(function = cl._act_enf,
         entity = 'men',
                            label = u"Nombre d'enfants actifs",
         )),
@@ -2534,7 +2534,7 @@ prestation_by_name.update(collections.OrderedDict((
         label = u"Forfait logement applicable en cas d'aide au logement",
         entity = 'fam',
         )),
-    build_simple_formula_couple('cmu_nbp_foyer', IntCol(function = cmu._cmu_nbp_foyer,
+    build_simple_formula_couple('cmu_nbp_foyer', PeriodSizeIndependentIntCol(function = cmu._cmu_nbp_foyer,
         label = u"Nombre de personnes dans le foyer CMU",
         entity = 'fam',
         )),
@@ -2553,7 +2553,7 @@ prestation_by_name.update(collections.OrderedDict((
         label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS",
         entity = 'fam',
         )),
-    build_simple_formula_couple('cmu_nb_pac', IntCol(function = cmu._cmu_nb_pac,
+    build_simple_formula_couple('cmu_nb_pac', PeriodSizeIndependentIntCol(function = cmu._cmu_nb_pac,
         label = u"Nombre de personnes à charge au titre de la CMU",
         entity = 'fam',
         )),

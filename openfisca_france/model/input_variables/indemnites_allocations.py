@@ -22,18 +22,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 import collections
-from datetime import date
-from functools import partial
 
-
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, FloatCol, StrCol, build_column_couple
-from openfisca_core.enumerations import Enum
+from openfisca_core.columns import FloatCol
 
 from ..base import build_column_couple, column_by_name
 
-column_by_name.update(collections.OrderedDict((
 
+column_by_name.update(collections.OrderedDict((
     build_column_couple('indemnites_journalieres_maternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de maternité")),
     build_column_couple('indemnites_journalieres_paternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de paternité")),
     build_column_couple('indemnites_journalieres_adoption', FloatCol(entity = 'ind', label = u"Indemnités journalières d'adoption")),

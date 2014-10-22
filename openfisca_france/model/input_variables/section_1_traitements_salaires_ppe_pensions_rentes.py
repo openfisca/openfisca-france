@@ -26,7 +26,7 @@
 import collections
 import datetime
 
-from openfisca_core.columns import BoolCol, EnumCol, IntCol, StrCol
+from openfisca_core.columns import BoolCol, EnumCol, IntCol, PeriodSizeIndependentIntCol, StrCol
 from openfisca_core.enumerations import Enum
 
 from ..base import build_column_couple, column_by_name, QUIFOY
@@ -201,9 +201,9 @@ column_by_name.update(collections.OrderedDict((
                                     u"Pacsé",
                                     u"Jeune veuf"], start = 1))),
 
-    build_column_couple('nbN', IntCol(cerfa_field = u'N', entity = 'foy',
+    build_column_couple('nbN', PeriodSizeIndependentIntCol(cerfa_field = u'N', entity = 'foy',
         label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille")),
-    build_column_couple('nbR', IntCol(cerfa_field = u'R', entity = 'foy',
+    build_column_couple('nbR', PeriodSizeIndependentIntCol(cerfa_field = u'R', entity = 'foy',
         label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %")),
 
     build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
@@ -215,7 +215,7 @@ column_by_name.update(collections.OrderedDict((
     build_column_couple('caseG', BoolCol(label = u"Titulaire d'une pension de veuve de guerre",
                       entity = 'foy',
                       cerfa_field = u'G')),  # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche
-    build_column_couple('caseH', IntCol(label = u"Année de naissance des enfants à charge en garde alternée", entity = 'foy',
+    build_column_couple('caseH', PeriodSizeIndependentIntCol(label = u"Année de naissance des enfants à charge en garde alternée", entity = 'foy',
                      cerfa_field = u'H')),
 # il ne s'agit pas à proprement parlé de la case H, les cases permettant d'indiquer l'année de naissance
 #    se rapportent bien à nbH mais ne sont pas nommées, choisissons nous de laisser cerfa_field = u'H' pour caseH ?
@@ -253,7 +253,7 @@ column_by_name.update(collections.OrderedDict((
         val_type = "monetary")),
     build_column_couple('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
         val_type = "monetary")),
-    build_column_couple('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
+    build_column_couple('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
         val_type = "monetary")),
 
 

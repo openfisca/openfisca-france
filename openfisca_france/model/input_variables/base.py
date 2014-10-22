@@ -26,7 +26,7 @@
 import collections
 from datetime import date
 
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, StrCol
+from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, PeriodSizeIndependentIntCol, StrCol
 from openfisca_core.enumerations import Enum
 
 from ... import entities
@@ -106,7 +106,7 @@ column_by_name.update(collections.OrderedDict((
     build_column_couple('partiel2', BoolCol(entity = 'fam',
                          label = u"Parent actif entre 50% et 80% (PAJE-CLCA)")),
 
-    build_column_couple('categ_inv', IntCol(label = u"Catégorie de handicap (AEEH)")),
+    build_column_couple('categ_inv', PeriodSizeIndependentIntCol(label = u"Catégorie de handicap (AEEH)")),
 
     build_column_couple('opt_colca', BoolCol(entity = 'fam',
                           label = u"Opte pour le COLCA")),

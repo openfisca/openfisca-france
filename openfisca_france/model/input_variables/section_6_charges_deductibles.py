@@ -26,7 +26,7 @@
 import collections
 import datetime
 
-from openfisca_core.columns import IntCol
+from openfisca_core.columns import IntCol, PeriodSizeIndependentIntCol
 
 from ..base import build_column_couple, column_by_name, QUIFOY
 
@@ -79,7 +79,7 @@ column_by_name.update(collections.OrderedDict((
                     val_type = "monetary",
                     cerfa_field = u'6EU')),
 
-    build_column_couple('f6ev', IntCol(entity = 'foy',
+    build_column_couple('f6ev', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit",
                     cerfa_field = u'6EV')),
 

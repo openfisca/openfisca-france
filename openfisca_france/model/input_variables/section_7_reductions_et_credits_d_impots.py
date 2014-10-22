@@ -29,7 +29,7 @@
 import collections
 from datetime import date
 
-from openfisca_core.columns import BoolCol, IntCol
+from openfisca_core.columns import BoolCol, IntCol, PeriodSizeIndependentIntCol
 
 from ..base import build_column_couple, column_by_name, QUIFOY
 
@@ -214,27 +214,27 @@ column_by_name.update(collections.OrderedDict((
                     cerfa_field = u'7GG')),
 
     # Nombre d'enfants à charge poursuivant leurs études
-    build_column_couple('f7ea', IntCol(entity = 'foy',
+    build_column_couple('f7ea', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'enfants à charge poursuivant leurs études au collège",
                     cerfa_field = u'7EA')),
 
-    build_column_couple('f7eb', IntCol(entity = 'foy',
+    build_column_couple('f7eb', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au collège",
                     cerfa_field = u'7EB')),
 
-    build_column_couple('f7ec', IntCol(entity = 'foy',
+    build_column_couple('f7ec', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'enfants à charge poursuivant leurs études au lycée",
                     cerfa_field = u'7EC')),
 
-    build_column_couple('f7ed', IntCol(entity = 'foy',
+    build_column_couple('f7ed', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au lycée",
                     cerfa_field = u'7ED')),
 
-    build_column_couple('f7ef', IntCol(entity = 'foy',
+    build_column_couple('f7ef', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'enfants à charge poursuivant leurs études dans l'enseignement supérieur",
                     cerfa_field = u'7EF')),
 
-    build_column_couple('f7eg', IntCol(entity = 'foy',
+    build_column_couple('f7eg', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études dans l'enseignement supérieur",
                     cerfa_field = u'7EG')),
 
@@ -245,7 +245,7 @@ column_by_name.update(collections.OrderedDict((
                     start = date(2008, 1, 1),
                     cerfa_field = u'7TD')),
 
-    build_column_couple('f7vo', IntCol(entity = 'foy',
+    build_column_couple('f7vo', PeriodSizeIndependentIntCol(entity = 'foy',
                     label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés",
                     start = date(2006, 1, 1),
                     cerfa_field = u'7VO')),
@@ -2292,7 +2292,7 @@ column_by_name.update(collections.OrderedDict((
                     cerfa_field = u'7IH')),
 
     build_column_couple('f7iz', IntCol(entity = 'foy',
-                    label = u"Investissements destinés à la location meublée non professionnelle : nvestissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
+                    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
                     val_type = "monetary",
                     start = date(2012, 1, 1),
                     cerfa_field = u'7IZ')),
