@@ -167,8 +167,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""coloc""",  # Vie en colocation
                     u"""aer""",  # Allocation équivalent retraite (AER)
-                    u"""ass""",  # Allocation de solidarité spécifique (ASS)
                     u"""f5sq""",
+                    u"""ass_precondition_remplie""",  # Éligible à l'ASS
                     u"""elig_creimp_jeunes""",  # Éligible au crédit d'impôt jeunes
                     u"""inv""",  # Invalide
                     u"""alt""",  # Enfant en garde alternée
@@ -211,6 +211,14 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
                     u"""etr""",
+                    u"""interets_epargne_sur_livrets""",  # Intérêts versés pour l'épargne sur livret
+                    u"""epargne_non_remuneree""",  # Épargne non rémunérée
+                    u"""revenus_capital""",  # Revenus du capital
+                    u"""valeur_locative_immo_non_loue""",  # Valeur locative des biens immobiliés possédés et non loués
+                    u"""valeur_locative_terrains_non_loue""",  # Valeur locative des terrains possédés et non loués
+                    u"""revenus_locatifs""",  # Revenus locatifs
+                    u"""aah""",  # Allocation de l'adulte handicapé
+                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
                     ]),
                 ]),
             ]),
@@ -228,6 +236,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""empl_dir""",  # Emploi direct (CLCMG)
                     u"""ass_mat""",  # Assistante maternelle (CLCMG)
                     u"""gar_dom""",  # Garde à domicile (CLCMG)
+                    ]),
+                ]),
+            collections.OrderedDict([
+                ('label', u"""Autres"""),
+                ('children', [
+                    u"""proprietaire_proche_famille""",  # Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint
                     ]),
                 ]),
             ]),
@@ -911,7 +925,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""zthabm""",
-                    u"""proprietaire_proche_famille""",  # Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint
                     ]),
                 ]),
             ]),
