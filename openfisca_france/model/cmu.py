@@ -129,7 +129,7 @@ class cmu_br(SimpleFormulaColumn):
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            ((alf + alf + als) > 0) * cmu_forfait_logement_al)
+            ((alf + apl + als) > 0) * cmu_forfait_logement_al)
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
