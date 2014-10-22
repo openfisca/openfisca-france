@@ -62,6 +62,7 @@ def test_rsa_celibataire():
                 },
             ).new_simulation(debug = True)
         calculated_rsa = simulation.calculate('rsa') / 12
+        # TODO use yield
         assert abs(calculated_rsa - test['rsa']) < error_margin, \
             'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
 
