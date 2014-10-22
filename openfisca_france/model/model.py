@@ -2251,14 +2251,6 @@ prestation_by_name.update(collections.OrderedDict((
     # ASPA/ASI, Minimum vieillesse
     ############################################################
 
-    build_simple_formula_couple('br_mv_i', FloatCol(function = asi_aspa._br_mv_i,
-        label = u"Base ressources du minimum vieillesse/ASPA",
-        )),
-    build_simple_formula_couple('br_mv', FloatCol(function = asi_aspa._br_mv,
-        entity = 'fam',
-        label = u"Base ressources du minimum vieillesse/ASPA",
-        )),
-
     build_simple_formula_couple('asi_aspa_nb_alloc', FloatCol(function = asi_aspa._asi_aspa_nb_alloc,
         entity = 'fam')),
     build_simple_formula_couple('asi_elig', BoolCol(function = asi_aspa._asi_elig,
