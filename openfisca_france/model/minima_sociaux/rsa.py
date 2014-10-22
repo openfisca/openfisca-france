@@ -72,12 +72,18 @@ def _rfon_ms(self, f4ba_holder, f4be_holder):
     return f4ba + f4be
 
 
-def _ra_rsa(sal, hsup, rpns, etr):
-    '''
-    Revenus d'activité au sens du Rsa
-    'ind'
-    '''
-    return sal + hsup + rpns + etr
+@reference_formula
+class ra_rsa(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenus d'activité du Rsa"
+    entity_class = Individus
+    period_unit = 'month'
+
+    def function(self, sal, hsup, rpns, etr):
+        return sal + hsup + rpns + etr
+
+    def get_output_period(self, period):
+        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
 
 
 def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
