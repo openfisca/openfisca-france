@@ -25,16 +25,14 @@
 
 from __future__ import division
 
-from datetime import date
+import copy
 import logging
+
 from numpy import maximum as max_, minimum as min_
 
+from openfisca_core import formulas, periods, reforms, tools
 from openfisca_core.columns import FloatCol
 from openfisca_core.enumerations import Enum
-import openfisca_france.model.irpp_reductions_impots as ri
-
-from openfisca_core import reforms
-from openfisca_core.formulas import build_dated_formula_couple, build_simple_formula_couple
 from openfisca_france import entities
 
 
@@ -74,9 +72,289 @@ def _alleg_plfrss2014_public(salbrut, type_sal, _P):
     return allegement
 
 
-############################################################################
-# # Helper functions
-############################################################################
+# Helper functions
+
+
+def build_reform_entity_class_by_symbol():
+    reform_entity_class_by_symbol = entities.entity_class_by_symbol.copy()
+
+    foyers_fiscaux_class = reform_entity_class_by_symbol['foy']
+
+    # reduction_impot_exceptionnelle
+
+    class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
+        column = FloatCol
+        entity_class = foyers_fiscaux_class
+        label = u"Réduction d'impôt exceptionnelle"
+        period_unit = u'year'
+
+        def function(self, rfr, nb_adult, nb_par, _P):
+            parametres = _P.plfr2014.reduction_impot_exceptionnelle
+            plafond = parametres.seuil * nb_adult + (nb_par - nb_adult) * 2 * parametres.majoration_seuil
+            montant = parametres.montant_plafond * nb_adult
+            return min_(max_(plafond + montant - rfr, 0), montant)
+
+        def get_output_period(self, period):
+            return periods.period(u'year', periods.base_instant('month', periods.start_instant(period)))
+
+    # reductions
+
+    reductions_column = foyers_fiscaux_class.column_by_name['reductions']
+    reform_reductions_column = tools.empty_clone(reductions_column)
+    reform_reductions_column.__dict__ = reductions_column.__dict__.copy()
+
+    reductions_formula_class_2013 = reform_reductions_column.formula_constructor.dated_formulas_class[-1]['formula_class']  # noqa
+    reform_reductions_formula_class_2013 = type(
+        'reform_reductions_formula_class_2013',
+        (reductions_formula_class_2013, ),
+        {'function': staticmethod(_reductions_2013)},
+        )
+    reform_reductions_formula_class_2013.extract_variables_name()
+
+    reform_dated_formulas_class = reform_reductions_column.formula_constructor.dated_formulas_class[:]
+    reform_dated_formulas_class[-1] = reform_dated_formulas_class[-1].copy()
+    reform_dated_formulas_class[-1]['formula_class'] = reform_reductions_formula_class_2013
+
+    reform_dated_formula_class = type('reform_dated_formula_class', (reform_reductions_column.formula_constructor, ),
+        {'dated_formulas_class': reform_dated_formulas_class})
+
+    reform_reductions_column.formula_constructor = reform_dated_formula_class
+
+    # update column_by_name
+
+    reform_column_by_name = foyers_fiscaux_class.column_by_name.copy()
+    reform_column_by_name['reduction_impot_exceptionnelle'] = reduction_impot_exceptionnelle
+    reform_column_by_name['reductions'] = reform_reductions_column
+
+    reform_foyers_fiscaux_class = type('reform_foyers_fiscaux_class', (foyers_fiscaux_class, ),
+        {'column_by_name': reform_column_by_name})
+
+    reform_entity_class_by_symbol['foy'] = reform_foyers_fiscaux_class
+
+    return reform_entity_class_by_symbol
+
+
+def build_new_legislation_nodes():
+    return {
+        "plfr2014": {
+            "@type": "Node",
+            "description": "Projet de loi de finance 2014",
+            "children": {
+                "reduction_impot_exceptionnelle": {
+                    "@type": "Node",
+                    "description": "Réduction d'impôt exceptionnelle",
+                    "children": {
+                        "montant_plafond": {
+                            "@type": "Parameter",
+                            "description": "Montant plafond par part pour les deux premières parts",
+                            "format": "integer",
+                            "unit": "currency",
+                            "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 350}],
+                            },
+                        "seuil": {
+                            "@type": "Parameter",
+                            "description": "Seuil (à partir duquel la réduction décroît) par part pour les deux "
+                                           "premières parts",
+                            "format": "integer",
+                            "unit": "currency",
+                            "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 13795}],
+                            },
+                        "majoration_seuil": {
+                            "@type": "Parameter",
+                            "description": "Majoration du seuil par demi-part supplémentaire",
+                            "format": "integer",
+                            "unit": "currency",
+                            "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 3536}],
+                            },
+                        },
+                    },
+                },
+            },
+        "plfrss2014": {
+            "@type": "Node",
+            "description": "Projet de loi de financement de la sécurité sociale rectificative 2014",
+            "children": {
+                "exonerations_bas_salaires": {
+                    "@type": "Node",
+                    "description": "Exonérations de cotiastions salariées sur les bas salaires",
+                    "children": {
+                        "prive": {
+                            "@type": "Node",
+                            "description": "Salariés du secteur privé",
+                            "children": {
+                                "taux": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.03}],
+                                    },
+                                "seuil": {
+                                    "@type": "Parameter",
+                                    "description": "Seuil (en SMIC)",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1.3}],
+                                    },
+                                },
+                            },
+                        "public": {
+                            "@type": "Node",
+                            "description": "Salariés du secteur public",
+                            "children": {
+                                "taux_1": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.02}],
+                                    },
+                                "seuil_1": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 312}],
+                                    },
+                                "taux_2": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.018}],
+                                    },
+                                "seuil_2": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 328}],
+                                    },
+                                "taux_3": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.016}],
+                                    },
+                                "seuil_3": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 343}],
+                                    },
+                                "taux_4": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.014}],
+                                    },
+                                "seuil_4": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 359}],
+                                    },
+                                "taux_5": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.012}],
+                                    },
+                                "seuil_5": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 375}],
+                                    },
+                                "taux_6": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.01}],
+                                    },
+                                "seuil_6": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 390}],
+                                    },
+                                "taux_7": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.008}],
+                                    },
+                                "seuil_7": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 406}],
+                                    },
+                                "taux_8": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.007}],
+                                    },
+                                "seuil_8": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 421}],
+                                    },
+                                "taux_9": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.006}],
+                                    },
+                                "seuil_9": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 437}],
+                                    },
+                                "taux_10": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.005}],
+                                    },
+                                "seuil_10": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 453}],
+                                    },
+                                "taux_11": {
+                                    "@type": "Parameter",
+                                    "description": "Taux",
+                                    "format": "rate",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.002}],
+                                    },
+                                "seuil_11": {
+                                    "@type": "Parameter",
+                                    "description": "Indice majoré plafond",
+                                    "format": "integer",
+                                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 468}],
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        }
+
+
+def build_reform(tax_benefit_system):
+    reference_legislation_json = tax_benefit_system.legislation_json
+    reform_legislation_json = copy.deepcopy(reference_legislation_json)
+    reform_legislation_json['children'].update(build_new_legislation_nodes())
+    to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
+        entity_class.key_plural: entity_class
+        for symbol, entity_class in entity_class_by_symbol.iteritems()
+        }
+    return reforms.Reform(
+        entity_class_by_key_plural = to_entity_class_by_key_plural(build_reform_entity_class_by_symbol()),
+        legislation_json = reform_legislation_json,
+        name = u'PLFR2014',
+        reference_legislation_json = reference_legislation_json,
+        )
 
 
 def taux_alleg_plfrss2014_prive(sal_h_b, P):
@@ -123,13 +401,6 @@ def taux_alleg_plfrss2014_public(salbrut, P):
     return alleg
 
 
-def _reduction_impot_exceptionnelle(rfr, nb_adult, nb_par, _P):
-    parametres = _P.plfr2014.reduction_impot_exceptionnelle
-    plafond = parametres.seuil * nb_adult + (nb_par - nb_adult) * 2 * parametres.majoration_seuil
-    montant = parametres.montant_plafond * nb_adult
-    return min_(max_(plafond + montant - rfr, 0), montant)
-
-
 def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, doment, domlog, donapd, duflot, ecpess,
                      garext, intagr, invfor, invlst, ip_net, locmeu, mecena, mohist, patnat, prcomp, repsoc, resimm,
                      rsceha, saldom, scelli, sofica, spfcpi, reduction_impot_exceptionnelle):
@@ -141,279 +412,3 @@ def _reductions_2013(accult, adhcga, cappme, creaen, daepad, deffor, dfppce, dom
                         prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi +
                         reduction_impot_exceptionnelle)
     return min_(ip_net, total_reductions)
-
-
-def build_entity_class_by_key_plural(TaxBenefitSystem):
-    reform_entity_class_by_symbol = reforms.clone_entity_classes(entities.entity_class_by_symbol, symbols = ['foy'])
-    class ReformEntities(object):
-        entity_class_by_symbol = reform_entity_class_by_symbol
-
-    build_simple_formula_couple(
-        name = "reduction_impot_exceptionnelle",
-        column = FloatCol(
-            entity = 'foy',
-            function = _reduction_impot_exceptionnelle,
-            label = "Réduction d'impôt exceptionnelle",
-            ),
-        entity_class_by_symbol = reform_entity_class_by_symbol,
-        )
-    build_dated_formula_couple(
-        name = 'reductions',
-        dated_functions = [
-            dict(start = date(2002, 1, 1),
-                 end = date(2002, 12, 31),
-                 function = ri._reductions_2002,
-                 ),
-            dict(start = date(2003, 1, 1),
-                 end = date(2004, 12, 31),
-                 function = ri._reductions_2003_2004,
-                 ),
-            dict(start = date(2005, 1, 1),
-                 end = date(2005, 12, 31),
-                 function = ri._reductions_2005,
-                 ),
-            dict(start = date(2006, 1, 1),
-                 end = date(2006, 12, 31),
-                 function = ri._reductions_2006,
-                 ),
-            dict(start = date(2007, 1, 1),
-                 end = date(2007, 12, 31),
-                 function = ri._reductions_2007,
-                 ),
-            dict(start = date(2008, 1, 1),
-                 end = date(2008, 12, 31),
-                 function = ri._reductions_2008,
-                 ),
-            dict(start = date(2009, 1, 1),
-                 end = date(2009, 12, 31),
-                 function = ri._reductions_2009,
-                 ),
-            dict(start = date(2010, 1, 1),
-                 end = date(2010, 12, 31),
-                 function = ri._reductions_2010,
-                 ),
-            dict(start = date(2011, 1, 1),
-                 end = date(2011, 12, 31),
-                 function = ri._reductions_2011,
-                 ),
-            dict(start = date(2012, 1, 1),
-                 end = date(2012, 12, 31),
-                 function = ri._reductions_2012,
-                 ),
-            dict(start = date(2013, 1, 1),
-                 end = date(2013, 1, 1),
-                 function = _reductions_2013,
-                 ),
-            ],
-        column = FloatCol(entity = 'foy'),
-        entity_class_by_symbol = reform_entity_class_by_symbol,
-        replace = True,
-        )
-
-    reform_entity_class_by_key_plural = entities.build_entity_class_by_key_plural(reform_entity_class_by_symbol)
-    return reform_entity_class_by_key_plural
-
-
-dated_legislation_diff = {
-    "plfr2014": {
-        "@type": "Node",
-        "description": "Projet de loi de finance 2014",
-        "children": {
-            "reduction_impot_exceptionnelle": {
-                "@type": "Node",
-                "description": "Réduction d'impôt exceptionnelle",
-                "children": {
-                    "montant_plafond": {
-                        "@type": "Parameter",
-                        "description": "Montant plafond par part pour les deux premières parts",
-                        "format": "integer",
-                        "unit": "currency",
-                        "value": 350,
-                        },
-                    "seuil": {
-                        "@type": "Parameter",
-                        "description": "Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts",
-                        "format": "integer",
-                        "unit": "currency",
-                        "value": 13795,
-                        },
-                    "majoration_seuil": {
-                        "@type": "Parameter",
-                        "description": "Majoration du seuil par demi-part supplémentaire",
-                        "format": "integer",
-                        "unit": "currency",
-                        "value": 3536,
-                        },
-                    },
-                },
-            },
-        },
-    "plfrss2014": {
-        "@type": "Node",
-        "description": "Projet de loi de financement de la sécurité sociale rectificative 2014",
-        "children": {
-            "exonerations_bas_salaires": {
-                "@type": "Node",
-                "description": "Exonérations de cotiastions salariées sur les bas salaires",
-                "children": {
-                    "prive": {
-                        "@type": "Node",
-                        "description": "Salariés du secteur privé",
-                        "children": {
-                            "taux": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.03,
-                                },
-                            "seuil": {
-                                "@type": "Parameter",
-                                "description": "Seuil (en SMIC)",
-                                "format": "rate",
-                                "value": 1.3,
-                                },
-                            },
-                        },
-                    "public": {
-                        "@type": "Node",
-                        "description": "Salariés du secteur public",
-                        "children": {
-                            "taux_1": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.02,
-                                },
-                            "seuil_1": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 312,
-                                },
-                            "taux_2": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.018,
-                                },
-                            "seuil_2": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 328,
-                                },
-                            "taux_3": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.016,
-                                },
-                            "seuil_3": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 343,
-                                },
-                            "taux_4": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.014,
-                                },
-                            "seuil_4": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 359,
-                                },
-                            "taux_5": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.012,
-                                },
-                            "seuil_5": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 375,
-                                },
-                            "taux_6": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.01,
-                                },
-                            "seuil_6": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 390,
-                                },
-                            "taux_7": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.008,
-                                },
-                            "seuil_7": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 406,
-                                },
-                            "taux_8": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.007,
-                                },
-                            "seuil_8": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 421,
-                                },
-                            "taux_9": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.006,
-                                },
-                            "seuil_9": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 437,
-                                },
-                            "taux_10": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.005,
-                                },
-                            "seuil_10": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 453,
-                                },
-                            "taux_11": {
-                                "@type": "Parameter",
-                                "description": "Taux",
-                                "format": "rate",
-                                "value": 0.002,
-                                },
-                            "seuil_11": {
-                                "@type": "Parameter",
-                                "description": "Indice majoré plafond",
-                                "format": "integer",
-                                "value": 468,
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        },
-    }

@@ -16,23 +16,24 @@
 #
 # OpenFisca is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE,  See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program,  If not, see <http://www.gnu.org/licenses/>.
 
 
-import copy
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
-from openfisca_core.reforms import Reform
-from ..model.cotisations_sociales import plfrss2014
-from . import base
+from openfisca_france.model.cotisations_sociales import plfrss2014
+from openfisca_france.tests import base
 
 
-def test_systemic_reform(year = 2013):
+def test_plfrss2014():
+    year = 2013
     scenario = base.tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
@@ -45,40 +46,37 @@ def test_systemic_reform(year = 2013):
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
-    reference_legislation_json = base.tax_benefit_system.legislation_json
-    reform_legislation_json = copy.deepcopy(reference_legislation_json)
-    for key, key_parameters in plfrss2014.dated_legislation_diff.iteritems():
-        assert False, u'TODO This should not work anymore for non dated legislation.'
-        reform_legislation_json["children"][key] = key_parameters
 
-    entity_class_by_key_plural = plfrss2014.build_entity_class_by_key_plural(base.TaxBenefitSystem)
+    reform = plfrss2014.build_reform(base.tax_benefit_system)
 
-    reform = Reform(
-        entity_class_by_key_plural = entity_class_by_key_plural,
-        legislation_json = reform_legislation_json,
-        name = u"PLFR2014",
-        reference_legislation_json = reference_legislation_json,
-        )
+    simulation = scenario.new_simulation(debug = True)
 
-    simulation = reform.new_simulation(debug = True, scenario = scenario)
+    error_margin = 0.01
 
     rfr = simulation.calculate('rfr')
+    expected_rfr = [13247, 13338, 13429, 13520, 13611, 13703, 13793, 13884, 13975, 14066]
+    assert_less(max(abs(expected_rfr - rfr)), error_margin)
+
     impo = simulation.calculate('impo')
-    print(rfr)
-    print(impo)
-    print('-' * 20)
+    expected_impo = [-249.11, -268.22, -287.33, -306.44, -325.55, -344.87, -363.77, -382.88, -401.99, -421.1]
+    assert_less(max(abs(expected_impo - impo)), error_margin)
 
     reform_simulation = reform.new_simulation(debug = True, scenario = scenario)
     reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
-    print(reform_reduction_impot_exceptionnelle)
+    expected_reform_reduction_impot_exceptionnelle = [350, 350, 350, 350, 350, 350, 350, 261, 170, 79]
+    assert_less(max(abs(expected_reform_reduction_impot_exceptionnelle - reform_reduction_impot_exceptionnelle)),
+        error_margin)
+
     reform_rfr = reform_simulation.calculate('rfr')
+    assert_less(max(abs(expected_rfr - reform_rfr)), error_margin)  # rfr must be the same than before reform
+
     reform_impo = reform_simulation.calculate('impo')
-    print(reform_rfr)
-    print(reform_impo)
+    expected_reform_impo = [0, 0, 0, 0, 0, 0, 0, -121.88, -231.99, -342.1]
+    assert_less(max(abs(expected_reform_impo - reform_impo)), error_margin)
 
 
 if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_systemic_reform()
+    test_plfrss2014()

@@ -151,3 +151,10 @@ def init_country(drop_survey_only_variables = False, qt = False, simulate_f6de =
     TaxBenefitSystem.prestation_by_name = prestation_by_name
 
     return TaxBenefitSystem
+
+
+def init_reforms(tax_benefit_system):
+    from .model.cotisations_sociales import plfrss2014
+    return {
+        'plfrss2014': plfrss2014.build_reform(tax_benefit_system),
+        }
