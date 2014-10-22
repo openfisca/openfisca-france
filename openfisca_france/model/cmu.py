@@ -93,8 +93,14 @@ class cmu_br_i(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'year'
 
-    def function(self, period, activite, sali, choi, rsti, alr, rsa_base_ressources_patrimoine_i, P = law.cmu):
+    def function(self, activite, sali, choi, rsti, alr, rsa_base_ressources_patrimoine_i, P = law.cmu):
         return sali * (1 - (activite == 1) * P.abattement_chomage) + choi + rsti + alr + rsa_base_ressources_patrimoine_i
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['sali', 'choi', 'rsti', 'alr']:
+            return periods.offset(output_period, -1)
+        else:
+            return output_period
 
     def get_output_period(self, period):
         return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
@@ -154,17 +160,6 @@ class cmu_c(SimpleFormulaColumn):
     def function(self, cmu_c_plafond, cmu_br, period):
         return cmu_br <= cmu_c_plafond
 
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'cmu_br':
-            return periods.offset(
-                periods.period(
-                    'year',
-                    periods.start_instant(output_period),
-                    ),
-                -1)
-        else:
-            return output_period
-
     def get_output_period(self, period):
         return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
 
@@ -181,17 +176,6 @@ class acs(SimpleFormulaColumn):
 
     def function(self, cmu_c, cmu_br, acs_plafond, acs_montant):
         return not_(cmu_c) * (cmu_br <= acs_plafond) * acs_montant
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'cmu_br':
-            return periods.offset(
-                periods.period(
-                    'year',
-                    periods.start_instant(output_period),
-                    ),
-                -1)
-        else:
-            return output_period
 
     def get_output_period(self, period):
         return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
