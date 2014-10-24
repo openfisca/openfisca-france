@@ -79,8 +79,8 @@ class ra_rsa(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'month'
 
-    def function(self, sal, hsup, rpns, etr):
-        return sal + hsup + rpns + etr
+    def function(self, sal, hsup, rpns, etr, indemnites_chomage_partiel):
+        return sal + hsup + rpns + etr + indemnites_chomage_partiel
 
     def get_output_period(self, period):
         return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
@@ -126,38 +126,55 @@ def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, p
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
 
 
-def _br_rmi_ms(self, aspa, asi, aah, caah):
-    """
-    Minima sociaux inclus dans la base ressource RSA/RMI
-    'ind'
-    """
-    return self.cast_from_entity_to_role(aspa + asi ,
-        entity = 'famille', role = CHEF) + aah + caah
+@reference_formula
+class br_rmi_ms(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
+    entity_class = Individus
+    period_unit = 'month'
+
+    def function(self, aspa, asi, aah, caah):
+        return self.cast_from_entity_to_role(aspa + asi ,
+            entity = 'famille', role = CHEF) + aah + caah
+
+    def get_output_period(self, period):
+        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
+
+@reference_formula
+class br_rmi_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressource individuelle du RSA/RMI"
+    entity_class = Individus
+    period_unit = 'month'
+
+    def function(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+        ass = self.cast_from_entity_to_roles(ass_holder)
+        return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
+
+    def get_output_period(self, period):
+        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
 
 
-def _br_rmi_i(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
-    '''
-    Base ressource individuelle du RSA/RMI
-    'ind'
-    '''
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-    ass = self.cast_from_entity_to_roles(ass_holder)
+@reference_formula
+class br_rmi(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressources du Rmi ou du Rsa"
+    entity_class = Familles
+    period_unit = 'month'
 
-    return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
+    def function(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
+        br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
+        br_rmi_ms = self.split_by_roles(br_rmi_ms_holder, roles = [CHEF, PART])
+        br_rmi_pf = self.split_by_roles(br_rmi_pf_holder, roles = [CHEF, PART])
+        rsa_base_ressources_patrimoine_i = self.split_by_roles(rsa_base_ressources_patrimoine_i_holder, roles = [CHEF, PART])
+        br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] + rsa_base_ressources_patrimoine_i[CHEF] +
+                  br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART] + rsa_base_ressources_patrimoine_i[PART])
+        return br_rmi
 
-
-def _br_rmi(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
-    """
-    Base ressources du Rmi ou du Rsa
-    """
-    br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-    br_rmi_ms = self.split_by_roles(br_rmi_ms_holder, roles = [CHEF, PART])
-    br_rmi_pf = self.split_by_roles(br_rmi_pf_holder, roles = [CHEF, PART])
-    rsa_base_ressources_patrimoine_i = self.split_by_roles(rsa_base_ressources_patrimoine_i_holder, roles = [CHEF, PART])
-    br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] + rsa_base_ressources_patrimoine_i[CHEF] +
-              br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART] + rsa_base_ressources_patrimoine_i[PART])
-    return br_rmi
+    def get_output_period(self, period):
+        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
 
 
 @reference_formula
@@ -226,7 +243,7 @@ def _rsa_act(rsa, rmi):
     return res
 
 
-def _rsa_act_i(self, rsa_act_holder, concub_holder, maries_holder, quifam, idfam):
+def _rsa_act_i(self, rsa_act_holder, concub_holder, maries_holder, quifam):
     '''
     Calcule le montant du RSA activité.
 
@@ -293,20 +310,31 @@ def _rmi(rsa_socle, rsa_forfait_logement, br_rmi):
     rmi = max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
     return rmi
 
+@reference_formula
+class rsa(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenu de solidarité active"
+    entity_class = Familles
+    period_unit = 'month'
 
-def _rsa(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, br_rmi, P = law.minim.rmi):
-    '''
-    Cacule le montant du RSA
-    'fam'
-    '''
-    ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
+    def function(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, br_rmi, P = law.minim.rmi):
+        ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
 
-    # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
-    base = max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi + P.pente * (ra_rsa[CHEF] + ra_rsa[PART])
-    base_normalise = max_(base, 0)
+        # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
+        base = max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi + P.pente * (ra_rsa[CHEF] + ra_rsa[PART])
+        base_normalise = max_(base, 0)
 
-    # Seuil de versement *annualisé*
-    return base_normalise * (base_normalise >= P.rsa_nv * 12)
+        # Seuil de versement *annualisé*
+        return base_normalise * (base_normalise >= P.rsa_nv * 12)
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['ra_rsa_holder', 'br_rmi']:
+            return periods.offset(output_period, offset = -3)
+        else:
+            return output_period
+
+    def get_output_period(self, period):
+        return periods.period('month', periods.base_instant('month', periods.start_instant(period)), size = 3)
 
 
 def _api(self, agem_holder, age_holder, smic55_holder, isol, rsa_forfait_logement, br_rmi, af_majo, rsa, af = law.fam.af,
