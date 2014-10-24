@@ -11,7 +11,6 @@ from __future__ import division
 
 import logging
 
-from openfisca_core import periods
 from openfisca_core.accessors import law
 
 from ..base import QUIFOY
@@ -247,7 +246,7 @@ def _prelsoc_cap_lib(self, period, rev_cap_lib, prelsoc = law.prelsoc):
     Calcule le prélèvement social sur les revenus du capital
     soumis au prélèvement libératoire
     '''
-    year = periods.date(period).year
+    year = period.start.year
     if year < 2006:
         total = prelsoc.base_pat
     elif year < 2009:
