@@ -12,7 +12,6 @@ from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_)
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core import periods
 from openfisca_core.formulas import SimpleFormulaColumn
 
 from .base import QUIFAM, QUIFOY, reference_formula
@@ -98,12 +97,12 @@ class cmu_br_i(SimpleFormulaColumn):
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['sali', 'choi', 'rsti', 'alr', 'rsa_base_ressources_patrimoine_i']:
-            return periods.offset(output_period, -1)
+            return output_period.offset(-1)
         else:
             return output_period
 
     def get_output_period(self, period):
-        return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('year')
 
 
 @reference_formula
@@ -136,7 +135,7 @@ class cmu_br(SimpleFormulaColumn):
         return res
 
     def get_output_period(self, period):
-        return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('year')
 
 
 def _cmu_nb_pac(self, age_holder, P = law.cmu):
@@ -161,7 +160,7 @@ class cmu_c(SimpleFormulaColumn):
         return cmu_br <= cmu_c_plafond
 
     def get_output_period(self, period):
-        return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('year')
 
 
 @reference_formula
@@ -178,7 +177,7 @@ class acs(SimpleFormulaColumn):
         return not_(cmu_c) * (cmu_br <= acs_plafond) * acs_montant
 
     def get_output_period(self, period):
-        return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('year')
 
 
 ############################################################################

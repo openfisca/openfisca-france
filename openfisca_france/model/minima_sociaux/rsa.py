@@ -28,7 +28,6 @@ from numpy import (floor, maximum as max_, logical_not as not_, logical_and as a
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core import periods
 from openfisca_core.formulas import SimpleFormulaColumn
 
 from ..base import QUIFAM, QUIFOY, reference_formula
@@ -83,7 +82,7 @@ class ra_rsa(SimpleFormulaColumn):
         return sal + hsup + rpns + etr + indemnites_chomage_partiel
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('month')
 
 
 def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
@@ -138,7 +137,7 @@ class br_rmi_ms(SimpleFormulaColumn):
             entity = 'famille', role = CHEF) + aah + caah
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('month')
 
 @reference_formula
 class br_rmi_i(SimpleFormulaColumn):
@@ -154,7 +153,7 @@ class br_rmi_i(SimpleFormulaColumn):
         return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -174,7 +173,7 @@ class br_rmi(SimpleFormulaColumn):
         return br_rmi
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -195,7 +194,7 @@ class rsa_base_ressources_patrimoine_i(SimpleFormulaColumn):
             )
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('month')
 
 
 def _rmi_nbp(self, age_holder, smic55_holder, nb_par , P = law.minim.rmi):
@@ -329,12 +328,12 @@ class rsa(SimpleFormulaColumn):
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['ra_rsa_holder', 'br_rmi']:
-            return periods.offset(output_period, offset = -3)
+            return output_period.offset(-3)
         else:
             return output_period
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)), size = 3)
+        return period.start.offset('first-of', 'month').period('month', 3)
 
 
 def _api(self, agem_holder, age_holder, smic55_holder, isol, rsa_forfait_logement, br_rmi, af_majo, rsa, af = law.fam.af,

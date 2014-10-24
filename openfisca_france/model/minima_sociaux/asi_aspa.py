@@ -28,7 +28,6 @@ from numpy import (maximum as max_, logical_not as not_)
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core import periods
 from openfisca_core.formulas import SimpleFormulaColumn
 
 from ..base import QUIFAM, QUIFOY, reference_formula
@@ -62,7 +61,7 @@ class br_mv_i(SimpleFormulaColumn):
         return out
 
     def get_output_period(self, period):
-        return periods.period('month', periods.base_instant('month', periods.start_instant(period)), 3)
+        return period.start.offset('first-of', 'month').period('month', 3)
 
 
 @reference_formula
@@ -77,10 +76,10 @@ class br_mv(SimpleFormulaColumn):
         return br_mv_i[CHEF] + br_mv_i[PART]
 
     def get_variable_period(self, output_period, variable_name):
-        return periods.offset(periods.period('month', periods.start_instant(output_period), 3), -3)
+        return output_period.start.period('month', 3).offset(-3)
 
     def get_output_period(self, period):
-        return periods.period('year', periods.base_instant('month', periods.start_instant(period)))
+        return period.start.offset('first-of', 'month').period('year')
 
 #    Bloc ASPA/ASI
 #    Allocation de solidarité aux personnes agées (ASPA)
