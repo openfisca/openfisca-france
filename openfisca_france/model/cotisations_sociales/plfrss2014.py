@@ -30,7 +30,7 @@ import logging
 
 from numpy import maximum as max_, minimum as min_
 
-from openfisca_core import formulas, periods, reforms, tools
+from openfisca_core import formulas, reforms, tools
 from openfisca_core.columns import FloatCol
 from openfisca_core.enumerations import Enum
 from openfisca_france import entities
@@ -95,7 +95,7 @@ def build_reform_entity_class_by_symbol():
             return min_(max_(plafond + montant - rfr, 0), montant)
 
         def get_output_period(self, period):
-            return periods.period(u'year', periods.base_instant('month', periods.start_instant(period)))
+            return period.start.offset('first-of', 'month').period('year')
 
     # reductions
 

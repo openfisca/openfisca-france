@@ -30,7 +30,7 @@ import logging
 import re
 import uuid
 
-from openfisca_core import conv, periods, scenarios
+from openfisca_core import conv, scenarios
 
 
 log = logging.getLogger(__name__)
@@ -452,7 +452,7 @@ class Scenario(scenarios.AbstractScenario):
                     if individu_id in familles_individus_id:
                         # L'individu n'est toujours pas affecté à une famille.
                         individu = test_case['individus'][individu_id]
-                        age = find_age(individu, periods.start_date(period))
+                        age = find_age(individu, period.start.date)
                         if len(new_famille[u'parents']) < 2 and (age is None or age >= 18):
                             new_famille[u'parents'].append(individu_id)
                         else:
@@ -543,7 +543,7 @@ class Scenario(scenarios.AbstractScenario):
                     if individu_id in foyers_fiscaux_individus_id:
                         # L'individu n'est toujours pas affecté à un foyer fiscal.
                         individu = test_case['individus'][individu_id]
-                        age = find_age(individu, periods.start_date(period))
+                        age = find_age(individu, period.start.date)
                         if len(new_foyer_fiscal[u'declarants']) < 2 and (age is None or age >= 18):
                             new_foyer_fiscal[u'declarants'].append(individu_id)
                         else:
@@ -681,7 +681,7 @@ class Scenario(scenarios.AbstractScenario):
                                     enfants = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                find_age(individu_by_id[individu_id], periods.start_date(period),
+                                                find_age(individu_by_id[individu_id], period.start.date,
                                                     default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                 u" 25 ans ou être invalide",
@@ -714,7 +714,7 @@ class Scenario(scenarios.AbstractScenario):
                                             ),
                                         conv.uniform_sequence(conv.pipe(
                                             # conv.test(lambda individu_id:
-                                            #     find_age(individu_by_id[individu_id], periods.start_date(period),
+                                            #     find_age(individu_by_id[individu_id], period.start.date,
                                             #         default = 100) >= 18,
                                             #     error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
                                             #         u" ans",
@@ -730,7 +730,7 @@ class Scenario(scenarios.AbstractScenario):
                                         conv.test(
                                             lambda individu_id:
                                                 individu_by_id[individu_id].get('inv', False)
-                                                or find_age(individu_by_id[individu_id], periods.start_date(period),
+                                                or find_age(individu_by_id[individu_id], period.start.date,
                                                     default = 0) < 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                     u" 25 ans ou être invalide",
@@ -748,7 +748,7 @@ class Scenario(scenarios.AbstractScenario):
                         conv.struct(
                             dict(
                                 birth = conv.test(
-                                    lambda birth: periods.start_date(period) - birth >= datetime.timedelta(0),
+                                    lambda birth: period.start.date - birth >= datetime.timedelta(0),
                                     error = u"L'individu doit être né au plus tard le jour de la simulation",
                                     ),
                                 ),
@@ -778,6 +778,8 @@ class Scenario(scenarios.AbstractScenario):
         return json_or_python_to_test_case
 
     def suggest(self):
+        period_start_date = self.period.start.date
+        period_start_year = self.period.start.year
         test_case = self.test_case
         suggestions = dict()
 
@@ -785,13 +787,13 @@ class Scenario(scenarios.AbstractScenario):
             if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
                 # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'].itervalues())
-                birth_year = self.period_start_date.year - 40 if is_parent else self.period_start_date.year - 10
+                birth_year = period_start_year - 40 if is_parent else period_start_year - 10
                 birth = datetime.date(birth_year, 1, 1)
                 individu['birth'] = birth
                 suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                     'birth'] = birth.isoformat()
             if individu.get('activite') is None:
-                if find_age(individu, self.period_start_date) < 16:
+                if find_age(individu, period_start_date) < 16:
                     individu['activite'] = 2  # Étudiant, élève
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
                         'activite'] = u'2'  # Étudiant, élève
@@ -826,7 +828,7 @@ class Scenario(scenarios.AbstractScenario):
         if self.legislation_url is not None:
             self_json['legislation_url'] = self.legislation_url
         if self.period is not None:
-            self_json['period'] = periods.json_str(self.period)
+            self_json['period'] = str(self.period)
 
         test_case = self.test_case
         if test_case is not None:

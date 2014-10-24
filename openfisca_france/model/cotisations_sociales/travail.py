@@ -28,7 +28,6 @@ from __future__ import division
 import logging
 
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros)
-from openfisca_core import periods
 from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
@@ -154,7 +153,7 @@ def _taux_accident_travail(exposition_accident, period, accident = law.cotsoc.ac
     Approximation du taux accident à partir de l'exposition au risque donnée
     TODO: a actualiser dans param.xml
     '''
-    if periods.date(period).year >= 2012:
+    if period.start.year >= 2012:
         return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
             + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
     else:
@@ -363,7 +362,7 @@ def _alleg_fillon(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc 
     Allègement de charges patronales sur les bas et moyens salaires
     dit allègement Fillon
     '''
-    if periods.date(period).year >= 2007:
+    if period.start.year >= 2007:
         # TODO: deal with taux between 2005 and 2007
         taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, cotsoc)
         alleg_fillon = (taux_fillon * salbrut
@@ -378,7 +377,7 @@ def _alleg_cice(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = 
     '''
     Crédit d'imôt pour la compétitivité et l'emploi
     '''
-    if periods.date(period).year >= 2013:
+    if period.start.year >= 2013:
         taux_cice = taux_exo_cice(sal_h_b, cotsoc)
         alleg_cice = (taux_cice * salbrut
             * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre'])))

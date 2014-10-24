@@ -29,7 +29,7 @@ import collections
 from datetime import date
 from functools import partial
 
-from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, IntCol, PeriodSizeIndependentIntCol
+from openfisca_core.columns import AgeCol, BoolCol, EnumCol, FloatCol, PeriodSizeIndependentIntCol
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (
     build_alternative_formula_couple,

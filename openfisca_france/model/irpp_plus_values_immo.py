@@ -9,7 +9,6 @@
 
 from numpy import maximum as max_, minimum as min_
 from openfisca_core.accessors import law
-from openfisca_core import periods
 
 
 ########################################################################
@@ -54,7 +53,7 @@ def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.ir.p
     """
     # 40. ABATTEMENT POUR DUREE DE DETENTION
     # 41. NOMBRE D’ANNEES DE DETENTION AU-DELA DE LA 5EME ANNEE
-    if periods.date(period):  # TODO:
+    if period.start:  # TODO:
         taux_reduc = max_(dur_det_immo - pv_immo.ann_det1, 0) * pv_immo.taux1
     else:
         taux_reduc = (max_(dur_det_immo - pv_immo.ann_det3, 0) * pv_immo.taux3

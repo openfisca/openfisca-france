@@ -11,8 +11,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, maximum as max_, minimum as min_, size, ones, around, logical_or as or_
-from openfisca_core import periods
+from numpy import logical_not as not_, maximum as max_, minimum as min_, around, logical_or as or_
 from openfisca_core.accessors import law
 
 from .base import QUIFOY
@@ -106,7 +105,7 @@ def _acqgpl(f7up, f7uq, period, acqgpl = law.ir.credits_impot.acqgpl):
     Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
     2002-2007
     '''
-    if 2002 <= periods.date(period).year <= 2007:
+    if 2002 <= period.start.year <= 2007:
         return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
 
 
