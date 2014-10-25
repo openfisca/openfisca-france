@@ -23,12 +23,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import collections
 import functools
 
-from openfisca_core.columns import build_column_couple, reference_input_variable
+from openfisca_core.columns import build_column
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import reference_formula
 
 from .. import entities
 
@@ -37,23 +35,11 @@ QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', '
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
 QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 
-column_by_name = collections.OrderedDict()
-prestation_by_name = collections.OrderedDict()
-
 
 # Functions and decorators
 
 
-build_column_couple = functools.partial(
-    build_column_couple,
+build_column = functools.partial(
+    build_column,
     entity_class_by_symbol = entities.entity_class_by_symbol,
-    )
-
-
-reference_formula = reference_formula(prestation_by_name = prestation_by_name)
-
-
-reference_input_variable = functools.partial(
-    reference_input_variable,
-    column_by_name = column_by_name,
     )
