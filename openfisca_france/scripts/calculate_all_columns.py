@@ -26,7 +26,6 @@
 import datetime
 import numpy as np
 
-from openfisca_core import periods
 import openfisca_france
 
 
@@ -44,7 +43,7 @@ def check_1_parent(year = 2013):
                 min = 0,
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
@@ -67,7 +66,7 @@ def check_1_parent_2_enfants(year):
                 min = 0,
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
@@ -104,7 +103,7 @@ def check_1_parent_2_enfants_1_column(column_name, year):
                 min = 0,
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,

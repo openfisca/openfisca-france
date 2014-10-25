@@ -25,8 +25,6 @@
 
 import datetime
 
-from openfisca_core import periods
-
 from ..model.cotisations_sociales.travail import CAT
 from . import base
 
@@ -41,7 +39,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
                 min = chobrut_min,
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
@@ -78,7 +76,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
                 min = rstbrut_min,
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
@@ -115,7 +113,7 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
                 min = salbrut_min,
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             type_sal = type_sal,

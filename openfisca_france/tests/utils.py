@@ -27,7 +27,6 @@ import datetime
 
 from nose.tools import assert_less
 
-from openfisca_core import periods
 from . import base
 
 
@@ -61,7 +60,7 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
             foyer_fiscal[variable] = value
 
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = parent1,
         menage = menage,
         foyer_fiscal = foyer_fiscal,

@@ -27,7 +27,6 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods
 from . import base, utils
 
 
@@ -89,7 +88,7 @@ def test_couple(verbose = False):
                 foyer_fiscal[variable] = value
 
         simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-            period = periods.period('year', year),
+            period = year,
             parent1 = parent1,
             parent2 = parent2,
             menage = menage,

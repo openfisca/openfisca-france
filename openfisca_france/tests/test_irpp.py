@@ -27,7 +27,6 @@ import datetime
 
 from nose.tools import assert_less
 
-from openfisca_core import periods
 from . import base
 
 
@@ -200,7 +199,7 @@ def test_irpp():
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
             if revenu in ["rsti", "sali"]:
                 simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-                    period = periods.period('year', year),
+                    period = year,
                     parent1 = {
                         'birth': datetime.date(year - 40, 1, 1),
                         revenu: amount,
@@ -208,7 +207,7 @@ def test_irpp():
                     ).new_simulation(debug = True)
             elif revenu in fiscal_values:
                 simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-                    period = periods.period('year', year),
+                    period = year,
                     parent1 = {
                         'birth': datetime.date(year - 40, 1, 1),
                         },

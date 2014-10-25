@@ -27,7 +27,6 @@ import datetime
 
 from nose.tools import assert_less
 
-from openfisca_core import periods
 from openfisca_france.model.cotisations_sociales import plfrss2014
 from openfisca_france.tests import base
 
@@ -43,7 +42,7 @@ def test_plfrss2014():
                 name = 'sali',
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
 

@@ -36,13 +36,14 @@
 #TODO: gestion des APL et autres prestations (pour l'instant on retourne l'irpp, je ne sais pas si en retournant le
 # revenu disponible on gérerait les droits aux prestations)
 
+
 import copy
 import logging
 import numpy as np
 import os
 
-from openfisca_core import periods
 import openfisca_france
+
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
@@ -138,7 +139,7 @@ def define_scenario(year):
 #                f7cn = 1500,
                 f7rd = 100000
             ),
-        period = periods.period('year', year),
+        period = year,
         )
     scenario.suggest()
     return scenario

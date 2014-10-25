@@ -44,7 +44,6 @@ import urllib2
 
 from lxml import etree
 import numpy as np
-from openfisca_core import periods
 import openfisca_france
 
 
@@ -57,7 +56,7 @@ tax_benefit_system = TaxBenefitSystem()
 def define_scenario(year):
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1973,

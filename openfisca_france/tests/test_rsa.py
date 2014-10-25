@@ -29,7 +29,6 @@
 
 import datetime
 
-from openfisca_core import periods
 from . import base
 
 
@@ -55,7 +54,7 @@ def test_rsa_celibataire():
         print test
         amount = test["amount"]
         simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-            period = periods.period('year', year),
+            period = year,
             parent1 = {
                 'birth': datetime.date(year - age + 1, 1, 1),
                 revenu: amount,
@@ -342,7 +341,7 @@ def test_rsa_couple():
     for test in tests_list:
         print test
         test = test.copy()
-        test['period'] = periods.period('year', test.pop('year'))
+        test['period'] = test.pop('year')
         target_rsa = test.pop("rsa")  # enlève rsa du dictionnaire et l'assigne a calculated_rsa
         scenario = base.tax_benefit_system.new_scenario().init_single_entity(**test)
         scenario.suggest()
@@ -508,14 +507,14 @@ if __name__ == '__main__':
 #            if revenu in ["rsti", "sali"]:
 #
 #                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-#                    period = periods.period('year', year),
+#                    period = year,
 #                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
 #                               revenu: amount,
 #                               },
 #                    ).new_simulation(debug = True)
 #            elif revenu in fiscal_values:
 #                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-#                    period = periods.period('year', year),
+#                    period = year,
 #                    parent1 = {'birth': datetime.date(year - 40, 1, 1),
 #                               },
 #                    foyer_fiscal = {revenu: amount},

@@ -36,7 +36,7 @@
 
 import sys
 
-from openfisca_core import conv, periods
+from openfisca_core import conv
 
 from . import base, generate_json
 
@@ -77,7 +77,7 @@ def define_scenario(year, column_code):
     elif entity == 'men':
         menage[column_code] = value
     scenario.init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = parent1,
         # parent2 = dict(),
         enfants = enfants,
