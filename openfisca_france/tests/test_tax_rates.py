@@ -24,7 +24,7 @@
 
 
 from openfisca_core import periods
-from openfisca_core.simulations import average_tax_rate, marginal_tax_rate
+from openfisca_core.rates import average_rate, marginal_rate
 from . import base
 
 
@@ -42,7 +42,10 @@ def test_average_tax_rate():
         period = periods.period('year', year),
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
-    assert (average_tax_rate(simulation, target_column_name = 'revdisp', varying_column_name = 'revdisp') == 0).all()
+    assert (average_rate(
+        target = simulation.calculate('revdisp'),
+        varying = simulation.calculate('revdisp'),
+        ) == 0).all()
 
 
 def test_marginal_tax_rate():
@@ -59,7 +62,10 @@ def test_marginal_tax_rate():
         period = periods.period('year', year),
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
-    assert (marginal_tax_rate(simulation, target_column_name = 'revdisp', varying_column_name = 'revdisp') == 0).all()
+    assert (marginal_rate(
+        target = simulation.calculate('revdisp'),
+        varying = simulation.calculate('revdisp'),
+        ) == 0).all()
 
 
 if __name__ == '__main__':
