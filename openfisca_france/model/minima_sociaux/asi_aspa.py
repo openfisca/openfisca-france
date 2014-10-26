@@ -50,11 +50,11 @@ class br_mv_i(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'month'
 
-    def function(self, sali, choi, rsti, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+    def function(self, salnet, chonet, rstnet, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        out = (sali + choi + rsti + alr + rto + rpns +
+        out = (salnet + chonet + rstnet + alr + rto + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
                # max_(0,etr) +
                )

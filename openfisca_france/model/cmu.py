@@ -92,11 +92,11 @@ class cmu_br_i(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'year'
 
-    def function(self, activite, sali, choi, rsti, alr, rsa_base_ressources_patrimoine_i, P = law.cmu):
-        return sali * (1 - (activite == 1) * P.abattement_chomage) + choi + rsti + alr + rsa_base_ressources_patrimoine_i
+    def function(self, activite, salnet, chonet, rstnet, alr, rsa_base_ressources_patrimoine_i, P = law.cmu):
+        return salnet * (1 - (activite == 1) * P.abattement_chomage) + chonet + rstnet + alr + rsa_base_ressources_patrimoine_i
 
     def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['sali', 'choi', 'rsti', 'alr', 'rsa_base_ressources_patrimoine_i']:
+        if variable_name in ['salnet', 'chonet', 'rstnet', 'alr', 'rsa_base_ressources_patrimoine_i']:
             return output_period.offset(-1)
         else:
             return output_period
