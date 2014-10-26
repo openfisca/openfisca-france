@@ -27,14 +27,14 @@ import datetime
 
 from nose.tools import assert_less
 
-from openfisca_core import periods
 from openfisca_france.model.cotisations_sociales import plfrss2014
 from openfisca_france.tests import base
 
 
 def test_plfrss2014():
     year = 2013
-    scenario = base.tax_benefit_system.new_scenario().init_single_entity(
+    reform = plfrss2014.build_reform(base.tax_benefit_system)
+    scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 10,
@@ -43,25 +43,23 @@ def test_plfrss2014():
                 name = 'sali',
                 ),
             ],
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         )
 
-    reform = plfrss2014.build_reform(base.tax_benefit_system)
-
-    simulation = scenario.new_simulation(debug = True)
+    reference_simulation = scenario.new_simulation(debug = True, reference = True)
 
     error_margin = 0.01
 
-    rfr = simulation.calculate('rfr')
+    rfr = reference_simulation.calculate('rfr')
     expected_rfr = [13247, 13338, 13429, 13520, 13611, 13703, 13793, 13884, 13975, 14066]
     assert_less(max(abs(expected_rfr - rfr)), error_margin)
 
-    impo = simulation.calculate('impo')
+    impo = reference_simulation.calculate('impo')
     expected_impo = [-249.11, -268.22, -287.33, -306.44, -325.55, -344.87, -363.77, -382.88, -401.99, -421.1]
     assert_less(max(abs(expected_impo - impo)), error_margin)
 
-    reform_simulation = reform.new_simulation(debug = True, scenario = scenario)
+    reform_simulation = scenario.new_simulation(debug = True)
     reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
     expected_reform_reduction_impot_exceptionnelle = [350, 350, 350, 350, 350, 350, 350, 261, 170, 79]
     assert_less(max(abs(expected_reform_reduction_impot_exceptionnelle - reform_reduction_impot_exceptionnelle)),

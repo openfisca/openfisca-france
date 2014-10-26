@@ -27,7 +27,6 @@ import datetime
 
 from nose.tools import assert_less
 
-from openfisca_core import periods
 from . import base, utils
 
 
@@ -337,7 +336,7 @@ def test_cotsoc():
                     assert False
 
                 simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-                    period = periods.period('year', year),
+                    period = year,
                     parent1 = parent1,
                     foyer_fiscal = foyer_fiscal,
                     ).new_simulation(debug = True)

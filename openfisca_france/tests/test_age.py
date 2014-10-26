@@ -27,15 +27,13 @@ import datetime
 
 from nose.tools import assert_equal
 
-from openfisca_core import periods
-
 from . import base
 
 
 def test_age_from_agem():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(agem = 40 * 12 + 6),
         ).new_simulation(debug = True)
     assert_equal(simulation.calculate('age'), 40)
@@ -44,7 +42,7 @@ def test_age_from_agem():
 def test_age_from_birth():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
     assert_equal(simulation.calculate('age'), 40)
@@ -54,7 +52,7 @@ def test_age_from_birth():
 def test_agem_from_age():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(age = 40),
         ).new_simulation(debug = True)
     assert_equal(simulation.calculate('agem'), 40 * 12)
@@ -63,7 +61,7 @@ def test_agem_from_age():
 def test_agem_from_birth():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
     assert_equal(simulation.calculate('agem'), 40 * 12)

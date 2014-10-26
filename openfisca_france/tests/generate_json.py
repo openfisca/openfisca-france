@@ -36,7 +36,6 @@ import json
 import os
 import sys
 
-from openfisca_core import periods
 from ..scripts.compare_openfisca_impots import compare
 from . import base
 
@@ -44,7 +43,7 @@ from . import base
 def define_scenario(year = 2013):
     scenario = base.tax_benefit_system.new_scenario()
     scenario.init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,

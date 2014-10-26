@@ -25,16 +25,15 @@
 
 import datetime
 
-from nose.tools import assert_less
-
 from openfisca_core import periods, reforms
-from . import base
+
+from .base import assert_near, tax_benefit_system
 
 
 def test_parametric_reform():
     simulation_year = 2014
     simulation_period = periods.period('year', simulation_year)
-    reference_legislation_json = base.tax_benefit_system.legislation_json
+    reference_legislation_json = tax_benefit_system.legislation_json
 
     reform_legislation_json = reforms.update_legislation(
         legislation_json = reference_legislation_json,
@@ -47,10 +46,10 @@ def test_parametric_reform():
         name = u'IR_100_tranche_1',
         label = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
         legislation_json = reform_legislation_json,
-        reference_legislation_json = reference_legislation_json
+        reference = tax_benefit_system,
         )
 
-    scenario = base.tax_benefit_system.new_scenario().init_single_entity(
+    scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 3,
@@ -63,11 +62,11 @@ def test_parametric_reform():
         parent1 = dict(birth = datetime.date(simulation_year - 40, 1, 1)),
         )
 
-    simulation = scenario.new_simulation(debug = True)
-    assert_less(max(abs(simulation.calculate('impo') - [0, -7889.20019531, -23435.52929688])), .01)
+    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+    assert_near(reference_simulation.calculate('impo'), [0, -7889.20019531, -23435.52929688], error_margin = .01)
 
-    reform_simulation = reform.new_simulation(debug = True, scenario = scenario)
-    assert_less(max(abs(reform_simulation.calculate('impo') - [0., -13900.20019531, -29446.52929688])), .0001)
+    reform_simulation = scenario.new_simulation(debug = True)
+    assert_near(reform_simulation.calculate('impo'), [0, -13900.20019531, -29446.52929688], error_margin = .0001)
 
 
 if __name__ == '__main__':

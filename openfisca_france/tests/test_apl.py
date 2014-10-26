@@ -27,15 +27,13 @@ import datetime
 
 from nose.tools import assert_equal
 
-from openfisca_core import periods
-
 from . import base
 
 
 def test_zone_1():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         menage = dict(
             depcom = '75114',
             ),
@@ -47,7 +45,7 @@ def test_zone_1():
 def test_zone_2():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         menage = dict(
             depcom = '69381',
             ),
@@ -59,7 +57,7 @@ def test_zone_2():
 def test_zone_3():
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         menage = dict(
             depcom = '87191',
             ),

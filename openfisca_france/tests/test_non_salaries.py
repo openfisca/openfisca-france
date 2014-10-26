@@ -23,7 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# from openfisca_core import periods
 # from ..model.cotisations_sociales.travail import CAT
 # from . import base
 from . import utils
@@ -71,7 +70,7 @@ def test_nonsal_celibataire(verbose = True):
 
 # def test_nonsal_famille():  # TODO: buggy tests CHECK
 #     tests_infos = dict(
-#         period = periods.period('year', 2013),
+#         period = 2013,
 #         description = u"Couple de microentrepreneur",
 #         parent1 = dict(
 #             birth = datetime.date(1972, 1, 1),

@@ -12,9 +12,9 @@ from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_)
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.formulas import reference_formula, SimpleFormulaColumn
 
-from .base import QUIFAM, QUIFOY, reference_formula
+from .base import QUIFAM, QUIFOY
 from ..entities import Familles, Individus
 
 

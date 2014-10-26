@@ -28,14 +28,13 @@ import json
 
 from nose.tools import assert_equal
 
-from openfisca_core import periods
 from . import base
 
 
 def test_birth():
     year = 2013
     scenario = base.tax_benefit_system.new_scenario().init_single_entity(
-        period = periods.period('year', year),
+        period = year,
         parent1 = dict(),
         enfants = [
             dict(),

@@ -28,9 +28,9 @@ from numpy import (floor, maximum as max_, logical_not as not_, logical_and as a
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.formulas import reference_formula, SimpleFormulaColumn
 
-from ..base import QUIFAM, QUIFOY, reference_formula
+from ..base import QUIFAM, QUIFOY
 from ...entities import Familles, Individus
 from ..pfam import nb_enf, age_en_mois_benjamin
 

@@ -43,5 +43,5 @@ def check_input_column_consumers(column):
 
 def test():
     for column in base.tax_benefit_system.column_by_name.itervalues():
-        if column.formula_constructor is None:
+        if column.formula_class is None:
             yield check_input_column_consumers, column

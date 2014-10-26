@@ -23,34 +23,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import collections
-
 from openfisca_core.columns import FloatCol
 
-from ..base import build_column_couple, column_by_name
+from ..base import build_column
 
 
-column_by_name.update(collections.OrderedDict((
-    build_column_couple('indemnites_journalieres_maternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de maternité")),
-    build_column_couple('indemnites_journalieres_paternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de paternité")),
-    build_column_couple('indemnites_journalieres_adoption', FloatCol(entity = 'ind', label = u"Indemnités journalières d'adoption")),
-    build_column_couple('indemnites_journalieres_maladie', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie")),
-    build_column_couple('indemnites_journalieres_accident_travail', FloatCol(entity = 'ind', label = u"Indemnités journalières d'accident du travail")),
-    build_column_couple('indemnites_journalieres_maladie_professionnelle', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie professionnelle")),
-
-    build_column_couple('indemnites_chomage_partiel', FloatCol(entity = 'ind', label = u"Indemnités de chômage partiel")),
-
-    build_column_couple('allocation_aide_retour_emploi', FloatCol(entity = 'ind', label = u"Allocation d'aide au retour à l'emploi")),
-    build_column_couple('allocation_securisation_professionnelle', FloatCol(entity = 'ind', label = u"Allocation de sécurisation professionnelle")),
-    build_column_couple('prime_forfaitaire_mensuelle_reprise_activite', FloatCol(entity = 'ind', label = u"Prime forfaitaire mensuelle pour la reprise d'activité")),
-
-    build_column_couple('indemnites_volontariat', FloatCol(entity = 'ind', label = u"Indemnités de volontariat")),
-
-    build_column_couple('dedommagement_victime_amiante', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante")),
-
-    build_column_couple('prestation_compensatoire', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante")),
-
-    build_column_couple('aah', FloatCol(entity = 'ind', label = u"Allocation de l'adulte handicapé")),
-    build_column_couple('caah', FloatCol(entity = 'ind', label = u"Complément de l'allocation de l'adulte handicapé")),
-
-    )))
+build_column('indemnites_journalieres_maternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de maternité"))
+build_column('indemnites_journalieres_paternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de paternité"))
+build_column('indemnites_journalieres_adoption', FloatCol(entity = 'ind', label = u"Indemnités journalières d'adoption"))
+build_column('indemnites_journalieres_maladie', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie"))
+build_column('indemnites_journalieres_accident_travail', FloatCol(entity = 'ind', label = u"Indemnités journalières d'accident du travail"))
+build_column('indemnites_journalieres_maladie_professionnelle', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie professionnelle"))
+build_column('indemnites_chomage_partiel', FloatCol(entity = 'ind', label = u"Indemnités de chômage partiel"))
+build_column('allocation_aide_retour_emploi', FloatCol(entity = 'ind', label = u"Allocation d'aide au retour à l'emploi"))
+build_column('allocation_securisation_professionnelle', FloatCol(entity = 'ind', label = u"Allocation de sécurisation professionnelle"))
+build_column('prime_forfaitaire_mensuelle_reprise_activite', FloatCol(entity = 'ind', label = u"Prime forfaitaire mensuelle pour la reprise d'activité"))
+build_column('indemnites_volontariat', FloatCol(entity = 'ind', label = u"Indemnités de volontariat"))
+build_column('dedommagement_victime_amiante', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante"))
+build_column('prestation_compensatoire', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante"))
+build_column('aah', FloatCol(entity = 'ind', label = u"Allocation de l'adulte handicapé"))
+build_column('caah', FloatCol(entity = 'ind', label = u"Complément de l'allocation de l'adulte handicapé"))

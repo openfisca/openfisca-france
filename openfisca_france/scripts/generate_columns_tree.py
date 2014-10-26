@@ -37,18 +37,17 @@ import os
 import pprint
 import sys
 
-from openfisca_france import entities
-from openfisca_france import model
+from openfisca_france import entities, init_country, model
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
 except ImportError:
     columns_name_tree_by_entity = collections.OrderedDict()
-from openfisca_france.model.input_variables import column_by_name
-from openfisca_france.model.model import prestation_by_name
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
+TaxBenefitSystem = init_country()
+tax_benefit_system = TaxBenefitSystem()
 
 
 class PrettyPrinter(pprint.PrettyPrinter):
@@ -66,8 +65,8 @@ def cleanup_tree(entity, tree):
     for child in (tree.get('children') or []):
         if isinstance(child, basestring):
             # Child is a column name.
-            column = column_by_name.get(child)
-            if column is not None and column.entity == entity and is_valid_column(column):
+            column = tax_benefit_system.column_by_name.get(child)
+            if column is not None and column.entity == entity and is_valid_input_column(column):
                 children.append(child)
         else:
             assert isinstance(child, dict), child
@@ -82,9 +81,9 @@ def cleanup_tree(entity, tree):
     return tree
 
 
-def is_valid_column(column):
+def is_valid_input_column(column):
     return column.name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen') \
-        and not column.survey_only
+        and column.formula_class is None and not column.survey_only
 
 
 def iter_placed_tree(tree):
@@ -105,12 +104,10 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    all_column_by_name = column_by_name.copy()
-    all_column_by_name.update(prestation_by_name)
-    for column in all_column_by_name.itervalues():
-        formula_class = column.formula_constructor
+    for column in tax_benefit_system.column_by_name.itervalues():
+        formula_class = column.formula_class
         if formula_class is not None:
-            formula_class.set_dependencies(column, all_column_by_name)
+            formula_class.set_dependencies(column, tax_benefit_system.column_by_name)
 
     global columns_name_tree_by_entity
     columns_name_tree_by_entity = collections.OrderedDict(
@@ -127,8 +124,8 @@ def main():
         for column_name in iter_placed_tree(columns_name_tree)
         )
 
-    for name, column in column_by_name.iteritems():
-        if not is_valid_column(column):
+    for name, column in tax_benefit_system.column_by_name.iteritems():
+        if not is_valid_input_column(column):
             continue
         if not column.consumers and name not in (
                 entities.Familles.name_key,
@@ -206,7 +203,7 @@ def write_tree(tree_file, tree, level = 1):
                 if isinstance(child, basestring):
                     tree_file.write(pretty_printer.pformat(child))
                     tree_file.write(',')
-                    column = column_by_name[child]
+                    column = tax_benefit_system.column_by_name[child]
                     label = column.label
                     if label is not None:
                         label = label.strip() or None

@@ -27,7 +27,6 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods
 from ..model.cotisations_sociales.travail import CAT
 from . import base
 
@@ -43,7 +42,7 @@ def test():
     # alors qu'Openfisca la caclule pour Lyon (.0175)
     tests_infos = [
         dict(
-            period = periods.period('year', 2012),
+            period = 2012,
             description = u"Célibataire public_titulaire_etat",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -75,7 +74,7 @@ def test():
                 ),
             ),
         dict(
-            period = periods.period('year', 2012),
+            period = 2012,
             description = u"Célibataire public_titulaire_territoriale",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -107,7 +106,7 @@ def test():
                 ),
             ),
         dict(
-            period = periods.period('year', 2012),
+            period = 2012,
             description = u"Célibataire public_titulaire_hospitaliere",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -141,7 +140,7 @@ def test():
                 ),
             ),
         dict(
-            period = periods.period('year', 2011),
+            period = 2011,
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -174,7 +173,7 @@ def test():
                 ),
             ),
         dict(
-            period = periods.period('year', 2012),
+            period = 2012,
             description = u"Couple 1 fonctionnaire public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
@@ -214,7 +213,7 @@ def test():
                 ),
             ),
         dict(
-            period = periods.period('year', 2012),
+            period = 2012,
             description = u"Couple 2 fonctionnaires public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),

@@ -103,7 +103,7 @@ def build_reform_entity_class_by_symbol():
     reform_reductions_column = tools.empty_clone(reductions_column)
     reform_reductions_column.__dict__ = reductions_column.__dict__.copy()
 
-    reductions_formula_class_2013 = reform_reductions_column.formula_constructor.dated_formulas_class[-1]['formula_class']  # noqa
+    reductions_formula_class_2013 = reform_reductions_column.formula_class.dated_formulas_class[-1]['formula_class']  # noqa
     reform_reductions_formula_class_2013 = type(
         'reform_reductions_formula_class_2013',
         (reductions_formula_class_2013, ),
@@ -111,14 +111,14 @@ def build_reform_entity_class_by_symbol():
         )
     reform_reductions_formula_class_2013.extract_variables_name()
 
-    reform_dated_formulas_class = reform_reductions_column.formula_constructor.dated_formulas_class[:]
+    reform_dated_formulas_class = reform_reductions_column.formula_class.dated_formulas_class[:]
     reform_dated_formulas_class[-1] = reform_dated_formulas_class[-1].copy()
     reform_dated_formulas_class[-1]['formula_class'] = reform_reductions_formula_class_2013
 
-    reform_dated_formula_class = type('reform_dated_formula_class', (reform_reductions_column.formula_constructor, ),
+    reform_dated_formula_class = type('reform_dated_formula_class', (reform_reductions_column.formula_class, ),
         {'dated_formulas_class': reform_dated_formulas_class})
 
-    reform_reductions_column.formula_constructor = reform_dated_formula_class
+    reform_reductions_column.formula_class = reform_dated_formula_class
 
     # update column_by_name
 
@@ -345,15 +345,14 @@ def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(build_new_legislation_nodes())
-    to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
-        entity_class.key_plural: entity_class
-        for symbol, entity_class in entity_class_by_symbol.iteritems()
-        }
     return reforms.Reform(
-        entity_class_by_key_plural = to_entity_class_by_key_plural(build_reform_entity_class_by_symbol()),
+        entity_class_by_key_plural = {
+            entity_class.key_plural: entity_class
+            for entity_class in build_reform_entity_class_by_symbol().itervalues()
+            },
         legislation_json = reform_legislation_json,
         name = u'PLFR2014',
-        reference_legislation_json = reference_legislation_json,
+        reference = tax_benefit_system,
         )
 
 

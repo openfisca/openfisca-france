@@ -31,7 +31,7 @@ from . import base
 
 
 def check_legislation_xml_file(year):
-    legislation_tree = xml.etree.ElementTree.parse(base.TaxBenefitSystem.PARAM_FILE)
+    legislation_tree = xml.etree.ElementTree.parse(base.TaxBenefitSystem.legislation_xml_file_path)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
         state = conv.default_state)
 

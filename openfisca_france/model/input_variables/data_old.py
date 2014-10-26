@@ -23,498 +23,496 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import collections
 import datetime
 
 from openfisca_core.columns import BoolCol, DateCol, EnumCol, FloatCol, IntCol, StrCol
 from openfisca_core.enumerations import Enum
 
-from .base import build_column_couple, column_by_name, QUIFAM, QUIFOY, QUIMEN
+from .base import build_column, QUIFAM, QUIFOY, QUIMEN
 
 
 # Socio-economic data
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
-column_by_name.update(collections.OrderedDict((
-    build_column_couple('idmen', IntCol(label = u"Identifiant du ménage")),  # 600001, 600002,
-    build_column_couple('idfoy', IntCol(label = u"Identifiant du foyer")),  # idmen + noi du déclarant
-    build_column_couple('idfam', IntCol(label = u"Identifiant de la famille")),  # idmen + noi du chef de famille
+build_column('idmen', IntCol(label = u"Identifiant du ménage"))  # 600001, 600002,
+build_column('idfoy', IntCol(label = u"Identifiant du foyer"))  # idmen + noi du déclarant
+build_column('idfam', IntCol(label = u"Identifiant de la famille"))  # idmen + noi du chef de famille
 
-    build_column_couple('quimen', EnumCol(QUIMEN)),
-    build_column_couple('quifoy', EnumCol(QUIFOY)),
-    build_column_couple('quifam', EnumCol(QUIFAM)),
+build_column('quimen', EnumCol(QUIMEN))
+build_column('quifoy', EnumCol(QUIFOY))
+build_column('quifam', EnumCol(QUIFAM))
 
-    build_column_couple('sali', IntCol(label = u"Revenus d'activité imposables",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"1AJ",
-                                   QUIFOY['conj']: u"1BJ",
-                                   QUIFOY['pac1']: u"1CJ",
-                                   QUIFOY['pac2']: u"1DJ",
-                                   QUIFOY['pac3']: u"1EJ",
-                                   })),  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-    build_column_couple('choi', IntCol(label = u"Autres revenus imposables (chômage, préretraite)",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"1AP",
-                                   QUIFOY['conj']: u"1BP",
-                                   QUIFOY['pac1']: u"1CP",
-                                   QUIFOY['pac2']: u"1DP",
-                                   QUIFOY['pac3']: u"1EP",
-                                   })),  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    build_column_couple('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"1AS",
-                                   QUIFOY['conj']: u"1BS",
-                                   QUIFOY['pac1']: u"1CS",
-                                   QUIFOY['pac2']: u"1DS",
-                                   QUIFOY['pac3']: u"1ES",
-                                   })),  # (f1as, f1bs, f1cs, f1ds, f1es)
-    build_column_couple('fra', IntCol(label = u"Frais réels",
-                   val_type = "monetary",
-                   cerfa_field = {QUIFOY['vous']: u"1AK",
-                                  QUIFOY['conj']: u"1BK",
-                                  QUIFOY['pac1']: u"1CK",
-                                  QUIFOY['pac2']: u"1DK",
-                                  QUIFOY['pac3']: u"1EK",
-                                  })),  # (f1ak, f1bk, f1ck, f1dk, f1ek)
+build_column('sali', IntCol(label = u"Revenus d'activité imposables",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"1AJ",
+                               QUIFOY['conj']: u"1BJ",
+                               QUIFOY['pac1']: u"1CJ",
+                               QUIFOY['pac2']: u"1DJ",
+                               QUIFOY['pac3']: u"1EJ",
+                               }))  # (f1aj, f1bj, f1cj, f1dj, f1ej)
+build_column('choi', IntCol(label = u"Autres revenus imposables (chômage, préretraite)",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"1AP",
+                               QUIFOY['conj']: u"1BP",
+                               QUIFOY['pac1']: u"1CP",
+                               QUIFOY['pac2']: u"1DP",
+                               QUIFOY['pac3']: u"1EP",
+                               }))  # (f1ap, f1bp, f1cp, f1dp, f1ep)
+build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"1AS",
+                               QUIFOY['conj']: u"1BS",
+                               QUIFOY['pac1']: u"1CS",
+                               QUIFOY['pac2']: u"1DS",
+                               QUIFOY['pac3']: u"1ES",
+                               }))  # (f1as, f1bs, f1cs, f1ds, f1es)
+build_column('fra', IntCol(label = u"Frais réels",
+               val_type = "monetary",
+               cerfa_field = {QUIFOY['vous']: u"1AK",
+                              QUIFOY['conj']: u"1BK",
+                              QUIFOY['pac1']: u"1CK",
+                              QUIFOY['pac2']: u"1DK",
+                              QUIFOY['pac3']: u"1EK",
+                              }))  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-    build_column_couple('alr', IntCol(label = u"Pensions alimentaires perçues",
-                   val_type = "monetary",
-                   cerfa_field = {QUIFOY['vous']: u"1AO",
-                                  QUIFOY['conj']: u"1BO",
-                                  QUIFOY['pac1']: u"1CO",
-                                  QUIFOY['pac2']: u"1DO",
-                                  QUIFOY['pac3']: u"1EO",
-                                  })),  # (f1ao, f1bo, f1co, f1do, f1eo)
-    build_column_couple('alr_decl', BoolCol(label = u"Pension déclarée", default = True)),
+build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
+               val_type = "monetary",
+               cerfa_field = {QUIFOY['vous']: u"1AO",
+                              QUIFOY['conj']: u"1BO",
+                              QUIFOY['pac1']: u"1CO",
+                              QUIFOY['pac2']: u"1DO",
+                              QUIFOY['pac3']: u"1EO",
+                              }))  # (f1ao, f1bo, f1co, f1do, f1eo)
+build_column('alr_decl', BoolCol(label = u"Pension déclarée", default = True))
 
-    build_column_couple('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"1AU",
-                                   QUIFOY['conj']: u"1BU",
-                                   QUIFOY['pac1']: u"1CU",
-                                   QUIFOY['pac2']: u"1DU",
-                                   QUIFOY['pac3']: u"1EU",
-                                   })),  # (f1au, f1bu, f1cu, f1du, f1eu)
+build_column('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"1AU",
+                               QUIFOY['conj']: u"1BU",
+                               QUIFOY['pac1']: u"1CU",
+                               QUIFOY['pac2']: u"1DU",
+                               QUIFOY['pac3']: u"1EU",
+                               }))  # (f1au, f1bu, f1cu, f1du, f1eu)
 
 # pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
 # la case P exsite déjà plus bas ligne 339 sous le nom caseP
 
-    build_column_couple('inv', BoolCol(label = u'Invalide')),  # TODO: cerfa_field
+build_column('inv', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
 
-    build_column_couple('alt', BoolCol(label = u'Enfant en garde alternée')),  # TODO: cerfa_field
+build_column('alt', BoolCol(label = u'Enfant en garde alternée'))  # TODO: cerfa_field
 
-    build_column_couple('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
-                       cerfa_field = {QUIFOY['vous']: u"1AI",
-                                      QUIFOY['conj']: u"1BI",
-                                      QUIFOY['pac1']: u"1CI",
-                                      QUIFOY['pac2']: u"1DI",
-                                      QUIFOY['pac3']: u"1EI",
-                                   })),  # (f1ai, f1bi, f1ci, f1di, f1ei)
-    build_column_couple('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière",
-                          cerfa_field = {QUIFOY['vous']: u"1AX",
-                                         QUIFOY['conj']: u"1BX",
-                                         QUIFOY['pac1']: u"1CX",
-                                         QUIFOY['pac2']: u"1DX",
-                                         QUIFOY['pac3']: u"1QX",
-                                         })),  # (f1ax, f1bx, f1cx, f1dx, f1qx)
-    build_column_couple('ppe_tp_ns', BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière",
-                          cerfa_field = {QUIFOY['vous']: u"5NW",
-                                         QUIFOY['conj']: u"5OW",
-                                         QUIFOY['pac1']: u"5PW",
-                                         })),  # (f5nw, f5ow, f5pw)
-    build_column_couple('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
-                         cerfa_field = {QUIFOY['vous']: u"1AV",
-                                        QUIFOY['conj']: u"1BV",
-                                        QUIFOY['pac1']: u"1CV",
-                                        QUIFOY['pac2']: u"1DV",
-                                        QUIFOY['pac3']: u"1QV",
-                                        })),  # (f1av, f1bv, f1cv, f1dv, f1qv)
-    build_column_couple('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année",
-                         cerfa_field = {QUIFOY['vous']: u"5NV",
-                                        QUIFOY['conj']: u"5OV",
-                                        QUIFOY['pac1']: u"5PV",
-                                   })),  # (f5nv, f5ov, f5pv)
-    build_column_couple('jour_xyz', IntCol(default = 360,
-                        entity = "foy",
-                        label = u"Jours décomptés au titre de cette déclaration")),
-    build_column_couple('birth', DateCol(label = u"Année de naissance")),
-    build_column_couple('prenom', StrCol(label = u"Prénom")),
+build_column('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
+                   cerfa_field = {QUIFOY['vous']: u"1AI",
+                                  QUIFOY['conj']: u"1BI",
+                                  QUIFOY['pac1']: u"1CI",
+                                  QUIFOY['pac2']: u"1DI",
+                                  QUIFOY['pac3']: u"1EI",
+                               }))  # (f1ai, f1bi, f1ci, f1di, f1ei)
+build_column('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière",
+                      cerfa_field = {QUIFOY['vous']: u"1AX",
+                                     QUIFOY['conj']: u"1BX",
+                                     QUIFOY['pac1']: u"1CX",
+                                     QUIFOY['pac2']: u"1DX",
+                                     QUIFOY['pac3']: u"1QX",
+                                     }))  # (f1ax, f1bx, f1cx, f1dx, f1qx)
+build_column('ppe_tp_ns', BoolCol(label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière",
+                      cerfa_field = {QUIFOY['vous']: u"5NW",
+                                     QUIFOY['conj']: u"5OW",
+                                     QUIFOY['pac1']: u"5PW",
+                                     }))  # (f5nw, f5ow, f5pw)
+build_column('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
+                     cerfa_field = {QUIFOY['vous']: u"1AV",
+                                    QUIFOY['conj']: u"1BV",
+                                    QUIFOY['pac1']: u"1CV",
+                                    QUIFOY['pac2']: u"1DV",
+                                    QUIFOY['pac3']: u"1QV",
+                                    }))  # (f1av, f1bv, f1cv, f1dv, f1qv)
+build_column('ppe_du_ns', IntCol(label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année",
+                     cerfa_field = {QUIFOY['vous']: u"5NV",
+                                    QUIFOY['conj']: u"5OV",
+                                    QUIFOY['pac1']: u"5PV",
+                               }))  # (f5nv, f5ov, f5pv)
+build_column('jour_xyz', IntCol(default = 360,
+                    entity = "foy",
+                    label = u"Jours décomptés au titre de cette déclaration"))
+build_column('birth', DateCol(label = u"Année de naissance"))
+build_column('prenom', StrCol(label = u"Prénom"))
 
-    build_column_couple('loyer', IntCol(label = u"Loyer mensuel",
-                     entity = 'men',
-                     val_type = "monetary")),  # Loyer mensuel
-    build_column_couple('so', EnumCol(label = u"Statut d'occupation",
-                   entity = 'men',
-                   enum = Enum([u"Non renseigné",
-                                u"Accédant à la propriété",
-                                u"Propriétaire (non accédant) du logement",
-                                u"Locataire d'un logement HLM",
-                                u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-                                u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-                                u"Logé gratuitement par des parents, des amis ou l'employeur"]))),
+build_column('loyer', IntCol(label = u"Loyer mensuel",
+                 entity = 'men',
+                 val_type = "monetary"))  # Loyer mensuel
+build_column('so', EnumCol(label = u"Statut d'occupation",
+               entity = 'men',
+               enum = Enum([u"Non renseigné",
+                            u"Accédant à la propriété",
+                            u"Propriétaire (non accédant) du logement",
+                            u"Locataire d'un logement HLM",
+                            u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
+                            u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
+                            u"Logé gratuitement par des parents, des amis ou l'employeur"])))
 
-    build_column_couple('activite', EnumCol(label = u'Activité',
-                         enum = Enum([u'Actif occupé',
-                                    u'Chômeur',
-                                    u'Étudiant, élève',
-                                    u'Retraité',
-                                    u'Autre inactif']), default = 4)),
+build_column('activite', EnumCol(label = u'Activité',
+                     enum = Enum([u'Actif occupé',
+                                u'Chômeur',
+                                u'Étudiant, élève',
+                                u'Retraité',
+                                u'Autre inactif']), default = 4))
 
-    build_column_couple('titc', EnumCol(label = u"Statut, pour les agents de l'Etat des collectivités locales, ou des hôpitaux",
-                     enum = Enum([
-                                  u"Sans objet ou non renseigné",
-                                  u"Elève fonctionnaire ou stagiaire",
-                                  u"Agent titulaire",
-                                  u"Contractuel"]),
-                     survey_only = True,
-        )),
+build_column('titc', EnumCol(label = u"Statut, pour les agents de l'Etat des collectivités locales, ou des hôpitaux",
+                 enum = Enum([
+                              u"Sans objet ou non renseigné",
+                              u"Elève fonctionnaire ou stagiaire",
+                              u"Agent titulaire",
+                              u"Contractuel"]),
+                 survey_only = True,
+    ))
 
-    build_column_couple('statut', EnumCol(label = u"Statut détaillé mis en cohérence avec la profession",
-                       enum = Enum([u"Sans objet",
-                                    u"Indépendants",
-                                    u"Employeurs",
-                                    u"Aides familiaux",
-                                    u"Intérimaires",
-                                    u"Apprentis",
-                                    u"CDD (hors Etat, coll.loc.), hors contrats aidés",
-                                    u"Stagiaires et contrats aides (hors Etat, coll.loc.)",
-                                    u"Autres contrats (hors Etat, coll.loc.)",
-                                    u"CDD (Etat, coll.loc.), hors contrats aidés",
-                                    u"Stagiaires et contrats aidés (Etat, coll.loc.)",
-                                    u"Autres contrats (Etat, coll.loc.)",
-                                    ]),
-                       survey_only = True,
-                       )),
+build_column('statut', EnumCol(label = u"Statut détaillé mis en cohérence avec la profession",
+                   enum = Enum([u"Sans objet",
+                                u"Indépendants",
+                                u"Employeurs",
+                                u"Aides familiaux",
+                                u"Intérimaires",
+                                u"Apprentis",
+                                u"CDD (hors Etat, coll.loc.), hors contrats aidés",
+                                u"Stagiaires et contrats aides (hors Etat, coll.loc.)",
+                                u"Autres contrats (hors Etat, coll.loc.)",
+                                u"CDD (Etat, coll.loc.), hors contrats aidés",
+                                u"Stagiaires et contrats aidés (Etat, coll.loc.)",
+                                u"Autres contrats (Etat, coll.loc.)",
+                                ]),
+                   survey_only = True,
+                   ))
 
-    build_column_couple('txtppb', EnumCol(label = u"Taux du temps partiel",
+build_column('txtppb', EnumCol(label = u"Taux du temps partiel",
+            enum = Enum([u"Sans objet",
+                        u"Moins d'un mi-temps (50%)",
+                        u"Mi-temps (50%)",
+                        u"Entre 50 et 80%",
+                        u"80%",
+                        u"Plus de 80%"]),
+                   survey_only = True))
+
+build_column('nbsala', EnumCol(label = u"Nombre de salariés dans l'établissement de l'emploi actuel",
                 enum = Enum([u"Sans objet",
-                            u"Moins d'un mi-temps (50%)",
-                            u"Mi-temps (50%)",
-                            u"Entre 50 et 80%",
-                            u"80%",
-                            u"Plus de 80%"]),
-                       survey_only = True)),
+                            u"Aucun salarié",
+                            u"1 à 4 salariés",
+                            u"5 à 9 salariés",
+                            u"10 à 19 salariés",
+                            u"20 à 49 salariés",
+                            u"50 à 199 salariés",
+                            u"200 à 499 salariés",
+                            u"500 à 999 salariés",
+                            u"1000 salariés ou plus",
+                            u"Ne sait pas",
+                            ])))
 
-    build_column_couple('nbsala', EnumCol(label = u"Nombre de salariés dans l'établissement de l'emploi actuel",
-                    enum = Enum([u"Sans objet",
-                                u"Aucun salarié",
-                                u"1 à 4 salariés",
-                                u"5 à 9 salariés",
-                                u"10 à 19 salariés",
-                                u"20 à 49 salariés",
-                                u"50 à 199 salariés",
-                                u"200 à 499 salariés",
-                                u"500 à 999 salariés",
-                                u"1000 salariés ou plus",
-                                u"Ne sait pas",
-                                ]))),
+build_column('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
+                    default = True))
 
-    build_column_couple('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
-                        default = True)),
+build_column('chpub', EnumCol(label = u"Nature de l'employeur principal",
+                  enum = Enum([u"Sans objet",
+                               u"Etat",
+                               u"Collectivités locales, HLM",
+                               u"Hôpitaux publics",
+                               u"Particulier",
+                               u"Entreprise publique (La Poste, EDF-GDF, etc.)",
+                               u"Entreprise privée, association",
+                               ]),
+                  survey_only = True))
 
-    build_column_couple('chpub', EnumCol(label = u"Nature de l'employeur principal",
-                      enum = Enum([u"Sans objet",
-                                   u"Etat",
-                                   u"Collectivités locales, HLM",
-                                   u"Hôpitaux publics",
-                                   u"Particulier",
-                                   u"Entreprise publique (La Poste, EDF-GDF, etc.)",
-                                   u"Entreprise privée, association",
-                                   ]),
-                      survey_only = True)),
+build_column('cadre', BoolCol(label = u"Cadre salarié du privé",
+                  survey_only = True))
 
-    build_column_couple('cadre', BoolCol(label = u"Cadre salarié du privé",
-                      survey_only = True)),
+build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))  # TODO: complete label and add relevant default
+build_column('exposition_accident', EnumCol(label = u"Exposition au risque pour les accidents du travail",
+                        enum = Enum([u"Faible",
+                               u"Moyen",
+                               u"Elevé",
+                               u"Très elevé",
+                               ])))
 
-    build_column_couple('code_risque', EnumCol(label = u"Code risque pour les accidents du travail")),  # TODO: complete label and add relevant default
-    build_column_couple('exposition_accident', EnumCol(label = u"Exposition au risque pour les accidents du travail",
-                            enum = Enum([u"Faible",
-                                   u"Moyen",
-                                   u"Elevé",
-                                   u"Très elevé",
-                                   ]))),
+build_column('boursier', BoolCol(label = u"Elève ou étudiant boursier"))
+build_column('code_postal', IntCol(label = u"Code postal du lieu de résidence",
+                       entity = 'men'))
 
-    build_column_couple('boursier', BoolCol(label = u"Elève ou étudiant boursier")),
-    build_column_couple('code_postal', IntCol(label = u"Code postal du lieu de résidence",
-                           entity = 'men')),
+build_column('statmarit', EnumCol(label = u"Statut marital",
+                      default = 2,
+                      enum = Enum([u"Marié",
+                                u"Célibataire",
+                                u"Divorcé",
+                                u"Veuf",
+                                u"Pacsé",
+                                u"Jeune veuf"], start = 1)))
 
-    build_column_couple('statmarit', EnumCol(label = u"Statut marital",
-                          default = 2,
-                          enum = Enum([u"Marié",
-                                    u"Célibataire",
-                                    u"Divorcé",
-                                    u"Veuf",
-                                    u"Pacsé",
-                                    u"Jeune veuf"], start = 1))),
+build_column('nbN', IntCol(cerfa_field = u'N', entity = 'foy',
+    label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille"))
+build_column('nbR', IntCol(cerfa_field = u'R', entity = 'foy',
+    label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %"))
 
-    build_column_couple('nbN', IntCol(cerfa_field = u'N', entity = 'foy',
-        label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille")),
-    build_column_couple('nbR', IntCol(cerfa_field = u'R', entity = 'foy',
-        label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %")),
-
-    build_column_couple('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
-                      entity = 'foy',
-                      cerfa_field = u'E', end = datetime.date(2012, 12, 31))),
-    build_column_couple('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
-                      entity = 'foy',
-                      cerfa_field = u'F')),
-    build_column_couple('caseG', BoolCol(label = u"Titulaire d'une pension de veuve de guerre",
-                      entity = 'foy',
-                      cerfa_field = u'G')),  # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche
-    build_column_couple('caseH', IntCol(label = u"Année de naissance des enfants à charge en garde alternée", entity = 'foy',
-                     cerfa_field = u'H')),
+build_column('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
+                  entity = 'foy',
+                  cerfa_field = u'E', end = datetime.date(2012, 12, 31)))
+build_column('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
+                  entity = 'foy',
+                  cerfa_field = u'F'))
+build_column('caseG', BoolCol(label = u"Titulaire d'une pension de veuve de guerre",
+                  entity = 'foy',
+                  cerfa_field = u'G'))  # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche
+build_column('caseH', IntCol(label = u"Année de naissance des enfants à charge en garde alternée", entity = 'foy',
+                 cerfa_field = u'H'))
 # il ne s'agit pas à proprement parlé de la case H, les cases permettant d'indiquer l'année de naissance
 #    se rapportent bien à nbH mais ne sont pas nommées, choisissons nous de laisser cerfa_field = u'H' pour caseH ?
 #    De plus les caseH peuvent être multiples puisqu'il peut y avoir plusieurs enfants? donc faut-il les nommer caseH1, caseH2...caseH6 (les 6 présentes dans la déclaration) ?
 #    il faut aussi créer les cases F, G, R et I qui donnent également les années de naissances des PAC
 
 
-    build_column_couple('caseK', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre",
-                      entity = 'foy',
-                      cerfa_field = u'K', end = datetime.date(2011, 12, 31))),
+build_column('caseK', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre",
+                  entity = 'foy',
+                  cerfa_field = u'K', end = datetime.date(2011, 12, 31)))
 
-    build_column_couple('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul",
-                      entity = 'foy',
-                      cerfa_field = u'L')),
+build_column('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul",
+                  entity = 'foy',
+                  cerfa_field = u'L'))
 
-    build_column_couple('caseN', BoolCol(label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus",
-                      entity = 'foy',
-                      cerfa_field = u'N')),
-    build_column_couple('caseP', BoolCol(label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%",
-                      entity = 'foy',
-                      cerfa_field = u'P')),
-    build_column_couple('caseS', BoolCol(label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
-                      entity = 'foy',
-                      cerfa_field = u'S')),
+build_column('caseN', BoolCol(label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus",
+                  entity = 'foy',
+                  cerfa_field = u'N'))
+build_column('caseP', BoolCol(label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%",
+                  entity = 'foy',
+                  cerfa_field = u'P'))
+build_column('caseS', BoolCol(label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
+                  entity = 'foy',
+                  cerfa_field = u'S'))
 
-    build_column_couple('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus",
-                      entity = 'foy',
-                      cerfa_field = u'T')),
+build_column('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus",
+                  entity = 'foy',
+                  cerfa_field = u'T'))
 
-    build_column_couple('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
-                      entity = 'foy',
-                      cerfa_field = u'W')),
+build_column('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
+                  entity = 'foy',
+                  cerfa_field = u'W'))
 
-    build_column_couple('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
-        val_type = "monetary")),
-    build_column_couple('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
-        val_type = "monetary")),
-    build_column_couple('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
-        val_type = "monetary")),
+build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
+    val_type = "monetary"))
+build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
+    val_type = "monetary"))
+build_column('nbptr_n_2', IntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
+    val_type = "monetary"))
 
-    # Rentes viagères
-    build_column_couple('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'1AW')),
-    build_column_couple('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'1BW')),
-    build_column_couple('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'1CW')),
-    build_column_couple('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'1DW')),
+# Rentes viagères
+build_column('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1AW'))
+build_column('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1BW'))
+build_column('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1CW'))
+build_column('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1DW'))
 
-    # Gain de levée d'options
-    # Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv
-    # et les mettre en f1tvm comme pour sali
-    # Il faut aussi le faire en amont dans les tables
+# Gain de levée d'options
+# Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv
+# et les mettre en f1tvm comme pour sali
+# Il faut aussi le faire en amont dans les tables
 
-    # là je ne comprends pas pourquoi il faut changer les f1uv en f1tvm....
-    # du coups je n'ai pas changé et j'ai fait un dico comme pour sali
+# là je ne comprends pas pourquoi il faut changer les f1uv en f1tvm....
+# du coups je n'ai pas changé et j'ai fait un dico comme pour sali
 
-    build_column_couple('f1tv', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans",
-                            entity = 'ind',
-                            val_type = "monetary",
-                            cerfa_field = {QUIFOY['vous']: u"1TV",
-                                           QUIFOY['conj']: u"1UV",
-                                           })),  # (f1tv,f1uv)),
+build_column('f1tv', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans",
+                        entity = 'ind',
+                        val_type = "monetary",
+                        cerfa_field = {QUIFOY['vous']: u"1TV",
+                                       QUIFOY['conj']: u"1UV",
+                                       }))  # (f1tv,f1uv))
 
-    build_column_couple('f1tw', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans",
-                            entity = 'ind',
-                            val_type = "monetary",
-                            cerfa_field = {QUIFOY['vous']: u"1TW",
-                                           QUIFOY['conj']: u"1UW",
-                                           })),  # (f1tw,f1uw)),
+build_column('f1tw', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans",
+                        entity = 'ind',
+                        val_type = "monetary",
+                        cerfa_field = {QUIFOY['vous']: u"1TW",
+                                       QUIFOY['conj']: u"1UW",
+                                       }))  # (f1tw,f1uw))
 
-    build_column_couple('f1tx', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans",
-                            entity = 'ind',
-                            val_type = "monetary",
-                            cerfa_field = {QUIFOY['vous']: u"1TX",
-                                           QUIFOY['conj']: u"1UX",
-                            })),  # (f1tx,f1ux)),
+build_column('f1tx', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans",
+                        entity = 'ind',
+                        val_type = "monetary",
+                        cerfa_field = {QUIFOY['vous']: u"1TX",
+                                       QUIFOY['conj']: u"1UX",
+                        }))  # (f1tx,f1ux))
 
-    # RVCM
-    # revenus au prélèvement libératoire
-    build_column_couple('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'2DA', end = datetime.date(2012, 12, 31))),  # à vérifier sur la nouvelle déclaration des revenus 2013
+# RVCM
+# revenus au prélèvement libératoire
+build_column('f2da', IntCol(label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'2DA', end = datetime.date(2012, 12, 31)))  # à vérifier sur la nouvelle déclaration des revenus 2013
 
-    build_column_couple('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'2DH')),
+build_column('f2dh', IntCol(label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'2DH'))
 
-    build_column_couple('f2ee', IntCol(label = u"Autres produits de placement soumis aux prélèvements libératoires",
-                    entity = 'foy',
-                    val_type = "monetary",
-                    cerfa_field = u'2EE')),
+build_column('f2ee', IntCol(label = u"Autres produits de placement soumis aux prélèvements libératoires",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'2EE'))
 
-    # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
-    build_column_couple('f2dc', IntCol(entity = 'foy',
-                    label = u"Revenus des actions et parts donnant droit à abattement",
-                    val_type = "monetary",
-                    cerfa_field = u'2DC')),
+# revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+build_column('f2dc', IntCol(entity = 'foy',
+                label = u"Revenus des actions et parts donnant droit à abattement",
+                val_type = "monetary",
+                cerfa_field = u'2DC'))
 
-    build_column_couple('f2fu', IntCol(entity = 'foy',
-                    label = u"Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement",
-                    val_type = "monetary",
-                    cerfa_field = u'2FU')),
-    build_column_couple('f2ch', IntCol(entity = 'foy',
-                    label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement",
-                    val_type = "monetary",
-                    cerfa_field = u'2CH')),
+build_column('f2fu', IntCol(entity = 'foy',
+                label = u"Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement",
+                val_type = "monetary",
+                cerfa_field = u'2FU'))
+build_column('f2ch', IntCol(entity = 'foy',
+                label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement",
+                val_type = "monetary",
+                cerfa_field = u'2CH'))
 
-    #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
-    build_column_couple('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)",
-                    val_type = "monetary",
-                    cerfa_field = u'2TS')),
-    build_column_couple('f2go', IntCol(entity = 'foy',
-                    label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n'ouvrant pas droit à abattement)",
-                    val_type = "monetary",
-                    cerfa_field = u'2GO')),
-    build_column_couple('f2tr', IntCol(entity = 'foy', label = u"Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)",
-                    val_type = "monetary",
-                    cerfa_field = u'2TR')),
+#  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
+build_column('f2ts', IntCol(entity = 'foy', label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)",
+                val_type = "monetary",
+                cerfa_field = u'2TS'))
+build_column('f2go', IntCol(entity = 'foy',
+                label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n'ouvrant pas droit à abattement)",
+                val_type = "monetary",
+                cerfa_field = u'2GO'))
+build_column('f2tr', IntCol(entity = 'foy', label = u"Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)",
+                val_type = "monetary",
+                cerfa_field = u'2TR'))
 
 
-    # Autres revenus des valeurs et capitaux mobiliers
-    build_column_couple('f2cg', IntCol(entity = 'foy',
-                    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible",
-                    val_type = "monetary",
-                    cerfa_field = u'2CG')),
+# Autres revenus des valeurs et capitaux mobiliers
+build_column('f2cg', IntCol(entity = 'foy',
+                label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible",
+                val_type = "monetary",
+                cerfa_field = u'2CG'))
 
-    build_column_couple('f2bh', IntCol(entity = 'foy',
-                    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible",
-                    val_type = "monetary",
-                    cerfa_field = u'2BH')),
+build_column('f2bh', IntCol(entity = 'foy',
+                label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible",
+                val_type = "monetary",
+                cerfa_field = u'2BH'))
 
-    build_column_couple('f2ca', IntCol(entity = 'foy',
-                    label = u"Frais et charges déductibles",
-                    val_type = "monetary",
-                    cerfa_field = u'2CA')),
+build_column('f2ca', IntCol(entity = 'foy',
+                label = u"Frais et charges déductibles",
+                val_type = "monetary",
+                cerfa_field = u'2CA'))
 
-    build_column_couple('f2ck', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé",
-                    val_type = "monetary",
-                    cerfa_field = u'2CK',
-                    start = datetime.date(2013, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
+build_column('f2ck', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé",
+                val_type = "monetary",
+                cerfa_field = u'2CK',
+                start = datetime.date(2013, 1, 1)))  # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
 
-    build_column_couple('f2ab', IntCol(entity = 'foy',
-                    label = u"Crédits d'impôt sur valeurs étrangères",
-                    val_type = "monetary",
-                    cerfa_field = u'2AB')),
+build_column('f2ab', IntCol(entity = 'foy',
+                label = u"Crédits d'impôt sur valeurs étrangères",
+                val_type = "monetary",
+                cerfa_field = u'2AB'))
 
-    build_column_couple('f2bg', IntCol(entity = 'foy',
-                    label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
-                    val_type = "monetary",
-                    cerfa_field = u'2BG',
-                    start = datetime.date(2012, 1, 1))),  # TODO: nouvelle case à créer où c'est nécessaire
-                                     # TODO: vérifier existence avant 2012
+build_column('f2bg', IntCol(entity = 'foy',
+                label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables",
+                val_type = "monetary",
+                cerfa_field = u'2BG',
+                start = datetime.date(2012, 1, 1)))  # TODO: nouvelle case à créer où c'est nécessaire
+                                 # TODO: vérifier existence avant 2012
 
-    build_column_couple('f2aa', IntCol(entity = 'foy',
-                    label = u"Déficits des années antérieures non encore déduits",
-                    val_type = "monetary",
-                    cerfa_field = u'2AA')),
+build_column('f2aa', IntCol(entity = 'foy',
+                label = u"Déficits des années antérieures non encore déduits",
+                val_type = "monetary",
+                cerfa_field = u'2AA'))
 
-    build_column_couple('f2al', IntCol(entity = 'foy',
-                    label = u"Déficits des années antérieures non encore déduits",
-                    val_type = "monetary",
-                    cerfa_field = u'2AL')),
+build_column('f2al', IntCol(entity = 'foy',
+                label = u"Déficits des années antérieures non encore déduits",
+                val_type = "monetary",
+                cerfa_field = u'2AL'))
 
-    build_column_couple('f2am', IntCol(entity = 'foy',
-                    label = u"Déficits des années antérieures non encore déduits",
-                    val_type = "monetary",
-                    cerfa_field = u'2AM')),
+build_column('f2am', IntCol(entity = 'foy',
+                label = u"Déficits des années antérieures non encore déduits",
+                val_type = "monetary",
+                cerfa_field = u'2AM'))
 
-    build_column_couple('f2an', IntCol(entity = 'foy',
-                    label = u"Déficits des années antérieures non encore déduits",
-                    val_type = "monetary",
-                    cerfa_field = u'2AN',
-                    start = datetime.date(2010, 1, 1))),
+build_column('f2an', IntCol(entity = 'foy',
+                label = u"Déficits des années antérieures non encore déduits",
+                val_type = "monetary",
+                cerfa_field = u'2AN',
+                start = datetime.date(2010, 1, 1)))
 
-    build_column_couple('f2aq', IntCol(entity = 'foy',
-                    label = u"Déficits des années antérieures non encore déduits",
-                    val_type = "monetary",
-                    cerfa_field = u'2AQ',
-                    start = datetime.date(2011, 1, 1))),
+build_column('f2aq', IntCol(entity = 'foy',
+                label = u"Déficits des années antérieures non encore déduits",
+                val_type = "monetary",
+                cerfa_field = u'2AQ',
+                start = datetime.date(2011, 1, 1)))
 
-    build_column_couple('f2ar', IntCol(entity = 'foy',
-                    label = u"Déficits des années antérieures non encore déduits",
-                    val_type = "monetary",
-                    cerfa_field = u'2AR',
-                    start = datetime.date(2012, 1, 1))),
+build_column('f2ar', IntCol(entity = 'foy',
+                label = u"Déficits des années antérieures non encore déduits",
+                val_type = "monetary",
+                cerfa_field = u'2AR',
+                start = datetime.date(2012, 1, 1)))
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 #
-   build_column_couple('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = datetime.date(2011, 12, 31))),  # TODO: vérifier existence <=2011
+build_column('f2as', IntCol(entity = 'foy', label = u"Déficits des années antérieures non encore déduits: année 2012", val_type = "monetary", end = datetime.date(2011, 12, 31)))  # TODO: vérifier existence <=2011
 
-    build_column_couple('f2dm', IntCol(entity = 'foy',
-                    label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
-                    val_type = "monetary",
-                    cerfa_field = u'2DM',
-                    start = datetime.date(2012, 1, 1))),  # TODO: nouvelle case à utiliser où c'est nécessaire
-                                     # TODO: vérifier existence avant 2012
+build_column('f2dm', IntCol(entity = 'foy',
+                label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %",
+                val_type = "monetary",
+                cerfa_field = u'2DM',
+                start = datetime.date(2012, 1, 1)))  # TODO: nouvelle case à utiliser où c'est nécessaire
+                                 # TODO: vérifier existence avant 2012
 
-    build_column_couple('f2gr', IntCol(entity = 'foy',
-                    label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
-                    val_type = "monetary",
-                    cerfa_field = u'2GR',
-                    start = datetime.date(2009, 1, 1),
-                    end = datetime.date(2009, 12, 31))),  # TODO: vérifier existence à partir de 2011
+build_column('f2gr', IntCol(entity = 'foy',
+                label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
+                val_type = "monetary",
+                cerfa_field = u'2GR',
+                start = datetime.date(2009, 1, 1),
+                end = datetime.date(2009, 12, 31)))  # TODO: vérifier existence à partir de 2011
 
-    build_column_couple('f3vc', IntCol(entity = 'foy',
-                    label = u"Produits et plus-values exonérés provenant de structure de capital-risque",
-                    val_type = "monetary",
-                    cerfa_field = u'3VC')),
+build_column('f3vc', IntCol(entity = 'foy',
+                label = u"Produits et plus-values exonérés provenant de structure de capital-risque",
+                val_type = "monetary",
+                cerfa_field = u'3VC'))
 
-    build_column_couple('f3vd', IntCol(entity = 'ind',
-                    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"3VD",
-                                   QUIFOY['conj']: u"3SD",
-                                   })),  # (f3vd, f3sd)
+build_column('f3vd', IntCol(entity = 'ind',
+                label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"3VD",
+                               QUIFOY['conj']: u"3SD",
+                               }))  # (f3vd, f3sd)
 
-    build_column_couple('f3ve', IntCol(entity = 'foy',
-                    label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
-                    val_type = "monetary",
-                    cerfa_field = u'3VE',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f3ve', IntCol(entity = 'foy',
+                label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %",
+                val_type = "monetary",
+                cerfa_field = u'3VE',
+                start = datetime.date(2013, 1, 1)))
 # """
 # réutilisation case 3VE en 2013
 
 
-#    build_column_couple('f3ve', IntCol(entity = 'foy',
+#    build_column('f3ve', IntCol(entity = 'foy',
 #                    label = u"Plus-values de cession de droits sociaux réalisées par des personnes domiciliées dans les DOM",
 #                    val_type = "monetary",
 #                    cerfa_field = u'3VE',
-#                    end = datetime.date(2012, 12, 31))),
+#                    end = datetime.date(2012, 12, 31)))
 # """
 
 
 
 
-    build_column_couple('f3vf', IntCol(entity = 'ind',
-                    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"3VF",
-                                   QUIFOY['conj']: u"3SF",
-                                   })),  # (f3vf, f3sf)
+build_column('f3vf', IntCol(entity = 'ind',
+                label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"3VF",
+                               QUIFOY['conj']: u"3SF",
+                               }))  # (f3vf, f3sf)
 
 # comment gérer les cases qui ont le même nom mais qui ne correspondent pas tout à fait à la même chose ?
 # peut-ont garder le même nom et l'encadrer par des start-end ? ou avec un truc genre if sur l'année ?(pour ne pas avoir à changer le nom de la variable)
@@ -522,1890 +520,1890 @@ column_by_name.update(collections.OrderedDict((
 # ça rendra le modéle un peu moins clair parce qu'il y aura le même nom de variable pour des choses différentes et dans des calculs ne se rapportant pas aux mêmes choses,
 # mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calculs ? qu'en penses-tu ?
 
-    # ## build_column_couple('f3vl', IntCol(entity = 'foy',
-    # ##                 label = u"Distributions par des sociétés de capital-risque taxables à 24 %",
-    # ##                 val_type = "monetary",
-    # ##                 cerfa_field = u'3VL'
-    # ##                 start = datetime.date(2009, 1, 1),
-    # ##                 end = datetime.date(2009, 12, 31))),#vérifier avant 2009
-
-    build_column_couple('f3vl', IntCol(entity = 'foy',
-                    label = u"Distributions par des sociétés de capital-risque taxables à 19 %",
-                    val_type = "monetary",
-                    cerfa_field = u'3VL',
-                    start = datetime.date(2012, 1, 1),
-                    end = datetime.date(2013, 12, 31))),  # vérifier pour 2011 et 2010
-
-    build_column_couple('f3vi', IntCol(entity = 'ind',
-                    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"3VI",
-                                   QUIFOY['conj']: u"3SI",
-                                   })),  # (f3vi, f3si )
-
-    build_column_couple('f3vm', IntCol(entity = 'foy',
-                    label = u"Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %",
-                    val_type = "monetary",
-                    cerfa_field = u'3VM')),
-
-    build_column_couple('f3vt', IntCol(entity = 'foy',
-                    label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %",
-                    val_type = "monetary",
-                    cerfa_field = u'3VT')),
-
-    build_column_couple('f3vj', IntCol(entity = 'ind',
-                    label = u"Gains imposables sur option dans la catégorie des salaires",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"3VJ",
-                                   QUIFOY['conj']: u"3VK",
-                                   })),  # (f3vj, f3vk )
-
-    build_column_couple('f3va', IntCol(entity = 'ind',
-                    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"3VA",
-                                   QUIFOY['conj']: u"3VB",
-                                   })),  # (f3va, f3vb ))),
-
-    # Plus values et gains taxables à des taux forfaitaires
-
-    build_column_couple('f3vg', IntCol(entity = 'foy',
-                    label = u"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés",
-                    val_type = "monetary",
-                    cerfa_field = u'3VG')),
-
-    build_column_couple('f3vh', IntCol(entity = 'foy',
-                    label = u"Perte de l'année de perception des revenus",
-                    val_type = "monetary",
-                    cerfa_field = u'3VH')),
-
-    build_column_couple('f3vu', IntCol(entity = 'foy',
-                    end = datetime.date(2009, 12, 31))),  # TODO: vérifier pour 2010 et 2011
-
-    build_column_couple('f3vv', IntCol(entity = 'foy',
-                     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
-                     val_type = "monetary",
-                     cerfa_field = u'3VV')),  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
-
-    build_column_couple('f3si', IntCol(entity = 'foy')),  # TODO: parmi ces cas créer des valeurs individuelles
-    #                                    # correspond à autre chose en 2009, vérifier 2011,2010
-
-    build_column_couple('f3sa', IntCol(entity = 'foy', end = datetime.date(2009, 12, 31))),  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
-
-    build_column_couple('f3sf', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
-
-    build_column_couple('f3sd', IntCol(entity = 'foy')),  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
-
-    build_column_couple('f3vz', IntCol(entity = 'foy',
-                     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
-                     val_type = "monetary",
-                     cerfa_field = u'3VZ',
-                     start = datetime.date(2011, 1, 1))),  # TODO: vérifier avant 2012
-
-    # Revenus fonciers
-    build_column_couple('f4ba', IntCol(entity = 'foy',
-                    label = u"Revenus fonciers imposables",
-                    val_type = "monetary",
-                    cerfa_field = u'4BA')),
-
-    build_column_couple('f4bb', IntCol(entity = 'foy',
-                    label = u"Déficit imputable sur les revenus fonciers",
-                    val_type = "monetary",
-                    cerfa_field = u'4BB')),
-
-    build_column_couple('f4bc', IntCol(entity = 'foy',
-                    label = u"Déficit imputable sur le revenu global",
-                    val_type = "monetary",
-                    cerfa_field = u'4BC')),
-
-    build_column_couple('f4bd', IntCol(entity = 'foy',
-                    label = u"Déficits antérieurs non encore imputés",
-                    val_type = "monetary",
-                    cerfa_field = u'4BD')),
-
-    build_column_couple('f4be', IntCol(entity = 'foy',
-                    label = u"Micro foncier: recettes brutes sans abattement",
-                    val_type = "monetary",
-                    cerfa_field = u'4BE')),
-
-    # Prime d'assurance loyers impayés
-    build_column_couple('f4bf', IntCol(entity = 'foy',
-                    label = u"Primes d'assurance pour loyers impayés des locations conventionnées",
-                    val_type = "monetary",
-                    cerfa_field = u'4BF')),
-
-    build_column_couple('f4bl', IntCol(entity = 'foy', label = u"", end = datetime.date(2009, 12, 31))),  # TODO: cf 2010 2011
-
-    build_column_couple('f5qm', IntCol(entity = 'ind',
-                    label = u"Agents généraux d’assurances: indemnités de cessation d’activité",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"5QM",
-                                   QUIFOY['conj']: u"5RM",
-                                   })),  # (f5qm, f5rm )
-
-    # Csg déductible
-    build_column_couple('f6de', IntCol(entity = 'foy',
-                    label = u"CSG déductible calculée sur les revenus du patrimoine",
-                    val_type = "monetary",
-                    cerfa_field = u'6DE')),
-
-    # Pensions alimentaires
-    build_column_couple('f6gi', IntCol(entity = 'foy',
-                    label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant",
-                    val_type = "monetary",
-                    cerfa_field = u'6GI')),
-
-    build_column_couple('f6gj', IntCol(entity = 'foy',
-                    label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant",
-                    val_type = "monetary",
-                    cerfa_field = u'6GJ')),
-
-    build_column_couple('f6el', IntCol(entity = 'foy',
-                    label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant",
-                    val_type = "monetary",
-                    cerfa_field = u'6EL')),
-
-    build_column_couple('f6em', IntCol(entity = 'foy',
-                    label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant",
-                    val_type = "monetary",
-                    cerfa_field = u'6EM')),
-
-    build_column_couple('f6gp', IntCol(entity = 'foy',
-                    label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)",
-                    val_type = "monetary",
-                    cerfa_field = u'6GP')),
-
-    build_column_couple('f6gu', IntCol(entity = 'foy',
-                    label = u"Autres pensions alimentaires versées (mineurs, ascendants)",
-                    val_type = "monetary",
-                    cerfa_field = u'6GU')),
-
-
-    # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
-    build_column_couple('f6eu', IntCol(entity = 'foy',
-                    label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin",
-                    val_type = "monetary",
-                    cerfa_field = u'6EU')),
-
-    build_column_couple('f6ev', IntCol(entity = 'foy',
-                    label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit",
-                    cerfa_field = u'6EV')),
-
-    # Déductions diverses
-    build_column_couple('f6dd', IntCol(entity = 'foy',
-                    label = u"Déductions diverses",
-                    val_type = "monetary",
-                    cerfa_field = u'6DD')),
-
-    # Épargne retraite - PERP, PRÉFON, COREM et CGOS
-    build_column_couple('f6ps', IntCol(entity = 'ind',
-                    label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"6PS",
-                                   QUIFOY['conj']: u"6PT",
-                                   QUIFOY['pac1']: u"6PU",
-                                   })),  # (f6ps, f6pt, f6pu)
-
-    build_column_couple('f6rs', IntCol(entity = 'ind',
-                    label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"6RS",
-                                   QUIFOY['conj']: u"6RT",
-                                   QUIFOY['pac1']: u"6RU",
-                                   })),  # (f6rs, f6rt, f6ru))),
-
-    build_column_couple('f6ss', IntCol(entity = 'ind',
-                    label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"6SS",
-                                   QUIFOY['conj']: u"6ST",
-                                   QUIFOY['pac1']: u"6SU",
-                                   })),  # (f6ss, f6st, f6su))),
-
-
-    # Souscriptions en faveur du cinéma ou de l’audiovisuel
-    build_column_couple('f6aa', IntCol(entity = 'foy',
-                    label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
-                    val_type = "monetary",
-                    start = datetime.date(2005, 1, 1),
-                    end = datetime.date(2005, 12, 31),
-                    cerfa_field = u'6AA')),  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
-
-    # Souscriptions au capital des SOFIPÊCHE
-    build_column_couple('f6cc', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des SOFIPÊCHE",
-                    val_type = "monetary",
-                    cerfa_field = u'CC',
-                    start = datetime.date(2005, 1, 1),
-                    end = datetime.date(2005, 12, 31))),  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
-
-
-    # Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
-    # ou Versements sur un compte épargne codéveloppement
-    build_column_couple('f6eh', IntCol(entity = 'foy',
-                    label = u"",
-                    val_type = "monetary",
-                    start = datetime.date(2005, 1, 1),
-                    end = datetime.date(2005, 12, 31),
-                    cerfa_field = u'EH')),  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
-
-    # Pertes en capital consécutives à la souscription au capital de sociétés
-    # nouvelles ou de sociétés en difficulté
-    build_column_couple('f6da', IntCol(entity = 'foy',
-                    label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté",
-                    val_type = "monetary",
-                    start = datetime.date(2005, 1, 1),
-                    end = datetime.date(2005, 12, 31),
-                    cerfa_field = u'DA')),
-
-
-    # Dépenses de grosses réparations effectuées par les nus propriétaires
-    build_column_couple('f6cb', IntCol(entity = 'foy',
-                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
-                    val_type = "monetary",
-                    start = datetime.date(2006, 1, 1),
-                    cerfa_field = u'6CB')),  # TODO: vérifier 2011, 10, 9 ,8, 7,6, ok pou 12 et 13
-                                           # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
-
-    build_column_couple('f6hj', IntCol(entity = 'foy',
-                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'6HJ')),
-
-    build_column_couple('f6hk', IntCol(entity = 'foy',
-                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'6HK')),
-
-    build_column_couple('f6hl', IntCol(entity = 'foy',
-                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'6HL')),
-
-    build_column_couple('f6hm', IntCol(entity = 'foy',
-                    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                    val_type = "monetary",
-                    start = datetime.date(2013, 1, 1),
-                    cerfa_field = u'6HM')),
-
-    # Sommes à rajouter au revenu imposable
-    build_column_couple('f6gh', IntCol(entity = 'foy',
-                    label = u"Sommes à ajouter au revenu imposable",
-                    val_type = "monetary",
-                    cerfa_field = u'6GH')),
-
-    # Deficits antérieurs
-    build_column_couple('f6fa', IntCol(entity = 'foy',
-                    label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6",
-                    val_type = "monetary",
-                    cerfa_field = u'6FA')),
-
-    build_column_couple('f6fb', IntCol(entity = 'foy',
-                    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5",
-                    val_type = "monetary",
-                    cerfa_field = u'6FB')),
-
-    build_column_couple('f6fc', IntCol(entity = 'foy',
-                    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4",
-                    val_type = "monetary",
-                    cerfa_field = u'6FC')),
-
-    build_column_couple('f6fd', IntCol(entity = 'foy',
-                    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3",
-                    val_type = "monetary",
-                    cerfa_field = u'6FD')),
-
-    build_column_couple('f6fe', IntCol(entity = 'foy',
-                    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2",
-                    val_type = "monetary",
-                    cerfa_field = u'6FE')),
-
-    build_column_couple('f6fl', IntCol(entity = 'foy',
-                    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1",
-                    val_type = "monetary",
-                    cerfa_field = u'6FL')),
-
-    # Dons à des organismes établis en France
-    build_column_couple('f7ud', IntCol(entity = 'foy',
-                    label = u"Dons à des organismes d'aide aux personnes en difficulté",
-                    val_type = "monetary",
-                    cerfa_field = u'7UD')),
-
-    build_column_couple('f7uf', IntCol(entity = 'foy',
-                    label = u"Dons à d'autres oeuvres d'utilité publique ou fiscalement assimilables aux oeuvres d'intérêt général",
-                    val_type = "monetary",
-                    cerfa_field = u'7UF')),
-
-    build_column_couple('f7xs', IntCol(entity = 'foy',
-                    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -5",
-                    val_type = "monetary",
-                    cerfa_field = u'7XS')),
-
-    build_column_couple('f7xt', IntCol(entity = 'foy',
-                    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -4",
-                    val_type = "monetary",
-                    cerfa_field = u'7XT')),
-
-    build_column_couple('f7xu', IntCol(entity = 'foy',
-                    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3",
-                    val_type = "monetary",
-                    cerfa_field = u'7XU')),
-
-    build_column_couple('f7xw', IntCol(entity = 'foy',
-                    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2",
-                    val_type = "monetary",
-                    cerfa_field = u'7XW')),
-
-    build_column_couple('f7xy', IntCol(entity = 'foy',
-                    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1",
-                    val_type = "monetary",
-                    cerfa_field = u'7XY')),
-
-    # Cotisations syndicales des salariées et pensionnés
-    build_column_couple('f7ac', IntCol(entity = 'ind',
-                    label = u"Cotisations syndicales des salariées et pensionnés",
-                    val_type = "monetary",
-                    cerfa_field = {QUIFOY['vous']: u"7AC",
-                                   QUIFOY['conj']: u"7AE",
-                                   QUIFOY['pac1']: u"7AG",
-                                   })),  # f7ac, f7ae, f7ag
-
-    # Salarié à domicile
-    build_column_couple('f7db', IntCol(entity = 'foy',
-                    label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés",
-                    val_type = "monetary",
-                    cerfa_field = u'7DB')),
-
-    build_column_couple('f7df', IntCol(entity = 'foy',
-                    label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés",
-                    val_type = "monetary",
-                    cerfa_field = u'7DF')),
-
-    build_column_couple('f7dq', BoolCol(entity = 'foy',
-                     label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés",
-                     cerfa_field = u'7DQ')),
-
-    build_column_couple('f7dg', BoolCol(entity = 'foy',
-                     label = u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'au moins 80 % l'année de perception des revenus déclarés",
-                     cerfa_field = u'7DG')),
-
-    build_column_couple('f7dl', IntCol(entity = 'foy',
-                    label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés",
-                    cerfa_field = u'7DL')),
-
-    # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale
-    build_column_couple('f7vy', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité",
-                    val_type = "monetary",
-                    cerfa_field = u'7VY')),
-
-    build_column_couple('f7vz', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes",
-                    val_type = "monetary",
-                    cerfa_field = u'7VZ')),
-
-    build_column_couple('f7vx', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs BBC acquis ou construits du 01/01/2009 au 30/09/2011",
-                    val_type = "monetary",
-                    cerfa_field = u'7VX')),
-
-    build_column_couple('f7vw', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité",
-                    val_type = "monetary",
-                    cerfa_field = u'7VW')),
-
-    build_column_couple('f7vv', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes",
-                    val_type = "monetary",
-                    cerfa_field = u'7VV')),  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
-
-    build_column_couple('f7vu', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité",
-                    val_type = "monetary",
-                    cerfa_field = u'7VU')),  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
-
-    build_column_couple('f7vt', IntCol(entity = 'foy',
-                    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes",
-                    val_type = "monetary",
-                    cerfa_field = u'7VT')),  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
-
-    # Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
-    build_column_couple('f7cd', IntCol(entity = 'foy',
-                    label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 1ere personne",
-                    val_type = "monetary",
-                    cerfa_field = u'7CD')),
-
-    build_column_couple('f7ce', IntCol(entity = 'foy',
-                    label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 2éme personne",
-                    val_type = "monetary",
-                    cerfa_field = u'7CE')),
-
-    # Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus
-    build_column_couple('f7ga', IntCol(entity = 'foy',
-                    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge",
-                    val_type = "monetary",
-                    cerfa_field = u'7GA')),
-
-    build_column_couple('f7gb', IntCol(entity = 'foy',
-                    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge",
-                    val_type = "monetary",
-                    cerfa_field = u'7GB')),
-
-    build_column_couple('f7gc', IntCol(entity = 'foy',
-                    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge",
-                    val_type = "monetary",
-                    cerfa_field = u'7GC')),
-
-    build_column_couple('f7ge', IntCol(entity = 'foy',
-                    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge en résidence alternée",
-                    val_type = "monetary",
-                    cerfa_field = u'7GE')),
-
-    build_column_couple('f7gf', IntCol(entity = 'foy',
-                    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge en résidence alternée",
-                    val_type = "monetary",
-                    cerfa_field = u'7GF')),
-
-    build_column_couple('f7gg', IntCol(entity = 'foy',
-                    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge en résidence alternée",
-                    val_type = "monetary",
-                    cerfa_field = u'7GG')),
-
-    # Nombre d'enfants à charge poursuivant leurs études
-    build_column_couple('f7ea', IntCol(entity = 'foy',
-                    label = u"Nombre d'enfants à charge poursuivant leurs études au collège",
-                    cerfa_field = u'7EA')),
-
-    build_column_couple('f7eb', IntCol(entity = 'foy',
-                    label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au collège",
-                    cerfa_field = u'7EB')),
-
-    build_column_couple('f7ec', IntCol(entity = 'foy',
-                    label = u"Nombre d'enfants à charge poursuivant leurs études au lycée",
-                    cerfa_field = u'7EC')),
-
-    build_column_couple('f7ed', IntCol(entity = 'foy',
-                    label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au lycée",
-                    cerfa_field = u'7ED')),
-
-    build_column_couple('f7ef', IntCol(entity = 'foy',
-                    label = u"Nombre d'enfants à charge poursuivant leurs études dans l'enseignement supérieur",
-                    cerfa_field = u'7EF')),
-
-    build_column_couple('f7eg', IntCol(entity = 'foy',
-                    label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études dans l'enseignement supérieur",
-                    cerfa_field = u'7EG')),
-
-    # Intérêts des prêts étudiants
-    build_column_couple('f7td', IntCol(entity = 'foy',
-                    label = u"Intérêts des prêts étudiants versés avant l'année de perception des revenus déclarés",
-                    val_type = "monetary",
-                    cerfa_field = u'7TD')),
-
-    build_column_couple('f7vo', IntCol(entity = 'foy',
-                    label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés",
-                    cerfa_field = u'7VO')),
-
-    build_column_couple('f7uk', IntCol(entity = 'foy',
-                    label = u"Intérêts des prêts étudiants versés durant l'année de perception des revenus déclarés",
-                    val_type = "monetary",
-                    cerfa_field = u'7UK')),
-
-    # Primes de rente survie, contrats d'épargne handicap
-    build_column_couple('f7gz', IntCol(entity = 'foy',
-                    label = u"Primes de rente survie, contrats d'épargne handicap",
-                    val_type = "monetary",
-                    cerfa_field = u'7GZ')),
-
-    # Prestations compensatoires
-    build_column_couple('f7wm', IntCol(entity = 'foy',
-                    label = u"Prestations compensatoires: Capital fixé en substitution de rente",
-                    val_type = "monetary",
-                    cerfa_field = u'7WM')),
-
-    build_column_couple('f7wn', IntCol(entity = 'foy',
-                    label = u"Prestations compensatoires: Sommes versées l'année de perception des revenus déclarés",
-                    val_type = "monetary",
-                    cerfa_field = u'7WN')),
-
-    build_column_couple('f7wo', IntCol(entity = 'foy',
-                    label = u"Prestations compensatoires: Sommes totales décidées par jugement l'année de perception des revenus déclarés ou capital reconstitué",
-                    val_type = "monetary",
-                    cerfa_field = u'7WO')),
-
-    build_column_couple('f7wp', IntCol(entity = 'foy',
-                    label = u"Prestations compensatoires: Report des sommes décidées l'année de perception des revenus -1",
-                    val_type = "monetary",
-                    cerfa_field = u'7WP')),
-
-    # Dépenses en faveur de la qualité environnementale de l'habitation principale
-    build_column_couple('f7we', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés",
-                    cerfa_field = u'7WE')),
-
-    build_column_couple('f7wg', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
-                    val_type = "monetary",
-                    cerfa_field = u'7WG',
-                    start = datetime.date(2012, 1, 1))),  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
-                                    # TODO vérifier pour les années précédentes
+# ## build_column('f3vl', IntCol(entity = 'foy',
+# ##                 label = u"Distributions par des sociétés de capital-risque taxables à 24 %",
+# ##                 val_type = "monetary",
+# ##                 cerfa_field = u'3VL'
+# ##                 start = datetime.date(2009, 1, 1),
+# ##                 end = datetime.date(2009, 12, 31)))#vérifier avant 2009
+
+build_column('f3vl', IntCol(entity = 'foy',
+                label = u"Distributions par des sociétés de capital-risque taxables à 19 %",
+                val_type = "monetary",
+                cerfa_field = u'3VL',
+                start = datetime.date(2012, 1, 1),
+                end = datetime.date(2013, 12, 31)))  # vérifier pour 2011 et 2010
+
+build_column('f3vi', IntCol(entity = 'ind',
+                label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"3VI",
+                               QUIFOY['conj']: u"3SI",
+                               }))  # (f3vi, f3si )
+
+build_column('f3vm', IntCol(entity = 'foy',
+                label = u"Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %",
+                val_type = "monetary",
+                cerfa_field = u'3VM'))
+
+build_column('f3vt', IntCol(entity = 'foy',
+                label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %",
+                val_type = "monetary",
+                cerfa_field = u'3VT'))
+
+build_column('f3vj', IntCol(entity = 'ind',
+                label = u"Gains imposables sur option dans la catégorie des salaires",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"3VJ",
+                               QUIFOY['conj']: u"3VK",
+                               }))  # (f3vj, f3vk )
+
+build_column('f3va', IntCol(entity = 'ind',
+                label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"3VA",
+                               QUIFOY['conj']: u"3VB",
+                               }))  # (f3va, f3vb )))
+
+# Plus values et gains taxables à des taux forfaitaires
+
+build_column('f3vg', IntCol(entity = 'foy',
+                label = u"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés",
+                val_type = "monetary",
+                cerfa_field = u'3VG'))
+
+build_column('f3vh', IntCol(entity = 'foy',
+                label = u"Perte de l'année de perception des revenus",
+                val_type = "monetary",
+                cerfa_field = u'3VH'))
+
+build_column('f3vu', IntCol(entity = 'foy',
+                end = datetime.date(2009, 12, 31)))  # TODO: vérifier pour 2010 et 2011
+
+build_column('f3vv', IntCol(entity = 'foy',
+                 label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé ",
+                 val_type = "monetary",
+                 cerfa_field = u'3VV'))  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
+
+build_column('f3si', IntCol(entity = 'foy'))  # TODO: parmi ces cas créer des valeurs individuelles
+#                                    # correspond à autre chose en 2009, vérifier 2011,2010
+
+build_column('f3sa', IntCol(entity = 'foy', end = datetime.date(2009, 12, 31)))  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
+
+build_column('f3sf', IntCol(entity = 'foy'))  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+
+build_column('f3sd', IntCol(entity = 'foy'))  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+
+build_column('f3vz', IntCol(entity = 'foy',
+                 label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
+                 val_type = "monetary",
+                 cerfa_field = u'3VZ',
+                 start = datetime.date(2011, 1, 1)))  # TODO: vérifier avant 2012
+
+# Revenus fonciers
+build_column('f4ba', IntCol(entity = 'foy',
+                label = u"Revenus fonciers imposables",
+                val_type = "monetary",
+                cerfa_field = u'4BA'))
+
+build_column('f4bb', IntCol(entity = 'foy',
+                label = u"Déficit imputable sur les revenus fonciers",
+                val_type = "monetary",
+                cerfa_field = u'4BB'))
+
+build_column('f4bc', IntCol(entity = 'foy',
+                label = u"Déficit imputable sur le revenu global",
+                val_type = "monetary",
+                cerfa_field = u'4BC'))
+
+build_column('f4bd', IntCol(entity = 'foy',
+                label = u"Déficits antérieurs non encore imputés",
+                val_type = "monetary",
+                cerfa_field = u'4BD'))
+
+build_column('f4be', IntCol(entity = 'foy',
+                label = u"Micro foncier: recettes brutes sans abattement",
+                val_type = "monetary",
+                cerfa_field = u'4BE'))
+
+# Prime d'assurance loyers impayés
+build_column('f4bf', IntCol(entity = 'foy',
+                label = u"Primes d'assurance pour loyers impayés des locations conventionnées",
+                val_type = "monetary",
+                cerfa_field = u'4BF'))
+
+build_column('f4bl', IntCol(entity = 'foy', label = u"", end = datetime.date(2009, 12, 31)))  # TODO: cf 2010 2011
+
+build_column('f5qm', IntCol(entity = 'ind',
+                label = u"Agents généraux d’assurances: indemnités de cessation d’activité",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"5QM",
+                               QUIFOY['conj']: u"5RM",
+                               }))  # (f5qm, f5rm )
+
+# Csg déductible
+build_column('f6de', IntCol(entity = 'foy',
+                label = u"CSG déductible calculée sur les revenus du patrimoine",
+                val_type = "monetary",
+                cerfa_field = u'6DE'))
+
+# Pensions alimentaires
+build_column('f6gi', IntCol(entity = 'foy',
+                label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant",
+                val_type = "monetary",
+                cerfa_field = u'6GI'))
+
+build_column('f6gj', IntCol(entity = 'foy',
+                label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant",
+                val_type = "monetary",
+                cerfa_field = u'6GJ'))
+
+build_column('f6el', IntCol(entity = 'foy',
+                label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant",
+                val_type = "monetary",
+                cerfa_field = u'6EL'))
+
+build_column('f6em', IntCol(entity = 'foy',
+                label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant",
+                val_type = "monetary",
+                cerfa_field = u'6EM'))
+
+build_column('f6gp', IntCol(entity = 'foy',
+                label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)",
+                val_type = "monetary",
+                cerfa_field = u'6GP'))
+
+build_column('f6gu', IntCol(entity = 'foy',
+                label = u"Autres pensions alimentaires versées (mineurs, ascendants)",
+                val_type = "monetary",
+                cerfa_field = u'6GU'))
+
+
+# Frais d'accueil d'une personne de plus de 75 ans dans le besoin
+build_column('f6eu', IntCol(entity = 'foy',
+                label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin",
+                val_type = "monetary",
+                cerfa_field = u'6EU'))
+
+build_column('f6ev', IntCol(entity = 'foy',
+                label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit",
+                cerfa_field = u'6EV'))
+
+# Déductions diverses
+build_column('f6dd', IntCol(entity = 'foy',
+                label = u"Déductions diverses",
+                val_type = "monetary",
+                cerfa_field = u'6DD'))
+
+# Épargne retraite - PERP, PRÉFON, COREM et CGOS
+build_column('f6ps', IntCol(entity = 'ind',
+                label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"6PS",
+                               QUIFOY['conj']: u"6PT",
+                               QUIFOY['pac1']: u"6PU",
+                               }))  # (f6ps, f6pt, f6pu)
+
+build_column('f6rs', IntCol(entity = 'ind',
+                label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"6RS",
+                               QUIFOY['conj']: u"6RT",
+                               QUIFOY['pac1']: u"6RU",
+                               }))  # (f6rs, f6rt, f6ru)))
+
+build_column('f6ss', IntCol(entity = 'ind',
+                label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"6SS",
+                               QUIFOY['conj']: u"6ST",
+                               QUIFOY['pac1']: u"6SU",
+                               }))  # (f6ss, f6st, f6su)))
+
+
+# Souscriptions en faveur du cinéma ou de l’audiovisuel
+build_column('f6aa', IntCol(entity = 'foy',
+                label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
+                val_type = "monetary",
+                start = datetime.date(2005, 1, 1),
+                end = datetime.date(2005, 12, 31),
+                cerfa_field = u'6AA'))  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
+
+# Souscriptions au capital des SOFIPÊCHE
+build_column('f6cc', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des SOFIPÊCHE",
+                val_type = "monetary",
+                cerfa_field = u'CC',
+                start = datetime.date(2005, 1, 1),
+                end = datetime.date(2005, 12, 31)))  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
+
+
+# Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
+# ou Versements sur un compte épargne codéveloppement
+build_column('f6eh', IntCol(entity = 'foy',
+                label = u"",
+                val_type = "monetary",
+                start = datetime.date(2005, 1, 1),
+                end = datetime.date(2005, 12, 31),
+                cerfa_field = u'EH'))  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
+
+# Pertes en capital consécutives à la souscription au capital de sociétés
+# nouvelles ou de sociétés en difficulté
+build_column('f6da', IntCol(entity = 'foy',
+                label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté",
+                val_type = "monetary",
+                start = datetime.date(2005, 1, 1),
+                end = datetime.date(2005, 12, 31),
+                cerfa_field = u'DA'))
+
+
+# Dépenses de grosses réparations effectuées par les nus propriétaires
+build_column('f6cb', IntCol(entity = 'foy',
+                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
+                val_type = "monetary",
+                start = datetime.date(2006, 1, 1),
+                cerfa_field = u'6CB'))  # TODO: vérifier 2011, 10, 9 ,8, 7,6, ok pou 12 et 13
+                                       # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
+
+build_column('f6hj', IntCol(entity = 'foy',
+                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'6HJ'))
+
+build_column('f6hk', IntCol(entity = 'foy',
+                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'6HK'))
+
+build_column('f6hl', IntCol(entity = 'foy',
+                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'6HL'))
+
+build_column('f6hm', IntCol(entity = 'foy',
+                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
+                val_type = "monetary",
+                start = datetime.date(2013, 1, 1),
+                cerfa_field = u'6HM'))
+
+# Sommes à rajouter au revenu imposable
+build_column('f6gh', IntCol(entity = 'foy',
+                label = u"Sommes à ajouter au revenu imposable",
+                val_type = "monetary",
+                cerfa_field = u'6GH'))
+
+# Deficits antérieurs
+build_column('f6fa', IntCol(entity = 'foy',
+                label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6",
+                val_type = "monetary",
+                cerfa_field = u'6FA'))
+
+build_column('f6fb', IntCol(entity = 'foy',
+                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5",
+                val_type = "monetary",
+                cerfa_field = u'6FB'))
+
+build_column('f6fc', IntCol(entity = 'foy',
+                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4",
+                val_type = "monetary",
+                cerfa_field = u'6FC'))
+
+build_column('f6fd', IntCol(entity = 'foy',
+                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3",
+                val_type = "monetary",
+                cerfa_field = u'6FD'))
+
+build_column('f6fe', IntCol(entity = 'foy',
+                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2",
+                val_type = "monetary",
+                cerfa_field = u'6FE'))
+
+build_column('f6fl', IntCol(entity = 'foy',
+                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1",
+                val_type = "monetary",
+                cerfa_field = u'6FL'))
+
+# Dons à des organismes établis en France
+build_column('f7ud', IntCol(entity = 'foy',
+                label = u"Dons à des organismes d'aide aux personnes en difficulté",
+                val_type = "monetary",
+                cerfa_field = u'7UD'))
+
+build_column('f7uf', IntCol(entity = 'foy',
+                label = u"Dons à d'autres oeuvres d'utilité publique ou fiscalement assimilables aux oeuvres d'intérêt général",
+                val_type = "monetary",
+                cerfa_field = u'7UF'))
+
+build_column('f7xs', IntCol(entity = 'foy',
+                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -5",
+                val_type = "monetary",
+                cerfa_field = u'7XS'))
+
+build_column('f7xt', IntCol(entity = 'foy',
+                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -4",
+                val_type = "monetary",
+                cerfa_field = u'7XT'))
+
+build_column('f7xu', IntCol(entity = 'foy',
+                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3",
+                val_type = "monetary",
+                cerfa_field = u'7XU'))
+
+build_column('f7xw', IntCol(entity = 'foy',
+                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2",
+                val_type = "monetary",
+                cerfa_field = u'7XW'))
+
+build_column('f7xy', IntCol(entity = 'foy',
+                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1",
+                val_type = "monetary",
+                cerfa_field = u'7XY'))
+
+# Cotisations syndicales des salariées et pensionnés
+build_column('f7ac', IntCol(entity = 'ind',
+                label = u"Cotisations syndicales des salariées et pensionnés",
+                val_type = "monetary",
+                cerfa_field = {QUIFOY['vous']: u"7AC",
+                               QUIFOY['conj']: u"7AE",
+                               QUIFOY['pac1']: u"7AG",
+                               }))  # f7ac, f7ae, f7ag
+
+# Salarié à domicile
+build_column('f7db', IntCol(entity = 'foy',
+                label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés",
+                val_type = "monetary",
+                cerfa_field = u'7DB'))
+
+build_column('f7df', IntCol(entity = 'foy',
+                label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés",
+                val_type = "monetary",
+                cerfa_field = u'7DF'))
+
+build_column('f7dq', BoolCol(entity = 'foy',
+                 label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés",
+                 cerfa_field = u'7DQ'))
+
+build_column('f7dg', BoolCol(entity = 'foy',
+                 label = u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'au moins 80 % l'année de perception des revenus déclarés",
+                 cerfa_field = u'7DG'))
+
+build_column('f7dl', IntCol(entity = 'foy',
+                label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés",
+                cerfa_field = u'7DL'))
+
+# Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale
+build_column('f7vy', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité",
+                val_type = "monetary",
+                cerfa_field = u'7VY'))
+
+build_column('f7vz', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes",
+                val_type = "monetary",
+                cerfa_field = u'7VZ'))
+
+build_column('f7vx', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs BBC acquis ou construits du 01/01/2009 au 30/09/2011",
+                val_type = "monetary",
+                cerfa_field = u'7VX'))
+
+build_column('f7vw', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité",
+                val_type = "monetary",
+                cerfa_field = u'7VW'))
+
+build_column('f7vv', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes",
+                val_type = "monetary",
+                cerfa_field = u'7VV'))  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+
+build_column('f7vu', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité",
+                val_type = "monetary",
+                cerfa_field = u'7VU'))  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+
+build_column('f7vt', IntCol(entity = 'foy',
+                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes",
+                val_type = "monetary",
+                cerfa_field = u'7VT'))  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+
+# Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
+build_column('f7cd', IntCol(entity = 'foy',
+                label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 1ere personne",
+                val_type = "monetary",
+                cerfa_field = u'7CD'))
+
+build_column('f7ce', IntCol(entity = 'foy',
+                label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 2éme personne",
+                val_type = "monetary",
+                cerfa_field = u'7CE'))
+
+# Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus
+build_column('f7ga', IntCol(entity = 'foy',
+                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge",
+                val_type = "monetary",
+                cerfa_field = u'7GA'))
+
+build_column('f7gb', IntCol(entity = 'foy',
+                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge",
+                val_type = "monetary",
+                cerfa_field = u'7GB'))
+
+build_column('f7gc', IntCol(entity = 'foy',
+                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge",
+                val_type = "monetary",
+                cerfa_field = u'7GC'))
+
+build_column('f7ge', IntCol(entity = 'foy',
+                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge en résidence alternée",
+                val_type = "monetary",
+                cerfa_field = u'7GE'))
+
+build_column('f7gf', IntCol(entity = 'foy',
+                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge en résidence alternée",
+                val_type = "monetary",
+                cerfa_field = u'7GF'))
+
+build_column('f7gg', IntCol(entity = 'foy',
+                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge en résidence alternée",
+                val_type = "monetary",
+                cerfa_field = u'7GG'))
+
+# Nombre d'enfants à charge poursuivant leurs études
+build_column('f7ea', IntCol(entity = 'foy',
+                label = u"Nombre d'enfants à charge poursuivant leurs études au collège",
+                cerfa_field = u'7EA'))
+
+build_column('f7eb', IntCol(entity = 'foy',
+                label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au collège",
+                cerfa_field = u'7EB'))
+
+build_column('f7ec', IntCol(entity = 'foy',
+                label = u"Nombre d'enfants à charge poursuivant leurs études au lycée",
+                cerfa_field = u'7EC'))
+
+build_column('f7ed', IntCol(entity = 'foy',
+                label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au lycée",
+                cerfa_field = u'7ED'))
+
+build_column('f7ef', IntCol(entity = 'foy',
+                label = u"Nombre d'enfants à charge poursuivant leurs études dans l'enseignement supérieur",
+                cerfa_field = u'7EF'))
+
+build_column('f7eg', IntCol(entity = 'foy',
+                label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études dans l'enseignement supérieur",
+                cerfa_field = u'7EG'))
+
+# Intérêts des prêts étudiants
+build_column('f7td', IntCol(entity = 'foy',
+                label = u"Intérêts des prêts étudiants versés avant l'année de perception des revenus déclarés",
+                val_type = "monetary",
+                cerfa_field = u'7TD'))
+
+build_column('f7vo', IntCol(entity = 'foy',
+                label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés",
+                cerfa_field = u'7VO'))
+
+build_column('f7uk', IntCol(entity = 'foy',
+                label = u"Intérêts des prêts étudiants versés durant l'année de perception des revenus déclarés",
+                val_type = "monetary",
+                cerfa_field = u'7UK'))
+
+# Primes de rente survie, contrats d'épargne handicap
+build_column('f7gz', IntCol(entity = 'foy',
+                label = u"Primes de rente survie, contrats d'épargne handicap",
+                val_type = "monetary",
+                cerfa_field = u'7GZ'))
+
+# Prestations compensatoires
+build_column('f7wm', IntCol(entity = 'foy',
+                label = u"Prestations compensatoires: Capital fixé en substitution de rente",
+                val_type = "monetary",
+                cerfa_field = u'7WM'))
+
+build_column('f7wn', IntCol(entity = 'foy',
+                label = u"Prestations compensatoires: Sommes versées l'année de perception des revenus déclarés",
+                val_type = "monetary",
+                cerfa_field = u'7WN'))
+
+build_column('f7wo', IntCol(entity = 'foy',
+                label = u"Prestations compensatoires: Sommes totales décidées par jugement l'année de perception des revenus déclarés ou capital reconstitué",
+                val_type = "monetary",
+                cerfa_field = u'7WO'))
+
+build_column('f7wp', IntCol(entity = 'foy',
+                label = u"Prestations compensatoires: Report des sommes décidées l'année de perception des revenus -1",
+                val_type = "monetary",
+                cerfa_field = u'7WP'))
+
+# Dépenses en faveur de la qualité environnementale de l'habitation principale
+build_column('f7we', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés",
+                cerfa_field = u'7WE'))
+
+build_column('f7wg', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
+                val_type = "monetary",
+                cerfa_field = u'7WG',
+                start = datetime.date(2012, 1, 1)))  # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
+                                # TODO vérifier pour les années précédentes
 # TODO: CHECK
-    # Intérêts d'emprunts
-#     build_column_couple('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7')), # cf pour quelle année
+# Intérêts d'emprunts
+#     build_column('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7')) # cf pour quelle année
 #
-     build_column_couple('f7wq', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées", cerfa_field = u'7WQ')),
+build_column('f7wq', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées", cerfa_field = u'7WQ'))
 
-    build_column_couple('f7wt', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
-                    start = datetime.date(2013, 1, 1),
-                    cerfa_field = u'7WT')),  # TODO vérifier année de début
+build_column('f7wt', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
+                start = datetime.date(2013, 1, 1),
+                cerfa_field = u'7WT'))  # TODO vérifier année de début
 
-    build_column_couple('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
-                    start = datetime.date(2013, 1, 1),
-                    cerfa_field = u'7WH')),  # TODO vérifier année de début
+build_column('f7wh', IntCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
+                start = datetime.date(2013, 1, 1),
+                cerfa_field = u'7WH'))  # TODO vérifier année de début
 
-    build_column_couple('f7wk', BoolCol(entity = 'foy',
-                     label = u"Votre habitation principale est une maison individuelle",
-                     cerfa_field = u'7WK')),
+build_column('f7wk', BoolCol(entity = 'foy',
+                 label = u"Votre habitation principale est une maison individuelle",
+                 cerfa_field = u'7WK'))
 
-    build_column_couple('f7wf', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1",
-                    end = datetime.date(2012, 12, 31),
-                    cerfa_field = u'7WF')),  # TODO vérifier les années précédentes
+build_column('f7wf', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1",
+                end = datetime.date(2012, 12, 31),
+                cerfa_field = u'7WF'))  # TODO vérifier les années précédentes
 
-    # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
-    build_column_couple('f7wi', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction",
-                    val_type = "monetary",
-                    cerfa_field = u'7WI',
-                    end = datetime.date(2012, 12, 31))),
+# Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
+build_column('f7wi', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction",
+                val_type = "monetary",
+                cerfa_field = u'7WI',
+                end = datetime.date(2012, 12, 31)))
 
-    build_column_couple('f7wj', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées",
-                    val_type = "monetary",
-                    cerfa_field = u'7WJ')),
+build_column('f7wj', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées",
+                val_type = "monetary",
+                cerfa_field = u'7WJ'))
 
-    build_column_couple('f7wl', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques",
-                    val_type = "monetary",
-                    cerfa_field = u'7WL')),
+build_column('f7wl', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques",
+                val_type = "monetary",
+                cerfa_field = u'7WL'))
 
-    # Investissements dans les DOM-TOM dans le cadre d'une entrepise
-    build_column_couple('f7ur', IntCol(entity = 'foy',
-                    label = u"Investissements réalisés en n-1, total réduction d’impôt",
-                    val_type = "monetary",
-                    cerfa_field = u'7UR',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier les années antérieures
+# Investissements dans les DOM-TOM dans le cadre d'une entrepise
+build_column('f7ur', IntCol(entity = 'foy',
+                label = u"Investissements réalisés en n-1, total réduction d’impôt",
+                val_type = "monetary",
+                cerfa_field = u'7UR',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier les années antérieures
 
-    build_column_couple('f7oz', IntCol(entity = 'foy',
-                    label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6",
-                    val_type = "monetary",
-                    cerfa_field = u'7OZ',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier les années antérieures
+build_column('f7oz', IntCol(entity = 'foy',
+                label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6",
+                val_type = "monetary",
+                cerfa_field = u'7OZ',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier les années antérieures
 
-    build_column_couple('f7pz', IntCol(entity = 'foy',
-                    label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7PZ',
-                    end = datetime.date(2012, 12, 31))),  # TODO: vérifier les années antérieures
+build_column('f7pz', IntCol(entity = 'foy',
+                label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7PZ',
+                end = datetime.date(2012, 12, 31)))  # TODO: vérifier les années antérieures
 
-    build_column_couple('f7qz', IntCol(entity = 'foy',
-                    label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7QZ',
-                    end = datetime.date(2012, 12, 31))),  # TODO: vérifier les années antérieures
+build_column('f7qz', IntCol(entity = 'foy',
+                label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7QZ',
+                end = datetime.date(2012, 12, 31)))  # TODO: vérifier les années antérieures
 
-    build_column_couple('f7rz', IntCol(entity = 'foy',
-                    label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
-                    val_type = "monetary",
-                    cerfa_field = u'7RZ',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier années antérieures.
+build_column('f7rz', IntCol(entity = 'foy',
+                label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
+                val_type = "monetary",
+                cerfa_field = u'7RZ',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier années antérieures.
 
 # TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
-#     build_column_couple('f7sz', IntCol(entity = 'foy',
+#     build_column('f7sz', IntCol(entity = 'foy',
 #                     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-2",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7SZ',
-#                     end = datetime.date(2011,12,31))),  # TODO: vérifier années <=2011.
+#                     end = datetime.date(2011,12,31)))  # TODO: vérifier années <=2011.
 
-    build_column_couple('f7sz', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location",
-                    val_type = "monetary",
-                    cerfa_field = u'7SZ',
-                    start = datetime.date(2012, 1, 1))),  # TODO: vérifier années <=2011
+build_column('f7sz', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location",
+                val_type = "monetary",
+                cerfa_field = u'7SZ',
+                start = datetime.date(2012, 1, 1)))  # TODO: vérifier années <=2011
 
-    # Aide aux créateurs et repreneurs d'entreprises
-    build_column_couple('f7fy', IntCol(entity = 'foy',
-                    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
-                    cerfa_field = u'7FY',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
+# Aide aux créateurs et repreneurs d'entreprises
+build_column('f7fy', IntCol(entity = 'foy',
+                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
+                cerfa_field = u'7FY',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier date <=2011
 
-    build_column_couple('f7gy', IntCol(entity = 'foy',
-                    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
-                    cerfa_field = u'7GY',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
+build_column('f7gy', IntCol(entity = 'foy',
+                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
+                cerfa_field = u'7GY',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier date <=2011
 
 
 # TODO: 7jy réutilisée en 2013
 #
-#     build_column_couple('f7jy', IntCol(entity = 'foy',
+#     build_column('f7jy', IntCol(entity = 'foy',
 #                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et ayant pris fin en n-1",
 #                     cerfa_field = u'7JY',
-#                     end = datetime.date(2011,12,31))),
+#                     end = datetime.date(2011,12,31)))
 
-     build_column_couple('f7jy', IntCol(entity = 'foy',
-                    label = u"Report de 1/9 des investissements réalisés l'année de perception des revenus déclarés -3 ou -4",
-                    cerfa_field = u'7JY',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f7jy', IntCol(entity = 'foy',
+                label = u"Report de 1/9 des investissements réalisés l'année de perception des revenus déclarés -3 ou -4",
+                cerfa_field = u'7JY',
+                start = datetime.date(2013, 1, 1)))
 
-    build_column_couple('f7hy', IntCol(entity = 'foy',
-                    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
-                    cerfa_field = u'7HY',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
+build_column('f7hy', IntCol(entity = 'foy',
+                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
+                cerfa_field = u'7HY',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier date <=2011
 
-    build_column_couple('f7ky', IntCol(entity = 'foy',
-                    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
-                    cerfa_field = u'7KY',
-                    end = datetime.date(2011, 12, 31))),  # TODO: vérifier date <=2011
+build_column('f7ky', IntCol(entity = 'foy',
+                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
+                cerfa_field = u'7KY',
+                end = datetime.date(2011, 12, 31)))  # TODO: vérifier date <=2011
 
 # 7iy réutilisée en 2013
 #
-#     build_column_couple('f7iy', IntCol(entity = 'foy',
+#     build_column('f7iy', IntCol(entity = 'foy',
 #                     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
 #                     cerfa_field = u'7IY',
-#                     end = datetime.date(2011,12,31))),  # TODO: vérifier date <=2011
+#                     end = datetime.date(2011,12,31)))  # TODO: vérifier date <=2011
 
-    build_column_couple('f7iy', IntCol(entity = 'foy',
-                    label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
-                    cerfa_field = u'7IY',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f7iy', IntCol(entity = 'foy',
+                label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
+                cerfa_field = u'7IY',
+                start = datetime.date(2013, 1, 1)))
 
-    build_column_couple('f7ly', IntCol(entity = 'foy',
-                    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
-                    cerfa_field = u'7LY')),  # 2012 et 2013 ok
+build_column('f7ly', IntCol(entity = 'foy',
+                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
+                cerfa_field = u'7LY'))  # 2012 et 2013 ok
 
-    build_column_couple('f7my', IntCol(entity = 'foy',
-                    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
-                    cerfa_field = u'7MY')),  # 2012 et 2013 ok
+build_column('f7my', IntCol(entity = 'foy',
+                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
+                cerfa_field = u'7MY'))  # 2012 et 2013 ok
 
-    # Travaux de restauration immobilière
-    build_column_couple('f7ra', IntCol(entity = 'foy',
-                    label = u"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager",
-                    val_type = "monetary",
-                    cerfa_field = u'7RA')),  # 2012 et 2013 ok
+# Travaux de restauration immobilière
+build_column('f7ra', IntCol(entity = 'foy',
+                label = u"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager",
+                val_type = "monetary",
+                cerfa_field = u'7RA'))  # 2012 et 2013 ok
 
-    build_column_couple('f7rb', IntCol(entity = 'foy',
-                    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                    val_type = "monetary",
-                    cerfa_field = u'7RB')),  # 2012 et 2013 ok
+build_column('f7rb', IntCol(entity = 'foy',
+                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
+                val_type = "monetary",
+                cerfa_field = u'7RB'))  # 2012 et 2013 ok
 
 
 # TOOD: f7gw et f7gx ne se rapporte pas a de l'assurance vie en 2013
-    # Assurance-vie
-#     build_column_couple('f7gw', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GW', end = datetime.date(2011,12,31))),  # TODO: cf pour <=2011
-#     build_column_couple('f7gx', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GX', end = datetime.date(2011,12,31))),  # TODO: cf pour <=2011
-    # build_column_couple('f7gy', IntCol()), existe ailleurs (n'existe pas en 2013 et 2012)
+# Assurance-vie
+#     build_column('f7gw', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GW', end = datetime.date(2011,12,31)))  # TODO: cf pour <=2011
+#     build_column('f7gx', IntCol(entity = 'foy', label = u"", cerfa_field = u'7GX', end = datetime.date(2011,12,31)))  # TODO: cf pour <=2011
+# build_column('f7gy', IntCol()) existe ailleurs (n'existe pas en 2013 et 2012)
 
-    build_column_couple('f7gw', IntCol(entity = 'foy',
-                    label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
-                    cerfa_field = u'7GW',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f7gw', IntCol(entity = 'foy',
+                label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+                cerfa_field = u'7GW',
+                start = datetime.date(2013, 1, 1)))
 
-    build_column_couple('f7gx', IntCol(entity = 'foy',
-                    label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
-                    cerfa_field = u'7GX',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f7gx', IntCol(entity = 'foy',
+                label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+                cerfa_field = u'7GX',
+                start = datetime.date(2013, 1, 1)))
 
-    # Investissements locatifs dans le secteur de touristique
-    build_column_couple('f7xc', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1",
-                    val_type = "monetary",
-                    cerfa_field = u'7XC',
-                    end = datetime.date(2012, 12, 31))),
+# Investissements locatifs dans le secteur de touristique
+build_column('f7xc', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1",
+                val_type = "monetary",
+                cerfa_field = u'7XC',
+                end = datetime.date(2012, 12, 31)))
 
-    build_column_couple('f7xd', BoolCol(entity = 'foy',
-                     label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
-                     cerfa_field = u'7XD',
-                     end = datetime.date(2012, 12, 31))),
+build_column('f7xd', BoolCol(entity = 'foy',
+                 label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
+                 cerfa_field = u'7XD',
+                 end = datetime.date(2012, 12, 31)))
 
-    build_column_couple('f7xe', BoolCol(entity = 'foy',
-                     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
-                     cerfa_field = u'7XE',
-                     end = datetime.date(2012, 12, 31))),
+build_column('f7xe', BoolCol(entity = 'foy',
+                 label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
+                 cerfa_field = u'7XE',
+                 end = datetime.date(2012, 12, 31)))
 
-    build_column_couple('f7xf', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XF')),
+build_column('f7xf', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XF'))
 
-    build_column_couple('f7xh', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique: travaux de reconstruction, agrandissement, réparation dans une résidence de tourisme classée ou un meublé de tourisme",
-                    val_type = "monetary",
-                    cerfa_field = u'7XH',
-                    end = datetime.date(2012, 12, 31))),
+build_column('f7xh', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique: travaux de reconstruction, agrandissement, réparation dans une résidence de tourisme classée ou un meublé de tourisme",
+                val_type = "monetary",
+                cerfa_field = u'7XH',
+                end = datetime.date(2012, 12, 31)))
 
-    build_column_couple('f7xi', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XI')),
+build_column('f7xi', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XI'))
 
-    build_column_couple('f7xj', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report des dépenses d'investissement des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XJ')),
+build_column('f7xj', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report des dépenses d'investissement des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XJ'))
 
-    build_column_couple('f7xk', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XK')),
+build_column('f7xk', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XK'))
 
-    build_column_couple('f7xl', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, prix de revient d'un logement réhabilité en n-1 et achevé depuis moins de 15 ans",
-                    val_type = "monetary",
-                    cerfa_field = u'7XL',
-                    end = datetime.date(2012, 12, 31))),
+build_column('f7xl', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, prix de revient d'un logement réhabilité en n-1 et achevé depuis moins de 15 ans",
+                val_type = "monetary",
+                cerfa_field = u'7XL',
+                end = datetime.date(2012, 12, 31)))
 
-    build_column_couple('f7xm', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report de dépenses des travaux de réhabilitation achevés les années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XM')),
+build_column('f7xm', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report de dépenses des travaux de réhabilitation achevés les années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XM'))
 
 # TODO: f7xn cf années <= à 2011 (possible erreur dans le label pour ces dates, à vérifier)
-#      build_column_couple('f7xn', IntCol(entity = 'foy',
+#      build_column('f7xn', IntCol(entity = 'foy',
 #                     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: investissement réalisé en n-1",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7XN',
-#                     end = datetime.date(2011,12,31))),
+#                     end = datetime.date(2011,12,31)))
 
-    build_column_couple('f7xn', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XN',
-                    start = datetime.date(2012, 1, 1))),
+build_column('f7xn', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XN',
+                start = datetime.date(2012, 1, 1)))
 
-    build_column_couple('f7xo', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7XO')),
+build_column('f7xo', IntCol(entity = 'foy',
+                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7XO'))
 
-    # Souscriptions au capital des PME
-    build_column_couple('f7cf', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion",
-                    val_type = "monetary",
-                    cerfa_field = u'7CF')),
+# Souscriptions au capital des PME
+build_column('f7cf', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion",
+                val_type = "monetary",
+                cerfa_field = u'7CF'))
 
-    build_column_couple('f7cl', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4",
-                    val_type = "monetary",
-                    cerfa_field = u'7CL')),
+build_column('f7cl', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4",
+                val_type = "monetary",
+                cerfa_field = u'7CL'))
 
-    build_column_couple('f7cm', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3",
-                    val_type = "monetary",
-                    cerfa_field = u'7CM')),
+build_column('f7cm', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3",
+                val_type = "monetary",
+                cerfa_field = u'7CM'))
 
-    build_column_couple('f7cn', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2",
-                    val_type = "monetary",
-                    cerfa_field = u'7CN')),
+build_column('f7cn', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2",
+                val_type = "monetary",
+                cerfa_field = u'7CN'))
 
-    build_column_couple('f7cc', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1",
-                    val_type = "monetary",
-                    cerfa_field = u'7CC')),  # TODO: nouvelle variable à intégrer dans OF
+build_column('f7cc', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1",
+                val_type = "monetary",
+                cerfa_field = u'7CC'))  # TODO: nouvelle variable à intégrer dans OF
 
-    build_column_couple('f7cu', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'7CU')),
+build_column('f7cu', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",
+                val_type = "monetary",
+                cerfa_field = u'7CU'))
 
 # TODO: en 2013 et 2012 plus de sofipêche (pourtant présent dans param à ces dates...), case 7gs réutilisée
-    # Souscription au capital d’une SOFIPECHE
-#     build_column_couple('f7gs', IntCol(entity = 'foy',
+# Souscription au capital d’une SOFIPECHE
+#     build_column('f7gs', IntCol(entity = 'foy',
 #                     label = u"Souscription au capital d’une SOFIPECHE",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7GS',
-#                     end = datetime.date(2011,12,31))),
+#                     end = datetime.date(2011,12,31)))
 
-    build_column_couple('f7gs', IntCol(entity = 'foy',
-                    label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                    val_type = "monetary",
-                    cerfa_field = u'7GS',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f7gs', IntCol(entity = 'foy',
+                label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
+                val_type = "monetary",
+                cerfa_field = u'7GS',
+                start = datetime.date(2013, 1, 1)))
 
-    # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
-    build_column_couple('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+# Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+build_column('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
 
 # en 2013 et 2012, 7uc se rapporte à autre chose, réutilisation de la case
-#    build_column_couple('f7uc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UC', end = datetime.date(2011,12,31))),  # vérifier <=2011
+#    build_column('f7uc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UC', end = datetime.date(2011,12,31)))  # vérifier <=2011
 
-    build_column_couple('f7uc', IntCol(entity = 'foy',
-                    label = u"Cotisations pour la défense des forêts contre l'incendie ",
-                    val_type = "monetary",
-                    cerfa_field = u'7UC',
-                    start = datetime.date(2012, 1, 1))),
+build_column('f7uc', IntCol(entity = 'foy',
+                label = u"Cotisations pour la défense des forêts contre l'incendie ",
+                val_type = "monetary",
+                cerfa_field = u'7UC',
+                start = datetime.date(2012, 1, 1)))
 
-    build_column_couple('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
-    build_column_couple('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = datetime.date(2011, 12, 31))),  # vérifier <=2011
+build_column('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
+build_column('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = datetime.date(2011, 12, 31)))  # vérifier <=2011
 
-    # Souscription de parts de fonds communs de placement dans l'innovation,
-    # de fonds d'investissement de proximité
-    build_column_couple('f7gq', IntCol(entity = 'foy',
-                    label = u"Souscription de parts de fonds communs de placement dans l'innovation",
-                    val_type = "monetary",
-                    cerfa_field = u'7GQ')),
+# Souscription de parts de fonds communs de placement dans l'innovation,
+# de fonds d'investissement de proximité
+build_column('f7gq', IntCol(entity = 'foy',
+                label = u"Souscription de parts de fonds communs de placement dans l'innovation",
+                val_type = "monetary",
+                cerfa_field = u'7GQ'))
 
-    build_column_couple('f7fq', IntCol(entity = 'foy',
-                    label = u"Souscription de parts de fonds d'investissement de proximité",
-                    val_type = "monetary",
-                    cerfa_field = u'7FQ')),
+build_column('f7fq', IntCol(entity = 'foy',
+                label = u"Souscription de parts de fonds d'investissement de proximité",
+                val_type = "monetary",
+                cerfa_field = u'7FQ'))
 
-    build_column_couple('f7fm', IntCol(entity = 'foy',
-                    label = u"Souscription de parts de fonds d'investissement de proximité investis en Corse",
-                    val_type = "monetary",
-                    cerfa_field = u'7FM')),
+build_column('f7fm', IntCol(entity = 'foy',
+                label = u"Souscription de parts de fonds d'investissement de proximité investis en Corse",
+                val_type = "monetary",
+                cerfa_field = u'7FM'))
 
-    build_column_couple('f7fl', IntCol(entity = 'foy',
-                    label = u"Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer",
-                    val_type = "monetary",
-                    cerfa_field = u'7FL')),
+build_column('f7fl', IntCol(entity = 'foy',
+                label = u"Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer",
+                val_type = "monetary",
+                cerfa_field = u'7FL'))
 
-    # Souscriptions au capital de SOFICA
-    # Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait aucun impact (si les param sont bons) puisque les cases ne changent pas
-#     build_column_couple('f7gn', IntCol(entity = 'foy',
+# Souscriptions au capital de SOFICA
+# Différence de % selon l'année pour le sofica, mais il se peut que cela n'ait aucun impact (si les param sont bons) puisque les cases ne changent pas
+#     build_column('f7gn', IntCol(entity = 'foy',
 #                     label = u"Souscriptions au capital de SOFICA 48 %",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7GN',
-#                     end = datetime.date(2011,12,31))),  # TODO: vérifier <=2011
-#     build_column_couple('f7fn', IntCol(entity = 'foy',
+#                     end = datetime.date(2011,12,31)))  # TODO: vérifier <=2011
+#     build_column('f7fn', IntCol(entity = 'foy',
 #                     label = u"Souscriptions au capital de SOFICA 40 %",
 #                     val_type = "monetary",
 #                     cerfa_field = u'7FN',
-#                     end = datetime.date(2011,12,31))),  # TODO: vérifier <=2011
+#                     end = datetime.date(2011,12,31)))  # TODO: vérifier <=2011
 
-    build_column_couple('f7gn', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital de SOFICA 36 %",
-                    val_type = "monetary",
-                    cerfa_field = u'7GN',
-                    start = datetime.date(2012, 1, 1))),
+build_column('f7gn', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital de SOFICA 36 %",
+                val_type = "monetary",
+                cerfa_field = u'7GN',
+                start = datetime.date(2012, 1, 1)))
 
-    build_column_couple('f7fn', IntCol(entity = 'foy',
-                    label = u"Souscriptions au capital de SOFICA 30 %",
-                    val_type = "monetary",
-                    cerfa_field = u'7FN',
-                    start = datetime.date(2012, 1, 1))),
+build_column('f7fn', IntCol(entity = 'foy',
+                label = u"Souscriptions au capital de SOFICA 30 %",
+                val_type = "monetary",
+                cerfa_field = u'7FN',
+                start = datetime.date(2012, 1, 1)))
 
-    # Intérêts d'emprunt pour reprise de société
-    build_column_couple('f7fh', IntCol(entity = 'foy',
-                    label = u"Intérêts d'emprunt pour reprise de société",
-                    val_type = "monetary", cerfa_field = u'7FH')),
+# Intérêts d'emprunt pour reprise de société
+build_column('f7fh', IntCol(entity = 'foy',
+                label = u"Intérêts d'emprunt pour reprise de société",
+                val_type = "monetary", cerfa_field = u'7FH'))
 
-    # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)),
-    build_column_couple('f7ff', IntCol(entity = 'foy',
-                    label = u"Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)",
-                    val_type = "monetary",
-                    cerfa_field = u'7FF')),
+# Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée))
+build_column('f7ff', IntCol(entity = 'foy',
+                label = u"Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)",
+                val_type = "monetary",
+                cerfa_field = u'7FF'))
 
-    build_column_couple('f7fg', IntCol(entity = 'foy',
-                    label = u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations",
-                    cerfa_field = u'7FG')),
+build_column('f7fg', IntCol(entity = 'foy',
+                label = u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations",
+                cerfa_field = u'7FG'))
 
-    # Travaux de conservation et de restauration d’objets classés monuments historiques
-    build_column_couple('f7nz', IntCol(entity = 'foy',
-                    label = u"Travaux de conservation et de restauration d’objets classés monuments historiques",
-                    val_type = "monetary" ,
-                    cerfa_field = u'7NZ')),
+# Travaux de conservation et de restauration d’objets classés monuments historiques
+build_column('f7nz', IntCol(entity = 'foy',
+                label = u"Travaux de conservation et de restauration d’objets classés monuments historiques",
+                val_type = "monetary" ,
+                cerfa_field = u'7NZ'))
 
-    # Dépenses de protection du patrimoine naturel
-    build_column_couple('f7ka', IntCol(entity = 'foy',
-                    label = u"Dépenses de protection du patrimoine naturel",
-                    val_type = "monetary",
-                    cerfa_field = u'7KA')),
+# Dépenses de protection du patrimoine naturel
+build_column('f7ka', IntCol(entity = 'foy',
+                label = u"Dépenses de protection du patrimoine naturel",
+                val_type = "monetary",
+                cerfa_field = u'7KA'))
 
-    # Intérêts des prêts à la consommation (case UH)),
-    # build_column_couple('f7uh', IntCol(entity = 'foy',
-    #                 label = u"Intérêts des prêts à la consommation",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7UH',
-    #                 end = datetime.date(2012, 12, 1))),  # verif <=2012
+# Intérêts des prêts à la consommation (case UH))
+# build_column('f7uh', IntCol(entity = 'foy',
+#                 label = u"Intérêts des prêts à la consommation",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7UH',
+#                 end = datetime.date(2012, 12, 1)))  # verif <=2012
 
-    build_column_couple('f7uh', IntCol(entity = 'foy',
-                    label = u"Dons et cotisations versés aux partis politiques",
-                    val_type = "monetary",
-                    cerfa_field = u'7UH',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f7uh', IntCol(entity = 'foy',
+                label = u"Dons et cotisations versés aux partis politiques",
+                val_type = "monetary",
+                cerfa_field = u'7UH',
+                start = datetime.date(2013, 1, 1)))
 
-    # Investissements forestiers
-    build_column_couple('f7un', IntCol(entity = 'foy',
-                    label = u"Investissements forestiers: acquisition",
-                    val_type = "monetary",
-                    cerfa_field = u'7UN')),
+# Investissements forestiers
+build_column('f7un', IntCol(entity = 'foy',
+                label = u"Investissements forestiers: acquisition",
+                val_type = "monetary",
+                cerfa_field = u'7UN'))
 
-    # Intérêts pour paiement différé accordé aux agriculteurs
-    build_column_couple('f7um', IntCol(entity = 'foy',
-                    label = u"Intérêts pour paiement différé accordé aux agriculteurs",
-                    val_type = "monetary",
-                    cerfa_field = u'7UM')),
+# Intérêts pour paiement différé accordé aux agriculteurs
+build_column('f7um', IntCol(entity = 'foy',
+                label = u"Intérêts pour paiement différé accordé aux agriculteurs",
+                val_type = "monetary",
+                cerfa_field = u'7UM'))
 
-    # Investissements locatifs neufs : Dispositif Scellier:
-    build_column_couple('f7hj', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole",
-                    val_type = "monetary",
-                    cerfa_field = u'7HJ')),
+# Investissements locatifs neufs : Dispositif Scellier:
+build_column('f7hj', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole",
+                val_type = "monetary",
+                cerfa_field = u'7HJ'))
 
-    build_column_couple('f7hk', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM",
-                    val_type = "monetary",
-                    cerfa_field = u'7HK')),
+build_column('f7hk', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM",
+                val_type = "monetary",
+                cerfa_field = u'7HK'))
 
-    build_column_couple('f7hn', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010",
-                    val_type = "monetary",
-                    cerfa_field = u'7HN')),
+build_column('f7hn', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010",
+                val_type = "monetary",
+                cerfa_field = u'7HN'))
 
-    build_column_couple('f7ho', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010",
-                    val_type = "monetary",
-                    cerfa_field = u'7HO')),
+build_column('f7ho', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010",
+                val_type = "monetary",
+                cerfa_field = u'7HO'))
 
-    build_column_couple('f7hl', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)",
-                    val_type = "monetary",
-                    cerfa_field = u'7HL')),
+build_column('f7hl', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)",
+                val_type = "monetary",
+                cerfa_field = u'7HL'))
 
-    build_column_couple('f7hm', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds",
-                    val_type = "monetary",
-                    cerfa_field = u'7HM')),
+build_column('f7hm', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds",
+                val_type = "monetary",
+                cerfa_field = u'7HM'))
 
-    build_column_couple('f7hr', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 (métropole et DOM ne respectant pas les plafonds): report de 1/9 de l'investissement",
-                    val_type = "monetary",
-                    cerfa_field = u'7HR')),
+build_column('f7hr', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 (métropole et DOM ne respectant pas les plafonds): report de 1/9 de l'investissement",
+                val_type = "monetary",
+                cerfa_field = u'7HR'))
 
-    build_column_couple('f7hs', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM et respectant les plafonds: report de 1/9 de l'investissement",
-                    val_type = "monetary",
-                    cerfa_field = u'7HS')),
+build_column('f7hs', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM et respectant les plafonds: report de 1/9 de l'investissement",
+                val_type = "monetary",
+                cerfa_field = u'7HS'))
 
-    build_column_couple('f7la', IntCol(entity = 'foy',
-                    label = u"Investissements locatifs neufs dispositif Scellier: report du solde de réduction d'impôt non encore imputé",
-                    val_type = "monetary",
-                    cerfa_field = u'7LA')),
+build_column('f7la', IntCol(entity = 'foy',
+                label = u"Investissements locatifs neufs dispositif Scellier: report du solde de réduction d'impôt non encore imputé",
+                val_type = "monetary",
+                cerfa_field = u'7LA'))
 
-    # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-    build_column_couple('f7ij', IntCol(entity = 'foy',
-                    label = u"Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en 2011",
-                    val_type = "monetary",
-                    cerfa_field = u'7IJ')),
+# Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+build_column('f7ij', IntCol(entity = 'foy',
+                label = u"Investissement destinés à la location meublée non professionnelle: engagement de réalisation de l'investissement en 2011",
+                val_type = "monetary",
+                cerfa_field = u'7IJ'))
 
-    build_column_couple('f7il', IntCol(entity = 'foy',
-                    label = u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en 2010",
-                    val_type = "monetary",
-                    cerfa_field = u'7IL')),
+build_column('f7il', IntCol(entity = 'foy',
+                label = u"Investissement destinés à la location meublée non professionnelle: promesse d'achat en 2010",
+                val_type = "monetary",
+                cerfa_field = u'7IL'))
 
-    build_column_couple('f7im', IntCol(entity = 'foy',
-                    label = u"Investissement destinés à la location meublée non professionnelle: investissement réalisés en 2010 avec promesse d'achat en 2009",
-                    val_type = "monetary",
-                    cerfa_field = u'7IM')),
+build_column('f7im', IntCol(entity = 'foy',
+                label = u"Investissement destinés à la location meublée non professionnelle: investissement réalisés en 2010 avec promesse d'achat en 2009",
+                val_type = "monetary",
+                cerfa_field = u'7IM'))
 
-    build_column_couple('f7ik', IntCol(entity = 'foy',
-                    label = u"Reports de 1/9 de l'investissement réalisé et achevé en 2009",
-                    val_type = "monetary",
-                    cerfa_field = u'7IK')),
+build_column('f7ik', IntCol(entity = 'foy',
+                label = u"Reports de 1/9 de l'investissement réalisé et achevé en 2009",
+                val_type = "monetary",
+                cerfa_field = u'7IK'))
 
-    build_column_couple('f7is', IntCol(entity = 'foy',
-                    label = u"Report du solde de réduction d'impôt non encore imputé: année  n-4",
-                    val_type = "monetary",
-                    cerfa_field = u'7IS')),
+build_column('f7is', IntCol(entity = 'foy',
+                label = u"Report du solde de réduction d'impôt non encore imputé: année  n-4",
+                val_type = "monetary",
+                cerfa_field = u'7IS'))
 
-    # Investissements locatifs dans les résidences de tourisme situées dans une zone de
-    # revitalisation rurale
+# Investissements locatifs dans les résidences de tourisme situées dans une zone de
+# revitalisation rurale
 
 # """
 # réutilisation de cases en 2013
 # """
-    # build_column_couple('f7gt', IntCol(entity = 'foy',
-    #                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7GT',
-    #                 end = datetime.date(2012, 12, 1))),  # vérif <=2012
+# build_column('f7gt', IntCol(entity = 'foy',
+#                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7GT',
+#                 end = datetime.date(2012, 12, 1)))  # vérif <=2012
 
-    build_column_couple('f7gt', IntCol(entity = 'foy',
-                    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010",
-                    val_type = "monetary",
-                    cerfa_field = u'7GT',
-                    start = datetime.date(2013, 1, 1))),  # vérif <=2012
+build_column('f7gt', IntCol(entity = 'foy',
+                label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010",
+                val_type = "monetary",
+                cerfa_field = u'7GT',
+                start = datetime.date(2013, 1, 1)))  # vérif <=2012
 
-    # build_column_couple('f7gu', IntCol(entity = 'foy',
-    #                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7GU',
-    #                 end = datetime.date(2012, 12, 1))),  # vérif <=2012
+# build_column('f7gu', IntCol(entity = 'foy',
+#                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7GU',
+#                 end = datetime.date(2012, 12, 1)))  # vérif <=2012
 
-    build_column_couple('f7gu', IntCol(entity = 'foy',
-                    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
-                    val_type = "monetary",
-                    cerfa_field = u'7GU',
-                    start = datetime.date(2013, 1, 1))),  # vérif <=2012
+build_column('f7gu', IntCol(entity = 'foy',
+                label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
+                val_type = "monetary",
+                cerfa_field = u'7GU',
+                start = datetime.date(2013, 1, 1)))  # vérif <=2012
 
-    # build_column_couple('f7gv', IntCol(entity = 'foy',
-    #                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7GV',
-    #                 end = datetime.date(2012, 12, 1))),  # vérif <=2012
+# build_column('f7gv', IntCol(entity = 'foy',
+#                 label = u"Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7GV',
+#                 end = datetime.date(2012, 12, 1)))  # vérif <=2012
 
-    build_column_couple('f7gv', IntCol(entity = 'foy',
-                    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
-                    val_type = "monetary",
-                    cerfa_field = u'7GV',
-                    start = datetime.date(2013, 1, 1))),  # vérif <=2012
+build_column('f7gv', IntCol(entity = 'foy',
+                label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+                val_type = "monetary",
+                cerfa_field = u'7GV',
+                start = datetime.date(2013, 1, 1)))  # vérif <=2012
 
-    build_column_couple('f7xg', IntCol(entity = 'foy', label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme",
-                    val_type = "monetary",
-                    cerfa_field = u'7XG',
-                    end = datetime.date(2012, 12, 1))),  # vérif <=2012
+build_column('f7xg', IntCol(entity = 'foy', label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme",
+                val_type = "monetary",
+                cerfa_field = u'7XG',
+                end = datetime.date(2012, 12, 1)))  # vérif <=2012
 
-    # Avoir fiscaux et crédits d'impôt
-    # f2ab déjà disponible
-    build_column_couple('f8ta', IntCol(entity = 'foy',
-                    label = u"Retenue à la source en France ou impôt payé à l'étranger",
-                    val_type = "monetary",
-                    cerfa_field = u'8TA')),
+# Avoir fiscaux et crédits d'impôt
+# f2ab déjà disponible
+build_column('f8ta', IntCol(entity = 'foy',
+                label = u"Retenue à la source en France ou impôt payé à l'étranger",
+                val_type = "monetary",
+                cerfa_field = u'8TA'))
 
-    build_column_couple('f8tb', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # TODO: différence de label entre les années à voir
-                    val_type = "monetary",
-                    cerfa_field = u'8TB')),
+build_column('f8tb', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # TODO: différence de label entre les années à voir
+                val_type = "monetary",
+                cerfa_field = u'8TB'))
 
-    build_column_couple('f8tf', IntCol(entity = 'foy',
-                    label = u"Reprises de réductions ou de crédits d'impôt",
-                    val_type = "monetary",
-                    cerfa_field = u'8TF')),
+build_column('f8tf', IntCol(entity = 'foy',
+                label = u"Reprises de réductions ou de crédits d'impôt",
+                val_type = "monetary",
+                cerfa_field = u'8TF'))
 
-    build_column_couple('f8tg', IntCol(entity = 'foy',
-                    label = u"Crédits d'impôt en faveur des entreprises: Investissement en Corse",
-                    val_type = "monetary",
-                    cerfa_field = u'8TG')),
+build_column('f8tg', IntCol(entity = 'foy',
+                label = u"Crédits d'impôt en faveur des entreprises: Investissement en Corse",
+                val_type = "monetary",
+                cerfa_field = u'8TG'))
 
-    build_column_couple('f8th', IntCol(entity = 'foy',
-                    label = u"Retenue à la source élus locaux",
-                    val_type = "monetary",
-                    cerfa_field = u'8TH')),
+build_column('f8th', IntCol(entity = 'foy',
+                label = u"Retenue à la source élus locaux",
+                val_type = "monetary",
+                cerfa_field = u'8TH'))
 
-    build_column_couple('f8tc', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))",  # différence de label entre les années à voir
-                    val_type = "monetary",
-                    cerfa_field = u'8TC')),
+build_column('f8tc', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))",  # différence de label entre les années à voir
+                val_type = "monetary",
+                cerfa_field = u'8TC'))
 
-    build_column_couple('f8td', IntCol(entity = 'foy',
-                    label = u"Contribution exceptionnelle sur les hauts revenus",
-                    cerfa_field = u'8TD')),
+build_column('f8td', IntCol(entity = 'foy',
+                label = u"Contribution exceptionnelle sur les hauts revenus",
+                cerfa_field = u'8TD'))
 
-    build_column_couple('f8te', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé",
-                    val_type = "monetary",
-                    cerfa_field = u'8TE')),
+build_column('f8te', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé",
+                val_type = "monetary",
+                cerfa_field = u'8TE'))
 
-    build_column_couple('f8to', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures",
-                    val_type = "monetary",
-                    cerfa_field = u'8TO')),
+build_column('f8to', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures",
+                val_type = "monetary",
+                cerfa_field = u'8TO'))
 
-    build_column_couple('f8tp', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt",
-                    val_type = "monetary",
-                    cerfa_field = u'8TP')),
+build_column('f8tp', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt",
+                val_type = "monetary",
+                cerfa_field = u'8TP'))
 
-    build_column_couple('f8uz', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Famille",
-                    val_type = "monetary",
-                    cerfa_field = u'8UZ')),
+build_column('f8uz', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Famille",
+                val_type = "monetary",
+                cerfa_field = u'8UZ'))
 
-    build_column_couple('f8tz', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Apprentissage",
-                    val_type = "monetary",
-                    cerfa_field = u'8TZ')),
+build_column('f8tz', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Apprentissage",
+                val_type = "monetary",
+                cerfa_field = u'8TZ'))
 
-    build_column_couple('f8wa', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Agriculture biologique",
-                    val_type = "monetary",
-                    cerfa_field = u'8WA')),
+build_column('f8wa', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Agriculture biologique",
+                val_type = "monetary",
+                cerfa_field = u'8WA'))
 
-    build_column_couple('f8wb', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Prospection commerciale",
-                    val_type = "monetary",
-                    cerfa_field = u'8WB')),
+build_column('f8wb', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Prospection commerciale",
+                val_type = "monetary",
+                cerfa_field = u'8WB'))
 # """
 # réutilisation f8wc
 # """
-    # build_column_couple('f8wc', IntCol(entity = 'foy',
-    #                 label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'8WC',
-    #                 end = datetime.date(2012, 12, 1))),  # TODO: verif<=2012
+# build_column('f8wc', IntCol(entity = 'foy',
+#                 label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
+#                 val_type = "monetary",
+#                 cerfa_field = u'8WC',
+#                 end = datetime.date(2012, 12, 1)))  # TODO: verif<=2012
 
-    build_column_couple('f8wc', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",
-                    val_type = "monetary",
-                    cerfa_field = u'8WC',
-                    start = datetime.date(2013, 1, 1))),
+build_column('f8wc', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",
+                val_type = "monetary",
+                cerfa_field = u'8WC',
+                start = datetime.date(2013, 1, 1)))
 
-    build_column_couple('f8wd', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise",
-                    val_type = "monetary",
-                    cerfa_field = u'8WD')),
+build_column('f8wd', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise",
+                val_type = "monetary",
+                cerfa_field = u'8WD'))
 
-    build_column_couple('f8we', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Intéressement",
-                    val_type = "monetary",
-                    cerfa_field = u'8WE')),
+build_column('f8we', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Intéressement",
+                val_type = "monetary",
+                cerfa_field = u'8WE'))
 
-    build_column_couple('f8wr', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art",
-                    val_type = "monetary",
-                    cerfa_field = u'8WR')),
+build_column('f8wr', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art",
+                val_type = "monetary",
+                cerfa_field = u'8WR'))
 
-    build_column_couple('f8ws', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes",
-                    val_type = "monetary",
-                    cerfa_field = u'8WS',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+build_column('f8ws', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes",
+                val_type = "monetary",
+                cerfa_field = u'8WS',
+                end = datetime.date(2012, 12, 1)))  # verif<=2012
 
-    build_column_couple('f8wt', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs",
-                    val_type = "monetary",
-                    cerfa_field = u'8WT')),
+build_column('f8wt', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs",
+                val_type = "monetary",
+                cerfa_field = u'8WT'))
 
-    build_column_couple('f8wu', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur",
-                    val_type = "monetary",
-                    cerfa_field = u'8WU')),
+build_column('f8wu', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur",
+                val_type = "monetary",
+                cerfa_field = u'8WU'))
 
-    build_column_couple('f8wv', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac",
-                    val_type = "monetary",
-                    cerfa_field = u'8WV',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+build_column('f8wv', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac",
+                val_type = "monetary",
+                cerfa_field = u'8WV',
+                end = datetime.date(2012, 12, 1)))  # verif<=2012
 
-    build_column_couple('f8wx', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise",
-                    val_type = "monetary",
-                    cerfa_field = u'8WX',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+build_column('f8wx', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise",
+                val_type = "monetary",
+                cerfa_field = u'8WX',
+                end = datetime.date(2012, 12, 1)))  # verif<=2012
 
-    build_column_couple('f8wy', IntCol(entity = 'foy',
-                    label = u"",
-                    val_type = "monetary",
-                    cerfa_field = u'8WY',
-                    end = datetime.date(2012, 12, 1))),  # verif<=2012
+build_column('f8wy', IntCol(entity = 'foy',
+                label = u"",
+                val_type = "monetary",
+                cerfa_field = u'8WY',
+                end = datetime.date(2012, 12, 1)))  # verif<=2012
 
-    # Acquisition de biens culturels
-    build_column_couple('f7uo', IntCol(entity = 'foy',
-                    label = u"Acquisition de biens culturels",
-                    val_type = "monetary",
-                    cerfa_field = u'7UO')),
+# Acquisition de biens culturels
+build_column('f7uo', IntCol(entity = 'foy',
+                label = u"Acquisition de biens culturels",
+                val_type = "monetary",
+                cerfa_field = u'7UO'))
 
-    # Mécénat d'entreprise
-    build_column_couple('f7us', IntCol(entity = 'foy',
-                    label = u"Réduction d'impôt mécénat d'entreprise",
-                    val_type = "monetary",
-                    cerfa_field = u'7US')),
+# Mécénat d'entreprise
+build_column('f7us', IntCol(entity = 'foy',
+                label = u"Réduction d'impôt mécénat d'entreprise",
+                val_type = "monetary",
+                cerfa_field = u'7US'))
 
-    # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-    # ('f7wf', IntCol() déjà disponible
-    # ('f7wh', IntCol() déjà disponible
-    # ('f7wk', IntCol() déjà disponible
-    # ('f7wq', IntCol() déjà disponible
+# Crédits d’impôt pour dépenses en faveur de la qualité environnementale
+# ('f7wf', IntCol() déjà disponible
+# ('f7wh', IntCol() déjà disponible
+# ('f7wk', IntCol() déjà disponible
+# ('f7wq', IntCol() déjà disponible
 
-    build_column_couple('f7sb', IntCol(entity = 'foy',
-                   label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %",
-                   val_type = "monetary",
-                   cerfa_field = u'7SB',
-                   end = datetime.date(2012, 12, 1))),  # TODO: verif<=2012
+build_column('f7sb', IntCol(entity = 'foy',
+               label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %",
+               val_type = "monetary",
+               cerfa_field = u'7SB',
+               end = datetime.date(2012, 12, 1)))  # TODO: verif<=2012
 
-    build_column_couple('f7sc', IntCol(entity = 'foy',
-                   label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale",
-                   val_type = "monetary",
-                   cerfa_field = u'7SC',
-                   end = datetime.date(2012, 12, 1))),  # TODO: verif<=2012
+build_column('f7sc', IntCol(entity = 'foy',
+               label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale",
+               val_type = "monetary",
+               cerfa_field = u'7SC',
+               end = datetime.date(2012, 12, 1)))  # TODO: verif<=2012
 
 # """
 # réutilisation de case pour 2013
 # """
 
-    # build_column_couple('f7sd', IntCol(entity = 'foy',
-    #                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7SD',
-    #                 end = datetime.date(2012, 12, 1))),  # TODO: verif<=2012
+# build_column('f7sd', IntCol(entity = 'foy',
+#                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 40 %",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7SD',
+#                 end = datetime.date(2012, 12, 1)))  # TODO: verif<=2012
 
-    build_column_couple('f7sd', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation",
-                    val_type = "monetary",
-                    cerfa_field = u'7SD',
-                    start = datetime.date(2013, 1, 1))),  # TODO: verif<=2012 et vérifier autres prog comportant f7sd
+build_column('f7sd', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation",
+                val_type = "monetary",
+                cerfa_field = u'7SD',
+                start = datetime.date(2013, 1, 1)))  # TODO: verif<=2012 et vérifier autres prog comportant f7sd
 
-    # build_column_couple('f7se', IntCol(entity = 'foy',
-    #                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7SE',
-    #                 end = datetime.date(2012, 12, 1))),  # TODO: verif<=2012
+# build_column('f7se', IntCol(entity = 'foy',
+#                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 50 %",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7SE',
+#                 end = datetime.date(2012, 12, 1)))  # TODO: verif<=2012
 
-    build_column_couple('f7se', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz",
-                    val_type = "monetary",
-                    cerfa_field = u'7SE',
-                    start = datetime.date(2013, 1, 1))),  # TODO: verif<=2012
+build_column('f7se', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz",
+                val_type = "monetary",
+                cerfa_field = u'7SE',
+                start = datetime.date(2013, 1, 1)))  # TODO: verif<=2012
 
-    # build_column_couple('f7sh', IntCol(entity = 'foy',
-    #                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7SH',
-    #                 end = datetime.date(2012, 12, 1))),  # TODO: verif<=2012
+# build_column('f7sh', IntCol(entity = 'foy',
+#                 label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 15 %",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7SH',
+#                 end = datetime.date(2012, 12, 1)))  # TODO: verif<=2012
 
-    build_column_couple('f7sh', IntCol(entity = 'foy',
-                    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)",
-                    val_type = "monetary",
-                    cerfa_field = u'7SH',
-                    start = datetime.date(2013, 1, 1))),  # TODO: verif<=2012
+build_column('f7sh', IntCol(entity = 'foy',
+                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)",
+                val_type = "monetary",
+                cerfa_field = u'7SH',
+                start = datetime.date(2013, 1, 1)))  # TODO: verif<=2012
 
-    # ('f7wg', IntCol() déjà disponible
+# ('f7wg', IntCol() déjà disponible
 
-    # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
-    # build_column_couple('f7up', IntCol(entity = 'foy',
-    #                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7UP',
-    #                 end = datetime.date(2007, 12, 1))),  # TODO: vérif date de fin
+# Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
+# build_column('f7up', IntCol(entity = 'foy',
+#                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7UP',
+#                 end = datetime.date(2007, 12, 1)))  # TODO: vérif date de fin
 
-    build_column_couple('f7up', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt pour investissements forestiers: travaux",
-                    val_type = "monetary",
-                    cerfa_field = u'7UP',
-                    start = datetime.date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
+build_column('f7up', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt pour investissements forestiers: travaux",
+                val_type = "monetary",
+                cerfa_field = u'7UP',
+                start = datetime.date(2008, 1, 1)))  # TODO: vérif date début, ok pour 13
 
-    # build_column_couple('f7uq', IntCol(entity = 'foy',
-    #                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL",
-    #                 val_type = "monetary",
-    #                 cerfa_field = u'7UQ',
-    #                 end = datetime.date(2007, 12, 1))),  # TODO: vérif date de fin
+# build_column('f7uq', IntCol(entity = 'foy',
+#                 label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL",
+#                 val_type = "monetary",
+#                 cerfa_field = u'7UQ',
+#                 end = datetime.date(2007, 12, 1)))  # TODO: vérif date de fin
 
-    build_column_couple('f7uq', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
-                    val_type = "monetary",
-                    cerfa_field = u'7UQ',
-                    start = datetime.date(2008, 1, 1))),  # TODO: vérif date début, ok pour 13
+build_column('f7uq', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
+                val_type = "monetary",
+                cerfa_field = u'7UQ',
+                start = datetime.date(2008, 1, 1)))  # TODO: vérif date début, ok pour 13
 
-    # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
-    build_column_couple('f1ar', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1AR',
-                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
+# Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
+build_column('f1ar', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt aide à la mobilité",
+                cerfa_field = u'1AR',
+                end = datetime.date(2012, 12, 1)))  # TODO: vérifier <=2012
 
-    build_column_couple('f1br', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1BR',
-                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
+build_column('f1br', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt aide à la mobilité",
+                cerfa_field = u'1BR',
+                end = datetime.date(2012, 12, 1)))  # TODO: vérifier <=2012
 
-    build_column_couple('f1cr', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1CR',
-                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
+build_column('f1cr', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt aide à la mobilité",
+                cerfa_field = u'1CR',
+                end = datetime.date(2012, 12, 1)))  # TODO: vérifier <=2012
 
-    build_column_couple('f1dr', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1DR',
-                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
+build_column('f1dr', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt aide à la mobilité",
+                cerfa_field = u'1DR',
+                end = datetime.date(2012, 12, 1)))  # TODO: vérifier <=2012
 
-    build_column_couple('f1er', IntCol(entity = 'foy',
-                    label = u"Crédit d'impôt aide à la mobilité",
-                    cerfa_field = u'1ER',
-                    end = datetime.date(2012, 12, 1))),  # TODO: vérifier <=2012
+build_column('f1er', IntCol(entity = 'foy',
+                label = u"Crédit d'impôt aide à la mobilité",
+                cerfa_field = u'1ER',
+                end = datetime.date(2012, 12, 1)))  # TODO: vérifier <=2012
 
-    # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
-    build_column_couple('f4tq', IntCol(entity = 'foy',
-                    label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail",
-                    val_type = "monetary",
-                    cerfa_field = u'4TQ')),  # vérif libéllé, en 2013=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
-                                           # pour lesquels la cessation ou l'interruption de la location est intervenue en 2013 et qui ont été
-                                           # soumis à la taxe additionnelle au droit de bail
+# Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
+build_column('f4tq', IntCol(entity = 'foy',
+                label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail",
+                val_type = "monetary",
+                cerfa_field = u'4TQ'))  # vérif libéllé, en 2013=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
+                                       # pour lesquels la cessation ou l'interruption de la location est intervenue en 2013 et qui ont été
+                                       # soumis à la taxe additionnelle au droit de bail
 
-    # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-    # f7wf
-    # f7wi
-    # f7wj
-    # f7wl
-    build_column_couple('f7sf', IntCol(entity = 'foy',
-                    label = u"Appareils de régulation du chauffage, matériaux de calorifugeage",
-                    val_type = "monetary",
-                    cerfa_field = u'7SF')),
+# Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
+# f7wf
+# f7wi
+# f7wj
+# f7wl
+build_column('f7sf', IntCol(entity = 'foy',
+                label = u"Appareils de régulation du chauffage, matériaux de calorifugeage",
+                val_type = "monetary",
+                cerfa_field = u'7SF'))
 
-    build_column_couple('f7si', IntCol(entity = 'foy',
-                    label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)",
-                    val_type = "monetary",
-                    cerfa_field = u'7SI')),
+build_column('f7si', IntCol(entity = 'foy',
+                label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)",
+                val_type = "monetary",
+                cerfa_field = u'7SI'))
 
-    # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
+# Auto-entrepreneur : versements libératoires d’impôt sur le revenu
 
-    build_column_couple('f8uy', IntCol(entity = 'foy',
-                    label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé",
-                    val_type = "monetary",
-                    cerfa_field = u'8UY')),
+build_column('f8uy', IntCol(entity = 'foy',
+                label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé",
+                val_type = "monetary",
+                cerfa_field = u'8UY'))
 
 
-    # Revenus des professions non salariées
+# Revenus des professions non salariées
 
-    build_column_couple('frag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés (régime du forfait)", val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HN",
-                                        QUIFOY['conj']: u"5IN",
-                                        QUIFOY['pac1']: u"5JN", })),  # (f5hn, f5in, f5jn)),
+build_column('frag_exon', IntCol(entity = 'ind', label = u"Revenus agricoles exonérés (régime du forfait)", val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HN",
+                                    QUIFOY['conj']: u"5IN",
+                                    QUIFOY['pac1']: u"5JN", }))  # (f5hn, f5in, f5jn))
 
-    build_column_couple('frag_impo', IntCol(entity = 'ind',
-                         label = u"Revenus agricoles imposables (régime du forfait)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HO",
-                                        QUIFOY['conj']: u"5IO",
-                                        QUIFOY['pac1']: u"5JO", })),  # (f5ho, f5io, f5jo)),
+build_column('frag_impo', IntCol(entity = 'ind',
+                     label = u"Revenus agricoles imposables (régime du forfait)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HO",
+                                    QUIFOY['conj']: u"5IO",
+                                    QUIFOY['pac1']: u"5JO", }))  # (f5ho, f5io, f5jo))
 
-    build_column_couple('arag_exon', IntCol(entity = 'ind',
-                         label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur), activités exercées en Corse",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HB",
-                                        QUIFOY['conj']: u"5IB",
-                                        QUIFOY['pac1']: u"5JB", })),  # (f5hb, f5ib, f5jb)),
+build_column('arag_exon', IntCol(entity = 'ind',
+                     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur), activités exercées en Corse",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HB",
+                                    QUIFOY['conj']: u"5IB",
+                                    QUIFOY['pac1']: u"5JB", }))  # (f5hb, f5ib, f5jb))
 
-    build_column_couple('arag_impg', IntCol(entity = 'ind',
-                         label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HC",
-                                        QUIFOY['conj']: u"5IC",
-                                        QUIFOY['pac1']: u"5JC", })),  # (f5hc, f5ic, f5jc)),
+build_column('arag_impg', IntCol(entity = 'ind',
+                     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HC",
+                                    QUIFOY['conj']: u"5IC",
+                                    QUIFOY['pac1']: u"5JC", }))  # (f5hc, f5ic, f5jc))
 
-    build_column_couple('arag_defi', IntCol(entity = 'ind',
-                         label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HF",
-                                        QUIFOY['conj']: u"5IF",
-                                        QUIFOY['pac1']: u"5JF", })),  # (f5hf, f5if, f5jf)),
+build_column('arag_defi', IntCol(entity = 'ind',
+                     label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HF",
+                                    QUIFOY['conj']: u"5IF",
+                                    QUIFOY['pac1']: u"5JF", }))  # (f5hf, f5if, f5jf))
 
-    build_column_couple('nrag_exon', IntCol(entity = 'ind',
-                         label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HH",
-                                        QUIFOY['conj']: u"5IH",
-                                        QUIFOY['pac1']: u"5JH", })),  # (f5hh, f5ih, f5jh)),
+build_column('nrag_exon', IntCol(entity = 'ind',
+                     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HH",
+                                    QUIFOY['conj']: u"5IH",
+                                    QUIFOY['pac1']: u"5JH", }))  # (f5hh, f5ih, f5jh))
 
-    build_column_couple('nrag_impg', IntCol(entity = 'ind',
-                         label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HI",
-                                        QUIFOY['conj']: u"5II",
-                                        QUIFOY['pac1']: u"5JI", })),  # (f5hi, f5ii, f5ji)),
+build_column('nrag_impg', IntCol(entity = 'ind',
+                     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HI",
+                                    QUIFOY['conj']: u"5II",
+                                    QUIFOY['pac1']: u"5JI", }))  # (f5hi, f5ii, f5ji))
 
-    build_column_couple('nrag_defi', IntCol(entity = 'ind',
-                         label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HL",
-                                        QUIFOY['conj']: u"5IL",
-                                        QUIFOY['pac1']: u"5JL", })),  # (f5hl, f5il, f5jl)),
+build_column('nrag_defi', IntCol(entity = 'ind',
+                     label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HL",
+                                    QUIFOY['conj']: u"5IL",
+                                    QUIFOY['pac1']: u"5JL", }))  # (f5hl, f5il, f5jl))
 
-    build_column_couple('nrag_ajag', IntCol(entity = 'ind',
-                         label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HM",
-                                        QUIFOY['conj']: u"5IM",
-                                        QUIFOY['pac1']: u"5JM", })),  # (f5hm, f5im, f5jm)),
+build_column('nrag_ajag', IntCol(entity = 'ind',
+                     label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HM",
+                                    QUIFOY['conj']: u"5IM",
+                                    QUIFOY['pac1']: u"5JM", }))  # (f5hm, f5im, f5jm))
 
-    # Autoentrepreneur
-    build_column_couple('ebic_impv', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5TA",
-                                        QUIFOY['conj']: u"5UA",
-                                        QUIFOY['pac1']: u"5VA", })),  # (f5ta, f5ua, f5va)),
+# Autoentrepreneur
+build_column('ebic_impv', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5TA",
+                                    QUIFOY['conj']: u"5UA",
+                                    QUIFOY['pac1']: u"5VA", }))  # (f5ta, f5ua, f5va))
 
-    build_column_couple('ebic_imps', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5TB",
-                                        QUIFOY['conj']: u"5UB",
-                                        QUIFOY['pac1']: u"5VB", })),  # (f5tb, f5ub, f5vb)),
+build_column('ebic_imps', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5TB",
+                                    QUIFOY['conj']: u"5UB",
+                                    QUIFOY['pac1']: u"5VB", }))  # (f5tb, f5ub, f5vb))
 
-    build_column_couple('ebnc_impo', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux imposables (régime auto-entrepreneur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5TE",
-                                        QUIFOY['conj']: u"5UE",
-                                        QUIFOY['pac1']: u"5VE", })),  # (f5te, f5ue, f5ve)),
+build_column('ebnc_impo', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux imposables (régime auto-entrepreneur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5TE",
+                                    QUIFOY['conj']: u"5UE",
+                                    QUIFOY['pac1']: u"5VE", }))  # (f5te, f5ue, f5ve))
 
-    build_column_couple('mbic_exon', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KN",
-                                        QUIFOY['conj']: u"5LN",
-                                        QUIFOY['pac1']: u"5MN", })),  # (f5kn, f5ln, f5mn)),
+build_column('mbic_exon', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KN",
+                                    QUIFOY['conj']: u"5LN",
+                                    QUIFOY['pac1']: u"5MN", }))  # (f5kn, f5ln, f5mn))
 
-    build_column_couple('abic_exon', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KB",
-                                        QUIFOY['conj']: u"5LB",
-                                        QUIFOY['pac1']: u"5MB", })),  # (f5kb, f5lb, f5mb)),
+build_column('abic_exon', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KB",
+                                    QUIFOY['conj']: u"5LB",
+                                    QUIFOY['pac1']: u"5MB", }))  # (f5kb, f5lb, f5mb))
 
-    build_column_couple('nbic_exon', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KH",
-                                        QUIFOY['conj']: u"5LH",
-                                        QUIFOY['pac1']: u"5MH", })),  # (f5kh, f5lh, f5mh)),
+build_column('nbic_exon', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KH",
+                                    QUIFOY['conj']: u"5LH",
+                                    QUIFOY['pac1']: u"5MH", }))  # (f5kh, f5lh, f5mh))
 
-    build_column_couple('mbic_impv', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KO",
-                                        QUIFOY['conj']: u"5LO",
-                                        QUIFOY['pac1']: u"5MO", })),  # (f5ko, f5lo, f5mo)),
+build_column('mbic_impv', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KO",
+                                    QUIFOY['conj']: u"5LO",
+                                    QUIFOY['pac1']: u"5MO", }))  # (f5ko, f5lo, f5mo))
 
-    build_column_couple('mbic_imps', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KP",
-                                        QUIFOY['conj']: u"5LP",
-                                        QUIFOY['pac1']: u"5MP", })),  # (f5kp, f5lp, f5mp)),
+build_column('mbic_imps', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KP",
+                                    QUIFOY['conj']: u"5LP",
+                                    QUIFOY['pac1']: u"5MP", }))  # (f5kp, f5lp, f5mp))
 
-    build_column_couple('abic_impn', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
-                          val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KC",
-                                        QUIFOY['conj']: u"5LC",
-                                        QUIFOY['pac1']: u"5MC", })),  # (f5kc, f5lc, f5mc)),
+build_column('abic_impn', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
+                      val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KC",
+                                    QUIFOY['conj']: u"5LC",
+                                    QUIFOY['pac1']: u"5MC", }))  # (f5kc, f5lc, f5mc))
 
-    build_column_couple('abic_imps', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KD",
-                                        QUIFOY['conj']: u"5LD",
-                                        QUIFOY['pac1']: u"5MD", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kd, f5ld, f5md)),
-                                                              # TODO: vérifier date fin
+build_column('abic_imps', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KD",
+                                    QUIFOY['conj']: u"5LD",
+                                    QUIFOY['pac1']: u"5MD", },
+                     end = datetime.date(2012, 12, 1)))  # (f5kd, f5ld, f5md))
+                                                          # TODO: vérifier date fin
 
-    build_column_couple('nbic_impn', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KI",
-                                        QUIFOY['conj']: u"5LI",
-                                        QUIFOY['pac1']: u"5MI", }
-                         )),  # (f5ki, f5li, f5mi)),
+build_column('nbic_impn', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KI",
+                                    QUIFOY['conj']: u"5LI",
+                                    QUIFOY['pac1']: u"5MI", }
+                     ))  # (f5ki, f5li, f5mi))
 
 # """
 # réutilisation cases 2013
 # """
-    build_column_couple('nbic_imps', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KJ",
-                                        QUIFOY['conj']: u"5LJ",
-                                        QUIFOY['pac1']: u"5MJ", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kj, f5lj, f5mj)),
-                                                              # TODO: vérifier date fin
-    build_column_couple('nbic_mvct', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KJ",
-                                        QUIFOY['conj']: u"5LJ",
-                                        QUIFOY['pac1']: u"5MJ", },
-                         start = datetime.date(2013, 1, 1))),  # (f5kj, f5lj, f5mj)),
-                                                              # vérifier date début #####à intégrer dans OF#######
+build_column('nbic_imps', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux imposables: régime simplifié sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KJ",
+                                    QUIFOY['conj']: u"5LJ",
+                                    QUIFOY['pac1']: u"5MJ", },
+                     end = datetime.date(2012, 12, 1)))  # (f5kj, f5lj, f5mj))
+                                                          # TODO: vérifier date fin
+build_column('nbic_mvct', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux moins-values nettes à court terme",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KJ",
+                                    QUIFOY['conj']: u"5LJ",
+                                    QUIFOY['pac1']: u"5MJ", },
+                     start = datetime.date(2013, 1, 1)))  # (f5kj, f5lj, f5mj))
+                                                          # vérifier date début #####à intégrer dans OF#######
 
-    build_column_couple('abic_defn', IntCol(entity = 'ind',
-                         label = u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KF",
-                                        QUIFOY['conj']: u"5LF",
-                                        QUIFOY['pac1']: u"5MF", })),  # (f5kf, f5lf, f5mf)),
+build_column('abic_defn', IntCol(entity = 'ind',
+                     label = u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KF",
+                                    QUIFOY['conj']: u"5LF",
+                                    QUIFOY['pac1']: u"5MF", }))  # (f5kf, f5lf, f5mf))
 
-    build_column_couple('abic_defs', IntCol(entity = 'ind',
-                         label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KG",
-                                        QUIFOY['conj']: u"5LG",
-                                        QUIFOY['pac1']: u"5MG", },
-                         end = datetime.date(2012, 12, 1))),  # (f5kg, f5lg, f5mg)),
-                                                              # vérif <=2012
+build_column('abic_defs', IntCol(entity = 'ind',
+                     label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KG",
+                                    QUIFOY['conj']: u"5LG",
+                                    QUIFOY['pac1']: u"5MG", },
+                     end = datetime.date(2012, 12, 1)))  # (f5kg, f5lg, f5mg))
+                                                          # vérif <=2012
 
-    build_column_couple('nbic_defn', IntCol(entity = 'ind',
-                         label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KL",
-                                        QUIFOY['conj']: u"5LL",
-                                        QUIFOY['pac1']: u"5ML", })),  # (f5kl, f5ll, f5ml)),
+build_column('nbic_defn', IntCol(entity = 'ind',
+                     label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KL",
+                                    QUIFOY['conj']: u"5LL",
+                                    QUIFOY['pac1']: u"5ML", }))  # (f5kl, f5ll, f5ml))
 
-    build_column_couple('nbic_defs', IntCol(entity = 'ind',
-                         label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KL",
-                                        QUIFOY['conj']: u"5LM",
-                                        QUIFOY['pac1']: u"5MM", })),  # (f5km, f5lm, f5mm)),
+build_column('nbic_defs', IntCol(entity = 'ind',
+                     label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KL",
+                                    QUIFOY['conj']: u"5LM",
+                                    QUIFOY['pac1']: u"5MM", }))  # (f5km, f5lm, f5mm))
 
-    build_column_couple('nbic_apch', IntCol(entity = 'ind',
-                         label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KS",
-                                        QUIFOY['conj']: u"5LS",
-                                        QUIFOY['pac1']: u"5MS", })),  # (f5ks, f5ls, f5ms)),
+build_column('nbic_apch', IntCol(entity = 'ind',
+                     label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KS",
+                                    QUIFOY['conj']: u"5LS",
+                                    QUIFOY['pac1']: u"5MS", }))  # (f5ks, f5ls, f5ms))
 
-    build_column_couple('macc_exon', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NN",
-                                        QUIFOY['conj']: u"5ON",
-                                        QUIFOY['pac1']: u"5PN", })),  # (f5nn, f5on, f5pn)),
+build_column('macc_exon', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NN",
+                                    QUIFOY['conj']: u"5ON",
+                                    QUIFOY['pac1']: u"5PN", }))  # (f5nn, f5on, f5pn))
 
-    build_column_couple('aacc_exon', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NB",
-                                        QUIFOY['conj']: u"5OB",
-                                        QUIFOY['pac1']: u"5PB", })),  # (f5nb, f5ob, f5pb)),
+build_column('aacc_exon', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NB",
+                                    QUIFOY['conj']: u"5OB",
+                                    QUIFOY['pac1']: u"5PB", }))  # (f5nb, f5ob, f5pb))
 
-    build_column_couple('nacc_exon', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NH",
-                                        QUIFOY['conj']: u"5OH",
-                                        QUIFOY['pac1']: u"5PH", })),  # (f5nh, f5oh, f5ph)),
+build_column('nacc_exon', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NH",
+                                    QUIFOY['conj']: u"5OH",
+                                    QUIFOY['pac1']: u"5PH", }))  # (f5nh, f5oh, f5ph))
 
-    build_column_couple('macc_impv', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NO",
-                                        QUIFOY['conj']: u"5OO",
-                                        QUIFOY['pac1']: u"5PO", })),  # (f5no, f5oo, f5po)),
+build_column('macc_impv', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NO",
+                                    QUIFOY['conj']: u"5OO",
+                                    QUIFOY['pac1']: u"5PO", }))  # (f5no, f5oo, f5po))
 
-    build_column_couple('macc_imps', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NP",
-                                        QUIFOY['conj']: u"5OP",
-                                        QUIFOY['pac1']: u"5PP", })),  # (f5np, f5op, f5pp)),
+build_column('macc_imps', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NP",
+                                    QUIFOY['conj']: u"5OP",
+                                    QUIFOY['pac1']: u"5PP", }))  # (f5np, f5op, f5pp))
 
-    build_column_couple('aacc_impn', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NC",
-                                        QUIFOY['conj']: u"5OC",
-                                        QUIFOY['pac1']: u"5PC", })),  # (f5nc, f5oc, f5pc)),
+build_column('aacc_impn', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NC",
+                                    QUIFOY['conj']: u"5OC",
+                                    QUIFOY['pac1']: u"5PC", }))  # (f5nc, f5oc, f5pc))
 
-    build_column_couple('aacc_imps', IntCol(entity = 'ind',
-                         label = u"Locations meublées non professionnelles (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5ND",
-                                        QUIFOY['conj']: u"5OD",
-                                        QUIFOY['pac1']: u"5PD", })),  # (f5nd, f5od, f5pd)),
+build_column('aacc_imps', IntCol(entity = 'ind',
+                     label = u"Locations meublées non professionnelles (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5ND",
+                                    QUIFOY['conj']: u"5OD",
+                                    QUIFOY['pac1']: u"5PD", }))  # (f5nd, f5od, f5pd))
 
-    build_column_couple('aacc_defn', IntCol(entity = 'ind',
-                         label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NF",
-                                        QUIFOY['conj']: u"5OF",
-                                        QUIFOY['pac1']: u"5PF", })),  # (f5nf, f5of, f5pf)),
+build_column('aacc_defn', IntCol(entity = 'ind',
+                     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NF",
+                                    QUIFOY['conj']: u"5OF",
+                                    QUIFOY['pac1']: u"5PF", }))  # (f5nf, f5of, f5pf))
 
-    build_column_couple('aacc_defs', IntCol(entity = 'ind',
-                         label = u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NG",
-                                        QUIFOY['conj']: u"5OG",
-                                        QUIFOY['pac1']: u"5PG", })),  # (f5ng, f5og, f5pg)),
+build_column('aacc_defs', IntCol(entity = 'ind',
+                     label = u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NG",
+                                    QUIFOY['conj']: u"5OG",
+                                    QUIFOY['pac1']: u"5PG", }))  # (f5ng, f5og, f5pg))
 
-    build_column_couple('nacc_impn', IntCol(entity = 'ind',
-                         label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NI",
-                                        QUIFOY['conj']: u"5OI",
-                                        QUIFOY['pac1']: u"5PI", })),  # (f5ni, f5oi, f5pi)),
+build_column('nacc_impn', IntCol(entity = 'ind',
+                     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NI",
+                                    QUIFOY['conj']: u"5OI",
+                                    QUIFOY['pac1']: u"5PI", }))  # (f5ni, f5oi, f5pi))
 
-    build_column_couple('nacc_defn', IntCol(entity = 'ind',
-                         label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NL",
-                                        QUIFOY['conj']: u"5OL",
-                                        QUIFOY['pac1']: u"5PL", })),  # (f5nl, f5ol, f5pl)),
+build_column('nacc_defn', IntCol(entity = 'ind',
+                     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NL",
+                                    QUIFOY['conj']: u"5OL",
+                                    QUIFOY['pac1']: u"5PL", }))  # (f5nl, f5ol, f5pl))
 
-    build_column_couple('nacc_defs', IntCol(entity = 'ind',
-                         label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NM",
-                                        QUIFOY['conj']: u"5OM",
-                                        QUIFOY['pac1']: u"5PM", })),  # (f5nm, f5om, f5pm)),
+build_column('nacc_defs', IntCol(entity = 'ind',
+                     label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NM",
+                                    QUIFOY['conj']: u"5OM",
+                                    QUIFOY['pac1']: u"5PM", }))  # (f5nm, f5om, f5pm))
 
-    build_column_couple('mncn_impo', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KU",
-                                        QUIFOY['conj']: u"5LU",
-                                        QUIFOY['pac1']: u"5MU", })),  # (f5ku, f5lu, f5mu)),
+build_column('mncn_impo', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KU",
+                                    QUIFOY['conj']: u"5LU",
+                                    QUIFOY['pac1']: u"5MU", }))  # (f5ku, f5lu, f5mu))
 
-    build_column_couple('cncn_bene', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5SN",
-                                        QUIFOY['conj']: u"5NS",
-                                        QUIFOY['pac1']: u"5OS", })),  # (f5sn, f5ns, f5os)),
+build_column('cncn_bene', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5SN",
+                                    QUIFOY['conj']: u"5NS",
+                                    QUIFOY['pac1']: u"5OS", }))  # (f5sn, f5ns, f5os))
 
-    build_column_couple('cncn_defi', IntCol(entity = 'ind',
-                         label = u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5SP",
-                                        QUIFOY['conj']: u"5NU",
-                                        QUIFOY['pac1']: u"5OU", })),  # (f5sp, f5nu, f5ou, f5sr)),
-                                                                      # pas de f5sr en 2013
+build_column('cncn_defi', IntCol(entity = 'ind',
+                     label = u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5SP",
+                                    QUIFOY['conj']: u"5NU",
+                                    QUIFOY['pac1']: u"5OU", }))  # (f5sp, f5nu, f5ou, f5sr))
+                                                                  # pas de f5sr en 2013
 
-    build_column_couple('mbnc_exon', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HP",
-                                        QUIFOY['conj']: u"5IP",
-                                        QUIFOY['pac1']: u"5JP", })),  # (f5hp, f5ip, f5jp)),
+build_column('mbnc_exon', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HP",
+                                    QUIFOY['conj']: u"5IP",
+                                    QUIFOY['pac1']: u"5JP", }))  # (f5hp, f5ip, f5jp))
 
-    build_column_couple('abnc_exon', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QB",
-                                        QUIFOY['conj']: u"5RB",
-                                        QUIFOY['pac1']: u"5SB", })),  # (f5qb, f5rb, f5sb)),
+build_column('abnc_exon', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QB",
+                                    QUIFOY['conj']: u"5RB",
+                                    QUIFOY['pac1']: u"5SB", }))  # (f5qb, f5rb, f5sb))
 
-    build_column_couple('nbnc_exon', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QH",
-                                        QUIFOY['conj']: u"5RH",
-                                        QUIFOY['pac1']: u"5SH", })),  # (f5qh, f5rh, f5sh)),
+build_column('nbnc_exon', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QH",
+                                    QUIFOY['conj']: u"5RH",
+                                    QUIFOY['pac1']: u"5SH", }))  # (f5qh, f5rh, f5sh))
 
-    build_column_couple('mbnc_impo', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HQ",
-                                        QUIFOY['conj']: u"5IQ",
-                                        QUIFOY['pac1']: u"5JQ", })),  # (f5hq, f5iq, f5jq)),
+build_column('mbnc_impo', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HQ",
+                                    QUIFOY['conj']: u"5IQ",
+                                    QUIFOY['pac1']: u"5JQ", }))  # (f5hq, f5iq, f5jq))
 
-    build_column_couple('abnc_impo', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QC",
-                                        QUIFOY['conj']: u"5RC",
-                                        QUIFOY['pac1']: u"5SC", })),  # (f5qc, f5rc, f5sc)),
+build_column('abnc_impo', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QC",
+                                    QUIFOY['conj']: u"5RC",
+                                    QUIFOY['pac1']: u"5SC", }))  # (f5qc, f5rc, f5sc))
 
-    build_column_couple('abnc_defi', IntCol(entity = 'ind',
-                         label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QE",
-                                        QUIFOY['conj']: u"5RE",
-                                        QUIFOY['pac1']: u"5SE", })),  # (f5qe, f5re, f5se)),
+build_column('abnc_defi', IntCol(entity = 'ind',
+                     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QE",
+                                    QUIFOY['conj']: u"5RE",
+                                    QUIFOY['pac1']: u"5SE", }))  # (f5qe, f5re, f5se))
 
-    build_column_couple('nbnc_impo', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QI",
-                                        QUIFOY['conj']: u"5RI",
-                                        QUIFOY['pac1']: u"5SI", })),  # (f5qi, f5ri, f5si)),
+build_column('nbnc_impo', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QI",
+                                    QUIFOY['conj']: u"5RI",
+                                    QUIFOY['pac1']: u"5SI", }))  # (f5qi, f5ri, f5si))
 
-    build_column_couple('nbnc_defi', IntCol(entity = 'ind',
-                         label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QK",
-                                        QUIFOY['conj']: u"5RK",
-                                        QUIFOY['pac1']: u"5SK", })),  # (f5qk, f5rk, f5sk)),
+build_column('nbnc_defi', IntCol(entity = 'ind',
+                     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QK",
+                                    QUIFOY['conj']: u"5RK",
+                                    QUIFOY['pac1']: u"5SK", }))  # (f5qk, f5rk, f5sk))
 
-    build_column_couple('mbic_mvct', IntCol(entity = 'foy',
-                         label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = u'5HU',
-                         end = datetime.date(2012, 12, 1))),  # (f5hu)),
-                                                              # vérif <=2012
+build_column('mbic_mvct', IntCol(entity = 'foy',
+                     label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = u'5HU',
+                     end = datetime.date(2012, 12, 1)))  # (f5hu))
+                                                          # vérif <=2012
 
-    build_column_couple('macc_mvct', IntCol(entity = 'foy', label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = u'5IU')),  # (f5iu)),
+build_column('macc_mvct', IntCol(entity = 'foy', label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = u'5IU'))  # (f5iu))
 
-    build_column_couple('mncn_mvct', IntCol(entity = 'foy',
-                         label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = u'JU')),  # (f5ju)),
+build_column('mncn_mvct', IntCol(entity = 'foy',
+                     label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = u'JU'))  # (f5ju))
 
-    build_column_couple('mbnc_mvct', IntCol(entity = 'foy', label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KZ",
-                                        QUIFOY['conj']: u"5LZ",
-                                        QUIFOY['pac1']: u"5MZ", })),  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
-                                                                      # TODO: intégrer f5lz , f5mz à OF
+build_column('mbnc_mvct', IntCol(entity = 'foy', label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KZ",
+                                    QUIFOY['conj']: u"5LZ",
+                                    QUIFOY['pac1']: u"5MZ", }))  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
+                                                                  # TODO: intégrer f5lz , f5mz à OF
 
-    build_column_couple('frag_pvct', IntCol(entity = 'ind',
-                         label = u"Plus-values agricoles  à court terme (régime du forfait)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HW",
-                                        QUIFOY['conj']: u"5IW",
-                                        QUIFOY['pac1']: u"5JW", })),  # (f5hw, f5iw, f5jw)),
+build_column('frag_pvct', IntCol(entity = 'ind',
+                     label = u"Plus-values agricoles  à court terme (régime du forfait)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HW",
+                                    QUIFOY['conj']: u"5IW",
+                                    QUIFOY['pac1']: u"5JW", }))  # (f5hw, f5iw, f5jw))
 
-    build_column_couple('mbic_pvct', IntCol(entity = 'ind',
-                         label = u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KX",
-                                        QUIFOY['conj']: u"5LX",
-                                        QUIFOY['pac1']: u"5MX", })),  # (f5kx, f5lx, f5mx)),
+build_column('mbic_pvct', IntCol(entity = 'ind',
+                     label = u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KX",
+                                    QUIFOY['conj']: u"5LX",
+                                    QUIFOY['pac1']: u"5MX", }))  # (f5kx, f5lx, f5mx))
 
-    build_column_couple('macc_pvct', IntCol(entity = 'ind',
-                         label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NX",
-                                        QUIFOY['conj']: u"5OX",
-                                        QUIFOY['pac1']: u"5PX", })),  # (f5nx, f5ox, f5px)),
+build_column('macc_pvct', IntCol(entity = 'ind',
+                     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NX",
+                                    QUIFOY['conj']: u"5OX",
+                                    QUIFOY['pac1']: u"5PX", }))  # (f5nx, f5ox, f5px))
 
-    build_column_couple('mbnc_pvct', IntCol(entity = 'ind',
-                         label = u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)",
-                          val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HV",
-                                        QUIFOY['conj']: u"5IV",
-                                        QUIFOY['pac1']: u"5JV", })),  # (f5hv, f5iv, f5jv)),
+build_column('mbnc_pvct', IntCol(entity = 'ind',
+                     label = u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)",
+                      val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HV",
+                                    QUIFOY['conj']: u"5IV",
+                                    QUIFOY['pac1']: u"5JV", }))  # (f5hv, f5iv, f5jv))
 
-    build_column_couple('mncn_pvct', IntCol(entity = 'ind',
-                         label = u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KY",
-                                        QUIFOY['conj']: u"5LY",
-                                        QUIFOY['pac1']: u"5MY", })),  # (f5ky, f5ly, f5my)),
+build_column('mncn_pvct', IntCol(entity = 'ind',
+                     label = u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KY",
+                                    QUIFOY['conj']: u"5LY",
+                                    QUIFOY['pac1']: u"5MY", }))  # (f5ky, f5ly, f5my))
 
-    build_column_couple('mbic_mvlt', IntCol(entity = 'ind',
-                         label = u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KR",
-                                        QUIFOY['conj']: u"5LR",
-                                        QUIFOY['pac1']: u"5MR", })),  # (f5kr, f5lr, f5mr)),
+build_column('mbic_mvlt', IntCol(entity = 'ind',
+                     label = u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KR",
+                                    QUIFOY['conj']: u"5LR",
+                                    QUIFOY['pac1']: u"5MR", }))  # (f5kr, f5lr, f5mr))
 
-    build_column_couple('macc_mvlt', IntCol(entity = 'ind',
-                         label = u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NR",
-                                        QUIFOY['conj']: u"5OR",
-                                        QUIFOY['pac1']: u"5PR", })),  # (f5nr, f5or, f5pr)),
+build_column('macc_mvlt', IntCol(entity = 'ind',
+                     label = u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NR",
+                                    QUIFOY['conj']: u"5OR",
+                                    QUIFOY['pac1']: u"5PR", }))  # (f5nr, f5or, f5pr))
 
-    build_column_couple('mncn_mvlt', IntCol(entity = 'ind',
-                         label = u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KW",
-                                        QUIFOY['conj']: u"5LW",
-                                        QUIFOY['pac1']: u"5MW", })),  # (f5kw, f5lw, f5mw)),
+build_column('mncn_mvlt', IntCol(entity = 'ind',
+                     label = u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KW",
+                                    QUIFOY['conj']: u"5LW",
+                                    QUIFOY['pac1']: u"5MW", }))  # (f5kw, f5lw, f5mw))
 
-    build_column_couple('mbnc_mvlt', IntCol(entity = 'ind',
-                         label = u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HS",
-                                        QUIFOY['conj']: u"5IS",
-                                        QUIFOY['pac1']: u"5JS", })),  # (f5hs, f5is, f5js)),
+build_column('mbnc_mvlt', IntCol(entity = 'ind',
+                     label = u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)", val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HS",
+                                    QUIFOY['conj']: u"5IS",
+                                    QUIFOY['pac1']: u"5JS", }))  # (f5hs, f5is, f5js))
 
-    build_column_couple('frag_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HX",
-                                        QUIFOY['conj']: u"5IX",
-                                        QUIFOY['pac1']: u"5JX", })),  # (f5hx, f5ix, f5jx)),
+build_column('frag_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HX",
+                                    QUIFOY['conj']: u"5IX",
+                                    QUIFOY['pac1']: u"5JX", }))  # (f5hx, f5ix, f5jx))
 
-    build_column_couple('arag_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HE",
-                                        QUIFOY['conj']: u"5IE",
-                                        QUIFOY['pac1']: u"5JE", })),  # (f5he, f5ie, f5je)),
+build_column('arag_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HE",
+                                    QUIFOY['conj']: u"5IE",
+                                    QUIFOY['pac1']: u"5JE", }))  # (f5he, f5ie, f5je))
 
-    build_column_couple('nrag_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HK",
-                                        QUIFOY['conj']: u"5LK",
-                                        QUIFOY['pac1']: u"5JK", },
-                         end = datetime.date(2012, 12, 1))),  # TODO: vérif <=2012)),  # (f5hk, f5lk, f5jk)),
+build_column('nrag_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HK",
+                                    QUIFOY['conj']: u"5LK",
+                                    QUIFOY['pac1']: u"5JK", },
+                     end = datetime.date(2012, 12, 1)))  # TODO: vérif <=2012))  # (f5hk, f5lk, f5jk))
 
-    build_column_couple('mbic_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KQ",
-                                        QUIFOY['conj']: u"5LQ",
-                                        QUIFOY['pac1']: u"5MQ", })),  # (f5kq, f5lq, f5mq)),
+build_column('mbic_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KQ",
+                                    QUIFOY['conj']: u"5LQ",
+                                    QUIFOY['pac1']: u"5MQ", }))  # (f5kq, f5lq, f5mq))
 
-    build_column_couple('abic_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KE",
-                                        QUIFOY['conj']: u"5LE",
-                                        QUIFOY['pac1']: u"5ME", })),  # (f5ke, f5le, f5me)),
+build_column('abic_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KE",
+                                    QUIFOY['conj']: u"5LE",
+                                    QUIFOY['pac1']: u"5ME", }))  # (f5ke, f5le, f5me))
 
-    build_column_couple('nbic_pvce', IntCol(entity = 'ind',
-                         label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5IK",
-                                        QUIFOY['conj']: u"5KK",
-                                        QUIFOY['pac1']: u"5MK", })),  # (f5kk, f5ik, f5mk)),
+build_column('nbic_pvce', IntCol(entity = 'ind',
+                     label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5IK",
+                                    QUIFOY['conj']: u"5KK",
+                                    QUIFOY['pac1']: u"5MK", }))  # (f5kk, f5ik, f5mk))
 
-    build_column_couple('macc_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NQ",
-                                        QUIFOY['conj']: u"5OQ",
-                                        QUIFOY['pac1']: u"5PQ", })),  # (f5nq, f5oq, f5pq)),
+build_column('macc_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NQ",
+                                    QUIFOY['conj']: u"5OQ",
+                                    QUIFOY['pac1']: u"5PQ", }))  # (f5nq, f5oq, f5pq))
 
-    build_column_couple('aacc_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NE",
-                                        QUIFOY['conj']: u"5OE",
-                                        QUIFOY['pac1']: u"5PE", })),  # (f5ne, f5oe, f5pe)),
+build_column('aacc_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NE",
+                                    QUIFOY['conj']: u"5OE",
+                                    QUIFOY['pac1']: u"5PE", }))  # (f5ne, f5oe, f5pe))
 
-    build_column_couple('nacc_pvce', IntCol(entity = 'ind',
-                         label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5NK",
-                                        QUIFOY['conj']: u"5OK",
-                                        QUIFOY['pac1']: u"5PK", })),  # (f5nk, f5ok, f5pk)),
+build_column('nacc_pvce', IntCol(entity = 'ind',
+                     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5NK",
+                                    QUIFOY['conj']: u"5OK",
+                                    QUIFOY['pac1']: u"5PK", }))  # (f5nk, f5ok, f5pk))
 
-    build_column_couple('mncn_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5KV",
-                                        QUIFOY['conj']: u"5LV",
-                                        QUIFOY['pac1']: u"5MV", })),  # (f5kv, f5lv, f5mv)),
+build_column('mncn_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5KV",
+                                    QUIFOY['conj']: u"5LV",
+                                    QUIFOY['pac1']: u"5MV", }))  # (f5kv, f5lv, f5mv))
 
-    build_column_couple('cncn_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5SO",
-                                        QUIFOY['conj']: u"5NT",
-                                        QUIFOY['pac1']: u"5OT", })),  # (f5so, f5nt, f5ot)),
+build_column('cncn_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5SO",
+                                    QUIFOY['conj']: u"5NT",
+                                    QUIFOY['pac1']: u"5OT", }))  # (f5so, f5nt, f5ot))
 
-    build_column_couple('mbnc_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5HR",
-                                        QUIFOY['conj']: u"5IR",
-                                        QUIFOY['pac1']: u"5JR", })),  # (f5hr, f5ir, f5jr)),
+build_column('mbnc_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5HR",
+                                    QUIFOY['conj']: u"5IR",
+                                    QUIFOY['pac1']: u"5JR", }))  # (f5hr, f5ir, f5jr))
 
-    build_column_couple('abnc_pvce', IntCol(entity = 'ind',
-                         label = u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QD",
-                                        QUIFOY['conj']: u"5RD",
-                                        QUIFOY['pac1']: u"5SD", })),  # (f5qd, f5rd, f5sd)),
+build_column('abnc_pvce', IntCol(entity = 'ind',
+                     label = u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QD",
+                                    QUIFOY['conj']: u"5RD",
+                                    QUIFOY['pac1']: u"5SD", }))  # (f5qd, f5rd, f5sd))
 
-    build_column_couple('nbnc_pvce', IntCol(entity = 'ind',
-                         label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"5QJ",
-                                        QUIFOY['conj']: u"5RJ",
-                                        QUIFOY['pac1']: u"5SJ", })),  # (f5qj, f5rj, f5sj)),
+build_column('nbnc_pvce', IntCol(entity = 'ind',
+                     label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"5QJ",
+                                    QUIFOY['conj']: u"5RJ",
+                                    QUIFOY['pac1']: u"5SJ", }))  # (f5qj, f5rj, f5sj))
 
 
 # """
@@ -2462,14 +2460,14 @@ column_by_name.update(collections.OrderedDict((
 #
 #     #total de vos salaires
 
-    build_column_couple('sal_pen_exo_etr', IntCol(entity = 'ind',
-                         label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
-                         val_type = "monetary",
-                         cerfa_field = {QUIFOY['vous']: u"1AC",
-                                        QUIFOY['conj']: u"1BC",
-                                        QUIFOY['pac1']: u"1CC",
-                                        QUIFOY['pac2']: u"1DC", },
-                         start = datetime.date(2013, 1, 1),)),
+build_column('sal_pen_exo_etr', IntCol(entity = 'ind',
+                     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
+                     val_type = "monetary",
+                     cerfa_field = {QUIFOY['vous']: u"1AC",
+                                    QUIFOY['conj']: u"1BC",
+                                    QUIFOY['pac1']: u"1CC",
+                                    QUIFOY['pac2']: u"1DC", },
+                     start = datetime.date(2013, 1, 1),))
 
 #     vous:1AC
 #     conj:1BC
@@ -3320,152 +3318,152 @@ column_by_name.update(collections.OrderedDict((
 #             #investissements dans votre entreprise avec exploitation directe: HNY    start = datetime.date(2013, 1, 1),
 
 # pfam only
-    build_column_couple('inactif', BoolCol(entity = 'fam',
-                        label = u"Parent inactif (PAJE-CLCA)")),
+build_column('inactif', BoolCol(entity = 'fam',
+                    label = u"Parent inactif (PAJE-CLCA)"))
 
-    build_column_couple('partiel1', BoolCol(entity = 'fam',
-                         label = u"Parent actif à moins de 50% (PAJE-CLCA)")),
+build_column('partiel1', BoolCol(entity = 'fam',
+                     label = u"Parent actif à moins de 50% (PAJE-CLCA)"))
 
-    build_column_couple('partiel2', BoolCol(entity = 'fam',
-                         label = u"Parent actif entre 50% et 80% (PAJE-CLCA)")),
+build_column('partiel2', BoolCol(entity = 'fam',
+                     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"))
 
-    build_column_couple('categ_inv', IntCol(label = u"Catégorie de handicap (AEEH)")),
+build_column('categ_inv', IntCol(label = u"Catégorie de handicap (AEEH)"))
 
-    build_column_couple('opt_colca', BoolCol(entity = 'fam',
-                          label = u"Opte pour le COLCA")),
+build_column('opt_colca', BoolCol(entity = 'fam',
+                      label = u"Opte pour le COLCA"))
 
-    build_column_couple('empl_dir', BoolCol(entity = 'fam',
-                         label = u"Emploi direct (CLCMG)")),
+build_column('empl_dir', BoolCol(entity = 'fam',
+                     label = u"Emploi direct (CLCMG)"))
 
-    build_column_couple('ass_mat', BoolCol(entity = 'fam',
-                        label = u"Assistante maternelle (CLCMG)")),
+build_column('ass_mat', BoolCol(entity = 'fam',
+                    label = u"Assistante maternelle (CLCMG)"))
 
-    build_column_couple('gar_dom', BoolCol(entity = 'fam',
-                        label = u"Garde à domicile (CLCMG)")),
+build_column('gar_dom', BoolCol(entity = 'fam',
+                    label = u"Garde à domicile (CLCMG)"))
 
 # zones apl and calibration
-    build_column_couple('tu99', EnumCol(label = u"Tranche d'unité urbaine",
-                     entity = 'men',
-                     enum = Enum([u'Communes rurales',
-                                  u'moins de 5 000 habitants',
-                                  u'5 000 à 9 999 habitants',
-                                  u'10 000 à 19 999 habitants',
-                                  u'20 000 à 49 999 habitants',
-                                  u'50 000 à 99 999 habitants',
-                                  u'100 000 à 199 999 habitants',
-                                  u'200 000 habitants ou plus (sauf agglomération parisienne)',
-                                  u'agglomération parisienne']),
-                     survey_only = True)),
+build_column('tu99', EnumCol(label = u"Tranche d'unité urbaine",
+                 entity = 'men',
+                 enum = Enum([u'Communes rurales',
+                              u'moins de 5 000 habitants',
+                              u'5 000 à 9 999 habitants',
+                              u'10 000 à 19 999 habitants',
+                              u'20 000 à 49 999 habitants',
+                              u'50 000 à 99 999 habitants',
+                              u'100 000 à 199 999 habitants',
+                              u'200 000 habitants ou plus (sauf agglomération parisienne)',
+                              u'agglomération parisienne']),
+                 survey_only = True))
 
-    build_column_couple('tau99', EnumCol(label = u"tranche d'aire urbaine",
-                      entity = 'men',
-                      enum = Enum([u'Communes hors aire urbaine',
-                                   u'Aire urbaine de moins de 15 000 habitants',
-                                   u'Aire urbaine de 15 000 à 19 999 habitants',
-                                   u'Aire urbaine de 20 000 à 24 999 habitants',
-                                   u'Aire urbaine de 25 000 à 34 999 habitants',
-                                   u'Aire urbaine de 35 000 à 49 999 habitants',
-                                   u'Aire urbaine de 50 000 à 99 999 habitants',
-                                   u'Aire urbaine de 100 000 à 199 999 habitants',
-                                   u'Aire urbaine de 200 000 à 499 999 habitants',
-                                   u'Aire urbaine de 500 000 à 9 999 999 habitants',
-                                   u'Aire urbaine de Paris']),
-                      survey_only = True)),
+build_column('tau99', EnumCol(label = u"tranche d'aire urbaine",
+                  entity = 'men',
+                  enum = Enum([u'Communes hors aire urbaine',
+                               u'Aire urbaine de moins de 15 000 habitants',
+                               u'Aire urbaine de 15 000 à 19 999 habitants',
+                               u'Aire urbaine de 20 000 à 24 999 habitants',
+                               u'Aire urbaine de 25 000 à 34 999 habitants',
+                               u'Aire urbaine de 35 000 à 49 999 habitants',
+                               u'Aire urbaine de 50 000 à 99 999 habitants',
+                               u'Aire urbaine de 100 000 à 199 999 habitants',
+                               u'Aire urbaine de 200 000 à 499 999 habitants',
+                               u'Aire urbaine de 500 000 à 9 999 999 habitants',
+                               u'Aire urbaine de Paris']),
+                  survey_only = True))
 
-    build_column_couple('reg', EnumCol(label = u"Région",
+build_column('reg', EnumCol(label = u"Région",
+                entity = 'men',
+                enum = Enum([u'Ile-de-France',
+                             u'Champagne-Ardenne',
+                             u'Picardie',
+                             u'Haute-Normandie',
+                             u'Centre',
+                             u'Basse-Normandie',
+                             u'Bourgogne',
+                             u'Nord-Pas de Calais',
+                             u'Lorraine',
+                             u'Alsace',
+                             u'Franche-Comté',
+                             u'Pays de la Loire',
+                             u'Bretagne',
+                             u'Poitou-Charentes',
+                             u'Aquitaine',
+                             u'Midi-Pyrénées',
+                             u'Limousin',
+                             u'Rhône-Alpes',
+                             u'Auvergne',
+                             u'Languedoc-Roussillon',
+                             u"Provence-Alpes-Côte-d'Azur",
+                             u'Corse' ]),
+                survey_only = True))
+
+build_column('pol99', EnumCol(label = u"Catégorie de la commune au sein du découpage en aires et espaces urbains",
+                  entity = 'men',
+                  enum = Enum([u"Commune appartenant à un pôle urbain",
+                               u"Commune monopolarisée (appartenant à une couronne périurbaine",
+                               u"Commune monopolarisée",
+                               u"Espace à dominante rurale"]),
+                  survey_only = True))
+
+build_column('cstotpragr', EnumCol(label = u"catégorie socio_professionelle agrégée de la personne de référence",
+                       entity = 'men',
+                       enum = Enum([u"Non renseignée",
+                                    u"Agriculteurs exploitants",
+                                    u"Artisans, commerçants, chefs d'entreprise",
+                                    u"Cadres supérieurs",
+                                    u"Professions intermédiaires",
+                                    u"Employés",
+                                    u"Ouvriers",
+                                    u"Retraités",
+                                    u"Autres inactifs"]),
+                       survey_only = True))
+
+build_column('naf16pr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence",
                     entity = 'men',
-                    enum = Enum([u'Ile-de-France',
-                                 u'Champagne-Ardenne',
-                                 u'Picardie',
-                                 u'Haute-Normandie',
-                                 u'Centre',
-                                 u'Basse-Normandie',
-                                 u'Bourgogne',
-                                 u'Nord-Pas de Calais',
-                                 u'Lorraine',
-                                 u'Alsace',
-                                 u'Franche-Comté',
-                                 u'Pays de la Loire',
-                                 u'Bretagne',
-                                 u'Poitou-Charentes',
-                                 u'Aquitaine',
-                                 u'Midi-Pyrénées',
-                                 u'Limousin',
-                                 u'Rhône-Alpes',
-                                 u'Auvergne',
-                                 u'Languedoc-Roussillon',
-                                 u"Provence-Alpes-Côte-d'Azur",
-                                 u'Corse' ]),
-                    survey_only = True)),
+                    enum = Enum([u"Sans objet",
+                                 u"Non renseignée",
+                                 u"Agriculture, sylviculture et pêche",
+                                 u"Industries agricoles",
+                                 u"Industries des biens de consommation",
+                                 u"Industrie automobile",
+                                 u"Industries des biens d'équipement",
+                                 u"Industries des biens intermédiaires",
+                                 u"Energie",
+                                 u"Construction",
+                                 u"Commerce et réparations",
+                                 u"Transports",
+                                 u"Activités financières",
+                                 u"Activités immobilières",
+                                 u"Services aux entreprises",
+                                 u"Services aux particuliers",
+                                 u"Education, santé, action sociale",
+                                 u"Administrations"], start = -1),
+                    survey_only = True))  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
 
-    build_column_couple('pol99', EnumCol(label = u"Catégorie de la commune au sein du découpage en aires et espaces urbains",
-                      entity = 'men',
-                      enum = Enum([u"Commune appartenant à un pôle urbain",
-                                   u"Commune monopolarisée (appartenant à une couronne périurbaine",
-                                   u"Commune monopolarisée",
-                                   u"Espace à dominante rurale"]),
-                      survey_only = True)),
-
-    build_column_couple('cstotpragr', EnumCol(label = u"catégorie socio_professionelle agrégée de la personne de référence",
-                           entity = 'men',
-                           enum = Enum([u"Non renseignée",
-                                        u"Agriculteurs exploitants",
-                                        u"Artisans, commerçants, chefs d'entreprise",
-                                        u"Cadres supérieurs",
-                                        u"Professions intermédiaires",
-                                        u"Employés",
-                                        u"Ouvriers",
-                                        u"Retraités",
-                                        u"Autres inactifs"]),
-                           survey_only = True)),
-
-    build_column_couple('naf16pr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence",
-                        entity = 'men',
-                        enum = Enum([u"Sans objet",
-                                     u"Non renseignée",
-                                     u"Agriculture, sylviculture et pêche",
-                                     u"Industries agricoles",
-                                     u"Industries des biens de consommation",
-                                     u"Industrie automobile",
-                                     u"Industries des biens d'équipement",
-                                     u"Industries des biens intermédiaires",
-                                     u"Energie",
-                                     u"Construction",
-                                     u"Commerce et réparations",
-                                     u"Transports",
-                                     u"Activités financières",
-                                     u"Activités immobilières",
-                                     u"Services aux entreprises",
-                                     u"Services aux particuliers",
-                                     u"Education, santé, action sociale",
-                                     u"Administrations"], start = -1),
-                        survey_only = True)),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
-
-    build_column_couple('nafg17npr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence ",
-                      entity = 'men',
-                      enum = Enum([u"Sans objet",
-                                   u"Non renseignée",
-                                   u"Agriculture, sylviculture et pêche",
-                                   u"Industries extractives, énergie, eau, gestion des déchets et dépollution",
-                                   u"Fabrication de denrées alimentaires, de boissons et de produits à base de tabac",
-                                   u"Cokéfaction et raffinage",
-                                   u"Fabrication d'équipements électriques, électroniques, informatiques ; fabrication de machines",
-                                   u"Fabrication de matériels de transport",
-                                   u"Fabrication d'autres produits industriels",
-                                   u"Construction",
-                                   u"Commerce ; réparation d'automobiles et de motocycles",
-                                   u"Transports et entreposage",
-                                   u"Hébergement et restauration",
-                                   u"Information et communication",
-                                   u"Activités financières et d'assurance",
-                                   u"Activités immobilières",
-                                   u"Activités scientifiques et techniques ; services administratifs et de soutien",
-                                   u"Administration publique, enseignement, santé humaine et action sociale",
-                                   u"Autres activités de services"], start = -1),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
-                    survey_only = True)),
+build_column('nafg17npr', EnumCol(label = u"activité économique de l'établissement de l'emploi principal actuel de la personne de référence ",
+                  entity = 'men',
+                  enum = Enum([u"Sans objet",
+                               u"Non renseignée",
+                               u"Agriculture, sylviculture et pêche",
+                               u"Industries extractives, énergie, eau, gestion des déchets et dépollution",
+                               u"Fabrication de denrées alimentaires, de boissons et de produits à base de tabac",
+                               u"Cokéfaction et raffinage",
+                               u"Fabrication d'équipements électriques, électroniques, informatiques ; fabrication de machines",
+                               u"Fabrication de matériels de transport",
+                               u"Fabrication d'autres produits industriels",
+                               u"Construction",
+                               u"Commerce ; réparation d'automobiles et de motocycles",
+                               u"Transports et entreposage",
+                               u"Hébergement et restauration",
+                               u"Information et communication",
+                               u"Activités financières et d'assurance",
+                               u"Activités immobilières",
+                               u"Activités scientifiques et techniques ; services administratifs et de soutien",
+                               u"Administration publique, enseignement, santé humaine et action sociale",
+                               u"Autres activités de services"], start = -1),  # 17 postes + 1 (-1: sans objet, 0: nonrenseigné)
+                survey_only = True))
 
 
-#    build_column_couple('typmen15', EnumCol(label = u"Type de ménage",
+#    build_column('typmen15', EnumCol(label = u"Type de ménage",
 #                       entity = 'men',
 #                       enum = Enum([u"Personne seule active",
 #                                    u"Personne seule inactive",
@@ -3481,76 +3479,76 @@ column_by_name.update(collections.OrderedDict((
 #                                    u"Couples avec enfant, tous inactifs",
 #                                    u"Autres ménages, 1 actif",
 #                                    u"Autres ménages, 2 actifs ou plus",
-#                                    u"Autres ménages, tous inactifs"],start = 1))),
+#                                    u"Autres ménages, tous inactifs"],start = 1)))
 
-    build_column_couple('ageq', EnumCol(label = u"âge quinquennal de la personne de référence",
-                    entity = 'men',
-                    enum = Enum([u"moins de 25 ans",
-                                 u"25 à 29 ans",
-                                 u"30 à 34 ans",
-                                 u"35 à 39 ans",
-                                 u"40 à 44 ans",
-                                 u"45 à 49 ans",
-                                 u"50 à 54 ans",
-                                 u"55 à 59 ans",
-                                 u"60 à 64 ans",
-                                 u"65 à 69 ans",
-                                 u"70 à 74 ans",
-                                 u"75 à 79 ans",
-                                 u"80 ans et plus"]),
-                    survey_only = True)),
+build_column('ageq', EnumCol(label = u"âge quinquennal de la personne de référence",
+                entity = 'men',
+                enum = Enum([u"moins de 25 ans",
+                             u"25 à 29 ans",
+                             u"30 à 34 ans",
+                             u"35 à 39 ans",
+                             u"40 à 44 ans",
+                             u"45 à 49 ans",
+                             u"50 à 54 ans",
+                             u"55 à 59 ans",
+                             u"60 à 64 ans",
+                             u"65 à 69 ans",
+                             u"70 à 74 ans",
+                             u"75 à 79 ans",
+                             u"80 ans et plus"]),
+                survey_only = True))
 
 
-#    build_column_couple('nbinde', EnumCol(label = u"taille du ménage",
+#    build_column('nbinde', EnumCol(label = u"taille du ménage",
 #                     entity = 'men',
 #                     enum = Enum([u"Une personne",
 #                                  u"Deux personnes",
 #                                  u"Trois personnes",
 #                                  u"Quatre personnes",
 #                                  u"Cinq personnes",
-#                                  u"Six personnes et plus"], start = 1))),
+#                                  u"Six personnes et plus"], start = 1)))
 
-    build_column_couple('ddipl', EnumCol(label = u"diplôme de la personne de référence",
-                    entity = 'men',
-                    enum = Enum([u"Non renseigné"
-                                 u"Diplôme supérieur",
-                                 u"Baccalauréat + 2 ans",
-                                 u"Baccalauréat ou brevet professionnel ou autre diplôme de ce niveau",
-                                 u"CAP, BEP ou autre diplôme de ce niveau",
-                                 u"Brevet des collèges",
-                                 u"Aucun diplôme ou CEP"], start = 1),
-                    survey_only = True)),
+build_column('ddipl', EnumCol(label = u"diplôme de la personne de référence",
+                entity = 'men',
+                enum = Enum([u"Non renseigné"
+                             u"Diplôme supérieur",
+                             u"Baccalauréat + 2 ans",
+                             u"Baccalauréat ou brevet professionnel ou autre diplôme de ce niveau",
+                             u"CAP, BEP ou autre diplôme de ce niveau",
+                             u"Brevet des collèges",
+                             u"Aucun diplôme ou CEP"], start = 1),
+                survey_only = True))
 
-    build_column_couple('act5', EnumCol(label = u"activité",
-                     enum = Enum([u"Salarié",
-                                  u"Indépendant",
-                                  u"Chômeur",
-                                  u"Retraité",
-                                  u"Inactif"], start = 1),
-                    survey_only = True)),  # 5 postes normalement TODO: check = 0
+build_column('act5', EnumCol(label = u"activité",
+                 enum = Enum([u"Salarié",
+                              u"Indépendant",
+                              u"Chômeur",
+                              u"Retraité",
+                              u"Inactif"], start = 1),
+                survey_only = True))  # 5 postes normalement TODO: check = 0
 
-    build_column_couple('wprm_init', FloatCol(label = u"Effectifs", survey_only = True)),
+build_column('wprm_init', FloatCol(label = u"Effectifs", survey_only = True))
 
 # # ISF ##
 
 # # Immeubles bâtis ##
-    build_column_couple('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary")),
-    build_column_couple('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary")),
+build_column('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary"))
+build_column('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary"))
 # # non bâtis ##
-    build_column_couple('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary")),
-    build_column_couple('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis : biens ruraux loués à long termes", val_type = "monetary")),
-    build_column_couple('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary")),
-    build_column_couple('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis : autres biens", val_type = "monetary")),
+build_column('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary"))
+build_column('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis : biens ruraux loués à long termes", val_type = "monetary"))
+build_column('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary"))
+build_column('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis : autres biens", val_type = "monetary"))
 
 # # droits sociaux- valeurs mobilières-liquidités- autres meubles ##
-    build_column_couple('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary")),
-    build_column_couple('b1cb', IntCol(entity = 'foy', label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type = "monetary")),
-    build_column_couple('b1cd', IntCol(entity = 'foy', label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type = "monetary")),
-    build_column_couple('b1ce', IntCol(entity = 'foy', label = u"Autres valeurs mobilières", val_type = "monetary")),
-    build_column_couple('b1cf', IntCol(entity = 'foy', label = u"Liquidités", val_type = "monetary")),
-    build_column_couple('b1cg', IntCol(entity = 'foy', label = u"Autres biens meubles", val_type = "monetary")),
+build_column('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary"))
+build_column('b1cb', IntCol(entity = 'foy', label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type = "monetary"))
+build_column('b1cd', IntCol(entity = 'foy', label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type = "monetary"))
+build_column('b1ce', IntCol(entity = 'foy', label = u"Autres valeurs mobilières", val_type = "monetary"))
+build_column('b1cf', IntCol(entity = 'foy', label = u"Liquidités", val_type = "monetary"))
+build_column('b1cg', IntCol(entity = 'foy', label = u"Autres biens meubles", val_type = "monetary"))
 
-    build_column_couple('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : contrats d'assurance-vie", val_type = "monetary")),
+build_column('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : contrats d'assurance-vie", val_type = "monetary"))
 
 #    b1ch
 #    b1ci
@@ -3559,63 +3557,62 @@ column_by_name.update(collections.OrderedDict((
 
 
 # # passifs et autres réduc ##
-    build_column_couple('b2gh', IntCol(entity = 'foy', label = u"Total du passif et autres déductions", val_type = "monetary")),
+build_column('b2gh', IntCol(entity = 'foy', label = u"Total du passif et autres déductions", val_type = "monetary"))
 
 # # réductions ##
-    build_column_couple('b2mt', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary")),
-    build_column_couple('b2ne', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary")),
-    build_column_couple('b2mv', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings" , val_type = "monetary")),
-    build_column_couple('b2nf', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings", val_type = "monetary")),
-    build_column_couple('b2mx', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FIP", val_type = "monetary")),
-    build_column_couple('b2na', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type = "monetary")),
-    build_column_couple('b2nc', IntCol(entity = 'foy', label = u"Réductions pour dons à certains organismes d'intérêt général", val_type = "monetary")),
+build_column('b2mt', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary"))
+build_column('b2ne', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary"))
+build_column('b2mv', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings" , val_type = "monetary"))
+build_column('b2nf', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings", val_type = "monetary"))
+build_column('b2mx', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FIP", val_type = "monetary"))
+build_column('b2na', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type = "monetary"))
+build_column('b2nc', IntCol(entity = 'foy', label = u"Réductions pour dons à certains organismes d'intérêt général", val_type = "monetary"))
 
 # #  montant impôt acquitté hors de France ##
-    build_column_couple('b4rs', IntCol(entity = 'foy', label = u"Montant de l'impôt acquitté hors de France", val_type = "monetary")),
+build_column('b4rs', IntCol(entity = 'foy', label = u"Montant de l'impôt acquitté hors de France", val_type = "monetary"))
 
 # # BOUCLIER FISCAL ##
 
-    build_column_couple('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
-    build_column_couple('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
+build_column('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
+build_column('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
 
-    build_column_couple('tax_fonc', IntCol(entity = 'foy', label = u"Taxe foncière", val_type = "monetary")),
-    build_column_couple('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary")),
+build_column('tax_fonc', IntCol(entity = 'foy', label = u"Taxe foncière", val_type = "monetary"))
+build_column('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
 
-    # to remove
-    build_column_couple('champm', BoolCol(entity = 'men',
-                       default = True,
-                       survey_only = True,
-                       )),
+# to remove
+build_column('champm', BoolCol(entity = 'men',
+                   default = True,
+                   survey_only = True,
+                   ))
 
-    build_column_couple('wprm', FloatCol(entity = 'men',
-                      default = 1,
-                      label = u"Effectifs",
-                      survey_only = True,
-                      )),
+build_column('wprm', FloatCol(entity = 'men',
+                  default = 1,
+                  label = u"Effectifs",
+                  survey_only = True,
+                  ))
 
-    build_column_couple('etr', IntCol()),
-    build_column_couple('coloc', BoolCol(label = u"Vie en colocation")),
-    build_column_couple('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
-                 entity = 'ind',
-                 enum = Enum([u"Non renseigné/non pertinent",
-                              u"Exonéré",
-                              u"Taux réduit",
-                              u"Taux plein"]),
-                default = 3)),
+build_column('etr', IntCol())
+build_column('coloc', BoolCol(label = u"Vie en colocation"))
+build_column('csg_rempl', EnumCol(label = u"Taux retenu sur la CSG des revenus de remplacment",
+             entity = 'ind',
+             enum = Enum([u"Non renseigné/non pertinent",
+                          u"Exonéré",
+                          u"Taux réduit",
+                          u"Taux plein"]),
+            default = 3))
 
-    build_column_couple('aer', IntCol(label = u"Allocation équivalent retraite (AER)")),  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
-    build_column_couple('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)")),
-    build_column_couple('f5sq', IntCol()),
+build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
+build_column('ass', IntCol(label = u"Allocation de solidarité spécifique (ASS)"))
+build_column('f5sq', IntCol())
 
-    build_column_couple('m_afeamam', IntCol(entity = 'men', survey_only = True)),
-    build_column_couple('m_agedm', IntCol(entity = 'men', survey_only = True)),
-    build_column_couple('m_clcam', IntCol(entity = 'men', survey_only = True)),
-    build_column_couple('m_colcam', IntCol(entity = 'men', survey_only = True)),
-    build_column_couple('m_mgamm', IntCol(entity = 'men', survey_only = True)),
-    build_column_couple('m_mgdomm', IntCol(entity = 'men', survey_only = True)),
-    build_column_couple('zthabm', IntCol(entity = 'men')),  # TODO: Devrait être renommée tax_hab
+build_column('m_afeamam', IntCol(entity = 'men', survey_only = True))
+build_column('m_agedm', IntCol(entity = 'men', survey_only = True))
+build_column('m_clcam', IntCol(entity = 'men', survey_only = True))
+build_column('m_colcam', IntCol(entity = 'men', survey_only = True))
+build_column('m_mgamm', IntCol(entity = 'men', survey_only = True))
+build_column('m_mgdomm', IntCol(entity = 'men', survey_only = True))
+build_column('zthabm', IntCol(entity = 'men'))  # TODO: Devrait être renommée tax_hab
 
-    build_column_couple('adoption', BoolCol(entity = "ind", label = u"Enfant adopté")),
+build_column('adoption', BoolCol(entity = "ind", label = u"Enfant adopté"))
 
-    # ('tax_hab', IntCol()),
-    )))
+# ('tax_hab', IntCol())

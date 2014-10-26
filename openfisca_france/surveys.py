@@ -61,12 +61,11 @@ class SurveyScenario(object):
     def new_simulation(self, debug = False, debug_all = False, trace = False):
         input_data_frame = self.input_data_frame
         # TODO Pass year to this method, not init_from_data_frame
-        period = periods.period('year', self.year)
         simulation = simulations.Simulation(
             debug = debug,
             debug_all = debug_all,
             legislation_json = self.legislation_json,
-            period = period,
+            period = periods.period(self.year),
             tax_benefit_system = self.tax_benefit_system,
             trace = trace,
             )
@@ -86,7 +85,7 @@ class SurveyScenario(object):
                 input_data_frame = input_data_frame.drop(column_name, axis = 1)
                 # , inplace = True)  # TODO: effet de bords ?
         for column_name in input_data_frame:
-            if column_by_name[column_name].formula_constructor is not None:
+            if column_by_name[column_name].formula_class is not None:
                 log.info('Column "{}" in survey set to be calculated, dropped from input table'.format(column_name))
                 input_data_frame = input_data_frame.drop(column_name, axis = 1)
                 # , inplace = True)  # TODO: effet de bords ?
@@ -130,7 +129,10 @@ class SurveyScenario(object):
 
 
 def adapt_to_survey(tax_benefit_system_class):
-    # Add survey specific column
+    # Add survey specific columns.
+    TODO  # Don't use TaxBenefitSystem.column_by_name & TaxBenefitSystem.prestation_by_name. they don't exist anymore.
+    # Clone TaxBenefitSystem.entity_class_by_key_plural or entities.entity_class_by_symbol and modify their
+    # column_by_name, instead.
     from openfisca_france_data.model.input_variables.survey_variables import column_by_name as survey_column_by_name
     from openfisca_france_data.model.model import prestation_by_name as survey_prestation_by_name
     column_by_name = copy.deepcopy(tax_benefit_system_class.column_by_name)
@@ -138,9 +140,9 @@ def adapt_to_survey(tax_benefit_system_class):
     column_by_name.update(survey_column_by_name)
     prestation_by_name.update(survey_prestation_by_name)
     del column_by_name['birth']
-    prestation_by_name['agem'].formula_constructor = None
+    prestation_by_name['agem'].formula_class = None
     prestation_by_name['agem'].function = None
-    prestation_by_name['age'].formula_constructor = None
+    prestation_by_name['age'].formula_class = None
     prestation_by_name['age'].function = None
     tax_benefit_system_subclass = type(
         'tax_benefit_system_subclass',
@@ -159,7 +161,7 @@ def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all =
         debug = debug,
         debug_all = debug_all,
         legislation_json = legislation_json,
-        period = periods.period('year', year),
+        period = periods.period(year),
         tax_benefit_system = tax_benefit_system,
         trace = trace,
         )
