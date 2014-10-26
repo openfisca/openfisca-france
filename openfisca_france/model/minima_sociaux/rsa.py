@@ -78,8 +78,8 @@ class ra_rsa(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'month'
 
-    def function(self, sal, hsup, rpns, etr, indemnites_chomage_partiel):
-        return sal + hsup + rpns + etr + indemnites_chomage_partiel
+    def function(self, sali, hsup, rpns, etr, indemnites_chomage_partiel):
+        return sali + hsup + rpns + etr + indemnites_chomage_partiel
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -146,11 +146,11 @@ class br_rmi_i(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'month'
 
-    def function(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
+    def function(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms, indemnites_journalieres_maternite, indemnites_journalieres_paternite, indemnites_journalieres_adoption, indemnites_journalieres_maladie, indemnites_journalieres_accident_travail, indemnites_journalieres_maladie_professionnelle):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         ass = self.cast_from_entity_to_roles(ass_holder)
-        return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
+        return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms + indemnites_journalieres_maternite + indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -185,8 +185,8 @@ class rsa_base_ressources_patrimoine_i(SimpleFormulaColumn):
 
     def function(self, interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):
         return (
-            interets_epargne_sur_livrets +
-            epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere +
+            interets_epargne_sur_livrets / 12 +
+            epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
             revenus_capital +
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
             valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +

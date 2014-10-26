@@ -31,10 +31,10 @@ from ..base import build_column_couple, column_by_name
 
 
 column_by_name.update(collections.OrderedDict((
-    build_column_couple('interets_epargne_sur_livrets', FloatCol(entity = 'ind', label = u"Intérêts versés pour l'épargne sur livret")),
-    build_column_couple('epargne_non_remuneree', FloatCol(entity = 'ind', label = u"Épargne non rémunérée")),
+    build_column_couple('interets_epargne_sur_livrets', FloatCol(is_permanent = True, entity = 'ind', label = u"Intérêts versés pour l'épargne sur livret")),
+    build_column_couple('epargne_non_remuneree', FloatCol(is_permanent = True, entity = 'ind', label = u"Épargne non rémunérée")),
     build_column_couple('revenus_capital', FloatCol(entity = 'ind', label = u"Revenus du capital")),
-    build_column_couple('valeur_locative_immo_non_loue', FloatCol(entity = 'ind', label = u"Valeur locative des biens immobiliés possédés et non loués")),
-    build_column_couple('valeur_locative_terrains_non_loue', FloatCol(entity = 'ind', label = u"Valeur locative des terrains possédés et non loués")),
+    build_column_couple('valeur_locative_immo_non_loue', FloatCol(is_permanent = True, entity = 'ind', label = u"Valeur locative des biens immobiliés possédés et non loués")),
+    build_column_couple('valeur_locative_terrains_non_loue', FloatCol(is_permanent = True, entity = 'ind', label = u"Valeur locative des terrains possédés et non loués")),
     build_column_couple('revenus_locatifs', FloatCol(entity = 'ind', label = u"Revenus locatifs")),
     )))
