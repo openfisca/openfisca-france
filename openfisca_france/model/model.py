@@ -119,17 +119,17 @@ build_simple_formula('alv', FloatCol(
 #         url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
 #         ))
 
-build_select_formula(
-    'salbrut',
-    [
-        ('sali', inv_rev._salbrut_from_sali),
-        # ('salnet', inv_rev._salbrut_from_salnet),
-        ('salnet', inv_rev._num_salbrut_from_salnet),
-        ],
-    FloatCol(
-        label = u"Salaire brut ou traitement indiciaire brut",
-        url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"),
-    )
+# build_select_formula(
+#     'salbrut',
+#     [
+#         ('sali', inv_rev._salbrut_from_sali),
+#         # ('salnet', inv_rev._salbrut_from_salnet),
+#         ('salnet', inv_rev._num_salbrut_from_salnet),
+#         ],
+#     FloatCol(
+#         label = u"Salaire brut ou traitement indiciaire brut",
+#         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"),
+#     )
 
 build_simple_formula(
     'primes',
@@ -235,10 +235,10 @@ build_simple_formula('sal', FloatCol(function = cs_travail._sal,
     label = u"Salaires imposables",
     url = u"http://www.jureka.fr/dico-francais-droit/lettre-s/definition-salaire-imposable",
     ))
-build_simple_formula('salnet', FloatCol(function = cs_travail._salnet,
-    label = u"Salaires nets d'après définition INSEE",
-    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html",
-    ))
+# build_simple_formula('salnet', FloatCol(function = cs_travail._salnet,
+#     label = u"Salaires nets d'après définition INSEE",
+#     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html",
+#     ))
 
 # Fonctionnaires
 build_simple_formula('indemnite_residence', FloatCol(function = cs_travail._indemnite_residence,
@@ -275,18 +275,18 @@ build_simple_formula('rev_microsocial', FloatCol(function = cs_travail._rev_micr
     ))
 
 # Allocations chômage
-build_select_formula(
-    'chobrut',
-    [
-        ('choi', inv_rev._chobrut_from_choi),
-        # ('chonet', inv_rev._chobrut_from_chonet),
-        ('chonet', inv_rev._num_chobrut_from_chonet),
-        ],
-    FloatCol(
-        label = u"Allocations chômage brutes",
-        url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
-        ),
-    )
+# build_select_formula(
+#     'chobrut',
+#     [
+#         ('choi', inv_rev._chobrut_from_choi),
+#         # ('chonet', inv_rev._chobrut_from_chonet),
+#         ('chonet', inv_rev._num_chobrut_from_chonet),
+#         ],
+#     FloatCol(
+#         label = u"Allocations chômage brutes",
+#         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
+#         ),
+#     )
 
 build_simple_formula('csgchod', FloatCol(function = cs_remplac._csgchod,
     label = u"CSG déductible sur les allocations chômage",
@@ -304,24 +304,24 @@ build_simple_formula('cho', FloatCol(function = cs_remplac._cho,
     label = u"Allocations chômage imposables",
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm",
     ))
-build_simple_formula('chonet', FloatCol(function = cs_remplac._chonet,
-    label = u"Allocations chômage nettes",
-    url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
-    ))
+# build_simple_formula('chonet', FloatCol(function = cs_remplac._chonet,
+#     label = u"Allocations chômage nettes",
+#     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
+#     ))
 
 # Pensions
-build_select_formula(
-    'rstbrut',
-    [
-        ('rsti', inv_rev._rstbrut_from_rsti),
-        # ('rstnet', inv_rev._rstbrut_from_rstnet),
-        ('rstnet', inv_rev._num_rstbrut_from_rstnet),
-        ],
-    FloatCol(
-        label = u"Pensions de retraite brutes",
-        url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
-        ),
-    )
+# build_select_formula(
+#     'rstbrut',
+#     [
+#         ('rsti', inv_rev._rstbrut_from_rsti),
+#         # ('rstnet', inv_rev._rstbrut_from_rstnet),
+#         ('rstnet', inv_rev._num_rstbrut_from_rstnet),
+#         ],
+#     FloatCol(
+#         label = u"Pensions de retraite brutes",
+#         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
+#         ),
+#     )
 
 build_simple_formula('csgrstd', FloatCol(function = cs_remplac._csgrstd,
     label = u"CSG déductible sur les pensions de retraite",
@@ -339,10 +339,10 @@ build_simple_formula('rst', FloatCol(function = cs_remplac._rst,
     label = u"Pensions de retraite imposables",
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml",
     ))
-build_simple_formula('rstnet', FloatCol(function = cs_remplac._rstnet,
-    label = u"Pensions de retraite nettes",
-    url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
-    ))
+# build_simple_formula('rstnet', FloatCol(function = cs_remplac._rstnet,
+#     label = u"Pensions de retraite nettes",
+#     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
+#     ))
 build_simple_formula('casa', FloatCol(function = cs_remplac._casa,
     label = u"Contribution additionnelle de solidarité et d'autonomie",
     start = date(2013, 4, 1),
