@@ -1,5 +1,5 @@
 TESTS_DIR="openfisca_france/tests/"
-IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_plfrss2014.py|test_jsons.py)'
+IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py)'
 
 check-syntax-errors: clean-pyc
 	@# This is a hack around flake8 not displaying E910 errors with the select option.
