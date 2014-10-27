@@ -27,6 +27,7 @@ import functools
 
 from openfisca_core.columns import build_column
 from openfisca_core.enumerations import Enum
+from openfisca_core.formulas import make_reference_formula_decorator
 
 from .. import entities
 
@@ -43,3 +44,6 @@ build_column = functools.partial(
     build_column,
     entity_class_by_symbol = entities.entity_class_by_symbol,
     )
+
+
+reference_formula = make_reference_formula_decorator(entity_class_by_symbol = entities.entity_class_by_symbol)
