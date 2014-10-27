@@ -23,18 +23,22 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from . import (  # noqa
-    base,
-    section_1_traitements_salaires_ppe_pensions_rentes,
-    section_2_revenus_valeurs_capitaux_mobiliers,
-    section_3_plus_values,
-    section_4_revenus_fonciers,
-    section_5_revenus_professions_non_salaries,
-    section_6_charges_deductibles,
-    section_7_reductions_et_credits_d_impots,
-    section_8_divers,
-    isf,
-    patrimoine,
-    indemnites_allocations,
-    travailleurs_non_salaries,
-    )
+from openfisca_core.columns import FloatCol, EnumCol
+from openfisca_core.enumerations import Enum
+
+from ..base import build_column
+
+
+build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))
+build_column('tns_autres_revenus', FloatCol(entity = 'ind', is_permanent = True, label = u"Autres revenus non salariés"))
+
+build_column('tns_type_structure', EnumCol(
+    entity = 'ind',
+    enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
+    default = 1,
+    label = u"Type de structure associée au travailleur non salarié"))
+
+build_column('tns_type_activite', EnumCol(
+    entity = 'ind',
+    enum = Enum([u'achat_revente', u'bic', u'bnc']),
+    label = u"Valeur locative des biens immobiliés possédés et non loués"))

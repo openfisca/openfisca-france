@@ -68,6 +68,7 @@ from .prestations_familiales import paje
 from .prestations_familiales import cf
 from . import pfam as pf
 from . import th as th
+from . import travailleurs_non_salaries
 
 
 build_alternative_formula = partial(
