@@ -29,45 +29,49 @@
 
 import datetime
 import json
+import logging
 import os
 import sys
 
 from biryani1.baseconv import check
-from nose.tools import assert_equal, assert_less
-import numpy
+from nose.tools import assert_equal
 
-from . import base
+from .base import assert_near, tax_benefit_system
 
 
 json_dir_path = os.path.join(os.path.dirname(__file__), 'json')
+log = logging.getLogger(__name__)
 
 
-def check_variable(ctx):
-    code = ctx['code']
-    simulation = ctx['simulation']
+def check_variable(args):
+    scenario = args['scenario']
+    simulation = scenario.new_simulation(debug = True)
+    code = args['code']
+    openfisca_value = None
     if code == 'IAVIM':
-        openfisca_value = simulation.calculate('iai')
+        openfisca_name = 'iai'
     elif code == 'IDEC':
-        openfisca_value = simulation.calculate('decote')
+        openfisca_name = 'decote'
     elif code == 'IDRS2':
-        openfisca_value = simulation.calculate('ir_plaf_qf')
+        openfisca_name = 'ir_plaf_qf'
     elif code == 'IINETIR' or code == 'IRESTIR':
-        openfisca_value = -simulation.calculate('irpp')
+        openfisca_name = 'irpp'
     elif code == 'ITRED':
-        openfisca_value = simulation.calculate('reductions')
+        openfisca_name = 'reductions'
     elif code == 'NBPT' or code == 'NBP':
-        openfisca_value = simulation.calculate('nbptr')
+        openfisca_name = 'nbptr'
     elif code == 'PPETOT':
-        openfisca_value = simulation.calculate('ppe')
+        openfisca_name = 'ppe'
     elif code == 'REVKIRE':
-        openfisca_value = simulation.calculate('rfr')
+        openfisca_name = 'rfr'
     elif code == 'RNICOL':
-        openfisca_value = simulation.calculate('rni')
+        openfisca_name = 'rni'
     elif code == 'RRBG':
-        openfisca_value = simulation.calculate('rbg')
+        openfisca_name = 'rbg'
     # TODO: Checker si le montant net CSG/CRDS correspond à NAPCS, NAPRDS, checker IINET
     elif code == 'TOTPAC':
-        openfisca_value = len(ctx['totpac'] or [])  # Codes ignorés pour la comparaison
+        openfisca_name = "len(args['totpac'] or [])"
+        openfisca_value = len(args['totpac'] or [])  # Codes ignorés pour la comparaison
     elif code in ('AVFISCOPTER', 'BCSG', 'BPRS', 'BRDS', 'CIADCRE', 'CICA', 'CICORSE', 'CIDEPENV', 'CIDEVDUR',
             'CIGARD', 'CIGE', 'CIHABPRIN', 'CIMOBIL', 'CIPERT', 'CIPRETUD', 'RILMIA', 'IINET',
             'CIRCM', 'CIRELANCE', 'CITEC', 'IAVF2', 'I2DH', 'IREST', 'IRESTIR', 'RILMIH',
@@ -93,11 +97,14 @@ def check_variable(ctx):
         return
     else:
         raise ValueError(u'"code" inconnu')
-    if isinstance(openfisca_value, numpy.ndarray):
-        assert_equal(openfisca_value.shape, (1,))
-        openfisca_value = openfisca_value[0]
-    error_margin = 2
-    assert_less(abs(ctx['field']['value'] - openfisca_value), error_margin)
+    log.info(u'Comparing impôts.gouv.fr variable {} with OpenFisca variable {}'.format(code, openfisca_name))
+    log.info(u'Scenario:\n{}'.format(json.dumps(scenario.to_json(), encoding = 'utf_8', ensure_ascii = False,
+        indent = 2)))
+    if openfisca_value is None:
+        openfisca_array = simulation.calculate(openfisca_name)
+        assert_equal(openfisca_array.shape, (1,))
+        openfisca_value = openfisca_array[0]
+    assert_near(abs(openfisca_value), args['field']['value'], error_margin = 2)
 
 
 def test_jsons():
@@ -105,25 +112,23 @@ def test_jsons():
         with open(os.path.join(json_dir_path, json_file_name)) as json_file:
             content = json.load(json_file)
         scenario_json = content['scenario']
-        scenario = check(base.tax_benefit_system.Scenario.make_json_to_instance(
-            tax_benefit_system = base.tax_benefit_system))(scenario_json)
+        scenario = check(tax_benefit_system.Scenario.make_json_to_instance(tax_benefit_system = tax_benefit_system))(
+            scenario_json)
         if 'year' in scenario_json:
             year = scenario_json['year']
         else:
             date = datetime.datetime.strptime(scenario_json['date'], "%Y-%m-%d")
             year = date.year
         totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
-        simulation = scenario.new_simulation()
         for code, field in content['resultat_officiel'].iteritems():
-            ctx = {
+            yield check_variable, {
                 'code': code,
                 'field': field,
                 'json_file_name': json_file_name,
-                'simulation': simulation,
+                'scenario': scenario,
                 'totpac': totpac,
                 'year': year,
                 }
-            yield check_variable, ctx
 
 
 if __name__ == "__main__":
