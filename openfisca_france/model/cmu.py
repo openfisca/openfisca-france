@@ -92,14 +92,22 @@ class cmu_br_i(SimpleFormulaColumn):
     entity_class = Individus
     period_unit = 'year'
 
-    def function(self, activite, salnet, chonet, rstnet, alr, rsa_base_ressources_patrimoine_i, P = law.cmu):
-        return salnet * (1 - (activite == 1) * P.abattement_chomage) + chonet + rstnet + alr + rsa_base_ressources_patrimoine_i
+    def function(self, activite, salnet, chonet, rstnet, alr, rsa_base_ressources_patrimoine_i, aah, indemnites_journalieres_maternite,
+                 indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle, indemnites_journalieres_accident_travail,
+                 revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
+                 dedommagement_victime_amiante, prestation_compensatoire, retraite_combattant, pensions_invalidite,
+                 indemnites_chomage_partiel, bourse_enseignement_sup, bourse_recherche, gains_exceptionnels, P = law.cmu):
+        return ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - (activite == 1) * P.abattement_chomage) +
+            aah + chonet + rstnet + alr + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
+            indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
+            prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
+            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels)
 
     def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['salnet', 'chonet', 'rstnet', 'alr', 'rsa_base_ressources_patrimoine_i']:
-            return output_period.offset(-1)
-        else:
+        if variable_name == 'activite':
             return output_period
+        else:
+            return output_period.offset(-1)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
