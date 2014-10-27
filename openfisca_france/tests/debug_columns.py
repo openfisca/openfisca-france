@@ -24,7 +24,7 @@
 
 
 from .. import entities
-from . import base
+from .base import tax_benefit_system
 
 
 def check_input_column_consumers(column):
@@ -37,11 +37,11 @@ def check_input_column_consumers(column):
         ])
     if column.name not in column_names:
         if not(column.survey_only):
-            assert column.consumers,\
+            assert tax_benefit_system.consumers_by_variable_name.get(column.name), \
                 u'Input column {} has no consumer'.format(column.name).encode('utf-8')
 
 
 def test():
-    for column in base.tax_benefit_system.column_by_name.itervalues():
+    for column in tax_benefit_system.column_by_name.itervalues():
         if column.formula_class is None:
             yield check_input_column_consumers, column
