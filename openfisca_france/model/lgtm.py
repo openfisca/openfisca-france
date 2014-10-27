@@ -15,8 +15,13 @@ import pkg_resources
 from numpy import ceil, floor, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
 from openfisca_core.accessors import law
 
+from openfisca_core.columns import FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
+
+from ..entities import Familles
+
 import openfisca_france
-from .base import QUIFAM, QUIMEN, QUIFOY
+from .base import QUIFAM, QUIMEN, QUIFOY, reference_formula
 from .pfam import nb_enf
 
 
@@ -69,67 +74,82 @@ def _al_pac(self, age_holder, smic55_holder, nbR_holder, af = law.fam.af, cf = l
     return al_pac
 
 
-def _br_al(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, biact, Pr = law.al.ressources):
-    '''
-    Base ressource des allocations logement
-    '''
-    # On ne considère que les revenus des 2 conjoints et les revenus non
-    # individualisables
-    #   0 - non étudiant
-    #   1 - étudiant non boursier
-    #   2 - éutidant boursier
-    # revCatvous et self.conj : somme des revenus catégoriel après abatement
-    # revColl : autres revenus du ménage non individualisable
-    # ALabat : abatement prix en compte pour le calcul de la base ressources
-    # des allocattions logement
-    # plancher de ressources pour les etudiants
-    boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
-    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-    etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-    rev_coll = self.sum_by_entity(rev_coll_holder)
+@reference_formula
+class br_al(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressource des allocations logement"
+    entity_class = Familles
+    period_unit = 'year'
 
-    etuC = (etu[CHEF]) & (not_(etu[PART]))
-    etuP = not_(etu[CHEF]) & (etu[PART])
-    etuCP = (etu[CHEF]) & (etu[PART])
-    # Boursiers
-    # TODO: distinguer boursier foyer/boursier locatif
-    etuCB = etu[CHEF] & boursier[CHEF]
-    etuPB = etu[PART] & boursier[PART]
-    # self.etu = (self.etu[CHEF]>=1)|(self.etuP>=1)
+    def function(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, biact, Pr = law.al.ressources):
+        # On ne considère que les revenus des 2 conjoints et les revenus non
+        # individualisables
+        #   0 - non étudiant
+        #   1 - étudiant non boursier
+        #   2 - éutidant boursier
+        # revCatvous et self.conj : somme des revenus catégoriel après abatement
+        # revColl : autres revenus du ménage non individualisable
+        # ALabat : abatement prix en compte pour le calcul de la base ressources
+        # des allocattions logement
+        # plancher de ressources pour les etudiants
+        boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
 
-    revCatVous = max_(br_pf_i[CHEF], etuC * (Pr.dar_4 - (etuCB) * Pr.dar_5))
-    revCatConj = max_(br_pf_i[PART], etuP * (Pr.dar_4 - (etuPB) * Pr.dar_5))
-    revCatVsCj = not_(etuCP) * (revCatVous + revCatConj) + \
-                    etuCP * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etuCB | etuPB) * Pr.dar_5 + Pr.dar_7)
+        br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
 
-    # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier), les inclure dans le calcul
-    # somme des revenus catégoriels après abatement
-    revCat = revCatVsCj + rev_coll
+        etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        rev_coll = self.sum_by_entity(rev_coll_holder)
 
-    # TODO: charges déductibles : pension alimentaires et abatements spéciaux
-    revNet = revCat
+        etuC = (etu[CHEF]) & (not_(etu[PART]))
+        etuP = not_(etu[CHEF]) & (etu[PART])
+        etuCP = (etu[CHEF]) & (etu[PART])
+        # Boursiers
+        # TODO: distinguer boursier foyer/boursier locatif
+        etuCB = etu[CHEF] & boursier[CHEF]
+        etuPB = etu[PART] & boursier[PART]
+        # self.etu = (self.etu[CHEF]>=1)|(self.etuP>=1)
 
-    # On ne considère pas l'abattement sur les ressources de certaines
-    # personnes (enfant, ascendants ou grands infirmes).
+        revCatVous = max_(br_pf_i[CHEF], etuC * (Pr.dar_4 - (etuCB) * Pr.dar_5))
+        revCatConj = max_(br_pf_i[PART], etuP * (Pr.dar_4 - (etuPB) * Pr.dar_5))
+        revCatVsCj = not_(etuCP) * (revCatVous + revCatConj) + \
+                        etuCP * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etuCB | etuPB) * Pr.dar_5 + Pr.dar_7)
 
-    # abattement forfaitaire double activité
-    abatDoubleAct = biact * Pr.dar_1
+        # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier), les inclure dans le calcul
+        # somme des revenus catégoriels après abatement
+        revCat = revCatVsCj + rev_coll
 
-    # TODO: neutralisation des ressources
-    # ...
+        # TODO: charges déductibles : pension alimentaires et abatements spéciaux
+        revNet = revCat
 
-    # TODO: abbattement sur les ressources
-    # ...
+        # On ne considère pas l'abattement sur les ressources de certaines
+        # personnes (enfant, ascendants ou grands infirmes).
 
-    # TODO: évaluation forfaitaire des ressources (première demande)
+        # abattement forfaitaire double activité
+        abatDoubleAct = biact * Pr.dar_1
 
-    # TODO :double résidence pour raisons professionnelles
+        # TODO: neutralisation des ressources
+        # ...
 
-    # Base ressource des aides au logement (arrondies aux 100 euros supérieurs)
+        # TODO: abbattement sur les ressources
+        # ...
 
-    br_al = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
+        # TODO: évaluation forfaitaire des ressources (première demande)
 
-    return br_al
+        # TODO :double résidence pour raisons professionnelles
+
+        # Base ressource des aides au logement (arrondies aux 100 euros supérieurs)
+
+        br_al = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
+
+        return br_al
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['br_pf_i_holder', 'rev_coll_holder']:
+            return output_period.offset(-1)
+        else:
+            return output_period
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
 def _al(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_holder, nat_imp_holder,
@@ -246,6 +266,7 @@ def _al(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac
     Tp = TF + TL
 
     PP = Po + Tp * Rp
+
     al_loc = max_(0, E - PP) * loca
     al_loc = al_loc * (al_loc >= al.autres.nv_seuil)
 

@@ -2090,10 +2090,6 @@ build_simple_formula('crds_pfam', FloatCol(function = pf._crds_pfam,
 # Allocations logement
 ############################################################
 
-build_simple_formula('br_al', FloatCol(function = lg._br_al,
-    entity = 'fam',
-    label = u"Base ressource des allocations logement",
-    ))
 build_simple_formula('al_pac', FloatCol(function = lg._al_pac,
     entity = 'fam',
     label = u"Nombre de personnes à charge au sens des allocations logement",
