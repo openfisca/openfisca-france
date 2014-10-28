@@ -25,7 +25,7 @@
 
 import datetime
 
-from openfisca_core.columns import BoolCol, EnumCol, FixedStrCol, IntCol, PeriodSizeIndependentIntCol, StrCol
+from openfisca_core.columns import BoolCol, EnumCol, FixedStrCol, IntCol, PeriodSizeIndependentIntCol
 from openfisca_core.enumerations import Enum
 
 from ..base import build_column, QUIFOY
