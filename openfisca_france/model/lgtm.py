@@ -326,9 +326,9 @@ def _zone_apl(depcom):
     global zone_apl_by_depcom
     if zone_apl_by_depcom is None:
         with pkg_resources.resource_stream(
-            openfisca_france.__name__,
-            'assets/apl/20110914_zonage.csv',
-            ) as csv_file:
+                openfisca_france.__name__,
+                'assets/apl/20110914_zonage.csv',
+                ) as csv_file:
             csv_reader = csv.DictReader(csv_file)
             zone_apl_by_depcom = {
                 # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
@@ -337,9 +337,9 @@ def _zone_apl(depcom):
                 }
         # Add subcommunes (arrondissements and communes associées), use the same value as their parent commune.
         with pkg_resources.resource_stream(
-            openfisca_france.__name__,
-            'assets/apl/commune_depcom_by_subcommune_depcom.json',
-            ) as json_file:
+                openfisca_france.__name__,
+                'assets/apl/commune_depcom_by_subcommune_depcom.json',
+                ) as json_file:
             commune_depcom_by_subcommune_depcom = json.load(json_file)
             for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
