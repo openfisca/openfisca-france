@@ -104,12 +104,14 @@ class cmu_br_i(SimpleFormulaColumn):
                  indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle, indemnites_journalieres_accident_travail,
                  indemnites_stage, revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, retraite_combattant, pensions_invalidite,
-                 indemnites_chomage_partiel, bourse_enseignement_sup, bourse_recherche, gains_exceptionnels, P = law.cmu):
+                 indemnites_chomage_partiel, bourse_enseignement_sup, bourse_recherche, gains_exceptionnels,
+                 tns_total_revenus, P = law.cmu):
         return ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - (activite == 1) * P.abattement_chomage) +
             indemnites_stage + aah + chonet + rstnet + alr + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
-            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels)
+            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
+            tns_total_revenus)
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name == 'activite':

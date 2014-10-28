@@ -81,11 +81,11 @@ class ra_rsa(SimpleFormulaColumn):
     def function(self, salnet, hsup, rpns, etr, indemnites_chomage_partiel, indemnites_journalieres_maternite,
                  indemnites_journalieres_paternite, indemnites_journalieres_adoption, indemnites_journalieres_maladie,
                  indemnites_journalieres_accident_travail, indemnites_journalieres_maladie_professionnelle,
-                 indemnites_volontariat):
+                 indemnites_volontariat, tns_total_revenus):
         return (salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat)
+            indemnites_volontariat + tns_total_revenus)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')

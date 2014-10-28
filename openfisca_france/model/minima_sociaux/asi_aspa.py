@@ -54,7 +54,8 @@ class br_mv_i(SimpleFormulaColumn):
                  revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, pensions_invalidite, gains_exceptionnels,
                  aah, indemnites_journalieres_maternite, indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle,
-                 indemnites_journalieres_accident_travail, indemnites_chomage_partiel, indemnites_volontariat):
+                 indemnites_journalieres_accident_travail, indemnites_chomage_partiel, indemnites_volontariat,
+                 tns_total_revenus):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
@@ -64,7 +65,7 @@ class br_mv_i(SimpleFormulaColumn):
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels + aah +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
-               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat
+               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus
                )
 
         return out
