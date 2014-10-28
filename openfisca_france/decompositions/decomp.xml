@@ -79,7 +79,6 @@
       <NODE code="imp_lib" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
     </NODE>
   </NODE>
-  <NODE code="ir_lps" color="232,79,95" desc="Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" />
   <NODE code="psoc" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc.">
     <NODE code="pfam" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
       <NODE code="af" color="181,213,154" desc="Allocations familiales" shortname="Alloc. fam." />
