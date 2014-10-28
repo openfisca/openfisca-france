@@ -47,7 +47,6 @@ from . import common as cm
 from .cotisations_sociales import capital as cs_capital
 from .cotisations_sociales import travail as cs_travail
 from .cotisations_sociales import remplacement as cs_remplac
-from .cotisations_sociales import lps as cs_lps  # TODO: remove frome here
 from . import inversion_revenus as inv_rev
 from . import irpp as ir
 from . import irpp_charges_deductibles as cd
@@ -480,12 +479,6 @@ build_dated_formula('prelsoc_pv_immo',
     label = u"Prélèvements sociaux sur les plus-values immobilières",
     url = u"http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere",
     ))
-# Réforme Landais-Pikettty-Saez TODO: move out form here
-build_simple_formula('base_csg', FloatCol(function = cs_lps._base_csg))
-build_simple_formula('ir_lps', FloatCol(function = cs_lps._ir_lps,
-    start = date(2010, 1, 1),
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50",
-    ))
 
 ############################################################
 # Impôt sur le revenu
@@ -721,11 +714,6 @@ build_simple_formula('abat_spe', FloatCol(function = ir._abat_spe,
     entity = 'foy',
     label = u"Abattements spéciaux",
     url = u"http://bofip.impots.gouv.fr/bofip/2036-PGP",
-    ))
-build_simple_formula('alloc', FloatCol(function = ir._alloc,
-    entity = 'foy',
-    label = u"Allocation familiale pour l'ir",
-    url = u"http://vosdroits.service-public.fr/particuliers/F3153.xhtml",
     ))
 build_simple_formula('deficit_ante', FloatCol(function = ir._deficit_ante,
     entity = 'foy',
