@@ -159,7 +159,7 @@ class br_rmi_i(SimpleFormulaColumn):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         ass = self.cast_from_entity_to_roles(ass_holder)
         return (ass + ra_rsa + chonet + rstnet + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
-            gains_exceptionnels + dedommagement_victime_amiante, pensions_invalidite + allocation_aide_retour_emploi +
+            gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire + retraite_combattant + bourse_enseignement_sup + bourse_recherche)
 
     def get_output_period(self, period):
