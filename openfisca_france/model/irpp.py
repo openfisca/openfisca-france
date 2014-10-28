@@ -259,7 +259,7 @@ def _rto_net(self, f1aw, f1bw, f1cw, f1dw, abatviag = law.ir.tspr.abatviag):
 
 def _tspr(sal_pen_net, rto_net):
     '''
-    Traitemens salaires pensions et rentes individuelles
+    Traitements salaires pensions et rentes individuelles
     'ind'
     '''
     return sal_pen_net + rto_net
