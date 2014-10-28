@@ -48,4 +48,5 @@ build_column('pensions_invalidite', FloatCol(entity = 'ind', label = u"Pensions 
 build_column('bourse_enseignement_sup', FloatCol(entity = 'ind', label = u"Bourse de l'enseignement supérieur"))
 build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
 build_column('retraite_combattant', FloatCol(entity = 'ind', label = u"Retraite du combattant"))
+build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
 build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
