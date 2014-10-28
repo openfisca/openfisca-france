@@ -2510,6 +2510,9 @@ build_simple_formula('cmu_c_plafond', FloatCol(function = cmu._cmu_c_plafond,
     label = u"Plafond de ressources pour l'éligibilité à la CMU-C",
     entity = 'fam',
     ))
+build_simple_formula('cmu_eligible_majoration_dom', BoolCol(function = cmu._cmu_eligible_majoration_dom,
+    entity = 'fam'
+    ))
 build_simple_formula('acs_plafond', FloatCol(function = cmu._acs_plafond,
     label = u"Plafond de ressources pour l'éligibilité à l'ACS",
     entity = 'fam',

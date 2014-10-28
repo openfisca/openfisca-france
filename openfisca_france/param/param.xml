@@ -5647,6 +5647,9 @@
     <CODE code="age_limite_pac" description="Âge limite des personnes à charge" format="integer">
       <VALUE deb="2000-01-01" fin="2014-12-31" valeur="25" />
     </CODE>
+    <CODE code="majoration_dom" description="Coefficient de majoration du plafond CMU applicable aux DOM" format="percent">
+      <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.113" />
+    </CODE>
     <CODE code="plafond_base" description="Plafond annuel pour une personne seule" format="float" type="monetary">
       <VALUE deb="2003-07-01" fin="2004-06-30" valeur="6798.00" />
       <VALUE deb="2004-07-01" fin="2005-06-30" valeur="6913.57" />

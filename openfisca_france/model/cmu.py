@@ -8,7 +8,8 @@
 
 from __future__ import division
 
-from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_)
+from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_)
+from numpy.core.defchararray import startswith
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
@@ -66,16 +67,23 @@ def _cmu_nbp_foyer(nb_par, cmu_nb_pac):
     return nb_par + cmu_nb_pac
 
 
-def _cmu_c_plafond(cmu_nbp_foyer, P = law.cmu):
+def _cmu_eligible_majoration_dom(self, depcom_holder):
+    depcom = self.cast_from_entity_to_roles(depcom_holder)
+    depcom = self.filter_role(depcom, role = CHEF)
+
+    return startswith(depcom, '971') | startswith(depcom, '972') | startswith(depcom, '973') | startswith(depcom, '974')
+
+
+def _cmu_c_plafond(self, cmu_eligible_majoration_dom, cmu_nbp_foyer, P = law.cmu):
     '''
     Calcule le plafond de ressources pour la CMU complémentaire
     TODO: Rajouter la majoration pour les DOM
     '''
-    return (P.plafond_base * (1 +
-        (cmu_nbp_foyer >= 2) * P.coeff_p2 +
-        max_(0, min_(2, cmu_nbp_foyer - 2)) * P.coeff_p3_p4 +
-        max_(0, cmu_nbp_foyer - 4) * P.coeff_p5_plus
-    ))
+    return (P.plafond_base *
+        (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
+        (1 + (cmu_nbp_foyer >= 2) * P.coeff_p2 +
+            max_(0, min_(2, cmu_nbp_foyer - 2)) * P.coeff_p3_p4 +
+            max_(0, cmu_nbp_foyer - 4) * P.coeff_p5_plus))
 
 
 def _acs_plafond(cmu_c_plafond, P = law.cmu):
