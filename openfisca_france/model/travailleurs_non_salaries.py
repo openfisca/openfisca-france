@@ -58,8 +58,8 @@ class tns_total_revenus(SimpleFormulaColumn):
                 (tns_type_activite == 2) * cs_ae.bnc) +
             # cas des autres micro-entreprises
             (tns_type_structure == 1) * tns_chiffre_affaires_micro_entreprise / 12 * (1 -
-                (tns_type_activite == 0) * abatt_fp_me.achat_revente +
-                (tns_type_activite == 1) * abatt_fp_me.bic +
+                (tns_type_activite == 0) * abatt_fp_me.achat_revente -
+                (tns_type_activite == 1) * abatt_fp_me.bic -
                 (tns_type_activite == 2) * abatt_fp_me.bnc) *
                 (1 - bareme.micro_entreprise.cotisations_sociales))
 
