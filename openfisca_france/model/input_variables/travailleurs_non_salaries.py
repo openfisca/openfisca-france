@@ -36,9 +36,11 @@ build_column('tns_type_structure', EnumCol(
     entity = 'ind',
     enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
     default = 1,
+    is_permanent = True,
     label = u"Type de structure associée au travailleur non salarié"))
 
 build_column('tns_type_activite', EnumCol(
     entity = 'ind',
     enum = Enum([u'achat_revente', u'bic', u'bnc']),
+    is_permanent = True,
     label = u"Valeur locative des biens immobiliés possédés et non loués"))
