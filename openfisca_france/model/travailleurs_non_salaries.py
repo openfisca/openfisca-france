@@ -50,15 +50,19 @@ class tns_total_revenus(SimpleFormulaColumn):
         cs_ae = bareme.auto_entrepreneur
         abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
 
-        return (tns_autres_revenus / 12 +
-            (tns_type_activite == 'auto_entrepreneur') * tns_chiffre_affaires_micro_entreprise / 12 * (1 - 
-                (tns_type_structure == 'achat_revente') * cs_ae.achat_revente -
-                (tns_type_structure == 'bic') * cs_ae.bic -
-                (tns_type_structure == 'bnc') * cs_ae.bnc) +
-            (tns_type_activite == 'micro_entreprise') * (1 - bareme.micro_entreprise.cotisations_sociales) * tns_chiffre_affaires_micro_entreprise * ( 
-                (tns_type_structure == 'achat_revente') * abatt_fp_me.achat_revente +
-                (tns_type_structure == 'bic') * abatt_fp_me.bic +
-                (tns_type_structure == 'bnc') * abatt_fp_me.bnc))
+        out = (tns_autres_revenus / 12 +
+            # cas des auto-entrepreneurs
+            (tns_type_structure == 0) * tns_chiffre_affaires_micro_entreprise / 12 * (1 -
+                (tns_type_activite == 'achat_revente') * cs_ae.achat_revente -
+                (tns_type_activite == 'bic') * cs_ae.bic -
+                (tns_type_activite == 'bnc') * cs_ae.bnc) +
+            # cas des autres micro-entreprises
+            (tns_type_structure == 1) * (1 - bareme.micro_entreprise.cotisations_sociales) * tns_chiffre_affaires_micro_entreprise * (
+                (tns_type_activite == 'achat_revente') * abatt_fp_me.achat_revente +
+                (tns_type_activite == 'bic') * abatt_fp_me.bic +
+                (tns_type_activite == 'bnc') * abatt_fp_me.bnc))
+
+        return out
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
