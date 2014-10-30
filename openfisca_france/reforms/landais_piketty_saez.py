@@ -22,6 +22,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+# TODO switch to to average tax rates
+
 from __future__ import division
 
 import copy
@@ -29,7 +32,7 @@ import copy
 from numpy import maximum as max_
 import logging
 
-from openfisca_core import formulas, periods, reforms
+from openfisca_core import formulas, reforms
 from openfisca_core.columns import FloatCol
 from openfisca_core.accessors import law
 from openfisca_france import entities
@@ -68,8 +71,38 @@ def build_new_legislation_nodes():
     return {
         "landais_piketty_saez": {
             "@type": "Node",
-            "description": "Impôt sur le revenu proposé par Landais, Piketty et Saez",
+            "description": "Impôt à base large proposé par Landais, Piketty et Saez",
             "children": {
+                "bareme": {
+                    "@type": "Scale",
+                    "description": "Barème de l'impôt",
+                    "slices": [
+                        {
+                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
+                            },
+                        {
+                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
+                            },
+                        {
+                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
+                            },
+                        {
+                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
+                            },
+                        {
+                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
+                            },
+                        {
+                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
+                            },
+                        ],
+                    },
                 "imposition": {
                     "@type": "Parameter",
                     "description": "Indicatrice d'imposition",
@@ -133,7 +166,6 @@ def build_reform_entity_class_by_symbol():
 
         def get_output_period(self, period):
             return period.start.offset('first-of', 'month').period('year')
-
 
     class impot_revenu_lps(formulas.SimpleFormulaColumn):
         column = FloatCol

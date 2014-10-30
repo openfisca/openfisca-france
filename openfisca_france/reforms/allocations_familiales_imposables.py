@@ -107,7 +107,6 @@ def build_reform_entity_class_by_symbol():
             '''
             af = self.cast_from_entity_to_role(af_holder, role = VOUS)
             af = self.sum_by_entity(af)
-#            print imposition
             return af * imposition
 
         def get_output_period(self, period):
