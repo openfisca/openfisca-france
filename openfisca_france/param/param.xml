@@ -2117,6 +2117,7 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5875" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5963" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="6041" />   
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.0705" />
@@ -2137,6 +2138,7 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11720" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="11896" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11991" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12051" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.21" />
@@ -2157,6 +2159,7 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26030" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="26420" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="26631" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.3100" />
@@ -2178,6 +2181,7 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="69783" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="70830" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="71397" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.4100" />
@@ -2196,6 +2200,7 @@
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="40241" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150000" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="151200" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.4675" />
