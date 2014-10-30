@@ -107,7 +107,7 @@ def build_reform(tax_benefit_system):
 
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
-    reform_year = 2013
+    reform_year = 2014
     reform_period = periods.period('year', reform_year)
 
     reform_legislation_json = reforms.update_legislation(
