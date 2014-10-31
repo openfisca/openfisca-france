@@ -48,11 +48,11 @@ def test(year = 2014):
             ],
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
-        enfants = [
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            ],
+#        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
+#        enfants = [
+#            dict(birth = datetime.date(year - 9, 1, 1)),
+#            dict(birth = datetime.date(year - 9, 1, 1)),
+#            ],
         )
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
