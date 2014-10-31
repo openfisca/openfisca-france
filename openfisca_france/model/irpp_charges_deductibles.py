@@ -70,7 +70,7 @@ def _cd1_2014(cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
 	Renvoie la liste des charges déductibles avant rbg_int pour 2014
 	'''
 	niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
-	log.error("Charges déductibles to be checked because not defined for %s", 2014)
+	# log.error("Charges déductibles to be checked because not defined for %s", 2014)
 	return niches1
 
 
