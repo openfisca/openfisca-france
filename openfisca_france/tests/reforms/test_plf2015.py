@@ -22,13 +22,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import datetime
 
-from openfisca_core import periods, reforms
 import openfisca_france
 from openfisca_france.reforms import plf2015
-from openfisca_france.tests import base
-
+from openfisca_france.tests.reforms.utils import init
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -36,35 +33,15 @@ tax_benefit_system = TaxBenefitSystem()
 
 def test(year = 2014):
 
-    reform = plf2015.build_reform(base.tax_benefit_system)
-    scenario = reform.new_scenario().init_single_entity(
-        axes = [
-            dict(
-                count = 10,
-                max = 30000,
-                min = 0,
-                name = 'sali',
-                ),
-            ],
-        period = periods.period('year', year),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-#        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
-#        enfants = [
-#            dict(birth = datetime.date(year - 9, 1, 1)),
-#            dict(birth = datetime.date(year - 9, 1, 1)),
-#            ],
-        )
-
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
-
+    reform_simulation, reference_simulation = init(plf2015, year)
     error_margin = 0.01
     impo = reference_simulation.calculate('impo')
     print impo
-
-    reform_simulation = scenario.new_simulation(debug = True)
     reform_impo = reform_simulation.calculate('impo')
     print reform_impo
 
 
 if __name__ == '__main__':
-    test()
+#    test()
+    from openfisca_france.tests.reforms.utils import graph
+    graph(plf2015, 2014)

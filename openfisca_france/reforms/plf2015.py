@@ -122,6 +122,7 @@ def build_reform(tax_benefit_system):
         period = reform_period,
         value = 9641,
         )
+
     reform_legislation_json['children'].update(build_new_legislation_nodes())
 
     to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
