@@ -27,11 +27,11 @@ import datetime
 
 from openfisca_core import periods, reforms
 
-from .base import assert_near, tax_benefit_system
+from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 
 def test_parametric_reform():
-    simulation_year = 2014
+    simulation_year = 2013
     simulation_period = periods.period('year', simulation_year)
     reference_legislation_json = tax_benefit_system.legislation_json
 
