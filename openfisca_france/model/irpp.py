@@ -499,7 +499,7 @@ def _ir_brut(self, nbptr, taux_effectif, rni, bareme = law.ir.bareme):
     Impot sur le revenu avant non imposabilité et plafonnement du quotient
     'foy'
     '''
-    return  (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni# TODO: partir d'ici, petite différence avec Matlab REMOVE
+    return (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni
 
 
 def _ir_ss_qf(ir_brut, rni, nb_adult, bareme = law.ir.bareme):
@@ -1338,8 +1338,8 @@ def _taux_effectif(self, rni, nbptr, microentreprise, abnc_proc_holder, nbnc_pro
     abnc_proc = self.sum_by_entity(abnc_proc_holder)
     nbnc_proc = self.sum_by_entity(nbnc_proc_holder)
     base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
-    return ((base_fictive != 0) * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive) +
-            0 * (base_fictive == 0))
+    trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
+    return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
 
 ###############################################################################

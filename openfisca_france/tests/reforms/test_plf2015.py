@@ -27,21 +27,26 @@ import openfisca_france
 from openfisca_france.reforms import plf2015
 from openfisca_france.tests.reforms.utils import init
 
+
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
 def test(year = 2014):
-
-    reform_simulation, reference_simulation = init(plf2015, year)
+    max_sal = 20000
+    count = 2
+    reform_simulation, reference_simulation = init(plf2015, year, max_sal = max_sal, count = count)
     error_margin = 0.01
     impo = reference_simulation.calculate('impo')
     print impo
-    reform_impo = reform_simulation.calculate('impo')
+        reform_impo = reform_simulation.calculate('impo')
     print reform_impo
 
 
 if __name__ == '__main__':
-#    test()
+    import logging
+    import sys
+    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    test()
     from openfisca_france.tests.reforms.utils import graph
     graph(plf2015, 2014)

@@ -67,14 +67,14 @@ def graph(reform_module, year):
     plot(reform_simulation, reference_simulation, filename = filename)
 
 
-def init(reform_module = None, year = None, people = 1, max_sal = 30000):
+def init(reform_module = None, year = None, people = 1, max_sal = 30000, count = 200):
     assert reform_module is not None
     assert year is not None
     reform = reform_module.build_reform(base.tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
-                count = 200,
+                count = count,
                 max = max_sal,
                 min = 0,
                 name = 'sali',
@@ -92,5 +92,3 @@ def init(reform_module = None, year = None, people = 1, max_sal = 30000):
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
     reform_simulation = scenario.new_simulation(debug = True)
     return reform_simulation, reference_simulation
-
-

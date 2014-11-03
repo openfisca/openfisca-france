@@ -120,7 +120,7 @@ def build_reform(tax_benefit_system):
         legislation_json = reform_legislation_json,
         path = ('children', 'ir', 'children', 'bareme', 'slices', 2, 'threshold'),
         period = reform_period,
-        value = 9641,
+        value = 9690,
         )
 
     reform_legislation_json['children'].update(build_new_legislation_nodes())

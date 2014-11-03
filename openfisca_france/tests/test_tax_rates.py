@@ -24,7 +24,7 @@
 
 
 from openfisca_core.rates import average_rate, marginal_rate
-from . import base
+from openfisca_france.tests import base
 
 
 def test_average_tax_rate():
