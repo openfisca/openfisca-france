@@ -24,7 +24,7 @@
 
 
 from openfisca_core.rates import average_rate, marginal_rate
-from . import base
+from openfisca_france.tests import base
 
 
 def test_average_tax_rate():
@@ -40,7 +40,7 @@ def test_average_tax_rate():
             ],
         period = year,
         parent1 = dict(agem = 40 * 12 + 6),
-        ).new_simulation(debug = True)
+        ).new_simulation()  # Remove debug = True, because logging is too slow.
     assert (average_rate(
         target = simulation.calculate('revdisp'),
         varying = simulation.calculate('revdisp'),
@@ -60,7 +60,7 @@ def test_marginal_tax_rate():
             ],
         period = year,
         parent1 = dict(agem = 40 * 12 + 6),
-        ).new_simulation(debug = True)
+        ).new_simulation()  # Remove debug = True, because logging is too slow.
     assert (marginal_rate(
         target = simulation.calculate('revdisp'),
         varying = simulation.calculate('revdisp'),

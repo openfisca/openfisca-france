@@ -23,25 +23,30 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from .. import entities
-from .base import tax_benefit_system
+import openfisca_france
+from openfisca_france.reforms import plf2015
+from openfisca_france.tests.reforms.utils import init
 
 
-def check_input_column_consumers(column):
-    column_names = ['idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen']
-    column_names.extend([
-        entities.Familles.name_key,
-        entities.FoyersFiscaux.name_key,
-        entities.Individus.name_key,
-        entities.Menages.name_key,
-        ])
-    if column.name not in column_names:
-        if not(column.survey_only):
-            assert tax_benefit_system.consumers_by_variable_name.get(column.name), \
-                u'Input column {} has no consumer'.format(column.name).encode('utf-8')
+TaxBenefitSystem = openfisca_france.init_country()
+tax_benefit_system = TaxBenefitSystem()
 
 
-def test():
-    for column in tax_benefit_system.column_by_name.itervalues():
-        if column.formula_class is None:
-            yield check_input_column_consumers, column
+def test(year = 2014):
+    max_sal = 20000
+    count = 2
+    reform_simulation, reference_simulation = init(plf2015, year, max_sal = max_sal, count = count)
+    error_margin = 0.01
+    impo = reference_simulation.calculate('impo')
+    print impo
+        reform_impo = reform_simulation.calculate('impo')
+    print reform_impo
+
+
+if __name__ == '__main__':
+    import logging
+    import sys
+    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    test()
+    from openfisca_france.tests.reforms.utils import graph
+    graph(plf2015, 2014)

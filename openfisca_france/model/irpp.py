@@ -152,16 +152,6 @@ def _jveuf(self, statmarit_holder):
 ###############################################################################
 
 
-def _alloc(self, af_holder, alloc_imp = law.ir.autre.alloc_imp):
-    '''
-    Allocations familiales imposables
-    '''
-    # TODO: remove frome here it is a reforme
-    af = self.cast_from_entity_to_role(af_holder, role = VOUS)
-    af = self.sum_by_entity(af)
-    return af * alloc_imp
-
-
 def _rev_sal(sal, cho):
     '''
     Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)
@@ -460,14 +450,14 @@ def _deficit_ante(f6fa, f6fb, f6fc, f6fd, f6fe, f6fl):
     return f6fa + f6fb + f6fc + f6fd + f6fe + f6fl
 
 
-def _rbg(self, alloc, rev_cat, deficit_ante, f6gh, nbic_impm_holder, nacc_pvce_holder, cga = law.ir.rpns.cga_taux2):
+def _rbg(self, rev_cat, deficit_ante, f6gh, nbic_impm_holder, nacc_pvce_holder, cga = law.ir.rpns.cga_taux2):
     '''Revenu brut global
     '''
     # (Total 17)
     # sans les revenus au quotient
     nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
     return max_(0,
-                alloc + rev_cat + f6gh + (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante)
+                rev_cat + f6gh + (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
 def _csg_deduc_patrimoine(f6de):
@@ -509,7 +499,7 @@ def _ir_brut(self, nbptr, taux_effectif, rni, bareme = law.ir.bareme):
     Impot sur le revenu avant non imposabilité et plafonnement du quotient
     'foy'
     '''
-    return  (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni# TODO: partir d'ici, petite différence avec Matlab REMOVE
+    return (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni
 
 
 def _ir_ss_qf(ir_brut, rni, nb_adult, bareme = law.ir.bareme):
@@ -858,7 +848,7 @@ def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
                                          entity = 'foyer_fiscal', role = VOUS)
 
 
-def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder,
+def _rfr(self, rni, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder,
          rev_cap_lib, f3vz, microentreprise):
     '''
     Revenu fiscal de référence
@@ -868,7 +858,7 @@ def _rfr(self, rni, alloc, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon
     f3vi = self.sum_by_entity(f3vi_holder)
     rpns_exon = self.sum_by_entity(rpns_exon_holder)
     rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
-    return (max_(0, rni - alloc) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +
+    return (max_(0, rni) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +
             f3vz + microentreprise)
 
 
@@ -1348,8 +1338,8 @@ def _taux_effectif(self, rni, nbptr, microentreprise, abnc_proc_holder, nbnc_pro
     abnc_proc = self.sum_by_entity(abnc_proc_holder)
     nbnc_proc = self.sum_by_entity(nbnc_proc_holder)
     base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
-    return ((base_fictive != 0) * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive) +
-            0 * (base_fictive == 0))
+    trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
+    return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
 
 ###############################################################################

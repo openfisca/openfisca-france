@@ -25,7 +25,7 @@
 
 import datetime
 
-from openfisca_core.columns import BoolCol, EnumCol, IntCol, PeriodSizeIndependentIntCol, StrCol, FloatCol, FixedStrCol
+from openfisca_core.columns import BoolCol, EnumCol, FixedStrCol, IntCol, PeriodSizeIndependentIntCol, FloatCol
 from openfisca_core.enumerations import Enum
 
 from ..base import build_column, QUIFOY
@@ -197,10 +197,8 @@ build_column('exposition_accident', EnumCol(label = u"Exposition au risque pour 
                                ])))
 
 build_column('boursier', BoolCol(label = u"Élève ou étudiant boursier"))
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence",
-    entity = 'men',
-    max_length = 5
-    ))
+
+build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
 
 build_column('statmarit', EnumCol(label = u"Statut marital",
                       default = 2,

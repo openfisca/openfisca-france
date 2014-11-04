@@ -25,6 +25,9 @@
 
 import os
 
+import numpy as np
+
+
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
 REVENUES_CATEGORIES = {
@@ -129,9 +132,10 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
         REVENUES_CATEGORIES = REVENUES_CATEGORIES
         Scenario = scenarios.Scenario
 
-    # Define class attributes after class declaration to avoid "name is not defined" exception
-    # TaxBenefitSystem.column_by_name = column_by_name
-    # TaxBenefitSystem.prestation_by_name = prestation_by_name
+        def prefill_cache(self):
+            # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
+            from .model import lgtm
+            lgtm._zone_apl(np.array(['75101']))
 
     return TaxBenefitSystem
 

@@ -29,11 +29,9 @@ import copy
 import logging
 
 from numpy import maximum as max_, minimum as min_
-
 from openfisca_core import formulas, reforms, tools
 from openfisca_core.columns import FloatCol
 from openfisca_core.enumerations import Enum
-from openfisca_france import entities
 
 
 log = logging.getLogger(__name__)
@@ -75,16 +73,18 @@ def _alleg_plfrss2014_public(salbrut, type_sal, _P):
 # Helper functions
 
 
-def build_reform_entity_class_by_symbol():
-    reform_entity_class_by_symbol = entities.entity_class_by_symbol.copy()
-
-    foyers_fiscaux_class = reform_entity_class_by_symbol['foy']
+def build_reform_entity_class_by_key_plural(tax_benefit_system):
+    reform_entity_class_by_key_plural = tax_benefit_system.entity_class_by_key_plural.copy()
+    FoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
+    ReformFoyersFiscaux = type('ReformFoyersFiscaux', (FoyersFiscaux, ),
+        {'column_by_name': FoyersFiscaux.column_by_name.copy()})
+    reform_entity_class_by_key_plural['foyers_fiscaux'] = ReformFoyersFiscaux
 
     # reduction_impot_exceptionnelle
 
     class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
         column = FloatCol
-        entity_class = foyers_fiscaux_class
+        entity_class = FoyersFiscaux
         label = u"Réduction d'impôt exceptionnelle"
         period_unit = u'year'
 
@@ -97,9 +97,11 @@ def build_reform_entity_class_by_symbol():
         def get_output_period(self, period):
             return period.start.offset('first-of', 'month').period('year')
 
+    ReformFoyersFiscaux.column_by_name['reduction_impot_exceptionnelle'] = reduction_impot_exceptionnelle
+
     # reductions
 
-    reductions_column = foyers_fiscaux_class.column_by_name['reductions']
+    reductions_column = FoyersFiscaux.column_by_name['reductions']
     reform_reductions_column = tools.empty_clone(reductions_column)
     reform_reductions_column.__dict__ = reductions_column.__dict__.copy()
 
@@ -120,18 +122,9 @@ def build_reform_entity_class_by_symbol():
 
     reform_reductions_column.formula_class = reform_dated_formula_class
 
-    # update column_by_name
+    ReformFoyersFiscaux.column_by_name['reductions'] = reform_reductions_column
 
-    reform_column_by_name = foyers_fiscaux_class.column_by_name.copy()
-    reform_column_by_name['reduction_impot_exceptionnelle'] = reduction_impot_exceptionnelle
-    reform_column_by_name['reductions'] = reform_reductions_column
-
-    reform_foyers_fiscaux_class = type('reform_foyers_fiscaux_class', (foyers_fiscaux_class, ),
-        {'column_by_name': reform_column_by_name})
-
-    reform_entity_class_by_symbol['foy'] = reform_foyers_fiscaux_class
-
-    return reform_entity_class_by_symbol
+    return reform_entity_class_by_key_plural
 
 
 def build_new_legislation_nodes():
@@ -346,10 +339,7 @@ def build_reform(tax_benefit_system):
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(build_new_legislation_nodes())
     return reforms.Reform(
-        entity_class_by_key_plural = {
-            entity_class.key_plural: entity_class
-            for entity_class in build_reform_entity_class_by_symbol().itervalues()
-            },
+        entity_class_by_key_plural = build_reform_entity_class_by_key_plural(tax_benefit_system),
         legislation_json = reform_legislation_json,
         name = u'PLFR2014',
         reference = tax_benefit_system,
