@@ -25,7 +25,7 @@
 
 import datetime
 
-from openfisca_core.columns import BoolCol, EnumCol, FixedStrCol, IntCol, PeriodSizeIndependentIntCol, FloatCol
+from openfisca_core.columns import BoolCol, EnumCol, FixedStrCol, IntCol, PeriodSizeIndependentIntCol
 from openfisca_core.enumerations import Enum
 
 from ..base import build_column, QUIFOY
@@ -57,9 +57,6 @@ build_column('fra', IntCol(label = u"Frais réels",
                               QUIFOY['pac3']: u"1EK",
                               }))  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-build_column('salbrut', FloatCol(label = "Salaires bruts", val_type = "monetary"))
-build_column('salnet', FloatCol(label = "Salaires nets", val_type = "monetary"))
-
 build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
                val_type = "monetary",
                cerfa_field = {QUIFOY['vous']: u"1AO",
@@ -79,9 +76,6 @@ build_column('choi', IntCol(label = u"Autres revenus imposables (chômage, prér
                                QUIFOY['pac3']: u"1EP",
                                }))  # (f1ap, f1bp, f1cp, f1dp, f1ep)
 
-build_column('chobrut', FloatCol(label = "Allocations chômage brutes", val_type = "monetary"))
-build_column('chonet', FloatCol(label = "Allocations chômages nettes", val_type = "monetary"))
-
 build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
                 val_type = "monetary",
                 cerfa_field = {QUIFOY['vous']: u"1AS",
@@ -90,9 +84,6 @@ build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposa
                                QUIFOY['pac2']: u"1DS",
                                QUIFOY['pac3']: u"1ES",
                                }))  # (f1as, f1bs, f1cs, f1ds, f1es)
-
-build_column('rstbrut', FloatCol(label = "Pensions retraites brutes", val_type = "monetary"))
-build_column('rstnet', FloatCol(label = "Pensions retraites nettes", val_type = "monetary"))
 
 build_column('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
                 val_type = "monetary",
