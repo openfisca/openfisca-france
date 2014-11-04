@@ -28,7 +28,6 @@ import datetime
 from openfisca_core import periods
 import openfisca_france
 from openfisca_france.reforms import plf2015
-from openfisca_france.tests.reforms.utils import init
 from openfisca_france.tests import base
 
 TaxBenefitSystem = openfisca_france.init_country()
