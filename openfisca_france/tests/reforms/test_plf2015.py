@@ -25,6 +25,8 @@
 
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
 import openfisca_france
 from openfisca_france.reforms import plf2015
@@ -60,12 +62,10 @@ def test(year = 2014):
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
     reform_simulation = scenario.new_simulation(debug = True)
 
-    reform_simulation, reference_simulation = init(plf2015, year, max_sal = max_sal, count = count)
-#    error_margin = 0.01
+    error_margin = 0.1
     impo = reference_simulation.calculate('impo')
-    print impo
     reform_impo = reform_simulation.calculate('impo')
-    print reform_impo
+    assert_less(max(abs(impo - reform_impo)), error_margin)
 
 
 if __name__ == '__main__':
