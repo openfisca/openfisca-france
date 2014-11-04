@@ -75,6 +75,7 @@ def build_new_legislation_nodes():
             "children": {
                 "bareme": {
                     "@type": "Scale",
+                    "unit": "currency",
                     "description": "Barème de l'impôt",
                     "slices": [
                         {
@@ -173,7 +174,7 @@ def build_reform_entity_class_by_symbol():
         label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
         period_unit = u'year'
 
-        def function(self, assiette_csg, nbF_holder, nbH_holder, statmarit, lps = law.lps):
+        def function(self, assiette_csg, nbF_holder, nbH_holder, statmarit, lps = law.landais_piketty_saez):
             '''
             Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par
             Landais, Piketty, Saez (2011)
@@ -187,6 +188,8 @@ def build_reform_entity_class_by_symbol():
             couple = (statmarit == 1) | (statmarit == 5)
             ac = couple * lps.abatt_conj
             rc = couple * lps.reduc_conj
+            print lps
+            print lps.bareme.__dict__
             return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
         def get_output_period(self, period):

@@ -76,7 +76,5 @@ def test_plfr2014():
 if __name__ == '__main__':
     import logging
     import sys
-    from openfisca_france.tests.reforms.utils import graph
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    graph(plfr2014, 2013)
-#    test_plfr2014()
+    test_plfr2014()
