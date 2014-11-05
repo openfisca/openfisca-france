@@ -129,8 +129,6 @@ class SurveyScenario(object):
 
 def adapt_to_survey(tax_benefit_system):
     # Add survey specific columns.
-    import functools
-    from openfisca_core.columns import build_column
 
     entity_class_by_symbol = {
         entity_class.symbol: entity_class
@@ -162,10 +160,13 @@ def adapt_to_survey(tax_benefit_system):
 
     class SurveyIndividus(individus_class):
         column_by_name = survey_individus_column_by_name
+
     class SurveyFamilles(familles_class):
         column_by_name = survey_familles_column_by_name
+
     class SurveyFoyers(foyers_class):
         column_by_name = survey_foyers_column_by_name
+
     class SurveyMenages(menages_class):
         column_by_name = survey_menages_column_by_name
 
@@ -173,10 +174,6 @@ def adapt_to_survey(tax_benefit_system):
     survey_entity_class_by_symbol['fam'] = SurveyFamilles
     survey_entity_class_by_symbol['foy'] = SurveyFoyers
     survey_entity_class_by_symbol['men'] = SurveyMenages
-
-
-
-
 
     reference_legislation_json = tax_benefit_system.legislation_json
     survey_legislation_json = copy.deepcopy(reference_legislation_json)
