@@ -79,28 +79,28 @@ def build_new_legislation_nodes():
                     "description": "Barème de l'impôt",
                     "slices": [
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
-                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
-                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
-                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
-                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
-                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
-                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
+                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
                             },
                         ],
                     },
@@ -226,6 +226,8 @@ def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(build_new_legislation_nodes())
+    # from openfisca_core import conv, legislations
+    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
     to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
         entity_class.key_plural: entity_class
         for symbol, entity_class in entity_class_by_symbol.iteritems()
