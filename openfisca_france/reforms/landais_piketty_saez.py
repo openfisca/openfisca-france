@@ -80,27 +80,27 @@ def build_new_legislation_nodes():
                     "slices": [
                         {
                             "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
-                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
+                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
                             },
                         {
                             "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
-                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
+                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
                             },
                         {
                             "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
-                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
+                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
                             },
                         {
                             "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
-                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
+                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
                             },
                         {
                             "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
-                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
+                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
                             },
                         {
                             "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
-                            "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
+                            "thresholds": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
                             },
                         ],
                     },

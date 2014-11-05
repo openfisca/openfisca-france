@@ -43,13 +43,13 @@ class SurveyScenario(object):
     year = None
     weight_column_name_by_entity_symbol = dict()
 
-    def init_from_data_frame(self, input_data_frame = None, tax_benefit_system_class = None, year = None):
+    def init_from_data_frame(self, input_data_frame = None, tax_benefit_system = None, year = None):
         assert input_data_frame is not None
         self.input_data_frame = input_data_frame
-        assert tax_benefit_system_class is not None
-        self.tax_benefit_system_class = tax_benefit_system_class
-        tax_benefit_system_subclass = adapt_to_survey(tax_benefit_system_class)
-        self.tax_benefit_system = tax_benefit_system_subclass()
+        assert tax_benefit_system is not None
+        self.tax_benefit_system = tax_benefit_system
+        survey_tax_benefit_system = adapt_to_survey(tax_benefit_system)
+        self.tax_benefit_system = survey_tax_benefit_system
         assert year is not None
         self.year = year
         self.weight_column_name_by_entity_symbol['men'] = 'wprm'
@@ -60,11 +60,10 @@ class SurveyScenario(object):
 
     def new_simulation(self, debug = False, debug_all = False, trace = False):
         input_data_frame = self.input_data_frame
-        # TODO Pass year to this method, not init_from_data_frame
+        # TODO: Pass year to this method, not init_from_data_frame
         simulation = simulations.Simulation(
             debug = debug,
             debug_all = debug_all,
-            legislation_json = self.legislation_json,
             period = periods.period(self.year),
             tax_benefit_system = self.tax_benefit_system,
             trace = trace,
@@ -128,31 +127,82 @@ class SurveyScenario(object):
             holder.array = inflator * holder.array
 
 
-def adapt_to_survey(tax_benefit_system_class):
+def adapt_to_survey(tax_benefit_system):
     # Add survey specific columns.
-    TODO  # Don't use TaxBenefitSystem.column_by_name & TaxBenefitSystem.prestation_by_name. they don't exist anymore.
-    # Clone TaxBenefitSystem.entity_class_by_key_plural or entities.entity_class_by_symbol and modify their
-    # column_by_name, instead.
-    from openfisca_france_data.model.input_variables.survey_variables import column_by_name as survey_column_by_name
-    from openfisca_france_data.model.model import prestation_by_name as survey_prestation_by_name
-    column_by_name = copy.deepcopy(tax_benefit_system_class.column_by_name)
-    prestation_by_name = copy.deepcopy(tax_benefit_system_class.prestation_by_name)
-    column_by_name.update(survey_column_by_name)
-    prestation_by_name.update(survey_prestation_by_name)
-    del column_by_name['birth']
-    prestation_by_name['agem'].formula_class = None
-    prestation_by_name['agem'].function = None
-    prestation_by_name['age'].formula_class = None
-    prestation_by_name['age'].function = None
-    tax_benefit_system_subclass = type(
-        'tax_benefit_system_subclass',
-        (tax_benefit_system_class,),
-        {
-            'column_by_name': column_by_name,
-            'prestation_by_name': prestation_by_name,
-            }
+    import functools
+    from openfisca_core.columns import build_column
+
+    entity_class_by_symbol = {
+        entity_class.symbol: entity_class
+        for (_, entity_class) in tax_benefit_system.entity_class_by_key_plural.iteritems()
+        }
+
+    survey_entity_class_by_symbol = entity_class_by_symbol.copy()
+    from openfisca_france_data.model.input_variables.survey_variables import add_survey_columns_to_entities
+    add_survey_columns_to_entities(survey_entity_class_by_symbol)
+
+    from openfisca_france_data.model.model import add_survey_formulas_to_entities
+    add_survey_formulas_to_entities(survey_entity_class_by_symbol)
+
+    individus_class = survey_entity_class_by_symbol['ind']
+    familles_class = survey_entity_class_by_symbol['fam']
+    foyers_class = survey_entity_class_by_symbol['foy']
+    menages_class = survey_entity_class_by_symbol['men']
+
+    survey_individus_column_by_name = individus_class.column_by_name.copy()
+    survey_familles_column_by_name = familles_class.column_by_name.copy()
+    survey_foyers_column_by_name = foyers_class.column_by_name.copy()
+    survey_menages_column_by_name = menages_class.column_by_name.copy()
+
+    print [name for name in survey_individus_column_by_name.keys()]
+    del survey_individus_column_by_name['birth']
+    print survey_individus_column_by_name['agem'].__dict__
+    survey_individus_column_by_name['agem'].formula_class = None
+    survey_individus_column_by_name['age'].formula_class = None
+
+    class SurveyIndividus(individus_class):
+        column_by_name = survey_individus_column_by_name
+    class SurveyFamilles(familles_class):
+        column_by_name = survey_familles_column_by_name
+    class SurveyFoyers(foyers_class):
+        column_by_name = survey_foyers_column_by_name
+    class SurveyMenages(menages_class):
+        column_by_name = survey_menages_column_by_name
+
+    survey_entity_class_by_symbol['ind'] = SurveyIndividus
+    survey_entity_class_by_symbol['fam'] = SurveyFamilles
+    survey_entity_class_by_symbol['foy'] = SurveyFoyers
+    survey_entity_class_by_symbol['men'] = SurveyMenages
+
+
+
+
+
+    reference_legislation_json = tax_benefit_system.legislation_json
+    survey_legislation_json = copy.deepcopy(reference_legislation_json)
+
+    to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
+        entity_class.key_plural: entity_class
+        for symbol, entity_class in entity_class_by_symbol.iteritems()
+        }
+
+    from openfisca_core import reforms
+    survey_tax_benefit_system = reforms.Reform(
+        entity_class_by_key_plural = to_entity_class_by_key_plural(survey_entity_class_by_symbol),
+        legislation_json = survey_legislation_json,
+        name = u'openfisca-france-survey',
+        reference = tax_benefit_system,
         )
-    return tax_benefit_system_subclass
+
+#    tax_benefit_system_subclass = type(
+#        'tax_benefit_system_subclass',
+#        (tax_benefit_system_class,),
+#        {
+#            'column_by_name': column_by_name,
+#            'prestation_by_name': prestation_by_name,
+#            }
+#        )
+    return survey_tax_benefit_system
 
 
 def new_simulation_from_array_dict(array_dict = None, debug = False, debug_all = False, legislation_json = None,
