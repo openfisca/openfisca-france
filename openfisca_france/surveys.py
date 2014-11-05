@@ -152,9 +152,7 @@ def adapt_to_survey(tax_benefit_system):
     survey_foyers_column_by_name = foyers_class.column_by_name.copy()
     survey_menages_column_by_name = menages_class.column_by_name.copy()
 
-    print [name for name in survey_individus_column_by_name.keys()]
     del survey_individus_column_by_name['birth']
-    print survey_individus_column_by_name['agem'].__dict__
     survey_individus_column_by_name['agem'].formula_class = None
     survey_individus_column_by_name['age'].formula_class = None
 
