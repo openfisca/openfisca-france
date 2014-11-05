@@ -265,6 +265,9 @@ def _rstbrut_from_rstnet(rstnet, csg_rempl, _defaultP):
 
 def _num_chobrut_from_chonet(self, chonet, period):
     """Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique."""
+    if (chonet == 0).all():
+        # Quick path to avoid fsolve when using default value of input variables.
+        return chonet
     simulation = self.holder.entity.simulation
     function = lambda chobrut: brut_to_net(
         chobrut = chobrut,
@@ -277,6 +280,9 @@ def _num_chobrut_from_chonet(self, chonet, period):
 
 def _num_rstbrut_from_rstnet(self, period, rstnet):
     """Calcule les pensions brutes à partir des pensions nettes par inversion numérique."""
+    if (rstnet == 0).all():
+        # Quick path to avoid fsolve when using default value of input variables.
+        return rstnet
     simulation = self.holder.entity.simulation
     function = lambda rstbrut: brut_to_net(
         output_name = 'rstnet',
@@ -289,6 +295,9 @@ def _num_rstbrut_from_rstnet(self, period, rstnet):
 
 def _num_salbrut_from_salnet(self, period, salnet):
     """Calcule les salaires bruts à partir des salaires nets par inversion numérique."""
+    if (salnet == 0).all():
+        # Quick path to avoid fsolve when using default value of input variables.
+        return salnet
     simulation = self.holder.entity.simulation
     function = lambda salbrut: brut_to_net(
         output_name = 'salnet',
