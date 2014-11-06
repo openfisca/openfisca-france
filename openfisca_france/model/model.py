@@ -41,7 +41,8 @@ from openfisca_core.formulas import (
 from .. import entities
 # Import new syntax-based output variables.
 from . import (  # noqa
-    inversion_revenus,
+    # inversion_revenus,
+    travailleurs_non_salaries,
     )
 
 # Import model modules.
@@ -70,7 +71,6 @@ from .prestations_familiales import paje
 from .prestations_familiales import cf
 from . import pfam as pf
 from . import th as th
-from . import travailleurs_non_salaries
 
 
 build_alternative_formula = partial(
