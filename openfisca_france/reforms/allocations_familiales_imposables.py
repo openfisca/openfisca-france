@@ -99,7 +99,6 @@ def build_reform_entity_class_by_symbol():
         column = FloatCol
         entity_class = foyers_fiscaux_class
         label = u"Allocations familiales imposables"
-        period_unit = u'year'
 
         def function(self, af_holder, imposition = law.allocations_familiales_imposables.imposition):
             '''
