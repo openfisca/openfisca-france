@@ -39,9 +39,9 @@ def assert_near(value, target_value, error_margin = 1):
         target_value = np.array(target_value)
     if isinstance(value, np.ndarray):
         assert (target_value - error_margin < value).all() and (value < target_value + error_margin).all(), \
-            '{} differs from {} with a margin {} > {}'.format(value, target_value, abs(value - target_value),
+            '{} differs from {} with a margin {} >= {}'.format(value, target_value, abs(value - target_value),
                 error_margin)
     else:
         assert target_value - error_margin < value < target_value + error_margin, \
-            '{} differs from {} with a margin {} > {}'.format(value, target_value, abs(value - target_value),
+            '{} differs from {} with a margin {} >= {}'.format(value, target_value, abs(value - target_value),
                 error_margin)
