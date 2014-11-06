@@ -75,30 +75,31 @@ def build_new_legislation_nodes():
             "children": {
                 "bareme": {
                     "@type": "Scale",
+                    "unit": "currency",
                     "description": "Barème de l'impôt",
                     "slices": [
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
                             "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
                             "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
                             "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
                             "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
                             "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
                             },
                         {
-                            "rates": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
+                            "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
                             "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
                             },
                         ],
@@ -173,7 +174,7 @@ def build_reform_entity_class_by_symbol():
         label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
         period_unit = u'year'
 
-        def function(self, assiette_csg, nbF_holder, nbH_holder, statmarit, lps = law.lps):
+        def function(self, assiette_csg, nbF_holder, nbH_holder, statmarit, lps = law.landais_piketty_saez):
             '''
             Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par
             Landais, Piketty, Saez (2011)
@@ -187,6 +188,8 @@ def build_reform_entity_class_by_symbol():
             couple = (statmarit == 1) | (statmarit == 5)
             ac = couple * lps.abatt_conj
             rc = couple * lps.reduc_conj
+            print lps
+            print lps.bareme.__dict__
             return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
         def get_output_period(self, period):
@@ -223,6 +226,8 @@ def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(build_new_legislation_nodes())
+    # from openfisca_core import conv, legislations
+    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
     to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
         entity_class.key_plural: entity_class
         for symbol, entity_class in entity_class_by_symbol.iteritems()

@@ -23,10 +23,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import datetime
+
+from nose.tools import assert_less
+
+from openfisca_core import periods
 import openfisca_france
 from openfisca_france.reforms import plf2015
-from openfisca_france.tests.reforms.utils import init
-
+from openfisca_france.tests import base
 
 TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
@@ -35,12 +39,33 @@ tax_benefit_system = TaxBenefitSystem()
 def test(year = 2014):
     max_sal = 20000
     count = 2
-    reform_simulation, reference_simulation = init(plf2015, year, max_sal = max_sal, count = count)
-    error_margin = 0.01
+    people = 1
+    reform = plf2015.build_reform(base.tax_benefit_system)
+    scenario = reform.new_scenario().init_single_entity(
+        axes = [
+            dict(
+                count = count,
+                max = max_sal,
+                min = 0,
+                name = 'sali',
+                ),
+            ],
+        period = periods.period('year', year),
+        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
+        parent2 = dict(birth = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
+        enfants = [
+            dict(birth = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
+            dict(birth = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
+            ] if people >= 3 else None,
+        )
+
+    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+    reform_simulation = scenario.new_simulation(debug = True)
+
+    error_margin = 0.1
     impo = reference_simulation.calculate('impo')
-    print impo
-        reform_impo = reform_simulation.calculate('impo')
-    print reform_impo
+    reform_impo = reform_simulation.calculate('impo')
+    assert_less(max(abs(impo - reform_impo)), error_margin)
 
 
 if __name__ == '__main__':
@@ -48,5 +73,3 @@ if __name__ == '__main__':
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test()
-    from openfisca_france.tests.reforms.utils import graph
-    graph(plf2015, 2014)
