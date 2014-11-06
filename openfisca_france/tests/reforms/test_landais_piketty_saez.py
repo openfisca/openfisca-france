@@ -36,7 +36,7 @@ def test():
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
-                count = 10,
+                count = 3,
                 max = 30000,
                 min = 0,
                 name = 'sali',
@@ -55,21 +55,24 @@ def test():
 
     error_margin = 0.01
     af = reference_simulation.calculate('af')
-    expected_af = [1532.16] * 10
+    expected_af = [1532.16] * 3
     assert_near(af, expected_af, error_margin)
-    revdisp = reference_simulation.calculate('revdisp')
 
     reform_simulation = scenario.new_simulation(debug = True)
     reform_af = reform_simulation.calculate('af')
     assert_near(reform_af, expected_af, error_margin)
-    reform_revdisp = reform_simulation.calculate('revdisp')
-#   TODO: finish tests
-    assert_near(reform_revdisp, revdisp, error_margin)
+    reform_assiette_csg = reform_simulation.calculate('assiette_csg')
+    reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps')
+
+    assert_near(
+        reform_impot_revenu_lps,
+        ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg,
+        error_margin,
+        )
 
 
 if __name__ == '__main__':
     import logging
     import sys
-
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test()
