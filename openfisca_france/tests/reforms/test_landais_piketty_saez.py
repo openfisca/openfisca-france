@@ -44,31 +44,23 @@ def test():
             ],
         period = periods.period('year', year),
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
-        enfants = [
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            ],
+#        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
+#        enfants = [
+#            dict(birth = datetime.date(year - 9, 1, 1)),
+#            dict(birth = datetime.date(year - 9, 1, 1)),
+#            ],
         )
 
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
-
+#    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+#
     error_margin = 0.01
-    af = reference_simulation.calculate('af')
-    expected_af = [1532.16] * 3
-    assert_near(af, expected_af, error_margin)
 
     reform_simulation = scenario.new_simulation(debug = True)
-    reform_af = reform_simulation.calculate('af')
-    assert_near(reform_af, expected_af, error_margin)
     reform_assiette_csg = reform_simulation.calculate('assiette_csg')
     reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps')
-
-    assert_near(
-        reform_impot_revenu_lps,
-        ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg,
-        error_margin,
-        )
+    assert ((abs(
+        -reform_impot_revenu_lps - ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg
+        )) < error_margin).all(), "Error in LPS reform"
 
 
 if __name__ == '__main__':

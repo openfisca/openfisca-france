@@ -37,7 +37,7 @@ def test_parametric_reform():
 
     reform_legislation_json = reforms.update_legislation(
         legislation_json = reference_legislation_json,
-        path = ('children', 'ir', 'children', 'bareme', 'slices', 0, 'rate'),
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 0, 'rate'),
         period = simulation_period,
         value = 1,
         )
