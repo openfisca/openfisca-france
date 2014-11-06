@@ -25,12 +25,30 @@
 
 import functools
 
-from openfisca_core.columns import build_column
+from openfisca_core.columns import build_column, FloatCol
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import make_reference_formula_decorator
+from openfisca_core.formulas import (dated_function, DatedFormulaColumn, make_reference_formula_decorator,
+    select_function, SelectFormulaColumn, SimpleFormulaColumn)
 
-from .. import entities
+from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus
 
+
+__all__ = [
+    'build_column',
+    'dated_function',
+    'DatedFormulaColumn',
+    'Familles',
+    'FloatCol',
+    'FoyersFiscaux',
+    'Individus',
+    'QUIFAM',
+    'QUIFOY',
+    'QUIMEN',
+    'reference_formula',
+    'SelectFormulaColumn',
+    'select_function',
+    'SimpleFormulaColumn',
+    ]
 
 QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
@@ -42,8 +60,8 @@ QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', '
 
 build_column = functools.partial(
     build_column,
-    entity_class_by_symbol = entities.entity_class_by_symbol,
+    entity_class_by_symbol = entity_class_by_symbol,
     )
 
 
-reference_formula = make_reference_formula_decorator(entity_class_by_symbol = entities.entity_class_by_symbol)
+reference_formula = make_reference_formula_decorator(entity_class_by_symbol = entity_class_by_symbol)

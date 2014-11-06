@@ -39,6 +39,10 @@ from openfisca_core.formulas import (
     )
 
 from .. import entities
+# Import new syntax-based output variables.
+from . import (  # noqa
+    inversion_revenus,
+    )
 
 # Import model modules.
 from . import calage as cl
@@ -47,7 +51,6 @@ from . import common as cm
 from .cotisations_sociales import capital as cs_capital
 from .cotisations_sociales import travail as cs_travail
 from .cotisations_sociales import remplacement as cs_remplac
-from . import inversion_revenus as inv_rev
 from . import irpp as ir
 from . import irpp_charges_deductibles as cd
 from . import irpp_credits_impots as ci
@@ -119,17 +122,6 @@ build_simple_formula('alv', FloatCol(
 #         url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
 #         ))
 
-# build_select_formula(
-#     'salbrut',
-#     [
-#         ('sali', inv_rev._salbrut_from_sali),
-#         # ('salnet', inv_rev._salbrut_from_salnet),
-#         ('salnet', inv_rev._num_salbrut_from_salnet),
-#         ],
-#     FloatCol(
-#         label = u"Salaire brut ou traitement indiciaire brut",
-#         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"),
-#     )
 
 build_simple_formula(
     'primes',
@@ -274,20 +266,6 @@ build_simple_formula('rev_microsocial', FloatCol(function = cs_travail._rev_micr
     url = u"http://www.apce.com/pid6137/regime-micro-social.html",
     ))
 
-# Allocations chômage
-# build_select_formula(
-#     'chobrut',
-#     [
-#         ('choi', inv_rev._chobrut_from_choi),
-#         # ('chonet', inv_rev._chobrut_from_chonet),
-#         ('chonet', inv_rev._num_chobrut_from_chonet),
-#         ],
-#     FloatCol(
-#         label = u"Allocations chômage brutes",
-#         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
-#         ),
-#     )
-
 build_simple_formula('csgchod', FloatCol(function = cs_remplac._csgchod,
     label = u"CSG déductible sur les allocations chômage",
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
@@ -309,19 +287,6 @@ build_simple_formula('cho', FloatCol(function = cs_remplac._cho,
 #     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
 #     ))
 
-# Pensions
-# build_select_formula(
-#     'rstbrut',
-#     [
-#         ('rsti', inv_rev._rstbrut_from_rsti),
-#         # ('rstnet', inv_rev._rstbrut_from_rstnet),
-#         ('rstnet', inv_rev._num_rstbrut_from_rstnet),
-#         ],
-#     FloatCol(
-#         label = u"Pensions de retraite brutes",
-#         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
-#         ),
-#     )
 
 build_simple_formula('csgrstd', FloatCol(function = cs_remplac._csgrstd,
     label = u"CSG déductible sur les pensions de retraite",

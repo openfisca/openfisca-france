@@ -27,116 +27,71 @@ from __future__ import division
 
 import datetime
 
-from pandas import DataFrame
-
-from openfisca_core import periods
-from ..model.cotisations_sociales.travail import CAT, TAUX_DE_PRIME
-from ..model import inversion_revenus
-from . import base
+from ..model.cotisations_sociales.travail import CAT
+from .base import assert_near, tax_benefit_system
 
 
-def test_sal(year = 2014, verbose = False):
-    # Tests that _salbrut which computes "salaire brut" from "imposable" yields an amount compatible
-    # with the one obtained from running openfisca starting with a "salaire brut"
+def test_cho(year = 2014):
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [dict(count = 11, max = 24000, min = 0, name = 'chobrut')],
+        period = year,
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            ),
+        ).new_simulation(debug = True)
+    brut = simulation.get_holder('chobrut').array
+    imposable = simulation.calculate('cho')
 
-    maxrev = 24000
-    period = periods.period(year)
-    for type_sal_category in ['prive_non_cadre', 'prive_cadre']:  # ,['public_titulaire_etat']
-        simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-            axes = [dict(name = 'salbrut', max = maxrev, min = 0, count = 11)],
-            period = period,
-            parent1 = dict(
-                birth = datetime.date(year - 40, 1, 1),
-                type_sal = CAT[type_sal_category],
-                ),
-            ).new_simulation(debug = True)
+    inverse_simulation = simulation.clone(debug = True)
+    inverse_simulation.get_holder('chobrut').delete_arrays()
+    inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
+    new_brut = inverse_simulation.calculate('chobrut')
 
-        # Brut to imposable
-        if type_sal_category == 'public_titulaire_etat':
-            primes_values = TAUX_DE_PRIME * simulation.get_holder('salbrut').array
-
-            primes_holder = simulation.get_or_new_holder('primes')
-            primes_holder.array = primes_values
-
-        df_b2i = DataFrame(dict(sal = simulation.calculate('sal'),
-                                salbrut = simulation.calculate('salbrut'),
-                                ))
-
-        # Imposable to brut
-        sali = df_b2i['sal'].get_values()
-
-        hsup = simulation.calculate('hsup')
-        type_sal = simulation.calculate('type_sal')
-        # primes = simulation.calculate('primes')
-
-        defaultP = simulation.get_reference_compact_legislation(period.start)
-        df_i2b = DataFrame({
-            'sal': sali,
-            'salbrut': inversion_revenus._salbrut_from_sali(sali, hsup, type_sal, defaultP),
-            })
-
-        for var in ['sal', 'salbrut']:
-            passed = ((df_b2i[var] - df_i2b[var]).abs() < .01).all()
-
-        if (not passed) or type_sal_category in ['public_titulaire_etat'] or verbose:
-            print "Brut to imposable"
-            print (df_b2i[['salbrut', 'sal']] / 12).to_string()
-            print "Imposable to brut"
-            print (df_i2b / 12).to_string()
-
-            assert passed, "difference in %s for %s" % (var, type_sal_category)
+    assert_near(new_brut, brut, error_margin = 1)
 
 
-def test_cho_rst(year = 2014, verbose = False):
-    # Tests that _chobrut which computes "chômage brut" from "imposable" yields an amount compatbe
-    # with the one obtained from running openfisca satrting with a "chômage brut"
+def test_rst(year = 2014):
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [dict(count = 11, max = 24000, min = 0, name = 'rstbrut')],
+        period = year,
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            ),
+        ).new_simulation(debug = True)
+    brut = simulation.get_holder('rstbrut').array
+    imposable = simulation.calculate('rst')
 
-    period = periods.period(year)
-    remplacement = {'cho': 'chobrut', 'rst': 'rstbrut'}
+    inverse_simulation = simulation.clone(debug = True)
+    inverse_simulation.get_holder('rstbrut').delete_arrays()
+    inverse_simulation.get_or_new_holder('rsti').array = imposable.copy()
+    new_brut = inverse_simulation.calculate('rstbrut')
 
-    for var, varbrut in remplacement.iteritems():
-        maxrev = 24000
+    assert_near(new_brut, brut, error_margin = 1)
 
-        simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-            axes = [dict(name = varbrut, max = maxrev, min = 0, count = 11)],
-            period = period,
-            parent1 = dict(
-                birth = datetime.date(year - 40, 1, 1),
-                ),
-            ).new_simulation(debug = True)
 
-        df_b2i = DataFrame({
-            var: simulation.calculate(var),
-            varbrut: simulation.calculate(varbrut),
-            })
+def check_sal(type_sal, year = 2014):
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        axes = [dict(count = 11, max = 24000, min = 0, name = 'salbrut')],
+        period = year,
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            type_sal = type_sal,
+            ),
+        ).new_simulation(debug = False)
+    brut = simulation.get_holder('salbrut').array
+    imposable = simulation.calculate('sal')
 
-        vari = df_b2i[var].get_values()
-        csg_rempl = vari * 0 + 3
+    inverse_simulation = simulation.clone(debug = True)
+    inverse_simulation.get_holder('salbrut').delete_arrays()
+    inverse_simulation.get_or_new_holder('sali').array = imposable.copy()
+    new_brut = inverse_simulation.calculate('salbrut')
 
-        defaultP = simulation.get_reference_compact_legislation(period.start)
-        if var == "cho":
-            _vari_to_brut = inversion_revenus._chobrut_from_choi
-        elif var == "rst":
-            _vari_to_brut = inversion_revenus._rstbrut_from_rsti
-        else:
-            assert False, u'Unsupported value for var: {!r}'.format(var)
+    assert_near(new_brut, brut, error_margin = 1)
 
-        df_i2b = DataFrame({var: vari, varbrut: _vari_to_brut(vari, csg_rempl, defaultP)})
 
-        if verbose:
-            print df_i2b.to_string()
-            print df_b2i.to_string()
-
-        for variable in [var, varbrut]:
-            passed = ((df_b2i[variable] - df_i2b[variable]).abs() < 1).all()
-
-            if (not passed) or verbose:
-                print "Brut to imposable"
-                print (df_b2i[[varbrut, var]] / 12).to_string()
-                print "Imposable to brut"
-                print (df_i2b / 12).to_string()
-
-                assert passed, "difference in %s " % (var)
+def test_sal(year = 2014):
+    for type_sal_category in ('prive_non_cadre', 'prive_cadre'):  # , 'public_titulaire_etat'):
+        yield check_sal, CAT[type_sal_category], year
 
 
 if __name__ == '__main__':
@@ -144,5 +99,6 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_sal(2013, verbose = False)
-    test_cho_rst(2014, verbose = True)
+    test_cho()
+    test_rst()
+    test_sal()
