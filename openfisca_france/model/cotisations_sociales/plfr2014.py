@@ -61,7 +61,6 @@ def build_reform_entity_class_by_key_plural(tax_benefit_system):
         column = FloatCol
         entity_class = FoyersFiscaux
         label = u"Réduction d'impôt exceptionnelle"
-        period_unit = u'year'
 
         def function(self, rfr, nb_adult, nb_par, _P):
             parametres = _P.plfr2014.reduction_impot_exceptionnelle

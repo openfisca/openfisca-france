@@ -155,7 +155,6 @@ def build_reform_entity_class_by_symbol():
         column = FloatCol
         entity_class = individus_class
         label = u"Assiette de la CSG"
-        period_unit = u'year'
 
         def function(self, salbrut, chobrut, rstbrut, rev_cap_bar_holder, rev_cap_lib_holder):
             '''
@@ -172,7 +171,6 @@ def build_reform_entity_class_by_symbol():
         column = FloatCol
         entity_class = individus_class
         label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
-        period_unit = u'year'
 
         def function(self, assiette_csg, nbF_holder, nbH_holder, statmarit, lps = law.landais_piketty_saez):
             '''
