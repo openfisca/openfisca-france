@@ -44,7 +44,6 @@ class tns_total_revenus(SimpleFormulaColumn):
     column = FloatCol
     label = u"Total des revenus non salariés"
     entity_class = Individus
-    period_unit = 'month'
 
     def function(self, tns_autres_revenus, tns_type_structure, tns_type_activite, tns_chiffre_affaires_micro_entreprise, bareme = law.tns):
         cs_ae = bareme.auto_entrepreneur

@@ -98,7 +98,6 @@ class cmu_br_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
-    period_unit = 'year'
 
     def function(self, activite, salnet, chonet, rstnet, alr, rsa_base_ressources_patrimoine_i, aah, indemnites_journalieres_maternite,
                  indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle, indemnites_journalieres_accident_travail,
@@ -128,7 +127,6 @@ class cmu_br(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
-    period_unit = 'year'
 
     def function(self, aspa, so_holder, apl_holder, als_holder, alf_holder, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
         so = self.cast_from_entity_to_roles(so_holder)
@@ -178,7 +176,6 @@ class cmu_c(SimpleFormulaColumn):
     column = BoolCol
     label = u"Éligibilité à la CMU-C"
     entity_class = Familles
-    period_unit = 'year'
 
     def function(self, cmu_c_plafond, cmu_br, period):
         return cmu_br <= cmu_c_plafond
@@ -195,7 +192,6 @@ class acs(SimpleFormulaColumn):
     column = FloatCol
     label = u"Éligibilité à l'ACS"
     entity_class = Familles
-    period_unit = 'year'
 
     def function(self, cmu_c, cmu_br, acs_plafond, acs_montant):
         return not_(cmu_c) * (cmu_br <= acs_plafond) * acs_montant

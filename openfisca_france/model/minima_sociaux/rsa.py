@@ -76,7 +76,6 @@ class ra_rsa(SimpleFormulaColumn):
     column = FloatCol
     label = u"Revenus d'activité du Rsa"
     entity_class = Individus
-    period_unit = 'month'
 
     def function(self, salnet, hsup, rpns, etr, indemnites_chomage_partiel, indemnites_journalieres_maternite,
                  indemnites_journalieres_paternite, indemnites_journalieres_adoption, indemnites_journalieres_maladie,
@@ -136,7 +135,6 @@ class br_rmi_ms(SimpleFormulaColumn):
     column = FloatCol
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
     entity_class = Individus
-    period_unit = 'month'
 
     def function(self, aspa, asi, aah, caah):
         return self.cast_from_entity_to_role(aspa + asi ,
@@ -150,7 +148,6 @@ class br_rmi_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base ressource individuelle du RSA/RMI"
     entity_class = Individus
-    period_unit = 'month'
 
     def function(self, ass_holder, ra_rsa, chonet, rstnet, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
                  gains_exceptionnels, dedommagement_victime_amiante, pensions_invalidite, allocation_aide_retour_emploi,
@@ -171,7 +168,6 @@ class br_rmi(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
-    period_unit = 'month'
 
     def function(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
         br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
@@ -191,7 +187,6 @@ class rsa_base_ressources_patrimoine_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine"
     entity_class = Individus
-    period_unit = 'month'
 
     def function(self, interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):
         return (
@@ -324,7 +319,6 @@ class rsa(SimpleFormulaColumn):
     column = FloatCol
     label = u"Revenu de solidarité active"
     entity_class = Familles
-    period_unit = 'month'
 
     def function(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, br_rmi, P = law.minim.rmi):
         ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])

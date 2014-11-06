@@ -48,7 +48,6 @@ class br_mv_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
-    period_unit = 'month'
 
     def function(self, salnet, chonet, rstnet, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
                  revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
@@ -79,7 +78,6 @@ class br_mv(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity_class = Familles
-    period_unit = 'year'
 
     def function(self, br_mv_i_holder):
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])

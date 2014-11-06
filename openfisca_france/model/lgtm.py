@@ -79,7 +79,6 @@ class br_al(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base ressource des allocations logement"
     entity_class = Familles
-    period_unit = 'year'
 
     def function(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, biact, Pr = law.al.ressources):
         # On ne considère que les revenus des 2 conjoints et les revenus non
