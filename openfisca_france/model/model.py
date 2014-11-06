@@ -209,23 +209,6 @@ build_simple_formula('cotsal', FloatCol(function = cs_travail._cotsal,
     label = u"Cotisations sociales salariales",
     url = u"http://vosdroits.service-public.fr/particuliers/F2302.xhtml#N100F8",
     ))
-
-build_simple_formula('csgsald', FloatCol(function = cs_travail._csgsald,
-    label = u"CSG déductible sur les salaires",
-    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
-    ))
-build_simple_formula('csgsali', FloatCol(function = cs_travail._csgsali,
-    label = u"CSG imposables sur les salaires",
-    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
-    ))
-build_simple_formula('crdssal', FloatCol(function = cs_travail._crdssal,
-    label = u"CRDS sur les salaires",
-    url = u"http://vosdroits.service-public.fr/particuliers/N17580.xhtml",
-    ))
-build_simple_formula('sal', FloatCol(function = cs_travail._sal,
-    label = u"Salaires imposables",
-    url = u"http://www.jureka.fr/dico-francais-droit/lettre-s/definition-salaire-imposable",
-    ))
 build_simple_formula('salnet', FloatCol(function = cs_travail._salnet,
     label = u"Salaires nets d'après définition INSEE",
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html",

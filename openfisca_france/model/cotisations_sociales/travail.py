@@ -30,9 +30,12 @@ import logging
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros)
 from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
+from openfisca_core.columns import BoolCol, FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
-from ..base import QUIFAM, QUIFOY, QUIMEN
+from ..base import QUIFAM, QUIFOY, QUIMEN, reference_formula
+from ...entities import Individus
 
 
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
@@ -322,31 +325,46 @@ def _cotsal(cotsal_contrib, cotsal_noncontrib):
     return cotsal_contrib + cotsal_noncontrib
 
 
-def _csgsald(salbrut, primes, indemnite_residence, supp_familial_traitement, hsup, _P):
-    '''
-    CSG deductible sur les salaires
-    '''
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(_P.csg.act.deduc, plaf_ss)
-    return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
+@reference_formula
+class csgsald(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"CSG déductible sur les salaires"
+    entity_class = Individus
+
+    def function(self, salbrut, primes, indemnite_residence, supp_familial_traitement, hsup, P = law):
+        csg = scale_tax_scales(P.csg.act.deduc, P.cotsoc.gen.plaf_ss)
+        return - csg.calc(salbrut + primes + indemnite_residence + supp_familial_traitement - hsup)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _csgsali(salbrut, hsup, primes, indemnite_residence, supp_familial_traitement, _P):
-    '''
-    CSG imposable sur les salaires
-    '''
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(_P.csg.act.impos, plaf_ss)
-    return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
+@reference_formula
+class csgsali(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"CSG imposables sur les salaires"
+    entity_class = Individus
+
+    def function(self, salbrut, hsup, primes, indemnite_residence, supp_familial_traitement, P = law):
+        csg = scale_tax_scales(P.csg.act.impos, P.cotsoc.gen.plaf_ss)
+        return - csg.calc(salbrut + primes + indemnite_residence + supp_familial_traitement - hsup)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _crdssal(salbrut, hsup, primes, indemnite_residence, supp_familial_traitement, _P):
-    '''
-    CRDS sur les salaires
-    '''
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    crds = scale_tax_scales(_P.crds.act, plaf_ss)
-    return -12 * crds.calc((salbrut - hsup + primes + indemnite_residence + supp_familial_traitement) / 12)
+@reference_formula
+class crdssal(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"CRDS sur les salaires"
+    entity_class = Individus
+
+    def function(self, salbrut, hsup, primes, indemnite_residence, supp_familial_traitement, P = law):
+        crds = scale_tax_scales(P.crds.act, P.cotsoc.gen.plaf_ss)
+        return - crds.calc(salbrut - hsup + primes + indemnite_residence + supp_familial_traitement)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 def _sal_h_b(salbrut):
@@ -403,11 +421,17 @@ def _tehr(salbrut, _P):
     return -bar.calc(salbrut)
 
 
-def _sal(salbrut, primes, indemnite_residence, supp_familial_traitement, csgsald, cotsal, hsup, rev_microsocial):
-    '''
-    Calcul du salaire imposable
-    '''
-    return salbrut + primes + indemnite_residence + supp_familial_traitement + csgsald + cotsal - hsup
+@reference_formula
+class sal(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Salaires imposables"
+    entity_class = Individus
+
+    def function(self, salbrut, primes, indemnite_residence, supp_familial_traitement, csgsald, cotsal, hsup, rev_microsocial):
+        return salbrut + primes + indemnite_residence + supp_familial_traitement + csgsald + cotsal - hsup
+
+    def get_output_period(self, period):
+        return period
 
 
 def _salnet(sal, crdssal, csgsali):
