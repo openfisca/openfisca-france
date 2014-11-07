@@ -78,16 +78,16 @@ class salbrut(SelectFormulaColumn):
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
     @select_function('sali')
-    def salbrut_from_sali(self, sali, hsup, type_sal, _defaultP):
+    def salbrut_from_sali(self, sali, hsup, type_sal, P = law):
         """Calcule le salaire brut à partir du salaire imposable.
 
         Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
         Note : le supplément familial de traitement est imposable.
         """
-        plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
+        plaf_ss = P.cotsoc.gen.plaf_ss
 
-        salarie = scale_tax_scales(TaxScalesTree('sal', _defaultP.cotsoc.sal), plaf_ss)
-        csg = scale_tax_scales(TaxScalesTree('csg', _defaultP.csg), plaf_ss)
+        salarie = scale_tax_scales(TaxScalesTree('sal', P.cotsoc.sal), plaf_ss)
+        csg = scale_tax_scales(TaxScalesTree('csg', P.csg), plaf_ss)
 
         salarie['noncadre'].update(salarie['commun'])
         salarie['cadre'].update(salarie['commun'])
@@ -135,55 +135,19 @@ class salbrut(SelectFormulaColumn):
         # supp_familial_traitement = 0  # TODO: dépend de salbrut
         # indemnite_residence = 0  # TODO: fix bug
 
-        # print 'sali', sali / 12
+        # print 'sali', sali
         brut_etat = etat.calc(sali)
-        # print 'brut_etat', brut_etat/12
-        # print 'impot', public_etat.calc(brut_etat) / 12
-        # print 'brut_etat', brut_etat / 12
+        # print 'brut_etat', brut_etat
+        # print 'impot', public_etat.calc(brut_etat)
+        # print 'brut_etat', brut_etat
         salbrut_etat = (brut_etat)
         # TODO: fonctionnaire
-        # print 'salbrut_etat', salbrut_etat / 12
+        # print 'salbrut_etat', salbrut_etat
         salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
 
         # <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
         # <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
         return salbrut + hsup
-
-    # @select_function('salnet')
-    # def salbrut_from_salnet(self, salnet, hsup, type_sal, _defaultP):
-    #     """Calcule le salaire brut à partir du salaire net.
-    #
-    #     Renvoie 0 sauf pour les salariés non cadres, cadres (TODO: et les contractuels de la fonction publique ?)
-    #     """
-    #     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    #
-    #     salarie = scale_tax_scales(TaxScalesTree('sal', _defaultP.cotsoc.sal), plaf_ss)
-    #     csg_deduc = scale_tax_scales(_defaultP.csg.act.deduc, plaf_ss)
-    #     csg_impos = scale_tax_scales(_defaultP.csg.act.impos, plaf_ss)
-    #     crds = scale_tax_scales(_defaultP.crds.act, plaf_ss)
-    #     salarie['noncadre'].update(salarie['commun'])
-    #     salarie['cadre'].update(salarie['commun'])
-    #
-    #     # Salariés du privé
-    #     prive_non_cadre = combine_tax_scales(salarie['noncadre'])
-    #     prive_cadre = combine_tax_scales(salarie['cadre'])
-    #
-    #     # On ajoute la CSG deductible et imposable
-    #     for bareme in [prive_non_cadre, prive_cadre]:
-    #         bareme.add_tax_scale(csg_deduc)
-    #         bareme.add_tax_scale(csg_impos)
-    #         bareme.add_tax_scale(crds)
-    #
-    #     inversed_bareme = {
-    #         'prive_cadre': prive_cadre.inverse(),
-    #         'prive_non_cadre': prive_non_cadre.inverse(),
-    #         }
-    #
-    #     salbrut = zeros(len(salnet))
-    #     for category in ['prive_non_cadre', 'prive_cadre']:
-    #         salbrut += inversed_bareme[category].calc(salnet) * (type_sal == CAT[category])
-    #
-    #     return salbrut + hsup
 
     @select_function('salnet')
     def num_salbrut_from_salnet(self, period, salnet):
@@ -201,7 +165,7 @@ class salbrut(SelectFormulaColumn):
         return fsolve(function, salnet)
 
     def get_output_period(self, period):
-        return period
+        return period.start.offset('first-of', 'month').period('month')
 
 
 ############################################################################
@@ -217,11 +181,9 @@ class chobrut(SelectFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
     @select_function('choi')
-    def chobrut_from_choi(self, choi, csg_rempl, _defaultP):
+    def chobrut_from_choi(self, choi, csg_rempl, P = law):
         """Calcule les allocations chômage brute à partir des allocations imposables."""
-        P = _defaultP.csg.chom
-        plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-        csg = scale_tax_scales(TaxScalesTree('csg', P), plaf_ss)
+        csg = scale_tax_scales(TaxScalesTree('csg', P.csg.chom), P.cotsoc.gen.plaf_ss)
         taux_plein = csg['plein']['deduc']
         taux_reduit = csg['reduit']['deduc']
 
@@ -233,28 +195,6 @@ class chobrut(SelectFormulaColumn):
         chobrut = not_(isexo) * chobrut + (isexo) * choi
 
         return chobrut
-
-    # @select_function('chonet')
-    # def chobrut_from_chonet(self, chonet, csg_rempl, _defaultP):
-    #     """Calcule les allocations chômage brute à partir des allocations imposables."""
-    #     P = _defaultP.csg.chom
-    #     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    #     csg = scale_tax_scales(TaxScalesTree('csg', P), plaf_ss)
-    #     # crds.rst est la CRDS sur les revenus de remplacement donc valable aussi pour le chômage.
-    #     crds = scale_tax_scales(_defaultP.crds.rst, plaf_ss)
-    #
-    #     taux_plein = combine_tax_scales(csg['plein'])
-    #     taux_reduit = combine_tax_scales(csg['reduit'])
-    #     taux_plein.add_tax_scale(crds)
-    #     taux_reduit.add_tax_scale(crds)
-    #     chom_plein = taux_plein.inverse()
-    #     chom_reduit = taux_reduit.inverse()
-    #
-    #     chobrut = (csg_rempl == 1) * chonet + (csg_rempl == 2) * chom_reduit.calc(chonet) \
-    #         + (csg_rempl == 3) * chom_plein.calc(chonet)
-    #     isexo = exo_csg_chom(chobrut, csg_rempl, _defaultP)
-    #     chobrut = not_(isexo) * chobrut + (isexo) * chonet
-    #     return chobrut
 
     @select_function('chonet')
     def num_chobrut_from_chonet(self, chonet, period):
@@ -272,7 +212,7 @@ class chobrut(SelectFormulaColumn):
         return fsolve(function, chonet)
 
     def get_output_period(self, period):
-        return period
+        return period.start.offset('first-of', 'month').period('month')
 
 
 ############################################################################
@@ -296,29 +236,6 @@ class rstbrut(SelectFormulaColumn):
         rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
         return rstbrut
 
-    # @select_function('rstnet')
-    # def rstbrut_from_rstnet(self, rstnet, csg_rempl, _defaultP):
-    #     """Calcule les pensions de retraites brutes à partir des pensions nettes."""
-    #     P = _defaultP.csg.retraite
-    #     plaf_ss = 12 * _defaultP.cotsoc.gen.plaf_ss
-    #     csg = scale_tax_scales(TaxScalesTree('csg', P), plaf_ss)
-    #     crds = scale_tax_scales(_defaultP.crds.rst, plaf_ss)
-    #     taux_plein = combine_tax_scales(csg['plein'])
-    #     taux_reduit = combine_tax_scales(csg['reduit'])
-    #     taux_plein.add_tax_scale(crds)
-    #     taux_reduit.add_tax_scale(crds)
-    #
-    #     if hasattr(_defaultP.prelsoc, 'add_ret'):
-    #         casa = MarginalRateTaxScale(name = "casa")
-    #         casa.add_bracket(0, _defaultP.prelsoc.add_ret)
-    #         taux_plein.add_tax_scale(casa)
-    #         taux_reduit.add_tax_scale(casa)
-    #
-    #     rst_plein = taux_plein.inverse()
-    #     rst_reduit = taux_reduit.inverse()
-    #     rstbrut = (csg_rempl == 2) * rst_reduit.calc(rstnet) + (csg_rempl == 3) * rst_plein.calc(rstnet)
-    #     return rstbrut
-
     @select_function('rstnet')
     def num_rstbrut_from_rstnet(self, period, rstnet):
         """Calcule les pensions brutes à partir des pensions nettes par inversion numérique."""
@@ -335,4 +252,4 @@ class rstbrut(SelectFormulaColumn):
         return fsolve(function, rstnet)
 
     def get_output_period(self, period):
-        return period
+        return period.start.offset('first-of', 'month').period('month')
