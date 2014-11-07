@@ -149,28 +149,12 @@ build_simple_formula(
 #        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
 #        ))
 
-build_simple_formula('cotpat_contrib', FloatCol(function = cs_travail._cotpat_contrib,
-    label = u"Cotisations sociales patronales contributives",
-    url = u"http://fr.wikipedia.org/wiki/Cotisations_sociales",
-    ))
 build_simple_formula('taux_accident_travail', FloatCol(function = cs_travail._taux_accident_travail,
     label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
     url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
     ))
 build_simple_formula('cotpat_accident', FloatCol(function = cs_travail._cotpat_accident,
     label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_noncontrib', FloatCol(function = cs_travail._cotpat_noncontrib,
-    label = u"Cotisations sociales patronales non contributives",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_main_d_oeuvre', FloatCol(function = cs_travail._cotpat_main_d_oeuvre,
-    label = u"Cotisations sociales patronales main d'oeuvre",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_transport', FloatCol(function = cs_travail._cotpat_transport,
-    label = u"Cotisations sociales patronales: versement transport",
     url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
     ))
 build_simple_formula('cotpat', FloatCol(function = cs_travail._cotpat,
@@ -197,14 +181,6 @@ build_simple_formula('salsuperbrut', FloatCol(function = cs_travail._salsuperbru
     label = u"Salaires super bruts",
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/cout-salarial.htm"
     ))
-
-build_simple_formula('cotsal_contrib', FloatCol(function = cs_travail._cotsal_contrib,
-    label = u"Cotisations sociales salariales contributives",
-    url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=255&definition=Cotisations+salariales",
-    ))
-build_simple_formula('cotsal_noncontrib', FloatCol(function = cs_travail._cotsal_noncontrib,
-    label = u"Cotisations sociales non salariales non-contributives",
-    ))
 build_simple_formula('cotsal', FloatCol(function = cs_travail._cotsal,
     label = u"Cotisations sociales salariales",
     url = u"http://vosdroits.service-public.fr/particuliers/F2302.xhtml#N100F8",
@@ -223,18 +199,6 @@ build_simple_formula('supp_familial_traitement', FloatCol(function = cs_travail.
     label = u"Supplément familial de traitement (fonction publique)",
     start = date(2011, 1, 1),  # TODO: check this curious starting date
     url= u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48",
-    ))
-build_simple_formula('cot_pat_pension_civile', FloatCol(function = cs_travail._cot_pat_pension_civile,
-    label = u"Cotisation patronale pension civile",
-    url = u"http://www.ac-besancon.fr/spip.php?article2662",
-    ))
-build_simple_formula('cot_sal_pension_civile', FloatCol(function = cs_travail._cot_sal_pension_civile,
-    label = u"Cotisation salariale pension civile",
-    url = u"http://www.ac-besancon.fr/spip.php?article2662",
-    ))
-build_simple_formula('cot_pat_rafp', FloatCol(function = cs_travail._cot_pat_rafp,
-    label = u"Cotisation patronale RAFP",
-    url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223",
     ))
 build_simple_formula('cot_sal_rafp', FloatCol(function = cs_travail._cot_sal_rafp,
     label = u"Cotisation salariale RAFP",
