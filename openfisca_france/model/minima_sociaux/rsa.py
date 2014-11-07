@@ -234,14 +234,20 @@ def _rsa_socle(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = l
     Rsa socle / Rmi
     'fam'
     '''
-    age_par = self.split_by_roles(age_holder, roles = [CHEF, PART])
-    activite_par = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+    age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
+    activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
     age_enf = self.split_by_roles(age_holder, roles = ENFS)
     smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 
     nbp = nb_par + nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
 
-    eligib = ((age_par[CHEF] >= rmi.age_pac) * not_(activite_par[CHEF] == 2)) | ((age_par[PART] >= rmi.age_pac) * not_(activite_par[PART] == 2))
+    eligib = (
+        (age_parents[CHEF] >= rmi.age_pac)
+        *
+        not_(activite_parents[CHEF] == 2)
+        ) | (
+            (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+            )
 
     taux = (1 + (nbp >= 2) * rmi.txp2
                  + (nbp >= 3) * rmi.txp3
@@ -256,7 +262,6 @@ def _rsa_socle_majore(self, enceinte_fam, age_holder, smic55_holder, nb_par, iso
     Cacule le montant du RSA majoré pour isolement
     'fam'
     '''
-    age_par = self.split_by_roles(age_holder, roles = [CHEF, PART])
     age_enf = self.split_by_roles(age_holder, roles = ENFS)
     smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 
