@@ -54,8 +54,7 @@ TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de rés
 
 def build_pat(_P):
     """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), plaf_ss)
+    pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), _P.cotsoc.gen.plaf_ss)
 
     for bareme in ['apprentissage', 'apprentissage_add']:
         pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
@@ -125,9 +124,7 @@ def build_sal(_P):
     Construit le dictionnaire de barèmes des cotisations salariales
     à partir des informations contenues dans P.cotsoc.sal
     '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-
-    sal = scale_tax_scales(TaxScalesTree('sal', _P.cotsoc.sal), plaf_ss)
+    sal = scale_tax_scales(TaxScalesTree('sal', _P.cotsoc.sal), _P.cotsoc.gen.plaf_ss)
     sal['noncadre'].update(sal['commun'])
     sal['cadre'].update(sal['commun'])
 
