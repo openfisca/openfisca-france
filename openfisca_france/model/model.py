@@ -157,10 +157,6 @@ build_simple_formula('cotpat_accident', FloatCol(function = cs_travail._cotpat_a
     label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
     url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
     ))
-build_simple_formula('cotpat', FloatCol(function = cs_travail._cotpat,
-    label = u"Cotisations sociales patronales",
-    url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=254&definition=Cotisations+patronales",
-    ))
 build_simple_formula('alleg_fillon', FloatCol(function = cs_travail._alleg_fillon,
     label = u"Allègements Fillon sur les bas salaires",
     url = u"http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/l-allegement-de-charges-patronales,1031.html",
@@ -180,14 +176,6 @@ build_simple_formula('tehr', FloatCol(function = cs_travail._tehr,
 build_simple_formula('salsuperbrut', FloatCol(function = cs_travail._salsuperbrut,
     label = u"Salaires super bruts",
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/cout-salarial.htm"
-    ))
-build_simple_formula('cotsal', FloatCol(function = cs_travail._cotsal,
-    label = u"Cotisations sociales salariales",
-    url = u"http://vosdroits.service-public.fr/particuliers/F2302.xhtml#N100F8",
-    ))
-build_simple_formula('salnet', FloatCol(function = cs_travail._salnet,
-    label = u"Salaires nets d'après définition INSEE",
-    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html",
     ))
 
 # Fonctionnaires

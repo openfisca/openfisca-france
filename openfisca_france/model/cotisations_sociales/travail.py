@@ -224,23 +224,27 @@ class cotpat_noncontrib(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('month')
 
 
-def _cotpat(cotpat_contrib, cotpat_noncontrib,
-            cotpat_main_d_oeuvre):
-    '''
-    Cotisations sociales patronales
-    '''
-    return (cotpat_contrib + cotpat_noncontrib
-            + cotpat_main_d_oeuvre)
+@reference_formula
+class cotpat(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Cotisations sociales patronales"
+    entity_class = Individus
+
+    def function(self, cotpat_contrib, cotpat_noncontrib, cotpat_main_d_oeuvre):
+        return cotpat_contrib + cotpat_noncontrib + cotpat_main_d_oeuvre
+
+    def get_output_period(self, period):
+        return period
 
 
 def seuil_fds(_P):
     '''
     Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    from math import  floor
+    from math import floor
     ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
     pt_ind = _P.cotsoc.sal.fonc.commun.pt_ind
-    seuil_mensuel = floor((pt_ind * ind_maj_ref) / 12)
+    seuil_mensuel = floor((pt_ind * ind_maj_ref))
     return seuil_mensuel
 
 
@@ -367,11 +371,17 @@ class cotsal_noncontrib(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('month')
 
 
-def _cotsal(cotsal_contrib, cotsal_noncontrib):
-    '''
-    Cotisations sociales salariales
-    '''
-    return cotsal_contrib + cotsal_noncontrib
+@reference_formula
+class cotsal(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Cotisations sociales salariales"
+    entity_class = Individus
+
+    def function(self, cotsal_contrib, cotsal_noncontrib):
+        return cotsal_contrib + cotsal_noncontrib
+
+    def get_output_period(self, period):
+        return period
 
 
 @reference_formula
@@ -442,7 +452,7 @@ def _alleg_fillon(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc 
 
 def _alleg_cice(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
     '''
-    Crédit d'imôt pour la compétitivité et l'emploi
+    Crédit d'impôt pour la compétitivité et l'emploi
     '''
     if period.start.year >= 2013:
         taux_cice = taux_exo_cice(sal_h_b, cotsoc)
@@ -483,12 +493,21 @@ class sal(SimpleFormulaColumn):
         return period
 
 
-def _salnet(sal, crdssal, csgsali):
-    '''
-    Calcul du salaire net d'après définition INSEE
-    net = net de csg et crds
-    '''
-    return sal + crdssal + csgsali
+@reference_formula
+class salnet(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Salaires nets d'après définition INSEE"
+    entity_class = Individus
+
+    def function(self, sal, crdssal, csgsali):
+        '''
+        Calcul du salaire net d'après définition INSEE
+        net = net de csg et crds
+        '''
+        return sal + crdssal + csgsali
+
+    def get_output_period(self, period):
+        return period
 
 
 def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement, cotpat,
