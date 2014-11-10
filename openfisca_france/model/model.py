@@ -41,7 +41,7 @@ from openfisca_core.formulas import (
 from .. import entities
 # Import new syntax-based output variables.
 from . import (  # noqa
-    # inversion_revenus,
+    inversion_revenus,
     travailleurs_non_salaries,
     )
 

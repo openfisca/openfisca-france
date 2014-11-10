@@ -22,14 +22,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 from __future__ import division
 
 import logging
 
 from numpy import logical_not as not_
-from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
 from scipy.optimize import fsolve
+
+from openfisca_core.accessors import law
+from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
+
+
 
 from .base import FloatCol, Individus, reference_formula, select_function, SelectFormulaColumn
 from .cotisations_sociales.remplacement import exo_csg_chom
@@ -191,7 +194,7 @@ class chobrut(SelectFormulaColumn):
         chom_reduit = taux_reduit.inverse()
         chobrut = (csg_rempl == 1) * choi + (csg_rempl == 2) * chom_reduit.calc(choi) \
             + (csg_rempl == 3) * chom_plein.calc(choi)
-        isexo = exo_csg_chom(chobrut, csg_rempl, _defaultP)
+        isexo = exo_csg_chom(chobrut, csg_rempl, P)
         chobrut = not_(isexo) * chobrut + (isexo) * choi
 
         return chobrut
@@ -228,9 +231,8 @@ class rstbrut(SelectFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
     @select_function('rsti')
-    def rstbrut_from_rsti(self, rsti, csg_rempl, _defaultP):
+    def rstbrut_from_rsti(self, rsti, csg_rempl, P = law.csg.retraite):
         """Calcule les pensions de retraites brutes à partir des pensions imposables."""
-        P = _defaultP.csg.retraite
         rst_plein = P.plein.deduc.inverse()
         rst_reduit = P.reduit.deduc.inverse()
         rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
