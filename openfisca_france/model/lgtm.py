@@ -96,6 +96,7 @@ class br_al(SimpleFormulaColumn):
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+
         rev_coll = self.sum_by_entity(rev_coll_holder)
 
         etuC = (etu[CHEF]) & (not_(etu[PART]))
@@ -144,6 +145,8 @@ class br_al(SimpleFormulaColumn):
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['br_pf_i_holder', 'rev_coll_holder']:
             return output_period.offset(-1)
+        elif variable_name  in ['etu_holder', 'boursier_holder']:
+            return output_period.start.period('month')
         else:
             return output_period
 
