@@ -57,7 +57,7 @@ def _typ_men(self, isol_holder, af_nbenf_holder):
     '''
     type de menage
     'men'
-    TODO: prendre les enfants du ménages et non ceux de la famille
+    TODO: prendre les enfants du ménage et non ceux de la famille
     '''
     af_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
     af_nbenf = self.sum_by_entity(af_nbenf)
