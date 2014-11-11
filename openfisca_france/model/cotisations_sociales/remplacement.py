@@ -15,13 +15,17 @@ from numpy import logical_not as not_, maximum as max_, minimum as min_, ones
 
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
+from ..base import FloatCol, Individus, reference_formula, SimpleFormulaColumn
+
 
 log = logging.getLogger(__name__)
+
 
 # Exonération de CSG et de CRDS sur les revenus du chômage
 # et des préretraites si cela abaisse ces revenus sous le smic brut
 # TODO: mettre un trigger pour l'éxonération
 #       des revenus du chômage sous un smic
+
 
 ############################################################################
 # # Allocations chômage
@@ -119,23 +123,40 @@ def _crdscho(chobrut, csg_rempl, _P):
     return crdscho
 
 
-def _cho(chobrut, csgchod, _P):
-    '''
-    Chômage imposable (recalculé)
-    '''
-    return chobrut + csgchod
+@reference_formula
+class cho(SimpleFormulaColumn):
+    """Chômage imposable (recalculé)"""
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allocations chômage imposables"
+    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
+
+    def function(self, chobrut, csgchod):
+        return chobrut + csgchod
+
+    def get_output_period(self, period):
+        return period
 
 
-def _chonet(cho, csgchoi, crdscho):
-    '''
-    Chômage net
-    '''
-    return cho + csgchoi + crdscho
+@reference_formula
+class chonet(SimpleFormulaColumn):
+    """Chômage net"""
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allocations chômage nettes"
+    url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+
+    def function(self, cho, csgchoi, crdscho):
+        return cho + csgchoi + crdscho
+
+    def get_output_period(self, period):
+        return period
 
 
 ############################################################################
 # # Pensions
 ############################################################################
+
 
 def _rstbrut(rsti, csg_rempl, _defaultP):
     '''
@@ -196,15 +217,32 @@ def _casa(self, rstbrut, irpp_holder, csg_rempl, _P):  # TODO: irpp_n_2
 
     return -casa
 
-def _rst(rstbrut, csgrstd):
-    '''
-    Calcule les pensions imposables
-    '''
-    return rstbrut + csgrstd
+
+@reference_formula
+class rst(SimpleFormulaColumn):
+    """Pensions imposables (recalculé)"""
+    column = FloatCol
+    entity_class = Individus
+    label = u"Pensions de retraite imposables"
+    url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
+
+    def function(self, rstbrut, csgrstd):
+        return rstbrut + csgrstd
+
+    def get_output_period(self, period):
+        return period
 
 
-def _rstnet(rst, csgrsti, crdsrst, casa):
-    '''
-    Retraites nettes
-    '''
-    return rst + csgrsti + crdsrst + casa
+@reference_formula
+class rstnet(SimpleFormulaColumn):
+    """Retraites nettes"""
+    column = FloatCol
+    entity_class = Individus
+    label = u"Pensions de retraite nettes"
+    url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+
+    def function(self, rst, csgrsti, crdsrst, casa):
+        return rst + csgrsti + crdsrst + casa
+
+    def get_output_period(self, period):
+        return period

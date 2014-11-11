@@ -211,14 +211,14 @@ build_simple_formula('crdscho', FloatCol(function = cs_remplac._crdscho,
     label = u"CRDS sur les allocations chômage",
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm",
     ))
-build_simple_formula('cho', FloatCol(function = cs_remplac._cho,
-    label = u"Allocations chômage imposables",
-    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm",
-    ))
-build_simple_formula('chonet', FloatCol(function = cs_remplac._chonet,
-    label = u"Allocations chômage nettes",
-    url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
-    ))
+# build_simple_formula('cho', FloatCol(function = cs_remplac._cho,
+#     label = u"Allocations chômage imposables",
+#     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm",
+#     ))
+# build_simple_formula('chonet', FloatCol(function = cs_remplac._chonet,
+#     label = u"Allocations chômage nettes",
+#     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml",
+#     ))
 build_simple_formula('csgrstd', FloatCol(function = cs_remplac._csgrstd,
     label = u"CSG déductible sur les pensions de retraite",
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null",
@@ -231,14 +231,14 @@ build_simple_formula('crdsrst', FloatCol(function = cs_remplac._crdsrst,
     label = u"CRDS sur les pensions de retraite",
     url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension",
     ))
-build_simple_formula('rst', FloatCol(function = cs_remplac._rst,
-    label = u"Pensions de retraite imposables",
-    url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml",
-    ))
-build_simple_formula('rstnet', FloatCol(function = cs_remplac._rstnet,
-    label = u"Pensions de retraite nettes",
-    url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
-    ))
+# build_simple_formula('rst', FloatCol(function = cs_remplac._rst,
+#     label = u"Pensions de retraite imposables",
+#     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml",
+#     ))
+# build_simple_formula('rstnet', FloatCol(function = cs_remplac._rstnet,
+#     label = u"Pensions de retraite nettes",
+#     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml",
+#     ))
 build_simple_formula('casa', FloatCol(function = cs_remplac._casa,
     label = u"Contribution additionnelle de solidarité et d'autonomie",
     start = date(2013, 4, 1),
