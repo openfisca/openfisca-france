@@ -87,7 +87,7 @@ def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = 
 def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
-    TO DO: Add mva (majoration vie autonome),
+    TODO: Add mva (majoration vie autonome),
     """
     out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
     return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
@@ -96,7 +96,7 @@ def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
 def _br_rmi_pf_2004_2014(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
-    TO DO: Add mva (majoration vie autonome),
+    TODO: Add mva (majoration vie autonome),
     """
 
     out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
@@ -107,7 +107,7 @@ def _br_rmi_pf_2004_2014(self, af_base, cf, asf, paje_base, paje_clca, paje_colc
 def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
     """
     Prestations familiales inclues dans la base ressource RSA/RMI
-    TO DO: Add mva (majoration vie autonome),
+    TODO: Add mva (majoration vie autonome),
     """
 
     out = P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
@@ -120,8 +120,11 @@ def _br_rmi_ms(self, aspa, asi, aah, caah):
     Minima sociaux inclus dans la base ressource RSA/RMI
     'ind'
     """
-    return self.cast_from_entity_to_role(aspa + asi ,
-        entity = 'famille', role = CHEF) + aah + caah
+    return self.cast_from_entity_to_role(
+        aspa + asi,
+        entity = 'famille',
+        role = CHEF,
+        ) + aah + caah
 
 
 def _br_rmi_i(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
