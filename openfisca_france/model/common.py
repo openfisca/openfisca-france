@@ -166,11 +166,11 @@ def _cotsoc_bar(csg_cap_bar, prelsoc_cap_bar, crds_cap_bar):
     return csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
 
 
-def _cotsoc_lib(csg_cap_lib, prelsoc_cap_lib, crds_cap_lib):
+def _cotsoc_lib(csg_cap_lib, prelsoc_cap_lib_declarant1, crds_cap_lib):
     '''
     Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire
     '''
-    return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
+    return csg_cap_lib + prelsoc_cap_lib_declarant1 + crds_cap_lib
 
 
 def _rev_cap(self, fon_holder, rev_cap_bar_holder, cotsoc_bar, rev_cap_lib_holder, cotsoc_lib, imp_lib_holder, rac):
@@ -263,7 +263,7 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     return cotpat_noncontrib + cotsal_noncontrib
 
 
-def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib, prelsoc_cap_bar, prelsoc_pv_mo_holder,
+def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_cap_bar, prelsoc_pv_mo_holder,
                  prelsoc_pv_immo_holder):
     """
     Prélèvements sociaux sur les revenus du capital
@@ -272,7 +272,7 @@ def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib, prelsoc_cap_bar, pre
     prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
     prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
 
-    return prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
+    return prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
 
 def _check_csk(self, prelsoc_cap_bar_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):

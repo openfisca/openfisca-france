@@ -322,10 +322,10 @@ build_simple_formula('crds_cap_lib', FloatCol(function = cs_capital._crds_cap_li
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire",
     url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale",
     ))
-build_simple_formula('prelsoc_cap_lib', FloatCol(function = cs_capital._prelsoc_cap_lib,
-    label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire",
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
-    ))
+# build_simple_formula('prelsoc_cap_lib', FloatCol(function = cs_capital._prelsoc_cap_lib, entity = 'foy',
+#     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire",
+#     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
+#     ))
 
 # Revenus du capital soumis au barème
 build_simple_formula('csg_cap_bar', FloatCol(function = cs_capital._csg_cap_bar,
@@ -700,10 +700,10 @@ build_simple_formula('rto', FloatCol(function = ir._rto,
     label = u'Rentes viagères (rentes à titre onéreux)',
     url = u"http://fr.wikipedia.org/wiki/Rente_viag%C3%A8re",
     ))
-build_simple_formula('rto_net', FloatCol(function = ir._rto_net,
-    label = u'Rentes viagères après abattements',
-    url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere",
-    ))
+# build_simple_formula('rto_net', FloatCol(function = ir._rto_net,
+#     label = u'Rentes viagères après abattements',
+#     url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere",
+#     ))
 build_simple_formula('tspr', FloatCol(function = ir._tspr))
 
 build_simple_formula('rev_cat_tspr', FloatCol(function = ir._rev_cat_tspr,
@@ -1822,10 +1822,12 @@ build_simple_formula('isf_tot', FloatCol(function = isf._isf_tot,
 ############################################################
 #                            Bouclier Fiscal
 ############################################################
+
 build_simple_formula('rvcm_plus_abat', FloatCol(function = isf._rvcm_plus_abat,
     entity = 'foy'))
-build_simple_formula('maj_cga', FloatCol(function = isf._maj_cga,
-    entity = 'foy'))
+
+# build_simple_formula('maj_cga_i', FloatCol(function = isf._maj_cga_i))
+# build_simple_formula('maj_cga', FloatCol(function = isf._maj_cga, entity = 'foy'))
 
 build_simple_formula('bouclier_rev', FloatCol(function = isf._bouclier_rev,
                             entity = 'foy',
@@ -2126,7 +2128,7 @@ build_dated_formula('br_rmi_pf',
             function = rsa._br_rmi_pf_2014_,
          ),
     ],
-    FloatCol(entity='ind'))
+    FloatCol(entity = 'fam'))
 build_simple_formula('rsa_base_ressources_patrimoine_i', FloatCol(function = rsa._rsa_base_ressources_patrimoine_i,
     label = u"Base de ressources des revenus du patrimoine",
     start = date(2014, 1, 1),

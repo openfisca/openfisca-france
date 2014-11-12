@@ -13,7 +13,8 @@ import logging
 
 from openfisca_core.accessors import law
 
-from ..base import QUIFOY
+from ..base import (FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFOY, reference_formula,
+    SimpleFormulaColumn)
 
 
 log = logging.getLogger(__name__)
@@ -74,6 +75,7 @@ def _prelsoc_cap_bar__2005(self, rev_cap_bar, _P):
     return self.cast_from_entity_to_role(-rev_cap_bar * total,
         entity = 'foyer_fiscal', role = VOUS)
 
+
 def _prelsoc_cap_bar_2006_2008(self, rev_cap_bar, _P):
     '''
     Calcule le prélèvement social sur les revenus du capital soumis au barème
@@ -82,6 +84,7 @@ def _prelsoc_cap_bar_2006_2008(self, rev_cap_bar, _P):
     total = P.base_pat + P.add_pat
     return self.cast_from_entity_to_role(-rev_cap_bar * total,
         entity = 'foyer_fiscal', role = VOUS)
+
 
 def _prelsoc_cap_bar_2009_(self, rev_cap_bar, _P):
     '''
@@ -117,6 +120,7 @@ def _prelsoc_pv_mo__2005(f3vg, _P):
     total = P.base_pat
     return -f3vg * total
 
+
 def _prelsoc_pv_mo_2006_2008(f3vg, _P):
     """
     Calcule le prélèvement social sur les plus-values
@@ -125,6 +129,7 @@ def _prelsoc_pv_mo_2006_2008(f3vg, _P):
     P = _P.prelsoc
     total = P.base_pat + P.add_pat
     return -f3vg * total
+
 
 def _prelsoc_pv_mo_2009_(f3vg, _P):
     """
@@ -137,6 +142,7 @@ def _prelsoc_pv_mo_2009_(f3vg, _P):
 
 
 # plus-values immobilières
+
 
 def _csg_pv_immo(f3vz, _P):
     """
@@ -161,6 +167,7 @@ def _prelsoc_pv_immo__2005(f3vz, _P):
 
     return -f3vz * total
 
+
 def _prelsoc_pv_immo_2006_2008(f3vz, _P):
     """
     Calcule le prélèvement social sur les plus-values de cession immobilière
@@ -170,6 +177,7 @@ def _prelsoc_pv_immo_2006_2008(f3vz, _P):
 
     return -f3vz * total
 
+
 def _prelsoc_pv_immo_2009_(f3vz, _P):
     """
     Calcule le prélèvement social sur les plus-values de cession immobilière
@@ -178,13 +186,17 @@ def _prelsoc_pv_immo_2009_(f3vz, _P):
     total = P.base_pat + P.add_pat + P.rsa
     return -f3vz * total
 
+
 # revenus fonciers
+
+
 def _csg_fon(rev_cat_rfon, _P):
     '''
     Calcule la CSG sur les revenus fonciers
     Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
     '''
     return -rev_cat_rfon * _P.csg.capital.glob
+
 
 def _crds_fon(rev_cat_rfon, _P):
     '''
@@ -204,6 +216,7 @@ def _prelsoc_fon__2005(rev_cat_rfon, _P):
 
     return -rev_cat_rfon * total
 
+
 def _prelsoc_fon_2006_2008(rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
@@ -214,6 +227,7 @@ def _prelsoc_fon_2006_2008(rev_cat_rfon, _P):
 
     return -rev_cat_rfon * total
 
+
 def _prelsoc_fon_2009_(rev_cat_rfon, _P):
     '''
     Calcule le prélèvement social sur les revenus fonciers
@@ -223,7 +237,10 @@ def _prelsoc_fon_2009_(rev_cat_rfon, _P):
     total = P.base_pat + P.add_pat + P.rsa
     return -rev_cat_rfon * total
 
+
 # revenus du capital soumis au prélèvement libératoire
+
+
 def _csg_cap_lib(self, rev_cap_lib, _P):
     '''
     Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire
@@ -241,19 +258,34 @@ def _crds_cap_lib(self, rev_cap_lib, _P):
         entity = 'foyer_fiscal', role = VOUS)
 
 
-def _prelsoc_cap_lib(self, period, rev_cap_lib, prelsoc = law.prelsoc):
-    '''
-    Calcule le prélèvement social sur les revenus du capital
-    soumis au prélèvement libératoire
-    '''
-    year = period.start.year
-    if year < 2006:
-        total = prelsoc.base_pat
-    elif year < 2009:
-        total = prelsoc.base_pat + prelsoc.add_pat
-    else:
-        total = prelsoc.base_pat + prelsoc.add_pat + prelsoc.rsa
-    return self.cast_from_entity_to_role(-rev_cap_lib * total, entity = 'foyer_fiscal', role = VOUS)
+@reference_formula
+class prelsoc_cap_lib(SimpleFormulaColumn):
+    """Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire."""
+    column = FloatCol
+    entity_class = FoyersFiscaux
+    label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire"
+    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
+
+    def function(self, period, rev_cap_lib, prelsoc = law.prelsoc):
+        year = period.start.year
+        if year < 2006:
+            total = prelsoc.base_pat
+        elif year < 2009:
+            total = prelsoc.base_pat + prelsoc.add_pat
+        else:
+            total = prelsoc.base_pat + prelsoc.add_pat + prelsoc.rsa
+        return -rev_cap_lib * total
+
+    def get_output_period(self, period):
+        return period.start.period(u'year').offset('first-of')
+
+
+@reference_formula
+class prelsoc_cap_lib_declarant1(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa
+    role = VOUS
+    variable = prelsoc_cap_lib
 
 
 # TODO: non_imposabilité pour les revenus au barème

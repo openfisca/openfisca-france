@@ -97,7 +97,7 @@ def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc_holder, f3ve_hol
 
     return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
-def _rev_coll(self, rto_net, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_spe_holder, glo, fon_holder, alv,
+def _rev_coll(self, rto_net_declarant1, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_spe_holder, glo, fon_holder, alv,
         f7ga_holder, f7gb_holder, f7gc_holder, rev_cat_pv_holder):
     '''
     Revenus collectifs
@@ -113,7 +113,8 @@ def _rev_coll(self, rto_net, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_
     f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
     rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-    return rto_net + rev_cap_lib + rev_cat_rvcm + fon + glo + alv - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv
+    return (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv - f7ga - f7gb - f7gc - abat_spe
+        + rev_cat_pv)
 
 
 def _br_pf(self, br_pf_i_holder, rev_coll_holder):

@@ -15,7 +15,8 @@ from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, 
     maximum as max_, minimum as min_, round)
 from openfisca_core.accessors import law
 
-from .base import QUIFOY
+from .base import (FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFOY, reference_formula,
+    SimpleFormulaColumn)
 
 
 CONJ = QUIFOY['conj']
@@ -25,10 +26,12 @@ PAC2 = QUIFOY['pac2']
 PAC3 = QUIFOY['pac3']
 VOUS = QUIFOY['vous']
 
-#TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
-#TODO: 8ti et 8tk (cerfa 2047)
-#TODO: CSG, CRDS et prélèvements sociaux sur revenu du patrimione, d'activité et de remplacement
-#TODO: finir RPNS (prise en compte des plafonds / cases non codées : codées pour certaines années mais pas pour d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
+
+# TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
+# TODO: 8ti et 8tk (cerfa 2047)
+# TODO: CSG, CRDS et prélèvements sociaux sur revenu du patrimione, d'activité et de remplacement
+# TODO: finir RPNS (prise en compte des plafonds / cases non codées : codées pour certaines années mais pas pour
+# d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
 
 # zetrf = zeros(taille)
 # jveuf = zeros(taille, dtype = bool)
@@ -237,22 +240,35 @@ def _rto(self, f1aw, f1bw, f1cw, f1dw):
     return self.cast_from_entity_to_role(f1aw + f1bw + f1cw + f1dw,
         entity = 'foyer_fiscal', role = VOUS)
 
-def _rto_net(self, f1aw, f1bw, f1cw, f1dw, abatviag = law.ir.tspr.abatviag):
-    '''
-    Rentes viagères après abattements
-    '''
-    return self.cast_from_entity_to_role(
-        round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw),
-        entity = 'foyer_fiscal',
-        role = VOUS,
-        )
 
-def _tspr(sal_pen_net, rto_net):
+@reference_formula
+class rto_net(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = FoyersFiscaux
+    label = u"Rentes viagères après abattements"
+    url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
+
+    def function(self, f1aw, f1bw, f1cw, f1dw, abatviag = law.ir.tspr.abatviag):
+        return round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
+
+    def get_output_period(self, period):
+        return period.start.period(u'year').offset('first-of')
+
+
+@reference_formula
+class rto_net_declarant1(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Rentes viagères après abattements (pour le premier déclarant du foyer fiscal)"
+    role = VOUS
+    variable = rto_net
+
+
+def _tspr(sal_pen_net, rto_net_declarant1):
     '''
     Traitemens salaires pensions et rentes individuelles
     'ind'
     '''
-    return sal_pen_net + rto_net
+    return sal_pen_net + rto_net_declarant1
 
 
 def _rev_cat_pv(f3vg, f3vh):
@@ -1438,7 +1454,7 @@ def _ppe_coef(jour_xyz):
     return 360 / nb_jour
 
 
-def _ppe_elig(rfr, ppe_coef, ppe_rev, marpac, veuf, celdiv, nbptr, ppe = law.ir.credits_impot.ppe):
+def _ppe_elig(rfr, ppe_coef, marpac, veuf, celdiv, nbptr, ppe = law.ir.credits_impot.ppe):
     '''
     PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
     'foy'
