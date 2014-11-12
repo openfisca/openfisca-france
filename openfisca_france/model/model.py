@@ -2422,7 +2422,7 @@ build_simple_formula('psoc', FloatCol(function = cm._psoc,
     ))
 build_simple_formula('prelsoc_cap', FloatCol(function = cm._prelsoc_cap,
     label = u"Prélèvements sociaux sur les revenus du capital",
-    url = u"ttp://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
+    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
     ))
 build_simple_formula('pfam', FloatCol(function = cm._pfam,
     entity = 'fam',
