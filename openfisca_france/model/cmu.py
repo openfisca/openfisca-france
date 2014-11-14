@@ -151,7 +151,7 @@ class cmu_br(SimpleFormulaColumn):
         return res
 
     def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'aspa':
+        if variable_name in ['aspa', 'apl_holder', 'als_holder', 'alf_holder']:
             return output_period.offset(-1)
         else:
             return output_period
