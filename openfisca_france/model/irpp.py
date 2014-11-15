@@ -11,12 +11,12 @@ from __future__ import division
 
 import logging
 
-from numpy import (datetime64, int16, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
+from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 from openfisca_core.accessors import law
 
-from .base import (FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFOY, reference_formula,
-    SimpleFormulaColumn)
+from .base import (BoolCol, FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, Menages, PersonToEntityColumn,
+    QUIFOY, reference_formula, SimpleFormulaColumn)
 
 
 CONJ = QUIFOY['conj']
@@ -85,29 +85,135 @@ def _nb_pac(nbF, nbJ, nbR):
     return nbF + nbJ + nbR
 
 
-def _nbF(self, age, alt, inv, quifoy):
-    enfant_a_charge = and_(and_(quifoy >= 2, or_(age < 18, inv)), not_(alt))
-    return self.sum_by_entity(enfant_a_charge.astype(int16))
+@reference_formula
+class enfant_a_charge(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
+        u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
+
+    def function(self, age, alt, inv, quifoy):
+        return and_(and_(quifoy >= 2, or_(age < 18, inv)), not_(alt))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
 
 
-def _nbG(self, alt, inv, quifoy):
-    enfant_a_charge_invalide = and_(and_(quifoy >= 2, inv), not_(alt))
-    return self.sum_by_entity(enfant_a_charge_invalide.astype(int16))
+@reference_formula
+class nbF(PersonToEntityColumn):
+    cerfa_field = u'F'
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
+        u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    operation = 'add'
+    variable = enfant_a_charge
 
 
-def _nbH(self, age, alt, inv, quifoy):
-    enfant_a_charge_garde_alternee = and_(and_(quifoy >= 2, or_(age < 18, inv)), alt)
-    return self.sum_by_entity(enfant_a_charge_garde_alternee.astype(int16))
+@reference_formula
+class nombre_enfants_a_charge_menage(PersonToEntityColumn):
+    entity_class = Menages
+    label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
+        u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    operation = 'add'
+    variable = enfant_a_charge
 
 
-def _nbI(self, alt, inv, quifoy):
-    enfant_a_charge_garde_alternee_invalide = and_(and_(quifoy >= 2, inv), alt)
-    return self.sum_by_entity(enfant_a_charge_garde_alternee_invalide.astype(int16))
+@reference_formula
+class enfant_a_charge_invalide(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant à charge titulaire de la carte d'invalidité"
+
+    def function(self, alt, inv, quifoy):
+        return and_(and_(quifoy >= 2, inv), not_(alt))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
 
 
-def _nbJ(self, age, inv, quifoy):
-    majeur_celibataire_sans_enfant = and_(and_(quifoy >= 2, age >= 18), not_(inv))
-    return self.sum_by_entity(majeur_celibataire_sans_enfant.astype(int16))
+@reference_formula
+class nbG(PersonToEntityColumn):
+    cerfa_field = u'G'
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité"
+    operation = 'add'
+    variable = enfant_a_charge_invalide
+
+
+@reference_formula
+class enfant_a_charge_garde_alternee(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant à charge en résidence alternée, non marié, de moins de 18 ans au 1er janvier de l'année de" \
+        u" perception des revenus, ou né durant la même année ou handicapés quel que soit son âge"
+
+    def function(self, age, alt, inv, quifoy):
+        return and_(and_(quifoy >= 2, or_(age < 18, inv)), alt)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class nbH(PersonToEntityColumn):
+    cerfa_field = u'H'
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de" \
+        u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    operation = 'add'
+    variable = enfant_a_charge_garde_alternee
+
+
+@reference_formula
+class enfant_a_charge_garde_alternee_invalide(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant à charge en résidence alternée titulaire de la carte d'invalidité"
+
+    def function(self, alt, inv, quifoy):
+        return and_(and_(quifoy >= 2, inv), alt)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class nbI(PersonToEntityColumn):
+    cerfa_field = u'I'
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité"
+    operation = 'add'
+    variable = enfant_a_charge_garde_alternee_invalide
+
+
+@reference_formula
+class enfant_majeur_celibataire_sans_enfant(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant majeur célibataire sans enfant"
+
+    def function(self, age, inv, quifoy):
+        return and_(and_(quifoy >= 2, age >= 18), not_(inv))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class nbJ(PersonToEntityColumn):
+    cerfa_field = u'J'
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants majeurs célibataires sans enfant"
+    operation = 'add'
+    variable = enfant_majeur_celibataire_sans_enfant
+
+
+@reference_formula
+class nombre_enfants_majeurs_celibataires_sans_enfant(PersonToEntityColumn):
+    entity_class = Menages
+    label = u"Nombre d'enfants majeurs célibataires sans enfant"
+    operation = 'add'
+    variable = enfant_majeur_celibataire_sans_enfant
 
 
 def _marpac(self, statmarit_holder):
@@ -233,12 +339,28 @@ def _sal_pen_net(salcho_imp, pen_net, abat_sal_pen):
     """
     return salcho_imp + pen_net - abat_sal_pen
 
-def _rto(self, f1aw, f1bw, f1cw, f1dw):
-    """
-    Rentes viagères à titre onéreux (avant abattements)
-    """
-    return self.cast_from_entity_to_role(f1aw + f1bw + f1cw + f1dw,
-        entity = 'foyer_fiscal', role = VOUS)
+
+@reference_formula
+class rto(SimpleFormulaColumn):
+    """Rentes viagères à titre onéreux (avant abattements)"""
+    column = FloatCol
+    entity_class = FoyersFiscaux
+    label = u"Rentes viagères (rentes à titre onéreux)"
+    url = u"http://fr.wikipedia.org/wiki/Rente_viagère"
+
+    def function(self, f1aw, f1bw, f1cw, f1dw):
+        return f1aw + f1bw + f1cw + f1dw
+
+    def get_output_period(self, period):
+        return period.start.period(u'year').offset('first-of')
+
+
+@reference_formula
+class rto_declarant1(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
+    role = VOUS
+    variable = rto
 
 
 @reference_formula
@@ -484,12 +606,11 @@ def _csg_deduc_patrimoine(f6de):
     return max_(f6de, 0)
 
 
-def _csg_deduc_patrimoine_simulated(self, rev_cat_rfon, rev_cap_bar, rto_holder, taux = law.csg.capital.deduc):
+def _csg_deduc_patrimoine_simulated(self, rev_cat_rfon, rev_cap_bar, rto, taux = law.csg.capital.deduc):
     '''
     Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
     http://bofip.impots.gouv.fr/bofip/887-PGP
     '''
-    rto = self.sum_by_entity(rto_holder)
     patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
     return taux * patrimoine_deduc
 
@@ -856,12 +977,26 @@ def _irpp(iai, credits_impot, cehr, P = law.ir.recouvrement):
 ###############################################################################
 
 
-def _alv(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
-    '''
-    Pensions alimentaires versées
-    '''
-    return self.cast_from_entity_to_role(-(f6gi + f6gj + f6el + f6em + f6gp + f6gu),
-                                         entity = 'foyer_fiscal', role = VOUS)
+@reference_formula
+class alv(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = FoyersFiscaux
+    label = u"Pensions alimentaires versées"
+    url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml"
+
+    def function(self, f6gi, f6gj, f6el, f6em, f6gp, f6gu):
+        return -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class alv_declarant1(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Pensions alimentaires versées (pour le premier déclarant du foyer fiscal)"
+    role = VOUS
+    variable = alv
 
 
 def _rfr(self, rni, f3va_holder, f3vi_holder, rfr_cd, rfr_rvcm, rpns_exon_holder, rpns_pvce_holder,
@@ -1190,21 +1325,17 @@ def _rpns_pvct(frag_pvct, mbic_pvct, macc_pvct, mbnc_pvct, mncn_pvct):
     return frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
 
 
-def _rpns_mvct(self, macc_mvct, mbnc_mvct, mncn_mvct):
+def _rpns_mvct(self, macc_mvct_holder, mbnc_mvct, mncn_mvct_holder):
+    """Moins values de court terme
 
-    '''
-    Moins values de court terme
     'ind'
     macc_mvct (f5iu)
     mncn_mvct (f5ju)
     mbnc_mvct (f5kz)
-
-    '''
-    return (mbnc_mvct + self.cast_from_entity_to_role(
-        macc_mvct,
-        entity = 'foyer_fiscal',
-        role = VOUS
-        ))  # mncn_mvct ?
+    """
+    macc_mvct = self.cast_from_entity_to_role(macc_mvct_holder, role = VOUS)
+    mncn_mvct = self.cast_from_entity_to_role(mncn_mvct_holder, role = VOUS)
+    return mbnc_mvct + macc_mvct  # mncn_mvct ?
 
 
 def _rpns_mvlt(mbic_mvlt, macc_mvlt, mbnc_mvlt, mncn_mvlt):

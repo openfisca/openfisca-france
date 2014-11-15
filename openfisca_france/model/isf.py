@@ -319,11 +319,11 @@ def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo,
     return revenus - charges
 
 
-def _bouclier_imp_gen (self, irpp, tax_hab_holder, tax_fonc, isf_tot, cotsoc_lib_holder, cotsoc_bar_holder,
-        csgsald_holder, csgsali_holder, crdssal_holder, csgchoi_holder, csgchod_holder, csgrstd_holder,
-        csgrsti_holder, imp_lib):  # # ajouter CSG- CRDS
-    cotsoc_bar = self.sum_by_entity(cotsoc_bar_holder)
-    cotsoc_lib = self.sum_by_entity(cotsoc_lib_holder)
+def _bouclier_imp_gen (self, irpp, tax_hab_holder, tax_fonc, isf_tot, cotsoc_lib_declarant1_holder,
+        cotsoc_bar_declarant1_holder, csgsald_holder, csgsali_holder, crdssal_holder, csgchoi_holder, csgchod_holder,
+        csgrstd_holder, csgrsti_holder, imp_lib):  # # ajouter CSG- CRDS
+    cotsoc_bar = self.sum_by_entity(cotsoc_bar_declarant1_holder)
+    cotsoc_lib = self.sum_by_entity(cotsoc_lib_declarant1_holder)
     crdssal = self.sum_by_entity(crdssal_holder)
     csgchod = self.sum_by_entity(csgchod_holder)
     csgchoi = self.sum_by_entity(csgchoi_holder)

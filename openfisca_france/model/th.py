@@ -19,20 +19,20 @@ VOUS = QUIFOY['vous']
 
 
 def _exonere_taxe_habitation(
-    self,
-    zthabm,
-    aah,
-    aspa_holder,
-    asi_holder,
-    age_holder,
-    isf_tot_holder,
-    rfr_holder,
-    statmarit_holder,
-    nbptr_holder,
-    _P,
-    ):
-    '''
-    Taxe d'habitation
+        self,
+        aah_holder,
+        age_holder,
+        asi_holder,
+        aspa_holder,
+        isf_tot_holder,
+        nbptr_holder,
+        rfr_holder,
+        statmarit_holder,
+        zthabm,
+        _P,
+        ):
+    """Exonation de la taxe d'habitation
+
     'men'
 
     Eligibilité:
@@ -41,32 +41,36 @@ def _exonere_taxe_habitation(
     - titulaire de l'allocation de solidarité aux personnes âgées (Aspa)  ou de l'allocation supplémentaire d'invalidité (Asi),
     bénéficiaire de l'allocation aux adultes handicapés (AAH),
     atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
-    '''
+    """
 
-    isf_tot = self.cast_from_entity_to_role(isf_tot_holder, role = VOUS)
-    isf_tot = self.sum_by_entity(isf_tot)
-    rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
-    rfr = self.sum_by_entity(rfr)
-    nbptr = self.cast_from_entity_to_role(nbptr_holder, role = VOUS)
-    nbptr = self.sum_by_entity(nbptr)  # TODO: Beurk
+    aah = self.sum_by_entity(aah_holder)
     age = self.filter_role(age_holder, role = PREF)
-    statmarit = self.filter_role(statmarit_holder, role = PREF)
-
     asi = self.cast_from_entity_to_roles(asi_holder)
     asi = self.sum_by_entity(asi)
     aspa = self.cast_from_entity_to_roles(aspa_holder)
     aspa = self.sum_by_entity(aspa)
+    isf_tot = self.cast_from_entity_to_role(isf_tot_holder, role = VOUS)
+    isf_tot = self.sum_by_entity(isf_tot)
+    nbptr = self.cast_from_entity_to_role(nbptr_holder, role = VOUS)
+    nbptr = self.sum_by_entity(nbptr)  # TODO: Beurk
+    rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
+    rfr = self.sum_by_entity(rfr)
+    statmarit = self.filter_role(statmarit_holder, role = PREF)
 
     P = _P.cotsoc.gen
 
-    concern = ((age >= 60) + (statmarit == 4)) * (isf_tot <= 0) + (aspa > 0) + (asi > 0)
     seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
-    elig = concern * (rfr < seuil_th) + (asi > 0) + (aspa > 0)
+    elig = ((age >= 60) + (statmarit == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
     return not_(elig)
 
 
-def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
+def _tax_hab(self, zthabm, exonere_taxe_habitation, nombre_enfants_a_charge_menage,
+        nombre_enfants_majeurs_celibataires_sans_enfant, rfr_n_1_holder):
     # Documentation voir http://www2.impots.gouv.fr/documentation/2013/idl/files/assets/common/downloads/publication.pdf
+    rfr_n_1 = self.cast_from_entity_to_role(rfr_n_1_holder, role = VOUS)
+    rfr_n_1 = self.sum_by_entity(rfr_n_1)
+
+
     # Variables TODO: à inclure dans la fonction
     valeur_locative_brute = 0
     valeur_locative_moyenne = 0  # déped de la collectivité)
@@ -95,7 +99,7 @@ def _tax_hab(self, zthabm, exonere_taxe_habitation, nbF, nbJ, rfr_n_1):
     # * les enfants du contribuable, de son conjoint ou les enfants recueillis qui sont pris en compte pour le
     # calcul de l’impôt sur le revenu (2). Ne sont pas concernés ceux pour lesquels le redevable déduit de ses
     # revenus imposables une pension alimentaire ;
-    pac_enf = nbF + nbJ  # TODO: inclure ceux du conjoint non présent sur la feuille d'impôt ? gestion des gardes alternées
+    pac_enf = nombre_enfants_a_charge_menage + nombre_enfants_majeurs_celibataires_sans_enfant  # TODO: inclure ceux du conjoint non présent sur la feuille d'impôt ? gestion des gardes alternées
 
     # * les ascendants du contribuable et ceux de son conjoint remplissant les 3 conditions suivantes :
     # – être âgés de plus de 70 ans ou infirmes (c’est-à-dire ne pouvant subvenir par leur travail aux nécessités

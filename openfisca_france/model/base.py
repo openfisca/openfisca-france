@@ -25,16 +25,17 @@
 
 import functools
 
-from openfisca_core.columns import build_column, FloatCol
+from openfisca_core.columns import BoolCol, build_column, FloatCol
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (dated_function, DatedFormulaColumn, EntityToPersonColumn,
     make_reference_formula_decorator, PersonToEntityColumn, select_function, SelectFormulaColumn, SimpleFormulaColumn)
 
-from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus
+from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
 
 
 __all__ = [
     'build_column',
+    'BoolCol',
     'dated_function',
     'DatedFormulaColumn',
     'EntityToPersonColumn',
@@ -42,6 +43,7 @@ __all__ = [
     'FloatCol',
     'FoyersFiscaux',
     'Individus',
+    'Menages',
     'PersonToEntityColumn',
     'QUIFAM',
     'QUIFOY',

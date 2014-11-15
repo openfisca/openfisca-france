@@ -112,39 +112,37 @@ def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, p
     return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
 
 
-def _br_rmi_ms(self, aspa, asi, aah, caah):
+def _br_rmi_ms(self, aspa, asi, aah_holder, caah_holder):
+    """Minima sociaux inclus dans la base ressource RSA/RMI
+
+    'fam'
     """
-    Minima sociaux inclus dans la base ressource RSA/RMI
-    'ind'
-    """
-    return self.cast_from_entity_to_role(
-        aspa + asi,
-        entity = 'famille',
-        role = CHEF,
-        ) + aah + caah
+    aah = self.sum_by_entity(aah_holder)
+    caah = self.sum_by_entity(caah_holder)
+    return aspa + asi + aah + caah
 
 
-def _br_rmi_i(self, ass_holder, ra_rsa, cho, rst, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms):
-    '''
-    Base ressource individuelle du RSA/RMI
+def _br_rmi_i(self, ass_holder, ra_rsa, cho, rst, alr, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms,
+        div_ms):
+    """Base ressource individuelle du RSA/RMI
+
     'ind'
-    '''
+    """
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
     rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
     ass = self.cast_from_entity_to_roles(ass_holder)
 
-    return ass + ra_rsa + cho + rst + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
+    return ass + ra_rsa + cho + rst + alr + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
 
 
-def _br_rmi(self, br_rmi_pf, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
+def _br_rmi(self, br_rmi_pf, br_rmi_ms, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
     """
     Base ressources du Rmi ou du Rsa
     """
     br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-    br_rmi_ms = self.split_by_roles(br_rmi_ms_holder, roles = [CHEF, PART])
     rsa_base_ressources_patrimoine_i = self.split_by_roles(rsa_base_ressources_patrimoine_i_holder, roles = [CHEF, PART])
-    return (br_rmi_pf + br_rmi_i[CHEF] + br_rmi_ms[CHEF] + rsa_base_ressources_patrimoine_i[CHEF]
-        + br_rmi_i[PART] + br_rmi_ms[PART] + rsa_base_ressources_patrimoine_i[PART])
+    return (br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + rsa_base_ressources_patrimoine_i[CHEF]
+        + br_rmi_i[PART] + rsa_base_ressources_patrimoine_i[PART])
 
 
 def _rsa_base_ressources_patrimoine_i(interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):

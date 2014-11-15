@@ -25,6 +25,7 @@
 
 from __future__ import division
 
+import datetime
 import logging
 
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros)
@@ -32,7 +33,8 @@ from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
-from ..base import QUIFAM, QUIFOY, QUIMEN
+from ..base import (FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFAM, QUIFOY, QUIMEN, reference_formula,
+    SimpleFormulaColumn)
 
 
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
@@ -403,11 +405,13 @@ def _tehr(salbrut, _P):
     return -bar.calc(salbrut)
 
 
-def _sal(salbrut, primes, indemnite_residence, supp_familial_traitement, csgsald, cotsal, hsup, rev_microsocial):
+def _sal(salbrut, primes, indemnite_residence, supp_familial_traitement, csgsald, cotsal, hsup,
+        rev_microsocial_declarant1):
     '''
     Calcul du salaire imposable
     '''
-    return salbrut + primes + indemnite_residence + supp_familial_traitement + csgsald + cotsal - hsup
+    return (salbrut + primes + indemnite_residence + supp_familial_traitement + csgsald + cotsal - hsup
+        + rev_microsocial_declarant1)
 
 
 def _salnet(sal, crdssal, csgsali):
@@ -581,20 +585,38 @@ def _gipa(type_sal, _P):
     # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
     pass
 
+
 ############################################################################
 # # Non salariés
 ############################################################################
 
-def _rev_microsocial(self, assiette_service, assiette_vente, assiette_proflib, _P):
-    '''
-    Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)
-    'foy'
-    '''
-    P = _P.cotsoc.sal.microsocial
-    total = assiette_service + assiette_vente + assiette_proflib
-    prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-    return self.cast_from_entity_to_role(total - prelsoc_ms,
-        entity = 'foyer_fiscal', role = VOUS)
+
+@reference_formula
+class rev_microsocial(SimpleFormulaColumn):
+    """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
+    column = FloatCol
+    entity_class = FoyersFiscaux
+    label = u"Revenu net des cotisations sociales pour le régime microsocial"
+    start_date = datetime.date(2009, 1, 1)
+    url = u"http://www.apce.com/pid6137/regime-micro-social.html"
+
+    def function(self, assiette_service, assiette_vente, assiette_proflib, _P):
+        P = _P.cotsoc.sal.microsocial
+        total = assiette_service + assiette_vente + assiette_proflib
+        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
+        return total - prelsoc_ms
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class rev_microsocial_declarant1(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
+    role = VOUS
+    variable = rev_microsocial
+
 
 ############################################################################
 # # Helper functions

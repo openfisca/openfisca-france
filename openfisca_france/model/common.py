@@ -27,7 +27,9 @@ from __future__ import division
 
 from numpy import floor, logical_not as not_
 
-from .base import QUIFAM, QUIFOY
+from .base import (FloatCol, Individus, Menages, PersonToEntityColumn, QUIFAM, QUIFOY, reference_formula,
+    SimpleFormulaColumn)
+
 
 CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf{}'.format(i)] for i in range(1, 10)]
@@ -103,12 +105,26 @@ def _nivvie(revdisp, uc):
     return revdisp / uc
 
 
-def _revnet(self, rev_trav, pen, rev_cap):
-    '''
-    Revenu net du ménage
-    'men'
-    '''
-    return self.sum_by_entity(rev_trav + pen + rev_cap)
+@reference_formula
+class revenu_net_individu(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Revenu net de l'individu"
+
+    def function(self, pen, rev_cap, rev_trav):
+        return pen + rev_cap + rev_trav
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class revnet(PersonToEntityColumn):
+    entity_class = Menages
+    label = u"Revenu net du ménage"
+    operation = 'add'
+    url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
+    variable = revenu_net_individu
 
 
 def _nivvie_net(revnet, uc):
@@ -119,12 +135,25 @@ def _nivvie_net(revnet, uc):
     return revnet / uc
 
 
-def _revini(self, rev_trav, pen, rev_cap, cotpat_contrib, cotsal_contrib):
-    '''
-    Revenu initial du ménage
-    'men'
-    '''
-    return self.sum_by_entity(rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib)
+@reference_formula
+class revenu_initial_individu(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Revenu initial de l'individu"
+
+    def function(self, cotpat_contrib, cotsal_contrib, pen, rev_cap, rev_trav):
+        return rev_trav + pen + rev_cap - cotpat_contrib - cotsal_contrib
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class revini(PersonToEntityColumn):
+    entity_class = Menages
+    label = u"Revenu initial du ménage"
+    operation = 'add'
+    variable = revenu_initial_individu
 
 
 def _nivvie_ini(revini, uc):
@@ -152,28 +181,29 @@ def _rev_trav(rev_sal, rag, ric, rnc):
     return rev_sal + rag + ric + rnc
 
 
-def _pen(chonet, rstnet, alr, alv, rto):
+def _pen(chonet, rstnet, alr, alv_declarant1, rto_declarant1):
     '''
     Pensions
     '''
-    return chonet + rstnet + alr + alv + rto
+    return chonet + rstnet + alr + alv_declarant1 + rto_declarant1
 
 
-def _cotsoc_bar(csg_cap_bar, prelsoc_cap_bar, crds_cap_bar):
+def _cotsoc_bar_declarant1(csg_cap_bar_declarant1, prelsoc_cap_bar_declarant1, crds_cap_bar_declarant1):
     '''
     Cotisations sociales sur les revenus du capital imposés au barème
     '''
-    return csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
+    return csg_cap_bar_declarant1 + prelsoc_cap_bar_declarant1 + crds_cap_bar_declarant1
 
 
-def _cotsoc_lib(csg_cap_lib, prelsoc_cap_lib_declarant1, crds_cap_lib):
+def _cotsoc_lib_declarant1(csg_cap_lib_declarant1, prelsoc_cap_lib_declarant1, crds_cap_lib_declarant1):
     '''
     Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire
     '''
-    return csg_cap_lib + prelsoc_cap_lib_declarant1 + crds_cap_lib
+    return csg_cap_lib_declarant1 + prelsoc_cap_lib_declarant1 + crds_cap_lib_declarant1
 
 
-def _rev_cap(self, fon_holder, rev_cap_bar_holder, cotsoc_bar, rev_cap_lib_holder, cotsoc_lib, imp_lib_holder, rac):
+def _rev_cap(self, fon_holder, rev_cap_bar_holder, cotsoc_bar_declarant1, rev_cap_lib_holder, cotsoc_lib_declarant1,
+        imp_lib_holder, rac):
     '''
     Revenus du patrimoine
     '''
@@ -182,7 +212,7 @@ def _rev_cap(self, fon_holder, rev_cap_bar_holder, cotsoc_bar, rev_cap_lib_holde
     rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
     rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-    return fon + rev_cap_bar + cotsoc_bar + rev_cap_lib + cotsoc_lib + imp_lib + rac
+    return fon + rev_cap_bar + cotsoc_bar_declarant1 + rev_cap_lib + cotsoc_lib_declarant1 + imp_lib + rac
 
 
 def _psoc(pfam, mini, logt):
@@ -226,11 +256,9 @@ def _impo(self, irpp_holder, tax_hab):
     return irpp + tax_hab
 
 
-def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar, crds_cap_lib, crds_pfam_holder,
-          crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
-    '''
-    Contribution au remboursement de la dette sociale
-    '''
+def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar_declarant1, crds_cap_lib_declarant1,
+        crds_pfam_holder, crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
+    """Contribution au remboursement de la dette sociale"""
     crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = VOUS)
     crds_lgtm = self.cast_from_entity_to_role(crds_lgtm_holder, role = CHEF)
     crds_mini = self.cast_from_entity_to_role(crds_mini_holder, role = CHEF)
@@ -239,21 +267,19 @@ def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar, crds_c
     crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = VOUS)
 
     return (crdssal + crdsrst + crdscho +
-            crds_fon + crds_cap_bar + crds_cap_lib + crds_pv_mo + crds_pv_immo +
+            crds_fon + crds_cap_bar_declarant1 + crds_cap_lib_declarant1 + crds_pv_mo + crds_pv_immo +
             crds_pfam + crds_lgtm + crds_mini)
 
 
-def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_holder, csg_cap_lib, csg_cap_bar,
-         csg_pv_mo_holder, csg_pv_immo_holder):
-    """
-    Contribution sociale généralisée
-    """
+def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_holder, csg_cap_lib_declarant1,
+        csg_cap_bar_declarant1, csg_pv_mo_holder, csg_pv_immo_holder):
+    """Contribution sociale généralisée"""
     csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = VOUS)
     csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
     csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
 
     return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
-            csg_fon + csg_cap_lib + csg_pv_mo + csg_pv_immo + csg_cap_bar)
+            csg_fon + csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
 
 
 def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
@@ -263,7 +289,7 @@ def _cotsoc_noncontrib(cotpat_noncontrib, cotsal_noncontrib):
     return cotpat_noncontrib + cotsal_noncontrib
 
 
-def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_cap_bar, prelsoc_pv_mo_holder,
+def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_cap_bar_declarant1, prelsoc_pv_mo_holder,
                  prelsoc_pv_immo_holder):
     """
     Prélèvements sociaux sur les revenus du capital
@@ -272,11 +298,11 @@ def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_c
     prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
     prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
 
-    return prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
+    return prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar_declarant1 + prelsoc_pv_mo + prelsoc_pv_immo
 
 
-def _check_csk(self, prelsoc_cap_bar_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):
-    prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar_holder)
+def _check_csk(self, prelsoc_cap_bar_declarant1_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):
+    prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar_declarant1_holder)
     prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = CHEF)
     prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo)
     prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = CHEF)
@@ -285,8 +311,8 @@ def _check_csk(self, prelsoc_cap_bar_holder, prelsoc_pv_mo_holder, prelsoc_fon_h
     return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
 
-def _check_csg(self, csg_cap_bar_holder, csg_pv_mo_holder, csg_fon_holder):
-    csg_cap_bar = self.sum_by_entity(csg_cap_bar_holder)
+def _check_csg(self, csg_cap_bar_declarant1_holder, csg_pv_mo_holder, csg_fon_holder):
+    csg_cap_bar = self.sum_by_entity(csg_cap_bar_declarant1_holder)
     csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = CHEF)
     csg_pv_mo = self.sum_by_entity(csg_pv_mo)
     csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = CHEF)
@@ -295,8 +321,8 @@ def _check_csg(self, csg_cap_bar_holder, csg_pv_mo_holder, csg_fon_holder):
     return csg_cap_bar + csg_pv_mo + csg_fon
 
 
-def _check_crds(self, crds_cap_bar_holder, crds_pv_mo_holder, crds_fon_holder):
-    crds_cap_bar = self.sum_by_entity(crds_cap_bar_holder)
+def _check_crds(self, crds_cap_bar_declarant1_holder, crds_pv_mo_holder, crds_fon_holder):
+    crds_cap_bar = self.sum_by_entity(crds_cap_bar_declarant1_holder)
     crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = CHEF)
     crds_pv_mo = self.sum_by_entity(crds_pv_mo)
     crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = CHEF)
