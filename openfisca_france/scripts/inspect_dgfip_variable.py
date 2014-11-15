@@ -24,7 +24,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-"""Opens a variable in the DGFIP website in a browser."""
+"""Open a variable in the DGFIP website in a browser."""
 
 
 import argparse
@@ -44,31 +44,24 @@ DEFAULT_YEAR = 2013
 def inspect_dgfip_variable(variable, year, browser_name):
     # Attention les liens changent entre la version simplifiée
     matched = re.match('^f[1-8][a-z]{2}', variable)
-    if matched is None:
-        raise ValueError(variable)
+    assert matched is not None, 'Invalid variable: {}'.format(variable)
     section_number = variable[1]
     case = variable[2:4].upper()
     log.info(u"section %s, case %s", section_number, case)
     url_base = u"http://www3.finances.gouv.fr/calcul_impot/" + unicode(year + 1) + "/aides/"
-    if section_number == "2":
-        url_section = u"capitaux_mobiliers.htm#"
-    if section_number == "3":
-        url_section = u"gains_c.htm"
-    if section_number == "4":
-        url_section = u"fonciers.htm"
-    # if section_number =="5":
-    #      url_section = u"charges_s.htm#"
-    if section_number == "6":
-        url_section = u"charges.htm#"
-    if section_number == "7":
-        url_section = u"reductions.htm#"
-    if section_number == "8":
-        url_section = u"autres_imputations.htm#"
-
-    if section_number in ["3", "4"]:
-        url = url_base + url_section
-    else:
-        url = url_base + url_section + case
+    url_section = {
+        '2': u"capitaux_mobiliers.htm",
+        '3': u"gains_c.htm",
+        '4': u"fonciers.htm",
+        # '5': u"charges_s.htm",
+        '6': u"charges.htm",
+        '7': u"reductions.htm",
+        '8': u"autres_imputations.htm",
+        }.get(section_number)
+    assert url_section is not None, 'Unhandled section number: {}'.format(section_number)
+    url = url_base + url_section
+    if section_number not in ('3', '4'):
+        url += u'#' + case
 
     browser = webbrowser.get(browser_name)
     browser.open_new_tab(url)
