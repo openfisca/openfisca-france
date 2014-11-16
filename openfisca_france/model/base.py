@@ -67,5 +67,4 @@ build_column = functools.partial(
     entity_class_by_symbol = entity_class_by_symbol,
     )
 
-
 reference_formula = make_reference_formula_decorator(entity_class_by_symbol = entity_class_by_symbol)
