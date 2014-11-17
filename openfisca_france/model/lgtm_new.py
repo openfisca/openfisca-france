@@ -25,10 +25,10 @@ ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['
 PART = QUIFAM['part']
 VOUS = QUIFOY['vous']
 
-from .base import Familles, Menages, reference_formula
+from .base import Familles, Individus, Menages, reference_formula
 from openfisca_core.accessors import law
 from openfisca_core.columns import EnumCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.formulas import EntityToPersonColumn, PersonToEntityColumn, SimpleFormulaColumn
 from openfisca_core.enumerations import Enum
 
 
@@ -157,19 +157,16 @@ class al(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Formule des aides aux logements en secteur locatif"
 
-    def function(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_holder,
+    def function(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_famille,
                  nat_imp_holder,
                  al = law.al,
                  charge_loyer = law.ir.autre.charge_loyer,
                  fam = law.fam):
         # Attention, cette fonction calcule l'aide mensuelle et la multiplie par 12
         # variable ménage à redistribuer
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
-        loyer = self.cast_from_entity_to_roles(loyer_holder)
-        loyer = self.filter_role(loyer, role = CHEF)
-        zone_apl = self.cast_from_entity_to_roles(zone_apl_holder)
-        zone_apl = self.filter_role(zone_apl, role = CHEF)
+        so = so_famille
+        loyer = loyer_famille
+        zone_apl = zone_apl_famille
         # Variables individuelles
         coloc = self.any_by_roles(coloc_holder)
         # Variables du foyer fiscal
@@ -438,3 +435,18 @@ class zone_apl(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.period(u'year').offset('first-of')
+
+
+@reference_formula
+class zone_apl_individu(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Zone apl de la personne"
+    variable = zone_apl
+
+
+@reference_formula
+class zone_apl_famille(PersonToEntityColumn):
+    entity_class = Familles
+    label = u"Zone apl de la famille"
+    role = CHEF
+    variable = zone_apl

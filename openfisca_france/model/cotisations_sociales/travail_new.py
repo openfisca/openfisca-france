@@ -1499,8 +1499,8 @@ class indemnite_residence(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Indemnité de résidence des fonctionnaires"
 
-    def function(self, salbrut, type_sal, zone_apl_holder, _P):
-        zone_apl = self.cast_from_entity_to_roles(zone_apl_holder)
+    def function(self, salbrut, type_sal, zone_apl_individu, _P):
+        zone_apl = zone_apl_individu
         P = _P.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
         taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
