@@ -157,7 +157,7 @@ class al(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Formule des aides aux logements en secteur locatif"
 
-    def function(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_famille,
+    def function(self, concub, br_al, so_famille, loyer_famille, coloc_holder, isol, al_pac, zone_apl_famille,
                  nat_imp_holder,
                  al = law.al,
                  charge_loyer = law.ir.autre.charge_loyer,
@@ -396,9 +396,9 @@ class zone_apl(SimpleFormulaColumn):
         default = 2
         )
     entity_class = Menages
-    label = u"Zone APL",
+    label = u"Zone APL"
 
-    def function(depcom):
+    def function(self, depcom):
         '''
         Retrouve la zone APL (aide personnalisée au logement) de la commune
         en fonction du depcom (code INSEE)
