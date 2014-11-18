@@ -44,7 +44,7 @@ def init_country():
 from . import (  # noqa
     input_variables,
     inversion_revenus,
-    lgtm_new,
+#    lgtm_new,
     )
 
 # Import model modules.
@@ -90,8 +90,8 @@ def test_1():
             taille_entreprise = 3,
             type_sal = 0,
             ),
-        menage = dict(
-            zone_apl = 1,
-            ),
+#        menage = dict(
+#            zone_apl = 1,
+#            ),
         ).new_simulation(debug = True)
     print simulation.calculate("maladie_employe")

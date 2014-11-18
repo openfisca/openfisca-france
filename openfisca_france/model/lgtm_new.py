@@ -13,12 +13,10 @@ import json
 import pkg_resources
 
 from numpy import ceil, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
-from openfisca_core.accessors import law
 
 import openfisca_france
 from .base import QUIFAM, QUIFOY
 from .pfam import nb_enf
-
 
 CHEF = QUIFAM['chef']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
@@ -160,7 +158,6 @@ class al(SimpleFormulaColumn):
     def function(self, concub, br_al, so_famille, loyer_famille, coloc_holder, isol, al_pac, zone_apl_famille,
                  nat_imp_holder,
                  al = law.al,
-                 charge_loyer = law.ir.autre.charge_loyer,
                  fam = law.fam):
         # Attention, cette fonction calcule l'aide mensuelle et la multiplie par 12
         # variable ménage à redistribuer
@@ -205,9 +202,24 @@ class al(SimpleFormulaColumn):
         z2 = al.loyers_plafond.zone2
         z3 = al.loyers_plafond.zone3
 
-        Lz1 = ((isol) * (al_pac == 0) * z1.L1 + (concub) * (al_pac == 0) * z1.L2 + (al_pac > 0) * z1.L3 + (al_pac > 1) * (al_pac - 1) * z1.L4) * lp_taux
-        Lz2 = ((isol) * (al_pac == 0) * z2.L1 + (concub) * (al_pac == 0) * z2.L2 + (al_pac > 0) * z2.L3 + (al_pac > 1) * (al_pac - 1) * z2.L4) * lp_taux
-        Lz3 = ((isol) * (al_pac == 0) * z3.L1 + (concub) * (al_pac == 0) * z3.L2 + (al_pac > 0) * z3.L3 + (al_pac > 1) * (al_pac - 1) * z3.L4) * lp_taux
+        Lz1 = (
+            isol * (al_pac == 0) * z1.L1 +
+            concub * (al_pac == 0) * z1.L2 +
+            (al_pac > 0) * z1.L3 +
+            (al_pac > 1) * (al_pac - 1) * z1.L4
+            ) * lp_taux
+        Lz2 = (
+            isol * (al_pac == 0) * z2.L1 +
+            concub * (al_pac == 0) * z2.L2 +
+            (al_pac > 0) * z2.L3 +
+            (al_pac > 1) * (al_pac - 1) * z2.L4
+            ) * lp_taux
+        Lz3 = (
+            isol * (al_pac == 0) * z3.L1 +
+            concub * (al_pac == 0) * z3.L2 +
+            (al_pac > 0) * z3.L3 +
+            (al_pac > 1) * (al_pac - 1) * z3.L4
+            ) * lp_taux
 
         L2 = Lz1 * (zone_apl == 1) + Lz2 * (zone_apl == 2) + Lz3 * (zone_apl == 3)
         # loyer retenu
@@ -215,8 +227,10 @@ class al(SimpleFormulaColumn):
 
         # forfait de charges
         P_fc = al.forfait_charges
-        C = not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) + \
-              (coloc) * ((isol * 0.5 + concub) * P_fc.fc1 + al_pac * P_fc.fc2)
+        C = (
+            not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) +
+            coloc * ((isol * 0.5 + concub) * P_fc.fc1 + al_pac * P_fc.fc2)
+            )
 
         # dépense éligible
         E = L + C
@@ -225,36 +239,43 @@ class al(SimpleFormulaColumn):
         R = br_al
 
         # Plafond RO
-        R1 = al.R1.taux1 * rmi * (isol) * (al_pac == 0) + \
-             al.R1.taux2 * rmi * (concub) * (al_pac == 0) + \
-             al.R1.taux3 * rmi * (al_pac == 1) + \
-             al.R1.taux4 * rmi * (al_pac >= 2) + \
-             al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
+        R1 = (
+            al.R1.taux1 * rmi * (isol) * (al_pac == 0) +
+            al.R1.taux2 * rmi * (concub) * (al_pac == 0) +
+            al.R1.taux3 * rmi * (al_pac == 1) +
+            al.R1.taux4 * rmi * (al_pac >= 2) +
+            al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
+            )
 
-        R2 = al.R2.taux4 * bmaf * (al_pac >= 2) + \
-             al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)
+        R2 = (
+            al.R2.taux4 * bmaf * (al_pac >= 2) +
+            al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)
+            )
 
-        Ro = round(12 * (R1 - R2) * (1 - al.autres.abat_sal));
+        Ro = round(12 * (R1 - R2) * (1 - al.autres.abat_sal))
 
-        Rp = max_(0, R - Ro);
+        Rp = max_(0, R - Ro)
 
         # Participation personnelle
-        Po = max_(al.pp.taux * E, al.pp.min);
+        Po = max_(al.pp.taux * E, al.pp.min)
 
         # Taux de famille
-        TF = al.TF.taux1 * (isol) * (al_pac == 0) + \
-             al.TF.taux2 * (concub) * (al_pac == 0) + \
-             al.TF.taux3 * (al_pac == 1) + \
-             al.TF.taux4 * (al_pac == 2) + \
-             al.TF.taux5 * (al_pac == 3) + \
-             al.TF.taux6 * (al_pac >= 4) + \
-             al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
-
+        TF = (
+            al.TF.taux1 * (isol) * (al_pac == 0) +
+            al.TF.taux2 * (concub) * (al_pac == 0) +
+            al.TF.taux3 * (al_pac == 1) +
+            al.TF.taux4 * (al_pac == 2) +
+            al.TF.taux5 * (al_pac == 3) +
+            al.TF.taux6 * (al_pac >= 4) +
+            al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
+            )
         # Loyer de référence
-        L_Ref = z2.L1 * (isol) * (al_pac == 0) + \
-                z2.L2 * (concub) * (al_pac == 0) + \
-                z2.L3 * (al_pac >= 1) + \
-                z2.L4 * (al_pac > 1) * (al_pac - 1)
+        L_Ref = (
+            z2.L1 * (isol) * (al_pac == 0) +
+            z2.L2 * (concub) * (al_pac == 0) +
+            z2.L3 * (al_pac >= 1) +
+            z2.L4 * (al_pac > 1) * (al_pac - 1)
+            )
 
         RL = L / L_Ref
 
@@ -270,11 +291,7 @@ class al(SimpleFormulaColumn):
         # # TODO: APL pour les accédants à la propriété
         al_acc = 0 * acce
         # # APL (tous)
-
-        if charge_loyer.active:
-            al = 12 * (al_loc + al_acc) * not_(nat_imp)
-        else:
-            al = 12 * (al_loc + al_acc)
+        al = al_loc + al_acc
 
         return al
 
@@ -289,12 +306,10 @@ class alf(SimpleFormulaColumn):
     label = u"Allocation logement familiale"
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
 
-    def function(self, al, al_pac, so_holder, proprietaire_proche_famille):
+    def function(self, al, al_pac, so_famille, proprietaire_proche_famille):
         # TODO: également pour les jeunes ménages et femmes enceintes
         # variable ménage à redistribuer
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
-
+        so = so_famille
         return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * al
 
     def get_output_period(self, period):
@@ -307,10 +322,9 @@ class als_nonet(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Allocation logement sociale (non étudiante)"
 
-    def function(self, al, al_pac, etu_holder, so_holder, proprietaire_proche_famille):
+    def function(self, al, al_pac, etu_holder, so_famille, proprietaire_proche_famille):
         # variable ménage à redistribuer
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
+        so = so_famille
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * al
@@ -345,7 +359,7 @@ class als(SimpleFormulaColumn):
     label = u"Allocation logement sociale"
     url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
 
-    def function(als_nonet, alset):
+    def function(self, als_nonet, alset):
         return als_nonet + alset
 
     def get_output_period(self, period):
@@ -356,7 +370,8 @@ class als(SimpleFormulaColumn):
 class apl(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
-    label = u" Aide personnalisée au logement (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
+    label = u" Aide personnalisée au logement"
+    # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
 
     def function(self, al, so_holder):
@@ -377,7 +392,7 @@ class crds_lgtm(SimpleFormulaColumn):
     label = u"CRDS des allocations logement"
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
 
-    def function(al, crds = law.fam.af.crds):
+    def function(self, al, crds = law.fam.af.crds):
         return -al * crds
 
     def get_output_period(self, period):
