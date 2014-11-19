@@ -72,9 +72,9 @@ from . import pfam as pf
 from . import th as th
 
 from .input_variables import travail_base  # noqa
-from .cotisations_sociales import travail_new
+from .cotisations_sociales import travail
 from .cotisations_sociales import travail_fonction_publique
-from . import lgtm_new
+from . import lgtm
 
 
 build_alternative_formula = partial(
@@ -2049,62 +2049,7 @@ build_simple_formula('crds_pfam', FloatCol(function = pf._crds_pfam,
 
 # En fait en vigueur pour les enfants nés avant 2004 ...
 # TODO Gestion du cumul apje ape
-############################################################
-# Allocations logement
-############################################################
 
-#build_simple_formula('br_al', FloatCol(function = lg._br_al,
-#    entity = 'fam',
-#    label = u"Base ressource des allocations logement",
-#    ))
-#build_simple_formula('al_pac', FloatCol(function = lg._al_pac,
-#    entity = 'fam',
-#    label = u"Nombre de personnes à charge au sens des allocations logement",
-#    ))
-#build_simple_formula('al', FloatCol(function = lg._al,
-#    entity = 'fam',
-#    label = u"Allocation logement (indifferrenciée)",
-#    ))
-#build_simple_formula('alf', FloatCol(function = lg._alf,
-#    entity = 'fam',
-#    label = u"Allocation logement familiale",
-#    url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml",
-#    ))
-#build_simple_formula('als', FloatCol(function = lg._als,
-#    entity = 'fam',
-#    label = u"Allocation logement sociale",
-#    url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml",
-#    ))
-#build_simple_formula('als_nonet', FloatCol(function = lg._als_nonet,
-#    entity = 'fam',
-#    label = u"Allocation logement sociale (non étudiant)",
-#    ))
-#build_simple_formula('alset', FloatCol(function = lg._alset,
-#    entity = 'fam',
-#    label = u"Allocation logement sociale étudiante",
-#    url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement",
-#    ))
-#build_simple_formula('apl', FloatCol(function = lg._apl,
-#    entity = 'fam',
-#    label = u"Aide personalisée au logement",
-#    url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
-#    ))
-#build_simple_formula('crds_lgtm', FloatCol(function = lg._crds_lgtm,
-#    entity = 'fam',
-#    label = u"CRDS (allocation logement)",
-#    url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml",
-#    ))
-#build_simple_formula('zone_apl', EnumCol(function = lg._zone_apl, default = 2,
-#    entity = 'men',
-#    enum = Enum([
-#        u"Non renseigné",
-#        u"Zone 1",
-#        u"Zone 2",
-#        u"Zone 3",
-#        ]),
-#    label = u"Zone APL",
-#    ))
-#
 ############################################################
 # RSA/RMI
 ############################################################

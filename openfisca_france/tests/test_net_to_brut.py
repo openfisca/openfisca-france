@@ -120,11 +120,11 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
             ),
         ).new_simulation(debug = True)
 
-    simulation = base_simulation.clone(debug = False)
+    simulation = base_simulation.clone(debug = True)
     salbrut = simulation.get_holder('salbrut').array
     salnet = simulation.calculate('salnet')
 
-    simulation = base_simulation.clone(debug = True)
+    simulation = base_simulation.clone(debug = False)
     salbrut_holder = simulation.get_holder('salbrut')
     salbrut_holder.delete_arrays()
     simulation.get_or_new_holder('salnet').array = salnet
