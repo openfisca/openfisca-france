@@ -23,8 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# from ..model.cotisations_sociales.travail import CAT
-# from . import base
 from . import utils
 
 
