@@ -25,7 +25,7 @@
 
 import datetime
 
-from ..model.cotisations_sociales.travail import CAT
+from ..model.base import CAT
 from . import base
 
 

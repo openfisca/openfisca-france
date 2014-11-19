@@ -42,14 +42,8 @@ CAT = Enum(['prive_non_cadre',
             'public_non_titulaire'])
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
 log = logging.getLogger(__name__)
-TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
-
 
 # TODO: contribution patronale de prévoyance complémentaire
-# Formation professionnelle (entreprise de 10 à moins de 20 salariés)
-#        salaire total 1,05%
-# Formation professionnelle (entreprise de moins de 10 salariés)
-#        salaire total 0,55%
 
 
 def build_pat(_P):
@@ -61,7 +55,9 @@ def build_pat(_P):
         pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
     del pat['commun']['apprentissage_node']
 
-    pat['commun']['formprof'] = pat['commun']['formprof_node']['formprof_20']
+    pat['commun']['formprof_09'] = pat['commun']['formprof_node']['formprof_09']
+    pat['commun']['formprof_1019'] = pat['commun']['formprof_node']['formprof_1019']
+    pat['commun']['formprof_20'] = pat['commun']['formprof_node']['formprof_20']
     del pat['commun']['formprof_node']
 
     pat['commun']['construction'] = pat['commun']['construction_node']['construction_20']
@@ -81,11 +77,12 @@ def build_pat(_P):
     #     pat['prive_cadre'].keys())
 
     # Rework commun to deal with public employees
-    for var in ["maladie", "apprentissage", "apprentissage_add", "vieillesseplaf", "vieillessedeplaf", "formprof",
-            "chomfg", "construction", "assedic"]:
+    for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
+                "formprof_1019", "formprof_20", "vieillessedeplaf", "vieillesseplaf"]:
         del pat['commun'][var]
 
-    for var in ["apprentissage", "apprentissage_add", "formprof", "chomfg", "construction", "assedic"]:
+    for var in ["apprentissage", "apprentissage_add", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
+                "construction", "assedic"]:
         del pat['fonc']['contract'][var]
 
     pat['fonc']['etat'].update(pat['commun'])

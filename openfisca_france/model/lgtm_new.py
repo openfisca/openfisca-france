@@ -76,6 +76,9 @@ class al_pac(SimpleFormulaColumn):
         # pour une famille
         return al_pac
 
+    def get_output_period(self, period):
+        return period.start.period(u'year').offset('first-of')
+
 
 @reference_formula
 class br_al(SimpleFormulaColumn):
@@ -155,14 +158,17 @@ class al(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Formule des aides aux logements en secteur locatif"
 
-    def function(self, concub, br_al, so_famille, loyer_famille, coloc_holder, isol, al_pac, zone_apl_famille,
+    def function(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_famille,
                  nat_imp_holder,
                  al = law.al,
                  fam = law.fam):
         # Attention, cette fonction calcule l'aide mensuelle et la multiplie par 12
         # variable ménage à redistribuer
-        so = so_famille
-        loyer = loyer_famille
+        so = self.cast_from_entity_to_roles(so_holder)
+        so = self.filter_role(so, role = CHEF)
+        loyer = self.cast_from_entity_to_roles(loyer_holder)
+        loyer = self.filter_role(loyer, role = CHEF)
+
         zone_apl = zone_apl_famille
         # Variables individuelles
         coloc = self.any_by_roles(coloc_holder)
@@ -400,6 +406,21 @@ class crds_lgtm(SimpleFormulaColumn):
 
 
 @reference_formula
+class so_individu(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Statut d'occupation de l'individu"
+    variable = Menages.column_by_name["so"]
+
+
+@reference_formula
+class so_famille(PersonToEntityColumn):
+    entity_class = Familles
+    label = u"Statut d'occupation de la famille"
+    role = CHEF
+    variable = Individus.column_by_name["so_individu"]
+
+
+@reference_formula
 class zone_apl(SimpleFormulaColumn):
     column = EnumCol(
         enum = Enum([
@@ -464,4 +485,4 @@ class zone_apl_famille(PersonToEntityColumn):
     entity_class = Familles
     label = u"Zone apl de la famille"
     role = CHEF
-    variable = zone_apl
+    variable = zone_apl_individu

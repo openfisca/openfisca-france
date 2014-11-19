@@ -56,41 +56,41 @@ build_column(entities.FoyersFiscaux.name_key, StrCol(entity = 'foy', is_permanen
 build_column(entities.Individus.name_key, StrCol(is_permanent = True, label = u"Prénom"))
 build_column(entities.Menages.name_key, StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
 
-build_column(
-    'type_sal',
-    EnumCol(
-        label = u"Catégorie de salarié",
-        enum = Enum(
-            [
-                u"prive_non_cadre",
-                u"prive_cadre",
-                u"public_titulaire_etat",
-                u"public_titulaire_militaire",
-                u"public_titulaire_territoriale",
-                u"public_titulaire_hospitaliere",
-                u"public_non_titulaire",
-                ],
-            ),
-        ),
-    )
+#build_column( TODO: REMOVEME Now in travail_base
+#    'type_sal',
+#    EnumCol(
+#        label = u"Catégorie de salarié",
+#        enum = Enum(
+#            [
+#                u"prive_non_cadre",
+#                u"prive_cadre",
+#                u"public_titulaire_etat",
+#                u"public_titulaire_militaire",
+#                u"public_titulaire_territoriale",
+#                u"public_titulaire_hospitaliere",
+#                u"public_non_titulaire",
+#                ],
+#            ),
+#        ),
+#    )
 
-build_column(
-    'taille_entreprise',
-    EnumCol(
-        enum = Enum(
-            [
-                u"Non pertinent",
-                u"Moins de 10 salariés",
-                u"De 10 à 19 salariés",
-                u"De 20 à 249 salariés",
-                u"Plus de 250 salariés",
-                ],
-            ),
-        default = 0,
-        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
-        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
-        ),
-    )
+#build_column( TODO: REMOVEME Now in travail_base
+#    'taille_entreprise',
+#    EnumCol(
+#        enum = Enum(
+#            [
+#                u"Non pertinent",
+#                u"Moins de 10 salariés",
+#                u"De 10 à 19 salariés",
+#                u"De 20 à 249 salariés",
+#                u"Plus de 250 salariés",
+#                ],
+#            ),
+#        default = 0,
+#        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
+#        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
+#        ),
+#    )
 
 build_column('enceinte', BoolCol(entity = 'ind', label = u"Est enceinte"))
 

@@ -15,8 +15,8 @@ from numpy import (datetime64, logical_and as and_, logical_not as not_, logical
     maximum as max_, minimum as min_, round)
 from openfisca_core.accessors import law
 
-from .base import (BoolCol, FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, Menages, PersonToEntityColumn,
-    QUIFOY, reference_formula, SimpleFormulaColumn)
+from .base import (alternative_function, AlternativeFormulaColumn, AgeCol, BoolCol, FloatCol, FoyersFiscaux, Individus,
+    EntityToPersonColumn, Menages, PersonToEntityColumn, QUIFOY, reference_formula, SimpleFormulaColumn)
 
 
 CONJ = QUIFOY['conj']
@@ -59,6 +59,24 @@ VOUS = QUIFOY['vous']
 ###############################################################################
 # # Initialisation de quelques variables utiles pour la suite
 ###############################################################################
+
+
+@reference_formula
+class age(AlternativeFormulaColumn):
+    column = AgeCol(val_type = "age")
+    entity_class = Individus
+    label = u"Âge (en années)"
+
+    @alternative_function()
+    def age_from_birth(self, birth, period):
+        return (datetime64(period.date) - birth).astype('timedelta64[Y]')
+
+    @alternative_function()
+    def age_from_agem(self, agem):
+        return agem // 12
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
 
 
 def _age_from_agem(agem):

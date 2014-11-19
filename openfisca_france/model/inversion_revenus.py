@@ -33,7 +33,7 @@ from scipy.optimize import fsolve
 
 from .base import FloatCol, Individus, reference_formula, select_function, SelectFormulaColumn
 from .cotisations_sociales.remplacement import exo_csg_chom
-from .cotisations_sociales.travail import CAT, TAUX_DE_PRIME
+from .base import CAT, TAUX_DE_PRIME
 
 
 log = logging.getLogger(__name__)

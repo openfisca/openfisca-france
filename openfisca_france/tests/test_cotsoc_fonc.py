@@ -46,7 +46,7 @@ def test():
             description = u"Célibataire public_titulaire_etat",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -78,7 +78,7 @@ def test():
             description = u"Célibataire public_titulaire_territoriale",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_titulaire_territoriale'],
                 ),
@@ -110,7 +110,7 @@ def test():
             description = u"Célibataire public_titulaire_hospitaliere",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_titulaire_hospitaliere'],
                 ),
@@ -144,7 +144,7 @@ def test():
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_non_titulaire'],
                 ),
@@ -177,7 +177,7 @@ def test():
             description = u"Couple 1 fonctionnaire public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -217,13 +217,13 @@ def test():
             description = u"Couple 2 fonctionnaires public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_titulaire_etat'],
                 ),
             parent2 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes = 12 * 500,
+                primes_fonction_publique = 12 * 500,
                 salbrut = 12 * 2000,
                 type_sal = CAT['public_titulaire_etat'],
                 ),

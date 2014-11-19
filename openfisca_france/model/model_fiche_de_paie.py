@@ -23,20 +23,30 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core.taxbenefitsystems import AbstractTaxBenefitSystem
+import os
+
+
+from openfisca_core.taxbenefitsystems import LegacyTaxBenefitSystem
 from ..entities import entity_class_by_symbol
 from ..scenarios import Scenario
+from .. import COUNTRY_DIR
 
+from .cotisations_sociales import preprocessing
 
 def init_country():
-    class TaxBenefitSystem(AbstractTaxBenefitSystem):
+    class TaxBenefitSystem(LegacyTaxBenefitSystem):
         entity_class_by_key_plural = {
             entity_class.key_plural: entity_class
             for entity_class in entity_class_by_symbol.itervalues()
             }
 
+        legislation_xml_file_path = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
+        preprocess_compact_legislation = staticmethod(preprocessing.preprocess_compact_legislation)
+
     # Define class attributes after class declaration to avoid "name is not defined" exceptions.
     TaxBenefitSystem.Scenario = Scenario
+
+
 
     return TaxBenefitSystem
 

@@ -8,15 +8,18 @@
 
 from __future__ import division
 
-from numpy import (round, floor, zeros, maximum as max_, minimum as min_,
-                   logical_not as not_)
+from numpy import zeros, logical_not as not_
 
 from .base import QUIFAM, QUIFOY
 
+from .base import (BoolCol, Individus, reference_formula, SimpleFormulaColumn)
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+ENFS = [
+    QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'],
+    QUIFAM['enf8'], QUIFAM['enf9'],
+    ]
 VOUS = QUIFOY['vous']
 
 
@@ -58,14 +61,21 @@ def _etu(activite):
     '''
     return activite == 2
 
-def _smic55(salbrut, _P):
-    '''
-    Indicatrice individuelle d'un salaire supérieur à 55% du smic
-    'ind'
-    '''
-    nbh_travaillees = 151.67 * 12
-    smic_annuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-    return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel_brut
+
+@reference_formula
+class smic55(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Indicatrice individuelle d'un salaire supérieur à 55% du smic"
+
+    def function(self, salbrut, _P):
+        nbh_travaillees = 151.67 * 12
+        smic_annuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
+        return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel_brut
+
+    def get_output_period(self, period):
+        return period.start.period(u'year').offset('first-of')
+
 
 def _br_pf_i(tspr, hsup, rpns):
     '''

@@ -1,4 +1,4 @@
-<NODE code="root" deb="2006-01-01" fin="2013-12-31">
+﻿<NODE code="root" deb="2006-01-01" fin="2013-12-31">
   <NODE code="csg" description="Contribution sociale généralisée (CSG)">
     <NODE code="act" description="Revenus d'activité">
       <BAREME code="deduc" description="CSG déductible">
@@ -3998,7 +3998,7 @@
         <VALUE deb="2006-11-01" fin="2014-12-31" valeur="449" /># TODO: check in july 2014 for "fin"
   	  </CODE>
       <CODE code="IM_max" description="Indice majoré plafond" format="integer">
-        <VALUE deb="2011-01-01" fin="2014-12-31" valeur="717" />
+        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="717" />
       </CODE>
       <NODE code="fixe" description="Part fixe">
         <CODE code="enf1" description="1er enfant" format="float">

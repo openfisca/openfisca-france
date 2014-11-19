@@ -49,7 +49,7 @@ from . import calage as cl
 from . import cmu as cmu
 from . import common as cm
 from .cotisations_sociales import capital as cs_capital
-from .cotisations_sociales import travail as cs_travail
+#from .cotisations_sociales import travail as cs_travail
 from .cotisations_sociales import remplacement as cs_remplac
 from . import irpp as ir
 from . import irpp_charges_deductibles as cd
@@ -57,7 +57,7 @@ from . import irpp_credits_impots as ci
 from . import irpp_plus_values_immo as immo
 from . import irpp_reductions_impots as ri
 from . import isf as isf
-from . import lgtm as lg
+#from . import lgtm as lg
 # from .minima_sociaux import aah
 from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
@@ -70,6 +70,11 @@ from .prestations_familiales import paje
 from .prestations_familiales import cf
 from . import pfam as pf
 from . import th as th
+
+from .input_variables import travail_base  # noqa
+from .cotisations_sociales import travail_new
+from .cotisations_sociales import travail_fonction_publique
+from . import lgtm_new
 
 
 build_alternative_formula = partial(
@@ -93,10 +98,10 @@ build_simple_formula = partial(
 ############################################################
 # Reproduction des pondérations
 ############################################################
-build_simple_formula('mhsup', FloatCol(
-    function = cs_travail._mhsup,
-    url = u"http://impotsurlerevenu.org/fonctionnement-de-l-impot/209-heures-supplementaires-exonerees.php",
-    ))
+#build_simple_formula('mhsup', FloatCol(
+#    function = cs_travail._mhsup,
+#    url = u"http://impotsurlerevenu.org/fonctionnement-de-l-impot/209-heures-supplementaires-exonerees.php",
+#    ))
 # build_simple_formula('alv', FloatCol(
 #     function = ir._alv,
 #     url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml",
@@ -107,7 +112,10 @@ build_simple_formula('mhsup', FloatCol(
 ############################################################
 
 # Salaires
-#    build_simple_formula('type_sal', EnumCol(function = cs_travail._type_sal,
+#build_simple_formula(
+#    'type_sal',
+#    EnumCol(
+#        function = cs_travail._type_sal,
 #        label = u"Catégorie de salarié",
 #        enum = Enum([
 #            u"prive_non_cadre",
@@ -117,146 +125,146 @@ build_simple_formula('mhsup', FloatCol(
 #            u"public_titulaire_territoriale",
 #            u"public_titulaire_hospitaliere",
 #            u"public_non_titulaire",
-#             ]),
-#         url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
-#         ))
-
-
-build_simple_formula(
-    'primes',
-    FloatCol(
-        function = cs_travail._primes,
-        label = u"Primes et indemnités des fonctionnaires",
-        url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml",
-    ))
-build_simple_formula(
-    'sal_h_b',
-    FloatCol(
-        function = cs_travail._sal_h_b,
-        label = u"Salaire horaire brut",
-        url = u"http://www.les-horaires.fr/pratique/smic-horaire.php",
-    ))
-
-#    build_simple_formula('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
-#        enum = Enum([
-#            u"Non pertinent",
-#            u"Moins de 10 salariés",
-#            u"De 10 à 19 salariés",
-#            u"De 20 à 249 salariés",
-#            u"Plus de 250 salariés",
 #            ]),
-#        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
-#        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
-#        ))
+#        url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
+#        )
+#    )
 
-build_simple_formula('cotpat_contrib', FloatCol(function = cs_travail._cotpat_contrib,
-    label = u"Cotisations sociales patronales contributives",
-    url = u"http://fr.wikipedia.org/wiki/Cotisations_sociales",
-    ))
-build_simple_formula('taux_accident_travail', FloatCol(function = cs_travail._taux_accident_travail,
-    label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_accident', FloatCol(function = cs_travail._cotpat_accident,
-    label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_noncontrib', FloatCol(function = cs_travail._cotpat_noncontrib,
-    label = u"Cotisations sociales patronales non contributives",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_main_d_oeuvre', FloatCol(function = cs_travail._cotpat_main_d_oeuvre,
-    label = u"Cotisations sociales patronales main d'oeuvre",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat_transport', FloatCol(function = cs_travail._cotpat_transport,
-    label = u"Cotisations sociales patronales: versement transport",
-    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
-    ))
-build_simple_formula('cotpat', FloatCol(function = cs_travail._cotpat,
-    label = u"Cotisations sociales patronales",
-    url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=254&definition=Cotisations+patronales",
-    ))
-build_simple_formula('alleg_fillon', FloatCol(function = cs_travail._alleg_fillon,
-    label = u"Allègements Fillon sur les bas salaires",
-    url = u"http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/l-allegement-de-charges-patronales,1031.html",
-    ))
-build_simple_formula('alleg_cice', FloatCol(function = cs_travail._alleg_cice,
-    label = u"Crédit d'impôt compétitivité emploi",
-    url = u"http://www.economie.gouv.fr/ma-competitivite/quest-que-credit-dimpot-pour-competitivite-et-lemploi",
-    ))
-build_simple_formula('taxes_sal', FloatCol(function = cs_travail._taxes_sal,
-    label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA",
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=TS&pageId=prof_ts&sfid=50",
-    ))
-build_simple_formula('tehr', FloatCol(function = cs_travail._tehr,
-    label = u"taxe exceptionnelle de solidarité sur les très hautes rémunérations",
-    url = u"http://vosdroits.service-public.fr/particuliers/F31130.xhtml",
-    ))
-build_simple_formula('salsuperbrut', FloatCol(function = cs_travail._salsuperbrut,
-    label = u"Salaires super bruts",
-    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/cout-salarial.htm"
-    ))
-
-build_simple_formula('cotsal_contrib', FloatCol(function = cs_travail._cotsal_contrib,
-    label = u"Cotisations sociales salariales contributives",
-    url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=255&definition=Cotisations+salariales",
-    ))
-build_simple_formula('cotsal_noncontrib', FloatCol(function = cs_travail._cotsal_noncontrib,
-    label = u"Cotisations sociales non salariales non-contributives",
-    ))
-build_simple_formula('cotsal', FloatCol(function = cs_travail._cotsal,
-    label = u"Cotisations sociales salariales",
-    url = u"http://vosdroits.service-public.fr/particuliers/F2302.xhtml#N100F8",
-    ))
-
-build_simple_formula('csgsald', FloatCol(function = cs_travail._csgsald,
-    label = u"CSG déductible sur les salaires",
-    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
-    ))
-build_simple_formula('csgsali', FloatCol(function = cs_travail._csgsali,
-    label = u"CSG imposables sur les salaires",
-    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
-    ))
-build_simple_formula('crdssal', FloatCol(function = cs_travail._crdssal,
-    label = u"CRDS sur les salaires",
-    url = u"http://vosdroits.service-public.fr/particuliers/N17580.xhtml",
-    ))
-build_simple_formula('sal', FloatCol(function = cs_travail._sal,
-    label = u"Salaires imposables",
-    url = u"http://www.jureka.fr/dico-francais-droit/lettre-s/definition-salaire-imposable",
-    ))
-build_simple_formula('salnet', FloatCol(function = cs_travail._salnet,
-    label = u"Salaires nets d'après définition INSEE",
-    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html",
-    ))
-
-# Fonctionnaires
-build_simple_formula('indemnite_residence', FloatCol(function = cs_travail._indemnite_residence,
-    label = u"Indemnité de résidence (fonction publique)",
-    url = u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48",
-    ))
-build_simple_formula('supp_familial_traitement', FloatCol(function = cs_travail._supp_familial_traitement,
-    label = u"Supplément familial de traitement (fonction publique)",
-    start = date(2011, 1, 1),  # TODO: check this curious starting date
-    url= u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48",
-    ))
-build_simple_formula('cot_pat_pension_civile', FloatCol(function = cs_travail._cot_pat_pension_civile,
-    label = u"Cotisation patronale pension civile",
-    url = u"http://www.ac-besancon.fr/spip.php?article2662",
-    ))
-build_simple_formula('cot_sal_pension_civile', FloatCol(function = cs_travail._cot_sal_pension_civile,
-    label = u"Cotisation salariale pension civile",
-    url = u"http://www.ac-besancon.fr/spip.php?article2662",
-    ))
-build_simple_formula('cot_pat_rafp', FloatCol(function = cs_travail._cot_pat_rafp,
-    label = u"Cotisation patronale RAFP",
-    url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223",
-    ))
-build_simple_formula('cot_sal_rafp', FloatCol(function = cs_travail._cot_sal_rafp,
-    label = u"Cotisation salariale RAFP",
-    url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223",
-    ))
+#build_simple_formula(
+#    'primes',
+#    FloatCol(
+#        function = cs_travail._primes,
+#        label = u"Primes et indemnités des fonctionnaires",
+#        url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml",
+#    ))
+#build_simple_formula(
+#    'sal_h_b',
+#    FloatCol(
+#        function = cs_travail._sal_h_b,
+#        label = u"Salaire horaire brut",
+#        url = u"http://www.les-horaires.fr/pratique/smic-horaire.php",
+#    ))
+#
+##    build_simple_formula('taille_entreprise', EnumCol(function = cs_travail._taille_entreprise,
+##        enum = Enum([
+##            u"Non pertinent",
+##            u"Moins de 10 salariés",
+##            u"De 10 à 19 salariés",
+##            u"De 20 à 249 salariés",
+##            u"Plus de 250 salariés",
+##            ]),
+##        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
+##        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
+##        ))
+#
+#build_simple_formula('cotpat_contrib', FloatCol(function = cs_travail._cotpat_contrib,
+#    label = u"Cotisations sociales patronales contributives",
+#    url = u"http://fr.wikipedia.org/wiki/Cotisations_sociales",
+#    ))
+#build_simple_formula('taux_accident_travail', FloatCol(function = cs_travail._taux_accident_travail,
+#    label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
+#    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
+#    ))
+#build_simple_formula('cotpat_accident', FloatCol(function = cs_travail._cotpat_accident,
+#    label = u"Cotisations sociales patronales : accident du travail et maladies professionnelles",
+#    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
+#    ))
+#build_simple_formula('cotpat_noncontrib', FloatCol(function = cs_travail._cotpat_noncontrib,
+#    label = u"Cotisations sociales patronales non contributives",
+#    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
+#    ))
+#build_simple_formula('cotpat_main_d_oeuvre', FloatCol(function = cs_travail._cotpat_main_d_oeuvre,
+#    label = u"Cotisations sociales patronales main d'oeuvre",
+#    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
+#    ))
+#build_simple_formula('cotpat_transport', FloatCol(function = cs_travail._cotpat_transport,
+#    label = u"Cotisations sociales patronales: versement transport",
+#    url = u"http://www.lesclesdelabanque.com/Web/Cdb/Entrepreneurs/Content.nsf/DocumentsByIDWeb/7APJB8?OpenDocument",
+#    ))
+#build_simple_formula('cotpat', FloatCol(function = cs_travail._cotpat,
+#    label = u"Cotisations sociales patronales",
+#    url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=254&definition=Cotisations+patronales",
+#    ))
+#build_simple_formula('alleg_fillon', FloatCol(function = cs_travail._alleg_fillon,
+#    label = u"Allègements Fillon sur les bas salaires",
+#    url = u"http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/l-allegement-de-charges-patronales,1031.html",
+#    ))
+#build_simple_formula('alleg_cice', FloatCol(function = cs_travail._alleg_cice,
+#    label = u"Crédit d'impôt compétitivité emploi",
+#    url = u"http://www.economie.gouv.fr/ma-competitivite/quest-que-credit-dimpot-pour-competitivite-et-lemploi",
+#    ))
+#build_simple_formula('taxes_sal', FloatCol(function = cs_travail._taxes_sal,
+#    label = u"Taxes sur les salaires pour les employeurs non soumis à la TVA",
+#    url = u"http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=TS&pageId=prof_ts&sfid=50",
+#    ))
+#build_simple_formula('tehr', FloatCol(function = cs_travail._tehr,
+#    label = u"taxe exceptionnelle de solidarité sur les très hautes rémunérations",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F31130.xhtml",
+#    ))
+#build_simple_formula('salsuperbrut', FloatCol(function = cs_travail._salsuperbrut,
+#    label = u"Salaires super bruts",
+#    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/cout-salarial.htm"
+#    ))
+#
+#build_simple_formula('cotsal_contrib', FloatCol(function = cs_travail._cotsal_contrib,
+#    label = u"Cotisations sociales salariales contributives",
+#    url = u"http://www.editions-tissot.fr/droit-travail/dictionnaire-droit-travail-definition.aspx?idDef=255&definition=Cotisations+salariales",
+#    ))
+#build_simple_formula('cotsal_noncontrib', FloatCol(function = cs_travail._cotsal_noncontrib,
+#    label = u"Cotisations sociales non salariales non-contributives",
+#    ))
+#build_simple_formula('cotsal', FloatCol(function = cs_travail._cotsal,
+#    label = u"Cotisations sociales salariales",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F2302.xhtml#N100F8",
+#    ))
+#
+#build_simple_formula('csgsald', FloatCol(function = cs_travail._csgsald,
+#    label = u"CSG déductible sur les salaires",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
+#    ))
+#build_simple_formula('csgsali', FloatCol(function = cs_travail._csgsali,
+#    label = u"CSG imposables sur les salaires",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml",
+#    ))
+#build_simple_formula('crdssal', FloatCol(function = cs_travail._crdssal,
+#    label = u"CRDS sur les salaires",
+#    url = u"http://vosdroits.service-public.fr/particuliers/N17580.xhtml",
+#    ))
+#build_simple_formula('sal', FloatCol(function = cs_travail._sal,
+#    label = u"Salaires imposables",
+#    url = u"http://www.jureka.fr/dico-francais-droit/lettre-s/definition-salaire-imposable",
+#    ))
+#build_simple_formula('salnet', FloatCol(function = cs_travail._salnet,
+#    label = u"Salaires nets d'après définition INSEE",
+#    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-net.html",
+#    ))
+#
+## Fonctionnaires
+#build_simple_formula('indemnite_residence', FloatCol(function = cs_travail._indemnite_residence,
+#    label = u"Indemnité de résidence (fonction publique)",
+#    url = u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48",
+#    ))
+#build_simple_formula('supp_familial_traitement', FloatCol(function = cs_travail._supp_familial_traitement,
+#    label = u"Supplément familial de traitement (fonction publique)",
+#    start = date(2011, 1, 1),  # TODO: check this curious starting date
+#    url= u"http://www.fonction-publique.gouv.fr/fonction-publique/statut-et-remunerations-48",
+#    ))
+#build_simple_formula('cot_pat_pension_civile', FloatCol(function = cs_travail._cot_pat_pension_civile,
+#    label = u"Cotisation patronale pension civile",
+#    url = u"http://www.ac-besancon.fr/spip.php?article2662",
+#    ))
+#build_simple_formula('cot_sal_pension_civile', FloatCol(function = cs_travail._cot_sal_pension_civile,
+#    label = u"Cotisation salariale pension civile",
+#    url = u"http://www.ac-besancon.fr/spip.php?article2662",
+#    ))
+#build_simple_formula('cot_pat_rafp', FloatCol(function = cs_travail._cot_pat_rafp, TODO: REMOVEME
+#    label = u"Cotisation patronale RAFP",
+#    url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223",
+#    ))
+#build_simple_formula('cot_sal_rafp', FloatCol(function = cs_travail._cot_sal_rafp,
+#    label = u"Cotisation salariale RAFP",
+#    url = u"http://www.rafp.fr/Cotisations-et-autres-types-dabondement-CET-fr-ru99/Les-cotisations-ar223",
+#    ))
 
 # Revenus non-salariés
 # build_simple_formula('rev_microsocial', FloatCol(function = cs_travail._rev_microsocial,
@@ -449,15 +457,15 @@ build_dated_formula('prelsoc_pv_immo',
 ############################################################
 # Impôt sur le revenu
 ############################################################
+#build_alternative_formula(  TODO: REMOVEME new syntax in irpp.py
+#    'age',
+#    [
+#        ir._age_from_birth,
+#        ir._age_from_agem,
+#        ],
+#    AgeCol(label = u"Âge (en années)", val_type = "age"),
+#    )
 
-build_alternative_formula(
-    'age',
-    [
-        ir._age_from_birth,
-        ir._age_from_agem,
-        ],
-    AgeCol(label = u"Âge (en années)", val_type = "age"),
-    )
 build_alternative_formula(
     'agem',
     [
@@ -1875,9 +1883,9 @@ build_simple_formula('nb_par', FloatCol(function = pf._nb_par,
     entity = 'fam',
     label = u"Nombre de parents",
     ))
-build_simple_formula('smic55', BoolCol(function = pf._smic55,
-    label = u"Indicatrice individuelle d'un salaire supérieur à 55% du smic",
-    ))
+#build_simple_formula('smic55', BoolCol(function = pf._smic55,
+#    label = u"Indicatrice individuelle d'un salaire supérieur à 55% du smic",
+#    ))
 build_simple_formula('isol', BoolCol(function = pf._isol,
     entity = 'fam'))
 
@@ -1889,28 +1897,28 @@ build_simple_formula('br_pf', FloatCol(function = pf._br_pf,
     entity = 'fam',
     label = 'Base ressource des prestations familiales'))
 
-build_simple_formula('af_nbenf', FloatCol(function = af._af_nbenf,
-    entity = 'fam',
-    label = u"Nombre d'enfant au sens des AF",
-    ))
-build_simple_formula('af_base', FloatCol(function = af._af_base,
-    entity = 'fam',
-    label = 'Allocations familiales - Base'))
-build_simple_formula('af_majo', FloatCol(function = af._af_majo,
-    entity = 'fam',
-    label = 'Allocations familiales - Majoration pour age',
-    url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
-    ))
-build_simple_formula('af_forf', FloatCol(function = af._af_forf,
-    entity = 'fam',
-    label = 'Allocations familiales - Forfait 20 ans',
-    url = u"http://www.cleiss.fr/docs/regimes/regime_france4.html",
-    start = date(2003, 7, 1)))
-build_simple_formula('af', FloatCol(function = af._af,
-    entity = 'fam',
-    label = u"Allocations familiales",
-    url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
-    ))
+#build_simple_formula('af_nbenf', FloatCol(function = af._af_nbenf,
+#    entity = 'fam',
+#    label = u"Nombre d'enfant au sens des AF",
+#    )) TODO: REMOVEME
+#build_simple_formula('af_base', FloatCol(function = af._af_base,
+#    entity = 'fam',
+#    label = 'Allocations familiales - Base'))
+#build_simple_formula('af_majo', FloatCol(function = af._af_majo,
+#    entity = 'fam',
+#    label = 'Allocations familiales - Majoration pour age',
+#    url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
+#    ))
+#build_simple_formula('af_forf', FloatCol(function = af._af_forf,
+#    entity = 'fam',
+#    label = 'Allocations familiales - Forfait 20 ans',
+#    url = u"http://www.cleiss.fr/docs/regimes/regime_france4.html",
+#    start = date(2003, 7, 1)))
+#build_simple_formula('af', FloatCol(function = af._af,
+#    entity = 'fam',
+#    label = u"Allocations familiales",
+#    url = u"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0",
+#    ))
 
 build_simple_formula('cf_temp', FloatCol(function = cf._cf,
     entity = 'fam',
@@ -2045,58 +2053,58 @@ build_simple_formula('crds_pfam', FloatCol(function = pf._crds_pfam,
 # Allocations logement
 ############################################################
 
-build_simple_formula('br_al', FloatCol(function = lg._br_al,
-    entity = 'fam',
-    label = u"Base ressource des allocations logement",
-    ))
-build_simple_formula('al_pac', FloatCol(function = lg._al_pac,
-    entity = 'fam',
-    label = u"Nombre de personnes à charge au sens des allocations logement",
-    ))
-build_simple_formula('al', FloatCol(function = lg._al,
-    entity = 'fam',
-    label = u"Allocation logement (indifferrenciée)",
-    ))
-build_simple_formula('alf', FloatCol(function = lg._alf,
-    entity = 'fam',
-    label = u"Allocation logement familiale",
-    url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml",
-    ))
-build_simple_formula('als', FloatCol(function = lg._als,
-    entity = 'fam',
-    label = u"Allocation logement sociale",
-    url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml",
-    ))
-build_simple_formula('als_nonet', FloatCol(function = lg._als_nonet,
-    entity = 'fam',
-    label = u"Allocation logement sociale (non étudiant)",
-    ))
-build_simple_formula('alset', FloatCol(function = lg._alset,
-    entity = 'fam',
-    label = u"Allocation logement sociale étudiante",
-    url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement",
-    ))
-build_simple_formula('apl', FloatCol(function = lg._apl,
-    entity = 'fam',
-    label = u"Aide personalisée au logement",
-    url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
-    ))
-build_simple_formula('crds_lgtm', FloatCol(function = lg._crds_lgtm,
-    entity = 'fam',
-    label = u"CRDS (allocation logement)",
-    url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml",
-    ))
-build_simple_formula('zone_apl', EnumCol(function = lg._zone_apl, default = 2,
-    entity = 'men',
-    enum = Enum([
-        u"Non renseigné",
-        u"Zone 1",
-        u"Zone 2",
-        u"Zone 3",
-        ]),
-    label = u"Zone APL",
-    ))
-
+#build_simple_formula('br_al', FloatCol(function = lg._br_al,
+#    entity = 'fam',
+#    label = u"Base ressource des allocations logement",
+#    ))
+#build_simple_formula('al_pac', FloatCol(function = lg._al_pac,
+#    entity = 'fam',
+#    label = u"Nombre de personnes à charge au sens des allocations logement",
+#    ))
+#build_simple_formula('al', FloatCol(function = lg._al,
+#    entity = 'fam',
+#    label = u"Allocation logement (indifferrenciée)",
+#    ))
+#build_simple_formula('alf', FloatCol(function = lg._alf,
+#    entity = 'fam',
+#    label = u"Allocation logement familiale",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml",
+#    ))
+#build_simple_formula('als', FloatCol(function = lg._als,
+#    entity = 'fam',
+#    label = u"Allocation logement sociale",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml",
+#    ))
+#build_simple_formula('als_nonet', FloatCol(function = lg._als_nonet,
+#    entity = 'fam',
+#    label = u"Allocation logement sociale (non étudiant)",
+#    ))
+#build_simple_formula('alset', FloatCol(function = lg._alset,
+#    entity = 'fam',
+#    label = u"Allocation logement sociale étudiante",
+#    url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement",
+#    ))
+#build_simple_formula('apl', FloatCol(function = lg._apl,
+#    entity = 'fam',
+#    label = u"Aide personalisée au logement",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
+#    ))
+#build_simple_formula('crds_lgtm', FloatCol(function = lg._crds_lgtm,
+#    entity = 'fam',
+#    label = u"CRDS (allocation logement)",
+#    url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml",
+#    ))
+#build_simple_formula('zone_apl', EnumCol(function = lg._zone_apl, default = 2,
+#    entity = 'men',
+#    enum = Enum([
+#        u"Non renseigné",
+#        u"Zone 1",
+#        u"Zone 2",
+#        u"Zone 3",
+#        ]),
+#    label = u"Zone APL",
+#    ))
+#
 ############################################################
 # RSA/RMI
 ############################################################

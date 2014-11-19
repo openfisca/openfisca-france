@@ -56,7 +56,7 @@ reference_input_variable(
     name = 'base_remboursement_transport',
     )
 reference_input_variable(
-    column = FixedStrCol(),
+    column = FixedStrCol(max_length = 5),
     entity_class = Individus,
     label = u"Localisation entreprise",
     name = 'localisation_entreprise',  # TODO; à adpater sur le format depcom ?
