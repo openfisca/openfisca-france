@@ -1656,7 +1656,7 @@
         </BAREME>
       </NODE>
       <NODE code="cadre" description="Spécifiques aux cadres">
-        <BAREME code="complc" description="Retraite complémentaire" option="contrib">
+        <BAREME code="arrco" description="Retraite complémentaire" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
