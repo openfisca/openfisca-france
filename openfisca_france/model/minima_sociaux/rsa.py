@@ -25,9 +25,13 @@
 from __future__ import division
 
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
-from openfisca_core.accessors import law
 
-from ..base import QUIFAM, QUIFOY
+from openfisca_core.accessors import law
+from openfisca_core.columns import BoolCol, FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
+
+from ..base import QUIFAM, QUIFOY, reference_formula
+from ...entities import Familles, Individus
 from ..pfam import nb_enf, age_en_mois_benjamin
 
 CHEF = QUIFAM['chef']
@@ -67,12 +71,23 @@ def _rfon_ms(self, f4ba_holder, f4be_holder):
     return f4ba + f4be
 
 
-def _ra_rsa(sal, hsup, rpns, etr):
-    '''
-    Revenus d'activité au sens du Rsa
-    'ind'
-    '''
-    return sal + hsup + rpns + etr
+@reference_formula
+class ra_rsa(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenus d'activité du Rsa"
+    entity_class = Individus
+
+    def function(self, salnet, hsup, rpns, etr, indemnites_chomage_partiel, indemnites_journalieres_maternite,
+                 indemnites_journalieres_paternite, indemnites_journalieres_adoption, indemnites_journalieres_maladie,
+                 indemnites_journalieres_accident_travail, indemnites_journalieres_maladie_professionnelle,
+                 indemnites_volontariat, revenus_stage_formation_pro, tns_total_revenus):
+        return (salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
+            indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
+            indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
+            indemnites_volontariat + revenus_stage_formation_pro + tns_total_revenus)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
@@ -112,53 +127,75 @@ def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, p
     return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
 
 
-def _br_rmi_ms(self, aspa, asi, aah_holder, caah_holder):
-    """Minima sociaux inclus dans la base ressource RSA/RMI
+@reference_formula
+class br_rmi_ms(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
+    entity_class = Familles
 
-    'fam'
-    """
-    aah = self.sum_by_entity(aah_holder)
-    caah = self.sum_by_entity(caah_holder)
-    return aspa + asi + aah + caah
+    def function(self, aspa, asi, aah_holder, caah_holder):
+        aah = self.sum_by_entity(aah_holder)
+        caah = self.sum_by_entity(caah_holder)
+        return aspa + asi + aah + caah
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+@reference_formula
+class br_rmi_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressource individuelle du RSA/RMI"
+    entity_class = Individus
+
+    def function(self, ass_holder, ra_rsa, chonet, rstnet, alr, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
+                 gains_exceptionnels, dedommagement_victime_amiante, pensions_invalidite, allocation_aide_retour_emploi,
+                 allocation_securisation_professionnelle, prestation_compensatoire, retraite_combattant, bourse_enseignement_sup, bourse_recherche):
+        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+        ass = self.cast_from_entity_to_roles(ass_holder)
+        return (ass + ra_rsa + chonet + rstnet + alr + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
+            gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
+            allocation_securisation_professionnelle + prestation_compensatoire + retraite_combattant + bourse_enseignement_sup + bourse_recherche)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _br_rmi_i(self, ass_holder, ra_rsa, cho, rst, alr, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms,
-        div_ms):
-    """Base ressource individuelle du RSA/RMI
+@reference_formula
+class br_rmi(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressources du Rmi ou du Rsa"
+    entity_class = Familles
 
-    'ind'
-    """
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-    ass = self.cast_from_entity_to_roles(ass_holder)
+    def function(self, br_rmi_pf, br_rmi_ms, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
+        br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
+        rsa_base_ressources_patrimoine_i = self.split_by_roles(rsa_base_ressources_patrimoine_i_holder, roles = [CHEF, PART])
+        br_rmi = (br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + rsa_base_ressources_patrimoine_i[CHEF] +
+                  br_rmi_i[PART] + rsa_base_ressources_patrimoine_i[PART])
+        return br_rmi
 
-    return ass + ra_rsa + cho + rst + alr + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms
-
-
-def _br_rmi(self, br_rmi_pf, br_rmi_ms, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
-    """
-    Base ressources du Rmi ou du Rsa
-    """
-    br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-    rsa_base_ressources_patrimoine_i = self.split_by_roles(rsa_base_ressources_patrimoine_i_holder, roles = [CHEF, PART])
-    return (br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + rsa_base_ressources_patrimoine_i[CHEF]
-        + br_rmi_i[PART] + rsa_base_ressources_patrimoine_i[PART])
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _rsa_base_ressources_patrimoine_i(interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):
-    '''
-    Base de ressources des revenus du patrimoine
-    'ind'
-    '''
+@reference_formula
+class rsa_base_ressources_patrimoine_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources des revenus du patrimoine"
+    entity_class = Individus
 
-    return (
-        interets_epargne_sur_livrets +
-        epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere +
-        revenus_capital +
-        valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
-        valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
-        revenus_locatifs
-        )
+    def function(self, interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital, valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs, rsa = law.minim.rmi):
+        return (
+            interets_epargne_sur_livrets / 12 +
+            epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
+            revenus_capital +
+            valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
+            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
+            revenus_locatifs
+            )
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 def _rmi_nbp(self, age_holder, smic55_holder, nb_par , P = law.minim.rmi):
@@ -206,7 +243,7 @@ def _rsa_act(rsa, rmi):
     return res
 
 
-def _rsa_act_i(self, rsa_act_holder, concub_holder, maries_holder, quifam, idfam):
+def _rsa_act_i(self, rsa_act_holder, concub_holder, maries_holder, quifam):
     '''
     Calcule le montant du RSA activité.
 
@@ -278,20 +315,30 @@ def _rmi(rsa_socle, rsa_forfait_logement, br_rmi):
     rmi = max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
     return rmi
 
+@reference_formula
+class rsa(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenu de solidarité active"
+    entity_class = Familles
 
-def _rsa(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, br_rmi, P = law.minim.rmi):
-    '''
-    Cacule le montant du RSA
-    'fam'
-    '''
-    ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
+    def function(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, br_rmi, P = law.minim.rmi):
+        ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
 
-    # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
-    base = max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi + P.pente * (ra_rsa[CHEF] + ra_rsa[PART])
-    base_normalise = max_(base, 0)
+        # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
+        base = max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi + P.pente * (ra_rsa[CHEF] + ra_rsa[PART])
+        base_normalise = max_(base, 0)
 
-    # Seuil de versement *annualisé*
-    return base_normalise * (base_normalise >= P.rsa_nv * 12)
+        # Seuil de versement *annualisé*
+        return base_normalise * (base_normalise >= P.rsa_nv * 12)
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['ra_rsa_holder', 'br_rmi']:
+            return output_period.offset(-3)
+        else:
+            return output_period
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month', 3)
 
 
 def _api(self, agem_holder, age_holder, smic55_holder, isol, rsa_forfait_logement, br_rmi, af_majo, rsa, af = law.fam.af,

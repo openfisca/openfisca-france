@@ -25,9 +25,13 @@
 from __future__ import division
 
 from numpy import (maximum as max_, logical_not as not_)
-from openfisca_core.accessors import law
 
-from ..base import QUIFAM, QUIFOY
+from openfisca_core.accessors import law
+from openfisca_core.columns import BoolCol, FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
+
+from ..base import QUIFAM, QUIFOY, reference_formula
+from ...entities import Familles, Individus
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
@@ -39,43 +43,52 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _br_mv_i(self, sali, choi, rsti, alr, rto_declarant1, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms,
-        div_ms):
-    '''
-    Base ressource individuelle du minimum vieillesse et assimilés (ASPA)
-    'ind'
-    '''
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+@reference_formula
+class br_mv_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressources individuelle du minimum vieillesse/ASPA"
+    entity_class = Individus
 
-    out = (sali + choi + rsti + alr + rto_declarant1 + rpns +
-           max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms)
-           # max_(0,etr) +
-           )
-    return out
+    def function(self, salnet, chonet, rstnet, alr, rto_declarant1, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
+                 revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
+                 dedommagement_victime_amiante, prestation_compensatoire, pensions_invalidite, gains_exceptionnels,
+                 aah, indemnites_journalieres_maternite, indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle,
+                 indemnites_journalieres_accident_travail, indemnites_chomage_partiel, indemnites_volontariat,
+                 tns_total_revenus, rsa_base_ressources_patrimoine_i):
+        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+
+        out = (salnet + chonet + rstnet + alr + rto_declarant1 + rpns +
+               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
+               # max_(0,etr) +
+               revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
+               dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels + aah +
+               indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
+               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
+               rsa_base_ressources_patrimoine_i
+               )
+
+        return out
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month', 3)
 
 
-def _br_mv(self, br_mv_i_holder):
-    '''
-    Base ressource du minimum vieillesse et assimilés (ASPA)
-    'fam'
+@reference_formula
+class br_mv(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
+    entity_class = Familles
 
-    Ressources prises en compte
-    Tous les avantages de vieillesse et d'invalidité dont bénéficie l'intéressé sont pris en compte dans l'appréciation des ressources, de même que les revenus professionnels, les revenus des biens mobiliers et immobiliers et les biens dont il a fait donation dans les 10 années qui précèdent la demande d'Aspa.
-    L'évaluation des ressources d'un couple est effectuée de la même manière, sans faire la distinction entre les biens propres ou les biens communs des conjoints, concubins ou partenaires liés par un Pacs.
-    Ressources exclues
-    Certaines ressources ne sont toutefois pas prises en compte dans l'estimation des ressources. Il s'agit notamment :
-    de la valeur des locaux d'habitation occupés par le demandeur et les membres de sa famille vivant à son foyer lorsqu'il s'agit de sa résidence principale,
-    des prestations familiales,
-    de l'allocation de logement sociale,
-    des majorations prévues par la législation, accordées aux personnes dont l'état de santé nécessite l'aide constante d'une tierce personne,
-    de la retraite du combattant,
-    des pensions attachées aux distinctions honorifiques,
-    de l'aide apportée ou susceptible d'être apportée par les personnes tenues à l'obligation alimentaire.
-    '''
-    br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-    return br_mv_i[CHEF] + br_mv_i[PART]
+    def function(self, br_mv_i_holder):
+        br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
+        return br_mv_i[CHEF] + br_mv_i[PART]
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period('month', 3).offset(-3)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 #    Bloc ASPA/ASI
 #    Allocation de solidarité aux personnes agées (ASPA)
@@ -188,30 +201,25 @@ def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_a
 
     elig = elig1 | elig2 | elig3 | elig4
 
+    # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
     montant_max = (elig1 * P.aspa.montant_seul
         + elig2 * P.aspa.montant_couple
         + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-        + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2))
+        + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 4
 
     ressources = br_mv + montant_max
 
+    # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
     plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-        + (elig2 | elig3 | elig4) * P.aspa.plaf_couple)
+        + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 4
 
     depassement = max_(ressources - plafond_ressources, 0)
 
     diff = ((elig1 | elig2) * (montant_max - depassement)
         + (elig3 | elig4) * (P.aspa.montant_couple / 2 - depassement / 2))
 
-    montant_servi_aspa = max_(diff, 0) / 12
-
-#    TODO: remove when done
-#    print "montant_max: %.0f" % montant_max
-#    print "ressources: %.0f" % ressources
-#    print "plafond_ressources: %.0f" % plafond_ressources
-#    print "depassement: %.0f" % depassement
-#    print "diff: %.0f" % diff
-#    print "montant_servi_aspa: %.0f" % montant_servi_aspa
+    # Montant mensuel servi (sous réserve d'éligibilité)
+    montant_servi_aspa = max_(diff, 0) / 3
 
     # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
     # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)

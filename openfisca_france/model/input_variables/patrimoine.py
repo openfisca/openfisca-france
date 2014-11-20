@@ -28,9 +28,9 @@ from openfisca_core.columns import FloatCol
 from ..base import build_column
 
 
-build_column('interets_epargne_sur_livrets', FloatCol(entity = 'ind', label = u"Intérêts versés pour l'épargne sur livret"))
-build_column('epargne_non_remuneree', FloatCol(entity = 'ind', label = u"Épargne non rémunérée"))
+build_column('interets_epargne_sur_livrets', FloatCol(entity = 'ind', is_permanent = True, label = u"Intérêts versés pour l'épargne sur livret"))
+build_column('epargne_non_remuneree', FloatCol(entity = 'ind', is_permanent = True, label = u"Épargne non rémunérée"))
 build_column('revenus_capital', FloatCol(entity = 'ind', label = u"Revenus du capital"))
-build_column('valeur_locative_immo_non_loue', FloatCol(entity = 'ind', label = u"Valeur locative des biens immobiliés possédés et non loués"))
-build_column('valeur_locative_terrains_non_loue', FloatCol(entity = 'ind', label = u"Valeur locative des terrains possédés et non loués"))
-build_column('revenus_locatifs', FloatCol(entity = 'ind', label = u"Revenus locatifs"))
+build_column('valeur_locative_immo_non_loue', FloatCol(entity = 'ind', is_permanent = True, label = u"Valeur locative des biens immobiliés possédés et non loués"))
+build_column('valeur_locative_terrains_non_loue', FloatCol(entity = 'ind', is_permanent = True, label = u"Valeur locative des terrains possédés et non loués"))
+build_column('revenus_locatifs', FloatCol(entity = 'ind', is_permanent = True, label = u"Revenus locatifs"))
