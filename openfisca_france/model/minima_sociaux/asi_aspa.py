@@ -49,7 +49,7 @@ class br_mv_i(SimpleFormulaColumn):
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
 
-    def function(self, salnet, chonet, rstnet, alr, rto, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
+    def function(self, salnet, chonet, rstnet, alr, rto_declarant1, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
                  revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, pensions_invalidite, gains_exceptionnels,
                  aah, indemnites_journalieres_maternite, indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle,
@@ -58,7 +58,7 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        out = (salnet + chonet + rstnet + alr + rto + rpns +
+        out = (salnet + chonet + rstnet + alr + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +

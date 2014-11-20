@@ -99,10 +99,10 @@ build_simple_formula('mhsup', FloatCol(
     function = cs_travail._mhsup,
     url = u"http://impotsurlerevenu.org/fonctionnement-de-l-impot/209-heures-supplementaires-exonerees.php",
     ))
-build_simple_formula('alv', FloatCol(
-    function = ir._alv,
-    url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml",
-    ))
+# build_simple_formula('alv', FloatCol(
+#     function = ir._alv,
+#     url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml",
+#     ))
 
 ############################################################
 # Cotisations sociales
@@ -195,53 +195,54 @@ build_simple_formula('cot_sal_rafp', FloatCol(function = cs_travail._cot_sal_raf
     ))
 
 # Revenus non-salariés
-build_simple_formula('rev_microsocial', FloatCol(function = cs_travail._rev_microsocial,
-    label = u"Revenu net des cotisations sociales pour le régime microsocial",
-    start = date(2009, 1, 1),
-    url = u"http://www.apce.com/pid6137/regime-micro-social.html",
-    ))
+# build_simple_formula('rev_microsocial', FloatCol(function = cs_travail._rev_microsocial,
+#     label = u"Revenu net des cotisations sociales pour le régime microsocial",
+#     start = date(2009, 1, 1),
+#     url = u"http://www.apce.com/pid6137/regime-micro-social.html",
+#     ))
 
 # Revenus du capital soumis au prélèvement libératoire
-build_simple_formula('csg_cap_lib', FloatCol(function = cs_capital._csg_cap_lib,
-    label = u"CSG sur les revenus du capital soumis au prélèvement libératoire",
-    url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e",
-    ))
-build_simple_formula('crds_cap_lib', FloatCol(function = cs_capital._crds_cap_lib,
-    label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire",
-    url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale",
-    ))
-build_simple_formula('prelsoc_cap_lib', FloatCol(function = cs_capital._prelsoc_cap_lib,
-    label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire",
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
-    ))
+# build_simple_formula('csg_cap_lib', FloatCol(function = cs_capital._csg_cap_lib,
+#     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire",
+#     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e",
+#     ))
+# build_simple_formula('crds_cap_lib', FloatCol(function = cs_capital._crds_cap_lib,
+#     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire",
+#     url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale",
+#     ))
+# build_simple_formula('prelsoc_cap_lib', FloatCol(function = cs_capital._prelsoc_cap_lib, entity = 'foy',
+#     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire",
+#     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
+#     ))
 
 # Revenus du capital soumis au barème
-build_simple_formula('csg_cap_bar', FloatCol(function = cs_capital._csg_cap_bar,
-    label = u"CSG sur les revenus du capital soumis au barème",
-    url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e",
-    ))
-build_simple_formula('crds_cap_bar', FloatCol(function = cs_capital._crds_cap_bar,
-    label = u"CRDS sur les revenus du capital soumis au barème",
-    url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale",
-    ))
-build_dated_formula('prelsoc_cap_bar',
-    [
-        dict(start = date(2002, 1, 1),
-          end = date(2005, 12, 31),
-          function = cs_capital._prelsoc_cap_bar__2005,
-         ),
-        dict(start = date(2006, 1, 1),
-          end = date(2008, 12, 31),
-          function = cs_capital._prelsoc_cap_bar_2006_2008,
-         ),
-        dict(start = date(2009, 1, 1),
-          end = date(2015, 12, 31),
-          function = cs_capital._prelsoc_cap_bar_2009_,
-         ),
-    ],
-    FloatCol(entity='ind',
-    label = u"Prélèvements sociaux sur les revenus du capital soumis au barème",
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"))
+# build_simple_formula('csg_cap_bar', FloatCol(function = cs_capital._csg_cap_bar,
+#     label = u"CSG sur les revenus du capital soumis au barème",
+#     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e",
+#     ))
+# build_simple_formula('crds_cap_bar', FloatCol(function = cs_capital._crds_cap_bar,
+#     label = u"CRDS sur les revenus du capital soumis au barème",
+#     url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale",
+#     ))
+# build_dated_formula('prelsoc_cap_bar',
+#     [
+#         dict(start = date(2002, 1, 1),
+#           end = date(2005, 12, 31),
+#           function = cs_capital._prelsoc_cap_bar__2005,
+#          ),
+#         dict(start = date(2006, 1, 1),
+#           end = date(2008, 12, 31),
+#           function = cs_capital._prelsoc_cap_bar_2006_2008,
+#          ),
+#         dict(start = date(2009, 1, 1),
+#           end = date(2015, 12, 31),
+#           function = cs_capital._prelsoc_cap_bar_2009_,
+#          ),
+#     ],
+#     FloatCol(entity='ind',
+#     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème",
+#     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"))
+
 # Revenus fonciers (sur les foyers)
 build_simple_formula('csg_fon', FloatCol(function = cs_capital._csg_fon,
     entity = "foy",
@@ -354,34 +355,34 @@ build_alternative_formula(
     AgeCol(label = u"Âge (en mois)", val_type = "months"),
     )
 
-build_simple_formula('nbF', PeriodSizeIndependentIntCol(function = ir._nbF,
-    cerfa_field = u'F',
-    entity = 'foy',
-    label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des"
-        u" revenus, ou nés en durant la même année ou handicapés quel que soit leur âge",
-    ))
-build_simple_formula('nbG', PeriodSizeIndependentIntCol(function = ir._nbG,
-    cerfa_field = u'G',
-    entity = 'foy',
-    label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité",
-    ))
+# build_simple_formula('nbF', PeriodSizeIndependentIntCol(function = ir._nbF,
+#     cerfa_field = u'F',
+#     entity = 'foy',
+#     label = u"Nombre d'enfants à charge  non mariés de moins de 18 ans au 1er janvier de l'année de perception des"
+#         u" revenus, ou nés en durant la même année ou handicapés quel que soit leur âge",
+#     ))
+# build_simple_formula('nbG', PeriodSizeIndependentIntCol(function = ir._nbG,
+#     cerfa_field = u'G',
+#     entity = 'foy',
+#     label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité",
+#     ))
 # TODO: vérifier si c'est bien ça pour la nbH et la caseH qui suit
-build_simple_formula('nbH', PeriodSizeIndependentIntCol(function = ir._nbH,
-    cerfa_field = u'H',
-    entity = 'foy',
-    label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de"
-        u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge",
-    ))
-build_simple_formula('nbI', PeriodSizeIndependentIntCol(function = ir._nbI,
-    cerfa_field = u'I',
-    entity = 'foy',
-    label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité",
-    ))
-build_simple_formula('nbJ', PeriodSizeIndependentIntCol(function = ir._nbJ,
-    cerfa_field = u'J',
-    entity = 'foy',
-    label = u"Nombre d'enfants majeurs célibataires sans enfant",
-    ))
+# build_simple_formula('nbH', PeriodSizeIndependentIntCol(function = ir._nbH,
+#     cerfa_field = u'H',
+#     entity = 'foy',
+#     label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de"
+#         u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge",
+#     ))
+# build_simple_formula('nbI', PeriodSizeIndependentIntCol(function = ir._nbI,
+#     cerfa_field = u'I',
+#     entity = 'foy',
+#     label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité",
+#     ))
+# build_simple_formula('nbJ', PeriodSizeIndependentIntCol(function = ir._nbJ,
+#     cerfa_field = u'J',
+#     entity = 'foy',
+#     label = u"Nombre d'enfants majeurs célibataires sans enfant",
+#     ))
 #    build_simple_formula('nbN', PeriodSizeIndependentIntCol(function = ir._nbN,
 #        cerfa_field = u'N',
 #        entity = 'foy',
@@ -584,14 +585,14 @@ build_simple_formula('abat_sal_pen', FloatCol(function = ir._abat_sal_pen,
     start = date(2002, 1, 1),
     end = date(2005, 12, 31)))
 build_simple_formula('sal_pen_net', FloatCol(function = ir._sal_pen_net))
-build_simple_formula('rto', FloatCol(function = ir._rto,
-    label = u'Rentes viagères (rentes à titre onéreux)',
-    url = u"http://fr.wikipedia.org/wiki/Rente_viag%C3%A8re",
-    ))
-build_simple_formula('rto_net', FloatCol(function = ir._rto_net,
-    label = u'Rentes viagères après abattements',
-    url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere",
-    ))
+# build_simple_formula('rto', FloatCol(function = ir._rto,
+#     label = u'Rentes viagères (rentes à titre onéreux)',
+#     url = u"http://fr.wikipedia.org/wiki/Rente_viag%C3%A8re",
+#     ))
+# build_simple_formula('rto_net', FloatCol(function = ir._rto_net,
+#     label = u'Rentes viagères après abattements',
+#     url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere",
+#     ))
 build_simple_formula('tspr', FloatCol(function = ir._tspr))
 
 build_simple_formula('rev_cat_tspr', FloatCol(function = ir._rev_cat_tspr,
@@ -1582,7 +1583,6 @@ build_simple_formula('rfr', FloatCol(function = ir._rfr,
 build_simple_formula('rfr_rvcm', FloatCol(function = ir._rfr_rvcm,
     entity = 'foy'))
 
-#    build_simple_formula('alv', FloatCol(function = ir._alv))
 build_simple_formula('glo', FloatCol(function = ir._glo,
     label = u"Gain de levée d'options",
     url = u"http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites",
@@ -1710,10 +1710,12 @@ build_simple_formula('isf_tot', FloatCol(function = isf._isf_tot,
 ############################################################
 #                            Bouclier Fiscal
 ############################################################
+
 build_simple_formula('rvcm_plus_abat', FloatCol(function = isf._rvcm_plus_abat,
     entity = 'foy'))
-build_simple_formula('maj_cga', FloatCol(function = isf._maj_cga,
-    entity = 'foy'))
+
+# build_simple_formula('maj_cga_i', FloatCol(function = isf._maj_cga_i))
+# build_simple_formula('maj_cga', FloatCol(function = isf._maj_cga, entity = 'foy'))
 
 build_simple_formula('bouclier_rev', FloatCol(function = isf._bouclier_rev,
                             entity = 'foy',
@@ -2005,7 +2007,7 @@ build_dated_formula('br_rmi_pf',
             function = rsa._br_rmi_pf_2014_,
          ),
     ],
-    FloatCol(entity='ind'))
+    FloatCol(entity = 'fam'))
 build_simple_formula('rmi_nbp', FloatCol(function = rsa._rmi_nbp,
     entity = 'fam',
     label = u"Nombre de personne à charge au sens du Rmi/Rsa",
@@ -2234,21 +2236,21 @@ build_simple_formula('nivvie', FloatCol(function = cm._nivvie,
     entity = 'men',
     label = u"Niveau de vie du ménage",
     ))
-
-build_simple_formula('revnet', FloatCol(function = cm._revnet,
-    entity = 'men',
-    label = u"Revenu net du ménage",
-    url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
-    ))
+#
+# build_simple_formula('revnet', FloatCol(function = cm._revnet,
+#     entity = 'men',
+#     label = u"Revenu net du ménage",
+#     url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
+#     ))
 build_simple_formula('nivvie_net', FloatCol(function = cm._nivvie_net,
     entity = 'men',
     label = u"Niveau de vie net du ménage",
     ))
 
-build_simple_formula('revini', FloatCol(function = cm._revini,
-    entity = 'men',
-    label = u"Revenu initial du ménage",
-    ))
+# build_simple_formula('revini', FloatCol(function = cm._revini,
+#     entity = 'men',
+#     label = u"Revenu initial du ménage",
+#     ))
 build_simple_formula('nivvie_ini', FloatCol(function = cm._nivvie_ini,
     entity = 'men',
     label = u"Niveau de vie initial du ménage",
@@ -2262,10 +2264,10 @@ build_simple_formula('pen', FloatCol(function = cm._pen,
     label = u"Total des pensions et revenus de remplacement",
     url = u"http://fr.wikipedia.org/wiki/Rente",
     ))
-build_simple_formula('cotsoc_bar', FloatCol(function = cm._cotsoc_bar,
+build_simple_formula('cotsoc_bar_declarant1', FloatCol(function = cm._cotsoc_bar_declarant1,
     label = u"Cotisations sociales sur les revenus du capital imposés au barème",
     ))
-build_simple_formula('cotsoc_lib', FloatCol(function = cm._cotsoc_lib,
+build_simple_formula('cotsoc_lib_declarant1', FloatCol(function = cm._cotsoc_lib_declarant1,
     label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire",
     ))
 build_simple_formula('rev_cap', FloatCol(function = cm._rev_cap,
@@ -2279,7 +2281,7 @@ build_simple_formula('psoc', FloatCol(function = cm._psoc,
     ))
 build_simple_formula('prelsoc_cap', FloatCol(function = cm._prelsoc_cap,
     label = u"Prélèvements sociaux sur les revenus du capital",
-    url = u"ttp://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
+    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS",
     ))
 build_simple_formula('pfam', FloatCol(function = cm._pfam,
     entity = 'fam',

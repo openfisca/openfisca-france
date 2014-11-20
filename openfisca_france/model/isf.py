@@ -28,7 +28,8 @@ from __future__ import division
 from numpy import (maximum as max_, minimum as min_)
 from openfisca_core.accessors import law
 
-from .base import QUIFAM, QUIFOY, QUIMEN
+from .base import (FloatCol, FoyersFiscaux, Individus, PersonToEntityColumn, QUIFAM, QUIFOY, QUIMEN, reference_formula,
+    SimpleFormulaColumn)
 
 
 CHEF = QUIFAM['chef']
@@ -150,7 +151,7 @@ def _tot_impot(self, irpp, isf_avant_plaf, crds_holder, csg_holder, prelsoc_cap_
 # + prélèvement libé de l'année passée + montant de la csg TODO:
 
 
-def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_cap_bar, fon, ric_holder, rag_holder,
+def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net, rev_cap_bar, fon, ric_holder, rag_holder,
         rpns_exon_holder, rpns_pvct_holder, rev_cap_lib, imp_lib, P = law.isf.plafonnement):
         # TODO: ric? benef indu et comm
     '''
@@ -163,12 +164,12 @@ def _revetproduits(self, salcho_imp_holder, pen_net_holder, rto_net_holder, rev_
     ric = self.sum_by_entity(ric_holder)
     rpns_exon = self.sum_by_entity(rpns_exon_holder)
     rpns_pvct = self.sum_by_entity(rpns_pvct_holder)
-    rto_net = self.sum_by_entity(rto_net_holder)
     salcho_imp = self.sum_by_entity(salcho_imp_holder)
 
     # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
     # # def rev_exon et rev_etranger dans data? ##
-    pt = max_(salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon, 0)
+    pt = max_(0,
+        salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon)
     return pt * P.taux
 
 
@@ -240,31 +241,40 @@ def _rvcm_plus_abat(rev_cat_rvcm, rfr_rvcm):
     return rev_cat_rvcm + rfr_rvcm
 
 
-# TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
-def _maj_cga(self, frag_impo, nrag_impg,
-            nbic_impn, nbic_imps, nbic_defn, nbic_defs,
-            nacc_impn, nacc_meup, nacc_defn, nacc_defs,
-            nbnc_impo, nbnc_defi, P = law.ir.rpns):
-    '''
-    Majoration pour non adhésion à un centre de gestion agréé
-    'foy'
-    '''
+@reference_formula
+class maj_cga_i(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
 
-    # # B revenus industriels et commerciaux professionnels
-    nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
+    # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
+    def function(self, frag_impo, nrag_impg, nbic_impn, nbic_imps, nbic_defn, nbic_defs, nacc_impn, nacc_meup,
+            nacc_defn, nacc_defs, nbnc_impo, nbnc_defi, P = law.ir.rpns):
+        # B revenus industriels et commerciaux professionnels
+        nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
 
-    # # C revenus industriels et commerciaux non professionnels
-    # (revenus accesoires du foyers en nomenclature INSEE)
-    nacc_timp = max_(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
+        # C revenus industriels et commerciaux non professionnels
+        # (revenus accesoires du foyers en nomenclature INSEE)
+        nacc_timp = max_(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
 
-    # regime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
-    nbnc_timp = nbnc_impo - nbnc_defi
+        # régime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
+        nbnc_timp = nbnc_impo - nbnc_defi
 
-    # # Totaux
-    ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
+        # Totaux
+        ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
 
-    maj_cga = max_(0, P.cga_taux2 * (ntimp + frag_impo))
-    return self.sum_by_entity(maj_cga)
+        return max_(0, P.cga_taux2 * (ntimp + frag_impo))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class maj_cga(PersonToEntityColumn):
+    entity_class = FoyersFiscaux
+    label = u"Majoration pour non adhésion à un centre de gestion agréé"
+    operation = 'add'
+    variable = maj_cga_i
 
 
 def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo, rev_or, cd_penali, cd_eparet):
@@ -309,11 +319,11 @@ def _bouclier_rev(rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo,
     return revenus - charges
 
 
-def _bouclier_imp_gen (self, irpp, tax_hab_holder, tax_fonc, isf_tot, cotsoc_lib_holder, cotsoc_bar_holder,
-        csgsald_holder, csgsali_holder, crdssal_holder, csgchoi_holder, csgchod_holder, csgrstd_holder,
-        csgrsti_holder, imp_lib):  # # ajouter CSG- CRDS
-    cotsoc_bar = self.sum_by_entity(cotsoc_bar_holder)
-    cotsoc_lib = self.sum_by_entity(cotsoc_lib_holder)
+def _bouclier_imp_gen (self, irpp, tax_hab_holder, tax_fonc, isf_tot, cotsoc_lib_declarant1_holder,
+        cotsoc_bar_declarant1_holder, csgsald_holder, csgsali_holder, crdssal_holder, csgchoi_holder, csgchod_holder,
+        csgrstd_holder, csgrsti_holder, imp_lib):  # # ajouter CSG- CRDS
+    cotsoc_bar = self.sum_by_entity(cotsoc_bar_declarant1_holder)
+    cotsoc_lib = self.sum_by_entity(cotsoc_lib_declarant1_holder)
     crdssal = self.sum_by_entity(crdssal_holder)
     csgchod = self.sum_by_entity(csgchod_holder)
     csgchoi = self.sum_by_entity(csgchoi_holder)

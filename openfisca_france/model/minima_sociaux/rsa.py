@@ -100,45 +100,43 @@ def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = 
 
 
 def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
+    """Prestations familiales inclues dans la base ressource RSA/RMI
+
+    TODO: Add mva (majoration vie autonome),
+    'fam'
     """
-    Prestations familiales inclues dans la base ressource RSA/RMI
-    TO DO: Add mva (majoration vie autonome),
-    """
-    out = P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
-    return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
+    return P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
 
 
 def _br_rmi_pf_2004_2014(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
-    """
-    Prestations familiales inclues dans la base ressource RSA/RMI
-    TO DO: Add mva (majoration vie autonome),
+    """Prestations familiales inclues dans la base ressource RSA/RMI
+
+    TODO: Add mva (majoration vie autonome),
+    'fam'
     """
 
-    out = P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
-
-    return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
+    return P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
 
 
 def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
-    """
-    Prestations familiales inclues dans la base ressource RSA/RMI
-    TO DO: Add mva (majoration vie autonome),
-    """
+    """Prestations familiales inclues dans la base ressource RSA/RMI
 
-    out = P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
-
-    return self.cast_from_entity_to_role(out, entity = 'famille', role = CHEF)
+    TODO: Add mva (majoration vie autonome),
+    'fam'
+    """
+    return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
 
 
 @reference_formula
 class br_rmi_ms(SimpleFormulaColumn):
     column = FloatCol
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
-    entity_class = Individus
+    entity_class = Familles
 
-    def function(self, aspa, asi, aah, caah):
-        return self.cast_from_entity_to_role(aspa + asi ,
-            entity = 'famille', role = CHEF) + aah + caah
+    def function(self, aspa, asi, aah_holder, caah_holder):
+        aah = self.sum_by_entity(aah_holder)
+        caah = self.sum_by_entity(caah_holder)
+        return aspa + asi + aah + caah
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -149,13 +147,13 @@ class br_rmi_i(SimpleFormulaColumn):
     label = u"Base ressource individuelle du RSA/RMI"
     entity_class = Individus
 
-    def function(self, ass_holder, ra_rsa, chonet, rstnet, alr, rto, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
+    def function(self, ass_holder, ra_rsa, chonet, rstnet, alr, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
                  gains_exceptionnels, dedommagement_victime_amiante, pensions_invalidite, allocation_aide_retour_emploi,
                  allocation_securisation_professionnelle, prestation_compensatoire, retraite_combattant, bourse_enseignement_sup, bourse_recherche):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         ass = self.cast_from_entity_to_roles(ass_holder)
-        return (ass + ra_rsa + chonet + rstnet + alr + rto + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
+        return (ass + ra_rsa + chonet + rstnet + alr + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire + retraite_combattant + bourse_enseignement_sup + bourse_recherche)
 
@@ -169,13 +167,11 @@ class br_rmi(SimpleFormulaColumn):
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
 
-    def function(self, br_rmi_pf_holder, br_rmi_ms_holder, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
+    def function(self, br_rmi_pf, br_rmi_ms, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
         br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-        br_rmi_ms = self.split_by_roles(br_rmi_ms_holder, roles = [CHEF, PART])
-        br_rmi_pf = self.split_by_roles(br_rmi_pf_holder, roles = [CHEF, PART])
         rsa_base_ressources_patrimoine_i = self.split_by_roles(rsa_base_ressources_patrimoine_i_holder, roles = [CHEF, PART])
-        br_rmi = (br_rmi_i[CHEF] + br_rmi_pf[CHEF] + br_rmi_ms[CHEF] + rsa_base_ressources_patrimoine_i[CHEF] +
-                  br_rmi_i[PART] + br_rmi_pf[PART] + br_rmi_ms[PART] + rsa_base_ressources_patrimoine_i[PART])
+        br_rmi = (br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + rsa_base_ressources_patrimoine_i[CHEF] +
+                  br_rmi_i[PART] + rsa_base_ressources_patrimoine_i[PART])
         return br_rmi
 
     def get_output_period(self, period):
@@ -271,14 +267,20 @@ def _rsa_socle(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = l
     Rsa socle / Rmi
     'fam'
     '''
-    age_par = self.split_by_roles(age_holder, roles = [CHEF, PART])
-    activite_par = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+    age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
+    activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
     age_enf = self.split_by_roles(age_holder, roles = ENFS)
     smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 
     nbp = nb_par + nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
 
-    eligib = ((age_par[CHEF] >= rmi.age_pac) * not_(activite_par[CHEF] == 2)) | ((age_par[PART] >= rmi.age_pac) * not_(activite_par[PART] == 2))
+    eligib = (
+        (age_parents[CHEF] >= rmi.age_pac)
+        *
+        not_(activite_parents[CHEF] == 2)
+        ) | (
+            (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+            )
 
     taux = (1 + (nbp >= 2) * rmi.txp2
                  + (nbp >= 3) * rmi.txp3
@@ -293,7 +295,6 @@ def _rsa_socle_majore(self, enceinte_fam, age_holder, smic55_holder, nb_par, iso
     Cacule le montant du RSA majoré pour isolement
     'fam'
     '''
-    age_par = self.split_by_roles(age_holder, roles = [CHEF, PART])
     age_enf = self.split_by_roles(age_holder, roles = ENFS)
     smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 

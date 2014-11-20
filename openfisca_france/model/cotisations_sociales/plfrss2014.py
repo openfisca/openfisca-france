@@ -168,7 +168,7 @@ def build_new_legislation_nodes():
             "children": {
                 "exonerations_bas_salaires": {
                     "@type": "Node",
-                    "description": "Exonérations de cotiastions salariées sur les bas salaires",
+                    "description": "Exonérations de cotisations salariées sur les bas salaires",
                     "children": {
                         "prive": {
                             "@type": "Node",
