@@ -73,6 +73,8 @@ from . import th as th
 
 from .input_variables import travail_base  # noqa
 from .cotisations_sociales import travail
+from .cotisations_sociales import travail_verification
+
 from .cotisations_sociales import travail_fonction_publique
 from . import lgtm
 

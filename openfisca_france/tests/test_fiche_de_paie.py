@@ -82,6 +82,8 @@ non_cadre = dict(
         vieillesse_plafonnee_employeur = -249,
         vieillesse_deplafonnee_employe = -3,
         vieillesse_plafonnee_employe = -199.5,
+        cotpat_contrib = -597,
+        cotpat_contrib2 = -597,
         ),
     )
 
@@ -135,10 +137,10 @@ cadre = dict(
     )
 
 
-test_parameters_list = [cadre]
+test_parameters_list = [non_cadre, cadre]
 
 
-def test_check_non_cadre():
+def test_check():
     for test_parameters in test_parameters_list:
         year = 2012
         parent1 = dict(
@@ -146,20 +148,20 @@ def test_check_non_cadre():
             )
         parent1.update(test_parameters['input_variables'])
 
+        employee_type = 'non cadre' if parent1['type_sal'] == 0 else 'cadre'
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             period = periods.period('year', year),
             parent1 = parent1,
             ).new_simulation(debug = True)
 
-    # TODO peut-être créer une fonction check_calculated_output
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
             output = simulation.calculate(variable).sum() / 12
-            yield assert_variable, variable, monthly_amount, output
+            yield assert_variable, variable, employee_type, monthly_amount, output
 
 
-def assert_variable(variable, monthly_amount, output):
+def assert_variable(variable, employee_type, monthly_amount, output):
     assert abs(output - monthly_amount) < .01, \
-        "error for {}: should be {} instead of {} ".format(variable, monthly_amount, output)
+        "error for {} ({}) : should be {} instead of {} ".format(variable, employee_type, monthly_amount, output)
 
 
 if __name__ == '__main__':
@@ -167,4 +169,4 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_check_non_cadre()
+    test_check()

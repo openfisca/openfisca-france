@@ -32,7 +32,6 @@ from numpy import logical_not as not_, logical_or as or_, ones, maximum as max_,
 from openfisca_core.accessors import law
 from openfisca_core.columns import FloatCol
 from openfisca_core.formulas import EntityToPersonColumn, SimpleFormulaColumn
-from openfisca_core.enumerations import Enum
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
 from ..base import CAT, QUIFAM, QUIFOY, QUIMEN, TAUX_DE_PRIME
@@ -65,6 +64,12 @@ def apply_bareme_for_relevant_type_sal(
             continue
         bareme = bareme_by_type_sal_name[type_sal_enum[0]].get(bareme_name)
         if bareme:
+            if type_sal_enum[0] == "prive_cadre" and bareme_name == "arrco":
+                print type_sal_enum[0]
+                print type_sal_enum[1]
+                print bareme
+                print base
+                print bareme.calc(base) * (type_sal == type_sal_enum[1]) / 12
             cotisation += bareme.calc(base) * (type_sal == type_sal_enum[1])
     return - cotisation
 
@@ -236,7 +241,7 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
 class ags(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Contribution à l'association pour la gestion du régime de Garantie des créances des Salariés (AGS)"
+    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
