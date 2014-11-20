@@ -256,8 +256,10 @@ class rstnet(SimpleFormulaColumn):
     label = u"Pensions de retraite nettes"
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    def function(self, rst, csgrsti, crdsrst, casa):
-        return rst + csgrsti + crdsrst + casa
+    # def function(self, rst, csgrsti, crdsrst, casa):
+        # return rst + csgrsti + crdsrst + casa
+    def function(self, rst, csgrsti, crdsrst):
+        return rst + csgrsti + crdsrst
 
     def get_output_period(self, period):
         return period
