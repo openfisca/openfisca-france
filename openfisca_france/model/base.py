@@ -39,6 +39,7 @@ __all__ = [
     'dated_function',
     'DatedFormulaColumn',
     'EntityToPersonColumn',
+    'Enum',
     'Familles',
     'FloatCol',
     'FoyersFiscaux',

@@ -30,13 +30,10 @@ import logging
 
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros)
 from openfisca_core.accessors import law
-from openfisca_core.enumerations import Enum
-from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
-from ..base import (FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFAM, QUIFOY, QUIMEN, reference_formula,
-    SimpleFormulaColumn)
+from ..base import (Enum, FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFAM, QUIFOY, QUIMEN,
+    reference_formula, SimpleFormulaColumn)
 
 
 TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
