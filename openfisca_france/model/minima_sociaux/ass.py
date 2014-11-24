@@ -24,10 +24,13 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_)
+from numpy import maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
 from openfisca_core.accessors import law
+from openfisca_core.columns import BoolCol, FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
 
-from ..base import QUIFAM, QUIFOY
+from ..base import QUIFAM, QUIFOY, reference_formula
+from ...entities import Familles, Individus
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
@@ -36,61 +39,100 @@ VOUS = QUIFOY['vous']
 CONJ = QUIFOY['conj']
 
 
-def _chomeur(choi, activite):
-  '''
-  Indicatrice de chômage
-  '''
-  return or_(choi > 0, activite == 1)
+@reference_formula
+class ass_eligibilite_i(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Éligibilité individuelle à l'ASS"
+    entity_class = Individus
 
-def _ass_elig_i(chomeur, ass_precondition_remplie):
-  '''
-  Éligibilité individuelle à l'ASS
-  '''
-  return and_(chomeur, ass_precondition_remplie)
+    def function(self, activite, ass_precondition_remplie):
+        return and_(activite == 1, ass_precondition_remplie)
 
-def _ass(self, br_pf, ass_elig_i_holder, concub, ass_params = law.minim.ass):
-    '''
-    Allocation de solidarité spécifique
-
-    L’Allocation de Solidarité Spécifique (ASS) est une allocation versée aux
-    personnes ayant épuisé leurs droits à bénéficier de l'assurance chômage.
-
-    Le prétendant doit avoir épuisé ses droits à l’assurance chômage.
-    Il doit être inscrit comme demandeur d’emploi et justifier de recherches actives.
-    Il doit être apte à travailler.
-    Il doit justifier de 5 ans d’activité salariée au cours des 10 ans précédant le chômage.
-    À partir de 60 ans, il doit répondre à des conditions particulières.
-     TODO majo ass et base ressource
-
-    Les ressources prises en compte pour apprécier ces plafonds, comprennent l'allocation de solidarité elle-même ainsi que les autres ressources de l'intéressé, et de son conjoint, partenaire pacsé ou concubin, soumises à impôt sur le revenu.
-    Ne sont pas prises en compte, pour déterminer le droit à ASS :
-      l'allocation d'assurance chômage précédemment perçue,
-      les prestations familiales,
-      l'allocation de logement,
-      la majoration de l'ASS,
-      la prime forfaitaire mensuelle de retour à l'emploi,
-      la pension alimentaire ou la prestation compensatoire due par l'intéressé.
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-    Conditions de versement de l'ASS majorée
-        Pour les allocataires admis au bénéfice de l'ASS majorée ( avant le 1er janvier 2004) , le montant de l'ASS majorée est fixé à 22,07 € par jour.
-        Pour mémoire, jusqu'au 31 décembre 2003, pouvaient bénéficier de l'ASS majorée, les allocataires :
-        âgés de 55 ans ou plus et justifiant d'au moins 20 ans d'activité salariée,
-        ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
-        ou justifiant d'au moins 160 trimestres de cotisation retraite.
-    '''
-    ass_elig_i = self.split_by_roles(ass_elig_i_holder, roles = [CHEF, PART])
+@reference_formula
+class base_ressources_ass_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources individuelle de l'ASS"
+    entity_class = Individus
 
-    majo = 0
-    cond_act_prec_suff = True # Transformer en variable d'entrée
-    elig = or_(ass_elig_i[CHEF], ass_elig_i[PART])
-    plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
-    plafond = plafond_mensuel * 12
-    montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
-    revenus = br_pf + 12 * montant_mensuel  # TODO check base ressources
+    def function(self, sali, rstnet, alr, aah, indemnites_stage, revenus_stage_formation_pro):
+        return sali + rstnet + aah + indemnites_stage + revenus_stage_formation_pro
 
-    ass = elig * (12 * montant_mensuel * (revenus <= plafond)
-              + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0))
-    ass = ass * not_(ass / 12 < ass_params.montant_plein)
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.offset(-1)
 
-    return ass  # annualisé
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+@reference_formula
+class base_ressources_ass(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources de l'ASS"
+    entity_class = Familles
+
+    def function(self, period, base_ressources_ass_i_holder):
+        base_ressources_ass_i = self.split_by_roles(base_ressources_ass_i_holder, roles = [CHEF, PART])
+        return base_ressources_ass_i[CHEF] + base_ressources_ass_i[PART]
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+@reference_formula
+class ass(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Montant de l'ASS pour une famille"
+    entity_class = Familles
+
+    def function(self, base_ressources_ass, ass_eligibilite_i_holder, concub, ass_params = law.minim.ass):
+        '''
+        L’Allocation de Solidarité Spécifique (ASS) est une allocation versée aux
+        personnes ayant épuisé leurs droits à bénéficier de l'assurance chômage.
+
+        Le prétendant doit avoir épuisé ses droits à l’assurance chômage.
+        Il doit être inscrit comme demandeur d’emploi et justifier de recherches actives.
+        Il doit être apte à travailler.
+        Il doit justifier de 5 ans d’activité salariée au cours des 10 ans précédant le chômage.
+        À partir de 60 ans, il doit répondre à des conditions particulières.
+
+        Les ressources prises en compte pour apprécier ces plafonds, comprennent l'allocation de solidarité elle-même
+        ainsi que les autres ressources de l'intéressé, et de son conjoint, partenaire pacsé ou concubin,
+        soumises à impôt sur le revenu.
+        Ne sont pas prises en compte, pour déterminer le droit à ASS :
+          l'allocation d'assurance chômage précédemment perçue,
+          les prestations familiales,
+          l'allocation de logement,
+          la majoration de l'ASS,
+          la prime forfaitaire mensuelle de retour à l'emploi,
+          la pension alimentaire ou la prestation compensatoire due par l'intéressé.
+
+        Conditions de versement de l'ASS majorée
+            Pour les allocataires admis au bénéfice de l'ASS majorée (avant le 1er janvier 2004),
+            le montant de l'ASS majorée est fixé à 22,07 € par jour.
+            Pour mémoire, jusqu'au 31 décembre 2003, pouvaient bénéficier de l'ASS majorée, les allocataires :
+            âgés de 55 ans ou plus et justifiant d'au moins 20 ans d'activité salariée,
+            ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
+            ou justifiant d'au moins 160 trimestres de cotisation retraite.
+        '''
+        ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
+
+        majo = 0 # TODO
+        elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
+        plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
+        plafond = plafond_mensuel * 12
+        montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
+
+        revenus = base_ressources_ass + 12 * montant_mensuel
+
+        ass = 12 * montant_mensuel * (revenus <= plafond) + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0)
+        ass = ass * elig
+        ass = ass * not_(ass / 12 < ass_params.montant_plein) # pas d'ASS si montant mensuel < montant journalier de base
+
+        return ass
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')

@@ -2419,16 +2419,3 @@ build_simple_formula('cmu_nb_pac', PeriodSizeIndependentIntCol(function = cmu._c
     label = u"Nombre de personnes à charge au titre de la CMU",
     entity = 'fam',
     ))
-############################################################
-# Allocation Spécifique de Solidarité
-############################################################
-build_simple_formula('ass', FloatCol(function = ass._ass,
-    label = u"Montant de l'Allocation Spécifique de Solidarité",
-    entity = 'fam'
-    ))
-build_simple_formula('ass_elig_i', BoolCol(function = ass._ass_elig_i,
-    label = u"Éligibilité individuelle à l'ASS",
-    ))
-build_simple_formula('chomeur', BoolCol(function = ass._chomeur,
-    label = u"Montant de l'Allocation Spécifique de Solidarité",
-    ))
