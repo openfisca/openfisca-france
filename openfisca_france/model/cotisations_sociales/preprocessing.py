@@ -111,7 +111,6 @@ def build_pat(_P):
         del pat['public_titulaire_hospitaliere'][category]
 
     pat['public_non_titulaire'] = pat.pop('contract')
-
     # log.info(u"Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE,
     #     pat[DEBUG_SAL_TYPE].keys()))
 
@@ -153,6 +152,8 @@ def build_sal(_P):
     del sal['fonc']['etat']
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
+
+    print sal['public_titulaire_etat']
 
     # log.info(u"Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE,
     #     sal[DEBUG_SAL_TYPE].keys()))

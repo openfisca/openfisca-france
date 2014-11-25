@@ -77,6 +77,28 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
 
 
 @reference_formula
+class cotisation_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisation exceptionnelle de solidarité (employe)"
+
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+        cotisation = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
+            bareme_name = "excep_solidarite",
+            base = (
+                salbrut +
+                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+                ),
+            type_sal = type_sal,
+            )
+        return cotisation
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
 class pension_civile_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus

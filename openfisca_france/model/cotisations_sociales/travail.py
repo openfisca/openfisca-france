@@ -985,15 +985,15 @@ def seuil_fds(_P):
 
 
 @reference_formula
-class cotsal_contrib(SimpleFormulaColumn):
+class cotisations_salariales_contrib(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales salariales contributives"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cot_sal_rafp,
+    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, rafp_employe,
                  pension_civile_employe, _P):
         sal = _P.cotsoc.cotisations_salarie.__dict__
-        cotsal = zeros(len(salbrut))
+        cotisations_salariales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])
             if category[0] in sal:
@@ -1006,28 +1006,28 @@ class cotsal_contrib(SimpleFormulaColumn):
                             )
                         )
                     ) * is_contrib
-                    cotsal += temp
+                    cotisations_salariales += temp
         public_titulaire = (
             (type_sal == CAT['public_titulaire_etat'])
             + (type_sal == CAT['public_titulaire_territoriale'])
             + (type_sal == CAT['public_titulaire_hospitaliere']))
 
-        return cotsal + (pension_civile_employe + cot_sal_rafp) * public_titulaire
+        return cotisations_salariales + (pension_civile_employe + rafp_employe) * public_titulaire
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
-class cotsal_noncontrib(SimpleFormulaColumn):
+class cotisations_salariales_noncontrib(SimpleFormulaColumn):
     column = FloatCol
     label = u"Cotisations sociales salariales non-contributives"
     entity_class = Individus
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cot_sal_rafp,
-                 pension_civile_employe, cotsal_contrib, P = law):
+    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, rafp_employe,
+                 pension_civile_employe, cotisations_salariales_contrib, P = law):
         sal = P.cotsoc.cotisations_salarie.__dict__
-        cotsal = zeros(len(salbrut))
+        cotisations_salariales = zeros(len(salbrut))
         seuil_assuj_fds = seuil_fds(P)
     #    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
         for category in CAT:
@@ -1038,8 +1038,8 @@ class cotsal_noncontrib(SimpleFormulaColumn):
                     is_noncontrib = (bar.option == "noncontrib")  # and (bar.name in ["famille", "maladie"])
                     temp = -(
                         iscat * bar.calc(
-                            salbrut + primes_fonction_publique + indemnite_residence - hsup + cot_sal_rafp +
-                            pension_civile_employe + cotsal_contrib * (
+                            salbrut + primes_fonction_publique + indemnite_residence - hsup + rafp_employe +
+                            pension_civile_employe + cotisations_salariales_contrib * (
                                 category[0] == 'public_non_titulaire'
                                 )
                             * (
@@ -1047,21 +1047,21 @@ class cotsal_noncontrib(SimpleFormulaColumn):
                                 )
                             ) * is_noncontrib * not_(is_exempt_fds)
                         )
-                    cotsal += temp
-        return cotsal
+                    cotisations_salariales += temp
+        return cotisations_salariales
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
-class cotsal(SimpleFormulaColumn):
+class cotisations_salariales(SimpleFormulaColumn):
     column = FloatCol
     label = u"Cotisations sociales salariales"
     entity_class = Individus
 
-    def function(self, cotsal_contrib, cotsal_noncontrib):
-        return cotsal_contrib + cotsal_noncontrib
+    def function(self, cotisations_salariales_contrib, cotisations_salariales_noncontrib):
+        return cotisations_salariales_contrib + cotisations_salariales_noncontrib
 
     def get_output_period(self, period):
         return period
@@ -1112,43 +1112,15 @@ class crdssal(SimpleFormulaColumn):
 
 
 @reference_formula
-class cot_sal_rafp(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Part salariale de la retraite additionelle de la fonction publique"
-#    Part salariale de la retraite additionelle de la fonction publique
-#    TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-#    Note: sal_brut est le traitement indiciaire brut pour les fonctionnaires
-
-    def function(self, salbrut, type_sal, primes_fonction_publique, supp_familial_traitement, indemnite_residence, _P):
-        eligibles = ((type_sal == CAT['public_titulaire_etat'])
-                     + (type_sal == CAT['public_titulaire_territoriale'])
-                     + (type_sal == CAT['public_titulaire_hospitaliere']))
-        tib = salbrut * eligibles
-
-        plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
-        base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
-        plaf_ss = _P.cotsoc.gen.plaf_ss
-        sal = scale_tax_scales(TaxScalesTree('sal', _P.cotsoc.sal), plaf_ss)
-        assiette = min_(base_imposable, plaf_ass * tib)
-        # Même régime pour etat et colloc
-        cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
-        return -cot_sal_rafp
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
 class sal(SimpleFormulaColumn):
     column = FloatCol
     label = u"Salaires imposables"
     entity_class = Individus
 
     def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, csgsald,
-                 cotsal, hsup, rev_microsocial_declarant1):
+                 cotisations_salariales, hsup, rev_microsocial_declarant1):
         return (
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald + cotsal
+            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald + cotisations_salariales
             - hsup + rev_microsocial_declarant1
             )
 

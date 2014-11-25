@@ -76,7 +76,6 @@ class cotisations_patronales_main_d_oeuvre2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation sociales patronales main d'oeuvre"
-
     # TODO: A discriminer selon la taille de l'entreprise
     # Il s'agit de prélèvements sur les salaires que la CN ne classe pas dans les cotisations sociales
     #  En particulier, la CN classe:
@@ -149,7 +148,7 @@ def seuil_fds(_P):
 
 
 @reference_formula
-class cotsal_contrib2(SimpleFormulaColumn):
+class cotisations_salariales_contrib2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales salariales contributives"
@@ -157,7 +156,7 @@ class cotsal_contrib2(SimpleFormulaColumn):
     def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cot_sal_rafp,
                  pension_civile_employe, _P):
         sal = _P.cotsoc.cotisations_salarie.__dict__
-        cotsal = zeros(len(salbrut))
+        cotisations_salariales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])
             if category[0] in sal:
@@ -170,28 +169,28 @@ class cotsal_contrib2(SimpleFormulaColumn):
                             )
                         )
                     ) * is_contrib
-                    cotsal += temp
+                    cotisations_salariales += temp
         public_titulaire = (
             (type_sal == CAT['public_titulaire_etat'])
             + (type_sal == CAT['public_titulaire_territoriale'])
             + (type_sal == CAT['public_titulaire_hospitaliere']))
 
-        return cotsal + (pension_civile_employe + cot_sal_rafp) * public_titulaire
+        return cotisations_salariales + (pension_civile_employe + cot_sal_rafp) * public_titulaire
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
-class cotsal_noncontrib2(SimpleFormulaColumn):
+class cotisations_salariales_noncontrib2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales salariales non-contributives"
 
     def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cot_sal_rafp,
-                 pension_civile_employe, cotsal_contrib, _P):
+                 pension_civile_employe, cotisations_salariales_contrib, _P):
         sal = _P.cotsoc.cotisations_salarie.__dict__
-        cotsal = zeros(len(salbrut))
+        cotisations_salariales = zeros(len(salbrut))
         seuil_assuj_fds = seuil_fds(_P)
     #    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
         for category in CAT:
@@ -203,27 +202,27 @@ class cotsal_noncontrib2(SimpleFormulaColumn):
                     temp = -(iscat * bar.calc(
                         salbrut + primes_fonction_publique + indemnite_residence -
                         hsup + cot_sal_rafp + pension_civile_employe +
-                        cotsal_contrib * (
+                        cotisations_salariales_contrib * (
                             category[0] == 'public_non_titulaire'
                             ) * (bar.name == "excep_solidarite")
                         )  # * (category[0] == 'public_non_titulaire')
                         * is_noncontrib * not_(is_exempt_fds)
                         )
-                    cotsal += temp
-        return cotsal
+                    cotisations_salariales += temp
+        return cotisations_salariales
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
-class cotsal2(SimpleFormulaColumn):
+class cotisations_salariales2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales salariales"
 
-    def function(self, cotsal_contrib, cotsal_noncontrib):
-        return cotsal_contrib + cotsal_noncontrib
+    def function(self, cotisations_salariales_contrib, cotisations_salariales_noncontrib):
+        return cotisations_salariales_contrib + cotisations_salariales_noncontrib
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')

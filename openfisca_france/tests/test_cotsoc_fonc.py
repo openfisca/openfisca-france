@@ -57,6 +57,7 @@ def test():
 
             error_margin = 1,
             expected_values = dict(
+                pension_civile_employeur = -1371.80,
                 allocations_temporaires_invalidite = -6.6,
                 rafp_employeur = -20,
                 maladie_employeur = -194,
@@ -65,13 +66,14 @@ def test():
                 fnal_tranche_a_plus_20 = -8,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
-#                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, transport csa,
-                pension_civile_employeur = -1371.80,
-#                cotsal = -(167.80 + 20 + 23.72),
-                # pension, rafp
+#                cotisations_salariales = -(167.80 + 20 + 23.72),
+                # pension, rafp, cotisation exceptionnelle de solidarité
                 pension_civile_employe = -167.80,
                 rafp_employe = -20,
+                cotisation_exceptionnelle_solidarite_employe = - 23.72,
                 csgsald = -128.28,
                 csgsali = -60.36,
                 crdssal = -12.58,
@@ -108,7 +110,7 @@ def test():
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
 
-#                cotsal = -(167.80 + 20 + 23.72),
+#                cotisations_salariales = -(167.80 + 20 + 23.72),
                 # pension, rafp
                 pension_civile_employe = -167.80,
                 rafp_employe = -20,
@@ -142,7 +144,7 @@ def test():
                 pension_civile_employeur = -546,
                 rafp_employeur = -20,
                 versement_transport = -2000 * 0.0175,
-#                cotsal = -(167.80 + 20 + 23.72),
+#                cotisations_salariales = -(167.80 + 20 + 23.72),
                 # pension, rafp, except de solidarité
                 pension_civile_employe = -167.80,
                 rafp_employe = -20,
@@ -173,9 +175,9 @@ def test():
                 pension_civile_employeur = 0,
                 rafp_employeur = 0,
                 versement_transport = -2560 * 0.0175,
-                # cotsal = -(170.24 + 2.56 + 58.24 + 19.20 + 23.16),
+                # cotisations_salariales = -(170.24 + 2.56 + 58.24 + 19.20 + 23.16),
                 # viel_plaf viel_deplaf ircantecA maladie, cot excep de solidarite
-#                cotsal_contrib = -(170.24 + 2.56 + 58.24),
+#                cotisations_salariales_contrib = -(170.24 + 2.56 + 58.24),
                 # viel_plaf viel_deplaf ircantecA
                 pension_civile_employe = 0,
                 rafp_employe = 0,
@@ -214,7 +216,7 @@ def test():
                 pension_civile_employeur = -1371.80,
                 rafp_employeur = -20,
                 versement_transport = -2000 * 0.0175,
-#                cotsal = -(167.80 + 20 + 24.45),  # cot excep de solidarité
+#                cotisations_salariales = -(167.80 + 20 + 24.45),  # cot excep de solidarité
                 pension_civile_employe = -167.80,
                 rafp_employe = -20,
                 crdssal = -12.93,
@@ -256,7 +258,7 @@ def test():
                 pension_civile_employeur = -1371.80 * 2,
                 rafp_employeur = -20 * 2,
                 versement_transport = -2000 * 0.0175 * 2,
-                # cotsal = -(167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
+                # cotisations_salariales = -(167.80 + 20 + 24.45) * 2 ,  # cot excep de solidarité
                 # pension rafp
                 pension_civile_employe = -167.80 * 2,
                 rafp_employe = -20 * 2,
