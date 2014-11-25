@@ -133,7 +133,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
         def prefill_cache(self):
             # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
             from .model import lgtm
-            lgtm._zone_apl(np.array(['75101']))
+            lgtm.preload_zone_apl()
 
     return TaxBenefitSystem
 
