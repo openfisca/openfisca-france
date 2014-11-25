@@ -105,8 +105,7 @@ def _acqgpl(f7up, f7uq, period, acqgpl = law.ir.credits_impot.acqgpl):
     Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
     2002-2007
     '''
-    if 2002 <= period.start.year <= 2007:
-        return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
+    return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
 
 
 def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):

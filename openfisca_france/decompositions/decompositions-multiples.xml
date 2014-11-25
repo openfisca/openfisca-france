@@ -6,13 +6,13 @@
           <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
             <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
               <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
-              <NODE code="cotpat" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
+              <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
               <NODE code="alleg_fillon" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
               <NODE code="alleg_cice" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
               <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
               <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
             </NODE>
-            <NODE code="cotsal" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" />
+            <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" />
             <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG deduc" />
             <NODE code="mhsup" color="0,115,170" desc="Heures supplémentaires éxonérées" shortname="Heures sup" />
           </NODE>
@@ -166,13 +166,13 @@
         <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
           <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
-            <NODE code="cotpat" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
+            <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
             <NODE code="alleg_fillon" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
             <NODE code="alleg_cice" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
             <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
             <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
           </NODE>
-          <NODE code="cotsal" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" />
+          <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" />
           <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG deduc" />
           <NODE code="mhsup" color="0,115,170" desc="Heures supplémentaires éxonérées" shortname="Heures sup" />
         </NODE>

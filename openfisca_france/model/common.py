@@ -141,8 +141,8 @@ class revenu_initial_individu(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Revenu initial de l'individu"
 
-    def function(self, cotisations_patronales_contrib, cotsal_contrib, pen, rev_cap, rev_trav):
-        return rev_trav + pen + rev_cap - cotisations_patronales_contrib - cotsal_contrib
+    def function(self, cotisations_patronales_contributives, cotisations_salariales_contributives, pen, rev_cap, rev_trav):
+        return rev_trav + pen + rev_cap - cotisations_patronales_contributives - cotisations_salariales_contributives
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'year').period('year')
@@ -164,14 +164,14 @@ def _nivvie_ini(revini, uc):
     return revini / uc
 
 
-def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotsal):
+def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salariales):
     '''
     Revenu primaire du ménage
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
     'men'
     '''
-    return rev_trav + rev_cap - cotisations_patronales - cotsal - cho
+    return rev_trav + rev_cap - cotisations_patronales - cotisations_salariales - cho
 
 
 def _rev_trav(rev_sal, rag, ric, rnc):
@@ -282,11 +282,11 @@ def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_hol
             csg_fon + csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
 
 
-def _cotsoc_noncontrib(cotisations_patronales_noncontrib, cotsal_noncontrib):
+def _cotsoc_noncontrib(cotisations_patronales_noncontrib, cotisations_salariales_noncontrib):
     '''
     Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
     '''
-    return cotisations_patronales_noncontrib + cotsal_noncontrib
+    return cotisations_patronales_noncontrib + cotisations_salariales_noncontrib
 
 
 def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_cap_bar_declarant1, prelsoc_pv_mo_holder,
