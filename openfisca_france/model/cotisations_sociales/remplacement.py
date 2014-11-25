@@ -10,41 +10,28 @@
 from __future__ import division
 
 import logging
+import datetime
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_, ones
 
+from openfisca_core.accessors import law
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
+
+from ..base import FloatCol, Individus, reference_formula, SimpleFormulaColumn, dated_function, DatedFormulaColumn
 
 
 log = logging.getLogger(__name__)
+
 
 # Exonération de CSG et de CRDS sur les revenus du chômage
 # et des préretraites si cela abaisse ces revenus sous le smic brut
 # TODO: mettre un trigger pour l'éxonération
 #       des revenus du chômage sous un smic
 
+
 ############################################################################
 # # Allocations chômage
 ############################################################################
-
-
-def _csg_rempl(rfr_n_2, nbpt_n_2, chobrut, rstbrut, _P):
-    '''
-    Taux retenu sur la CSG des revenus de remplacment:
-    0 : Non renseigné/non pertinent
-    1 : Exonéré  (sous plafond de ressource)
-    2 : Taux réduit (irpp < seuil de non versement)
-    3 : Taux plein
-    '''
-    # TODO: problème avec le rfr n-2
-    P = _P.cotsoc.gen
-    seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbpt_n_2 - 1) / 2))
-    res = (0
-           + max_((chobrut > 0) + (rstbrut > 0), 0)  # pertinence la personne est au chômage ou pensionnées
-           + (rfr_n_2 >= seuil_th)  # la personne n'ont pas assez de  ressources
-           + 1)  # la personne ne satisfait pas à la conditon de ressources mais son impot avant credit > seuil de non imposition
-    return res
-
 
 def exo_csg_chom(chobrut, csg_rempl, _P):
     '''
@@ -56,14 +43,14 @@ def exo_csg_chom(chobrut, csg_rempl, _P):
                         + crdscho_sans_exo(chobrut, csg_rempl, _P))
     nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
     cho_seuil_exo = _P.csg.chom.min_exo * nbh_travail * _P.cotsoc.gen.smic_h_b
-    return (chonet_sans_exo <= 12 * cho_seuil_exo)  # annuel
+    return (chonet_sans_exo <= cho_seuil_exo)
 
 
 def csgchod_sans_exo(chobrut, csg_rempl, _P):
     '''
     CSG déductible sur les allocations chômage sans exo
     '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
+    plaf_ss = _P.cotsoc.gen.plaf_ss
     csg = scale_tax_scales(TaxScalesTree('csg', _P.csg.chom), plaf_ss)
     taux_plein = csg['plein']['deduc'].calc(chobrut)
     taux_reduit = csg['reduit']['deduc'].calc(chobrut)
@@ -75,7 +62,7 @@ def csgchoi_sans_exo(chobrut, csg_rempl, _P):
     '''
     CSG imposable sur les allocations chômage sans exo
     '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
+    plaf_ss = _P.cotsoc.gen.plaf_ss
     csg = scale_tax_scales(TaxScalesTree('csg', _P.csg.chom), plaf_ss)
     taux_plein = csg['plein']['impos'].calc(chobrut)
     taux_reduit = csg['reduit']['impos'].calc(chobrut)
@@ -87,124 +74,192 @@ def crdscho_sans_exo(chobrut, csg_rempl, _P):
     '''
     CRDS sur les allocations chômage sans exo
     '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
+    plaf_ss = _P.cotsoc.gen.plaf_ss
     crds = scale_tax_scales(_P.crds.act, plaf_ss)  # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
     return -crds.calc(chobrut) * (2 <= csg_rempl)
 
 
-def _csgchod(chobrut, csg_rempl, _P):
-    '''
-    CSG déductible sur les allocations chômage
-    '''
-    isexo = exo_csg_chom(chobrut, csg_rempl, _P)
-    csgchod = csgchod_sans_exo(chobrut, csg_rempl, _P) * not_(isexo)
-    return csgchod
+@reference_formula
+class csgchod(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"CSG déductible sur les allocations chômage"
+    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+
+    def function(self, chobrut, csg_rempl, P = law):
+        isexo = exo_csg_chom(chobrut, csg_rempl, P)
+        csgchod = csgchod_sans_exo(chobrut, csg_rempl, P) * not_(isexo)
+        return csgchod
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _csgchoi(chobrut, csg_rempl, _P):
-    '''
-    CSG imposable sur les allocations chômage
-    '''
-    isexo = exo_csg_chom(chobrut, csg_rempl, _P)
-    csgchoi = csgchoi_sans_exo(chobrut, csg_rempl, _P) * not_(isexo)
-    return csgchoi
+@reference_formula
+class csgchoi(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"CSG imposable sur les allocations chômage"
+    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+
+    def function(self, chobrut, csg_rempl, P = law):
+        isexo = exo_csg_chom(chobrut, csg_rempl, P)
+        csgchoi = csgchoi_sans_exo(chobrut, csg_rempl, P) * not_(isexo)
+        return csgchoi
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _crdscho(chobrut, csg_rempl, _P):
-    '''
-    CRDS sur les allocations chômage
-    '''
-    isexo = exo_csg_chom(chobrut, csg_rempl, _P)
-    crdscho = crdscho_sans_exo(chobrut, csg_rempl, _P) * not_(isexo)
-    return crdscho
+@reference_formula
+class crdscho(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"CRDS sur les allocations chômage"
+    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
+
+    def function(self, chobrut, csg_rempl, P = law):
+        isexo = exo_csg_chom(chobrut, csg_rempl, P)
+        crdscho = crdscho_sans_exo(chobrut, csg_rempl, P) * not_(isexo)
+        return crdscho
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _cho(chobrut, csgchod, _P):
-    '''
-    Chômage imposable (recalculé)
-    '''
-    return chobrut + csgchod
+@reference_formula
+class cho(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allocations chômage imposables"
+    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
+
+    def function(self, chobrut, csgchod):
+        return chobrut + csgchod
+
+    def get_output_period(self, period):
+        return period
 
 
-def _chonet(cho, csgchoi, crdscho):
-    '''
-    Chômage net
-    '''
-    return cho + csgchoi + crdscho
+@reference_formula
+class chonet(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allocations chômage nettes"
+    url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+
+    def function(self, cho, csgchoi, crdscho):
+        return cho + csgchoi + crdscho
+
+    def get_output_period(self, period):
+        return period
 
 
 ############################################################################
 # # Pensions
 ############################################################################
 
-def _rstbrut(rsti, csg_rempl, _defaultP):
-    '''
-    Calcule les pensions de retraites brutes à partir des pensions imposables
-    '''
-    P = _defaultP.csg.retraite
-    rst_plein = P.plein.deduc.inverse()
-    # TODO: ajouter la non-déductible dans param
-    rst_reduit = P.reduit.deduc.inverse()
-    rstbrut = ((csg_rempl == 1) * rsti + (csg_rempl == 2) * rst_reduit.calc(rsti)
-                + (csg_rempl == 3) * rst_plein.calc(rsti))
-#    log.info(csg_rempl)
-    return rstbrut
+@reference_formula
+class csgrstd(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"CSG déductible sur les pensions de retraite"
+    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
+
+    def function(self, rstbrut, csg_rempl, P = law):
+        plaf_ss = P.cotsoc.gen.plaf_ss
+        csg = scale_tax_scales(TaxScalesTree('csg', P.csg.retraite), plaf_ss)
+        taux_plein = csg['plein']['deduc'].calc(rstbrut)
+        taux_reduit = csg['reduit']['deduc'].calc(rstbrut)
+        csgrstd = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
+        return -csgrstd
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _csgrstd(rstbrut, csg_rempl, _P):
-    '''
-    CSG déductible sur les retraites
-    '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(TaxScalesTree('csg', _P.csg.retraite), plaf_ss)
-    taux_plein = csg['plein']['deduc'].calc(rstbrut)
-    taux_reduit = csg['reduit']['deduc'].calc(rstbrut)
-    csgrstd = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
-    return -csgrstd
+@reference_formula
+class csgrsti(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"CSG imposable sur les pensions de retraite"
+    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
+
+    def function(self, rstbrut, csg_rempl, P = law):
+        plaf_ss = P.cotsoc.gen.plaf_ss
+        csg = scale_tax_scales(TaxScalesTree('csg', P.csg.retraite), plaf_ss)
+        taux_plein = csg['plein']['impos'].calc(rstbrut)
+        taux_reduit = csg['reduit']['impos'].calc(rstbrut)
+        csgrsti = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
+        return -csgrsti
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _csgrsti(rstbrut, csg_rempl, _P):
-    '''
-    CSG imposable sur les pensions de retraite
-    '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(TaxScalesTree('csg', _P.csg.retraite), plaf_ss)
-    taux_plein = csg['plein']['impos'].calc(rstbrut)
-    taux_reduit = csg['reduit']['impos'].calc(rstbrut)
-    csgrsti = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
-    return -csgrsti
+@reference_formula
+class crdsrst(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"CRDS sur les pensions de retraite"
+    url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
+
+    def function(self, rstbrut, csg_rempl, P = law):
+        plaf_ss = P.cotsoc.gen.plaf_ss
+        crds = scale_tax_scales(TaxScalesTree('crds', P.crds.rst), plaf_ss)
+        isexo = (csg_rempl == 1)
+        return -crds['rst'].calc(rstbrut) * not_(isexo)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _crdsrst(rstbrut, csg_rempl, _P):
-    '''
-    CRDS sur les pensions
-    '''
-    plaf_ss = 12 * _P.cotsoc.gen.plaf_ss
-    crds = scale_tax_scales(TaxScalesTree('crds', _P.crds.rst), plaf_ss)
-    isexo = (csg_rempl == 1)
-    return -crds['rst'].calc(rstbrut) * not_(isexo)
+@reference_formula
+class casa(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Contribution additionnelle de solidarité et d'autonomie"
+    url = u"http://www.service-public.fr/actualites/002691.html"
+
+    @dated_function(datetime.date(2013, 4, 1))
+    def function_2013(self, rstbrut, irpp_holder, csg_rempl, P = law):
+        # TODO: replace irpp by irpp_n_2
+        # TODO: utiliser la bonne période pour irpp_holder
+
+        irpp = self.cast_from_entity_to_roles(irpp_holder)
+        casa = (csg_rempl == 3) * P.prelsoc.add_ret * rstbrut * (irpp > P.ir.recouvrement.seuil)
+
+        return -casa
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _casa(self, rstbrut, irpp_holder, csg_rempl, _P):  # TODO: irpp_n_2
-    """
-    Contribution additionnelle de solidarité et d'autonomie
-    """
-    # TODO: replace irpp by irpp_n_2
+@reference_formula
+class rst(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Pensions de retraite imposables"
+    url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
 
-    irpp = self.cast_from_entity_to_roles(irpp_holder)
-    casa = (csg_rempl == 3) * _P.prelsoc.add_ret * rstbrut * (irpp > _P.ir.recouvrement.seuil)
+    def function(self, rstbrut, csgrstd):
+        return rstbrut + csgrstd
 
-    return -casa
-
-def _rst(rstbrut, csgrstd):
-    '''
-    Calcule les pensions imposables
-    '''
-    return rstbrut + csgrstd
+    def get_output_period(self, period):
+        return period
 
 
-def _rstnet(rst, csgrsti, crdsrst, casa):
-    '''
-    Retraites nettes
-    '''
-    return rst + csgrsti + crdsrst + casa
+@reference_formula
+class rstnet(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Pensions de retraite nettes"
+    url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+
+    # def function(self, rst, csgrsti, crdsrst, casa):
+        # return rst + csgrsti + crdsrst + casa
+    def function(self, rst, csgrsti, crdsrst):
+        return rst + csgrsti + crdsrst
+
+    def get_output_period(self, period):
+        return period

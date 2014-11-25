@@ -15,19 +15,22 @@ import pkg_resources
 from numpy import ceil, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
 
 import openfisca_france
-from .base import QUIFAM, QUIFOY
-from .pfam import nb_enf
-
-CHEF = QUIFAM['chef']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-PART = QUIFAM['part']
-VOUS = QUIFOY['vous']
-
-from .base import Familles, Individus, Menages, reference_formula
 from openfisca_core.accessors import law
 from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import EntityToPersonColumn, PersonToEntityColumn, SimpleFormulaColumn
 from openfisca_core.enumerations import Enum
+
+from .base import Familles, Individus, Menages, QUIFAM, QUIFOY, reference_formula
+from .pfam import nb_enf
+
+
+CHEF = QUIFAM['chef']
+ENFS = [
+    QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'],
+    QUIFAM['enf8'], QUIFAM['enf9'],
+    ]
+PART = QUIFAM['part']
+VOUS = QUIFOY['vous']
 
 
 zone_apl_by_depcom = None
@@ -87,9 +90,6 @@ class br_al(SimpleFormulaColumn):
     label = u"Base ressource des allocations logement"
 
     def function(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, biact, Pr = law.al.ressources):
-        '''
-        Base ressource des allocations logement
-        '''
         # On ne considère que les revenus des 2 conjoints et les revenus non
         # individualisables
         #   0 - non étudiant
@@ -104,7 +104,6 @@ class br_al(SimpleFormulaColumn):
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         rev_coll = self.sum_by_entity(rev_coll_holder)
-
         etuC = (etu[CHEF]) & (not_(etu[PART]))
         etuP = not_(etu[CHEF]) & (etu[PART])
         etuCP = (etu[CHEF]) & (etu[PART])
@@ -113,14 +112,15 @@ class br_al(SimpleFormulaColumn):
         etuCB = etu[CHEF] & boursier[CHEF]
         etuPB = etu[PART] & boursier[PART]
         # self.etu = (self.etu[CHEF]>=1)|(self.etuP>=1)
-
         revCatVous = max_(br_pf_i[CHEF], etuC * (Pr.dar_4 - (etuCB) * Pr.dar_5))
         revCatConj = max_(br_pf_i[PART], etuP * (Pr.dar_4 - (etuPB) * Pr.dar_5))
-        revCatVsCj = not_(etuCP) * (revCatVous + revCatConj) + \
-                        etuCP * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etuCB | etuPB) * Pr.dar_5 + Pr.dar_7)
+        revCatVsCj = (
+            not_(etuCP) * (revCatVous + revCatConj) +
+            etuCP * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etuCB | etuPB) * Pr.dar_5 + Pr.dar_7)
+            )
 
-        # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier), les inclure dans le calcul
-        # somme des revenus catégoriels après abatement
+        # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier),
+        # les inclure dans le calcul somme des revenus catégoriels après abatement
         revCat = revCatVsCj + rev_coll
 
         # TODO: charges déductibles : pension alimentaires et abatements spéciaux
@@ -148,8 +148,16 @@ class br_al(SimpleFormulaColumn):
 
         return br_al
 
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['br_pf_i_holder', 'rev_coll_holder']:
+            return output_period.offset(-1)
+        elif variable_name in ['etu_holder', 'boursier_holder']:
+            return output_period.start.period('month')
+        else:
+            return output_period
+
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('year')
 
 
 @reference_formula

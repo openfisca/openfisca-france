@@ -5119,13 +5119,13 @@
       </CODE>
       <NODE code="patrimoine" description="Revenus liés au patrimoine">
         <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.5" />
+          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.5" />
         </CODE>
         <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.8" />
+          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.8" />
         </CODE>
         <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.03" />
+          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.03" />
         </CODE>
       </NODE>
     </NODE>
@@ -5217,7 +5217,8 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8907.34" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="9325.98" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="9503.89" />
+        <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
+        <VALUE deb="2014-10-01" fin="2015-12-31" valeur="9600" />
       </CODE>
       <CODE code="montant_couple" description="Montant annuel pour un couple marié" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.78818" />
@@ -5233,7 +5234,8 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="14181.30" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.10" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
+        <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
+        <VALUE deb="2014-10-01" fin="2015-12-31" valeur="14904" />
       </CODE>
       <CODE code="plaf_seul" description="Plafond de ressources annuelles pour une personne seule" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
@@ -5249,7 +5251,8 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8907.34" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="9325.98" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="9503.89" />
+        <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
+        <VALUE deb="2014-10-01" fin="2015-12-31" valeur="9600" />
       </CODE>
       <CODE code="plaf_couple" description="Plafond de ressources annuelles pour un couple" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.79786" />
@@ -5265,7 +5268,8 @@
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="14181.30" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.1" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
+        <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
+        <VALUE deb="2014-10-01" fin="2015-12-31" valeur="14904" />
       </CODE>
       <CODE code="maj_3enf" description="Majoration pour 3 enfants" format="percent">
         <VALUE code="maj_3enf" deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
@@ -5653,6 +5657,9 @@
     <CODE code="age_limite_pac" description="Âge limite des personnes à charge" format="integer">
       <VALUE deb="2000-01-01" fin="2014-12-31" valeur="25" />
     </CODE>
+    <CODE code="majoration_dom" description="Coefficient de majoration du plafond CMU applicable aux DOM" format="percent">
+      <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.113" />
+    </CODE>
     <CODE code="plafond_base" description="Plafond annuel pour une personne seule" format="float" type="monetary">
       <VALUE deb="2003-07-01" fin="2004-06-30" valeur="6798.00" />
       <VALUE deb="2004-07-01" fin="2005-06-30" valeur="6913.57" />
@@ -5722,5 +5729,34 @@
       <VALUE deb="2009-08-01" fin="2013-12-31" valeur="500" />
       <VALUE deb="2014-01-01" fin="2015-12-31" valeur="550" />
     </CODE>
+  </NODE>
+  <NODE code="tns" description="Travailleurs non-salariés">
+    <NODE code="micro_entreprise" description="Micro-entreprise">
+      <NODE code="abattement_forfaitaire_fp" description="Abattement forfaitaire pour frais professionnels du régime de la micro-entreprise">
+        <CODE code="achat_revente" description="Activité de type Achat-Revente" format="percent">
+          <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.71" />
+        </CODE>
+        <CODE code="bic" description="Activité de type BIC" format="percent">
+          <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.50" />
+        </CODE>
+        <CODE code="bnc" description="Activité de type BNC" format="percent">
+          <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.34" />
+        </CODE>
+      </NODE>
+      <CODE code="cotisations_sociales" description="Taux moyen des cotisations sociales sur les revenus de la micro-entreprise" format="percent">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.55" />
+      </CODE>
+    </NODE>
+    <NODE code="auto_entrepreneur" description="Taux global de cotisations sociales et formation à appliquer au CA de l'auto-entrepreneur">
+      <CODE code="achat_revente" description="Activité de type Achat-Revente" format="percent">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.142" />
+      </CODE>
+      <CODE code="bic" description="Activité de type BIC" format="percent">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.248" />
+      </CODE>
+      <CODE code="bnc" description="Activité de type BNC" format="percent">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.235" />
+      </CODE>
+    </NODE>
   </NODE>
 </NODE>

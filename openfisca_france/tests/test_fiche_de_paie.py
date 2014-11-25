@@ -28,18 +28,17 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods
 from .base import tax_benefit_system
 
 
 def test_1():
-    year = 2013
+#    year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        period = year,
+        period = "2013-01-01",
         parent1 = dict(
             exposition_accident = 3,
             localisation_entreprise = "75001",
-            salbrut = 3000 * 12,
+            salbrut = 3000,
             taille_entreprise = 3,
             type_sal = 0,
             ),
@@ -54,7 +53,7 @@ non_cadre = dict(
     input_variables = dict(
         exposition_accident = 3,
         localisation_entreprise = "75001",
-        salbrut = 3000 * 12,
+        salbrut = 3000,
         taille_entreprise = 3,
         type_sal = 0,
         ),
@@ -82,8 +81,8 @@ non_cadre = dict(
         vieillesse_plafonnee_employeur = -249,
         vieillesse_deplafonnee_employe = -3,
         vieillesse_plafonnee_employe = -199.5,
-        cotpat_contrib = -597,
-        cotpat_contrib2 = -597,
+        cotisations_patronales_contributives = -597,
+        cotisations_patronales_contributives2 = -597,
         ),
     )
 
@@ -91,7 +90,7 @@ cadre = dict(
     input_variables = dict(
         exposition_accident = 3,
         localisation_entreprise = "75001",
-        salbrut = 6000 * 12,
+        salbrut = 6000,
         taille_entreprise = 3,
         type_sal = 1,
         ),
@@ -107,8 +106,8 @@ cadre = dict(
         agirc_tranche_b_employe = -228.61,
 #        agirc_tranche_b_employeur = -374.09,  # Inclus dans arcco
         assedic_employe = -72.74 - 71.26,
-#        assedic_tranche_a_employe = -72.74
-#        assedic_tranche_b_employe = -71,26,
+#        assedic_tranche_a_employe = -72.74  # Inclus dans assedic
+#        assedic_tranche_b_employe = -71,26,  # Inclus dans assedic
         assedic_employeur = -121.24 - 118.76 ,
 #        assedic_tranche_a_employeur = -11.24  # Inclus dans assedic
 #        assedic_tranche_b_employeur = -118,76,  # Inclus dans assedic
@@ -143,6 +142,7 @@ test_parameters_list = [non_cadre, cadre]
 def test_check():
     for test_parameters in test_parameters_list:
         year = 2012
+        period = "2012-01"
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             )
@@ -150,12 +150,14 @@ def test_check():
 
         employee_type = 'non cadre' if parent1['type_sal'] == 0 else 'cadre'
         simulation = tax_benefit_system.new_scenario().init_single_entity(
-            period = periods.period('year', year),
+            period = "2012-01", #periods.period('year', year),
             parent1 = parent1,
             ).new_simulation(debug = True)
 
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
-            output = simulation.calculate(variable).sum() / 12
+            output = simulation.calculate(variable)
+            print variable
+            print output
             yield assert_variable, variable, employee_type, monthly_amount, output
 
 

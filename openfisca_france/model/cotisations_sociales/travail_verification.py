@@ -46,7 +46,7 @@ taux_versement_transport_by_localisation_entreprise = None
 
 
 @reference_formula
-class cotpat_contrib2(SimpleFormulaColumn):
+class cotisations_patronales_contributives2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation sociales patronales contributives"
@@ -54,7 +54,7 @@ class cotpat_contrib2(SimpleFormulaColumn):
     def function(self, agff_tranche_a_employeur, ags, arrco_tranche_a_employeur, assedic_employeur,
                  pension_civile_employeur, rafp_employeur, vieillesse_deplafonnee_employeur,
                  vieillesse_plafonnee_employeur):
-        cotpat = (
+        cotisations_patronales = (
             agff_tranche_a_employeur +
             ags +
             arrco_tranche_a_employeur +
@@ -65,14 +65,14 @@ class cotpat_contrib2(SimpleFormulaColumn):
             )
 
 
-        return cotpat
+        return cotisations_patronales
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
-class cotpat_main_d_oeuvre2(SimpleFormulaColumn):
+class cotisations_patronales_main_d_oeuvre2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation sociales patronales main d'oeuvre"
@@ -83,9 +83,9 @@ class cotpat_main_d_oeuvre2(SimpleFormulaColumn):
     #     - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
     #     - D993: participation à l'effort de construction
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotpat_transport, _P):
+    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotisations_patronales_transport, _P):
         pat = _P.cotsoc.cotisations_employeur.__dict__
-        cotpat = zeros(len(salbrut))
+        cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])  # category[1] is the numerical index
             if category[0] in pat.keys():
@@ -95,22 +95,22 @@ class cotpat_main_d_oeuvre2(SimpleFormulaColumn):
                              * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (
                                  indemnite_residence + primes_fonction_publique))
                              * is_mo)
-                    cotpat += temp
-        return cotpat + cotpat_transport
+                    cotisations_patronales += temp
+        return cotisations_patronales + cotisations_patronales_transport
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
-class cotpat_noncontrib2(SimpleFormulaColumn):
+class cotisations_patronales_noncontrib2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation sociales patronales non contributives"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotpat_accident, _P):
+    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotisations_patronales_accident, _P):
         pat = _P.cotsoc.cotisations_employeur.__dict__
-        cotpat = zeros(len(salbrut))
+        cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])
             if category[0] in pat.keys():
@@ -120,24 +120,24 @@ class cotpat_noncontrib2(SimpleFormulaColumn):
                              * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (
                                  indemnite_residence + primes_fonction_publique))
                              * is_noncontrib)
-                    cotpat += temp
-        return cotpat + cotpat_accident
+                    cotisations_patronales += temp
+        return cotisations_patronales + cotisations_patronales_accident
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
-class cotpat2(SimpleFormulaColumn):
+class cotisations_patronales2(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales patronales"
 
-    def function(self, cotpat_contrib, cotpat_noncontrib, cotpat_main_d_oeuvre):
-        return cotpat_contrib + cotpat_noncontrib + cotpat_main_d_oeuvre
+    def function(self, cotisations_patronales_contributives, cotisations_patronales_noncontrib, cotisations_patronales_main_d_oeuvre):
+        return cotisations_patronales_contributives + cotisations_patronales_noncontrib + cotisations_patronales_main_d_oeuvre
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 def seuil_fds(_P):
@@ -179,7 +179,7 @@ class cotsal_contrib2(SimpleFormulaColumn):
         return cotsal + (pension_civile_employe + cot_sal_rafp) * public_titulaire
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
@@ -213,7 +213,7 @@ class cotsal_noncontrib2(SimpleFormulaColumn):
         return cotsal
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
@@ -226,4 +226,4 @@ class cotsal2(SimpleFormulaColumn):
         return cotsal_contrib + cotsal_noncontrib
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')

@@ -55,7 +55,7 @@ class af_nbenf(SimpleFormulaColumn):
         return af_nbenf
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula

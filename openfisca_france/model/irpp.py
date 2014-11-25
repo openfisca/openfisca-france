@@ -405,7 +405,7 @@ class rto_net_declarant1(EntityToPersonColumn):
 
 def _tspr(sal_pen_net, rto_net_declarant1):
     '''
-    Traitemens salaires pensions et rentes individuelles
+    Traitements salaires pensions et rentes individuelles
     'ind'
     '''
     return sal_pen_net + rto_net_declarant1
