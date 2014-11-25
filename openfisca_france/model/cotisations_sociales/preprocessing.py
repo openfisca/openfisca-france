@@ -153,8 +153,6 @@ def build_sal(_P):
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
 
-    print sal['public_titulaire_etat']
-
     # log.info(u"Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE,
     #     sal[DEBUG_SAL_TYPE].keys()))
 
