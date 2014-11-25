@@ -25,8 +25,6 @@
 
 import os
 
-import numpy as np
-
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
