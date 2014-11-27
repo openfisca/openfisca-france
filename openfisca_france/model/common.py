@@ -141,8 +141,8 @@ class revenu_initial_individu(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Revenu initial de l'individu"
 
-    def function(self, cotisations_patronales_contrib, cotisations_salariales_contrib, pen, rev_cap, rev_trav):
-        return rev_trav + pen + rev_cap - cotisations_patronales_contrib - cotisations_salariales_contrib
+    def function(self, cotisations_patronales_contributives, cotisations_salariales_contrib, pen, rev_cap, rev_trav):
+        return rev_trav + pen + rev_cap - cotisations_patronales_contributives - cotisations_salariales_contrib
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'year').period('year')
