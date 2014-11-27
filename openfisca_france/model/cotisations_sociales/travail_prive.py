@@ -389,10 +389,10 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
             taux_contribution = redevable_taxe_apprentissage * (
                 (effectifs_entreprise < 2000) * (part_d_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
                 (effectifs_entreprise >= 2000) * (part_d_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
-                (.01 <= part_d_alternants < .02) * taux.entre_1_2_pc_alternants +
-                (.02 <= part_d_alternants < .03) * taux.entre_2_3_pc_alternants +
-                (.03 <= part_d_alternants < .04) * taux.entre_3_4_pc_alternants +
-                (.04 <= part_d_alternants < .05) * taux.entre_4_5_pc_alternants
+                (.01 <= part_d_alternants) * (part_d_alternants < .02) * taux.entre_1_2_pc_alternants +
+                (.02 <= part_d_alternants) * (part_d_alternants < .03) * taux.entre_2_3_pc_alternants +
+                (.03 <= part_d_alternants) * (part_d_alternants < .04) * taux.entre_3_4_pc_alternants +
+                (.04 <= part_d_alternants) * (part_d_alternants < .05) * taux.entre_4_5_pc_alternants
                 )
         else:
             taux_contribution = (effectifs_entreprise >= 250) * taux.plus_de_250
@@ -903,10 +903,10 @@ class taille_entreprise(SimpleFormulaColumn):
 
     def function(self, effectifs_entreprise):
         taille_entreprise = (
-            effectifs_entreprise > 0 +
-            effectifs_entreprise > 10 +
-            effectifs_entreprise > 20 +
-            effectifs_entreprise > 250
+            (effectifs_entreprise > 0) +
+            (effectifs_entreprise > 10) +
+            (effectifs_entreprise > 20) +
+            (effectifs_entreprise > 250)
             )
         return taille_entreprise
 

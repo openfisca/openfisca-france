@@ -97,14 +97,16 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
                  pension_civile_employe, cotisations_salariales_contributives,
                  _P):
         seuil_assuj_fds = seuil_fds(_P)
-        relevant_catgeories = [
-            'public_titulaire_etat',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire'
-            ]
-        assujettis = type_sal in [CAT[category] for category in relevant_catgeories] * (
-            (salbrut - hsup) > seuil_assuj_fds)
+
+        assujettis = (
+            (type_sal == CAT['public_titulaire_etat']) +
+            (type_sal == CAT['public_titulaire_territoriale']) +
+            (type_sal == CAT['public_titulaire_hospitaliere']) +
+            (type_sal == CAT['public_non_titulaire'])
+            ) * (
+            (salbrut - hsup) > seuil_assuj_fds
+            )
+
         # TODO: check assiette voir IPP
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
