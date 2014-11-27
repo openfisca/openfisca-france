@@ -48,6 +48,7 @@ log = logging.getLogger(__name__)
 
 def build_pat(_P):
     """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
+
     pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), _P.cotsoc.gen.plaf_ss)
 
     for bareme in ['apprentissage', 'apprentissage_add']:
@@ -69,11 +70,6 @@ def build_pat(_P):
     # Renaiming
     pat['prive_non_cadre'] = pat.pop('noncadre')
     pat['prive_cadre'] = pat.pop('cadre')
-
-    # log.info(u"Le dictionnaire des barèmes des cotisations patronales des non cadres contient: \n %s",
-    #     pat['prive_non_cadre'].keys())
-    # log.info(u"Le dictionnaire des barèmes des cotisations patronales des cadres contient: \n %s",
-    #     pat['prive_cadre'].keys())
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
@@ -111,8 +107,6 @@ def build_pat(_P):
         del pat['public_titulaire_hospitaliere'][category]
 
     pat['public_non_titulaire'] = pat.pop('contract')
-    # log.info(u"Le dictionnaire des barèmes cotisations patronales %s contient : \n %s \n" % (DEBUG_SAL_TYPE,
-    #     pat[DEBUG_SAL_TYPE].keys()))
 
     return pat
 
@@ -152,9 +146,6 @@ def build_sal(_P):
     del sal['fonc']['etat']
     del sal['fonc']['colloc']
     del sal['fonc']['contract']
-
-    # log.info(u"Le dictionnaire des barèmes des salariés %s contient : \n %s \n" % (DEBUG_SAL_TYPE,
-    #     sal[DEBUG_SAL_TYPE].keys()))
 
     return sal
 

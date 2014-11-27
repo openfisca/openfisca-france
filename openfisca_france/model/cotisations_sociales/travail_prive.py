@@ -25,19 +25,18 @@
 
 from __future__ import division
 
-import datetime
+
 import logging
 
-from numpy import logical_not as not_, logical_or as or_, ones, maximum as max_, minimum as min_, zeros
+from numpy import ones, zeros
 from openfisca_core.accessors import law
+from openfisca_core.enumerations import Enum
+from openfisca_core.columns import EnumCol, FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
 
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import EntityToPersonColumn, SimpleFormulaColumn
 
-from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
-
-from ..base import CAT, QUIFAM, QUIFOY, QUIMEN, TAUX_DE_PRIME
-from ..base import FoyersFiscaux, Individus, reference_formula
+from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
+from ..base import Individus, reference_formula
 
 
 CHEF = QUIFAM['chef']
@@ -65,20 +64,11 @@ def apply_bareme_for_relevant_type_sal(
         if type_sal_enum[0] not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
             continue
         bareme = bareme_by_type_sal_name[type_sal_enum[0]].get(bareme_name)  # TODO; should have better warnings
-#        print type_sal_enum[0]
-#        print bareme
         if bareme:
-#            if type_sal_enum[0] == "public_titulaire_territoriale" and bareme_name == "ati":
-#                print type_sal_enum[0]
-#                print type_sal_enum[1]
-#                print bareme
-#                print base
-#                print bareme.calc(base) * (type_sal == type_sal_enum[1])
             cotisation += bareme.calc(base) * (type_sal == type_sal_enum[1])
     return - cotisation
 
 # TODO:
-# toutes les taxes d'apprentissages (noms et barèmes à vérifier)
 # contribution patronale de prévoyance complémentaire
 # check hsup everywhere !
 # versement transport dépdendant de la localité (décommenter et compléter)
@@ -160,7 +150,7 @@ class agff_tranche_a_employe(SimpleFormulaColumn):
     label = u"Cotisation chômage AGFF tranche A (employé)"
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
+        cotisation= apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "agff",
             base = (
@@ -182,7 +172,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
     label = u"Cotisation chômage AGFF tranche A (employeur)"
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
+        cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "agffnc",
             base = (
@@ -191,7 +181,17 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
                 ),
             type_sal = type_sal,
             )
-        return cotisation
+
+        cotisation_cadre = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_name = "agffc",
+            base = (
+                salbrut +
+                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+                ),
+            type_sal = type_sal,
+            )
+        return cotisation_cadre + cotisation_non_cadre
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
@@ -376,6 +376,37 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
 
 
 @reference_formula
+class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Contribution supplémentaire à l'apprentissage"
+
+    def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
+                 indemnite_residence, part_d_alternants, effectifs_entreprise, period,
+                 taux = law.cotsoc.contribution_supplementaire_apprentissage):
+
+        if period.start.year > 2012:
+            taux_contribution = redevable_taxe_apprentissage * (
+                (effectifs_entreprise < 2000) * (part_d_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
+                (effectifs_entreprise >= 2000) * (part_d_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
+                (.01 <= part_d_alternants < .02) * taux.entre_1_2_pc_alternants +
+                (.02 <= part_d_alternants < .03) * taux.entre_2_3_pc_alternants +
+                (.03 <= part_d_alternants < .04) * taux.entre_3_4_pc_alternants +
+                (.04 <= part_d_alternants < .05) * taux.entre_4_5_pc_alternants
+                )
+        else:
+            taux_contribution = (effectifs_entreprise >= 250) * taux.plus_de_250
+            # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
+        return - taux_contribution * (
+            salbrut +
+            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+            )
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
 class contribution_solidarite_autonomie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -423,7 +454,7 @@ class cotisation_exceptionnelle_temporaire_employe(SimpleFormulaColumn):
 class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation_exceptionnelle_temporaire (employeur)"
+    label = u"Cotisation exceptionnelle temporaire (employeur)"
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
@@ -612,6 +643,29 @@ class maladie_employeur(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
+
+@reference_formula
+class participation_effort_construction(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Participation à l'effort de construction"
+
+    def function(self, salbrut, hsup, type_sal, primes_fonction_publique,
+                 indemnite_residence, _P):
+        cotisation = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_name = "construction",
+            base = (
+                salbrut +
+                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+                ),
+            type_sal = type_sal,
+            )
+        return cotisation
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
 
 
 @reference_formula
@@ -815,97 +869,6 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_patronales_contributives(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisation sociales patronales contributives"
-
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, rafp_employeur,
-                 pension_civile_employeur, _P):
-        pat = _P.cotsoc.cotisations_employeur.__dict__
-        cotisations_patronales = zeros(len(salbrut))
-        for category in CAT:
-            iscat = (type_sal == category[1])  # category[1] is the numerical index
-            if category[0] in pat.keys():
-                for bar in pat[category[0]].itervalues():
-                    if category[0] in [
-                        "prive_cadre",
-                        "prive_non_cadre",
-                        "public_non_titulaire",
-                        "public_titulaire_hospitaliere",
-                        ]: #  TODO: move up
-                        is_contrib = (bar.option == "contrib") & (bar.name not in ['cnracl', 'rafp', 'pension'])
-                        temp = -(
-                            iscat * bar.calc(
-                                salbrut + (category[0] == 'public_non_titulaire') * (
-                                    indemnite_residence + primes_fonction_publique
-                                    )
-                                )
-                            ) * is_contrib
-                        cotisations_patronales += temp
-
-        cotisations_patronales += rafp_employeur + pension_civile_employeur
-        return cotisations_patronales
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-
-@reference_formula
-class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisation sociales patronales main d'oeuvre"
-
-    # TODO: A discriminer selon la taille de l'entreprise
-    # Il s'agit de prélèvements sur les salaires que la CN ne classe pas dans les cotisations sociales
-    #  En particulier, la CN classe:
-    #     - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
-    #     - D993: participation à l'effort de construction
-
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotisations_patronales_transport, _P):
-        pat = _P.cotsoc.cotisations_employeur.__dict__
-        cotisations_patronales = zeros(len(salbrut))
-        for category in CAT:
-            iscat = (type_sal == category[1])  # category[1] is the numerical index
-            if category[0] in pat.keys():
-                for bar in pat[category[0]].itervalues():
-                    is_mo = (bar.option == "main-d-oeuvre")
-                    temp = -(iscat
-                             * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (
-                                 indemnite_residence + primes_fonction_publique
-                                 ))
-                             * is_mo)
-                    cotisations_patronales += temp
-        return cotisations_patronales + cotisations_patronales_transport
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-@reference_formula
-class cotisations_patronales_transport(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations sociales patronales: versement transport"
-
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
-        pat = _P.cotsoc.cotisations_employeur.__dict__
-        transport = zeros(len(salbrut))
-        for category in CAT:
-            iscat = (type_sal == category[1])  # category[1] is the numerical index of the category
-            if category[0] in pat.keys():  # category[0] is the name of the category
-                if 'transport' in pat[category[0]]:
-                    bar = pat[category[0]]['transport']
-                    temp = -bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (
-                        indemnite_residence + primes_fonction_publique)) * iscat  # check
-                    transport += temp
-        return transport
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-@reference_formula
 class taux_accident_travail(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -921,419 +884,31 @@ class taux_accident_travail(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_patronales_accident(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations patronales accident du travail et maladie professionelle"
-
-    def function(self, salbrut, taux_accident_travail, type_sal):
-        prive = (type_sal == CAT['prive_cadre']) + (type_sal == CAT['prive_non_cadre'])
-        return -salbrut * taux_accident_travail * prive  # TODO: check public
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')  # TODO month ?
-
-
-@reference_formula
-class cotisations_patronales_noncontrib(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisation sociales patronales non contributives"
-
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotisations_patronales_accident, _P):
-        pat = _P.cotsoc.cotisations_employeur.__dict__
-        cotisations_patronales = zeros(len(salbrut))
-        for category in CAT:
-            iscat = (type_sal == category[1])
-            if category[0] in pat.keys():
-                for bar in pat[category[0]].itervalues():
-                    is_noncontrib = (bar.option == "noncontrib")
-                    temp = -(iscat
-                             * bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (
-                                 indemnite_residence + primes_fonction_publique))
-                             * is_noncontrib)
-                    cotisations_patronales += temp
-        return cotisations_patronales + cotisations_patronales_accident
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-
-@reference_formula
-class cotisations_patronales(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations sociales patronales"
-
-    def function(self, cotisations_patronales_contributives, cotisations_patronales_noncontrib, cotisations_patronales_main_d_oeuvre):
-        return cotisations_patronales_contributives + cotisations_patronales_noncontrib + cotisations_patronales_main_d_oeuvre
-
-    def get_output_period(self, period):
-        return period
-
-
-def seuil_fds(_P):
-    '''
-    Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
-    '''
-    from math import floor
-    ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
-    pt_ind = _P.cotsoc.sal.fonc.commun.pt_ind
-    seuil_mensuel = floor((pt_ind * ind_maj_ref))
-    return seuil_mensuel
-
-
-@reference_formula
-class cotisations_salariales_contrib(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations sociales salariales contributives"
-
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, rafp_employe,
-                 pension_civile_employe, _P):
-        sal = _P.cotsoc.cotisations_salarie.__dict__
-        cotisations_salariales = zeros(len(salbrut))
-        for category in CAT:
-            iscat = (type_sal == category[1])
-            if category[0] in sal:
-                for bar in sal[category[0]].itervalues():
-                    is_contrib = (bar.option == "contrib") & (
-                        bar.name not in ["rafp", "pension", "cnracl1", "cnracl2"])  # dealed by pension civile and rafp
-                    temp = -(iscat * bar.calc(
-                        salbrut - hsup + (category[0] == 'public_non_titulaire') * (
-                            indemnite_residence + primes_fonction_publique
-                            )
-                        )
-                    ) * is_contrib
-                    cotisations_salariales += temp
-        public_titulaire = (
-            (type_sal == CAT['public_titulaire_etat'])
-            + (type_sal == CAT['public_titulaire_territoriale'])
-            + (type_sal == CAT['public_titulaire_hospitaliere']))
-
-        return cotisations_salariales + (pension_civile_employe + rafp_employe) * public_titulaire
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class cotisations_salariales_noncontrib(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales salariales non-contributives"
-    entity_class = Individus
-
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, rafp_employe,
-                 pension_civile_employe, cotisations_salariales_contrib, P = law):
-        sal = P.cotsoc.cotisations_salarie.__dict__
-        cotisations_salariales = zeros(len(salbrut))
-        seuil_assuj_fds = seuil_fds(P)
-    #    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
-        for category in CAT:
-            iscat = (type_sal == category[1])
-            if category[0] in sal:
-                for bar in sal[category[0]].itervalues():
-                    is_exempt_fds = (category[0] in ['public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere']) * (bar.name == 'solidarite') * ((salbrut - hsup) <= seuil_assuj_fds)  # TODO: check assiette voir IPP
-                    is_noncontrib = (bar.option == "noncontrib")  # and (bar.name in ["famille", "maladie"])
-                    temp = -(
-                        iscat * bar.calc(
-                            salbrut + primes_fonction_publique + indemnite_residence - hsup + rafp_employe +
-                            pension_civile_employe + cotisations_salariales_contrib * (
-                                category[0] == 'public_non_titulaire'
-                                )
-                            * (
-                                bar.name == "excep_solidarite"
-                                )
-                            ) * is_noncontrib * not_(is_exempt_fds)
-                        )
-                    cotisations_salariales += temp
-        return cotisations_salariales
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class cotisations_salariales(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales salariales"
-    entity_class = Individus
-
-    def function(self, cotisations_salariales_contrib, cotisations_salariales_noncontrib):
-        return cotisations_salariales_contrib + cotisations_salariales_noncontrib
-
-    def get_output_period(self, period):
-        return period
-
-
-@reference_formula
-class csgsald(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"CSG déductible sur les salaires"
-    entity_class = Individus
-
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, hsup, P = law):
-        csg = scale_tax_scales(P.csg.act.deduc, P.cotsoc.gen.plaf_ss)
-        return - csg.calc(salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class csgsali(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"CSG imposables sur les salaires"
-    entity_class = Individus
-
-    def function(self, salbrut, hsup, primes_fonction_publique, indemnite_residence, supp_familial_traitement, P = law):
-        csg = scale_tax_scales(P.csg.act.impos, P.cotsoc.gen.plaf_ss)
-        return - csg.calc(
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
-            )
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class crdssal(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"CRDS sur les salaires"
-    entity_class = Individus
-
-    def function(self, salbrut, hsup, primes_fonction_publique, indemnite_residence, supp_familial_traitement, P = law):
-        crds = scale_tax_scales(P.crds.act, P.cotsoc.gen.plaf_ss)
-        return - crds.calc(salbrut - hsup + primes_fonction_publique + indemnite_residence + supp_familial_traitement)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class sal(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Salaires imposables"
-    entity_class = Individus
-
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, csgsald,
-                 cotisations_salariales, hsup, rev_microsocial_declarant1):
-        return (
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald + cotisations_salariales
-            - hsup + rev_microsocial_declarant1
-            )
-
-    def get_output_period(self, period):
-        return period
-
-
-@reference_formula
-class salnet(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Salaires nets d'après définition INSEE"
-    entity_class = Individus
-
-    def function(self, sal, crdssal, csgsali):
-        '''
-        Calcul du salaire net d'après définition INSEE
-        net = net de csg et crds
-        '''
-        return sal + crdssal + csgsali
-
-    def get_output_period(self, period):
-        return period
-
-
-@reference_formula
-class sal_h_b(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Salaire horaire brut"
-
-    def function(self, salbrut):
-        nbh_travaillees = 151.67 * 12
-        return salbrut / nbh_travaillees
-
-    def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
-
-
-@reference_formula
-class alleg_fillon(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires"
-
-    def function(self, period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
-        if period.start.year >= 2007:
-            # TODO: deal with taux between 2005 and 2007
-            taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, cotsoc)
-            alleg_fillon = (
-                taux_fillon
-                * salbrut
-                * ((type_sal == CAT['prive_non_cadre'])
-                    | (type_sal == CAT['prive_cadre']))
-                )
-            return alleg_fillon
-        else:
-            return 0 * salbrut
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class alleg_cice(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Crédit d'imôt pour la compétitivité et l'emploi"
-
-    def function(self, period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
-        if period.start.year >= 2013:
-            taux_cice = taux_exo_cice(sal_h_b, cotsoc)
-            alleg_cice = (
-                taux_cice
-                * salbrut
-                * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre']))
-                )
-            return alleg_cice
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class taxes_sal(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Taxes sur les salaires"
-
-    def function(self, salbrut, tva_ent, _P):
-        P = _P.cotsoc.taxes_sal
-        maj = P.taux_maj  # TODO: exonérations apprentis
-        taxes_sal = maj.calc(salbrut) + P.taux.metro * salbrut  # TODO: modify if DOM
-        return -taxes_sal * not_(tva_ent)
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class tehr(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
-
-    def function(self, salbrut, _P):
-        # TODO: a affiner avec condition de plafond
-        #       sur le chiffre d'affaire des entreprises
-        bar = _P.cotsoc.tehr
-        return -bar.calc(salbrut)
-
-    def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')  # TODO period
-
-
-@reference_formula
-class salsuperbrut(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Salaires superbruts"
-
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, cotisations_patronales,
-                 alleg_fillon, alleg_cice, taxes_sal, tehr):
-        salsuperbrut = (
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            - cotisations_patronales - alleg_fillon - alleg_cice - taxes_sal - tehr
-            )
-#        expression = ("   salbrut             %s \n"
-#                      " + cotisations_patronales              %s \n"
-#                      " + primes_fonction_publique              %s \n"
-#                      " + indemnite_residence %s \n"
-#                      " - alleg_fillon        %s \n"
-#                      " - alleg_cice          %s \n"
-#                      " + taxes_sal           %s \n"
-#                      " + tehr                %s \n"
-#                      " = salsuperbut         %s") % (salbrut, cotisations_patronales, primes_fonction_publique,
-#                                                        indemnite_residence,
-#                                                      - alleg_fillon, -alleg_cice, taxes_sal, tehr,
-#                                                      salsuperbrut)
-#        print expression
-        return salsuperbrut
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-############################################################################
-# # Non salariés
-############################################################################
-
-
-@reference_formula
-class rev_microsocial(SimpleFormulaColumn):
-    """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
-    column = FloatCol
-    entity_class = FoyersFiscaux
-    label = u"Revenu net des cotisations sociales pour le régime microsocial"
-    start_date = datetime.date(2009, 1, 1)
-    url = u"http://www.apce.com/pid6137/regime-micro-social.html"
-
-    def function(self, assiette_service, assiette_vente, assiette_proflib, _P):
-        P = _P.cotsoc.sal.microsocial
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-        return total - prelsoc_ms
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
-
-
-@reference_formula
-class rev_microsocial_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = rev_microsocial
-
-
-############################################################################
-# # Helper functions
-############################################################################
-
-
-def taux_exo_fillon(sal_h_b, taille_entreprise, P):
-    '''
-    Exonération Fillon
-    http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
-    '''
-    # La divison par zéro engendre un warning
-    # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
-    # Le montant est calculé chaque année civile, pour chaque salarié ;
-    # il est égal au produit de la totalité de la rémunération annuelle telle
-    # que visée à l’article L. 242-1 du code de la Sécurité sociale par un
-    # coefficient.
-    # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
-    # au titre des salariés temporaires pour lesquels elle est tenue à
-    # l’obligation d’indemnisation compensatrice de congés payés.
-
-    smic_h_b = P.gen.smic_h_b
-    Pf = P.exo_bas_sal.fillon
-    seuil = Pf.seuil
-    tx_max = (
-        Pf.tx_max * (taille_entreprise > 2)
-        + Pf.tx_max2 * (taille_entreprise <= 2)
+class taille_entreprise(SimpleFormulaColumn):
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"Non pertinent",
+                u"Moins de 10 salariés",
+                u"De 10 à 19 salariés",
+                u"De 20 à 249 salariés",
+                u"Plus de 250 salariés",
+                ],
+            ),
+        default = 0,
         )
-    if seuil <= 1:
-        return 0
-    return (tx_max * min_(1, max_(seuil * smic_h_b / (sal_h_b + 1e-10) - 1, 0)
-                          / (seuil - 1)))
+    entity_class = Individus
+    label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)"
+    url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
 
+    def function(self, effectifs_entreprise):
+        taille_entreprise = (
+            effectifs_entreprise > 0 +
+            effectifs_entreprise > 10 +
+            effectifs_entreprise > 20 +
+            effectifs_entreprise > 250
+            )
+        return taille_entreprise
 
-def taux_exo_cice(sal_h_b, P):
-    smic_h_b = P.gen.smic_h_b
-    Pc = P.exo_bas_sal.cice
-    plafond = Pc.max * smic_h_b
-    taux_cice = (sal_h_b <= plafond) * Pc.taux
-    return taux_cice
+    def get_output_period(self, period):
+        return period

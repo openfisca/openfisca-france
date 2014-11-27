@@ -39,7 +39,7 @@ PREF = QUIMEN['pref']
 VOUS = QUIFOY['vous']
 
 
-from .travail import apply_bareme_for_relevant_type_sal
+from .travail_prive import apply_bareme_for_relevant_type_sal
 
 
 @reference_formula
@@ -76,19 +76,46 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('month')
 
 
+def seuil_fds(_P):
+    '''
+    Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
+    '''
+    from math import floor
+    ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
+    pt_ind_mensuel = _P.cotsoc.sal.fonc.commun.pt_ind / 12
+    seuil_mensuel = floor((pt_ind_mensuel * ind_maj_ref))
+    return seuil_mensuel
+
+
 @reference_formula
-class cotisation_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
+class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation exceptionnelle de solidarité (employe)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, rafp_employe,
+                 pension_civile_employe, cotisations_salariales_contributives,
+                 _P):
+        seuil_assuj_fds = seuil_fds(_P)
+        relevant_catgeories = [
+            'public_titulaire_etat',
+            'public_titulaire_territoriale',
+            'public_titulaire_hospitaliere',
+            'public_non_titulaire'
+            ]
+        assujettis = type_sal in [CAT[category] for category in relevant_catgeories] * (
+            (salbrut - hsup) > seuil_assuj_fds)
+        # TODO: check assiette voir IPP
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "excep_solidarite",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+            base = assujettis * min_(
+                (
+                    salbrut - hsup + indemnite_residence + rafp_employe + pension_civile_employe +
+                    + primes_fonction_publique +
+                    (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
+                    ),
+                _P.cotsoc.sal.fonc.commun.plafond_base_solidarite,
                 ),
             type_sal = type_sal,
             )
@@ -96,6 +123,69 @@ class cotisation_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class fonds_emploi_hospitalier(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Fonds pour l'emploi hospitalier (employeur)"
+
+    def function(self, indemnite_residence, primes_fonction_publique, salbrut, type_sal, _P):
+        cotisation = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_name = "feh",
+            base = (
+                salbrut + indemnite_residence # TODO check base
+                ),
+            type_sal = type_sal,
+            )
+        return cotisation
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class ircantec_employe(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Ircantec employé"
+
+    def function(self, salbrut, type_sal, hsup, indemnite_residence, primes_fonction_publique, _P):
+        ircantec = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
+            bareme_name = "ircantec",
+            base = (
+                salbrut - hsup + indemnite_residence + primes_fonction_publique
+                ),
+            type_sal = type_sal,
+            )
+        return ircantec
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class ircantec_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Ircantec employeur"
+
+    def function(self, salbrut, type_sal, hsup, indemnite_residence, primes_fonction_publique, _P):
+        ircantec = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_name = "ircantec",
+            base = (
+                salbrut - hsup + indemnite_residence + primes_fonction_publique
+                ),
+            type_sal = type_sal,
+            )
+        return ircantec
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -169,12 +259,11 @@ class rafp_employe(SimpleFormulaColumn):
         return period.start.period(u'month').offset('first-of')
 
 
-
 @reference_formula
 class rafp_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Part patronale de la retraite additionelle de la fonction publique"
+    label = u"Part patronale de la retraite additionnelle de la fonction publique"
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     # Note: salbrut est le traitement indiciaire brut pour les fonctionnaires

@@ -56,6 +56,12 @@ reference_input_variable(
     name = 'base_remboursement_transport',
     )
 reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Effectifs de l'entreprise",
+    name = 'effectifs_entreprise',
+    )
+reference_input_variable(
     column = FixedStrCol(max_length = 5),
     entity_class = Individus,
     label = u"Localisation entreprise",
@@ -66,6 +72,12 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Nombre de tickets restaurant",
     name = 'nombre_tickets_restaurant',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Part d'alternants calculée par rapport avec l'effectif moyen",
+    name = 'part_d_alternants',
     )
 reference_input_variable(
     column = FloatCol(),
@@ -90,24 +102,6 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Salaire de base",
     name = 'salaire_base',
-    )
-reference_input_variable(    # TODO passer en float et gérer les intervalles
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"Non pertinent",
-                u"Moins de 10 salariés",
-                u"De 10 à 19 salariés",
-                u"De 20 à 249 salariés",
-                u"Plus de 250 salariés",
-                ],
-            ),
-        default = 0,
-        ),
-    entity_class = Individus,
-    label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)",
-    name = 'taille_entreprise',
-    url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
     )
 reference_input_variable(
     column = FloatCol(default = .5),
