@@ -69,7 +69,7 @@ class age(AlternativeFormulaColumn):
 
     @alternative_function()
     def age_from_birth(self, birth, period):
-        return (datetime64(period.start.date) - birth).astype('timedelta64[Y]')
+        return (datetime64(period.date) - birth).astype('timedelta64[Y]')
 
     @alternative_function()
     def age_from_agem(self, agem):
