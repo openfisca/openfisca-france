@@ -27,8 +27,9 @@ from __future__ import division
 
 import datetime
 import logging
+import math
 
-from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros
+from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
 from openfisca_core.accessors import law
 
 from openfisca_core.columns import FloatCol
@@ -36,7 +37,7 @@ from openfisca_core.formulas import EntityToPersonColumn, SimpleFormulaColumn
 
 from openfisca_core.taxscales import scale_tax_scales
 
-from ..base import CAT, QUIFAM, QUIFOY, QUIMEN, TAUX_DE_PRIME
+from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
 from ..base import FoyersFiscaux, Individus, reference_formula
 
 
@@ -69,10 +70,9 @@ def seuil_fds(_P):
     '''
     Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    from math import floor
     ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
     pt_ind = _P.cotsoc.sal.fonc.commun.pt_ind
-    seuil_mensuel = floor((pt_ind * ind_maj_ref))
+    seuil_mensuel = math.floor((pt_ind * ind_maj_ref))
     return seuil_mensuel
 
 
@@ -399,8 +399,8 @@ class salsuperbrut(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Salaires superbruts"
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, cotisations_patronales,
-                 alleg_fillon, alleg_cice, taxes_sal, tehr):
+    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
+            cotisations_patronales, alleg_fillon, alleg_cice, taxes_sal, tehr):
         salsuperbrut = (
             salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_patronales - alleg_fillon - alleg_cice - taxes_sal - tehr

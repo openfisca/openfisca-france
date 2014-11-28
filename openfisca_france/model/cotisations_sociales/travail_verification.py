@@ -27,6 +27,7 @@ from __future__ import division
 
 
 import logging
+import math
 
 from numpy import logical_not as not_, zeros
 from openfisca_core.columns import FloatCol
@@ -175,10 +176,9 @@ class cotisations_patronales_old(SimpleFormulaColumn):
 
 
 def seuil_fds(_P):
-    from math import floor
     ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
     pt_ind = _P.cotsoc.sal.fonc.commun.pt_ind
-    seuil_mensuel = floor((pt_ind * ind_maj_ref) / 12)
+    seuil_mensuel = math.floor((pt_ind * ind_maj_ref) / 12)
     return seuil_mensuel
 
 

@@ -26,12 +26,14 @@
 from __future__ import division
 
 import logging
+import math
 
 from numpy import maximum as max_, minimum as min_
 
 from ..base import (
     CAT, FloatCol, Individus, QUIFAM, QUIFOY, QUIMEN, reference_formula, SimpleFormulaColumn, TAUX_DE_PRIME,
     )
+
 
 CHEF = QUIFAM['chef']
 log = logging.getLogger(__name__)
@@ -80,10 +82,9 @@ def seuil_fds(_P):
     '''
     Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    from math import floor
     ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
     pt_ind_mensuel = _P.cotsoc.sal.fonc.commun.pt_ind / 12
-    seuil_mensuel = floor((pt_ind_mensuel * ind_maj_ref))
+    seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
     return seuil_mensuel
 
 
