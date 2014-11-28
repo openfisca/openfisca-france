@@ -8,6 +8,8 @@
 
 from __future__ import division
 
+from itertools import izip
+
 from numpy import  floor, arange, array, where
 
 from .base import QUIMEN
@@ -127,7 +129,6 @@ def _cplx(self, quifam_holder, quimen_holder, age_holder):
     # TODO problème avec les ENFS qui n'existent pas: leur quifam = 0
     # On contourne en utilisant le fait que leur quimen = 0 également
     res = 0
-    from itertools import izip
     for quif, quim, age_i in izip(quifam.itervalues(), quimen.itervalues(), age.itervalues()):
         res += 1 * (quif == 0) * (quim != 0) + age_i > 25
 
