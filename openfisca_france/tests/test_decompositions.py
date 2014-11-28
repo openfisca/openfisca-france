@@ -32,9 +32,23 @@ from openfisca_core import conv, decompositions, decompositionsxml
 from . import base
 
 
-def test_decomposition_xml_file():
-    decomposition_tree = xml.etree.ElementTree.parse(os.path.join(base.tax_benefit_system.DECOMP_DIR,
-        base.tax_benefit_system.DEFAULT_DECOMP_FILE))
+def test_decompositon_xml_file():
+    decompostions_directory = base.tax_benefit_system.DECOMP_DIR
+    file_paths = [
+        os.path.join(
+            decompostions_directory,
+            base.tax_benefit_system.DEFAULT_DECOMP_FILE,
+            ),
+        os.path.join(
+            decompostions_directory,
+            'fiche_de_paie_decomposition.xml',
+            )
+        ]
+    for file_path in file_paths:
+        yield check_decomposition_xml_file, file_path
+
+def check_decomposition_xml_file(file_path):
+    decomposition_tree = xml.etree.ElementTree.parse(os.path.join(file_path))
     decomposition_xml_json = conv.check(decompositionsxml.xml_decomposition_to_json)(decomposition_tree.getroot(),
         state = conv.default_state)
 
