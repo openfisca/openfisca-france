@@ -114,9 +114,9 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 (
-                    salbrut - hsup + indemnite_residence + rafp_employe + pension_civile_employe +
-                    + primes_fonction_publique +
-                    (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
+                    salbrut - hsup + indemnite_residence + rafp_employe + pension_civile_employe
+                    + primes_fonction_publique
+                    + (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
                     ),
                 _P.cotsoc.sal.fonc.commun.plafond_base_solidarite,
                 ),
