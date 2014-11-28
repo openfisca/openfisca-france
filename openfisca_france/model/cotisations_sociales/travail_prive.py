@@ -873,11 +873,11 @@ class taux_accident_travail(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
+    start_date = datetime.date(2012, 1, 1)
 
     def function(self, exposition_accident, period, accident = law.cotsoc.accident):
-        if period.start.year >= 2012:
-            return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
-                + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
+        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
+            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')  # TODO month ?
