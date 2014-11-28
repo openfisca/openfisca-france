@@ -726,7 +726,7 @@ class taux_versement_transport(SimpleFormulaColumn):
     #
     #        }
 
-        global taux_versement_transport_by_localisation_entreprise
+    #    global taux_versement_transport_by_localisation_entreprise
     #    if taux_versement_transport_by_localisation_entreprise is None:
     #        with pkg_resources.resource_stream(
     #            openfisca_france.__name__,
