@@ -28,7 +28,7 @@ from __future__ import division
 import logging
 import math
 
-from numpy import maximum as max_, minimum as min_
+from numpy import maximum as max_, minimum as min_, zeros
 
 from ..base import (
     CAT, FloatCol, Individus, QUIFAM, QUIFOY, QUIMEN, reference_formula, SimpleFormulaColumn, TAUX_DE_PRIME,
@@ -320,7 +320,8 @@ class gipa(SimpleFormulaColumn):
 
     def function(self, type_sal, _P):
         # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
-        pass
+        # TODO
+        return zeros(len(type_sal))
 
     def get_output_period(self, period):
         return period.start.period(u'year').offset('first-of')
