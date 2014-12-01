@@ -329,6 +329,7 @@ class rsa(SimpleFormulaColumn):
         base_normalise = max_(base, 0)
 
         # Seuil de versement *annualisé*
+        # TODO : pourquoi le seuil de non versement est * 12 ?
         return base_normalise * (base_normalise >= P.rsa_nv * 12)
 
     def get_variable_period(self, output_period, variable_name):

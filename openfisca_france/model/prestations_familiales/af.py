@@ -73,6 +73,9 @@ class af_base(SimpleFormulaColumn):
         af_base = (af_nbenf >= 1) * af_1enf + (af_nbenf >= 2) * af_2enf + max_(af_nbenf - 2, 0) * af_enf_supp
         return 12 * af_base  # annualisé
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period(u'month').offset('first-of')
+
     def get_output_period(self, period):
         return period.start.period(u'year').offset('first-of')
 

@@ -25,9 +25,10 @@
 
 import datetime
 
-from nose.tools import assert_less
+
 
 from openfisca_core import periods
+from openfisca_core.tools import assert_near
 from openfisca_france.reforms import allocations_familiales_imposables
 from openfisca_france.tests import base
 
@@ -58,18 +59,18 @@ def test_allocations_familiales_imposables():
     error_margin = 0.01
     af = reference_simulation.calculate('af')
     expected_af = [1532.16] * 10
-    assert_less(max(abs(expected_af - af)), error_margin)
+    assert_near(expected_af, af, error_margin)
     rbg = reference_simulation.calculate('rbg')
 
     reform_simulation = scenario.new_simulation(debug = True)
     reform_af = reform_simulation.calculate('af')
 
-    assert_less(max(abs(expected_af - reform_af)), error_margin)
+    assert_near(expected_af, reform_af, error_margin)
     reform_af_imposables = reform_simulation.calculate('allocations_familiales_imposables')
-    assert_less(max(abs(expected_af - reform_af_imposables)), error_margin)
+    assert_near(expected_af, reform_af_imposables, error_margin)
 
     reform_rbg = reform_simulation.calculate('rbg')
-    assert_less(max(abs(reform_rbg - rbg - af)), error_margin)
+    assert_near(reform_rbg, rbg + af, error_margin)
 
 
 if __name__ == '__main__':
