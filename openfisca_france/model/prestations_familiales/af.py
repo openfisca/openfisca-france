@@ -112,6 +112,9 @@ class af_majo(SimpleFormulaColumn):
         af_majo = nbenf_maj1 * af_maj1 + nbenf_maj2 * af_maj2
         return 12 * af_majo  # annualisé
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period(u'month').offset('first-of')
+
     def get_output_period(self, period):
         return period.start.period(u'year').offset('first-of')
 
@@ -129,6 +132,9 @@ class af_forf(SimpleFormulaColumn):
         nbenf_forf = nb_enf(age, smic55, P.age3, P.age3)
         af_forfait = round(bmaf * P.taux.forfait, 2)
         return 12 * ((af_nbenf >= 2) * nbenf_forf) * af_forfait  # annualisé
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period(u'month').offset('first-of')
 
     def get_output_period(self, period):
         return period.start.period(u'year').offset('first-of')
