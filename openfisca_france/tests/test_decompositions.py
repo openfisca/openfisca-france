@@ -29,23 +29,8 @@ import xml.etree.ElementTree
 
 from openfisca_core import conv, decompositions, decompositionsxml
 
-from . import base
+from openfisca_france.tests import base
 
-
-def test_decompositon_xml_file():
-    decompostions_directory = base.tax_benefit_system.DECOMP_DIR
-    file_paths = [
-        os.path.join(
-            decompostions_directory,
-            base.tax_benefit_system.DEFAULT_DECOMP_FILE,
-            ),
-        os.path.join(
-            decompostions_directory,
-            'fiche_de_paie_decomposition.xml',
-            )
-        ]
-    for file_path in file_paths:
-        yield check_decomposition_xml_file, file_path
 
 def check_decomposition_xml_file(file_path):
     decomposition_tree = xml.etree.ElementTree.parse(os.path.join(file_path))
@@ -78,7 +63,22 @@ def check_decomposition_xml_file(file_path):
             ).encode('utf-8'))
 
 
+def test_decomposition_xml_files():
+    decompositions_directory = base.tax_benefit_system.DECOMP_DIR
+    files_path = [
+        os.path.join(
+            decompositions_directory,
+            base.tax_benefit_system.DEFAULT_DECOMP_FILE,
+            ),
+        os.path.join(
+            decompositions_directory,
+            'fiche_de_paie_decomposition.xml',
+            )
+        ]
+    for file_path in files_path:
+        yield check_decomposition_xml_file, file_path
+
+
 if __name__ == '__main__':
-    test_decomposition_xml_file()
     import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'decompositions_tests:test_decomposition_xml_file'])
+    nose.core.runmodule(argv = [__file__, '-v', 'test_decompositions:test_decomposition_xml_files'])
