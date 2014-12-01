@@ -148,15 +148,9 @@ class cmu_br(SimpleFormulaColumn):
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
 
-    def function(self, aspa, so_holder, apl_holder, als_holder, alf_holder, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
+    def function(self, aspa, so_holder, apl, als, alf, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
-        apl = self.cast_from_entity_to_roles(apl_holder)
-        apl = self.filter_role(apl, role = CHEF)
-        als = self.cast_from_entity_to_roles(als_holder)
-        als = self.filter_role(als, role = CHEF)
-        alf = self.cast_from_entity_to_roles(alf_holder)
-        alf = self.filter_role(alf, role = CHEF)
 
         cmu_br_i_par = self.split_by_roles(cmu_br_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_br_i_holder, roles = ENFS)
