@@ -53,7 +53,7 @@ from . import cmu as cmu
 from . import common as cm
 from .cotisations_sociales import capital as cs_capital
 
-from .cotisations_sociales import remplacement as cs_remplac
+#from .cotisations_sociales import remplacement as cs_remplac
 
 from . import irpp as ir
 from . import irpp_charges_deductibles as cd
@@ -81,6 +81,8 @@ from .cotisations_sociales import travail_verification
 
 from .cotisations_sociales import travail_fonction_publique
 from .cotisations_sociales import travail_totaux
+from .cotisations_sociales import allegements
+
 from . import lgtm
 
 
@@ -2117,49 +2119,49 @@ build_simple_formula('rmi', FloatCol(function = rsa._rmi,
     entity = 'fam',
     label = u"Revenu de solidarité active - socle",
     ))
-build_simple_formula('rsa_socle_majore', FloatCol(function = rsa._rsa_socle_majore,
-    entity = 'fam',
-    label = u"Majoration pour parent isolé du Revenu de solidarité active socle",
-    start = date(2009, 6, 1)))
-build_simple_formula('rsa_act', FloatCol(function = rsa._rsa_act,
-    entity = 'fam',
-    label = u"Revenu de solidarité active - activité",
-    start = date(2009, 6, 1)))
-build_simple_formula('rsa_act_i', FloatCol(function = rsa._rsa_act_i))
-build_simple_formula('psa', FloatCol(function = rsa._psa,
-    entity = 'fam',
-    label = u"Prime de solidarité active",
-    start = date(2009, 1, 1),
-    end = date(2009, 12, 31),
-    url = u"http://www.service-public.fr/actualites/001077.html",
-    ))
-build_simple_formula('api', FloatCol(function = rsa._api,
-    entity = 'fam',
-    end = date(2009, 5, 31),
-    label = u"Allocation de parent isolé",
-    url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
-    ))
-build_simple_formula('crds_mini', FloatCol(function = rsa._crds_mini,
-    entity = 'fam',
-    start = date(2009, 6, 1)))
-build_dated_formula('aefa',
-    [
-        dict(start = date(2002, 1, 1),
-          end = date(2007, 12, 31),
-          function = rsa._aefa__2008_,
-         ),
-        dict(start = date(2009, 1, 1),
-          end = date(2015, 12, 31),#TODO: actualiser la date (si la loi n'a pas changé)
-          function = rsa._aefa__2008_,
-         ),
-        dict(start = date(2008, 1, 1),
-          end = date(2008, 12, 31),
-          function = rsa._aefa_2008,
-         ),
-    ],
-    FloatCol(entity='fam',
-    label = u"Allocation exceptionnelle de fin d'année",
-    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"))
+#build_simple_formula('rsa_socle_majore', FloatCol(function = rsa._rsa_socle_majore,
+#    entity = 'fam',
+#    label = u"Majoration pour parent isolé du Revenu de solidarité active socle",
+#    start = date(2009, 6, 1)))
+#build_simple_formula('rsa_act', FloatCol(function = rsa._rsa_act,
+#    entity = 'fam',
+#    label = u"Revenu de solidarité active - activité",
+#    start = date(2009, 6, 1)))
+#build_simple_formula('rsa_act_i', FloatCol(function = rsa._rsa_act_i))
+#build_simple_formula('psa', FloatCol(function = rsa._psa,
+#    entity = 'fam',
+#    label = u"Prime de solidarité active",
+#    start = date(2009, 1, 1),
+#    end = date(2009, 12, 31),
+#    url = u"http://www.service-public.fr/actualites/001077.html",
+#    ))
+#build_simple_formula('api', FloatCol(function = rsa._api,
+#    entity = 'fam',
+#    end = date(2009, 5, 31),
+#    label = u"Allocation de parent isolé",
+#    url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
+#    ))
+#build_simple_formula('crds_mini', FloatCol(function = rsa._crds_mini,
+#    entity = 'fam',
+#    start = date(2009, 6, 1)))
+#build_dated_formula('aefa',
+#    [
+#        dict(start = date(2002, 1, 1),
+#          end = date(2007, 12, 31),
+#          function = rsa._aefa__2008_,
+#         ),
+#        dict(start = date(2009, 1, 1),
+#          end = date(2015, 12, 31),#TODO: actualiser la date (si la loi n'a pas changé)
+#          function = rsa._aefa__2008_,
+#         ),
+#        dict(start = date(2008, 1, 1),
+#          end = date(2008, 12, 31),
+#          function = rsa._aefa_2008,
+#         ),
+#    ],
+#    FloatCol(entity='fam',
+#    label = u"Allocation exceptionnelle de fin d'année",
+#    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"))
 ############################################################
 # ASPA/ASI, Minimum vieillesse
 ############################################################

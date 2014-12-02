@@ -12,7 +12,7 @@ from __future__ import division
 import logging
 import datetime
 
-from numpy import logical_not as not_, maximum as max_, minimum as min_, ones
+from numpy import logical_not as not_
 
 from openfisca_core.accessors import law
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
@@ -37,10 +37,12 @@ def exo_csg_chom(chobrut, csg_rempl, _P):
     '''
     Indicatrice d'exonération de la CSG sur les revenus du chômage sans exo
     '''
-    chonet_sans_exo = (chobrut
-                        + csgchod_sans_exo(chobrut, csg_rempl, _P)
-                        + csgchoi_sans_exo(chobrut, csg_rempl, _P)
-                        + crdscho_sans_exo(chobrut, csg_rempl, _P))
+    chonet_sans_exo = (
+        chobrut +
+        csgchod_sans_exo(chobrut, csg_rempl, _P) +
+        csgchoi_sans_exo(chobrut, csg_rempl, _P) +
+        crdscho_sans_exo(chobrut, csg_rempl, _P)
+        )
     nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
     cho_seuil_exo = _P.csg.chom.min_exo * nbh_travail * _P.cotsoc.gen.smic_h_b
     return (chonet_sans_exo <= cho_seuil_exo)
@@ -75,7 +77,8 @@ def crdscho_sans_exo(chobrut, csg_rempl, _P):
     CRDS sur les allocations chômage sans exo
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    crds = scale_tax_scales(_P.crds.act, plaf_ss)  # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
+    crds = scale_tax_scales(_P.crds.act, plaf_ss)
+    # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
     return -crds.calc(chobrut) * (2 <= csg_rempl)
 
 
@@ -229,7 +232,7 @@ class casa(DatedFormulaColumn):
         irpp = self.cast_from_entity_to_roles(irpp_holder)
         casa = (csg_rempl == 3) * P.prelsoc.add_ret * rstbrut * (irpp > P.ir.recouvrement.seuil)
 
-        return -casa
+        return - casa
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -257,7 +260,7 @@ class rstnet(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
     # def function(self, rst, csgrsti, crdsrst, casa):
-        # return rst + csgrsti + crdsrst + casa
+    # return rst + csgrsti + crdsrst + casa
     def function(self, rst, csgrsti, crdsrst):
         return rst + csgrsti + crdsrst
 

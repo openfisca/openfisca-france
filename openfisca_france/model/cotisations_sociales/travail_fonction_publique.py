@@ -78,16 +78,6 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('month')
 
 
-def seuil_fds(_P):
-    '''
-    Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
-    '''
-    ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
-    pt_ind_mensuel = _P.cotsoc.sal.fonc.commun.pt_ind / 12
-    seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
-    return seuil_mensuel
-
-
 @reference_formula
 class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
     column = FloatCol
@@ -171,6 +161,21 @@ class ircantec_employe(SimpleFormulaColumn):
 
 
 @reference_formula
+class gipa(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
+
+    def function(self, type_sal, _P):
+        # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
+        # TODO
+        return zeros(len(type_sal))
+
+    def get_output_period(self, period):
+        return period.start.period(u'year').offset('first-of')
+
+
+@reference_formula
 class ircantec_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -189,6 +194,38 @@ class ircantec_employeur(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class indemnite_residence(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indemnité de résidence des fonctionnaires"
+
+    def function(self, salbrut, type_sal, zone_apl_individu, _P):
+        zone_apl = zone_apl_individu
+        P = _P.fonc.indem_resid
+        min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
+        taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
+        plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
+        return max_(plancher, taux * salbrut) * (type_sal >= 2)
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class indice_majore(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indice majoré"
+
+    def function(self, type_sal, salbrut, _P):
+        traitement_annuel_brut = _P.fonc.IM_100
+        return (salbrut * 100 * 12 / traitement_annuel_brut) * (type_sal >= 2)
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
@@ -237,6 +274,26 @@ class pension_civile_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
+class primes_fonction_publique(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Calcul des primes pour les fonctionnaries"
+#   Note: sal_brut est égal au traitement indiciaire brut
+
+    def function(self, type_sal, salbrut):
+        public = (
+            (type_sal == CAT['public_titulaire_etat'])
+            + (type_sal == CAT['public_titulaire_territoriale'])
+            + (type_sal == CAT['public_titulaire_hospitaliere'])
+            )
+        tib = salbrut * public
+        return TAUX_DE_PRIME * tib
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
 class rafp_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -281,79 +338,6 @@ class rafp_employeur(SimpleFormulaColumn):
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
         rafp_employeur = eligibles * bareme_rafp.calc(assiette)
         return - rafp_employeur
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class primes_fonction_publique(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Calcul des primes pour les fonctionnaries"
-#   Note: sal_brut est égal au traitement indiciaire brut
-
-    def function(self, type_sal, salbrut):
-        public = (
-            (type_sal == CAT['public_titulaire_etat'])
-            + (type_sal == CAT['public_titulaire_territoriale'])
-            + (type_sal == CAT['public_titulaire_hospitaliere'])
-            )
-        tib = salbrut * public
-        return TAUX_DE_PRIME * tib
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-def _traitement_brut_mensuel(indice_maj, _P):
-        Indice_majore_100_annuel = _P.fonc.IM_100
-        traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
-        return traitement_brut
-
-
-@reference_formula
-class gipa(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
-
-    def function(self, type_sal, _P):
-        # http://www.emploi-collectivites.fr/salaire-fonction-publique#calcul-indice-salarial
-        # TODO
-        return zeros(len(type_sal))
-
-    def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
-
-
-@reference_formula
-class indemnite_residence(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indemnité de résidence des fonctionnaires"
-
-    def function(self, salbrut, type_sal, zone_apl_individu, _P):
-        zone_apl = zone_apl_individu
-        P = _P.fonc.indem_resid
-        min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
-        plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
-        return max_(plancher, taux * salbrut) * (type_sal >= 2)
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class indice_majore(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indice majoré"
-
-    def function(self, type_sal, salbrut, _P):
-        traitement_annuel_brut = _P.fonc.IM_100
-        return (salbrut * 100 * 12/ traitement_annuel_brut) * (type_sal >= 2)
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
@@ -424,3 +408,19 @@ class supp_familial_traitement(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
+
+
+def seuil_fds(_P):
+    '''
+    Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
+    '''
+    ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
+    pt_ind_mensuel = _P.cotsoc.sal.fonc.commun.pt_ind / 12
+    seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
+    return seuil_mensuel
+
+
+def _traitement_brut_mensuel(indice_maj, _P):
+        Indice_majore_100_annuel = _P.fonc.IM_100
+        traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
+        return traitement_brut

@@ -29,7 +29,11 @@
 
 import datetime
 
+from openfisca_core.tools import assert_near
+from openfisca_core.periods import period
 from . import base
+
+
 
 
 def test_rsa_celibataire():
@@ -45,28 +49,24 @@ def test_rsa_celibataire():
         {"year": 2014, "amount": 15000, "rsa": 0},
         {"year": 2014, "amount": 20000, "rsa": 0},
         ]
-
     error_margin = 1
     year = 2014
     age = 29
     revenu = "sali"
     for test in tests_list:
-        print test
         amount = test["amount"]
         simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-            period = year,
+            period = "{}-01".format(year),
             parent1 = {
                 'birth': datetime.date(year - age + 1, 1, 1),
-                revenu: amount,
+                revenu: amount / 12,
                 },
             ).new_simulation(debug = True)
-        calculated_rsa = simulation.calculate('rsa') / 12
-        # TODO use yield
-        assert abs(calculated_rsa - test['rsa']) < error_margin, \
-            'calculated_rsa {} is not equal to expected value {}'.format(test['rsa'], calculated_rsa)
+        calculated_rsa = simulation.calculate('rsa')
+        yield assert_near, calculated_rsa, test['rsa'], error_margin
 
 
-def test_rsa_couple():
+def notest_rsa_couple():
     # test pour un célibataire avec son age variant entre 18 et 25 ans
     tests_list = [
         {
@@ -347,14 +347,7 @@ def test_rsa_couple():
         scenario.suggest()
         simulation = scenario.new_simulation(debug = True)
         calculated_rsa = simulation.calculate('rsa') / 12
-
-#        if test['rsa'] != calculated_rsa :
-
-        assert abs(calculated_rsa - target_rsa) < error_margin, \
-            'calculated_rsa {} is not equal to expected value {}'.format(target_rsa, calculated_rsa)
-        #    u'Variable "{} = {}. Expected: {}'.format(
-        #    variable, calculated_value, expected_value)
-        print calculated_rsa
+        yield assert_near, calculated_rsa, target_rsa, error_margin
 
 
 if __name__ == '__main__':

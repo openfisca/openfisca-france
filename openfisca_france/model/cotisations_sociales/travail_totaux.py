@@ -30,12 +30,13 @@ import logging
 import math
 
 from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
-from openfisca_core.accessors import law
 
+
+from openfisca_core.accessors import law
 from openfisca_core.columns import FloatCol
 from openfisca_core.formulas import EntityToPersonColumn, SimpleFormulaColumn
-
 from openfisca_core.taxscales import scale_tax_scales
+
 
 from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
 from ..base import FoyersFiscaux, Individus, reference_formula
@@ -64,16 +65,6 @@ class cotisations_patronales(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period
-
-
-def seuil_fds(_P):
-    '''
-    Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
-    '''
-    ind_maj_ref = _P.cotsoc.sal.fonc.commun.ind_maj_ref
-    pt_ind = _P.cotsoc.sal.fonc.commun.pt_ind
-    seuil_mensuel = math.floor((pt_ind * ind_maj_ref))
-    return seuil_mensuel
 
 
 @reference_formula
@@ -110,27 +101,6 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_patronales_non_contributives(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales patronales non-contributives"
-    entity_class = Individus
-
-    def function(self, accident_du_travail, allocations_temporaires_invalidite,
-                 famille, maladie_employeur):
-
-        cotisations_patronales_non_contributives = (
-            allocations_temporaires_invalidite +
-            accident_du_travail +
-            famille +
-            maladie_employeur
-            )
-        return cotisations_patronales_non_contributives
-
-    def get_output_period(self, period):
-        return period
-
-
-@reference_formula
 class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
     column = FloatCol
     label = u"Cotisation sociales patronales main d'oeuvre"
@@ -154,6 +124,27 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
             versement_transport
             )
         return cotisations_patronales_main_d_oeuvre
+
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class cotisations_patronales_non_contributives(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Cotisations sociales patronales non-contributives"
+    entity_class = Individus
+
+    def function(self, accident_du_travail, allocations_temporaires_invalidite,
+                 famille, maladie_employeur):
+
+        cotisations_patronales_non_contributives = (
+            allocations_temporaires_invalidite +
+            accident_du_travail +
+            famille +
+            maladie_employeur
+            )
+        return cotisations_patronales_non_contributives
 
     def get_output_period(self, period):
         return period
@@ -317,48 +308,6 @@ class sal_h_b(SimpleFormulaColumn):
         return period.start.period(u'year').offset('first-of')
 
 
-@reference_formula
-class alleg_fillon(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires"
-
-    def function(self, period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
-        if period.start.year >= 2007:
-            # TODO: deal with taux between 2005 and 2007
-            taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, cotsoc)
-            alleg_fillon = (
-                taux_fillon
-                * salbrut
-                * ((type_sal == CAT['prive_non_cadre'])
-                    | (type_sal == CAT['prive_cadre']))
-                )
-            return alleg_fillon
-        else:
-            return 0 * salbrut
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class alleg_cice(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Crédit d'imôt pour la compétitivité et l'emploi"
-
-    def function(self, period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
-        if period.start.year >= 2013:
-            taux_cice = taux_exo_cice(sal_h_b, cotsoc)
-            alleg_cice = (
-                taux_cice
-                * salbrut
-                * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre']))
-                )
-            return alleg_cice
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
@@ -400,10 +349,10 @@ class salsuperbrut(SimpleFormulaColumn):
     label = u"Salaires superbruts"
 
     def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
-            cotisations_patronales, alleg_fillon, alleg_cice, taxes_sal, tehr):
+            cotisations_patronales, allegement_fillon, alleg_cice, taxes_sal, tehr):
         salsuperbrut = (
             salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            - cotisations_patronales - alleg_fillon - alleg_cice - taxes_sal - tehr
+            - cotisations_patronales - allegement_fillon - alleg_cice - taxes_sal - tehr
             )
         return salsuperbrut
 
@@ -443,42 +392,3 @@ class rev_microsocial_declarant1(EntityToPersonColumn):
     variable = rev_microsocial
 
 
-############################################################################
-# # Helper functions
-############################################################################
-
-
-def taux_exo_fillon(sal_h_b, taille_entreprise, P):
-    '''
-    Exonération Fillon
-    http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
-    '''
-    # La divison par zéro engendre un warning
-    # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
-    # Le montant est calculé chaque année civile, pour chaque salarié ;
-    # il est égal au produit de la totalité de la rémunération annuelle telle
-    # que visée à l’article L. 242-1 du code de la Sécurité sociale par un
-    # coefficient.
-    # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
-    # au titre des salariés temporaires pour lesquels elle est tenue à
-    # l’obligation d’indemnisation compensatrice de congés payés.
-
-    smic_h_b = P.gen.smic_h_b
-    Pf = P.exo_bas_sal.fillon
-    seuil = Pf.seuil
-    tx_max = (
-        Pf.tx_max * (taille_entreprise > 2)
-        + Pf.tx_max2 * (taille_entreprise <= 2)
-        )
-    if seuil <= 1:
-        return 0
-    return (tx_max * min_(1, max_(seuil * smic_h_b / (sal_h_b + 1e-10) - 1, 0)
-                          / (seuil - 1)))
-
-
-def taux_exo_cice(sal_h_b, P):
-    smic_h_b = P.gen.smic_h_b
-    Pc = P.exo_bas_sal.cice
-    plafond = Pc.max * smic_h_b
-    taux_cice = (sal_h_b <= plafond) * Pc.taux
-    return taux_cice

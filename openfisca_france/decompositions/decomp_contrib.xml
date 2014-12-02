@@ -12,7 +12,7 @@
             </NODE>
             <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
             <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
-            <NODE code="alleg_fillon" desc="Allègement sur les bas salaires" shortname="Allèg. sal." />
+            <NODE code="allegement_fillon" desc="Allègement sur les bas salaires" shortname="Allèg. sal." />
             <NODE code="alleg_cice" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
           </NODE>
           <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal">

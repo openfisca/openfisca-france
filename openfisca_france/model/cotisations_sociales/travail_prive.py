@@ -39,6 +39,7 @@ from openfisca_core.formulas import SimpleFormulaColumn
 from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
 from ..base import Individus, reference_formula
 
+from . import apply_bareme_for_relevant_type_sal
 
 CHEF = QUIFAM['chef']
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
@@ -50,47 +51,11 @@ VOUS = QUIFOY['vous']
 taux_versement_transport_by_localisation_entreprise = None
 
 
-def apply_bareme_for_relevant_type_sal(
-        bareme_by_type_sal_name = None,
-        bareme_name = None,
-        type_sal = None,
-        base = None,
-        ):
-    assert bareme_by_type_sal_name is not None
-    assert bareme_name is not None
-    assert base is not None
-    assert type_sal is not None
-    cotisation = zeros(len(base))
-    for type_sal_enum in CAT:
-        if type_sal_enum[0] not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
-            continue
-        bareme = bareme_by_type_sal_name[type_sal_enum[0]].get(bareme_name)  # TODO; should have better warnings
-        if bareme:
-            cotisation += bareme.calc(base) * (type_sal == type_sal_enum[1])
-    return - cotisation
-
 # TODO:
 # contribution patronale de prévoyance complémentaire
 # check hsup everywhere !
 # versement transport dépdendant de la localité (décommenter et compléter)
 
-
-@reference_formula
-class mhsup(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Heures supplémentaires comptées négativement"
-
-    def function(self, hsup):
-        return -hsup
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-############################################################################
-# # Salaires
-############################################################################
 
 @reference_formula
 class accident_du_travail(SimpleFormulaColumn):
@@ -107,51 +72,13 @@ class accident_du_travail(SimpleFormulaColumn):
 
 
 @reference_formula
-class apec_employe(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
-
-    def function(self, salbrut, type_sal, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "apec",
-            base = salbrut,
-            type_sal = type_sal,
-            )
-        return cotisation  # TODO: check public notamment contractuel
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class apec_employeur(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
-
-    def function(self, salbrut, type_sal, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "apec",
-            base = salbrut,
-            type_sal = type_sal,
-            )
-        return cotisation  # TODO: check public notamment contractuel
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
 class agff_tranche_a_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation chômage AGFF tranche A (employé)"
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
-        cotisation= apply_bareme_for_relevant_type_sal(
+        cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "agff",
             base = (
@@ -243,6 +170,25 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
+class apec_employe(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
+
+    def function(self, salbrut, type_sal, _P):
+        cotisation = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
+            bareme_name = "apec",
+            base = salbrut,
+            type_sal = type_sal,
+            )
+        return cotisation  # TODO: check public notamment contractuel
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
 class ags(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -259,6 +205,25 @@ class ags(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return cotisation
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class apec_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
+
+    def function(self, salbrut, type_sal, _P):
+        cotisation = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_name = "apec",
+            base = salbrut,
+            type_sal = type_sal,
+            )
+        return cotisation  # TODO: check public notamment contractuel
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
@@ -376,35 +341,6 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
         return period.start.period(u'month').offset('first-of')
 
 
-@reference_formula
-class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Contribution supplémentaire à l'apprentissage"
-
-    def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, part_d_alternants, effectifs_entreprise, period,
-                 taux = law.cotsoc.contribution_supplementaire_apprentissage):
-
-        if period.start.year > 2012:
-            taux_contribution = redevable_taxe_apprentissage * (
-                (effectifs_entreprise < 2000) * (part_d_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
-                (effectifs_entreprise >= 2000) * (part_d_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
-                (.01 <= part_d_alternants) * (part_d_alternants < .02) * taux.entre_1_2_pc_alternants +
-                (.02 <= part_d_alternants) * (part_d_alternants < .03) * taux.entre_2_3_pc_alternants +
-                (.03 <= part_d_alternants) * (part_d_alternants < .04) * taux.entre_3_4_pc_alternants +
-                (.04 <= part_d_alternants) * (part_d_alternants < .05) * taux.entre_4_5_pc_alternants
-                )
-        else:
-            taux_contribution = (effectifs_entreprise >= 250) * taux.plus_de_250
-            # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
-        return - taux_contribution * (
-            salbrut +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-            )
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
@@ -474,22 +410,31 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisation_exceptionelle_temporaire_employeur(SimpleFormulaColumn):
+class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation_exceptionelle_temporaire (employeur)"
+    label = u"Contribution supplémentaire à l'apprentissage"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "cet",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            type_sal = type_sal,
+    def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
+                 indemnite_residence, part_d_alternants, effectifs_entreprise, period,
+                 taux = law.cotsoc.contribution_supplementaire_apprentissage):
+
+        if period.start.year > 2012:
+            taux_contribution = redevable_taxe_apprentissage * (
+                (effectifs_entreprise < 2000) * (part_d_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
+                (effectifs_entreprise >= 2000) * (part_d_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
+                (.01 <= part_d_alternants) * (part_d_alternants < .02) * taux.entre_1_2_pc_alternants +
+                (.02 <= part_d_alternants) * (part_d_alternants < .03) * taux.entre_2_3_pc_alternants +
+                (.03 <= part_d_alternants) * (part_d_alternants < .04) * taux.entre_3_4_pc_alternants +
+                (.04 <= part_d_alternants) * (part_d_alternants < .05) * taux.entre_4_5_pc_alternants
+                )
+        else:
+            taux_contribution = (effectifs_entreprise >= 250) * taux.plus_de_250
+            # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
+        return - taux_contribution * (
+            salbrut +
+            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
             )
-        return cotisation
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
@@ -645,6 +590,20 @@ class maladie_employeur(SimpleFormulaColumn):
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
 
+
+@reference_formula
+class mhsup(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Heures supplémentaires comptées négativement"
+
+    def function(self, hsup):
+        return -hsup
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
 @reference_formula
 class participation_effort_construction(SimpleFormulaColumn):
     column = FloatCol
@@ -668,6 +627,36 @@ class participation_effort_construction(SimpleFormulaColumn):
         return period.start.period(u'month').offset('first-of')
 
 
+@reference_formula
+class taille_entreprise(SimpleFormulaColumn):
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"Non pertinent",
+                u"Moins de 10 salariés",
+                u"De 10 à 19 salariés",
+                u"De 20 à 249 salariés",
+                u"Plus de 250 salariés",
+                ],
+            ),
+        default = 0,
+        )
+    entity_class = Individus
+    label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)"
+    url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
+
+    def function(self, effectifs_entreprise):
+        taille_entreprise = (
+            (effectifs_entreprise > 0).astype(int16) +
+            (effectifs_entreprise > 10).astype(int16) +
+            (effectifs_entreprise > 20).astype(int16) +
+            (effectifs_entreprise > 250).astype(int16)
+            )
+        return taille_entreprise
+
+    def get_output_period(self, period):
+        return period
+
 
 @reference_formula
 class taxe_apprentissage(SimpleFormulaColumn):
@@ -690,6 +679,21 @@ class taxe_apprentissage(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class taux_accident_travail(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
+    start_date = datetime.date(2012, 1, 1)
+
+    def function(self, exposition_accident, period, accident = law.cotsoc.accident):
+        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
+            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')  # TODO month ?
 
 
 @reference_formula
@@ -867,49 +871,3 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class taux_accident_travail(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
-    start_date = datetime.date(2012, 1, 1)
-
-    def function(self, exposition_accident, period, accident = law.cotsoc.accident):
-        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
-            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')  # TODO month ?
-
-
-@reference_formula
-class taille_entreprise(SimpleFormulaColumn):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"Non pertinent",
-                u"Moins de 10 salariés",
-                u"De 10 à 19 salariés",
-                u"De 20 à 249 salariés",
-                u"Plus de 250 salariés",
-                ],
-            ),
-        default = 0,
-        )
-    entity_class = Individus
-    label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)"
-    url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
-
-    def function(self, effectifs_entreprise):
-        taille_entreprise = (
-            (effectifs_entreprise > 0).astype(int16) +
-            (effectifs_entreprise > 10).astype(int16) +
-            (effectifs_entreprise > 20).astype(int16) +
-            (effectifs_entreprise > 250).astype(int16)
-            )
-        return taille_entreprise
-
-    def get_output_period(self, period):
-        return period

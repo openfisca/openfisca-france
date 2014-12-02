@@ -32,7 +32,6 @@ from .base import tax_benefit_system
 
 
 def test_1():
-#    year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         period = "2013-01-01",
         parent1 = dict(
@@ -48,7 +47,8 @@ def test_1():
             zone_apl = 1,
             ),
         ).new_simulation(debug = True)
-    print simulation.calculate("maladie_employe")
+    simulation.calculate("allegement_fillon")
+    simulation.calculate("maladie_employeur")
 
 
 non_cadre = dict(
@@ -138,16 +138,16 @@ cadre = dict(
         # - 6 contribution_supplementaire_apprentissage
         cotisations_patronales_main_d_oeuvre_old = -412.8,
 
-#        agff_tranche_a_employe = -24.25,   # TODO: pas de tranche B dans le simulateur IPP
+        # agff_tranche_a_employe = -24.25,   # TODO: pas de tranche B dans le simulateur IPP
         agff_tranche_a_employeur = -74.96,
         ags = -18,
-        apec_employeur	= -2.16,
+        apec_employeur = - 2.16,
         cotisation_exceptionnelle_temporaire_employeur = -13.20,
         arrco_tranche_a_employeur = -136.39 - 374.09,
-#        agirc_tranche_b_employeur = -374.09,  # Inclus dans arcco
-        assedic_employeur = -121.24 - 118.76 ,
-#        assedic_tranche_a_employeur = -11.24  # Inclus dans assedic
-#        assedic_tranche_b_employeur = -118,76,  # Inclus dans assedic
+        # agirc_tranche_b_employeur = -374.09,  # Inclus dans arcco
+        assedic_employeur = - 121.24 - 118.76,
+        # assedic_tranche_a_employeur = -11.24  # Inclus dans assedic
+        # assedic_tranche_b_employeur = -118,76  # Inclus dans assedic
         vieillesse_deplafonnee_employeur = -96,
         vieillesse_plafonnee_employeur = -251.57,
 
@@ -159,8 +159,7 @@ cadre = dict(
         maladie_employeur = -768,
         cotisations_patronales_non_contributives = - 1692,
         cotisations_patronales_non_contributives_old = - 1692,
-        cotisations_patronales = -1692 -1206.4 - (412.8 - 96) - 6,
-
+        cotisations_patronales = - 1692 - 1206.4 - (412.8 - 96) - 6,
         maladie_employe = - 45,
         cotisations_salariales_non_contributives = -45,
         cotisations_salariales_non_contributives_old = -45,
@@ -168,8 +167,8 @@ cadre = dict(
         apec_employe = -1.44,
         arrco_tranche_a_employe = -90.93,
         agirc_tranche_b_employe = -228.61,
-#        assedic_tranche_a_employe = -72.74  # Inclus dans assedic
-#        assedic_tranche_b_employe = -71,26,  # Inclus dans assedic
+        # assedic_tranche_a_employe = -72.74  # Inclus dans assedic
+        # assedic_tranche_b_employe = -71,26,  # Inclus dans assedic
         assedic_employe = -72.74 - 71.26,
         vieillesse_deplafonnee_employe = -6,
         vieillesse_plafonnee_employe = -201.56,
@@ -181,7 +180,6 @@ cadre = dict(
         csgsald = -300.65,
         csgsali = -141.48,
         crdssal = -29.48,
-
         ),
     )
 
