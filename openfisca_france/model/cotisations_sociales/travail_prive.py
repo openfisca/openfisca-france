@@ -29,7 +29,7 @@ from __future__ import division
 import datetime
 import logging
 
-from numpy import ones, zeros
+from numpy import int16, ones, zeros
 from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
@@ -904,10 +904,10 @@ class taille_entreprise(SimpleFormulaColumn):
 
     def function(self, effectifs_entreprise):
         taille_entreprise = (
-            (effectifs_entreprise > 0) +
-            (effectifs_entreprise > 10) +
-            (effectifs_entreprise > 20) +
-            (effectifs_entreprise > 250)
+            (effectifs_entreprise > 0).astype(int16) +
+            (effectifs_entreprise > 10).astype(int16) +
+            (effectifs_entreprise > 20).astype(int16) +
+            (effectifs_entreprise > 250).astype(int16)
             )
         return taille_entreprise
 

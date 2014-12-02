@@ -1577,7 +1577,7 @@ build_dated_formula('quaenv',
      ),
 ],
 FloatCol(entity='foy'))
-build_simple_formula('quaenv_bouquet', FloatCol(function = ci._quaenv_bouquet,
+build_simple_formula('quaenv_bouquet', BoolCol(function = ci._quaenv_bouquet,
     entity = 'foy',
     start = date(2013, 1, 1)))
 build_simple_formula('drbail', FloatCol(function = ci._drbail,
@@ -1904,7 +1904,7 @@ build_simple_formula('concub', BoolCol(function = pf._concub,
     ))
 build_simple_formula('maries', BoolCol(function = pf._maries,
     entity = 'fam'))
-build_simple_formula('nb_par', FloatCol(function = pf._nb_par,
+build_simple_formula('nb_par', PeriodSizeIndependentIntCol(function = pf._nb_par,
     entity = 'fam',
     label = u"Nombre de parents",
     ))

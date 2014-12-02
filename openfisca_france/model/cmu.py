@@ -1,14 +1,31 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 from __future__ import division
 
-from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_)
+from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros
 from numpy.core.defchararray import startswith
 
 from openfisca_core.accessors import law
@@ -21,7 +38,10 @@ from ..entities import Familles, Individus
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
+ENFS = [
+    QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'],
+    QUIFAM['enf8'], QUIFAM['enf9'],
+    ]
 VOUS = QUIFOY['vous']
 
 
@@ -31,7 +51,7 @@ def _acs_montant__2009(self, age_holder):
     '''
     # TODO
     ages = self.filter_role(age_holder, role = CHEF)
-    return 0*ages
+    return 0 * ages
 
 
 def _acs_montant_2009_(self, age_holder, P = law.cmu):
@@ -209,7 +229,7 @@ def nb_par_age(ages, min, max):
     '''
     res = None
     for key, age in ages.iteritems():
-        if res is None: res = zeros(len(age))
+        if res is None: res = zeros(len(age), dtype = int32)
         res += (min <= age) & (age <= max)
     return res
 

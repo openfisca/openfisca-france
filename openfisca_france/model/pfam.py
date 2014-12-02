@@ -1,18 +1,34 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 from __future__ import division
 
-from numpy import zeros, logical_not as not_
+from numpy import int32, logical_not as not_, zeros
 
-from .base import QUIFAM, QUIFOY
+from .base import BoolCol, Individus, QUIFAM, QUIFOY, reference_formula, SimpleFormulaColumn
 
-from .base import (BoolCol, Individus, reference_formula, SimpleFormulaColumn)
 
 CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
@@ -161,7 +177,7 @@ def nb_enf(ages, smic55, ag1, ag2):
 #        le versement à lieu en début de mois suivant
     res = None
     for key, age in ages.iteritems():
-        if res is None: res = zeros(len(age))
+        if res is None: res = zeros(len(age), dtype = int32)
         res += ((ag1 <= age) & (age <= ag2)) * not_(smic55[key])
     return res
 

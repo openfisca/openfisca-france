@@ -1,23 +1,43 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 from __future__ import division
 
 from itertools import izip
 
-from numpy import  floor, arange, array, where
+from numpy import arange, array, floor, where
 
 from .base import QUIMEN
 
 
 PREF = QUIMEN['pref']
 CREF = QUIMEN['cref']
-ENFS = [QUIMEN['enf1'], QUIMEN['enf2'], QUIMEN['enf3'], QUIMEN['enf4'], QUIMEN['enf5'], QUIMEN['enf6'], QUIMEN['enf7'], QUIMEN['enf8'], QUIMEN['enf9'], ]
+ENFS = [
+    QUIMEN['enf1'], QUIMEN['enf2'], QUIMEN['enf3'], QUIMEN['enf4'], QUIMEN['enf5'], QUIMEN['enf6'], QUIMEN['enf7'],
+    QUIMEN['enf8'], QUIMEN['enf9'],
+    ]
 
 
 def _nbinde(self, agem_holder):
@@ -54,7 +74,7 @@ def _ageq(agem):
     'ind'
     '''
     age = floor(agem / 12)
-    tranche = array([ (age >= ag) for ag in arange(25, 5, 81) ]).sum(axis = 0)
+    tranche = array([(age >= ag) for ag in arange(25, 5, 81)]).sum(axis = 0)
     return tranche
 
 
@@ -158,7 +178,7 @@ def _typmen15(nbinde, cohab, act_cpl, cplx, act_enf):
     'men'
     '''
     res = 0 + (cplx == 0) * (
-            1 * ((nbinde == 1) & (cohab == 0) & (act_cpl == 1)) +  #  Personne seule active
+            1 * ((nbinde == 1) & (cohab == 0) & (act_cpl == 1)) +  # Personne seule active
             2 * ((nbinde == 1) & (cohab == 0) & (act_cpl == 0)) +  # Personne seule inactive
             3 * ((nbinde > 1) & (cohab == 0) & (act_cpl == 1)) +  # Familles monoparentales, parent actif
             4 * ((nbinde > 1) & (cohab == 0) & (act_cpl == 0) & (act_enf >= 1)) +  # Familles monoparentales, parent inactif et au moins un enfant actif
