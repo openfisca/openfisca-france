@@ -136,11 +136,6 @@ def adapt_to_survey(tax_benefit_system):
         }
 
     survey_entity_class_by_symbol = entity_class_by_symbol.copy()
-    from openfisca_france_data.model.input_variables.survey_variables import add_survey_columns_to_entities
-    add_survey_columns_to_entities(survey_entity_class_by_symbol)
-
-    from openfisca_france_data.model.model import add_survey_formulas_to_entities
-    add_survey_formulas_to_entities(survey_entity_class_by_symbol)
 
     individus_class = survey_entity_class_by_symbol['ind']
     familles_class = survey_entity_class_by_symbol['fam']
@@ -172,6 +167,12 @@ def adapt_to_survey(tax_benefit_system):
     survey_entity_class_by_symbol['fam'] = SurveyFamilles
     survey_entity_class_by_symbol['foy'] = SurveyFoyers
     survey_entity_class_by_symbol['men'] = SurveyMenages
+
+    from openfisca_france_data.model.input_variables.survey_variables import add_survey_columns_to_entities
+    add_survey_columns_to_entities(survey_entity_class_by_symbol)
+
+    from openfisca_france_data.model.model import add_survey_formulas_to_entities
+    add_survey_formulas_to_entities(survey_entity_class_by_symbol)
 
     reference_legislation_json = tax_benefit_system.legislation_json
     survey_legislation_json = copy.deepcopy(reference_legislation_json)
