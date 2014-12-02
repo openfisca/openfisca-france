@@ -3874,17 +3874,6 @@
       <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
       </CODE>
-      <NODE code="charge_loyer" description="Charge de loyer">
-        <CODE code="active" description="Activation de la charge" format="bool">
-          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0" />
-        </CODE>
-        <CODE code="plaf" description="Plafond mensuel" format="integer" type="monetary">
-          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="1000" />
-        </CODE>
-        <CODE code="plaf_nbp" description="Ajuster le plafond au nombre de part" format="bool">
-          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0" />
-        </CODE>
-      </NODE>
     </NODE>
     <BAREME code="cehr" description="Contribution exceptionnelle sur les hauts revenus" type="monetary">
       <TRANCHE code="tranche0">

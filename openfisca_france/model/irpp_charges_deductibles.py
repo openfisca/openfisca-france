@@ -95,25 +95,13 @@ def _cd2_2007_2008(cd_ecodev):
 	niches2 = cd_ecodev
 	return niches2
 
+
 def _rbg_int(rbg, cd1):
     return max_(rbg - cd1, 0)
 
-def _charges_deduc_reforme(charge_loyer):
-    return charge_loyer
 
-
-def _charge_loyer(self, loyer_holder, nbptr, charge_loyer = law.ir.autre.charge_loyer):
-    loyer = self.cast_from_entity_to_role(loyer_holder, role = PREF)
-    loyer = self.sum_by_entity(loyer)
-
-    plaf = charge_loyer.plaf
-    plaf_nbp = charge_loyer.plaf_nbp
-    plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
-    return 12 * charge_loyer.active * min_(loyer, plafond)
-
-
-def _charges_deduc(cd1, cd2, charges_deduc_reforme):
-    return cd1 + cd2 + charges_deduc_reforme
+def _charges_deduc(cd1, cd2):
+    return cd1 + cd2
 
 
 def _cd_penali(f6gi, f6gj, f6gp, f6el, f6em, f6gu, penalim = law.ir.charges_deductibles.penalim):

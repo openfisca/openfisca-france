@@ -604,15 +604,6 @@ build_simple_formula('cd_grorep', FloatCol(function = cd._cd_grorep,
     entity = 'foy',
     start = date(2009, 1, 1)))
 
-build_simple_formula('charges_deduc_reforme', FloatCol(function = cd._charges_deduc_reforme,
-    entity = 'foy',
-    url = u"http://www.bfmtv.com/economie/reforme-fiscale-csg-bientot-plus-deductible-l-impot-revenu-700700.html",
-    ))
-build_simple_formula('charge_loyer', FloatCol(function = cd._charge_loyer,
-    entity = 'foy',
-    url = u"http://vosdroits.service-public.fr/particuliers/F1991.xhtml",
-    ))
-
 build_simple_formula('rbg_int', FloatCol(function = cd._rbg_int,
     entity = 'foy',
     label = u"Revenu brut global intermédiaire",

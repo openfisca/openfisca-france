@@ -292,7 +292,7 @@ class br_rmi_ms(SimpleFormulaColumn):
         return aspa + asi + aah + caah
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period.start.offset('first-of', 'year').period('year')
 
 
 @reference_formula
@@ -316,7 +316,7 @@ class br_rmi_i(SimpleFormulaColumn):
             )
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period.start.offset('first-of', 'year').period('year')
 
 
 @reference_formula
@@ -336,7 +336,7 @@ class br_rmi(SimpleFormulaColumn):
         return br_rmi
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period.start.offset('first-of', 'year').period('year')
 
 
 @reference_formula
