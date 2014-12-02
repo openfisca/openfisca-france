@@ -16,6 +16,7 @@ from openfisca_core.columns import BoolCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
 from .base import QUIFAM, QUIFOY, reference_formula
+from .pfam import nb_enf
 from ..entities import Familles, Individus
 
 
@@ -23,15 +24,6 @@ CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 VOUS = QUIFOY['vous']
-
-
-def _bourse_college_nb_enfants(self, age_holder):
-    ages = self.split_by_roles(age_holder, roles = ENFS)
-    res = None
-    for key, age in ages.iteritems():
-        if res is None: res = zeros(len(age))
-        res += 1
-    return res
 
 
 @reference_formula
@@ -76,14 +68,22 @@ class bourse_college(SimpleFormulaColumn):
     label = u"Montant de la bourse de collège"
     entity_class = Familles
 
-    def function(self, base_ressource_bourse_college, bourse_college_nb_enfants, P = law.bourses_education.bourse_college):
-        plafond_taux_1 = P.plafond_taux_1 + P.plafond_taux_1 * bourse_college_nb_enfants * P.coeff_enfant_supplementaire
-        plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * bourse_college_nb_enfants * P.coeff_enfant_supplementaire
-        plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * bourse_college_nb_enfants * P.coeff_enfant_supplementaire
+    def function(self, base_ressource_bourse_college, age_holder, smic55_holder, P = law.bourses_education.bourse_college):
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        nb_enfants = nb_enf(age, smic55, 0, 25)
+
+        plafond_taux_1 = P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire
+        plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire
+        plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire
 
         elig_taux_3 = base_ressource_bourse_college < plafond_taux_3
         elig_taux_2 = not_(elig_taux_3) * (base_ressource_bourse_college < plafond_taux_2)
         elig_taux_1 = not_(or_(elig_taux_2, elig_taux_3)) * (base_ressource_bourse_college < plafond_taux_1)
+
+        elig_taux_3 &= nb_enfants > 0
+        elig_taux_2 &= nb_enfants > 0
+        elig_taux_1 &= nb_enfants > 0
 
         montant = (
             elig_taux_3 * P.montant_taux_3 +

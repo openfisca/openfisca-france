@@ -2420,7 +2420,3 @@ build_simple_formula('cmu_nb_pac', PeriodSizeIndependentIntCol(function = cmu._c
     label = u"Nombre de personnes à charge au titre de la CMU",
     entity = 'fam',
     ))
-build_simple_formula('bourse_college_nb_enfants', PeriodSizeIndependentIntCol(function = education._bourse_college_nb_enfants,
-    label = u"Nombre de personnes à charge au titre de la bourse de collège",
-    entity = 'fam',
-    ))
