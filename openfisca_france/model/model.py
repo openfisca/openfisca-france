@@ -43,6 +43,7 @@ from .. import entities
 from . import (  # noqa
     inversion_revenus,
     travailleurs_non_salaries,
+    education
     )
 
 from .cotisations_sociales import remplacement
@@ -2417,5 +2418,9 @@ build_simple_formula('acs_plafond', FloatCol(function = cmu._acs_plafond,
     ))
 build_simple_formula('cmu_nb_pac', PeriodSizeIndependentIntCol(function = cmu._cmu_nb_pac,
     label = u"Nombre de personnes à charge au titre de la CMU",
+    entity = 'fam',
+    ))
+build_simple_formula('bourse_college_nb_enfants', PeriodSizeIndependentIntCol(function = education._bourse_college_nb_enfants,
+    label = u"Nombre de personnes à charge au titre de la bourse de collège",
     entity = 'fam',
     ))
