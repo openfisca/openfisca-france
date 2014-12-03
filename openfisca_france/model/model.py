@@ -108,32 +108,7 @@ build_simple_formula = partial(
 # Cotisations sociales
 ############################################################
 
-# Salaires
-#build_simple_formula(
-#    'type_sal',
-#    EnumCol(
-#        function = cs_travail._type_sal,
-#        label = u"Catégorie de salarié",
-#        enum = Enum([
-#            u"prive_non_cadre",
-#            u"prive_cadre",
-#            u"public_titulaire_etat",
-#            u"public_titulaire_militaire",
-#            u"public_titulaire_territoriale",
-#            u"public_titulaire_hospitaliere",
-#            u"public_non_titulaire",
 
-#<<<<<<< HEAD
-#            ]),
-#        url = u"http://fr.wikipedia.org/wiki/Professions_et_cat%C3%A9gories_socioprofessionnelles_en_France",
-#        )
-#    )
-
-#build_simple_formula(
-#    'primes',
-#    FloatCol(
-#        function = cs_travail._primes,
-#        label = u"Primes et indemnités des fonctionnaires",
 #        url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml",
 #    ))
 #build_simple_formula(
@@ -484,14 +459,6 @@ build_dated_formula('prelsoc_pv_immo',
 ############################################################
 # Impôt sur le revenu
 ############################################################
-#build_alternative_formula(  TODO: REMOVEME new syntax in irpp.py
-#    'age',
-#    [
-#        ir._age_from_birth,
-#        ir._age_from_agem,
-#        ],
-#    AgeCol(label = u"Âge (en années)", val_type = "age"),
-#    )
 
 build_alternative_formula(
     'agem',
