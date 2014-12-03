@@ -29,13 +29,13 @@ import datetime
 
 from openfisca_core import periods
 from openfisca_core.tools import assert_near
-from openfisca_france.reforms import charge_loyer
+from openfisca_france.reforms import trannoy_wasmer
 from openfisca_france.tests import base
 
 
 def test_charge_loyer():
     year = 2013
-    reform = charge_loyer.build_reform(base.tax_benefit_system)
+    reform = trannoy_wasmer.build_reform(base.tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
@@ -56,24 +56,12 @@ def test_charge_loyer():
             loyer = 1000,
             )
         )
-
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
-
-    error_margin = 0.01
-    af = reference_simulation.calculate('af')
-    expected_af = [1532.16] * 10
-    assert_near(expected_af, af, error_margin)
-    rbg = reference_simulation.calculate('rbg')
-
     reform_simulation = scenario.new_simulation(debug = True)
-    reform_af = reform_simulation.calculate('af')
+    error_margin = 0.01
 
-    assert_near(expected_af, reform_af, error_margin)
-    reform_af_imposables = reform_simulation.calculate('allocations_familiales_imposables')
-    assert_near(expected_af, reform_af_imposables, error_margin)
+    reform_charge_loyer = reform_simulation.calculate('charge_loyer')
+    assert_near(reform_charge_loyer, [1000] * 10 ,error_margin)
 
-    reform_rbg = reform_simulation.calculate('rbg')
-    assert_near(reform_rbg, rbg + af, error_margin)
 
 
 if __name__ == '__main__':

@@ -455,11 +455,14 @@ class crds_mini(DatedFormulaColumn):
     label = u"CRDS versée sur les minimas sociaux"
 
     @dated_function(start = datetime.date(2009, 6, 1))
-    def crds_mini_2009_(rsa_act, taux_crds = law.fam.af.crds):
+    def function_2009_(self, rsa_act, taux_crds = law.fam.af.crds):
         """
         CRDS sur les minima sociaux
         """
         return - taux_crds * rsa_act
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -469,12 +472,15 @@ class rsa_act(DatedFormulaColumn):
     label = u"Revenu de solidarité active - activité"
 
     @dated_function(datetime.date(2009, 6, 1))
-    def function_2009(rsa, rmi):
+    def function_2009(self, rsa, rmi):
         '''
         Calcule le montant du RSA activité
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
         return max_(rsa - rmi, 0)
+
+    def get_output_period(self, period):
+        return period
 
 
 @reference_formula
@@ -484,7 +490,7 @@ class rsa_act_i(DatedFormulaColumn):
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
 
     @dated_function(datetime.date(2009, 6, 1))
-    def rsa_act_i_2009_(self, rsa_act_holder, concub_holder, maries_holder, quifam):
+    def function_2009_(self, rsa_act_holder, concub_holder, maries_holder, quifam):
         # Note: le partage en moitié est un point de législation, pas un choix arbitraire.
         concub = self.cast_from_entity_to_roles(concub_holder)
         maries = self.cast_from_entity_to_roles(maries_holder)
@@ -526,6 +532,7 @@ def _rsa_socle(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = l
         max_(nbp - 4, 0) * rmi.txps
         )
     return eligib * rmi.rmi * taux * 12
+
 
 @reference_formula
 class rsa_socle_majore(DatedFormulaColumn):

@@ -35,6 +35,10 @@ from numpy import logical_not as not_, minimum as min_
 
 from openfisca_core import reforms
 from openfisca_core.accessors import law
+from openfisca_core.columns import FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
+
+
 from openfisca_france import entities
 
 
@@ -46,16 +50,6 @@ from openfisca_france.model.base import QUIMEN
 PREF = QUIMEN['pref']
 
 
-def _charge_loyer(self, loyer_holder, nbptr, charge_loyer = law.ir.autre.charge_loyer):
-    loyer = self.cast_from_entity_to_role(loyer_holder, role = PREF)
-    loyer = self.sum_by_entity(loyer)
-
-    plaf = charge_loyer.plaf
-    plaf_nbp = charge_loyer.plaf_nbp
-    plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
-    return 12 * charge_loyer.active * min_(loyer, plafond)
-
-
 def _charges_deduc(cd1, cd2, charge_loyer):
     return cd1 + cd2 + charge_loyer
 
@@ -65,10 +59,26 @@ def build_reform_entity_class_by_symbol():
     reform_entity_class_by_symbol = entities.entity_class_by_symbol.copy()
     foyers_fiscaux_class = reform_entity_class_by_symbol['foy']
 
+    class charge_loyer(SimpleFormulaColumn):
+        column = FloatCol
+        entity_class = foyers_fiscaux_class
+        label = u"Charge déductible pour paiement d'un loyer"
+
+        def function(self, loyer_holder, nbptr, charge_loyer = law.charge_loyer):
+            loyer = self.cast_from_entity_to_role(loyer_holder, role = PREF)
+            loyer = self.sum_by_entity(loyer)
+
+            plaf = charge_loyer.plaf
+            plaf_nbp = charge_loyer.plaf_nbp
+            plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
+            return 12 * charge_loyer.active * min_(loyer / 12, plafond)
+
+        def get_output_period(self, period):
+            return period.start.offset('first-of', 'year').period('year')
+
     # update column_by_name
     reform_column_by_name = foyers_fiscaux_class.column_by_name.copy()
     function_by_column_name = dict(
-        charge_loyer = _charge_loyer,
         charges_deduc = _charges_deduc,
         )
 
@@ -76,6 +86,8 @@ def build_reform_entity_class_by_symbol():
         column = foyers_fiscaux_class.column_by_name[name]
         reform_column = reforms.clone_simple_formula_column_with_new_function(column, function)
         reform_column_by_name[name] = reform_column
+
+    reform_column_by_name['charge_loyer'] = charge_loyer
 
     class ReformFoyersFiscaux(foyers_fiscaux_class):
         column_by_name = reform_column_by_name
@@ -86,7 +98,6 @@ def build_reform_entity_class_by_symbol():
 
 
 def build_new_legislation_nodes():
-
     return {
         "charge_loyer": {
             "@type": "Node",
@@ -96,7 +107,7 @@ def build_new_legislation_nodes():
                     "@type": "Parameter",
                     "description": "Activation de la charge",
                     "format": "bool",
-                    "values": [{'start': u'2002-01-01', 'stop': '2013-12-31', 'value': 0}],
+                    "values": [{'start': u'2002-01-01', 'stop': '2013-12-31', 'value': 1}],
                     },
                 "plaf": {
                     "@type": "Parameter",
@@ -135,4 +146,3 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
     return reform
-

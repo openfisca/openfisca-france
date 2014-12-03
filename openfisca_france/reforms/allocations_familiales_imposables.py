@@ -30,7 +30,7 @@ import copy
 from numpy import maximum as max_
 import logging
 
-from openfisca_core import formulas, periods, reforms
+from openfisca_core import formulas, reforms
 from openfisca_core.columns import FloatCol
 from openfisca_core.accessors import law
 from openfisca_france import entities
