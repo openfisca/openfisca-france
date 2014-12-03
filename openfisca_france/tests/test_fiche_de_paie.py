@@ -38,7 +38,7 @@ def test_1():
             effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
-            part_d_alternants = .025,
+            ratio_alternants = .025,
             salbrut = 3000,
             taille_entreprise = 3,
             type_sal = 0,
@@ -56,7 +56,7 @@ non_cadre = dict(
         effectif_entreprise = 3000,
         exposition_accident = 3,
         localisation_entreprise = "75001",
-        part_d_alternants = .025,
+        ratio_alternants = .025,
         salbrut = 3000,
         taille_entreprise = 3,
         type_sal = 0,
@@ -116,7 +116,7 @@ cadre = dict(
         effectif_entreprise = 3000,
         exposition_accident = 3,
         localisation_entreprise = "75001",
-        part_d_alternants = .025,
+        ratio_alternants = .025,
         salbrut = 6000,
         taille_entreprise = 3,
         type_sal = 1,
@@ -214,7 +214,7 @@ def assert_variable(variable, employee_type, monthly_amount, output):
         "error for {} ({}) : should be {} instead of {} ".format(variable, employee_type, monthly_amount, output)
 
 
-def test_decomposition():
+def test_decomposition(print_decomposition = False):
     from openfisca_core.decompositions import calculate, get_decomposition_json
     import json
     import os
@@ -224,7 +224,7 @@ def test_decomposition():
             effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
-            part_d_alternants = .025,
+            ratio_alternants = .025,
             salbrut = 3000,
             taille_entreprise = 3,
             type_sal = 0,
@@ -235,15 +235,16 @@ def test_decomposition():
         ).new_simulation(debug = True)
 
     xml_file_path = os.path.join(
-            tax_benefit_system.DECOMP_DIR,
-            "fiche_de_paie_decomposition.xml"
-            )
+        tax_benefit_system.DECOMP_DIR,
+        "fiche_de_paie_decomposition.xml"
+        )
 
     decomposition_json = get_decomposition_json(xml_file_path, tax_benefit_system)
     response = calculate(simulation, decomposition_json)
-    print unicode(
-        json.dumps(response, encoding = 'utf-8', ensure_ascii = False, indent = 2)
-        )
+    if print_decomposition:
+        print unicode(
+            json.dumps(response, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+            )
 
 
 if __name__ == '__main__':
@@ -251,4 +252,4 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_decomposition()
+    test_decomposition(print_decomposition = True)

@@ -46,8 +46,8 @@ reference_input_variable(
 reference_input_variable(
     column = BoolCol(),
     entity_class = Individus,
-    label = u"Avantages en nature",
-    name = 'avantages_en_nature',
+    label = u"Avantages en nature (Valeur réelle)",
+    name = 'avantages_en_nature_valeur_reelle',
     )
 reference_input_variable(
     column = BoolCol(),
@@ -76,14 +76,32 @@ reference_input_variable(
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
-    label = u"Part d'alternants calculée par rapport avec l'effectif moyen",
-    name = 'part_d_alternants',
+    label = u"Ratio d'alternants dans l'effectif moyen",
+    name = 'ratio_alternants',
     )
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Indemnités, primes et avantages en argent",
     name = 'primes_salaires',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur",
+    name = 'prise_en_charge_employeur_prevoyance_complementaire',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur",
+    name = 'prise_en_charge_employeur_retraite_complementaire',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur",
+    name = 'prise_en_charge_employeur_retraite_supplementaire',
     )
 reference_input_variable(
     column = BoolCol(default = True),
@@ -101,7 +119,7 @@ reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Salaire de base",
-    name = 'salaire_base',
+    name = 'salaire_de_base',
     )
 reference_input_variable(
     column = FloatCol(default = .5),
@@ -126,6 +144,28 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Catégorie de salarié",
     name = 'type_sal',
+    )
+reference_input_variable(
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"temps_plein",
+                u"temps_partiel",
+                u"forfait_heures",
+                u"forfait_jours",
+                u"duree contractuelle",  # heures/mois
+                ],
+            ),
+        ),
+    entity_class = Individus,
+    label = u"Type de forfait ou de convention de rémunération des heures travaillées",
+    name = 'type_heures_remunerees',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des heures ou jours rémunérées",
+    name = 'volume_heures_remunerees',
     )
 reference_input_variable(
     column = FloatCol(),

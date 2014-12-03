@@ -80,6 +80,25 @@ class salbrut(SelectFormulaColumn):
     label = u"Salaire brut ou traitement indiciaire brut"
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
+    @select_function('salaire_de_base')
+    def remuneration_brute(self, salaire_de_base, primes_salaires, avantages_en_nature):
+        # assiette des cotisations sociales
+        # Autres élements de rémunérations à prendre en compte:
+        #   * cantine_titres_restaurants
+        #   * prise en charge par l'employeur de la part salariale
+        #    des cotisations sociales à un régime de retraite complémentaire
+        #       (celle conernant les régime de prévoyance complémentaire et de retraite supplémentaire n'entrent pas
+        #        dans l'assiette des cotisations sociales)
+        #   * cotisations partonales à:
+        #       - retraite complémentaire obligatoire
+        #       - retraite supplémentaire et de prévoyance complémentaire
+        #       - retraite à prestations définies (retraite chapeau)
+        #   * Épargne salariale, intéressement et participation
+        #   * Actionnarait salarié
+        #   * Indemnités journalières de sécurité sociale
+        #   * Indemnités de rupture du contrat de travail
+        return salaire_de_base + primes_salaires + avantages_en_nature
+
     @select_function('sali')
     def salbrut_from_sali(self, sali, hsup, type_sal, P = law):
         """Calcule le salaire brut à partir du salaire imposable.
@@ -169,6 +188,8 @@ class salbrut(SelectFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
+
+
 
 
 ############################################################################

@@ -49,6 +49,10 @@ PREF = QUIMEN['pref']
 VOUS = QUIFOY['vous']
 
 
+# TODO: intégrer prise_en_charge_employeur_prevoyance_complementaire
+#       et prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
+
+
 @reference_formula
 class cotisations_patronales(SimpleFormulaColumn):
     column = FloatCol
@@ -301,13 +305,20 @@ class sal_h_b(SimpleFormulaColumn):
     label = u"Salaire horaire brut"
 
     def function(self, salbrut):
-        nbh_travaillees = 151.67 * 12
-        return salbrut / nbh_travaillees
+
+        # mensuel classique : nbhr = nombre d'heures rémunérées sur un mois
+        nbhr = 151.67
+
+        # forfait jour nbjf = nombre de jours au forfait jour
+        # nbhr = 151.67 * (nbjf / 218) * (52 / 12)
+
+        # forfait heures nbhf = nombre d'heures au forfait heures
+        # nbhr = 151.67 * (nbhf / 45.7) * (52 / 12)
+
+        return salbrut / nbhr
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
-
-
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula

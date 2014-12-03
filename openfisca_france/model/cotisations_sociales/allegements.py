@@ -51,16 +51,13 @@ class allegement_fillon(DatedFormulaColumn):
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
-    # start = "2005-01-01"
-    # TODO: deal with taux between 2005 and 2007
-    @dated_function(datetime.date(2007, 1, 1))
+    @dated_function(datetime.date(2005, 7, 1))
     def function_2007_(self, period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
         taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, cotsoc)
         allegement_fillon = (
-            taux_fillon
-            * salbrut
-            * ((type_sal == CAT['prive_non_cadre'])
-                | (type_sal == CAT['prive_cadre']))
+            taux_fillon *
+            salbrut *
+            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
             )
         return allegement_fillon
 

@@ -76,6 +76,7 @@ from . import pfam as pf
 from . import th as th
 
 from .input_variables import travail_base  # noqa
+from .cotisations_sociales import remuneration_prive
 from .cotisations_sociales import travail_prive
 from .cotisations_sociales import travail_verification
 
