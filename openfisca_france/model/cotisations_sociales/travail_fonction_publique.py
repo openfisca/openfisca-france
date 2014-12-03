@@ -278,7 +278,7 @@ class primes_fonction_publique(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Calcul des primes pour les fonctionnaries"
-    url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml
+    url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
 
 #   Note: sal_brut est égal au traitement indiciaire brut
 
