@@ -416,20 +416,20 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
     label = u"Contribution supplémentaire à l'apprentissage"
 
     def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, part_d_alternants, effectifs_entreprise, period,
+                 indemnite_residence, part_d_alternants, effectif_entreprise, period,
                  taux = law.cotsoc.contribution_supplementaire_apprentissage):
 
         if period.start.year > 2012:
             taux_contribution = redevable_taxe_apprentissage * (
-                (effectifs_entreprise < 2000) * (part_d_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
-                (effectifs_entreprise >= 2000) * (part_d_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
+                (effectif_entreprise < 2000) * (part_d_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
+                (effectif_entreprise >= 2000) * (part_d_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
                 (.01 <= part_d_alternants) * (part_d_alternants < .02) * taux.entre_1_2_pc_alternants +
                 (.02 <= part_d_alternants) * (part_d_alternants < .03) * taux.entre_2_3_pc_alternants +
                 (.03 <= part_d_alternants) * (part_d_alternants < .04) * taux.entre_3_4_pc_alternants +
                 (.04 <= part_d_alternants) * (part_d_alternants < .05) * taux.entre_4_5_pc_alternants
                 )
         else:
-            taux_contribution = (effectifs_entreprise >= 250) * taux.plus_de_250
+            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
         return - taux_contribution * (
             salbrut +
@@ -645,12 +645,12 @@ class taille_entreprise(SimpleFormulaColumn):
     label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)"
     url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
 
-    def function(self, effectifs_entreprise):
+    def function(self, effectif_entreprise):
         taille_entreprise = (
-            (effectifs_entreprise > 0).astype(int16) +
-            (effectifs_entreprise > 10).astype(int16) +
-            (effectifs_entreprise > 20).astype(int16) +
-            (effectifs_entreprise > 250).astype(int16)
+            (effectif_entreprise > 0).astype(int16) +
+            (effectif_entreprise > 10).astype(int16) +
+            (effectif_entreprise > 20).astype(int16) +
+            (effectif_entreprise > 250).astype(int16)
             )
         return taille_entreprise
 

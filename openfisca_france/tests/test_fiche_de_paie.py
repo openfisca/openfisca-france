@@ -28,14 +28,14 @@ from __future__ import division
 
 import datetime
 
-from .base import tax_benefit_system
+from openfisca_france.tests.base import tax_benefit_system
 
 
 def test_1():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         period = "2013-01-01",
         parent1 = dict(
-            effectifs_entreprise = 3000,
+            effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
             part_d_alternants = .025,
@@ -53,7 +53,7 @@ def test_1():
 
 non_cadre = dict(
     input_variables = dict(
-        effectifs_entreprise = 3000,
+        effectif_entreprise = 3000,
         exposition_accident = 3,
         localisation_entreprise = "75001",
         part_d_alternants = .025,
@@ -113,7 +113,7 @@ non_cadre = dict(
 
 cadre = dict(
     input_variables = dict(
-        effectifs_entreprise = 3000,
+        effectif_entreprise = 3000,
         exposition_accident = 3,
         localisation_entreprise = "75001",
         part_d_alternants = .025,
@@ -214,9 +214,41 @@ def assert_variable(variable, employee_type, monthly_amount, output):
         "error for {} ({}) : should be {} instead of {} ".format(variable, employee_type, monthly_amount, output)
 
 
+def test_decomposition():
+    from openfisca_core.decompositions import calculate, get_decomposition_json
+    import json
+    import os
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        period = "2013-01-01",
+        parent1 = dict(
+            effectif_entreprise = 3000,
+            exposition_accident = 3,
+            localisation_entreprise = "75001",
+            part_d_alternants = .025,
+            salbrut = 3000,
+            taille_entreprise = 3,
+            type_sal = 0,
+            ),
+        menage = dict(
+            zone_apl = 1,
+            ),
+        ).new_simulation(debug = True)
+
+    xml_file_path = os.path.join(
+            tax_benefit_system.DECOMP_DIR,
+            "fiche_de_paie_decomposition.xml"
+            )
+
+    decomposition_json = get_decomposition_json(xml_file_path, tax_benefit_system)
+    response = calculate(simulation, decomposition_json)
+    print unicode(
+        json.dumps(response, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+        )
+
+
 if __name__ == '__main__':
     import logging
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_check()
+    test_decomposition()

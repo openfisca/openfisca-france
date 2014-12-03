@@ -79,8 +79,14 @@ class al_pac(SimpleFormulaColumn):
         # pour une famille
         return al_pac
 
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['nbR']:
+            return output_period(u'year').offset('first-of')
+        else:
+            return output_period
+
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -150,14 +156,14 @@ class br_al(SimpleFormulaColumn):
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['br_pf_i_holder', 'rev_coll_holder']:
-            return output_period.offset(-1)
+            return output_period.start.period('year').offset(-1)
         elif variable_name in ['etu_holder', 'boursier_holder']:
             return output_period.start.period('month')
         else:
             return output_period
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -170,7 +176,6 @@ class al(SimpleFormulaColumn):
                  nat_imp_holder,
                  al = law.al,
                  fam = law.fam):
-        # Attention, cette fonction calcule l'aide mensuelle et la multiplie par 12
         # variable ménage à redistribuer
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
@@ -309,8 +314,14 @@ class al(SimpleFormulaColumn):
 
         return al
 
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['nat_imp_holder']:
+            return output_period.start.period(u'year').offset('first-of')
+        else:
+            return output_period
+
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -327,7 +338,7 @@ class alf(SimpleFormulaColumn):
         return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * al
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month').offset('first-of')
 
 
 @reference_formula
@@ -344,7 +355,7 @@ class als_nonet(SimpleFormulaColumn):
         return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * al
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -363,7 +374,7 @@ class alset(SimpleFormulaColumn):
         return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * al
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -377,7 +388,7 @@ class als(SimpleFormulaColumn):
         return als_nonet + alset
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -396,7 +407,7 @@ class apl(SimpleFormulaColumn):
         return al * (so == 3)
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -410,7 +421,7 @@ class crds_lgtm(SimpleFormulaColumn):
         return -al * crds
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.period(u'month')
 
 
 @reference_formula

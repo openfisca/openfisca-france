@@ -74,6 +74,9 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
             )
         return cotisation_etat + cotisation_collectivites_locales
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
+
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
@@ -114,8 +117,11 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
             )
         return cotisation
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
+
     def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -134,6 +140,9 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return cotisation
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -155,6 +164,9 @@ class ircantec_employe(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return ircantec
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -191,6 +203,9 @@ class ircantec_employeur(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return ircantec
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -245,6 +260,9 @@ class pension_civile_employe(SimpleFormulaColumn):
             )
         return -pension_civile_employe
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
+
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
@@ -268,6 +286,9 @@ class pension_civile_employeur(SimpleFormulaColumn):
             + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(salbrut)
             )
         return -cot_pat_pension_civile
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -317,8 +338,11 @@ class rafp_employe(SimpleFormulaColumn):
         rafp_employe = eligibles * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
         return -rafp_employe
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
+
     def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -341,8 +365,11 @@ class rafp_employeur(SimpleFormulaColumn):
         rafp_employeur = eligibles * bareme_rafp.calc(assiette)
         return - rafp_employeur
 
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
+
     def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -407,6 +434,9 @@ class supp_familial_traitement(SimpleFormulaColumn):
         #             'public_titulaire_hospitaliere',
         #             'public_non_titulaire'])
         return sft
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.offset('first-of', 'month').period('month')
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')

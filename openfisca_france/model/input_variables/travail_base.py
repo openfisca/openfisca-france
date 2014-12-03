@@ -58,8 +58,8 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
-    label = u"Effectifs de l'entreprise",
-    name = 'effectifs_entreprise',
+    label = u"Effectif de l'entreprise",
+    name = 'effectif_entreprise',
     )
 reference_input_variable(
     column = FixedStrCol(max_length = 5),
