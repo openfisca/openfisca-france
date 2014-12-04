@@ -504,6 +504,9 @@ class rsa_act_i(DatedFormulaColumn):
         rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
         return rsa_act_i
 
+    def get_output_period(self, period):
+        return period   # TODO: rentre dans le calcul de la PPE check period !!!
+
 
 def _rsa_socle(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = law.minim.rmi):
     '''
@@ -589,4 +592,3 @@ class rsa(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month', 3)
-
