@@ -46,6 +46,10 @@ from . import (  # noqa
     education
     )
 
+from .minima_sociaux import (
+    asi_aspa,
+    )
+
 from .cotisations_sociales import remplacement
 
 # Import model modules.
@@ -64,7 +68,6 @@ from . import irpp_reductions_impots as ri
 from . import isf as isf
 #from . import lgtm as lg
 # from .minima_sociaux import aah
-from .minima_sociaux import asi_aspa
 from .minima_sociaux import ass
 from .minima_sociaux import rsa
 from .prestations_familiales import aeeh
@@ -2122,45 +2125,6 @@ build_simple_formula('rmi', FloatCol(function = rsa._rmi,
 #    FloatCol(entity='fam',
 #    label = u"Allocation exceptionnelle de fin d'année",
 #    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"))
-############################################################
-# ASPA/ASI, Minimum vieillesse
-############################################################
-
-build_simple_formula('asi_aspa_nb_alloc', FloatCol(function = asi_aspa._asi_aspa_nb_alloc,
-    entity = 'fam'))
-build_simple_formula('asi_elig', BoolCol(function = asi_aspa._asi_elig,
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité",
-    ))
-build_simple_formula('asi', FloatCol(function = asi_aspa._asi,
-    entity = 'fam',
-    label = u"Allocation supplémentaire d'invalidité",
-    start = date(2007, 1, 1),
-    url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml",
-    ))
-    # En 2007, Transformation du MV et de L'ASI en ASPA et ASI. La prestation ASPA calcule bien l'ancien MV
-    # mais TODO manque l'ancienne ASI
-
-build_simple_formula('aspa_elig', BoolCol(function = asi_aspa._aspa_elig,
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées",
-    ))
-build_dated_formula('aspa_couple',
-    [
-        dict(start = date(2002, 1, 1),
-          end = date(2006, 12, 31),
-          function = asi_aspa._aspa_couple__2006,
-         ),
-        dict(start = date(2007, 1, 1),
-          end = date(2015, 12, 31),
-          function = asi_aspa._aspa_couple_2007_,
-         ),
-    ],
-    BoolCol(entity='fam',
-    label = u"Couple au sens de l'ASPA"))
-build_simple_formula('aspa', FloatCol(function = asi_aspa._aspa,
-    entity = 'fam',
-    label = u"Allocation de solidarité aux personnes agées",
-    url = u"http://vosdroits.service-public.fr/particuliers/F16871.xhtml",
-    ))
 
 ############################################################
 # Allocation adulte handicapé
