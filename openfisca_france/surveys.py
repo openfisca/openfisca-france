@@ -128,19 +128,13 @@ class SurveyScenario(object):
 
 
 def adapt_to_survey(tax_benefit_system):
-    # Add survey specific columns.
 
-    entity_class_by_symbol = {
-        entity_class.symbol: entity_class
-        for (_, entity_class) in tax_benefit_system.entity_class_by_key_plural.iteritems()
-        }
+    survey_entity_class_by_key_plural = tax_benefit_system.entity_class_by_key_plural.copy()
 
-    survey_entity_class_by_symbol = entity_class_by_symbol.copy()
-
-    individus_class = survey_entity_class_by_symbol['ind']
-    familles_class = survey_entity_class_by_symbol['fam']
-    foyers_class = survey_entity_class_by_symbol['foy']
-    menages_class = survey_entity_class_by_symbol['men']
+    individus_class = survey_entity_class_by_key_plural['individus']
+    familles_class = survey_entity_class_by_key_plural['familles']
+    foyers_class = survey_entity_class_by_key_plural['foyers_fiscaux']
+    menages_class = survey_entity_class_by_key_plural['menages']
 
     survey_individus_column_by_name = individus_class.column_by_name.copy()
     survey_familles_column_by_name = familles_class.column_by_name.copy()
@@ -163,41 +157,27 @@ def adapt_to_survey(tax_benefit_system):
     class SurveyMenages(menages_class):
         column_by_name = survey_menages_column_by_name
 
-    survey_entity_class_by_symbol['ind'] = SurveyIndividus
-    survey_entity_class_by_symbol['fam'] = SurveyFamilles
-    survey_entity_class_by_symbol['foy'] = SurveyFoyers
-    survey_entity_class_by_symbol['men'] = SurveyMenages
+    survey_entity_class_by_key_plural['individus'] = SurveyIndividus
+    survey_entity_class_by_key_plural['familles'] = SurveyFamilles
+    survey_entity_class_by_key_plural['foyers_fiscaux'] = SurveyFoyers
+    survey_entity_class_by_key_plural['menages'] = SurveyMenages
 
     from openfisca_france_data.model.input_variables.survey_variables import add_survey_columns_to_entities
-    add_survey_columns_to_entities(survey_entity_class_by_symbol)
+    add_survey_columns_to_entities(survey_entity_class_by_key_plural)
 
     from openfisca_france_data.model.model import add_survey_formulas_to_entities
-    add_survey_formulas_to_entities(survey_entity_class_by_symbol)
+    add_survey_formulas_to_entities(survey_entity_class_by_key_plural)
 
-    reference_legislation_json = tax_benefit_system.legislation_json
-    survey_legislation_json = copy.deepcopy(reference_legislation_json)
-
-    to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
-        entity_class.key_plural: entity_class
-        for symbol, entity_class in entity_class_by_symbol.iteritems()
-        }
+    survey_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
 
     from openfisca_core import reforms
     survey_tax_benefit_system = reforms.Reform(
-        entity_class_by_key_plural = to_entity_class_by_key_plural(survey_entity_class_by_symbol),
+        entity_class_by_key_plural = survey_entity_class_by_key_plural,
         legislation_json = survey_legislation_json,
         name = u'openfisca-france-survey',
         reference = tax_benefit_system,
         )
 
-#    tax_benefit_system_subclass = type(
-#        'tax_benefit_system_subclass',
-#        (tax_benefit_system_class,),
-#        {
-#            'column_by_name': column_by_name,
-#            'prestation_by_name': prestation_by_name,
-#            }
-#        )
     return survey_tax_benefit_system
 
 
