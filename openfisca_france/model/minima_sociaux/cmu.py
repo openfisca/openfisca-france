@@ -32,8 +32,8 @@ from openfisca_core.accessors import law
 from openfisca_core.columns import BoolCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
-from .base import QUIFAM, QUIFOY, reference_formula
-from ..entities import Familles, Individus
+from ..base import QUIFAM, QUIFOY, reference_formula, dated_function
+from ...entities import Familles, Individus
 
 
 CHEF = QUIFAM['chef']
