@@ -27,6 +27,8 @@ from __future__ import division
 
 from numpy import int32, logical_not as not_, zeros
 
+from openfisca_core.accessors import law
+
 from .base import BoolCol, Individus, QUIFAM, QUIFOY, reference_formula, SimpleFormulaColumn
 
 
@@ -84,13 +86,13 @@ class smic55(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Indicatrice individuelle d'un salaire supérieur à 55% du smic"
 
-    def function(self, salbrut, _P):
-        nbh_travaillees = 151.67 * 12
-        smic_annuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-        return salbrut >= _P.fam.af.seuil_rev_taux * smic_annuel_brut
+    def function(self, salbrut, _P = law):
+        nbh_travaillees = 151.67
+        smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
+        return salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 def _br_pf_i(tspr, hsup, rpns):

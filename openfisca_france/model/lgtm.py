@@ -80,8 +80,8 @@ class al_pac(SimpleFormulaColumn):
         return al_pac
 
     def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['nbR']:
-            return output_period(u'year').offset('first-of')
+        if variable_name == 'nbR_holder':
+            return output_period.start.offset('first-of', 'year').period('year')
         else:
             return output_period
 
@@ -156,9 +156,7 @@ class br_al(SimpleFormulaColumn):
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['br_pf_i_holder', 'rev_coll_holder']:
-            return output_period.start.period('year').offset(-1)
-        elif variable_name in ['etu_holder', 'boursier_holder']:
-            return output_period.start.period('month')
+            return output_period.start.offset('first-of', 'year').period('year').offset(-2)
         else:
             return output_period
 
@@ -338,7 +336,7 @@ class alf(SimpleFormulaColumn):
         return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * al
 
     def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -421,7 +419,7 @@ class crds_lgtm(SimpleFormulaColumn):
         return -al * crds
 
     def get_output_period(self, period):
-        return period.start.period(u'month')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -469,7 +467,7 @@ class zone_apl(SimpleFormulaColumn):
             )
 
     def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')
+        return period
 
 
 def preload_zone_apl():
