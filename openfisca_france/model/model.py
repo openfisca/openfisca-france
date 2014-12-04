@@ -56,7 +56,6 @@ from .cotisations_sociales import remplacement
 
 # Import model modules.
 from . import calage as cl
-from . import cmu as cmu
 from . import common as cm
 from .cotisations_sociales import capital as cs_capital
 
@@ -70,6 +69,7 @@ from . import irpp_reductions_impots as ri
 from . import isf as isf
 #from . import lgtm as lg
 # from .minima_sociaux import aah
+from .minima_sociaux import cmu as cmu
 from .prestations_familiales import aeeh
 from .prestations_familiales import af
 from .prestations_familiales import ars
