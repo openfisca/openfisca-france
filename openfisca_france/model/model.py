@@ -43,7 +43,7 @@ from .. import entities
 from . import (  # noqa
     inversion_revenus,
     travailleurs_non_salaries,
-    education
+    education,
     )
 
 from .minima_sociaux import (
@@ -57,7 +57,6 @@ from .cotisations_sociales import remplacement
 # Import model modules.
 from . import calage as cl
 from . import common as cm
-from .cotisations_sociales import capital as cs_capital
 
 #from .cotisations_sociales import remplacement as cs_remplac
 
@@ -67,17 +66,20 @@ from . import irpp_credits_impots as ci
 from . import irpp_plus_values_immo as immo
 from . import irpp_reductions_impots as ri
 from . import isf as isf
-#from . import lgtm as lg
+
 # from .minima_sociaux import aah
 from .minima_sociaux import cmu as cmu
+
 from .prestations_familiales import aeeh
 from .prestations_familiales import af
 from .prestations_familiales import ars
 from .prestations_familiales import asf
 from .prestations_familiales import paje
 from .prestations_familiales import cf
+
 from . import pfam as pf
 from . import th as th
+from . import lgtm
 
 from .input_variables import travail_base  # noqa
 from .cotisations_sociales import remuneration_prive
@@ -88,7 +90,7 @@ from .cotisations_sociales import travail_fonction_publique
 from .cotisations_sociales import travail_totaux
 from .cotisations_sociales import allegements
 
-from . import lgtm
+from .cotisations_sociales import capital as cs_capital
 
 
 build_alternative_formula = partial(
