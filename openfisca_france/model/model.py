@@ -48,6 +48,8 @@ from . import (  # noqa
 
 from .minima_sociaux import (
     asi_aspa,
+    ass,
+    rsa,
     )
 
 from .cotisations_sociales import remplacement
@@ -68,8 +70,6 @@ from . import irpp_reductions_impots as ri
 from . import isf as isf
 #from . import lgtm as lg
 # from .minima_sociaux import aah
-from .minima_sociaux import ass
-from .minima_sociaux import rsa
 from .prestations_familiales import aeeh
 from .prestations_familiales import af
 from .prestations_familiales import ars
@@ -2039,92 +2039,6 @@ build_simple_formula('crds_pfam', FloatCol(function = pf._crds_pfam,
 
 # En fait en vigueur pour les enfants nés avant 2004 ...
 # TODO Gestion du cumul apje ape
-
-
-############################################################
-# RSA/RMI
-############################################################
-
-build_simple_formula('div_ms', FloatCol(function = rsa._div_ms))
-build_simple_formula('rfon_ms', FloatCol(function = rsa._rfon_ms))
-build_simple_formula('enceinte_fam', BoolCol(function = rsa._enceinte_fam, entity = 'fam'))
-build_simple_formula('rsa_forfait_asf', FloatCol(function = rsa._rsa_forfait_asf,
-    entity = 'fam',
-    label = u"Allocation de soutien familial forfaitisée pour le RSA",
-    start = date(2014, 4, 1)))
-build_dated_formula('br_rmi_pf',
-    [
-        dict(start = date(2002, 1, 1),
-            end = date(2003, 12, 31),
-            function = rsa._br_rmi_pf__2003,
-         ),
-        dict(start = date(2004, 1, 1),
-            end = date(2014, 3, 31),
-            function = rsa._br_rmi_pf_2004_2014,
-         ),
-        dict(start = date(2014, 4, 1),
-            end = date(2015, 12, 31),
-            function = rsa._br_rmi_pf_2014_,
-         ),
-    ],
-    FloatCol(entity = 'fam'))
-build_simple_formula('rmi_nbp', FloatCol(function = rsa._rmi_nbp,
-    entity = 'fam',
-    label = u"Nombre de personne à charge au sens du Rmi/Rsa",
-    ))
-build_simple_formula('rsa_forfait_logement', FloatCol(function = rsa._rsa_forfait_logement,
-    entity = 'fam'))
-build_simple_formula('rsa_socle', FloatCol(function = rsa._rsa_socle,
-    entity = 'fam',
-    label = u"RSA socle",
-    ))
-build_simple_formula('rmi', FloatCol(function = rsa._rmi,
-    entity = 'fam',
-    label = u"Revenu de solidarité active - socle",
-    ))
-#build_simple_formula('rsa_socle_majore', FloatCol(function = rsa._rsa_socle_majore,
-#    entity = 'fam',
-#    label = u"Majoration pour parent isolé du Revenu de solidarité active socle",
-#    start = date(2009, 6, 1)))
-#build_simple_formula('rsa_act', FloatCol(function = rsa._rsa_act,
-#    entity = 'fam',
-#    label = u"Revenu de solidarité active - activité",
-#    start = date(2009, 6, 1)))
-#build_simple_formula('rsa_act_i', FloatCol(function = rsa._rsa_act_i))
-#build_simple_formula('psa', FloatCol(function = rsa._psa,
-#    entity = 'fam',
-#    label = u"Prime de solidarité active",
-#    start = date(2009, 1, 1),
-#    end = date(2009, 12, 31),
-#    url = u"http://www.service-public.fr/actualites/001077.html",
-#    ))
-#build_simple_formula('api', FloatCol(function = rsa._api,
-#    entity = 'fam',
-#    end = date(2009, 5, 31),
-#    label = u"Allocation de parent isolé",
-#    url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
-#    ))
-#build_simple_formula('crds_mini', FloatCol(function = rsa._crds_mini,
-#    entity = 'fam',
-#    start = date(2009, 6, 1)))
-#build_dated_formula('aefa',
-#    [
-#        dict(start = date(2002, 1, 1),
-#          end = date(2007, 12, 31),
-#          function = rsa._aefa__2008_,
-#         ),
-#        dict(start = date(2009, 1, 1),
-#          end = date(2015, 12, 31),#TODO: actualiser la date (si la loi n'a pas changé)
-#          function = rsa._aefa__2008_,
-#         ),
-#        dict(start = date(2008, 1, 1),
-#          end = date(2008, 12, 31),
-#          function = rsa._aefa_2008,
-#         ),
-#    ],
-#    FloatCol(entity='fam',
-#    label = u"Allocation exceptionnelle de fin d'année",
-#    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"))
 
 ############################################################
 # Allocation adulte handicapé
