@@ -199,7 +199,8 @@ class cmu_br(SimpleFormulaColumn):
 
         cmu_br_i_par = self.split_by_roles(cmu_br_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_br_i_holder, roles = ENFS)
-        age_pac = self.split_by_roles(cmu_br_i_holder, roles = ENFS)
+
+        age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
@@ -207,6 +208,7 @@ class cmu_br(SimpleFormulaColumn):
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
+
         return res
 
     def get_variable_period(self, output_period, variable_name):
