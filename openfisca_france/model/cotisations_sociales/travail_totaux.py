@@ -299,29 +299,6 @@ class salnet(SimpleFormulaColumn):
 
 
 @reference_formula
-class sal_h_b(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Salaire horaire brut"
-
-    def function(self, salbrut):
-
-        # mensuel classique : nbhr = nombre d'heures rémunérées sur un mois
-        nbhr = 151.67
-
-        # forfait jour nbjf = nombre de jours au forfait jour
-        # nbhr = 151.67 * (nbjf / 218) * (52 / 12)
-
-        # forfait heures nbhf = nombre d'heures au forfait heures
-        # nbhr = 151.67 * (nbhf / 45.7) * (52 / 12)
-
-        return salbrut / nbhr
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
 class taxes_sal(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus

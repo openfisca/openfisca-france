@@ -29,7 +29,7 @@ from __future__ import division
 import datetime
 import logging
 
-from numpy import int16, ones, zeros
+from numpy import int16, ones
 from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol

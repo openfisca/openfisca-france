@@ -153,7 +153,7 @@ reference_input_variable(
                 u"temps_partiel",
                 u"forfait_heures",
                 u"forfait_jours",
-                u"duree contractuelle",  # heures/mois
+                u"duree_contractuelle",  # heures/mois
                 ],
             ),
         ),
