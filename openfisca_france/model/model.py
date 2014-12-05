@@ -49,6 +49,7 @@ from . import (  # noqa
 from .minima_sociaux import (
     asi_aspa,
     ass,
+    cmu,
     rsa,
     )
 
@@ -68,7 +69,6 @@ from . import irpp_reductions_impots as ri
 from . import isf as isf
 
 # from .minima_sociaux import aah
-from .minima_sociaux import cmu as cmu
 
 from .prestations_familiales import aeeh
 from .prestations_familiales import af
@@ -2254,49 +2254,3 @@ build_simple_formula('check_csg', FloatCol(function = cm._check_csg,
     entity = 'men'))
 build_simple_formula('check_crds', FloatCol(function = cm._check_crds,
     entity = 'men'))
-############################################################
-# Couverture Maladie Universelle
-############################################################
-build_dated_formula('acs_montant',
-            [
-        dict(
-            start = date(2000, 1, 1),
-            end = date(2009, 7, 31),
-            function = cmu._acs_montant__2009,
-        ),
-        dict(
-            start = date(2009, 8, 1),
-            end = date(2014, 12, 31),
-            function = cmu._acs_montant_2009_,
-        ),
-    ],
-    FloatCol(label = u"Montant de l'ACS en cas d'éligibilité",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_forfait_logement_base', FloatCol(function = cmu._cmu_forfait_logement_base,
-    label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_forfait_logement_al', FloatCol(function = cmu._cmu_forfait_logement_al,
-    label = u"Forfait logement applicable en cas d'aide au logement",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_nbp_foyer', PeriodSizeIndependentIntCol(function = cmu._cmu_nbp_foyer,
-    label = u"Nombre de personnes dans le foyer CMU",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_c_plafond', FloatCol(function = cmu._cmu_c_plafond,
-    label = u"Plafond de ressources pour l'éligibilité à la CMU-C",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_eligible_majoration_dom', BoolCol(function = cmu._cmu_eligible_majoration_dom,
-    entity = 'fam'
-    ))
-build_simple_formula('acs_plafond', FloatCol(function = cmu._acs_plafond,
-    label = u"Plafond de ressources pour l'éligibilité à l'ACS",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_nb_pac', PeriodSizeIndependentIntCol(function = cmu._cmu_nb_pac,
-    label = u"Nombre de personnes à charge au titre de la CMU",
-    entity = 'fam',
-    ))
