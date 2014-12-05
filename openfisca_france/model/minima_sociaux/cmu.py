@@ -25,15 +25,16 @@
 
 from __future__ import division
 
+import datetime
 from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros
 from numpy.core.defchararray import startswith
 
 from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.columns import BoolCol, FloatCol, PeriodSizeIndependentIntCol
+from openfisca_core.formulas import SimpleFormulaColumn, DatedFormulaColumn
 
-from .base import QUIFAM, QUIFOY, reference_formula
-from ..entities import Familles, Individus
+from ..base import QUIFAM, QUIFOY, reference_formula, dated_function
+from ...entities import Familles, Individus
 
 
 CHEF = QUIFAM['chef']
@@ -45,72 +46,116 @@ ENFS = [
 VOUS = QUIFOY['vous']
 
 
-def _acs_montant__2009(self, age_holder):
-    '''
-    Calcule le montant de l'ACS en cas d'éligibilité (jusqu'au 31 juillet 2009)
-    '''
-    # TODO
-    ages = self.filter_role(age_holder, role = CHEF)
-    return 0 * ages
+@reference_formula
+class acs_montant(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Montant de l'ACS en cas d'éligibilité"
+
+    @dated_function(datetime.date(2000, 1, 1), datetime.date(2009, 7, 31))
+    def function_2000(self, age_holder):
+        # TODO
+        ages = self.filter_role(age_holder, role = CHEF)
+        return 0 * ages
+
+    @dated_function(datetime.date(2009, 8, 1))
+    def function_2009(self, age_holder, P = law.cmu):
+        ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
+        ages_pac = self.split_by_roles(age_holder, roles = ENFS)
+
+        return ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
+           (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
+           nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
+           nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _acs_montant_2009_(self, age_holder, P = law.cmu):
-    '''
-    Calcule le montant de l'ACS en cas d'éligibilité (à compter du 1 août 2009)
-    '''
-    ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
-    ages_pac = self.split_by_roles(age_holder, roles = ENFS)
-    return ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
-       (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
-       nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
-       nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
+@reference_formula
+class cmu_forfait_logement_base(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
+
+    def function(self, cmu_nbp_foyer, P = law.cmu.forfait_logement, law_rsa = law.minim.rmi):
+        return forfait_logement(cmu_nbp_foyer, P, law_rsa)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _cmu_forfait_logement_base(cmu_nbp_foyer, P = law.cmu.forfait_logement, law_rsa = law.minim.rmi):
-    '''
-    Calcule le forfait logement applicable en cas de propriété ou d'occupation à titre gratuit
-    '''
-    return forfait_logement(cmu_nbp_foyer, P, law_rsa)
+@reference_formula
+class cmu_forfait_logement_al(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Forfait logement applicable en cas d'aide au logement"
+
+    def function(self, cmu_nbp_foyer, P = law.cmu.forfait_logement_al, law_rsa = law.minim.rmi):
+        return forfait_logement(cmu_nbp_foyer, P, law_rsa)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _cmu_forfait_logement_al(cmu_nbp_foyer, P = law.cmu.forfait_logement_al, law_rsa = law.minim.rmi):
-    '''
-    Calcule le forfait logement applicable en cas d'aide au logement
-    '''
-    return forfait_logement(cmu_nbp_foyer, P, law_rsa)
+@reference_formula
+class cmu_nbp_foyer(SimpleFormulaColumn):
+    column = PeriodSizeIndependentIntCol
+    entity_class = Familles
+    label = u"Nombre de personnes dans le foyer CMU"
 
 
-def _cmu_nbp_foyer(nb_par, cmu_nb_pac):
-    '''
-    Calcule le nombre de personnes dans le foyer CMU
-    '''
-    return nb_par + cmu_nb_pac
+    def function(self, nb_par, cmu_nb_pac):
+        return nb_par + cmu_nb_pac
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _cmu_eligible_majoration_dom(self, depcom_holder):
-    depcom = self.cast_from_entity_to_roles(depcom_holder)
-    depcom = self.filter_role(depcom, role = CHEF)
+@reference_formula
+class cmu_eligible_majoration_dom(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
 
-    return startswith(depcom, '971') | startswith(depcom, '972') | startswith(depcom, '973') | startswith(depcom, '974')
+    def function(self, depcom_holder):
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
 
-
-def _cmu_c_plafond(self, cmu_eligible_majoration_dom, cmu_nbp_foyer, P = law.cmu):
-    '''
-    Calcule le plafond de ressources pour la CMU complémentaire
-    TODO: Rajouter la majoration pour les DOM
-    '''
-    return (P.plafond_base *
-        (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
-        (1 + (cmu_nbp_foyer >= 2) * P.coeff_p2 +
-            max_(0, min_(2, cmu_nbp_foyer - 2)) * P.coeff_p3_p4 +
-            max_(0, cmu_nbp_foyer - 4) * P.coeff_p5_plus))
+        return startswith(depcom, '971') | startswith(depcom, '972') | startswith(depcom, '973') | startswith(depcom, '974')
+    
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _acs_plafond(cmu_c_plafond, P = law.cmu):
-    '''
-    Calcule le plafond de ressources pour l'ACS
-    '''
-    return cmu_c_plafond * (1 + P.majoration_plafond_acs)
+@reference_formula
+class cmu_c_plafond(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
+
+    def function(self, cmu_eligible_majoration_dom, cmu_nbp_foyer, P = law.cmu):
+        # TODO: Rajouter la majoration pour les DOM
+        return (P.plafond_base *
+            (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
+            (1 + (cmu_nbp_foyer >= 2) * P.coeff_p2 +
+                max_(0, min_(2, cmu_nbp_foyer - 2)) * P.coeff_p3_p4 +
+                max_(0, cmu_nbp_foyer - 4) * P.coeff_p5_plus))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class acs_plafond(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
+
+    def function(self, cmu_c_plafond, P = law.cmu):
+        return cmu_c_plafond * (1 + P.majoration_plafond_acs)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -136,10 +181,10 @@ class cmu_br_i(SimpleFormulaColumn):
         if variable_name == 'activite':
             return output_period
         else:
-            return output_period.offset(-1)
+            return output_period.start.period('year').offset(-1)
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -148,19 +193,14 @@ class cmu_br(SimpleFormulaColumn):
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
 
-    def function(self, aspa, so_holder, apl_holder, als_holder, alf_holder, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
+    def function(self, aspa, so_holder, apl, als, alf, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
-        apl = self.cast_from_entity_to_roles(apl_holder)
-        apl = self.filter_role(apl, role = CHEF)
-        als = self.cast_from_entity_to_roles(als_holder)
-        als = self.filter_role(als, role = CHEF)
-        alf = self.cast_from_entity_to_roles(alf_holder)
-        alf = self.filter_role(alf, role = CHEF)
 
         cmu_br_i_par = self.split_by_roles(cmu_br_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_br_i_holder, roles = ENFS)
-        age_pac = self.split_by_roles(cmu_br_i_holder, roles = ENFS)
+
+        age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
@@ -168,24 +208,31 @@ class cmu_br(SimpleFormulaColumn):
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
+
         return res
 
     def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['aspa', 'apl_holder', 'als_holder', 'alf_holder']:
-            return output_period.offset(-1)
+        if variable_name in ['aspa']:
+            return output_period.start.period('year').offset(-1)
         else:
             return output_period
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _cmu_nb_pac(self, age_holder, P = law.cmu):
-    '''
-    Calcule de nombre d'enfants / personnes à charge à comptabiliser dans la famille CMU
-    '''
-    ages = self.split_by_roles(age_holder, roles = ENFS)
-    return nb_par_age(ages, 0, P.age_limite_pac)
+@reference_formula
+class cmu_nb_pac(SimpleFormulaColumn):
+    column = PeriodSizeIndependentIntCol
+    entity_class = Familles
+    label = u"Nombre de personnes à charge au titre de la CMU"
+
+    def function(self, age_holder, P = law.cmu):
+        ages = self.split_by_roles(age_holder, roles = ENFS)
+        return nb_par_age(ages, 0, P.age_limite_pac)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -199,6 +246,9 @@ class cmu_c(SimpleFormulaColumn):
 
     def function(self, cmu_c_plafond, cmu_br, period):
         return cmu_br <= cmu_c_plafond
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period('month')
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
@@ -215,6 +265,9 @@ class acs(SimpleFormulaColumn):
 
     def function(self, cmu_c, cmu_br, acs_plafond, acs_montant):
         return not_(cmu_c) * (cmu_br <= acs_plafond) * acs_montant
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period('month')
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')

@@ -5779,4 +5779,29 @@
       </CODE>
     </NODE>
   </NODE>
+  <NODE code="bourses_education" description="Bourses de l'Éducation nationale">
+    <NODE code="bourse_college" description="Bourse des collèges">
+      <CODE code="plafond_taux_1" description="Plafond de référence pour le taux 1" format="float" type="monetary">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="11252" />
+      </CODE>
+      <CODE code="plafond_taux_2" description="Plafond de référence pour le taux 2" format="float" type="monetary">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="6083" />
+      </CODE>
+      <CODE code="plafond_taux_3" description="Plafond de référence pour le taux 3" format="float" type="monetary">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="2146" />
+      </CODE>
+      <CODE code="coeff_enfant_supplementaire" description="Coefficient à rajouter aux plafonds pour chaque enfant à charge" format="percent">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="0.3" />
+      </CODE>
+      <CODE code="montant_taux_1" description="Montant taux 1" format="float" type="monetary">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="84" />
+      </CODE>
+      <CODE code="montant_taux_2" description="Montant taux 2" format="float" type="monetary">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="228" />
+      </CODE>
+      <CODE code="montant_taux_3" description="Montant taux 3" format="float" type="monetary">
+        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="357" />
+      </CODE>
+    </NODE>
+  </NODE>
 </NODE>

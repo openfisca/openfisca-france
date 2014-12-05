@@ -29,7 +29,7 @@ import datetime
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
 from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol
+from openfisca_core.columns import FloatCol, IntCol, BoolCol
 from openfisca_core.formulas import SimpleFormulaColumn, dated_function, DatedFormulaColumn
 
 from ..base import Familles, Individus, QUIFAM, QUIFOY, reference_formula
@@ -222,62 +222,77 @@ class api(DatedFormulaColumn):
         return period.start.offset('first-of', 'year').period('year')
 
 
-def _enceinte_fam(self, agem_holder, enceinte_holder):
-    agem_enf = self.split_by_roles(agem_holder, roles = ENFS)
-    enceinte = self.split_by_roles(enceinte_holder, roles = [CHEF, PART])
+@reference_formula
+class enceinte_fam(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
 
-    benjamin = age_en_mois_benjamin(agem_enf)
-    enceinte_compat = and_(benjamin < 0, benjamin > -6)
-    return or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
+    def function(self, agem_holder, enceinte_holder):
+        agem_enf = self.split_by_roles(agem_holder, roles = ENFS)
+        enceinte = self.split_by_roles(enceinte_holder, roles = [CHEF, PART])
 
+        benjamin = age_en_mois_benjamin(agem_enf)
+        enceinte_compat = and_(benjamin < 0, benjamin > -6)
+        return or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
 
-def _div_ms(self, f3vc_holder, f3ve_holder, f3vg_holder, f3vl_holder, f3vm_holder):
-    f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
-    f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
-    f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
-    f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
-    f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
-
-    return f3vc + f3ve + f3vg + f3vl + f3vm
+    def get_output_period(self, period):
+        return period
 
 
-def _rfon_ms(self, f4ba_holder, f4be_holder):
-    '''
-    Revenus fonciers pour la base ressource du rmi/rsa
-    'ind'
-    '''
-    f4ba = self.cast_from_entity_to_role(f4ba_holder, role = VOUS)
-    f4be = self.cast_from_entity_to_role(f4be_holder, role = VOUS)
+@reference_formula
+class div_ms(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
 
-    return f4ba + f4be
+    def function(self, f3vc_holder, f3ve_holder, f3vg_holder, f3vl_holder, f3vm_holder):
+        f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
+        f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
+        f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
+        f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
+        f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
 
+        return f3vc + f3ve + f3vg + f3vl + f3vm
 
-def _br_rmi_pf__2003(self, af_base, cf, asf, apje, ape, P = law.minim):
-    """Prestations familiales inclues dans la base ressource RSA/RMI
-
-    TODO: Add mva (majoration vie autonome),
-    'fam'
-    """
-    return P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
 
 
-def _br_rmi_pf_2004_2014(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
-    """Prestations familiales inclues dans la base ressource RSA/RMI
+@reference_formula
+class rfon_ms(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Revenus fonciers pour la base ressource du rmi/rsa"
 
-    TODO: Add mva (majoration vie autonome),
-    'fam'
-    """
+    def function(self, f4ba_holder, f4be_holder):
+        f4ba = self.cast_from_entity_to_role(f4ba_holder, role = VOUS)
+        f4be = self.cast_from_entity_to_role(f4be_holder, role = VOUS)
 
-    return P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+        return f4ba + f4be
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
 
 
-def _br_rmi_pf_2014_(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
-    """Prestations familiales inclues dans la base ressource RSA/RMI
+@reference_formula
+class br_rmi_pf(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
 
-    TODO: Add mva (majoration vie autonome),
-    'fam'
-    """
-    return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
+    @dated_function(datetime.date(2002, 1, 1), datetime.date(2003, 12, 31))
+    def function_2002(self, af_base, cf, asf, apje, ape, P = law.minim):
+        return P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
+
+    @dated_function(datetime.date(2004, 1, 1), datetime.date(2014, 3, 31))
+    def function_2003(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
+        return P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+
+    @dated_function(datetime.date(2014, 4, 1))
+    def function_2014(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
+        return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -292,7 +307,7 @@ class br_rmi_ms(SimpleFormulaColumn):
         return aspa + asi + aah + caah
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -316,7 +331,7 @@ class br_rmi_i(SimpleFormulaColumn):
             )
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -336,7 +351,7 @@ class br_rmi(SimpleFormulaColumn):
         return br_rmi
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -398,54 +413,59 @@ class ra_rsa(SimpleFormulaColumn):
     def function(self, salnet, hsup, rpns, etr, indemnites_chomage_partiel, indemnites_journalieres_maternite,
                  indemnites_journalieres_paternite, indemnites_journalieres_adoption, indemnites_journalieres_maladie,
                  indemnites_journalieres_accident_travail, indemnites_journalieres_maladie_professionnelle,
-                 indemnites_volontariat, revenus_stage_formation_pro, tns_total_revenus):
-        return (
-            salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
+                 indemnites_volontariat, revenus_stage_formation_pro, indemnites_stage, tns_total_revenus):
+        return (salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat + revenus_stage_formation_pro + tns_total_revenus
-            )
+            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
 
-def _rsa_forfait_asf(asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
-    '''
-    Allocation de soutien familial forfaitisée pour le RSA
-    '''
+@reference_formula
+class rsa_forfait_asf(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Allocation de soutien familial forfaitisée pour le RSA"
+    start_date = datetime.date(2014, 4, 1)
 
-    # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
-    return asf_elig * max_(0, asf_nbenf * 12 * bmaf * forfait_asf.taux1)
+    def function(self, asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
+        return asf_elig * max_(0, asf_nbenf * bmaf * forfait_asf.taux1)
 
-
-def _rmi_nbp(self, age_holder, smic55_holder, nb_par , P = law.minim.rmi):
-    '''
-    Nombre de personne à charge au sens du Rmi ou du Rsa
-    'fam'
-    '''
-    age = self.split_by_roles(age_holder, roles = ENFS)
-    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-
-    # TODO: file a issue to check if D_enfch in rsa should be removed
-    return nb_par + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _rsa_forfait_logement(rmi_nbp, P = law.minim):
-    '''
-    Forfait logement intervenant dans le calcul du Rmi ou du Rsa
-    'fam'
-    '''
-    # calcul du forfait logement annuel si le ménage touche des allocations logements
-    # mais également pour les propriétaires en tant qu'avantage en nature et les hébergés également
-    # donc on le donne à tout le monde
+@reference_formula
+class rmi_nbp(SimpleFormulaColumn):
+    column = IntCol
+    entity_class = Familles
+    label = u"Nombre de personne à charge au sens du Rmi/Rsa"
 
-    # loca = (3 <= so)&(5 >= so)
-    FL = P.rmi.forfait_logement
-    tx_fl = ((rmi_nbp == 1) * FL.taux1 +
-             (rmi_nbp == 2) * FL.taux2 +
-             (rmi_nbp >= 3) * FL.taux3)
-    return 12 * (tx_fl * P.rmi.rmi)
+    def function(self, age_holder, smic55_holder, nb_par , P = law.minim.rmi):
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+
+        return nb_par + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class rsa_forfait_logement(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
+
+    def function(self, rmi_nbp, forf_logement = law.minim.rmi.forfait_logement, rmi = law.minim.rmi.rmi):
+        return rmi * ((rmi_nbp == 1) * forf_logement.taux1 +
+            (rmi_nbp == 2) * forf_logement.taux2 +
+            (rmi_nbp >= 3) * forf_logement.taux3)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -508,43 +528,48 @@ class rsa_act_i(DatedFormulaColumn):
         return period   # TODO: rentre dans le calcul de la PPE check period !!!
 
 
-def _rsa_socle(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = law.minim.rmi):
-    '''
-    Rsa socle / Rmi
-    'fam'
-    '''
-    age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
-    activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
-    age_enf = self.split_by_roles(age_holder, roles = ENFS)
-    smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
+@reference_formula
+class rsa_socle(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = "RSA socle"
 
-    nbp = nb_par + nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
+    def function(self, age_holder, smic55_holder, activite_holder, nb_par, rmi = law.minim.rmi):
+        age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
+        activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+        age_enf = self.split_by_roles(age_holder, roles = ENFS)
+        smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 
-    eligib = (
-        (age_parents[CHEF] >= rmi.age_pac)
-        *
-        not_(activite_parents[CHEF] == 2)
-        ) | (
-            (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+        nbp = nb_par + nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
+
+        eligib = (
+            (age_parents[CHEF] >= rmi.age_pac)
+            *
+            not_(activite_parents[CHEF] == 2)
+            ) | (
+                (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+                )
+
+        taux = (
+            1 + (nbp >= 2) * rmi.txp2 +
+            (nbp >= 3) * rmi.txp3 +
+            (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
+            max_(nbp - 4, 0) * rmi.txps
             )
+        return eligib * rmi.rmi * taux
 
-    taux = (
-        1 + (nbp >= 2) * rmi.txp2 +
-        (nbp >= 3) * rmi.txp3 +
-        (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
-        max_(nbp - 4, 0) * rmi.txps
-        )
-    return eligib * rmi.rmi * taux * 12
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
-class rsa_socle_majore(DatedFormulaColumn):
+class rsa_socle_majore(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Majoration pour parent isolé du Revenu de solidarité active socle"
+    start_date = datetime.date(2009, 6, 1)
 
-    @dated_function(start = datetime.date(2009, 6, 1))
-    def function_2009_(self, enceinte_fam, age_holder, smic55_holder, nb_par, isol, rmi = law.minim.rmi):
+    def function(self, enceinte_fam, age_holder, smic55_holder, nb_par, isol, rmi = law.minim.rmi):
         age_enf = self.split_by_roles(age_holder, roles = ENFS)
         smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
         nbenf = nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
@@ -556,13 +581,19 @@ class rsa_socle_majore(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('month')
 
 
-def _rmi(rsa_socle, rsa_forfait_logement, br_rmi):
-    '''
-    Cacule le montant du RMI/ Revenu de solidarité active - socle
-    'fam'
-    '''
-    rmi = max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
-    return rmi
+@reference_formula
+class rmi(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Revenu Minimum d'Insertion"
+
+    @dated_function(datetime.date(1988, 12, 1), datetime.date(2009, 5, 31))
+    def function(self, rsa_socle, rsa_forfait_logement, br_rmi):
+        return max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
+
+    # Migré lors de la mensualisation. Probablement faux
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -576,19 +607,18 @@ class rsa(SimpleFormulaColumn):
 
         # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
         base_normalise = max_(
-            max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi +
-            P.pente * (ra_rsa[CHEF] + ra_rsa[PART]),
+            max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi / 3 +
+            P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) / 3,
             0
             )
-        # Seuil de versement *annualisé*
-        # TODO : pourquoi le seuil de non versement est * 12 ?
-        return base_normalise * (base_normalise >= P.rsa_nv * 12)
+
+        return base_normalise * (base_normalise >= P.rsa_nv)
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['ra_rsa_holder', 'br_rmi']:
-            return output_period.offset(-3)
+            return output_period.start.period('month', 3).offset(-3)
         else:
             return output_period
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month', 3)
+        return period.start.offset('first-of', 'month').period('month')

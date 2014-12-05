@@ -24,13 +24,14 @@
 
 from __future__ import division
 
+import datetime
 from numpy import (maximum as max_, logical_not as not_)
 
 from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.columns import BoolCol, FloatCol, IntCol
+from openfisca_core.formulas import SimpleFormulaColumn, DatedFormulaColumn
 
-from ..base import QUIFAM, QUIFOY, reference_formula
+from ..base import QUIFAM, QUIFOY, reference_formula, dated_function
 from ...entities import Familles, Individus
 
 CHEF = QUIFAM['chef']
@@ -52,7 +53,7 @@ class br_mv_i(SimpleFormulaColumn):
     def function(self, salnet, chonet, rstnet, alr, rto_declarant1, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
                  revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, pensions_invalidite, gains_exceptionnels,
-                 aah, indemnites_journalieres_maternite, indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle,
+                 indemnites_journalieres_maternite, indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle,
                  indemnites_journalieres_accident_travail, indemnites_chomage_partiel, indemnites_volontariat,
                  tns_total_revenus, rsa_base_ressources_patrimoine_i):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
@@ -62,7 +63,7 @@ class br_mv_i(SimpleFormulaColumn):
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
-               dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels + aah +
+               dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
                indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
                rsa_base_ressources_patrimoine_i
@@ -71,7 +72,7 @@ class br_mv_i(SimpleFormulaColumn):
         return out
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month', 3)
+        return period
 
 
 @reference_formula
@@ -84,192 +85,186 @@ class br_mv(SimpleFormulaColumn):
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
         return br_mv_i[CHEF] + br_mv_i[PART]
 
-    def get_variable_period(self, output_period, variable_name):
-        return output_period.start.period('month', 3).offset(-3)
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class aspa_elig(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
+    entity_class = Individus
+
+    def function(self, age, inv, P = law.minim):
+        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
+        return condition_age
 
     def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period.start.offset('first-of', 'month').period('month')
 
-#    Bloc ASPA/ASI
-#    Allocation de solidarité aux personnes agées (ASPA)
-#    et Allocation supplémentaire d'invalidité (ASI)
+@reference_formula
+class asi_aspa_nb_alloc(SimpleFormulaColumn):
+    column = IntCol
+    label = u"Nombre d'allocataires ASI/ASPA"
+    entity_class = Familles
 
-# ASPA crée le 1er janvier 2006
-# TODO Allocation supplémentaire avant la loi de  2006 (entrée en vigueur au 1er janvier 2007)
+    def function(self, aspa_elig_holder, asi_elig_holder):
+        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-# ASPA:
-# Anciennes allocations du minimum vieillesse remplacées par l'ASPA
-#
-# Il s'agit de :
-#    l'allocation aux vieux travailleurs salariés (AVTS),
-#    l'allocation aux vieux travailleurs non salariés,
-#    l'allocation aux mères de familles,
-#    l'allocation spéciale de vieillesse,
-#    l'allocation supplémentaire de vieillesse,
-#    l'allocation de vieillesse agricole,
-#    le secours viager,
-#    la majoration versée pour porter le montant d'une pension de vieillesse au niveau de l'AVTS,
-#    l'allocation viagère aux rapatriés âgés.
+        return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
-# ASI:
-#        L'ASI peut être attribuée aux personnes atteintes d'une invalidité générale
-#        réduisant au moins des deux tiers leur capacité de travail ou de gain.
-#        Les personnes qui ont été reconnues atteintes d'une invalidité générale réduisant
-#        au moins des deux tiers leur capacité de travail ou de gain pour l'attribution d'un
-#        avantage d'invalidité au titre d'un régime de sécurité sociale résultant de
-#        dispositions législatives ou réglementaires sont considérées comme invalides.
-
-#        Le droit à l'ASI prend fin dès lors que le titulaire remplit la condition d'âge pour bénéficier de l'ASPA.
-#        Le titulaire de l'ASI est présumé inapte au travail pour l'attribution de l'ASPA. (cf. par analogie circulaire n° 70 SS du 05/08/1957 - circulaire Cnav 28/85 du 26/02/1985 - Lettre Cnav du 15.04.1986)
-#        Le droit à l'ASI prend donc fin au soixantième anniversaire du titulaire. En pratique, l'allocation est supprimée au premier
-#        jour du mois civil suivant le 60ème anniversaire.
-
-#        Plafond de ressources communs depuis le 1er janvier 2006
-#        Changement au 1er janvier 2009 seulement pour les personnes seules !
-#        P.aspa.plaf_couple = P.asi.plaf_couple mais P.aspa.plaf_seul = P.asi.plaf_seul
-
-#    Minimum vieillesse - Allocation de solidarité aux personnes agées (ASPA)
-# age minimum (CSS R815-2)
-# base ressource R815-25:
-#   - retraite, pensions et rentes,
-#   - allocation spéciale (L814-1);
-#   - allocation aux mères de famille (L813)
-#   - majorations pour conjoint à charge des retraites
-#   - pas de prise en compte des allocations logement, des prestations
-#   familiales, de la rente viagère rapatriée...
-# TODO: ajouter taux de la majoration pour 3 enfants 10% (D811-12) ?
-#       P.aspa.maj_3enf = 0.10;
-
-def _aspa_elig(age, inv, P = law.minim):
-    '''
-    Eligibitié individuelle à l'ASPA (Allocation de solidarité aux personnes agées)
-    'ind'
-    '''
-    condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
-    return condition_age
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _asi_elig(aspa_elig, inv, activite):
-    '''
-    Éligibilité individuelle à l'ASI (Allocation supplémentaire d'invalidité)
-    'ind'
-    '''
-    return inv & (activite >= 3) & not_(aspa_elig)
+@reference_formula
+class asi_elig(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
+    entity_class = Individus
+
+    def function(self, aspa_elig, inv, activite):
+        return inv & (activite >= 3) & not_(aspa_elig)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
-def _asi_aspa_nb_alloc(self, aspa_elig_holder, asi_elig_holder):
-    '''
-    Nombre d'allocataire à l'ASI
-    '''
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+@reference_formula
+class asi(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Allocation supplémentaire d'invalidité"
+    start_date = datetime.date(2007, 1, 1)
+    url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
+    entity_class = Familles
 
-    return (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
+    def function(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
+        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-def _aspa_couple__2006(maries):
-    '''
-    Détermine si l'on a bien affaire à un couple au sens de l'ASPA
-    '''
-    return maries
+        # Un seul éligible
+        elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
+        # Couple d'éligibles mariés
+        elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries
+        # Couple d'éligibles non mariés
+        elig3 = (asi_elig[CHEF] & asi_elig[PART]) * not_(maries)
+        # Un seul éligible et époux éligible ASPA
+        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
+        # Un seul éligible et conjoint non marié éligible ASPA
+        elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
+
+        elig = elig1 | elig2 | elig3 | elig4 | elig5
+
+        montant_max = (elig1 * P.asi.montant_seul
+            + elig2 * P.asi.montant_couple
+            + elig3 * 2 * P.asi.montant_seul
+            + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
+            + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 4
+
+        ressources = br_mv + montant_max
+
+        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
+            + elig2 * P.asi.plaf_couple
+            + elig3 * P.asi.plaf_couple
+            + elig4 * P.aspa.plaf_couple
+            + elig5 * P.aspa.plaf_couple) / 4
+
+        depassement = max_(ressources - plafond_ressources, 0)
+
+        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
+            + elig4 * (P.asi.montant_couple / 4 / 2 - depassement / 2)
+            + elig5 * (P.asi.montant_seul / 4 - depassement / 2))
+
+        montant_servi_asi = max_(diff, 0)
+
+        # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
+        # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        return elig * montant_servi_asi
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name == 'br_mv':
+            return output_period.start.period('month', 3).offset(-3)
+        else:
+            return output_period
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+@reference_formula
+class aspa_couple(DatedFormulaColumn):
+    column = BoolCol
+    label = u"Couple au sens de l'ASPA"
+    entity_class = Familles
+
+    @dated_function(datetime.date(2002, 1, 1), datetime.date(2006, 12, 31))
+    def function_2002_2006(self, maries):
+        return maries
+
+    @dated_function(datetime.date(2007, 1, 1))
+    def function_2007(self, concub):
+        return concub
+
+    def get_output_period(self, period):
+        return period
 
 
-def _aspa_couple_2007_(concub):
-    '''
-    Détermine si l'on a bien affaire à un couple au sens de l'ASPA
-    '''
-    return concub
+@reference_formula
+class aspa(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Allocation de solidarité aux personnes agées"
+    url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
 
+    def function(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
+        # TODO: Avant la réforme de 2007 n'était pas considéré comme un couple les individus en concubinage ou pacsés.
+        # La base de ressources doit pouvoir être individualisée pour refletter ça.
 
-def _aspa(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
-    '''
-    Calcule l'allocation de solidarité aux personnes âgées (ASPA)
-    '''
-    # TODO: Avant la réforme de 2007 n'était pas considéré comme un couple les individus en concubinage ou pacsés.
-    # La base de ressources doit pouvoir être individualisée pour refletter ça.
+        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        # Un seul éligible
+        elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
+        # Couple d'éligibles
+        elig2 = (aspa_elig[CHEF] & aspa_elig[PART])
+        # Un seul éligible et époux éligible ASI
+        elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
+        # Un seul éligible et conjoint non marié éligible ASI
+        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
 
-    # Un seul éligible
-    elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
-    # Couple d'éligibles
-    elig2 = (aspa_elig[CHEF] & aspa_elig[PART])
-    # Un seul éligible et époux éligible ASI
-    elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
-    # Un seul éligible et conjoint non marié éligible ASI
-    elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
+        elig = elig1 | elig2 | elig3 | elig4
 
-    elig = elig1 | elig2 | elig3 | elig4
+        # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
+        montant_max = (elig1 * P.aspa.montant_seul
+            + elig2 * P.aspa.montant_couple
+            + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
+            + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 4
 
-    # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
-    montant_max = (elig1 * P.aspa.montant_seul
-        + elig2 * P.aspa.montant_couple
-        + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-        + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 4
+        ressources = br_mv + montant_max
 
-    ressources = br_mv + montant_max
+        # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
+        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
+            + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 4
 
-    # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
-    plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-        + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 4
+        depassement = max_(ressources - plafond_ressources, 0)
 
-    depassement = max_(ressources - plafond_ressources, 0)
+        diff = ((elig1 | elig2) * (montant_max - depassement)
+            + (elig3 | elig4) * (P.aspa.montant_couple / 4 / 2 - depassement / 2))
 
-    diff = ((elig1 | elig2) * (montant_max - depassement)
-        + (elig3 | elig4) * (P.aspa.montant_couple / 2 - depassement / 2))
+        # Montant mensuel servi (sous réserve d'éligibilité)
+        montant_servi_aspa = max_(diff, 0) / 3
 
-    # Montant mensuel servi (sous réserve d'éligibilité)
-    montant_servi_aspa = max_(diff, 0) / 3
+        # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
+        # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
+        return elig * montant_servi_aspa
 
-    # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
-    # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
-    # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
-    return 12 * elig * montant_servi_aspa  # annualisé
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name == 'br_mv':
+            return output_period.start.period('month', 3).offset(-3)
+        else:
+            return output_period
 
-
-def _asi(self, asi_elig_holder, aspa_elig_holder, maries, concub, asi_aspa_nb_alloc, br_mv, P = law.minim):
-    '''
-    Calcule l'allocation supplémentaire d'invalidité (ASI)
-    '''
-    asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-    aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
-
-    # Un seul éligible
-    elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
-    # Couple d'éligibles mariés
-    elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries
-    # Couple d'éligibles non mariés
-    elig3 = (asi_elig[CHEF] & asi_elig[PART]) * not_(maries)
-    # Un seul éligible et époux éligible ASPA
-    elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
-    # Un seul éligible et conjoint non marié éligible ASPA
-    elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
-
-    elig = elig1 | elig2 | elig3 | elig4 | elig5
-
-    montant_max = (elig1 * P.asi.montant_seul
-        + elig2 * P.asi.montant_couple
-        + elig3 * 2 * P.asi.montant_seul
-        + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-        + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2))
-
-    ressources = br_mv + montant_max
-
-    plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
-        + elig2 * P.asi.plaf_couple
-        + elig3 * P.asi.plaf_couple
-        + elig4 * P.aspa.plaf_couple
-        + elig5 * P.aspa.plaf_couple)
-
-    depassement = max_(ressources - plafond_ressources, 0)
-
-    diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
-        + elig4 * (P.asi.montant_couple / 2 - depassement / 2)
-        + elig5 * (P.asi.montant_seul - depassement / 2))
-
-    montant_servi_asi = max_(diff, 0) / 12
-
-    # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
-    # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-    return 12 * elig * montant_servi_asi  # annualisé
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')

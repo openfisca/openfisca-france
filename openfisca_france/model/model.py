@@ -43,15 +43,21 @@ from .. import entities
 from . import (  # noqa
     inversion_revenus,
     travailleurs_non_salaries,
+    education,
+    )
+
+from .minima_sociaux import (
+    asi_aspa,
+    ass,
+    cmu,
+    rsa,
     )
 
 from .cotisations_sociales import remplacement
 
 # Import model modules.
 from . import calage as cl
-from . import cmu as cmu
 from . import common as cm
-from .cotisations_sociales import capital as cs_capital
 
 #from .cotisations_sociales import remplacement as cs_remplac
 
@@ -61,19 +67,19 @@ from . import irpp_credits_impots as ci
 from . import irpp_plus_values_immo as immo
 from . import irpp_reductions_impots as ri
 from . import isf as isf
-#from . import lgtm as lg
+
 # from .minima_sociaux import aah
-from .minima_sociaux import asi_aspa
-from .minima_sociaux import ass
-from .minima_sociaux import rsa
+
 from .prestations_familiales import aeeh
 from .prestations_familiales import af
 from .prestations_familiales import ars
 from .prestations_familiales import asf
 from .prestations_familiales import paje
 from .prestations_familiales import cf
+
 from . import pfam as pf
 from . import th as th
+from . import lgtm
 
 from .input_variables import travail_base  # noqa
 from .cotisations_sociales import remuneration_prive
@@ -84,7 +90,7 @@ from .cotisations_sociales import travail_fonction_publique
 from .cotisations_sociales import travail_totaux
 from .cotisations_sociales import allegements
 
-from . import lgtm
+from .cotisations_sociales import capital as cs_capital
 
 
 build_alternative_formula = partial(
@@ -2036,131 +2042,6 @@ build_simple_formula('crds_pfam', FloatCol(function = pf._crds_pfam,
 # En fait en vigueur pour les enfants nés avant 2004 ...
 # TODO Gestion du cumul apje ape
 
-
-############################################################
-# RSA/RMI
-############################################################
-
-build_simple_formula('div_ms', FloatCol(function = rsa._div_ms))
-build_simple_formula('rfon_ms', FloatCol(function = rsa._rfon_ms))
-build_simple_formula('enceinte_fam', BoolCol(function = rsa._enceinte_fam, entity = 'fam'))
-build_simple_formula('rsa_forfait_asf', FloatCol(function = rsa._rsa_forfait_asf,
-    entity = 'fam',
-    label = u"Allocation de soutien familial forfaitisée pour le RSA",
-    start = date(2014, 4, 1)))
-build_dated_formula('br_rmi_pf',
-    [
-        dict(start = date(2002, 1, 1),
-            end = date(2003, 12, 31),
-            function = rsa._br_rmi_pf__2003,
-         ),
-        dict(start = date(2004, 1, 1),
-            end = date(2014, 3, 31),
-            function = rsa._br_rmi_pf_2004_2014,
-         ),
-        dict(start = date(2014, 4, 1),
-            end = date(2015, 12, 31),
-            function = rsa._br_rmi_pf_2014_,
-         ),
-    ],
-    FloatCol(entity = 'fam'))
-build_simple_formula('rmi_nbp', FloatCol(function = rsa._rmi_nbp,
-    entity = 'fam',
-    label = u"Nombre de personne à charge au sens du Rmi/Rsa",
-    ))
-build_simple_formula('rsa_forfait_logement', FloatCol(function = rsa._rsa_forfait_logement,
-    entity = 'fam'))
-build_simple_formula('rsa_socle', FloatCol(function = rsa._rsa_socle,
-    entity = 'fam',
-    label = u"RSA socle",
-    ))
-build_simple_formula('rmi', FloatCol(function = rsa._rmi,
-    entity = 'fam',
-    label = u"Revenu de solidarité active - socle",
-    ))
-#build_simple_formula('rsa_socle_majore', FloatCol(function = rsa._rsa_socle_majore,
-#    entity = 'fam',
-#    label = u"Majoration pour parent isolé du Revenu de solidarité active socle",
-#    start = date(2009, 6, 1)))
-#build_simple_formula('rsa_act', FloatCol(function = rsa._rsa_act,
-#    entity = 'fam',
-#    label = u"Revenu de solidarité active - activité",
-#    start = date(2009, 6, 1)))
-#build_simple_formula('rsa_act_i', FloatCol(function = rsa._rsa_act_i))
-#build_simple_formula('psa', FloatCol(function = rsa._psa,
-#    entity = 'fam',
-#    label = u"Prime de solidarité active",
-#    start = date(2009, 1, 1),
-#    end = date(2009, 12, 31),
-#    url = u"http://www.service-public.fr/actualites/001077.html",
-#    ))
-#build_simple_formula('api', FloatCol(function = rsa._api,
-#    entity = 'fam',
-#    end = date(2009, 5, 31),
-#    label = u"Allocation de parent isolé",
-#    url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
-#    ))
-#build_simple_formula('crds_mini', FloatCol(function = rsa._crds_mini,
-#    entity = 'fam',
-#    start = date(2009, 6, 1)))
-#build_dated_formula('aefa',
-#    [
-#        dict(start = date(2002, 1, 1),
-#          end = date(2007, 12, 31),
-#          function = rsa._aefa__2008_,
-#         ),
-#        dict(start = date(2009, 1, 1),
-#          end = date(2015, 12, 31),#TODO: actualiser la date (si la loi n'a pas changé)
-#          function = rsa._aefa__2008_,
-#         ),
-#        dict(start = date(2008, 1, 1),
-#          end = date(2008, 12, 31),
-#          function = rsa._aefa_2008,
-#         ),
-#    ],
-#    FloatCol(entity='fam',
-#    label = u"Allocation exceptionnelle de fin d'année",
-#    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"))
-############################################################
-# ASPA/ASI, Minimum vieillesse
-############################################################
-
-build_simple_formula('asi_aspa_nb_alloc', FloatCol(function = asi_aspa._asi_aspa_nb_alloc,
-    entity = 'fam'))
-build_simple_formula('asi_elig', BoolCol(function = asi_aspa._asi_elig,
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité",
-    ))
-build_simple_formula('asi', FloatCol(function = asi_aspa._asi,
-    entity = 'fam',
-    label = u"Allocation supplémentaire d'invalidité",
-    start = date(2007, 1, 1),
-    url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml",
-    ))
-    # En 2007, Transformation du MV et de L'ASI en ASPA et ASI. La prestation ASPA calcule bien l'ancien MV
-    # mais TODO manque l'ancienne ASI
-
-build_simple_formula('aspa_elig', BoolCol(function = asi_aspa._aspa_elig,
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées",
-    ))
-build_dated_formula('aspa_couple',
-    [
-        dict(start = date(2002, 1, 1),
-          end = date(2006, 12, 31),
-          function = asi_aspa._aspa_couple__2006,
-         ),
-        dict(start = date(2007, 1, 1),
-          end = date(2015, 12, 31),
-          function = asi_aspa._aspa_couple_2007_,
-         ),
-    ],
-    BoolCol(entity='fam',
-    label = u"Couple au sens de l'ASPA"))
-build_simple_formula('aspa', FloatCol(function = asi_aspa._aspa,
-    entity = 'fam',
-    label = u"Allocation de solidarité aux personnes agées",
-    url = u"http://vosdroits.service-public.fr/particuliers/F16871.xhtml",
-    ))
-
 ############################################################
 # Allocation adulte handicapé
 ############################################################
@@ -2373,62 +2254,3 @@ build_simple_formula('check_csg', FloatCol(function = cm._check_csg,
     entity = 'men'))
 build_simple_formula('check_crds', FloatCol(function = cm._check_crds,
     entity = 'men'))
-############################################################
-# Couverture Maladie Universelle
-############################################################
-build_dated_formula('acs_montant',
-            [
-        dict(
-            start = date(2000, 1, 1),
-            end = date(2009, 7, 31),
-            function = cmu._acs_montant__2009,
-        ),
-        dict(
-            start = date(2009, 8, 1),
-            end = date(2014, 12, 31),
-            function = cmu._acs_montant_2009_,
-        ),
-    ],
-    FloatCol(label = u"Montant de l'ACS en cas d'éligibilité",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_forfait_logement_base', FloatCol(function = cmu._cmu_forfait_logement_base,
-    label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_forfait_logement_al', FloatCol(function = cmu._cmu_forfait_logement_al,
-    label = u"Forfait logement applicable en cas d'aide au logement",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_nbp_foyer', PeriodSizeIndependentIntCol(function = cmu._cmu_nbp_foyer,
-    label = u"Nombre de personnes dans le foyer CMU",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_c_plafond', FloatCol(function = cmu._cmu_c_plafond,
-    label = u"Plafond de ressources pour l'éligibilité à la CMU-C",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_eligible_majoration_dom', BoolCol(function = cmu._cmu_eligible_majoration_dom,
-    entity = 'fam'
-    ))
-build_simple_formula('acs_plafond', FloatCol(function = cmu._acs_plafond,
-    label = u"Plafond de ressources pour l'éligibilité à l'ACS",
-    entity = 'fam',
-    ))
-build_simple_formula('cmu_nb_pac', PeriodSizeIndependentIntCol(function = cmu._cmu_nb_pac,
-    label = u"Nombre de personnes à charge au titre de la CMU",
-    entity = 'fam',
-    ))
-############################################################
-# Allocation Spécifique de Solidarité
-############################################################
-build_simple_formula('ass', FloatCol(function = ass._ass,
-    label = u"Montant de l'Allocation Spécifique de Solidarité",
-    entity = 'fam'
-    ))
-build_simple_formula('ass_elig_i', BoolCol(function = ass._ass_elig_i,
-    label = u"Éligibilité individuelle à l'ASS",
-    ))
-build_simple_formula('chomeur', BoolCol(function = ass._chomeur,
-    label = u"Montant de l'Allocation Spécifique de Solidarité",
-    ))
