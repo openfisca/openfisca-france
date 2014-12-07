@@ -219,13 +219,13 @@ def test_decomposition(print_decomposition = False):
     import json
     import os
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        period = "2013-01-01",
+        period = "2013-01",
         parent1 = dict(
             effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
             ratio_alternants = .025,
-            salbrut = 3000,
+            salbrut = {"2013": 12 * 3000},
             taille_entreprise = 3,
             type_sal = 0,
             ),
@@ -252,4 +252,4 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_decomposition(print_decomposition = True)
+    test_decomposition(print_decomposition = False)

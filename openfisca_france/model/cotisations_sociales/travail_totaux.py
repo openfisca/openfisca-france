@@ -27,9 +27,8 @@ from __future__ import division
 
 import datetime
 import logging
-import math
 
-from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
+from numpy import logical_not as not_
 
 
 from openfisca_core.accessors import law
@@ -38,7 +37,7 @@ from openfisca_core.formulas import EntityToPersonColumn, SimpleFormulaColumn
 from openfisca_core.taxscales import scale_tax_scales
 
 
-from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
+from ..base import QUIFAM, QUIFOY, QUIMEN
 from ..base import FoyersFiscaux, Individus, reference_formula
 
 
@@ -337,11 +336,12 @@ class salsuperbrut(SimpleFormulaColumn):
     label = u"Salaires superbruts"
 
     def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
-            cotisations_patronales, allegement_fillon, alleg_cice, taxes_sal, tehr):
+                 cotisations_patronales, allegement_fillon, alleg_cice, taxes_sal, tehr):
         salsuperbrut = (
             salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_patronales - allegement_fillon - alleg_cice - taxes_sal - tehr
             )
+
         return salsuperbrut
 
     def get_output_period(self, period):
@@ -378,5 +378,3 @@ class rev_microsocial_declarant1(EntityToPersonColumn):
     label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
     role = VOUS
     variable = rev_microsocial
-
-

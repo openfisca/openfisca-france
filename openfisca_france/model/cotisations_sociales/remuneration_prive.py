@@ -55,11 +55,12 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Assiette des cotisations sociales des salaries du prive et des contractuel de la fonction publique"
 
-    def function(self, avantages_en_nature, indemnite_residence, nombre_heures, primes_fonction_publique,
+    def function(self, avantages_en_nature, indemnite_residence, nombre_heures_remunerees, primes_fonction_publique,
                  primes_salaires, salaire_de_base, type_sal,
                  smic_horaire_brut = law.gen.smic_h_b,
-                 taux_minimum_exoneration = law.gen.taux_minimum_exoneration,
-                 taux_maximum_exoneration = law.gen.taux_maximum_exoneration):
+#                 taux_minimum_exoneration = law.gen.taux_minimum_exoneration,
+#                 taux_maximum_exoneration = law.gen.taux_maximum_exoneration
+                 ):
         # assiette des cotisations sociales
         # Autres élements de rémunérations à prendre en compte:
         #   * cantine_titres_restaurants
@@ -76,18 +77,18 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         #   * Indemnités journalières de sécurité sociale
         #   * Indemnités de rupture du contrat de travail
 
-        cantine_titres_restaurants_taux_entreprise = 0
-        cantine_titres_restaurants_prix_titre = 0
-        cantine_titres_restaurants_nombre_titres = 0
-
-        condition_exoneration_taux = (
-            (taux_minimum_exoneration <= cantine_titres_restaurants_taux_entreprise) *
-            (taux_maximum_exoneration >= cantine_titres_restaurants_taux_entreprise)
-            )
-        cantine_titres_restaurants = cantine_titres_restaurants_nombre_titres * (
-            condition_taux * max_(cantine_titres_restaurants_prix_titre - seuil_prix_titre, 0) +
-            not_(condition_taux) * cantine_titres_restaurants_prix_titre
-            )
+#        cantine_titres_restaurants_taux_entreprise = 0
+#        cantine_titres_restaurants_prix_titre = 0
+#        cantine_titres_restaurants_nombre_titres = 0
+#
+#        condition_exoneration_taux = (
+#            (taux_minimum_exoneration <= cantine_titres_restaurants_taux_entreprise) *
+#            (taux_maximum_exoneration >= cantine_titres_restaurants_taux_entreprise)
+#            )
+#        cantine_titres_restaurants = cantine_titres_restaurants_nombre_titres * (
+#            condition_taux * max_(cantine_titres_restaurants_prix_titre - seuil_prix_titre, 0) +
+#            not_(condition_taux) * cantine_titres_restaurants_prix_titre
+#            )
         assiette = (
             salaire_de_base +
             primes_salaires +
@@ -95,7 +96,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
             )
 
-        return max_(assiette, smic_horaire_brut * nombre_heures)
+        return max_(assiette, smic_horaire_brut * nombre_heures_remunerees)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period(u'month')
@@ -129,7 +130,7 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
-class nombre_heures(SimpleFormulaColumn):
+class nombre_heures_remunerees(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Nombre d'heures rémunérées mensuellement"
@@ -142,14 +143,14 @@ class nombre_heures(SimpleFormulaColumn):
 
     def function(self, type_heures_remunerees, volume_heures_remunerees):
         # TODO faire remonter dans les paramètres les valeurs codées en dur qui doivent/peuvent l'être
-        nombre_heures = (
+        nombre_heures_remunerees= (
             (type_heures_remunerees == 0) * 151.67 +
             (type_heures_remunerees == 1) * volume_heures_remunerees +
             (type_heures_remunerees == 2) * 151.67 * (volume_heures_remunerees / 45.7) * (52 / 12) +
-            (type_heures_remunerees == 3) * 151.67 * (volume_heures_remunerees / 218) * (52 / 12) +
-            (type_heures_remunerees == 4) * 151.67 * volume_heures_remunerees
+            (type_heures_remunerees == 3) * 151.67 * (volume_heures_remunerees / 218) * (52 / 12)
+#            (type_heures_remunerees == 4) * 151.67 * volume_heures_remunerees
             )
-        return nombre_heures
+        return nombre_heures_remunerees
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period(u'month')
@@ -161,8 +162,8 @@ class sal_h_b(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Salaire horaire brut"
 
-    def function(self, salbrut, nombre_heures):
-        return salbrut / nombre_heures
+    def function(self, salbrut, nombre_heures_remunerees):
+        return salbrut / nombre_heures_remunerees
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period(u'month')

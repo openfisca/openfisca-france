@@ -27,7 +27,7 @@ from __future__ import division
 
 import datetime
 import logging
-from numpy import logical_or as or_, maximum as max_, minimum as min_
+from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
 
 
 from openfisca_core.accessors import law
@@ -39,10 +39,67 @@ from ..base import Individus, reference_formula
 
 
 CHEF = QUIFAM['chef']
-DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
-log = logging.getLogger(__name__)
 PREF = QUIMEN['pref']
 VOUS = QUIFOY['vous']
+
+
+log = logging.getLogger(__name__)
+
+
+@reference_formula
+class ratio_smic_salaire(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Ratio smic/salaire pour le calcul de l'allègement Fillon"
+
+    @dated_function(start = datetime.date(2012, 1, 1))
+    def function_2012(self, period, nombre_heures_remunerees, salbrut, taille_entreprise, type_heures_remunerees,
+                      type_sal, smic_horaire_brut = law.cotsoc.gen.smic_h_b):
+        # salbrut_annuel 2012 nombre_heures_remunerees incluent hsup à partir de 2012
+        smic_annuel = smic_horaire_brut * 1820  # durée légale du travail = 1820
+
+        ratio_smic_salaire = (
+            # temps_plein
+            (type_heures_remunerees != 1) * smic_annuel / (salbrut + 1e-10) +
+            # temps partiel
+            (type_heures_remunerees == 1) * smic_annuel * nombre_heures_remunerees / 1820 / (salbrut + 1e-10)
+            )
+        return ratio_smic_salaire
+
+    @dated_function(start = datetime.date(2011, 1, 1), stop = datetime.date(2011, 12, 31))
+    def function_2011(self, period, nombre_heures_remunerees, salbrut, taille_entreprise, type_heures_remunerees,
+                      type_sal, smic_horaire_brut = law.cotsoc.gen.smic_h_b):
+
+        # salbrut_annuel 2011 même chose mais avec salbrut sans hsup
+        smic_annuel = smic_horaire_brut * 1820  # durée légale du travail = 1820
+        ratio_smic_salaire = (
+            # temps_plein
+            (type_heures_remunerees != 1) * smic_annuel / (salbrut + 1e-10) +
+            # temps partiel
+            (type_heures_remunerees == 1) * smic_annuel * nombre_heures_remunerees / 1820 / (salbrut + 1e-10)
+            )
+        return ratio_smic_salaire
+
+    @dated_function(start = datetime.date(2005, 7, 1), stop = datetime.date(2010, 12, 31))
+    def function_2007_2010(self, period, nombre_heures_remunerees, salbrut, taille_entreprise, type_heures_remunerees,
+                           type_sal, smic_horaire_brut = law.cotsoc.gen.smic_h_b):
+
+        smic_mensuel = smic_horaire_brut * 151.67
+        ratio_smic_salaire = (
+            # temps_plein
+            (type_heures_remunerees != 1) * smic_mensuel / (salbrut + 1e-10) +
+            (type_heures_remunerees == 1) * smic_horaire_brut * nombre_heures_remunerees / 1820 / (salbrut + 1e-10)
+            )
+        return ratio_smic_salaire
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ["salbrut"]:
+            return output_period.start.offset('first-of', 'year').period('year')
+        else:
+            return output_period.start.offset('first-of', 'month').period('month')
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -52,8 +109,11 @@ class allegement_fillon(DatedFormulaColumn):
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
     @dated_function(datetime.date(2005, 7, 1))
-    def function_2007_(self, period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
-        taux_fillon = taux_exo_fillon(sal_h_b, taille_entreprise, cotsoc)
+    def function(self, period, ratio_smic_salaire, salbrut, taille_entreprise, type_sal,
+                 smic_horaire_brut = law.cotsoc.gen.smic_h_b, cotsoc = law.cotsoc):
+
+        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+        taux_fillon = taux_exo_fillon(ratio_smic_salaire, majoration, cotsoc)
         allegement_fillon = (
             taux_fillon *
             salbrut *
@@ -62,7 +122,7 @@ class allegement_fillon(DatedFormulaColumn):
         return allegement_fillon
 
     def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -83,12 +143,12 @@ class alleg_cice(DatedFormulaColumn):
         return alleg_cice
 
     def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period.start.offset('first-of', 'month').period('month')
 
 
 # Helper functions
 
-def taux_exo_fillon(sal_h_b, taille_entreprise, P):
+def taux_exo_fillon(ratio_smic_salaire, majoration, P):
     '''
     Exonération Fillon
     http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
@@ -103,17 +163,12 @@ def taux_exo_fillon(sal_h_b, taille_entreprise, P):
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
 
-    smic_h_b = P.gen.smic_h_b
     Pf = P.exo_bas_sal.fillon
     seuil = Pf.seuil
-    tx_max = (
-        Pf.tx_max * (taille_entreprise > 2)
-        + Pf.tx_max2 * (taille_entreprise <= 2)
-        )
+    tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
     if seuil <= 1:
         return 0
-    return (tx_max * min_(1, max_(seuil * smic_h_b / (sal_h_b + 1e-10) - 1, 0)
-                          / (seuil - 1)))
+    return tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1))
 
 
 def taux_exo_cice(sal_h_b, P):
