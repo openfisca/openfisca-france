@@ -38,7 +38,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gi": 1800,
                 },
             "output_vars": {
@@ -48,7 +48,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gi": 1800,
                 },
             "output_vars": {
@@ -58,7 +58,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gi": 1800,
                 },
             "output_vars": {
@@ -69,7 +69,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6el": 1800,
                 },
             "output_vars": {
@@ -79,7 +79,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6el": 1800,
                 },
             "output_vars": {
@@ -89,7 +89,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6el": 1800,
                 },
             "output_vars": {
@@ -100,7 +100,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gj": 1800,
                 },
             "output_vars": {
@@ -110,7 +110,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gj": 1800,
                 },
             "output_vars": {
@@ -120,7 +120,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gj": 1800,
                 },
             "output_vars": {
@@ -131,7 +131,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6em": 1800,
                 },
             "output_vars": {
@@ -141,7 +141,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6em": 1800,
                 },
             "output_vars": {
@@ -151,7 +151,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6em": 1800,
                 },
             "output_vars": {
@@ -162,7 +162,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gp": 1800,
                 },
             "output_vars": {
@@ -172,7 +172,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gp": 1800,
                 },
             "output_vars": {
@@ -182,7 +182,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gp": 1800,
                 },
             "output_vars": {
@@ -193,7 +193,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gu": 1800,
                 },
             "output_vars": {
@@ -203,7 +203,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gu": 1800,
                 },
             "output_vars": {
@@ -213,7 +213,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gu": 1800,
                 },
             "output_vars": {
@@ -224,7 +224,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gi": 6000,
                 },
             "output_vars": {
@@ -234,7 +234,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6gi": 1800,
                 "f6gj": 6000,
                 },
@@ -247,7 +247,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6de": 1800,
                 },
             "output_vars": {
@@ -257,7 +257,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6de": 1800,
                 },
             "output_vars": {
@@ -267,7 +267,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6de": 1800,
                 },
             "output_vars": {
@@ -278,7 +278,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6dd": 1800,
                 },
             "output_vars": {
@@ -288,7 +288,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6dd": 1800,
                 },
             "output_vars": {
@@ -298,7 +298,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6dd": 1800,
                 },
             "output_vars": {
@@ -310,7 +310,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 1800,
                 },
             "output_vars": {
@@ -320,7 +320,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 1800,
                 },
             "output_vars": {
@@ -330,7 +330,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 1800,
                 },
             "output_vars": {
@@ -341,7 +341,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 3600,
                 },
             "output_vars": {
@@ -351,7 +351,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 3600,
                 },
             "output_vars": {
@@ -361,7 +361,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 3600,
                 },
             "output_vars": {
@@ -372,7 +372,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 3600,
                 "f6ev": 2,
                 },
@@ -383,7 +383,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 3600,
                 "f6ev": 2,
                 },
@@ -394,7 +394,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6eu": 3600,
                 "f6ev": 2,
                 },
@@ -408,7 +408,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6rs": 1800,
                 },
             "output_vars": {
@@ -418,7 +418,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6rs": 1800,
                 },
             "output_vars": {
@@ -428,7 +428,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6rs": 1800,
                 },
             "output_vars": {
@@ -439,7 +439,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "nbJ": 1,
                 "f6rs": 1800,
                 },
@@ -450,7 +450,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "nbJ": 1,
                 "f6rs": 1800,
                 },
@@ -461,7 +461,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "nbJ": 1,
                 "f6rs": 1800,
                 },
@@ -474,7 +474,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6ss": 1800,
                 },
             "output_vars": {
@@ -484,7 +484,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6ss": 1800,
                 },
             "output_vars": {
@@ -494,7 +494,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6ss": 1800,
                 },
             "output_vars": {
@@ -505,7 +505,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "nbJ": 1,
                 "f6ss": 1800,
                 },
@@ -516,7 +516,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "nbJ": 1,
                 "f6ss": 1800,
                 },
@@ -527,7 +527,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "nbJ": 1,
                 "f6ss": 1800,
                 },
@@ -540,7 +540,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6cb": 1800,
                 },
             "output_vars": {
@@ -550,7 +550,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6cb": 1800,
                 },
             "output_vars": {
@@ -560,7 +560,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6cb": 1800,
                 },
             "output_vars": {
@@ -571,7 +571,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6hl": 1800,
                 },
             "output_vars": {
@@ -582,7 +582,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6hk": 1800,
                 },
             "output_vars": {
@@ -592,7 +592,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6hk": 1800,
                 },
             "output_vars": {
@@ -603,7 +603,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6hj": 1800,
                 },
             "output_vars": {
@@ -613,7 +613,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6hj": 1800,
                 },
             "output_vars": {
@@ -623,7 +623,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6hj": 1800,
                 },
             "output_vars": {
@@ -634,7 +634,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 70000,
+                "sal": 70000,
                 },
             "output_vars": {
                 "irpp": - 13334,
@@ -643,7 +643,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 70000,
+                "sal": 70000,
                 },
             "output_vars": {
                 "irpp": - 13334,
@@ -652,7 +652,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 70000,
+                "sal": 70000,
                 },
             "output_vars": {
                 "irpp": - 13334,
@@ -662,7 +662,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 70000,
+                "sal": 70000,
                 "f6cb": 28000,
                 },
             "output_vars": {
@@ -672,7 +672,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 70000,
+                "sal": 70000,
                 "f6cb": 28000,
                 },
             "output_vars": {
@@ -682,7 +682,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 70000,
+                "sal": 70000,
                 "f6cb": 28000,
                 },
             "output_vars": {
@@ -694,7 +694,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fa": 1800,
                 },
             "output_vars": {
@@ -704,7 +704,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fa": 1800,
                 },
             "output_vars": {
@@ -714,7 +714,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fa": 1800,
                 },
             "output_vars": {
@@ -725,7 +725,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fb": 1800,
                 },
             "output_vars": {
@@ -735,7 +735,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fb": 1800,
                 },
             "output_vars": {
@@ -745,7 +745,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fb": 1800,
                 },
             "output_vars": {
@@ -756,7 +756,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fc": 1800,
                 },
             "output_vars": {
@@ -766,7 +766,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fc": 1800,
                 },
             "output_vars": {
@@ -776,7 +776,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fc": 1800,
                 },
             "output_vars": {
@@ -787,7 +787,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fd": 1800,
                 },
             "output_vars": {
@@ -797,7 +797,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fd": 1800,
                 },
             "output_vars": {
@@ -807,7 +807,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fd": 1800,
                 },
             "output_vars": {
@@ -818,7 +818,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fe": 1800,
                 },
             "output_vars": {
@@ -828,7 +828,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fe": 1800,
                 },
             "output_vars": {
@@ -838,7 +838,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fe": 1800,
                 },
             "output_vars": {
@@ -849,7 +849,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fl": 1800,
                 },
             "output_vars": {
@@ -859,7 +859,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fl": 1800,
                 },
             "output_vars": {
@@ -869,7 +869,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 "f6fl": 1800,
                 },
             "output_vars": {
@@ -883,7 +883,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 14000,
+                "sal": 14000,
                 "age": 66,
                 },
             "output_vars": {
@@ -893,7 +893,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 14000,
+                "sal": 14000,
                 "age": 66,
                 },
             "output_vars": {
@@ -903,7 +903,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 14000,
+                "sal": 14000,
                 "age": 66,
                 },
             "output_vars": {
@@ -914,7 +914,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 18000,
+                "sal": 18000,
                 "age": 66,
                 },
             "output_vars": {
@@ -924,7 +924,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 18000,
+                "sal": 18000,
                 "age": 66,
                 },
             "output_vars": {
@@ -934,7 +934,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 18000,
+                "sal": 18000,
                 "age": 66,
                 },
             "output_vars": {
@@ -944,7 +944,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 25000,
+                "sal": 25000,
                 "age": 66,
                 },
             "output_vars": {
@@ -954,7 +954,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 25000,
+                "sal": 25000,
                 "age": 66,
                 },
             "output_vars": {
@@ -964,7 +964,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 25000,
+                "sal": 25000,
                 "age": 66,
                 },
             "output_vars": {
@@ -975,7 +975,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 28000,
+                "sal": 28000,
                 "age": 66,
                 },
             "output_vars": {
@@ -985,7 +985,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 28000,
+                "sal": 28000,
                 "age": 66,
                 },
             "output_vars": {
@@ -995,7 +995,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 28000,
+                "sal": 28000,
                 "age": 66,
                 },
             "output_vars": {
@@ -1006,7 +1006,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 14000,
+                "sal": 14000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1016,7 +1016,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 14000,
+                "sal": 14000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1026,7 +1026,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 14000,
+                "sal": 14000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1037,7 +1037,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 25000,
+                "sal": 25000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1047,7 +1047,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 25000,
+                "sal": 25000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1057,7 +1057,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 25000,
+                "sal": 25000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1068,7 +1068,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 28000,
+                "sal": 28000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1078,7 +1078,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 28000,
+                "sal": 28000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1088,7 +1088,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 28000,
+                "sal": 28000,
                 "caseP": 1,
                 },
             "output_vars": {
@@ -1100,7 +1100,7 @@ def test_niches():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 38000,
+                "sal": 38000,
                 "nbN": 3,
                 },
             "output_vars": {
@@ -1110,7 +1110,7 @@ def test_niches():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 38000,
+                "sal": 38000,
                 "nbN": 3,
                 },
             "output_vars": {
@@ -1120,7 +1120,7 @@ def test_niches():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 38000,
+                "sal": 38000,
                 "nbN": 3,
                 },
             "output_vars": {
