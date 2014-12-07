@@ -25,7 +25,7 @@
 
 import functools
 
-from openfisca_core.columns import AgeCol, BoolCol, build_column, FloatCol
+from openfisca_core.columns import AgeCol, BoolCol, build_column, FloatCol, reference_input_variable
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (alternative_function, AlternativeFormulaColumn, dated_function, DatedFormulaColumn,
     EntityToPersonColumn, make_reference_formula_decorator, PersonToEntityColumn, select_function, SelectFormulaColumn,
@@ -55,6 +55,7 @@ __all__ = [
     'QUIFOY',
     'QUIMEN',
     'reference_formula',
+    'reference_input_variable',
     'SelectFormulaColumn',
     'select_function',
     'SimpleFormulaColumn',

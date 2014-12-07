@@ -29,7 +29,7 @@ from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, PeriodSize
 from openfisca_core.enumerations import Enum
 
 from ... import entities
-from ..base import build_column, QUIFAM, QUIFOY, QUIMEN
+from ..base import build_column, QUIFAM, QUIFOY, QUIMEN, reference_input_variable
 
 
 ### VARIABLES MANQUANTES dans OpenFisca : ###
