@@ -219,7 +219,7 @@ def taux_exo_fillon(ratio_smic_salaire, majoration, P):
     return taux_fillon
 
 
-def taux_exo_cice(sal_h_b, P):
+def taux_exo_cice(ratio_smic_salaire, P):
     Pc = P.exo_bas_sal.cice
     taux_cice = (1 / ratio_smic_salaire <= Pc.max) * Pc.taux
     return taux_cice
