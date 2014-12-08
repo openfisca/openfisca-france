@@ -12,7 +12,8 @@ from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_,
 from numpy.core.defchararray import startswith
 
 from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol
+from openfisca_core.columns import BoolCol, FloatCol, EnumCol, reference_input_variable
+from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import SimpleFormulaColumn
 
 from .base import QUIFAM, QUIFOY, reference_formula
@@ -24,6 +25,27 @@ CHEF = QUIFAM['chef']
 PART = QUIFAM['part']
 ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
 VOUS = QUIFOY['vous']
+
+SCOLARITE_INCONNUE = 0
+SCOLARITE_COLLEGE = 1
+SCOLARITE_LYCEE = 2
+
+
+reference_input_variable(
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"Inconnue",
+                u"Collège",
+                u"Lycée"
+                ],
+            ),
+        default = 0
+        ),
+    entity_class = Individus,
+    label = u"Scolarité de l'enfant : collège, lycée...",
+    name = "scolarite",
+    )
 
 
 @reference_formula
@@ -61,14 +83,11 @@ class base_ressource_bourse_college(SimpleFormulaColumn):
 
 @reference_formula
 class bourse_college(SimpleFormulaColumn):
-    '''
-    Calcule le montant de la bourse de collège
-    '''
     column = FloatCol
     label = u"Montant de la bourse de collège"
     entity_class = Familles
 
-    def function(self, base_ressource_bourse_college, age_holder, smic55_holder, P = law.bourses_education.bourse_college):
+    def function(self, base_ressource_bourse_college, age_holder, smic55_holder, scolarite_holder, P = law.bourses_education.bourse_college):
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         nb_enfants = nb_enf(age, smic55, 0, 25)
@@ -77,19 +96,22 @@ class bourse_college(SimpleFormulaColumn):
         plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire
         plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire
 
-        elig_taux_3 = base_ressource_bourse_college < plafond_taux_3
-        elig_taux_2 = not_(elig_taux_3) * (base_ressource_bourse_college < plafond_taux_2)
-        elig_taux_1 = not_(or_(elig_taux_2, elig_taux_3)) * (base_ressource_bourse_college < plafond_taux_1)
+        eligible_taux_3 = base_ressource_bourse_college < plafond_taux_3
+        eligible_taux_2 = not_(eligible_taux_3) * (base_ressource_bourse_college < plafond_taux_2)
+        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (base_ressource_bourse_college < plafond_taux_1)
 
-        elig_taux_3 &= nb_enfants > 0
-        elig_taux_2 &= nb_enfants > 0
-        elig_taux_1 &= nb_enfants > 0
+        scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
+        nb_enfants_college = zeros(1)
+        for key, scolarite in scolarites.iteritems():
+            nb_enfants_college += scolarite == SCOLARITE_COLLEGE
 
         montant = (
-            elig_taux_3 * P.montant_taux_3 +
-            elig_taux_2 * P.montant_taux_2 +
-            elig_taux_1 * P.montant_taux_1
+            eligible_taux_3 * P.montant_taux_3 +
+            eligible_taux_2 * P.montant_taux_2 +
+            eligible_taux_1 * P.montant_taux_1
             )
+
+        montant *= nb_enfants_college
 
         return montant
 
