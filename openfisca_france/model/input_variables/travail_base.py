@@ -151,21 +151,34 @@ reference_input_variable(
             [
                 u"temps_plein",
                 u"temps_partiel",
-                u"forfait_heures",
-                u"forfait_jours",
-#                u"duree_contractuelle",  # heures/mois  TODO: est-ce différent de temps partiel ?
+#                u"forfait_heures_semaines",
+#                u"forfait_heures_mois",
+                u"forfait_heures_annee",
+                u"forfait_jours_annee",
                 ],
             ),
         ),
     entity_class = Individus,
-    label = u"Type de forfait ou de convention de rémunération des heures travaillées",
-    name = 'type_heures_remunerees',
+    label = u"Type contrat de travail, de forfait ou de convention de rémunération des heures travaillées",
+    name = 'contrat_de_travail',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)",
+    name = 'volume_heures_non_remunerees',
     )
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
     label = u"Volume des heures ou jours rémunérées",
     name = 'volume_heures_remunerees',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale",
+    name = 'volume_jours_ijss',
     )
 reference_input_variable(
     column = FloatCol(),

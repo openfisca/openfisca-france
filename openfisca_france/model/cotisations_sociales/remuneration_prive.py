@@ -134,36 +134,39 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Nombre d'heures rémunérées mensuellement"
-    # type_heures_remunerees :
+    # contrat_de_travail :
     #   0     u"temps_plein",
     #   1     u"temps_partiel",
     #   2     u"forfait_heures",
     #   3     u"forfait_jours",
     #   4     u"duree_contractuelle",  # heures/mois
 
-    def function(self, type_heures_remunerees, volume_heures_remunerees):
+    # Source: Guide IPP cotisations sociales déterminations des assiettes (érroné)
+
+    def function(self, contrat_de_travail, volume_heures_non_remunerees, volume_heures_remunerees):
         # TODO faire remonter dans les paramètres les valeurs codées en dur qui doivent/peuvent l'être
-        nombre_heures_remunerees= (
-            (type_heures_remunerees == 0) * 151.67 +
-            (type_heures_remunerees == 1) * volume_heures_remunerees +
-            (type_heures_remunerees == 2) * 151.67 * (volume_heures_remunerees / 45.7) * (52 / 12) +
-            (type_heures_remunerees == 3) * 151.67 * (volume_heures_remunerees / 218) * (52 / 12)
-#            (type_heures_remunerees == 4) * 151.67 * volume_heures_remunerees
+
+        duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
+        nombre_heures_remunerees = (
+            (contrat_de_travail == 0) * duree_legale +  # 151.67
+            (contrat_de_travail == 1) * volume_heures_remunerees +
+            (contrat_de_travail == 2) * (volume_heures_remunerees / 45.7) * (52 / 12) +  # forfait heures/annee
+            (contrat_de_travail == 3) * duree_legale * (volume_heures_remunerees / 218)  # forfait jours/annee
             )
-        return nombre_heures_remunerees
+        return nombre_heures_remunerees - volume_heures_non_remunerees
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period(u'month')
 
 
-@reference_formula
-class sal_h_b(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Salaire horaire brut"
-
-    def function(self, salbrut, nombre_heures_remunerees):
-        return salbrut / nombre_heures_remunerees
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period(u'month')
+#@reference_formula
+#class sal_h_b(SimpleFormulaColumn):
+#    column = FloatCol
+#    entity_class = Individus
+#    label = u"Salaire horaire brut"
+#
+#    def function(self, salbrut, nombre_heures_remunerees):
+#        return salbrut / nombre_heures_remunerees
+#
+#    def get_output_period(self, period):
+#        return period.start.offset('first-of', 'month').period(u'month')
