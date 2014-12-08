@@ -52,8 +52,9 @@ from openfisca_france.tests.base import tax_benefit_system
 #    simulation.calculate("maladie_employeur")
 
 test_case_by_employee_type = dict(
-    exemple_circ_acoss_2011 = dict(
+    circulaire_acoss_2011_regularisation_fin_de_periode = dict(
         input_variables = dict(
+            allegement_fillon_mode_recouvrement = 1,
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
             salbrut = { # 9 smic horaire 2011
@@ -105,6 +106,76 @@ test_case_by_employee_type = dict(
             }
             ),
         ),
+    circulaire_acoss_2011_progressif = dict(
+        input_variables = dict(
+            allegement_fillon_mode_recouvrement = 2,
+            effectif_entreprise = 3000,
+            localisation_entreprise = "75001",
+            salbrut = { # 9 smic horaire 2011
+                "2011-01": 35 * 52 / 12 * 9,
+                "2011-02": 35 * 52 / 12 * 9,
+                "2011-03": 35 * 52 / 12 * 9,
+                "2011-04": 35 * 52 / 12 * 9,
+                "2011-05": 35 * 52 / 12 * 9,
+                "2011-06": 35 * 52 / 12 * 9,
+                "2011-07": 35 * 52 / 12 * 9,
+                "2011-08": 35 * 52 / 12 * 9,
+                "2011-09": 35 * 52 / 12 * 9 + 1000,
+                "2011-10": 35 * 52 / 12 * 9,
+                "2011-11": 35 * 52 / 12 * 9,
+                "2011-12": 35 * 52 / 12 * 9 * 2,
+                },
+            taille_entreprise = 3,
+            type_sal = 0,
+            ),
+        output_variables = dict(
+            allegement_fillon_cumul_progressif = {
+                "2011-01": 354.9,
+                "2011-02": 2 * 354.9,
+                "2011-03": 3 * 354.9,
+                "2011-04": 4 * 354.9,
+                "2011-05": 5 * 354.9,
+                "2011-06": 6 * 354.9,
+                "2011-07": 7 * 354.9,
+                "2011-08": 8 * 354.9,
+                "2011-09": 2760.62,
+                "2011-10": 3116.06,
+                "2011-11": 3470.45,
+                "2011-12": 3233.51,
+                },
+            allegement_fillon_cumul_progressif_retarde = {
+                "2011-01": 0,
+                "2011-02": 354.9,
+                "2011-03": 2 * 354.9,
+                "2011-04": 3 * 354.9,
+                "2011-05": 4 * 354.9,
+                "2011-06": 5 * 354.9,
+                "2011-07": 6 * 354.9,
+                "2011-08": 7 * 354.9,
+                "2011-09": 8 * 354.9,
+                "2011-10": 2760.62,
+                "2011-11": 3116.06,
+                "2011-12": 3470.45,
+                },
+            allegement_fillon = {
+                "2011-01": 354.9,
+                "2011-02": 354.9,
+                "2011-03": 354.9,
+                "2011-04": 354.9,
+                "2011-05": 354.9,
+                "2011-06": 354.9,
+                "2011-07": 354.9,
+                "2011-08": 354.9,
+                "2011-09": -78.58,
+                "2011-10": 355.44,
+                "2011-11": 354.39,
+                "2011-12": -236.94,
+                },
+            ),
+        ),
+
+
+
 #    cadre = dict(
 #        input_variables = dict(
 #            effectif_entreprise = 3000,

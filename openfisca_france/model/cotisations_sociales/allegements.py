@@ -133,29 +133,6 @@ class ratio_smic_salaire_anticipe(DatedFormulaColumn):
 
 
 @reference_formula
-class allegement_fillon_anticipe(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
-
-    @dated_function(datetime.date(2005, 7, 1))
-    def function(self, ratio_smic_salaire_anticipe, salbrut, taille_entreprise, type_sal,
-                 cotsoc = law.cotsoc):
-
-        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
-        taux_fillon = taux_exo_fillon(ratio_smic_salaire_anticipe, majoration, cotsoc)
-        allegement_fillon = (
-            taux_fillon *
-            salbrut *
-            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-            )
-        return allegement_fillon
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
 class allegement_fillon_annuel(DatedFormulaColumn):   # annuel
     column = FloatCol
     entity_class = Individus
@@ -179,18 +156,121 @@ class allegement_fillon_annuel(DatedFormulaColumn):   # annuel
 
 
 @reference_formula
+class allegement_fillon_anticipe(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
+
+    @dated_function(datetime.date(2005, 7, 1))
+    def function(self, ratio_smic_salaire_anticipe, salbrut, taille_entreprise, type_sal,
+                 cotsoc = law.cotsoc):
+
+        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+        taux_fillon = taux_exo_fillon(ratio_smic_salaire_anticipe, majoration, cotsoc)
+        allegement_fillon = (
+            taux_fillon *
+            salbrut *
+            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+            )
+        return allegement_fillon
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class allegement_fillon_cumul_progressif(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allègement Fillon, cumul progressif"
+
+    @dated_function(datetime.date(2005, 7, 1))
+    def function(self, smic_proratise, salbrut, taille_entreprise, type_sal,
+                 cotsoc = law.cotsoc):
+
+        ratio_smic_salaire_cumul_progressif = smic_proratise / (salbrut + 1e-10)
+
+        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+        taux_fillon = taux_exo_fillon(ratio_smic_salaire_cumul_progressif, majoration, cotsoc)
+        allegement_fillon = (
+            taux_fillon *
+            salbrut *
+            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+            )
+        return allegement_fillon
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['smic_proratise', 'salbrut']:
+            size = output_period.start.month
+            return output_period.start.offset('first-of', 'year').period('month', size)
+        else:
+            return output_period.start.offset('first-of', 'month').period('month')
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class allegement_fillon_cumul_progressif_retarde(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allègement Fillon, cumul progressif retardé"
+
+    @dated_function(datetime.date(2005, 7, 1))
+    def function(self, period, smic_proratise, salbrut, taille_entreprise, type_sal,
+                 cotsoc = law.cotsoc):
+
+        ratio_smic_salaire_cumul_progressif = smic_proratise / (salbrut + 1e-10)
+
+        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+        taux_fillon = taux_exo_fillon(ratio_smic_salaire_cumul_progressif, majoration, cotsoc)
+        allegement_fillon = (
+            taux_fillon *
+            salbrut *
+            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
+            )
+        return allegement_fillon * (period.start.month >= 2)
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['smic_proratise', 'salbrut']:
+            size = max(output_period.start.month, 2)
+            return output_period.start.offset('first-of', 'year').period('month', size - 1)
+        else:
+            return output_period.start.offset('first-of', 'month').period('month')
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
 class allegement_fillon(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
     @dated_function(datetime.date(2005, 7, 1))
-    def function(self, period, allegement_fillon_anticipe, allegement_fillon_annuel,
+    def function(self, period, allegement_fillon_anticipe, allegement_fillon_annuel, allegement_fillon_cumul_progressif,
+                 allegement_fillon_cumul_progressif_retarde, allegement_fillon_mode_recouvrement,
                  cotsoc = law.cotsoc):
+
         if period.start.month < 12:
-            return allegement_fillon_anticipe
+            return (
+                # 0 * (allegement_fillon_mode_recouvrement == 0) +
+                allegement_fillon_anticipe * (allegement_fillon_mode_recouvrement == 1) +
+                (
+                    (allegement_fillon_cumul_progressif - allegement_fillon_cumul_progressif_retarde) *
+                    (allegement_fillon_mode_recouvrement == 2)
+                    )
+                )
         else:
-            return allegement_fillon_annuel - allegement_fillon_anticipe
+            return (
+                allegement_fillon_annuel * (allegement_fillon_mode_recouvrement == 0) +
+                (allegement_fillon_annuel - allegement_fillon_anticipe) * (allegement_fillon_mode_recouvrement == 1) +
+                (
+                    (allegement_fillon_cumul_progressif - allegement_fillon_cumul_progressif_retarde) *
+                    (allegement_fillon_mode_recouvrement == 2)
+                    )
+                )
 
     def get_variable_period(self, output_period, variable_name):
         if variable_name in ['allegement_fillon_annuel']:

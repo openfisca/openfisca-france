@@ -38,6 +38,20 @@ QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', '
 # Données d'entrée de la simulation à fournir à partir d'une enquête ou générées par le générateur de cas type
 
 reference_input_variable(
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"fin_d_annee",
+                u"anticipe_regularisation_fin_de_periode",
+                u"progressif",
+                ],
+            ),
+        ),
+    entity_class = Individus,
+    label = u"Mode de recouvrement des allègements Fillon",
+    name = 'allegement_fillon_mode_recouvrement',
+    )
+reference_input_variable(
     column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la taxe sur les salaires",
