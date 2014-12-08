@@ -49,59 +49,27 @@ reference_input_variable(
 
 
 @reference_formula
-class base_ressource_bourse_college_i(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Base de ressources de l'individu prise en compte pour la bourse de collège"
-    entity_class = Individus
-
-    def function(self, salnet):
-        return salnet
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'salnet':
-            return output_period.offset(-1)
-        else:
-            return output_period
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
-
-
-@reference_formula
-class base_ressource_bourse_college(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Base de ressources prise en compte pour la bourse de collège"
-    entity_class = Familles
-
-    def function(self, base_ressource_bourse_college_i_holder):
-        base_ressource_bourse_college_i = self.split_by_roles(base_ressource_bourse_college_i_holder, roles = [CHEF, PART])
-        return base_ressource_bourse_college_i[CHEF] + base_ressource_bourse_college_i[PART]
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
-
-
-@reference_formula
 class bourse_college(SimpleFormulaColumn):
     column = FloatCol
     label = u"Montant de la bourse de collège"
     entity_class = Familles
 
-    def function(self, base_ressource_bourse_college, age_holder, smic55_holder, scolarite_holder, P = law.bourses_education.bourse_college):
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-        nb_enfants = nb_enf(age, smic55, 0, 25)
+    def function(self, rfr, age_holder, scolarite_holder, P = law.bourses_education.bourse_college):
+        ages = self.split_by_roles(age_holder, roles = ENFS)
+        nb_enfants = zeros(len(rfr))
+        for key, age in ages.iteritems():
+            nb_enfants += age >= 0
 
         plafond_taux_1 = P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire
         plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire
         plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire
 
-        eligible_taux_3 = base_ressource_bourse_college < plafond_taux_3
-        eligible_taux_2 = not_(eligible_taux_3) * (base_ressource_bourse_college < plafond_taux_2)
-        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (base_ressource_bourse_college < plafond_taux_1)
+        eligible_taux_3 = rfr < plafond_taux_3
+        eligible_taux_2 = not_(eligible_taux_3) * (rfr < plafond_taux_2)
+        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr < plafond_taux_1)
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
-        nb_enfants_college = zeros(1)
+        nb_enfants_college = zeros(len(rfr))
         for key, scolarite in scolarites.iteritems():
             nb_enfants_college += scolarite == SCOLARITE_COLLEGE
 
@@ -114,6 +82,12 @@ class bourse_college(SimpleFormulaColumn):
         montant *= nb_enfants_college
 
         return montant
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name == 'rfr':
+            return output_period.start.offset('first-of', 'year').period('year').offset(-2)
+        else:
+            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
