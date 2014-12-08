@@ -74,21 +74,35 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            allegement_fillon = 3233.51,
-#            allegement_fillon_anticipe = {
-#                "2011-01": 354.9,
-#                "2011-02": 354.9,
-#                "2011-03": 354.9,
-#                "2011-04": 354.9,
-#                "2011-05": 354.9,
-#                "2011-06": 354.9,
-#                "2011-07": 354.9,
-#                "2011-08": 354.9,
-#                "2011-09": 0,
-#                "2011-10": 354.9,
-#                "2011-11": 354.9,
-#                "2011-12": 325.49,
-#            }
+            allegement_fillon_anticipe = {
+                "2011-01": 354.9,
+                "2011-02": 354.9,
+                "2011-03": 354.9,
+                "2011-04": 354.9,
+                "2011-05": 354.9,
+                "2011-06": 354.9,
+                "2011-07": 354.9,
+                "2011-08": 354.9,
+                "2011-09": 0,
+                "2011-10": 354.9,
+                "2011-11": 354.9,
+                "2011-12": 0,
+                },
+            allegement_fillon = {
+                "2011-01": 354.9,
+                "2011-02": 354.9,
+                "2011-03": 354.9,
+                "2011-04": 354.9,
+                "2011-05": 354.9,
+                "2011-06": 354.9,
+                "2011-07": 354.9,
+                "2011-08": 354.9,
+                "2011-09": 0,
+                "2011-10": 354.9,
+                "2011-11": 354.9,
+                "2011-12": - 315.49,  # employeur est redevable
+                "2011": 3233.51,
+            }
             ),
         ),
 #    cadre = dict(
@@ -125,7 +139,7 @@ def test_check():
             if isinstance(amounts, dict):
                 for period_str, amount in amounts.iteritems():
                     output = simulation.calculate(variable, period = periods.period(period_str))
-                    variable_message = "{} at {}".format(variable, period)
+                    variable_message = "{} at {}".format(variable, period_str)
                     yield assert_variable, variable_message, employee_type, amount, output
             else:
                 output = simulation.calculate(variable)
@@ -135,8 +149,8 @@ def test_check():
 
 
 def assert_variable(variable_message, employee_type, amount, output):
-    print variable_message
-    print output
+#    print variable_message
+#    print output
     assert abs(output - amount) < .01, \
         "error for {} ({}) : should be {} instead of {} ".format(variable_message, employee_type, amount, output)
 

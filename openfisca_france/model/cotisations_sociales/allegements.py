@@ -94,7 +94,42 @@ class ratio_smic_salaire(DatedFormulaColumn):
         return ratio_smic_salaire
 
     def get_output_period(self, period):
-        return period
+        return period.start.offset('first-of', 'year').period('year')
+
+
+@reference_formula
+class ratio_smic_salaire_anticipe(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Ratio smic/salaire pour le calcul de l'allègement Fillon"
+
+    @dated_function(start = datetime.date(2012, 1, 1))
+    def function_2012(self, smic_proratise, salbrut, contrat_de_travail,
+                      smic_horaire_brut = law.cotsoc.gen.smic_h_b):
+        # salbrut_annuel 2012 nombre_heures_remunerees incluent hsup à partir de 2012
+        smic_annuel = smic_proratise  # durée légale du travail = 1820
+        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
+        return ratio_smic_salaire
+
+    @dated_function(start = datetime.date(2011, 1, 1), stop = datetime.date(2011, 12, 31))
+    def function_2011(self, smic_proratise, salbrut, contrat_de_travail,
+                      smic_horaire_brut = law.cotsoc.gen.smic_h_b):
+        # TODO
+        # salbrut_annuel 2011 même chose mais avec salbrut sans hsup
+        smic_annuel = smic_proratise  # durée légale du travail = 1820
+        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
+        return ratio_smic_salaire
+
+    @dated_function(start = datetime.date(2005, 7, 1), stop = datetime.date(2010, 12, 31))
+    def function_2007_2010(self, smic_proratise, salbrut, contrat_de_travail,
+                           smic_horaire_brut = law.cotsoc.gen.smic_h_b):
+        # TODO: revoir la législation
+        smic_annuel = smic_proratise  # durée légale du travail = 1820
+        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
+        return ratio_smic_salaire
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -104,11 +139,11 @@ class allegement_fillon_anticipe(DatedFormulaColumn):
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
     @dated_function(datetime.date(2005, 7, 1))
-    def function(self, ratio_smic_salaire, salbrut, taille_entreprise, type_sal,
+    def function(self, ratio_smic_salaire_anticipe, salbrut, taille_entreprise, type_sal,
                  cotsoc = law.cotsoc):
 
         majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
-        taux_fillon = taux_exo_fillon(ratio_smic_salaire, majoration, cotsoc)
+        taux_fillon = taux_exo_fillon(ratio_smic_salaire_anticipe, majoration, cotsoc)
         allegement_fillon = (
             taux_fillon *
             salbrut *
@@ -121,7 +156,7 @@ class allegement_fillon_anticipe(DatedFormulaColumn):
 
 
 @reference_formula
-class allegement_fillon(DatedFormulaColumn):   # annuel
+class allegement_fillon_annuel(DatedFormulaColumn):   # annuel
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
@@ -144,7 +179,7 @@ class allegement_fillon(DatedFormulaColumn):   # annuel
 
 
 @reference_formula
-class allegement_fillon_bis(DatedFormulaColumn):
+class allegement_fillon(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
@@ -152,7 +187,6 @@ class allegement_fillon_bis(DatedFormulaColumn):
     @dated_function(datetime.date(2005, 7, 1))
     def function(self, period, allegement_fillon_anticipe, allegement_fillon_annuel,
                  cotsoc = law.cotsoc):
-        print "month: ", period.start.month
         if period.start.month < 12:
             return allegement_fillon_anticipe
         else:

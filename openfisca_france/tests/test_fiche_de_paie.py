@@ -204,8 +204,6 @@ def test_check():
 
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
             output = simulation.calculate(variable)
-#            print variable
-#            print output
             yield assert_variable, variable, employee_type, monthly_amount, output
 
 
