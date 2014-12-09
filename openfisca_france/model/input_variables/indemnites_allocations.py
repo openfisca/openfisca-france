@@ -48,3 +48,4 @@ build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de re
 build_column('retraite_combattant', FloatCol(entity = 'ind', label = u"Retraite du combattant"))
 build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
 build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
+build_column('pensions_alimentaires_percues', FloatCol(entity = 'ind', label = u"Pensions alimentaires perçues"))

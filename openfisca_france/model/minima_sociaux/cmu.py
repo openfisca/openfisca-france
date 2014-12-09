@@ -148,14 +148,14 @@ class cmu_br_i(SimpleFormulaColumn):
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
 
-    def function(self, activite, salnet, chonet, rstnet, alr, rsa_base_ressources_patrimoine_i, aah, indemnites_journalieres_maternite,
+    def function(self, activite, salnet, chonet, rstnet, pensions_alimentaires_percues, rsa_base_ressources_patrimoine_i, aah, indemnites_journalieres_maternite,
                  indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle, indemnites_journalieres_accident_travail,
                  indemnites_stage, revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, retraite_combattant, pensions_invalidite,
                  indemnites_chomage_partiel, bourse_enseignement_sup, bourse_recherche, gains_exceptionnels,
                  tns_total_revenus, P = law.cmu):
         return ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - (activite == 1) * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + alr + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
+            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +

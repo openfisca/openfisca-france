@@ -304,7 +304,7 @@ class br_rmi_i(SimpleFormulaColumn):
     label = u"Base ressource individuelle du RSA/RMI"
     entity_class = Individus
 
-    def function(self, ass_holder, ra_rsa, chonet, rstnet, alr, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder,
+    def function(self, ass_holder, ra_rsa, chonet, rstnet, pensions_alimentaires_percues, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder,
                  rfon_ms, div_ms, gains_exceptionnels, dedommagement_victime_amiante, pensions_invalidite,
                  allocation_aide_retour_emploi, allocation_securisation_professionnelle, prestation_compensatoire,
                  retraite_combattant, bourse_enseignement_sup, bourse_recherche):
@@ -312,7 +312,7 @@ class br_rmi_i(SimpleFormulaColumn):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         ass = self.cast_from_entity_to_roles(ass_holder)
         return (
-            ass + ra_rsa + chonet + rstnet + alr + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
+            ass + ra_rsa + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire + retraite_combattant +
             bourse_enseignement_sup + bourse_recherche

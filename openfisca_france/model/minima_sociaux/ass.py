@@ -49,8 +49,8 @@ class base_ressources_ass_i(SimpleFormulaColumn):
     label = u"Base de ressources individuelle de l'ASS"
     entity_class = Individus
 
-    def function(self, salnet, rstnet, alr, aah, indemnites_stage, revenus_stage_formation_pro):
-        return salnet + rstnet + aah + indemnites_stage + revenus_stage_formation_pro
+    def function(self, salnet, rstnet, pensions_alimentaires_percues, aah, indemnites_stage, revenus_stage_formation_pro):
+        return salnet + rstnet + pensions_alimentaires_percues + aah + indemnites_stage + revenus_stage_formation_pro
 
     def get_variable_period(self, output_period, variable_name):
         return output_period.offset(-1)
