@@ -620,11 +620,11 @@ def _donapd_2011_2013(f7ud, f7va, P = law.ir.reductions_impots.donapd):
 
 
 def _duflot(f7gh, f7gi, P = law.ir.reductions_impots.duflot):
-     '''
-     Investissements locatifs interméiaires (loi Duflot)
-     2013-
-     '''
-     return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
+    '''
+    Investissements locatifs interméiaires (loi Duflot)
+    2013-
+    '''
+    return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
 #TODO: / 5 dans trois TOM
 
 def _ecodev(f7uh, rbg_int, P = law.ir.reductions_impots.ecodev):
