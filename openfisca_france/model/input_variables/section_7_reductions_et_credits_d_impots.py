@@ -695,7 +695,7 @@ build_column('f7ri', IntCol(entity = 'foy',
                 start = date(2012, 1, 1)))
 
 build_column('f7rj', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : 	Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %",
+                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %",
                 cerfa_field = u'7RJ',
                 start = date(2012, 1, 1)))
 

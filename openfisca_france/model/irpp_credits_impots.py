@@ -562,8 +562,8 @@ def _quaenv_2005(marpac, nb_pac2, f7wf, f7wg, f7wh, _P):
     max1 = max_(0, max0 - f7wf)
     max2 = max_(0, max1 - f7wg)
     return (P.taux_wf * min_(f7wf, max0) +
-		P.taux_wg * min_(f7wg, max1) +
-		P.taux_wh * min_(f7wh, max2))
+        P.taux_wg * min_(f7wg, max1) +
+        P.taux_wh * min_(f7wh, max2))
 
 
 def _quaenv_2006_2008(marpac, nb_pac2, f7wf, f7wg, f7wh, f7wq, _P):

@@ -708,7 +708,7 @@
             </SEUIL>
             <TAUX>
               <VALUE deb="2000-01-01" fin="2015-12-31" valeur=".0" /> #1er tranche commune aux cadres et aux non-cadres
-	        </TAUX>
+            </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
@@ -4022,14 +4022,14 @@
         <VALUE deb="2012-01-01" fin="2012-07-06" valeur="306" />
         <VALUE deb="2012-07-07" fin="2012-12-31" valeur="312" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="313" /> # TODO: check in july 2014 for "fin"
-	 </CODE>
+      </CODE>
     </NODE>
     <NODE code="supp_fam" description="Supplément familial de traitement">
       <CODE code="IM_min" description="Indice majoré plancher" format="integer">
         <VALUE deb="1999-06-13" fin="1999-11-13" valeur="447" />
         <VALUE deb="1999-11-14" fin="2006-10-31" valeur="448" />
         <VALUE deb="2006-11-01" fin="2014-12-31" valeur="449" /># TODO: check in july 2014 for "fin"
-  	  </CODE>
+      </CODE>
       <CODE code="IM_max" description="Indice majoré plafond" format="integer">
         <VALUE deb="2006-01-01" fin="2014-12-31" valeur="717" />
       </CODE>
