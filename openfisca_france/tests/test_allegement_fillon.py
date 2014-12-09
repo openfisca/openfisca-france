@@ -173,23 +173,7 @@ test_case_by_employee_type = dict(
                 },
             ),
         ),
-
-
-
-#    cadre = dict(
-#        input_variables = dict(
-#            effectif_entreprise = 3000,
-#            exposition_accident = 3,
-#            localisation_entreprise = "75001",
-#            ratio_alternants = .025,
-#            salbrut = 6000,
-#            taille_entreprise = 3,
-#            type_sal = 1,
-#            ),
-#        output_variables = dict(
-#            ),
-#        )
-)
+    )
 
 
 def test_check():
@@ -219,9 +203,5 @@ def test_check():
 
 
 def assert_variable(variable_message, employee_type, amount, output):
-#    print variable_message
-#    print output
     assert abs(output - amount) < .01, \
         "error for {} ({}) : should be {} instead of {} ".format(variable_message, employee_type, amount, output)
-
-

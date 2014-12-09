@@ -250,4 +250,4 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_decomposition(print_decomposition = False)
+    test_decomposition(print_decomposition = True)
