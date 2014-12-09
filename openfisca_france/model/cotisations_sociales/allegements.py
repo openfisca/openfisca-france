@@ -52,7 +52,7 @@ class smic_proratise(SimpleFormulaColumn):
     entity_class = Individus
     label = u"SMIC annuel proratisé"
 
-    def function(self, nombre_heures_remunerees, contrat_de_travail,
+    def function(self, nombre_heures_remunerees,
                  smic_horaire_brut = law.cotsoc.gen.smic_h_b):
 
         smic_proratise = smic_horaire_brut * nombre_heures_remunerees
