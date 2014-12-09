@@ -28,7 +28,7 @@ from __future__ import division
 
 import datetime
 
-
+from openfisca_core import periods
 from openfisca_france.tests.base import tax_benefit_system
 
 
@@ -193,8 +193,7 @@ test_case_by_employee_type = dict(
 
 
 def test_check():
-    from openfisca_core import periods
-    for employee_type,  test_parameters in test_case_by_employee_type.iteritems():
+    for employee_type, test_parameters in test_case_by_employee_type.iteritems():
         period = "2011"
         parent1 = dict(
             birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
