@@ -38,7 +38,7 @@ def test_irpp():
 
     tests_lists = {
         # test pour un célibataire ayant un revenu salarial (1AJ)
-        "sali": [
+        "sal": [
             {"year": 2010, "amount": 20000, "irpp": -1181},
             {"year": 2010, "amount": 50000, "irpp": -7934},
             {"year": 2010, "amount": 150000, "irpp": -42338},
@@ -197,7 +197,7 @@ def test_irpp():
             year = item["year"]
             amount = item["amount"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
-            if revenu in ["rsti", "sali"]:
+            if revenu in ["rsti", "sal"]:
                 simulation = base.tax_benefit_system.new_scenario().init_single_entity(
                     period = year,
                     parent1 = {
