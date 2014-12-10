@@ -1,14 +1,31 @@
-# -*- coding:utf-8 -*-
-# Created on 31 mai 2013
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
+#
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © #2013 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GVPLv3 or later license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from numpy import maximum as max_, minimum as min_
-from openfisca_core.accessors import law
+
+from .base import *
 
 
 ########################################################################
@@ -78,22 +95,32 @@ def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.ir.p
     return pv_net_impos
 
 
-def _ir_pv_immo(f3vz, pv_immo = law.ir.pv_immo):
-    """
-    Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
-    """
-    # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
-    # (VOIR TABLEAU PAGE 3).
-    # if resident
-    impo = pv_immo.taux*f3vz
-#    62. MONTANT DU PAR LES AUTRES NON-RESIDENTS (VOIR TABLEAU PAGE 3 ET REMPLIR PAGE 4 SI NECESSAIRE)
-#    IMPOSITION A 33,1/3% DES PERSONNES PHYSIQUES [(LIGNE 50 OU LIGNE 53) X 33,1/3%] = = €
-#    IMPOSITION A 15% OU 19% OU 33,1/3% DES PERSONNES MORALES NON ASSUJETTIES A L’IR, ETABLIES DANS UN ETAT
-#    MEMBRE DE L’EEE(1) (LIGNE 300 X 15% OU 19% OU 33,1/3%) = = €
-#IMPOSITION A 50% DES PERSONNES PHYSIQUES OU MORALES RESIDENTES D’UN ETNC(2)
-#[(LIGNE 50 OU (LIGNE 54 + LIGNE 300)) X 50%] = = €
+@reference_formula
+class ir_pv_immo(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Impôt sur le revenu afférent à la plus-value immobilière"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
 
-#63. ABATTEMENT REPRESENTATIF DU FORFAIT FORESTIER (SI LE CEDANT EST UNE PERSONNE PHYSIQUE RESIDENTE) - €
-#64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
-#(POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
-    return -impo
+    def function(self, f3vz, pv_immo =  law.ir.pv_immo):
+        """
+        Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
+        """
+        # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
+        # (VOIR TABLEAU PAGE 3).
+        # if resident
+        impo = pv_immo.taux*f3vz
+    #    62. MONTANT DU PAR LES AUTRES NON-RESIDENTS (VOIR TABLEAU PAGE 3 ET REMPLIR PAGE 4 SI NECESSAIRE)
+    #    IMPOSITION A 33,1/3% DES PERSONNES PHYSIQUES [(LIGNE 50 OU LIGNE 53) X 33,1/3%] = = €
+    #    IMPOSITION A 15% OU 19% OU 33,1/3% DES PERSONNES MORALES NON ASSUJETTIES A L’IR, ETABLIES DANS UN ETAT
+    #    MEMBRE DE L’EEE(1) (LIGNE 300 X 15% OU 19% OU 33,1/3%) = = €
+    #IMPOSITION A 50% DES PERSONNES PHYSIQUES OU MORALES RESIDENTES D’UN ETNC(2)
+    #[(LIGNE 50 OU (LIGNE 54 + LIGNE 300)) X 50%] = = €
+
+    #63. ABATTEMENT REPRESENTATIF DU FORFAIT FORESTIER (SI LE CEDANT EST UNE PERSONNE PHYSIQUE RESIDENTE) - €
+    #64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
+    #(POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
+        return -impo
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')

@@ -26,51 +26,53 @@
 from __future__ import division
 
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
-from openfisca_core.accessors import law
 
-from ..base import QUIFAM, QUIFOY
+from ..base import *
 from ..pfam import nb_enf
 
 
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
+@reference_formula
+class ars(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"Allocation de rentrée scolaire"
+    url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
 
+    def function(self, age_holder, af_nbenf, smic55_holder, br_pf, P =  law.fam):
+        '''
+        Allocation de rentrée scolaire brute de CRDS
+        '''
+        # TODO: convention sur la mensualisation
+        # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
+        # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-def _ars(self, age_holder, af_nbenf, smic55_holder, br_pf, P = law.fam):
-    '''
-    Allocation de rentrée scolaire brute de CRDS
-    '''
-    # TODO: convention sur la mensualisation
-    # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
-    # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
-    age = self.split_by_roles(age_holder, roles = ENFS)
-    smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        bmaf = P.af.bmaf
+        # On doit prendre l'âge en septembre
+        enf_05 = nb_enf(age, smic55, P.ars.agep - 1, P.ars.agep - 1)  # 5 ans et 6 ans avant le 31 décembre
+        # enf_05 = 0
+        # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans
+        # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il
+        # soit inscrit à l'école primaire. Il faudra alors présenter un
+        # certificat de scolarité.
+        enf_primaire = enf_05 + nb_enf(age, smic55, P.ars.agep, P.ars.agec - 1)
+        enf_college = nb_enf(age, smic55, P.ars.agec, P.ars.agel - 1)
+        enf_lycee = nb_enf(age, smic55, P.ars.agel, P.ars.ages)
 
-    bmaf = P.af.bmaf
-    # On doit prendre l'âge en septembre
-    enf_05 = nb_enf(age, smic55, P.ars.agep - 1, P.ars.agep - 1)  # 5 ans et 6 ans avant le 31 décembre
-    # enf_05 = 0
-    # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans
-    # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il
-    # soit inscrit à l'école primaire. Il faudra alors présenter un
-    # certificat de scolarité.
-    enf_primaire = enf_05 + nb_enf(age, smic55, P.ars.agep, P.ars.agec - 1)
-    enf_college = nb_enf(age, smic55, P.ars.agec, P.ars.agel - 1)
-    enf_lycee = nb_enf(age, smic55, P.ars.agel, P.ars.ages)
+        arsnbenf = enf_primaire + enf_college + enf_lycee
 
-    arsnbenf = enf_primaire + enf_college + enf_lycee
+        # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
+        ars_plaf_res = P.ars.plaf * (1 + af_nbenf * P.ars.plaf_enf_supp)
+        arsbase = bmaf * (P.ars.tx0610 * enf_primaire +
+                         P.ars.tx1114 * enf_college +
+                         P.ars.tx1518 * enf_lycee)
+        # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
+        # ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
+        ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / max_(1, arsnbenf)))
+        # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
-    # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
-    ars_plaf_res = P.ars.plaf * (1 + af_nbenf * P.ars.plaf_enf_supp)
-    arsbase = bmaf * (P.ars.tx0610 * enf_primaire +
-                     P.ars.tx1114 * enf_college +
-                     P.ars.tx1518 * enf_lycee)
-    # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
-    # ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
-    ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / max_(1, arsnbenf)))
-    # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
+        return ars * (ars >= P.ars.seuil_nv)
 
-    return ars * (ars >= P.ars.seuil_nv)
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')

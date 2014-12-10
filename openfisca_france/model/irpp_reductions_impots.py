@@ -1,10 +1,26 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
@@ -12,15 +28,11 @@ from __future__ import division
 import logging
 
 from numpy import minimum as min_, maximum as max_, logical_not as not_, ones, size, around
-from openfisca_core.accessors import law
 
-from .base import QUIFOY
+from .base import *
 
 
 log = logging.getLogger(__name__)
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
-PAC1 = QUIFOY['pac1']
 
 
 def _reductions_2002(adhcga, assvie, cappme, cotsyn, dfppce, daepad, doment, domlog, donapd, ecpess, garext, intemp,
@@ -158,21 +170,43 @@ def _accult(f7uo, _P):
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
 
-def _adhcga(f7ff, f7fg, P = law.ir.reductions_impots.adhcga):
-    '''
-    Frais de comptabilité et d'adhésion à un CGA ou AA
-    2002-
-    '''
-    return min_(f7ff, P.max * f7fg)
+@reference_formula
+class adhcga(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"adhcga"
+
+    def function(self, f7ff, f7fg, P =  law.ir.reductions_impots.adhcga):
+        '''
+        Frais de comptabilité et d'adhésion à un CGA ou AA
+        2002-
+        '''
+        return min_(f7ff, P.max * f7fg)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _assvie(nb_pac, f7gw, f7gx, f7gy, P = law.ir.reductions_impots.assvie):
-    '''
-    Assurance-vie (cases GW, GX et GY de la 2042)
-    2002-2004
-    '''
-    max1 = P.max + nb_pac * P.pac
-    return P.taux * min_(f7gw + f7gx + f7gy, max1)
+
+@reference_formula
+class assvie(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"assvie"
+    start_date = date(2002, 1, 1)
+    stop_date = date(2004, 12, 31)
+
+    def function(self, nb_pac, f7gw, f7gx, f7gy, P =  law.ir.reductions_impots.assvie):
+        '''
+        Assurance-vie (cases GW, GX et GY de la 2042)
+        2002-2004
+        '''
+        max1 = P.max + nb_pac * P.pac
+        return P.taux * min_(f7gw + f7gx + f7gy, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _cappme_2002(marpac, f7cf, _P, P = law.ir.reductions_impots.cappme):
@@ -264,30 +298,40 @@ def _cappme_2013(marpac, f7cc, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P = law.i
             min_(f7cu + f7cq, seuil2))
 
 
-def _cotsyn(self, f7ac_holder, sal_holder, cho_holder, rst_holder, P = law.ir.reductions_impots.cotsyn):
-    # becomes a credit d'impot in 2012
-        # TODO: change f7ac and use split_by_roles
-    '''
-    Cotisations syndicales (2002-20131
-    '''
-    f7ac = self.filter_role(f7ac_holder, role = VOUS)
-    f7ae = self.filter_role(f7ac_holder, role = CONJ)
-    f7ag = self.filter_role(f7ac_holder, role = PAC1)
+@reference_formula
+class cotsyn(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"cotsyn"
 
-    cho = self.split_by_roles(cho_holder)
-    rst = self.split_by_roles(rst_holder)
-    sal = self.split_by_roles(sal_holder)
+    def function(self, f7ac_holder, sal_holder, cho_holder, rst_holder, P =  law.ir.reductions_impots.cotsyn):
+        # becomes a credit d'impot in 2012
+            # TODO: change f7ac and use split_by_roles
+        '''
+        Cotisations syndicales (2002-20131
+        '''
+        f7ac = self.filter_role(f7ac_holder, role = VOUS)
+        f7ae = self.filter_role(f7ac_holder, role = CONJ)
+        f7ag = self.filter_role(f7ac_holder, role = PAC1)
 
-    tx = P.seuil
+        cho = self.split_by_roles(cho_holder)
+        rst = self.split_by_roles(rst_holder)
+        sal = self.split_by_roles(sal_holder)
 
-    salv, salc, salp = sal[VOUS], sal[CONJ], sal[PAC1]
-    chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
-    rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
-    maxv = (salv + chov + rstv) * tx
-    maxc = (salc + choc + rstc) * tx
-    maxp = (salp + chop + rstp) * tx
+        tx = P.seuil
 
-    return P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
+        salv, salc, salp = sal[VOUS], sal[CONJ], sal[PAC1]
+        chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
+        rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
+        maxv = (salv + chov + rstv) * tx
+        maxc = (salc + choc + rstc) * tx
+        maxp = (salp + chop + rstp) * tx
+
+        return P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _creaen_2006_2008(f7fy, f7gy, _P, P = law.ir.reductions_impots.creaen):
@@ -325,20 +369,41 @@ def _creaen_2012_2014(f7ly, f7my, _P, P = law.ir.reductions_impots.creaen):
                 P.hand * (f7my / 2))
 
 
-def _deffor(f7uc, P = law.ir.reductions_impots.deffor):
-    '''
-    Défense des forêts contre l'incendie
-    2006-
-    '''
-    return P.taux * min_(f7uc, P.max)
+@reference_formula
+class deffor(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"deffor"
+    start_date = date(2006, 1, 1)
+
+    def function(self, f7uc, P =  law.ir.reductions_impots.deffor):
+        '''
+        Défense des forêts contre l'incendie
+        2006-
+        '''
+        return P.taux * min_(f7uc, P.max)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _daepad(f7cd, f7ce, P = law.ir.reductions_impots.daepad):
-    '''
-    Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
-    ?-
-    '''
-    return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
+
+@reference_formula
+class daepad(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"daepad"
+
+    def function(self, f7cd, f7ce, P =  law.ir.reductions_impots.daepad):
+        '''
+        Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
+        ?-
+        '''
+        return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _dfppce_2002_2003(rbg_int, f7uf, _P, P = law.ir.reductions_impots.dfppce):
@@ -619,29 +684,62 @@ def _donapd_2011_2013(f7ud, f7va, P = law.ir.reductions_impots.donapd):
     return P.taux * min_(f7ud + f7va, P.max)
 
 
-def _duflot(f7gh, f7gi, P = law.ir.reductions_impots.duflot):
-    '''
-    Investissements locatifs interméiaires (loi Duflot)
-    2013-
-    '''
-    return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
+@reference_formula
+class duflot(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"duflot"
+    start_date = date(2013, 1, 1)
+
+    def function(self, f7gh, f7gi, P =  law.ir.reductions_impots.duflot):
+        '''
+        Investissements locatifs interméiaires (loi Duflot)
+        2013-
+        '''
+        return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 #TODO: / 5 dans trois TOM
 
-def _ecodev(f7uh, rbg_int, P = law.ir.reductions_impots.ecodev):
-    '''
-    Sommes versées sur un compte épargne codéveloppement (case 7UH)
-    2009
-    '''
-    return min_(f7uh * P.taux, min_(P.base * rbg_int, P.max))  # page3 ligne 18
+@reference_formula
+class ecodev(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"ecodev"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2009, 12, 31)
+
+    def function(self, f7uh, rbg_int, P =  law.ir.reductions_impots.ecodev):
+        '''
+        Sommes versées sur un compte épargne codéveloppement (case 7UH)
+        2009
+        '''
+        return min_(f7uh * P.taux, min_(P.base * rbg_int, P.max))  # page3 ligne 18
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _ecpess(f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P = law.ir.reductions_impots.ecpess):
-    '''
-    Réduction d'impôt au titre des enfants à charge poursuivant leurs études secondaires ou supérieures
-    '''
-    return (P.col * (f7ea + f7eb / 2) +
-            P.lyc * (f7ec + f7ed / 2) +
-            P.sup * (f7ef + f7eg / 2))
+
+@reference_formula
+class ecpess(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"ecpess"
+
+    def function(self, f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P =  law.ir.reductions_impots.ecpess):
+        '''
+        Réduction d'impôt au titre des enfants à charge poursuivant leurs études secondaires ou supérieures
+        '''
+        return (P.col * (f7ea + f7eb / 2) +
+                P.lyc * (f7ec + f7ed / 2) +
+                P.sup * (f7ef + f7eg / 2))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _garext_2002(f7ga, f7gb, f7gc, _P, P = law.ir.reductions_impots.garext):
@@ -670,31 +768,66 @@ def _garext_2003_2005(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P, P = law.ir.reducti
                        min_(f7gg, max2))
 
 
-def _intagr(f7um, marpac, P = law.ir.reductions_impots.intagr):
-    '''
-    Intérêts pour paiement différé accordé aux agriculteurs
-    2005-
-    '''
-    max1 = P.max * (1 + marpac)
-    return P.taux * min_(f7um, max1)
+@reference_formula
+class intagr(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"intagr"
+    start_date = date(2005, 1, 1)
+
+    def function(self, f7um, marpac, P =  law.ir.reductions_impots.intagr):
+        '''
+        Intérêts pour paiement différé accordé aux agriculteurs
+        2005-
+        '''
+        max1 = P.max * (1 + marpac)
+        return P.taux * min_(f7um, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _intcon(f7uh, P = law.ir.reductions_impots.intcon):
-    '''
-    Intérêts des prêts à la consommation (case UH)
-    2004-2005
-    '''
-    max1 = P.max
-    return P.taux * min_(f7uh, max1)
+
+@reference_formula
+class intcon(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"intcon"
+    start_date = date(2004, 1, 1)
+    stop_date = date(2005, 12, 31)
+
+    def function(self, f7uh, P =  law.ir.reductions_impots.intcon):
+        '''
+        Intérêts des prêts à la consommation (case UH)
+        2004-2005
+        '''
+        max1 = P.max
+        return P.taux * min_(f7uh, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _intemp(nb_pac, f7wg, P = law.ir.reductions_impots.intemp):
-    '''
-    Intérêts d'emprunts
-    2002-2003
-    '''
-    max1 = P.max + P.pac * nb_pac
-    return P.taux * min_(f7wg, max1)
+
+@reference_formula
+class intemp(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"intemp"
+    start_date = date(2002, 1, 1)
+    stop_date = date(2003, 12, 31)
+
+    def function(self, nb_pac, f7wg, P =  law.ir.reductions_impots.intemp):
+        '''
+        Intérêts d'emprunts
+        2002-2003
+        '''
+        max1 = P.max + P.pac * nb_pac
+        return P.taux * min_(f7wg, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _invfor_2002_2005(marpac, f7un, _P, P = law.ir.reductions_impots.invfor):
@@ -896,17 +1029,29 @@ def _invlst_2013(marpac, f7uy, f7uz, f7xf, f7xi, f7xj, f7xk, f7xm, f7xn, f7xo, f
     return around(xi + xj + xo)
 
 
-def _invrev(marpac, f7gs, f7gt, f7xg, f7gu, f7gv, P = law.ir.reductions_impots.invrev):
-    '''
-    Investissements locatifs dans les résidences de tourisme situées dans une zone de
-    revitalisation rurale (cases GS, GT, XG, GU et GV)
-    2002-2003
-    TODO 1/4 codé en dur
-    '''
-    return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + marpac)) / 4 +
-             P.taux_gu * min_(f7gu, P.seuil_gu * (1 + marpac)) / 4 +
-             P.taux_xg * min_(f7xg, P.seuil_xg * (1 + marpac)) / 4 +
-             P.taux_gt * f7gt + P.taux_gt * f7gv)
+@reference_formula
+class invrev(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"invrev"
+    start_date = date(2002, 1, 1)
+    stop_date = date(2003, 12, 31)
+
+    def function(self, marpac, f7gs, f7gt, f7xg, f7gu, f7gv, P =  law.ir.reductions_impots.invrev):
+        '''
+        Investissements locatifs dans les résidences de tourisme situées dans une zone de
+        revitalisation rurale (cases GS, GT, XG, GU et GV)
+        2002-2003
+        TODO 1/4 codé en dur
+        '''
+        return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + marpac)) / 4 +
+                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + marpac)) / 4 +
+                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + marpac)) / 4 +
+                 P.taux_gt * f7gt + P.taux_gt * f7gv)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _locmeu_2009(f7ij, P = law.ir.reductions_impots.locmeu):
@@ -979,12 +1124,23 @@ def _mecena(f7us):
     return f7us
 
 
-def _mohist(f7nz, P = law.ir.reductions_impots.mohist):
-    '''
-    Travaux de conservation et de restauration d’objets classés monuments historiques (case NZ)
-    2008-
-    '''
-    return P.taux * min_(f7nz, P.max)
+@reference_formula
+class mohist(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"mohist"
+    start_date = date(2008, 1, 1)
+
+    def function(self, f7nz, P =  law.ir.reductions_impots.mohist):
+        '''
+        Travaux de conservation et de restauration d’objets classés monuments historiques (case NZ)
+        2008-
+        '''
+        return P.taux * min_(f7nz, P.max)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _patnat_2010(f7ka, P = law.ir.reductions_impots.patnat):
@@ -1023,30 +1179,51 @@ def _patnat_2013(f7ka, f7kb, f7kc, f7kd, P = law.ir.reductions_impots.patnat):
     return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
 
-def _prcomp(f7wm, f7wn, f7wo, f7wp, P = law.ir.reductions_impots.prcomp):
-    '''
-    Prestations compensatoires
-    2002-
-    '''
-    div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
+@reference_formula
+class prcomp(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"prcomp"
 
-    return ((f7wm == 0) * ((f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
-                              (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
-                              max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)) +
-            (f7wm != 0) * ((f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
-                              max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
-                              (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
-                              max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
-             P.taux * f7wp)
+    def function(self, f7wm, f7wn, f7wo, f7wp, P =  law.ir.reductions_impots.prcomp):
+        '''
+        Prestations compensatoires
+        2002-
+        '''
+        div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
+
+        return ((f7wm == 0) * ((f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
+                                  (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
+                                  max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)) +
+                (f7wm != 0) * ((f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
+                                  max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
+                                  (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
+                                  max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
+                 P.taux * f7wp)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _repsoc(marpac, f7fh, P = law.ir.reductions_impots.repsoc):
-    '''
-    Intérèts d'emprunts pour reprises de société
-    2003-
-    '''
-    seuil = P.seuil * (marpac + 1)
-    return P.taux * min_(f7fh, seuil)
+
+@reference_formula
+class repsoc(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"repsoc"
+    start_date = date(2003, 1, 1)
+
+    def function(self, marpac, f7fh, P =  law.ir.reductions_impots.repsoc):
+        '''
+        Intérèts d'emprunts pour reprises de société
+        2003-
+        '''
+        seuil = P.seuil * (marpac + 1)
+        return P.taux * min_(f7fh, seuil)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _resimm_2009_2010(f7ra, f7rb, P = law.ir.reductions_impots.resimm):
@@ -1100,13 +1277,23 @@ def _resimm_2013(f7ra, f7rb, f7rc, f7rd, f7re, f7rf, f7sx, f7sy, P = law.ir.redu
             P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
 
 
-def _rsceha(nb_pac2, nbR, f7gz, P = law.ir.reductions_impots.rsceha):
-    '''
-    Rentes de survie et contrats d'épargne handicap
-    2002-
-    '''
-    max1 = P.seuil1 + (nb_pac2 - nbR) * P.seuil2
-    return P.taux * min_(f7gz, max1)
+@reference_formula
+class rsceha(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"rsceha"
+
+    def function(self, nb_pac2, nbR, f7gz, P =  law.ir.reductions_impots.rsceha):
+        '''
+        Rentes de survie et contrats d'épargne handicap
+        2002-
+        '''
+        max1 = P.seuil1 + (nb_pac2 - nbR) * P.seuil2
+        return P.taux * min_(f7gz, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _saldom_2002_2004(f7df, f7dg, _P, P = law.ir.reductions_impots.saldom):
@@ -1282,23 +1469,46 @@ def _scelli_2013(f7fa, f7fb, f7fc, f7fd, f7gj, f7gk, f7gl, f7gp, f7gs, f7gt, f7g
             )
 
 
-def _sofica(f7gn, f7fn, rng, P = law.ir.reductions_impots.sofica):
-    '''
-    Souscriptions au capital de SOFICA
-    2006-
-    '''
-    max0 = min_(P.taux1 * max_(rng, 0), P.max)
-    max1 = max_(0, max0 - f7gn)
-    return P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
+@reference_formula
+class sofica(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"sofica"
+    start_date = date(2006, 1, 1)
+
+    def function(self, f7gn, f7fn, rng, P =  law.ir.reductions_impots.sofica):
+        '''
+        Souscriptions au capital de SOFICA
+        2006-
+        '''
+        max0 = min_(P.taux1 * max_(rng, 0), P.max)
+        max1 = max_(0, max0 - f7gn)
+        return P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _sofipe(marpac, rbg_int, f7gs, _P, P = law.ir.reductions_impots.sofipe):
-    """
-    Souscription au capital d’une SOFIPECHE (case 7GS)
-    2009-2011
-    """
-    max1 = min_(P.max * (marpac + 1), P.base * rbg_int)  # page3 ligne 18
-    return P.taux * min_(f7gs, max1)
+
+@reference_formula
+class sofipe(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"sofipe"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2011, 1, 1)
+
+    def function(self, marpac, rbg_int, f7gs, _P, P =  law.ir.reductions_impots.sofipe):
+        """
+        Souscription au capital d’une SOFIPECHE (case 7GS)
+        2009-2011
+        """
+        max1 = min_(P.max * (marpac + 1), P.base * rbg_int)  # page3 ligne 18
+        return P.taux * min_(f7gs, max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _spfcpi_2002(marpac, f7gq, _P, P = law.ir.reductions_impots.spfcpi):

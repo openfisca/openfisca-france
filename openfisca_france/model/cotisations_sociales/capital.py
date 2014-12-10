@@ -137,18 +137,40 @@ class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
 # plus-values de valeurs mobilières
 
 
-def _csg_pv_mo(f3vg, _P):
-    """
-    Calcule la CSG sur les plus-values de cession mobilière
-    """
-    return -f3vg * _P.csg.capital.glob
+@reference_formula
+class csg_pv_mo(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"CSG sur les plus-values de cession de valeurs mobilières"
+    url = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
+
+    def function(self, f3vg, _P):
+        """
+        Calcule la CSG sur les plus-values de cession mobilière
+        """
+        return -f3vg * _P.csg.capital.glob
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _crds_pv_mo(f3vg, _P):
-    """
-    Calcule la CRDS sur les plus-values de cession mobilière
-    """
-    return -f3vg * _P.crds.capital
+
+@reference_formula
+class crds_pv_mo(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"CRDS sur les plus-values de cession de valeurs mobilières"
+    url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
+
+    def function(self, f3vg, _P):
+        """
+        Calcule la CRDS sur les plus-values de cession mobilière
+        """
+        return -f3vg * _P.crds.capital
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _prelsoc_pv_mo__2005(f3vg, _P):
@@ -184,18 +206,40 @@ def _prelsoc_pv_mo_2009_(f3vg, _P):
 # plus-values immobilières
 
 
-def _csg_pv_immo(f3vz, _P):
-    """
-    Calcule la CSG sur les plus-values de cession immobilière
-    """
-    return -f3vz * _P.csg.capital.glob
+@reference_formula
+class csg_pv_immo(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"CSG sur les plus-values immobilières"
+    url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+
+    def function(self, f3vz, _P):
+        """
+        Calcule la CSG sur les plus-values de cession immobilière
+        """
+        return -f3vz * _P.csg.capital.glob
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _crds_pv_immo(f3vz, _P):
-    """
-    Calcule la CRDS sur les plus-values de cession immobilière
-    """
-    return -f3vz * _P.crds.capital
+
+@reference_formula
+class crds_pv_immo(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"CRDS sur les plus-values immobilières"
+    url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
+
+    def function(self, f3vz, _P):
+        """
+        Calcule la CRDS sur les plus-values de cession immobilière
+        """
+        return -f3vz * _P.crds.capital
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _prelsoc_pv_immo__2005(f3vz, _P):
@@ -230,20 +274,42 @@ def _prelsoc_pv_immo_2009_(f3vz, _P):
 # revenus fonciers
 
 
-def _csg_fon(rev_cat_rfon, _P):
-    '''
-    Calcule la CSG sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
-    '''
-    return -rev_cat_rfon * _P.csg.capital.glob
+@reference_formula
+class csg_fon(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"CSG sur les revenus fonciers"
+    url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+
+    def function(self, rev_cat_rfon, _P):
+        '''
+        Calcule la CSG sur les revenus fonciers
+        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        '''
+        return -rev_cat_rfon * _P.csg.capital.glob
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _crds_fon(rev_cat_rfon, _P):
-    '''
-    Calcule la CRDS sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
-    '''
-    return -rev_cat_rfon * _P.crds.capital
+
+@reference_formula
+class crds_fon(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"CRDS sur les revenus fonciers"
+    url = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+
+    def function(self, rev_cat_rfon, _P):
+        '''
+        Calcule la CRDS sur les revenus fonciers
+        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        '''
+        return -rev_cat_rfon * _P.crds.capital
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _prelsoc_fon__2005(rev_cat_rfon, _P):

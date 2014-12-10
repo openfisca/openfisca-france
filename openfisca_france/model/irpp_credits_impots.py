@@ -1,10 +1,26 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
@@ -12,12 +28,10 @@ from __future__ import division
 import logging
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_, around, logical_or as or_
-from openfisca_core.accessors import law
 
-from .base import QUIFOY
+from .base import *
 
 log = logging.getLogger(__name__)
-VOUS = QUIFOY['vous']
 
 
 def _credits_impot_2002(accult, acqgpl, aidper, creimp, drbail, prlire):
@@ -87,8 +101,18 @@ def _credits_impot_2013(accult, aidper, assloy, autent, ci_garext, cotsyn, creim
             preetu + prlire + quaenv + saldom2)
 
 
-def _nb_pac2(nbF, nbJ, nbR, nbH):
-    return nbF + nbJ + nbR - nbH / 2
+@reference_formula
+class nb_pac2(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"nb_pac2"
+
+    def function(self, nbF, nbJ, nbR, nbH):
+        return nbF + nbJ + nbR - nbH / 2
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _accult(f7uo, _P):
@@ -100,20 +124,44 @@ def _accult(f7uo, _P):
     return P.taux * f7uo
 
 
-def _acqgpl(f7up, f7uq, period, acqgpl = law.ir.credits_impot.acqgpl):
-    '''
-    Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
-    2002-2007
-    '''
-    return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
+@reference_formula
+class acqgpl(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"acqgpl"
+    start_date = date(2002, 1, 1)
+    stop_date = date(2007, 12, 31)
+
+    def function(self, f7up, f7uq, period, acqgpl =  law.ir.credits_impot.acqgpl):
+        '''
+        Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
+        2002-2007
+        '''
+        return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _aidmob(f1ar, f1br, f1cr, f1dr, f1er, _P):
-    '''
-    Crédit d'impôt aide à la mobilité
-    2005-2008
-    '''
-    return (f1ar + f1br + f1cr + f1dr + f1er) * _P.ir.credits_impot.aidmob.montant
+
+@reference_formula
+class aidmob(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"aidmob"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2008, 12, 31)
+
+    def function(self, f1ar, f1br, f1cr, f1dr, f1er, _P):
+        '''
+        Crédit d'impôt aide à la mobilité
+        2005-2008
+        '''
+        return (f1ar + f1br + f1cr + f1dr + f1er) * _P.ir.credits_impot.aidmob.montant
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _aidper_2002_2003(marpac, nb_pac2, nbH, f7wi, _P):
@@ -216,46 +264,89 @@ def _aidper_2013(marpac, nb_pac2, f7wj, f7wl, f7wr, _P):
             min_(f7wj, max1))
 
 
-def _assloy(f4bf, _P):
-    '''
-    Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
-    2005-
-    '''
-    return _P.ir.credits_impot.assloy.taux * f4bf
+@reference_formula
+class assloy(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"assloy"
+    start_date = date(2005, 1, 1)
+
+    def function(self, f4bf, _P):
+        '''
+        Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
+        2005-
+        '''
+        return _P.ir.credits_impot.assloy.taux * f4bf
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _autent(f8uy):
-    '''
-    Auto-entrepreneur : versements d’impôt sur le revenu (case 8UY)
-    2009-
-    '''
-    return f8uy
+
+@reference_formula
+class autent(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"autent"
+    start_date = date(2009, 1, 1)
+
+    def function(self, f8uy):
+        '''
+        Auto-entrepreneur : versements d’impôt sur le revenu (case 8UY)
+        2009-
+        '''
+        return f8uy
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _ci_garext(f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
-    '''
-    Frais de garde des enfants à l’extérieur du domicile (cases 7GA à 7GC et 7GE à 7GG)
-    2005-
-    '''
-    P = _P.ir.credits_impot.garext
-    max1 = P.max
-    return P.taux * (min_(f7ga, max1) +
-                          min_(f7gb, max1) +
-                          min_(f7gc, max1) +
-                          min_(f7ge, max1 / 2) +
-                          min_(f7gf, max1 / 2) +
-                          min_(f7gg, max1 / 2))
+
+@reference_formula
+class ci_garext(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"ci_garext"
+    start_date = date(2005, 1, 1)
+
+    def function(self, f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P):
+        '''
+        Frais de garde des enfants à l’extérieur du domicile (cases 7GA à 7GC et 7GE à 7GG)
+        2005-
+        '''
+        P = _P.ir.credits_impot.garext
+        max1 = P.max
+        return P.taux * (min_(f7ga, max1) +
+                              min_(f7gb, max1) +
+                              min_(f7gc, max1) +
+                              min_(f7ge, max1 / 2) +
+                              min_(f7gf, max1 / 2) +
+                              min_(f7gg, max1 / 2))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _creimp_exc_2008(rni, nbptr, iai, mohist, elig_creimp_exc_2008):
-    '''
-    Crédit d'impôt exceptionnel sur les revenus 2008
-    http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf
-    '''
-    #TODO: gérer les DOM-TOM, corriger les formules, inclure 7KA
-    rpp = rni / nbptr
-    return (elig_creimp_exc_2008 * (mohist < 10700) * (rpp <= 12475) * around((2/3) * min_(12475, iai) * (rpp < 11674) +
-            (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
+
+@reference_formula
+class creimp_exc_2008(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"creimp_exc_2008"
+
+    def function(self, rni, nbptr, iai, mohist, elig_creimp_exc_2008):
+        '''
+        Crédit d'impôt exceptionnel sur les revenus 2008
+        http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf
+        '''
+        #TODO: gérer les DOM-TOM, corriger les formules, inclure 7KA
+        rpp = rni / nbptr
+        return (elig_creimp_exc_2008 * (mohist < 10700) * (rpp <= 12475) * around((2/3) * min_(12475, iai) * (rpp < 11674) +
+                (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _creimp_2002(f2ab, f8ta, f8tb, f8tc, f8td_2002_2005, f8te, f8tf, f8tg, f8th):
@@ -329,32 +420,64 @@ def _creimp_2013(f2ab, f2ck, f8ta, f8tb, f8tc, f8te, f8tf, f8tg, f8th, f8tl, f8t
             f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
 
 
-def _direpa(f2bg):
-    '''
-    Crédit d’impôt directive « épargne » (case 2BG)
-    2006-
-    '''
-    return f2bg
+@reference_formula
+class direpa(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"direpa"
+
+    def function(self, f2bg):
+        '''
+        Crédit d’impôt directive « épargne » (case 2BG)
+        2006-
+        '''
+        return f2bg
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _divide(marpac, f2dc, f2gr, _P):
-    '''
-    Crédit d'impôt dividendes
-    2005-2009
-    '''
-    P = _P.ir.credits_impot.divide
 
-    max1 = P.max * (marpac + 1)
-    return min_(P.taux * (f2dc + f2gr), max1)
+@reference_formula
+class divide(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"divide"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2009, 12, 31)
+
+    def function(self, marpac, f2dc, f2gr, _P):
+        '''
+        Crédit d'impôt dividendes
+        2005-2009
+        '''
+        P = _P.ir.credits_impot.divide
+
+        max1 = P.max * (marpac + 1)
+        return min_(P.taux * (f2dc + f2gr), max1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _drbail(f4tq, _P):
-    '''
-    Crédit d’impôt représentatif de la taxe additionnelle au droit de bail (case 4TQ)
-    2002-
-    '''
-    P = _P.ir.credits_impot.drbail
-    return P.taux * f4tq
+
+@reference_formula
+class drbail(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"drbail"
+
+    def function(self, f4tq, _P):
+        '''
+        Crédit d’impôt représentatif de la taxe additionnelle au droit de bail (case 4TQ)
+        2002-
+        '''
+        P = _P.ir.credits_impot.drbail
+        return P.taux * f4tq
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _inthab_2007(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7uh, P = law.ir.credits_impot.inthab):
@@ -463,30 +586,54 @@ def _inthab_2012_2013(marpac, nb_pac2, caseP, caseF, nbG, nbR, f7vt, f7vu, f7vv,
                 P.taux5 * min_(f7vv, max5) +
                 P.taux6 * min_(f7vt, max6))
 
-def _jeunes_2005_2008(self, jeunes_ind_holder):
-    return self.sum_by_entity(jeunes_ind_holder)
+@reference_formula
+class jeunes(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"jeunes"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2008, 12, 31)
+
+    def function(self, jeunes_ind_holder):
+        return self.sum_by_entity(jeunes_ind_holder)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _jeunes_ind(self, age, nbptr_holder, rfr_holder, sali, marpac_holder, elig_creimp_jeunes, _P):
-    '''
-    Crédit d'impôt en faveur des jeunes
-    2005-2008
 
-    rfr de l'année où jeune de moins de 26 à travaillé six mois
-    cf. http://www3.finances.gouv.fr/calcul_impot/2009/pdf/form-2041-GY.pdf
-    Attention seuls certains
-    '''
-    #TODO: vérifier si les jeunes sous le foyer fiscal de leurs parents sont éligibles
+@reference_formula
+class jeunes_ind(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"jeunes_ind"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2008, 12, 31)
 
-    P = _P.ir.credits_impot.jeunes
-    rfr = self.cast_from_entity_to_roles(rfr_holder)
-    nbptr = self.cast_from_entity_to_roles(nbptr_holder)
-    marpac = self.cast_from_entity_to_roles(marpac_holder)
+    def function(self, age, nbptr_holder, rfr_holder, sali, marpac_holder, elig_creimp_jeunes, _P):
+        '''
+        Crédit d'impôt en faveur des jeunes
+        2005-2008
 
-    elig = (age < P.age) * (rfr < P.rfr_plaf * (marpac * P.rfr_mult + not_(marpac)) + max_(0, nbptr - 2) * .5 *
-            P.rfr_maj + (nbptr == 1.5) * P.rfr_maj)
-    montant = (P.min <= sali) * (sali < P.int) * P.montant + (P.int <= sali) * (sali <= P.max) * (P.max - sali) * P.taux
-    return elig_creimp_jeunes * elig * max_(25, montant)  # D'après  le document num. 2041 GY
+        rfr de l'année où jeune de moins de 26 à travaillé six mois
+        cf. http://www3.finances.gouv.fr/calcul_impot/2009/pdf/form-2041-GY.pdf
+        Attention seuls certains
+        '''
+        #TODO: vérifier si les jeunes sous le foyer fiscal de leurs parents sont éligibles
+
+        P = _P.ir.credits_impot.jeunes
+        rfr = self.cast_from_entity_to_roles(rfr_holder)
+        nbptr = self.cast_from_entity_to_roles(nbptr_holder)
+        marpac = self.cast_from_entity_to_roles(marpac_holder)
+
+        elig = (age < P.age) * (rfr < P.rfr_plaf * (marpac * P.rfr_mult + not_(marpac)) + max_(0, nbptr - 2) * .5 *
+                P.rfr_maj + (nbptr == 1.5) * P.rfr_maj)
+        montant = (P.min <= sali) * (sali < P.int) * P.montant + (P.int <= sali) * (sali <= P.max) * (P.max - sali) * P.taux
+        return elig_creimp_jeunes * elig * max_(25, montant)  # D'après  le document num. 2041 GY
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
                                 # somme calculée sur formulaire 2041
 
 
@@ -498,12 +645,24 @@ def _mecena(f7us):
     return f7us
 
 
-def _percvm(f3vv_end_2010, _P):
-    '''
-    Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
-    -2010
-    '''
-    return _P.ir.credits_impot.percvm.taux * f3vv_end_2010
+@reference_formula
+class percvm(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"percvm"
+    start_date = date(2010, 1, 1)
+    stop_date = date(2010, 12, 31)
+
+    def function(self, f3vv_end_2010, _P):
+        '''
+        Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
+        -2010
+        '''
+        return _P.ir.credits_impot.percvm.taux * f3vv_end_2010
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _preetu_2005(f7uk, _P):
@@ -538,14 +697,25 @@ def _preetu_2008_(f7uk, f7vo, f7td, _P):
     return P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)
 
 
-def _prlire(f2dh, f2ch, marpac, _P):
-    '''
-    Prélèvement libératoire à restituer (case 2DH)
-    2002-
-    http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
-    '''
-    plaf_resid = max_(_P.ir.rvcm.abat_assvie * (1 + marpac) - f2ch, 0)
-    return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
+@reference_formula
+class prlire(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Prélèvement libératoire à restituer (case 2DH)"
+    stop_date = date(2013, 12, 31)
+
+    def function(self, f2dh, f2ch, marpac, _P):
+        '''
+        Prélèvement libératoire à restituer (case 2DH)
+        2002-
+        http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
+        '''
+        plaf_resid = max_(_P.ir.rvcm.abat_assvie * (1 + marpac) - f2ch, 0)
+        return _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _quaenv_2005(marpac, nb_pac2, f7wf, f7wg, f7wh, _P):
@@ -727,20 +897,30 @@ def _quaenv_2013(f7sd, f7se, f7sf, f7sg, f7sh, f7si, f7sj, f7sk, f7sl, f7sm, f7s
     return or_(not_(or_(f7we, f7wg)), (rfr < 30000)) * montant + f7sz
 
 
-def _quaenv_bouquet(f7sd, f7se, f7sn, f7so, f7sp, f7sq, f7sr, f7ss, f7st, f7ve, f7vf, f7vg, f7wa,
-            f7wb, f7wc, f7wf, f7wh, f7wq, f7ws, f7wt):
-    '''
-    Les dépenses de travaux dépendent d'un bouquet de travaux
-    2013
-    '''
-    t1 = or_(or_(f7wt * f7ws, f7wq), f7wf)
-    t2 = or_(f7wc * f7wb, f7wa)
-    t3 = or_(f7vg * f7vf, f7ve)
-    t4 = or_(f7sn > 0, f7so > 0)
-    t5 = or_(f7sr > 0, f7ss > 0)
-    t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-    bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1)
-    return or_(bouquet, f7wh)
+@reference_formula
+class quaenv_bouquet(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = FoyersFiscaux
+    label = u"quaenv_bouquet"
+    start_date = date(2013, 1, 1)
+
+    def function(self, f7sd, f7se, f7sn, f7so, f7sp, f7sq, f7sr, f7ss, f7st, f7ve, f7vf, f7vg, f7wa, f7wb, f7wc, f7wf, f7wh, f7wq, f7ws, f7wt):
+        '''
+        Les dépenses de travaux dépendent d'un bouquet de travaux
+        2013
+        '''
+        t1 = or_(or_(f7wt * f7ws, f7wq), f7wf)
+        t2 = or_(f7wc * f7wb, f7wa)
+        t3 = or_(f7vg * f7vf, f7ve)
+        t4 = or_(f7sn > 0, f7so > 0)
+        t5 = or_(f7sr > 0, f7ss > 0)
+        t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1)
+        return or_(bouquet, f7wh)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _saldom2_2007_2008(nb_pac2, f7db, f7dg, f7dl, _P):

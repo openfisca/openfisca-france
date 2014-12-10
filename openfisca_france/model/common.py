@@ -27,82 +27,116 @@ from __future__ import division
 
 from numpy import floor, logical_not as not_
 
-from .base import (FloatCol, Individus, Menages, PersonToEntityColumn, QUIFAM, QUIFOY, reference_formula,
-    SimpleFormulaColumn)
+from .base import *
 
 
-CHEF = QUIFAM['chef']
-ENFS = [QUIFAM['enf{}'.format(i)] for i in range(1, 10)]
-PART = QUIFAM['part']
-VOUS = QUIFOY['vous']
+@reference_formula
+class uc(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"Unités de consommation"
+
+    def function(self, agem_holder):
+        '''
+        Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'insee
+        'men'
+        '''
+        agem = self.split_by_roles(agem_holder)
+
+        uc_adt = 0.5
+        uc_enf = 0.3
+        uc = 0.5
+        for agm in agem.itervalues():
+            age = floor(agm / 12)
+            adt = (15 <= age) & (age <= 150)
+            enf = (0 <= age) & (age <= 14)
+            uc += adt * uc_adt + enf * uc_enf
+        return uc
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _uc(self, agem_holder):
-    '''
-    Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'insee
-    'men'
-    '''
-    agem = self.split_by_roles(agem_holder)
 
-    uc_adt = 0.5
-    uc_enf = 0.3
-    uc = 0.5
-    for agm in agem.itervalues():
-        age = floor(agm / 12)
-        adt = (15 <= age) & (age <= 150)
-        enf = (0 <= age) & (age <= 14)
-        uc += adt * uc_adt + enf * uc_enf
-    return uc
+@reference_formula
+class typ_men(SimpleFormulaColumn):
+    column = PeriodSizeIndependentIntCol(default = 0)
+    entity_class = Menages
+    label = u"Type de ménage"
 
+    def function(self, isol_holder, af_nbenf_holder):
+        '''
+        type de menage
+        'men'
+        TODO: prendre les enfants du ménage et non ceux de la famille
+        '''
+        af_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
+        af_nbenf = self.sum_by_entity(af_nbenf)
+        isol = self.cast_from_entity_to_role(isol_holder, role = CHEF)
+        isol = self.sum_by_entity(isol)
 
-def _typ_men(self, isol_holder, af_nbenf_holder):
-    '''
-    type de menage
-    'men'
-    TODO: prendre les enfants du ménage et non ceux de la famille
-    '''
-    af_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
-    af_nbenf = self.sum_by_entity(af_nbenf)
-    isol = self.cast_from_entity_to_role(isol_holder, role = CHEF)
-    isol = self.sum_by_entity(isol)
+        _0_kid = af_nbenf == 0
+        _1_kid = af_nbenf == 1
+        _2_kid = af_nbenf == 2
+        _3_kid = af_nbenf >= 3
 
-    _0_kid = af_nbenf == 0
-    _1_kid = af_nbenf == 1
-    _2_kid = af_nbenf == 2
-    _3_kid = af_nbenf >= 3
+        return (0 * (isol & _0_kid) +  # Célibataire
+                1 * (not_(isol) & _0_kid) +  # Couple sans enfants
+                2 * (not_(isol) & _1_kid) +  # Couple un enfant
+                3 * (not_(isol) & _2_kid) +  # Couple deux enfants
+                4 * (not_(isol) & _3_kid) +  # Couple trois enfants et plus
+                5 * (isol & _1_kid) +  # Famille monoparentale un enfant
+                6 * (isol & _2_kid) +  # Famille monoparentale deux enfants
+                7 * (isol & _3_kid))  # Famille monoparentale trois enfants et plus
 
-    return (0 * (isol & _0_kid) +  # Célibataire
-            1 * (not_(isol) & _0_kid) +  # Couple sans enfants
-            2 * (not_(isol) & _1_kid) +  # Couple un enfant
-            3 * (not_(isol) & _2_kid) +  # Couple deux enfants
-            4 * (not_(isol) & _3_kid) +  # Couple trois enfants et plus
-            5 * (isol & _1_kid) +  # Famille monoparentale un enfant
-            6 * (isol & _2_kid) +  # Famille monoparentale deux enfants
-            7 * (isol & _3_kid))  # Famille monoparentale trois enfants et plus
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _revdisp(self, rev_trav_holder, pen_holder, rev_cap_holder, psoc_holder, ppe_holder, impo):
-    '''
-    Revenu disponible - ménage
-    'men'
-    '''
-    pen = self.sum_by_entity(pen_holder)
-    ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
-    ppe = self.sum_by_entity(ppe)
-    psoc = self.cast_from_entity_to_role(psoc_holder, role = CHEF)
-    psoc = self.sum_by_entity(psoc)
-    rev_cap = self.sum_by_entity(rev_cap_holder)
-    rev_trav = self.sum_by_entity(rev_trav_holder)
 
-    return rev_trav + pen + rev_cap + psoc + ppe + impo
+@reference_formula
+class revdisp(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"Revenu disponible du ménage"
+    url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+
+    def function(self, rev_trav_holder, pen_holder, rev_cap_holder, psoc_holder, ppe_holder, impo):
+        '''
+        Revenu disponible - ménage
+        'men'
+        '''
+        pen = self.sum_by_entity(pen_holder)
+        ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
+        ppe = self.sum_by_entity(ppe)
+        psoc = self.cast_from_entity_to_role(psoc_holder, role = CHEF)
+        psoc = self.sum_by_entity(psoc)
+        rev_cap = self.sum_by_entity(rev_cap_holder)
+        rev_trav = self.sum_by_entity(rev_trav_holder)
+
+        return rev_trav + pen + rev_cap + psoc + ppe + impo
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _nivvie(revdisp, uc):
-    '''
-    Niveau de vie du ménage
-    'men'
-    '''
-    return revdisp / uc
+
+@reference_formula
+class nivvie(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"Niveau de vie du ménage"
+
+    def function(self, revdisp, uc):
+        '''
+        Niveau de vie du ménage
+        'men'
+        '''
+        return revdisp / uc
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 @reference_formula
@@ -127,12 +161,22 @@ class revnet(PersonToEntityColumn):
     variable = revenu_net_individu
 
 
-def _nivvie_net(revnet, uc):
-    '''
-    Niveau de vie net du ménage
-    'men'
-    '''
-    return revnet / uc
+@reference_formula
+class nivvie_net(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"Niveau de vie net du ménage"
+
+    def function(self, revnet, uc):
+        '''
+        Niveau de vie net du ménage
+        'men'
+        '''
+        return revnet / uc
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 @reference_formula
@@ -156,12 +200,22 @@ class revini(PersonToEntityColumn):
     variable = revenu_initial_individu
 
 
-def _nivvie_ini(revini, uc):
-    '''
-    Niveau de vie initial du ménage
-    'men'
-    '''
-    return revini / uc
+@reference_formula
+class nivvie_ini(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"Niveau de vie initial du ménage"
+
+    def function(self, revini, uc):
+        '''
+        Niveau de vie initial du ménage
+        'men'
+        '''
+        return revini / uc
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salariales):
@@ -174,158 +228,332 @@ def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salaria
     return rev_trav + rev_cap - cotisations_patronales - cotisations_salariales - cho
 
 
-def _rev_trav(rev_sal, rag, ric, rnc):
-    '''
-    Revenu du travail
-    '''
-    return rev_sal + rag + ric + rnc
+@reference_formula
+class rev_trav(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Revenus du travail (salariés et non salariés)"
+    url = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
+
+    def function(self, rev_sal, rag, ric, rnc):
+        '''
+        Revenu du travail
+        '''
+        return rev_sal + rag + ric + rnc
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _pen(chonet, rstnet, alr, alv_declarant1, rto_declarant1):
-    '''
-    Pensions
-    '''
-    return chonet + rstnet + alr + alv_declarant1 + rto_declarant1
+
+@reference_formula
+class pen(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Total des pensions et revenus de remplacement"
+    url = "http://fr.wikipedia.org/wiki/Rente"
+
+    def function(self, chonet, rstnet, alr, alv_declarant1, rto_declarant1):
+        '''
+        Pensions
+        '''
+        return chonet + rstnet + alr + alv_declarant1 + rto_declarant1
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _cotsoc_bar_declarant1(csg_cap_bar_declarant1, prelsoc_cap_bar_declarant1, crds_cap_bar_declarant1):
-    '''
-    Cotisations sociales sur les revenus du capital imposés au barème
-    '''
-    return csg_cap_bar_declarant1 + prelsoc_cap_bar_declarant1 + crds_cap_bar_declarant1
+
+@reference_formula
+class cotsoc_bar_declarant1(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Cotisations sociales sur les revenus du capital imposés au barème"
+
+    def function(self, csg_cap_bar_declarant1, prelsoc_cap_bar_declarant1, crds_cap_bar_declarant1):
+        '''
+        Cotisations sociales sur les revenus du capital imposés au barème
+        '''
+        return csg_cap_bar_declarant1 + prelsoc_cap_bar_declarant1 + crds_cap_bar_declarant1
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _cotsoc_lib_declarant1(csg_cap_lib_declarant1, prelsoc_cap_lib_declarant1, crds_cap_lib_declarant1):
-    '''
-    Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire
-    '''
-    return csg_cap_lib_declarant1 + prelsoc_cap_lib_declarant1 + crds_cap_lib_declarant1
+
+@reference_formula
+class cotsoc_lib_declarant1(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
+
+    def function(self, csg_cap_lib_declarant1, prelsoc_cap_lib_declarant1, crds_cap_lib_declarant1):
+        '''
+        Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire
+        '''
+        return csg_cap_lib_declarant1 + prelsoc_cap_lib_declarant1 + crds_cap_lib_declarant1
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _rev_cap(self, fon_holder, rev_cap_bar_holder, cotsoc_bar_declarant1, rev_cap_lib_holder, cotsoc_lib_declarant1,
-        imp_lib_holder, rac):
-    '''
-    Revenus du patrimoine
-    '''
-    fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
-    imp_lib = self.cast_from_entity_to_role(imp_lib_holder, role = VOUS)
-    rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-    return fon + rev_cap_bar + cotsoc_bar_declarant1 + rev_cap_lib + cotsoc_lib_declarant1 + imp_lib + rac
+@reference_formula
+class rev_cap(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Revenus du patrimoine"
+    url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
+    def function(self, fon_holder, rev_cap_bar_holder, cotsoc_bar_declarant1, rev_cap_lib_holder, cotsoc_lib_declarant1, imp_lib_holder, rac):
+        '''
+        Revenus du patrimoine
+        '''
+        fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
+        imp_lib = self.cast_from_entity_to_role(imp_lib_holder, role = VOUS)
+        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-def _psoc(pfam, mini, logt):
-    '''
-    Prestations sociales
-    '''
-    return pfam + mini + logt
+        return fon + rev_cap_bar + cotsoc_bar_declarant1 + rev_cap_lib + cotsoc_lib_declarant1 + imp_lib + rac
 
-
-def _pfam(af, cf, ars, aeeh, paje, asf, crds_pfam):
-    '''
-    Prestations familiales
-    '''
-    return af + cf + ars + aeeh + paje + asf + crds_pfam
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _mini(self, aspa, aah_holder, caah_holder, asi, rsa, aefa, api, ass, psa):
-    '''
-    Minima sociaux
-    '''
-    aah = self.sum_by_entity(aah_holder)
-    caah = self.sum_by_entity(caah_holder)
 
-    return aspa + aah + caah + asi + rsa + aefa + api + ass + psa
+@reference_formula
+class psoc(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"Total des prestations sociales"
+    url = "http://fr.wikipedia.org/wiki/Prestation_sociale"
 
+    def function(self, pfam, mini, logt):
+        '''
+        Prestations sociales
+        '''
+        return pfam + mini + logt
 
-def _logt(apl, als, alf, crds_lgtm):
-    '''
-    Prestations logement
-    '''
-    return apl + als + alf + crds_lgtm
-
-
-def _impo(self, irpp_holder, tax_hab):
-    '''
-    Impôts directs
-    '''
-    irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
-    irpp = self.sum_by_entity(irpp)
-
-    return irpp + tax_hab
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _crds(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar_declarant1, crds_cap_lib_declarant1,
-        crds_pfam_holder, crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
-    """Contribution au remboursement de la dette sociale"""
-    crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = VOUS)
-    crds_lgtm = self.cast_from_entity_to_role(crds_lgtm_holder, role = CHEF)
-    crds_mini = self.cast_from_entity_to_role(crds_mini_holder, role = CHEF)
-    crds_pfam = self.cast_from_entity_to_role(crds_pfam_holder, role = CHEF)
-    crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo_holder, role = VOUS)
-    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = VOUS)
 
-    return (crdssal + crdsrst + crdscho +
-            crds_fon + crds_cap_bar_declarant1 + crds_cap_lib_declarant1 + crds_pv_mo + crds_pv_immo +
-            crds_pfam + crds_lgtm + crds_mini)
+@reference_formula
+class pfam(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"Total des prestations familiales"
+    url = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
 
+    def function(self, af, cf, ars, aeeh, paje, asf, crds_pfam):
+        '''
+        Prestations familiales
+        '''
+        return af + cf + ars + aeeh + paje + asf + crds_pfam
 
-def _csg(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_holder, csg_cap_lib_declarant1,
-        csg_cap_bar_declarant1, csg_pv_mo_holder, csg_pv_immo_holder):
-    """Contribution sociale généralisée"""
-    csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = VOUS)
-    csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
-    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
-
-    return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
-            csg_fon + csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _cotsoc_noncontrib(cotisations_patronales_noncontrib, cotisations_salariales_noncontrib):
-    '''
-    Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
-    '''
-    return cotisations_patronales_noncontrib + cotisations_salariales_noncontrib
+
+@reference_formula
+class mini(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"Minima sociaux"
+    url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+
+    def function(self, aspa, aah_holder, caah_holder, asi, rsa, aefa, api, ass, psa):
+        '''
+        Minima sociaux
+        '''
+        aah = self.sum_by_entity(aah_holder)
+        caah = self.sum_by_entity(caah_holder)
+
+        return aspa + aah + caah + asi + rsa + aefa + api + ass + psa
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _prelsoc_cap(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_cap_bar_declarant1, prelsoc_pv_mo_holder,
-                 prelsoc_pv_immo_holder):
-    """
-    Prélèvements sociaux sur les revenus du capital
-    """
-    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = VOUS)
-    prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
-    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
 
-    return prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar_declarant1 + prelsoc_pv_mo + prelsoc_pv_immo
+@reference_formula
+class logt(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"Allocations logements"
+    url = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
 
+    def function(self, apl, als, alf, crds_lgtm):
+        '''
+        Prestations logement
+        '''
+        return apl + als + alf + crds_lgtm
 
-def _check_csk(self, prelsoc_cap_bar_declarant1_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):
-    prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar_declarant1_holder)
-    prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = CHEF)
-    prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo)
-    prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = CHEF)
-    prelsoc_fon = self.sum_by_entity(prelsoc_fon)
-
-    return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _check_csg(self, csg_cap_bar_declarant1_holder, csg_pv_mo_holder, csg_fon_holder):
-    csg_cap_bar = self.sum_by_entity(csg_cap_bar_declarant1_holder)
-    csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = CHEF)
-    csg_pv_mo = self.sum_by_entity(csg_pv_mo)
-    csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = CHEF)
-    csg_fon = self.sum_by_entity(csg_fon)
 
-    return csg_cap_bar + csg_pv_mo + csg_fon
+@reference_formula
+class impo(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"Impôts sur le revenu"
+    url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
+
+    def function(self, irpp_holder, tax_hab):
+        '''
+        Impôts directs
+        '''
+        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
+        irpp = self.sum_by_entity(irpp)
+
+        return irpp + tax_hab
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _check_crds(self, crds_cap_bar_declarant1_holder, crds_pv_mo_holder, crds_fon_holder):
-    crds_cap_bar = self.sum_by_entity(crds_cap_bar_declarant1_holder)
-    crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = CHEF)
-    crds_pv_mo = self.sum_by_entity(crds_pv_mo)
-    crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = CHEF)
-    crds_fon = self.sum_by_entity(crds_fon)
 
-    return crds_cap_bar + crds_pv_mo + crds_fon
+@reference_formula
+class crds(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Total des contributions au remboursement de la dette sociale"
+
+    def function(self, crdssal, crdsrst, crdscho, crds_fon_holder, crds_cap_bar_declarant1, crds_cap_lib_declarant1, crds_pfam_holder, crds_lgtm_holder, crds_mini_holder, crds_pv_mo_holder, crds_pv_immo_holder):
+        """Contribution au remboursement de la dette sociale"""
+        crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = VOUS)
+        crds_lgtm = self.cast_from_entity_to_role(crds_lgtm_holder, role = CHEF)
+        crds_mini = self.cast_from_entity_to_role(crds_mini_holder, role = CHEF)
+        crds_pfam = self.cast_from_entity_to_role(crds_pfam_holder, role = CHEF)
+        crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo_holder, role = VOUS)
+        crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = VOUS)
+
+        return (crdssal + crdsrst + crdscho +
+                crds_fon + crds_cap_bar_declarant1 + crds_cap_lib_declarant1 + crds_pv_mo + crds_pv_immo +
+                crds_pfam + crds_lgtm + crds_mini)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class csg(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Total des contributions sociale généralisée"
+
+    def function(self, csgsali, csgsald, csgchoi, csgchod, csgrsti, csgrstd, csg_fon_holder, csg_cap_lib_declarant1, csg_cap_bar_declarant1, csg_pv_mo_holder, csg_pv_immo_holder):
+        """Contribution sociale généralisée"""
+        csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = VOUS)
+        csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
+        csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
+
+        return (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
+                csg_fon + csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class cotsoc_noncontrib(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Cotisations sociales non contributives"
+
+    def function(self, cotisations_patronales_noncontrib, cotisations_salariales_noncontrib):
+        '''
+        Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
+        '''
+        return cotisations_patronales_noncontrib + cotisations_salariales_noncontrib
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class prelsoc_cap(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Prélèvements sociaux sur les revenus du capital"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+
+    def function(self, prelsoc_fon_holder, prelsoc_cap_lib_declarant1, prelsoc_cap_bar_declarant1, prelsoc_pv_mo_holder, prelsoc_pv_immo_holder):
+        """
+        Prélèvements sociaux sur les revenus du capital
+        """
+        prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = VOUS)
+        prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
+        prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
+
+        return prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar_declarant1 + prelsoc_pv_mo + prelsoc_pv_immo
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class check_csk(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"check_csk"
+
+    def function(self, prelsoc_cap_bar_declarant1_holder, prelsoc_pv_mo_holder, prelsoc_fon_holder):
+        prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar_declarant1_holder)
+        prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = CHEF)
+        prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo)
+        prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = CHEF)
+        prelsoc_fon = self.sum_by_entity(prelsoc_fon)
+
+        return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class check_csg(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"check_csg"
+
+    def function(self, csg_cap_bar_declarant1_holder, csg_pv_mo_holder, csg_fon_holder):
+        csg_cap_bar = self.sum_by_entity(csg_cap_bar_declarant1_holder)
+        csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = CHEF)
+        csg_pv_mo = self.sum_by_entity(csg_pv_mo)
+        csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = CHEF)
+        csg_fon = self.sum_by_entity(csg_fon)
+
+        return csg_cap_bar + csg_pv_mo + csg_fon
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class check_crds(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Menages
+    label = u"check_crds"
+
+    def function(self, crds_cap_bar_declarant1_holder, crds_pv_mo_holder, crds_fon_holder):
+        crds_cap_bar = self.sum_by_entity(crds_cap_bar_declarant1_holder)
+        crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = CHEF)
+        crds_pv_mo = self.sum_by_entity(crds_pv_mo)
+        crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = CHEF)
+        crds_fon = self.sum_by_entity(crds_fon)
+
+        return crds_cap_bar + crds_pv_mo + crds_fon
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')

@@ -27,57 +27,96 @@ from __future__ import division
 
 from numpy import int32, logical_not as not_, zeros
 
-from openfisca_core.accessors import law
-
-from .base import BoolCol, Individus, QUIFAM, QUIFOY, reference_formula, SimpleFormulaColumn
+from .base import *
 
 
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [
-    QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'],
-    QUIFAM['enf8'], QUIFAM['enf9'],
-    ]
-VOUS = QUIFOY['vous']
+@reference_formula
+class nb_par(SimpleFormulaColumn):
+    column = PeriodSizeIndependentIntCol(default = 0)
+    entity_class = Familles
+    label = u"Nombre de parents"
+
+    def function(self, quifam_holder):
+        '''
+        Nombre d'adultes (parents) dans la famille
+        'fam'
+        '''
+        quifam = self.filter_role(quifam_holder, role = PART)
+
+        return 1 + 1 * (quifam == 1)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _nb_par(self, quifam_holder):
-    '''
-    Nombre d'adultes (parents) dans la famille
-    'fam'
-    '''
-    quifam = self.filter_role(quifam_holder, role = PART)
 
-    return 1 + 1 * (quifam == 1)
+@reference_formula
+class maries(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = Familles
+    label = u"maries"
+
+    def function(self, statmarit_holder):
+        '''
+        couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?
+        '''
+        statmarit = self.filter_role(statmarit_holder, role = CHEF)
+
+        return statmarit == 1
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _maries(self, statmarit_holder):
-    '''
-    couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?
-    '''
-    statmarit = self.filter_role(statmarit_holder, role = CHEF)
 
-    return statmarit == 1
+@reference_formula
+class concub(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = Familles
+    label = u"Indicatrice de vie en couple"
+
+    def function(self, nb_par):
+        '''
+        concub = 1 si vie en couple TODO pas très heureux
+        '''
+        # TODO: concub n'est pas égal à 1 pour les conjoints
+        return nb_par == 2
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _concub(nb_par):
-    '''
-    concub = 1 si vie en couple TODO pas très heureux
-    '''
-    # TODO: concub n'est pas égal à 1 pour les conjoints
-    return nb_par == 2
+@reference_formula
+class isol(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = Familles
+    label = u"isol"
 
-def _isol(nb_par):
-    '''
-    Parent (s'il y a lieu) isolé
-    '''
-    return nb_par == 1
+    def function(self, nb_par):
+        '''
+        Parent (s'il y a lieu) isolé
+        '''
+        return nb_par == 1
 
-def _etu(activite):
-    '''
-    Indicatrice individuelle etudiant
-    '''
-    return activite == 2
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+@reference_formula
+class etu(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = Individus
+    label = u"Indicatrice individuelle étudiant"
+
+    def function(self, activite):
+        '''
+        Indicatrice individuelle etudiant
+        '''
+        return activite == 2
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 @reference_formula
@@ -95,73 +134,132 @@ class smic55(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('month')
 
 
-def _br_pf_i(tspr, hsup, rpns):
-    '''
-    Base ressource individuelle des prestations familiales
-    'ind'
-    '''
-    return tspr + hsup + rpns
+@reference_formula
+class br_pf_i(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Base ressource individuele des prestations familiales"
+
+    def function(self, tspr, hsup, rpns):
+        '''
+        Base ressource individuelle des prestations familiales
+        'ind'
+        '''
+        return tspr + hsup + rpns
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _biact(self, br_pf_i_holder, _P):
-    '''
-    Indicatrice de biactivité des adultes de la famille
-    '''
-    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
 
-    seuil_rev = 12 * _P.fam.af.bmaf_n_2
-    biact = (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
-    return biact
+@reference_formula
+class biact(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = Familles
+    label = u"Indicatrice de biactivité"
 
+    def function(self, br_pf_i_holder, _P):
+        '''
+        Indicatrice de biactivité des adultes de la famille
+        '''
+        br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
 
-def _div(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc_holder, f3ve_holder, f3vg_holder, f3vh_holder,
-        f3vl_holder, f3vm_holder):
-    f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
-    f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
-    f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
-    f3vh = self.cast_from_entity_to_role(f3vh_holder, role = VOUS)
-    f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
-    f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
+        seuil_rev = 12 * _P.fam.af.bmaf_n_2
+        biact = (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
+        return biact
 
-    return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
-
-def _rev_coll(self, rto_net_declarant1, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_spe_holder, glo, fon_holder,
-        alv_declarant1, f7ga_holder, f7gb_holder, f7gc_holder, rev_cat_pv_holder):
-    '''
-    Revenus collectifs
-    '''
-    # TODO: ajouter les revenus de l'étranger etr*0.9
-    # alv_declarant1 is negative since it is paid by the declaree
-    rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-    rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm_holder, role = VOUS)
-    abat_spe = self.cast_from_entity_to_role(abat_spe_holder, role = VOUS)
-    fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
-    f7ga = self.cast_from_entity_to_role(f7ga_holder, role = VOUS)
-    f7gb = self.cast_from_entity_to_role(f7gb_holder, role = VOUS)
-    f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
-    rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
-
-    return (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb - f7gc - abat_spe
-        + rev_cat_pv)
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _br_pf(self, br_pf_i_holder, rev_coll_holder):
-    '''
-    Base ressource des prestations familiales de la famille
-    'fam'
-    '''
-    br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-    rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
 
-    br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
-    return br_pf
+@reference_formula
+class div(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"div"
+
+    def function(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc_holder, f3ve_holder, f3vg_holder, f3vh_holder, f3vl_holder, f3vm_holder):
+        f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
+        f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
+        f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
+        f3vh = self.cast_from_entity_to_role(f3vh_holder, role = VOUS)
+        f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
+        f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
+
+        return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _crds_pfam(af, cf, asf, ars, paje, ape, apje, _P):
-    '''
-    Renvoie la CRDS des prestations familiales
-    '''
-    return -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
+@reference_formula
+class rev_coll(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"rev_coll"
+
+    def function(self, rto_net_declarant1, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_spe_holder, glo, fon_holder, alv_declarant1, f7ga_holder, f7gb_holder, f7gc_holder, rev_cat_pv_holder):
+        '''
+        Revenus collectifs
+        '''
+        # TODO: ajouter les revenus de l'étranger etr*0.9
+        # alv_declarant1 is negative since it is paid by the declaree
+        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+        rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm_holder, role = VOUS)
+        abat_spe = self.cast_from_entity_to_role(abat_spe_holder, role = VOUS)
+        fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
+        f7ga = self.cast_from_entity_to_role(f7ga_holder, role = VOUS)
+        f7gb = self.cast_from_entity_to_role(f7gb_holder, role = VOUS)
+        f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
+        rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
+
+        return (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb - f7gc - abat_spe
+            + rev_cat_pv)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class br_pf(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"Base ressource des prestations familiales"
+
+    def function(self, br_pf_i_holder, rev_coll_holder):
+        '''
+        Base ressource des prestations familiales de la famille
+        'fam'
+        '''
+        br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
+        rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
+
+        br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
+        return br_pf
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
+@reference_formula
+class crds_pfam(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"CRDS (prestations familiales)"
+    url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
+
+    def function(self, af, cf, asf, ars, paje, ape, apje, _P):
+        '''
+        Renvoie la CRDS des prestations familiales
+        '''
+        return -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
 
 
 ############################################################################
