@@ -176,7 +176,8 @@ class asi(SimpleFormulaColumn):
             + elig4 * (P.asi.montant_couple / 4 / 2 - depassement / 2)
             + elig5 * (P.asi.montant_seul / 4 - depassement / 2))
 
-        montant_servi_asi = max_(diff, 0)
+        # Montant mensuel servi (sous réserve d'éligibilité)
+        montant_servi_asi = max_(diff, 0) / 3
 
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
         # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
