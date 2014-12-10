@@ -276,8 +276,8 @@ class br_rmi_pf(DatedFormulaColumn):
         return P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
 
     @dated_function(date(2014, 4, 1))
-    def function_2014(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
-        return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
+    def function_2014(self, af_base, cf, paje_base, paje_clca, paje_colca, P = law.minim):
+        return P.rmi.pfInBRrmi * (af_base + cf + paje_base + paje_clca + paje_colca)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -593,12 +593,12 @@ class rsa(SimpleFormulaColumn):
     label = u"Revenu de solidarité active"
     entity_class = Familles
 
-    def function(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, br_rmi, P = law.minim.rmi):
+    def function(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, rsa_forfait_asf, br_rmi, P = law.minim.rmi):
         ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
 
         # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
         base_normalise = max_(
-            max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - br_rmi / 3 +
+            max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - rsa_forfait_asf - br_rmi / 3 +
             P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) / 3,
             0
             )
