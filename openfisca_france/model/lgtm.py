@@ -168,7 +168,7 @@ class br_al(SimpleFormulaColumn):
 
 
 @reference_formula
-class al(SimpleFormulaColumn):
+class aide_logement_montant(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Formule des aides aux logements en secteur locatif"
@@ -332,11 +332,11 @@ class alf(SimpleFormulaColumn):
     label = u"Allocation logement familiale"
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
 
-    def function(self, al, al_pac, so_famille, proprietaire_proche_famille):
+    def function(self, aide_logement_montant, al_pac, so_famille, proprietaire_proche_famille):
         # TODO: également pour les jeunes ménages et femmes enceintes
         # variable ménage à redistribuer
         so = so_famille
-        return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * al
+        return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -348,12 +348,12 @@ class als_nonet(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Allocation logement sociale (non étudiante)"
 
-    def function(self, al, al_pac, etu_holder, so_famille, proprietaire_proche_famille):
+    def function(self, aide_logement_montant, al_pac, etu_holder, so_famille, proprietaire_proche_famille):
         # variable ménage à redistribuer
         so = so_famille
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * al
+        return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * aide_logement_montant
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -366,13 +366,13 @@ class alset(SimpleFormulaColumn):
     label = u"Allocation logement sociale (non étudiante)"
     url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
 
-    def function(self, al, al_pac, etu_holder, so_holder, proprietaire_proche_famille):
+    def function(self, aide_logement_montant, al_pac, etu_holder, so_holder, proprietaire_proche_famille):
         # variable ménage à redistribuer
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * al
+        return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * aide_logement_montant
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -400,12 +400,25 @@ class apl(SimpleFormulaColumn):
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
 
-    def function(self, al, so_holder):
+    def function(self, aide_logement_montant, so_holder):
         # TODO:
         # variable ménage à redistribuer
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
-        return al * (so == 3)
+        return aide_logement_montant * (so == 3)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class aide_logement(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Aide au logement (tout type)"
+
+    def function(self, apl, als, alf):
+        return max_(max_(apl, als), alf)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
