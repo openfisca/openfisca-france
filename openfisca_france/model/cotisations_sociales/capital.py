@@ -9,17 +9,12 @@
 
 from __future__ import division
 
-import datetime
 import logging
 
-from openfisca_core.accessors import law
-
-from ..base import (dated_function, DatedFormulaColumn, FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn,
-    QUIFOY, reference_formula, SimpleFormulaColumn)
+from ..base import *
 
 
 log = logging.getLogger(__name__)
-VOUS = QUIFOY['vous']
 
 
 # TODO: CHECK la csg déductible en 2006 est case GH
@@ -107,17 +102,17 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème"
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
-    @dated_function(start = datetime.date(2002, 1, 1), stop = datetime.date(2005, 12, 31))
+    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_2002_2005(self, rev_cap_bar, P = law.prelsoc):
         total = P.base_pat
         return -rev_cap_bar * total
 
-    @dated_function(start = datetime.date(2006, 1, 1), stop = datetime.date(2008, 12, 31))
+    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_2006_2008(self, rev_cap_bar, P = law.prelsoc):
         total = P.base_pat + P.add_pat
         return -rev_cap_bar * total
 
-    @dated_function(start = datetime.date(2009, 1, 1), stop = datetime.date(2015, 12, 31))
+    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009_2015(self, rev_cap_bar, P = law.prelsoc):
         total = P.base_pat + P.add_pat + P.rsa
         return -rev_cap_bar * total
@@ -173,34 +168,50 @@ class crds_pv_mo(SimpleFormulaColumn):
 
 
 
-def _prelsoc_pv_mo__2005(f3vg, _P):
-    """
-    Calcule le prélèvement social sur les plus-values
-    de cession de valeurs mobilières
-    """
-    P = _P.prelsoc
-    total = P.base_pat
-    return -f3vg * total
+@reference_formula
+class prelsoc_pv_mo(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+
+    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
+    def function_20020101_20051231(self, f3vg, _P):
+        """
+        Calcule le prélèvement social sur les plus-values
+        de cession de valeurs mobilières
+        """
+        P = _P.prelsoc
+        total = P.base_pat
+        return -f3vg * total
+
+    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
+    def function_20060101_20081231(self, f3vg, _P):
+        """
+        Calcule le prélèvement social sur les plus-values
+        de cession de valeurs mobilières
+        """
+        P = _P.prelsoc
+        total = P.base_pat + P.add_pat
+        return -f3vg * total
+
+    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    def function_20090101_20151231(self, f3vg, _P):
+        """
+        Calcule le prélèvement social sur les plus-values
+        de cession de valeurs mobilières
+        """
+        P = _P.prelsoc
+        total = P.base_pat + P.add_pat + P.rsa
+        return -f3vg * total
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _prelsoc_pv_mo_2006_2008(f3vg, _P):
-    """
-    Calcule le prélèvement social sur les plus-values
-    de cession de valeurs mobilières
-    """
-    P = _P.prelsoc
-    total = P.base_pat + P.add_pat
-    return -f3vg * total
 
 
-def _prelsoc_pv_mo_2009_(f3vg, _P):
-    """
-    Calcule le prélèvement social sur les plus-values
-    de cession de valeurs mobilières
-    """
-    P = _P.prelsoc
-    total = P.base_pat + P.add_pat + P.rsa
-    return -f3vg * total
+
 
 
 # plus-values immobilières
@@ -242,33 +253,49 @@ class crds_pv_immo(SimpleFormulaColumn):
 
 
 
-def _prelsoc_pv_immo__2005(f3vz, _P):
-    """
-    Calcule le prélèvement social sur les plus-values de cession immobilière
-    """
-    P = _P.prelsoc
-    total = P.base_pat
+@reference_formula
+class prelsoc_pv_immo(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Prélèvements sociaux sur les plus-values immobilières"
+    url = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
 
-    return -f3vz * total
+    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
+    def function_20020101_20051231(self, f3vz, _P):
+        """
+        Calcule le prélèvement social sur les plus-values de cession immobilière
+        """
+        P = _P.prelsoc
+        total = P.base_pat
+
+        return -f3vz * total
+
+    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
+    def function_20060101_20081231(self, f3vz, _P):
+        """
+        Calcule le prélèvement social sur les plus-values de cession immobilière
+        """
+        P = _P.prelsoc
+        total = P.base_pat + P.add_pat
+
+        return -f3vz * total
+
+    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    def function_20090101_20151231(self, f3vz, _P):
+        """
+        Calcule le prélèvement social sur les plus-values de cession immobilière
+        """
+        P = _P.prelsoc
+        total = P.base_pat + P.add_pat + P.rsa
+        return -f3vz * total
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _prelsoc_pv_immo_2006_2008(f3vz, _P):
-    """
-    Calcule le prélèvement social sur les plus-values de cession immobilière
-    """
-    P = _P.prelsoc
-    total = P.base_pat + P.add_pat
-
-    return -f3vz * total
 
 
-def _prelsoc_pv_immo_2009_(f3vz, _P):
-    """
-    Calcule le prélèvement social sur les plus-values de cession immobilière
-    """
-    P = _P.prelsoc
-    total = P.base_pat + P.add_pat + P.rsa
-    return -f3vz * total
+
 
 
 # revenus fonciers
@@ -312,36 +339,52 @@ class crds_fon(SimpleFormulaColumn):
 
 
 
-def _prelsoc_fon__2005(rev_cat_rfon, _P):
-    '''
-    Calcule le prélèvement social sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
-    '''
-    P = _P.prelsoc
-    total = P.base_pat
+@reference_formula
+class prelsoc_fon(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Prélèvements sociaux sur les revenus fonciers"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
-    return -rev_cat_rfon * total
+    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
+    def function_20020101_20051231(self, rev_cat_rfon, _P):
+        '''
+        Calcule le prélèvement social sur les revenus fonciers
+        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        '''
+        P = _P.prelsoc
+        total = P.base_pat
+
+        return -rev_cat_rfon * total
+
+    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
+    def function_20060101_20081231(self, rev_cat_rfon, _P):
+        '''
+        Calcule le prélèvement social sur les revenus fonciers
+        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        '''
+        P = _P.prelsoc
+        total = P.base_pat + P.add_pat
+
+        return -rev_cat_rfon * total
+
+    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    def function_20090101_20151231(self, rev_cat_rfon, _P):
+        '''
+        Calcule le prélèvement social sur les revenus fonciers
+        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        '''
+        P = _P.prelsoc
+        total = P.base_pat + P.add_pat + P.rsa
+        return -rev_cat_rfon * total
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _prelsoc_fon_2006_2008(rev_cat_rfon, _P):
-    '''
-    Calcule le prélèvement social sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
-    '''
-    P = _P.prelsoc
-    total = P.base_pat + P.add_pat
-
-    return -rev_cat_rfon * total
 
 
-def _prelsoc_fon_2009_(rev_cat_rfon, _P):
-    '''
-    Calcule le prélèvement social sur les revenus fonciers
-    Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
-    '''
-    P = _P.prelsoc
-    total = P.base_pat + P.add_pat + P.rsa
-    return -rev_cat_rfon * total
+
 
 
 # revenus du capital soumis au prélèvement libératoire

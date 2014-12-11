@@ -33,70 +33,108 @@ class rfr_cd(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-def _cd1_2002_2003(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment):
-    '''
-    Renvoie la liste des charges déductibles avant rbg_int pour 2002
-    '''
-    niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
-    return niches1
+@reference_formula
+class cd1(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Charges déductibles non plafonnées"
+    url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
-def _cd1_2004_2005(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment, cd_eparet):
-    '''
-    Renvoie la liste des charges déductibles avant rbg_int pour 2004
-    '''
-    niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
-    return niches1
+    @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
+    def function_20020101_20031231(self, cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment):
+        '''
+        Renvoie la liste des charges déductibles avant rbg_int pour 2002
+        '''
+        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
+        return niches1
 
-def _cd1_2006(cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_eparet):
-    '''
-    Renvoie la liste des charges déductibles avant rbg_int pour 2006
-    '''
-    niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
-    return niches1
+    @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
+    def function_20040101_20051231(self, cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment, cd_eparet):
+        '''
+        Renvoie la liste des charges déductibles avant rbg_int pour 2004
+        '''
+        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
+        return niches1
 
-def _cd1_2007_2008(cd_penali, cd_acc75a, cd_deddiv, cd_eparet):
-    '''
-    Renvoie la liste des charges déductibles avant rbg_int pour 2007
-    '''
-    niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
-    return niches1
+    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
+    def function_20060101_20061231(self, cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_eparet):
+        '''
+        Renvoie la liste des charges déductibles avant rbg_int pour 2006
+        '''
+        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
+        return niches1
 
-def _cd1_2009_2013(cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
-    '''
-    Renvoie la liste des charges déductibles avant rbg_int pour 2009
-    '''
-    niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
-    return niches1
+    @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
+    def function_20070101_20081231(self, cd_penali, cd_acc75a, cd_deddiv, cd_eparet):
+        '''
+        Renvoie la liste des charges déductibles avant rbg_int pour 2007
+        '''
+        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
+        return niches1
 
-def _cd1_2014(cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
-    '''
-    Renvoie la liste des charges déductibles avant rbg_int pour 2014
-    '''
-    niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
-    # log.error("Charges déductibles to be checked because not defined for %s", 2014)
-    return niches1
+    @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
+    def function_20090101_20131231(self, cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
+        '''
+        Renvoie la liste des charges déductibles avant rbg_int pour 2009
+        '''
+        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        return niches1
+
+    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
+    def function_20140101_20141231(self, cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
+        '''
+        Renvoie la liste des charges déductibles avant rbg_int pour 2014
+        '''
+        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        # log.error("Charges déductibles to be checked because not defined for %s", 2014)
+        return niches1
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _cd2_2002_2005(cd_sofipe, cd_cinema):
-    '''
-    Renvoie la liste des charges déductibles à intégrer après le rbg_int
-    '''
-    niches2 = cd_sofipe + cd_cinema
-    return niches2
 
-def _cd2_2006(cd_sofipe):
-    '''
-    Renvoie la liste des charges déductibles à intégrer après le rbg_int
-    '''
-    niches2 = cd_sofipe
-    return niches2
 
-def _cd2_2007_2008(cd_ecodev):
-    '''
-    Renvoie la liste des charges déductibles à intégrer après le rbg_int
-    '''
-    niches2 = cd_ecodev
-    return niches2
+
+
+
+
+@reference_formula
+class cd2(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Charges déductibles plafonnées"
+    url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
+
+    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
+    def function_20020101_20051231(self, cd_sofipe, cd_cinema):
+        '''
+        Renvoie la liste des charges déductibles à intégrer après le rbg_int
+        '''
+        niches2 = cd_sofipe + cd_cinema
+        return niches2
+
+    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
+    def function_20060101_20061231(self, cd_sofipe):
+        '''
+        Renvoie la liste des charges déductibles à intégrer après le rbg_int
+        '''
+        niches2 = cd_sofipe
+        return niches2
+
+    @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
+    def function_20070101_20081231(self, cd_ecodev):
+        '''
+        Renvoie la liste des charges déductibles à intégrer après le rbg_int
+        '''
+        niches2 = cd_ecodev
+        return niches2
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
+
 
 
 @reference_formula
@@ -174,24 +212,37 @@ class cd_acc75a(SimpleFormulaColumn):
 
 
 
-def _cd_percap_2002(f6cb, marpac, _P, percap = law.ir.charges_deductibles.percap):
-    '''
-    Pertes en capital consécutives à la souscription au capital de sociétés
-    nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
-    complémentaire)
-    '''
-    max_cb = percap.max_cb * (1 + marpac)
-    return min_(f6cb, max_cb)
+@reference_formula
+class cd_percap(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"cd_percap"
 
-def _cd_percap_2003_2006(f6cb, f6da, marpac, _P, percap = law.ir.charges_deductibles.percap):
-    '''
-    Pertes en capital consécutives à la souscription au capital de sociétés
-    nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
-    complémentaire)
-    '''
-    max_cb = percap.max_cb * (1 + marpac)
-    max_da = percap.max_da * (1 + marpac)
-    return min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
+    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
+    def function_20020101_20021231(self, f6cb, marpac, _P, percap =  law.ir.charges_deductibles.percap):
+        '''
+        Pertes en capital consécutives à la souscription au capital de sociétés
+        nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
+        complémentaire)
+        '''
+        max_cb = percap.max_cb * (1 + marpac)
+        return min_(f6cb, max_cb)
+
+    @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
+    def function_20030101_20061231(self, f6cb, f6da, marpac, _P, percap =  law.ir.charges_deductibles.percap):
+        '''
+        Pertes en capital consécutives à la souscription au capital de sociétés
+        nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
+        complémentaire)
+        '''
+        max_cb = percap.max_cb * (1 + marpac)
+        max_da = percap.max_da * (1 + marpac)
+        return min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
+
+
 
 
 @reference_formula

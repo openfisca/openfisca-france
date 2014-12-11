@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, minimum as min_)
+from numpy import maximum as max_, minimum as min_
 
 from .base import *
 
@@ -136,13 +136,26 @@ class ass_isf(SimpleFormulaColumn):
 # # calcul de l'impôt par application du barème ##
 
 
-def _isf_iai__2010(ass_isf, _P, bareme = law.isf.bareme):
-    return bareme.calc(ass_isf)
+@reference_formula
+class isf_iai(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"isf_iai"
+
+    @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
+    def function_20020101_20101231(self, ass_isf, _P, bareme =  law.isf.bareme):
+        return bareme.calc(ass_isf)
+
+    @dated_function(start = date(2011, 1, 1), stop = date(2015, 12, 31))
+    def function_20110101_20151231(self, ass_isf, _P, bareme =  law.isf.bareme):
+        ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
+        return bareme.calc(ass_isf)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _isf_iai_2011_(ass_isf, _P, bareme = law.isf.bareme):
-    ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
-    return bareme.calc(ass_isf)
+
 
 
 @reference_formula
@@ -307,47 +320,62 @@ class decote_isf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-def _isf_apres_plaf__2011(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
-    """
-    Impôt sur la fortune après plafonnement
-    """
-    # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-    # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-    # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
+@reference_formula
+class isf_apres_plaf(DatedFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"isf_apres_plaf"
 
-    # Plafonnement supprimé pour l'année 2012
-    plafonnement = max_(tot_impot - revetproduits, 0)
-    limitationplaf = (
-                      (isf_avant_plaf <= P.seuil1) * plafonnement +
-                      (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
-                      (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement))
-    return max_(isf_avant_plaf - limitationplaf, 0)
+    @dated_function(start = date(2002, 1, 1), stop = date(2011, 12, 31))
+    def function_20020101_20111231(self, tot_impot, revetproduits, isf_avant_plaf, _P, P =  law.isf.plaf):
+        """
+        Impôt sur la fortune après plafonnement
+        """
+        # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
+        # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
+        # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
-def _isf_apres_plaf_2012(isf_avant_plaf, _P, P = law.isf.plaf):
-    """
-    Impôt sur la fortune après plafonnement
-    """
-    # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-    # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-    # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
+        # Plafonnement supprimé pour l'année 2012
+        plafonnement = max_(tot_impot - revetproduits, 0)
+        limitationplaf = (
+                          (isf_avant_plaf <= P.seuil1) * plafonnement +
+                          (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
+                          (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement))
+        return max_(isf_avant_plaf - limitationplaf, 0)
 
-    # Plafonnement supprimé pour l'année 2012
+    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
+    def function_20120101_20121231(self, isf_avant_plaf, _P, P =  law.isf.plaf):
+        """
+        Impôt sur la fortune après plafonnement
+        """
+        # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
+        # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
+        # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
-    return isf_avant_plaf
+        # Plafonnement supprimé pour l'année 2012
+
+        return isf_avant_plaf
+
+    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    def function_20130101_20151231(self, tot_impot, revetproduits, isf_avant_plaf, _P, P =  law.isf.plaf):
+        """
+        Impôt sur la fortune après plafonnement
+        """
+        # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
+        # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
+        # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
+
+        # Plafonnement supprimé pour l'année 2012
+
+        plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
+        return max_(isf_avant_plaf - plafond, 0)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('year')
 
 
-def _isf_apres_plaf_2013_(tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
-    """
-    Impôt sur la fortune après plafonnement
-    """
-    # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-    # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-    # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
-    # Plafonnement supprimé pour l'année 2012
 
-    plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
-    return max_(isf_avant_plaf - plafond, 0)
 
 @reference_formula
 class isf_tot(SimpleFormulaColumn):
