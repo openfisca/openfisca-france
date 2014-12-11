@@ -102,7 +102,7 @@ class ir_pv_immo(SimpleFormulaColumn):
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"
     url = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
 
-    def function(self, f3vz, pv_immo =  law.ir.pv_immo):
+    def function(self, f3vz, pv_immo = law.ir.pv_immo):
         """
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """

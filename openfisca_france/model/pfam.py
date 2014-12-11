@@ -49,7 +49,6 @@ class nb_par(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class maries(SimpleFormulaColumn):
     column = BoolCol(default = False)
@@ -66,7 +65,6 @@ class maries(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -118,7 +116,6 @@ class etu(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class smic55(SimpleFormulaColumn):
     column = BoolCol
@@ -151,7 +148,6 @@ class br_pf_i(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class biact(SimpleFormulaColumn):
     column = BoolCol(default = False)
@@ -170,7 +166,6 @@ class biact(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -221,7 +216,6 @@ class rev_coll(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class br_pf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -243,7 +237,6 @@ class br_pf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class crds_pfam(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -259,7 +252,6 @@ class crds_pfam(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 ############################################################################

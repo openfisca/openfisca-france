@@ -74,7 +74,6 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class tax_hab(SimpleFormulaColumn):
     column = FloatCol(default = 0)

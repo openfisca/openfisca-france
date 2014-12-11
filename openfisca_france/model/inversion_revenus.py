@@ -33,7 +33,6 @@ from openfisca_core.accessors import law
 from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
 
 
-
 from .base import FloatCol, Individus, reference_formula, select_function, SelectFormulaColumn
 from .cotisations_sociales.remplacement import exo_csg_chom
 from .base import CAT, TAUX_DE_PRIME
@@ -169,8 +168,6 @@ class salbrut(SelectFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
-
-
 
 
 ############################################################################

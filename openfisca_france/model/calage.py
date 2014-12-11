@@ -66,7 +66,6 @@ class nbinde(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 def _ageq(agem):
     '''
     Calcule la tranche d'âge quinquennal
@@ -124,7 +123,6 @@ class cohab(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class act_cpl(SimpleFormulaColumn):
     column = PeriodSizeIndependentIntCol(default = 0)
@@ -142,7 +140,6 @@ class act_cpl(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -165,7 +162,6 @@ class act_enf(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 def _nb_act(act_cpl, act_enf):

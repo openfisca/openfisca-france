@@ -505,8 +505,6 @@ build_column('f3ve', IntCol(entity = 'foy',
 # """
 
 
-
-
 build_column('f3vf', IntCol(entity = 'ind',
                 label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %",
                 val_type = "monetary",

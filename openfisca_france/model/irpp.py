@@ -47,7 +47,7 @@ log = logging.getLogger(__name__)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
 # reprise = zeros(taille) # TODO : reprise=J80
 # Pcredit = P.credits_impots
-# if hasattr(P.reductions_impots,'saldom'): Pcredit.saldom =  P.reductions_impots.saldom
+# if hasattr(P.reductions_impots,'saldom'): Pcredit.saldom = P.reductions_impots.saldom
 # credits_impot = Credits(Pcredit, table)
 # Réduction d'impôt
 # reductions = Reductions(IPnet, P.reductions_impots)
@@ -117,7 +117,6 @@ class nb_adult(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class nb_pac(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -129,7 +128,6 @@ class nb_pac(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -282,7 +280,6 @@ class marpac(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class celdiv(SimpleFormulaColumn):
     column = BoolCol(default = False)
@@ -300,7 +297,6 @@ class celdiv(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -322,7 +318,6 @@ class veuf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class jveuf(SimpleFormulaColumn):
     column = BoolCol(default = False)
@@ -340,7 +335,6 @@ class jveuf(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 ###############################################################################
@@ -365,14 +359,13 @@ class rev_sal(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class salcho_imp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"salcho_imp"
 
-    def function(self, rev_sal, cho_ld, fra, abatpro =  law.ir.tspr.abatpro):
+    def function(self, rev_sal, cho_ld, fra, abatpro = law.ir.tspr.abatpro):
         """
         Salaires après abattements
         'ind'
@@ -383,7 +376,6 @@ class salcho_imp(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -414,7 +406,6 @@ class rev_act_nonsal(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rev_act(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -427,7 +418,6 @@ class rev_act(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -447,14 +437,13 @@ class rev_pen(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class pen_net(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"pen_net"
 
-    def function(self, rev_pen, abatpen =  law.ir.tspr.abatpen):
+    def function(self, rev_pen, abatpen = law.ir.tspr.abatpen):
         """
         Pensions après abattements
         'ind'
@@ -477,7 +466,7 @@ class indu_plaf_abat_pen(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"indu_plaf_abat_pen"
 
-    def function(self, rev_pen_holder, pen_net_holder, abatpen =  law.ir.tspr.abatpen):
+    def function(self, rev_pen_holder, pen_net_holder, abatpen = law.ir.tspr.abatpen):
         """
         Plafonnement de l'abattement de 10% sur les pensions du foyer
         'foy'
@@ -500,7 +489,7 @@ class abat_sal_pen(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
-    def function(self, salcho_imp, pen_net, abatsalpen =  law.ir.tspr.abatsalpen):
+    def function(self, salcho_imp, pen_net, abatsalpen = law.ir.tspr.abatsalpen):
         """
         Abattement de 20% sur les salaires
         'ind'
@@ -526,7 +515,6 @@ class sal_pen_net(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -591,7 +579,6 @@ class tspr(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rev_cat_pv(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -605,7 +592,6 @@ class rev_cat_pv(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -628,7 +614,6 @@ class rev_cat_tspr(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class deficit_rcm(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -644,7 +629,6 @@ class deficit_rcm(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rev_cat_rvcm(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -653,7 +637,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2004, 12, 31))
-    def function_20020101_20041231(self, marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, _P, finpfl =  law.ir.autre.finpfl, rvcm =  law.ir.rvcm):
+    def function_20020101_20041231(self, marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, _P, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
         """
         Revenus des valeurs et capitaux mobiliers
         """
@@ -687,7 +671,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2012, 12, 31))
-    def function_20050101_20121231(self, marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, finpfl =  law.ir.autre.finpfl, rvcm =  law.ir.rvcm):
+    def function_20050101_20121231(self, marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2gr, f2tr, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
         """
         Revenus des valeurs et capitaux mobiliers
         """
@@ -722,7 +706,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-    def function_20130101_20151231(self, marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2tr, f2da, f2ee, finpfl =  law.ir.autre.finpfl, rvcm =  law.ir.rvcm):
+    def function_20130101_20151231(self, marpac, deficit_rcm, f2ch, f2dc, f2ts, f2ca, f2fu, f2go, f2tr, f2da, f2ee, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
         """
         Revenus des valeurs et capitaux mobiliers
         """
@@ -760,18 +744,13 @@ class rev_cat_rvcm(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
 @reference_formula
 class rfr_rvcm(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rfr_rvcm"
 
-    def function(self, marpac, f2dc, f2ts, f2ca, f2gr, f2fu, f2da, finpfl =  law.ir.autre.finpfl, rvcm =  law.ir.rvcm):
+    def function(self, marpac, f2dc, f2ts, f2ca, f2gr, f2fu, f2da, finpfl = law.ir.autre.finpfl, rvcm = law.ir.rvcm):
         '''
         Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
         '''
@@ -798,7 +777,6 @@ class rfr_rvcm(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rev_cat_rfon(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -806,7 +784,7 @@ class rev_cat_rfon(SimpleFormulaColumn):
     label = u"Revenu catégoriel - Foncier"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
-    def function(self, f4ba, f4bb, f4bc, f4bd, f4be, microfoncier =  law.ir.microfoncier):
+    def function(self, f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfoncier):
         """
         Revenus fonciers
         TODO: add assert in validator
@@ -829,7 +807,6 @@ class rev_cat_rfon(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rev_cat_rpns(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -846,7 +823,6 @@ class rev_cat_rpns(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -888,7 +864,6 @@ class deficit_ante(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rbg(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -896,7 +871,7 @@ class rbg(SimpleFormulaColumn):
     label = u"Revenu brut global"
     url = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
 
-    def function(self, rev_cat, deficit_ante, f6gh, nbic_impm_holder, nacc_pvce_holder, cga =  law.ir.rpns.cga_taux2):
+    def function(self, rev_cat, deficit_ante, f6gh, nbic_impm_holder, nacc_pvce_holder, cga = law.ir.rpns.cga_taux2):
         '''Revenu brut global
         '''
         # (Total 17)
@@ -907,7 +882,6 @@ class rbg(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -928,7 +902,6 @@ class csg_deduc_patrimoine(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class csg_deduc_patrimoine_simulated(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -936,7 +909,7 @@ class csg_deduc_patrimoine_simulated(SimpleFormulaColumn):
     label = u"Csg déductible sur le patrimoine simulée"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
 
-    def function(self, rev_cat_rfon, rev_cap_bar, rto, taux =  law.csg.capital.deduc):
+    def function(self, rev_cat_rfon, rev_cap_bar, rto, taux = law.csg.capital.deduc):
         '''
         Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
         http://bofip.impots.gouv.fr/bofip/887-PGP
@@ -946,7 +919,6 @@ class csg_deduc_patrimoine_simulated(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -966,7 +938,6 @@ class csg_deduc(SimpleFormulaColumn):  # f6de
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rng(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -980,7 +951,6 @@ class rng(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -998,14 +968,13 @@ class rni(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ir_brut(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ir_brut"
 
-    def function(self, nbptr, taux_effectif, rni, bareme =  law.ir.bareme):
+    def function(self, nbptr, taux_effectif, rni, bareme = law.ir.bareme):
         '''
         Impot sur le revenu avant non imposabilité et plafonnement du quotient
         'foy'
@@ -1016,14 +985,13 @@ class ir_brut(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ir_ss_qf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ir_ss_qf"
 
-    def function(self, ir_brut, rni, nb_adult, bareme =  law.ir.bareme):
+    def function(self, ir_brut, rni, nb_adult, bareme = law.ir.bareme):
         '''
         Impôt sans quotient familial
         '''
@@ -1034,14 +1002,13 @@ class ir_ss_qf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ir_plaf_qf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ir_plaf_qf"
 
-    def function(self, ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, plafond_qf =  law.ir.plafond_qf):
+    def function(self, ir_brut, ir_ss_qf, nb_adult, nb_pac, nbptr, marpac, veuf, jveuf, celdiv, caseE, caseF, caseG, caseH, caseK, caseN, caseP, caseS, caseT, caseW, nbF, nbG, nbH, nbI, nbR, plafond_qf = law.ir.plafond_qf):
         '''
         Impôt après plafonnement du quotient familial et réduction complémentaire
         '''
@@ -1110,7 +1077,6 @@ class ir_plaf_qf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class avantage_qf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1124,14 +1090,13 @@ class avantage_qf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class decote(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"decote"
 
-    def function(self, ir_plaf_qf, decote =  law.ir.decote):
+    def function(self, ir_plaf_qf, decote = law.ir.decote):
         '''
         Décote
         '''
@@ -1139,7 +1104,6 @@ class decote(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1160,14 +1124,13 @@ class nat_imp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ip_net(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ip_net"
 
-    def function(self, ir_plaf_qf, cncn_info_holder, decote, taux =  law.ir.rpns.taux16):
+    def function(self, ir_plaf_qf, cncn_info_holder, decote, taux = law.ir.rpns.taux16):
         '''
         irpp après décote
         '''
@@ -1175,7 +1138,6 @@ class ip_net(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1194,7 +1156,6 @@ class iaidrdi(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cont_rev_loc(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1202,7 +1163,7 @@ class cont_rev_loc(SimpleFormulaColumn):
     label = u"cont_rev_loc"
     start_date = date(2001, 1, 1)
 
-    def function(self, f4bl, crl =  law.ir.crl):
+    def function(self, f4bl, crl = law.ir.crl):
         '''
         Contribution sur les revenus locatifs
         '''
@@ -1212,14 +1173,13 @@ class cont_rev_loc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class teicaa(SimpleFormulaColumn):  # f5rm
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"teicaa"
 
-    def function(self, f5qm_holder, bareme =  law.ir.teicaa):
+    def function(self, f5qm_holder, bareme = law.ir.teicaa):
         # f5rm
 
         """
@@ -1232,7 +1192,6 @@ class teicaa(SimpleFormulaColumn):  # f5rm
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1282,7 +1241,7 @@ class assiette_proflib(SimpleFormulaColumn):
     label = u"assiette_proflib"
     start_date = date(2009, 1, 1)
 
-    def function(self, ebnc_impo_holder, P =  law.ir.rpns.microentreprise):
+    def function(self, ebnc_impo_holder, P = law.ir.rpns.microentreprise):
         '''
         Assiette régime microsociale pour les professions libérales
         '''
@@ -1304,13 +1263,12 @@ class microsocial(SimpleFormulaColumn):
     start_date = date(2009, 1, 1)
     url = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
 
-    def function(self, assiette_service, assiette_vente, assiette_proflib, _P, microsocial =  law.ir.rpns.microsocial):
+    def function(self, assiette_service, assiette_vente, assiette_proflib, _P, microsocial = law.ir.rpns.microsocial):
         # TODO: check this
         return assiette_service * microsocial.servi + assiette_vente * microsocial.vente + assiette_proflib * microsocial.bnc
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1320,7 +1278,7 @@ class microentreprise(SimpleFormulaColumn):
     label = u"microentreprise"
     start_date = date(2009, 1, 1)
 
-    def function(self, ebnc_impo_holder, ebic_imps_holder, ebic_impv_holder, me =  law.ir.rpns.microentreprise):
+    def function(self, ebnc_impo_holder, ebic_imps_holder, ebic_impv_holder, me = law.ir.rpns.microentreprise):
         ebnc_impo = self.sum_by_entity(ebnc_impo_holder)
         ebic_imps = self.sum_by_entity(ebic_imps_holder)
         ebic_impv = self.sum_by_entity(ebic_impv_holder)
@@ -1330,7 +1288,6 @@ class microentreprise(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class plus_values(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1338,7 +1295,7 @@ class plus_values(DatedFormulaColumn):
     label = u"plus_values"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def function_20070101_20071231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P, plus_values =  law.ir.plus_values):  # f3sd is in f3vd holder
+    def function_20070101_20071231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P, plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
         # f3sd is in f3vd holder
         """
         Taxation des plus value
@@ -1365,7 +1322,7 @@ class plus_values(DatedFormulaColumn):
         return round(out)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2011, 12, 31))
-    def function_20080101_20111231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P, plus_values =  law.ir.plus_values):  # f3sd is in f3vd holder
+    def function_20080101_20111231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P, plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
         # f3sd is in f3vd holder
         """
         Taxation des plus value
@@ -1395,7 +1352,7 @@ class plus_values(DatedFormulaColumn):
         return round(out)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P, plus_values =  law.ir.plus_values):  # f3sd is in f3vd holder
+    def function_20120101_20121231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, rpns_pvce_holder, _P, plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
         # f3sd is in f3vd holder
         """
         Taxation des plus value
@@ -1429,7 +1386,7 @@ class plus_values(DatedFormulaColumn):
         return round(out)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-    def function_20130101_20151231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, _P, rpns_pvce_holder, plus_values =  law.ir.plus_values):  # f3sd is in f3vd holder
+    def function_20130101_20151231(self, f3vg, f3vh, f3vl, f3vm, f3vi_holder, f3vf_holder, f3vd_holder, f3sa, _P, rpns_pvce_holder, plus_values = law.ir.plus_values):  # f3sd is in f3vd holder
         # f3sd is in f3vd holder
         """
         Taxation des plus value
@@ -1466,12 +1423,6 @@ class plus_values(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
 @reference_formula
 class iai(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1489,7 +1440,6 @@ class iai(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cehr(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1497,7 +1447,7 @@ class cehr(SimpleFormulaColumn):
     label = u"Contribution exceptionnelle sur les hauts revenus"
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
 
-    def function(self, rfr, nb_adult, bareme =  law.ir.cehr):
+    def function(self, rfr, nb_adult, bareme = law.ir.cehr):
         '''
         Contribution exceptionnelle sur les hauts revenus
         'foy'
@@ -1506,7 +1456,6 @@ class cehr(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 def _cesthra(self, sal_holder, bareme = law.ir.cesthra):
@@ -1530,7 +1479,7 @@ class irpp(SimpleFormulaColumn):
     label = u"Impôt sur le revenu des personnes physiques"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
 
-    def function(self, iai, credits_impot, cehr, P =  law.ir.recouvrement):
+    def function(self, iai, credits_impot, cehr, P = law.ir.recouvrement):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
@@ -1544,7 +1493,6 @@ class irpp(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 ###############################################################################
@@ -1596,7 +1544,6 @@ class rfr(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class glo(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1620,7 +1567,6 @@ class glo(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rev_cap_bar(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1628,7 +1574,7 @@ class rev_cap_bar(SimpleFormulaColumn):
     label = u"rev_cap_bar"
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
-    def function(self, f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, finpfl =  law.ir.autre.finpfl, majGO =  law.ir.rvcm.majGO):
+    def function(self, f2dc, f2gr, f2ch, f2ts, f2go, f2tr, f2fu, avf, f2da, f2ee, finpfl = law.ir.autre.finpfl, majGO = law.ir.rvcm.majGO):
         """
         Revenus du capital imposés au barème
         """
@@ -1653,7 +1599,7 @@ class rev_cap_lib(DatedFormulaColumn):
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
-    def function_20020101_20071231(self, f2dh, f2ee, _P, finpfl =  law.ir.autre.finpfl):
+    def function_20020101_20071231(self, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
         '''
         Revenu du capital imposé au prélèvement libératoire
         '''
@@ -1661,7 +1607,7 @@ class rev_cap_lib(DatedFormulaColumn):
         return out * not_(finpfl)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
-    def function_20080101_20151231(self, f2da, f2dh, f2ee, _P, finpfl =  law.ir.autre.finpfl):
+    def function_20080101_20151231(self, f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl):
         '''
         Revenu du capital imposé au prélèvement libératoire
         '''
@@ -1670,9 +1616,6 @@ class rev_cap_lib(DatedFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
-
-
 
 
 @reference_formula
@@ -1691,7 +1634,6 @@ class avf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class imp_lib(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1700,7 +1642,7 @@ class imp_lib(DatedFormulaColumn):
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
-    def function_20020101_20071231(self, f2dh, f2ee, _P, prelevement_liberatoire =  law.ir.rvcm.prelevement_liberatoire):
+    def function_20020101_20071231(self, f2dh, f2ee, _P, prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
         '''
         Prelèvement libératoire sur les revenus du capital
         '''
@@ -1708,7 +1650,7 @@ class imp_lib(DatedFormulaColumn):
         return out
 
     @dated_function(start = date(2008, 1, 1), stop = date(2012, 12, 31))
-    def function_20080101_20121231(self, f2da, f2dh, f2ee, _P, finpfl =  law.ir.autre.finpfl, prelevement_liberatoire =  law.ir.rvcm.prelevement_liberatoire):
+    def function_20080101_20121231(self, f2da, f2dh, f2ee, _P, finpfl = law.ir.autre.finpfl, prelevement_liberatoire = law.ir.rvcm.prelevement_liberatoire):
         '''
         Prelèvement libératoire sur les revenus du capital
         '''
@@ -1720,9 +1662,6 @@ class imp_lib(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
 @reference_formula
 class fon(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1730,7 +1669,7 @@ class fon(SimpleFormulaColumn):
     label = u"fon"
     url = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
 
-    def function(self, f4ba, f4bb, f4bc, f4bd, f4be, microfoncier =  law.ir.microfoncier):
+    def function(self, f4ba, f4bb, f4bc, f4bd, f4be, microfoncier = law.ir.microfoncier):
         '''
         Revenus fonciers
         '''
@@ -1738,7 +1677,6 @@ class fon(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1767,7 +1705,6 @@ class rpns_pvce(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1803,14 +1740,13 @@ class rpns_exon(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class defrag(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit agricole des années antérieures"
 
-    def function(self, f5qf, f5qg, f5qn, f5qo, f5qp, f5qq, frag_impo_holder, nrag_impg_holder, frag_fore_holder, frag_pvct_holder, arag_impg_holder, cga =  law.ir.rpns.cga_taux2):
+    def function(self, f5qf, f5qg, f5qn, f5qo, f5qp, f5qq, frag_impo_holder, nrag_impg_holder, frag_fore_holder, frag_pvct_holder, arag_impg_holder, cga = law.ir.rpns.cga_taux2):
         frag_fore = self.sum_by_entity(frag_fore_holder)
         frag_impo = self.sum_by_entity(frag_impo_holder)
         arag_impg = self.sum_by_entity(arag_impg_holder)
@@ -1823,14 +1759,13 @@ class defrag(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class defacc(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit industriels et commerciaux non professionnels des années antérieures"
 
-    def function(self, f5rn, f5ro, f5rp, f5rq, f5rr, f5rw, macc_impv_holder, macc_imps_holder, nacc_impn_holder, macc_pvct_holder, aacc_impn_holder, microentreprise =  law.ir.rpns.microentreprise, cga =  law.ir.rpns.cga_taux2):
+    def function(self, f5rn, f5ro, f5rp, f5rq, f5rr, f5rw, macc_impv_holder, macc_imps_holder, nacc_impn_holder, macc_pvct_holder, aacc_impn_holder, microentreprise = law.ir.rpns.microentreprise, cga = law.ir.rpns.cga_taux2):
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
 
@@ -1846,14 +1781,13 @@ class defacc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class defncn(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit non commerciaux non professionnels des années antérieures"
 
-    def function(self, f5ht, f5it, f5jt, f5kt, f5lt, f5mt, mncn_impo_holder, mncn_pvct_holder, cncn_aimp_holder, cncn_bene_holder, cga =  law.ir.rpns.cga_taux2, spbnc =  law.ir.rpns.microentreprise.specialbnc):
+    def function(self, f5ht, f5it, f5jt, f5kt, f5lt, f5mt, mncn_impo_holder, mncn_pvct_holder, cncn_aimp_holder, cncn_bene_holder, cga = law.ir.rpns.cga_taux2, spbnc = law.ir.rpns.microentreprise.specialbnc):
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
         cncn_bene = self.sum_by_entity(cncn_bene_holder)
@@ -1865,7 +1799,6 @@ class defncn(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1881,7 +1814,6 @@ class defmeu(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -1914,7 +1846,6 @@ class rag(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ric(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1922,7 +1853,7 @@ class ric(SimpleFormulaColumn):
     label = u"ric"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
 
-    def function(self, mbic_exon, mbic_impv, mbic_imps, abic_exon, nbic_exon, abic_impn, nbic_impn, abic_imps, nbic_imps, abic_defn, nbic_defn, abic_defs, nbic_defs, nbic_apch, microentreprise =  law.ir.rpns.microentreprise):
+    def function(self, mbic_exon, mbic_impv, mbic_imps, abic_exon, nbic_exon, abic_impn, nbic_impn, abic_imps, nbic_imps, abic_defn, nbic_defn, abic_defs, nbic_defs, nbic_apch, microentreprise = law.ir.rpns.microentreprise):
         '''
         Bénéfices industriels et commerciaux
         'ind'
@@ -1961,7 +1892,6 @@ class ric(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rac(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1969,7 +1899,7 @@ class rac(SimpleFormulaColumn):
     label = u"rac"
     url = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
 
-    def function(self, macc_exon, macc_impv, macc_imps, aacc_exon, aacc_impn, aacc_imps, aacc_defn, aacc_defs, nacc_exon, nacc_impn, nacc_defn, nacc_defs, mncn_impo, cncn_bene, cncn_defi, microentreprise =  law.ir.rpns.microentreprise):
+    def function(self, macc_exon, macc_impv, macc_imps, aacc_exon, aacc_impn, aacc_imps, aacc_defn, aacc_defs, nacc_exon, nacc_impn, nacc_defn, nacc_defs, mncn_impo, cncn_bene, cncn_defi, microentreprise = law.ir.rpns.microentreprise):
         '''
         Revenus accessoires individuels
         'ind'
@@ -2009,7 +1939,6 @@ class rac(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rnc(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -2017,7 +1946,7 @@ class rnc(SimpleFormulaColumn):
     label = u"rnc"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
 
-    def function(self, mbnc_exon, mbnc_impo, abnc_exon, nbnc_exon, abnc_impo, nbnc_impo, abnc_defi, nbnc_defi, specialbnc =  law.ir.rpns.microentreprise.specialbnc):
+    def function(self, mbnc_exon, mbnc_impo, abnc_exon, nbnc_exon, abnc_impo, nbnc_impo, abnc_defi, nbnc_defi, specialbnc = law.ir.rpns.microentreprise.specialbnc):
         '''
         Revenus non commerciaux individuels
         'ind'
@@ -2044,7 +1973,6 @@ class rnc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rpns(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -2060,7 +1988,6 @@ class rpns(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -2085,7 +2012,6 @@ class rpns_pvct(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rpns_mvct(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -2106,7 +2032,6 @@ class rpns_mvct(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -2130,14 +2055,13 @@ class rpns_mvlt(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class rpns_i(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_i"
 
-    def function(self, frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi, mbic_impv, mbic_imps, abic_impn, abic_imps, abic_defn, abic_defs, nbic_impn, nbic_imps, nbic_defn, nbic_defs, macc_impv, macc_imps, nbic_mvct, aacc_impn, aacc_defn, aacc_gits, nacc_impn, nacc_defn, nacc_defs, aacc_imps, mbnc_impo, nacc_meup, abic_impm, abic_defm, abnc_impo, abnc_defi, nbic_impm, alnp_imps, nbnc_impo, nbnc_defi, alnp_defs, cbnc_assc, mncn_impo, cncn_bene, cncn_defi, abnc_proc, rpns_pvct, rpns_mvct, nbnc_proc, frag_fore, f5sq, mncn_exon, cncn_exon, cncn_aimp, cncn_adef, cncn_info, cncn_jcre, revimpres, pveximpres, pvtaimpres, cga_taux2 =  law.ir.rpns.cga_taux2, microentreprise =  law.ir.rpns.microentreprise):
+    def function(self, frag_impo, arag_impg, nrag_impg, arag_defi, nrag_defi, mbic_impv, mbic_imps, abic_impn, abic_imps, abic_defn, abic_defs, nbic_impn, nbic_imps, nbic_defn, nbic_defs, macc_impv, macc_imps, nbic_mvct, aacc_impn, aacc_defn, aacc_gits, nacc_impn, nacc_defn, nacc_defs, aacc_imps, mbnc_impo, nacc_meup, abic_impm, abic_defm, abnc_impo, abnc_defi, nbic_impm, alnp_imps, nbnc_impo, nbnc_defi, alnp_defs, cbnc_assc, mncn_impo, cncn_bene, cncn_defi, abnc_proc, rpns_pvct, rpns_mvct, nbnc_proc, frag_fore, f5sq, mncn_exon, cncn_exon, cncn_aimp, cncn_adef, cncn_info, cncn_jcre, revimpres, pveximpres, pvtaimpres, cga_taux2 = law.ir.rpns.cga_taux2, microentreprise = law.ir.rpns.microentreprise):
         '''
         Revenus des professions non salariées individuels
         '''
@@ -2221,7 +2145,6 @@ class rpns_i(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class abat_spe(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -2229,7 +2152,7 @@ class abat_spe(SimpleFormulaColumn):
     label = u"Abattements spéciaux"
     url = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
 
-    def function(self, age_holder, caseP, caseF, rng, nbN, abattements_speciaux =  law.ir.abattements_speciaux):
+    def function(self, age_holder, caseP, caseF, rng, nbN, abattements_speciaux = law.ir.abattements_speciaux):
         """
         Abattements spéciaux
 
@@ -2266,7 +2189,6 @@ class abat_spe(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class taux_effectif(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -2274,7 +2196,7 @@ class taux_effectif(SimpleFormulaColumn):
     label = u"taux_effectif"
     start_date = date(2009, 1, 1)
 
-    def function(self, rni, nbptr, microentreprise, abnc_proc_holder, nbnc_proc_holder, bareme =  law.ir.bareme, me =  law.ir.rpns.microentreprise, cga =  law.ir.rpns.cga_taux2):
+    def function(self, rni, nbptr, microentreprise, abnc_proc_holder, nbnc_proc_holder, bareme = law.ir.bareme, me = law.ir.rpns.microentreprise, cga = law.ir.rpns.cga_taux2):
         abnc_proc = self.sum_by_entity(abnc_proc_holder)
         nbnc_proc = self.sum_by_entity(nbnc_proc_holder)
         base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
@@ -2283,7 +2205,6 @@ class taux_effectif(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 ###############################################################################
@@ -2298,7 +2219,7 @@ class nbptr(SimpleFormulaColumn):
     label = u"Nombre de parts"
     url = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
 
-    def function(self, nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, caseP, caseW, caseG, caseE, caseK, caseN, caseF, caseS, caseL, caseT, quotient_familial =  law.ir.quotient_familial):
+    def function(self, nb_pac, marpac, celdiv, veuf, jveuf, nbF, nbG, nbH, nbI, nbR, nbJ, caseP, caseW, caseG, caseE, caseK, caseN, caseF, caseS, caseL, caseT, quotient_familial = law.ir.quotient_familial):
         '''
         Nombre de parts du foyer
         'foy'
@@ -2378,7 +2299,6 @@ class nbptr(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 ###############################################################################
 # # Calcul de la prime pour l'emploi
 ###############################################################################
@@ -2401,14 +2321,13 @@ class ppe_coef(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ppe_elig(SimpleFormulaColumn):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"ppe_elig"
 
-    def function(self, rfr, ppe_coef, marpac, veuf, celdiv, nbptr, ppe =  law.ir.credits_impot.ppe):
+    def function(self, rfr, ppe_coef, marpac, veuf, celdiv, nbptr, ppe = law.ir.credits_impot.ppe):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
         'foy'
@@ -2422,14 +2341,13 @@ class ppe_elig(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ppe_rev(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"ppe_rev"
 
-    def function(self, sal, hsup, rpns, ppe =  law.ir.credits_impot.ppe):
+    def function(self, sal, hsup, rpns, ppe = law.ir.credits_impot.ppe):
         '''
         base ressource de la ppe
         'ind'
@@ -2445,14 +2363,13 @@ class ppe_rev(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ppe_coef_tp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"ppe_coef_tp"
 
-    def function(self, ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, ppe =  law.ir.credits_impot.ppe):
+    def function(self, ppe_du_sa, ppe_du_ns, ppe_tp_sa, ppe_tp_ns, ppe = law.ir.credits_impot.ppe):
         '''
         PPE: coefficient de conversion temps partiel
         'ind'
@@ -2464,7 +2381,6 @@ class ppe_coef_tp(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -2482,14 +2398,13 @@ class ppe_base(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ppe_elig_i(SimpleFormulaColumn):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"ppe_elig_i"
 
-    def function(self, ppe_rev, ppe_coef_tp, ppe =  law.ir.credits_impot.ppe):
+    def function(self, ppe_rev, ppe_coef_tp, ppe = law.ir.credits_impot.ppe):
         '''
         Eligibilité individuelle à la ppe
         Attention : condition de plafonnement introduite dans ppe brute
@@ -2501,14 +2416,13 @@ class ppe_elig_i(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ppe_brute(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi brute"
 
-    def function(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holder, ppe_coef, ppe_coef_tp_holder, nb_pac, marpac, celdiv, veuf, caseT, caseL, nbH, ppe =  law.ir.credits_impot.ppe):
+    def function(self, ppe_elig, ppe_elig_i_holder, ppe_rev_holder, ppe_base_holder, ppe_coef, ppe_coef_tp_holder, nb_pac, marpac, celdiv, veuf, caseT, caseL, nbH, ppe = law.ir.credits_impot.ppe):
         '''
         Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
         'foy'
@@ -2600,7 +2514,6 @@ class ppe_brute(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula

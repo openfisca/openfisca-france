@@ -149,7 +149,6 @@ class csg_pv_mo(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class crds_pv_mo(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -165,7 +164,6 @@ class crds_pv_mo(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -209,11 +207,6 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
 # plus-values immobilières
 
 
@@ -234,7 +227,6 @@ class csg_pv_immo(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class crds_pv_immo(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -250,7 +242,6 @@ class crds_pv_immo(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -293,11 +284,6 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
 # revenus fonciers
 
 
@@ -319,7 +305,6 @@ class csg_fon(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class crds_fon(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -336,7 +321,6 @@ class crds_fon(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -380,11 +364,6 @@ class prelsoc_fon(DatedFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
-
-
-
-
 
 
 # revenus du capital soumis au prélèvement libératoire

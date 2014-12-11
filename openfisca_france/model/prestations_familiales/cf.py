@@ -38,7 +38,7 @@ class cf_temp(SimpleFormulaColumn):
     label = u"Complément familial avant d'éventuels cumuls"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 
-    def function(self, age_holder, br_pf, isol, biact, smic55_holder, P =  law.fam):
+    def function(self, age_holder, br_pf, isol, biact, smic55_holder, P = law.fam):
         """
         Complément familial
         Vous avez au moins 3 enfants à charge tous âgés de plus de 3 ans.
@@ -72,7 +72,6 @@ class cf_temp(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula

@@ -102,25 +102,6 @@ class credits_impot(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @reference_formula
 class nb_pac2(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -132,7 +113,6 @@ class nb_pac2(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -154,7 +134,6 @@ class accult(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class acqgpl(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -163,7 +142,7 @@ class acqgpl(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2007, 12, 31)
 
-    def function(self, f7up, f7uq, period, acqgpl =  law.ir.credits_impot.acqgpl):
+    def function(self, f7up, f7uq, period, acqgpl = law.ir.credits_impot.acqgpl):
         '''
         Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
         2002-2007
@@ -172,7 +151,6 @@ class acqgpl(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -192,7 +170,6 @@ class aidmob(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -307,15 +284,6 @@ class aidper(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
 @reference_formula
 class assloy(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -334,7 +302,6 @@ class assloy(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class autent(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -351,7 +318,6 @@ class autent(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -379,7 +345,6 @@ class ci_garext(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class creimp_exc_2008(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -398,7 +363,6 @@ class creimp_exc_2008(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -474,27 +438,6 @@ class creimp(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @reference_formula
 class direpa(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -510,7 +453,6 @@ class direpa(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -535,7 +477,6 @@ class divide(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class drbail(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -554,7 +495,6 @@ class drbail(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class inthab(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -562,7 +502,7 @@ class inthab(DatedFormulaColumn):
     label = u"inthab"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def function_20070101_20071231(self, marpac, nb_pac2, caseP, caseF, nbG, nbR, f7uh, P =  law.ir.credits_impot.inthab):
+    def function_20070101_20071231(self, marpac, nb_pac2, caseP, caseF, nbG, nbR, f7uh, P = law.ir.credits_impot.inthab):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7UH)
         2007
@@ -674,14 +614,6 @@ class inthab(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
 @reference_formula
 class jeunes(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -695,7 +627,6 @@ class jeunes(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -751,7 +682,6 @@ class mecena(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class percvm(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -769,7 +699,6 @@ class percvm(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -814,11 +743,6 @@ class preetu(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
 @reference_formula
 class prlire(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -837,7 +761,6 @@ class prlire(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -940,7 +863,7 @@ class quaenv(DatedFormulaColumn):
                     P.taux_sh * min_(f7sh, max7))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, f7sd, f7se, f7sf, f7sg, f7sh, f7si, f7sj, f7sk, f7sl, f7sm, f7sn, f7so, f7sp, f7sq, f7sr, f7ss, f7tt, f7tu, f7tv, f7tw, f7tx, f7ty, f7st, f7su, f7sv, f7sw, f7sz, f7wc, f7we, f7wg, f7wh, f7wk, marpac, nb_pac2, quaenv_bouquet, rfr, P =  law.ir.credits_impot.quaenv):
+    def function_20120101_20121231(self, f7sd, f7se, f7sf, f7sg, f7sh, f7si, f7sj, f7sk, f7sl, f7sm, f7sn, f7so, f7sp, f7sq, f7sr, f7ss, f7tt, f7tu, f7tv, f7tw, f7tx, f7ty, f7st, f7su, f7sv, f7sw, f7sz, f7wc, f7we, f7wg, f7wh, f7wk, marpac, nb_pac2, quaenv_bouquet, rfr, P = law.ir.credits_impot.quaenv):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2013
@@ -984,7 +907,7 @@ class quaenv(DatedFormulaColumn):
         return not_(f7wg) * or_(not_(f7we), (rfr < 30000)) * (montant + collectif) + f7sz
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, f7sd, f7se, f7sf, f7sg, f7sh, f7si, f7sj, f7sk, f7sl, f7sm, f7sn, f7so, f7sp, f7sq, f7sr, f7ss, f7st, f7su, f7sv, f7sw, f7sz, f7wc, f7we, f7wg, f7wh, f7wk, marpac, nb_pac2, quaenv_bouquet, rfr, P =  law.ir.credits_impot.quaenv):
+    def function_20130101_20131231(self, f7sd, f7se, f7sf, f7sg, f7sh, f7si, f7sj, f7sk, f7sl, f7sm, f7sn, f7so, f7sp, f7sq, f7sr, f7ss, f7st, f7su, f7sv, f7sw, f7sz, f7wc, f7we, f7wg, f7wh, f7wk, marpac, nb_pac2, quaenv_bouquet, rfr, P = law.ir.credits_impot.quaenv):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2013
@@ -1024,17 +947,6 @@ class quaenv(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
 @reference_formula
 class quaenv_bouquet(SimpleFormulaColumn):
     column = BoolCol(default = False)
@@ -1058,7 +970,6 @@ class quaenv_bouquet(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula

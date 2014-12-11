@@ -26,7 +26,6 @@
 import datetime
 
 
-
 from openfisca_core import periods
 from openfisca_core.tools import assert_near
 from openfisca_france.reforms import allocations_familiales_imposables

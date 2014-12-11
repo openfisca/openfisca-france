@@ -341,8 +341,6 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
         return period.start.period(u'month').offset('first-of')
 
 
-
-
 @reference_formula
 class contribution_solidarite_autonomie(SimpleFormulaColumn):
     column = FloatCol

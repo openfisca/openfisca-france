@@ -49,7 +49,6 @@ class paje(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class paje_base_temp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -57,7 +56,7 @@ class paje_base_temp(SimpleFormulaColumn):
     label = u"Allocation de base de la PAJE sans tenir compte d'éventuels cumuls"
     start_date = date(2004, 1, 1)
 
-    def function(self, age_holder, af_nbenf, br_pf, isol, biact, smic55_holder, P =  law.fam):
+    def function(self, age_holder, af_nbenf, br_pf, isol, biact, smic55_holder, P = law.fam):
         '''
         Prestation d'accueil du jeune enfant - allocation de base
         '''
@@ -94,7 +93,6 @@ class paje_base_temp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class paje_nais(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -103,7 +101,7 @@ class paje_nais(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
 
-    def function(self, agem_holder, age_holder, af_nbenf, br_pf, isol, biact, P =  law.fam):
+    def function(self, agem_holder, age_holder, af_nbenf, br_pf, isol, biact, P = law.fam):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
@@ -138,7 +136,6 @@ class paje_nais(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class paje_clca(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -147,7 +144,7 @@ class paje_clca(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
 
-    def function(self, agem_holder, af_nbenf, paje_base, inactif, partiel1, partiel2, P =  law.fam):
+    def function(self, agem_holder, af_nbenf, paje_base, inactif, partiel1, partiel2, P = law.fam):
         """
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
         'fam'
@@ -197,7 +194,6 @@ class paje_clca(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class paje_clca_taux_plein(SimpleFormulaColumn):
     column = BoolCol(default = False)
@@ -211,7 +207,6 @@ class paje_clca_taux_plein(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -240,7 +235,7 @@ class paje_clmg(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"
 
-    def function(self, aah_holder, age_holder, smic55_holder, etu_holder, sal_holder, hsup_holder, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom, paje_clca_taux_partiel, paje_clca_taux_plein, P =  law.fam):
+    def function(self, aah_holder, age_holder, smic55_holder, etu_holder, sal_holder, hsup_holder, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom, paje_clca_taux_partiel, paje_clca_taux_plein, P = law.fam):
         '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
@@ -321,7 +316,6 @@ class paje_clmg(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class paje_colca(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -330,7 +324,7 @@ class paje_colca(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
 
-    def function(self, af_nbenf, agem_holder, opt_colca, paje_base, P =  law.fam):
+    def function(self, af_nbenf, agem_holder, opt_colca, paje_base, P = law.fam):
         '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
@@ -368,7 +362,6 @@ class paje_base(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
@@ -457,7 +450,7 @@ class ape_temp(SimpleFormulaColumn):
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
-    def function(self, age_holder, smic55_holder, inactif, partiel1, partiel2, P =  law.fam):
+    def function(self, age_holder, smic55_holder, inactif, partiel1, partiel2, P = law.fam):
         '''
         Allocation parentale d'éducation
         'fam'
@@ -511,7 +504,6 @@ class ape_temp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class apje_temp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -520,7 +512,7 @@ class apje_temp(SimpleFormulaColumn):
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
-    def function(self, br_pf, age_holder, smic55_holder, isol, biact, P =  law.fam):
+    def function(self, br_pf, age_holder, smic55_holder, isol, biact, P = law.fam):
         '''
         Allocation pour jeune enfant
         '''
@@ -555,7 +547,6 @@ class apje_temp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ape(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -573,7 +564,6 @@ class ape(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula

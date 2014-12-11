@@ -109,7 +109,6 @@ class cotisations_patronales_non_contributives_old(SimpleFormulaColumn):
         return period.start.period(u'month').offset('first-of')
 
 
-
 @reference_formula
 class cotisations_patronales_transport(SimpleFormulaColumn):
     column = FloatCol

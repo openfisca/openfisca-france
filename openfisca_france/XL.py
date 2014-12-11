@@ -284,6 +284,5 @@ class XLseries(pd.Series):
         self.place_data(ws=ws, row=row, col=col, axis=axis, style=dstyle)
 
 
-
 if __name__ == '__main__':
     pass

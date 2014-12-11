@@ -34,8 +34,6 @@ from openfisca_core.periods import period
 from . import base
 
 
-
-
 def test_rsa_celibataire():
     # test rsa pour un célibataire avec différents sali
 

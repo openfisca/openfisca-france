@@ -51,7 +51,6 @@ TaxBenefitSystem = openfisca_france.init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-
 def split(scenario):
 # On fait l'hypothèse que le scénario ne contient qu'un seul foyer fiscal
     tax_benefit_system = scenario.tax_benefit_system

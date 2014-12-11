@@ -225,8 +225,8 @@ def test():
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
-                primes_fonction_publique =  500,
-                salbrut =  2000,
+                primes_fonction_publique = 500,
+                salbrut = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_non_titulaire'],
                 ),

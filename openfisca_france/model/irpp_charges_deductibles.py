@@ -93,12 +93,6 @@ class cd1(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
 @reference_formula
 class cd2(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -134,9 +128,6 @@ class cd2(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
 @reference_formula
 class rbg_int(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -148,7 +139,6 @@ class rbg_int(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -165,7 +155,6 @@ class charges_deduc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_penali(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -173,7 +162,7 @@ class cd_penali(SimpleFormulaColumn):
     label = u"cd_penali"
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
 
-    def function(self, f6gi, f6gj, f6gp, f6el, f6em, f6gu, penalim =  law.ir.charges_deductibles.penalim):
+    def function(self, f6gi, f6gj, f6gp, f6el, f6em, f6gu, penalim = law.ir.charges_deductibles.penalim):
         '''
         Pensions alimentaires
         '''
@@ -193,14 +182,13 @@ class cd_penali(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_acc75a(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_acc75a"
 
-    def function(self, f6eu, f6ev, acc75a =  law.ir.charges_deductibles.acc75a):
+    def function(self, f6eu, f6ev, acc75a = law.ir.charges_deductibles.acc75a):
         '''
         Frais d’accueil sous votre toit d’une personne de plus de 75 ans
         '''
@@ -211,7 +199,6 @@ class cd_acc75a(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_percap(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -219,7 +206,7 @@ class cd_percap(DatedFormulaColumn):
     label = u"cd_percap"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, f6cb, marpac, _P, percap =  law.ir.charges_deductibles.percap):
+    def function_20020101_20021231(self, f6cb, marpac, _P, percap = law.ir.charges_deductibles.percap):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
@@ -229,7 +216,7 @@ class cd_percap(DatedFormulaColumn):
         return min_(f6cb, max_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
-    def function_20030101_20061231(self, f6cb, f6da, marpac, _P, percap =  law.ir.charges_deductibles.percap):
+    def function_20030101_20061231(self, f6cb, f6da, marpac, _P, percap = law.ir.charges_deductibles.percap):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
@@ -241,8 +228,6 @@ class cd_percap(DatedFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
-
 
 
 @reference_formula
@@ -318,7 +303,6 @@ class cd_eparet(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_sofipe(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -327,7 +311,7 @@ class cd_sofipe(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2006, 12, 31)
 
-    def function(self, f6cc, rbg_int, marpac, sofipe =  law.ir.charges_deductibles.sofipe):
+    def function(self, f6cc, rbg_int, marpac, sofipe = law.ir.charges_deductibles.sofipe):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
@@ -340,7 +324,6 @@ class cd_sofipe(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_cinema(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -349,7 +332,7 @@ class cd_cinema(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
-    def function(self, f6aa, rbg_int, cinema =  law.ir.charges_deductibles.cinema):
+    def function(self, f6aa, rbg_int, cinema = law.ir.charges_deductibles.cinema):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
@@ -362,7 +345,6 @@ class cd_cinema(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_ecodev(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -371,7 +353,7 @@ class cd_ecodev(SimpleFormulaColumn):
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
 
-    def function(self, f6eh, rbg_int, ecodev =  law.ir.charges_deductibles.ecodev):
+    def function(self, f6eh, rbg_int, ecodev = law.ir.charges_deductibles.ecodev):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
@@ -384,7 +366,6 @@ class cd_ecodev(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cd_grorep(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -392,7 +373,7 @@ class cd_grorep(SimpleFormulaColumn):
     label = u"cd_grorep"
     start_date = date(2009, 1, 1)
 
-    def function(self, f6cb, f6hj, f6hk, f6hl, grorep =  law.ir.charges_deductibles.grorep):
+    def function(self, f6cb, f6hj, f6hk, f6hl, grorep = law.ir.charges_deductibles.grorep):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         2009-

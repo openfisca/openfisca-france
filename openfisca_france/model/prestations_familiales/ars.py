@@ -38,7 +38,7 @@ class ars(SimpleFormulaColumn):
     label = u"Allocation de rentrée scolaire"
     url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
 
-    def function(self, age_holder, af_nbenf, smic55_holder, br_pf, P =  law.fam):
+    def function(self, age_holder, af_nbenf, smic55_holder, br_pf, P = law.fam):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''

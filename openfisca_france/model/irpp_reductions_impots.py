@@ -151,29 +151,6 @@ class reductions(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #pour tous les dfppce:
     # : note de bas de page
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
@@ -185,7 +162,7 @@ class adhcga(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"adhcga"
 
-    def function(self, f7ff, f7fg, P =  law.ir.reductions_impots.adhcga):
+    def function(self, f7ff, f7fg, P = law.ir.reductions_impots.adhcga):
         '''
         Frais de comptabilité et d'adhésion à un CGA ou AA
         2002-
@@ -196,7 +173,6 @@ class adhcga(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class assvie(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -205,7 +181,7 @@ class assvie(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2004, 12, 31)
 
-    def function(self, nb_pac, f7gw, f7gx, f7gy, P =  law.ir.reductions_impots.assvie):
+    def function(self, nb_pac, f7gw, f7gx, f7gy, P = law.ir.reductions_impots.assvie):
         '''
         Assurance-vie (cases GW, GX et GY de la 2042)
         2002-2004
@@ -217,7 +193,6 @@ class assvie(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cappme(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -225,7 +200,7 @@ class cappme(DatedFormulaColumn):
     label = u"cappme"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, marpac, f7cf, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20020101_20021231(self, marpac, f7cf, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2002
@@ -235,7 +210,7 @@ class cappme(DatedFormulaColumn):
         return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
-    def function_20030101_20031231(self, marpac, f7cf, f7cl, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20030101_20031231(self, marpac, f7cf, f7cl, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2003
@@ -245,7 +220,7 @@ class cappme(DatedFormulaColumn):
         return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def function_20040101_20041231(self, marpac, f7cf, f7cl, f7cm, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20040101_20041231(self, marpac, f7cf, f7cl, f7cm, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2004
@@ -255,7 +230,7 @@ class cappme(DatedFormulaColumn):
         return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2008, 12, 31))
-    def function_20050101_20081231(self, marpac, f7cf, f7cl, f7cm, f7cn, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20050101_20081231(self, marpac, f7cf, f7cl, f7cm, f7cn, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2005-2008
@@ -265,7 +240,7 @@ class cappme(DatedFormulaColumn):
         return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
-    def function_20090101_20101231(self, marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20090101_20101231(self, marpac, f7cf, f7cl, f7cm, f7cn, f7cu, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2009-2010
@@ -276,7 +251,7 @@ class cappme(DatedFormulaColumn):
         return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, marpac, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20110101_20111231(self, marpac, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2011
@@ -287,7 +262,7 @@ class cappme(DatedFormulaColumn):
         return max_(P.taux25 * min_(base, seuil), P.taux * min_(max0, f7cf + f7cu))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, marpac, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20120101_20121231(self, marpac, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2012 cf. 2041 GR
@@ -301,7 +276,7 @@ class cappme(DatedFormulaColumn):
                 mini(f7cu, seuil2, seuil1))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, marpac, f7cc, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P =  law.ir.reductions_impots.cappme):
+    def function_20130101_20131231(self, marpac, f7cc, f7cf, f7cl, f7cm, f7cn, f7cq, f7cu, _P, P = law.ir.reductions_impots.cappme):
         '''
         Souscriptions au capital des PME
         2013
@@ -317,19 +292,7 @@ class cappme(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
 #TODO: vérifier l'existence du "max_"
-
-
-
 
 
 @reference_formula
@@ -338,7 +301,7 @@ class cotsyn(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"cotsyn"
 
-    def function(self, f7ac_holder, sal_holder, cho_holder, rst_holder, P =  law.ir.reductions_impots.cotsyn):
+    def function(self, f7ac_holder, sal_holder, cho_holder, rst_holder, P = law.ir.reductions_impots.cotsyn):
         # becomes a credit d'impot in 2012
             # TODO: change f7ac and use split_by_roles
         '''
@@ -367,7 +330,6 @@ class cotsyn(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class creaen(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -375,7 +337,7 @@ class creaen(DatedFormulaColumn):
     label = u"creaen"
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_20060101_20081231(self, f7fy, f7gy, _P, P =  law.ir.reductions_impots.creaen):
+    def function_20060101_20081231(self, f7fy, f7gy, _P, P = law.ir.reductions_impots.creaen):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2006-2008
@@ -383,7 +345,7 @@ class creaen(DatedFormulaColumn):
         return (P.base * f7fy + P.hand * f7gy)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, _P, P =  law.ir.reductions_impots.creaen):
+    def function_20090101_20091231(self, f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, _P, P = law.ir.reductions_impots.creaen):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2009
@@ -392,7 +354,7 @@ class creaen(DatedFormulaColumn):
                     P.hand * ((f7ky + f7gy) + f7iy / 2))
 
     @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
-    def function_20100101_20111231(self, f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P, P =  law.ir.reductions_impots.creaen):
+    def function_20100101_20111231(self, f7fy, f7gy, f7jy, f7hy, f7ky, f7iy, f7ly, f7my, _P, P = law.ir.reductions_impots.creaen):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2010-2011
@@ -401,7 +363,7 @@ class creaen(DatedFormulaColumn):
                     P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2014, 12, 31))
-    def function_20120101_20141231(self, f7ly, f7my, _P, P =  law.ir.reductions_impots.creaen):
+    def function_20120101_20141231(self, f7ly, f7my, _P, P = law.ir.reductions_impots.creaen):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2012-
@@ -413,13 +375,6 @@ class creaen(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
 @reference_formula
 class deffor(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -427,7 +382,7 @@ class deffor(SimpleFormulaColumn):
     label = u"deffor"
     start_date = date(2006, 1, 1)
 
-    def function(self, f7uc, P =  law.ir.reductions_impots.deffor):
+    def function(self, f7uc, P = law.ir.reductions_impots.deffor):
         '''
         Défense des forêts contre l'incendie
         2006-
@@ -438,14 +393,13 @@ class deffor(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class daepad(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"daepad"
 
-    def function(self, f7cd, f7ce, P =  law.ir.reductions_impots.daepad):
+    def function(self, f7cd, f7ce, P = law.ir.reductions_impots.daepad):
         '''
         Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
         ?-
@@ -456,7 +410,6 @@ class daepad(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class dfppce(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -464,7 +417,7 @@ class dfppce(DatedFormulaColumn):
     label = u"dfppce"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
-    def function_20020101_20031231(self, rbg_int, f7uf, _P, P =  law.ir.reductions_impots.dfppce):
+    def function_20020101_20031231(self, rbg_int, f7uf, _P, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -474,7 +427,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def function_20040101_20041231(self, rbg_int, f7uf, f7xs, _P, P =  law.ir.reductions_impots.dfppce):
+    def function_20040101_20041231(self, rbg_int, f7uf, f7xs, _P, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -484,7 +437,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def function_20050101_20051231(self, rbg_int, f7uf, f7xs, f7xt, _P, P =  law.ir.reductions_impots.dfppce):
+    def function_20050101_20051231(self, rbg_int, f7uf, f7xs, f7xt, _P, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -494,7 +447,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def function_20060101_20061231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, _P, P =  law.ir.reductions_impots.dfppce):
+    def function_20060101_20061231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, _P, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -504,7 +457,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def function_20070101_20071231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, _P, P =  law.ir.reductions_impots.dfppce):
+    def function_20070101_20071231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, _P, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -514,7 +467,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2010, 12, 31))
-    def function_20080101_20101231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P, P =  law.ir.reductions_impots.dfppce):
+    def function_20080101_20101231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, _P, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -524,7 +477,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P =  law.ir.reductions_impots.dfppce):
+    def function_20110101_20111231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
@@ -534,7 +487,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P =  law.ir.reductions_impots.dfppce):
+    def function_20120101_20121231(self, rbg_int, f7uf, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
@@ -544,7 +497,7 @@ class dfppce(DatedFormulaColumn):
         return P.taux * min_(base, max1)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, rbg_int, f7uf, f7uh, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P =  law.ir.reductions_impots.dfppce):
+    def function_20130101_20131231(self, rbg_int, f7uf, f7uh, f7xs, f7xt, f7xu, f7xw, f7xy, f7vc, P = law.ir.reductions_impots.dfppce):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
@@ -557,23 +510,9 @@ class dfppce(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
     # TODO: note de bas de page
     #       Introduire plus de détails dans la déclaration pour séparer les dons aux partis poitiques
     #       et aux candidats des autres dons
-
-
-
 
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
@@ -647,18 +586,10 @@ class doment(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 #TODO: vérifier pour 2002
 #TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
 #la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
 #l'échéance ou paiement par voie électronique))
-
-
-
-
-
-
-
 
 
 #TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
@@ -670,7 +601,7 @@ class domlog(DatedFormulaColumn):
     label = u"domlog"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, f7ua, f7ub, f7uc, f7uj, _P, P =  law.ir.reductions_impots.domlog):
+    def function_20020101_20021231(self, f7ua, f7ub, f7uc, f7uj, _P, P = law.ir.reductions_impots.domlog):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2002
@@ -678,7 +609,7 @@ class domlog(DatedFormulaColumn):
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
-    def function_20030101_20041231(self, f7ua, f7ub, f7uc, f7ui, f7uj, _P, P =  law.ir.reductions_impots.domlog):
+    def function_20030101_20041231(self, f7ua, f7ub, f7uc, f7ui, f7uj, _P, P = law.ir.reductions_impots.domlog):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2003-2004
@@ -686,7 +617,7 @@ class domlog(DatedFormulaColumn):
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
 
     @dated_function(start = date(2005, 1, 1), stop = date(2007, 12, 31))
-    def function_20050101_20071231(self, f7ua, f7ub, f7uc, f7ui, f7uj, _P, P =  law.ir.reductions_impots.domlog):
+    def function_20050101_20071231(self, f7ua, f7ub, f7uc, f7ui, f7uj, _P, P = law.ir.reductions_impots.domlog):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2005-2007
@@ -752,21 +683,7 @@ class domlog(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
 #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
-
-
-
-
-
-
-
-
-
-
-
 
 
 @reference_formula
@@ -797,9 +714,6 @@ class domsoc(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
 @reference_formula
 class donapd(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -807,14 +721,14 @@ class donapd(DatedFormulaColumn):
     label = u"donapd"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
-    def function_20020101_20101231(self, f7ud, P =  law.ir.reductions_impots.donapd):
+    def function_20020101_20101231(self, f7ud, P = law.ir.reductions_impots.donapd):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
         '''
         return P.taux * min_(f7ud, P.max)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2013, 12, 31))
-    def function_20110101_20131231(self, f7ud, f7va, P =  law.ir.reductions_impots.donapd):
+    def function_20110101_20131231(self, f7ud, f7va, P = law.ir.reductions_impots.donapd):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
         '''
@@ -824,9 +738,6 @@ class donapd(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
 @reference_formula
 class duflot(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -834,7 +745,7 @@ class duflot(SimpleFormulaColumn):
     label = u"duflot"
     start_date = date(2013, 1, 1)
 
-    def function(self, f7gh, f7gi, P =  law.ir.reductions_impots.duflot):
+    def function(self, f7gh, f7gi, P = law.ir.reductions_impots.duflot):
         '''
         Investissements locatifs interméiaires (loi Duflot)
         2013-
@@ -854,7 +765,7 @@ class ecodev(SimpleFormulaColumn):
     start_date = date(2009, 1, 1)
     stop_date = date(2009, 12, 31)
 
-    def function(self, f7uh, rbg_int, P =  law.ir.reductions_impots.ecodev):
+    def function(self, f7uh, rbg_int, P = law.ir.reductions_impots.ecodev):
         '''
         Sommes versées sur un compte épargne codéveloppement (case 7UH)
         2009
@@ -865,14 +776,13 @@ class ecodev(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class ecpess(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecpess"
 
-    def function(self, f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P =  law.ir.reductions_impots.ecpess):
+    def function(self, f7ea, f7eb, f7ec, f7ed, f7ef, f7eg, P = law.ir.reductions_impots.ecpess):
         '''
         Réduction d'impôt au titre des enfants à charge poursuivant leurs études secondaires ou supérieures
         '''
@@ -884,7 +794,6 @@ class ecpess(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class garext(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -892,7 +801,7 @@ class garext(DatedFormulaColumn):
     label = u"garext"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, f7ga, f7gb, f7gc, _P, P =  law.ir.reductions_impots.garext):
+    def function_20020101_20021231(self, f7ga, f7gb, f7gc, _P, P = law.ir.reductions_impots.garext):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
@@ -902,7 +811,7 @@ class garext(DatedFormulaColumn):
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
 
     @dated_function(start = date(2003, 1, 1), stop = date(2005, 12, 31))
-    def function_20030101_20051231(self, f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P, P =  law.ir.reductions_impots.garext):
+    def function_20030101_20051231(self, f7ga, f7gb, f7gc, f7ge, f7gf, f7gg, _P, P = law.ir.reductions_impots.garext):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
@@ -921,9 +830,6 @@ class garext(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
 @reference_formula
 class intagr(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -931,7 +837,7 @@ class intagr(SimpleFormulaColumn):
     label = u"intagr"
     start_date = date(2005, 1, 1)
 
-    def function(self, f7um, marpac, P =  law.ir.reductions_impots.intagr):
+    def function(self, f7um, marpac, P = law.ir.reductions_impots.intagr):
         '''
         Intérêts pour paiement différé accordé aux agriculteurs
         2005-
@@ -943,7 +849,6 @@ class intagr(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class intcon(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -952,7 +857,7 @@ class intcon(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     stop_date = date(2005, 12, 31)
 
-    def function(self, f7uh, P =  law.ir.reductions_impots.intcon):
+    def function(self, f7uh, P = law.ir.reductions_impots.intcon):
         '''
         Intérêts des prêts à la consommation (case UH)
         2004-2005
@@ -964,7 +869,6 @@ class intcon(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class intemp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -973,7 +877,7 @@ class intemp(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2003, 12, 31)
 
-    def function(self, nb_pac, f7wg, P =  law.ir.reductions_impots.intemp):
+    def function(self, nb_pac, f7wg, P = law.ir.reductions_impots.intemp):
         '''
         Intérêts d'emprunts
         2002-2003
@@ -985,7 +889,6 @@ class intemp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class invfor(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -993,7 +896,7 @@ class invfor(DatedFormulaColumn):
     label = u"invfor"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_20020101_20051231(self, marpac, f7un, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20020101_20051231(self, marpac, f7un, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2002-2005
         '''
@@ -1001,14 +904,14 @@ class invfor(DatedFormulaColumn):
         return P.taux * min_(f7un, seuil)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_20060101_20081231(self, f7un, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20060101_20081231(self, f7un, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2006-2008
         '''
         return P.taux * f7un
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, marpac, f7un, f7up, f7uq, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20090101_20091231(self, marpac, f7un, f7up, f7uq, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2009
         '''
@@ -1016,7 +919,7 @@ class invfor(DatedFormulaColumn):
                 min_(f7uq, P.iforges_seuil * (marpac + 1)))
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def function_20100101_20101231(self, marpac, f7te, f7un, f7up, f7uq, f7uu, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20100101_20101231(self, marpac, f7te, f7un, f7up, f7uq, f7uu, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2010
         '''
@@ -1026,7 +929,7 @@ class invfor(DatedFormulaColumn):
             min_(f7uq, P.iforges_seuil * (marpac + 1))))
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, marpac, f7te, f7tf, f7ul, f7un, f7up, f7uq, f7uu, f7uv, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20110101_20111231(self, marpac, f7te, f7tf, f7ul, f7un, f7up, f7uq, f7uu, f7uv, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2011 cf. 2041 GK
         '''
@@ -1040,7 +943,7 @@ class invfor(DatedFormulaColumn):
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, marpac, f7te, f7tf, f7tg, f7ul, f7un, f7up, f7uq, f7uu, f7uv, f7uw, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20120101_20121231(self, marpac, f7te, f7tf, f7tg, f7ul, f7un, f7up, f7uq, f7uu, f7uv, f7uw, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2012 cf. 2041 GK
         '''
@@ -1056,7 +959,7 @@ class invfor(DatedFormulaColumn):
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, marpac, f7te, f7tf, f7tg, f7th, f7ul, f7un, f7up, f7uq, f7uu, f7uv, f7uw, f7ux, _P, P =  law.ir.reductions_impots.invfor):
+    def function_20130101_20131231(self, marpac, f7te, f7tf, f7tg, f7th, f7ul, f7un, f7up, f7uq, f7uu, f7uv, f7uw, f7ux, _P, P = law.ir.reductions_impots.invfor):
         '''
         Investissements forestiers pour 2013 cf. 2041 GK
         '''
@@ -1077,19 +980,6 @@ class invfor(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @reference_formula
 class invlst(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1097,7 +987,7 @@ class invlst(DatedFormulaColumn):
     label = u"invlst"
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def function_20040101_20041231(self, marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P, P =  law.ir.reductions_impots.invlst):
+    def function_20040101_20041231(self, marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P, P = law.ir.reductions_impots.invlst):
         '''
         Investissements locatifs dans le secteur touristique
         2004
@@ -1123,7 +1013,7 @@ class invlst(DatedFormulaColumn):
         return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2010, 12, 31))
-    def function_20050101_20101231(self, marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P, P =  law.ir.reductions_impots.invlst):
+    def function_20050101_20101231(self, marpac, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, _P, P = law.ir.reductions_impots.invlst):
         '''
         Investissements locatifs dans le secteur touristique
         2005-2010
@@ -1149,7 +1039,7 @@ class invlst(DatedFormulaColumn):
         return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, _P, P =  law.ir.reductions_impots.invlst):
+    def function_20110101_20111231(self, marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, _P, P = law.ir.reductions_impots.invlst):
         '''
         Investissements locatifs dans le secteur touristique
         2011
@@ -1171,7 +1061,7 @@ class invlst(DatedFormulaColumn):
         return around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f7xz, _P, P =  law.ir.reductions_impots.invlst):
+    def function_20120101_20121231(self, marpac, f7xa, f7xb, f7xc, f7xd, f7xe, f7xf, f7xg, f7xh, f7xi, f7xj, f7xk, f7xl, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, f7xx, f7xz, _P, P = law.ir.reductions_impots.invlst):
         '''
         Investissements locatifs dans le secteur touristique
         2012
@@ -1195,7 +1085,7 @@ class invlst(DatedFormulaColumn):
         return around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, marpac, f7uy, f7uz, f7xf, f7xi, f7xj, f7xk, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, _P, P =  law.ir.reductions_impots.invlst):
+    def function_20130101_20131231(self, marpac, f7uy, f7uz, f7xf, f7xi, f7xj, f7xk, f7xm, f7xn, f7xo, f7xp, f7xq, f7xr, f7xv, _P, P = law.ir.reductions_impots.invlst):
         '''
         Investissements locatifs dans le secteur touristique
         2013
@@ -1211,15 +1101,6 @@ class invlst(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
 @reference_formula
 class invrev(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1228,7 +1109,7 @@ class invrev(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2003, 12, 31)
 
-    def function(self, marpac, f7gs, f7gt, f7xg, f7gu, f7gv, P =  law.ir.reductions_impots.invrev):
+    def function(self, marpac, f7gs, f7gt, f7xg, f7gu, f7gv, P = law.ir.reductions_impots.invrev):
         '''
         Investissements locatifs dans les résidences de tourisme situées dans une zone de
         revitalisation rurale (cases GS, GT, XG, GU et GV)
@@ -1244,7 +1125,6 @@ class invrev(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class locmeu(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1252,7 +1132,7 @@ class locmeu(DatedFormulaColumn):
     label = u"locmeu"
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, f7ij, P =  law.ir.reductions_impots.locmeu):
+    def function_20090101_20091231(self, f7ij, P = law.ir.reductions_impots.locmeu):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2009
@@ -1260,7 +1140,7 @@ class locmeu(DatedFormulaColumn):
         return P.taux * min_(P.max, f7ij) / 9
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def function_20100101_20101231(self, f7ij, f7ik, f7il, f7im, f7is, P =  law.ir.reductions_impots.locmeu):
+    def function_20100101_20101231(self, f7ij, f7ik, f7il, f7im, f7is, P = law.ir.reductions_impots.locmeu):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2010
@@ -1268,7 +1148,7 @@ class locmeu(DatedFormulaColumn):
         return ((min_(P.max, max_(f7ij, f7il)) + min_(P.max, f7im)) / 9 + f7ik) * P.taux + f7is
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, P =  law.ir.reductions_impots.locmeu):
+    def function_20110101_20111231(self, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, P = law.ir.reductions_impots.locmeu):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2011
@@ -1280,7 +1160,7 @@ class locmeu(DatedFormulaColumn):
             f7is + f7iu + f7it)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, f7ix, f7iz, P =  law.ir.reductions_impots.locmeu):
+    def function_20120101_20121231(self, f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, f7ix, f7iz, P = law.ir.reductions_impots.locmeu):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2012
@@ -1294,7 +1174,7 @@ class locmeu(DatedFormulaColumn):
             f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, f7ix, f7iy, f7iz, f7jc, f7ji, f7js, f7jt, f7ju, f7jv, f7jw, f7jx, f7jy, P =  law.ir.reductions_impots.locmeu):
+    def function_20130101_20131231(self, f7ia, f7ib, f7ic, f7id, f7ie, f7if, f7ig, f7ih, f7ij, f7ik, f7il, f7im, f7in, f7io, f7ip, f7iq, f7ir, f7is, f7it, f7iu, f7iv, f7iw, f7ix, f7iy, f7iz, f7jc, f7ji, f7js, f7jt, f7ju, f7jv, f7jw, f7jx, f7jy, P = law.ir.reductions_impots.locmeu):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2013
@@ -1313,17 +1193,6 @@ class locmeu(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
-
-
 @reference_formula
 class mohist(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1331,7 +1200,7 @@ class mohist(SimpleFormulaColumn):
     label = u"mohist"
     start_date = date(2008, 1, 1)
 
-    def function(self, f7nz, P =  law.ir.reductions_impots.mohist):
+    def function(self, f7nz, P = law.ir.reductions_impots.mohist):
         '''
         Travaux de conservation et de restauration d’objets classés monuments historiques (case NZ)
         2008-
@@ -1342,7 +1211,6 @@ class mohist(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class patnat(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1350,7 +1218,7 @@ class patnat(DatedFormulaColumn):
     label = u"patnat"
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def function_20100101_20101231(self, f7ka, P =  law.ir.reductions_impots.patnat):
+    def function_20100101_20101231(self, f7ka, P = law.ir.reductions_impots.patnat):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA)
         2010
@@ -1359,7 +1227,7 @@ class patnat(DatedFormulaColumn):
         return P.taux * min_(f7ka, max1)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, f7ka, f7kb, P =  law.ir.reductions_impots.patnat):
+    def function_20110101_20111231(self, f7ka, f7kb, P = law.ir.reductions_impots.patnat):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB)
         2011
@@ -1368,7 +1236,7 @@ class patnat(DatedFormulaColumn):
         return P.taux * min_(f7ka, max1) + f7kb
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, f7ka, f7kb, f7kc, P =  law.ir.reductions_impots.patnat):
+    def function_20120101_20121231(self, f7ka, f7kb, f7kc, P = law.ir.reductions_impots.patnat):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB, 7KC)
         2012
@@ -1377,7 +1245,7 @@ class patnat(DatedFormulaColumn):
         return P.taux * min_(f7ka, max1) + f7kb + f7kc
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, f7ka, f7kb, f7kc, f7kd, P =  law.ir.reductions_impots.patnat):
+    def function_20130101_20131231(self, f7ka, f7kb, f7kc, f7kd, P = law.ir.reductions_impots.patnat):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB, 7KC)
         2013
@@ -1389,20 +1257,13 @@ class patnat(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
 @reference_formula
 class prcomp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"prcomp"
 
-    def function(self, f7wm, f7wn, f7wo, f7wp, P =  law.ir.reductions_impots.prcomp):
+    def function(self, f7wm, f7wn, f7wo, f7wp, P = law.ir.reductions_impots.prcomp):
         '''
         Prestations compensatoires
         2002-
@@ -1422,7 +1283,6 @@ class prcomp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class repsoc(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1430,7 +1290,7 @@ class repsoc(SimpleFormulaColumn):
     label = u"repsoc"
     start_date = date(2003, 1, 1)
 
-    def function(self, marpac, f7fh, P =  law.ir.reductions_impots.repsoc):
+    def function(self, marpac, f7fh, P = law.ir.reductions_impots.repsoc):
         '''
         Intérèts d'emprunts pour reprises de société
         2003-
@@ -1442,7 +1302,6 @@ class repsoc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class resimm(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1450,7 +1309,7 @@ class resimm(DatedFormulaColumn):
     label = u"resimm"
 
     @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
-    def function_20090101_20101231(self, f7ra, f7rb, P =  law.ir.reductions_impots.resimm):
+    def function_20090101_20101231(self, f7ra, f7rb, P = law.ir.reductions_impots.resimm):
         '''
         Travaux de restauration immobilière (cases 7RA et 7RB)
         2009-2010
@@ -1460,7 +1319,7 @@ class resimm(DatedFormulaColumn):
         return P.taux_rb * min_(f7rb, max1) + P.taux_ra * min_(f7ra, max2)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, f7ra, f7rb, f7rc, f7rd, P =  law.ir.reductions_impots.resimm):
+    def function_20110101_20111231(self, f7ra, f7rb, f7rc, f7rd, P = law.ir.reductions_impots.resimm):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD)
         2011
@@ -1473,7 +1332,7 @@ class resimm(DatedFormulaColumn):
                 P.taux_ra * min_(f7ra, max4))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, f7ra, f7rb, f7rc, f7rd, f7re, f7rf, P =  law.ir.reductions_impots.resimm):
+    def function_20120101_20121231(self, f7ra, f7rb, f7rc, f7rd, f7re, f7rf, P = law.ir.reductions_impots.resimm):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF)
         2012
@@ -1487,7 +1346,7 @@ class resimm(DatedFormulaColumn):
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, f7ra, f7rb, f7rc, f7rd, f7re, f7rf, f7sx, f7sy, P =  law.ir.reductions_impots.resimm):
+    def function_20130101_20131231(self, f7ra, f7rb, f7rc, f7rd, f7re, f7rf, f7sx, f7sy, P = law.ir.reductions_impots.resimm):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF, 7SX, 7SY)
         2012
@@ -1504,20 +1363,13 @@ class resimm(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
 @reference_formula
 class rsceha(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rsceha"
 
-    def function(self, nb_pac2, nbR, f7gz, P =  law.ir.reductions_impots.rsceha):
+    def function(self, nb_pac2, nbR, f7gz, P = law.ir.reductions_impots.rsceha):
         '''
         Rentes de survie et contrats d'épargne handicap
         2002-
@@ -1529,7 +1381,6 @@ class rsceha(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class saldom(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1537,7 +1388,7 @@ class saldom(DatedFormulaColumn):
     label = u"saldom"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2004, 12, 31))
-    def function_20020101_20041231(self, f7df, f7dg, _P, P =  law.ir.reductions_impots.saldom):
+    def function_20020101_20041231(self, f7df, f7dg, _P, P = law.ir.reductions_impots.saldom):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2002-2004
@@ -1547,7 +1398,7 @@ class saldom(DatedFormulaColumn):
         return P.taux * min_(f7df, max1)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2006, 12, 31))
-    def function_20050101_20061231(self, nb_pac2, f7df, f7dl, f7dg, _P, P =  law.ir.reductions_impots.saldom):
+    def function_20050101_20061231(self, nb_pac2, f7df, f7dl, f7dg, _P, P = law.ir.reductions_impots.saldom):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2005-2006
@@ -1561,7 +1412,7 @@ class saldom(DatedFormulaColumn):
         return P.taux * min_(f7df, max1)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def function_20070101_20081231(self, nb_pac2, f7db, f7df, f7dl, f7dg, _P, P =  law.ir.reductions_impots.saldom):
+    def function_20070101_20081231(self, nb_pac2, f7db, f7df, f7dl, f7dg, _P, P = law.ir.reductions_impots.saldom):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2007-2008
@@ -1576,7 +1427,7 @@ class saldom(DatedFormulaColumn):
         return P.taux * min_(f7df, max1)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
-    def function_20090101_20131231(self, nb_pac2, f7db, f7df, f7dl, f7dq, f7dg, _P, P =  law.ir.reductions_impots.saldom):
+    def function_20090101_20131231(self, nb_pac2, f7db, f7df, f7dl, f7dq, f7dg, _P, P = law.ir.reductions_impots.saldom):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2009-2013
@@ -1595,13 +1446,6 @@ class saldom(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
 @reference_formula
 class scelli(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1609,7 +1453,7 @@ class scelli(DatedFormulaColumn):
     label = u"scelli"
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, f7hj, f7hk, P =  law.ir.reductions_impots.scelli):
+    def function_20090101_20091231(self, f7hj, f7hk, P = law.ir.reductions_impots.scelli):
         '''
         Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
         2009
@@ -1617,7 +1461,7 @@ class scelli(DatedFormulaColumn):
         return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def function_20100101_20101231(self, f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, P =  law.ir.reductions_impots.scelli):
+    def function_20100101_20101231(self, f7hj, f7hk, f7hn, f7ho, f7hl, f7hm, f7hr, f7hs, f7la, P = law.ir.reductions_impots.scelli):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2010
@@ -1634,7 +1478,7 @@ class scelli(DatedFormulaColumn):
                 f7la)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7la, f7lb, f7lc, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P =  law.ir.reductions_impots.scelli):
+    def function_20110101_20111231(self, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7la, f7lb, f7lc, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2011
@@ -1657,7 +1501,7 @@ class scelli(DatedFormulaColumn):
                 )
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P =  law.ir.reductions_impots.scelli):
+    def function_20120101_20121231(self, f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2012
@@ -1687,7 +1531,7 @@ class scelli(DatedFormulaColumn):
                 )
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, f7fa, f7fb, f7fc, f7fd, f7gj, f7gk, f7gl, f7gp, f7gs, f7gt, f7gu, f7gv, f7gw, f7gx, f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7lm, f7ls, f7lz, f7mg, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P =  law.ir.reductions_impots.scelli):
+    def function_20130101_20131231(self, f7fa, f7fb, f7fc, f7fd, f7gj, f7gk, f7gl, f7gp, f7gs, f7gt, f7gu, f7gv, f7gw, f7gx, f7ha, f7hb, f7hg, f7hh, f7hd, f7he, f7hf, f7hj, f7hk, f7hl, f7hm, f7hn, f7ho, f7hr, f7hs, f7ht, f7hu, f7hv, f7hw, f7hx, f7hz, f7ja, f7jb, f7jd, f7je, f7jf, f7jg, f7jh, f7jj, f7jk, f7jl, f7jm, f7jn, f7jo, f7jp, f7jq, f7jr, f7la, f7lb, f7lc, f7ld, f7le, f7lf, f7lm, f7ls, f7lz, f7mg, f7na, f7nb, f7nc, f7nd, f7ne, f7nf, f7ng, f7nh, f7ni, f7nj, f7nk, f7nl, f7nm, f7nn, f7no, f7np, f7nq, f7nr, f7ns, f7nt, P = law.ir.reductions_impots.scelli):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2013
@@ -1721,15 +1565,6 @@ class scelli(DatedFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
-
-
-
-
-
-
-
-
 @reference_formula
 class sofica(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1737,7 +1572,7 @@ class sofica(SimpleFormulaColumn):
     label = u"sofica"
     start_date = date(2006, 1, 1)
 
-    def function(self, f7gn, f7fn, rng, P =  law.ir.reductions_impots.sofica):
+    def function(self, f7gn, f7fn, rng, P = law.ir.reductions_impots.sofica):
         '''
         Souscriptions au capital de SOFICA
         2006-
@@ -1750,7 +1585,6 @@ class sofica(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class sofipe(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1759,7 +1593,7 @@ class sofipe(SimpleFormulaColumn):
     start_date = date(2009, 1, 1)
     stop_date = date(2011, 1, 1)
 
-    def function(self, marpac, rbg_int, f7gs, _P, P =  law.ir.reductions_impots.sofipe):
+    def function(self, marpac, rbg_int, f7gs, _P, P = law.ir.reductions_impots.sofipe):
         """
         Souscription au capital d’une SOFIPECHE (case 7GS)
         2009-2011
@@ -1771,7 +1605,6 @@ class sofipe(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class spfcpi(DatedFormulaColumn):
     column = FloatCol(default = 0)
@@ -1779,7 +1612,7 @@ class spfcpi(DatedFormulaColumn):
     label = u"spfcpi"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, marpac, f7gq, _P, P =  law.ir.reductions_impots.spfcpi):
+    def function_20020101_20021231(self, marpac, f7gq, _P, P = law.ir.reductions_impots.spfcpi):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -1789,7 +1622,7 @@ class spfcpi(DatedFormulaColumn):
         return P.taux1 * min_(f7gq, max1)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
-    def function_20030101_20061231(self, marpac, f7gq, f7fq, _P, P =  law.ir.reductions_impots.spfcpi):
+    def function_20030101_20061231(self, marpac, f7gq, f7fq, _P, P = law.ir.reductions_impots.spfcpi):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -1799,7 +1632,7 @@ class spfcpi(DatedFormulaColumn):
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     @dated_function(start = date(2007, 1, 1), stop = date(2010, 12, 31))
-    def function_20070101_20101231(self, marpac, f7gq, f7fq, f7fm, _P, P =  law.ir.reductions_impots.spfcpi):
+    def function_20070101_20101231(self, marpac, f7gq, f7fq, f7fm, _P, P = law.ir.reductions_impots.spfcpi):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -1811,7 +1644,7 @@ class spfcpi(DatedFormulaColumn):
                     P.taux2 * min_(f7fm, max1))
 
     @dated_function(start = date(2011, 1, 1), stop = date(2013, 12, 31))
-    def function_20110101_20131231(self, marpac, f7gq, f7fq, f7fm, f7fl, _P, P =  law.ir.reductions_impots.spfcpi):
+    def function_20110101_20131231(self, marpac, f7gq, f7fq, f7fm, f7fl, _P, P = law.ir.reductions_impots.spfcpi):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -1832,15 +1665,6 @@ class spfcpi(DatedFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
-
-
-
-
-
-
-
-
 
 
 def mini(a, b, *args):

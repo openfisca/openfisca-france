@@ -26,7 +26,6 @@
 import datetime
 
 
-
 from openfisca_core import periods
 from openfisca_core.tools import assert_near
 from openfisca_france.reforms import trannoy_wasmer
@@ -61,7 +60,6 @@ def test_charge_loyer():
 
     reform_charge_loyer = reform_simulation.calculate('charge_loyer')
     assert_near(reform_charge_loyer, [1000] * 10 ,error_margin)
-
 
 
 if __name__ == '__main__':

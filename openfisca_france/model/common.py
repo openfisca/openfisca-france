@@ -57,7 +57,6 @@ class uc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class typ_men(SimpleFormulaColumn):
     column = PeriodSizeIndependentIntCol(default = 0)
@@ -93,7 +92,6 @@ class typ_men(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class revdisp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -120,7 +118,6 @@ class revdisp(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class nivvie(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -136,7 +133,6 @@ class nivvie(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -178,7 +174,6 @@ class nivvie_net(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class revenu_initial_individu(SimpleFormulaColumn):
     column = FloatCol
@@ -217,7 +212,6 @@ class nivvie_ini(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salariales):
     '''
     Revenu primaire du ménage
@@ -245,7 +239,6 @@ class rev_trav(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class pen(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -261,7 +254,6 @@ class pen(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -280,7 +272,6 @@ class cotsoc_bar_declarant1(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cotsoc_lib_declarant1(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -295,7 +286,6 @@ class cotsoc_lib_declarant1(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -320,7 +310,6 @@ class rev_cap(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class psoc(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -338,7 +327,6 @@ class psoc(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class pfam(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -354,7 +342,6 @@ class pfam(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -377,7 +364,6 @@ class mini(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class logt(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -393,7 +379,6 @@ class logt(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -414,7 +399,6 @@ class impo(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -440,7 +424,6 @@ class crds(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class csg(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -460,7 +443,6 @@ class csg(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class cotsoc_noncontrib(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -475,7 +457,6 @@ class cotsoc_noncontrib(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula
@@ -499,7 +480,6 @@ class prelsoc_cap(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class check_csk(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -519,7 +499,6 @@ class check_csk(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class check_csg(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -537,7 +516,6 @@ class check_csg(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
-
 
 
 @reference_formula

@@ -53,14 +53,13 @@ class asf_elig(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class asf_nbenf(SimpleFormulaColumn):
     column = PeriodSizeIndependentIntCol(default = 0)
     entity_class = Familles
     label = u"asf_nbenf"
 
-    def function(self, age_holder, smic55_holder, P =  law.fam):
+    def function(self, age_holder, smic55_holder, P = law.fam):
         '''
         Nombre d'enfants ouvrant l'éligibilité à l'allocation de soutien familial (ASF)
         '''
@@ -76,7 +75,6 @@ class asf_nbenf(SimpleFormulaColumn):
         return period.start.offset('first-of', 'month').period('year')
 
 
-
 @reference_formula
 class asf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -84,7 +82,7 @@ class asf(SimpleFormulaColumn):
     label = u"Allocation de soutien familial"
     url = "http://vosdroits.service-public.fr/particuliers/F815.xhtml"
 
-    def function(self, asf_elig, asf_nbenf, P =  law.fam):
+    def function(self, asf_elig, asf_nbenf, P = law.fam):
         '''
         Allocation de soutien familial
 
