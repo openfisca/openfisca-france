@@ -33,10 +33,12 @@ def apply_bareme_for_relevant_type_sal(
         bareme_name = None,
         type_sal = None,
         base = None,
+        plafond_securite_sociale = None,
         ):
     assert bareme_by_type_sal_name is not None
     assert bareme_name is not None
     assert base is not None
+    assert plafond_securite_sociale is not None
     assert type_sal is not None
     cotisation = zeros(len(base))
     for type_sal_enum in CAT:
@@ -44,5 +46,5 @@ def apply_bareme_for_relevant_type_sal(
             continue
         bareme = bareme_by_type_sal_name[type_sal_enum[0]].get(bareme_name)  # TODO; should have better warnings
         if bareme:
-            cotisation += bareme.calc(base) * (type_sal == type_sal_enum[1])
+            cotisation += plafond_securite_sociale * bareme.calc(base / (plafond_securite_sociale + 1e-10) ) * (type_sal == type_sal_enum[1])
     return - cotisation

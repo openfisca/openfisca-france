@@ -68,8 +68,8 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
 
     def function(self, ags, agff_tranche_a_employeur, apec_employeur, arrco_tranche_a_employeur, assedic_employeur,
                  cotisation_exceptionnelle_temporaire_employeur, fonds_emploi_hospitalier, ircantec_employeur,
-                 pension_civile_employeur, rafp_employeur, vieillesse_deplafonnee_employeur,
-                 vieillesse_plafonnee_employeur):
+                 pension_civile_employeur, prevoyance_obligatoire_cadre, rafp_employeur,
+                 vieillesse_deplafonnee_employeur, vieillesse_plafonnee_employeur):
 
         cotisations_patronales_contributives = (
             # prive
@@ -79,6 +79,7 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
             arrco_tranche_a_employeur +
             assedic_employeur +
             cotisation_exceptionnelle_temporaire_employeur +
+            prevoyance_obligatoire_cadre +  # TODO contributive ou pas
             vieillesse_deplafonnee_employeur +
             vieillesse_plafonnee_employeur +
             # public
@@ -215,9 +216,18 @@ class csgsald(SimpleFormulaColumn):
     label = u"CSG déductible sur les salaires"
     entity_class = Individus
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, hsup, P = law):
-        csg = scale_tax_scales(P.csg.act.deduc, P.cotsoc.gen.plaf_ss)
-        return - csg.calc(salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup)
+    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
+                 prevoyance_obligatoire_cadre, plafond_securite_sociale, hsup, law = law):
+        csg = law.csg.act.deduc
+        montant_csg = plafond_securite_sociale * csg.calc(
+            (
+                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                indemnite_residence + supp_familial_traitement - hsup
+                ) / (
+                plafond_securite_sociale + 1e-10
+                )
+            )
+        return - montant_csg
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -229,11 +239,18 @@ class csgsali(SimpleFormulaColumn):
     label = u"CSG imposables sur les salaires"
     entity_class = Individus
 
-    def function(self, salbrut, hsup, primes_fonction_publique, indemnite_residence, supp_familial_traitement, P = law):
-        csg = scale_tax_scales(P.csg.act.impos, P.cotsoc.gen.plaf_ss)
-        return - csg.calc(
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
+    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
+                 prevoyance_obligatoire_cadre, plafond_securite_sociale, hsup, law = law):
+        csg = law.csg.act.impos
+        montant_csg = plafond_securite_sociale * csg.calc(
+            (
+                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                indemnite_residence + supp_familial_traitement - hsup
+                ) / (
+                plafond_securite_sociale + 1e-10
+                )
             )
+        return - montant_csg
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -245,9 +262,24 @@ class crdssal(SimpleFormulaColumn):
     label = u"CRDS sur les salaires"
     entity_class = Individus
 
-    def function(self, salbrut, hsup, primes_fonction_publique, indemnite_residence, supp_familial_traitement, P = law):
-        crds = scale_tax_scales(P.crds.act, P.cotsoc.gen.plaf_ss)
+    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
+                 prevoyance_obligatoire_cadre, plafond_securite_sociale, hsup, law = law):
+        crds = law.crds.act
+        montant_crds = plafond_securite_sociale * crds.calc(
+            (
+                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                indemnite_residence + supp_familial_traitement - hsup
+                ) / (
+                plafond_securite_sociale + 1e-10
+                )
+            )
+        return - montant_crds
+
+
         return - crds.calc(salbrut - hsup + primes_fonction_publique + indemnite_residence + supp_familial_traitement)
+
+
+
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')

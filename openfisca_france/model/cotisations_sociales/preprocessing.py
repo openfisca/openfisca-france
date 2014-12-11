@@ -28,7 +28,8 @@ from __future__ import division
 import copy
 import logging
 
-from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
+
+from openfisca_core.taxscales import TaxScalesTree  #, scale_tax_scales
 from openfisca_core.legislations import CompactNode
 
 from ..base import *
@@ -43,7 +44,7 @@ log = logging.getLogger(__name__)
 def build_pat(_P):
     """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
 
-    pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), _P.cotsoc.gen.plaf_ss)
+    pat = TaxScalesTree('pat', _P.cotsoc.pat)
 
     for bareme in ['apprentissage', 'apprentissage_add']:
         pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
@@ -110,7 +111,7 @@ def build_sal(_P):
     Construit le dictionnaire de barèmes des cotisations salariales
     à partir des informations contenues dans P.cotsoc.sal
     '''
-    sal = scale_tax_scales(TaxScalesTree('sal', _P.cotsoc.sal), _P.cotsoc.gen.plaf_ss)
+    sal = TaxScalesTree('sal', _P.cotsoc.sal)
     sal['noncadre'].update(sal['commun'])
     sal['cadre'].update(sal['commun'])
 

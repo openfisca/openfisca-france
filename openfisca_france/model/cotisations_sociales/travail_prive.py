@@ -28,13 +28,18 @@ from __future__ import division
 
 import logging
 
-from numpy import int16, ones
+
+from numpy import int16, minimum as min_, ones
+from openfisca_core.accessors import law
+from openfisca_core.enumerations import Enum
+from openfisca_core.columns import EnumCol, FloatCol
+from openfisca_core.formulas import SimpleFormulaColumn
+
 
 from ..base import *
 from . import apply_bareme_for_relevant_type_sal
 
 
-DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 log = logging.getLogger(__name__)
 taux_versement_transport_by_localisation_entreprise = None
 
@@ -65,7 +70,8 @@ class agff_tranche_a_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage AGFF tranche A (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique,
+                 plafond_securite_sociale, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "agff",
@@ -73,6 +79,7 @@ class agff_tranche_a_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -87,7 +94,8 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage AGFF tranche A (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "agffnc",
@@ -95,6 +103,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
 
@@ -105,6 +114,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation_cadre + cotisation_non_cadre
@@ -119,7 +129,8 @@ class agirc_tranche_b_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "agirc",
@@ -127,6 +138,7 @@ class agirc_tranche_b_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -141,7 +153,8 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "agirc",
@@ -149,6 +162,7 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -163,11 +177,12 @@ class apec_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
 
-    def function(self, salbrut, type_sal, _P):
+    def function(self, salbrut, type_sal, plafond_securite_sociale, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "apec",
             base = salbrut,
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation  # TODO: check public notamment contractuel
@@ -182,7 +197,8 @@ class ags(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "chomfg",
@@ -190,6 +206,7 @@ class ags(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -204,11 +221,12 @@ class apec_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
 
-    def function(self, salbrut, type_sal, _P):
+    def function(self, salbrut, type_sal, plafond_securite_sociale, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "apec",
             base = salbrut,
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation  # TODO: check public notamment contractuel
@@ -223,7 +241,8 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "arrco",
@@ -231,6 +250,7 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -245,7 +265,8 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "arrco",
@@ -253,6 +274,7 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -267,7 +289,8 @@ class assedic_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "assedic",
@@ -275,6 +298,7 @@ class assedic_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -289,7 +313,8 @@ class assedic_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "assedic",
@@ -297,6 +322,7 @@ class assedic_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -312,7 +338,7 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
     label = u"Contribution additionnelle au développement de l'apprentissage"
 
     def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, _P):
+                 indemnite_residence, plafond_securite_sociale, _P):
         # TODO: check entreprise redevable
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
@@ -321,6 +347,7 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -335,7 +362,8 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution solidarité autonomie (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "csa",
@@ -343,6 +371,7 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -357,7 +386,8 @@ class cotisation_exceptionnelle_temporaire_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation_exceptionnelle_temporaire (employe)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "cet",
@@ -365,6 +395,7 @@ class cotisation_exceptionnelle_temporaire_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -379,7 +410,8 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation exceptionnelle temporaire (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "cet",
@@ -387,6 +419,7 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -402,7 +435,7 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
     label = u"Contribution supplémentaire à l'apprentissage"
 
     def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, ratio_alternants, effectif_entreprise, period,
+                 indemnite_residence, ratio_alternants, effectif_entreprise, period, plafond_securite_sociale,
                  taux = law.cotsoc.contribution_supplementaire_apprentissage):
 
         if period.start.year > 2012:
@@ -432,7 +465,8 @@ class famille(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation famille (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "famille",
@@ -440,6 +474,7 @@ class famille(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -454,7 +489,8 @@ class fnal_tranche_a(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "fnal1",
@@ -462,6 +498,7 @@ class fnal_tranche_a(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -476,7 +513,8 @@ class fnal_tranche_a_plus_20(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
 
-    def function(self, salbrut, hsup, taille_entreprise, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, taille_entreprise, type_sal, indemnite_residence, primes_fonction_publique,
+                 plafond_securite_sociale, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "fnal2",
@@ -484,6 +522,7 @@ class fnal_tranche_a_plus_20(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ) * (taille_entreprise > 2),  # plus de 20 salariés TODO: Be more explicit
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -498,7 +537,8 @@ class formation_professionnelle(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Formation professionnelle"
 
-    def function(self, salbrut, hsup, taille_entreprise, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, taille_entreprise, type_sal, indemnite_residence, primes_fonction_publique,
+                 plafond_securite_sociale, _P):
 
         cotisation_0_9 = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
@@ -507,6 +547,7 @@ class formation_professionnelle(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ) * (taille_entreprise == 1),  # moins de 10 salariés TODO: Be more explicit
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         cotisation_10_19 = apply_bareme_for_relevant_type_sal(
@@ -516,6 +557,7 @@ class formation_professionnelle(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ) * (taille_entreprise == 2),  # moins de 20 salariés TODO: Be more explicit
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         cotisation_20 = apply_bareme_for_relevant_type_sal(
@@ -525,6 +567,7 @@ class formation_professionnelle(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ) * (taille_entreprise > 2),  # plus de 20 salariés TODO: Be more explicit
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation_0_9 + cotisation_10_19 + cotisation_20
@@ -539,7 +582,8 @@ class maladie_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation maladie (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "maladie",
@@ -547,6 +591,7 @@ class maladie_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -561,7 +606,8 @@ class maladie_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation maladie (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "maladie",
@@ -569,6 +615,7 @@ class maladie_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -596,8 +643,8 @@ class participation_effort_construction(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Participation à l'effort de construction"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, _P):
+    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "construction",
@@ -605,7 +652,43 @@ class participation_effort_construction(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
+            )
+        return cotisation
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class plafond_securite_sociale(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Plafond de la securite sociale"
+
+    def function(self, nombre_jours_calendaires, _P):
+
+        # TODO: mettre en paramètre durée légale etc plutôt qu'en dur
+        plafond_temps_plein = _P.cotsoc.gen.plaf_ss
+        plafond_securite_sociale = nombre_jours_calendaires / 30 * plafond_temps_plein
+        return plafond_securite_sociale
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisation de prévoyance pour les cadres et assimilés"
+
+    def function(self, type_sal, salbrut, plafond_securite_sociale, prevoyance_obligatoire_cadre_taux):
+        cotisation = (
+            (type_sal == CAT['prive_cadre']) *
+            min_(salbrut, plafond_securite_sociale) *
+            prevoyance_obligatoire_cadre_taux
             )
         return cotisation
 
@@ -651,7 +734,7 @@ class taxe_apprentissage(SimpleFormulaColumn):
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
 
     def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, _P):
+                 plafond_securite_sociale, indemnite_residence, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "apprentissage",
@@ -659,6 +742,7 @@ class taxe_apprentissage(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -777,7 +861,8 @@ class vieillesse_deplafonnee_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "vieillessedeplaf",
@@ -785,6 +870,7 @@ class vieillesse_deplafonnee_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -799,7 +885,8 @@ class vieillesse_plafonnee_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "vieillesse",
@@ -807,6 +894,7 @@ class vieillesse_plafonnee_employe(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -821,7 +909,8 @@ class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "vieillessedeplaf",
@@ -829,6 +918,7 @@ class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -843,7 +933,8 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
+                 _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "vieillesseplaf",
@@ -851,6 +942,7 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation

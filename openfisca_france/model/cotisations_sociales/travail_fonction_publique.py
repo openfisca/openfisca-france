@@ -25,16 +25,13 @@
 
 from __future__ import division
 
-import logging
-import math
 
+import math
 from numpy import maximum as max_, minimum as min_, zeros
 
+
 from ..base import *
-from .travail_prive import apply_bareme_for_relevant_type_sal
-
-
-log = logging.getLogger(__name__)
+from . import apply_bareme_for_relevant_type_sal
 
 
 @reference_formula
@@ -44,7 +41,8 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
     label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
     # patronale, non-contributive
 
-    def function(self, salbrut, type_sal, primes_fonction_publique, supp_familial_traitement, indemnite_residence, _P):
+    def function(self, salbrut, type_sal, primes_fonction_publique, supp_familial_traitement, indemnite_residence,
+                 plafond_securite_sociale, _P):
 
         eligibles = (
             (type_sal == CAT['public_titulaire_etat']) +
@@ -57,12 +55,14 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "ati",
             base = salbrut,
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "atiacl",
             base = salbrut,
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation_etat + cotisation_collectivites_locales
@@ -81,7 +81,7 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
     label = u"Cotisation exceptionnelle de solidarité (employe)"
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, rafp_employe,
-                 pension_civile_employe, cotisations_salariales_contributives,
+                 pension_civile_employe, cotisations_salariales_contributives, plafond_securite_sociale,
                  _P):
         seuil_assuj_fds = seuil_fds(_P)
 
@@ -106,6 +106,7 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
                     ),
                 _P.cotsoc.sal.fonc.commun.plafond_base_solidarite,
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -123,13 +124,14 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Fonds pour l'emploi hospitalier (employeur)"
 
-    def function(self, indemnite_residence, primes_fonction_publique, salbrut, type_sal, _P):
+    def function(self, indemnite_residence, plafond_securite_sociale, primes_fonction_publique, salbrut, type_sal, _P):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "feh",
             base = (
                 salbrut + indemnite_residence # TODO check base
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return cotisation
@@ -147,13 +149,15 @@ class ircantec_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Ircantec employé"
 
-    def function(self, salbrut, type_sal, hsup, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, type_sal, hsup, indemnite_residence, plafond_securite_sociale,
+                 primes_fonction_publique, _P):
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
             bareme_name = "ircantec",
             base = (
                 salbrut - hsup + indemnite_residence + primes_fonction_publique
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return ircantec
@@ -186,13 +190,15 @@ class ircantec_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Ircantec employeur"
 
-    def function(self, salbrut, type_sal, hsup, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, salbrut, type_sal, hsup, indemnite_residence, plafond_securite_sociale, primes_fonction_publique,
+                 _P):
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "ircantec",
             base = (
                 salbrut - hsup + indemnite_residence + primes_fonction_publique
                 ),
+            plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return ircantec
@@ -267,7 +273,7 @@ class pension_civile_employeur(SimpleFormulaColumn):
     label = u"Cotisation patronale pension civile"
     url = u"http://www.ac-besancon.fr/spip.php?article2662"
 
-    def function(self, salbrut, type_sal, _P):
+    def function(self, salbrut, type_sal, plafond_securite_sociale, _P):
         # Note : salbrut est égal au traitement indiciaire brut
         pat = _P.cotsoc.cotisations_employeur.__dict__
         terr_or_hosp = (

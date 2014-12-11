@@ -154,12 +154,16 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
             max_(contrat_de_travail_arrivee, debut_mois),
             min_(contrat_de_travail_depart, fin_mois)
             )
+        jours_travaillables = busday_count(
+            max_(contrat_de_travail_arrivee, debut_mois),
+            min_(contrat_de_travail_depart, fin_mois)
+            )
 
         duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
         nombre_heures_remunerees = (
             (contrat_de_travail == 0) * (
                 duree_legale * not_(mois_incomplet) +  # 151.67
-                7 * jours_travailles * mois_incomplet
+                duree_legale * jours_travailles / jours_travaillables * mois_incomplet
                 ) +
             (contrat_de_travail == 1) * volume_heures_remunerees +
             (contrat_de_travail == 2) * (volume_heures_remunerees / 45.7) * (52 / 12) +  # forfait heures/annee
@@ -169,6 +173,28 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period(u'month')
+
+
+@reference_formula
+class nombre_jours_calendaires(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Nombre de jorus calendaires travaillés"
+
+    def function(self, period, contrat_de_travail, contrat_de_travail_arrivee, contrat_de_travail_depart):
+
+        busday_count = partial(original_busday_count, weekmask = "1" * 7)
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
+        jours_travailles = busday_count(
+            max_(contrat_de_travail_arrivee, debut_mois),
+            min_(contrat_de_travail_depart, fin_mois)
+            )
+        return jours_travailles
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period(u'month')
+
 
 
 #@reference_formula

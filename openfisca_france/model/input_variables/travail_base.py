@@ -44,6 +44,35 @@ reference_input_variable(
     name = 'allegement_fillon_mode_recouvrement',
     )
 reference_input_variable(
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"temps_plein",
+                u"temps_partiel",
+#                u"forfait_heures_semaines",
+#                u"forfait_heures_mois",
+                u"forfait_heures_annee",
+                u"forfait_jours_annee",
+                ],
+            ),
+        ),
+    entity_class = Individus,
+    label = u"Type contrat de travail, de forfait ou de convention de rémunération des heures travaillées",
+    name = 'contrat_de_travail',
+    )
+reference_input_variable(
+    column = DateCol(default = datetime.date(1870, 1, 1)),
+    entity_class = Individus,
+    label = u"Date d'arrivée dans l'entreprise",
+    name = 'contrat_de_travail_arrivee',
+    )
+reference_input_variable(
+    column = DateCol(default = datetime.date(2099, 12, 31)),
+    entity_class = Individus,
+    label = u"Date de départ de l'entreprise",
+    name = 'contrat_de_travail_depart',
+    )
+reference_input_variable(
     column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la taxe sur les salaires",
@@ -84,6 +113,12 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Ratio d'alternants dans l'effectif moyen",
     name = 'ratio_alternants',
+    )
+reference_input_variable(
+    column = FloatCol(default = .015), # 1.5% est le minimum
+    entity_class = Individus,
+    label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
+    name = 'prevoyance_obligatoire_cadre_taux',
     )
 reference_input_variable(
     column = FloatCol(),
@@ -150,23 +185,6 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Catégorie de salarié",
     name = 'type_sal',
-    )
-reference_input_variable(
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"temps_plein",
-                u"temps_partiel",
-#                u"forfait_heures_semaines",
-#                u"forfait_heures_mois",
-                u"forfait_heures_annee",
-                u"forfait_jours_annee",
-                ],
-            ),
-        ),
-    entity_class = Individus,
-    label = u"Type contrat de travail, de forfait ou de convention de rémunération des heures travaillées",
-    name = 'contrat_de_travail',
     )
 reference_input_variable(
     column = IntCol(),
