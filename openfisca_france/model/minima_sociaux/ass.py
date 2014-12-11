@@ -44,7 +44,7 @@ class ass_eligibilite_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class base_ressources_ass_i(SimpleFormulaColumn):
+class ass_base_ressources_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity_class = Individus
@@ -60,14 +60,14 @@ class base_ressources_ass_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class base_ressources_ass(SimpleFormulaColumn):
+class ass_base_ressources(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
     entity_class = Familles
 
-    def function(self, period, base_ressources_ass_i_holder):
-        base_ressources_ass_i = self.split_by_roles(base_ressources_ass_i_holder, roles = [CHEF, PART])
-        return base_ressources_ass_i[CHEF] + base_ressources_ass_i[PART]
+    def function(self, period, ass_base_ressources_i_holder):
+        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
+        return ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
@@ -79,7 +79,7 @@ class ass(SimpleFormulaColumn):
     label = u"Montant de l'ASS pour une famille"
     entity_class = Familles
 
-    def function(self, base_ressources_ass, ass_eligibilite_i_holder, concub, ass_params = law.minim.ass):
+    def function(self, ass_base_ressources, ass_eligibilite_i_holder, concub, ass_params = law.minim.ass):
         '''
         L’Allocation de Solidarité Spécifique (ASS) est une allocation versée aux
         personnes ayant épuisé leurs droits à bénéficier de l'assurance chômage.
@@ -117,7 +117,7 @@ class ass(SimpleFormulaColumn):
         plafond = plafond_mensuel * 12
         montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
 
-        revenus = base_ressources_ass + 12 * montant_mensuel
+        revenus = ass_base_ressources + 12 * montant_mensuel
 
         ass = 12 * montant_mensuel * (revenus <= plafond) + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0)
         ass = ass * elig
