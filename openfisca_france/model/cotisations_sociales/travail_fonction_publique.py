@@ -30,18 +30,11 @@ import math
 
 from numpy import maximum as max_, minimum as min_, zeros
 
-from ..base import (
-    CAT, FloatCol, Individus, QUIFAM, QUIFOY, QUIMEN, reference_formula, SimpleFormulaColumn, TAUX_DE_PRIME,
-    )
-
-
-CHEF = QUIFAM['chef']
-log = logging.getLogger(__name__)
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
-
-
+from ..base import *
 from .travail_prive import apply_bareme_for_relevant_type_sal
+
+
+log = logging.getLogger(__name__)
 
 
 @reference_formula

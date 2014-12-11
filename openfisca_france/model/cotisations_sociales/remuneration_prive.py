@@ -25,28 +25,14 @@
 
 from __future__ import division
 
-
 import logging
-
 
 from numpy import maximum as max_
 
-
-from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
-
-
-from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
-from ..base import Individus, reference_formula
+from ..base import *
 
 
 log = logging.getLogger(__name__)
-
-
-CHEF = QUIFAM['chef']
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
 
 
 @reference_formula

@@ -25,33 +25,13 @@
 boum
 from __future__ import division
 
-import datetime
 import logging
 
 from numpy import (logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, zeros)
-from openfisca_core.accessors import law
-from openfisca_core.enumerations import Enum
-from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
-
-from ..base import (FloatCol, FoyersFiscaux, Individus, EntityToPersonColumn, QUIFAM, QUIFOY, QUIMEN, reference_formula,
-    SimpleFormulaColumn)
 
 
-TAUX_DE_PRIME = 1 / 4  # primes (hors supplément familial et indemnité de résidence) / rémunération brute
-
-
-CAT = Enum(['prive_non_cadre',
-            'prive_cadre',
-            'public_titulaire_etat',
-            'public_titulaire_militaire',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire'])
-CHEF = QUIFAM['chef']
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 log = logging.getLogger(__name__)
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
 
 
 # TODO: contribution patronale de prévoyance complémentaire
@@ -597,7 +577,7 @@ class rev_microsocial(SimpleFormulaColumn):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
-    start_date = datetime.date(2009, 1, 1)
+    start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
 
     def function(self, assiette_service, assiette_vente, assiette_proflib, _P):

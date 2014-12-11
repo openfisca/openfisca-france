@@ -22,6 +22,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
 import logging
@@ -29,13 +30,10 @@ import logging
 from numpy import logical_not as not_
 from scipy.optimize import fsolve
 
-from openfisca_core.accessors import law
 from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
 
-
-from .base import FloatCol, Individus, reference_formula, select_function, SelectFormulaColumn
+from .base import *
 from .cotisations_sociales.remplacement import exo_csg_chom
-from .base import CAT, TAUX_DE_PRIME
 
 
 log = logging.getLogger(__name__)

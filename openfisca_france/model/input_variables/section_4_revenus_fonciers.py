@@ -23,11 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import datetime
-
-from openfisca_core.columns import IntCol
-
-from ..base import build_column
+from ..base import *
 
 
 # Revenus fonciers
@@ -63,4 +59,4 @@ build_column('f4bf', IntCol(entity = 'foy',
     cerfa_field = u'4BF'))
 
 build_column('f4bl', IntCol(entity = 'foy', label = u"",
-    end = datetime.date(2009, 12, 31)))  # TODO: cf 2010 2011
+    end = date(2009, 12, 31)))  # TODO: cf 2010 2011

@@ -27,8 +27,8 @@ from datetime import date
 import functools
 
 from openfisca_core.accessors import law
-from openfisca_core.columns import (AgeCol, BoolCol, build_column, EnumCol, FloatCol, PeriodSizeIndependentIntCol,
-    reference_input_variable)
+from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
+    PeriodSizeIndependentIntCol, reference_input_variable, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (alternative_function, AlternativeFormulaColumn, dated_function, DatedFormulaColumn,
     EntityToPersonColumn, make_reference_formula_decorator, PersonToEntityColumn, select_function, SelectFormulaColumn,
@@ -48,6 +48,7 @@ __all__ = [
     'CONJ',
     'CREF',
     'date',
+    'DateCol',
     'dated_function',
     'DatedFormulaColumn',
     'ENFS',
@@ -55,9 +56,11 @@ __all__ = [
     'Enum',
     'EnumCol',
     'Familles',
+    'FixedStrCol',
     'FloatCol',
     'FoyersFiscaux',
     'Individus',
+    'IntCol',
     'law',
     'Menages',
     'PAC1',
@@ -75,17 +78,20 @@ __all__ = [
     'SelectFormulaColumn',
     'select_function',
     'SimpleFormulaColumn',
+    'StrCol',
     'TAUX_DE_PRIME',
     'VOUS',
     ]
 
-CAT = Enum(['prive_non_cadre',
-            'prive_cadre',
-            'public_titulaire_etat',
-            'public_titulaire_militaire',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire'])
+CAT = Enum([
+    'prive_non_cadre',
+    'prive_cadre',
+    'public_titulaire_etat',
+    'public_titulaire_militaire',
+    'public_titulaire_territoriale',
+    'public_titulaire_hospitaliere',
+    'public_non_titulaire',
+    ])
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 

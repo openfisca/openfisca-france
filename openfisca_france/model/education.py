@@ -1,30 +1,36 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+
+# OpenFisca -- A versatile microsimulation software
+# By: OpenFisca Team <contact@openfisca.fr>
+#
+# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# https://github.com/openfisca
 #
 # This file is part of OpenFisca.
-# OpenFisca is a socio-fiscal microsimulation software
-# Copyright © 2011 Clément Schaff, Mahdi Ben Jelloul
-# Licensed under the terms of the GPL (version 3 or later) license
-# (see openfisca/__init__.py for details)
+#
+# OpenFisca is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# OpenFisca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 from __future__ import division
 
 from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_)
 from numpy.core.defchararray import startswith
 
-from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol, EnumCol, reference_input_variable
-from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import SimpleFormulaColumn
-
-from .base import QUIFAM, QUIFOY, reference_formula
+from .base import *
 from .pfam import nb_enf
-from ..entities import Familles, Individus
 
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
 
 SCOLARITE_INCONNUE = 0
 SCOLARITE_COLLEGE = 1

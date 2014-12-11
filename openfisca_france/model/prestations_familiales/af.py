@@ -26,20 +26,9 @@
 from __future__ import division
 
 from numpy import round, maximum as max_
-from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
 
-
-from ..base import QUIFAM, QUIFOY, Familles, reference_formula
+from ..base import *
 from ..pfam import nb_enf, age_aine
-
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
 
 
 @reference_formula

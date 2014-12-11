@@ -25,24 +25,16 @@
 
 from __future__ import division
 
-
 import logging
 import math
 
 from numpy import logical_not as not_, zeros
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
 
-from ..base import CAT, Individus, QUIFAM, QUIFOY, QUIMEN, reference_formula
+from ..base import *
 
 
-CHEF = QUIFAM['chef']
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 log = logging.getLogger(__name__)
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
-
-
 taux_versement_transport_by_localisation_entreprise = None
 
 

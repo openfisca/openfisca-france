@@ -23,13 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from datetime import date
-
-from openfisca_core.columns import BoolCol, DateCol, EnumCol, IntCol, PeriodSizeIndependentIntCol, StrCol
-from openfisca_core.enumerations import Enum
-
-from ... import entities
-from ..base import build_column, QUIFAM, QUIFOY, QUIMEN, reference_input_variable
+from ..base import *
 
 
 ### VARIABLES MANQUANTES dans OpenFisca : ###
@@ -50,11 +44,10 @@ build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
 
 build_column('birth', DateCol(is_permanent = True, label = u"Date de naissance"))
 
-build_column(entities.Familles.name_key, StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
-build_column(entities.FoyersFiscaux.name_key, StrCol(entity = 'foy', is_permanent = True,
-    label = u"Nom"))
-build_column(entities.Individus.name_key, StrCol(is_permanent = True, label = u"Prénom"))
-build_column(entities.Menages.name_key, StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
+build_column(Familles.name_key, StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
+build_column(FoyersFiscaux.name_key, StrCol(entity = 'foy', is_permanent = True, label = u"Nom"))
+build_column(Individus.name_key, StrCol(is_permanent = True, label = u"Prénom"))
+build_column(Menages.name_key, StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
 
 #build_column( TODO: REMOVEME Now in travail_base
 #    'type_sal',

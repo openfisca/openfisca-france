@@ -23,14 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# TODO: add start and end dates
-
-
-from datetime import date
-
-from openfisca_core.columns import BoolCol, IntCol, PeriodSizeIndependentIntCol
-
-from ..base import build_column, QUIFOY
+from ..base import *
 
 
 # Dons à des organismes établis en France

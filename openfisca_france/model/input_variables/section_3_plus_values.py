@@ -23,35 +23,31 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import datetime
-
-from openfisca_core.columns import IntCol
-
-from ..base import build_column, QUIFOY
+from ..base import *
 
 
 build_column('f3si', IntCol(entity = 'foy',
-                start = datetime.date(2012, 1, 1)))  # TODO: parmi ces cas créer des valeurs individuelles
+                start = date(2012, 1, 1)))  # TODO: parmi ces cas créer des valeurs individuelles
 #                                    # correspond à autre chose en 2009, vérifier 2011,2010
 
-build_column('f3sa', IntCol(entity = 'foy', end = datetime.date(2009, 12, 31)))  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
+build_column('f3sa', IntCol(entity = 'foy', end = date(2009, 12, 31)))  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
 
 build_column('f3sf', IntCol(entity = 'foy',
-                start = datetime.date(2012, 1, 1)))  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+                start = date(2012, 1, 1)))  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
 build_column('f3sd', IntCol(entity = 'foy',
-                start = datetime.date(2012, 1, 1)))  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
+                start = date(2012, 1, 1)))  # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
 build_column('f3vc', IntCol(entity = 'foy',
                 label = u"Produits et plus-values exonérés provenant de structure de capital-risque",
                 val_type = "monetary",
-                start = datetime.date(2006, 1, 1),
+                start = date(2006, 1, 1),
                 cerfa_field = u'3VC'))
 
 build_column('f3vd', IntCol(entity = 'ind',
                 label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %",
                 val_type = "monetary",
-                start = datetime.date(2008, 1, 1),
+                start = date(2008, 1, 1),
                 cerfa_field = {QUIFOY['vous']: u"3VD",
                                QUIFOY['conj']: u"3SD",
                                }))  # (f3vd, f3sd)
@@ -88,8 +84,8 @@ build_column('f3vf', IntCol(entity = 'ind',
 # ##                 label = u"Distributions par des sociétés de capital-risque taxables à 24 %",
 # ##                 val_type = "monetary",
 # ##                 cerfa_field = u'3VL'
-# ##                 start = datetime.date(2009, 1, 1),
-# ##                 end = datetime.date(2009, 12, 31)))#vérifier avant 2009
+# ##                 start = date(2009, 1, 1),
+# ##                 end = date(2009, 12, 31)))#vérifier avant 2009
 
 build_column('f3vl', IntCol(entity = 'foy',
                 label = u"Distributions par des sociétés de capital-risque taxables à 19 %",
@@ -111,7 +107,7 @@ build_column('f3vm', IntCol(entity = 'foy',
 build_column('f3vt', IntCol(entity = 'foy',
                 label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %",
                 val_type = "monetary",
-                start = datetime.date(2010, 1, 1),
+                start = date(2010, 1, 1),
                 cerfa_field = u'3VT'))
 
 build_column('f3vj', IntCol(entity = 'ind',
@@ -124,7 +120,7 @@ build_column('f3vj', IntCol(entity = 'ind',
 build_column('f3va', IntCol(entity = 'ind',
                 label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values",
                 val_type = "monetary",
-                start = datetime.date(2006, 1, 1),
+                start = date(2006, 1, 1),
                 cerfa_field = {QUIFOY['vous']: u"3VA",
                                QUIFOY['conj']: u"3VB",
                                }))  # (f3va, f3vb )))
@@ -142,17 +138,17 @@ build_column('f3vh', IntCol(entity = 'foy',
                 cerfa_field = u'3VH'))
 
 build_column('f3vu', IntCol(entity = 'foy',
-                end = datetime.date(2009, 12, 31)))  # TODO: vérifier pour 2010 et 2011
+                end = date(2009, 12, 31)))  # TODO: vérifier pour 2010 et 2011
 
 build_column('f3vv', IntCol(entity = 'foy',
     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé",
     val_type = "monetary",
-    start = datetime.date(2013, 1, 1),
+    start = date(2013, 1, 1),
     cerfa_field = u'3VV'))  # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
 
 build_column('f3vv_end_2010', IntCol(entity = 'foy',
-    start = datetime.date(2010, 1, 1),
-    end = datetime.date(2010, 12, 31),
+    start = date(2010, 1, 1),
+    end = date(2010, 12, 31),
     label = u"Pertes ouvrant droit au crédit d’impôt de 19 % ",
     val_type = "monetary",
     cerfa_field = u'3VV'))
@@ -161,4 +157,4 @@ build_column('f3vz', IntCol(entity = 'foy',
                  label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles",
                  val_type = "monetary",
                  cerfa_field = u'3VZ',
-                 start = datetime.date(2011, 1, 1)))  # TODO: vérifier avant 2012
+                 start = date(2011, 1, 1)))  # TODO: vérifier avant 2012

@@ -22,25 +22,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
-
-import datetime
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
-from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol, IntCol, BoolCol
-from openfisca_core.formulas import SimpleFormulaColumn, dated_function, DatedFormulaColumn
-
-from ..base import Familles, Individus, QUIFAM, QUIFOY, reference_formula
+from ..base import *
 from ..pfam import nb_enf, age_en_mois_benjamin
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'],
-        QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
 
 
 @reference_formula
@@ -68,7 +56,7 @@ class aefa(DatedFormulaColumn):
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"
 
-    @dated_function(start = datetime.date(2009, 1, 1), stop = datetime.date(2015, 12, 31))
+    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(self, age_holder, smic55_holder, af_nbenf, nb_par, ass, aer_holder, api, rsa, af = law.fam.af,
                         P = law.minim.aefa):
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -94,7 +82,7 @@ class aefa(DatedFormulaColumn):
         aefa = max_(aefa_maj, aefa)
         return aefa
 
-    @dated_function(start = datetime.date(2008, 1, 1), stop = datetime.date(2008, 12, 31))
+    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(self, age_holder, smic55_holder, af_nbenf, nb_par, ass, aer_holder, api, rsa, af = law.fam.af,
                       P = law.minim.aefa):
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -121,7 +109,7 @@ class aefa(DatedFormulaColumn):
         aefa = max_(aefa_maj, aefa)
         return aefa
 
-    @dated_function(start = datetime.date(2002, 1, 1), stop = datetime.date(2007, 12, 31))
+    @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(self, age_holder, smic55_holder, af_nbenf, nb_par, ass, aer_holder, api, rsa, af = law.fam.af,
                         P = law.minim.aefa):
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -158,7 +146,7 @@ class api(DatedFormulaColumn):
     label = u"Allocation de parent isolé"
     url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
 
-    @dated_function(stop = datetime.date(2009, 5, 31))
+    @dated_function(stop = date(2009, 5, 31))
     def function__2009(self, agem_holder, age_holder, smic55_holder, isol, rsa_forfait_logement, br_rmi, af_majo, rsa,
                        af = law.fam.af, api = law.minim.api):
         """
@@ -279,15 +267,15 @@ class br_rmi_pf(DatedFormulaColumn):
     entity_class = Familles
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
 
-    @dated_function(datetime.date(2002, 1, 1), datetime.date(2003, 12, 31))
+    @dated_function(date(2002, 1, 1), date(2003, 12, 31))
     def function_2002(self, af_base, cf, asf, apje, ape, P = law.minim):
         return P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
 
-    @dated_function(datetime.date(2004, 1, 1), datetime.date(2014, 3, 31))
+    @dated_function(date(2004, 1, 1), date(2014, 3, 31))
     def function_2003(self, af_base, cf, asf, paje_base, paje_clca, paje_colca, P = law.minim):
         return P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
 
-    @dated_function(datetime.date(2014, 4, 1))
+    @dated_function(date(2014, 4, 1))
     def function_2014(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
         return P.rmi.pfInBRrmi * (af_base + cf + rsa_forfait_asf + paje_base + paje_clca + paje_colca)
 
@@ -361,7 +349,7 @@ class psa(DatedFormulaColumn):
     label = u"Prime de solidarité active"
     url = u"http://www.service-public.fr/actualites/001077.html"
 
-    @dated_function(start = datetime.date(2009, 1, 1), stop = datetime.date(2009, 12, 31))
+    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_2009(self, api, rsa, activite_holder, af_nbenf, al, P = law.minim.rmi):
         '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
@@ -387,7 +375,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity_class = Individus
 
-    @dated_function(datetime.date(2009, 6, 1))
+    @dated_function(date(2009, 6, 1))
     def function_2009_(self, interets_epargne_sur_livrets, epargne_non_remuneree, revenus_capital,
                        valeur_locative_immo_non_loue, valeur_locative_terrains_non_loue, revenus_locatifs,
                        rsa = law.minim.rmi):
@@ -428,7 +416,7 @@ class rsa_forfait_asf(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
-    start_date = datetime.date(2014, 4, 1)
+    start_date = date(2014, 4, 1)
 
     def function(self, asf_elig, asf_nbenf, bmaf = law.fam.af.bmaf, forfait_asf = law.minim.rmi.forfait_asf):
         return asf_elig * max_(0, asf_nbenf * bmaf * forfait_asf.taux1)
@@ -474,7 +462,7 @@ class crds_mini(DatedFormulaColumn):
     entity_class = Familles
     label = u"CRDS versée sur les minimas sociaux"
 
-    @dated_function(start = datetime.date(2009, 6, 1))
+    @dated_function(start = date(2009, 6, 1))
     def function_2009_(self, rsa_act, taux_crds = law.fam.af.crds):
         """
         CRDS sur les minima sociaux
@@ -491,7 +479,7 @@ class rsa_act(DatedFormulaColumn):
     entity_class = Familles
     label = u"Revenu de solidarité active - activité"
 
-    @dated_function(datetime.date(2009, 6, 1))
+    @dated_function(date(2009, 6, 1))
     def function_2009(self, rsa, rmi):
         '''
         Calcule le montant du RSA activité
@@ -509,7 +497,7 @@ class rsa_act_i(DatedFormulaColumn):
     entity_class = Individus
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
 
-    @dated_function(datetime.date(2009, 6, 1))
+    @dated_function(date(2009, 6, 1))
     def function_2009_(self, rsa_act_holder, concub_holder, maries_holder, quifam):
         # Note: le partage en moitié est un point de législation, pas un choix arbitraire.
         concub = self.cast_from_entity_to_roles(concub_holder)
@@ -567,7 +555,7 @@ class rsa_socle_majore(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Majoration pour parent isolé du Revenu de solidarité active socle"
-    start_date = datetime.date(2009, 6, 1)
+    start_date = date(2009, 6, 1)
 
     def function(self, enceinte_fam, age_holder, smic55_holder, nb_par, isol, rmi = law.minim.rmi):
         age_enf = self.split_by_roles(age_holder, roles = ENFS)
@@ -587,7 +575,7 @@ class rmi(DatedFormulaColumn):
     entity_class = Familles
     label = u"Revenu Minimum d'Insertion"
 
-    @dated_function(datetime.date(1988, 12, 1), datetime.date(2009, 5, 31))
+    @dated_function(date(1988, 12, 1), date(2009, 5, 31))
     def function(self, rsa_socle, rsa_forfait_logement, br_rmi):
         return max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
 

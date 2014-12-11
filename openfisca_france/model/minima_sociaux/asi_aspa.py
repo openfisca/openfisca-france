@@ -22,26 +22,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
-import datetime
 from numpy import (maximum as max_, logical_not as not_)
 
-from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol, IntCol
-from openfisca_core.formulas import SimpleFormulaColumn, DatedFormulaColumn
-
-from ..base import QUIFAM, QUIFOY, reference_formula, dated_function
-from ...entities import Familles, Individus
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [
-    QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'],
-    QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'],
-    ]
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
+from ..base import *
 
 
 @reference_formula
@@ -102,6 +88,7 @@ class aspa_elig(SimpleFormulaColumn):
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
+
 @reference_formula
 class asi_aspa_nb_alloc(SimpleFormulaColumn):
     column = IntCol
@@ -135,7 +122,7 @@ class asi_elig(SimpleFormulaColumn):
 class asi(SimpleFormulaColumn):
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
-    start_date = datetime.date(2007, 1, 1)
+    start_date = date(2007, 1, 1)
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity_class = Familles
 
@@ -193,17 +180,18 @@ class asi(SimpleFormulaColumn):
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
+
 @reference_formula
 class aspa_couple(DatedFormulaColumn):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity_class = Familles
 
-    @dated_function(datetime.date(2002, 1, 1), datetime.date(2006, 12, 31))
+    @dated_function(date(2002, 1, 1), date(2006, 12, 31))
     def function_2002_2006(self, maries):
         return maries
 
-    @dated_function(datetime.date(2007, 1, 1))
+    @dated_function(date(2007, 1, 1))
     def function_2007(self, concub):
         return concub
 

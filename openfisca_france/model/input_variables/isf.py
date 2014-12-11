@@ -26,9 +26,7 @@
 """Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF"""
 
 
-from openfisca_core.columns import IntCol
-
-from ..base import build_column
+from ..base import *
 
 
 ## Immeubles bâtis

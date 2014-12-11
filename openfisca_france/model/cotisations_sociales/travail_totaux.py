@@ -25,27 +25,17 @@
 
 from __future__ import division
 
-import datetime
 import logging
 
 from numpy import logical_not as not_
 
-
-from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import EntityToPersonColumn, SimpleFormulaColumn
 from openfisca_core.taxscales import scale_tax_scales
 
-
-from ..base import QUIFAM, QUIFOY, QUIMEN
-from ..base import FoyersFiscaux, Individus, reference_formula
+from ..base import *
 
 
-CHEF = QUIFAM['chef']
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 log = logging.getLogger(__name__)
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
 
 
 # TODO: intégrer prise_en_charge_employeur_prevoyance_complementaire
@@ -359,7 +349,7 @@ class rev_microsocial(SimpleFormulaColumn):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
-    start_date = datetime.date(2009, 1, 1)
+    start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
 
     def function(self, assiette_service, assiette_vente, assiette_proflib, _P):

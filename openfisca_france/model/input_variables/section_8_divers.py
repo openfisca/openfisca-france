@@ -23,11 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from datetime import date
-
-from openfisca_core.columns import BoolCol, IntCol
-
-from ..base import build_column
+from ..base import *
 
 
 # Avoir fiscaux et crédits d'impôt

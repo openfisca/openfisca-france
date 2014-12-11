@@ -25,22 +25,11 @@
 
 from __future__ import division
 
-import datetime
 import logging
+
 from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
 
-
-from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import dated_function, DatedFormulaColumn, SimpleFormulaColumn
-
-from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
-from ..base import Individus, reference_formula
-
-
-CHEF = QUIFAM['chef']
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
+from ..base import *
 
 
 log = logging.getLogger(__name__)
@@ -68,7 +57,7 @@ class ratio_smic_salaire(DatedFormulaColumn):
     entity_class = Individus
     label = u"Ratio smic/salaire pour le calcul de l'allègement Fillon"
 
-    @dated_function(start = datetime.date(2012, 1, 1))
+    @dated_function(start = date(2012, 1, 1))
     def function_2012(self, smic_proratise, salbrut, contrat_de_travail,
                       smic_horaire_brut = law.cotsoc.gen.smic_h_b):
         # salbrut_annuel 2012 nombre_heures_remunerees incluent hsup à partir de 2012
@@ -76,7 +65,7 @@ class ratio_smic_salaire(DatedFormulaColumn):
         ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
         return ratio_smic_salaire
 
-    @dated_function(start = datetime.date(2011, 1, 1), stop = datetime.date(2011, 12, 31))
+    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_2011(self, smic_proratise, salbrut, contrat_de_travail,
                       smic_horaire_brut = law.cotsoc.gen.smic_h_b):
         # TODO
@@ -85,7 +74,7 @@ class ratio_smic_salaire(DatedFormulaColumn):
         ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
         return ratio_smic_salaire
 
-    @dated_function(start = datetime.date(2005, 7, 1), stop = datetime.date(2010, 12, 31))
+    @dated_function(start = date(2005, 7, 1), stop = date(2010, 12, 31))
     def function_2007_2010(self, smic_proratise, salbrut, contrat_de_travail,
                            smic_horaire_brut = law.cotsoc.gen.smic_h_b):
         # TODO: revoir la législation
@@ -103,7 +92,7 @@ class ratio_smic_salaire_anticipe(DatedFormulaColumn):
     entity_class = Individus
     label = u"Ratio smic/salaire pour le calcul de l'allègement Fillon"
 
-    @dated_function(start = datetime.date(2012, 1, 1))
+    @dated_function(start = date(2012, 1, 1))
     def function_2012(self, smic_proratise, salbrut, contrat_de_travail,
                       smic_horaire_brut = law.cotsoc.gen.smic_h_b):
         # salbrut_annuel 2012 nombre_heures_remunerees incluent hsup à partir de 2012
@@ -111,7 +100,7 @@ class ratio_smic_salaire_anticipe(DatedFormulaColumn):
         ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
         return ratio_smic_salaire
 
-    @dated_function(start = datetime.date(2011, 1, 1), stop = datetime.date(2011, 12, 31))
+    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_2011(self, smic_proratise, salbrut, contrat_de_travail,
                       smic_horaire_brut = law.cotsoc.gen.smic_h_b):
         # TODO
@@ -120,7 +109,7 @@ class ratio_smic_salaire_anticipe(DatedFormulaColumn):
         ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
         return ratio_smic_salaire
 
-    @dated_function(start = datetime.date(2005, 7, 1), stop = datetime.date(2010, 12, 31))
+    @dated_function(start = date(2005, 7, 1), stop = date(2010, 12, 31))
     def function_2007_2010(self, smic_proratise, salbrut, contrat_de_travail,
                            smic_horaire_brut = law.cotsoc.gen.smic_h_b):
         # TODO: revoir la législation
@@ -138,7 +127,7 @@ class allegement_fillon_annuel(DatedFormulaColumn):   # annuel
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
-    @dated_function(datetime.date(2005, 7, 1))
+    @dated_function(date(2005, 7, 1))
     def function(self, ratio_smic_salaire, salbrut, taille_entreprise, type_sal,
                  cotsoc = law.cotsoc):
 
@@ -161,7 +150,7 @@ class allegement_fillon_anticipe(DatedFormulaColumn):
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
-    @dated_function(datetime.date(2005, 7, 1))
+    @dated_function(date(2005, 7, 1))
     def function(self, ratio_smic_salaire_anticipe, salbrut, taille_entreprise, type_sal,
                  cotsoc = law.cotsoc):
 
@@ -184,7 +173,7 @@ class allegement_fillon_cumul_progressif(DatedFormulaColumn):
     entity_class = Individus
     label = u"Allègement Fillon, cumul progressif"
 
-    @dated_function(datetime.date(2005, 7, 1))
+    @dated_function(date(2005, 7, 1))
     def function(self, smic_proratise, salbrut, taille_entreprise, type_sal,
                  cotsoc = law.cotsoc):
 
@@ -216,7 +205,7 @@ class allegement_fillon_cumul_progressif_retarde(DatedFormulaColumn):
     entity_class = Individus
     label = u"Allègement Fillon, cumul progressif retardé"
 
-    @dated_function(datetime.date(2005, 7, 1))
+    @dated_function(date(2005, 7, 1))
     def function(self, period, smic_proratise, salbrut, taille_entreprise, type_sal,
                  cotsoc = law.cotsoc):
 
@@ -248,7 +237,7 @@ class allegement_fillon(DatedFormulaColumn):
     entity_class = Individus
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
-    @dated_function(datetime.date(2005, 7, 1))
+    @dated_function(date(2005, 7, 1))
     def function(self, period, allegement_fillon_anticipe, allegement_fillon_annuel, allegement_fillon_cumul_progressif,
                  allegement_fillon_cumul_progressif_retarde, allegement_fillon_mode_recouvrement,
                  cotsoc = law.cotsoc):
@@ -290,7 +279,7 @@ class alleg_cice(DatedFormulaColumn):
     entity_class = Individus
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
 
-    @dated_function(datetime.date(2013, 1, 1))
+    @dated_function(date(2013, 1, 1))
     def function_2013_(self, ratio_smic_salaire, salbrut, taille_entreprise, type_sal,
                        cotsoc = law.cotsoc):
 

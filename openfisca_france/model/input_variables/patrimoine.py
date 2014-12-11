@@ -23,9 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core.columns import FloatCol
-
-from ..base import build_column
+from ..base import *
 
 
 build_column('interets_epargne_sur_livrets', FloatCol(entity = 'ind', is_permanent = True, label = u"Intérêts versés pour l'épargne sur livret"))

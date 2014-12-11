@@ -30,7 +30,8 @@ import logging
 
 from numpy import maximum as max_, minimum as min_
 from openfisca_core import formulas, reforms, tools
-from openfisca_core.columns import FloatCol
+
+from ..base import *
 
 
 log = logging.getLogger(__name__)

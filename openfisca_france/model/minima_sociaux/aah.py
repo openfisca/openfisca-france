@@ -25,15 +25,8 @@
 from __future__ import division
 
 from numpy import (maximum as max_)
-from openfisca_core.accessors import law
 
-from ..base import QUIFAM, QUIFOY
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
+from ..base import *
 
 
 def _br_aah(br_pf, asi, aspa):

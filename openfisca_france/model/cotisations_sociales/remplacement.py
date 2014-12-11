@@ -10,14 +10,11 @@
 from __future__ import division
 
 import logging
-import datetime
 
 from numpy import logical_not as not_
-
-from openfisca_core.accessors import law
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
 
-from ..base import FloatCol, Individus, reference_formula, SimpleFormulaColumn, dated_function, DatedFormulaColumn
+from ..base import *
 
 
 log = logging.getLogger(__name__)
@@ -224,7 +221,7 @@ class casa(DatedFormulaColumn):
     label = u"Contribution additionnelle de solidarité et d'autonomie"
     url = u"http://www.service-public.fr/actualites/002691.html"
 
-    @dated_function(datetime.date(2013, 4, 1))
+    @dated_function(date(2013, 4, 1))
     def function_2013(self, rstbrut, irpp_holder, csg_rempl, P = law):
         # TODO: replace irpp by irpp_n_2
         # TODO: utiliser la bonne période pour irpp_holder

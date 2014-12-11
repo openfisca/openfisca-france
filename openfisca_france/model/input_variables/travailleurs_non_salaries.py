@@ -23,10 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core.columns import FloatCol, EnumCol
-from openfisca_core.enumerations import Enum
-
-from ..base import build_column
+from ..base import *
 
 
 build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))

@@ -29,17 +29,11 @@ import copy
 import logging
 
 from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
-from openfisca_core.enumerations import Enum
 from openfisca_core.legislations import CompactNode
 
+from ..base import *
 
-CAT = Enum(['prive_non_cadre',
-            'prive_cadre',
-            'public_titulaire_etat',
-            'public_titulaire_militaire',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire'])
+
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
 log = logging.getLogger(__name__)
 

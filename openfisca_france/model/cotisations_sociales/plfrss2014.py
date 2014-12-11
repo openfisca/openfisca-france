@@ -30,19 +30,11 @@ import logging
 
 from numpy import maximum as max_, minimum as min_
 from openfisca_core import formulas, reforms, tools
-from openfisca_core.columns import FloatCol
-from openfisca_core.enumerations import Enum
+
+from ..base import *
 
 
 log = logging.getLogger(__name__)
-
-CAT = Enum(['prive_non_cadre',
-            'prive_cadre',
-            'public_titulaire_etat',
-            'public_titulaire_militaire',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire'])
 
 
 def _alleg_plfrss2014_prive(salbrut, sal_h_b, type_sal, _P):

@@ -23,10 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_core.columns import BoolCol, EnumCol, FixedStrCol, FloatCol, IntCol, reference_input_variable
-from openfisca_core.enumerations import Enum
-
-from ...entities import Individus
+from ..base import *
 
 
 # Socio-economic data

@@ -26,28 +26,16 @@
 from __future__ import division
 
 
-import datetime
 import logging
 
 from numpy import int16, ones
-from openfisca_core.accessors import law
-from openfisca_core.enumerations import Enum
-from openfisca_core.columns import EnumCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
 
-
-from ..base import CAT, QUIFAM, QUIFOY, QUIMEN
-from ..base import Individus, reference_formula
-
+from ..base import *
 from . import apply_bareme_for_relevant_type_sal
 
-CHEF = QUIFAM['chef']
+
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 log = logging.getLogger(__name__)
-PREF = QUIMEN['pref']
-VOUS = QUIFOY['vous']
-
-
 taux_versement_transport_by_localisation_entreprise = None
 
 
@@ -684,7 +672,7 @@ class taux_accident_travail(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
-    start_date = datetime.date(2012, 1, 1)
+    start_date = date(2012, 1, 1)
 
     def function(self, exposition_accident, period, accident = law.cotsoc.accident):
         return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \

@@ -22,21 +22,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
 from numpy import maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
-from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
 
-from ..base import QUIFAM, QUIFOY, reference_formula
-from ...entities import Familles, Individus
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
-CONJ = QUIFOY['conj']
+from ..base import *
 
 
 @reference_formula
@@ -120,7 +111,7 @@ class ass(SimpleFormulaColumn):
         '''
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
-        majo = 0 # TODO
+        majo = 0  # TODO
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
         plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
         plafond = plafond_mensuel * 12
@@ -130,7 +121,7 @@ class ass(SimpleFormulaColumn):
 
         ass = 12 * montant_mensuel * (revenus <= plafond) + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0)
         ass = ass * elig
-        ass = ass * not_(ass / 12 < ass_params.montant_plein) # pas d'ASS si montant mensuel < montant journalier de base
+        ass = ass * not_(ass / 12 < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
         return ass
 

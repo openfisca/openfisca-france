@@ -22,24 +22,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 from __future__ import division
 
-
-import datetime
-
-
-from openfisca_core.accessors import law
-from openfisca_core.columns import FloatCol
-
-
-from .base import QUIFAM, QUIFOY, reference_formula, DatedFormulaColumn, dated_function
-from ..entities import Individus
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'],
-        QUIFAM['enf6'], QUIFAM['enf7'], QUIFAM['enf8'], QUIFAM['enf9'], ]
-VOUS = QUIFOY['vous']
+from .base import *
 
 
 @reference_formula
@@ -49,7 +35,7 @@ class tns_total_revenus(DatedFormulaColumn):
     entity_class = Individus
 #    start = "2008-01-01"
 
-    @dated_function(datetime.date(2007, 1, 1))
+    @dated_function(date(2007, 1, 1))
     def function_2008__(self, tns_autres_revenus, tns_type_structure, tns_type_activite,
                         tns_chiffre_affaires_micro_entreprise, bareme = law.tns):
         cs_ae = bareme.auto_entrepreneur

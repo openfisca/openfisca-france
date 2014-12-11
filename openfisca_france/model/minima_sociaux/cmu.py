@@ -25,25 +25,10 @@
 
 from __future__ import division
 
-import datetime
 from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros
 from numpy.core.defchararray import startswith
 
-from openfisca_core.accessors import law
-from openfisca_core.columns import BoolCol, FloatCol, PeriodSizeIndependentIntCol
-from openfisca_core.formulas import SimpleFormulaColumn, DatedFormulaColumn
-
-from ..base import QUIFAM, QUIFOY, reference_formula, dated_function
-from ...entities import Familles, Individus
-
-
-CHEF = QUIFAM['chef']
-PART = QUIFAM['part']
-ENFS = [
-    QUIFAM['enf1'], QUIFAM['enf2'], QUIFAM['enf3'], QUIFAM['enf4'], QUIFAM['enf5'], QUIFAM['enf6'], QUIFAM['enf7'],
-    QUIFAM['enf8'], QUIFAM['enf9'],
-    ]
-VOUS = QUIFOY['vous']
+from ..base import *
 
 
 @reference_formula
@@ -52,21 +37,21 @@ class acs_montant(DatedFormulaColumn):
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"
 
-    @dated_function(datetime.date(2000, 1, 1), datetime.date(2009, 7, 31))
+    @dated_function(date(2000, 1, 1), date(2009, 7, 31))
     def function_2000(self, age_holder):
         # TODO
         ages = self.filter_role(age_holder, role = CHEF)
         return 0 * ages
 
-    @dated_function(datetime.date(2009, 8, 1))
+    @dated_function(date(2009, 8, 1))
     def function_2009(self, age_holder, P = law.cmu):
         ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
         ages_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         return ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
-           (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
-           nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
-           nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
+            (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
+            nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
+            nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -104,7 +89,6 @@ class cmu_nbp_foyer(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Nombre de personnes dans le foyer CMU"
 
-
     def function(self, nb_par, cmu_nb_pac):
         return nb_par + cmu_nb_pac
 
@@ -122,7 +106,7 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
         depcom = self.filter_role(depcom, role = CHEF)
 
         return startswith(depcom, '971') | startswith(depcom, '972') | startswith(depcom, '973') | startswith(depcom, '974')
-    
+
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
@@ -276,13 +260,24 @@ class acs(SimpleFormulaColumn):
 ############################################################################
 # Helper functions
 ############################################################################
+
+
+def forfait_logement(nbp_foyer, P, law_rsa):
+    '''
+    Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
+    '''
+    return (12 * rsa_socle_base(nbp_foyer, law_rsa) *
+        ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
+
+
 def nb_par_age(ages, min, max):
     '''
     Calcule le nombre d'individus ayant un âge compris entre min et max
     '''
     res = None
     for key, age in ages.iteritems():
-        if res is None: res = zeros(len(age), dtype = int32)
+        if res is None:
+            res = zeros(len(age), dtype = int32)
         res += (min <= age) & (age <= max)
     return res
 
@@ -292,10 +287,3 @@ def rsa_socle_base(nbp, P):
     Calcule le RSA socle du foyer pour nombre de personnes donné
     '''
     return P.rmi * (1 + P.txp2 * (nbp >= 2) + P.txp3 * (nbp >= 3) + P.txps * max_(0, nbp - 3))
-
-def forfait_logement(nbp_foyer, P, law_rsa):
-    '''
-    Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
-    '''
-    return (12 * rsa_socle_base(nbp_foyer, law_rsa) *
-        ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
