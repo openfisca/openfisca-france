@@ -177,7 +177,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
 
-    def function(self, aspa, so_holder, apl, als, alf, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_base_ressources_i_holder, P = law.cmu):
+    def function(self, aspa, so_holder, aide_logement, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_base_ressources_i_holder, P = law.cmu):
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
 
@@ -188,18 +188,12 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            ((alf + apl + als) > 0) * cmu_forfait_logement_al + aspa)
+            (aide_logement > 0) * cmu_forfait_logement_al + aspa)
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
 
         return res
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['aspa']:
-            return output_period.start.period('year').offset(-1)
-        else:
-            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
