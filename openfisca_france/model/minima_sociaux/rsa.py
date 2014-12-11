@@ -276,8 +276,8 @@ class br_rmi_pf(DatedFormulaColumn):
         return P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
 
     @dated_function(date(2014, 4, 1))
-    def function_2014(self, af_base, cf, paje_base, paje_clca, paje_colca, P = law.minim):
-        return P.rmi.pfInBRrmi * (af_base + cf + paje_base + paje_clca + paje_colca)
+    def function_2014(self, af_base, cf, rsa_forfait_asf, paje_base, paje_clca, paje_colca, P = law.minim):
+        return P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf + paje_base + paje_clca + paje_colca)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -289,10 +289,16 @@ class br_rmi_ms(SimpleFormulaColumn):
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
     entity_class = Familles
 
-    def function(self, aspa, asi, aah_holder, caah_holder):
+    def function(self, aspa, asi, ass, aah_holder, caah_holder):
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
-        return aspa + asi + aah + caah
+        return aspa + asi + ass + aah + caah
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['aah_holder', 'caah_holder']:
+            return output_period.start.period('month', 3).offset(-3)
+        else:
+            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -304,19 +310,22 @@ class br_rmi_i(SimpleFormulaColumn):
     label = u"Base ressource individuelle du RSA/RMI"
     entity_class = Individus
 
-    def function(self, ass_holder, ra_rsa, chonet, rstnet, pensions_alimentaires_percues, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder,
+    def function(self, ra_rsa_i, chonet, rstnet, pensions_alimentaires_percues, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder,
                  rfon_ms, div_ms, gains_exceptionnels, dedommagement_victime_amiante, pensions_invalidite,
                  allocation_aide_retour_emploi, allocation_securisation_professionnelle, prestation_compensatoire,
-                 retraite_combattant, bourse_enseignement_sup, bourse_recherche):
+                 retraite_combattant, bourse_enseignement_sup, bourse_recherche, rsa_base_ressources_patrimoine_i):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-        ass = self.cast_from_entity_to_roles(ass_holder)
-        return (
-            ass + ra_rsa + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
+        return ra_rsa_i + (chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire + retraite_combattant +
-            bourse_enseignement_sup + bourse_recherche
-            )
+            bourse_enseignement_sup + bourse_recherche + rsa_base_ressources_patrimoine_i) / 3
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['ra_rsa_i']:
+            return output_period
+        else:
+            return output_period.start.period('month', 3).offset(-3)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -328,15 +337,15 @@ class br_rmi(SimpleFormulaColumn):
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
 
-    def function(self, br_rmi_pf, br_rmi_ms, br_rmi_i_holder, rsa_base_ressources_patrimoine_i_holder):
+    def function(self, br_rmi_pf, br_rmi_ms, br_rmi_i_holder):
         br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-        rsa_base_ressources_patrimoine_i = self.split_by_roles(
-            rsa_base_ressources_patrimoine_i_holder,
-            roles = [CHEF, PART]
-            )
-        br_rmi = (br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + rsa_base_ressources_patrimoine_i[CHEF] +
-                  br_rmi_i[PART] + rsa_base_ressources_patrimoine_i[PART])
-        return br_rmi
+        return br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + br_rmi_i[PART]
+
+    def get_variable_period(self, output_period, variable_name):
+        if variable_name in ['rsa_base_ressources_patrimoine_i']:
+            return output_period.start.period('month', 3).offset(-3)
+        else:
+            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -396,9 +405,9 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
 
 
 @reference_formula
-class ra_rsa(SimpleFormulaColumn):
+class ra_rsa_i(SimpleFormulaColumn):
     column = FloatCol
-    label = u"Revenus d'activité du Rsa"
+    label = u"Revenus d'activité du Rsa - Individuel"
     entity_class = Individus
 
     def function(self, salnet, hsup, rpns, etr, indemnites_chomage_partiel, indemnites_journalieres_maternite,
@@ -408,7 +417,24 @@ class ra_rsa(SimpleFormulaColumn):
         return (salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus)
+            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus) / 3
+
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period('month', 3).offset(-3)
+
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'month').period('month')
+
+
+@reference_formula
+class ra_rsa(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenus d'activité du RSA"
+    entity_class = Familles
+
+    def function(self, ra_rsa_i_holder):
+        ra_rsa = self.split_by_roles(ra_rsa_i_holder)
+        return ra_rsa[CHEF] + ra_rsa[PART]
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -593,23 +619,11 @@ class rsa(SimpleFormulaColumn):
     label = u"Revenu de solidarité active"
     entity_class = Familles
 
-    def function(self, rsa_socle, rsa_socle_majore, ra_rsa_holder, rsa_forfait_logement, rsa_forfait_asf, br_rmi, P = law.minim.rmi):
-        ra_rsa = self.split_by_roles(ra_rsa_holder, roles = [CHEF, PART])
-
-        # rsa_socle applicable - forfait logement - base ressources + bonification RSA activité
-        base_normalise = max_(
-            max_(rsa_socle, rsa_socle_majore) - rsa_forfait_logement - rsa_forfait_asf - br_rmi / 3 +
-            P.pente * (ra_rsa[CHEF] + ra_rsa[PART]) / 3,
-            0
-            )
+    def function(self, rsa_socle, rsa_socle_majore, ra_rsa, rsa_forfait_logement, rsa_forfait_asf, br_rmi, P = law.minim.rmi):
+        socle = max_(rsa_socle, rsa_socle_majore)
+        base_normalise = max_(socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
 
         return base_normalise * (base_normalise >= P.rsa_nv)
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['ra_rsa_holder', 'br_rmi']:
-            return output_period.start.period('month', 3).offset(-3)
-        else:
-            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
