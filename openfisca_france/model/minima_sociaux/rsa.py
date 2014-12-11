@@ -341,12 +341,6 @@ class br_rmi(SimpleFormulaColumn):
         br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
         return br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + br_rmi_i[PART]
 
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['rsa_base_ressources_patrimoine_i']:
-            return output_period.start.period('month', 3).offset(-3)
-        else:
-            return output_period
-
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
 
