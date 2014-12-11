@@ -25,9 +25,15 @@
 
 from __future__ import division
 
-import logging
 
-from numpy import maximum as max_
+from functools import partial
+import logging
+from numpy import (
+    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
+    minimum as min_, timedelta64
+    )
+from workalendar.europe import France
+
 
 from ..base import *
 
@@ -129,12 +135,32 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
 
     # Source: Guide IPP cotisations sociales déterminations des assiettes (érroné)
 
-    def function(self, contrat_de_travail, volume_heures_non_remunerees, volume_heures_remunerees):
+    # Décompte des jours en début et fin de contrat
+    # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
+
+    def function(self, period, contrat_de_travail, contrat_de_travail_arrivee, contrat_de_travail_depart,
+                 volume_heures_non_remunerees, volume_heures_remunerees):
         # TODO faire remonter dans les paramètres les valeurs codées en dur qui doivent/peuvent l'être
+
+        holidays = [holiday for holiday, _ in France().get_calendar_holidays(period.start.year)]
+        busday_count = partial(original_busday_count, holidays = holidays)
+
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
+
+        mois_incomplet = or_(contrat_de_travail_arrivee > debut_mois, contrat_de_travail_depart < fin_mois)
+
+        jours_travailles = busday_count(
+            max_(contrat_de_travail_arrivee, debut_mois),
+            min_(contrat_de_travail_depart, fin_mois)
+            )
 
         duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
         nombre_heures_remunerees = (
-            (contrat_de_travail == 0) * duree_legale +  # 151.67
+            (contrat_de_travail == 0) * (
+                duree_legale * not_(mois_incomplet) +  # 151.67
+                7 * jours_travailles * mois_incomplet
+                ) +
             (contrat_de_travail == 1) * volume_heures_remunerees +
             (contrat_de_travail == 2) * (volume_heures_remunerees / 45.7) * (52 / 12) +  # forfait heures/annee
             (contrat_de_travail == 3) * duree_legale * (volume_heures_remunerees / 218)  # forfait jours/annee
