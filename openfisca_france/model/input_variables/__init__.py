@@ -25,6 +25,9 @@
 
 from . import (  # noqa
     base,
+    indemnites_allocations,
+    isf,
+    patrimoine,
     section_1_traitements_salaires_ppe_pensions_rentes,
     section_2_revenus_valeurs_capitaux_mobiliers,
     section_3_plus_values,
@@ -33,8 +36,6 @@ from . import (  # noqa
     section_6_charges_deductibles,
     section_7_reductions_et_credits_d_impots,
     section_8_divers,
-    isf,
-    patrimoine,
-    indemnites_allocations,
+    travail_base,
     travailleurs_non_salaries,
     )

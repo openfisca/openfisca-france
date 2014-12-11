@@ -88,20 +88,22 @@ class age(AlternativeFormulaColumn):
         return period.start.offset('first-of', 'year').period('year')
 
 
-def _age_from_agem(agem):
-    return agem // 12
+@reference_formula
+class agem(AlternativeFormulaColumn):
+    column = AgeCol(val_type = "months")
+    entity_class = Individus
+    label = u"Âge (en mois)"
 
+    @alternative_function()
+    def agem_from_birth(self, birth, period):
+        return (datetime64(period.date) - birth).astype('timedelta64[M]')
 
-def _age_from_birth(birth, period):
-    return (datetime64(period.date) - birth).astype('timedelta64[Y]')
+    @alternative_function()
+    def agem_from_age(self, age):
+        return age * 12
 
-
-def _agem_from_age(age):
-    return age * 12
-
-
-def _agem_from_birth(birth, period):
-    return (datetime64(period.date) - birth).astype('timedelta64[M]')
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').period('year')
 
 
 @reference_formula
@@ -641,7 +643,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
         """
         Revenus des valeurs et capitaux mobiliers
         """
-    
+
         f2dc_bis = f2dc
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
@@ -657,16 +659,16 @@ class rev_cat_rvcm(DatedFormulaColumn):
         # partie positive
         g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
         rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
-    
+
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + marpac)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
-    
+
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
-    
+
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
@@ -675,7 +677,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
         """
         Revenus des valeurs et capitaux mobiliers
         """
-    
+
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -692,16 +694,16 @@ class rev_cat_rvcm(DatedFormulaColumn):
         # partie positive
         g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
         rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
-    
+
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + marpac)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
-    
+
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
-    
+
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
@@ -713,7 +715,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc + f2da  # TODO: l'abattement de 40% est déduit uniquement en l'absence de revenus déclarés case 2DA
         f2tr_bis = f2tr + f2ee
-    
+
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
         b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
@@ -727,16 +729,16 @@ class rev_cat_rvcm(DatedFormulaColumn):
         # partie positive
         g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
         rev = g12b + f2fu * (1 - rvcm.abatmob_taux)
-    
+
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + marpac)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
-    
+
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
-    
+
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
@@ -1301,7 +1303,7 @@ class plus_values(DatedFormulaColumn):
         Taxation des plus value
         TODO: f3vt, 2013 f3Vg au barème / tout refaire
         """
-    
+
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
         f3vd = self.filter_role(f3vd_holder, role = VOUS)
         f3sd = self.filter_role(f3vd_holder, role = CONJ)
@@ -1318,7 +1320,7 @@ class plus_values(DatedFormulaColumn):
                plus_values.pea * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
-    
+
         return round(out)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2011, 12, 31))
@@ -1328,7 +1330,7 @@ class plus_values(DatedFormulaColumn):
         Taxation des plus value
         TODO: f3vt, 2013 f3Vg au barème / tout refaire
         """
-    
+
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
         f3vd = self.filter_role(f3vd_holder, role = VOUS)
         f3sd = self.filter_role(f3vd_holder, role = CONJ)
@@ -1348,7 +1350,7 @@ class plus_values(DatedFormulaColumn):
             # revenus taxés à un taux proportionnel
         rdp += f3vd
         out += plus_values.taux1 * f3vd
-    
+
         return round(out)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
@@ -1358,7 +1360,7 @@ class plus_values(DatedFormulaColumn):
         Taxation des plus value
         TODO: f3vt, 2013 f3Vg au barème / tout refaire
         """
-    
+
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
         f3vd = self.filter_role(f3vd_holder, role = VOUS)
         f3sd = self.filter_role(f3vd_holder, role = CONJ)
@@ -1408,7 +1410,7 @@ class plus_values(DatedFormulaColumn):
                plus_values.pea * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
-    
+
         # revenus taxés à un taux proportionnel
         rdp += f3vd
         out += plus_values.taux1 * f3vd
