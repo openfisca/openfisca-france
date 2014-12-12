@@ -23,6 +23,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import datetime
+
+
 from ..base import *
 
 
@@ -49,8 +52,8 @@ reference_input_variable(
             [
                 u"temps_plein",
                 u"temps_partiel",
-#                u"forfait_heures_semaines",
-#                u"forfait_heures_mois",
+                # u"forfait_heures_semaines",
+                # u"forfait_heures_mois",
                 u"forfait_heures_annee",
                 u"forfait_jours_annee",
                 ],
@@ -115,7 +118,7 @@ reference_input_variable(
     name = 'ratio_alternants',
     )
 reference_input_variable(
-    column = FloatCol(default = .015), # 1.5% est le minimum
+    column = FloatCol(default = .015),  # 1.5% est le minimum
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux',

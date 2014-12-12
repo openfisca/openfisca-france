@@ -491,6 +491,10 @@ class fnal_tranche_a(SimpleFormulaColumn):
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
                  _P):
+
+        print "plafond_securite_sociale : ", plafond_securite_sociale
+        print "salbrut: ", salbrut
+
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "fnal1",
@@ -671,7 +675,7 @@ class plafond_securite_sociale(SimpleFormulaColumn):
 
         # TODO: mettre en paramètre durée légale etc plutôt qu'en dur
         plafond_temps_plein = _P.cotsoc.gen.plaf_ss
-        plafond_securite_sociale = nombre_jours_calendaires / 30 * plafond_temps_plein
+        plafond_securite_sociale = min_(nombre_jours_calendaires, 30) / 30 * plafond_temps_plein
         return plafond_securite_sociale
 
     def get_output_period(self, period):

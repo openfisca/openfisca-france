@@ -116,6 +116,7 @@ cadre = dict(
         effectif_entreprise = 3000,
         exposition_accident = 3,
         localisation_entreprise = "75001",
+        prevoyance_obligatoire_cadre_taux = 0,
         ratio_alternants = .025,
         salbrut = 6000,
         taille_entreprise = 3,
