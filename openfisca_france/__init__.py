@@ -136,10 +136,3 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
             lgtm.preload_zone_apl()
 
     return TaxBenefitSystem
-
-
-def init_reforms(tax_benefit_system):
-    from .model.cotisations_sociales import plfrss2014
-    tax_benefit_system.reform_by_name = {
-        'plf2015': plfrss2014.build_reform(tax_benefit_system),
-        }

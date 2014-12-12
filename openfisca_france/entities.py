@@ -142,6 +142,14 @@ class Menages(entities.AbstractEntity):
             yield enfant_role, enfant_id
 
 
+entity_class_by_key_plural = dict(
+    familles = Familles,
+    foyers_fiscaux = FoyersFiscaux,
+    individus = Individus,
+    menages = Menages,
+    )
+
+
 entity_class_by_symbol = dict(
     fam = Familles,
     foy = FoyersFiscaux,
