@@ -27,7 +27,7 @@ import datetime
 
 from nose.tools import assert_less
 
-from openfisca_france.model.cotisations_sociales import plfrss2014
+from openfisca_france.reforms import plfrss2014
 from openfisca_france.tests import base
 
 

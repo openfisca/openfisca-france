@@ -29,9 +29,9 @@ import copy
 import logging
 
 from numpy import maximum as max_, minimum as min_
-from openfisca_core import formulas, reforms, tools
+from openfisca_core import columns, formulas, reforms, tools
 
-from ..base import *  # noqa
+from ..model import base
 
 
 log = logging.getLogger(__name__)
@@ -43,7 +43,7 @@ def _alleg_plfrss2014_prive(salbrut, sal_h_b, type_sal, _P):
     '''
     taux = taux_alleg_plfrss2014_prive(sal_h_b, _P)
     allegement = taux * salbrut * (
-        (type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre'])
+        (type_sal == base.CAT['prive_non_cadre']) | (type_sal == base.CAT['prive_cadre'])
         )
     return allegement
 
@@ -54,10 +54,10 @@ def _alleg_plfrss2014_public(salbrut, type_sal, _P):
     '''
     taux = taux_alleg_plfrss2014_public(salbrut, _P)
     allegement = taux * salbrut * (
-        (type_sal == CAT['public_titulaire_etat'])
-        | (type_sal == CAT['public_titulaire_militaire'])
-        | (type_sal == CAT['public_titulaire_territoriale'])
-        | (type_sal == CAT['public_non_titulaire'])  # TODO: check this category
+        (type_sal == base.CAT['public_titulaire_etat'])
+        | (type_sal == base.CAT['public_titulaire_militaire'])
+        | (type_sal == base.CAT['public_titulaire_territoriale'])
+        | (type_sal == base.CAT['public_non_titulaire'])  # TODO: check this base.CATegory
         )
     return allegement
 
@@ -75,7 +75,7 @@ def build_reform_entity_class_by_key_plural(tax_benefit_system):
     # reduction_impot_exceptionnelle
 
     class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
-        column = FloatCol
+        column = columns.FloatCol
         entity_class = FoyersFiscaux
         label = u"Réduction d'impôt exceptionnelle"
 
@@ -156,7 +156,7 @@ def build_new_legislation_nodes():
             },
         "plfrss2014": {
             "@type": "Node",
-            "description": "Projet de loi de financement de la sécurité sociale rectificative 2014",
+            "description": "Projet de loi de financement de la sécurité sociale rectifibase.CATive 2014",
             "children": {
                 "exonerations_bas_salaires": {
                     "@type": "Node",

@@ -67,7 +67,7 @@ def build_reform_entity_class_by_symbol():
 
     for name, function in function_by_column_name.iteritems():
         column = foyers_fiscaux_class.column_by_name[name]
-        reform_column = reforms.clone_simple_formula_column_with_new_function(column, function)
+        reform_column = reforms.replace_simple_formula_column_function(column, function)
         reform_column_by_name[name] = reform_column
 
     class ReformFoyersFiscaux(foyers_fiscaux_class):
@@ -138,4 +138,3 @@ def build_reform(tax_benefit_system):
         )
 
     return reform
-
