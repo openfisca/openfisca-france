@@ -53,7 +53,7 @@ def test_parametric_reform():
         axes = [
             dict(
                 count = 3,
-                name = 'sali',
+                name = 'sal',
                 max = 100000,
                 min = 0,
                 ),
