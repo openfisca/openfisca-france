@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import minimum as min_, maximum as max_, logical_not as not_, ones, size, around
+from numpy import minimum as min_, maximum as max_, logical_not as not_, around
 
 from .base import *
 
@@ -84,7 +84,7 @@ class reductions(DatedFormulaColumn):
         '''
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
-    
+
         return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
@@ -995,7 +995,7 @@ class invlst(DatedFormulaColumn):
         seuil1 = P.seuil1 * (1 + marpac)
         seuil2 = P.seuil2 * (1 + marpac)
         seuil3 = P.seuil3 * (1 + marpac)
-    
+
         xc = P.taux_xc * min_(f7xc, seuil1 / 4)
         xd = P.taux_xd * f7xd
         xe = P.taux_xe * min_(f7xe, seuil1 / 6)
@@ -1009,7 +1009,7 @@ class invlst(DatedFormulaColumn):
         xm = P.taux_xm * f7xm
         xn = P.taux_xn * min_(f7xn, seuil1 / 6)
         xo = P.taux_xo * f7xo
-    
+
         return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2010, 12, 31))
@@ -1021,7 +1021,7 @@ class invlst(DatedFormulaColumn):
         seuil1 = P.seuil1 * (1 + marpac)
         seuil2 = P.seuil2 * (1 + marpac)
         seuil3 = P.seuil3 * (1 + marpac)
-    
+
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xd = P.taux_xd * f7xd
         xe = P.taux_xe * min_(f7xe, seuil1 / 6)
@@ -1035,7 +1035,7 @@ class invlst(DatedFormulaColumn):
         xm = P.taux_xm * f7xm
         xn = P.taux_xn * min_(f7xn, seuil1 / 6)
         xo = P.taux_xo * f7xo
-    
+
         return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
@@ -1047,7 +1047,7 @@ class invlst(DatedFormulaColumn):
         seuil1 = P.seuil1 * (1 + marpac)
         seuil2 = P.seuil2 * (1 + marpac)
         seuil3 = P.seuil3 * (1 + marpac)
-    
+
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
         xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
@@ -1057,7 +1057,7 @@ class invlst(DatedFormulaColumn):
         xj = P.taux_xj * (f7xm + f7xj + f7xq)
         xl = P.taux_xl * min_(f7xl, seuil1 / 6)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
-    
+
         return around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
@@ -1069,7 +1069,7 @@ class invlst(DatedFormulaColumn):
         seuil1 = P.seuil1 * (1 + marpac)
         seuil2 = P.seuil2 * (1 + marpac)
         seuil3 = P.seuil3 * (1 + marpac)
-    
+
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
         xg = P.taux_xg * min_(f7xg, seuil2 - f7xa)
@@ -1081,7 +1081,7 @@ class invlst(DatedFormulaColumn):
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv)
         xl = P.taux_xl * min_(f7xl, seuil1 / 6)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
-    
+
         return around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
@@ -1090,11 +1090,11 @@ class invlst(DatedFormulaColumn):
         Investissements locatifs dans le secteur touristique
         2013
         '''
-    
+
         xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
-    
+
         return around(xi + xj + xo)
 
     def get_output_period(self, period):

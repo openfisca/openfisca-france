@@ -100,13 +100,14 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
     label = u"Cotisation sociales patronales main d'oeuvre"
     entity_class = Individus
 
-    def function(self, contribution_developpement_apprentissage,
+    def function(self, conge_individuel_formation_cdd, contribution_developpement_apprentissage,
                  contribution_solidarite_autonomie, contribution_supplementaire_apprentissage,
                  fnal_tranche_a, fnal_tranche_a_plus_20, formation_professionnelle,
                  participation_effort_construction,
                  taxe_apprentissage, versement_transport):
 
         cotisations_patronales_main_d_oeuvre = (
+            conge_individuel_formation_cdd +
             contribution_developpement_apprentissage +
             contribution_solidarite_autonomie +
             contribution_supplementaire_apprentissage +
@@ -130,13 +131,14 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, accident_du_travail, allocations_temporaires_invalidite,
-                 famille, maladie_employeur):
+                 famille, maladie_employeur, taxe_salaires):
 
         cotisations_patronales_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
             famille +
-            maladie_employeur
+            maladie_employeur +
+            taxe_salaires
             )
         return cotisations_patronales_non_contributives
 
@@ -221,7 +223,7 @@ class csgsald(SimpleFormulaColumn):
         csg = law.csg.act.deduc
         montant_csg = plafond_securite_sociale * csg.calc(
             (
-                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
                 ) / (
                 plafond_securite_sociale + 1e-10
@@ -244,7 +246,7 @@ class csgsali(SimpleFormulaColumn):
         csg = law.csg.act.impos
         montant_csg = plafond_securite_sociale * csg.calc(
             (
-                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
                 ) / (
                 plafond_securite_sociale + 1e-10
@@ -267,7 +269,7 @@ class crdssal(SimpleFormulaColumn):
         crds = law.crds.act
         montant_crds = plafond_securite_sociale * crds.calc(
             (
-                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
                 ) / (
                 plafond_securite_sociale + 1e-10

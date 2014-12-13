@@ -32,8 +32,8 @@ from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
     minimum as min_, timedelta64
     )
-from workalendar.europe import France
 
+from ...assets.holidays import holidays
 
 from ..base import *
 
@@ -49,10 +49,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
 
     def function(self, avantages_en_nature, indemnite_residence, nombre_heures_remunerees, primes_fonction_publique,
                  primes_salaires, salaire_de_base, type_sal,
-                 smic_horaire_brut = law.gen.smic_h_b,
-#                 taux_minimum_exoneration = law.gen.taux_minimum_exoneration,
-#                 taux_maximum_exoneration = law.gen.taux_maximum_exoneration
-                 ):
+                 smic_horaire_brut = law.gen.smic_h_b):
         # assiette des cotisations sociales
         # Autres élements de rémunérations à prendre en compte:
         #   * cantine_titres_restaurants
@@ -69,18 +66,6 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         #   * Indemnités journalières de sécurité sociale
         #   * Indemnités de rupture du contrat de travail
 
-#        cantine_titres_restaurants_taux_entreprise = 0
-#        cantine_titres_restaurants_prix_titre = 0
-#        cantine_titres_restaurants_nombre_titres = 0
-#
-#        condition_exoneration_taux = (
-#            (taux_minimum_exoneration <= cantine_titres_restaurants_taux_entreprise) *
-#            (taux_maximum_exoneration >= cantine_titres_restaurants_taux_entreprise)
-#            )
-#        cantine_titres_restaurants = cantine_titres_restaurants_nombre_titres * (
-#            condition_taux * max_(cantine_titres_restaurants_prix_titre - seuil_prix_titre, 0) +
-#            not_(condition_taux) * cantine_titres_restaurants_prix_titre
-#            )
         assiette = (
             salaire_de_base +
             primes_salaires +
@@ -122,6 +107,43 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
+class cantine_titres_restaurants(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Dépense de cantine et de titres restaurants"
+
+    def function(self, cantine_titres_restaurants_taux_entreprise):
+        # taux_minimum_exoneration = law.gen.taux_minimum_exoneration,
+        # taux_maximum_exoneration = law.gen.taux_maximum_exoneration
+
+        cantine_titres_restaurants_prix_titre = 0
+        cantine_titres_restaurants_nombre_titres = 0
+        #
+        # condition_exoneration_taux = (
+        #   (taux_minimum_exoneration <= cantine_titres_restaurants_taux_entreprise) *
+        #   (taux_maximum_exoneration >= cantine_titres_restaurants_taux_entreprise)
+        #   )
+        # cantine_titres_restaurants = cantine_titres_restaurants_nombre_titres * (
+        #   condition_taux * max_(cantine_titres_restaurants_prix_titre - seuil_prix_titre, 0) +
+        #   not_(condition_taux) * cantine_titres_restaurants_prix_titre
+        #   )
+        return cantine_titres_restaurants_prix_titre * cantine_titres_restaurants_nombre_titres
+
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class cantine_titres_restaurants_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants"
+
+    def function(self, cantine_titres_restaurants_taux_entreprise):
+        return cantine_titres_restaurants_taux_entreprise * cantine_titres_restaurants
+
+
+@reference_formula
 class nombre_heures_remunerees(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -142,7 +164,6 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
                  volume_heures_non_remunerees, volume_heures_remunerees):
         # TODO faire remonter dans les paramètres les valeurs codées en dur qui doivent/peuvent l'être
 
-        holidays = [holiday for holiday, _ in France().get_calendar_holidays(period.start.year)]
         busday_count = partial(original_busday_count, holidays = holidays)
 
         debut_mois = datetime64(period.start.offset('first-of', 'month'))

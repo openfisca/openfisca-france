@@ -484,6 +484,11 @@
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
       </CODE>
     </NODE>
+    <NODE code="conge_individuel_formation" description="Congé individuel de formation"> # TODO: find a better place
+      <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
+        <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
+     </CODE>
+    </NODE> 
     <NODE code="gen" description="Paramètres généraux">
       <CODE code="plaf_ss" description="Plafond de la sécurité sociale" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
@@ -774,7 +779,9 @@
               <VALUE deb="1993-07-01" fin="2015-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2006-01-01" fin="2015-12-31" valeur=".077" />
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".078" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0775" />
+              <VALUE deb="2006-01-01" fin="2013-12-31" valeur=".077" />
               <VALUE deb="1999-01-01" fin="2005-12-31" valeur=".075" />
               <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".06875" />
               <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".0625" />
@@ -789,7 +796,9 @@
               <VALUE deb="1993-07-01" fin="2015-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2006-01-01" fin="2015-12-31" valeur=".077" />
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".078" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0775" />
+              <VALUE deb="2006-01-01" fin="2013-12-31" valeur=".077" />
               <VALUE deb="1999-01-01" fin="2005-12-31" valeur=".075" />
               <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".06875" />
               <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".0625" />
@@ -1642,7 +1651,7 @@
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0465" />
-              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".04575" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0458" />
               <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".045" />
               <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".04125" />
               <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".0375" />
@@ -1707,7 +1716,7 @@
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0465" />
-              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".04575" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0458" />
               <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".045" />
               <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".04125" />
               <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".0375" />
@@ -2080,7 +2089,7 @@
             <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7461" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7491" />
             <VALUE deb="2011-01-01" fin="2013-12-31" valeur="7604" />
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7664" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7666" />
           </SEUIL>
           <TAUX>
             <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0425" />
@@ -2099,7 +2108,7 @@
             <VALUE deb="2009-01-01" fin="2009-12-31" valeur="14902" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="14960" />
             <VALUE deb="2011-01-01" fin="2013-12-31" valeur="15185" />
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="15306" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="15308" />
           </SEUIL>
           <TAUX>
             <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0935" />
@@ -2108,7 +2117,7 @@
         <TRANCHE code="tranche3">
           <SEUIL>
             <VALUE deb="2013-01-01" fin="2013-12-31" valeur="150000" />
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151200" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151208" />
           </SEUIL>
           <TAUX>
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.1575" />

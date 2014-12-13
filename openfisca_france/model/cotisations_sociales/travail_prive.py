@@ -332,6 +332,24 @@ class assedic_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
+class conge_individuel_formation_cdd(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
+
+    def function(self, contrat_de_travail_duree, salbrut, hsup, type_sal, primes_fonction_publique,
+                 indemnite_residence, law = law.cotsoc.conge_individuel_formation):
+        cotisation = - law.cdd * (contrat_de_travail_duree == 1) * (
+            salbrut +
+            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+            )
+        return cotisation
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
 class contribution_developpement_apprentissage(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -491,10 +509,6 @@ class fnal_tranche_a(SimpleFormulaColumn):
 
     def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
                  _P):
-
-        print "plafond_securite_sociale : ", plafond_securite_sociale
-        print "salbrut: ", salbrut
-
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "fnal1",
@@ -689,7 +703,7 @@ class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
     label = u"Cotisation de prévoyance pour les cadres et assimilés"
 
     def function(self, type_sal, salbrut, plafond_securite_sociale, prevoyance_obligatoire_cadre_taux):
-        cotisation = (
+        cotisation = - (
             (type_sal == CAT['prive_cadre']) *
             min_(salbrut, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux
@@ -750,6 +764,23 @@ class taxe_apprentissage(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return cotisation
+
+    def get_output_period(self, period):
+        return period.start.period(u'month').offset('first-of')
+
+
+@reference_formula
+class taxe_salaires(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Taxe sur les salaires"
+
+    def function(self, assujettie_taxe_salaires, salbrut, hsup, prevoyance_obligatoire_cadre, _P):
+
+        bareme = _P.cotsoc.taxes_sal.taux_maj
+        bareme.rates = [rate + _P.cotsoc.taxes_sal.taux.metro for rate in bareme.rates]
+        bareme.multiply_thresholds(1 / 12, inplace = True)
+        return - (1 * assujettie_taxe_salaires) * bareme.calc(salbrut - prevoyance_obligatoire_cadre)
 
     def get_output_period(self, period):
         return period.start.period(u'month').offset('first-of')

@@ -76,10 +76,21 @@ reference_input_variable(
     name = 'contrat_de_travail_depart',
     )
 reference_input_variable(
+    column = EnumCol(
+        enum = Enum([
+            u"cdi",
+            u"cdd",
+            ]),
+        ),
+    entity_class = Individus,
+    label = u"Date de départ de l'entreprise",
+    name = 'contrat_de_travail_duree',
+    )
+reference_input_variable(
     column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la taxe sur les salaires",
-    name = 'assujettie_taxe_salaire',
+    name = 'assujettie_taxe_salaires',
     )
 reference_input_variable(
     column = BoolCol(),

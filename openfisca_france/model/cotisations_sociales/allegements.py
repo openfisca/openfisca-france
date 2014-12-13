@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
+from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, round as round_
 
 from ..base import *
 
@@ -318,7 +318,7 @@ def taux_exo_fillon(ratio_smic_salaire, majoration, P):
     if seuil <= 1:
         return 0
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
-    taux_fillon = round(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+    taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
     return taux_fillon
 
 
