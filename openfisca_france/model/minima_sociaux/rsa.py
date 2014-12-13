@@ -368,6 +368,9 @@ class psa(DatedFormulaColumn):
         psa = condition * P.psa
         return psa
 
+    def get_output_period(self, period):
+        return period.start.offset('first-of', 'year').offset(3, 'month').period('month')
+
 
 @reference_formula
 class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
