@@ -313,12 +313,12 @@ class br_rmi_i(SimpleFormulaColumn):
     def function(self, ra_rsa_i, chonet, rstnet, pensions_alimentaires_percues, rto_declarant1, rev_cap_bar_holder, rev_cap_lib_holder,
                  rfon_ms, div_ms, gains_exceptionnels, dedommagement_victime_amiante, pensions_invalidite,
                  allocation_aide_retour_emploi, allocation_securisation_professionnelle, prestation_compensatoire,
-                 retraite_combattant, bourse_enseignement_sup, bourse_recherche, rsa_base_ressources_patrimoine_i):
+                 bourse_enseignement_sup, bourse_recherche, rsa_base_ressources_patrimoine_i):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         return ra_rsa_i + (chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
-            allocation_securisation_professionnelle + prestation_compensatoire + retraite_combattant +
+            allocation_securisation_professionnelle + prestation_compensatoire +
             bourse_enseignement_sup + bourse_recherche + rsa_base_ressources_patrimoine_i) / 3
 
     def get_variable_period(self, output_period, variable_name):
