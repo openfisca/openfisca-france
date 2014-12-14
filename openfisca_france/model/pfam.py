@@ -26,8 +26,78 @@
 from __future__ import division
 
 from numpy import int32, logical_not as not_, zeros
+from numpy.core.defchararray import startswith
 
 from .base import *
+
+@reference_formula
+class residence_guadeloupe(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, depcom_holder):
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return startswith(depcom, '971')
+
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class residence_martinique(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, depcom_holder):
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return startswith(depcom, '972')
+
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class residence_guyane(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, depcom_holder):
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return startswith(depcom, '973')
+
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class residence_reunion(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, depcom_holder):
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return startswith(depcom, '974')
+
+    def get_output_period(self, period):
+        return period
+
+
+@reference_formula
+class residence_mayotte(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, depcom_holder):
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return startswith(depcom, '976')
+
+    def get_output_period(self, period):
+        return period
 
 
 @reference_formula
