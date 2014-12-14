@@ -37,7 +37,7 @@ class asf_elig(SimpleFormulaColumn):
     entity_class = Familles
     label = u"asf_elig"
 
-    def function(self, isol, caseT_holder, caseL_holder, alr_holder):
+    def function(self, isol, residence_mayotte, caseT_holder, caseL_holder, alr_holder):
         '''
         Eligibilité à l'allocation de soutien familial (ASF)
         '''
@@ -47,7 +47,7 @@ class asf_elig(SimpleFormulaColumn):
         caseL = self.any_by_roles(caseL)
         alr = self.sum_by_entity(alr_holder)
 
-        return isol * (caseT | caseL) * not_(alr > 0)
+        return not_(residence_mayotte) * isol * (caseT | caseL) * not_(alr > 0)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
