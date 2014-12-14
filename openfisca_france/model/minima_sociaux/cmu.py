@@ -26,7 +26,6 @@
 from __future__ import division
 
 from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros
-from numpy.core.defchararray import startswith
 
 from ..base import *
 
@@ -101,11 +100,8 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-
-        return startswith(depcom, '971') | startswith(depcom, '972') | startswith(depcom, '973') | startswith(depcom, '974')
+    def function(self, residence_guadeloupe, residence_martinique, residence_guyane, residence_reunion):
+        return residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
