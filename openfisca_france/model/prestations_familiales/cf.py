@@ -81,12 +81,12 @@ class cf(SimpleFormulaColumn):
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 
-    def function(self, paje_base_temp, apje_temp, ape_temp, cf_temp):
+    def function(self, paje_base_temp, apje_temp, ape_temp, cf_temp, residence_mayotte):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
         cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
-        return round(cf_brut, 2)
+        return not_(residence_mayotte) * round(cf_brut, 2)
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('year')
