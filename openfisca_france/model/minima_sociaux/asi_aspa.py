@@ -68,9 +68,9 @@ class br_mv(SimpleFormulaColumn):
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity_class = Familles
 
-    def function(self, br_mv_i_holder):
+    def function(self, br_mv_i_holder, ass):
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-        return br_mv_i[CHEF] + br_mv_i[PART]
+        return ass + br_mv_i[CHEF] + br_mv_i[PART]
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
