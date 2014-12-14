@@ -218,8 +218,8 @@ class cmu_c(SimpleFormulaColumn):
     label = u"Éligibilité à la CMU-C"
     entity_class = Familles
 
-    def function(self, cmu_c_plafond, cmu_base_ressources, period):
-        return cmu_base_ressources <= cmu_c_plafond
+    def function(self, cmu_c_plafond, cmu_base_ressources, residence_mayotte):
+        return not_(residence_mayotte) * (cmu_base_ressources <= cmu_c_plafond)
 
     def get_variable_period(self, output_period, variable_name):
         return output_period.start.period('month')
@@ -237,8 +237,8 @@ class acs(SimpleFormulaColumn):
     label = u"Éligibilité à l'ACS"
     entity_class = Familles
 
-    def function(self, cmu_c, cmu_base_ressources, acs_plafond, acs_montant):
-        return not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant
+    def function(self, cmu_c, cmu_base_ressources, acs_plafond, acs_montant, residence_mayotte):
+        return not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant
 
     def get_variable_period(self, output_period, variable_name):
         return output_period.start.period('month')
