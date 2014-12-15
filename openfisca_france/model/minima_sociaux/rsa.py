@@ -181,7 +181,7 @@ class api(DatedFormulaColumn):
         # # Calcul de l'année et mois de naissance du benjamin
 
         condition = (floor(benjamin / 12) <= api.age - 1)
-        eligib = isol * ((enceinte != 0) | (nb_enf(age, smic55, 0, api.age - 1) > 0)) * condition;
+        eligib = isol * ((enceinte != 0) | (nb_enf(age, smic55, 0, api.age - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
