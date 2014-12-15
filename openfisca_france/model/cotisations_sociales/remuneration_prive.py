@@ -142,6 +142,9 @@ class cantine_titres_restaurants_employeur(SimpleFormulaColumn):
     def function(self, cantine_titres_restaurants_taux_entreprise):
         return cantine_titres_restaurants_taux_entreprise * cantine_titres_restaurants
 
+    def get_output_period(self, period):
+        return period  # TODO
+
 
 @reference_formula
 class nombre_heures_remunerees(SimpleFormulaColumn):
