@@ -36,7 +36,7 @@ class br_mv_i(SimpleFormulaColumn):
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
 
-    def function(self, salnet, chonet, rstnet, alr, rto_declarant1, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
+    def function(self, salnet, chonet, rstnet, pensions_alimentaires_percues, rto_declarant1, rpns, rev_cap_bar_holder, rev_cap_lib_holder, rfon_ms, div_ms,
                  revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, pensions_invalidite, gains_exceptionnels,
                  indemnites_journalieres_maternite, indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle,
@@ -45,7 +45,7 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        out = (salnet + chonet + rstnet + alr + rto_declarant1 + rpns +
+        return (salnet + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
@@ -53,12 +53,13 @@ class br_mv_i(SimpleFormulaColumn):
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
                indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
                rsa_base_ressources_patrimoine_i
-               )
+               ) / 3
 
-        return out
+    def get_variable_period(self, output_period, variable_name):
+        return output_period.start.period('month', 3).offset(-3)
 
     def get_output_period(self, period):
-        return period
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -67,12 +68,12 @@ class br_mv(SimpleFormulaColumn):
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity_class = Familles
 
-    def function(self, br_mv_i_holder):
+    def function(self, br_mv_i_holder, ass):
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-        return br_mv_i[CHEF] + br_mv_i[PART]
+        return ass + br_mv_i[CHEF] + br_mv_i[PART]
 
     def get_output_period(self, period):
-        return period
+        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -147,7 +148,7 @@ class asi(SimpleFormulaColumn):
             + elig2 * P.asi.montant_couple
             + elig3 * 2 * P.asi.montant_seul
             + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 4
+            + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
 
         ressources = br_mv + montant_max
 
@@ -155,27 +156,21 @@ class asi(SimpleFormulaColumn):
             + elig2 * P.asi.plaf_couple
             + elig3 * P.asi.plaf_couple
             + elig4 * P.aspa.plaf_couple
-            + elig5 * P.aspa.plaf_couple) / 4
+            + elig5 * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
         diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
-            + elig4 * (P.asi.montant_couple / 4 / 2 - depassement / 2)
-            + elig5 * (P.asi.montant_seul / 4 - depassement / 2))
+            + elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2)
+            + elig5 * (P.asi.montant_seul / 12 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
-        montant_servi_asi = max_(diff, 0) / 3
+        montant_servi_asi = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
         # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         return elig * montant_servi_asi
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'br_mv':
-            return output_period.start.period('month', 3).offset(-3)
-        else:
-            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -224,36 +219,28 @@ class aspa(SimpleFormulaColumn):
 
         elig = elig1 | elig2 | elig3 | elig4
 
-        # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
         montant_max = (elig1 * P.aspa.montant_seul
             + elig2 * P.aspa.montant_couple
             + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 4
+            + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
 
         ressources = br_mv + montant_max
 
-        # Le montant est divisé par 4 car on calcule l'ASPA sur une base trimestrielle
         plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-            + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 4
+            + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
         diff = ((elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (P.aspa.montant_couple / 4 / 2 - depassement / 2))
+            + (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
-        montant_servi_aspa = max_(diff, 0) / 3
+        montant_servi_aspa = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
         # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
         # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
         return elig * montant_servi_aspa
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'br_mv':
-            return output_period.start.period('month', 3).offset(-3)
-        else:
-            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')

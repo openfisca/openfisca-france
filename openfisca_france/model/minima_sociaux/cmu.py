@@ -26,7 +26,6 @@
 from __future__ import division
 
 from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros
-from numpy.core.defchararray import startswith
 
 from ..base import *
 
@@ -101,11 +100,8 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-
-        return startswith(depcom, '971') | startswith(depcom, '972') | startswith(depcom, '973') | startswith(depcom, '974')
+    def function(self, residence_guadeloupe, residence_martinique, residence_guyane, residence_reunion):
+        return residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -143,19 +139,19 @@ class acs_plafond(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_br_i(SimpleFormulaColumn):
+class cmu_base_ressources_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
 
-    def function(self, activite, salnet, chonet, rstnet, alr, rsa_base_ressources_patrimoine_i, aah, indemnites_journalieres_maternite,
+    def function(self, activite, salnet, chonet, rstnet, pensions_alimentaires_percues, rsa_base_ressources_patrimoine_i, aah, indemnites_journalieres_maternite,
                  indemnites_journalieres_maladie, indemnites_journalieres_maladie_professionnelle, indemnites_journalieres_accident_travail,
                  indemnites_stage, revenus_stage_formation_pro, allocation_securisation_professionnelle, prime_forfaitaire_mensuelle_reprise_activite,
                  dedommagement_victime_amiante, prestation_compensatoire, retraite_combattant, pensions_invalidite,
                  indemnites_chomage_partiel, bourse_enseignement_sup, bourse_recherche, gains_exceptionnels,
                  tns_total_revenus, P = law.cmu):
         return ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - (activite == 1) * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + alr + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
+            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
@@ -172,34 +168,28 @@ class cmu_br_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_br(SimpleFormulaColumn):
+class cmu_base_ressources(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
 
-    def function(self, aspa, so_holder, apl, als, alf, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_br_i_holder, P = law.cmu):
+    def function(self, aspa, so_holder, aide_logement, cmu_forfait_logement_base, cmu_forfait_logement_al, age_holder, cmu_base_ressources_i_holder, P = law.cmu):
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
 
-        cmu_br_i_par = self.split_by_roles(cmu_br_i_holder, roles = [CHEF, PART])
-        cmu_br_i_pac = self.split_by_roles(cmu_br_i_holder, roles = ENFS)
+        cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
+        cmu_br_i_pac = self.split_by_roles(cmu_base_ressources_i_holder, roles = ENFS)
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            ((alf + apl + als) > 0) * cmu_forfait_logement_al + aspa)
+            (aide_logement > 0) * cmu_forfait_logement_al + aspa)
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
 
         return res
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['aspa']:
-            return output_period.start.period('year').offset(-1)
-        else:
-            return output_period
 
     def get_output_period(self, period):
         return period.start.offset('first-of', 'month').period('month')
@@ -228,8 +218,8 @@ class cmu_c(SimpleFormulaColumn):
     label = u"Éligibilité à la CMU-C"
     entity_class = Familles
 
-    def function(self, cmu_c_plafond, cmu_br, period):
-        return cmu_br <= cmu_c_plafond
+    def function(self, cmu_c_plafond, cmu_base_ressources, residence_mayotte):
+        return not_(residence_mayotte) * (cmu_base_ressources <= cmu_c_plafond)
 
     def get_variable_period(self, output_period, variable_name):
         return output_period.start.period('month')
@@ -247,8 +237,8 @@ class acs(SimpleFormulaColumn):
     label = u"Éligibilité à l'ACS"
     entity_class = Familles
 
-    def function(self, cmu_c, cmu_br, acs_plafond, acs_montant):
-        return not_(cmu_c) * (cmu_br <= acs_plafond) * acs_montant
+    def function(self, cmu_c, cmu_base_ressources, acs_plafond, acs_montant, residence_mayotte):
+        return not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant
 
     def get_variable_period(self, output_period, variable_name):
         return output_period.start.period('month')
