@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
-from ..base import *
+from ..base import *  # noqa
 from ..pfam import nb_enf
 
 
@@ -38,10 +38,17 @@ class ars(SimpleFormulaColumn):
     label = u"Allocation de rentrée scolaire"
     url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
 
-    def function(self, age_holder, af_nbenf, smic55_holder, br_pf, P = law.fam):
+    def function(self, simulation, period):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        smic55_holder = simulation.compute('smic55', period)
+        br_pf = simulation.calculate('br_pf', period)
+        P = simulation.legislation_at(period.start).fam
+
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
@@ -72,7 +79,5 @@ class ars(SimpleFormulaColumn):
         ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / max_(1, arsnbenf)))
         # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
-        return ars * (ars >= P.ars.seuil_nv)
+        return period, ars * (ars >= P.ars.seuil_nv)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

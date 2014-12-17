@@ -32,7 +32,7 @@ import pkg_resources
 from numpy import ceil, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
 
 import openfisca_france
-from .base import *
+from .base import *  # noqa
 from .pfam import nb_enf
 
 
@@ -45,8 +45,7 @@ class al_pac(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Nombre de personne à charge au sens des allocations logement"
 
-    def function(self, age_holder, smic55_holder, nbR_holder,
-                 af = law.fam.af, cf = law.fam.cf, D_enfch = law.al.autres.D_enfch):
+    def function(self, simulation, period):
         '''
         site de la CAF en 2011:
 
@@ -66,6 +65,14 @@ class al_pac(SimpleFormulaColumn):
         grand-parents, enfants, petits enfants, frères, soeurs, oncles,
         tantes, neveux, nièces).
         '''
+        period = period.start.offset('first-of', 'month').period('month')
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        nbR_holder = simulation.compute('nbR', period.start.offset('first-of', 'year').period('year'))
+        D_enfch = simulation.legislation_at(period.start).al.autres.D_enfch
+        af = simulation.legislation_at(period.start).fam.af
+        cf = simulation.legislation_at(period.start).fam.cf
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
@@ -80,16 +87,7 @@ class al_pac(SimpleFormulaColumn):
         al_pac = D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
-        return al_pac
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'nbR_holder':
-            return output_period.start.offset('first-of', 'year').period('year')
-        else:
-            return output_period
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, al_pac
 
 
 @reference_formula
@@ -98,17 +96,16 @@ class br_al(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Base ressource des allocations logement"
 
-    def function(self, etu_holder, boursier_holder, br_pf_i_holder, rev_coll_holder, biact, Pr = law.al.ressources):
-        # On ne considère que les revenus des 2 conjoints et les revenus non
-        # individualisables
-        #   0 - non étudiant
-        #   1 - étudiant non boursier
-        #   2 - éutidant boursier
-        # revCatvous et self.conj : somme des revenus catégoriel après abatement
-        # revColl : autres revenus du ménage non individualisable
-        # ALabat : abatement prix en compte pour le calcul de la base ressources
-        # des allocattions logement
-        # plancher de ressources pour les etudiants
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        etu_holder = simulation.compute('etu', period)
+        boursier_holder = simulation.compute('boursier', period)
+        br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
+        rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
+        biact = simulation.calculate('biact', period)
+        Pr = simulation.legislation_at(period.start).al.ressources
+
         boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
@@ -155,16 +152,7 @@ class br_al(SimpleFormulaColumn):
 
         br_al = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
 
-        return br_al
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['br_pf_i_holder', 'rev_coll_holder']:
-            return output_period.start.offset('first-of', 'year').period('year').offset(-2)
-        else:
-            return output_period
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, br_al
 
 
 @reference_formula
@@ -173,11 +161,20 @@ class aide_logement_montant(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Formule des aides aux logements en secteur locatif"
 
-    def function(self, concub, br_al, so_holder, loyer_holder, coloc_holder, isol, al_pac, zone_apl_famille,
-                 nat_imp_holder,
-                 al = law.al,
-                 fam = law.fam):
-        # variable ménage à redistribuer
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        concub = simulation.calculate('concub', period)
+        br_al = simulation.calculate('br_al', period)
+        so_holder = simulation.compute('so', period)
+        loyer_holder = simulation.compute('loyer', period)
+        coloc_holder = simulation.compute('coloc', period)
+        isol = simulation.calculate('isol', period)
+        al_pac = simulation.calculate('al_pac', period)
+        zone_apl_famille = simulation.calculate('zone_apl_famille', period)
+        nat_imp_holder = simulation.compute('nat_imp', period.start.period(u'year').offset('first-of'))
+        al = simulation.legislation_at(period.start).al
+        fam = simulation.legislation_at(period.start).fam
+
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
         loyer = self.cast_from_entity_to_roles(loyer_holder)
@@ -311,16 +308,10 @@ class aide_logement_montant(SimpleFormulaColumn):
         # # TODO: APL pour les accédants à la propriété
         al_acc = 0 * acce
         # # APL (tous)
-        return al_loc + al_acc
+        al = al_loc + al_acc
 
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['nat_imp_holder']:
-            return output_period.start.period(u'year').offset('first-of')
-        else:
-            return output_period
+        return period, al
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -330,14 +321,15 @@ class alf(SimpleFormulaColumn):
     label = u"Allocation logement familiale"
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
 
-    def function(self, aide_logement_montant, al_pac, so_famille, proprietaire_proche_famille):
-        # TODO: également pour les jeunes ménages et femmes enceintes
-        # variable ménage à redistribuer
-        so = so_famille
-        return (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        aide_logement_montant = simulation.calculate('aide_logement_montant', period)
+        al_pac = simulation.calculate('al_pac', period)
+        so_famille = simulation.calculate('so_famille', period)
+        proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        so = so_famille
+        return period, (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
 
 
 @reference_formula
@@ -346,15 +338,18 @@ class als_nonet(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Allocation logement sociale (non étudiante)"
 
-    def function(self, aide_logement_montant, al_pac, etu_holder, so_famille, proprietaire_proche_famille):
-        # variable ménage à redistribuer
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        aide_logement_montant = simulation.calculate('aide_logement_montant', period)
+        al_pac = simulation.calculate('al_pac', period)
+        etu_holder = simulation.compute('etu', period)
+        so_famille = simulation.calculate('so_famille', period)
+        proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
+
         so = so_famille
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * aide_logement_montant
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * aide_logement_montant
 
 
 @reference_formula
@@ -364,16 +359,19 @@ class alset(SimpleFormulaColumn):
     label = u"Allocation logement sociale (non étudiante)"
     url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
 
-    def function(self, aide_logement_montant, al_pac, etu_holder, so_holder, proprietaire_proche_famille):
-        # variable ménage à redistribuer
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        aide_logement_montant = simulation.calculate('aide_logement_montant', period)
+        al_pac = simulation.calculate('al_pac', period)
+        etu_holder = simulation.compute('etu', period)
+        so_holder = simulation.compute('so', period)
+        proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
+
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * aide_logement_montant
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * aide_logement_montant
 
 
 @reference_formula
@@ -383,11 +381,12 @@ class als(SimpleFormulaColumn):
     label = u"Allocation logement sociale"
     url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
 
-    def function(self, als_nonet, alset):
-        return als_nonet + alset
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        als_nonet = simulation.calculate('als_nonet', period)
+        alset = simulation.calculate('alset', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, als_nonet + alset
 
 
 @reference_formula
@@ -398,15 +397,14 @@ class apl(SimpleFormulaColumn):
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
 
-    def function(self, aide_logement_montant, so_holder):
-        # TODO:
-        # variable ménage à redistribuer
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        aide_logement_montant = simulation.calculate('aide_logement_montant', period)
+        so_holder = simulation.compute('so', period)
+
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
-        return aide_logement_montant * (so == 3)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, aide_logement_montant * (so == 3)
 
 
 @reference_formula
@@ -415,11 +413,13 @@ class aide_logement(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Aide au logement (tout type)"
 
-    def function(self, apl, als, alf):
-        return max_(max_(apl, als), alf)
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        apl = simulation.calculate('apl', period)
+        als = simulation.calculate('als', period)
+        alf = simulation.calculate('alf', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, max_(max_(apl, als), alf)
 
 
 @reference_formula
@@ -429,11 +429,12 @@ class crds_lgtm(SimpleFormulaColumn):
     label = u"CRDS des allocations logement"
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
 
-    def function(self, aide_logement, crds = law.fam.af.crds):
-        return -aide_logement * crds
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        al = simulation.calculate('al', period)
+        crds = simulation.legislation_at(period.start).fam.af.crds
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, -al * crds
 
 
 @reference_formula
@@ -465,23 +466,23 @@ class zone_apl(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Zone APL"
 
-    def function(self, depcom):
+    def function(self, simulation, period):
         '''
         Retrouve la zone APL (aide personnalisée au logement) de la commune
         en fonction du depcom (code INSEE)
         '''
+        period = period
+        depcom = simulation.calculate('depcom', period)
+
         preload_zone_apl()
         default_value = 2
-        return fromiter(
+        return period, fromiter(
             (
                 zone_apl_by_depcom.get(depcom_cell, default_value)
                 for depcom_cell in depcom
                 ),
             dtype = int16,
             )
-
-    def get_output_period(self, period):
-        return period
 
 
 def preload_zone_apl():

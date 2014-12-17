@@ -31,7 +31,7 @@ from numpy import logical_not as not_
 
 from openfisca_core.taxscales import scale_tax_scales
 
-from ..base import *
+from ..base import *  # noqa
 
 
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
@@ -48,16 +48,17 @@ class cotisations_patronales(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations sociales patronales"
 
-    def function(self, cotisations_patronales_contributives, cotisations_patronales_non_contributives,
-                 cotisations_patronales_main_d_oeuvre):
-        return (
+    def function(self, simulation, period):
+        period = period
+        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
+        cotisations_patronales_non_contributives = simulation.calculate('cotisations_patronales_non_contributives', period)
+        cotisations_patronales_main_d_oeuvre = simulation.calculate('cotisations_patronales_main_d_oeuvre', period)
+
+        return period, (
             cotisations_patronales_contributives +
             cotisations_patronales_non_contributives +
             cotisations_patronales_main_d_oeuvre
             )
-
-    def get_output_period(self, period):
-        return period
 
 
 @reference_formula
@@ -66,10 +67,21 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
     label = u"Cotisations sociales patronales contributives"
     entity_class = Individus
 
-    def function(self, ags, agff_tranche_a_employeur, apec_employeur, arrco_tranche_a_employeur, assedic_employeur,
-                 cotisation_exceptionnelle_temporaire_employeur, fonds_emploi_hospitalier, ircantec_employeur,
-                 pension_civile_employeur, prevoyance_obligatoire_cadre, rafp_employeur,
-                 vieillesse_deplafonnee_employeur, vieillesse_plafonnee_employeur):
+    def function(self, simulation, period):
+        period = period
+        ags = simulation.calculate('ags', period)
+        agff_tranche_a_employeur = simulation.calculate('agff_tranche_a_employeur', period)
+        apec_employeur = simulation.calculate('apec_employeur', period)
+        arrco_tranche_a_employeur = simulation.calculate('arrco_tranche_a_employeur', period)
+        assedic_employeur = simulation.calculate('assedic_employeur', period)
+        cotisation_exceptionnelle_temporaire_employeur = simulation.calculate('cotisation_exceptionnelle_temporaire_employeur', period)
+        fonds_emploi_hospitalier = simulation.calculate('fonds_emploi_hospitalier', period)
+        ircantec_employeur = simulation.calculate('ircantec_employeur', period)
+        pension_civile_employeur = simulation.calculate('pension_civile_employeur', period)
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        rafp_employeur = simulation.calculate('rafp_employeur', period)
+        vieillesse_deplafonnee_employeur = simulation.calculate('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
 
         cotisations_patronales_contributives = (
             # prive
@@ -88,10 +100,7 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
             pension_civile_employeur +
             rafp_employeur
             )
-        return cotisations_patronales_contributives
-
-    def get_output_period(self, period):
-        return period
+        return period, cotisations_patronales_contributives
 
 
 @reference_formula
@@ -100,11 +109,18 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
     label = u"Cotisation sociales patronales main d'oeuvre"
     entity_class = Individus
 
-    def function(self, conge_individuel_formation_cdd, contribution_developpement_apprentissage,
-                 contribution_solidarite_autonomie, contribution_supplementaire_apprentissage,
-                 fnal_tranche_a, fnal_tranche_a_plus_20, formation_professionnelle,
-                 participation_effort_construction,
-                 taxe_apprentissage, versement_transport):
+    def function(self, simulation, period):
+        period = period
+        conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
+        contribution_developpement_apprentissage = simulation.calculate('contribution_developpement_apprentissage', period)
+        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
+        contribution_supplementaire_apprentissage = simulation.calculate('contribution_supplementaire_apprentissage', period)
+        fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
+        fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
+        formation_professionnelle = simulation.calculate('formation_professionnelle', period)
+        participation_effort_construction = simulation.calculate('participation_effort_construction', period)
+        taxe_apprentissage = simulation.calculate('taxe_apprentissage', period)
+        versement_transport = simulation.calculate('versement_transport', period)
 
         cotisations_patronales_main_d_oeuvre = (
             conge_individuel_formation_cdd +
@@ -118,10 +134,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
             taxe_apprentissage +
             versement_transport
             )
-        return cotisations_patronales_main_d_oeuvre
-
-    def get_output_period(self, period):
-        return period
+        return period, cotisations_patronales_main_d_oeuvre
 
 
 @reference_formula
@@ -130,8 +143,13 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
     label = u"Cotisations sociales patronales non-contributives"
     entity_class = Individus
 
-    def function(self, accident_du_travail, allocations_temporaires_invalidite,
-                 famille, maladie_employeur, taxe_salaires):
+    def function(self, simulation, period):
+        period = period
+        accident_du_travail = simulation.calculate('accident_du_travail', period)
+        allocations_temporaires_invalidite = simulation.calculate('allocations_temporaires_invalidite', period)
+        famille = simulation.calculate('famille', period)
+        maladie_employeur = simulation.calculate('maladie_employeur', period)
+        taxe_salaires = simulation.calculate('taxe_salaires', period)
 
         cotisations_patronales_non_contributives = (
             allocations_temporaires_invalidite +
@@ -140,10 +158,7 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
             maladie_employeur +
             taxe_salaires
             )
-        return cotisations_patronales_non_contributives
-
-    def get_output_period(self, period):
-        return period
+        return period, cotisations_patronales_non_contributives
 
 
 @reference_formula
@@ -152,9 +167,19 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
     label = u"Cotisations sociales salariales contributives"
     entity_class = Individus
 
-    def function(self, agff_tranche_a_employe, agirc_tranche_b_employe, apec_employe, arrco_tranche_a_employe,
-                 assedic_employe, cotisation_exceptionnelle_temporaire_employe, ircantec_employe,
-                 pension_civile_employe, rafp_employe, vieillesse_deplafonnee_employe, vieillesse_plafonnee_employe):
+    def function(self, simulation, period):
+        period = period
+        agff_tranche_a_employe = simulation.calculate('agff_tranche_a_employe', period)
+        agirc_tranche_b_employe = simulation.calculate('agirc_tranche_b_employe', period)
+        apec_employe = simulation.calculate('apec_employe', period)
+        arrco_tranche_a_employe = simulation.calculate('arrco_tranche_a_employe', period)
+        assedic_employe = simulation.calculate('assedic_employe', period)
+        cotisation_exceptionnelle_temporaire_employe = simulation.calculate('cotisation_exceptionnelle_temporaire_employe', period)
+        ircantec_employe = simulation.calculate('ircantec_employe', period)
+        pension_civile_employe = simulation.calculate('pension_civile_employe', period)
+        rafp_employe = simulation.calculate('rafp_employe', period)
+        vieillesse_deplafonnee_employe = simulation.calculate('vieillesse_deplafonnee_employe', period)
+        vieillesse_plafonnee_employe = simulation.calculate('vieillesse_plafonnee_employe', period)
 
         cotisations_salariales_contributives = (
             # prive
@@ -172,10 +197,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             rafp_employe
             )
 
-        return cotisations_salariales_contributives
-
-    def get_output_period(self, period):
-        return period
+        return period, cotisations_salariales_contributives
 
 
 @reference_formula
@@ -184,7 +206,10 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
     label = u"Cotisations sociales salariales non-contributives"
     entity_class = Individus
 
-    def function(self, contribution_exceptionnelle_solidarite_employe, maladie_employe):
+    def function(self, simulation, period):
+        period = period
+        contribution_exceptionnelle_solidarite_employe = simulation.calculate('contribution_exceptionnelle_solidarite_employe', period)
+        maladie_employe = simulation.calculate('maladie_employe', period)
 
         cotisations_salariales_non_contributives = (
             # prive
@@ -193,10 +218,7 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
             contribution_exceptionnelle_solidarite_employe
             )
 
-        return cotisations_salariales_non_contributives
-
-    def get_output_period(self, period):
-        return period
+        return period, cotisations_salariales_non_contributives
 
 
 @reference_formula
@@ -205,11 +227,12 @@ class cotisations_salariales(SimpleFormulaColumn):
     label = u"Cotisations sociales salariales"
     entity_class = Individus
 
-    def function(self, cotisations_salariales_contributives, cotisations_salariales_non_contributives):
-        return cotisations_salariales_contributives + cotisations_salariales_non_contributives
+    def function(self, simulation, period):
+        period = period
+        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
+        cotisations_salariales_non_contributives = simulation.calculate('cotisations_salariales_non_contributives', period)
 
-    def get_output_period(self, period):
-        return period
+        return period, cotisations_salariales_contributives + cotisations_salariales_non_contributives
 
 
 @reference_formula
@@ -218,8 +241,17 @@ class csgsald(SimpleFormulaColumn):
     label = u"CSG déductible sur les salaires"
     entity_class = Individus
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
-                 prevoyance_obligatoire_cadre, plafond_securite_sociale, hsup, law = law):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        salbrut = simulation.calculate('salbrut', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        hsup = simulation.calculate('hsup', period)
+        law = simulation.legislation_at(period.start)
+
         csg = law.csg.act.deduc
         montant_csg = plafond_securite_sociale * csg.calc(
             (
@@ -229,10 +261,7 @@ class csgsald(SimpleFormulaColumn):
                 plafond_securite_sociale + 1e-10
                 )
             )
-        return - montant_csg
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, - montant_csg
 
 
 @reference_formula
@@ -241,8 +270,17 @@ class csgsali(SimpleFormulaColumn):
     label = u"CSG imposables sur les salaires"
     entity_class = Individus
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
-                 prevoyance_obligatoire_cadre, plafond_securite_sociale, hsup, law = law):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        salbrut = simulation.calculate('salbrut', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        hsup = simulation.calculate('hsup', period)
+        law = simulation.legislation_at(period.start)
+
         csg = law.csg.act.impos
         montant_csg = plafond_securite_sociale * csg.calc(
             (
@@ -252,10 +290,7 @@ class csgsali(SimpleFormulaColumn):
                 plafond_securite_sociale + 1e-10
                 )
             )
-        return - montant_csg
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, - montant_csg
 
 
 @reference_formula
@@ -264,8 +299,17 @@ class crdssal(SimpleFormulaColumn):
     label = u"CRDS sur les salaires"
     entity_class = Individus
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
-                 prevoyance_obligatoire_cadre, plafond_securite_sociale, hsup, law = law):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        salbrut = simulation.calculate('salbrut', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        hsup = simulation.calculate('hsup', period)
+        law = simulation.legislation_at(period.start)
+
         crds = law.crds.act
         montant_crds = plafond_securite_sociale * crds.calc(
             (
@@ -275,16 +319,10 @@ class crdssal(SimpleFormulaColumn):
                 plafond_securite_sociale + 1e-10
                 )
             )
-        return - montant_crds
+        return period, - montant_crds
 
 
-        return - crds.calc(salbrut - hsup + primes_fonction_publique + indemnite_residence + supp_familial_traitement)
-
-
-
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, - crds.calc(salbrut - hsup + primes_fonction_publique + indemnite_residence + supp_familial_traitement)
 
 
 @reference_formula
@@ -293,15 +331,21 @@ class sal(SimpleFormulaColumn):
     label = u"Salaires imposables"
     entity_class = Individus
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement, csgsald,
-                 cotisations_salariales, hsup, rev_microsocial_declarant1):
-        return (
+    def function(self, simulation, period):
+        period = period
+        salbrut = simulation.calculate('salbrut', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        csgsald = simulation.calculate('csgsald', period)
+        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
+        hsup = simulation.calculate('hsup', period)
+        rev_microsocial_declarant1 = simulation.calculate('rev_microsocial_declarant1', period)
+
+        return period, (
             salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald +
             cotisations_salariales - hsup + rev_microsocial_declarant1
             )
-
-    def get_output_period(self, period):
-        return period
 
 
 @reference_formula
@@ -310,15 +354,17 @@ class salnet(SimpleFormulaColumn):
     label = u"Salaires nets d'après définition INSEE"
     entity_class = Individus
 
-    def function(self, sal, crdssal, csgsali):
+    def function(self, simulation, period):
         '''
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds
         '''
-        return sal + crdssal + csgsali
+        period = period
+        sal = simulation.calculate('sal', period)
+        crdssal = simulation.calculate('crdssal', period)
+        csgsali = simulation.calculate('csgsali', period)
 
-    def get_output_period(self, period):
-        return period
+        return period, sal + crdssal + csgsali
 
 
 @reference_formula
@@ -327,14 +373,16 @@ class taxes_sal(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Taxes sur les salaires"
 
-    def function(self, salbrut, tva_ent, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        tva_ent = simulation.calculate('tva_ent', period)
+        _P = simulation.legislation_at(period.start)
+
         P = _P.cotsoc.taxes_sal
         maj = P.taux_maj  # TODO: exonérations apprentis
         taxes_sal = maj.calc(salbrut) + P.taux.metro * salbrut  # TODO: modify if DOM
-        return -taxes_sal * not_(tva_ent)
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, -taxes_sal * not_(tva_ent)
 
 
 @reference_formula
@@ -343,14 +391,13 @@ class tehr(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
 
-    def function(self, salbrut, _P):
-        # TODO: a affiner avec condition de plafond
-        #       sur le chiffre d'affaire des entreprises
-        bar = _P.cotsoc.tehr
-        return -bar.calc(salbrut)
+    def function(self, simulation, period):
+        period = period.start.period(u'year').offset('first-of')  # TODO: period
+        salbrut = simulation.calculate('salbrut', period)
+        _P = simulation.legislation_at(period.start)
 
-    def get_output_period(self, period):
-        return period.start.period(u'year').offset('first-of')  # TODO: period
+        bar = _P.cotsoc.tehr
+        return period, -bar.calc(salbrut)
 
 
 @reference_formula
@@ -359,17 +406,24 @@ class salsuperbrut(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Salaires superbruts"
 
-    def function(self, salbrut, primes_fonction_publique, indemnite_residence, supp_familial_traitement,
-                 cotisations_patronales, allegement_fillon, alleg_cice, taxes_sal, tehr):
+    def function(self, simulation, period):
+        period = period
+        salbrut = simulation.calculate('salbrut', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        allegement_fillon = simulation.calculate('allegement_fillon', period)
+        alleg_cice = simulation.calculate('alleg_cice', period)
+        taxes_sal = simulation.calculate('taxes_sal', period)
+        tehr = simulation.calculate('tehr', period)
+
         salsuperbrut = (
             salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_patronales - allegement_fillon - alleg_cice - taxes_sal - tehr
             )
 
-        return salsuperbrut
-
-    def get_output_period(self, period):
-        return period
+        return period, salsuperbrut
 
 
 ############################################################################
@@ -386,14 +440,17 @@ class rev_microsocial(SimpleFormulaColumn):
     start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
 
-    def function(self, assiette_service, assiette_vente, assiette_proflib, _P):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        assiette_service = simulation.calculate('assiette_service', period)
+        assiette_vente = simulation.calculate('assiette_vente', period)
+        assiette_proflib = simulation.calculate('assiette_proflib', period)
+        _P = simulation.legislation_at(period.start)
+
         P = _P.cotsoc.sal.microsocial
         total = assiette_service + assiette_vente + assiette_proflib
         prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-        return total - prelsoc_ms
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
+        return period, total - prelsoc_ms
 
 
 @reference_formula

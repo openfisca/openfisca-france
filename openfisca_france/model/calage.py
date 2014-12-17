@@ -29,7 +29,7 @@ from itertools import izip
 
 from numpy import arange, array, floor, where
 
-from .base import *
+from .base import *  # noqa
 
 
 @reference_formula
@@ -48,22 +48,22 @@ class nbinde(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Nombre d'individus dans le ménage"
 
-    def function(self, agem_holder):
+    def function(self, simulation, period):
         """
         Number of household members
         'men'
         Values range between 1 and 6 for 6 members or more
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        agem_holder = simulation.compute('agem', period)
+
         agem = self.split_by_roles(agem_holder)
 
         n1 = 0
         for ind in agem.iterkeys():
             n1 += 1 * (floor(agem[ind]) >= 0)
         n2 = where(n1 >= 6, 6, n1)
-        return n2
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, n2
 
 
 def _ageq(agem):
@@ -110,17 +110,17 @@ class cohab(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Vie en couple"
 
-    def function(self, quimen_holder):
+    def function(self, simulation, period):
         '''
         Indicatrice de vie en couple
         'men'
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        quimen_holder = simulation.compute('quimen', period)
+
         quimen = self.filter_role(quimen_holder, role = CREF)
 
-        return quimen == 1
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, quimen == 1
 
 
 @reference_formula
@@ -129,17 +129,18 @@ class act_cpl(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Nombre d'actifs parmi la personne de référence du méange et son conjoint"
 
-    def function(self, activite_holder, cohab):
+    def function(self, simulation, period):
         '''
         Nombre d'actifs parmi la personne de référence et son conjoint
         'men'
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        activite_holder = simulation.compute('activite', period)
+        cohab = simulation.calculate('cohab', period)
+
         activite = self.split_by_roles(activite_holder, roles = [PREF, CREF])
 
-        return 1 * (activite[PREF] <= 1) + 1 * (activite[CREF] <= 1) * cohab
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 1 * (activite[PREF] <= 1) + 1 * (activite[CREF] <= 1) * cohab
 
 
 @reference_formula
@@ -148,20 +149,20 @@ class act_enf(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Nombre d'enfants actifs"
 
-    def function(self, activite_holder):
+    def function(self, simulation, period):
         '''
         Nombre de membres actifs du ménage autre que la personne de référence ou son conjoint
         'men'
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        activite_holder = simulation.compute('activite', period)
+
         activite = self.split_by_roles(activite_holder, roles = ENFS)
 
         res = 0
         for act in activite.itervalues():
             res += 1 * (act <= 1)
-        return res
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, res
 
 
 def _nb_act(act_cpl, act_enf):
@@ -179,13 +180,18 @@ class cplx(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Indicatrice de ménage complexe"
 
-    def function(self, quifam_holder, quimen_holder, age_holder):
+    def function(self, simulation, period):
         """
         Indicatrice de ménage complexe
         'men'
 
         Un ménage est complexe si les personnes autres que la personne de référence ou son conjoint ne sont pas enfants.
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        quifam_holder = simulation.compute('quifam', period)
+        quimen_holder = simulation.compute('quimen', period)
+        age_holder = simulation.compute('age', period)
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         quifam = self.split_by_roles(quifam_holder, roles = ENFS)
         quimen = self.split_by_roles(quimen_holder, roles = ENFS)
@@ -196,10 +202,8 @@ class cplx(SimpleFormulaColumn):
         for quif, quim, age_i in izip(quifam.itervalues(), quimen.itervalues(), age.itervalues()):
             res += 1 * (quif == 0) * (quim != 0) + age_i > 25
 
-        return (res > 0.5)
+        return period, (res > 0.5)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
 
     # En fait on ne peut pas car on n'a les enfants qu'au sens des allocations familiales ...
     # return (typmen15 > 12)
@@ -230,7 +234,7 @@ class typmen15(SimpleFormulaColumn):
     entity_class = Menages
     label = u"Type de ménage"
 
-    def function(self, nbinde, cohab, act_cpl, cplx, act_enf):
+    def function(self, simulation, period):
         '''
         Type de ménage en 15 modalités
         1 Personne seule active
@@ -250,6 +254,13 @@ class typmen15(SimpleFormulaColumn):
         15 Autres ménages, tous inactifs
         'men'
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        nbinde = simulation.calculate('nbinde', period)
+        cohab = simulation.calculate('cohab', period)
+        act_cpl = simulation.calculate('act_cpl', period)
+        cplx = simulation.calculate('cplx', period)
+        act_enf = simulation.calculate('act_enf', period)
+
         res = 0 + (cplx == 0) * (
                 1 * ((nbinde == 1) & (cohab == 0) & (act_cpl == 1)) +  # Personne seule active
                 2 * ((nbinde == 1) & (cohab == 0) & (act_cpl == 0)) +  # Personne seule inactive
@@ -270,7 +281,5 @@ class typmen15(SimpleFormulaColumn):
 
     #    ratio = (( (typmen15!=res)).sum())/((typmen15!=0).sum())
         # print ratio  2.7 % d'erreurs enfant non nés et erreur d'enfants
-        return res
+        return period, res
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

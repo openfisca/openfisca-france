@@ -26,7 +26,7 @@
 """Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF"""
 
 
-from ..base import *
+from ..base import *  # noqa
 
 
 ## Immeubles bâtis

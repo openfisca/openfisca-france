@@ -29,7 +29,7 @@ import logging
 
 from numpy import logical_not as not_, minimum as min_, maximum as max_
 
-from .base import *
+from .base import *  # noqa
 
 
 log = logging.getLogger(__name__)
@@ -42,11 +42,14 @@ class rfr_cd(SimpleFormulaColumn):
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
-    def function(self, cd_acc75a, cd_doment, cd_eparet, cd_sofipe):
-        return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_doment = simulation.calculate('cd_doment', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+        cd_sofipe = simulation.calculate('cd_sofipe', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
 
 @reference_formula
@@ -57,56 +60,95 @@ class cd1(DatedFormulaColumn):
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
-    def function_20020101_20031231(self, cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment):
+    def function_20020101_20031231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_percap = simulation.calculate('cd_percap', period)
+        cd_deddiv = simulation.calculate('cd_deddiv', period)
+        cd_doment = simulation.calculate('cd_doment', period)
+
         niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
-        return niches1
+        return period, niches1
 
     @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
-    def function_20040101_20051231(self, cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_doment, cd_eparet):
+    def function_20040101_20051231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_percap = simulation.calculate('cd_percap', period)
+        cd_deddiv = simulation.calculate('cd_deddiv', period)
+        cd_doment = simulation.calculate('cd_doment', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+
         niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
-        return niches1
+        return period, niches1
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def function_20060101_20061231(self, cd_penali, cd_acc75a, cd_percap, cd_deddiv, cd_eparet):
+    def function_20060101_20061231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_percap = simulation.calculate('cd_percap', period)
+        cd_deddiv = simulation.calculate('cd_deddiv', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+
         niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
-        return niches1
+        return period, niches1
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def function_20070101_20081231(self, cd_penali, cd_acc75a, cd_deddiv, cd_eparet):
+    def function_20070101_20081231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_deddiv = simulation.calculate('cd_deddiv', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+
         niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
-        return niches1
+        return period, niches1
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
-    def function_20090101_20131231(self, cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
+    def function_20090101_20131231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_deddiv = simulation.calculate('cd_deddiv', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+        cd_grorep = simulation.calculate('cd_grorep', period)
+
         niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
-        return niches1
+        return period, niches1
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
-    def function_20140101_20141231(self, cd_penali, cd_acc75a, cd_deddiv, cd_eparet, cd_grorep):
+    def function_20140101_20141231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_acc75a = simulation.calculate('cd_acc75a', period)
+        cd_deddiv = simulation.calculate('cd_deddiv', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+        cd_grorep = simulation.calculate('cd_grorep', period)
+
         niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
         # log.error("Charges déductibles to be checked because not defined for %s", 2014)
-        return niches1
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, niches1
 
 
 @reference_formula
@@ -117,31 +159,38 @@ class cd2(DatedFormulaColumn):
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_20020101_20051231(self, cd_sofipe, cd_cinema):
+    def function_20020101_20051231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_sofipe = simulation.calculate('cd_sofipe', period)
+        cd_cinema = simulation.calculate('cd_cinema', period)
+
         niches2 = cd_sofipe + cd_cinema
-        return niches2
+        return period, niches2
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def function_20060101_20061231(self, cd_sofipe):
+    def function_20060101_20061231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_sofipe = simulation.calculate('cd_sofipe', period)
+
         niches2 = cd_sofipe
-        return niches2
+        return period, niches2
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def function_20070101_20081231(self, cd_ecodev):
+    def function_20070101_20081231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        niches2 = cd_ecodev
-        return niches2
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_ecodev = simulation.calculate('cd_ecodev', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        niches2 = cd_ecodev
+        return period, niches2
 
 
 @reference_formula
@@ -150,11 +199,12 @@ class rbg_int(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"Revenu brut global intermédiaire"
 
-    def function(self, rbg, cd1):
-        return max_(rbg - cd1, 0)
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        rbg = simulation.calculate('rbg', period)
+        cd1 = simulation.calculate('cd1', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, max_(rbg - cd1, 0)
 
 
 @reference_formula
@@ -164,11 +214,12 @@ class charges_deduc(SimpleFormulaColumn):
     label = u"Charges déductibles"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
-    def function(self, cd1, cd2):
-        return cd1 + cd2
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        cd1 = simulation.calculate('cd1', period)
+        cd2 = simulation.calculate('cd2', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, cd1 + cd2
 
 
 @reference_formula
@@ -178,24 +229,30 @@ class cd_penali(SimpleFormulaColumn):
     label = u"cd_penali"
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
 
-    def function(self, f6gi, f6gj, f6gp, f6el, f6em, f6gu, penalim = law.ir.charges_deductibles.penalim):
+    def function(self, simulation, period):
         '''
         Pensions alimentaires
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        f6gi = simulation.calculate('f6gi', period)
+        f6gj = simulation.calculate('f6gj', period)
+        f6gp = simulation.calculate('f6gp', period)
+        f6el = simulation.calculate('f6el', period)
+        f6em = simulation.calculate('f6em', period)
+        f6gu = simulation.calculate('f6gu', period)
+        penalim = simulation.legislation_at(period.start).ir.charges_deductibles.penalim
+
         max1 = penalim.max
         taux_jgt_2006 = penalim.taux_jgt_2006
             # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
             # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
             # foyer, la déduction est limitée à 2*max
         # S'il habite chez ses parents, max 3359, sinon 5698
-        return (min_(f6gi * (1 + taux_jgt_2006), max1) +
+        return period, (min_(f6gi * (1 + taux_jgt_2006), max1) +
                     min_(f6gj * (1 + taux_jgt_2006), max1) +
                     min_(f6el, max1) +
                     min_(f6em, max1) +
                     f6gp * (1 + taux_jgt_2006) + f6gu)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
 
 
 @reference_formula
@@ -204,15 +261,17 @@ class cd_acc75a(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"cd_acc75a"
 
-    def function(self, f6eu, f6ev, acc75a = law.ir.charges_deductibles.acc75a):
+    def function(self, simulation, period):
         '''
         Frais d’accueil sous votre toit d’une personne de plus de 75 ans
         '''
-        amax = acc75a.max * max_(1, f6ev)
-        return min_(f6eu, amax)
+        period = period.start.offset('first-of', 'month').period('year')
+        f6eu = simulation.calculate('f6eu', period)
+        f6ev = simulation.calculate('f6ev', period)
+        acc75a = simulation.legislation_at(period.start).ir.charges_deductibles.acc75a
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        amax = acc75a.max * max_(1, f6ev)
+        return period, min_(f6eu, amax)
 
 
 @reference_formula
@@ -222,28 +281,38 @@ class cd_percap(DatedFormulaColumn):
     label = u"cd_percap"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, f6cb, marpac, _P, percap = law.ir.charges_deductibles.percap):
+    def function_20020101_20021231(self, simulation, period):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        f6cb = simulation.calculate('f6cb', period)
+        marpac = simulation.calculate('marpac', period)
+        _P = simulation.legislation_at(period.start)
+        percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
+
         max_cb = percap.max_cb * (1 + marpac)
-        return min_(f6cb, max_cb)
+        return period, min_(f6cb, max_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
-    def function_20030101_20061231(self, f6cb, f6da, marpac, _P, percap = law.ir.charges_deductibles.percap):
+    def function_20030101_20061231(self, simulation, period):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        f6cb = simulation.calculate('f6cb', period)
+        f6da = simulation.calculate('f6da', period)
+        marpac = simulation.calculate('marpac', period)
+        _P = simulation.legislation_at(period.start)
+        percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
+
         max_cb = percap.max_cb * (1 + marpac)
         max_da = percap.max_da * (1 + marpac)
-        return min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
 
 
 @reference_formula
@@ -252,14 +321,14 @@ class cd_deddiv(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"cd_deddiv"
 
-    def function(self, f6dd):
+    def function(self, simulation, period):
         '''
         Déductions diverses (case DD)
         '''
-        return f6dd
+        period = period.start.offset('first-of', 'month').period('year')
+        f6dd = simulation.calculate('f6dd', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, f6dd
 
 
 @reference_formula
@@ -270,16 +339,16 @@ class cd_doment(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
-    def function(self, f6eh):
+    def function(self, simulation, period):
         '''
         Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
         déclaration n° 2042 complémentaire)
         2002-2005
         '''
-        return f6eh
+        period = period.start.offset('first-of', 'month').period('year')
+        f6eh = simulation.calculate('f6eh', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, f6eh
 
 
 @reference_formula
@@ -289,11 +358,16 @@ class cd_eparet(SimpleFormulaColumn):
     label = u"cd_eparet"
     start_date = date(2004, 1, 1)
 
-    def function(self, f6ps_holder, f6rs_holder, f6ss_holder):
+    def function(self, simulation, period):
         '''
         Épargne retraite - PERP, PRÉFON, COREM et CGOS
         2004-
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        f6ps_holder = simulation.compute('f6ps', period)
+        f6rs_holder = simulation.compute('f6rs', period)
+        f6ss_holder = simulation.compute('f6ss', period)
+
         f6ps = self.filter_role(f6ps_holder, role = VOUS)
         f6pt = self.filter_role(f6ps_holder, role = CONJ)
         f6pu = self.filter_role(f6ps_holder, role = PAC1)
@@ -308,15 +382,12 @@ class cd_eparet(SimpleFormulaColumn):
 
         # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
         # le formulaire 2041 GX
-        return ((f6ps == 0) * (f6rs + f6ss) +
+        return period, ((f6ps == 0) * (f6rs + f6ss) +
                 (f6ps != 0) * min_(f6rs + f6ss, f6ps) +
                 (f6pt == 0) * (f6rt + f6st) +
                 (f6pt != 0) * min_(f6rt + f6st, f6pt) +
                 (f6pu == 0) * (f6ru + f6su) +
                 (f6pu != 0) * min_(f6ru + f6su, f6pu))
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
 
 
 @reference_formula
@@ -327,17 +398,20 @@ class cd_sofipe(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2006, 12, 31)
 
-    def function(self, f6cc, rbg_int, marpac, sofipe = law.ir.charges_deductibles.sofipe):
+    def function(self, simulation, period):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
         2002-2006
         '''
-        max1 = min_(sofipe.taux * rbg_int, sofipe.max * (1 + marpac))
-        return min_(f6cc, max1)
+        period = period.start.offset('first-of', 'month').period('year')
+        f6cc = simulation.calculate('f6cc', period)
+        rbg_int = simulation.calculate('rbg_int', period)
+        marpac = simulation.calculate('marpac', period)
+        sofipe = simulation.legislation_at(period.start).ir.charges_deductibles.sofipe
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        max1 = min_(sofipe.taux * rbg_int, sofipe.max * (1 + marpac))
+        return period, min_(f6cc, max1)
 
 
 @reference_formula
@@ -348,17 +422,19 @@ class cd_cinema(SimpleFormulaColumn):
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
-    def function(self, f6aa, rbg_int, cinema = law.ir.charges_deductibles.cinema):
+    def function(self, simulation, period):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
         2002-2005
         '''
-        max1 = min_(cinema.taux * rbg_int, cinema.max)
-        return min_(f6aa, max1)
+        period = period.start.offset('first-of', 'month').period('year')
+        f6aa = simulation.calculate('f6aa', period)
+        rbg_int = simulation.calculate('rbg_int', period)
+        cinema = simulation.legislation_at(period.start).ir.charges_deductibles.cinema
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        max1 = min_(cinema.taux * rbg_int, cinema.max)
+        return period, min_(f6aa, max1)
 
 
 @reference_formula
@@ -369,17 +445,19 @@ class cd_ecodev(SimpleFormulaColumn):
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
 
-    def function(self, f6eh, rbg_int, ecodev = law.ir.charges_deductibles.ecodev):
+    def function(self, simulation, period):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
         2007-2008
         '''
-        max1 = min_(ecodev.taux * rbg_int, ecodev.max)
-        return min_(f6eh, max1)
+        period = period.start.offset('first-of', 'month').period('year')
+        f6eh = simulation.calculate('f6eh', period)
+        rbg_int = simulation.calculate('rbg_int', period)
+        ecodev = simulation.legislation_at(period.start).ir.charges_deductibles.ecodev
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        max1 = min_(ecodev.taux * rbg_int, ecodev.max)
+        return period, min_(f6eh, max1)
 
 
 @reference_formula
@@ -389,12 +467,17 @@ class cd_grorep(SimpleFormulaColumn):
     label = u"cd_grorep"
     start_date = date(2009, 1, 1)
 
-    def function(self, f6cb, f6hj, f6hk, f6hl, grorep = law.ir.charges_deductibles.grorep):
+    def function(self, simulation, period):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         2009-
         '''
-        return min_(f6cb + f6hj + f6hk + f6hl, grorep.max)
+        period = period.start.offset('first-of', 'month').period('year')
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        f6hk = simulation.calculate('f6hk', period)
+        f6hl = simulation.calculate('f6hl', period)
+        grorep = simulation.legislation_at(period.start).ir.charges_deductibles.grorep
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.max)
+

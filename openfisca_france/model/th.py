@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_
 
-from .base import *
+from .base import *  # noqa
 
 
 @reference_formula
@@ -37,7 +37,7 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
     label = u"Exonération de la taxe d'habitation"
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
 
-    def function(self, aah_holder, age_holder, asi_holder, aspa_holder, isf_tot_holder, nbptr_holder, rfr_holder, statmarit_holder, zthabm, _P):
+    def function(self, simulation, period):
         """Exonation de la taxe d'habitation
 
         'men'
@@ -49,6 +49,17 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
         bénéficiaire de l'allocation aux adultes handicapés (AAH),
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        aah_holder = simulation.compute('aah', period)
+        age_holder = simulation.compute('age', period)
+        asi_holder = simulation.compute('asi', period)
+        aspa_holder = simulation.compute('aspa', period)
+        isf_tot_holder = simulation.compute('isf_tot', period)
+        nbptr_holder = simulation.compute('nbptr', period)
+        rfr_holder = simulation.compute('rfr', period)
+        statmarit_holder = simulation.compute('statmarit', period)
+        zthabm = simulation.calculate('zthabm', period)
+        _P = simulation.legislation_at(period.start)
 
         aah = self.sum_by_entity(aah_holder)
         age = self.filter_role(age_holder, role = PREF)
@@ -68,10 +79,7 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
         elig = ((age >= 60) + (statmarit == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
-        return not_(elig)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, not_(elig)
 
 
 @reference_formula
@@ -81,8 +89,14 @@ class tax_hab(SimpleFormulaColumn):
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
 
-    def function(self, zthabm, exonere_taxe_habitation, nombre_enfants_a_charge_menage, nombre_enfants_majeurs_celibataires_sans_enfant, rfr_n_1_holder):
-        # Documentation voir http://www2.impots.gouv.fr/documentation/2013/idl/files/assets/common/downloads/publication.pdf
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        zthabm = simulation.calculate('zthabm', period)
+        exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
+        nombre_enfants_a_charge_menage = simulation.calculate('nombre_enfants_a_charge_menage', period)
+        nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
+        rfr_n_1_holder = simulation.compute('rfr_n_1', period)
+
         rfr_n_1 = self.cast_from_entity_to_role(rfr_n_1_holder, role = VOUS)
         rfr_n_1 = self.sum_by_entity(rfr_n_1)
 
@@ -183,7 +197,5 @@ class tax_hab(SimpleFormulaColumn):
         prelevement_residence_secondaire = 0  # TODO
 
 
-        return -zthabm * 0
+        return period, -zthabm * 0
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

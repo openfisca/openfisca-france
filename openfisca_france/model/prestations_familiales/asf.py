@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
-from ..base import *
+from ..base import *  # noqa
 from ..pfam import nb_enf
 
 
@@ -37,20 +37,24 @@ class asf_elig(SimpleFormulaColumn):
     entity_class = Familles
     label = u"asf_elig"
 
-    def function(self, isol, residence_mayotte, caseT_holder, caseL_holder, alr_holder):
+    def function(self, simulation, period):
         '''
         Eligibilité à l'allocation de soutien familial (ASF)
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        isol = simulation.calculate('isol', period)
+        residence_mayotte = simulation.calculate('residence_mayotte', period)
+        caseT_holder = simulation.compute('caseT', period)
+        caseL_holder = simulation.compute('caseL', period)
+        alr_holder = simulation.compute('alr', period)
+
         caseT = self.cast_from_entity_to_role(caseT_holder, role = VOUS)
         caseT = self.any_by_roles(caseT)
         caseL = self.cast_from_entity_to_role(caseL_holder, role = VOUS)
         caseL = self.any_by_roles(caseL)
         alr = self.sum_by_entity(alr_holder)
 
-        return not_(residence_mayotte) * isol * (caseT | caseL) * not_(alr > 0)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, not_(residence_mayotte) * isol * (caseT | caseL) * not_(alr > 0)
 
 
 @reference_formula
@@ -59,20 +63,21 @@ class asf_nbenf(SimpleFormulaColumn):
     entity_class = Familles
     label = u"asf_nbenf"
 
-    def function(self, age_holder, smic55_holder, P = law.fam):
+    def function(self, simulation, period):
         '''
         Nombre d'enfants ouvrant l'éligibilité à l'allocation de soutien familial (ASF)
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        P = simulation.legislation_at(period.start).fam
 
         # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
         # action devant le TGI pour complêter l'éligibilité
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-        return nb_enf(age, smic55, P.af.age1, P.af.age3)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, nb_enf(age, smic55, P.af.age1, P.af.age3)
 
 
 @reference_formula
@@ -82,7 +87,7 @@ class asf(SimpleFormulaColumn):
     label = u"Allocation de soutien familial"
     url = "http://vosdroits.service-public.fr/particuliers/F815.xhtml"
 
-    def function(self, asf_elig, asf_nbenf, P = law.fam):
+    def function(self, simulation, period):
         '''
         Allocation de soutien familial
 
@@ -94,9 +99,11 @@ class asf(SimpleFormulaColumn):
 
         http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        asf_elig = simulation.calculate('asf_elig', period)
+        asf_nbenf = simulation.calculate('asf_nbenf', period)
+        P = simulation.legislation_at(period.start).fam
 
         # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
-        return asf_elig * max_(0, asf_nbenf * 12 * P.af.bmaf * P.asf.taux1)
+        return period, asf_elig * max_(0, asf_nbenf * 12 * P.af.bmaf * P.asf.taux1)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

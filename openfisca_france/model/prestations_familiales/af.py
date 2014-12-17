@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import round, maximum as max_
 
-from ..base import *
+from ..base import *  # noqa
 from ..pfam import nb_enf, age_aine
 
 
@@ -37,14 +37,16 @@ class af_nbenf(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Nombre d'enfants dans la familles au sens des allocations familiales"
 
-    def function(self, age_holder, smic55_holder, P = law.fam.af):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        P = simulation.legislation_at(period.start).fam.af
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         af_nbenf = nb_enf(age, smic55, P.age1, P.age2)
-        return af_nbenf
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, af_nbenf
 
 
 @reference_formula
@@ -54,15 +56,16 @@ class af_base(SimpleFormulaColumn):
     label = u"Allocations familiales - allocation de base"
     # prestations familiales (brutes de crds)
 
-    def function(self, af_nbenf, P = law.fam):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        P = simulation.legislation_at(period.start).fam
+
         bmaf = P.af.bmaf
         af_1enf = round(bmaf * P.af.taux.enf1, 2)
         af_2enf = round(bmaf * P.af.taux.enf2, 2)
         af_enf_supp = round(bmaf * P.af.taux.enf3, 2)
-        return (af_nbenf >= 1) * af_1enf + (af_nbenf >= 2) * af_2enf + max_(af_nbenf - 2, 0) * af_enf_supp
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, (af_nbenf >= 1) * af_1enf + (af_nbenf >= 2) * af_2enf + max_(af_nbenf - 2, 0) * af_enf_supp
 
 
 @reference_formula
@@ -71,7 +74,13 @@ class af_majo(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Allocations familiales - majoration pour âge"
 
-    def function(self, age_holder, smic55_holder, af_nbenf, P = law.fam.af):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        P = simulation.legislation_at(period.start).fam.af
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         # TODO: Date d'entrée en vigueur de la nouvelle majoration
@@ -94,10 +103,7 @@ class af_majo(SimpleFormulaColumn):
             (af_nbenf == 2) * age_sf_aine(age, P_maj.age2, P.age2, ageaine) +
             nb_enf(age, smic55, P_maj.age2, P.age2) * (af_nbenf >= 3)
             )
-        return nbenf_maj1 * af_maj1 + nbenf_maj2 * af_maj2
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, nbenf_maj1 * af_maj1 + nbenf_maj2 * af_maj2
 
 
 @reference_formula
@@ -106,16 +112,19 @@ class af_forf(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Allocations familiales - forfait"
 
-    def function(self, age_holder, af_nbenf, smic55_holder, P = law.fam.af):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age_holder = simulation.compute('age', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        smic55_holder = simulation.compute('smic55', period)
+        P = simulation.legislation_at(period.start).fam.af
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         bmaf = P.bmaf
         nbenf_forf = nb_enf(age, smic55, P.age3, P.age3)
         af_forfait = round(bmaf * P.taux.forfait, 2)
-        return ((af_nbenf >= 2) * nbenf_forf) * af_forfait
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, ((af_nbenf >= 2) * nbenf_forf) * af_forfait
 
 
 @reference_formula
@@ -124,8 +133,11 @@ class af(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Allocations familiales - total des allocations"
 
-    def function(self, af_base, af_majo, af_forf):
-        return af_base + af_majo + af_forf
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        af_base = simulation.calculate('af_base', period)
+        af_majo = simulation.calculate('af_majo', period)
+        af_forf = simulation.calculate('af_forf', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, af_base + af_majo + af_forf
+
