@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from .base import *
+from .base import *  # noqa
 
 
 @reference_formula
@@ -36,8 +36,14 @@ class tns_total_revenus(DatedFormulaColumn):
 #    start = "2008-01-01"
 
     @dated_function(date(2007, 1, 1))
-    def function_2008__(self, tns_autres_revenus, tns_type_structure, tns_type_activite,
-                        tns_chiffre_affaires_micro_entreprise, bareme = law.tns):
+    def function_2008__(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+        tns_type_structure = simulation.calculate('tns_type_structure', period)
+        tns_type_activite = simulation.calculate('tns_type_activite', period)
+        tns_chiffre_affaires_micro_entreprise = simulation.calculate('tns_chiffre_affaires_micro_entreprise', period)
+        bareme = simulation.legislation_at(period.start).tns
+
         cs_ae = bareme.auto_entrepreneur
         abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
 
@@ -58,7 +64,5 @@ class tns_total_revenus(DatedFormulaColumn):
                 ) * (1 - bareme.micro_entreprise.cotisations_sociales)
             )
 
-        return total_revenus
+        return period, total_revenus
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')

@@ -25,6 +25,8 @@
 
 import datetime
 
+from openfisca_core.tools import assert_near
+
 from ..model.base import CAT
 from . import base
 
@@ -55,7 +57,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
     simulation.get_or_new_holder('chonet').array = chonet
     new_chobrut = simulation.calculate('chobrut')
 
-    assert (abs(new_chobrut - chobrut) < 0.1).all(), str((chobrut, new_chobrut))
+    assert_near(new_chobrut, chobrut, error_margin = 0.1)
 
 
 def test_chonet_to_chobrut():
@@ -92,7 +94,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
     simulation.get_or_new_holder('rstnet').array = rstnet
     new_rstbrut = simulation.calculate('rstbrut')
 
-    assert (abs(new_rstbrut - rstbrut) < 0.1).all(), str((rstbrut, new_rstbrut))
+    assert_near(new_rstbrut, rstbrut, error_margin = 0.1)
 
 
 def test_rstnet_to_rstbrut():
@@ -130,7 +132,7 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
     simulation.get_or_new_holder('salnet').array = salnet
     new_salbrut = simulation.calculate('salbrut')
 
-    assert (abs(new_salbrut - salbrut) < 0.1).all(), str((salbrut, new_salbrut))
+    assert_near(new_salbrut, salbrut, error_margin = 0.1)
 
 
 def test_salnet_to_salbrut():

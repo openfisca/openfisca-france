@@ -32,7 +32,7 @@ from scipy.optimize import fsolve
 
 from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
 
-from .base import *
+from .base import *  # noqa
 from .cotisations_sociales.remplacement import exo_csg_chom
 
 
@@ -71,19 +71,47 @@ def brut_to_net(input = None, output_name = None, period = None, simulation = No
 
 
 @reference_formula
-class salbrut(SelectFormulaColumn):
+class salbrut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Salaire brut ou traitement indiciaire brut"
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
-    @select_function('sali')
-    def salbrut_from_sali(self, sali, hsup, type_sal, P = law):
-        """Calcule le salaire brut à partir du salaire imposable.
+    def function(self, simulation, period):
+        """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
 
         Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
         Note : le supplément familial de traitement est imposable.
         """
+        period = period.start.offset('first-of', 'month').period('month')
+
+        sali = simulation.get_array('sali', period)
+        if sali is None:
+            salnet = simulation.get_array('salnet', period)
+            if salnet is not None:
+                # Calcule le salaire brut à partir du salaire net par inversion numérique.
+                if (salnet == 0).all():
+                    # Quick path to avoid fsolve when using default value of input variables.
+                    return period, salnet
+                simulation = self.holder.entity.simulation
+                function = lambda salbrut: brut_to_net(
+                    output_name = 'salnet',
+                    period = period,
+                    salbrut = salbrut,
+                    simulation = simulation,
+                    ) - salnet
+                return period, fsolve(function, salnet)
+
+            sali = simulation.calculate('sali', period)
+
+        # Calcule le salaire brut à partir du salaire imposable.
+        # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
+        # Note : le supplément familial de traitement est imposable.
+
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        P = simulation.legislation_at(period.start)
+
         plaf_ss = P.cotsoc.gen.plaf_ss
 
         salarie = scale_tax_scales(TaxScalesTree('sal', P.cotsoc.sal), plaf_ss)
@@ -147,25 +175,7 @@ class salbrut(SelectFormulaColumn):
 
         # <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
         # <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
-        return salbrut + hsup
-
-    @select_function('salnet')
-    def num_salbrut_from_salnet(self, period, salnet):
-        """Calcule les salaires bruts à partir des salaires nets par inversion numérique."""
-        if (salnet == 0).all():
-            # Quick path to avoid fsolve when using default value of input variables.
-            return salnet
-        simulation = self.holder.entity.simulation
-        function = lambda salbrut: brut_to_net(
-            output_name = 'salnet',
-            period = period,
-            salbrut = salbrut,
-            simulation = simulation,
-            ) - salnet
-        return fsolve(function, salnet)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, salbrut + hsup
 
 
 ############################################################################
@@ -174,15 +184,41 @@ class salbrut(SelectFormulaColumn):
 
 
 @reference_formula
-class chobrut(SelectFormulaColumn):
+class chobrut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Allocations chômage brutes"
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
-    @select_function('choi')
-    def chobrut_from_choi(self, choi, csg_rempl, P = law):
-        """Calcule les allocations chômage brute à partir des allocations imposables."""
+    def function(self, simulation, period):
+        """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
+        """
+        period = period.start.offset('first-of', 'month').period('month')
+
+        choi = simulation.get_array('choi', period)
+        if choi is None:
+            chonet = simulation.get_array('chonet', period)
+            if chonet is not None:
+                # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
+                if (chonet == 0).all():
+                    # Quick path to avoid fsolve when using default value of input variables.
+                    return period, chonet
+                simulation = self.holder.entity.simulation
+                function = lambda chobrut: brut_to_net(
+                    chobrut = chobrut,
+                    output_name = 'chonet',
+                    period = period,
+                    simulation = simulation,
+                    ) - chonet
+                return period, fsolve(function, chonet)
+
+            choi = simulation.calculate('choi', period)
+
+        # Calcule les allocations chômage brutes à partir des allocations imposables.
+
+        csg_rempl = simulation.calculate('csg_rempl', period)
+        P = simulation.legislation_at(period.start)
+
         csg = scale_tax_scales(TaxScalesTree('csg', P.csg.chom), P.cotsoc.gen.plaf_ss)
         taux_plein = csg['plein']['deduc']
         taux_reduit = csg['reduit']['deduc']
@@ -194,25 +230,7 @@ class chobrut(SelectFormulaColumn):
         isexo = exo_csg_chom(chobrut, csg_rempl, P)
         chobrut = not_(isexo) * chobrut + (isexo) * choi
 
-        return chobrut
-
-    @select_function('chonet')
-    def num_chobrut_from_chonet(self, chonet, period):
-        """Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique."""
-        if (chonet == 0).all():
-            # Quick path to avoid fsolve when using default value of input variables.
-            return chonet
-        simulation = self.holder.entity.simulation
-        function = lambda chobrut: brut_to_net(
-            chobrut = chobrut,
-            output_name = 'chonet',
-            period = period,
-            simulation = simulation,
-            ) - chonet
-        return fsolve(function, chonet)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, chobrut
 
 
 ############################################################################
@@ -221,34 +239,43 @@ class chobrut(SelectFormulaColumn):
 
 
 @reference_formula
-class rstbrut(SelectFormulaColumn):
+class rstbrut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Pensions de retraite brutes"
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    @select_function('rsti')
-    def rstbrut_from_rsti(self, rsti, csg_rempl, P = law.csg.retraite):
-        """Calcule les pensions de retraites brutes à partir des pensions imposables."""
+    def function(self, simulation, period):
+        """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
+        """
+        period = period.start.offset('first-of', 'month').period('month')
+
+        rsti = simulation.get_array('rsti', period)
+        if rsti is None:
+            rstnet = simulation.get_array('rstnet', period)
+            if rstnet is not None:
+                # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
+                if (rstnet == 0).all():
+                    # Quick path to avoid fsolve when using default value of input variables.
+                    return period, rstnet
+                simulation = self.holder.entity.simulation
+                function = lambda rstbrut: brut_to_net(
+                    output_name = 'rstnet',
+                    period = period,
+                    rstbrut = rstbrut,
+                    simulation = simulation,
+                    ) - rstnet
+                return period, fsolve(function, rstnet)
+
+            rsti = simulation.calculate('rsti', period)
+
+        # Calcule les pensions de retraite brutes à partir des pensions imposables.
+
+        csg_rempl = simulation.calculate('csg_rempl', period)
+        P = simulation.legislation_at(period.start).csg.retraite
+
         rst_plein = P.plein.deduc.inverse()
         rst_reduit = P.reduit.deduc.inverse()
         rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
-        return rstbrut
 
-    @select_function('rstnet')
-    def num_rstbrut_from_rstnet(self, period, rstnet):
-        """Calcule les pensions brutes à partir des pensions nettes par inversion numérique."""
-        if (rstnet == 0).all():
-            # Quick path to avoid fsolve when using default value of input variables.
-            return rstnet
-        simulation = self.holder.entity.simulation
-        function = lambda rstbrut: brut_to_net(
-            output_name = 'rstnet',
-            period = period,
-            rstbrut = rstbrut,
-            simulation = simulation,
-            ) - rstnet
-        return fsolve(function, rstnet)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, rstbrut

@@ -31,7 +31,7 @@ import logging
 from numpy import maximum as max_, minimum as min_
 from openfisca_core import formulas, reforms, tools
 
-from ..base import *
+from ..base import *  # noqa
 
 
 log = logging.getLogger(__name__)

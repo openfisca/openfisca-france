@@ -26,7 +26,7 @@ from __future__ import division
 
 from numpy import (maximum as max_)
 
-from ..base import *
+from ..base import *  # noqa
 
 
 def _br_aah(br_pf, asi, aspa):

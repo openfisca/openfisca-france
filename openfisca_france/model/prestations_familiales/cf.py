@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_, logical_and as and_, logical_or as or_)
 
-from ..base import *
+from ..base import *  # noqa
 from ..pfam import nb_enf
 
 
@@ -38,7 +38,7 @@ class cf_temp(SimpleFormulaColumn):
     label = u"Complément familial avant d'éventuels cumuls"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 
-    def function(self, age_holder, br_pf, isol, biact, smic55_holder, P = law.fam):
+    def function(self, simulation, period):
         """
         Complément familial
         Vous avez au moins 3 enfants à charge tous âgés de plus de 3 ans.
@@ -51,6 +51,14 @@ class cf_temp(SimpleFormulaColumn):
         # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
         # pouvoir déflater les revenus de l'année courante pour en tenir compte.
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        br_pf = simulation.calculate('br_pf', period)
+        isol = simulation.calculate('isol', period)
+        biact = simulation.calculate('biact', period)
+        smic55_holder = simulation.compute('smic55', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
@@ -68,10 +76,7 @@ class cf_temp(SimpleFormulaColumn):
 
         cf = (cf_nbenf >= 3) * ((br_pf <= cf_plaf) * cf_base +
                                  (br_pf > cf_plaf) * max_(cf_plaf2 - br_pf, 0) / 12.0)
-        return 12 * cf
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 12 * cf
 
 
 @reference_formula
@@ -81,12 +86,17 @@ class cf(SimpleFormulaColumn):
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 
-    def function(self, paje_base_temp, apje_temp, ape_temp, cf_temp, residence_mayotte):
+    def function(self, simulation, period):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
-        return not_(residence_mayotte) * round(cf_brut, 2)
+        period = period.start.offset('first-of', 'month').period('year')
+        paje_base_temp = simulation.calculate('paje_base_temp', period)
+        apje_temp = simulation.calculate('apje_temp', period)
+        ape_temp = simulation.calculate('ape_temp', period)
+        cf_temp = simulation.calculate('cf_temp', period)
+        residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
+        return period, not_(residence_mayotte) * round(cf_brut, 2)
+

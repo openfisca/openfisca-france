@@ -32,7 +32,7 @@ import logging
 from openfisca_core.taxscales import TaxScalesTree  #, scale_tax_scales
 from openfisca_core.legislations import CompactNode
 
-from ..base import *
+from ..base import *  # noqa
 
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'

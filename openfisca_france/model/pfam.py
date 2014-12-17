@@ -28,20 +28,20 @@ from __future__ import division
 from numpy import int32, logical_not as not_, zeros
 from numpy.core.defchararray import startswith
 
-from .base import *
+from .base import *  # noqa
 
 @reference_formula
 class residence_guadeloupe(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
         depcom = self.cast_from_entity_to_roles(depcom_holder)
         depcom = self.filter_role(depcom, role = CHEF)
-        return startswith(depcom, '971')
-
-    def get_output_period(self, period):
-        return period
+        return period, startswith(depcom, '971')
 
 
 @reference_formula
@@ -49,13 +49,13 @@ class residence_martinique(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
         depcom = self.cast_from_entity_to_roles(depcom_holder)
         depcom = self.filter_role(depcom, role = CHEF)
-        return startswith(depcom, '972')
-
-    def get_output_period(self, period):
-        return period
+        return period, startswith(depcom, '972')
 
 
 @reference_formula
@@ -63,13 +63,13 @@ class residence_guyane(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
         depcom = self.cast_from_entity_to_roles(depcom_holder)
         depcom = self.filter_role(depcom, role = CHEF)
-        return startswith(depcom, '973')
-
-    def get_output_period(self, period):
-        return period
+        return period, startswith(depcom, '973')
 
 
 @reference_formula
@@ -77,13 +77,13 @@ class residence_reunion(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
         depcom = self.cast_from_entity_to_roles(depcom_holder)
         depcom = self.filter_role(depcom, role = CHEF)
-        return startswith(depcom, '974')
-
-    def get_output_period(self, period):
-        return period
+        return period, startswith(depcom, '974')
 
 
 @reference_formula
@@ -91,13 +91,13 @@ class residence_mayotte(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
-    def function(self, depcom_holder):
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
         depcom = self.cast_from_entity_to_roles(depcom_holder)
         depcom = self.filter_role(depcom, role = CHEF)
-        return startswith(depcom, '976')
-
-    def get_output_period(self, period):
-        return period
+        return period, startswith(depcom, '976')
 
 
 @reference_formula
@@ -106,17 +106,17 @@ class nb_par(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Nombre de parents"
 
-    def function(self, quifam_holder):
+    def function(self, simulation, period):
         '''
         Nombre d'adultes (parents) dans la famille
         'fam'
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        quifam_holder = simulation.compute('quifam', period)
+
         quifam = self.filter_role(quifam_holder, role = PART)
 
-        return 1 + 1 * (quifam == 1)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 1 + 1 * (quifam == 1)
 
 
 @reference_formula
@@ -125,16 +125,16 @@ class maries(SimpleFormulaColumn):
     entity_class = Familles
     label = u"maries"
 
-    def function(self, statmarit_holder):
+    def function(self, simulation, period):
         '''
         couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        statmarit_holder = simulation.compute('statmarit', period)
+
         statmarit = self.filter_role(statmarit_holder, role = CHEF)
 
-        return statmarit == 1
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, statmarit == 1
 
 
 @reference_formula
@@ -143,15 +143,15 @@ class concub(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Indicatrice de vie en couple"
 
-    def function(self, nb_par):
+    def function(self, simulation, period):
         '''
         concub = 1 si vie en couple TODO pas très heureux
         '''
-        # TODO: concub n'est pas égal à 1 pour les conjoints
-        return nb_par == 2
+        period = period.start.offset('first-of', 'month').period('year')
+        nb_par = simulation.calculate('nb_par', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        # TODO: concub n'est pas égal à 1 pour les conjoints
+        return period, nb_par == 2
 
 
 @reference_formula
@@ -160,14 +160,14 @@ class isol(SimpleFormulaColumn):
     entity_class = Familles
     label = u"isol"
 
-    def function(self, nb_par):
+    def function(self, simulation, period):
         '''
         Parent (s'il y a lieu) isolé
         '''
-        return nb_par == 1
+        period = period.start.offset('first-of', 'month').period('year')
+        nb_par = simulation.calculate('nb_par', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, nb_par == 1
 
 
 @reference_formula
@@ -176,14 +176,14 @@ class etu(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Indicatrice individuelle étudiant"
 
-    def function(self, activite):
+    def function(self, simulation, period):
         '''
         Indicatrice individuelle etudiant
         '''
-        return activite == 2
+        period = period.start.offset('first-of', 'month').period('year')
+        activite = simulation.calculate('activite', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, activite == 2
 
 
 @reference_formula
@@ -192,13 +192,14 @@ class smic55(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Indicatrice individuelle d'un salaire supérieur à 55% du smic"
 
-    def function(self, salbrut, _P = law):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        salbrut = simulation.calculate('salbrut', period)
+        _P = simulation.legislation_at(period.start)
+
         nbh_travaillees = 151.67
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-        return salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+        return period, salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
 
 
 @reference_formula
@@ -207,15 +208,17 @@ class br_pf_i(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Base ressource individuele des prestations familiales"
 
-    def function(self, tspr, hsup, rpns):
+    def function(self, simulation, period):
         '''
         Base ressource individuelle des prestations familiales
         'ind'
         '''
-        return tspr + hsup + rpns
+        period = period.start.offset('first-of', 'month').period('year')
+        tspr = simulation.calculate('tspr', period)
+        hsup = simulation.calculate('hsup', period)
+        rpns = simulation.calculate('rpns', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, tspr + hsup + rpns
 
 
 @reference_formula
@@ -224,18 +227,19 @@ class biact(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Indicatrice de biactivité"
 
-    def function(self, br_pf_i_holder, _P):
+    def function(self, simulation, period):
         '''
         Indicatrice de biactivité des adultes de la famille
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        br_pf_i_holder = simulation.compute('br_pf_i', period)
+        _P = simulation.legislation_at(period.start)
+
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
 
         seuil_rev = 12 * _P.fam.af.bmaf_n_2
         biact = (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
-        return biact
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, biact
 
 
 @reference_formula
@@ -244,7 +248,19 @@ class div(SimpleFormulaColumn):
     entity_class = Individus
     label = u"div"
 
-    def function(self, rpns_pvce, rpns_pvct, rpns_mvct, rpns_mvlt, f3vc_holder, f3ve_holder, f3vg_holder, f3vh_holder, f3vl_holder, f3vm_holder):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        rpns_pvce = simulation.calculate('rpns_pvce', period)
+        rpns_pvct = simulation.calculate('rpns_pvct', period)
+        rpns_mvct = simulation.calculate('rpns_mvct', period)
+        rpns_mvlt = simulation.calculate('rpns_mvlt', period)
+        f3vc_holder = simulation.compute('f3vc', period)
+        f3ve_holder = simulation.compute('f3ve', period)
+        f3vg_holder = simulation.compute('f3vg', period)
+        f3vh_holder = simulation.compute('f3vh', period)
+        f3vl_holder = simulation.compute('f3vl', period)
+        f3vm_holder = simulation.compute('f3vm', period)
+
         f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
         f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
         f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
@@ -252,10 +268,7 @@ class div(SimpleFormulaColumn):
         f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
 
-        return f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 @reference_formula
@@ -264,10 +277,24 @@ class rev_coll(SimpleFormulaColumn):
     entity_class = Individus
     label = u"rev_coll"
 
-    def function(self, rto_net_declarant1, rev_cap_lib_holder, rev_cat_rvcm_holder, div, abat_spe_holder, glo, fon_holder, alv_declarant1, f7ga_holder, f7gb_holder, f7gc_holder, rev_cat_pv_holder):
+    def function(self, simulation, period):
         '''
         Revenus collectifs
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period)
+        rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
+        rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
+        div = simulation.calculate('div', period)
+        abat_spe_holder = simulation.compute('abat_spe', period)
+        glo = simulation.calculate('glo', period)
+        fon_holder = simulation.compute('fon', period)
+        alv_declarant1 = simulation.calculate('alv_declarant1', period)
+        f7ga_holder = simulation.compute('f7ga', period)
+        f7gb_holder = simulation.compute('f7gb', period)
+        f7gc_holder = simulation.compute('f7gc', period)
+        rev_cat_pv_holder = simulation.compute('rev_cat_pv', period)
+
         # TODO: ajouter les revenus de l'étranger etr*0.9
         # alv_declarant1 is negative since it is paid by the declaree
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
@@ -279,11 +306,8 @@ class rev_coll(SimpleFormulaColumn):
         f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
         rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-        return (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb - f7gc - abat_spe
+        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb - f7gc - abat_spe
             + rev_cat_pv)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
 
 
 @reference_formula
@@ -292,19 +316,20 @@ class br_pf(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Base ressource des prestations familiales"
 
-    def function(self, br_pf_i_holder, rev_coll_holder):
+    def function(self, simulation, period):
         '''
         Base ressource des prestations familiales de la famille
         'fam'
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        br_pf_i_holder = simulation.compute('br_pf_i', period)
+        rev_coll_holder = simulation.compute('rev_coll', period)
+
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
         rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
 
         br_pf = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll[CHEF] + rev_coll[PART]
-        return br_pf
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, br_pf
 
 
 @reference_formula
@@ -314,14 +339,21 @@ class crds_pfam(SimpleFormulaColumn):
     label = u"CRDS (prestations familiales)"
     url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
 
-    def function(self, af, cf, asf, ars, paje, ape, apje, _P):
+    def function(self, simulation, period):
         '''
         Renvoie la CRDS des prestations familiales
         '''
-        return -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
+        period = period.start.offset('first-of', 'month').period('year')
+        af = simulation.calculate('af', period)
+        cf = simulation.calculate('cf', period)
+        asf = simulation.calculate('asf', period)
+        ars = simulation.calculate('ars', period)
+        paje = simulation.calculate('paje', period)
+        ape = simulation.calculate('ape', period)
+        apje = simulation.calculate('apje', period)
+        _P = simulation.legislation_at(period.start)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
 
 
 ############################################################################

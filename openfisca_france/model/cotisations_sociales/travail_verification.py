@@ -30,7 +30,7 @@ import math
 
 from numpy import logical_not as not_, zeros
 
-from ..base import *
+from ..base import *  # noqa
 
 
 DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
@@ -44,8 +44,17 @@ class cotisations_patronales_contributives_old(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation sociales patronales contributives"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, rafp_employeur,
-                 pension_civile_employeur, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        rafp_employeur = simulation.calculate('rafp_employeur', period)
+        pension_civile_employeur = simulation.calculate('pension_civile_employeur', period)
+        _P = simulation.legislation_at(period.start)
+
         pat = _P.cotsoc.cotisations_employeur.__dict__
         cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
@@ -69,10 +78,7 @@ class cotisations_patronales_contributives_old(SimpleFormulaColumn):
                         cotisations_patronales += temp
 
         cotisations_patronales += rafp_employeur + pension_civile_employeur
-        return cotisations_patronales
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisations_patronales
 
 
 @reference_formula
@@ -81,8 +87,16 @@ class cotisations_patronales_non_contributives_old(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation sociales patronales non contributives"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence,
-                 cotisations_patronales_accident, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        cotisations_patronales_accident = simulation.calculate('cotisations_patronales_accident', period)
+        _P = simulation.legislation_at(period.start)
+
         pat = _P.cotsoc.cotisations_employeur.__dict__
         cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
@@ -95,10 +109,7 @@ class cotisations_patronales_non_contributives_old(SimpleFormulaColumn):
                                  indemnite_residence + primes_fonction_publique))
                              * is_noncontrib)
                     cotisations_patronales += temp
-        return cotisations_patronales + cotisations_patronales_accident
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisations_patronales + cotisations_patronales_accident
 
 
 @reference_formula
@@ -107,7 +118,15 @@ class cotisations_patronales_transport(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations sociales patronales: versement transport"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        _P = simulation.legislation_at(period.start)
+
         pat = _P.cotsoc.cotisations_employeur.__dict__
         transport = zeros(len(salbrut))
         for category in CAT:
@@ -118,10 +137,8 @@ class cotisations_patronales_transport(SimpleFormulaColumn):
                     temp = -bar.calc(salbrut + (category[0] == 'public_non_titulaire') * (
                         indemnite_residence + primes_fonction_publique)) * iscat  # check
                     transport += temp
-        return transport
+        return period, transport
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
 
 @reference_formula
 class cotisations_patronales_main_d_oeuvre_old(SimpleFormulaColumn):
@@ -134,7 +151,16 @@ class cotisations_patronales_main_d_oeuvre_old(SimpleFormulaColumn):
     #     - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
     #     - D993: participation à l'effort de construction
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, cotisations_patronales_transport, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        cotisations_patronales_transport = simulation.calculate('cotisations_patronales_transport', period)
+        _P = simulation.legislation_at(period.start)
+
         pat = _P.cotsoc.cotisations_employeur.__dict__
         cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
@@ -147,23 +173,19 @@ class cotisations_patronales_main_d_oeuvre_old(SimpleFormulaColumn):
                                  indemnite_residence + primes_fonction_publique))
                              * is_mo)
                     cotisations_patronales += temp
-        return cotisations_patronales + cotisations_patronales_transport
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
+        return period, cotisations_patronales + cotisations_patronales_transport
 class cotisations_patronales_old(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales patronales"
 
-    def function(self, cotisations_patronales_contributives, cotisations_patronales_non_contributives_old, cotisations_patronales_main_d_oeuvre_old):
-        return cotisations_patronales_contributives + cotisations_patronales_non_contributives_old + cotisations_patronales_main_d_oeuvre_old
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
+        cotisations_patronales_non_contributives_old = simulation.calculate('cotisations_patronales_non_contributives_old', period)
+        cotisations_patronales_main_d_oeuvre_old = simulation.calculate('cotisations_patronales_main_d_oeuvre_old', period)
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisations_patronales_contributives + cotisations_patronales_non_contributives_old + cotisations_patronales_main_d_oeuvre_old
 
 
 def seuil_fds(_P):
@@ -179,8 +201,17 @@ class cotisations_salariales_contributives_old(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations sociales salariales contributives"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, rafp_employe,
-                 pension_civile_employe, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        rafp_employe = simulation.calculate('rafp_employe', period)
+        pension_civile_employe = simulation.calculate('pension_civile_employe', period)
+        _P = simulation.legislation_at(period.start)
+
         sal = _P.cotsoc.cotisations_salarie.__dict__
         cotisations_salariales = zeros(len(salbrut))
         for category in CAT:
@@ -201,10 +232,7 @@ class cotisations_salariales_contributives_old(SimpleFormulaColumn):
             + (type_sal == CAT['public_titulaire_territoriale'])
             + (type_sal == CAT['public_titulaire_hospitaliere']))
 
-        return cotisations_salariales + (pension_civile_employe + rafp_employe) * public_titulaire
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisations_salariales + (pension_civile_employe + rafp_employe) * public_titulaire
 
 
 @reference_formula
@@ -213,8 +241,18 @@ class cotisations_salariales_non_contributives_old(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations sociales salariales non-contributives"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, rafp_employe,
-                 pension_civile_employe, cotisations_salariales_contributives_old, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        salbrut = simulation.calculate('salbrut', period)
+        hsup = simulation.calculate('hsup', period)
+        type_sal = simulation.calculate('type_sal', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        rafp_employe = simulation.calculate('rafp_employe', period)
+        pension_civile_employe = simulation.calculate('pension_civile_employe', period)
+        cotisations_salariales_contributives_old = simulation.calculate('cotisations_salariales_contributives_old', period)
+        _P = simulation.legislation_at(period.start)
+
         sal = _P.cotsoc.cotisations_salarie.__dict__
         cotisations_salariales = zeros(len(salbrut))
         seuil_assuj_fds = seuil_fds(_P)
@@ -235,10 +273,7 @@ class cotisations_salariales_non_contributives_old(SimpleFormulaColumn):
                         * is_noncontrib * not_(is_exempt_fds)
                         )
                     cotisations_salariales += temp
-        return cotisations_salariales
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisations_salariales
 
 
 @reference_formula
@@ -247,11 +282,12 @@ class cotisations_salariales_old(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations sociales salariales"
 
-    def function(self, cotisations_salariales_contributives_old, cotisations_salariales_non_contributives_old):
-        return cotisations_salariales_contributives_old + cotisations_salariales_non_contributives_old
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisations_salariales_contributives_old = simulation.calculate('cotisations_salariales_contributives_old', period)
+        cotisations_salariales_non_contributives_old = simulation.calculate('cotisations_salariales_non_contributives_old', period)
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisations_salariales_contributives_old + cotisations_salariales_non_contributives_old
 
 
 @reference_formula
@@ -260,9 +296,12 @@ class cotisations_patronales_accident(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations patronales accident du travail et maladie professionelle"
 
-    def function(self, salbrut, taux_accident_travail, type_sal):
-        prive = (type_sal == CAT['prive_cadre']) + (type_sal == CAT['prive_non_cadre'])
-        return -salbrut * taux_accident_travail * prive  # TODO: check public
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')  # TODO month ?
+        salbrut = simulation.calculate('salbrut', period)
+        taux_accident_travail = simulation.calculate('taux_accident_travail', period)
+        type_sal = simulation.calculate('type_sal', period)
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')  # TODO month ?
+        prive = (type_sal == CAT['prive_cadre']) + (type_sal == CAT['prive_non_cadre'])
+        return period, -salbrut * taux_accident_travail * prive  # TODO: check public
+

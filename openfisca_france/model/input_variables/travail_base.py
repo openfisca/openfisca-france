@@ -26,7 +26,7 @@
 import datetime
 
 
-from ..base import *
+from ..base import *  # noqa
 
 
 # Socio-economic data

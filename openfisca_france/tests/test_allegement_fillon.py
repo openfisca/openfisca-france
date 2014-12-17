@@ -191,7 +191,7 @@ def test_check():
 
         for variable, amounts in test_parameters['output_variables'].iteritems():
             if isinstance(amounts, dict):
-                for period_str, amount in amounts.iteritems():
+                for period_str, amount in sorted(amounts.iteritems()):
                     output = simulation.calculate(variable, period = periods.period(period_str))
                     variable_message = "{} at {}".format(variable, period_str)
                     yield assert_variable, variable_message, employee_type, amount, output

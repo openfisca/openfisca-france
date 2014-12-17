@@ -35,7 +35,7 @@ from numpy import (
 
 from ...assets.holidays import holidays
 
-from ..base import *
+from ..base import *  # noqa
 
 
 log = logging.getLogger(__name__)
@@ -47,24 +47,16 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Assiette des cotisations sociales des salaries du prive et des contractuel de la fonction publique"
 
-    def function(self, avantages_en_nature, indemnite_residence, nombre_heures_remunerees, primes_fonction_publique,
-                 primes_salaires, salaire_de_base, type_sal,
-                 smic_horaire_brut = law.gen.smic_h_b):
-        # assiette des cotisations sociales
-        # Autres élements de rémunérations à prendre en compte:
-        #   * cantine_titres_restaurants
-        #   * prise en charge par l'employeur de la part salariale
-        #    des cotisations sociales à un régime de retraite complémentaire
-        #       (celle conernant les régime de prévoyance complémentaire et de retraite supplémentaire n'entrent pas
-        #        dans l'assiette des cotisations sociales)
-        #   * cotisations partonales à:
-        #       - retraite complémentaire obligatoire
-        #       - retraite supplémentaire et de prévoyance complémentaire
-        #       - retraite à prestations définies (retraite chapeau)
-        #   * Épargne salariale, intéressement et participation
-        #   * Actionnarait salarié
-        #   * Indemnités journalières de sécurité sociale
-        #   * Indemnités de rupture du contrat de travail
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period(u'month')
+        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        nombre_heures_remunerees = simulation.calculate('nombre_heures_remunerees', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        primes_salaires = simulation.calculate('primes_salaires', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        type_sal = simulation.calculate('type_sal', period)
+        smic_horaire_brut = simulation.legislation_at(period.start).gen.smic_h_b
 
         assiette = (
             salaire_de_base +
@@ -73,10 +65,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
             )
 
-        return max_(assiette, smic_horaire_brut * nombre_heures_remunerees)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period(u'month')
+        return period, max_(assiette, smic_horaire_brut * nombre_heures_remunerees)
 
 
 @reference_formula
@@ -85,11 +74,12 @@ class avantages_en_nature(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Avantages en nature"
 
-    def function(self, avantages_en_nature_valeur_reelle, avantages_en_nature_valeur_forfaitaire):
-        return avantages_en_nature_valeur_reelle + avantages_en_nature_valeur_forfaitaire
+    def function(self, simulation, period):
+        period = period
+        avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
+        avantages_en_nature_valeur_forfaitaire = simulation.calculate('avantages_en_nature_valeur_forfaitaire', period)
 
-    def get_output_period(self, period):
-        return period
+        return period, avantages_en_nature_valeur_reelle + avantages_en_nature_valeur_forfaitaire
 
 
 @reference_formula
@@ -99,11 +89,11 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
     label = u"Evaluation fofaitaire des avantages en nature "
 
     # TODO:
-    def function(self, avantages_en_nature_valeur_reelle):
-        return avantages_en_nature_valeur_reelle * 0
+    def function(self, simulation, period):
+        period = period
+        avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
 
-    def get_output_period(self, period):
-        return period
+        return period, avantages_en_nature_valeur_reelle * 0
 
 
 @reference_formula
@@ -112,9 +102,9 @@ class cantine_titres_restaurants(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Dépense de cantine et de titres restaurants"
 
-    def function(self, cantine_titres_restaurants_taux_entreprise):
-        # taux_minimum_exoneration = law.gen.taux_minimum_exoneration,
-        # taux_maximum_exoneration = law.gen.taux_maximum_exoneration
+    def function(self, simulation, period):
+        period = period
+        cantine_titres_restaurants_taux_entreprise = simulation.calculate('cantine_titres_restaurants_taux_entreprise', period)
 
         cantine_titres_restaurants_prix_titre = 0
         cantine_titres_restaurants_nombre_titres = 0
@@ -127,10 +117,7 @@ class cantine_titres_restaurants(SimpleFormulaColumn):
         #   condition_taux * max_(cantine_titres_restaurants_prix_titre - seuil_prix_titre, 0) +
         #   not_(condition_taux) * cantine_titres_restaurants_prix_titre
         #   )
-        return cantine_titres_restaurants_prix_titre * cantine_titres_restaurants_nombre_titres
-
-    def get_output_period(self, period):
-        return period
+        return period, cantine_titres_restaurants_prix_titre * cantine_titres_restaurants_nombre_titres
 
 
 @reference_formula
@@ -139,11 +126,11 @@ class cantine_titres_restaurants_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants"
 
-    def function(self, cantine_titres_restaurants_taux_entreprise):
-        return cantine_titres_restaurants_taux_entreprise * cantine_titres_restaurants
+    def function(self, simulation, period):
+        period = period  # TODO
+        cantine_titres_restaurants_taux_entreprise = simulation.calculate('cantine_titres_restaurants_taux_entreprise', period)
 
-    def get_output_period(self, period):
-        return period  # TODO
+        return period, cantine_titres_restaurants_taux_entreprise * cantine_titres_restaurants
 
 
 @reference_formula
@@ -163,9 +150,13 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
     # Décompte des jours en début et fin de contrat
     # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
 
-    def function(self, period, contrat_de_travail, contrat_de_travail_arrivee, contrat_de_travail_depart,
-                 volume_heures_non_remunerees, volume_heures_remunerees):
-        # TODO faire remonter dans les paramètres les valeurs codées en dur qui doivent/peuvent l'être
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period(u'month')
+        contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
+        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        volume_heures_non_remunerees = simulation.calculate('volume_heures_non_remunerees', period)
+        volume_heures_remunerees = simulation.calculate('volume_heures_remunerees', period)
 
         busday_count = partial(original_busday_count, holidays = holidays)
 
@@ -193,19 +184,20 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
             (contrat_de_travail == 2) * (volume_heures_remunerees / 45.7) * (52 / 12) +  # forfait heures/annee
             (contrat_de_travail == 3) * duree_legale * (volume_heures_remunerees / 218)  # forfait jours/annee
             )
-        return nombre_heures_remunerees - volume_heures_non_remunerees
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period(u'month')
+        return period, nombre_heures_remunerees - volume_heures_non_remunerees
 
 
 @reference_formula
 class nombre_jours_calendaires(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Nombre de jorus calendaires travaillés"
+    label = u"Nombre de jours calendaires travaillés"
 
-    def function(self, period, contrat_de_travail, contrat_de_travail_arrivee, contrat_de_travail_depart):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period(u'month')
+        contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
+        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
 
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
@@ -214,11 +206,7 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
             max_(contrat_de_travail_arrivee, debut_mois),
             min_(contrat_de_travail_depart, fin_mois)
             )
-        return jours_travailles
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period(u'month')
-
+        return period, jours_travailles
 
 
 #@reference_formula

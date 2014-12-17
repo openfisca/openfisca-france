@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import (round, floor, zeros, maximum as max_, minimum as min_, logical_not as not_, logical_and as and_, logical_or as or_)
 
-from ..base import *
+from ..base import *  # noqa
 from ..pfam import nb_enf, age_en_mois_benjamin
 
 
@@ -39,14 +39,18 @@ class paje(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"
 
-    def function(self, paje_base, paje_nais, paje_clca, paje_clmg, paje_colca):
+    def function(self, simulation, period):
         '''
         Prestation d'accueil du jeune enfant
         '''
-        return paje_base + paje_nais + paje_clca + paje_clmg + paje_colca
+        period = period.start.offset('first-of', 'month').period('year')
+        paje_base = simulation.calculate('paje_base', period)
+        paje_nais = simulation.calculate('paje_nais', period)
+        paje_clca = simulation.calculate('paje_clca', period)
+        paje_clmg = simulation.calculate('paje_clmg', period)
+        paje_colca = simulation.calculate('paje_colca', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, paje_base + paje_nais + paje_clca + paje_clmg + paje_colca
 
 
 @reference_formula
@@ -56,10 +60,19 @@ class paje_base_temp(SimpleFormulaColumn):
     label = u"Allocation de base de la PAJE sans tenir compte d'éventuels cumuls"
     start_date = date(2004, 1, 1)
 
-    def function(self, age_holder, af_nbenf, br_pf, isol, biact, smic55_holder, P = law.fam):
+    def function(self, simulation, period):
         '''
         Prestation d'accueil du jeune enfant - allocation de base
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        br_pf = simulation.calculate('br_pf', period)
+        isol = simulation.calculate('isol', period)
+        biact = simulation.calculate('biact', period)
+        smic55_holder = simulation.compute('smic55', period)
+        P = simulation.legislation_at(period.start).fam
+
         # TODO cumul des paje si et seulement si naissance multiples
 
         # TODO : théorie, il faut comparer les revenus de l'année n-2 à la bmaf de
@@ -87,10 +100,7 @@ class paje_base_temp(SimpleFormulaColumn):
         paje_base = (nbenf > 0) * ((br_pf < plaf) * base +
                                (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
         # non cumulabe avec la CF, voir Paje_CumulCf
-        return 12 * paje_base  # annualisé
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 12 * paje_base  # annualisé
 
 
 @reference_formula
@@ -101,10 +111,19 @@ class paje_nais(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
 
-    def function(self, agem_holder, age_holder, af_nbenf, br_pf, isol, biact, P = law.fam):
+    def function(self, simulation, period):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        agem_holder = simulation.compute('agem', period)
+        age_holder = simulation.compute('age', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        br_pf = simulation.calculate('br_pf', period)
+        isol = simulation.calculate('isol', period)
+        biact = simulation.calculate('biact', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         agem = self.split_by_roles(agem_holder, roles = ENFS)
 
@@ -130,10 +149,7 @@ class paje_nais(SimpleFormulaColumn):
         plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
         elig = (br_pf <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
-        return nais_brut
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, nais_brut
 
 
 @reference_formula
@@ -144,7 +160,7 @@ class paje_clca(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
 
-    def function(self, agem_holder, af_nbenf, paje_base, inactif, partiel1, partiel2, P = law.fam):
+    def function(self, simulation, period):
         """
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
         'fam'
@@ -165,6 +181,15 @@ class paje_clca(SimpleFormulaColumn):
 
         http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        agem_holder = simulation.compute('agem', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        paje_base = simulation.calculate('paje_base', period)
+        inactif = simulation.calculate('inactif', period)
+        partiel1 = simulation.calculate('partiel1', period)
+        partiel2 = simulation.calculate('partiel2', period)
+        P = simulation.legislation_at(period.start).fam
+
         agem = self.split_by_roles(agem_holder, roles = ENFS)
 
         paje = paje_base >= 0
@@ -188,10 +213,7 @@ class paje_clca(SimpleFormulaColumn):
                     (paje) * (inactif * P.paje.clca.avecab_tx_inactif +
                                 partiel1 * P.paje.clca.avecab_tx_partiel1 +
                                 partiel2 * P.paje.clca.avecab_tx_partiel2))
-        return 12 * paje_clca  # annualisé
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 12 * paje_clca  # annualisé
 
 
 @reference_formula
@@ -202,11 +224,12 @@ class paje_clca_taux_plein(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
 
-    def function(self, paje_clca, inactif):
-        return (paje_clca > 0) * inactif
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        paje_clca = simulation.calculate('paje_clca', period)
+        inactif = simulation.calculate('inactif', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, (paje_clca > 0) * inactif
 
 
 @reference_formula
@@ -217,11 +240,12 @@ class paje_clca_taux_partiel(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
 
-    def function(self, paje_clca, partiel1):
-        return (paje_clca > 0) * partiel1
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        paje_clca = simulation.calculate('paje_clca', period)
+        partiel1 = simulation.calculate('partiel1', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, (paje_clca > 0) * partiel1
 
 
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
@@ -235,7 +259,7 @@ class paje_clmg(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"
 
-    def function(self, aah_holder, age_holder, smic55_holder, etu_holder, sal_holder, hsup_holder, concub, af_nbenf, br_pf, empl_dir, ass_mat, gar_dom, paje_clca_taux_partiel, paje_clca_taux_plein, P = law.fam):
+    def function(self, simulation, period):
         '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
@@ -262,6 +286,23 @@ class paje_clmg(SimpleFormulaColumn):
         Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        aah_holder = simulation.compute('aah', period)
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        etu_holder = simulation.compute('etu', period)
+        sal_holder = simulation.compute('sal', period)
+        hsup_holder = simulation.compute('hsup', period)
+        concub = simulation.calculate('concub', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        br_pf = simulation.calculate('br_pf', period)
+        empl_dir = simulation.calculate('empl_dir', period)
+        ass_mat = simulation.calculate('ass_mat', period)
+        gar_dom = simulation.calculate('gar_dom', period)
+        paje_clca_taux_partiel = simulation.calculate('paje_clca_taux_partiel', period)
+        paje_clca_taux_plein = simulation.calculate('paje_clca_taux_plein', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
@@ -310,10 +351,7 @@ class paje_clmg(SimpleFormulaColumn):
         # vous ne pouvez pas bénéficier du Cmg.
         paje_clmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
-        return 12 * paje_clmg  # annualisé
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 12 * paje_clmg  # annualisé
 
 
 @reference_formula
@@ -324,10 +362,17 @@ class paje_colca(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
 
-    def function(self, af_nbenf, agem_holder, opt_colca, paje_base, P = law.fam):
+    def function(self, simulation, period):
         '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        agem_holder = simulation.compute('agem', period)
+        opt_colca = simulation.calculate('opt_colca', period)
+        paje_base = simulation.calculate('paje_base', period)
+        P = simulation.legislation_at(period.start).fam
+
         agem = self.split_by_roles(agem_holder, roles = ENFS)
 
         age_m_benjamin = age_en_mois_benjamin(agem)
@@ -336,10 +381,8 @@ class paje_colca(SimpleFormulaColumn):
         paje = (paje_base > 0)
         paje_colca = opt_colca * condition * (nbenf >= 3) * P.af.bmaf * (
             (paje) * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
-        return 12 * paje_colca  # annualisé
+        return period, 12 * paje_colca  # annualisé
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
 
     # TODO: cumul avec clca self.colca_tot_m
 
@@ -352,16 +395,17 @@ class paje_base(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
-    def function(self, paje_base_temp, cf_temp):
+    def function(self, simulation, period):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        paje_base_temp = simulation.calculate('paje_base_temp', period)
+        cf_temp = simulation.calculate('cf_temp', period)
+
         # On regarde ce qui est le plus intéressant pour la famille, chaque mois
         paje_base = (paje_base_temp >= cf_temp) * paje_base_temp
-        return round(paje_base, 2)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, round(paje_base, 2)
 
 
 def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
@@ -450,7 +494,7 @@ class ape_temp(SimpleFormulaColumn):
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
-    def function(self, age_holder, smic55_holder, inactif, partiel1, partiel2, P = law.fam):
+    def function(self, simulation, period):
         '''
         Allocation parentale d'éducation
         'fam'
@@ -479,6 +523,14 @@ class ape_temp(SimpleFormulaColumn):
         L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour les
         professions non salariées.
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        inactif = simulation.calculate('inactif', period)
+        partiel1 = simulation.calculate('partiel1', period)
+        partiel2 = simulation.calculate('partiel2', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
@@ -498,10 +550,7 @@ class ape_temp(SimpleFormulaColumn):
         #  (smic_8.27*169*136 %)
         ape = elig * (inactif * P.ape.tx_inactif + partiel1 * P.ape.tx_50 + partiel2 * P.ape.tx_80)
         # Cummul APE APJE CF
-        return 12 * ape  # annualisé
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 12 * ape  # annualisé
 
 
 @reference_formula
@@ -512,10 +561,18 @@ class apje_temp(SimpleFormulaColumn):
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
-    def function(self, br_pf, age_holder, smic55_holder, isol, biact, P = law.fam):
+    def function(self, simulation, period):
         '''
         Allocation pour jeune enfant
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        br_pf = simulation.calculate('br_pf', period)
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        isol = simulation.calculate('isol', period)
+        biact = simulation.calculate('biact', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
@@ -541,10 +598,7 @@ class apje_temp(SimpleFormulaColumn):
         #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes.
         #    L’APJE est alors versée du 5ème mois de grossesse jusqu’à la naissance de l’enfant.
         #  - Le CF
-        return 12 * apje  # annualisé
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, 12 * apje  # annualisé
 
 
 @reference_formula
@@ -555,15 +609,17 @@ class ape(SimpleFormulaColumn):
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
-    def function(self, apje_temp, ape_temp, cf_temp):
+    def function(self, simulation, period):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
-        return round(ape, 2)
+        period = period.start.offset('first-of', 'month').period('year')
+        apje_temp = simulation.calculate('apje_temp', period)
+        ape_temp = simulation.calculate('ape_temp', period)
+        cf_temp = simulation.calculate('cf_temp', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
+        return period, round(ape, 2)
 
 
 @reference_formula
@@ -574,12 +630,15 @@ class apje(SimpleFormulaColumn):
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
-    def function(self, apje_temp, ape_temp, cf_temp):
+    def function(self, simulation, period):
         '''
         L'APJE n'est pas cumulable avec le complément familial et l'APE
         '''
-        apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
-        return round(apje, 2)
+        period = period.start.offset('first-of', 'month').period('year')
+        apje_temp = simulation.calculate('apje_temp', period)
+        ape_temp = simulation.calculate('ape_temp', period)
+        cf_temp = simulation.calculate('cf_temp', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
+        return period, round(apje, 2)
+

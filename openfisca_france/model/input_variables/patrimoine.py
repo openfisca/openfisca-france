@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *
+from ..base import *  # noqa
 
 
 build_column('interets_epargne_sur_livrets', FloatCol(entity = 'ind', is_permanent = True, label = u"Intérêts versés pour l'épargne sur livret"))

@@ -33,7 +33,7 @@ import logging
 import os
 import sys
 
-from biryani1.baseconv import check
+from biryani.baseconv import check
 from nose.tools import assert_equal
 
 from .base import assert_near, tax_benefit_system
