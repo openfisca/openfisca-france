@@ -147,6 +147,6 @@ def build_reform(tax_benefit_system):
     return reforms.Reform(
         entity_class_by_key_plural = build_reform_entity_class_by_key_plural(tax_benefit_system),
         legislation_json = reform_legislation_json,
-        name = u'PLFR2014',
+        name = u'PLFR 2014',
         reference = tax_benefit_system,
         )
