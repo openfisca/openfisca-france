@@ -26,11 +26,13 @@
 from __future__ import division
 
 import copy
+from datetime import date
 
 from numpy import maximum as max_, minimum as min_
 from openfisca_core import columns, formulas, reforms
 
 from .. import entities
+from ..model import base, irpp_reductions_impots
 
 
 # Reform formulas
@@ -51,45 +53,47 @@ class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
         return period, min_(max_(plafond + montant - rfr, 0), montant)
 
 
-def reductions_2013(simulation, period):
-    '''
-    Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
-    '''
-    period = period.start.offset('first-of', 'month').period('year')
-    accult = simulation.calculate('accult')
-    adhcga = simulation.calculate('adhcga')
-    cappme = simulation.calculate('cappme')
-    creaen = simulation.calculate('creaen')
-    daepad = simulation.calculate('daepad')
-    deffor = simulation.calculate('deffor')
-    dfppce = simulation.calculate('dfppce')
-    doment = simulation.calculate('doment')
-    domlog = simulation.calculate('domlog')
-    donapd = simulation.calculate('donapd')
-    duflot = simulation.calculate('duflot')
-    ecpess = simulation.calculate('ecpess')
-    garext = simulation.calculate('garext')
-    intagr = simulation.calculate('intagr')
-    invfor = simulation.calculate('invfor')
-    invlst = simulation.calculate('invlst')
-    ip_net = simulation.calculate('ip_net')
-    locmeu = simulation.calculate('locmeu')
-    mecena = simulation.calculate('mecena')
-    mohist = simulation.calculate('mohist')
-    patnat = simulation.calculate('patnat')
-    prcomp = simulation.calculate('prcomp')
-    reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle')
-    repsoc = simulation.calculate('repsoc')
-    resimm = simulation.calculate('resimm')
-    rsceha = simulation.calculate('rsceha')
-    saldom = simulation.calculate('saldom')
-    scelli = simulation.calculate('scelli')
-    sofica = simulation.calculate('sofica')
-    spfcpi = simulation.calculate('spfcpi')
-    total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd + \
-        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + \
-        resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
-    return period, min_(ip_net, total_reductions)
+class reductions(formulas.DatedFormulaColumn):
+    label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
+    reference = irpp_reductions_impots.reductions
+
+    @base.dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
+    def function_20130101_20131231(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        accult = simulation.calculate('accult')
+        adhcga = simulation.calculate('adhcga')
+        cappme = simulation.calculate('cappme')
+        creaen = simulation.calculate('creaen')
+        daepad = simulation.calculate('daepad')
+        deffor = simulation.calculate('deffor')
+        dfppce = simulation.calculate('dfppce')
+        doment = simulation.calculate('doment')
+        domlog = simulation.calculate('domlog')
+        donapd = simulation.calculate('donapd')
+        duflot = simulation.calculate('duflot')
+        ecpess = simulation.calculate('ecpess')
+        garext = simulation.calculate('garext')
+        intagr = simulation.calculate('intagr')
+        invfor = simulation.calculate('invfor')
+        invlst = simulation.calculate('invlst')
+        ip_net = simulation.calculate('ip_net')
+        locmeu = simulation.calculate('locmeu')
+        mecena = simulation.calculate('mecena')
+        mohist = simulation.calculate('mohist')
+        patnat = simulation.calculate('patnat')
+        prcomp = simulation.calculate('prcomp')
+        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle')
+        repsoc = simulation.calculate('repsoc')
+        resimm = simulation.calculate('resimm')
+        rsceha = simulation.calculate('rsceha')
+        saldom = simulation.calculate('saldom')
+        scelli = simulation.calculate('scelli')
+        sofica = simulation.calculate('sofica')
+        spfcpi = simulation.calculate('spfcpi')
+        total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd + \
+            duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + \
+            repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+        return period, min_(ip_net, total_reductions)
 
 
 # Reform legislation
@@ -314,28 +318,7 @@ def build_reform(tax_benefit_system):
     reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
     ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
     ReformFoyersFiscaux.column_by_name['reduction_impot_exceptionnelle'] = reduction_impot_exceptionnelle
-
-    reform_reductions_column = reforms.clone_column(ReformFoyersFiscaux.column_by_name['reductions'])
-
-    reductions_formula_class_2013 = reform_reductions_column.formula_class.dated_formulas_class[-1]['formula_class']
-    reform_reductions_formula_class_2013 = type(
-        'reform_reductions_formula_class_2013',
-        (reductions_formula_class_2013, ),
-        {'function': staticmethod(reductions_2013)},
-        )
-    reform_dated_formulas_class = reform_reductions_column.formula_class.dated_formulas_class[:]
-    reform_dated_formulas_class[-1] = reform_dated_formulas_class[-1].copy()
-    reform_dated_formulas_class[-1]['formula_class'] = reform_reductions_formula_class_2013
-
-    reform_dated_formula_class = type(
-        'reform_dated_formula_class',
-        (reform_reductions_column.formula_class, ),
-        {'dated_formulas_class': reform_dated_formulas_class},
-        )
-
-    reform_reductions_column.formula_class = reform_dated_formula_class
-
-    ReformFoyersFiscaux.column_by_name['reductions'] = reform_reductions_column
+    ReformFoyersFiscaux.column_by_name['reductions'] = reductions
 
     return reforms.Reform(
         entity_class_by_key_plural = reform_entity_class_by_key_plural,
