@@ -388,8 +388,8 @@ class reductions(DatedFormulaColumn):
         saldom + scelli + sofica + spfcpi)
         return period, min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 1, 1))
-    def function_20130101_20130101(self, simulation, period):
+    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
+    def function_20130101_20131231(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
         '''
