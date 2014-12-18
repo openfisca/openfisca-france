@@ -430,10 +430,10 @@ class crds_lgtm(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        al = simulation.calculate('al', period)
+        aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         crds = simulation.legislation_at(period.start).fam.af.crds
 
-        return period, -al * crds
+        return period, -aide_logement_montant * crds
 
 
 @reference_formula
