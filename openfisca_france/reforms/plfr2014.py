@@ -86,7 +86,6 @@ def build_reform_entity_class_by_key_plural(tax_benefit_system):
         (reductions_formula_class_2013, ),
         {'function': staticmethod(_reductions_2013)},
         )
-    reform_reductions_formula_class_2013.extract_variables_name()
 
     reform_dated_formulas_class = reform_reductions_column.formula_class.dated_formulas_class[:]
     reform_dated_formulas_class[-1] = reform_dated_formulas_class[-1].copy()
