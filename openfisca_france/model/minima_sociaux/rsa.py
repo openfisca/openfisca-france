@@ -353,7 +353,7 @@ class psa(DatedFormulaColumn):
     url = u"http://www.service-public.fr/actualites/001077.html"
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_2009(self, api, rsa, activite_holder, af_nbenf, al, P = law.minim.rmi):
+    def function_2009(self, api, rsa, activite_holder, af_nbenf, aide_logement, P = law.minim.rmi):
         '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
         Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
@@ -366,7 +366,7 @@ class psa(DatedFormulaColumn):
         activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         dummy_api = api > 0
         dummy_rmi = rsa > 0
-        dummy_al = and_(al > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
+        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
         condition = (dummy_api + dummy_rmi + dummy_al > 0)
         psa = condition * P.psa
         return psa
