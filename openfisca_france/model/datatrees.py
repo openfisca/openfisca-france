@@ -161,23 +161,54 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    u"""type_sal""",  # Catégorie de salarié
-                    u"""taille_entreprise""",  # Catégorie de taille d'entreprise (pour calcul des cotisations sociales)
                     u"""enceinte""",  # Est enceinte
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""coloc""",  # Vie en colocation
                     u"""aer""",  # Allocation équivalent retraite (AER)
                     u"""f5sq""",
+                    u"""adoption""",  # Enfant adopté
                     u"""ass_precondition_remplie""",  # Éligible à l'ASS
                     u"""elig_creimp_jeunes""",  # Éligible au crédit d'impôt jeunes
+                    u"""indemnites_journalieres_maternite""",  # Indemnités journalières de maternité
+                    u"""indemnites_journalieres_paternite""",  # Indemnités journalières de paternité
+                    u"""indemnites_journalieres_adoption""",  # Indemnités journalières d'adoption
+                    u"""indemnites_journalieres_maladie""",  # Indemnités journalières de maladie
+                    u"""indemnites_journalieres_accident_travail""",  # Indemnités journalières d'accident du travail
+                    u"""indemnites_journalieres_maladie_professionnelle""",  # Indemnités journalières de maladie professionnelle
+                    u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
+                    u"""allocation_aide_retour_emploi""",  # Allocation d'aide au retour à l'emploi
+                    u"""allocation_securisation_professionnelle""",  # Allocation de sécurisation professionnelle
+                    u"""prime_forfaitaire_mensuelle_reprise_activite""",  # Prime forfaitaire mensuelle pour la reprise d'activité
+                    u"""indemnites_volontariat""",  # Indemnités de volontariat
+                    u"""dedommagement_victime_amiante""",  # Dédommagement versé aux victimes de l'amiante
+                    u"""prestation_compensatoire""",  # Dédommagement versé aux victimes de l'amiante
+                    u"""aah""",  # Allocation de l'adulte handicapé
+                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
+                    u"""gains_exceptionnels""",  # Gains exceptionnels
+                    u"""pensions_invalidite""",  # Pensions d'invalidité
+                    u"""bourse_enseignement_sup""",  # Bourse de l'enseignement supérieur
+                    u"""bourse_recherche""",  # Bourse de recherche
+                    u"""retraite_combattant""",  # Retraite du combattant
+                    u"""indemnites_stage""",  # Indemnités de stage
+                    u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
+                    u"""pensions_alimentaires_percues""",  # Pensions alimentaires perçues
+                    u"""etr""",
+                    u"""interets_epargne_sur_livrets""",  # Intérêts versés pour l'épargne sur livret
+                    u"""epargne_non_remuneree""",  # Épargne non rémunérée
+                    u"""revenus_capital""",  # Revenus du capital
+                    u"""valeur_locative_immo_non_loue""",  # Valeur locative des biens immobiliés possédés et non loués
+                    u"""valeur_locative_terrains_non_loue""",  # Valeur locative des terrains possédés et non loués
+                    u"""revenus_locatifs""",  # Revenus locatifs
                     u"""inv""",  # Invalide
                     u"""alt""",  # Enfant en garde alternée
+                    u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
                     u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
                     u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
                     u"""boursier""",  # Élève ou étudiant boursier
                     u"""f1tv""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans
                     u"""f1tw""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans
                     u"""f1tx""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans
+                    u"""sal_pen_exo_etr""",  # Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
                     u"""f3vd""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
                     u"""f3vf""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
                     u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
@@ -189,11 +220,13 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""nacc_meup""",  # Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)
                     u"""mbnc_mvct""",  # Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)
                     u"""frag_fore""",  # Revenus des exploitants forestiers (régime du forfait)
+                    u"""arag_sjag""",  # Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)
                     u"""abic_impm""",  # Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)
                     u"""nbic_impm""",  # Locations meublées imposables sans CGA (régime du bénéfice réel)
                     u"""abic_defm""",  # Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)
                     u"""alnp_imps""",  # Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)
                     u"""alnp_defs""",  # Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)
+                    u"""nlnp_defs""",  # Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)
                     u"""cbnc_assc""",  # Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)
                     u"""abnc_proc""",  # Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)
                     u"""nbnc_proc""",  # Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)
@@ -210,15 +243,37 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
-                    u"""etr""",
-                    u"""interets_epargne_sur_livrets""",  # Intérêts versés pour l'épargne sur livret
-                    u"""epargne_non_remuneree""",  # Épargne non rémunérée
-                    u"""revenus_capital""",  # Revenus du capital
-                    u"""valeur_locative_immo_non_loue""",  # Valeur locative des biens immobiliés possédés et non loués
-                    u"""valeur_locative_terrains_non_loue""",  # Valeur locative des terrains possédés et non loués
-                    u"""revenus_locatifs""",  # Revenus locatifs
-                    u"""aah""",  # Allocation de l'adulte handicapé
-                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
+                    u"""allegement_fillon_mode_recouvrement""",  # Mode de recouvrement des allègements Fillon
+                    u"""contrat_de_travail""",  # Type contrat de travail, de forfait ou de convention de rémunération des heures travaillées
+                    u"""contrat_de_travail_arrivee""",  # Date d'arrivée dans l'entreprise
+                    u"""contrat_de_travail_depart""",  # Date de départ de l'entreprise
+                    u"""contrat_de_travail_duree""",  # Date de départ de l'entreprise
+                    u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
+                    u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
+                    u"""base_remboursement_transport""",  # Base pour le calcul du remboursement des frais de transport
+                    u"""effectif_entreprise""",  # Effectif de l'entreprise
+                    u"""localisation_entreprise""",  # Localisation entreprise
+                    u"""nombre_tickets_restaurant""",  # Nombre de tickets restaurant
+                    u"""ratio_alternants""",  # Ratio d'alternants dans l'effectif moyen
+                    u"""prevoyance_obligatoire_cadre_taux""",  # Taux de cotisation employeur pour la prévoyance obligatoire des cadres
+                    u"""primes_salaires""",  # Indemnités, primes et avantages en argent
+                    u"""prise_en_charge_employeur_prevoyance_complementaire""",  # Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur
+                    u"""prise_en_charge_employeur_retraite_complementaire""",  # Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur
+                    u"""prise_en_charge_employeur_retraite_supplementaire""",  # Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur
+                    u"""redevable_taxe_apprentissage""",  # Entreprise redevable de la taxe d'apprentissage
+                    u"""salarie_au_forfait""",  # Salarié au forfait
+                    u"""salaire_de_base""",  # Salaire de base
+                    u"""taux_participation_ticket_restaurant""",  # Taux de participation de l'employeur au ticket restaurant
+                    u"""type_sal""",  # Catégorie de salarié
+                    u"""volume_heures_non_remunerees""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
+                    u"""volume_heures_remunerees""",  # Volume des heures ou jours rémunérées
+                    u"""volume_jours_ijss""",  # Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale
+                    u"""valeur_ticket_restaurant""",  # Valeur du ticket restaurant
+                    u"""tns_chiffre_affaires_micro_entreprise""",  # Chiffre d'affaires de micro-entreprise ou assimilée
+                    u"""tns_autres_revenus""",  # Autres revenus non salariés
+                    u"""tns_type_structure""",  # Type de structure associée au travailleur non salarié
+                    u"""tns_type_activite""",  # Valeur locative des biens immobiliés possédés et non loués
+                    u"""scolarite""",  # Scolarité de l'enfant : collège, lycée...
                     ]),
                 ]),
             ]),
@@ -586,6 +641,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
                     u"""f2ck""",  # Crédit d'impôt égal au prélèvement forfaitaire déjà versé
+                    u"""f2dm""",  # Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %
                     u"""f3vv_end_2010""",  # Pertes ouvrant droit au crédit d’impôt de 19 %
                     u"""f5qf""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-6)
                     u"""f5qg""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-5)
@@ -617,8 +673,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f5mt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
+                    u"""f6hm""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f7va""",  # Dons à des organismes d'aides aux personnes établis dans un Etat européen
                     u"""f7vc""",  # Dons à des autres organismes établis dans un Etat européen
+                    u"""f7uh_2007""",  # Intérêts payés la première année de remboursement du prêt pour l'habitation principale
                     u"""f7vv""",  # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes
                     u"""f7vu""",  # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité
                     u"""f7vt""",  # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes
@@ -645,41 +703,53 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7sw""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de raccordement à un réseau de chaleur
                     u"""f7ws""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolations des parois vitrées à compter du 04/04/2012
                     u"""f7wt""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement
+                    u"""f7wu""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets avant 2012
+                    u"""f7wv""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012
+                    u"""f7ww""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012
+                    u"""f7wx""",  # Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes en 2012
                     u"""f7wr""",  # Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques
                     u"""f7qv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010, nvestissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%
                     u"""f7qo""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 50%
                     u"""f7qp""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 60%
                     u"""f7pa""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%
                     u"""f7pb""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%
+                    u"""f7pc""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée
                     u"""f7pd""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011
                     u"""f7qe""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%
                     u"""f7pe""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%
                     u"""f7pf""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%
+                    u"""f7pg""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée
                     u"""f7ph""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011
                     u"""f7pi""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%
                     u"""f7pj""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%
+                    u"""f7pk""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée
                     u"""f7pl""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011
                     u"""f7pm""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%
                     u"""f7pn""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %
                     u"""f7po""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %
                     u"""f7pp""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise
+                    u"""f7pq""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
                     u"""f7pr""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7ps""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %
                     u"""f7pt""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %
                     u"""f7pu""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise
+                    u"""f7pv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
                     u"""f7pw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7px""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %
                     u"""f7py""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7rg""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise
+                    u"""f7rh""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
                     u"""f7ri""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7rj""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %
                     u"""f7rk""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7rl""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7rm""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise
+                    u"""f7rn""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
                     u"""f7ro""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7rp""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7rq""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7rr""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise
+                    u"""f7rs""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
                     u"""f7rt""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7ru""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7rv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
@@ -689,6 +759,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7nu""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7nv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7nw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise
+                    u"""f7nx""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
                     u"""f7ny""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7mn""",  # Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%
                     u"""f7lh""",  # Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%
@@ -703,6 +774,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""fhsg""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%
                     u"""fhsc""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2010
                     u"""fhsh""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2011
+                    u"""fhsd""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010
+                    u"""fhsi""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011
                     u"""fhse""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010
                     u"""fhsj""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011
                     u"""fhsk""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%
@@ -711,14 +784,19 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""fhsq""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%
                     u"""fhsm""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2010
                     u"""fhsr""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2011
+                    u"""fhsn""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2010
+                    u"""fhss""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2011
                     u"""fhso""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010
                     u"""fhst""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011
                     u"""fhsu""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%
                     u"""fhsv""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%
                     u"""fhsw""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise
+                    u"""fhsx""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé
+                    u"""fhsy""",  # Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013
                     u"""fhsz""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%
                     u"""fhta""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%
                     u"""fhtb""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise
+                    u"""fhtc""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé
                     u"""fhtd""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013
                     u"""f7rc""",  # Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé
                     u"""f7rd""",  # Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé
@@ -799,6 +877,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7ux""",  # Investissements forestiers
                     u"""f7tg""",  # Investissements forestiers
                     u"""f7tf""",  # Investissements forestiers
+                    u"""f7ut""",  # Investissements forestiers
                     u"""f7lb""",  # Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010
                     u"""f7lc""",  # Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010
                     u"""f7ld""",  # Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011
@@ -902,9 +981,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7gh""",  # Investissements locatifs intermédiaires en métropole
                     u"""f7gi""",  # Investissements locatifs intermédiaires outre-mer
                     u"""f8td_2002_2005""",  # Contribution exceptionnelle sur les hauts revenus
+                    u"""f8ti""",  # Revenus de l'étranger exonérés d'impôt
+                    u"""f8tk""",  # Revenus de l'étranger imposables
                     u"""f8tl""",  # Crédit d'impôt compétitivité emploi (CICE), entreprises bénéficiant de la restitution immédiate
                     u"""f8ts""",  # Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt
                     u"""f8uw""",  # Crédit d'impôt compétitivité emploi (CICE), autres entreprises
+                    u"""f8wc__2008""",  # Crédit d'impôt en faveur des entreprises: Nouvelles technologies
                     u"""elig_creimp_exc_2008""",  # Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008
                     ]),
                 ]),
