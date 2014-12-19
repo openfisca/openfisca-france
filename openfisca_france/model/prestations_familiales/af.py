@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_
+from numpy import round, maximum as max_, minimum as min_
 
 from ..base import *  # noqa
 from ..pfam import nb_enf, age_aine
@@ -50,13 +50,14 @@ class af_nbenf(SimpleFormulaColumn):
 
 
 @reference_formula
-class af_base(SimpleFormulaColumn):
+class af_base(DatedFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - allocation de base"
     # prestations familiales (brutes de crds)
 
-    def function(self, simulation, period):
+    @dated_function(start = date(2002, 1, 1), stop = date(2015, 6, 30))
+    def function_2002(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_nbenf = simulation.calculate('af_nbenf', period)
         P = simulation.legislation_at(period.start).fam
@@ -66,6 +67,36 @@ class af_base(SimpleFormulaColumn):
         af_2enf = round(bmaf * P.af.taux.enf2, 2)
         af_enf_supp = round(bmaf * P.af.taux.enf3, 2)
         return period, (af_nbenf >= 1) * af_1enf + (af_nbenf >= 2) * af_2enf + max_(af_nbenf - 2, 0) * af_enf_supp
+
+    @dated_function(start = date(2015, 7, 1))
+    def function_2015(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'year').period('year').offset(-2)) / 12
+
+        legislation_af = simulation.legislation_at(period.start).fam.af
+        bmaf = legislation_af.bmaf
+        modulation = legislation_af.modulation
+
+        af_1enf = round(bmaf * legislation_af.taux.enf1, 2)
+        af_2enf = round(bmaf * legislation_af.taux.enf2, 2)
+        af_enf_supp = round(bmaf * legislation_af.taux.enf3, 2)
+
+        montant_base = (af_nbenf >= 1) * af_1enf + (af_nbenf >= 2) * af_2enf + max_(af_nbenf - 2, 0) * af_enf_supp
+
+        plafond1 = modulation.plafond1 + (max_(af_nbenf - 2, 0)) * modulation.enfant_supp
+        plafond2 = modulation.plafond2 + (max_(af_nbenf - 2, 0)) * modulation.enfant_supp
+
+        depassement_plafond1 = max_(br_pf - plafond1, 0)
+        depassement_plafond2 = max_(br_pf - plafond2, 0)
+
+        montant_servi = (montant_base -
+            (br_pf > plafond1) * min_(depassement_plafond1, montant_base * modulation.taux1) -
+            (br_pf > plafond2) * min_(depassement_plafond2, montant_base * modulation.taux2)
+            )
+
+        return period, montant_servi
 
 
 @reference_formula

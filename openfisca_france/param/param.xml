@@ -4106,10 +4106,10 @@
         <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
       </CODE>
       <CODE code="age1" description="Âge mininimal pour toucher les AF" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0" />
       </CODE>
       <CODE code="age2" description="Âge maximal pour toucher les AF (hors forfait)" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="19" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="19" />
       </CODE>
       <CODE code="age3" description="Âge maximal pour toucher les AF (forfait datant de 2003-07-01 inclus )" format="integer" type="age">
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
@@ -4146,6 +4146,23 @@
         <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="16" />
           <VALUE deb="2008-05-01" fin="2014-03-31" valeur="14" />
+        </CODE>
+      </NODE>
+      <NODE code="modulation" description="Modulation des allocations familiales en fonction des ressources">
+        <CODE code="plafond1" description="Plafond mensuel de ressources n°1" format="float" type="monetary">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="6000" />
+        </CODE>
+        <CODE code="plafond2" description="Plafond mensuel de ressources n°2" format="float" type="monetary">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="8000" />
+        </CODE>
+        <CODE code="enfant_supp" description="Majoration du plafond mensuel de ressources par enfant supplémentaire (à partir du 3e enfant)" format="float" type="monetary">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="500" />
+        </CODE>
+        <CODE code="taux1" description="Taux de modulation au delà du plafond 1" format="percent">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="0.5" />
+        </CODE>
+        <CODE code="taux2" description="Taux de modulation au delà du plafond 2" format="percent">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="0.25" />
         </CODE>
       </NODE>
     </NODE>
