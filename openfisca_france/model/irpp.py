@@ -2955,7 +2955,7 @@ class ppe_brute(SimpleFormulaColumn):
         ppe_rev = self.split_by_roles(ppe_rev_holder)
 
         eliv, elic, eli1, eli2, eli3 = ppe_elig_i[VOUS], ppe_elig_i[CONJ], ppe_elig_i[PAC1], \
-            ppe_elig_i[PAC2], ppe_elig_i[PAC3],
+            ppe_elig_i[PAC2], ppe_elig_i[PAC3]
         basevi, baseci = ppe_rev[VOUS], ppe_rev[CONJ]
         basev, basec, base1, base2, base3 = ppe_base[VOUS], ppe_base[CONJ], ppe_base[PAC1], ppe_base[PAC2], ppe_base[PAC1]
         coef_tpv, coef_tpc, coef_tp1, coef_tp2, coef_tp3 = ppe_coef_tp[VOUS], ppe_coef_tp[CONJ], \
@@ -3057,4 +3057,3 @@ class ppe(SimpleFormulaColumn):
     #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
         return period, ppe
-
