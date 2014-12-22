@@ -198,16 +198,20 @@ class api(DatedFormulaColumn):
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         # TODO:
         #    Majoration pour isolement
-        #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants à charge ou enceinte, le montant forfaitaire garanti est majoré.
-        #    Ce montant forfaitaire majoré est accordé à partir du mois au cours duquel survient l'un des événements suivants :
+        #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants
+        #    à charge ou enceinte, le montant forfaitaire garanti est majoré.
+        #    Ce montant forfaitaire majoré est accordé à partir du mois au cours duquel survient l'un des événements
+        #    suivants :
         #    - déclaration de grossesse,
         #    - naissance d'un enfant,
         #    - prise en charge d'un enfant,
         #    - séparation, veuvage,
         #    - dépôt de la demande si l’événement est antérieur.
         #
-        #    Le montant forfaitaire majoré peut être accordé pendant 12 mois, continus ou discontinus, au cours d’une période de 18 mois suivant l’événement.
-        #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé jusqu'à ses 3 ans.
+        #    Le montant forfaitaire majoré peut être accordé pendant 12 mois, continus ou discontinus, au cours
+        #    d’une période de 18 mois suivant l’événement.
+        #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé
+        #    jusqu'à ses 3 ans.
         benjamin = age_en_mois_benjamin(agem)
         enceinte = (benjamin < 0) * (benjamin > -6)
         # TODO: quel mois mettre ?
@@ -236,16 +240,25 @@ class api(DatedFormulaColumn):
         # TODO API: temps partiel qui modifie la base ressource
         # Cumul
         # Cumul avec un revenu
-        # Si l'allocataire reprend une activité ou suit une formation professionnelle rémunérée, les revenus sont cumulables intégralement au cours des 3 premiers mois de reprise d'activité.
-        # Du 4e au 12e mois qui suit, le montant de l'allocation varie en fonction de la durée de l'activité ou de la formation.
+        # Si l'allocataire reprend une activité ou suit une formation professionnelle rémunérée, les revenus sont
+        # cumulables intégralement au cours des 3 premiers mois de reprise d'activité.
+        # Du 4e au 12e mois qui suit, le montant de l'allocation varie en fonction de la durée de l'activité
+        # ou de la formation.
         # Durée d'activité de 78 heures ou plus par mois ou activité non salariée
-        # Lorsque la durée d'activité est de 78 heures minimum par mois, le montant de l'API perçu par l'allocataire est diminué de la totalité du salaire. Tous les revenus d'activité sont pris en compte pour le calcul de l'API, sauf si l'allocataire perçoit des revenus issus d'un contrat insertion-revenu minimum d'activité (CIRMA) ou d'un contrat d'avenir (CAV).
+        # Lorsque la durée d'activité est de 78 heures minimum par mois, le montant de l'API perçu par l'allocataire est
+        # diminué de la totalité du salaire. Tous les revenus d'activité sont pris en compte pour le calcul de l'API,
+        # sauf si l'allocataire perçoit des revenus issus d'un contrat insertion-revenu minimum d'activité (CIRMA)
+        # ou d'un contrat d'avenir (CAV).
         # L'allocataire peut bénéficier, sous certaines conditions :
-        # • de la prime de retour à l'emploi si son activité est d'une durée d'au moins 4 mois consécutifs, sauf s'il effectue un stage de formation professionnelle,
-        # • de la prime forfaitaire pendant 9 mois, sauf s'il exerce une activité salariée dans le cadre d'un CIRMA ou d'un CAV.
+        # • de la prime de retour à l'emploi si son activité est d'une durée d'au moins 4 mois consécutifs,
+        # sauf s'il effectue un stage de formation professionnelle,
+        # • de la prime forfaitaire pendant 9 mois, sauf s'il exerce une activité salariée dans le cadre d'un CIRMA
+        # ou d'un CAV.
         # Durée d'activité de moins de 78 heures par mois
-        # Lorsque la durée d'activité est inférieure à 78 heures par mois, le montant de l'API perçu par l'allocataire est diminué de la moitié du salaire.
-        # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas pris en compte pour le calcul de son API.
+        # Lorsque la durée d'activité est inférieure à 78 heures par mois, le montant de l'API perçu par l'allocataire
+        # est diminué de la moitié du salaire.
+        # Si l'allocataire exerce une activité dans le cadre d'un CIRMA ou d'un CAV, ses revenus d'activité ne sont pas
+        # pris en compte pour le calcul de son API.
 
 
 @reference_formula
@@ -392,18 +405,23 @@ class br_rmi_i(SimpleFormulaColumn):
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
         pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
         allocation_aide_retour_emploi = simulation.calculate('allocation_aide_retour_emploi', three_previous_months)
-        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', three_previous_months)
+        allocation_securisation_professionnelle = simulation.calculate(
+            'allocation_securisation_professionnelle', three_previous_months)
         prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
         bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', three_previous_months)
         bourse_recherche = simulation.calculate('bourse_recherche', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate('rsa_base_ressources_patrimoine_i', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate(
+            'rsa_base_ressources_patrimoine_i', three_previous_months)
 
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-        return period, ra_rsa_i + (chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar + rev_cap_lib + rfon_ms + div_ms +
+        return period, ra_rsa_i + (
+            chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
+            rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
-            bourse_enseignement_sup + bourse_recherche + rsa_base_ressources_patrimoine_i) / 3
+            bourse_enseignement_sup + bourse_recherche + rsa_base_ressources_patrimoine_i
+            ) / 3
 
 
 @reference_formula
@@ -445,13 +463,13 @@ class psa(DatedFormulaColumn):
         rsa = simulation.calculate('rsa', period)
         activite_holder = simulation.compute('activite', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        al = simulation.calculate('al', period)
+        aide_logement = simulation.calculate('aide_logement', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
         activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         dummy_api = api > 0
         dummy_rmi = rsa > 0
-        dummy_al = and_(al > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
+        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
         condition = (dummy_api + dummy_rmi + dummy_al > 0)
         psa = condition * P.psa
         return period, psa
@@ -498,18 +516,24 @@ class ra_rsa_i(SimpleFormulaColumn):
         rpns = simulation.calculate('rpns', three_previous_months)
         etr = simulation.calculate('etr', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
-        indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', three_previous_months)
-        indemnites_journalieres_paternite = simulation.calculate('indemnites_journalieres_paternite', three_previous_months)
-        indemnites_journalieres_adoption = simulation.calculate('indemnites_journalieres_adoption', three_previous_months)
+        indemnites_journalieres_maternite = simulation.calculate(
+            'indemnites_journalieres_maternite', three_previous_months)
+        indemnites_journalieres_paternite = simulation.calculate(
+            'indemnites_journalieres_paternite', three_previous_months)
+        indemnites_journalieres_adoption = simulation.calculate(
+            'indemnites_journalieres_adoption', three_previous_months)
         indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', three_previous_months)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', three_previous_months)
+        indemnites_journalieres_accident_travail = simulation.calculate(
+            'indemnites_journalieres_accident_travail', three_previous_months)
+        indemnites_journalieres_maladie_professionnelle = simulation.calculate(
+            'indemnites_journalieres_maladie_professionnelle', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         indemnites_stage = simulation.calculate('indemnites_stage', three_previous_months)
         tns_total_revenus = simulation.calculate('tns_total_revenus', three_previous_months)
 
-        return period, (salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
+        return period, (
+            salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
             indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus) / 3
@@ -577,9 +601,11 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
         rmi = simulation.legislation_at(period.start).minim.rmi.rmi
 
-        return period, rmi * ((rmi_nbp == 1) * forf_logement.taux1 +
+        return period, rmi * (
+            (rmi_nbp == 1) * forf_logement.taux1 +
             (rmi_nbp == 2) * forf_logement.taux2 +
-            (rmi_nbp >= 3) * forf_logement.taux3)
+            (rmi_nbp >= 3) * forf_logement.taux3
+            )
 
 
 @reference_formula
@@ -723,7 +749,7 @@ class rmi(DatedFormulaColumn):
 
         return period, max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
 
-    # Migré lors de la mensualisation. Probablement faux
+    # TODO: Migré lors de la mensualisation. Probablement faux
 
 
 @reference_formula
@@ -738,7 +764,7 @@ class rsa(SimpleFormulaColumn):
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
         ra_rsa = simulation.calculate('ra_rsa', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
+        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period) # TODO: not used ?
         br_rmi = simulation.calculate('br_rmi', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
@@ -746,4 +772,3 @@ class rsa(SimpleFormulaColumn):
         base_normalise = max_(socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
-

@@ -85,7 +85,7 @@ class al_pac(SimpleFormulaColumn):
         age2 = cf.age2
         al_nbenf = nb_enf(age, smic55, age1, age2)
         al_pac = D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
-        # TODO: il faudrait probablement définir les AL pour un ménage et non
+        # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
         return period, al_pac
 
@@ -308,9 +308,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         # # TODO: APL pour les accédants à la propriété
         al_acc = 0 * acce
         # # APL (tous)
-        al = al_loc + al_acc
-
-        return period, al
+        return period, al_loc + al_acc
 
 
 @reference_formula
@@ -428,11 +426,11 @@ class crds_lgtm(SimpleFormulaColumn):
     label = u"CRDS des allocations logement"
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
 
+
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         crds = simulation.legislation_at(period.start).fam.af.crds
-
         return period, -aide_logement_montant * crds
 
 
