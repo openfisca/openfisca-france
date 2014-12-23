@@ -424,6 +424,7 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         _P = simulation.legislation_at(period.start)
 
+        # TODO: check entreprise redevable
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "apprentissage_add",
@@ -1116,6 +1117,7 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (employeur)"
+
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')

@@ -186,7 +186,7 @@ def test_check():
             legislation_json = reference_legislation_json,
             path = ('children', 'cotsoc', 'children', 'gen','children', 'smic_h_b'),
             period = period,
-            value = 9.0,
+            value = 9,
             )
         reform = reforms.Reform(
             name = u'smic_h_b_9_euros',

@@ -25,13 +25,13 @@
 
 import datetime
 
-from nose.tools import assert_less
+from openfisca_core.tools import assert_near
 
 from . import base
 
 
 def check_calculation(variable, calculated_value, expected_value, error_margin):
-    assert_less(abs(calculated_value - expected_value), error_margin)
+    assert_near(calculated_value, expected_value, error_margin)
 
 
 def process_tests_list(tests_list, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):

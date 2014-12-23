@@ -104,7 +104,8 @@ class cantine_titres_restaurants(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        cantine_titres_restaurants_taux_entreprise = simulation.calculate('cantine_titres_restaurants_taux_entreprise', period)
+        cantine_titres_restaurants_taux_entreprise = simulation.calculate(
+            'cantine_titres_restaurants_taux_entreprise', period)
 
         cantine_titres_restaurants_prix_titre = 0
         cantine_titres_restaurants_nombre_titres = 0
@@ -128,7 +129,8 @@ class cantine_titres_restaurants_employeur(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period  # TODO
-        cantine_titres_restaurants_taux_entreprise = simulation.calculate('cantine_titres_restaurants_taux_entreprise', period)
+        cantine_titres_restaurants_taux_entreprise = simulation.calculate(
+            'cantine_titres_restaurants_taux_entreprise', period)
 
         return period, cantine_titres_restaurants_taux_entreprise * cantine_titres_restaurants
 
@@ -164,21 +166,17 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
 
         mois_incomplet = or_(contrat_de_travail_arrivee > debut_mois, contrat_de_travail_depart < fin_mois)
-
         jours_travailles = busday_count(
             max_(contrat_de_travail_arrivee, debut_mois),
             min_(contrat_de_travail_depart, fin_mois)
             )
-        jours_travaillables = busday_count(
-            max_(contrat_de_travail_arrivee, debut_mois),
-            min_(contrat_de_travail_depart, fin_mois)
-            )
+        jours_travaillables = busday_count(debut_mois, fin_mois)
 
         duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
         nombre_heures_remunerees = (
             (contrat_de_travail == 0) * (
                 duree_legale * not_(mois_incomplet) +  # 151.67
-                duree_legale * jours_travailles / jours_travaillables * mois_incomplet
+                jours_travailles * 7 * mois_incomplet
                 ) +
             (contrat_de_travail == 1) * volume_heures_remunerees +
             (contrat_de_travail == 2) * (volume_heures_remunerees / 45.7) * (52 / 12) +  # forfait heures/annee
@@ -195,7 +193,6 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
-        contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
         contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
 
@@ -207,16 +204,3 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
             min_(contrat_de_travail_depart, fin_mois)
             )
         return period, jours_travailles
-
-
-#@reference_formula
-#class sal_h_b(SimpleFormulaColumn):
-#    column = FloatCol
-#    entity_class = Individus
-#    label = u"Salaire horaire brut"
-#
-#    def function(self, salbrut, nombre_heures_remunerees):
-#        return salbrut / nombre_heures_remunerees
-#
-#    def get_output_period(self, period):
-#        return period.start.offset('first-of', 'month').period(u'month')

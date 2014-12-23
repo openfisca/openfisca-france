@@ -45,7 +45,7 @@ class smic_proratise(SimpleFormulaColumn):
         period = period
         nombre_heures_remunerees = simulation.calculate('nombre_heures_remunerees', period)
         smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
-
+        print "smic: ", smic_horaire_brut
         smic_proratise = smic_horaire_brut * nombre_heures_remunerees
         return period, smic_proratise
 
