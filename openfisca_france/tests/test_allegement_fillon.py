@@ -28,7 +28,8 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods
+from openfisca_core import periods, reforms
+
 from openfisca_france.tests.base import tax_benefit_system
 
 
@@ -178,13 +179,28 @@ test_case_by_employee_type = dict(
 
 def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
-        period = "2011"
+
+        reference_legislation_json = tax_benefit_system.legislation_json
+        period = periods.period("month", "2011-12")
+        reform_legislation_json = reforms.update_legislation(
+            legislation_json = reference_legislation_json,
+            path = ('children', 'cotsoc', 'children', 'gen','children', 'smic_h_b'),
+            period = period,
+            value = 9.0,
+            )
+        reform = reforms.Reform(
+            name = u'smic_h_b_9_euros',
+            label = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
+            legislation_json = reform_legislation_json,
+            reference = tax_benefit_system,
+            )
+
         parent1 = dict(
             birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
             )
         parent1.update(test_parameters['input_variables'])
 
-        simulation = tax_benefit_system.new_scenario().init_single_entity(
+        simulation = reform.new_scenario().init_single_entity(
             period = period,
             parent1 = parent1,
             ).new_simulation(debug = True)
