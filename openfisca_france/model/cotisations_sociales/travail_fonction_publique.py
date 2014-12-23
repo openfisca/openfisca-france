@@ -31,6 +31,8 @@ from numpy import maximum as max_, minimum as min_, zeros
 
 
 from ..base import *  # noqa
+
+
 from . import apply_bareme_for_relevant_type_sal
 
 
@@ -73,7 +75,6 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return period, cotisation_etat + cotisation_collectivites_locales
-        return output_period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
@@ -471,6 +472,6 @@ def seuil_fds(_P):
 
 
 def _traitement_brut_mensuel(indice_maj, _P):
-        Indice_majore_100_annuel = _P.fonc.IM_100
-        traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
-        return traitement_brut
+    Indice_majore_100_annuel = _P.fonc.IM_100
+    traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
+    return traitement_brut

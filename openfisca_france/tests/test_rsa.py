@@ -30,7 +30,6 @@
 import datetime
 
 from openfisca_core.tools import assert_near
-from openfisca_core.periods import period
 from . import base
 
 
@@ -50,7 +49,7 @@ def test_rsa_celibataire():
     error_margin = 1
     year = 2014
     age = 29
-    revenu = "sali"
+    revenu = "sal"
     for test in tests_list:
         amount = test["amount"]
         simulation = base.tax_benefit_system.new_scenario().init_single_entity(
@@ -70,11 +69,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 629,
@@ -82,11 +81,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 5000,
+                "sal": 5000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 471,
@@ -94,11 +93,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 10000,
+                "sal": 10000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 312,
@@ -106,11 +105,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 12000,
+                "sal": 12000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 249,
@@ -118,11 +117,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 13000,
+                "sal": 13000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 217,
@@ -130,11 +129,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 14000,
+                "sal": 14000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 186,
@@ -142,11 +141,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 15000,
+                "sal": 15000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 154,
@@ -154,11 +153,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 16000,
+                "sal": 16000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 122,
@@ -166,11 +165,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 17000,
+                "sal": 17000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 91,
@@ -178,11 +177,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 18000,
+                "sal": 18000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 59,
@@ -190,11 +189,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 19000,
+                "sal": 19000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "rsa": 27,
@@ -202,11 +201,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 9000,
+                "sal": 9000,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 11000,
+                "sal": 11000,
                 "age": 29,
                 },
             "rsa": 0,
@@ -215,11 +214,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 400,
+                "sal": 400,
                 "age": 21,
                 },
             "parent2": {
-                "sali": 3000,
+                "sal": 3000,
                 "age": 21,
                 },
             "rsa": 0,
@@ -228,11 +227,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 400,
+                "sal": 400,
                 "age": 21,
                 },
             "parent2": {
-                "sali": 3000,
+                "sal": 3000,
                 "age": 21,
                 },
             "rsa": 0,
@@ -241,7 +240,7 @@ def notest_rsa_couple():
         # {
         #     "year": 2014,
         #     "parent1": {
-        #         "sali": 5000,
+        #         "sal": 5000,
         #         "age": 29,
         #         },
         #     "enfants": [
@@ -254,11 +253,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "enfants": [
@@ -271,11 +270,11 @@ def notest_rsa_couple():
         # {
         #     "year": 2014,
         #     "parent1": {
-        #         "sali": 5000,
+        #         "sal": 5000,
         #         "age": 29,
         #         },
         #     "parent2": {
-        #         "sali": 0,
+        #         "sal": 0,
         #         "age": 29,
         #         },
         #     "enfants": [
@@ -287,11 +286,11 @@ def notest_rsa_couple():
         # {
         #     "year": 2014,
         #     "parent1": {
-        #         "sali": 10000,
+        #         "sal": 10000,
         #         "age": 29,
         #         },
         #     "parent2": {
-        #         "sali": 0,
+        #         "sal": 0,
         #         "age": 29,
         #         },
         #     "enfants": [
@@ -321,11 +320,11 @@ def notest_rsa_couple():
         {
             "year": 2014,
             "parent1": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "parent2": {
-                "sali": 0,
+                "sal": 0,
                 "age": 29,
                 },
             "enfants": [
@@ -495,7 +494,7 @@ if __name__ == '__main__':
 # #            if revenu != "f2dc":
 # #                continue
 #
-#            if revenu in ["rsti", "sali"]:
+#            if revenu in ["rsti", "sal"]:
 #
 #                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
 #                    period = year,

@@ -26,15 +26,12 @@
 from __future__ import division
 
 import logging
-
 from numpy import logical_not as not_
 
-from openfisca_core.taxscales import scale_tax_scales
 
 from ..base import *  # noqa
 
 
-DEBUG_SAL_TYPE = 'public_titulaire_hospitaliere'
 log = logging.getLogger(__name__)
 
 
@@ -51,7 +48,8 @@ class cotisations_patronales(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
-        cotisations_patronales_non_contributives = simulation.calculate('cotisations_patronales_non_contributives', period)
+        cotisations_patronales_non_contributives = simulation.calculate(
+            'cotisations_patronales_non_contributives', period)
         cotisations_patronales_main_d_oeuvre = simulation.calculate('cotisations_patronales_main_d_oeuvre', period)
 
         return period, (
@@ -74,7 +72,8 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_tranche_a_employeur = simulation.calculate('arrco_tranche_a_employeur', period)
         assedic_employeur = simulation.calculate('assedic_employeur', period)
-        cotisation_exceptionnelle_temporaire_employeur = simulation.calculate('cotisation_exceptionnelle_temporaire_employeur', period)
+        cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
+            'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = simulation.calculate('fonds_emploi_hospitalier', period)
         ircantec_employeur = simulation.calculate('ircantec_employeur', period)
         pension_civile_employeur = simulation.calculate('pension_civile_employeur', period)
@@ -91,7 +90,7 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
             arrco_tranche_a_employeur +
             assedic_employeur +
             cotisation_exceptionnelle_temporaire_employeur +
-            prevoyance_obligatoire_cadre +  # TODO contributive ou pas
+            prevoyance_obligatoire_cadre +  # TODO contributive ou pas ?
             vieillesse_deplafonnee_employeur +
             vieillesse_plafonnee_employeur +
             # public
@@ -112,9 +111,11 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
-        contribution_developpement_apprentissage = simulation.calculate('contribution_developpement_apprentissage', period)
+        contribution_developpement_apprentissage = simulation.calculate(
+            'contribution_developpement_apprentissage', period)
         contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
-        contribution_supplementaire_apprentissage = simulation.calculate('contribution_supplementaire_apprentissage', period)
+        contribution_supplementaire_apprentissage = simulation.calculate(
+            'contribution_supplementaire_apprentissage', period)
         fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
         fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
@@ -174,7 +175,8 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         apec_employe = simulation.calculate('apec_employe', period)
         arrco_tranche_a_employe = simulation.calculate('arrco_tranche_a_employe', period)
         assedic_employe = simulation.calculate('assedic_employe', period)
-        cotisation_exceptionnelle_temporaire_employe = simulation.calculate('cotisation_exceptionnelle_temporaire_employe', period)
+        cotisation_exceptionnelle_temporaire_employe = simulation.calculate(
+            'cotisation_exceptionnelle_temporaire_employe', period)
         ircantec_employe = simulation.calculate('ircantec_employe', period)
         pension_civile_employe = simulation.calculate('pension_civile_employe', period)
         rafp_employe = simulation.calculate('rafp_employe', period)
@@ -208,7 +210,8 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        contribution_exceptionnelle_solidarite_employe = simulation.calculate('contribution_exceptionnelle_solidarite_employe', period)
+        contribution_exceptionnelle_solidarite_employe = simulation.calculate(
+            'contribution_exceptionnelle_solidarite_employe', period)
         maladie_employe = simulation.calculate('maladie_employe', period)
 
         cotisations_salariales_non_contributives = (
@@ -230,7 +233,8 @@ class cotisations_salariales(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = simulation.calculate('cotisations_salariales_non_contributives', period)
+        cotisations_salariales_non_contributives = simulation.calculate(
+            'cotisations_salariales_non_contributives', period)
 
         return period, cotisations_salariales_contributives + cotisations_salariales_non_contributives
 
@@ -255,7 +259,7 @@ class csgsald(SimpleFormulaColumn):
         csg = law.csg.act.deduc
         montant_csg = plafond_securite_sociale * csg.calc(
             (
-                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
                 ) / (
                 plafond_securite_sociale + 1e-10
@@ -284,7 +288,7 @@ class csgsali(SimpleFormulaColumn):
         csg = law.csg.act.impos
         montant_csg = plafond_securite_sociale * csg.calc(
             (
-                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
                 ) / (
                 plafond_securite_sociale + 1e-10
@@ -313,16 +317,13 @@ class crdssal(SimpleFormulaColumn):
         crds = law.crds.act
         montant_crds = plafond_securite_sociale * crds.calc(
             (
-                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
                 ) / (
                 plafond_securite_sociale + 1e-10
                 )
             )
         return period, - montant_crds
-
-
-        return period, - crds.calc(salbrut - hsup + primes_fonction_publique + indemnite_residence + supp_familial_traitement)
 
 
 @reference_formula

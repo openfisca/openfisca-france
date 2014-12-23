@@ -43,7 +43,6 @@ log = logging.getLogger(__name__)
 
 def build_pat(_P):
     """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
-
     pat = TaxScalesTree('pat', _P.cotsoc.pat)
 
     for bareme in ['apprentissage', 'apprentissage_add']:
