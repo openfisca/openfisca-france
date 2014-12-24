@@ -150,7 +150,7 @@ class salbrut(SimpleFormulaColumn):
 
         # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
         # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
-        bareme_csg_titulaire_etat = (csg['act']['deduc']).multiply_rates(1 + TAUX_DE_PRIME, inplace = False,
+        bareme_csg_titulaire_etat = csg['act']['deduc'].multiply_rates(1 + TAUX_DE_PRIME, inplace = False,
             new_name = "csg deduc titutaire etat")
         public_etat.add_tax_scale(bareme_csg_titulaire_etat)
         bareme_prime = MarginalRateTaxScale(name = "taux de prime")

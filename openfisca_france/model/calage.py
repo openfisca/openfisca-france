@@ -213,21 +213,21 @@ class cplx(SimpleFormulaColumn):
 class typmen15(SimpleFormulaColumn):
     column = EnumCol(default = 0, enum = Enum(
         [
-            "Personne seule active",
-            "Personne seule inactive",
-            "Familles monoparentales, parent actif",
-            "Familles monoparentales, parent inactif et au moins un enfant actif",
-            "Familles monoparentales, tous inactifs",
-            "Couples sans enfant, 1 actif",
-            "Couples sans enfant, 2 actifs",
-            "Couples sans enfant, tous inactifs",
-            "Couples avec enfant, 1 membre du couple actif",
-            "Couples avec enfant, 2 membres du couple actif",
-            "Couples avec enfant, couple inactif et au moins un enfant actif",
-            "Couples avec enfant, tous inactifs",
-            "Autres ménages, 1 actif",
-            "Autres ménages, 2 actifs ou plus",
-            "Autres ménages, tous inactifs",
+            u"Personne seule active",
+            u"Personne seule inactive",
+            u"Familles monoparentales, parent actif",
+            u"Familles monoparentales, parent inactif et au moins un enfant actif",
+            u"Familles monoparentales, tous inactifs",
+            u"Couples sans enfant, 1 actif",
+            u"Couples sans enfant, 2 actifs",
+            u"Couples sans enfant, tous inactifs",
+            u"Couples avec enfant, 1 membre du couple actif",
+            u"Couples avec enfant, 2 membres du couple actif",
+            u"Couples avec enfant, couple inactif et au moins un enfant actif",
+            u"Couples avec enfant, tous inactifs",
+            u"Autres ménages, 1 actif",
+            u"Autres ménages, 2 actifs ou plus",
+            u"Autres ménages, tous inactifs",
             ],
         start = 1,
         ))
@@ -282,4 +282,3 @@ class typmen15(SimpleFormulaColumn):
     #    ratio = (( (typmen15!=res)).sum())/((typmen15!=0).sum())
         # print ratio  2.7 % d'erreurs enfant non nés et erreur d'enfants
         return period, res
-
