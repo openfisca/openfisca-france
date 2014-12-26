@@ -390,6 +390,8 @@ class conge_individuel_formation_cdd(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
 
+    # TODO: date de début
+
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)

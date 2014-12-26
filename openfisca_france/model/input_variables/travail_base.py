@@ -179,8 +179,20 @@ reference_input_variable(
 reference_input_variable(
     column = FloatCol(default = .5),
     entity_class = Individus,
-    label = u"Taux de participation de l'employeur au ticket restaurant",
-    name = 'taux_participation_ticket_restaurant',
+    label = u"Taux de participation de l'employeur au titre restaurant",
+    name = 'titre_restaurant_taux_employeur',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Valeur faciale unitaire du titre restaurant",
+    name = 'titre_restaurant_valeur_unitaire',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des titres restaurant",
+    name = 'titre_restaurant_volume',
     )
 reference_input_variable(
     column = EnumCol(
@@ -217,10 +229,4 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale",
     name = 'volume_jours_ijss',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Valeur du ticket restaurant",
-    name = 'valeur_ticket_restaurant',
     )
