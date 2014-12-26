@@ -36,12 +36,9 @@ def _get_inputs(browser):
     return inputs
      
 def continuer(browser):
-    try:
-        BCContinuer = browser.find_element_by_name("BCContinuer")
-        BCContinuer.click()
-    except:
-        import pdb
-        pdb.set_trace()
+    BCContinuer = browser.find_element_by_name("BCContinuer")
+    BCContinuer.click()
+
 
 def create_page_from_inputs(browser):
     ''' determine la page sur laquelles on est 
@@ -119,14 +116,15 @@ def fill_page(browser, name_page):
             pdb.set_trace()
     
 
-
-name_page = create_page_from_inputs(browser)
-fill_page(browser, name_page)
 while 'droit à une aide au logement' not in browser.page_source:
-    continuer(browser)
     name_page = create_page_from_inputs(browser)
+    if name_page == '':
+        break
     fill_page(browser, name_page)
-    
+    try: 
+        continuer(browser)
+    except:
+        pdb.set_trace()
 
 xxx
 
