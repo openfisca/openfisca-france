@@ -10,8 +10,8 @@ before_install:
   - sudo apt-get install -qq python-scipy
 install:
   - pip install flake8  # Not yet available in Debian stable
-  - pip install isodate  # For Biryani1 datetimeconv
-  - pip install -e git+https://github.com/etalab/biryani.git@biryani1#egg=Biryani1  # For OpenFisca-Core
+  - pip install isodate  # For Biryani datetimeconv
+  - pip install -e git+https://github.com/etalab/biryani.git@biryani#egg=Biryani  # For OpenFisca-Core
   - pip install -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
   - pip install -e git+https://github.com/openfisca/openfisca-france.git#egg=OpenFisca-France  # For test_from_taxipp
   - pip install -e git+https://github.com/openfisca/openfisca-france-data.git#egg=OpenFisca-France-Data  # For test_from_taxipp
