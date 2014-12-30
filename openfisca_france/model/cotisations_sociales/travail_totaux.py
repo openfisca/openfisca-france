@@ -34,10 +34,8 @@ from ..base import *  # noqa
 
 log = logging.getLogger(__name__)
 
-
-# TODO: intégrer prise_en_charge_employeur_prevoyance_complementaire
-#       et prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
-
+# TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
+# T0D0 : gérer assiette csg
 
 @reference_formula
 class cotisations_patronales(SimpleFormulaColumn):
@@ -255,15 +253,14 @@ class csgsald(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
-
         csg = law.csg.act.deduc
-        montant_csg = plafond_securite_sociale * csg.calc(
+        montant_csg = csg.calc(
             (
-                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut - prevoyance_obligatoire_cadre/.9825 + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
-                ) / (
-                plafond_securite_sociale + 1e-10
-                )
+                ),
+            factor = plafond_securite_sociale,
+            round_base_decimals = 2,
             )
         return period, - montant_csg
 
@@ -286,13 +283,12 @@ class csgsali(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         csg = law.csg.act.impos
-        montant_csg = plafond_securite_sociale * csg.calc(
+        montant_csg = csg.calc(
             (
-                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut - prevoyance_obligatoire_cadre/.9825 + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
-                ) / (
-                plafond_securite_sociale + 1e-10
-                )
+                ),
+            factor = plafond_securite_sociale,
             )
         return period, - montant_csg
 
@@ -315,13 +311,12 @@ class crdssal(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         crds = law.crds.act
-        montant_crds = plafond_securite_sociale * crds.calc(
+        montant_crds = crds.calc(
             (
-                salbrut + prevoyance_obligatoire_cadre + primes_fonction_publique +
+                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
                 indemnite_residence + supp_familial_traitement - hsup
-                ) / (
-                plafond_securite_sociale + 1e-10
-                )
+                ),
+            factor = plafond_securite_sociale,
             )
         return period, - montant_crds
 

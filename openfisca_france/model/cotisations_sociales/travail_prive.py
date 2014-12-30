@@ -29,7 +29,7 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, minimum as min_, ones
+from numpy import int16, minimum as min_, ones, round as round_
 from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
@@ -905,6 +905,8 @@ class taxe_salaires(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Taxe sur les salaires"
+# Voir
+# http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -915,9 +917,14 @@ class taxe_salaires(SimpleFormulaColumn):
         _P = simulation.legislation_at(period.start)
 
         bareme = _P.cotsoc.taxes_sal.taux_maj
-        bareme.rates = [rate + _P.cotsoc.taxes_sal.taux.metro for rate in bareme.rates]
-        bareme.multiply_thresholds(1 / 12, inplace = True)
-        return period, - (1 * assujettie_taxe_salaires) * bareme.calc(salbrut - prevoyance_obligatoire_cadre)
+        bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
+        base = salbrut - prevoyance_obligatoire_cadre
+        return period, - (
+            (1 * assujettie_taxe_salaires) * bareme.calc(
+                base,
+                round_base_decimals = 2) +
+            round_(_P.cotsoc.taxes_sal.taux.metro * base, 2)
+            )
 
 
 @reference_formula

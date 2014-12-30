@@ -54,6 +54,9 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         nombre_heures_remunerees = simulation.calculate('nombre_heures_remunerees', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         primes_salaires = simulation.calculate('primes_salaires', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            "reintegration_titre_restaurant_employeur", period
+            )
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         type_sal = simulation.calculate('type_sal', period)
         smic_horaire_brut = simulation.legislation_at(period.start).gen.smic_h_b
@@ -62,7 +65,8 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             salaire_de_base +
             primes_salaires +
             avantages_en_nature +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
+            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            reintegration_titre_restaurant_employeur
             )
 
         return period, max_(assiette, smic_horaire_brut * nombre_heures_remunerees)
@@ -97,42 +101,49 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
-class cantine_titres_restaurants(SimpleFormulaColumn):
+class depense_cantine_titres_restaurants(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Dépense de cantine et de titres restaurants"
 
     def function(self, simulation, period):
         period = period
-        cantine_titres_restaurants_taux_entreprise = simulation.calculate(
-            'cantine_titres_restaurants_taux_entreprise', period)
 
-        cantine_titres_restaurants_prix_titre = 0
-        cantine_titres_restaurants_nombre_titres = 0
-        #
-        # condition_exoneration_taux = (
-        #   (taux_minimum_exoneration <= cantine_titres_restaurants_taux_entreprise) *
-        #   (taux_maximum_exoneration >= cantine_titres_restaurants_taux_entreprise)
-        #   )
-        # cantine_titres_restaurants = cantine_titres_restaurants_nombre_titres * (
-        #   condition_taux * max_(cantine_titres_restaurants_prix_titre - seuil_prix_titre, 0) +
-        #   not_(condition_taux) * cantine_titres_restaurants_prix_titre
-        #   )
-        return period, cantine_titres_restaurants_prix_titre * cantine_titres_restaurants_nombre_titres
+        valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
+        volume = simulation.calculate("titre_restaurant_volume", period)
+
+        return period, valeur_unitaire * volume
 
 
 @reference_formula
-class cantine_titres_restaurants_employeur(SimpleFormulaColumn):
+class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants"
 
     def function(self, simulation, period):
         period = period  # TODO
-        cantine_titres_restaurants_taux_entreprise = simulation.calculate(
-            'cantine_titres_restaurants_taux_entreprise', period)
-
-        return period, cantine_titres_restaurants_taux_entreprise * cantine_titres_restaurants
+        valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
+        volume = simulation.calculate("titre_restaurant_volume", period)
+        taux_employeur = simulation.calculate('titre_restaurant_taux_entreprise', period)
+        taux_minimum_exoneration = (
+            simulation.legislation_at(period.start).cotsoc.assiette.cantines_titres_restaurants.taux_minimum_exoneration
+            )
+        taux_maximum_exoneration = (
+            simulation.legislation_at(period.start).cotsoc.assiette.cantines_titres_restaurants.taux_maximum_exoneration
+            )
+        seuil_prix_titre = (
+            simulation.legislation_at(period.start).cotsoc.assiette.cantines_titres_restaurants.seuil_prix_titre
+            )
+        condition_exoneration_taux = (
+            (taux_minimum_exoneration <= titre_restaurant_taux_entreprise) *
+            (taux_maximum_exoneration >= titre_restaurant_taux_entreprise)
+            )
+        montant_reintegration = volume * (
+            condition_taux * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0) +
+            not_(condition_exoneration_taux) * valeur_unitaire * taux_employeur
+            )
+        return period, montant_reintegration
 
 
 @reference_formula
