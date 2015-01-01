@@ -125,7 +125,7 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
         period = period  # TODO
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
         volume = simulation.calculate("titre_restaurant_volume", period)
-        taux_employeur = simulation.calculate('titre_restaurant_taux_entreprise', period)
+        taux_entreprise = simulation.calculate('titre_restaurant_taux_entreprise', period)
         taux_minimum_exoneration = (
             simulation.legislation_at(period.start).cotsoc.assiette.cantines_titres_restaurants.taux_minimum_exoneration
             )
@@ -136,12 +136,12 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
             simulation.legislation_at(period.start).cotsoc.assiette.cantines_titres_restaurants.seuil_prix_titre
             )
         condition_exoneration_taux = (
-            (taux_minimum_exoneration <= titre_restaurant_taux_entreprise) *
-            (taux_maximum_exoneration >= titre_restaurant_taux_entreprise)
+            (taux_minimum_exoneration <= taux_entreprise) *
+            (taux_maximum_exoneration >= taux_entreprise)
             )
         montant_reintegration = volume * (
-            condition_taux * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0) +
-            not_(condition_exoneration_taux) * valeur_unitaire * taux_employeur
+            condition_exoneration_taux * max_(valeur_unitaire * taux_entreprise - seuil_prix_titre, 0) +
+            not_(condition_exoneration_taux) * valeur_unitaire * taux_entreprise
             )
         return period, montant_reintegration
 
