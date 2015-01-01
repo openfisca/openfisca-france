@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import numpy as np
+from numpy import zeros
 
 from ..base import CAT
 
@@ -41,7 +41,7 @@ def apply_bareme_for_relevant_type_sal(
     assert base is not None
     assert plafond_securite_sociale is not None
     assert type_sal is not None
-    cotisation = np.zeros(len(base))
+    cotisation = zeros(len(base))
     for type_sal_enum in CAT:
         if type_sal_enum[0] not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
             continue
