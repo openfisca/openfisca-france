@@ -25,15 +25,12 @@
 
 from __future__ import division
 
-
 import math
+
 from numpy import maximum as max_, minimum as min_, zeros
 
-
 from ..base import *  # noqa
-
-
-from . import apply_bareme_for_relevant_type_sal
+from .base import apply_bareme_for_relevant_type_sal
 
 
 @reference_formula
