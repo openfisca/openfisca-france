@@ -344,7 +344,7 @@
     </NODE>
     <NODE code="conge_individuel_formation" description="Congé individuel de formation"> # TODO: find a better place
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
-        <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
+        <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
      </CODE>
     </NODE>
     <NODE code="gen" description="Paramètres généraux">
@@ -1070,7 +1070,7 @@
             </TRANCHE>
           </BAREME>
           <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" type="monetary">
-            <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
+            <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
           </CODE>
           <CODE code="pt_ind" description="Valeur annuelle point de FP" format="float" type="monetary">
             <VALUE deb="2010-07-01" fin="2014-12-31" valeur="55.5635" />
@@ -2028,12 +2028,13 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5875" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5963" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="6041" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9 690" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.0705" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.0683" />
-          <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.055" />
+          <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.055" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.14" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche2">
@@ -2049,12 +2050,13 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11720" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="11896" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11991" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12051" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.21" />
           <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.1914" />
-          <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.14" />
+          <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.14" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.30" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche3">
@@ -2070,13 +2072,14 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26030" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="26420" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="26631" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.3100" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.2914" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.2826" />
-          <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.3000" />
+          <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.3000" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4100" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche4">
@@ -2092,14 +2095,15 @@
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="69783" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="70830" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="71397" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.4100" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.3854" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.3738" />
           <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.4000" />
-          <VALUE deb="2010-01-01" fin="2014-12-31" valeur="0.4100" />
+          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.4100" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4500" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche5">
@@ -2111,13 +2115,12 @@
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="40241" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150000" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="151200" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.4675" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.4394" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4262" />
-          <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.4500" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.4500" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche6">
@@ -2134,6 +2137,7 @@
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4809" />
         </TAUX>
       </TRANCHE>
+
     </BAREME>
     <NODE code="tspr" description="Total salaires pensions et rentes">
       <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels">
@@ -2400,6 +2404,7 @@
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" /> #TODO: Check http://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=3E0ECC27407E8352BF16FCEA45F20661.tpdjo13v_1?idArticle=LEGIARTI000023374380&cidTexte=LEGITEXT000006069577&dateTexte=20150101
         </CODE>
       </NODE>
       <NODE code="acc75a" description="Frais d'acceuil d'une personne de plus de 75 ans">
@@ -2531,7 +2536,7 @@
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5698" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5753" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5753" /> #TODO : Quel article ?
       </CODE>
     </NODE>
     <NODE code="non_imposable" description="Condition de non imposabilité">
@@ -2616,6 +2621,7 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3980" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="4040" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3540" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3558" />
       </CODE>
       <CODE code="marpac" description="Mariés ou PACS" format="integer" type="monetary">
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2017" />
@@ -2630,8 +2636,9 @@
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="2336" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="2000" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1500" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1508" />
       </CODE>
-      <CODE code="celib" description="Non mariés ou PACS" format="integer" type="monetary">
+      <CODE code="celib" description="Non mariés ou non PACS" format="integer" type="monetary">
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="964" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="980" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="800" />
@@ -2642,6 +2649,7 @@
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="880" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="884" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="897" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="901" />
       </CODE>
       <CODE code="veuf" description="Veuf avec enfants à charge" format="integer" type="monetary">
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2017" />
@@ -2655,6 +2663,7 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="2301" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="2236" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1672" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1680" />
       </CODE>
       <CODE code="reduc_postplafond" description="Réduction post plafond" format="integer" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="580" />
@@ -2668,6 +2677,7 @@
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="661" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="997" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1497" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1504" />
       </CODE>
     </NODE>
     <NODE code="decote" description="Décote">
