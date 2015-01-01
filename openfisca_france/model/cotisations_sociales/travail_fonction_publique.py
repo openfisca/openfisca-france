@@ -386,7 +386,6 @@ class rafp_employeur(SimpleFormulaColumn):
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
         rafp_employeur = eligibles * bareme_rafp.calc(assiette)
         return period, - rafp_employeur
-        return output_period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula
