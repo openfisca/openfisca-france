@@ -47,7 +47,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -109,7 +109,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_territoriale'],
                 ),
@@ -166,7 +166,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_hospitaliere'],
                 ),
@@ -225,7 +225,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_non_titulaire'],
                 ),
@@ -293,7 +293,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -356,14 +356,14 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
             parent2 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),

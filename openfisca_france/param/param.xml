@@ -303,13 +303,14 @@
     <NODE code="assiette" description="Paramètres régissant l'assiette des cotisations sociales">
       <NODE code="cantines_titres_restaurants" description="Cantines et titres restaurants">
         <CODE code="taux_minimum_exoneration" description="Taux de prise en charge par l'entreprise minimum pour non intégration dans l'assiette des cotisations sociales" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.5" />
+          <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.5" />  # TODO check starting dates
         </CODE>
         <CODE code="taux_maximum_exoneration" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.6" />
+          <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.6" /> # TODO check starting dates
         </CODE>
         <CODE code="seuil_prix_titre" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5.33" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="5.66" />
+          <VALUE deb="2000-01-01" fin="2014-12-31" valeur="5.33" /> # TODO check starting dates
         </CODE>
       </NODE>
     </NODE>

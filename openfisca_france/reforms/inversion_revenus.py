@@ -42,7 +42,7 @@ log = logging.getLogger(__name__)
 # TODO: CHECK la csg déductible en 2006 est case GH
 # TODO:  la revenus soumis aux csg déductible et imposable sont en CG et BH en 2010
 
-#        # Heures supplémentaires exonérées
+#brt        # Heures supplémentaires exonérées
 #        if not self.bareme.ir.autre.hsup_exo:
 #            self.sal += self.hsup
 #            self.hsup = 0*self.hsup
@@ -217,20 +217,34 @@ class chobrut(SimpleFormulaColumn):
         # Calcule les allocations chômage brutes à partir des allocations imposables.
 
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
 
-        csg = scale_tax_scales(TaxScalesTree('csg', P.csg.chom), P.cotsoc.gen.plaf_ss)
-        taux_plein = csg['plein']['deduc']
-        taux_reduit = csg['reduit']['deduc']
+        if (choi == 0).all():
+            # Quick path to avoid fsolve when using default value of input variables.
+            return period, choi
+        simulation = self.holder.entity.simulation
+        function = lambda chobrut: brut_to_net(
+            chobrut = chobrut,
+            csg_rempl = csg_rempl,
+            output_name = 'choi',
+            period = period,
+            simulation = simulation,
+            ) - choi
+        return period, fsolve(function, choi)
 
-        chom_plein = taux_plein.inverse()
-        chom_reduit = taux_reduit.inverse()
-        chobrut = (csg_rempl == 1) * choi + (csg_rempl == 2) * chom_reduit.calc(choi) \
-            + (csg_rempl == 3) * chom_plein.calc(choi)
-        isexo = exo_csg_chom(chobrut, csg_rempl, P)
-        chobrut = not_(isexo) * chobrut + (isexo) * choi
+        # P = simulation.legislation_at(period.start)
 
-        return period, chobrut
+        # csg = scale_tax_scales(TaxScalesTree('csg', P.csg.chom), P.cotsoc.gen.plaf_ss)
+        # taux_plein = csg['plein']['deduc']
+        # taux_reduit = csg['reduit']['deduc']
+
+        # chom_plein = taux_plein.inverse()
+        # chom_reduit = taux_reduit.inverse()
+        # chobrut = (csg_rempl == 1) * choi + (csg_rempl == 2) * chom_reduit.calc(choi) \
+        #     + (csg_rempl == 3) * chom_plein.calc(choi)
+        # isexo = exo_csg_chom(chobrut, csg_rempl, P)
+        # chobrut = not_(isexo) * chobrut + (isexo) * choi
+
+        # return period, chobrut
 
 
 ############################################################################

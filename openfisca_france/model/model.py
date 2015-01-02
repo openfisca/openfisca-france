@@ -27,7 +27,6 @@ from . import (  # noqa
     common,
     education,
     input_variables,
-    inversion_revenus,
     irpp,
     irpp_charges_deductibles,
     irpp_credits_impots,

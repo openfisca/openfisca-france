@@ -41,7 +41,7 @@ from openfisca_france.tests.base import tax_benefit_system
 #            exposition_accident = 3,
 #            localisation_entreprise = "75001",
 #            ratio_alternants = .025,
-#            salbrut = 3000,
+#            salaire_de_base = 3000,
 #            taille_entreprise = 3,
 #            type_sal = 0,
 #            ),
@@ -58,7 +58,7 @@ test_case_by_employee_type = dict(
             allegement_fillon_mode_recouvrement = 1,
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
-            salbrut = { # 9 smic horaire 2011
+            salaire_de_base = { # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,
                 "2011-03": 35 * 52 / 12 * 9,
@@ -112,7 +112,7 @@ test_case_by_employee_type = dict(
             allegement_fillon_mode_recouvrement = 2,
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
-            salbrut = { # 9 smic horaire 2011
+            salaire_de_base = { # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,
                 "2011-03": 35 * 52 / 12 * 9,
