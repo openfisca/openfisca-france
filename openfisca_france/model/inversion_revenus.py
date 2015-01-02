@@ -58,7 +58,7 @@ def brut_to_net(input = None, output_name = None, period = None, simulation = No
     simulation.get_holder(output_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
         simulation.get_or_new_holder(variable_name).set_array(period, array)
-    return simulation.calculate(output_name)
+    return simulation.calculate(output_name, period)
 
 
 ############################################################################
