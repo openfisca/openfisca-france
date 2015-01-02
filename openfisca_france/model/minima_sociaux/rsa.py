@@ -597,11 +597,23 @@ class rsa_forfait_logement(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        rmi_nbp = simulation.calculate('rmi_nbp', period)
+
         forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
         rmi = simulation.legislation_at(period.start).minim.rmi.rmi
 
-        return period, rmi * (
+        rmi_nbp = simulation.calculate('rmi_nbp', period)
+        so_holder = simulation.compute('so', period)
+        aide_logement = simulation.calculate('aide_logement', period)
+
+        so = self.cast_from_entity_to_roles(so_holder)
+        so = self.filter_role(so, role = CHEF)
+
+        avantage_nature = or_(so == 2, so == 6)
+        avantage_al = aide_logement > 0
+
+        avantage = or_(avantage_nature, avantage_al)
+
+        return period, rmi * avantage * (
             (rmi_nbp == 1) * forf_logement.taux1 +
             (rmi_nbp == 2) * forf_logement.taux2 +
             (rmi_nbp >= 3) * forf_logement.taux3
