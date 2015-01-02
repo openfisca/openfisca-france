@@ -12,9 +12,10 @@ from __future__ import division
 import logging
 
 from numpy import logical_not as not_
-from openfisca_core.taxscales import TaxScalesTree, scale_tax_scales
+
 
 from ..base import *  # noqa
+from . import montant_csg_crds
 
 
 log = logging.getLogger(__name__)
@@ -30,53 +31,57 @@ log = logging.getLogger(__name__)
 # # Allocations chômage
 ############################################################################
 
-def exo_csg_chom(chobrut, csg_rempl, _P):
+def exo_csg_chom(chobrut, csg_rempl, law):
     '''
-    Indicatrice d'exonération de la CSG sur les revenus du chômage sans exo
+    Indicatrice d'exonération de la CSG sur les revenus du chômage sans exonération
     '''
     chonet_sans_exo = (
         chobrut +
-        csgchod_sans_exo(chobrut, csg_rempl, _P) +
-        csgchoi_sans_exo(chobrut, csg_rempl, _P) +
-        crdscho_sans_exo(chobrut, csg_rempl, _P)
+        csgchod_sans_exo(chobrut, csg_rempl, law) +
+        csgchoi_sans_exo(chobrut, law) +
+        crdscho_sans_exo(chobrut, csg_rempl, law)
         )
     nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-    cho_seuil_exo = _P.csg.chom.min_exo * nbh_travail * _P.cotsoc.gen.smic_h_b
+    cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
     return (chonet_sans_exo <= cho_seuil_exo)
 
 
-def csgchod_sans_exo(chobrut, csg_rempl, _P):
+def csgchod_sans_exo(chobrut, csg_rempl, law):
     '''
-    CSG déductible sur les allocations chômage sans exo
+    CSG déductible sur les allocations chômage sans exonération
     '''
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(TaxScalesTree('csg', _P.csg.chom), plaf_ss)
-    taux_plein = csg['plein']['deduc'].calc(chobrut)
-    taux_reduit = csg['reduit']['deduc'].calc(chobrut)
-    csgchod = (csg_rempl == 2) * taux_reduit + (csg_rempl == 3) * taux_plein
-    return -csgchod
+    montant_csg = montant_csg_crds(
+        law_node = law.csg.chomage.deductible,
+        base_avec_abattement = chobrut,
+        indicatrice_taux_plein = (csg_rempl == 3),
+        indicatrice_taux_reduit = (csg_rempl == 2),
+        plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+        )
+    return montant_csg
 
 
-def csgchoi_sans_exo(chobrut, csg_rempl, _P):
+def csgchoi_sans_exo(chobrut, law):
     '''
-    CSG imposable sur les allocations chômage sans exo
+    CSG imposable sur les allocations chômage sans exonération
     '''
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(TaxScalesTree('csg', _P.csg.chom), plaf_ss)
-    taux_plein = csg['plein']['impos'].calc(chobrut)
-    taux_reduit = csg['reduit']['impos'].calc(chobrut)
-    csgchoi = (csg_rempl == 2) * taux_reduit + (csg_rempl == 3) * taux_plein
-    return -csgchoi
+    montant_csg = montant_csg_crds(
+        law_node = law.csg.chomage.imposable,
+        base_avec_abattement = chobrut,
+        plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+        )
+    return montant_csg
 
 
-def crdscho_sans_exo(chobrut, csg_rempl, _P):
+def crdscho_sans_exo(chobrut, csg_rempl, law):
     '''
-    CRDS sur les allocations chômage sans exo
+    CRDS sur les allocations chômage sans exonération
     '''
-    plaf_ss = _P.cotsoc.gen.plaf_ss
-    crds = scale_tax_scales(_P.crds.act, plaf_ss)
-    # TODO: Assiette crds éq pour les salariés et les chômeurs en 2014 mais check before
-    return -crds.calc(chobrut) * (2 <= csg_rempl)
+    montant_crds = montant_csg_crds(
+        law_node = law.crds.activite,
+        base_avec_abattement = chobrut,
+        plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+        )
+    return montant_crds * (2 <= csg_rempl)
 
 
 @reference_formula
@@ -90,10 +95,9 @@ class csgchod(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
-
-        isexo = exo_csg_chom(chobrut, csg_rempl, P)
-        csgchod = csgchod_sans_exo(chobrut, csg_rempl, P) * not_(isexo)
+        law = simulation.legislation_at(period.start)
+        isexo = exo_csg_chom(chobrut, csg_rempl, law)
+        csgchod = csgchod_sans_exo(chobrut, csg_rempl, law) * not_(isexo)
         return period, csgchod
 
 
@@ -108,10 +112,10 @@ class csgchoi(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        isexo = exo_csg_chom(chobrut, csg_rempl, P)
-        csgchoi = csgchoi_sans_exo(chobrut, csg_rempl, P) * not_(isexo)
+        isexo = exo_csg_chom(chobrut, csg_rempl, law)
+        csgchoi = csgchoi_sans_exo(chobrut, law) * not_(isexo)
         return period, csgchoi
 
 
@@ -126,10 +130,10 @@ class crdscho(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        isexo = exo_csg_chom(chobrut, csg_rempl, P)
-        crdscho = crdscho_sans_exo(chobrut, csg_rempl, P) * not_(isexo)
+        isexo = exo_csg_chom(chobrut, csg_rempl, law)
+        crdscho = crdscho_sans_exo(chobrut, csg_rempl, law) * not_(isexo)
         return period, crdscho
 
 
@@ -179,14 +183,16 @@ class csgrstd(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        plaf_ss = P.cotsoc.gen.plaf_ss
-        csg = scale_tax_scales(TaxScalesTree('csg', P.csg.retraite), plaf_ss)
-        taux_plein = csg['plein']['deduc'].calc(rstbrut)
-        taux_reduit = csg['reduit']['deduc'].calc(rstbrut)
-        csgrstd = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
-        return period, -csgrstd
+        montant_csg = montant_csg_crds(
+            law_node = law.csg.retraite.deductible,
+            base_sans_abattement = rstbrut,
+            indicatrice_taux_plein = (csg_rempl == 3),
+            indicatrice_taux_reduit = (csg_rempl == 2),
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            )
+        return period, montant_csg
 
 
 @reference_formula
@@ -199,15 +205,14 @@ class csgrsti(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        plaf_ss = P.cotsoc.gen.plaf_ss
-        csg = scale_tax_scales(TaxScalesTree('csg', P.csg.retraite), plaf_ss)
-        taux_plein = csg['plein']['impos'].calc(rstbrut)
-        taux_reduit = csg['reduit']['impos'].calc(rstbrut)
-        csgrsti = (csg_rempl == 3) * taux_plein + (csg_rempl == 2) * taux_reduit
-        return period, -csgrsti
+        montant_csg = montant_csg_crds(
+            law_node = law.csg.retraite.imposable,
+            base_sans_abattement = rstbrut,
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            )
+        return period, montant_csg
 
 
 @reference_formula
@@ -221,12 +226,14 @@ class crdsrst(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        plaf_ss = P.cotsoc.gen.plaf_ss
-        crds = scale_tax_scales(TaxScalesTree('crds', P.crds.rst), plaf_ss)
-        isexo = (csg_rempl == 1)
-        return period, -crds['rst'].calc(rstbrut) * not_(isexo)
+        montant_crds = montant_csg_crds(
+            law_node = law.crds.retraite,
+            base_sans_abattement = rstbrut,
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            ) * (csg_rempl == 1)
+        return period, montant_crds
 
 
 @reference_formula
@@ -242,10 +249,10 @@ class casa(DatedFormulaColumn):
         rstbrut = simulation.calculate('rstbrut', period)
         irpp_holder = simulation.compute('irpp', period)
         csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
         irpp = self.cast_from_entity_to_roles(irpp_holder)
-        casa = (csg_rempl == 3) * P.prelsoc.add_ret * rstbrut * (irpp > P.ir.recouvrement.seuil)
+        casa = (csg_rempl == 3) * P.prelsoc.add_ret * rstbrut * (irpp > law.ir.recouvrement.seuil)
 
         return period, - casa
 

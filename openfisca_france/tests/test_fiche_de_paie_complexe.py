@@ -54,8 +54,8 @@ test_case_by_employee_type = dict(
             conge_individuel_formation_cdd = -46,
             contribution_solidarite_autonomie = -13.8,
             participation_effort_construction = -20.70,
-            fnal_tranche_a = -3.02,
-            fnal_tranche_a_plus_20 = -19.98,
+            fnal_tranche_a = 0,
+            fnal_tranche_a_plus_20 = -23,
             # fnal_tranche_b_plus_20 # Inclus dans fnal_tranche_a_plus_20
             formation_professionnelle = -73.6,
             versement_transport = -124.20,
@@ -70,7 +70,7 @@ test_case_by_employee_type = dict(
             assedic_employeur = - 120.99 - 63.01,
             # assedic_tranche_a_employeur = -120.99  # Inclus dans assedic
             # assedic_tranche_b_employeur = -63.01  # Inclus dans assedic
-    #        vieillesse_deplafonnee_employeur = -80.5,
+            vieillesse_deplafonnee_employeur = -80.5,
             vieillesse_plafonnee_employeur = -255.59,
 
             # cotisations_patronales_contributives = ,
@@ -93,7 +93,7 @@ test_case_by_employee_type = dict(
             # assedic_tranche_b_employe = 37.81,  # Inclus dans assedic
             assedic_employe = -72.59 - 37.81,
 
-#            vieillesse_deplafonnee_employe = -11.5,
+            vieillesse_deplafonnee_employe = -11.5,
             vieillesse_plafonnee_employe = -205.68,
             # cotisations_salariales_contributives = ,
 

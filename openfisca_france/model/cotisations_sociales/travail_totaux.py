@@ -30,12 +30,13 @@ from numpy import logical_not as not_
 
 
 from ..base import *  # noqa
-
+from . import montant_csg_crds
 
 log = logging.getLogger(__name__)
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 # T0D0 : gérer assiette csg
+
 
 @reference_formula
 class cotisations_patronales(SimpleFormulaColumn):
@@ -253,16 +254,16 @@ class csgsald(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
-        csg = law.csg.act.deduc
-        montant_csg = csg.calc(
-            (
-                salbrut - prevoyance_obligatoire_cadre/.9825 + primes_fonction_publique +
-                indemnite_residence + supp_familial_traitement - hsup
+
+        montant_csg = montant_csg_crds(
+            law_node = law.csg.activite.deductible,
+            base_avec_abattement = (
+                salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            factor = plafond_securite_sociale,
-            round_base_decimals = 2,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, - montant_csg
+        return period, montant_csg
 
 
 @reference_formula
@@ -282,15 +283,16 @@ class csgsali(SimpleFormulaColumn):
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
 
-        csg = law.csg.act.impos
-        montant_csg = csg.calc(
-            (
-                salbrut - prevoyance_obligatoire_cadre/.9825 + primes_fonction_publique +
-                indemnite_residence + supp_familial_traitement - hsup
+        montant_csg = montant_csg_crds(
+            law_node = law.csg.activite.imposable,
+            base_avec_abattement = (
+                salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            factor = plafond_securite_sociale,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, - montant_csg
+
+        return period, montant_csg
 
 
 @reference_formula
@@ -310,15 +312,16 @@ class crdssal(SimpleFormulaColumn):
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
 
-        crds = law.crds.act
-        montant_crds = crds.calc(
-            (
-                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
-                indemnite_residence + supp_familial_traitement - hsup
+        montant_crds = montant_csg_crds(
+            law_node = law.crds.activite,
+            base_avec_abattement = (
+                salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            factor = plafond_securite_sociale,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, - montant_crds
+
+        return period, montant_crds
 
 
 @reference_formula
@@ -455,3 +458,4 @@ class rev_microsocial_declarant1(EntityToPersonColumn):
     label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
     role = VOUS
     variable = rev_microsocial
+

@@ -129,8 +129,8 @@ class salbrut(SimpleFormulaColumn):
         cadre = combine_tax_scales(salarie['cadre'])
 
         # On ajoute la CSG deductible
-        noncadre.add_tax_scale(csg['act']['deduc'])
-        cadre.add_tax_scale(csg['act']['deduc'])
+        noncadre.add_tax_scale(csg['activite']['deductible'])
+        cadre.add_tax_scale(csg['activite']['deductible'])
 
         nca = noncadre.inverse()
         cad = cadre.inverse()
