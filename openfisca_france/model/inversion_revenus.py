@@ -191,7 +191,7 @@ class chobrut(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
     def function(self, simulation, period):
-        """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
+        """Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
         """
         period = period.start.offset('first-of', 'month').period('month')
 
@@ -246,7 +246,7 @@ class rstbrut(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
     def function(self, simulation, period):
-        """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
+        """Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
         """
         period = period.start.offset('first-of', 'month').period('month')
 
