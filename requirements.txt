@@ -1,3 +1,2 @@
--e git+https://github.com/etalab/biryani.git@biryani1#egg=Biryani1
 -e git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
 -e .

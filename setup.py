@@ -59,12 +59,12 @@ setup(
         ],
     extras_require = dict(
         tests = [
+            'Biryani >= 0.10.1',
             'pandas >= 0.13',
             ],
         ),
     install_requires = [
         'Babel >= 0.9.4',
-        'Biryani1[datetimeconv] >= 0.9dev',
         'numpy',
         'OpenFisca-Core >= 0.4dev',
         'scipy >= 0.12',
