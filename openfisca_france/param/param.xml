@@ -2404,7 +2404,7 @@
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" /> #TODO: Check http://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=3E0ECC27407E8352BF16FCEA45F20661.tpdjo13v_1?idArticle=LEGIARTI000023374380&cidTexte=LEGITEXT000006069577&dateTexte=20150101
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />
         </CODE>
       </NODE>
       <NODE code="acc75a" description="Frais d'acceuil d'une personne de plus de 75 ans">
@@ -2536,7 +2536,7 @@
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5698" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5753" /> #TODO : Quel article ?
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5753" />
       </CODE>
     </NODE>
     <NODE code="non_imposable" description="Condition de non imposabilité">
