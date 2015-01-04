@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -72,7 +72,7 @@ test_case_by_employee_type = dict(
             assedic_employeur = - 120.99 - 63.01,
             # assedic_tranche_a_employeur = -120.99  # Inclus dans assedic
             # assedic_tranche_b_employeur = -63.01  # Inclus dans assedic
-            vieillesse_deplafonnee_employeur = -80.5,
+    #        vieillesse_deplafonnee_employeur = -80.5,
             vieillesse_plafonnee_employeur = -255.59,
 
             # cotisations_patronales_contributives = ,
@@ -95,7 +95,7 @@ test_case_by_employee_type = dict(
             # assedic_tranche_b_employe = 37.81,  # Inclus dans assedic
             assedic_employe = -72.59 - 37.81,
 
-            vieillesse_deplafonnee_employe = -11.5,
+#            vieillesse_deplafonnee_employe = -11.5,
             vieillesse_plafonnee_employe = -205.68,
             # cotisations_salariales_contributives = ,
 

@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -49,11 +49,27 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
+        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
         nombre_heures_remunerees = simulation.calculate('nombre_heures_remunerees', period)
-        salbrut = simulation.calculate('salbrut', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        primes_salaires = simulation.calculate('primes_salaires', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            "reintegration_titre_restaurant_employeur", period
+            )
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        type_sal = simulation.calculate('type_sal', period)
         smic_horaire_brut = simulation.legislation_at(period.start).gen.smic_h_b
 
-        return period, max_(salbrut, smic_horaire_brut * nombre_heures_remunerees)
+        assiette = (
+            salaire_de_base +
+            primes_salaires +
+            avantages_en_nature +
+            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            reintegration_titre_restaurant_employeur
+            )
+
+        return period, max_(assiette, smic_horaire_brut * nombre_heures_remunerees)
 
 
 @reference_formula
@@ -124,6 +140,7 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
         period = period  # TODO
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
         volume = simulation.calculate("titre_restaurant_volume", period)
+
         taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
         taux_minimum_exoneration = (
             simulation.legislation_at(period.start).cotsoc.assiette.cantines_titres_restaurants.taux_minimum_exoneration

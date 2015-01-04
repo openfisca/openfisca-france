@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -254,7 +254,6 @@ class csgsald(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
-
         montant_csg = montant_csg_crds(
             law_node = law.csg.activite.deductible,
             base_avec_abattement = (
@@ -460,4 +459,3 @@ class rev_microsocial_declarant1(EntityToPersonColumn):
     label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
     role = VOUS
     variable = rev_microsocial
-

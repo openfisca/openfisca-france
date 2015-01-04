@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -308,10 +308,8 @@ class aide_logement_montant(SimpleFormulaColumn):
         # # TODO: APL pour les accédants à la propriété
         al_acc = 0 * acce
         # # APL (tous)
-        al = al_loc + al_acc
 
-        return period, al
-
+        return period, al_loc + al_acc
 
 
 @reference_formula
@@ -433,7 +431,6 @@ class crds_lgtm(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         crds = simulation.legislation_at(period.start).fam.af.crds
-
         return period, -aide_logement_montant * crds
 
 

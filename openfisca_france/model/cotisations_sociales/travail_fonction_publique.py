@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,13 +25,11 @@
 
 from __future__ import division
 
-
 import math
+
 from numpy import maximum as max_, minimum as min_, zeros
 
-
 from ..base import *  # noqa
-
 
 from . import apply_bareme_for_relevant_type_sal
 
@@ -240,6 +238,7 @@ class indemnite_residence(SimpleFormulaColumn):
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
         taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
         plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
+
         return period, max_(plancher, taux * salaire_de_base) * (type_sal >= 2)
 
 
@@ -320,8 +319,8 @@ class primes_fonction_publique(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         type_sal = simulation.calculate('type_sal', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
 
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
         public = (
             (type_sal == CAT['public_titulaire_etat'])
             + (type_sal == CAT['public_titulaire_territoriale'])
@@ -389,7 +388,6 @@ class rafp_employeur(SimpleFormulaColumn):
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
         rafp_employeur = eligibles * bareme_rafp.calc(assiette)
         return period, - rafp_employeur
-        return output_period.start.offset('first-of', 'month').period('month')
 
 
 @reference_formula

@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -24,7 +24,6 @@
 
 
 from __future__ import division
-
 
 import logging
 
@@ -1164,4 +1163,3 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return period, cotisation
-
