@@ -27,30 +27,26 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_
+# from numpy import logical_not as not_
 from scipy.optimize import fsolve
 
 from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
 
-from .base import *  # noqa
-from .cotisations_sociales.remplacement import exo_csg_chom
+from openfisca_core import columns, formulas, reforms
+
+from .. import entities
+
+#from ..base import *  # noqa
+# from .cotisations_sociales.remplacement import exo_csg_chom
 
 
 log = logging.getLogger(__name__)
 
 
+# Reform formulas
+
 # TODO: CHECK la csg déductible en 2006 est case GH
 # TODO:  la revenus soumis aux csg déductible et imposable sont en CG et BH en 2010
-
-#brt        # Heures supplémentaires exonérées
-#        if not self.bareme.ir.autre.hsup_exo:
-#            self.sal += self.hsup
-#            self.hsup = 0*self.hsup
-
-# TODO: contribution patronale de prévoyance complémentaire
-# Formation professionnelle (entreprise de 10 à moins de 20 salariés) salaire total 1,05%
-# Formation professionnelle (entreprise de moins de 10 salariés)      salaire total 0,55%
-# TODO: accident du travail ?
 
 
 def brut_to_net(input = None, output_name = None, period = None, simulation = None, **input_array_by_name):
@@ -61,19 +57,11 @@ def brut_to_net(input = None, output_name = None, period = None, simulation = No
     return simulation.calculate(output_name)
 
 
-############################################################################
 # Salaires
-############################################################################
 
-
-# def primes_from_salbrut(salbrut, type_sal):
-#     return salbrut * TAUX_DE_PRIME * (type_sal >= 2)
-
-
-@reference_formula
-class salbrut(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
+class salbrut(formulas.SimpleFormulaColumn):
+    column = columns.FloatCol
+    entity_class = entities.Individus
     label = u"Salaire brut ou traitement indiciaire brut"
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
@@ -83,7 +71,7 @@ class salbrut(SimpleFormulaColumn):
         Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
         Note : le supplément familial de traitement est imposable.
         """
-        period = period.start.offset('first-of', 'month').period('month')
+#        period = period.start.offset('first-of', 'month').period('month')
 
         sali = simulation.get_array('sali', period)
         if sali is None:
@@ -112,10 +100,10 @@ class salbrut(SimpleFormulaColumn):
         type_sal = simulation.calculate('type_sal', period)
         P = simulation.legislation_at(period.start)
 
-        plaf_ss = P.cotsoc.gen.plaf_ss
+        plafond_securite_sociale = P.cotsoc.gen.plafond_securite_sociale
 
-        salarie = scale_tax_scales(TaxScalesTree('sal', P.cotsoc.sal), plaf_ss)
-        csg = scale_tax_scales(TaxScalesTree('csg', P.csg), plaf_ss)
+        salarie = scale_tax_scales(TaxScalesTree('sal', P.cotsoc.sal), plafond_securite_sociale)
+        csg = scale_tax_scales(TaxScalesTree('csg', P.csg), plafond_securite_sociale)
 
         salarie['noncadre'].update(salarie['commun'])
         salarie['cadre'].update(salarie['commun'])
@@ -178,22 +166,17 @@ class salbrut(SimpleFormulaColumn):
         return period, salbrut + hsup
 
 
-############################################################################
 # Allocations chômage
-############################################################################
 
-
-@reference_formula
-class chobrut(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
+class chobrut(formulas.SimpleFormulaColumn):
+    column = columns.FloatCol
+    entity_class = entities.Individus
     label = u"Allocations chômage brutes"
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
     def function(self, simulation, period):
         """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
         """
-        period = period.start.offset('first-of', 'month').period('month')
 
         choi = simulation.get_array('choi', period)
         if choi is None:
@@ -247,22 +230,18 @@ class chobrut(SimpleFormulaColumn):
         # return period, chobrut
 
 
-############################################################################
 # Pensions
-############################################################################
 
-
-@reference_formula
-class rstbrut(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
+class rstbrut(formulas.SimpleFormulaColumn):
+    column = columns.FloatCol
+    entity_class = entities.Individus
     label = u"Pensions de retraite brutes"
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
     def function(self, simulation, period):
         """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
         """
-        period = period.start.offset('first-of', 'month').period('month')
+#        period = period.start.offset('first-of', 'month').period('month')
 
         rsti = simulation.get_array('rsti', period)
         if rsti is None:
@@ -293,3 +272,21 @@ class rstbrut(SimpleFormulaColumn):
         rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
 
         return period, rstbrut
+
+
+# Build function
+
+def build_reform(tax_benefit_system):
+    # Update formulas
+
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformIndividus = reform_entity_class_by_key_plural['individus']
+    ReformIndividus.column_by_name['chobrut'] = chobrut
+    ReformIndividus.column_by_name['rstbrut'] = rstbrut
+    ReformIndividus.column_by_name['salbrut'] = salbrut
+
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
+        name = u'inversion des revenus',
+        reference = tax_benefit_system,
+        )
