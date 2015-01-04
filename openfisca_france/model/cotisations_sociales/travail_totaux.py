@@ -411,13 +411,17 @@ class salsuperbrut(SimpleFormulaColumn):
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        depense_cantine_titre_restaurant_employeur = simulation.calculate(
+            'depense_cantine_titre_restaurant_employeur', period)
         allegement_fillon = simulation.calculate('allegement_fillon', period)
         alleg_cice = simulation.calculate('alleg_cice', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            'reintegration_titre_restaurant_employeur', period)
         taxes_sal = simulation.calculate('taxes_sal', period)
         tehr = simulation.calculate('tehr', period)
 
         salsuperbrut = (
-            salbrut + depenese_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
+            salbrut + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement +
             - cotisations_patronales
             - allegement_fillon - alleg_cice - taxes_sal - tehr
