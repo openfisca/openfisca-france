@@ -83,7 +83,7 @@ class age(SimpleFormulaColumn):
             if agem is not None:
                 return period, agem // 12
             birth = simulation.calculate('birth', period)
-        return period, (datetime64(period.date) - birth).astype('timedelta64[Y]')
+        return period, (datetime64(period.start) - birth).astype('timedelta64[Y]')
 
 
 @reference_formula
@@ -99,7 +99,7 @@ class agem(SimpleFormulaColumn):
             if age is not None:
                 return period, age * 12
             birth = simulation.calculate('birth', period)
-        return period, (datetime64(period.date) - birth).astype('timedelta64[M]')
+        return period, (datetime64(period.start) - birth).astype('timedelta64[M]')
 
 
 @reference_formula
