@@ -10,7 +10,5 @@ before_install:
   - sudo apt-get install -qq python-scipy
 install:
   - pip install flake8  # Not yet available in Debian stable
-  - pip install -e git+https://github.com/openfisca/openfisca-core.git@v0.5dev#egg=OpenFisca-Core
-  - pip install --upgrade xlrd  # For IPP tests, xlrd >= 0.9 is needed.
   - pip install -r requirements.txt
 script: make test
