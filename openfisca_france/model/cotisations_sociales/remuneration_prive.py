@@ -85,10 +85,10 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
-class depense_cantine_titres_restaurants(SimpleFormulaColumn):
+class depense_cantine_titre_restaurant(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Dépense de cantine et de titres restaurants"
+    label = u"Dépense de cantine et de titre restaurant"
 
     def function(self, simulation, period):
         period = period
@@ -100,10 +100,25 @@ class depense_cantine_titres_restaurants(SimpleFormulaColumn):
 
 
 @reference_formula
+class depense_cantine_titre_restaurant_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Dépense de cantine et de titre restaurant"
+
+    def function(self, simulation, period):
+        period = period
+        valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
+        volume = simulation.calculate("titre_restaurant_volume", period)  # Compute with jours ouvrables ?
+        taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
+
+        return period, valeur_unitaire * volume * taux_employeur
+
+
+@reference_formula
 class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants"
+    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"
 
     def function(self, simulation, period):
         period = period  # TODO

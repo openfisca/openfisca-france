@@ -403,7 +403,7 @@ class tehr(SimpleFormulaColumn):
 class salsuperbrut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Salaires superbruts"
+    label = u"Salaires superbruts/coût du travail"
 
     def function(self, simulation, period):
         period = period
@@ -418,8 +418,10 @@ class salsuperbrut(SimpleFormulaColumn):
         tehr = simulation.calculate('tehr', period)
 
         salsuperbrut = (
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            - cotisations_patronales - allegement_fillon - alleg_cice - taxes_sal - tehr
+            salbrut + depenese_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement +
+            - cotisations_patronales
+            - allegement_fillon - alleg_cice - taxes_sal - tehr
             )
 
         return period, salsuperbrut

@@ -48,6 +48,8 @@ test_case_by_employee_type = dict(
             salaire_de_base = {"2014-11": 4600},
             taux_accident_travail = .015,
             taux_versement_transport = .027,
+            titre_restaurant_valeur_unitaire = 9,
+            titre_restaurant_volume = 19,
             type_sal = 1,
             ),
         output_variables = dict(
@@ -101,6 +103,9 @@ test_case_by_employee_type = dict(
             csgsald = -232.92,
             csgsali = -109.61,
             crdssal = -22.83,
+            depense_cantine_titre_restaurant_employeur = 19 * 4.5
+            # TODO forfait_social = 3.8 # 47.49 de base
+            # TODO taxe_handicapes = 18.40
             ),
         ),
     )
