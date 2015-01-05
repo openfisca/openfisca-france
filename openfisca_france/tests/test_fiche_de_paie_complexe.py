@@ -103,8 +103,8 @@ test_case_by_employee_type = dict(
             csgsald = -232.92,
             csgsali = -109.61,
             crdssal = -22.83,
-            depense_cantine_titre_restaurant_employeur = 19 * 4.5
-            # TODO forfait_social = 3.8 # 47.49 de base
+            depense_cantine_titre_restaurant_employeur = 19 * 4.5,
+            forfait_social = -3.8, # 47.49 de base
             # TODO taxe_handicapes = 18.40
             ),
         ),

@@ -661,8 +661,8 @@ class forfait_social(SimpleFormulaColumn):
     # TODO instaure le 1er janvier 20009
     def function(self, simulation, period):
 
-        assiette = simulation.calculate(prevoyance_obligatoire_cadre)  # TODO: complete this
-        return period, assiette * .2  # TODO valeur 2014 paramètres varient beaucoup entre 2009 et
+        assiette = simulation.calculate('prevoyance_obligatoire_cadre', period)  # TODO: complete this
+        return period, assiette * .08  # TODO valeur 2014 paramètres varient beaucoup entre 2009 et
 
 
 @reference_formula
