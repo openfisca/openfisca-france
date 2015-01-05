@@ -69,6 +69,7 @@ class al_pac(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
         nbR_holder = simulation.compute('nbR', period.start.offset('first-of', 'year').period('year'))
+        enceinte_fam = simulation.calculate('enceinte_fam', period)
         D_enfch = simulation.legislation_at(period.start).al.autres.D_enfch
         af = simulation.legislation_at(period.start).fam.af
         cf = simulation.legislation_at(period.start).fam.cf
@@ -87,6 +88,9 @@ class al_pac(SimpleFormulaColumn):
         al_pac = D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
+
+        al_pac = al_pac + enceinte_fam
+
         return period, al_pac
 
 
@@ -382,8 +386,9 @@ class als(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         als_nonet = simulation.calculate('als_nonet', period)
         alset = simulation.calculate('alset', period)
+        result = (als_nonet + alset)
 
-        return period, als_nonet + alset
+        return period, result
 
 
 @reference_formula
@@ -425,7 +430,6 @@ class crds_lgtm(SimpleFormulaColumn):
     entity_class = Familles
     label = u"CRDS des allocations logement"
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
-
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
