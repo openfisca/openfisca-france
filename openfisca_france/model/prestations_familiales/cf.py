@@ -53,7 +53,7 @@ class cf_temp(SimpleFormulaColumn):
         """
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
-        br_pf = simulation.calculate('br_pf', period)
+        br_pf = simulation.calculate('br_pf', period) # FIXME la période de référence est l'année n-2 pour br_pf
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
         smic55_holder = simulation.compute('smic55', period)
@@ -76,6 +76,7 @@ class cf_temp(SimpleFormulaColumn):
 
         cf = (cf_nbenf >= 3) * ((br_pf <= cf_plaf) * cf_base +
                                  (br_pf > cf_plaf) * max_(cf_plaf2 - br_pf, 0) / 12.0)
+
         return period, 12 * cf
 
 
