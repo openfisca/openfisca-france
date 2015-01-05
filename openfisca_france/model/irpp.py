@@ -602,13 +602,9 @@ class rto_net_declarant1(EntityToPersonColumn):
 class tspr(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"tspr"
+    label = u"Traitements salaires pensions et rentes individuelles"
 
     def function(self, simulation, period):
-        '''
-        Traitements salaires pensions et rentes individuelles
-        'ind'
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         sal_pen_net = simulation.calculate('sal_pen_net', period)
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period)
@@ -636,14 +632,10 @@ class rev_cat_pv(SimpleFormulaColumn):
 class rev_cat_tspr(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"Revenu catégoriel - Salaires, pensions et rentes"
+    label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
     def function(self, simulation, period):
-        '''
-        Traitemens salaires pensions et rentes
-        'foy'
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         tspr_holder = simulation.compute('tspr', period)
         indu_plaf_abat_pen = simulation.calculate('indu_plaf_abat_pen', period)

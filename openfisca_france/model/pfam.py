@@ -206,13 +206,9 @@ class smic55(SimpleFormulaColumn):
 class br_pf_i(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"Base ressource individuele des prestations familiales"
+    label = u"Base ressource individuelle des prestations familiales"
 
     def function(self, simulation, period):
-        '''
-        Base ressource individuelle des prestations familiales
-        'ind'
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         tspr = simulation.calculate('tspr', period)
         hsup = simulation.calculate('hsup', period)
