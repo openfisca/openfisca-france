@@ -443,13 +443,9 @@ class rev_act(SimpleFormulaColumn):
 class rev_pen(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"rev_pen"
+    label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
 
     def function(self, simulation, period):
-        """
-        Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)
-        'ind'
-        """
         period = period.start.offset('first-of', 'month').period('year')
         alr = simulation.calculate('alr', period)
         alr_decl = simulation.calculate('alr_decl', period)
@@ -462,13 +458,9 @@ class rev_pen(SimpleFormulaColumn):
 class pen_net(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"pen_net"
+    label = u"Pensions après abattements"
 
     def function(self, simulation, period):
-        """
-        Pensions après abattements
-        'ind'
-        """
         period = period.start.offset('first-of', 'month').period('year')
         rev_pen = simulation.calculate('rev_pen', period)
         abatpen = simulation.legislation_at(period.start).ir.tspr.abatpen
@@ -510,15 +502,11 @@ class indu_plaf_abat_pen(SimpleFormulaColumn):
 class abat_sal_pen(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"abat_sal_pen"
+    label = u"Abattement de 20% sur les salaires"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
     def function(self, simulation, period):
-        """
-        Abattement de 20% sur les salaires
-        'ind'
-        """
         period = period.start.offset('first-of', 'month').period('year')
         salcho_imp = simulation.calculate('salcho_imp', period)
         pen_net = simulation.calculate('pen_net', period)
@@ -531,13 +519,9 @@ class abat_sal_pen(SimpleFormulaColumn):
 class sal_pen_net(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"sal_pen_net"
+    label = u"Salaires et pensions après abattement de 20% sur les salaires"
 
     def function(self, simulation, period):
-        """
-        Salaires et pensions après abattement de 20% sur les salaires
-        'ind'
-        """
         period = period.start.offset('first-of', 'month').period('year')
         salcho_imp = simulation.calculate('salcho_imp', period)
         pen_net = simulation.calculate('pen_net', period)
