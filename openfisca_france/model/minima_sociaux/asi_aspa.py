@@ -139,7 +139,7 @@ class asi_elig(SimpleFormulaColumn):
         inv = simulation.calculate('inv', period)
         activite = simulation.calculate('activite', period)
 
-        return period, inv & (activite >= 3) & not_(aspa_elig)
+        return period, inv & (activite == 3) & not_(aspa_elig)
 
 
 @reference_formula
