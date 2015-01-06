@@ -33,13 +33,13 @@ from openfisca_france.tests.base import tax_benefit_system
 
 def test_1():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        period = "2013-01-01",
+        period = "2013",
         parent1 = dict(
             effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
             ratio_alternants = .025,
-            salbrut = 3000,
+            salaire_de_base = {"2011:3": 12 * 3000},
             taille_entreprise = 3,
             type_sal = 0,
             ),
@@ -47,9 +47,7 @@ def test_1():
             zone_apl = 1,
             ),
         ).new_simulation(debug = True)
-    simulation.calculate("allegement_fillon")
-    simulation.calculate("maladie_employeur")
-
+    simulation.calculate("revdisp")
 
 non_cadre = dict(
     input_variables = dict(
@@ -57,7 +55,7 @@ non_cadre = dict(
         exposition_accident = 3,
         localisation_entreprise = "75001",
         ratio_alternants = .025,
-        salbrut = 3000,
+        salaire_de_base = 3000,
         taille_entreprise = 3,
         type_sal = 0,
         ),
@@ -68,8 +66,7 @@ non_cadre = dict(
         taxe_apprentissage = -15,
         contribution_solidarite_autonomie = -9,
         participation_effort_construction = -13.5,
-        fnal_tranche_a = -3,
-        fnal_tranche_a_plus_20 = -12,
+        fnal_tranche_a_plus_20 = -15,
         formation_professionnelle = -48,
         versement_transport = -52.5,
         cotisations_patronales_main_d_oeuvre = -158.4 - 3,
@@ -118,7 +115,7 @@ cadre = dict(
         localisation_entreprise = "75001",
         prevoyance_obligatoire_cadre_taux = 0,
         ratio_alternants = .025,
-        salbrut = 6000,
+        salaire_de_base = 6000,
         taille_entreprise = 3,
         type_sal = 1,
         ),
@@ -129,8 +126,7 @@ cadre = dict(
         contribution_solidarite_autonomie = -18,
         contribution_supplementaire_apprentissage = -6,
         participation_effort_construction = -27,
-        fnal_tranche_a = -3.03,
-        fnal_tranche_a_plus_20 = -12.12 - 14.85,
+        fnal_tranche_a_plus_20 = -30,
         # fnal_tranche_b_plus_20 = -14.85, # Inclus dans fnal_tranche_a_plus_20
         formation_professionnelle = -96,
         versement_transport = -105,
@@ -140,7 +136,7 @@ cadre = dict(
         # cotisations_patronales_main_d_oeuvre_old = -412.8,  changement plaf
 
         # agff_tranche_a_employe = -24.25,   # TODO: pas de tranche B dans le simulateur IPP
-        agff_tranche_a_employeur = -74.96,
+        agff_tranche_a_employeur = -74.97,
         ags = -18,
         apec_employeur = - 2.16,
         cotisation_exceptionnelle_temporaire_employeur = -13.20,
@@ -152,15 +148,14 @@ cadre = dict(
         vieillesse_deplafonnee_employeur = -96,
         vieillesse_plafonnee_employeur = -251.57,
 
-        cotisations_patronales_contributives = -1206.4,
-        # cotisations_patronales_contributives_old = -1206.4,  changement plaf
+        cotisations_patronales_contributives = -1206.38,
 
         accident_du_travail = -600,
         famille = -324,
         maladie_employeur = -768,
         cotisations_patronales_non_contributives = - 1692,
         cotisations_patronales_non_contributives_old = - 1692,
-        cotisations_patronales = - 1692 - 1206.4 - (412.8 - 96) - 6,
+        cotisations_patronales = - 1692 - 1206.38 - (412.8 - 96) - 6,
         maladie_employe = - 45,
         cotisations_salariales_non_contributives = -45,
         # cotisations_salariales_non_contributives_old = -45,  changement plaf
@@ -174,10 +169,8 @@ cadre = dict(
         vieillesse_deplafonnee_employe = -6,
         vieillesse_plafonnee_employe = -201.56,
         cotisations_salariales_contributives = -731.31,
-        # cotisations_salariales_contributives_old = -731.31,  changement plaf
 
         cotisations_salariales = -731.31 - 45,
-#        cotisations_salariales_old = -731.31 - 45,  changement plaf
         csgsald = -300.65,
         csgsali = -141.48,
         crdssal = -29.48,
@@ -224,7 +217,7 @@ def test_decomposition(print_decomposition = False):
             exposition_accident = 3,
             localisation_entreprise = "75001",
             ratio_alternants = .025,
-            salbrut = {"2013": 12 * 3000},
+            salaire_de_base = {"2013": 12 * 3000},
             taille_entreprise = 3,
             type_sal = 0,
             ),

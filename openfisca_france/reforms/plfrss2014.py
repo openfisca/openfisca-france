@@ -135,7 +135,7 @@ reform_legislation_subtree = {
         },
     "plfrss2014": {
         "@type": "Node",
-        "description": "Projet de loi de financement de la sécurité sociale rectifibase.CATive 2014",
+        "description": "Projet de loi de financement de la sécurité sociale rectificative 2014",
         "children": {
             "exonerations_bas_salaires": {
                 "@type": "Node",

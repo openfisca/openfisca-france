@@ -30,12 +30,13 @@ from numpy import logical_not as not_
 
 
 from ..base import *  # noqa
-
+from . import montant_csg_crds
 
 log = logging.getLogger(__name__)
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 # T0D0 : gérer assiette csg
+
 
 @reference_formula
 class cotisations_patronales(SimpleFormulaColumn):
@@ -253,16 +254,15 @@ class csgsald(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
-        csg = law.csg.act.deduc
-        montant_csg = csg.calc(
-            (
-                salbrut - prevoyance_obligatoire_cadre/.9825 + primes_fonction_publique +
-                indemnite_residence + supp_familial_traitement - hsup
+        montant_csg = montant_csg_crds(
+            law_node = law.csg.activite.deductible,
+            base_avec_abattement = (
+                salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            factor = plafond_securite_sociale,
-            round_base_decimals = 2,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, - montant_csg
+        return period, montant_csg
 
 
 @reference_formula
@@ -282,15 +282,16 @@ class csgsali(SimpleFormulaColumn):
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
 
-        csg = law.csg.act.impos
-        montant_csg = csg.calc(
-            (
-                salbrut - prevoyance_obligatoire_cadre/.9825 + primes_fonction_publique +
-                indemnite_residence + supp_familial_traitement - hsup
+        montant_csg = montant_csg_crds(
+            law_node = law.csg.activite.imposable,
+            base_avec_abattement = (
+                salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            factor = plafond_securite_sociale,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, - montant_csg
+
+        return period, montant_csg
 
 
 @reference_formula
@@ -310,15 +311,16 @@ class crdssal(SimpleFormulaColumn):
         hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
 
-        crds = law.crds.act
-        montant_crds = crds.calc(
-            (
-                salbrut - prevoyance_obligatoire_cadre + primes_fonction_publique +
-                indemnite_residence + supp_familial_traitement - hsup
+        montant_crds = montant_csg_crds(
+            law_node = law.crds.activite,
+            base_avec_abattement = (
+                salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            factor = plafond_securite_sociale,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, - montant_crds
+
+        return period, montant_crds
 
 
 @reference_formula
@@ -400,7 +402,7 @@ class tehr(SimpleFormulaColumn):
 class salsuperbrut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Salaires superbruts"
+    label = u"Salaires superbruts/coût du travail"
 
     def function(self, simulation, period):
         period = period
@@ -409,14 +411,20 @@ class salsuperbrut(SimpleFormulaColumn):
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        depense_cantine_titre_restaurant_employeur = simulation.calculate(
+            'depense_cantine_titre_restaurant_employeur', period)
         allegement_fillon = simulation.calculate('allegement_fillon', period)
         alleg_cice = simulation.calculate('alleg_cice', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            'reintegration_titre_restaurant_employeur', period)
         taxes_sal = simulation.calculate('taxes_sal', period)
         tehr = simulation.calculate('tehr', period)
 
         salsuperbrut = (
-            salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            - cotisations_patronales - allegement_fillon - alleg_cice - taxes_sal - tehr
+            salbrut + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement +
+            - cotisations_patronales
+            - allegement_fillon - alleg_cice - taxes_sal - tehr
             )
 
         return period, salsuperbrut

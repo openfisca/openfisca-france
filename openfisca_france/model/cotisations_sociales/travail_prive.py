@@ -27,14 +27,16 @@ from __future__ import division
 
 import logging
 
+
 from numpy import int16, minimum as min_, ones, round as round_
 from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
+
 from ..base import *  # noqa
-from .base import apply_bareme_for_relevant_type_sal
+from . import apply_bareme_for_relevant_type_sal
 
 
 log = logging.getLogger(__name__)
@@ -604,6 +606,7 @@ class fnal_tranche_a(SimpleFormulaColumn):
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        taille_entreprise = simulation.calculate('taille_entreprise', period)
         _P = simulation.legislation_at(period.start)
 
         cotisation = apply_bareme_for_relevant_type_sal(
@@ -616,7 +619,7 @@ class fnal_tranche_a(SimpleFormulaColumn):
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
-        return period, cotisation
+        return period, cotisation * (taille_entreprise <= 2)
 
 
 @reference_formula
@@ -642,11 +645,24 @@ class fnal_tranche_a_plus_20(SimpleFormulaColumn):
             base = (
                 salbrut +
                 (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ) * (taille_entreprise > 2),  # plus de 20 salariés TODO: Be more explicit
+                ),  # plus de 20 salariés TODO: Be more explicit
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
-        return period, cotisation
+        return period, cotisation * (taille_entreprise > 2)
+
+
+@reference_formula
+class forfait_social(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Forfait social"
+
+    # TODO instaure le 1er janvier 20009
+    def function(self, simulation, period):
+
+        assiette = simulation.calculate('prevoyance_obligatoire_cadre', period)  # TODO: complete this
+        return period, assiette * .08  # TODO valeur 2014 paramètres varient beaucoup entre 2009 et
 
 
 @reference_formula
@@ -810,7 +826,7 @@ class plafond_securite_sociale(SimpleFormulaColumn):
         nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
         _P = simulation.legislation_at(period.start)
 
-        plafond_temps_plein = _P.cotsoc.gen.plaf_ss
+        plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
         plafond_securite_sociale = min_(nombre_jours_calendaires, 30) / 30 * plafond_temps_plein
         return period, plafond_securite_sociale
 
@@ -916,12 +932,13 @@ class taxe_salaires(SimpleFormulaColumn):
         bareme = _P.cotsoc.taxes_sal.taux_maj
         bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
         base = salbrut - prevoyance_obligatoire_cadre
+
         return period, - (
-            (1 * assujettie_taxe_salaires) * bareme.calc(
+            bareme.calc(
                 base,
                 round_base_decimals = 2) +
             round_(_P.cotsoc.taxes_sal.taux.metro * base, 2)
-            )
+            ) * assujettie_taxe_salaires
 
 
 @reference_formula

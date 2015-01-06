@@ -30,7 +30,8 @@ import math
 from numpy import maximum as max_, minimum as min_, zeros
 
 from ..base import *  # noqa
-from .base import apply_bareme_for_relevant_type_sal
+
+from . import apply_bareme_for_relevant_type_sal
 
 
 @reference_formula
@@ -227,17 +228,18 @@ class indemnite_residence(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        salbrut = simulation.calculate('salbrut', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)  # proxy for traitement indiciaire brut
         type_sal = simulation.calculate('type_sal', period)
         zone_apl_individu = simulation.calculate('zone_apl_individu', period)
         _P = simulation.legislation_at(period.start)
 
-        zone_apl = zone_apl_individu
+        zone_apl = zone_apl_individu  # TODO: ces zones ne correpondent pas aux zones APL
         P = _P.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
         taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
         plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
-        return period, max_(plancher, taux * salbrut) * (type_sal >= 2)
+
+        return period, max_(plancher, taux * salaire_de_base) * (type_sal >= 2)
 
 
 @reference_formula
@@ -317,15 +319,15 @@ class primes_fonction_publique(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         type_sal = simulation.calculate('type_sal', period)
-        salbrut = simulation.calculate('salbrut', period)
 
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
         public = (
             (type_sal == CAT['public_titulaire_etat'])
             + (type_sal == CAT['public_titulaire_territoriale'])
             + (type_sal == CAT['public_titulaire_hospitaliere'])
             )
-        tib = salbrut * public
-        return period, TAUX_DE_PRIME * tib
+        traitement_indiciare_brut = salaire_de_base * public
+        return period, TAUX_DE_PRIME * traitement_indiciare_brut
 
 
 @reference_formula

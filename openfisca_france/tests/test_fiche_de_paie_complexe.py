@@ -45,17 +45,19 @@ test_case_by_employee_type = dict(
             prevoyance_obligatoire_cadre_taux = .0157,
             ratio_alternants = 0,
             redevable_taxe_apprentissage = 0,
-            salbrut = {"2014-11": 4600},
+            salaire_de_base = {"2014-11": 4600},
             taux_accident_travail = .015,
             taux_versement_transport = .027,
+            titre_restaurant_valeur_unitaire = 9,
+            titre_restaurant_volume = 19,
             type_sal = 1,
             ),
         output_variables = dict(
             conge_individuel_formation_cdd = -46,
             contribution_solidarite_autonomie = -13.8,
             participation_effort_construction = -20.70,
-            fnal_tranche_a = -3.02,
-            fnal_tranche_a_plus_20 = -19.98,
+            fnal_tranche_a = 0,
+            fnal_tranche_a_plus_20 = -23,
             # fnal_tranche_b_plus_20 # Inclus dans fnal_tranche_a_plus_20
             formation_professionnelle = -73.6,
             versement_transport = -124.20,
@@ -101,6 +103,9 @@ test_case_by_employee_type = dict(
             csgsald = -232.92,
             csgsali = -109.61,
             crdssal = -22.83,
+            depense_cantine_titre_restaurant_employeur = 19 * 4.5,
+            forfait_social = -3.8, # 47.49 de base
+            # TODO taxe_handicapes = 18.40
             ),
         ),
     )

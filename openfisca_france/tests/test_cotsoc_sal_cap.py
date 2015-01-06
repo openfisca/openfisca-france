@@ -327,9 +327,7 @@ def test_cotsoc():
             for var, value in item["vars"].iteritems():
                 parent1 = dict(birth = datetime.date(year - 40, 1, 1))
                 foyer_fiscal = dict()
-                if revenu in ["rsti", "sali"]:
-                    parent1[revenu] = value
-                elif revenu in ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz", "f2fu", "f4ba", "f2go"]:
+                if revenu in ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz", "f2fu", "f4ba", "f2go"]:
                     foyer_fiscal[revenu] = amount
                 else:
                     print revenu

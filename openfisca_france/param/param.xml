@@ -1,195 +1,133 @@
 ﻿<NODE code="root" deb="2006-01-01" fin="2013-12-31">
   <NODE code="csg" description="Contribution sociale généralisée (CSG)">
-    <NODE code="act" description="Revenus d'activité">
-      <BAREME code="deduc" description="CSG déductible">
-        <TRANCHE code="tranche0">
-          <ASSIETTE>
-            <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-            <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-          </ASSIETTE>
-          <SEUIL>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
-          </TAUX>
-        </TRANCHE>
-        <TRANCHE code="tranche1">
-          <ASSIETTE>
-            <VALUE deb="2011-01-01" fin="2014-12-31" valeur="1" />
-          </ASSIETTE>
-          <SEUIL>
-            <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2011-01-01" fin="2014-12-31" valeur=".051" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-      <BAREME code="impos" description="CSG imposable">
-        <TRANCHE code="tranche0">
-          <ASSIETTE>
-            <VALUE deb="1991-02-01" fin="2004-12-31" valeur=".95" />
-            <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-            <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-          </ASSIETTE>
-          <SEUIL>
-            <VALUE deb="1991-02-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
-            <VALUE deb="1993-07-01" fin="2014-12-31" valeur=".024" />
-          </TAUX>
-        </TRANCHE>
-        <TRANCHE code="tranche1">
-          <ASSIETTE>
-            <VALUE deb="2011-07-01" fin="2014-12-31" valeur="1" />
-          </ASSIETTE>
-          <SEUIL>
-            <VALUE deb="2011-07-01" fin="2014-12-31" valeur="4" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2011-07-01" fin="2014-12-31" valeur=".024" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-    </NODE>
-    <NODE code="int" description="Accessoires du salaire (intéressement etc)">
-      <BAREME code="deduc" description="CSG déductible">
-        <TRANCHE code="tranche0">
-          <SEUIL>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-      <BAREME code="impos" description="CSG imposable">
-        <TRANCHE code="tranche0">
-          <SEUIL>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".024" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-    </NODE>
-    <NODE code="chom" description="Allocations chômage">
-      <NODE code="reduit" description="Taux réduit">
-        <BAREME code="deduc" description="CSG déductible">
+    <NODE code="activite" description="Revenus d'activité">
+      <NODE code="deductible" description="CSG déductible">
+        <CODE code="taux" description="taux de la CSG déductible" format="percent">
+          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
+        </CODE>
+        <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1997-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
             <TAUX>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".038" />
+              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
+              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
             </TAUX>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur="1" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
-            <SEUIL>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="4" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME code="impos" description="CSG imposable">
-          <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
-            <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".0" />
-            </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur="1" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
             <SEUIL>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="4" />
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".0" />
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
       </NODE>
-      <NODE code="plein" description="Taux plein">
-        <BAREME code="deduc" description="CSG déductible">
+      <NODE code="imposable" description="CSG imposable">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
+          <VALUE deb="1993-07-01" fin="2014-12-31" valeur=".024" />
+        </CODE>
+        <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
           <TRANCHE code="tranche0">
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
+            <TAUX>
+              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
+              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
+            </TAUX>
             <SEUIL>
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
-            <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
-            </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur="1" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
             <SEUIL>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="4" />
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME code="impos" description="CSG non déductible">
+      </NODE>
+    </NODE>
+    <!-- <NODE code="int" description="Accessoires du salaire (intéressement etc)"> -->
+    <!--   <BAREME code="deduc" description="CSG déductible"> -->
+    <!--     <TRANCHE code="tranche0"> -->
+    <!--       <SEUIL> -->
+    <!--         <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" /> -->
+    <!--       </SEUIL> -->
+    <!--       <TAUX> -->
+    <!--         <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" /> -->
+    <!--       </TAUX> -->
+    <!--     </TRANCHE> -->
+    <!--   </BAREME> -->
+    <!--   <BAREME code="impos" description="CSG imposable"> -->
+    <!--     <TRANCHE code="tranche0"> -->
+    <!--       <SEUIL> -->
+    <!--         <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" /> -->
+    <!--       </SEUIL> -->
+    <!--       <TAUX> -->
+    <!--         <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".024" /> -->
+    <!--       </TAUX> -->
+    <!--     </TRANCHE> -->
+    <!--   </BAREME> -->
+    <!-- </NODE> -->
+    <NODE code="chomage" description="Allocations chômage">
+      <NODE code="deductible" description="CSG déductible">
+	<CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
+          <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
+        </CODE>
+        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
+        </CODE>
+        <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
+            <TAUX>
+              <VALUE deb="1997-01-01" fin="2004-12-31" valeur=".05" />
+              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
+            </TAUX>
             <SEUIL>
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
-            <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".024" />
-            </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
-            <ASSIETTE>
-              <VALUE deb="2012-01-01" fin="2014-12-31" valeur="1" />
-              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-            </ASSIETTE>
             <SEUIL>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="4" />
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".024" />
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+      </NODE>
+      <NODE code="imposable" description="CSG imposable">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
+        </CODE>
+        <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
+          <TRANCHE code="tranche0">
+            <TAUX>
+              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
+              <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+              <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
+            </TAUX>
+            <SEUIL>
+              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
+            </SEUIL>
+          </TRANCHE>
+          <TRANCHE code="tranche1">
+            <SEUIL>
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -199,126 +137,53 @@
       </CODE>
     </NODE>
     <NODE code="retraite" description="Pensions de retraites et d'invalidité">
-      <NODE code="reduit" description="Taux réduit">
-        <BAREME code="deduc" description="CSG déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0.038" />
-              <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME code="impos" description="CSG non déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0.0" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
+      <NODE code="deductible" description="CSG déductible">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
+          <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
+        </CODE>
+        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
+        </CODE>
       </NODE>
-      <NODE code="plein" description="Taux plein">
-        <BAREME code="deduc" description="CSG déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1991-02-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
-              <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".042" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME code="impos" description="CSG non déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1991-02-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1993-07-01" fin="2014-12-31" valeur=".024" />
-              <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
+      <NODE code="imposable" description="CSG imposable">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
+        </CODE>
       </NODE>
     </NODE>
     <NODE code="preretraite" description="Allocations de préretraite">
-      <NODE code="reduit" description="Taux réduit">
-        <BAREME code="deduc" description="CSG déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.038" />
-              <VALUE deb="1997-01-01" fin="2007-12-31" valeur="0.0" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME code="impos" description="CSG non déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0.0" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
+      <NODE code="deductible" description="CSG déductible">
+	<CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
+          <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
+        </CODE>
+        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+           <VALUE deb="2008-01-01" fin="2014-12-31" valeur=".038" />
+        </CODE>
       </NODE>
-      <NODE code="plein" description="Taux plein">
-        <BAREME code="deduc" description="CSG déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
-              <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
-              <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".042" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME code="impos" description="CSG non déductible">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2007-10-11" fin="2014-12-31" valeur=".033" />
-              <VALUE deb="1998-01-01" fin="2007-10-10" valeur=".024" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
+      <NODE code="imposable" description="CSG imposable">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="2007-10-11" fin="2014-12-31" valeur=".033" />
+          <VALUE deb="1998-01-01" fin="2007-10-10" valeur=".024" />
+        </CODE>
       </NODE>
     </NODE>
-    <NODE code="indemn" description="Indemnités journalières">
-      <BAREME code="deduc" description="CSG déductible">
-        <TRANCHE code="tranche0">
-          <SEUIL>
-            <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".038" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-      <BAREME code="impos" description="CSG non déductible">
-        <TRANCHE code="tranche0">
-          <SEUIL>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".024" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
+    <NODE code="indemnites_journalieres" description="Indemnités journalières">
+      <NODE code="deductible" description="CSG déductible">
+        <CODE code="taux" description="taux plein de la CSG déductible" format="percent">
+         <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
+         <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
+       </CODE>
+      </NODE>
+      <NODE code="imposable" description="CSG imposable">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="1997-01-01" fin="2014-10-10" valeur=".024" />
+        </CODE>
+      </NODE>
     </NODE>
     <NODE code="capital" description="Revenus du capital">
       <CODE code="glob" description="Taux global" format="percent">
@@ -333,44 +198,36 @@
     </NODE>
   </NODE>
   <NODE code="crds" description="Contribution au remboursement de la dette sociale (CRDS)">
-    <BAREME code="act" description="Revenus d'activité, du chômage et des préretraites">
-      <TRANCHE code="tranche0">
-        <ASSIETTE>
-          <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-          <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".97" />
-          <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".9825" />
-        </ASSIETTE>
-        <SEUIL>
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche1">
-        <ASSIETTE>
-          <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".95" />
-          <VALUE deb="2005-01-01" fin="2010-12-31" valeur=".97" />
-          <VALUE deb="2011-01-01" fin="2014-12-31" valeur="1" />
-        </ASSIETTE>
-        <SEUIL>
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur="4" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
-        </TAUX>
-      </TRANCHE>
-    </BAREME>
-    <BAREME code="rst" description="Retraites et pensions d'invalidité">
-      <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
-        </TAUX>
-      </TRANCHE>
-    </BAREME>
+    <NODE code="activite" description="Revenus d'activité">
+      <CODE code="taux" description="taux de la CRDS" format="percent">
+        <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
+      </CODE>
+      <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites">
+	<TRANCHE code="tranche0">
+	  <TAUX>
+	    <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
+	    <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+	    <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
+	  </TAUX>
+	  <SEUIL>
+	    <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
+	  </SEUIL>
+	</TRANCHE>
+	<TRANCHE code="tranche1">
+	  <SEUIL>
+	    <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
+	  </SEUIL>
+	  <TAUX>
+	    <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
+	  </TAUX>
+	</TRANCHE>
+      </BAREME>
+    </NODE>
+    <NODE code="retraite" description="Retraites et pensions d'invalidité">
+      <CODE code="taux" description="taux de la CRDS" format="percent">
+        <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
+      </CODE>
+    </NODE>
     <CODE code="capital" description="Revenus du capital" format="percent">
       <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".005" />
     </CODE>
@@ -446,13 +303,14 @@
     <NODE code="assiette" description="Paramètres régissant l'assiette des cotisations sociales">
       <NODE code="cantines_titres_restaurants" description="Cantines et titres restaurants">
         <CODE code="taux_minimum_exoneration" description="Taux de prise en charge par l'entreprise minimum pour non intégration dans l'assiette des cotisations sociales" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.5" />
+          <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.5" />  # TODO check starting dates
         </CODE>
         <CODE code="taux_maximum_exoneration" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="percent">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.6" />
+          <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.6" /> # TODO check starting dates
         </CODE>
         <CODE code="seuil_prix_titre" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5.33" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="5.66" />
+          <VALUE deb="2000-01-01" fin="2014-12-31" valeur="5.33" /> # TODO check starting dates
         </CODE>
       </NODE>
     </NODE>
@@ -488,9 +346,9 @@
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
         <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
      </CODE>
-    </NODE> 
+    </NODE>
     <NODE code="gen" description="Paramètres généraux">
-      <CODE code="plaf_ss" description="Plafond de la sécurité sociale" format="integer" type="monetary">
+      <CODE code="plafond_securite_sociale" description="Plafond de la sécurité sociale" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3086" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="3031" />
@@ -1474,15 +1332,15 @@
               <VALUE deb="1991-07-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="1991-07-01" fin="2014-12-31" valeur=".004" />
+              <VALUE deb="1991-07-01" fin="2014-12-31" valeur=".005" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-              <VALUE deb="1991-07-01" fin="2014-12-31" valeur="1" />
+              <VALUE deb="1991-07-01" fin="2010-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0.005" />
+              <!-- <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0.005" /> -->
               <VALUE deb="1991-07-01" fin="2010-12-31" valeur="0.004" />
             </TAUX>
           </TRANCHE>

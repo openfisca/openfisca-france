@@ -312,6 +312,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         # # TODO: APL pour les accédants à la propriété
         al_acc = 0 * acce
         # # APL (tous)
+
         return period, al_loc + al_acc
 
 

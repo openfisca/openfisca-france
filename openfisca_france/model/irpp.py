@@ -83,7 +83,7 @@ class age(SimpleFormulaColumn):
             if agem is not None:
                 return period, agem // 12
             birth = simulation.calculate('birth', period)
-        return period, (datetime64(period.date) - birth).astype('timedelta64[Y]')
+        return period, (datetime64(period.start) - birth).astype('timedelta64[Y]')
 
 
 @reference_formula
@@ -99,7 +99,7 @@ class agem(SimpleFormulaColumn):
             if age is not None:
                 return period, age * 12
             birth = simulation.calculate('birth', period)
-        return period, (datetime64(period.date) - birth).astype('timedelta64[M]')
+        return period, (datetime64(period.start) - birth).astype('timedelta64[M]')
 
 
 @reference_formula
@@ -901,7 +901,10 @@ class rev_cat_rpns(SimpleFormulaColumn):
         defncn = simulation.calculate('defncn', period)
         defmeu = simulation.calculate('defmeu', period)
 
-        return period, self.sum_by_entity(rpns_i_holder) - self.sum_by_entity(nbnc_pvce_holder) - defrag - defncn - defacc - defmeu - mbic_mvct
+        return period, (
+            self.sum_by_entity(rpns_i_holder) -
+            self.sum_by_entity(nbnc_pvce_holder) - defrag - defncn - defacc - defmeu - mbic_mvct
+            )
 
 
 @reference_formula
@@ -1348,9 +1351,6 @@ class assiette_vente(SimpleFormulaColumn):
         return period, self.sum_by_entity(ebic_impv_holder)
 
 
-    # P = _P.ir.rpns.microentreprise
-    # assert (ebic_impv <= P.vente.max)
-
 
 @reference_formula
 class assiette_service(SimpleFormulaColumn):
@@ -1392,7 +1392,6 @@ class assiette_proflib(SimpleFormulaColumn):
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return period, self.sum_by_entity(ebnc_impo_holder)
 
-
     # assert (ebnc_impo <= P.specialbnc.max)
 
 
@@ -1409,10 +1408,12 @@ class microsocial(SimpleFormulaColumn):
         assiette_service = simulation.calculate('assiette_service', period)
         assiette_vente = simulation.calculate('assiette_vente', period)
         assiette_proflib = simulation.calculate('assiette_proflib', period)
-        _P = simulation.legislation_at(period.start)
         microsocial = simulation.legislation_at(period.start).ir.rpns.microsocial
 
-        return period, assiette_service * microsocial.servi + assiette_vente * microsocial.vente + assiette_proflib * microsocial.bnc
+        return period, (
+            assiette_service * microsocial.servi +
+            assiette_vente * microsocial.vente + assiette_proflib * microsocial.bnc
+            )
 
 
 @reference_formula
@@ -1432,7 +1433,9 @@ class microentreprise(SimpleFormulaColumn):
         ebnc_impo = self.sum_by_entity(ebnc_impo_holder)
         ebic_imps = self.sum_by_entity(ebic_imps_holder)
         ebic_impv = self.sum_by_entity(ebic_impv_holder)
-        return period, ebnc_impo * (1 - me.specialbnc.taux) + ebic_imps * (1 - me.servi.taux) + ebic_impv * (1 - me.vente.taux)
+        return period, (
+            ebnc_impo * (1 - me.specialbnc.taux) + ebic_imps * (1 - me.servi.taux) + ebic_impv * (1 - me.vente.taux)
+            )
 
 
 @reference_formula
@@ -1493,7 +1496,6 @@ class plus_values(DatedFormulaColumn):
         f3vf_holder = simulation.compute('f3vf', period)
         f3vd_holder = simulation.compute('f3vd', period)
         rpns_pvce_holder = simulation.compute('rpns_pvce', period)
-        _P = simulation.legislation_at(period.start)
         plus_values = simulation.legislation_at(period.start).ir.plus_values
 
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
@@ -1533,7 +1535,6 @@ class plus_values(DatedFormulaColumn):
         f3vf_holder = simulation.compute('f3vf', period)
         f3vd_holder = simulation.compute('f3vd', period)
         rpns_pvce_holder = simulation.compute('rpns_pvce', period)
-        _P = simulation.legislation_at(period.start)
         plus_values = simulation.legislation_at(period.start).ir.plus_values
 
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
@@ -2074,7 +2075,9 @@ class defacc(SimpleFormulaColumn):
         macc_imps = self.sum_by_entity(macc_imps_holder)
         aacc_impn = self.sum_by_entity(aacc_impn_holder)
         macc_timp = abat_rpns(macc_impv, microentreprise.vente) + abat_rpns(macc_imps, microentreprise.servi)
-        return period, min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
+        return period, (
+            min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
+            )
 
 
 @reference_formula
@@ -2226,9 +2229,15 @@ class ric(SimpleFormulaColumn):
         cond = (mbic_impv > 0) & (mbic_imps == 0)
         taux = microentreprise.vente.taux * cond + microentreprise.servi.taux * not_(cond)
 
-        cbic = min_(mbic_impv + mbic_imps + mbic_exon,
-                    max_(microentreprise.vente.min,
-                         round(mbic_impv * microentreprise.vente.taux + mbic_imps * microentreprise.servi.taux + mbic_exon * taux)))
+        cbic = min_(
+            mbic_impv + mbic_imps + mbic_exon,
+            max_(
+                microentreprise.vente.min,
+                round(
+                    mbic_impv * microentreprise.vente.taux + mbic_imps * microentreprise.servi.taux + mbic_exon * taux
+                    )
+                )
+            )
         return period, zbic - cbic
 
 

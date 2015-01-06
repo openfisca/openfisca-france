@@ -92,6 +92,24 @@ build_column(
         default = 3,
         ),
     )
+
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Chômage brut",
+    name = 'chobrut',
+    )
+
+
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Retraite brute",
+    name = 'rstbrut',
+    )
+
+
+
 build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 build_column('f5sq', IntCol())
 

@@ -405,6 +405,7 @@ class br_rmi_i(SimpleFormulaColumn):
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
         pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
         allocation_aide_retour_emploi = simulation.calculate('allocation_aide_retour_emploi', three_previous_months)
+
         allocation_securisation_professionnelle = simulation.calculate(
             'allocation_securisation_professionnelle', three_previous_months)
         prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
@@ -463,6 +464,7 @@ class psa(DatedFormulaColumn):
         rsa = simulation.calculate('rsa', period)
         activite_holder = simulation.compute('activite', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
+
         aide_logement = simulation.calculate('aide_logement', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
@@ -761,7 +763,7 @@ class rmi(DatedFormulaColumn):
 
         return period, max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
 
-    # TODO: Migré lors de la mensualisation. Probablement faux
+        # TODO: Migré lors de la mensualisation. Probablement faux
 
 
 @reference_formula
