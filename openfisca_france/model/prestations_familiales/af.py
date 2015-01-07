@@ -35,7 +35,7 @@ from ..pfam import nb_enf, age_aine
 class af_nbenf(SimpleFormulaColumn):
     column = FloatCol  # TODO: shouldn't be an integer ?
     entity_class = Familles
-    label = u"Nombre d'enfants dans la familles au sens des allocations familiales"
+    label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -46,6 +46,7 @@ class af_nbenf(SimpleFormulaColumn):
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         af_nbenf = nb_enf(age, smic55, P.age1, P.age2)
+
         return period, af_nbenf
 
 

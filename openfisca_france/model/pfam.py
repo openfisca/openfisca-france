@@ -104,13 +104,9 @@ class residence_mayotte(SimpleFormulaColumn):
 class nb_par(SimpleFormulaColumn):
     column = PeriodSizeIndependentIntCol(default = 0)
     entity_class = Familles
-    label = u"Nombre de parents"
+    label = u"Nombre d'adultes (parents) dans la famille"
 
     def function(self, simulation, period):
-        '''
-        Nombre d'adultes (parents) dans la famille
-        'fam'
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         quifam_holder = simulation.compute('quifam', period)
 
@@ -158,12 +154,9 @@ class concub(SimpleFormulaColumn):
 class isol(SimpleFormulaColumn):
     column = BoolCol(default = False)
     entity_class = Familles
-    label = u"isol"
+    label = u"Parent (s'il y a lieu) isolé"
 
     def function(self, simulation, period):
-        '''
-        Parent (s'il y a lieu) isolé
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         nb_par = simulation.calculate('nb_par', period)
 
@@ -177,9 +170,6 @@ class etu(SimpleFormulaColumn):
     label = u"Indicatrice individuelle étudiant"
 
     def function(self, simulation, period):
-        '''
-        Indicatrice individuelle etudiant
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         activite = simulation.calculate('activite', period)
 
