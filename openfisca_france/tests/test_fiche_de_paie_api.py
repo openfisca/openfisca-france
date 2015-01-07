@@ -28,13 +28,14 @@ from __future__ import division
 import collections
 import datetime
 import json
+import urllib
 import urllib2
 
 from openfisca_core import periods
 from openfisca_france.tests.test_fiche_de_paie import test_parameters_list, assert_variable
 
 
-def compute(variable, period, test_parameters):
+def compute(variable, period, test_parameters, api = 'calculate'):
     parent1 = dict(
         birth = datetime.date(periods.period(period).start.year - 40, 1, 1).year,
         nom_individu = "Personne 1",
@@ -65,40 +66,58 @@ def compute(variable, period, test_parameters):
             }
         }
 
-    simulation = dict(
-        # intermediate_variables = True,
-        scenarios = [dict(
-            test_case = test_case,
-            period = period,
-            )],
-        #    validate = True,
-        variables = test_parameters['output_variables'].keys(),
-        )
-    # request = urllib2.Request('http://localhost:2014/api/1/calculate', headers = {
-    request = urllib2.Request('http://api-test.openfisca.fr/api/1/calculate', headers = {
-        'Content-Type': 'application/json',
-        'User-Agent': 'OpenFisca-Notebook',
-        })
-    try:
-        response = urllib2.urlopen(request, json.dumps(simulation))
-    except urllib2.HTTPError as response:
-        print response.read()
-        raise
-    response_text = response.read()
-    response_dict = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
-    tree = response_dict['value']
-    individu = dict(*tree)['individus']['1']
-    return individu[variable][period]
+    if api == 'calculate':
+        simulation = dict(
+            # intermediate_variables = True,
+            scenarios = [dict(
+                test_case = test_case,
+                period = period,
+                )],
+            #    validate = True,
+            variables = test_parameters['output_variables'].keys(),
+            )
+        # request = urllib2.Request('http://localhost:2014/api/1/calculate', headers = {
+        request = urllib2.Request('http://api-test.openfisca.fr/api/1/calculate', headers = {
+            'Content-Type': 'application/json',
+            'User-Agent': 'OpenFisca-Notebook',
+            })
+        try:
+            response = urllib2.urlopen(request, json.dumps(simulation))
+        except urllib2.HTTPError as response:
+            print response.read()
+            raise
+        response_text = response.read()
+        response_dict = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
+        tree = response_dict['value']
+        individu = dict(*tree)['individus']['1']
+        return individu[variable][period]
+    else:
+        url_head = 'http://api-test.openfisca.fr/api/1/formula/'
+        url_query = variable + "?" + urllib.urlencode(parent1)
+        url = url_head + url_query + "&period={}".format(period)
+        request = urllib2.Request(url, headers = {
+            'Content-Type': 'application/json',
+            'User-Agent': 'OpenFisca-Notebook',
+            })
+        try:
+            response = urllib2.urlopen(request)
+        except urllib2.HTTPError as response:
+            print response.read()
 
+        response_text = response.read()
+        response_dict = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
+        return response_dict['value']
 
 def test_check():
     for test_parameters in test_parameters_list:
-        period = "2012-01"
-        for variable, monthly_amount in test_parameters['output_variables'].iteritems():
-            name = test_parameters["name"]
-            period = test_parameters["period"]
-            output = compute(variable, period, test_parameters)
-            yield assert_variable, variable, name, monthly_amount, output
+        for api in ['formula']: # 'calculate', ]:
+            for variable, monthly_amount in test_parameters['output_variables'].iteritems():
+                name = test_parameters["name"]
+                period = test_parameters["period"]
+                output = compute(variable, period, test_parameters, api = api)
+                yield assert_variable, variable, name, monthly_amount, output
+
+
 
 
  #   print response_text
