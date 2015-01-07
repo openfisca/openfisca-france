@@ -181,11 +181,11 @@ def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
 
         reference_legislation_json = tax_benefit_system.legislation_json
-        period = periods.period("month", "2011-12")
-        reform_legislation_json = reforms.update_legislation(
+
+        reform_legislation_json = reforms.update_legislation_old(
             legislation_json = reference_legislation_json,
-            path = ('children', 'cotsoc', 'children', 'gen','children', 'smic_h_b'),
-            period = period,
+            path = ('children', 'cotsoc', 'children', 'gen','children', 'smic_h_b', 'values'),
+            period = periods.period("month", "2011-12"),
             value = 9,
             )
         reform = reforms.Reform(
@@ -195,13 +195,14 @@ def test_check():
             reference = tax_benefit_system,
             )
 
+        simulation_period = 2011
         parent1 = dict(
-            birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
+            birth = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
             )
         parent1.update(test_parameters['input_variables'])
 
         simulation = reform.new_scenario().init_single_entity(
-            period = period,
+            period = simulation_period,
             parent1 = parent1,
             ).new_simulation(debug = True)
 
