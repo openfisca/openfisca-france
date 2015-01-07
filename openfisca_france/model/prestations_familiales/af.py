@@ -40,7 +40,7 @@ class af_nbenf(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period.offset(-1))
         P = simulation.legislation_at(period.start).fam.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)
