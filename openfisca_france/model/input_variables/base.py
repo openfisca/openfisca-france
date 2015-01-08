@@ -94,7 +94,7 @@ build_column(
     )
 
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Chômage brut",
     name = 'chobrut',
@@ -102,7 +102,7 @@ reference_input_variable(
 
 
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Retraite brute",
     name = 'rstbrut',
