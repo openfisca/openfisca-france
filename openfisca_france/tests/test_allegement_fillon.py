@@ -182,10 +182,10 @@ def test_check():
 
         reference_legislation_json = tax_benefit_system.legislation_json
 
-        reform_legislation_json = reforms.update_legislation_old(
+        reform_legislation_json = reforms.update_legislation(
             legislation_json = reference_legislation_json,
-            path = ('children', 'cotsoc', 'children', 'gen','children', 'smic_h_b', 'values'),
-            period = periods.period("month", "2011-12"),
+            path = ('children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'),
+            period = periods.period("year", "2011"),
             value = 9,
             )
         reform = reforms.Reform(

@@ -1227,12 +1227,9 @@ class avantage_qf(SimpleFormulaColumn):
 class decote(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"decote"
+    label = u"décote"
 
     def function(self, simulation, period):
-        '''
-        Décote
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote = simulation.legislation_at(period.start).ir.decote

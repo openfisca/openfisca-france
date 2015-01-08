@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, minimum as min_, maximum as max_
+from numpy import minimum as min_, maximum as max_
 
 from .base import *  # noqa
 
@@ -244,9 +244,9 @@ class cd_penali(SimpleFormulaColumn):
 
         max1 = penalim.max
         taux_jgt_2006 = penalim.taux_jgt_2006
-            # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
-            # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
-            # foyer, la déduction est limitée à 2*max
+        # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
+        # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
+        # foyer, la déduction est limitée à 2*max
         # S'il habite chez ses parents, max 3359, sinon 5698
         return period, (min_(f6gi * (1 + taux_jgt_2006), max1) +
                     min_(f6gj * (1 + taux_jgt_2006), max1) +
@@ -290,7 +290,6 @@ class cd_percap(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         f6cb = simulation.calculate('f6cb', period)
         marpac = simulation.calculate('marpac', period)
-        _P = simulation.legislation_at(period.start)
         percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
 
         max_cb = percap.max_cb * (1 + marpac)
@@ -307,7 +306,6 @@ class cd_percap(DatedFormulaColumn):
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         marpac = simulation.calculate('marpac', period)
-        _P = simulation.legislation_at(period.start)
         percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
 
         max_cb = percap.max_cb * (1 + marpac)
@@ -480,4 +478,3 @@ class cd_grorep(SimpleFormulaColumn):
         grorep = simulation.legislation_at(period.start).ir.charges_deductibles.grorep
 
         return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.max)
-

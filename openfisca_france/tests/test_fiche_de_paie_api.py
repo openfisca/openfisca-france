@@ -32,7 +32,7 @@ import urllib
 import urllib2
 
 from openfisca_core import periods
-from openfisca_france.tests.test_fiche_de_paie import test_parameters_list, assert_variable
+from openfisca_france.tests.test_fiche_de_paie import assert_variable, iter_scenarios
 
 
 def compute(variable, period, test_parameters, api = 'calculate'):
@@ -108,23 +108,12 @@ def compute(variable, period, test_parameters, api = 'calculate'):
         response_dict = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
         return response_dict['value']
 
-def test_check():
-    for test_parameters in test_parameters_list:
-        for api in ['formula']: # 'calculate', ]:
+
+def test_paie_api():
+    for test_parameters in iter_scenarios():
+        for api in ['formula', 'calculate']:
             for variable, monthly_amount in test_parameters['output_variables'].iteritems():
                 name = test_parameters["name"]
                 period = test_parameters["period"]
                 output = compute(variable, period, test_parameters, api = api)
-                yield assert_variable, variable, name, monthly_amount, output
-
-
-
-
- #   print response_text
-#
-#if __name__ == '__main__':
-#    import logging
-#    import sys
-#
-#    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-#    test_decomposition(print_decomposition = True)
+                yield assert_variable, variable, name + " using " + str(api), monthly_amount, output

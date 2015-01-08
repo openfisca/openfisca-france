@@ -31,80 +31,61 @@ import copy
 
 import logging
 
-from openfisca_core import periods, reforms
-from openfisca_core.accessors import law
-from openfisca_france import entities
+from openfisca_core import formulas, periods, reforms
+from .. import entities
+from ..model import irpp
 
 
 log = logging.getLogger(__name__)
 
-from openfisca_france.model.base import QUIFAM, QUIFOY
+
+# Reform formulas
+
+class decote(formulas.SimpleFormulaColumn):
+    label = u"Nouvelle décote 2015"
+    reference = irpp.decote
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+        nb_adult = simulation.calculate('nb_adult', period)
+        plf = simulation.legislation_at(period.start).plf2015
+
+        decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - ir_plaf_qf)
+        decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - ir_plaf_qf)
+        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
 
-VOUS = QUIFOY['vous']
-CHEF = QUIFAM['chef']
+# Reform legislation
 
-
-def _decote(ir_plaf_qf, nb_adult, plf2015 = law.plf2015):
-    '''
-    Décote
-    '''
-    decote_celib = (ir_plaf_qf < plf2015.decote_seuil_celib) * (plf2015.decote_seuil_celib - ir_plaf_qf)
-    decote_couple = (ir_plaf_qf < plf2015.decote_seuil_couple) * (plf2015.decote_seuil_couple - ir_plaf_qf)
-    return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
-
-
-def build_reform_entity_class_by_symbol():
-
-    reform_entity_class_by_symbol = entities.entity_class_by_symbol.copy()
-    foyers_fiscaux_class = reform_entity_class_by_symbol['foy']
-
-    # update column_by_name
-    reform_column_by_name = foyers_fiscaux_class.column_by_name.copy()
-    function_by_column_name = dict(
-        decote = _decote,
-        )
-
-    for name, function in function_by_column_name.iteritems():
-        column = foyers_fiscaux_class.column_by_name[name]
-        reform_column = reforms.replace_simple_formula_column_function(column, function)
-        reform_column_by_name[name] = reform_column
-
-    class ReformFoyersFiscaux(foyers_fiscaux_class):
-        column_by_name = reform_column_by_name
-
-    reform_entity_class_by_symbol['foy'] = ReformFoyersFiscaux
-
-    return reform_entity_class_by_symbol
-
-
-def build_new_legislation_nodes():
-    return {
-        "plf2015": {
-            "@type": "Node",
-            "description": "PLF 2015",
-            "children": {
-                "decote_seuil_celib": {
-                    "@type": "Parameter",
-                    "description": "Seuil de la décôte pour un célibataire",
-                    "format": "integer",
-                    "unit": "currency",
-                    "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1135}],
-                    },
-                "decote_seuil_couple": {
-                    "@type": "Parameter",
-                    "description": "Seuil de la décôte pour un couple",
-                    "format": "integer",
-                    "unit": "currency",
-                    "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1870}],
-                    },
+reform_legislation_subtree = {
+    "plf2015": {
+        "@type": "Node",
+        "description": "PLF 2015",
+        "children": {
+            "decote_seuil_celib": {
+                "@type": "Parameter",
+                "description": "Seuil de la décôte pour un célibataire",
+                "format": "integer",
+                "unit": "currency",
+                "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1135}],
+                },
+            "decote_seuil_couple": {
+                "@type": "Parameter",
+                "description": "Seuil de la décôte pour un couple",
+                "format": "integer",
+                "unit": "currency",
+                "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1870}],
                 },
             },
-        }
+        },
+    }
 
+
+# Build function
 
 def build_reform(tax_benefit_system):
-
+    # Update legislation
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_year = 2014
@@ -122,19 +103,16 @@ def build_reform(tax_benefit_system):
         period = reform_period,
         value = 9690,
         )
+    reform_legislation_json['children'].update(reform_legislation_subtree)
 
-    reform_legislation_json['children'].update(build_new_legislation_nodes())
+    # Update formulas
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
+    ReformFoyersFiscaux.column_by_name['decote'] = decote
 
-    to_entity_class_by_key_plural = lambda entity_class_by_symbol: {
-        entity_class.key_plural: entity_class
-        for symbol, entity_class in entity_class_by_symbol.iteritems()
-        }
-
-    reform = reforms.Reform(
-        entity_class_by_key_plural = to_entity_class_by_key_plural(build_reform_entity_class_by_symbol()),
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
         legislation_json = reform_legislation_json,
         name = u'PLF2015',
         reference = tax_benefit_system,
         )
-
-    return reform

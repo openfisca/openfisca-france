@@ -41,7 +41,7 @@ def test_charge_loyer():
                 count = 10,
                 max = 30000,
                 min = 0,
-                name = 'sali',
+                name = 'salaire_de_base',
                 ),
             ],
         period = periods.period('year', year),
@@ -51,9 +51,9 @@ def test_charge_loyer():
             dict(birth = datetime.date(year - 9, 1, 1)),
             dict(birth = datetime.date(year - 9, 1, 1)),
             ],
-        menage = dict(
-            loyer = 1000,
-            )
+            menage = dict(
+                loyer = 1000,
+                ),
         )
     reform_simulation = scenario.new_simulation(debug = True)
     error_margin = 0.01

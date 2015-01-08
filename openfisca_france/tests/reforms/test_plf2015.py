@@ -47,7 +47,7 @@ def test(year = 2014):
                 count = count,
                 max = max_sal,
                 min = 0,
-                name = 'sali',
+                name = 'sal',
                 ),
             ],
         period = periods.period('year', year),
