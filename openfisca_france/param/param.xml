@@ -4594,8 +4594,7 @@
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="8000" />
       </CODE>
       <CODE code="dar_2_2" description="Plancher ressources AL en secteur accession R. 351-7-1" format="float" type="monetary">
-     # non trouvé
-    <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
+        <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="3900" />
       </CODE>
       <CODE code="dar_3" description="Coefficient R. 351-7-1" format="float">
@@ -4640,7 +4639,7 @@
           <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1500" />
         </CODE>
       </NODE>
-      <CODE code="dar_4" description="Montant R. 351-7-2" format="float" type="monetary">
+      <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="5411.62" />
         <VALUE deb="2002-07-01" fin="2007-06-30" valeur="5500" />
         <VALUE deb="2007-07-01" fin="2008-12-31" valeur="6900" />
@@ -4649,7 +4648,7 @@
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7300" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="7500" />
       </CODE>
-      <CODE code="dar_5" description="Minoration si titulaire d'une bourse de l'enseignement supérieur" format="float" type="monetary">
+      <CODE code="dar_5" description="Minoration du plancher de ressources étudiants pour boursiers" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-11-30" valeur="990.86" />
         <VALUE deb="2002-12-01" fin="2007-06-30" valeur="1100" />
         <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1400" />

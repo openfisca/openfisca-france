@@ -103,7 +103,7 @@ class br_al(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
-        etu_holder = simulation.compute('etu', period)
+        etudiant_holder = simulation.compute('etu', period)
         boursier_holder = simulation.compute('boursier', period)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
@@ -112,21 +112,22 @@ class br_al(SimpleFormulaColumn):
 
         boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-        etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        etudiant = self.split_by_roles(etudiant_holder, roles = [CHEF, PART])
         rev_coll = self.sum_by_entity(rev_coll_holder)
-        etuC = (etu[CHEF]) & (not_(etu[PART]))
-        etuP = not_(etu[CHEF]) & (etu[PART])
-        etuCP = (etu[CHEF]) & (etu[PART])
+        etudiant_demandeur = (etudiant[CHEF]) & (not_(etudiant[PART]))
+        etudiant_partenaire = not_(etudiant[CHEF]) & (etudiant[PART])
+        etudiant_les_deux = (etudiant[CHEF]) & (etudiant[PART])
+
         # Boursiers
         # TODO: distinguer boursier foyer/boursier locatif
-        etuCB = etu[CHEF] & boursier[CHEF]
-        etuPB = etu[PART] & boursier[PART]
-        # self.etu = (self.etu[CHEF]>=1)|(self.etuP>=1)
-        revCatVous = max_(br_pf_i[CHEF], etuC * (Pr.dar_4 - (etuCB) * Pr.dar_5))
-        revCatConj = max_(br_pf_i[PART], etuP * (Pr.dar_4 - (etuPB) * Pr.dar_5))
+        etudiant_boursier_demandeur = etudiant[CHEF] & boursier[CHEF]
+        etudiant_boursier_partenaire = etudiant[PART] & boursier[PART]
+
+        revCatVous = max_(br_pf_i[CHEF], etudiant_demandeur * (Pr.dar_4 - (etudiant_boursier_demandeur) * Pr.dar_5))
+        revCatConj = max_(br_pf_i[PART], etudiant_partenaire * (Pr.dar_4 - (etudiant_boursier_partenaire) * Pr.dar_5))
         revCatVsCj = (
-            not_(etuCP) * (revCatVous + revCatConj) +
-            etuCP * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etuCB | etuPB) * Pr.dar_5 + Pr.dar_7)
+            not_(etudiant_les_deux) * (revCatVous + revCatConj) +
+            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
             )
 
         # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier),
@@ -153,7 +154,6 @@ class br_al(SimpleFormulaColumn):
         # TODO :double résidence pour raisons professionnelles
 
         # Base ressource des aides au logement (arrondies aux 100 euros supérieurs)
-
         br_al = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
 
         return period, br_al
