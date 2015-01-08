@@ -261,12 +261,9 @@ class div(SimpleFormulaColumn):
 class rev_coll(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"rev_coll"
+    label = u"Revenus collectifs"
 
     def function(self, simulation, period):
-        '''
-        Revenus collectifs
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period)
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
