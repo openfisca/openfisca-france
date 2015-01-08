@@ -59,7 +59,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             )
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         type_sal = simulation.calculate('type_sal', period)
-        smic_horaire_brut = simulation.legislation_at(period.start).gen.smic_h_b
+        smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
 
         assiette = (
             salaire_de_base +
