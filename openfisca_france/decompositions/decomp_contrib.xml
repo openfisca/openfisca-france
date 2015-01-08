@@ -7,7 +7,7 @@
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
             <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. pat.">
               <NODE code="cotisations_patronales_contrib" color="249,208,211" desc="Cotisations sociales patronales contributtives" shortname="Cot. pat. contrib." />
-              <NODE code="cotisations_patronales_noncontrib" color="249,208,211" desc="Cotisations sociales patronales non contributives" shortname="Cot. pat. noncontrib." />
+              <NODE code="cotisations_patronales_non_contributives" color="249,208,211" desc="Cotisations sociales patronales non contributives" shortname="Cot. pat. noncontrib." />
               <NODE code="cotisations_patronales_main_d_oeuvre" color="249,208,211" desc="Cotisations sur la main d'oeuvre" shortname="Cot. pat. main d'oeuvre" />
             </NODE>
             <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
@@ -17,7 +17,7 @@
           </NODE>
           <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal">
             <NODE code="cotisations_salariales_contrib" color="243,166,171" desc="Cotisations sociales salariales contributtives" shortname="Cotsoc sal cont." />
-            <NODE code="cotisations_salariales_noncontrib" color="243,166,171" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncont." />
+            <NODE code="cotisations_salariales_non_contributives" color="243,166,171" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncont." />
           </NODE>
           <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG deduc" />
           <NODE code="mhsup" color="0,115,170" desc="Heures supplémentaires éxonérées" shortname="Heures sup" />

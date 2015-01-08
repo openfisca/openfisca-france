@@ -526,10 +526,12 @@ class cotsoc_noncontrib(SimpleFormulaColumn):
         Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        cotisations_patronales_noncontrib = simulation.calculate('cotisations_patronales_noncontrib', period)
-        cotisations_salariales_noncontrib = simulation.calculate('cotisations_salariales_noncontrib', period)
+        cotisations_patronales_non_contributives = simulation.calculate('cotisations_patronales_non_contributives',
+            period)
+        cotisations_salariales_non_contributives = simulation.calculate('cotisations_salariales_non_contributives',
+            period)
 
-        return period, cotisations_patronales_noncontrib + cotisations_salariales_noncontrib
+        return period, cotisations_patronales_non_contributives + cotisations_salariales_non_contributives
 
 
 @reference_formula
@@ -618,4 +620,3 @@ class check_crds(SimpleFormulaColumn):
         crds_fon = self.sum_by_entity(crds_fon)
 
         return period, crds_cap_bar + crds_pv_mo + crds_fon
-
