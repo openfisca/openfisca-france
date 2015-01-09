@@ -123,10 +123,16 @@ reference_input_variable(
     name = 'nombre_tickets_restaurant',
     )
 reference_input_variable(
-    column = FloatCol(default = .015),  # 1.5% est le minimum
+    column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
-    name = 'prevoyance_obligatoire_cadre_taux',
+    name = 'prevoyance_obligatoire_cadre_taux_employe',
+    )
+reference_input_variable(
+    column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
+    entity_class = Individus,
+    label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
+    name = 'prevoyance_obligatoire_cadre_taux_employeur',
     )
 reference_input_variable(
     column = FloatCol(),

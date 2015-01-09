@@ -30,5 +30,5 @@ import os
 modules = [
     module_path
     for module_path in glob.glob(os.path.dirname(__file__) + "/*.py")
-    if not module_path.endswith('__init__.py') and not module_path.endswith('template.py')
+    if not module_path.endswith('__init__.py')  # and not module_path.endswith('template.py')
     ]
