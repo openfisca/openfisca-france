@@ -381,12 +381,11 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         '''
         period = period
         salnet = simulation.calculate('salnet', period)
-        depense_cantine_titre_restaurant = simulation.calculate('depense_cantine_titre_restaurant')
-        depense_cantine_titre_restaurant_employeur = simulation.calculate(
-            'depense_cantine_titre_restaurant_employeur')
+        depense_cantine_titre_restaurant_employe = simulation.calculate(
+            'depense_cantine_titre_restaurant_employe')
         salaire_net_a_payer = (
             salnet +
-            depense_cantine_titre_restaurant - depense_cantine_titre_restaurant_employeur
+            depense_cantine_titre_restaurant_employe
             )
         return period, salaire_net_a_payer
 

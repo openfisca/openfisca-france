@@ -101,25 +101,26 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
-class depense_cantine_titre_restaurant(SimpleFormulaColumn):
+class depense_cantine_titre_restaurant_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Dépense de cantine et de titre restaurant"
+    label = u"Dépense de cantine et de titre restaurant à charge de l'employe"
 
     def function(self, simulation, period):
         period = period
 
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
         volume = simulation.calculate("titre_restaurant_volume", period)
+        taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
 
-        return period, valeur_unitaire * volume
+        return period, - valeur_unitaire * volume * (1 - taux_employeur)
 
 
 @reference_formula
 class depense_cantine_titre_restaurant_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Dépense de cantine et de titre restaurant"
+    label = u"Dépense de cantine et de titre restaurant à cahrge de l'employeur"
 
     def function(self, simulation, period):
         period = period
