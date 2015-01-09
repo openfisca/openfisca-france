@@ -47,6 +47,24 @@ reference_input_variable(
     name = 'allegement_fillon_mode_recouvrement',
     )
 reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à la taxe sur les salaires",
+    name = 'assujettie_taxe_salaires',
+    )
+reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"Avantages en nature (Valeur réelle)",
+    name = 'avantages_en_nature_valeur_reelle',
+    )
+reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"Base pour le calcul du remboursement des frais de transport",
+    name = 'base_remboursement_transport',
+    )
+reference_input_variable(
     column = EnumCol(
         enum = Enum(
             [
@@ -87,24 +105,6 @@ reference_input_variable(
     name = 'contrat_de_travail_duree',
     )
 reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Entreprise assujettie à la taxe sur les salaires",
-    name = 'assujettie_taxe_salaires',
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Avantages en nature (Valeur réelle)",
-    name = 'avantages_en_nature_valeur_reelle',
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Base pour le calcul du remboursement des frais de transport",
-    name = 'base_remboursement_transport',
-    )
-reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
     label = u"Effectif de l'entreprise",
@@ -121,12 +121,6 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Nombre de tickets restaurant",
     name = 'nombre_tickets_restaurant',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Ratio d'alternants dans l'effectif moyen",
-    name = 'ratio_alternants',
     )
 reference_input_variable(
     column = FloatCol(default = .015),  # 1.5% est le minimum
@@ -157,6 +151,12 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur",
     name = 'prise_en_charge_employeur_retraite_supplementaire',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Ratio d'alternants dans l'effectif moyen",
+    name = 'ratio_alternants',
     )
 reference_input_variable(
     column = BoolCol(default = True),
