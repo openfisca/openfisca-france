@@ -31,7 +31,7 @@ from numpy import logical_not as not_
 
 
 from ..base import *  # noqa
-from . import montant_csg_crds
+from .base import montant_csg_crds
 
 
 log = logging.getLogger(__name__)

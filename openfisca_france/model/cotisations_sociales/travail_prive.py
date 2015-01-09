@@ -29,14 +29,13 @@ import logging
 
 
 from numpy import int16, minimum as min_, ones, round as round_
-from openfisca_core.accessors import law
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
 from ..base import *  # noqa
-from . import apply_bareme_for_relevant_type_sal
+from .base import apply_bareme_for_relevant_type_sal
 
 
 log = logging.getLogger(__name__)

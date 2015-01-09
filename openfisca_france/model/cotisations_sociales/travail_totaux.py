@@ -30,9 +30,11 @@ from numpy import logical_not as not_
 
 
 from ..base import *  # noqa
-from . import montant_csg_crds
+from .base import montant_csg_crds
+
 
 log = logging.getLogger(__name__)
+
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 # T0D0 : gérer assiette csg
