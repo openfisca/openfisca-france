@@ -33,7 +33,7 @@ from openfisca_france.tests import base
 
 
 def test_allocations_familiales_imposables():
-    year = 2013
+    year = 2012
     reform = allocations_familiales_imposables.build_reform(base.tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
@@ -41,7 +41,7 @@ def test_allocations_familiales_imposables():
                 count = 10,
                 max = 30000,
                 min = 0,
-                name = 'sali',
+                name = 'sal',
                 ),
             ],
         period = periods.period('year', year),
@@ -57,7 +57,7 @@ def test_allocations_familiales_imposables():
 
     error_margin = 0.01
     af = reference_simulation.calculate('af')
-    expected_af = [1532.16] * 10
+    expected_af = [1528.35] * 10
     assert_near(expected_af, af, error_margin)
     rbg = reference_simulation.calculate('rbg')
 
