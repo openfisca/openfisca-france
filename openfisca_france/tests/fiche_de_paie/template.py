@@ -23,16 +23,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-test_list = [
+tests = [
     dict(
         name = "Monsieur Dupont",
-        period = "2014-11",   #
+        period = "2014-01",   #
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
             assujettie_taxe_salaires = False,
             avantages_en_nature_valeur_reelle = 0,
             base_remboursement_transport = 0,
-            contrat_de_travail = 1, # temps plein
+            contrat_de_travail = 1,  # temps plein
             contrat_de_travail_arrivee = "2014-01-01",
             contrat_de_travail_depart = "2014-12-31",
             contrat_de_travail_duree = 0,  # CDI
@@ -58,59 +58,83 @@ test_list = [
             volume_jours_ijss = 0,
             ),
         output_variables = dict(
-            conge_individuel_formation_cdd = -46,
-            contribution_solidarite_autonomie = -13.8,
-            participation_effort_construction = -20.70,
+            # TODO à inclure dans la décomposition et à finir de coder forfait_social = -3.8, # 47.49 de base
+            # TODO à coder taxe_handicapes = 18.40
+
+            # salsuperbrut = 0,
+            # cotisations_patronales = 0,
+
+            # cotisations_patronales_contributives = 0,
+            ags = 0,
+            agff_tranche_a_employeur = 0,
+            apec_employeur = 0,
+            arrco_tranche_a_employeur = 0,
+            assedic_employeur = 0,
+            cotisation_exceptionnelle_temporaire_employeur = 0,
+            vieillesse_deplafonnee_employeur = 0,
+            vieillesse_plafonnee_employeur = 0,
+            fonds_emploi_hospitalier = 0,
+            ircantec_employeur = 0,
+            pension_civile_employeur = 0,
+            rafp_employeur = 0,
+
+            # cotisations_patronales_non_contributives = 0,
+            allocations_temporaires_invalidite = 0,
+            accident_du_travail = 0,
+            famille = 0,
+            maladie_employeur = 0,
+            taxe_salaires = 0,
+
+            # cotisations_patronales_main_d_oeuvre = 0,
+            conge_individuel_formation_cdd = 0,
+            contribution_developpement_apprentissage = 0,
+            contribution_solidarite_autonomie = 0,
+            contribution_supplementaire_apprentissage = 0,
             fnal_tranche_a = 0,
-            fnal_tranche_a_plus_20 = -23,
-            # fnal_tranche_b_plus_20 # Inclus dans fnal_tranche_a_plus_20
-            formation_professionnelle = -73.6,
-            versement_transport = -124.20,
-            # cotisations_patronales_main_d_oeuvre = ,
-            agff_tranche_a_employe = -24.20 - 14.18,
-            agff_tranche_a_employeur = - 36.30 - 20.48,
-            ags = -13.80,
-            apec_employeur = - 1.09 - .57,
-            cotisation_exceptionnelle_temporaire_employeur = -10.12,
-            arrco_tranche_a_employeur = -138.53 - 199.75,
-            # agirc_tranche_b_employeur = -199.75,  # Inclus dans arcco
-            assedic_employeur = - 120.99 - 63.01,
-            # assedic_tranche_a_employeur = -120.99  # Inclus dans assedic
-            # assedic_tranche_b_employeur = -63.01  # Inclus dans assedic
-            # vieillesse_deplafonnee_employeur = -80.5,
-            vieillesse_plafonnee_employeur = -255.59,
+            fnal_tranche_a_plus_20 = 0,
+            formation_professionnelle = 0,
+            participation_effort_construction = 0,
+            prevoyance_obligatoire_cadre = 0,
+            taxe_apprentissage = 0,
+            versement_transport = 0,
 
-            # cotisations_patronales_contributives = ,
+            allegement_fillon = 0,
+            alleg_cice = 0,
+            tehr = 0,
+            salbrut = 0,
 
-            accident_du_travail = -69,
-            famille = -241.5,
-            maladie_employeur = - 588.80,
-            # cotisations_patronales = - 2836.38,  # montant juste TODO: A compléter avec presta manquantes
-            taxe_salaires = - 197.52 - 27.07 - 315.27,
-            prevoyance_obligatoire_cadre = -47.49,
+            # cotisations_salariales = 0,
 
-            cotisation_exceptionnelle_temporaire_employe = -5.98,
-            maladie_employe = - 34.5,
-            # cotisations_salariales_non_contributives = ,
+            # cotisations_salariales_contributives = 0,
+            agff_tranche_a_employe = 0,
+            agirc_tranche_b_employe = 0,
+            apec_employe = 0,
+            arrco_tranche_a_employe = 0,
+            assedic_employe = 0,
+            cotisation_exceptionnelle_temporaire_employe = 0,
+            vieillesse_deplafonnee_employe = 0,
+            vieillesse_plafonnee_employe = 0,
+            ircantec_employe = 0,
+            pension_civile_employe = 0,
+            rafp_employe = 0,
 
-            apec_employe = -.73 - .38,
-            arrco_tranche_a_employe = -92.25,
-            agirc_tranche_b_employe = - 122.09,
-            # assedic_tranche_a_employe = -72.59  # Inclus dans assedic
-            # assedic_tranche_b_employe = 37.81,  # Inclus dans assedic
-            assedic_employe = -72.59 - 37.81,
+            # cotisations_salariales_non_contributives = 0,
+            maladie_employe = 0,
+            contribution_exceptionnelle_solidarite_employe = 0,
+            csgsald = 0,
+            mhsup = 0,
+            salnet = 0,
 
-            # vieillesse_deplafonnee_employe = -11.5,
-            vieillesse_plafonnee_employe = -205.68,
-            # cotisations_salariales_contributives = ,
+            # salaire imposable
+            csgsali = 0,
+            crdssal = 0,
+            hsup = 0,
+            sal = 0,
 
-            # cotisations_salariales = ,
-            csgsald = -232.92,
-            csgsali = -109.61,
-            crdssal = -22.83,
-            depense_cantine_titre_restaurant_employeur = 19 * 4.5,
-            forfait_social = -3.8, # 47.49 de base
-            # TODO taxe_handicapes = 18.40
+            depense_cantine_titre_restaurant_employe = 0,
+
+            salaire_net_a_payer = 0,
+
             ),
         ),
     ]
