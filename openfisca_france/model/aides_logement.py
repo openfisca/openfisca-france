@@ -358,7 +358,7 @@ class als_nonet(SimpleFormulaColumn):
 class alset(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
-    label = u"Allocation logement sociale (non étudiante)"
+    label = u"Allocation logement sociale (étudiante)"
     url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
 
     def function(self, simulation, period):
