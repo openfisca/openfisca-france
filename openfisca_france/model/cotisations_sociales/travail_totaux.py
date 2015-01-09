@@ -91,7 +91,6 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
             arrco_tranche_a_employeur +
             assedic_employeur +
             cotisation_exceptionnelle_temporaire_employeur +
-            prevoyance_obligatoire_cadre +  # TODO contributive ou pas ?
             vieillesse_deplafonnee_employeur +
             vieillesse_plafonnee_employeur +
             # public
@@ -121,6 +120,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
         fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
         participation_effort_construction = simulation.calculate('participation_effort_construction', period)
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre')
         taxe_apprentissage = simulation.calculate('taxe_apprentissage', period)
         versement_transport = simulation.calculate('versement_transport', period)
 
@@ -133,6 +133,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
             fnal_tranche_a +
             fnal_tranche_a_plus_20 +
             participation_effort_construction +
+            prevoyance_obligatoire_cadre +
             taxe_apprentissage +
             versement_transport
             )
@@ -368,21 +369,27 @@ class salnet(SimpleFormulaColumn):
 
 
 @reference_formula
-class taxes_sal(SimpleFormulaColumn):
+class salaire_net_a_payer(SimpleFormulaColumn):
     column = FloatCol
+    label = u"Salaires nets d'après définition INSEE"
     entity_class = Individus
-    label = u"Taxes sur les salaires"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        salbrut = simulation.calculate('salbrut', period)
-        tva_ent = simulation.calculate('tva_ent', period)
-        _P = simulation.legislation_at(period.start)
+        '''
+        Calcul du salaire net à payer après déduction des sommes
+        dues par les salarié avancées par l'employeur
+        '''
+        period = period
+        salnet = simulation.calculate('salnet', period)
+        depense_cantine_titre_restaurant = simulation.calculate('depense_cantine_titre_restaurant')
+        depense_cantine_titre_restaurant_employeur = simulation.calculate(
+            'depense_cantine_titre_restaurant_employeur')
+        salaire_net_a_payer = (
+            salnet +
+            depense_cantine_titre_restaurant - depense_cantine_titre_restaurant_employeur
+            )
+        return period, salaire_net_a_payer
 
-        P = _P.cotsoc.taxes_sal
-        maj = P.taux_maj  # TODO: exonérations apprentis
-        taxes_sal = maj.calc(salbrut) + P.taux.metro * salbrut  # TODO: modify if DOM
-        return period, -taxes_sal * not_(tva_ent)
 
 
 @reference_formula
@@ -394,9 +401,9 @@ class tehr(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')  # TODO: period
         salbrut = simulation.calculate('salbrut', period)
-        _P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        bar = _P.cotsoc.tehr
+        bar = law.cotsoc.tehr
         return period, -bar.calc(salbrut)
 
 
@@ -419,14 +426,14 @@ class salsuperbrut(SimpleFormulaColumn):
         alleg_cice = simulation.calculate('alleg_cice', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
-        taxes_sal = simulation.calculate('taxes_sal', period)
+        taxe_salaires = simulation.calculate('taxe_salaires', period)
         tehr = simulation.calculate('tehr', period)
 
         salsuperbrut = (
             salbrut + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement +
             - cotisations_patronales
-            - allegement_fillon - alleg_cice - taxes_sal - tehr
+            - allegement_fillon - alleg_cice - taxe_salaires - tehr
             )
 
         return period, salsuperbrut

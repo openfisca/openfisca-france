@@ -926,17 +926,21 @@ class taxe_salaires(SimpleFormulaColumn):
         salbrut = simulation.calculate('salbrut', period)
         hsup = simulation.calculate('hsup', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
-        _P = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start)
 
-        bareme = _P.cotsoc.taxes_sal.taux_maj
+        bareme = law.cotsoc.taxes_sal.taux_maj
         bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
         base = salbrut - prevoyance_obligatoire_cadre
+
+        # TODO: exonérations apprentis
+        # TODO: modify if DOM
 
         return period, - (
             bareme.calc(
                 base,
-                round_base_decimals = 2) +
-            round_(_P.cotsoc.taxes_sal.taux.metro * base, 2)
+                round_base_decimals = 2
+                ) +
+            round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
             ) * assujettie_taxe_salaires
 
 

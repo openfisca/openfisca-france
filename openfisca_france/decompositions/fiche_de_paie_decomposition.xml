@@ -12,27 +12,34 @@
             <NODE code="cotisation_exceptionnelle_temporaire_employeur" color="249,208,211" desc="CET" shortname="CET" />
             <NODE code="vieillesse_deplafonnee_employeur" color="249,208,211" desc="Vieillesse déplafonnée" shortname="Vieil. déplaf." />
             <NODE code="vieillesse_plafonnee_employeur" color="249,208,211" desc="Vieillesse plafonnée" shortname="Vieil. plaf." />
+            <NODE code="fonds_emploi_hospitalier" color="249,208,211" desc="Fonds emploi hospitalier" shortname="Fonds emploi hosp." />
+            <NODE code="ircantec_employeur" color="249,208,211" desc="Ircantec employeur" shortname="Ircantec" />
+            <NODE code="pension_civile_employeur" color="249,208,211" desc="Pension civile (employeur)" shortname="Pension civile" />
+            <NODE code="rafp_employeur" color="249,208,211" desc="Retraite additionnelle de la fonction publique" shortname="RAFP" />
           </NODE>
           <NODE code="cotisations_patronales_non_contributives" color="249,208,211" desc="Cotisations sociales patronales non contributives" shortname="Cotsoc pat noncontrib" >
             <NODE code="allocations_temporaires_invalidite" color="249,208,211" desc="Invalidité" shortname="Invalidité" />
             <NODE code="accident_du_travail" color="249,208,211" desc="Accident du travail" shortname="Acc. travail" />
             <NODE code="famille" color="249,208,211" desc="Famille" shortname="Famille" />
             <NODE code="maladie_employeur" color="249,208,211" desc="Maladie" shortname="Maladie" />
+            <NODE code="taxe_salaires" color="249,208,211" desc="Taxes sur les salaires" shortname="Taxe salaires" />
           </NODE>
           <NODE code="cotisations_patronales_main_d_oeuvre" color="249,208,211" desc="Cotisations sociales patronales main d'oeuvre" shortname="Cotsoc pat main oeuvre" />
+            <NODE code="conge_individuel_formation_cdd" color="249,208,211" desc="Congé individuel de formation CDD" shortname="CIF CDD" />
             <NODE code="contribution_developpement_apprentissage" color="249,208,211" desc="Contribution au Développement de l'apprentissage" shortname="Dév. apprenti." />
             <NODE code="contribution_solidarite_autonomie" color="249,208,211" desc="Contribution solidarite autonomie" shortname="CSA" />
             <NODE code="contribution_supplementaire_apprentissage" color="249,208,211" desc="Contribution supplémentaire à l'apprentissage" shortname="Suppl. apprenti." />
-            <NODE code="formation_professionnelle" color="249,208,211" desc="Formation professionnelle" shortname="Form. prof." />
             <NODE code="fnal_tranche_a" color="249,208,211" desc="FNAL" shortname="FNAL" />
             <NODE code="fnal_tranche_a_plus_20" color="249,208,211" desc="FNAL +20" shortname="FNAL +20" />
+            <NODE code="formation_professionnelle" color="249,208,211" desc="Formation professionnelle" shortname="Form. prof." />
             <NODE code="participation_effort_construction" color="249,208,211" desc="Participation à l'effort de construction" shortname="Construction" />
+            <NODE code="prevoyance_obligatoire_cadre" color="249,208,211" desc="Prérevoyance obligatoire des cadres" shortname="Prev. oblig. cadres" />
             <NODE code="taxe_apprentissage" color="249,208,211" desc="Taxe d'apprentisssage" shortname="Taxe apprenti." />
             <NODE code="versement_transport" color="249,208,211" desc="Versement transport" shortname="Transport" />
         </NODE>
         <NODE code="allegement_fillon" color="0,171,208" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
         <NODE code="alleg_cice" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
-        <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
+        <NODE code="taxe_salaires" desc="Taxe sur les salaires" shortname="Taxe sal." />
         <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
     </NODE>
     <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" >
@@ -45,10 +52,14 @@
         <NODE code="cotisation_exceptionnelle_temporaire_employe" color="249,208,211" desc="CET" shortname="CET" />
         <NODE code="vieillesse_deplafonnee_employe" color="249,208,211" desc="Vieillesse déplafonnée" shortname="Vieil. déplaf." />
         <NODE code="vieillesse_plafonnee_employe" color="249,208,211" desc="Vieillesse plafonnée" shortname="Vieil. plaf." />
-      </NODE>
+        <NODE code="ircantec_employe" color="249,208,211" desc="Ircantec employé" shortname="Ircantec" />
+        <NODE code="pension_civile_employe" color="249,208,211" desc="Pension civile (employé)" shortname="Pension civile" />
+        <NODE code="rafp_employe" color="249,208,211" desc="Retraite additionnelle de la fonction publique (employé)" shortname="RAFP" />
+    </NODE>
     </NODE>
     <NODE code="cotisations_salariales_non_contributives" color="249,208,211" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncontrib" >
       <NODE code="maladie_employe" color="249,208,211" desc="Maladie" shortname="Maladie" />
+      <NODE code="contribution_exceptionnelle_solidarite_employe" color="249,208,211" desc="Contribution exceptionnelle solidarite (employé)" shortname="Contrib. excep. temp." />
     </NODE>
     <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG deduc" />
     <NODE code="mhsup" color="0,115,170" desc="Heures supplémentaires éxonérées" shortname="Heures sup" />
