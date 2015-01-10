@@ -1457,7 +1457,7 @@ class quaenv(DatedFormulaColumn):
     def function_20120101_20121231(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
-        2013
+        2012
         '''
         period = period.start.offset('first-of', 'month').period('year')
         f7sd = simulation.calculate('f7sd', period)
@@ -1708,4 +1708,3 @@ class saldom2(DatedFormulaColumn):
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
 
         return period, P.taux * min_(f7db, maxEffectif)
-

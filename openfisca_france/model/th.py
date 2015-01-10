@@ -198,4 +198,3 @@ class tax_hab(SimpleFormulaColumn):
 
 
         return period, -zthabm * 0
-

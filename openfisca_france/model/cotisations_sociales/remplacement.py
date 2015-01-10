@@ -195,7 +195,7 @@ class csgrstd(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CSG déductible sur les pensions de retraite"
-    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
+    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -218,7 +218,7 @@ class csgrsti(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CSG imposable sur les pensions de retraite"
-    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
+    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -232,12 +232,13 @@ class csgrsti(SimpleFormulaColumn):
             )
         return period, montant_csg
 
+
 @reference_formula
 class crdsrst(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CRDS sur les pensions de retraite"
-    url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
+    url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
