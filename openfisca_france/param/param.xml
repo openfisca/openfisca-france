@@ -2404,7 +2404,7 @@
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />#TODO : Quel article de loi ?
         </CODE>
       </NODE>
       <NODE code="acc75a" description="Frais d'acceuil d'une personne de plus de 75 ans">
@@ -2535,7 +2535,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="5568" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
-        <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5698" />
+        <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5698" /> #TODO: Check quel article de loi ?
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5753" />
       </CODE>
     </NODE>
