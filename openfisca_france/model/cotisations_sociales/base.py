@@ -46,7 +46,7 @@ def apply_bareme_for_relevant_type_sal(
         if type_sal_enum[0] not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
             continue
         bareme = bareme_by_type_sal_name[type_sal_enum[0]].get(bareme_name)  # TODO; should have better warnings
-        if bareme:
+        if bareme is not None:
             cotisation += bareme.calc(
                 base * (type_sal == type_sal_enum[1]),
                 factor = plafond_securite_sociale,
