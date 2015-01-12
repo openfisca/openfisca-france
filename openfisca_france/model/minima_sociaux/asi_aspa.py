@@ -166,13 +166,13 @@ class asi(SimpleFormulaColumn):
         # Un seul éligible
         elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
         # Couple d'éligibles mariés
-        elig2 = (asi_elig[CHEF] & asi_elig[PART]) * maries
+        elig2 = asi_elig[CHEF] & asi_elig[PART] & maries
         # Couple d'éligibles non mariés
-        elig3 = (asi_elig[CHEF] & asi_elig[PART]) * not_(maries)
+        elig3 = asi_elig[CHEF] & asi_elig[PART] & not_(maries)
         # Un seul éligible et époux éligible ASPA
-        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
+        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & maries
         # Un seul éligible et conjoint non marié éligible ASPA
-        elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
+        elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
@@ -251,9 +251,9 @@ class aspa(SimpleFormulaColumn):
         # Couple d'éligibles
         elig2 = (aspa_elig[CHEF] & aspa_elig[PART])
         # Un seul éligible et époux éligible ASI
-        elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * maries
+        elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & maries
         # Un seul éligible et conjoint non marié éligible ASI
-        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) * not_(maries)
+        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4
 
@@ -279,4 +279,3 @@ class aspa(SimpleFormulaColumn):
         # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
         # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
         return period, elig * montant_servi_aspa
-

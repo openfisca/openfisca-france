@@ -709,10 +709,10 @@ class rsa_socle(SimpleFormulaColumn):
 
         eligib = (
             (age_parents[CHEF] >= rmi.age_pac)
-            *
+            &
             not_(activite_parents[CHEF] == 2)
             ) | (
-                (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+                (age_parents[PART] >= rmi.age_pac) & not_(activite_parents[PART] == 2)
                 )
 
         taux = (

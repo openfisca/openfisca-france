@@ -358,7 +358,7 @@ def nb_enf(ages, smic55, ag1, ag2):
     res = None
     for key, age in ages.iteritems():
         if res is None: res = zeros(len(age), dtype = int32)
-        res += ((ag1 <= age) & (age <= ag2)) * not_(smic55[key])
+        res += (ag1 <= age) & (age <= ag2) & not_(smic55[key])
     return res
 
 
@@ -369,7 +369,7 @@ def age_aine(ages, smic55, ag1, ag2):
     '''
     ageaine = -9999
     for key, age in ages.iteritems():
-        ispacaf = ((ag1 <= age) & (age <= ag2)) * not_(smic55[key])
+        ispacaf = (ag1 <= age) & (age <= ag2) & not_(smic55[key])
         isaine = ispacaf & (age > ageaine)
         ageaine = isaine * age + not_(isaine) * ageaine
     return ageaine
