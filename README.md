@@ -4,7 +4,8 @@
 
 ## Presentation
 
-OpenFisca is a versatile microsimulation free software. This is the source code of the France module.
+[OpenFisca](http://www.openfisca.fr/) is a versatile microsimulation free software.
+This is the source code of the France module.
 
 Please consult http://www.openfisca.fr/presentation
 
@@ -15,8 +16,6 @@ Please consult http://www.openfisca.fr/documentation
 ## Installation
 
 Please consult http://www.openfisca.fr/installation if you want to develop with OpenFisca on your computer.
-
-But you can also try it online with the demonstrator: http://ui.openfisca.fr/
 
 ## Contribute
 
