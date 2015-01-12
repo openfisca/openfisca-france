@@ -181,8 +181,8 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
         contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
-        volume_heures_non_remunerees = simulation.calculate('volume_heures_non_remunerees', period)
-        volume_heures_remunerees = simulation.calculate('volume_heures_remunerees', period)
+        heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume', period)
+        heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
 
         busday_count = partial(original_busday_count, holidays = holidays)
 
@@ -194,7 +194,6 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
             max_(contrat_de_travail_arrivee, debut_mois),
             min_(contrat_de_travail_depart, fin_mois)
             )
-        jours_travaillables = busday_count(debut_mois, fin_mois)
 
         duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
         nombre_heures_remunerees = (
@@ -202,11 +201,11 @@ class nombre_heures_remunerees(SimpleFormulaColumn):
                 duree_legale * not_(mois_incomplet) +  # 151.67
                 jours_travailles * 7 * mois_incomplet
                 ) +
-            (contrat_de_travail == 1) * volume_heures_remunerees +
-            (contrat_de_travail == 2) * (volume_heures_remunerees / 45.7) * (52 / 12) +  # forfait heures/annee
-            (contrat_de_travail == 3) * duree_legale * (volume_heures_remunerees / 218)  # forfait jours/annee
+            (contrat_de_travail == 1) * heures_remunerees_volume +
+            (contrat_de_travail == 2) * (heures_remunerees_volume / 45.7) * (52 / 12) +  # forfait heures/annee
+            (contrat_de_travail == 3) * duree_legale * (heures_remunerees_volume / 218)  # forfait jours/annee
             )
-        return period, nombre_heures_remunerees - volume_heures_non_remunerees
+        return period, nombre_heures_remunerees - heures_non_remunerees_volume
 
 
 @reference_formula

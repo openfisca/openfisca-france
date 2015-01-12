@@ -33,25 +33,6 @@ from openfisca_core import periods, reforms
 from openfisca_france.tests.base import tax_benefit_system
 
 
-#def test_1():
-#    simulation = tax_benefit_system.new_scenario().init_single_entity(
-#        period = "2013-01-01",
-#        parent1 = dict(
-#            effectif_entreprise = 3000,
-#            exposition_accident = 3,
-#            localisation_entreprise = "75001",
-#            ratio_alternants = .025,
-#            salaire_de_base = 3000,
-#            taille_entreprise = 3,
-#            type_sal = 0,
-#            ),
-#        menage = dict(
-#            zone_apl = 1,
-#            ),
-#        ).new_simulation(debug = True)
-#    simulation.calculate("allegement_fillon")
-#    simulation.calculate("maladie_employeur")
-
 test_case_by_employee_type = dict(
     circulaire_acoss_2011_regularisation_fin_de_periode = dict(
         input_variables = dict(
@@ -76,20 +57,6 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            allegement_fillon_anticipe = {
-                "2011-01": 354.9,
-                "2011-02": 354.9,
-                "2011-03": 354.9,
-                "2011-04": 354.9,
-                "2011-05": 354.9,
-                "2011-06": 354.9,
-                "2011-07": 354.9,
-                "2011-08": 354.9,
-                "2011-09": 0,
-                "2011-10": 354.9,
-                "2011-11": 354.9,
-                "2011-12": 0,
-                },
             allegement_fillon = {
                 "2011-01": 354.9,
                 "2011-02": 354.9,
@@ -130,34 +97,6 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            allegement_fillon_cumul_progressif = {
-                "2011-01": 354.9,
-                "2011-02": 2 * 354.9,
-                "2011-03": 3 * 354.9,
-                "2011-04": 4 * 354.9,
-                "2011-05": 5 * 354.9,
-                "2011-06": 6 * 354.9,
-                "2011-07": 7 * 354.9,
-                "2011-08": 8 * 354.9,
-                "2011-09": 2760.62,
-                "2011-10": 3116.06,
-                "2011-11": 3470.45,
-                "2011-12": 3233.51,
-                },
-            allegement_fillon_cumul_progressif_retarde = {
-                "2011-01": 0,
-                "2011-02": 354.9,
-                "2011-03": 2 * 354.9,
-                "2011-04": 3 * 354.9,
-                "2011-05": 4 * 354.9,
-                "2011-06": 5 * 354.9,
-                "2011-07": 6 * 354.9,
-                "2011-08": 7 * 354.9,
-                "2011-09": 8 * 354.9,
-                "2011-10": 2760.62,
-                "2011-11": 3116.06,
-                "2011-12": 3470.45,
-                },
             allegement_fillon = {
                 "2011-01": 354.9,
                 "2011-02": 354.9,

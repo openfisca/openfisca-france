@@ -70,28 +70,28 @@ reference_input_variable(
             [
                 u"temps_plein",
                 u"temps_partiel",
-                # u"forfait_heures_semaines",
-                # u"forfait_heures_mois",
+                u"forfait_heures_semaines",
+                u"forfait_heures_mois",
                 u"forfait_heures_annee",
                 u"forfait_jours_annee",
                 ],
             ),
         ),
     entity_class = Individus,
-    label = u"Type contrat de travail, de forfait ou de convention de rémunération des heures travaillées",
+    label = u"Type contrat de travail",
     name = 'contrat_de_travail',
     )
 reference_input_variable(
     column = DateCol(default = datetime.date(1870, 1, 1)),
     entity_class = Individus,
     label = u"Date d'arrivée dans l'entreprise",
-    name = 'contrat_de_travail_arrivee',
+    name = 'contrat_de_travail_arrivee',  # debut
     )
 reference_input_variable(
     column = DateCol(default = datetime.date(2099, 12, 31)),
     entity_class = Individus,
     label = u"Date de départ de l'entreprise",
-    name = 'contrat_de_travail_depart',
+    name = 'contrat_de_travail_depart',   # fin
     )
 reference_input_variable(
     column = EnumCol(
@@ -101,7 +101,7 @@ reference_input_variable(
             ]),
         ),
     entity_class = Individus,
-    label = u"Date de départ de l'entreprise",
+    label = u"Type (durée determinée ou indéterminée) du contrat de travail",
     name = 'contrat_de_travail_duree',
     )
 reference_input_variable(
@@ -171,12 +171,6 @@ reference_input_variable(
     name = 'redevable_taxe_apprentissage',
     )
 reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Salarié au forfait",
-    name = 'salarie_au_forfait',
-    )
-reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Salaire de base",
@@ -219,16 +213,34 @@ reference_input_variable(
     name = 'type_sal',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = IntCol(),  # TODO default la valeur de la durée légale ?
     entity_class = Individus,
-    label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)",
-    name = 'volume_heures_non_remunerees',
+    label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)",
+    name = 'heures_duree_collective_entreprise',
     )
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
-    label = u"Volume des heures ou jours rémunérées",
-    name = 'volume_heures_remunerees',
+    label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)",
+    name = 'heures_non_remunerees_volume',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des heures rémunérées contractuellement (heures/mois)",
+    name = 'heures_remunerees_volume',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des heures rémunérées à un forfait heures",
+    name = 'forfait_heures_remunerees_volume',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Volume des heures rémunérées à forfait jours",
+    name = 'forfait_jours_remuneres_volume',
     )
 reference_input_variable(
     column = IntCol(),
