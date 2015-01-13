@@ -68,7 +68,7 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
             reintegration_titre_restaurant_employeur
             )
 
-        return period, max_(assiette, smic_proratise)
+        return period, max_(assiette, smic_proratise) * (assiette > 0)
 
 
 @reference_formula
