@@ -42,7 +42,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
+class assiette_cotisations_sociales(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Assiette des cotisations sociales des salaries du prive et des contractuel de la fonction publique"
@@ -51,7 +51,6 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period(u'month')
         avantages_en_nature = simulation.calculate('avantages_en_nature', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        nombre_heures_remunerees = simulation.calculate('nombre_heures_remunerees', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         primes_salaires = simulation.calculate('primes_salaires', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
@@ -59,7 +58,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             )
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         type_sal = simulation.calculate('type_sal', period)
-        smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
+        smic_proratise = simulation.calculate('smic_proratise', period)
 
         assiette = (
             salaire_de_base +
@@ -69,7 +68,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             reintegration_titre_restaurant_employeur
             )
 
-        return period, max_(assiette, smic_horaire_brut * nombre_heures_remunerees)
+        return period, max_(assiette, smic_proratise)
 
 
 @reference_formula
