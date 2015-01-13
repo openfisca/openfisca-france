@@ -232,6 +232,18 @@
       <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".005" />
     </CODE>
   </NODE>
+  <NODE code="forfait_social" description="Forfait social">
+    <CODE code="taux_plein" description="Taux plein" format="percent">
+      <VALUE deb="2012-08-01" fin="2014-12-31" valeur=".2" />
+      <VALUE deb="2012-01-01" fin="2012-07-31" valeur=".08" />      
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur=".06" /> 
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur=".04" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur=".02" />
+    </CODE>
+    <CODE code="taux_reduit" description="Taux réduit" format="percent">
+      <VALUE deb="2009-01-01" fin="2014-12-31" valeur=".08" />
+    </CODE>
+  </NODE>
   <NODE code="prelsoc" description="Prélèvement social et contributions additionnelles">
     <CODE code="base_plac" description="Prélèvement social (revenus des produits de placement)" format="percent">
       <VALUE deb="1998-01-01" fin="2009-12-31" valeur=".02" />

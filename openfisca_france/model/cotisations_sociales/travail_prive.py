@@ -656,13 +656,29 @@ class forfait_social(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Forfait social"
+    start_date = date(2009, 1, 1)
 
-    # TODO instaure le 1er janvier 20009
+    # les contributions destinées au financement des prestations de prévoyance complémentaire versées
+    # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),
+    # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
+
     def function(self, simulation, period):
 
-        assiette = simulation.calculate('prevoyance_obligatoire_cadre', period)  # TODO: complete this
-        return period, assiette * .08  # TODO valeur 2014 paramètres varient beaucoup entre 2009 et
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate(
+            'prise_en_charge_employeur_prevoyance_complementaire', period)
 
+        taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
+        taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
+
+        # TODO: complete this
+        assiette_taux_plein = 0 # TODO: complete this
+        assiette_taux_reduit = prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+
+        return period, (
+            assiette_taux_plein * taux_plein +
+            assiette_taux_reduit * taux_reduit
+            )
 
 @reference_formula
 class formation_professionnelle(SimpleFormulaColumn):

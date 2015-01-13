@@ -173,15 +173,11 @@ class alleg_cice(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         smic_proratise = simulation.calculate('smic_proratise', period)
         assiette_allegement = simulation.calculate('assiette_allegement', period)
-        ratio_smic_salaire = smic_proratise / assiette_allegement
-        type_sal = simulation.calculate('type_sal', period)
         cotsoc = simulation.legislation_at(period.start).cotsoc
-
-        taux_cice = taux_exo_cice(ratio_smic_salaire, cotsoc)
+        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
         alleg_cice = (
             taux_cice
             * assiette_allegement
-            * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre']))
             )
         return period, alleg_cice
 
@@ -253,7 +249,6 @@ def compute_allegement_fillon(simulation, period):
     tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
     if seuil <= 1:
         return 0
-
     ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
@@ -263,7 +258,7 @@ def compute_allegement_fillon(simulation, period):
     return allegement_fillon
 
 
-def taux_exo_cice(ratio_smic_salaire, P):
+def taux_exo_cice(assiette_allegement, smic_proratise, P):
     Pc = P.exo_bas_sal.cice
-    taux_cice = (1 / ratio_smic_salaire <= Pc.max) * Pc.taux
+    taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= Pc.max) * Pc.taux
     return taux_cice
