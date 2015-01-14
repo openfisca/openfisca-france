@@ -84,7 +84,9 @@ class accident_du_travail(SimpleFormulaColumn):
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
-        return period, - assiette_cotisations_sociales * taux_accident_travail  # TODO: check public
+        type_sal = simulation.calculate('type_sal', period)
+        assujetti = (type_sal <= 1) * (type_sal == 6)
+        return period, - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
 @reference_formula
