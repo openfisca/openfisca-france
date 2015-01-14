@@ -364,7 +364,7 @@ def nb_enf(ages, smic55, ag1, ag2):
 
 def age_aine(ages, smic55, ag1, ag2):
     '''
-    renvoi un vecteur avec l'âge de l'ainé (au sens des allocations
+    Renvoie un vecteur avec l'âge de l'ainé (au sens des allocations
     familiales) de chaque famille
     '''
     ageaine = -9999
@@ -377,7 +377,7 @@ def age_aine(ages, smic55, ag1, ag2):
 
 def age_en_mois_benjamin(agems):
     '''
-    renvoi un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check agem > 0
+    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check agem > 0
     '''
     agem_benjamin = 12 * 9999
     for agem in agems.itervalues():
