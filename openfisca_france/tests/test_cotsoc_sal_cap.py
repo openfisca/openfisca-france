@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,410 +25,495 @@
 
 import datetime
 
-from nose.tools import assert_less
+from openfisca_core import periods
+from openfisca_france.tests.base import tax_benefit_system
 
-from . import base, utils
 
-
-def test_cotsoc():
-    # Cotisations sur les revenus du capital
-
-    def check_result(result, expected_result, var, year):
-        assert_less(abs(result - value), 1)
-
-    cotsoc_cap = {
+tests = [
+    dict(
         # test sur un revenu des actions soumises à un prélèvement libératoire de
         # 21 % (2DA)
-        "f2da": [
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_lib": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_cap_lib": - .082 * 20000,
-                    "crds_cap_lib": - .005 * 20000},
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_lib": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_lib": - .082 * 20000,
-                    "crds_cap_lib": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_lib": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_lib": - .082 * 20000,
-                    "crds_cap_lib": - .005 * 20000},
-                }],
-        # Célibataire sans enfant
-        # test sur un revenu des actions et  parts (2DC)
-        "f2dc": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - 1360,
-                    "csg_cap_bar": - 1640,
-                    "crds_cap_bar": - 100,
-                    "ir_plaf_qf": 330,
-                    "irpp": - 0},
-                },
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            ],
-        # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via
-        # votre entreprise donnant droit à abattement (2fu)
-        "f2fu": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - 1360,
-                    "csg_cap_bar": - 1640,
-                    "crds_cap_bar": - 100,
-                    "ir_plaf_qf": 330,
-                    "irpp": 0},
-                },
-            ],
-        # Autres revenus distribués et revenus des structures soumises hors de
-        # France à un régime fiscal privilégié (2Go)
-        "f2go": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "rev_cat_rvcm": 25000,
-                    "prelsoc_cap_bar": - 1700,
-                    "csg_cap_bar": - 2050,
-                    "crds_cap_bar": - 125,
-                    "ir_plaf_qf": 2150,
-                    "irpp": - 2150},
-                },
-            ],
-        "f2ts": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "rev_cat_rvcm": 20000,
-                    "prelsoc_cap_bar": - 1360,
-                    "csg_cap_bar": - 1640,
-                    "crds_cap_bar": - 100,
-                    "ir_plaf_qf": 1450,
-                    "irpp": - 1450},
-                },
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            ],
-        # test sur les intérêts (2TR)
-        "f2tr": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - 1360,
-                    "csg_cap_bar": - 1640,
-                    "crds_cap_bar": - 100,
-                    "ir_plaf_qf": 1450,
-                    "irpp": - 1450},
-                },
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000,
-                    },
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_cap_bar": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_cap_bar": - .082 * 20000,
-                    "crds_cap_bar": - .005 * 20000},
-                },
-            ],
-        # test sur les revenus fonciers (4BA)
-        "f4ba": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_fon": - 1360,
-                    "csg_fon": - 1640,
-                    "crds_fon": - 100,
-                    "ir_plaf_qf": 1450,
-                    "irpp": - 1450},
-                },
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_fon": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_fon": - .082 * 20000,
-                    "crds_fon": - .005 * 20000,
-                    "irpp": - 1461},
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_fon": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_fon": - .082 * 20000,
-                    "crds_fon": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_fon": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_fon": - .082 * 20000,
-                    "crds_fon": - .005 * 20000},
-                },
-            ],
-        # test (3VG) Plus-values de cession de valeurs mobilières, droits
-        # sociaux et gains assimilés
-        "f3vg": [
-            {
-                "year": 2013,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_mo": - 1360,
-                    "csg_pv_mo": - 1640,
-                    "crds_pv_mo": - 100,
-                    "ir_plaf_qf": 1450,
-                    "irpp": - 1450},
-                },
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_mo": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_pv_mo": - .082 * 20000,
-                    "crds_pv_mo": - .005 * 20000},
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_mo": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_pv_mo": - .082 * 20000,
-                    "crds_pv_mo": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_mo": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_pv_mo": - .082 * 20000,
-                    "crds_pv_mo": - .005 * 20000},
-                },
-            {
-                "year": 2006,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_mo": - 460,
-                    "csg_pv_mo": - 1640,
-                    "crds_pv_mo": - 100},
-                },
-            ],
-        # test sur les plus-values immobilières (3VZ)
-        "f3vz": [
-            {
-                "year": 2012,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_immo": - (4.5 + 2 + 0.3) * 0.01 * 20000,
-                    "csg_pv_immo": - .082 * 20000,
-                    "crds_pv_immo": - .005 * 20000},
-                },
-            {
-                "year": 2011,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_immo": - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_pv_immo": - .082 * 20000,
-                    "crds_pv_immo": - .005 * 20000},
-                },
-            {
-                "year": 2010,
-                "amount": 20000,
-                "vars": {
-                    "prelsoc_pv_immo": - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
-                    "csg_pv_immo": - .082 * 20000,
-                    "crds_pv_immo": - .005 * 20000},
-                },
-            ],
-        }
+        name = "f2da_2012",
+        period = "2012",
+        input_variables = dict(
+            f2da = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_lib = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_cap_lib = - .082 * 20000,
+            crds_cap_lib = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2da_2011",
+        period = "2011",
+        input_variables = dict(
+            f2da = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_lib = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_lib = - .082 * 20000,
+            crds_cap_lib = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2da_2010",
+        period = "2010",
+        input_variables = dict(
+            f2da = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_lib = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_lib = - .082 * 20000,
+            crds_cap_lib = - .005 * 20000,
+            ),
+        ),
+    # Célibataire sans enfant
+    # test sur un revenu des actions et  parts (2DC)
+    dict(
+        name = "f2dc_2013",
+        period = "2013",
+        input_variables = dict(
+            f2dc = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - 1360,
+            csg_cap_bar = - 1640,
+            crds_cap_bar = - 100,
+            ir_plaf_qf = 330,
+            irpp = - 0,
+            ),
+        ),
+    dict(
+        name = "f2dc_2012",
+        period = "2012",
+        input_variables = dict(
+            f2dc = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2dc_2011",
+        period = "2011",
+        input_variables = dict(
+            f2dc = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2dc_2010",
+        period = "2010",
+        input_variables = dict(
+            f2dc = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            )
+        ),
+    # test sur le Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via
+    # votre entreprise donnant droit à abattement (2fu)
+    dict(
+        name = "f2fu_2013",
+        period = "2013",
+        input_variables = dict(
+            f2fu = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - 1360,
+            csg_cap_bar = - 1640,
+            crds_cap_bar = - 100,
+            ir_plaf_qf = 330,
+            irpp = 0,
+            ),
+        ),
+    # Autres revenus distribués et revenus des structures soumises hors de
+    # France à un régime fiscal privilégié (2Go)
+    dict(
+        name = "f2go_2013",
+        period = "2013",
+        input_variables = dict(
+            f2go = 20000,
+            ),
+        output_variables = dict(
+            rev_cat_rvcm = 25000,
+            prelsoc_cap_bar = - 1700,
+            csg_cap_bar = - 2050,
+            crds_cap_bar = - 125,
+            ir_plaf_qf = 2150,
+            irpp = - 2150,
+            ),
+        ),
+    dict(
+        name = "f2ts_2013",
+        period = "2013",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            rev_cat_rvcm = 20000,
+            prelsoc_cap_bar = - 1360,
+            csg_cap_bar = - 1640,
+            crds_cap_bar = - 100,
+            ir_plaf_qf = 1450,
+            irpp = - 1450,
+            ),
+        ),
+    dict(
+        name = "f2ts_2012",
+        period = "2012",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2ts_2011",
+        period = "2011",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2ts_2010",
+        period = "2010",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    # test sur les intérêts (2TR)
+    dict(
+        name = "f2ts_2013",
+        period = "2013",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - 1360,
+            csg_cap_bar = - 1640,
+            crds_cap_bar = - 100,
+            ir_plaf_qf = 1450,
+            irpp = - 1450,
+            ),
+        ),
+    dict(
+        name = "f2ts_2012",
+        period = "2012",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2ts_2011",
+        period = "2011",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2ts_2010",
+        period = "2010",
+        input_variables = dict(
+            f2ts = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_cap_bar = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_cap_bar = - .082 * 20000,
+            crds_cap_bar = - .005 * 20000,
+            ),
+        ),
+    # test sur les revenus fonciers (4BA)
+    dict(
+        name = "f4ba_2013",
+        period = "2013",
+        input_variables = dict(
+            f4ba = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_fon = - 1360,
+            csg_fon = - 1640,
+            crds_fon = - 100,
+            ir_plaf_qf = 1450,
+            irpp = - 1450,
+            ),
+        ),
+    dict(
+        name = "f4ba_2012",
+        period = "2012",
+        input_variables = dict(
+            f4ba = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_fon = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_fon = - .082 * 20000,
+            crds_fon = - .005 * 20000,
+            irpp = - 1461,
+            ),
+        ),
+    dict(
+        name = "f4ba_2011",
+        period = "2011",
+        input_variables = dict(
+            f4ba = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_fon = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_fon = - .082 * 20000,
+            crds_fon = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f4ba_2010",
+        period = "2010",
+        input_variables = dict(
+            f4ba = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_fon = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_fon = - .082 * 20000,
+            crds_fon = - .005 * 20000,
+            ),
+        ),
+    # test (3VG) Plus-values de cession de valeurs mobilières, droits
+    # sociaux et gains assimilés
+    dict(
+        name = "f3vg _2013",
+        period = "2013",
+        input_variables = dict(
+            f3vg = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_mo = - 1360,
+            csg_pv_mo = - 1640,
+            crds_pv_mo = - 100,
+            ir_plaf_qf = 1450,
+            irpp = - 1450,
+            ),
+        ),
+    dict(
+        name = "f3vg _2012",
+        period = "2012",
+        input_variables = dict(
+            f3vg = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_mo = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_pv_mo = - .082 * 20000,
+            crds_pv_mo = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f3vg _2011",
+        period = "2011",
+        input_variables = dict(
+            f3vg = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_mo = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_pv_mo = - .082 * 20000,
+            crds_pv_mo = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f3vg _2010",
+        period = "2010",
+        input_variables = dict(
+            f3vg = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_mo = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_pv_mo = - .082 * 20000,
+            crds_pv_mo = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f3vg _2006",
+        period = "2006",
+        input_variables = dict(
+            f3vg = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_mo = - 460,
+            csg_pv_mo = - 1640,
+            crds_pv_mo = - 100,
+            ),
+        ),
+    # test sur les plus-values immobilières (3VZ)
+    dict(
+        name = "f3vz_2012",
+        period = "2012",
+        input_variables = dict(
+            f3vz = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_immo = - (4.5 + 2 + 0.3) * 0.01 * 20000,
+            csg_pv_immo = - .082 * 20000,
+            crds_pv_immo = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f3vz_2011",
+        period = "2011",
+        input_variables = dict(
+            f3vz = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_immo = - (3.4 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_pv_immo = - .082 * 20000,
+            crds_pv_immo = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f3vz_2010",
+        period = "2010",
+        input_variables = dict(
+            f3vz = 20000,
+            ),
+        output_variables = dict(
+            prelsoc_pv_immo = - (2.2 + 1.1 + 0.3) * 0.01 * 20000,
+            csg_pv_immo = - .082 * 20000,
+            crds_pv_immo = - .005 * 20000,
+            ),
+        ),
+    dict(
+        name = "f2dc_f2ca_2013",
+        period = "2013",
+        input_variables = dict(
+            f2dc = 20000,
+            f2ca = 5000,
+            ),
+        output_variables = dict(
+            csg_cap_bar = - 1640,
+            crds_cap_bar = - 100,
+            prelsoc_cap_bar = - 1360,
+            rev_cat_rvcm = 7000,
+            irpp = 0,
+            ),
+        ),
+    # Revenus fonciers
+    dict(
+        name = "f4ba_2013",
+        period = "2013",
+        input_variables = dict(
+            f4ba = 20000,
+            ),
+        output_variables = dict(
+            csg_fon = - 1640,
+            crds_fon = - 100,
+            prelsoc_fon = - 1360,
+            ir_plaf_qf = 1450,
+            rev_cat_rfon = 20000,
+            irpp = - 1450,
+            ),
+        ),
+    dict(
+        name = "f4babcd_2013",
+        period = 2013,
+        input_variables = dict(
+            f4ba = 20000,
+            f4bb = 1000,
+            f4bc = 1000,
+            f4bd = 1000,
+            ),
+        output_variables = dict(
+            csg_fon = - 1394,
+            crds_fon = - 85,
+            prelsoc_fon = - 1156,
+            ir_plaf_qf = 1030,
+            rev_cat_rfon = 17000,
+            irpp = - 1030,
+            ),
+        ),
+    dict(
+        name = "f4babcd_2013",
+        period = 2006,
+        input_variables = dict(
+            f4ba = 20000,
+            f4bb = 1000,
+            f4bc = 1000,
+            f4bd = 1000,
+            ),
+        output_variables = dict(
+            csg_fon = - 1394,
+            crds_fon = - 85,
+            prelsoc_fon = - 391,
+            rev_cat_rfon = 17000,
+            irpp = - 1119,
+            ),
+        ),
+    dict(
+        name = "f4be_2013",
+        period = 2013,
+        input_variables = dict(
+            f4be = 10000,
+            ),
+        output_variables = dict(
+            csg_fon = - 574,
+            crds_fon = - 35,
+            prelsoc_fon = - 476,
+            rev_cat_rfon = 7000,
+            irpp = 0,
+            ),
+        ),
+    ]
 
-    for revenu, test_list in cotsoc_cap.iteritems():
-        for item in test_list:
-            year = item["year"]
-            amount = item["amount"]
 
-            for var, value in item["vars"].iteritems():
-                parent1 = dict(birth = datetime.date(year - 40, 1, 1))
-                foyer_fiscal = dict()
-                if revenu in ["rsti", "sali"]:
-                    parent1[revenu] = value
-                elif revenu in ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz", "f2fu", "f4ba", "f2go"]:
-                    foyer_fiscal[revenu] = amount
-                else:
-                    print revenu
-                    assert False
-
-                simulation = base.tax_benefit_system.new_scenario().init_single_entity(
-                    period = year,
-                    parent1 = parent1,
-                    foyer_fiscal = foyer_fiscal,
-                    ).new_simulation(debug = True)
-
-                result = simulation.calculate(var)
-                yield check_result, result, value, var, year
+def assert_variable(variable, name, monthly_amount, output):
+    assert abs(output - monthly_amount) < 1, \
+        "error for {} ({}) : should be {} instead of {} ".format(variable, name, monthly_amount, output)
 
 
-def test_cotsoc_cap_celib(verbose = False):
-    # test pour un célibataire
+def test_check():
+    for test_parameters in tests:
+        name = test_parameters["name"]
+        period = test_parameters["period"]
+        parent1 = dict(
+            birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
+            )
+        foyer_fiscal = dict()
+        foyer_fiscal.update(test_parameters['input_variables'])
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            period = period,
+            parent1 = parent1,
+            foyer_fiscal = foyer_fiscal,
+            ).new_simulation(debug = True)
 
-    tests_list = [
-        # Célibataires (pas de supplément familial de traitement
-        {
-            "year": 2013,
-            "input_vars": {
-                "f2dc": 20000,
-                "f2ca": 5000,
-                },
-            "output_vars": {
-                "csg_cap_bar": - 1640,
-                "crds_cap_bar": - 100,
-                "prelsoc_cap_bar": - 1360,
-                "rev_cat_rvcm": 7000,
-                "irpp": 0,
-                },
-            },
-        # Revenus fonciers
-        {
-            "year": 2013,
-            "input_vars": {
-                "f4ba": 20000,
-                },
-            "output_vars": {
-                "csg_fon": - 1640,
-                "crds_fon": - 100,
-                "prelsoc_fon": - 1360,
-                "ir_plaf_qf": 1450,
-                "rev_cat_rfon": 20000,
-                "irpp": - 1450,
-                },
-            },
-        {
-            "year": 2013,
-            "input_vars": {
-                "f4ba": 20000,
-                "f4bb": 1000,
-                "f4bc": 1000,
-                "f4bd": 1000,
-                },
-            "output_vars": {
-                "csg_fon": - 1394,
-                "crds_fon": - 85,
-                "prelsoc_fon": - 1156,
-                "ir_plaf_qf": 1030,
-                "rev_cat_rfon": 17000,
-                "irpp": - 1030,
-                },
-            },
-        {
-            "year": 2006,
-            "input_vars": {
-                "f4ba": 20000,
-                "f4bb": 1000,
-                "f4bc": 1000,
-                "f4bd": 1000,
-                },
-            "output_vars": {
-                "csg_fon": - 1394,
-                "crds_fon": - 85,
-                "prelsoc_fon": - 391,
-                "rev_cat_rfon": 17000,
-                "irpp": - 1119,
-                },
-            },
-        {
-            "year": 2013,
-            "input_vars": {
-                "f4be": 10000,
-                },
-            "output_vars": {
-                "csg_fon": - 574,
-                "crds_fon": - 35,
-                "prelsoc_fon": - 476,
-                "rev_cat_rfon": 7000,
-                "irpp": 0,
-                },
-            },
-        ]
-
-    for check in utils.process_tests_list(tests_list):
-        yield check
+        for variable, monthly_amount in test_parameters['output_variables'].iteritems():
+            output = simulation.calculate(variable)
+            yield assert_variable, variable, name, monthly_amount, output
 
 
 if __name__ == '__main__':

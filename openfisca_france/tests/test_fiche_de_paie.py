@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -27,19 +27,20 @@ from __future__ import division
 
 
 import datetime
-
+from openfisca_core import periods
 from openfisca_france.tests.base import tax_benefit_system
+from openfisca_france.tests.fiche_de_paie import modules
 
 
 def test_1():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        period = "2013-01-01",
+        period = "2013",
         parent1 = dict(
             effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
             ratio_alternants = .025,
-            salbrut = 3000,
+            salaire_de_base = {"2011:3": 12 * 3000},
             taille_entreprise = 3,
             type_sal = 0,
             ),
@@ -47,157 +48,24 @@ def test_1():
             zone_apl = 1,
             ),
         ).new_simulation(debug = True)
-    simulation.calculate("allegement_fillon")
-    simulation.calculate("maladie_employeur")
+    simulation.calculate("revdisp")
 
 
-non_cadre = dict(
-    input_variables = dict(
-        effectif_entreprise = 3000,
-        exposition_accident = 3,
-        localisation_entreprise = "75001",
-        ratio_alternants = .025,
-        salbrut = 3000,
-        taille_entreprise = 3,
-        type_sal = 0,
-        ),
-    output_variables = dict(
-        # patronales main d'oeuvre
-        contribution_developpement_apprentissage = -5.4,
-        contribution_supplementaire_apprentissage = -3,
-        taxe_apprentissage = -15,
-        contribution_solidarite_autonomie = -9,
-        participation_effort_construction = -13.5,
-        fnal_tranche_a = -3,
-        fnal_tranche_a_plus_20 = -12,
-        formation_professionnelle = -48,
-        versement_transport = -52.5,
-        cotisations_patronales_main_d_oeuvre = -158.4 - 3,
-        # -(206.4 -48) formation professionnelle conmptée deux fois
-        # - 3 contribution_supplementaire_apprentissage
-        # cotisations_patronales_main_d_oeuvre_old = -206.4, changement plaf
-        # patronales non contributives
-        accident_du_travail = -300,
-        famille = -162,
-        maladie_employeur = -384,
-        cotisations_patronales_non_contributives = -846,
-        # cotisations_patronales_non_contributives_old = -846, changement plaf
-
-        # patronales contributives
-        agff_tranche_a_employeur = -36,
-        ags = -9,
-        arrco_tranche_a_employeur = -135,
-        assedic_employeur = -120,
-        vieillesse_deplafonnee_employeur = -48,
-        vieillesse_plafonnee_employeur = -249,
-        cotisations_patronales_contributives = -597,
-        # cotisations_patronales_contributives_old = -597, changement plaf
-        cotisations_patronales = - 158.4 - 3 - 597 - 846,
-
-        agff_tranche_a_employe = -24,
-        arrco_tranche_a_employe = -90,
-        assedic_employe = -72,
-        maladie_employe = -22.5,
-        vieillesse_deplafonnee_employe = -3,
-        vieillesse_plafonnee_employe = -199.5,
-        cotisations_salariales_contributives = -388.5,
-        # cotisations_salariales_contributives_old = -388.5,  changement plaf
-        cotisations_salariales_non_contributives = -22.5,
-        # cotisations_salariales_non_contributives_old = -22.5,  changement plaf
-        cotisations_salariales = -388.5 - 22.5,
-        csgsald = -150.32,
-        csgsali = -70.74,
-        crdssal = -14.74,
-        ),
-    )
-
-cadre = dict(
-    input_variables = dict(
-        effectif_entreprise = 3000,
-        exposition_accident = 3,
-        localisation_entreprise = "75001",
-        prevoyance_obligatoire_cadre_taux = 0,
-        ratio_alternants = .025,
-        salbrut = 6000,
-        taille_entreprise = 3,
-        type_sal = 1,
-        ),
-    output_variables = dict(
-
-        contribution_developpement_apprentissage = -10.80,
-        taxe_apprentissage = -30,
-        contribution_solidarite_autonomie = -18,
-        contribution_supplementaire_apprentissage = -6,
-        participation_effort_construction = -27,
-        fnal_tranche_a = -3.03,
-        fnal_tranche_a_plus_20 = -12.12 - 14.85,
-        # fnal_tranche_b_plus_20 = -14.85, # Inclus dans fnal_tranche_a_plus_20
-        formation_professionnelle = -96,
-        versement_transport = -105,
-        cotisations_patronales_main_d_oeuvre = - (412.8 - 96) - 6,
-        # -(421.8 - 96) formation professionnelle conmptée deux fois
-        # - 6 contribution_supplementaire_apprentissage
-        # cotisations_patronales_main_d_oeuvre_old = -412.8,  changement plaf
-
-        # agff_tranche_a_employe = -24.25,   # TODO: pas de tranche B dans le simulateur IPP
-        agff_tranche_a_employeur = -74.96,
-        ags = -18,
-        apec_employeur = - 2.16,
-        cotisation_exceptionnelle_temporaire_employeur = -13.20,
-        arrco_tranche_a_employeur = -136.39 - 374.09,
-        # agirc_tranche_b_employeur = -374.09,  # Inclus dans arcco
-        assedic_employeur = - 121.24 - 118.76,
-        # assedic_tranche_a_employeur = -11.24  # Inclus dans assedic
-        # assedic_tranche_b_employeur = -118,76  # Inclus dans assedic
-        vieillesse_deplafonnee_employeur = -96,
-        vieillesse_plafonnee_employeur = -251.57,
-
-        cotisations_patronales_contributives = -1206.4,
-        # cotisations_patronales_contributives_old = -1206.4,  changement plaf
-
-        accident_du_travail = -600,
-        famille = -324,
-        maladie_employeur = -768,
-        cotisations_patronales_non_contributives = - 1692,
-        cotisations_patronales_non_contributives_old = - 1692,
-        cotisations_patronales = - 1692 - 1206.4 - (412.8 - 96) - 6,
-        maladie_employe = - 45,
-        cotisations_salariales_non_contributives = -45,
-        # cotisations_salariales_non_contributives_old = -45,  changement plaf
-
-        apec_employe = -1.44,
-        arrco_tranche_a_employe = -90.93,
-        agirc_tranche_b_employe = -228.61,
-        # assedic_tranche_a_employe = -72.74  # Inclus dans assedic
-        # assedic_tranche_b_employe = -71,26,  # Inclus dans assedic
-        assedic_employe = -72.74 - 71.26,
-        vieillesse_deplafonnee_employe = -6,
-        vieillesse_plafonnee_employe = -201.56,
-        cotisations_salariales_contributives = -731.31,
-        # cotisations_salariales_contributives_old = -731.31,  changement plaf
-
-        cotisations_salariales = -731.31 - 45,
-#        cotisations_salariales_old = -731.31 - 45,  changement plaf
-        csgsald = -300.65,
-        csgsali = -141.48,
-        crdssal = -29.48,
-        ),
-    )
-
-
-test_parameters_list = [non_cadre, cadre]
+def iter_scenarios():
+    for module in modules:
+        local = dict()
+        execfile(module, {}, local)
+        yield local['tests'][0]
 
 
 def test_check():
-    from openfisca_core import periods
-    for test_parameters in test_parameters_list:
-        period = "2012-01"
+    for test_parameters in iter_scenarios():
+        name = test_parameters["name"]
+        period = test_parameters["period"]
         parent1 = dict(
             birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
             )
         parent1.update(test_parameters['input_variables'])
-
-        employee_type = 'non cadre' if parent1['type_sal'] == 0 else 'cadre'
         simulation = tax_benefit_system.new_scenario().init_single_entity(
             period = period,
             parent1 = parent1,
@@ -205,12 +73,12 @@ def test_check():
 
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
             output = simulation.calculate(variable)
-            yield assert_variable, variable, employee_type, monthly_amount, output
+            yield assert_variable, variable, name, monthly_amount, output
 
 
-def assert_variable(variable, employee_type, monthly_amount, output):
+def assert_variable(variable, name, monthly_amount, output):
     assert abs(output - monthly_amount) < .01, \
-        "error for {} ({}) : should be {} instead of {} ".format(variable, employee_type, monthly_amount, output)
+        "error for {} ({}) : should be {} instead of {} ".format(variable, name, monthly_amount, output)
 
 
 def test_decomposition(print_decomposition = False):
@@ -224,7 +92,7 @@ def test_decomposition(print_decomposition = False):
             exposition_accident = 3,
             localisation_entreprise = "75001",
             ratio_alternants = .025,
-            salbrut = {"2013": 12 * 3000},
+            salaire_de_base = {"2013": 12 * 3000},
             taille_entreprise = 3,
             type_sal = 0,
             ),
@@ -249,6 +117,6 @@ def test_decomposition(print_decomposition = False):
 if __name__ == '__main__':
     import logging
     import sys
-
+    test_check()
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_decomposition(print_decomposition = True)
+#    test_decomposition(print_decomposition = True)

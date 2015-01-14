@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -47,7 +47,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -58,8 +58,8 @@ def test():
             error_margin = 1,
             expected_values = dict(
 
-                fnal_tranche_a = -2,
-                fnal_tranche_a_plus_20 = -8,
+                fnal_tranche_a = 0,
+                fnal_tranche_a_plus_20 = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
                 contribution_solidarite_autonomie = - 6,
                 cotisations_patronales_main_d_oeuvre = -51,
@@ -109,7 +109,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_territoriale'],
                 ),
@@ -119,8 +119,8 @@ def test():
 
             error_margin = 1,
             expected_values = dict(
-                fnal_tranche_a = -2,
-                fnal_tranche_a_plus_20 = -8,
+                fnal_tranche_a = 0,
+                fnal_tranche_a_plus_20 = -8 -2 ,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
                 cotisations_patronales_main_d_oeuvre = -51,
@@ -166,7 +166,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_hospitaliere'],
                 ),
@@ -177,8 +177,8 @@ def test():
             error_margin = 1,
             expected_values = dict(
 
-                fnal_tranche_a = -2,
-                fnal_tranche_a_plus_20 = -8,
+                fnal_tranche_a = 0,
+                fnal_tranche_a_plus_20 = -8 -2,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
 
@@ -225,7 +225,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_non_titulaire'],
                 ),
@@ -237,8 +237,8 @@ def test():
             expected_values = dict(
 
                 contribution_solidarite_autonomie = - 7.68,
-                fnal_tranche_a = -2.56,
-                fnal_tranche_a_plus_20 = -10.24,
+                fnal_tranche_a = 0,
+                fnal_tranche_a_plus_20 = -10.24 -2.56,
                 versement_transport = -2560 * 0.0175,
                 cotisations_patronales_main_d_oeuvre = -65.28,
                 # cotisations_patronales_main_d_oeuvre_old = -65.28,
@@ -293,7 +293,7 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -311,8 +311,8 @@ def test():
             error_margin = 2,
             expected_values = dict(
                 contribution_solidarite_autonomie = - 6,
-                fnal_tranche_a = -2,
-                fnal_tranche_a_plus_20 = -8,
+                fnal_tranche_a = 0,
+                fnal_tranche_a_plus_20 = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
                 cotisations_patronales_main_d_oeuvre = -51,
                 # cotisations_patronales_main_d_oeuvre_old = -51,
@@ -356,14 +356,14 @@ def test():
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
             parent2 = dict(
                 birth = datetime.date(1972, 1, 1),
                 primes_fonction_publique = 500,
-                salbrut = 2000,
+                salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
                 type_sal = CAT['public_titulaire_etat'],
                 ),
@@ -380,8 +380,8 @@ def test():
                 # pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
                 contribution_solidarite_autonomie = - 6 * 2,
-                fnal_tranche_a = -2 * 2,
-                fnal_tranche_a_plus_20 = - 8 * 2,
+                fnal_tranche_a = 0,
+                fnal_tranche_a_plus_20 = - 8 * 2 - 2 * 2,
                 versement_transport = -2000 * 0.0175 * 2,  # = 35
                 cotisations_patronales_main_d_oeuvre = -51 * 2,
                 # cotisations_patronales_main_d_oeuvre_old = -51 * 2,

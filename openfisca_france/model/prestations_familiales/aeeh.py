@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from ..base import *
+from ..base import *  # noqa
 
 
 @reference_formula
@@ -36,7 +36,7 @@ class aeeh(DatedFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, age_holder, inv_holder, categ_inv_holder, P = law.fam):
+    def function_20020101_20021231(self, simulation, period):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
 
@@ -48,6 +48,12 @@ class aeeh(DatedFormulaColumn):
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit son activité
         professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        inv_holder = simulation.compute('inv', period)
+        categ_inv_holder = simulation.compute('categ_inv', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         categ_inv = self.split_by_roles(categ_inv_holder, roles = ENFS)
         inv = self.split_by_roles(inv_holder, roles = ENFS)
@@ -68,10 +74,10 @@ class aeeh(DatedFormulaColumn):
     # du complément d'AEEH et la PCH.
 
         # Ces allocations ne sont pas soumis à la CRDS
-        return 12 * aeeh  # annualisé
+        return period, 12 * aeeh  # annualisé
 
     @dated_function(start = date(2003, 1, 1), stop = date(2015, 12, 31))
-    def function_20030101_20151231(self, age_holder, inv_holder, isol, categ_inv_holder, P = law.fam):
+    def function_20030101_20151231(self, simulation, period):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
 
@@ -83,6 +89,13 @@ class aeeh(DatedFormulaColumn):
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit son activité
         professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        age_holder = simulation.compute('age', period)
+        inv_holder = simulation.compute('inv', period)
+        isol = simulation.calculate('isol', period)
+        categ_inv_holder = simulation.compute('categ_inv', period)
+        P = simulation.legislation_at(period.start).fam
+
         age = self.split_by_roles(age_holder, roles = ENFS)
         categ_inv = self.split_by_roles(categ_inv_holder, roles = ENFS)
         inv = self.split_by_roles(inv_holder, roles = ENFS)
@@ -110,7 +123,5 @@ class aeeh(DatedFormulaColumn):
     # du complément d'AEEH et la PCH.
 
         # Ces allocations ne sont pas soumis à la CRDS
-        return 12 * aeeh  # annualisé
+        return period, 12 * aeeh  # annualisé
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

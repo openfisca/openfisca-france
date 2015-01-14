@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import maximum as max_, minimum as min_
 
-from .base import *
+from .base import *  # noqa
 
 
 # 1 ACTIF BRUT
@@ -39,14 +39,16 @@ class isf_imm_bati(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_imm_bati"
 
-    def function(self, b1ab, b1ac, P = law.isf.res_princ):
+    def function(self, simulation, period):
         '''
         Immeubles bâtis
         '''
-        return (1 - P.taux) * b1ab + b1ac
+        period = period.start.offset('first-of', 'month').period('year')
+        b1ab = simulation.calculate('b1ab', period)
+        b1ac = simulation.calculate('b1ac', period)
+        P = simulation.legislation_at(period.start).isf.res_princ
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, (1 - P.taux) * b1ab + b1ac
 
 
 @reference_formula
@@ -55,10 +57,17 @@ class isf_imm_non_bati(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_imm_non_bati"
 
-    def function(self, b1bc, b1be, b1bh, b1bk, P = law.isf.nonbat):
+    def function(self, simulation, period):
         '''
         Immeubles non bâtis
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        b1bc = simulation.calculate('b1bc', period)
+        b1be = simulation.calculate('b1be', period)
+        b1bh = simulation.calculate('b1bh', period)
+        b1bk = simulation.calculate('b1bk', period)
+        P = simulation.legislation_at(period.start).isf.nonbat
+
         # forêts
         b1bd = b1bc * P.taux_f
         # bien ruraux loués à long terme
@@ -67,10 +76,7 @@ class isf_imm_non_bati(SimpleFormulaColumn):
         # part de groupements forestiers- agricoles fonciers
         b1bi = min_(b1bh, P.seuil) * P.taux_r1
         b1bj = max_(b1bh - P.seuil, 0) * P.taux_r2
-        return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
 
 
 # # droits sociaux- valeurs mobilières- liquidités- autres meubles ##
@@ -83,15 +89,15 @@ class isf_actions_sal(SimpleFormulaColumn):  # # non présent en 2005##
     label = u"isf_actions_sal"
     start_date = date(2006, 1, 1)
 
-    def function(self, b1cl, P = law.isf.droits_soc):
-        # # non présent en 2005##
+    def function(self, simulation, period):
         '''
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
-        return  b1cl * P.taux1
+        period = period.start.offset('first-of', 'month').period('year')
+        b1cl = simulation.calculate('b1cl', period)
+        P = simulation.legislation_at(period.start).isf.droits_soc
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period,  b1cl * P.taux1
 
 
 @reference_formula
@@ -100,13 +106,18 @@ class isf_droits_sociaux(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_droits_sociaux"
 
-    def function(self, isf_actions_sal, b1cb, b1cd, b1ce, b1cf, b1cg, P = law.isf.droits_soc):
-        # parts ou actions de sociétés avec engagement de 6 ans conservation minimum
-        b1cc = b1cb * P.taux2
-        return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        isf_actions_sal = simulation.calculate('isf_actions_sal', period)
+        b1cb = simulation.calculate('b1cb', period)
+        b1cd = simulation.calculate('b1cd', period)
+        b1ce = simulation.calculate('b1ce', period)
+        b1cf = simulation.calculate('b1cf', period)
+        b1cg = simulation.calculate('b1cg', period)
+        P = simulation.legislation_at(period.start).isf.droits_soc
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        b1cc = b1cb * P.taux2
+        return period, isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
 
 
 @reference_formula
@@ -115,17 +126,22 @@ class ass_isf(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"ass_isf"
 
-    def function(self, isf_imm_bati, isf_imm_non_bati, isf_droits_sociaux, b1cg, b2gh, P = law.isf.forf_mob):
+    def function(self, simulation, period):
         '''
         TODO: Gérer les trois option meubles meublants
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        isf_imm_bati = simulation.calculate('isf_imm_bati', period)
+        isf_imm_non_bati = simulation.calculate('isf_imm_non_bati', period)
+        isf_droits_sociaux = simulation.calculate('isf_droits_sociaux', period)
+        b1cg = simulation.calculate('b1cg', period)
+        b2gh = simulation.calculate('b2gh', period)
+        P = simulation.legislation_at(period.start).isf.forf_mob
+
         total = isf_imm_bati + isf_imm_non_bati + isf_droits_sociaux
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
         actif_brut = total + forf_mob
-        return actif_brut - b2gh
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, actif_brut - b2gh
 
 
 # # calcul de l'impôt par application du barème ##
@@ -138,16 +154,23 @@ class isf_iai(DatedFormulaColumn):
     label = u"isf_iai"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
-    def function_20020101_20101231(self, ass_isf, _P, bareme = law.isf.bareme):
-        return bareme.calc(ass_isf)
+    def function_20020101_20101231(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        ass_isf = simulation.calculate('ass_isf', period)
+        _P = simulation.legislation_at(period.start)
+        bareme = simulation.legislation_at(period.start).isf.bareme
+
+        return period, bareme.calc(ass_isf)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2015, 12, 31))
-    def function_20110101_20151231(self, ass_isf, _P, bareme = law.isf.bareme):
-        ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
-        return bareme.calc(ass_isf)
+    def function_20110101_20151231(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        ass_isf = simulation.calculate('ass_isf', period)
+        _P = simulation.legislation_at(period.start)
+        bareme = simulation.legislation_at(period.start).isf.bareme
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
+        return period, bareme.calc(ass_isf)
 
 
 @reference_formula
@@ -156,11 +179,12 @@ class isf_avant_reduction(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_avant_reduction"
 
-    def function(self, isf_iai, decote_isf):
-        return isf_iai - decote_isf
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        isf_iai = simulation.calculate('isf_iai', period)
+        decote_isf = simulation.calculate('decote_isf', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, isf_iai - decote_isf
 
 
 @reference_formula
@@ -169,14 +193,16 @@ class isf_reduc_pac(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_reduc_pac"
 
-    def function(self, nb_pac, nbH, P = law.isf.reduc_pac):
+    def function(self, simulation, period):
         '''
         Réductions pour personnes à charges
         '''
-        return P.reduc_1 * nb_pac + P.reduc_2 * nbH
+        period = period.start.offset('first-of', 'month').period('year')
+        nb_pac = simulation.calculate('nb_pac', period)
+        nbH = simulation.calculate('nbH', period)
+        P = simulation.legislation_at(period.start).isf.reduc_pac
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, P.reduc_1 * nb_pac + P.reduc_2 * nbH
 
 
 @reference_formula
@@ -186,19 +212,25 @@ class isf_inv_pme(SimpleFormulaColumn):
     label = u"isf_inv_pme"
     start_date = date(2008, 1, 1)
 
-    def function(self, b2mt, b2ne, b2mv, b2nf, b2mx, b2na, P = law.isf.pme):
+    def function(self, simulation, period):
         '''
         Réductions pour investissements dans les PME
         à partir de 2008!
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        b2mt = simulation.calculate('b2mt', period)
+        b2ne = simulation.calculate('b2ne', period)
+        b2mv = simulation.calculate('b2mv', period)
+        b2nf = simulation.calculate('b2nf', period)
+        b2mx = simulation.calculate('b2mx', period)
+        b2na = simulation.calculate('b2na', period)
+        P = simulation.legislation_at(period.start).isf.pme
+
         inv_dir_soc = b2mt * P.taux2 + b2ne * P.taux1
         holdings = b2mv * P.taux2 + b2nf * P.taux1
         fip = b2mx * P.taux1
         fcpi = b2na * P.taux1
-        return holdings + fip + fcpi + inv_dir_soc
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, holdings + fip + fcpi + inv_dir_soc
 
 
 @reference_formula
@@ -207,12 +239,12 @@ class isf_org_int_gen(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_org_int_gen"
 
-    def function(self, b2nc, P = law.isf.pme):
-        # TODO: rajouter ng (dons à certains organismes d'intérêt général)
-        return b2nc * P.taux2
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        b2nc = simulation.calculate('b2nc', period)
+        P = simulation.legislation_at(period.start).isf.pme
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, b2nc * P.taux2
 
 
 @reference_formula
@@ -221,14 +253,18 @@ class isf_avant_plaf(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"isf_avant_plaf"
 
-    def function(self, isf_avant_reduction, isf_inv_pme, isf_org_int_gen, isf_reduc_pac, borne_max = law.isf.pme.max):
+    def function(self, simulation, period):
         '''
         Montant de l'impôt avant plafonnement
         '''
-        return max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+        period = period.start.offset('first-of', 'month').period('year')
+        isf_avant_reduction = simulation.calculate('isf_avant_reduction', period)
+        isf_inv_pme = simulation.calculate('isf_inv_pme', period)
+        isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)
+        isf_reduc_pac = simulation.calculate('isf_reduc_pac', period)
+        borne_max = simulation.legislation_at(period.start).isf.pme.max
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
@@ -238,19 +274,23 @@ class tot_impot(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"tot_impot"
 
-    def function(self, irpp, isf_avant_plaf, crds_holder, csg_holder, prelsoc_cap_holder):
+    def function(self, simulation, period):
         '''
         Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF
         Utilisé pour calculer le montant du plafonnement de l'ISF
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        irpp = simulation.calculate('irpp', period)
+        isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
+        crds_holder = simulation.compute('crds', period)
+        csg_holder = simulation.compute('csg', period)
+        prelsoc_cap_holder = simulation.compute('prelsoc_cap', period)
+
         crds = self.split_by_roles(crds_holder, roles = [VOUS, CONJ])
         csg = self.split_by_roles(csg_holder, roles = [VOUS, CONJ])
         prelsoc_cap = self.split_by_roles(prelsoc_cap_holder, roles = [VOUS, CONJ])
 
-        return -irpp + isf_avant_plaf - (crds[VOUS] + crds[CONJ]) - (csg[VOUS] + csg[CONJ]) - (prelsoc_cap[VOUS] + prelsoc_cap[CONJ])
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, -irpp + isf_avant_plaf - (crds[VOUS] + crds[CONJ]) - (csg[VOUS] + csg[CONJ]) - (prelsoc_cap[VOUS] + prelsoc_cap[CONJ])
 
 
 # irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
@@ -263,13 +303,26 @@ class revetproduits(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"revetproduits"
 
-    def function(self, salcho_imp_holder, pen_net_holder, rto_net, rev_cap_bar, fon, ric_holder, rag_holder, rpns_exon_holder, rpns_pvct_holder, rev_cap_lib, imp_lib, P = law.isf.plafonnement):
-        # TODO: ric? benef indu et comm
+    def function(self, simulation, period):
         '''
         Revenus et produits perçus (avant abattement),
         Utilisé pour calculer le montant du plafonnement de l'ISF
         Cf. http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        salcho_imp_holder = simulation.compute('salcho_imp', period)
+        pen_net_holder = simulation.compute('pen_net', period)
+        rto_net = simulation.calculate('rto_net', period)
+        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        fon = simulation.calculate('fon', period)
+        ric_holder = simulation.compute('ric', period)
+        rag_holder = simulation.compute('rag', period)
+        rpns_exon_holder = simulation.compute('rpns_exon', period)
+        rpns_pvct_holder = simulation.compute('rpns_pvct', period)
+        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        imp_lib = simulation.calculate('imp_lib', period)
+        P = simulation.legislation_at(period.start).isf.plafonnement
+
         pen_net = self.sum_by_entity(pen_net_holder)
         rag = self.sum_by_entity(rag_holder)
         ric = self.sum_by_entity(ric_holder)
@@ -281,10 +334,7 @@ class revetproduits(SimpleFormulaColumn):
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(0,
             salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon)
-        return pt * P.taux
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, pt * P.taux
 
 
 @reference_formula
@@ -294,16 +344,18 @@ class decote_isf(SimpleFormulaColumn):
     label = u"decote_isf"
     start_date = date(2013, 1, 1)
 
-    def function(self, ass_isf, _P, P = law.isf.decote):
+    def function(self, simulation, period):
         '''
         Décote d el'ISF
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        ass_isf = simulation.calculate('ass_isf', period)
+        _P = simulation.legislation_at(period.start)
+        P = simulation.legislation_at(period.start).isf.decote
+
         elig = (ass_isf >= P.min) & (ass_isf <= P.max)
         LB = P.base - P.taux * ass_isf
-        return LB * elig
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, LB * elig
 
 
 @reference_formula
@@ -313,10 +365,17 @@ class isf_apres_plaf(DatedFormulaColumn):
     label = u"isf_apres_plaf"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2011, 12, 31))
-    def function_20020101_20111231(self, tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
+    def function_20020101_20111231(self, simulation, period):
         """
         Impôt sur la fortune après plafonnement
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        tot_impot = simulation.calculate('tot_impot', period)
+        revetproduits = simulation.calculate('revetproduits', period)
+        isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
+        _P = simulation.legislation_at(period.start)
+        P = simulation.legislation_at(period.start).isf.plaf
+
         # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
         # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
         # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
@@ -327,26 +386,38 @@ class isf_apres_plaf(DatedFormulaColumn):
                           (isf_avant_plaf <= P.seuil1) * plafonnement +
                           (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
                           (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement))
-        return max_(isf_avant_plaf - limitationplaf, 0)
+        return period, max_(isf_avant_plaf - limitationplaf, 0)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, isf_avant_plaf, _P, P = law.isf.plaf):
+    def function_20120101_20121231(self, simulation, period):
         """
         Impôt sur la fortune après plafonnement
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
+        _P = simulation.legislation_at(period.start)
+        P = simulation.legislation_at(period.start).isf.plaf
+
         # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
         # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
         # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
 
         # Plafonnement supprimé pour l'année 2012
 
-        return isf_avant_plaf
+        return period, isf_avant_plaf
 
     @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-    def function_20130101_20151231(self, tot_impot, revetproduits, isf_avant_plaf, _P, P = law.isf.plaf):
+    def function_20130101_20151231(self, simulation, period):
         """
         Impôt sur la fortune après plafonnement
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        tot_impot = simulation.calculate('tot_impot', period)
+        revetproduits = simulation.calculate('revetproduits', period)
+        isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
+        _P = simulation.legislation_at(period.start)
+        P = simulation.legislation_at(period.start).isf.plaf
+
         # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
         # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
         # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
@@ -354,10 +425,7 @@ class isf_apres_plaf(DatedFormulaColumn):
         # Plafonnement supprimé pour l'année 2012
 
         plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
-        return max_(isf_avant_plaf - plafond, 0)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, max_(isf_avant_plaf - plafond, 0)
 
 
 @reference_formula
@@ -367,12 +435,14 @@ class isf_tot(SimpleFormulaColumn):
     label = u"isf_tot"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
 
-    def function(self, b4rs, isf_avant_plaf, isf_apres_plaf, irpp):
-        # # rs est le montant des impôts acquittés hors de France ##
-        return min_(-((isf_apres_plaf - b4rs) * ((-irpp) > 0) + (isf_avant_plaf - b4rs) * ((-irpp) <= 0)), 0)
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        b4rs = simulation.calculate('b4rs', period)
+        isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
+        isf_apres_plaf = simulation.calculate('isf_apres_plaf', period)
+        irpp = simulation.calculate('irpp', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, min_(-((isf_apres_plaf - b4rs) * ((-irpp) > 0) + (isf_avant_plaf - b4rs) * ((-irpp) <= 0)), 0)
 
 
 # # BOUCLIER FISCAL ##
@@ -387,14 +457,15 @@ class rvcm_plus_abat(SimpleFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"rvcm_plus_abat"
 
-    def function(self, rev_cat_rvcm, rfr_rvcm):
+    def function(self, simulation, period):
         '''
         Revenu catégoriel avec abattement de 40% réintégré.
         '''
-        return rev_cat_rvcm + rfr_rvcm
+        period = period.start.offset('first-of', 'month').period('year')
+        rev_cat_rvcm = simulation.calculate('rev_cat_rvcm', period)
+        rfr_rvcm = simulation.calculate('rfr_rvcm', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, rev_cat_rvcm + rfr_rvcm
 
 
 @reference_formula
@@ -404,9 +475,22 @@ class maj_cga_i(SimpleFormulaColumn):
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
 
     # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
-    def function(self, frag_impo, nrag_impg, nbic_impn, nbic_imps, nbic_defn, nbic_defs, nacc_impn, nacc_meup,
-            nacc_defn, nacc_defs, nbnc_impo, nbnc_defi, P = law.ir.rpns):
-        # B revenus industriels et commerciaux professionnels
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        frag_impo = simulation.calculate('frag_impo', period)
+        nrag_impg = simulation.calculate('nrag_impg', period)
+        nbic_impn = simulation.calculate('nbic_impn', period)
+        nbic_imps = simulation.calculate('nbic_imps', period)
+        nbic_defn = simulation.calculate('nbic_defn', period)
+        nbic_defs = simulation.calculate('nbic_defs', period)
+        nacc_impn = simulation.calculate('nacc_impn', period)
+        nacc_meup = simulation.calculate('nacc_meup', period)
+        nacc_defn = simulation.calculate('nacc_defn', period)
+        nacc_defs = simulation.calculate('nacc_defs', period)
+        nbnc_impo = simulation.calculate('nbnc_impo', period)
+        nbnc_defi = simulation.calculate('nbnc_defi', period)
+        P = simulation.legislation_at(period.start).ir.rpns
+
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
 
         # C revenus industriels et commerciaux non professionnels
@@ -419,10 +503,7 @@ class maj_cga_i(SimpleFormulaColumn):
         # Totaux
         ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
 
-        return max_(0, P.cga_taux2 * (ntimp + frag_impo))
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
+        return period, max_(0, P.cga_taux2 * (ntimp + frag_impo))
 
 
 @reference_formula
@@ -441,10 +522,21 @@ class bouclier_rev(SimpleFormulaColumn):
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
 
-    def function(self, rbg, maj_cga, csg_deduc, rvcm_plus_abat, rev_cap_lib, rev_exo, rev_or, cd_penali, cd_eparet):
+    def function(self, simulation, period):
         '''
         Total des revenus sur l'année 'n' net de charges
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        rbg = simulation.calculate('rbg', period)
+        maj_cga = simulation.calculate('maj_cga', period)
+        csg_deduc = simulation.calculate('csg_deduc', period)
+        rvcm_plus_abat = simulation.calculate('rvcm_plus_abat', period)
+        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_exo = simulation.calculate('rev_exo', period)
+        rev_or = simulation.calculate('rev_or', period)
+        cd_penali = simulation.calculate('cd_penali', period)
+        cd_eparet = simulation.calculate('cd_eparet', period)
+
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
         null = 0 * rbg
@@ -480,10 +572,7 @@ class bouclier_rev(SimpleFormulaColumn):
 
         charges = cd_penali + cd_eparet
 
-        return revenus - charges
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, revenus - charges
 
 
 @reference_formula
@@ -494,8 +583,23 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
 
-    def function(self, irpp, tax_hab_holder, tax_fonc, isf_tot, cotsoc_lib_declarant1_holder, cotsoc_bar_declarant1_holder, csgsald_holder, csgsali_holder, crdssal_holder, csgchoi_holder, csgchod_holder, csgrstd_holder, csgrsti_holder, imp_lib):
-        # # ajouter CSG- CRDS
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        irpp = simulation.calculate('irpp', period)
+        tax_hab_holder = simulation.compute('tax_hab', period)
+        tax_fonc = simulation.calculate('tax_fonc', period)
+        isf_tot = simulation.calculate('isf_tot', period)
+        cotsoc_lib_declarant1_holder = simulation.compute('cotsoc_lib_declarant1', period)
+        cotsoc_bar_declarant1_holder = simulation.compute('cotsoc_bar_declarant1', period)
+        csgsald_holder = simulation.compute('csgsald', period)
+        csgsali_holder = simulation.compute('csgsali', period)
+        crdssal_holder = simulation.compute('crdssal', period)
+        csgchoi_holder = simulation.compute('csgchoi', period)
+        csgchod_holder = simulation.compute('csgchod', period)
+        csgrstd_holder = simulation.compute('csgrstd', period)
+        csgrsti_holder = simulation.compute('csgrsti', period)
+        imp_lib = simulation.calculate('imp_lib', period)
+
         cotsoc_bar = self.sum_by_entity(cotsoc_bar_declarant1_holder)
         cotsoc_lib = self.sum_by_entity(cotsoc_lib_declarant1_holder)
         crdssal = self.sum_by_entity(crdssal_holder)
@@ -519,10 +623,7 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''
-        return imp1 + imp2
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, imp1 + imp2
 
 
 @reference_formula
@@ -533,14 +634,15 @@ class restitutions(SimpleFormulaColumn):
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
 
-    def function(self, ppe, restit_imp):
+    def function(self, simulation, period):
         '''
         Restitutions d'impôt sur le revenu et degrèvements percus en l'année 'n'
         '''
-        return ppe + restit_imp
+        period = period.start.offset('first-of', 'month').period('year')
+        ppe = simulation.calculate('ppe', period)
+        restit_imp = simulation.calculate('restit_imp', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, ppe + restit_imp
 
 
 @reference_formula
@@ -551,14 +653,15 @@ class bouclier_sumimp(SimpleFormulaColumn):
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
 
-    def function(self, bouclier_imp_gen, restitutions):
+    def function(self, simulation, period):
         '''
         Somme totale des impôts moins restitutions et degrèvements
         '''
-        return -bouclier_imp_gen + restitutions
+        period = period.start.offset('first-of', 'month').period('year')
+        bouclier_imp_gen = simulation.calculate('bouclier_imp_gen', period)
+        restitutions = simulation.calculate('restitutions', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, -bouclier_imp_gen + restitutions
 
 
 @reference_formula
@@ -570,8 +673,11 @@ class bouclier_fiscal(SimpleFormulaColumn):
     stop_date = date(2010, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
 
-    def function(self, bouclier_sumimp, bouclier_rev, P = law.bouclier_fiscal):
-        return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        bouclier_sumimp = simulation.calculate('bouclier_sumimp', period)
+        bouclier_rev = simulation.calculate('bouclier_rev', period)
+        P = simulation.legislation_at(period.start).bouclier_fiscal
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, max_(0, bouclier_sumimp - (bouclier_rev * P.taux))
+

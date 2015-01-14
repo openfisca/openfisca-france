@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -32,7 +32,7 @@ import logging
 from openfisca_core.taxscales import TaxScalesTree  #, scale_tax_scales
 from openfisca_core.legislations import CompactNode
 
-from ..base import *
+from ..base import *  # noqa
 
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
@@ -43,7 +43,6 @@ log = logging.getLogger(__name__)
 
 def build_pat(_P):
     """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
-
     pat = TaxScalesTree('pat', _P.cotsoc.pat)
 
     for bareme in ['apprentissage', 'apprentissage_add']:

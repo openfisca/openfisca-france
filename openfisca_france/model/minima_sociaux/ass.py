@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
 
-from ..base import *
+from ..base import *  # noqa
 
 
 @reference_formula
@@ -36,11 +36,12 @@ class ass_eligibilite_i(SimpleFormulaColumn):
     label = u"Éligibilité individuelle à l'ASS"
     entity_class = Individus
 
-    def function(self, activite, ass_precondition_remplie):
-        return and_(activite == 1, ass_precondition_remplie)
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        activite = simulation.calculate('activite', period)
+        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, and_(activite == 1, ass_precondition_remplie)
 
 
 @reference_formula
@@ -49,14 +50,17 @@ class ass_base_ressources_i(SimpleFormulaColumn):
     label = u"Base de ressources individuelle de l'ASS"
     entity_class = Individus
 
-    def function(self, salnet, rstnet, pensions_alimentaires_percues, aah, indemnites_stage, revenus_stage_formation_pro):
-        return salnet + rstnet + pensions_alimentaires_percues + aah + indemnites_stage + revenus_stage_formation_pro
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        previous_year = period.offset(-1)
+        salnet = simulation.calculate('salnet', previous_year)
+        rstnet = simulation.calculate('rstnet', previous_year)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
+        aah = simulation.calculate('aah', previous_year)
+        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
+        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
-    def get_variable_period(self, output_period, variable_name):
-        return output_period.offset(-1)
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        return period, salnet + rstnet + pensions_alimentaires_percues + aah + indemnites_stage + revenus_stage_formation_pro
 
 
 @reference_formula
@@ -65,12 +69,12 @@ class ass_base_ressources(SimpleFormulaColumn):
     label = u"Base de ressources de l'ASS"
     entity_class = Familles
 
-    def function(self, period, ass_base_ressources_i_holder):
-        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
-        return ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')
+        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
+        return period, ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
 
 
 @reference_formula
@@ -79,7 +83,7 @@ class ass(SimpleFormulaColumn):
     label = u"Montant de l'ASS pour une famille"
     entity_class = Familles
 
-    def function(self, ass_base_ressources, ass_eligibilite_i_holder, concub, ass_params = law.minim.ass):
+    def function(self, simulation, period):
         '''
         L’Allocation de Solidarité Spécifique (ASS) est une allocation versée aux
         personnes ayant épuisé leurs droits à bénéficier de l'assurance chômage.
@@ -109,6 +113,12 @@ class ass(SimpleFormulaColumn):
             ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
             ou justifiant d'au moins 160 trimestres de cotisation retraite.
         '''
+        period = period.start.offset('first-of', 'month').period('year')
+        ass_base_ressources = simulation.calculate('ass_base_ressources', period)
+        ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_i', period)
+        concub = simulation.calculate('concub', period)
+        ass_params = simulation.legislation_at(period.start).minim.ass
+
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
         majo = 0  # TODO
@@ -123,7 +133,5 @@ class ass(SimpleFormulaColumn):
         ass = ass * elig
         ass = ass * not_(ass / 12 < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
-        return ass
+        return period, ass
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

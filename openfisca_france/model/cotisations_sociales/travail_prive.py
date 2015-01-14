@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,19 +25,17 @@
 
 from __future__ import division
 
-
 import logging
 
 
-from numpy import int16, minimum as min_, ones
-from openfisca_core.accessors import law
+from numpy import int16, logical_or as or_, minimum as min_, ones, round as round_
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
-from ..base import *
-from . import apply_bareme_for_relevant_type_sal
+from ..base import *  # noqa
+from .base import apply_bareme_for_relevant_type_sal
 
 
 log = logging.getLogger(__name__)
@@ -50,18 +48,44 @@ taux_versement_transport_by_localisation_entreprise = None
 # versement transport dépdendant de la localité (décommenter et compléter)
 
 
+def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None):
+
+    assert cotisation_type is not None
+    law = simulation.legislation_at(period.start)
+    if cotisation_type == "employeur":
+        bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__
+    elif cotisation_type == "salarie":
+        bareme_by_type_sal_name = law.cotsoc.cotisations_salarie.__dict__
+    assert bareme_name is not None
+
+    assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+    plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+    type_sal = simulation.calculate('type_sal', period)
+
+    cotisation = apply_bareme_for_relevant_type_sal(
+        bareme_by_type_sal_name = bareme_by_type_sal_name,
+        bareme_name = bareme_name,
+        base = assiette_cotisations_sociales,
+        plafond_securite_sociale = plafond_securite_sociale,
+        type_sal = type_sal,
+        )
+    return cotisation
+
+
 @reference_formula
 class accident_du_travail(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations patronales accident du travail et maladie professionelle"
 
-    def function(self, salbrut, type_sal, taux_accident_travail):
-        prive = (type_sal == CAT['prive_cadre']) + (type_sal == CAT['prive_non_cadre'])
-        return - salbrut * taux_accident_travail * prive  # TODO: check public
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        assiette_cotisations_sociales = simulation.calculate(
+            'assiette_cotisations_sociales', period)
+        taux_accident_travail = simulation.calculate('taux_accident_travail', period)
+        type_sal = simulation.calculate('type_sal', period)
+        assujetti = or_(type_sal <= 1, type_sal == 6)
+        return period, - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
 @reference_formula
@@ -70,22 +94,11 @@ class agff_tranche_a_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage AGFF tranche A (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique,
-                 plafond_securite_sociale, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "agff",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(
+            simulation, period, cotisation_type = "salarie", bareme_name = "agff")
+        return period, cotisation
 
 
 @reference_formula
@@ -94,33 +107,30 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage AGFF tranche A (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        assiette_cotisations_sociales = simulation.calculate(
+            'assiette_cotisations_sociales', period)
+        type_sal = simulation.calculate('type_sal', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        law = simulation.legislation_at(period.start)
+
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "agffnc",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
+            base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__,
             bareme_name = "agffc",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
+            base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
-        return cotisation_cadre + cotisation_non_cadre
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisation_cadre + cotisation_non_cadre
 
 
 @reference_formula
@@ -129,22 +139,10 @@ class agirc_tranche_b_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "agirc",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "agirc")
+        return period, cotisation
 
 
 @reference_formula
@@ -153,42 +151,10 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "agirc",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
-
-@reference_formula
-class apec_employe(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
-
-    def function(self, salbrut, type_sal, plafond_securite_sociale, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "apec",
-            base = salbrut,
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation  # TODO: check public notamment contractuel
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "agirc")
+        return period, cotisation
 
 
 @reference_formula
@@ -197,22 +163,22 @@ class ags(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "chomfg",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "chomfg")
+        return period, cotisation
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+
+@reference_formula
+class apec_employe(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
+
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "apec")
+        return period, cotisation  # TODO: check public notamment contractuel
 
 
 @reference_formula
@@ -221,18 +187,10 @@ class apec_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
 
-    def function(self, salbrut, type_sal, plafond_securite_sociale, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "apec",
-            base = salbrut,
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation  # TODO: check public notamment contractuel
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "apec")
+        return period, cotisation  # TODO: check public notamment contractuel
 
 
 @reference_formula
@@ -241,22 +199,10 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "arrco",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "arrco")
+        return period, cotisation
 
 
 @reference_formula
@@ -265,22 +211,10 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "arrco",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "arrco")
+        return period, cotisation
 
 
 @reference_formula
@@ -289,22 +223,10 @@ class assedic_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "assedic",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "assedic")
+        return period, cotisation
 
 
 @reference_formula
@@ -313,22 +235,10 @@ class assedic_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "assedic",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "assedic")
+        return period, cotisation
 
 
 @reference_formula
@@ -337,16 +247,15 @@ class conge_individuel_formation_cdd(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
 
-    def function(self, contrat_de_travail_duree, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, law = law.cotsoc.conge_individuel_formation):
-        cotisation = - law.cdd * (contrat_de_travail_duree == 1) * (
-            salbrut +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-            )
-        return cotisation
+    # TODO: date de début
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        law = simulation.legislation_at(period.start).cotsoc.conge_individuel_formation
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        cotisation = - law.cdd * (contrat_de_travail_duree == 1) * assiette_cotisations_sociales
+        return period, cotisation
 
 
 @reference_formula
@@ -355,23 +264,12 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution additionnelle au développement de l'apprentissage"
 
-    def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, plafond_securite_sociale, _P):
-        # TODO: check entreprise redevable
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "apprentissage_add",
-            base = redevable_taxe_apprentissage * (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+        cotisation = apply_bareme(
+            simulation, period, cotisation_type = "employeur", bareme_name = "apprentissage_add")
+        return period, cotisation * redevable_taxe_apprentissage
 
 
 @reference_formula
@@ -380,22 +278,10 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution solidarité autonomie (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "csa",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "csa")
+        return period, cotisation
 
 
 @reference_formula
@@ -404,22 +290,10 @@ class cotisation_exceptionnelle_temporaire_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation_exceptionnelle_temporaire (employe)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "cet",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'cet')
+        return period, cotisation
 
 
 @reference_formula
@@ -428,22 +302,10 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation exceptionnelle temporaire (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "cet",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'cet')
+        return period, cotisation
 
 
 @reference_formula
@@ -452,9 +314,14 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Contribution supplémentaire à l'apprentissage"
 
-    def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 indemnite_residence, ratio_alternants, effectif_entreprise, period, plafond_securite_sociale,
-                 taux = law.cotsoc.contribution_supplementaire_apprentissage):
+    # TODO: date de debut
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        ratio_alternants = simulation.calculate('ratio_alternants', period)
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
             taux_contribution = redevable_taxe_apprentissage * (
@@ -468,13 +335,7 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
         else:
             taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
-        return - taux_contribution * (
-            salbrut +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-            )
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, - taux_contribution * assiette_cotisations_sociales
 
 
 @reference_formula
@@ -483,22 +344,10 @@ class famille(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation famille (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "famille",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'famille')
+        return period, cotisation
 
 
 @reference_formula
@@ -507,22 +356,11 @@ class fnal_tranche_a(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "fnal1",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        taille_entreprise = simulation.calculate('taille_entreprise', period)
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'fnal1')
+        return period, cotisation * (taille_entreprise <= 2)
 
 
 @reference_formula
@@ -531,23 +369,41 @@ class fnal_tranche_a_plus_20(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
 
-    def function(self, salbrut, hsup, taille_entreprise, type_sal, indemnite_residence, primes_fonction_publique,
-                 plafond_securite_sociale, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "fnal2",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ) * (taille_entreprise > 2),  # plus de 20 salariés TODO: Be more explicit
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        taille_entreprise = simulation.calculate('taille_entreprise', period)
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'fnal2')
+        return period, cotisation * (taille_entreprise > 2)
+
+
+@reference_formula
+class forfait_social(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Forfait social"
+    start_date = date(2009, 1, 1)
+
+    # les contributions destinées au financement des prestations de prévoyance complémentaire versées
+    # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),
+    # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
+
+    def function(self, simulation, period):
+
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate(
+            'prise_en_charge_employeur_prevoyance_complementaire', period)
+
+        taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
+        taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
+
+        # TODO: complete this
+        assiette_taux_plein = 0 # TODO: complete this
+        assiette_taux_reduit = prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+
+        return period, (
+            assiette_taux_plein * taux_plein +
+            assiette_taux_reduit * taux_reduit
             )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
-
 
 @reference_formula
 class formation_professionnelle(SimpleFormulaColumn):
@@ -555,43 +411,18 @@ class formation_professionnelle(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Formation professionnelle"
 
-    def function(self, salbrut, hsup, taille_entreprise, type_sal, indemnite_residence, primes_fonction_publique,
-                 plafond_securite_sociale, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        taille_entreprise = simulation.calculate('taille_entreprise', period)
 
-        cotisation_0_9 = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "formprof_09",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ) * (taille_entreprise == 1),  # moins de 10 salariés TODO: Be more explicit
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        cotisation_10_19 = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "formprof_1019",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ) * (taille_entreprise == 2),  # moins de 20 salariés TODO: Be more explicit
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        cotisation_20 = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "formprof_20",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ) * (taille_entreprise > 2),  # plus de 20 salariés TODO: Be more explicit
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation_0_9 + cotisation_10_19 + cotisation_20
+        cotisation_0_9 = (taille_entreprise == 1) * apply_bareme(
+            simulation, period, cotisation_type = 'employeur', bareme_name = 'formprof_09')
+        cotisation_10_19 = (taille_entreprise == 2) * apply_bareme(
+            simulation, period, cotisation_type = 'employeur', bareme_name = 'formprof_1019')
+        cotisation_20 = (taille_entreprise > 2) * apply_bareme(
+            simulation, period, cotisation_type = 'employeur', bareme_name = 'formprof_20')
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisation_0_9 + cotisation_10_19 + cotisation_20
 
 
 @reference_formula
@@ -600,22 +431,10 @@ class maladie_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation maladie (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "maladie",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'maladie')
+        return period, cotisation
 
 
 @reference_formula
@@ -624,22 +443,10 @@ class maladie_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation maladie (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "maladie",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'maladie')
+        return period, cotisation
 
 
 @reference_formula
@@ -648,11 +455,11 @@ class mhsup(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Heures supplémentaires comptées négativement"
 
-    def function(self, hsup):
-        return -hsup
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        hsup = simulation.calculate('hsup', period)
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, -hsup
 
 
 @reference_formula
@@ -661,22 +468,10 @@ class participation_effort_construction(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Participation à l'effort de construction"
 
-    def function(self, salbrut, hsup, type_sal, primes_fonction_publique, indemnite_residence, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "construction",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'construction')
+        return period, cotisation
 
 
 @reference_formula
@@ -685,15 +480,14 @@ class plafond_securite_sociale(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Plafond de la securite sociale"
 
-    def function(self, nombre_jours_calendaires, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
+        _P = simulation.legislation_at(period.start)
 
-        # TODO: mettre en paramètre durée légale etc plutôt qu'en dur
-        plafond_temps_plein = _P.cotsoc.gen.plaf_ss
+        plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
         plafond_securite_sociale = min_(nombre_jours_calendaires, 30) / 30 * plafond_temps_plein
-        return plafond_securite_sociale
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, plafond_securite_sociale
 
 
 @reference_formula
@@ -702,16 +496,20 @@ class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation de prévoyance pour les cadres et assimilés"
 
-    def function(self, type_sal, salbrut, plafond_securite_sociale, prevoyance_obligatoire_cadre_taux):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        type_sal = simulation.calculate('type_sal', period)
+        salbrut = simulation.calculate('salbrut', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        prevoyance_obligatoire_cadre_taux_employeur = simulation.calculate(
+            'prevoyance_obligatoire_cadre_taux_employeur', period)
+
         cotisation = - (
             (type_sal == CAT['prive_cadre']) *
             min_(salbrut, plafond_securite_sociale) *
-            prevoyance_obligatoire_cadre_taux
+            prevoyance_obligatoire_cadre_taux_employeur
             )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, cotisation
 
 
 @reference_formula
@@ -732,17 +530,17 @@ class taille_entreprise(SimpleFormulaColumn):
     label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)"
     url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
 
-    def function(self, effectif_entreprise):
+    def function(self, simulation, period):
+        period = period
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+
         taille_entreprise = (
             (effectif_entreprise > 0).astype(int16) +
             (effectif_entreprise > 10).astype(int16) +
             (effectif_entreprise > 20).astype(int16) +
             (effectif_entreprise > 250).astype(int16)
             )
-        return taille_entreprise
-
-    def get_output_period(self, period):
-        return period
+        return period, taille_entreprise
 
 
 @reference_formula
@@ -751,22 +549,12 @@ class taxe_apprentissage(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
 
-    def function(self, redevable_taxe_apprentissage, salbrut, hsup, type_sal, primes_fonction_publique,
-                 plafond_securite_sociale, indemnite_residence, _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "apprentissage",
-            base = redevable_taxe_apprentissage * (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'apprentissage')
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, redevable_taxe_apprentissage * cotisation
 
 
 @reference_formula
@@ -774,16 +562,29 @@ class taxe_salaires(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Taxe sur les salaires"
+# Voir
+# http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
-    def function(self, assujettie_taxe_salaires, salbrut, hsup, prevoyance_obligatoire_cadre, _P):
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        assujettie_taxe_salaires = simulation.calculate('assujettie_taxe_salaires', period)
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        law = simulation.legislation_at(period.start)
 
-        bareme = _P.cotsoc.taxes_sal.taux_maj
-        bareme.rates = [rate + _P.cotsoc.taxes_sal.taux.metro for rate in bareme.rates]
-        bareme.multiply_thresholds(1 / 12, inplace = True)
-        return - (1 * assujettie_taxe_salaires) * bareme.calc(salbrut - prevoyance_obligatoire_cadre)
+        bareme = law.cotsoc.taxes_sal.taux_maj
+        bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
+        base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
+        # TODO: exonérations apprentis
+        # TODO: modify if DOM
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, - (
+            bareme.calc(
+                base,
+                round_base_decimals = 2
+                ) +
+            round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
+            ) * assujettie_taxe_salaires
 
 
 @reference_formula
@@ -793,12 +594,13 @@ class taux_accident_travail(SimpleFormulaColumn):
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
     start_date = date(2012, 1, 1)
 
-    def function(self, exposition_accident, period, accident = law.cotsoc.accident):
-        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
-            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')  # TODO month ?
+        exposition_accident = simulation.calculate('exposition_accident', period)
+        accident = simulation.legislation_at(period.start).cotsoc.accident
 
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')  # TODO month ?
+        return period, (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
+            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
 
 
 @reference_formula
@@ -807,11 +609,11 @@ class taux_versement_transport(SimpleFormulaColumn):
     entity_class = Individus
     label = u""
 
-    def function(self, localisation_entreprise, _P):
-    #    import csv
-    #    import json
-    #    import openfisca_france
-    #    import pkg_resources
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        localisation_entreprise = simulation.calculate('localisation_entreprise', period)
+        _P = simulation.legislation_at(period.start)
+
         aot_salarie = 0 # Autorité organisatrice des transports du salarié (nul si absent)
         smt_salarie = 0 # Syndicat mixte des transports du salarié (nul si absent)
 
@@ -865,10 +667,7 @@ class taux_versement_transport(SimpleFormulaColumn):
     #        dtype = float,
     #        )
         rate = _P.cotsoc.cotisations_employeur.__dict__['prive_non_cadre']["transport"].rates[0]
-        return rate * ones(len(localisation_entreprise))
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+        return period, rate * ones(len(localisation_entreprise))
 
 
 @reference_formula
@@ -877,17 +676,13 @@ class versement_transport(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Versement transport"
 
-    def function(self, salbrut, hsup, indemnite_residence, primes_fonction_publique, taux_versement_transport,
-                 type_sal, _P):
-        base = (
-            salbrut +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-            )
-        cotisation = - taux_versement_transport * base
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        taux_versement_transport = simulation.calculate('taux_versement_transport', period)
+        law = simulation.legislation_at(period.start)
+        cotisation = - taux_versement_transport * assiette_cotisations_sociales
+        return period, cotisation
 
 
 @reference_formula
@@ -896,22 +691,10 @@ class vieillesse_deplafonnee_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "vieillessedeplaf",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'vieillessedeplaf')
+        return period, cotisation
 
 
 @reference_formula
@@ -920,22 +703,10 @@ class vieillesse_plafonnee_employe(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (employé)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
-            bareme_name = "vieillesse",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'vieillesse')
+        return period, cotisation
 
 
 @reference_formula
@@ -944,22 +715,10 @@ class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "vieillessedeplaf",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'vieillessedeplaf')
+        return period, cotisation
 
 
 @reference_formula
@@ -968,19 +727,7 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (employeur)"
 
-    def function(self, salbrut, hsup, type_sal, indemnite_residence, primes_fonction_publique, plafond_securite_sociale,
-                 _P):
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
-            bareme_name = "vieillesseplaf",
-            base = (
-                salbrut +
-                (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
-                ),
-            plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
-            )
-        return cotisation
-
-    def get_output_period(self, period):
-        return period.start.period(u'month').offset('first-of')
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'vieillesseplaf')
+        return period, cotisation

@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -35,7 +35,7 @@ def test_deficit_rcm():
         {
             "year": 2009,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 'f2dc': 5000,
                 'f2aa': 1000,
                 'f2al': 1000,
@@ -50,7 +50,7 @@ def test_deficit_rcm():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 'f2dc': 5000,
                 'f2aa': 1000,
                 'f2al': 1000,
@@ -65,7 +65,7 @@ def test_deficit_rcm():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 'f2dc': 5000,
                 'f2aa': 1000,
                 'f2al': 1000,
@@ -80,7 +80,7 @@ def test_deficit_rcm():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 'f2dc': 5000,
                 'f2aa': 1000,
                 'f2al': 1000,
@@ -95,7 +95,7 @@ def test_deficit_rcm():
         {
             "year": 2013,
             "input_vars": {
-                "sali": 20000,
+                "sal": 20000,
                 'f2dc': 5000,
                 'f2aa': 1000,
                 'f2al': 1000,

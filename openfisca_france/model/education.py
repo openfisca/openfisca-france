@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -28,7 +28,7 @@ from __future__ import division
 from numpy import (zeros, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_)
 from numpy.core.defchararray import startswith
 
-from .base import *
+from .base import *  # noqa
 from .pfam import nb_enf
 
 
@@ -60,7 +60,13 @@ class bourse_college(SimpleFormulaColumn):
     label = u"Montant de la bourse de collège"
     entity_class = Familles
 
-    def function(self, rfr, age_holder, scolarite_holder, P = law.bourses_education.bourse_college):
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('year')
+        rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
+        age_holder = simulation.compute('age', period)
+        scolarite_holder = simulation.compute('scolarite', period)
+        P = simulation.legislation_at(period.start).bourses_education.bourse_college
+
         ages = self.split_by_roles(age_holder, roles = ENFS)
         nb_enfants = zeros(len(rfr))
         for key, age in ages.iteritems():
@@ -87,13 +93,5 @@ class bourse_college(SimpleFormulaColumn):
 
         montant *= nb_enfants_college
 
-        return montant
+        return period, montant
 
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name == 'rfr':
-            return output_period.start.offset('first-of', 'year').period('year').offset(-2)
-        else:
-            return output_period
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

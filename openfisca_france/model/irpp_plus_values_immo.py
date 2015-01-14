@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -102,10 +102,14 @@ class ir_pv_immo(SimpleFormulaColumn):
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"
     url = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
 
-    def function(self, f3vz, pv_immo = law.ir.pv_immo):
+    def function(self, simulation, period):
         """
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """
+        period = period.start.offset('first-of', 'month').period('year')
+        f3vz = simulation.calculate('f3vz', period)
+        pv_immo = simulation.legislation_at(period.start).ir.pv_immo
+
         # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
         # (VOIR TABLEAU PAGE 3).
         # if resident
@@ -120,7 +124,5 @@ class ir_pv_immo(SimpleFormulaColumn):
     #63. ABATTEMENT REPRESENTATIF DU FORFAIT FORESTIER (SI LE CEDANT EST UNE PERSONNE PHYSIQUE RESIDENTE) - €
     #64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
     #(POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
-        return -impo
+        return period, -impo
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('year')

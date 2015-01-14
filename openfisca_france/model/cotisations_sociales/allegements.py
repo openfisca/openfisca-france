@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,14 +25,101 @@
 
 from __future__ import division
 
+
+from functools import partial
+from numpy import (
+    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
+    minimum as min_, round as round_, timedelta64
+    )
+
 import logging
 
-from numpy import logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, round as round_
-
-from ..base import *
-
+from ..base import *  # noqa
+from ...assets.holidays import holidays
 
 log = logging.getLogger(__name__)
+
+
+@reference_formula
+class assiette_allegement(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Assiette des allègements de cotisations sociales patronales"
+
+    def function(self, simulation, period):
+        salbrut = simulation.calculate('salbrut', period)
+        type_sal = simulation.calculate('type_sal', period)
+        period = period
+        # TODO vérifier changement d'assiette
+        return period, salbrut * (
+            (type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre'])
+            )
+
+
+@reference_formula
+class coefficient_proratisation(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
+
+    def function(self, simulation, period):
+        period = period
+#         u"temps_plein",
+#        u"temps_partiel",
+#        u"forfait_heures_semaines",
+#        u"forfait_heures_mois",
+#        u"forfait_heures_annee",
+#        u"forfait_jours_annee",
+        period = period.start.offset('first-of', 'month').period(u'month')
+        contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
+        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        forfait_heures_remunerees_volume = simulation.calculate('forfait_heures_remunerees_volume', period)
+        forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
+        heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
+        heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
+        heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume', period)
+
+        # Début fin de contrat
+        busday_count = partial(original_busday_count, holidays = holidays)
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
+
+        mois_incomplet = or_(contrat_de_travail_arrivee > debut_mois, contrat_de_travail_depart < fin_mois)
+        jours_travailles = busday_count(
+            max_(contrat_de_travail_arrivee, debut_mois),
+            min_(contrat_de_travail_depart, fin_mois)
+            )
+
+        duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
+        heures_temps_plein = (
+            (heures_duree_collective_entreprise == 0) * duree_legale + heures_duree_collective_entreprise
+            )
+        # heures remunerees avant conges sans soldes/ijss
+        heures_remunerees_volume = (
+            (contrat_de_travail == 0) * (
+                heures_temps_plein * not_(mois_incomplet) +  # 151.67
+                jours_travailles * 7 * mois_incomplet
+                ) +
+            (contrat_de_travail == 1) * heures_remunerees_volume
+            )
+        heures_realisees = heures_remunerees_volume - heures_non_remunerees_volume
+
+        coefficient = (
+            # Salariés à temps plein
+            (contrat_de_travail == 0) * 1 +
+            # Salariés à temps partiel : plafond proratisé en fonction du ratio durée travaillée / durée du temps plein
+            #   Salariés sans convention de forfait à temps partiel
+            (contrat_de_travail == 1) * heures_realisees / heures_temps_plein +
+            #   Salariés avec convention de forfait
+            #      Forfait en heures
+            (contrat_de_travail >= 2) * (contrat_de_travail <= 3) * (
+                forfait_heures_remunerees_volume / 45.7 * 52 / 12
+                ) +
+            #      Forfait en jours
+            (contrat_de_travail == 4) * forfait_jours_remuneres_volume / 218
+            )
+        return period, coefficient
 
 
 @reference_formula
@@ -41,194 +128,12 @@ class smic_proratise(SimpleFormulaColumn):
     entity_class = Individus
     label = u"SMIC annuel proratisé"
 
-    def function(self, nombre_heures_remunerees,
-                 smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-
-        smic_proratise = smic_horaire_brut * nombre_heures_remunerees
-        return smic_proratise
-
-    def get_output_period(self, period):
-        return period
-
-
-@reference_formula
-class ratio_smic_salaire(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Ratio smic/salaire pour le calcul de l'allègement Fillon"
-
-    @dated_function(start = date(2012, 1, 1))
-    def function_2012(self, smic_proratise, salbrut, contrat_de_travail,
-                      smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-        # salbrut_annuel 2012 nombre_heures_remunerees incluent hsup à partir de 2012
-        smic_annuel = smic_proratise  # durée légale du travail = 1820
-        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
-        return ratio_smic_salaire
-
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_2011(self, smic_proratise, salbrut, contrat_de_travail,
-                      smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-        # TODO
-        # salbrut_annuel 2011 même chose mais avec salbrut sans hsup
-        smic_annuel = smic_proratise  # durée légale du travail = 1820
-        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
-        return ratio_smic_salaire
-
-    @dated_function(start = date(2005, 7, 1), stop = date(2010, 12, 31))
-    def function_2007_2010(self, smic_proratise, salbrut, contrat_de_travail,
-                           smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-        # TODO: revoir la législation
-        smic_annuel = smic_proratise  # durée légale du travail = 1820
-        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
-        return ratio_smic_salaire
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
-
-
-@reference_formula
-class ratio_smic_salaire_anticipe(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Ratio smic/salaire pour le calcul de l'allègement Fillon"
-
-    @dated_function(start = date(2012, 1, 1))
-    def function_2012(self, smic_proratise, salbrut, contrat_de_travail,
-                      smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-        # salbrut_annuel 2012 nombre_heures_remunerees incluent hsup à partir de 2012
-        smic_annuel = smic_proratise  # durée légale du travail = 1820
-        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
-        return ratio_smic_salaire
-
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_2011(self, smic_proratise, salbrut, contrat_de_travail,
-                      smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-        # TODO
-        # salbrut_annuel 2011 même chose mais avec salbrut sans hsup
-        smic_annuel = smic_proratise  # durée légale du travail = 1820
-        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
-        return ratio_smic_salaire
-
-    @dated_function(start = date(2005, 7, 1), stop = date(2010, 12, 31))
-    def function_2007_2010(self, smic_proratise, salbrut, contrat_de_travail,
-                           smic_horaire_brut = law.cotsoc.gen.smic_h_b):
-        # TODO: revoir la législation
-        smic_annuel = smic_proratise  # durée légale du travail = 1820
-        ratio_smic_salaire = smic_annuel / (salbrut + 1e-10)
-        return ratio_smic_salaire
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class allegement_fillon_annuel(DatedFormulaColumn):   # annuel
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
-
-    @dated_function(date(2005, 7, 1))
-    def function(self, ratio_smic_salaire, salbrut, taille_entreprise, type_sal,
-                 cotsoc = law.cotsoc):
-
-        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
-        taux_fillon = taux_exo_fillon(ratio_smic_salaire, majoration, cotsoc)
-        allegement_fillon = (
-            taux_fillon *
-            salbrut *
-            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-            )
-        return allegement_fillon
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'year').period('year')
-
-
-@reference_formula
-class allegement_fillon_anticipe(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
-
-    @dated_function(date(2005, 7, 1))
-    def function(self, ratio_smic_salaire_anticipe, salbrut, taille_entreprise, type_sal,
-                 cotsoc = law.cotsoc):
-
-        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
-        taux_fillon = taux_exo_fillon(ratio_smic_salaire_anticipe, majoration, cotsoc)
-        allegement_fillon = (
-            taux_fillon *
-            salbrut *
-            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-            )
-        return allegement_fillon
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class allegement_fillon_cumul_progressif(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement Fillon, cumul progressif"
-
-    @dated_function(date(2005, 7, 1))
-    def function(self, smic_proratise, salbrut, taille_entreprise, type_sal,
-                 cotsoc = law.cotsoc):
-
-        ratio_smic_salaire_cumul_progressif = smic_proratise / (salbrut + 1e-10)
-
-        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
-        taux_fillon = taux_exo_fillon(ratio_smic_salaire_cumul_progressif, majoration, cotsoc)
-        allegement_fillon = (
-            taux_fillon *
-            salbrut *
-            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-            )
-        return allegement_fillon
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['smic_proratise', 'salbrut']:
-            size = output_period.start.month
-            return output_period.start.offset('first-of', 'year').period('month', size)
-        else:
-            return output_period.start.offset('first-of', 'month').period('month')
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
-
-
-@reference_formula
-class allegement_fillon_cumul_progressif_retarde(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement Fillon, cumul progressif retardé"
-
-    @dated_function(date(2005, 7, 1))
-    def function(self, period, smic_proratise, salbrut, taille_entreprise, type_sal,
-                 cotsoc = law.cotsoc):
-
-        ratio_smic_salaire_cumul_progressif = smic_proratise / (salbrut + 1e-10)
-
-        majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
-        taux_fillon = taux_exo_fillon(ratio_smic_salaire_cumul_progressif, majoration, cotsoc)
-        allegement_fillon = (
-            taux_fillon *
-            salbrut *
-            ((type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre']))
-            )
-        return allegement_fillon * (period.start.month >= 2)
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['smic_proratise', 'salbrut']:
-            size = max(output_period.start.month, 2)
-            return output_period.start.offset('first-of', 'year').period('month', size - 1)
-        else:
-            return output_period.start.offset('first-of', 'month').period('month')
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+    def function(self, simulation, period):
+        period = period
+        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
+        smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
+        smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
+        return period, smic_proratise
 
 
 @reference_formula
@@ -238,39 +143,23 @@ class allegement_fillon(DatedFormulaColumn):
     label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
 
     @dated_function(date(2005, 7, 1))
-    def function(self, period, allegement_fillon_anticipe, allegement_fillon_annuel, allegement_fillon_cumul_progressif,
-                 allegement_fillon_cumul_progressif_retarde, allegement_fillon_mode_recouvrement,
-                 cotsoc = law.cotsoc):
-
-        if period.start.month < 12:
-            return (
-                # 0 * (allegement_fillon_mode_recouvrement == 0) +
-                allegement_fillon_anticipe * (allegement_fillon_mode_recouvrement == 1) +
-                (
-                    (allegement_fillon_cumul_progressif - allegement_fillon_cumul_progressif_retarde) *
-                    (allegement_fillon_mode_recouvrement == 2)
-                    )
-                )
-        else:
-            return (
-                allegement_fillon_annuel * (allegement_fillon_mode_recouvrement == 0) +
-                (allegement_fillon_annuel - allegement_fillon_anticipe) * (allegement_fillon_mode_recouvrement == 1) +
-                (
-                    (allegement_fillon_cumul_progressif - allegement_fillon_cumul_progressif_retarde) *
-                    (allegement_fillon_mode_recouvrement == 2)
-                    )
-                )
-
-    def get_variable_period(self, output_period, variable_name):
-        if variable_name in ['allegement_fillon_annuel']:
-            return output_period.start.offset('first-of', 'year').period('year')
-        elif variable_name in ['allegement_fillon_anticipe'] and output_period.start.month == 12:
-            return output_period.start.offset('first-of', 'year').period('month', 11)
-        else:
-            return output_period
-
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
+        allegement = (
+            # en fin d'année
+            allegement_fillon_mode_recouvrement == 0) * (
+                compute_allegement_fillon_annuel(simulation, period)
+                ) + (
+            # anticipé
+            allegement_fillon_mode_recouvrement == 1) * (
+                compute_allegement_fillon_anticipe(simulation, period)
+                ) + (
+            # cumul progressif
+            allegement_fillon_mode_recouvrement == 2) * (
+                compute_allegement_fillon_progressif(simulation, period)
+            )
+        return period, allegement
 
 
 @reference_formula
@@ -280,28 +169,72 @@ class alleg_cice(DatedFormulaColumn):
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
 
     @dated_function(date(2013, 1, 1))
-    def function_2013_(self, ratio_smic_salaire, salbrut, taille_entreprise, type_sal,
-                       cotsoc = law.cotsoc):
-
-        taux_cice = taux_exo_cice(ratio_smic_salaire, cotsoc)
+    def function_2013_(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        smic_proratise = simulation.calculate('smic_proratise', period)
+        assiette_allegement = simulation.calculate('assiette_allegement', period)
+        cotsoc = simulation.legislation_at(period.start).cotsoc
+        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
         alleg_cice = (
             taux_cice
-            * salbrut
-            * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre']))
+            * assiette_allegement
             )
-        return alleg_cice
+        return period, alleg_cice
 
-    def get_output_period(self, period):
-        return period.start.offset('first-of', 'month').period('month')
+
+def compute_allegement_fillon_annuel(simulation, period):
+    if period.start.month < 12:
+        return 0
+    else:
+        return compute_allegement_fillon(
+            simulation, period = period.start.offset('first-of', 'year').period('year')
+            )
+
+
+def compute_allegement_fillon_anticipe(simulation, period):
+    if period.start.month < 12:
+        return compute_allegement_fillon(
+            simulation, period = period.start.offset('first-of', 'month').period('month')
+            )
+    else:
+        period_adjusted = period.start.offset('first-of', 'month').period('month')
+        cumul = sum([
+            simulation.calculate('allegement_fillon', period_adjusted.offset(- n, 'month'))
+            for n in range(1, 12)
+            ])
+        return compute_allegement_fillon(
+            simulation, period = period.start.offset('first-of', 'year').period('year')
+            ) - cumul
+
+
+def compute_allegement_fillon_progressif(simulation, period):
+    if period.start.month == 1:
+        return compute_allegement_fillon(
+            simulation, period = period.start.offset('first-of', 'month').period('month')
+            )
+    else:
+        period_adjusted = period.start.offset('first-of', 'month').period('month')
+        cumul = sum([
+            simulation.calculate('allegement_fillon', period_adjusted.offset(- n, 'month'))
+            for n in range(1, 12)
+            ])
+        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
+        return compute_allegement_fillon(simulation, period = up_to_this_month) - cumul
 
 
 # Helper functions
 
-def taux_exo_fillon(ratio_smic_salaire, majoration, P):
+
+def compute_allegement_fillon(simulation, period):
     '''
     Exonération Fillon
     http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
     '''
+    assiette_allegement = simulation.calculate('assiette_allegement', period)
+    smic_proratise = simulation.calculate('smic_proratise', period)
+    taille_entreprise = simulation.calculate('taille_entreprise', period)
+    majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+    # Calcul du taux
     # La divison par zéro engendre un warning
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;
@@ -311,18 +244,21 @@ def taux_exo_fillon(ratio_smic_salaire, majoration, P):
     # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
-
-    Pf = P.exo_bas_sal.fillon
+    Pf =  simulation.legislation_at(period.start).cotsoc.exo_bas_sal.fillon
     seuil = Pf.seuil
     tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
     if seuil <= 1:
         return 0
+    ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
-    return taux_fillon
+
+    # Montant de l'allegment
+    allegement_fillon = taux_fillon * assiette_allegement
+    return allegement_fillon
 
 
-def taux_exo_cice(ratio_smic_salaire, P):
+def taux_exo_cice(assiette_allegement, smic_proratise, P):
     Pc = P.exo_bas_sal.cice
-    taux_cice = (1 / ratio_smic_salaire <= Pc.max) * Pc.taux
+    taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= Pc.max) * Pc.taux
     return taux_cice

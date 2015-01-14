@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -24,11 +24,9 @@
 
 
 from . import (  # noqa
-    calage,
     common,
     education,
     input_variables,
-    inversion_revenus,
     irpp,
     irpp_charges_deductibles,
     irpp_credits_impots,

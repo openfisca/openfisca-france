@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,13 +25,13 @@
 
 import datetime
 
-from nose.tools import assert_less
+from openfisca_core.tools import assert_near
 
 from . import base
 
 
 def check_calculation(variable, calculated_value, expected_value, error_margin):
-    assert_less(abs(calculated_value - expected_value), error_margin)
+    assert_near(calculated_value, expected_value, error_margin)
 
 
 def process_tests_list(tests_list, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):

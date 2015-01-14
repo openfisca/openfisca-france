@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -33,7 +33,7 @@ def test_isf_celibataire(verbose = False):
         {
             "year": 2013,
             "input_vars": {
-                "sali": 50000,
+                "sal": 50000,
                 "b1bc": 5000,
                 "b1ab": 2500000,
                 "b2nf": 7000,
@@ -47,12 +47,3 @@ def test_isf_celibataire(verbose = False):
         ]
     for check in utils.process_tests_list(tests_list):
         yield check
-
-
-if __name__ == '__main__':
-    import sys
-    import logging
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'test_hauts_revenus.py'])
-#    test_isf_celibataire()

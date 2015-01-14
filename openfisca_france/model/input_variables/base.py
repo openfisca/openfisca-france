@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *
+from ..base import *  # noqa
 
 
 ### VARIABLES MANQUANTES dans OpenFisca : ###
@@ -49,41 +49,6 @@ build_column(FoyersFiscaux.name_key, StrCol(entity = 'foy', is_permanent = True,
 build_column(Individus.name_key, StrCol(is_permanent = True, label = u"Prénom"))
 build_column(Menages.name_key, StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
 
-#build_column( TODO: REMOVEME Now in travail_base
-#    'type_sal',
-#    EnumCol(
-#        label = u"Catégorie de salarié",
-#        enum = Enum(
-#            [
-#                u"prive_non_cadre",
-#                u"prive_cadre",
-#                u"public_titulaire_etat",
-#                u"public_titulaire_militaire",
-#                u"public_titulaire_territoriale",
-#                u"public_titulaire_hospitaliere",
-#                u"public_non_titulaire",
-#                ],
-#            ),
-#        ),
-#    )
-
-#build_column( TODO: REMOVEME Now in travail_base
-#    'taille_entreprise',
-#    EnumCol(
-#        enum = Enum(
-#            [
-#                u"Non pertinent",
-#                u"Moins de 10 salariés",
-#                u"De 10 à 19 salariés",
-#                u"De 20 à 249 salariés",
-#                u"Plus de 250 salariés",
-#                ],
-#            ),
-#        default = 0,
-#        label = u"Catégorie de taille d'entreprise (pour calcul des cotisations sociales)",
-#        url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321",
-#        ),
-#    )
 
 build_column('enceinte', BoolCol(entity = 'ind', label = u"Est enceinte"))
 
@@ -127,6 +92,24 @@ build_column(
         default = 3,
         ),
     )
+
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Chômage brut",
+    name = 'chobrut',
+    )
+
+
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Retraite brute",
+    name = 'rstbrut',
+    )
+
+
+
 build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 build_column('f5sq', IntCol())
 

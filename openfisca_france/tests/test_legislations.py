@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -23,6 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import datetime
 import json
 import xml.etree.ElementTree
 
@@ -79,7 +80,7 @@ def check_legislation_xml_file(year):
 
 
 def test_legislation_xml_file():
-    for year in range(2006, 2015):
+    for year in range(2006, datetime.date.today().year + 1):
         yield check_legislation_xml_file, year
 
 

@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -34,7 +34,8 @@ def test_pret_etudiant():
         {
             "year": 2005,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7uk': 4000,
                 'f7vo': 1},
             "output_vars": {
@@ -44,7 +45,8 @@ def test_pret_etudiant():
         {
             "year": 2006,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7uk': 4000,
                 'f7vo': 1},
             "output_vars": {
@@ -54,7 +56,8 @@ def test_pret_etudiant():
         {
             "year": 2007,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7uk': 4000,
                 'f7vo': 1},
             "output_vars": {
@@ -64,7 +67,8 @@ def test_pret_etudiant():
         {
             "year": 2008,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7td': 2000,
                 'f7uk': 4000,
                 'f7vo': 1},
@@ -75,7 +79,8 @@ def test_pret_etudiant():
         {
             "year": 2009,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7td': 2000,
                 'f7uk': 4000,
                 'f7vo': 1},
@@ -86,7 +91,8 @@ def test_pret_etudiant():
         {
             "year": 2010,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7td': 2000,
                 'f7uk': 4000,
                 'f7vo': 1},
@@ -97,7 +103,8 @@ def test_pret_etudiant():
         {
             "year": 2011,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7td': 2000,
                 'f7uk': 4000,
                 'f7vo': 1},
@@ -108,7 +115,8 @@ def test_pret_etudiant():
         {
             "year": 2012,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7td': 2000,
                 'f7uk': 4000,
                 'f7vo': 1},
@@ -119,7 +127,8 @@ def test_pret_etudiant():
         {
             "year": 2013,
             "input_vars": {
-                "sali": 20000,
+                "cho": 0,
+                "sal": 20000,
                 'f7td': 2000,
                 'f7uk': 4000,
                 'f7vo': 1},

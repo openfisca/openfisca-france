@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -57,7 +57,7 @@ def test_irpp():
         # TODO: test mal spécifié passe toujours au dessus du seuil
         # qui est d'environ 3500 euros (e.g.faire test pour amount de 500
         # 2000 5000, ou faire un seul test au dessus du seuil par année.)
-        "rsti": [
+        "rst": [
             {"year": 2010, "amount": 20000, "irpp": -1181},
             {"year": 2010, "amount": 50000, "irpp": -8336},
             {"year": 2010, "amount": 150000, "irpp": -46642},
@@ -197,12 +197,14 @@ def test_irpp():
             year = item["year"]
             amount = item["amount"]
             fiscal_values = ["f2da", "f2dh", "f2dc", "f2ts", "f2tr", "f4ba", "f3vg", "f3vz"]
-            if revenu in ["rsti", "sal"]:
+            if revenu in ["rst", "sal"]:
                 simulation = base.tax_benefit_system.new_scenario().init_single_entity(
                     period = year,
                     parent1 = {
                         'birth': datetime.date(year - 40, 1, 1),
-                        revenu: amount,
+                        'cho': 0,
+                        'rst': amount if revenu == 'rst' else 0,
+                        'sal': amount if revenu == 'sal' else 0,
                         },
                     ).new_simulation(debug = True)
             elif revenu in fiscal_values:
@@ -210,6 +212,9 @@ def test_irpp():
                     period = year,
                     parent1 = {
                         'birth': datetime.date(year - 40, 1, 1),
+                        'cho': 0,
+                        'rst': 0,
+                        'sal': 0,
                         },
                     foyer_fiscal = {revenu: amount},
                     ).new_simulation(debug = True)

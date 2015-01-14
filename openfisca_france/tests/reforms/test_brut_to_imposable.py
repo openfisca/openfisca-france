@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -27,8 +27,11 @@ from __future__ import division
 
 import datetime
 
-from ..model.base import CAT
-from .base import assert_near, tax_benefit_system
+from openfisca_france.reforms import inversion_revenus
+
+
+from openfisca_france.model.base import CAT
+from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 
 def test_cho(year = 2014):
@@ -42,11 +45,19 @@ def test_cho(year = 2014):
     brut = simulation.get_holder('chobrut').array
     imposable = simulation.calculate('cho')
 
-    inverse_simulation = simulation.clone(debug = True)
+    inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
+
+    inverse_simulation = inversion_reform.new_scenario().init_single_entity(
+        axes = [dict(count = 11, max = 24000, min = 0, name = 'chobrut')],
+        period = year,
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            ),
+        ).new_simulation(debug = True)
+
     inverse_simulation.get_holder('chobrut').delete_arrays()
     inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
     new_brut = inverse_simulation.calculate('chobrut')
-
     assert_near(new_brut, brut, error_margin = 1)
 
 
@@ -100,5 +111,5 @@ if __name__ == '__main__':
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cho()
-    test_rst()
-    test_sal()
+#    test_rst()
+#    test_sal()

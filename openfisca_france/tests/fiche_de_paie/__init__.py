@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -23,25 +23,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from .. import entities
-from .base import tax_benefit_system
+import glob
+import os
 
 
-def check_input_column_consumers(column):
-    column_names = ['idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen']
-    column_names.extend([
-        entities.Familles.name_key,
-        entities.FoyersFiscaux.name_key,
-        entities.Individus.name_key,
-        entities.Menages.name_key,
-        ])
-    if column.name not in column_names:
-        if not(column.survey_only):
-            assert tax_benefit_system.consumers_by_variable_name.get(column.name), \
-                u'Input column {} has no consumer'.format(column.name).encode('utf-8')
-
-
-def test():
-    for column in tax_benefit_system.column_by_name.itervalues():
-        if column.formula_class is None:
-            yield check_input_column_consumers, column
+modules = [
+    module_path
+    for module_path in glob.glob(os.path.dirname(__file__) + "/*.py")
+    if not module_path.endswith('__init__.py')  # and not module_path.endswith('template.py')
+    ]

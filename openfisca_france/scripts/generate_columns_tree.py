@@ -5,7 +5,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -104,11 +104,6 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for column in tax_benefit_system.column_by_name.itervalues():
-        formula_class = column.formula_class
-        if formula_class is not None:
-            formula_class.set_dependencies(column, tax_benefit_system.column_by_name)
-
     global columns_name_tree_by_entity
     columns_name_tree_by_entity = collections.OrderedDict(
         (entity, columns_name_tree)
@@ -126,14 +121,6 @@ def main():
 
     for name, column in tax_benefit_system.column_by_name.iteritems():
         if not is_valid_input_column(column):
-            continue
-        if not column.consumers and name not in (
-                entities.Familles.name_key,
-                entities.FoyersFiscaux.name_key,
-                entities.Individus.name_key,
-                entities.Menages.name_key,
-                ):
-            # Ignore input columns not used in formulas.
             continue
         if name in placed_columns_name:
             continue
@@ -156,7 +143,7 @@ def main():
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.

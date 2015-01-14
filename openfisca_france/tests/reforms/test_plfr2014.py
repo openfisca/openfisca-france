@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,9 +25,9 @@
 
 import datetime
 
-from nose.tools import assert_less
+from openfisca_core.tools import assert_near
 
-from openfisca_france.model.cotisations_sociales import plfr2014
+from openfisca_france.reforms import plfr2014
 from openfisca_france.tests import base
 
 
@@ -40,7 +40,7 @@ def test_plfr2014():
                 count = 10,
                 max = 13795 * (1 + .1) * (1 + .03),
                 min = 13795 * (1 + .1) * (1 - .03),
-                name = 'sali',
+                name = 'sal',
                 ),
             ],
         period = year,
@@ -49,32 +49,32 @@ def test_plfr2014():
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
 
-    error_margin = 0.01
+    error_margin = 1
 
     rfr = reference_simulation.calculate('rfr')
     expected_rfr = [13247, 13338, 13429, 13520, 13611, 13703, 13793, 13884, 13975, 14066]
-    assert_less(max(abs(expected_rfr - rfr)), error_margin)
+    assert_near(expected_rfr, rfr, error_margin)
 
     impo = reference_simulation.calculate('impo')
     expected_impo = [-249.11, -268.22, -287.33, -306.44, -325.55, -344.87, -363.77, -382.88, -401.99, -421.1]
-    assert_less(max(abs(expected_impo - impo)), error_margin)
+    assert_near(expected_impo, impo, error_margin)
 
     reform_simulation = scenario.new_simulation(debug = True)
     reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
     expected_reform_reduction_impot_exceptionnelle = [350, 350, 350, 350, 350, 350, 350, 261, 170, 79]
-    assert_less(max(abs(expected_reform_reduction_impot_exceptionnelle - reform_reduction_impot_exceptionnelle)),
+    assert_near(expected_reform_reduction_impot_exceptionnelle, reform_reduction_impot_exceptionnelle,
         error_margin)
 
     reform_rfr = reform_simulation.calculate('rfr')
-    assert_less(max(abs(expected_rfr - reform_rfr)), error_margin)  # rfr must be the same than before reform
+    assert_near(expected_rfr, reform_rfr, error_margin)  # rfr must be the same than before reform
 
     reform_impo = reform_simulation.calculate('impo')
     expected_reform_impo = [0, 0, 0, 0, 0, 0, 0, -121.88, -231.99, -342.1]
-    assert_less(max(abs(expected_reform_impo - reform_impo)), error_margin)
+    assert_near(expected_reform_impo, reform_impo, error_margin)
 
 
 if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_plfr2014()
+    test_plfrss2014()

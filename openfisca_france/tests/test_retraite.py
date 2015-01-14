@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -38,7 +38,7 @@ def test_celib(verbose = False):
             "year": 2013,
             "input_vars": {
                 "activite": 3,
-                "rsti": 12500,
+                "rst": 12500,
                 },
             "output_vars": {
                 "rst": 12500,
@@ -59,7 +59,7 @@ def test_couple(verbose = False):
             "input_vars": {
                 "age": 73,
                 "activite": 3,
-                "rsti": 12500,
+                "rst": 12500,
                 },
             "output_vars": {
                 "rst": 2 * 12500,

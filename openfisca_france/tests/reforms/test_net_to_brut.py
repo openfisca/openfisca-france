@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -25,12 +25,16 @@
 
 import datetime
 
-from ..model.base import CAT
-from . import base
+from openfisca_core.tools import assert_near
+
+from openfisca_france.model.base import CAT
+from openfisca_france.tests import base
+
+from openfisca_france.reforms import inversion_revenus
 
 
 def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
-    base_simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    scenario_args = dict(
         axes = [
             dict(
                 count = count,
@@ -43,19 +47,24 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
+        )
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        **scenario_args
         ).new_simulation(debug = True)
 
-    simulation = base_simulation.clone(debug = False)
     chobrut = simulation.get_holder('chobrut').array
     chonet = simulation.calculate('chonet')
 
-    simulation = base_simulation.clone(debug = True)
-    chobrut_holder = simulation.get_holder('chobrut')
-    chobrut_holder.delete_arrays()
-    simulation.get_or_new_holder('chonet').array = chonet
-    new_chobrut = simulation.calculate('chobrut')
+    inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
+    inverse_simulation = inversion_reform.new_scenario().init_single_entity(
+        **scenario_args
+        ).new_simulation(debug = True)
 
-    assert (abs(new_chobrut - chobrut) < 0.1).all(), str((chobrut, new_chobrut))
+    inverse_simulation.get_holder('chobrut').delete_arrays()
+    inverse_simulation.get_or_new_holder('chonet').array = chonet
+    new_chobrut = inverse_simulation.calculate('chobrut')
+
+    assert_near(new_chobrut, chobrut, error_margin = 0.1)
 
 
 def test_chonet_to_chobrut():
@@ -67,7 +76,7 @@ def test_chonet_to_chobrut():
 
 
 def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
-    base_simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    scenario_args = dict(
         axes = [
             dict(
                 count = count,
@@ -80,19 +89,25 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
+        )
+
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        **scenario_args
         ).new_simulation(debug = True)
 
-    simulation = base_simulation.clone(debug = False)
     rstbrut = simulation.get_holder('rstbrut').array
     rstnet = simulation.calculate('rstnet')
 
-    simulation = base_simulation.clone(debug = True)
-    rstbrut_holder = simulation.get_holder('rstbrut')
-    rstbrut_holder.delete_arrays()
-    simulation.get_or_new_holder('rstnet').array = rstnet
-    new_rstbrut = simulation.calculate('rstbrut')
+    inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
+    inverse_simulation = inversion_reform.new_scenario().init_single_entity(
+        **scenario_args
+        ).new_simulation(debug = True)
 
-    assert (abs(new_rstbrut - rstbrut) < 0.1).all(), str((rstbrut, new_rstbrut))
+    inverse_simulation.get_holder('rstbrut').delete_arrays()
+    inverse_simulation.get_or_new_holder('rstnet').array = rstnet
+    new_rstbrut = inverse_simulation.calculate('rstbrut')
+
+    assert_near(new_rstbrut, rstbrut, error_margin = 0.1)
 
 
 def test_rstnet_to_rstbrut():
@@ -104,7 +119,7 @@ def test_rstnet_to_rstbrut():
 
 
 def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
-    base_simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    scenario_args = dict(
         axes = [
             dict(
                 count = count,
@@ -118,19 +133,25 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
             birth = datetime.date(year - 40, 1, 1),
             type_sal = type_sal,
             ),
-        ).new_simulation(debug = True)
+        )
 
-    simulation = base_simulation.clone(debug = True)
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        **scenario_args
+        ).new_simulation()
+
     salbrut = simulation.get_holder('salbrut').array
     salnet = simulation.calculate('salnet')
 
-    simulation = base_simulation.clone(debug = False)
-    salbrut_holder = simulation.get_holder('salbrut')
-    salbrut_holder.delete_arrays()
-    simulation.get_or_new_holder('salnet').array = salnet
-    new_salbrut = simulation.calculate('salbrut')
+    inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
+    inverse_simulation = inversion_reform.new_scenario().init_single_entity(
+        **scenario_args
+        ).new_simulation()
 
-    assert (abs(new_salbrut - salbrut) < 0.1).all(), str((salbrut, new_salbrut))
+    inverse_simulation.get_holder('salbrut').delete_arrays()
+    inverse_simulation.get_or_new_holder('salnet').array = salnet
+    new_salbrut = inverse_simulation.calculate('salbrut')
+
+    assert_near(new_salbrut, salbrut, error_margin = 0.1)
 
 
 def test_salnet_to_salbrut():

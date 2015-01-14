@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -30,17 +30,14 @@ from openfisca_core.accessors import law
 from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
     PeriodSizeIndependentIntCol, reference_input_variable, StrCol)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (alternative_function, AlternativeFormulaColumn, dated_function, DatedFormulaColumn,
-    EntityToPersonColumn, make_reference_formula_decorator, PersonToEntityColumn, select_function, SelectFormulaColumn,
-    SimpleFormulaColumn)
+from openfisca_core.formulas import (dated_function, DatedFormulaColumn, EntityToPersonColumn,
+    make_reference_formula_decorator, PersonToEntityColumn, SimpleFormulaColumn)
 
 from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
 
 
 __all__ = [
     'AgeCol',
-    'alternative_function',
-    'AlternativeFormulaColumn',
     'build_column',
     'BoolCol',
     'CAT',
@@ -75,8 +72,6 @@ __all__ = [
     'QUIMEN',
     'reference_formula',
     'reference_input_variable',
-    'SelectFormulaColumn',
-    'select_function',
     'SimpleFormulaColumn',
     'StrCol',
     'TAUX_DE_PRIME',

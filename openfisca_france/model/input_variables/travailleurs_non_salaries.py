@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *
+from ..base import *  # noqa
 
 
 build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))

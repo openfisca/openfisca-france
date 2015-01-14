@@ -4,7 +4,7 @@
 # OpenFisca -- A versatile microsimulation software
 # By: OpenFisca Team <contact@openfisca.fr>
 #
-# Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
 # https://github.com/openfisca
 #
 # This file is part of OpenFisca.
@@ -33,7 +33,7 @@ def test_average_tax_rate():
         axes = [
             dict(
                 count = 100,
-                name = 'sali',
+                name = 'sal',
                 max = 24000,
                 min = 0,
                 ),
@@ -53,7 +53,7 @@ def test_marginal_tax_rate():
         axes = [
             dict(
                 count = 10000,
-                name = 'sali',
+                name = 'sal',
                 max = 1000000,
                 min = 0,
                 ),
