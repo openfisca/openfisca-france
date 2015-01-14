@@ -172,4 +172,3 @@ class af(SimpleFormulaColumn):
         af_forf = simulation.calculate('af_forf', period)
 
         return period, af_base + af_majo + af_forf
-
