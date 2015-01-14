@@ -28,7 +28,7 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, minimum as min_, ones, round as round_
+from numpy import int16, logical_or as or_, minimum as min_, ones, round as round_
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
@@ -72,7 +72,6 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None)
     return cotisation
 
 
-
 @reference_formula
 class accident_du_travail(SimpleFormulaColumn):
     column = FloatCol
@@ -85,7 +84,7 @@ class accident_du_travail(SimpleFormulaColumn):
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
         type_sal = simulation.calculate('type_sal', period)
-        assujetti = (type_sal <= 1) * (type_sal == 6)
+        assujetti = or_(type_sal <= 1, type_sal == 6)
         return period, - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
