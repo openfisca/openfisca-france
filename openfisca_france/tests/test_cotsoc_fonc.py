@@ -384,18 +384,15 @@ def test():
                 fnal_tranche_a_plus_20 = - 8 * 2 - 2 * 2,
                 versement_transport = -2000 * 0.0175 * 2,  # = 35
                 cotisations_patronales_main_d_oeuvre = -51 * 2,
-                # cotisations_patronales_main_d_oeuvre_old = -51 * 2,
 
 
                 pension_civile_employeur = -1371.80 * 2,
                 rafp_employeur = -20 * 2,
-                # cotisations_patronales_contributives_old = -2783.6,
                 cotisations_patronales_contributives = -2783.6,
 
                 allocations_temporaires_invalidite = -6.6 * 2,
                 maladie_employeur = -194 * 2,
                 famille = -108 * 2,
-                # cotisations_patronales_non_contributives_old = -617.2,
                 cotisations_patronales_non_contributives = -617.2,
 
                 cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
@@ -403,20 +400,16 @@ def test():
                 pension_civile_employe = -167.80 * 2,
                 rafp_employe = -20 * 2,
                 cotisations_salariales_contributives = -375.6,
-                # cotisations_salariales_contributives_old = -375.6,
 
                 contribution_exceptionnelle_solidarite_employe = -23.72 * 2,
-                # cotisations_salariales_non_contributives_old = -23.72 * 2,
                 cotisations_salariales_non_contributives = -23.72 * 2,
 
-                # cotisations_salariales_old = -422.24,
                 cotisations_salariales = -422.24,
 
                 crdssal = -12.93 * 2,
                 # csgsald = -131.94 * 2, # TODO: Gérer un seulf sft
                 # csgsali = -62.09 * 2,  # # TODO: Gérer un seulf sft
                 indemnite_residence = 240 * 2 / 12,
-                # salnet = -(2000 + 500 + 20 - 131.94 - 62.09 - 12.93 - (167.80 + 20 + 24.45)) * 2 + 73.04,
                 salsuperbrut = (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
                 supp_familial_traitement = 73.04,
                 ),
