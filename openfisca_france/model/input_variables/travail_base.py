@@ -59,12 +59,6 @@ reference_input_variable(
     name = 'avantages_en_nature_valeur_reelle',
     )
 reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Base pour le calcul du remboursement des frais de transport",
-    name = 'base_remboursement_transport',
-    )
-reference_input_variable(
     column = EnumCol(
         enum = Enum(
             [
@@ -169,6 +163,12 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Entreprise redevable de la taxe d'apprentissage",
     name = 'redevable_taxe_apprentissage',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Base pour le calcul du remboursement des frais de transport",
+    name = 'remboursement_transport_base',
     )
 reference_input_variable(
     column = FloatCol(),
