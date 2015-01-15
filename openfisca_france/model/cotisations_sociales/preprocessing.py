@@ -29,7 +29,6 @@ import copy
 import logging
 
 
-from openfisca_core.taxscales import TaxScalesTree  #, scale_tax_scales
 from openfisca_core.legislations import CompactNode
 
 from ..base import *  # noqa
@@ -43,7 +42,7 @@ log = logging.getLogger(__name__)
 
 def build_pat(_P):
     """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
-    pat = TaxScalesTree('pat', _P.cotsoc.pat)
+    pat = _P.cotsoc.pat.copy(deep = True)
 
     for bareme in ['apprentissage', 'apprentissage_add']:
         pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
@@ -110,7 +109,7 @@ def build_sal(_P):
     Construit le dictionnaire de barèmes des cotisations salariales
     à partir des informations contenues dans P.cotsoc.sal
     '''
-    sal = TaxScalesTree('sal', _P.cotsoc.sal)
+    sal = _P.cotsoc.sal.copy(deep = True)
     sal['noncadre'].update(sal['commun'])
     sal['cadre'].update(sal['commun'])
 
@@ -153,8 +152,8 @@ def preprocess_compact_legislation(compact_legislation):
 
     compact_legislation.cotsoc.cotisations_employeur = CompactNode()
     compact_legislation.cotsoc.cotisations_salarie = CompactNode()
-    cotsoc_dict = compact_legislation.cotsoc.__dict__
-    for cotisation_name, bareme_dict in (('cotisations_employeur', pat), ('cotisations_salarie', sal)):
-        for category, bareme in bareme_dict.iteritems():
+    cotsoc = compact_legislation.cotsoc
+    for cotisation_name, bareme in (('cotisations_employeur', pat), ('cotisations_salarie', sal)):
+        for category, bareme in bareme.iteritems():
             if category in CAT._nums:
-                cotsoc_dict[cotisation_name].__dict__[category] = bareme
+                cotsoc[cotisation_name][category] = bareme

@@ -55,7 +55,7 @@ class cotisations_patronales_contributives_old(SimpleFormulaColumn):
         pension_civile_employeur = simulation.calculate('pension_civile_employeur', period)
         _P = simulation.legislation_at(period.start)
 
-        pat = _P.cotsoc.cotisations_employeur.__dict__
+        pat = _P.cotsoc.cotisations_employeur
         cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])  # category[1] is the numerical index
@@ -97,7 +97,7 @@ class cotisations_patronales_non_contributives_old(SimpleFormulaColumn):
         cotisations_patronales_accident = simulation.calculate('cotisations_patronales_accident', period)
         _P = simulation.legislation_at(period.start)
 
-        pat = _P.cotsoc.cotisations_employeur.__dict__
+        pat = _P.cotsoc.cotisations_employeur
         cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])
@@ -127,7 +127,7 @@ class cotisations_patronales_transport(SimpleFormulaColumn):
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         _P = simulation.legislation_at(period.start)
 
-        pat = _P.cotsoc.cotisations_employeur.__dict__
+        pat = _P.cotsoc.cotisations_employeur
         transport = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])  # category[1] is the numerical index of the category
@@ -161,7 +161,7 @@ class cotisations_patronales_main_d_oeuvre_old(SimpleFormulaColumn):
         cotisations_patronales_transport = simulation.calculate('cotisations_patronales_transport', period)
         _P = simulation.legislation_at(period.start)
 
-        pat = _P.cotsoc.cotisations_employeur.__dict__
+        pat = _P.cotsoc.cotisations_employeur
         cotisations_patronales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])  # category[1] is the numerical index
@@ -212,7 +212,7 @@ class cotisations_salariales_contributives_old(SimpleFormulaColumn):
         pension_civile_employe = simulation.calculate('pension_civile_employe', period)
         _P = simulation.legislation_at(period.start)
 
-        sal = _P.cotsoc.cotisations_salarie.__dict__
+        sal = _P.cotsoc.cotisations_salarie
         cotisations_salariales = zeros(len(salbrut))
         for category in CAT:
             iscat = (type_sal == category[1])
@@ -253,7 +253,7 @@ class cotisations_salariales_non_contributives_old(SimpleFormulaColumn):
         cotisations_salariales_contributives_old = simulation.calculate('cotisations_salariales_contributives_old', period)
         _P = simulation.legislation_at(period.start)
 
-        sal = _P.cotsoc.cotisations_salarie.__dict__
+        sal = _P.cotsoc.cotisations_salarie
         cotisations_salariales = zeros(len(salbrut))
         seuil_assuj_fds = seuil_fds(_P)
     #    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
@@ -304,4 +304,3 @@ class cotisations_patronales_accident(SimpleFormulaColumn):
 
         prive = (type_sal == CAT['prive_cadre']) + (type_sal == CAT['prive_non_cadre'])
         return period, -salbrut * taux_accident_travail * prive  # TODO: check public
-

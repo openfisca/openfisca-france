@@ -53,9 +53,9 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None)
     assert cotisation_type is not None
     law = simulation.legislation_at(period.start)
     if cotisation_type == "employeur":
-        bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__
+        bareme_by_type_sal_name = law.cotsoc.cotisations_employeur
     elif cotisation_type == "salarie":
-        bareme_by_type_sal_name = law.cotsoc.cotisations_salarie.__dict__
+        bareme_by_type_sal_name = law.cotsoc.cotisations_salarie
     assert bareme_name is not None
 
     assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -116,7 +116,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
             bareme_name = "agffnc",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -124,7 +124,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
             )
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
             bareme_name = "agffc",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -658,7 +658,7 @@ class taux_versement_transport(SimpleFormulaColumn):
     #            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
     #                taux_versement_transport_by_localisation_entreprise[subcommune_depcom] = taux_versement_transport_by_localisation_entreprise[commune_depcom]
     #
-    #    default_value = _P.cotsoc.cotisations_employeur.__dict__['prive_non_cadre']["transport"].rates[0]
+    #    default_value = _P.cotsoc.cotisations_employeur['prive_non_cadre']["transport"].rates[0]
     #    return fromiter(
     #        (
     #            taux_versement_transport_by_localisation_entreprise.get(localisation_entreprise_cell, default_value)
@@ -666,7 +666,7 @@ class taux_versement_transport(SimpleFormulaColumn):
     #            ),
     #        dtype = float,
     #        )
-        rate = _P.cotsoc.cotisations_employeur.__dict__['prive_non_cadre']["transport"].rates[0]
+        rate = _P.cotsoc.cotisations_employeur['prive_non_cadre']["transport"].rates[0]
         return period, rate * ones(len(localisation_entreprise))
 
 

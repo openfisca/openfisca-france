@@ -56,7 +56,7 @@ def _cotpat_contrib(salbrut, hsup, type_sal, indemnite_residence, primes, cot_pa
     '''
     Cotisation sociales patronales contributives
     '''
-    pat = _P.cotsoc.cotisations_employeur.__dict__
+    pat = _P.cotsoc.cotisations_employeur
     cotpat = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])  # category[1] is the numerical index
@@ -91,7 +91,7 @@ def _cotpat_main_d_oeuvre(salbrut, hsup, type_sal, primes, indemnite_residence, 
         - D291: taxe sur les salaire, versement transport, FNAL, CSA, taxe d'apprentissage, formation continue
         - D993: participation à l'effort de construction
     '''
-    pat = _P.cotsoc.cotisations_employeur.__dict__
+    pat = _P.cotsoc.cotisations_employeur
     cotpat = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])  # category[1] is the numerical index
@@ -114,7 +114,7 @@ def _cotpat_transport(salbrut, hsup, type_sal, indemnite_residence, primes, _P):
     '''
     Versement transport
     '''
-    pat = _P.cotsoc.cotisations_employeur.__dict__
+    pat = _P.cotsoc.cotisations_employeur
     transport = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])  # category[1] is the numerical index of the category
@@ -154,7 +154,7 @@ def _cotpat_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
     '''
     Cotisation sociales patronales non contributives
     '''
-    pat = _P.cotsoc.cotisations_employeur.__dict__
+    pat = _P.cotsoc.cotisations_employeur
     cotpat = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])
@@ -202,7 +202,7 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
     '''
     Cotisations sociales salariales contributives
     '''
-    sal = _P.cotsoc.cotisations_salarie.__dict__
+    sal = _P.cotsoc.cotisations_salarie
     cotsal = zeros(len(salbrut))
     for category in CAT:
         iscat = (type_sal == category[1])
@@ -234,7 +234,7 @@ def _cotsal_contrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot_sa
 
 
 def _cot_sal_pension_civile(salbrut, type_sal, _P):
-    sal = _P.cotsoc.cotisations_salarie.__dict__
+    sal = _P.cotsoc.cotisations_salarie
     terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
     cot_sal_pension_civile = (
         (type_sal == CAT['public_titulaire_etat']) * sal['public_titulaire_etat']['pension'].calc(salbrut)
@@ -260,7 +260,7 @@ def _cot_sal_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    sal = scale_tax_scales(TaxScalesTree('sal', _P.cotsoc.sal), plaf_ss)
+    sal = _P.cotsoc.sal.scale_tax_scales(plaf_ss)
     assiette = min_(base_imposable / 12 , plaf_ass * tib)
     # Même régime pour etat et colloc
     cot_sal_rafp = eligibles * sal['fonc']['etat']['rafp'].calc(assiette)
@@ -271,7 +271,7 @@ def _cotsal_noncontrib(salbrut, hsup, type_sal, primes, indemnite_residence, cot
     '''
     Cotisations sociales salariales non-contributives
     '''
-    sal = _P.cotsoc.cotisations_salarie.__dict__
+    sal = _P.cotsoc.cotisations_salarie
     cotsal = zeros(len(salbrut))
     seuil_assuj_fds = seuil_fds(_P)
 #    log.info("seuil assujetissement FDS %i", seuil_assuj_fds)
@@ -309,7 +309,7 @@ def _csgsald(salbrut, primes, indemnite_residence, supp_familial_traitement, hsu
     CSG deductible sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(_P.csg.act.deduc, plaf_ss)
+    csg = _P.csg.act.deduc.scale_tax_scales(plaf_ss)
     return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
 
 
@@ -318,7 +318,7 @@ def _csgsali(salbrut, hsup, primes, indemnite_residence, supp_familial_traitemen
     CSG imposable sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    csg = scale_tax_scales(_P.csg.act.impos, plaf_ss)
+    csg = _P.csg.act.impos.scale_tax_scales(plaf_ss)
     return -12 * csg.calc((salbrut + primes + indemnite_residence + supp_familial_traitement - hsup) / 12)
 
 
@@ -327,7 +327,7 @@ def _crdssal(salbrut, hsup, primes, indemnite_residence, supp_familial_traitemen
     CRDS sur les salaires
     '''
     plaf_ss = _P.cotsoc.gen.plaf_ss
-    crds = scale_tax_scales(_P.crds.act, plaf_ss)
+    crds = _P.crds.act.scale_tax_scales(plaf_ss)
     return -12 * crds.calc((salbrut - hsup + primes + indemnite_residence + supp_familial_traitement) / 12)
 
 
@@ -432,7 +432,7 @@ def _cot_pat_pension_civile(salbrut, type_sal, _P):
     Pension civile part patronale
     Note : salbrut est égal au traitement indiciaire brut
     """
-    pat = _P.cotsoc.cotisations_employeur.__dict__
+    pat = _P.cotsoc.cotisations_employeur
     terr_or_hosp = (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
     cot_pat_pension_civile = (
         (type_sal == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(salbrut)
@@ -455,7 +455,7 @@ def _cot_pat_rafp(salbrut, type_sal, primes, supp_familial_traitement, indemnite
     plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
     base_imposable = primes + supp_familial_traitement + indemnite_residence
     plaf_ss = _P.cotsoc.gen.plaf_ss  # TODO: build somewhere else
-    pat = scale_tax_scales(TaxScalesTree('pat', _P.cotsoc.pat), plaf_ss)
+    pat = _P.cotsoc.pat.scale_tax_scales(plaf_ss)
     assiette = min_(base_imposable / 12, plaf_ass * tib)
 
     bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
