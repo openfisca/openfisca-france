@@ -187,7 +187,7 @@ class smic55(SimpleFormulaColumn):
         salbrut = simulation.calculate('salbrut', period)
         _P = simulation.legislation_at(period.start)
 
-        nbh_travaillees = 151.67
+        nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
         return period, salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
 
