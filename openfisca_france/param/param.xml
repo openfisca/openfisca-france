@@ -269,33 +269,6 @@
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".02" />
     </CODE>
   </NODE>
-  <NODE code="lps" description="Fusion IR - CSG (à la Landais, Piketty, Saez)">
-    <BAREME code="bareme" description="Barème appliqué à l'assiette de la CSG" type="monetary">
-      <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur=".00" />
-        </TAUX>
-      </TRANCHE>
-    </BAREME>
-    <CODE code="credit_enfant" description="Crédit d'impôt forfaitaire par enfant" format="integer" type="monetary">
-      <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0" />
-    </CODE>
-    <CODE code="reduc_enfant" description="Réduction d'impôt forfaitaire par enfant" format="integer" type="monetary">
-      <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0" />
-    </CODE>
-    <CODE code="abatt_enfant" description="Abattement forfaitaire sur le revenu par enfant" format="integer" type="monetary">
-      <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0" />
-    </CODE>
-    <CODE code="reduc_conj" description="Réduction d'impôt forfaitaire si conjoint" format="integer" type="monetary">
-      <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0" />
-    </CODE>
-    <CODE code="abatt_conj" description="Abattement forfaitaire sur le revenu si conjoint" format="integer" type="monetary">
-      <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0" />
-    </CODE>
-  </NODE>
   <NODE code="cotsoc" description="Cotisations sociales">
     <NODE code="accident" description="Accident du travail"> # Wild distinction between the rates. TODO: handle the extreme diversity...
       <CODE code="faible" description="Accident du travail (taux bureau)">
