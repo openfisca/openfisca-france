@@ -62,12 +62,12 @@ class cotisations_patronales_contributives_old(SimpleFormulaColumn):
             if category[0] in pat.keys():
                 for bar in pat[category[0]].itervalues():
                     if category[0] in [
-                        "prive_cadre",
-                        "prive_non_cadre",
-                        "public_non_titulaire",
-                        "public_titulaire_hospitaliere",
-                        ]: #  TODO: move up
-                        is_contrib = (bar.option == "contrib") & (bar.name not in ['cnracl', 'rafp', 'pension'])
+                            "prive_cadre",
+                            "prive_non_cadre",
+                            "public_non_titulaire",
+                            "public_titulaire_hospitaliere",
+                            ]:  # TODO: Move up.
+                        is_contrib = (bar.option == "contrib") and (bar.name not in ['cnracl', 'rafp', 'pension'])
                         temp = -(
                             iscat * bar.calc(
                                 salbrut + (category[0] == 'public_non_titulaire') * (
