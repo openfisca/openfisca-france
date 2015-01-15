@@ -355,6 +355,11 @@
       </CODE>
     </NODE>
     <NODE code="conge_individuel_formation" description="Congé individuel de formation"> # TODO: find a better place
+    <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool"> # TODO: find a better place
+      <VALUE deb="2002-01-01" fin="2006-12-31" valeur="0" />
+      <VALUE deb="2007-01-01" fin="2011-12-31" valeur="1" />
+      <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
+    </CODE>
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
         <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
      </CODE>
@@ -3757,11 +3762,6 @@
       </CODE>
       <CODE code="alloc_imp" description="Allocations familiales imposables" format="bool">
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0" />
-      </CODE>
-      <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool">
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="0" />
-        <VALUE deb="2007-01-01" fin="2011-12-31" valeur="1" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
       </CODE>
       <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
