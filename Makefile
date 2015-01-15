@@ -1,6 +1,8 @@
 TESTS_DIR="openfisca_france/tests/"
 IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|test_fiche_de_paie_api.py|test_brut_to_imposable.py|test_net_to_brut.py|test_rsa.py|generate_json.py|taxipp_utils.py|create_json_then_test.py|compare_openfisca_impots.py)'
 
+all: flake8 test
+
 check-syntax-errors: clean-pyc
 	@# This is a hack around flake8 not displaying E910 errors with the select option.
 	test -z "`flake8 --first | grep E901`"
