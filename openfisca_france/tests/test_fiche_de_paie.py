@@ -58,8 +58,8 @@ def iter_scenarios():
         yield local['tests'][0]
 
 
-def simple_check(test_parameters):
-    for test_parameters in iter_scenarios():
+def simple_check(tests):
+    for test_parameters in tests:    
         name = test_parameters["name"]
         period = test_parameters["period"]
         parent1 = dict(
@@ -70,7 +70,7 @@ def simple_check(test_parameters):
             period = period,
             parent1 = parent1,
             ).new_simulation(debug = True)
-
+    
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
             output = simulation.calculate(variable)
             assert_variable(variable, name, monthly_amount, output)
@@ -137,5 +137,5 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    from openfisca_france.tests.fiche_de_paie.salarie_ipp_2014_11 import tests 
-    simple_check(test_parameters = tests)
+    from openfisca_france.tests.thésard1_2011_07 import tests 
+    simple_check(tests = tests)
