@@ -332,7 +332,7 @@ class sal(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        salbrut = simulation.calculate('salbrut', period)
+        salbrut = simulation.sum_calculate('salbrut', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
