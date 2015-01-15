@@ -31,7 +31,6 @@ tests = [
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
             assujettie_taxe_salaires = False,
             avantages_en_nature_valeur_reelle = 0,
-            base_remboursement_transport = 0,
             contrat_de_travail = 1,  # temps plein
             contrat_de_travail_arrivee = "2014-01-01",
             contrat_de_travail_depart = "2014-12-31",
@@ -48,6 +47,7 @@ tests = [
             prise_en_charge_employeur_retraite_supplementaire = 0,
             ratio_alternants = 0,
             redevable_taxe_apprentissage = 0,
+            remboursement_transport_base = 0,
             salaire_de_base = 0,
             taux_accident_travail = 0,
             taux_versement_transport = 0,
@@ -62,6 +62,7 @@ tests = [
 
             # salsuperbrut = 0,
             # cotisations_patronales = 0,
+            remboursement_transport = 0,
 
             # cotisations_patronales_contributives = 0,
             ags = 0,

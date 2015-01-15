@@ -229,6 +229,18 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
 
 
 @reference_formula
+class remboursement_transport(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Remboursement partiel des frais de transport par l'employeur"
+
+    def function(self, simulation, period):
+
+        remboursement_transport_base = simulation.calculate('remboursement_transport_base', period)
+        return period, - .5 * remboursement_transport_base
+
+
+@reference_formula
 class salbrut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
