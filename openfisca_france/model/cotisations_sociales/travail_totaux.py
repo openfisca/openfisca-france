@@ -26,8 +26,6 @@
 from __future__ import division
 
 import logging
-from numpy import logical_not as not_
-
 
 from ..base import *  # noqa
 from .base import montant_csg_crds
@@ -388,7 +386,6 @@ class salaire_net_a_payer(SimpleFormulaColumn):
             depense_cantine_titre_restaurant_employe
             )
         return period, salaire_net_a_payer
-
 
 
 @reference_formula
