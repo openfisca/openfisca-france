@@ -560,7 +560,7 @@
               <VALUE deb="2000-01-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2000-01-01" fin="2015-12-31" valeur=".0" /> #1er tranche commune aux cadres et aux non-cadres
+              <VALUE deb="2000-01-01" fin="2015-12-31" valeur=".0" /> # Voir L 1ère tranche commune aux cadres et aux non-cadres
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">

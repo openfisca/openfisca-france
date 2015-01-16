@@ -63,14 +63,12 @@ class coefficient_proratisation(SimpleFormulaColumn):
     label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
 
     def function(self, simulation, period):
-        period = period
-#         u"temps_plein",
-#        u"temps_partiel",
-#        u"forfait_heures_semaines",
-#        u"forfait_heures_mois",
-#        u"forfait_heures_annee",
-#        u"forfait_jours_annee",
-        period = period.start.offset('first-of', 'month').period(u'month')
+        # u"temps_plein",
+        # u"temps_partiel",
+        # u"forfait_heures_semaines",
+        # u"forfait_heures_mois",
+        # u"forfait_heures_annee",
+        # u"forfait_jours_annee",
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
         contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
@@ -80,7 +78,9 @@ class coefficient_proratisation(SimpleFormulaColumn):
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume', period)
 
-        # Début fin de contrat
+        # Décompte des jours en début et fin de contrat
+        # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
+
         busday_count = partial(original_busday_count, holidays = holidays)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
@@ -107,7 +107,7 @@ class coefficient_proratisation(SimpleFormulaColumn):
 
         coefficient = (
             # Salariés à temps plein
-            (contrat_de_travail == 0) * 1 +
+            (contrat_de_travail == 0) * heures_realisees / heures_temps_plein +
             # Salariés à temps partiel : plafond proratisé en fonction du ratio durée travaillée / durée du temps plein
             #   Salariés sans convention de forfait à temps partiel
             (contrat_de_travail == 1) * heures_realisees / heures_temps_plein +
@@ -185,7 +185,7 @@ class alleg_cice(DatedFormulaColumn):
 def compute_allegement_fillon_annuel(simulation, period):
     if period.start.month < 12:
         return 0
-    else:
+    if period.start.month == 12:
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'year').period('year')
             )
@@ -196,9 +196,12 @@ def compute_allegement_fillon_anticipe(simulation, period):
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'month').period('month')
             )
-    else:
-        cumul = simulation.sum_calculate('allegement_fillon', period.start.offset('first-of', 'month').offset(-12,
-            'month').period('year'))
+    if period.start.month == 12:
+        period_adjusted = period.start.offset('first-of', 'month').period('month')
+        cumul = sum([
+            simulation.calculate('allegement_fillon', period_adjusted.offset(- n, 'month'))
+            for n in range(1, 12)
+            ])
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'year').period('year')
             ) - cumul
@@ -209,9 +212,12 @@ def compute_allegement_fillon_progressif(simulation, period):
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'month').period('month')
             )
-    else:
-        cumul = simulation.sum_calculate('allegement_fillon', period.start.offset('first-of', 'month').offset(-12,
-            'month').period('year'))
+    if period.start.month > 1:
+        period_adjusted = period.start.offset('first-of', 'month').period('month')
+        cumul = sum([
+            simulation.calculate('allegement_fillon', period_adjusted.offset(- n, 'month'))
+            for n in range(1, period.start.month)
+            ])
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         return compute_allegement_fillon(simulation, period = up_to_this_month) - cumul
 
@@ -238,7 +244,7 @@ def compute_allegement_fillon(simulation, period):
     # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
-    Pf =  simulation.legislation_at(period.start).cotsoc.exo_bas_sal.fillon
+    Pf = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.fillon
     seuil = Pf.seuil
     tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
     if seuil <= 1:

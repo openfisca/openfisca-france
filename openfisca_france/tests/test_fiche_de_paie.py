@@ -58,6 +58,24 @@ def iter_scenarios():
         yield local['tests'][0]
 
 
+def simple_check(tests):
+    for test_parameters in tests:
+        name = test_parameters["name"]
+        period = test_parameters["period"]
+        parent1 = dict(
+            birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
+            )
+        parent1.update(test_parameters['input_variables'])
+        simulation = tax_benefit_system.new_scenario().init_single_entity(
+            period = period,
+            parent1 = parent1,
+            ).new_simulation(debug = True)
+
+        for variable, monthly_amount in test_parameters['output_variables'].iteritems():
+            output = simulation.calculate(variable)
+            assert_variable(variable, name, monthly_amount, output)
+
+
 def test_check():
     for test_parameters in iter_scenarios():
         name = test_parameters["name"]
@@ -81,7 +99,8 @@ def assert_variable(variable, name, monthly_amount, output):
         "error for {} ({}) : should be {} instead of {} ".format(variable, name, monthly_amount, output)
 
 
-def test_decomposition(print_decomposition = False):
+
+def notest_decomposition(print_decomposition = False):
     from openfisca_core.decompositions import calculate, get_decomposition_json
     import json
     import os
@@ -117,6 +136,6 @@ def test_decomposition(print_decomposition = False):
 if __name__ == '__main__':
     import logging
     import sys
-    test_check()
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-#    test_decomposition(print_decomposition = True)
+    from openfisca_france.tests.thesard1_2011_07 import tests
+    simple_check(tests = tests)
