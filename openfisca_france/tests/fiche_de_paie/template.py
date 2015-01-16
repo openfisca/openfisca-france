@@ -69,6 +69,8 @@ tests = [
             # cotisations_patronales_contributives = 0,
             ags = 0,
             agff_tranche_a_employeur = 0,
+            agirc_gmp_employeur = 0,
+            agirc_tranche_b_employeur = 0,
             apec_employeur = 0,
             arrco_tranche_a_employeur = 0,
             assedic_employeur = 0,
@@ -102,6 +104,7 @@ tests = [
 
             allegement_fillon = 0,
             alleg_cice = 0,
+            forfait_social = 0,
             tehr = 0,
             salbrut = 0,
 
@@ -109,6 +112,7 @@ tests = [
 
             # cotisations_salariales_contributives = 0,
             agff_tranche_a_employe = 0,
+            agirc_gmp_employe = 0,
             agirc_tranche_b_employe = 0,
             apec_employe = 0,
             arrco_tranche_a_employe = 0,

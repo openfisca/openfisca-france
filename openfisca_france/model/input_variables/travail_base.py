@@ -47,6 +47,18 @@ reference_input_variable(
     name = 'allegement_fillon_mode_recouvrement',
     )
 reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Taux ARRCO tranche A employeur) propre à l'entreprise",
+    name = 'arrco_tranche_a_taux_employeur',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Taux ARRCO tranche A salarié) propre à l'entreprise",
+    name = 'arrco_tranche_a_taux_salarie',
+    )
+reference_input_variable(
     column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la taxe sur les salaires",

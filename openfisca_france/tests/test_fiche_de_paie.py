@@ -100,7 +100,7 @@ def assert_variable(variable, name, monthly_amount, output):
 
 
 
-def notest_decomposition(print_decomposition = False):
+def test_decomposition(print_decomposition = False):
     from openfisca_core.decompositions import calculate, get_decomposition_json
     import json
     import os

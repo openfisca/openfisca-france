@@ -261,4 +261,7 @@ def compute_allegement_fillon(simulation, period):
 def taux_exo_cice(assiette_allegement, smic_proratise, P):
     Pc = P.exo_bas_sal.cice
     taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= Pc.max) * Pc.taux
+    print smic_proratise
+    print taux_cice
+    print Pc.max
     return taux_cice
