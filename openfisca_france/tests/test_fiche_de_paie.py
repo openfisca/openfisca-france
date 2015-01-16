@@ -59,7 +59,7 @@ def iter_scenarios():
 
 
 def simple_check(tests):
-    for test_parameters in tests:    
+    for test_parameters in tests:
         name = test_parameters["name"]
         period = test_parameters["period"]
         parent1 = dict(
@@ -70,11 +70,11 @@ def simple_check(tests):
             period = period,
             parent1 = parent1,
             ).new_simulation(debug = True)
-    
+
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
             output = simulation.calculate(variable)
             assert_variable(variable, name, monthly_amount, output)
-            
+
 
 def test_check():
     for test_parameters in iter_scenarios():
@@ -100,7 +100,7 @@ def assert_variable(variable, name, monthly_amount, output):
 
 
 
-def test_decomposition(print_decomposition = False):
+def notest_decomposition(print_decomposition = False):
     from openfisca_core.decompositions import calculate, get_decomposition_json
     import json
     import os
@@ -137,5 +137,5 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    from openfisca_france.tests.thésard1_2011_07 import tests 
+    from openfisca_france.tests.thesard1_2011_07 import tests
     simple_check(tests = tests)

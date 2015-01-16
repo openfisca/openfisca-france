@@ -219,7 +219,7 @@ reference_input_variable(
     name = 'heures_duree_collective_entreprise',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)",
     name = 'heures_non_remunerees_volume',
@@ -227,7 +227,7 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
-    label = u"Volume des heures rémunérées contractuellement (heures/mois)",
+    label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)",
     name = 'heures_remunerees_volume',
     )
 reference_input_variable(

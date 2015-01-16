@@ -482,11 +482,13 @@ class plafond_securite_sociale(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
+        heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume')
         nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
         _P = simulation.legislation_at(period.start)
 
         plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
-        plafond_securite_sociale = min_(nombre_jours_calendaires, 30) / 30 * plafond_temps_plein
+        jours_travailles = nombre_jours_calendaires - heures_non_remunerees_volume / 7
+        plafond_securite_sociale = min_(jours_travailles , 30) / 30 * plafond_temps_plein
         return period, plafond_securite_sociale
 
 

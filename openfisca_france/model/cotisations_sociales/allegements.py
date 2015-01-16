@@ -63,14 +63,12 @@ class coefficient_proratisation(SimpleFormulaColumn):
     label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
 
     def function(self, simulation, period):
-        period = period
 #         u"temps_plein",
 #        u"temps_partiel",
 #        u"forfait_heures_semaines",
 #        u"forfait_heures_mois",
 #        u"forfait_heures_annee",
 #        u"forfait_jours_annee",
-        period = period.start.offset('first-of', 'month').period(u'month')
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
         contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
@@ -79,8 +77,12 @@ class coefficient_proratisation(SimpleFormulaColumn):
         heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume', period)
+        print period
+        print "coucou: ", heures_non_remunerees_volume
 
-        # Début fin de contrat
+        # Décompte des jours en début et fin de contrat
+        # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
+
         busday_count = partial(original_busday_count, holidays = holidays)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
@@ -107,7 +109,7 @@ class coefficient_proratisation(SimpleFormulaColumn):
 
         coefficient = (
             # Salariés à temps plein
-            (contrat_de_travail == 0) * 1 +
+            (contrat_de_travail == 0) * heures_realisees / heures_temps_plein +
             # Salariés à temps partiel : plafond proratisé en fonction du ratio durée travaillée / durée du temps plein
             #   Salariés sans convention de forfait à temps partiel
             (contrat_de_travail == 1) * heures_realisees / heures_temps_plein +
@@ -119,6 +121,9 @@ class coefficient_proratisation(SimpleFormulaColumn):
             #      Forfait en jours
             (contrat_de_travail == 4) * forfait_jours_remuneres_volume / 218
             )
+        print heures_non_remunerees_volume
+        print duree_legale
+        print coefficient
         return period, coefficient
 
 
@@ -185,7 +190,7 @@ class alleg_cice(DatedFormulaColumn):
 def compute_allegement_fillon_annuel(simulation, period):
     if period.start.month < 12:
         return 0
-    else:
+    if period.start.month == 12:
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'year').period('year')
             )
@@ -196,7 +201,7 @@ def compute_allegement_fillon_anticipe(simulation, period):
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'month').period('month')
             )
-    else:
+    if period.start.month == 12:
         period_adjusted = period.start.offset('first-of', 'month').period('month')
         cumul = sum([
             simulation.calculate('allegement_fillon', period_adjusted.offset(- n, 'month'))
@@ -212,11 +217,11 @@ def compute_allegement_fillon_progressif(simulation, period):
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'month').period('month')
             )
-    else:
+    if period.start.month > 1:
         period_adjusted = period.start.offset('first-of', 'month').period('month')
         cumul = sum([
             simulation.calculate('allegement_fillon', period_adjusted.offset(- n, 'month'))
-            for n in range(1, 12)
+            for n in range(1, period.start.month)
             ])
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         return compute_allegement_fillon(simulation, period = up_to_this_month) - cumul

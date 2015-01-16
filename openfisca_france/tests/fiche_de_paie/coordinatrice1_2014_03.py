@@ -32,29 +32,30 @@ Created on Thu Jan 15 09:46:55 2015
 
 tests = [
     dict(
-        name = "Madame Martin",
+        name = "coordinatrice1_2014_03",
         period = "2014-03",   #
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
             assujettie_taxe_salaires = True,
             avantages_en_nature_valeur_reelle = 0,
-            base_remboursement_transport = 0,
             contrat_de_travail = 1,  # temps plein
             contrat_de_travail_arrivee = "2013-07-02",
             contrat_de_travail_depart = "2014-12-31",
             contrat_de_travail_duree = 0,  # CDI
-            effectif_entreprise = 3000,  
+            effectif_entreprise = 3000,
             heures_non_remunerees_volume = 0,
-            # heures_remunerees_volume = 0, 
+            # heures_remunerees_volume = 0,
             # exposition_accident = 3,
             localisation_entreprise = "13299",
             nombre_tickets_restaurant = 0,
             prevoyance_obligatoire_cadre_taux_employeur = .015,  # 1.5% est le minimum
+            primes_salaires = 0,
             prise_en_charge_employeur_retraite_complementaire = 82.44,
             prise_en_charge_employeur_prevoyance_complementaire = 0,
             prise_en_charge_employeur_retraite_supplementaire = 0,
             # ratio_alternants = 0, pas l'info
             redevable_taxe_apprentissage = 1,
+            remboursement_transport_base = 0,
             salaire_de_base = 1800,
             taux_accident_travail = 0.015,
             taux_versement_transport = 0,
@@ -93,18 +94,18 @@ tests = [
 
             # cotisations_patronales_main_d_oeuvre = 0,
             conge_individuel_formation_cdd = 0,
-            contribution_developpement_apprentissage = -3.24, #avec la taxe d'apprentissage 
+            contribution_developpement_apprentissage = -3.24, #avec la taxe d'apprentissage
             contribution_solidarite_autonomie = -5.4,
             # contribution_supplementaire_apprentissage = 0, pas dans la fiche
             fnal_tranche_a = 0,
             # fnal_tranche_a_plus_20 = 0, pas dans la fiche de paie
-            formation_professionnelle = -28.8, 
+            formation_professionnelle = -28.8,
             participation_effort_construction = -8.1,
             prevoyance_obligatoire_cadre = 0,
             taxe_apprentissage = -9,
             versement_transport = 0,
 
-            # allegement_fillon = 222.12, PROBLEME (devrait être 0)
+            # allegement_fillon = 222.12, TODO: (devrait être 0)
             alleg_cice = 0,
             tehr = 0,
             salbrut = 1800,

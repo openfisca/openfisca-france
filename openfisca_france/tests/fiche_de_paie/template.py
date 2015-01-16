@@ -25,13 +25,13 @@
 
 tests = [
     dict(
-        name = "Monsieur Dupont",
+        name = "Mr Dupont (template)",
         period = "2014-01",   #
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
             assujettie_taxe_salaires = False,
             avantages_en_nature_valeur_reelle = 0,
-            contrat_de_travail = 1,  # temps plein
+            contrat_de_travail = 0,  # temps plein
             contrat_de_travail_arrivee = "2014-01-01",
             contrat_de_travail_depart = "2014-12-31",
             contrat_de_travail_duree = 0,  # CDI
@@ -39,9 +39,11 @@ tests = [
             heures_non_remunerees_volume = 0,
             heures_remunerees_volume = 0,
             # exposition_accident = 3,
+            indemnites_journalieres_maladie = 0,
             localisation_entreprise = "75014",
             nombre_tickets_restaurant = 0,
             prevoyance_obligatoire_cadre_taux_employeur = .015,  # 1.5% est le minimum
+            primes_salaires = 0,
             prise_en_charge_employeur_retraite_complementaire = 0,
             prise_en_charge_employeur_prevoyance_complementaire = 0,
             prise_en_charge_employeur_retraite_supplementaire = 0,
@@ -129,7 +131,7 @@ tests = [
             csgsali = 0,
             crdssal = 0,
             hsup = 0,
-            sal = 0,
+            sal = 0, # salaire imposable
 
             depense_cantine_titre_restaurant_employe = 0,
 
