@@ -33,7 +33,6 @@ from numpy import (
     minimum as min_, timedelta64
     )
 
-from ...assets.holidays import holidays
 
 from ..base import *  # noqa
 
@@ -156,55 +155,6 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
             not_(condition_exoneration_taux) * valeur_unitaire * taux_employeur
             )
         return period, montant_reintegration
-
-
-@reference_formula
-class nombre_heures_remunerees(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Nombre d'heures rémunérées mensuellement"
-    # contrat_de_travail :
-    #   0     u"temps_plein",
-    #   1     u"temps_partiel",
-    #   2     u"forfait_heures",
-    #   3     u"forfait_jours",
-    #   4     u"duree_contractuelle",  # heures/mois
-
-    # Source: Guide IPP cotisations sociales déterminations des assiettes (érroné)
-
-    # Décompte des jours en début et fin de contrat
-    # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period(u'month')
-        contrat_de_travail = simulation.calculate('contrat_de_travail', period)
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
-        heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume', period)
-        heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
-
-        busday_count = partial(original_busday_count, holidays = holidays)
-
-        debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
-
-        mois_incomplet = or_(contrat_de_travail_arrivee > debut_mois, contrat_de_travail_depart < fin_mois)
-        jours_travailles = busday_count(
-            max_(contrat_de_travail_arrivee, debut_mois),
-            min_(contrat_de_travail_depart, fin_mois)
-            )
-
-        duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
-        nombre_heures_remunerees = (
-            (contrat_de_travail == 0) * (
-                duree_legale * not_(mois_incomplet) +  # 151.67
-                jours_travailles * 7 * mois_incomplet
-                ) +
-            (contrat_de_travail == 1) * heures_remunerees_volume +
-            (contrat_de_travail == 2) * (heures_remunerees_volume / 45.7) * (52 / 12) +  # forfait heures/annee
-            (contrat_de_travail == 3) * duree_legale * (heures_remunerees_volume / 218)  # forfait jours/annee
-            )
-        return period, nombre_heures_remunerees - heures_non_remunerees_volume
 
 
 @reference_formula

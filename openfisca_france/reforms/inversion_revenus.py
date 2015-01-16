@@ -28,15 +28,13 @@ from __future__ import division
 import logging
 
 # from numpy import logical_not as not_
-from scipy.optimize import fsolve
-
-from openfisca_core.taxscales import MarginalRateTaxScale, TaxScalesTree, combine_tax_scales, scale_tax_scales
-
 from openfisca_core import columns, formulas, reforms
+from openfisca_core.taxscales import MarginalRateTaxScale
+from scipy.optimize import fsolve
 
 from .. import entities
 
-#from ..base import *  # noqa
+# from ..base import *  # noqa
 # from .cotisations_sociales.remplacement import exo_csg_chom
 
 
@@ -102,8 +100,8 @@ class salbrut(formulas.SimpleFormulaColumn):
 
         plafond_securite_sociale = P.cotsoc.gen.plafond_securite_sociale
 
-        salarie = scale_tax_scales(TaxScalesTree('sal', P.cotsoc.sal), plafond_securite_sociale)
-        csg = scale_tax_scales(TaxScalesTree('csg', P.csg), plafond_securite_sociale)
+        salarie = P.cotsoc.sal.scale_tax_scales(plafond_securite_sociale)
+        csg = P.csg.scale_tax_scales(plafond_securite_sociale)
 
         salarie['noncadre'].update(salarie['commun'])
         salarie['cadre'].update(salarie['commun'])
@@ -113,8 +111,8 @@ class salbrut(formulas.SimpleFormulaColumn):
 
         # Salariés du privé
 
-        noncadre = combine_tax_scales(salarie['noncadre'])
-        cadre = combine_tax_scales(salarie['cadre'])
+        noncadre = salarie['noncadre'].combine_tax_scales()
+        cadre = salarie['cadre'].combine_tax_scales()
 
         # On ajoute la CSG deductible
         noncadre.add_tax_scale(csg['activite']['deductible'])
@@ -134,7 +132,7 @@ class salbrut(formulas.SimpleFormulaColumn):
         salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
         public_etat = salarie['fonc']['etat']['pension']
-        # public_colloc = combine_tax_scales(salarie['fonc']["colloc"]) TODO:
+        # public_colloc = salarie['fonc']["colloc"].combine_tax_scales()  TODO
 
         # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
         # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
@@ -216,7 +214,7 @@ class chobrut(formulas.SimpleFormulaColumn):
 
         # P = simulation.legislation_at(period.start)
 
-        # csg = scale_tax_scales(TaxScalesTree('csg', P.csg.chom), P.cotsoc.gen.plaf_ss)
+        # csg = P.csg.chom.scale_tax_scales(P.cotsoc.gen.plaf_ss)
         # taux_plein = csg['plein']['deduc']
         # taux_reduit = csg['reduit']['deduc']
 
