@@ -42,13 +42,13 @@ class ars(SimpleFormulaColumn):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period_br = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
         age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         smic55_holder = simulation.compute('smic55', period)
-        br_pf = simulation.calculate('br_pf', period)
+        br_pf = simulation.calculate('br_pf', period_br)
         P = simulation.legislation_at(period.start).fam
-
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
@@ -79,5 +79,4 @@ class ars(SimpleFormulaColumn):
         ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / max_(1, arsnbenf)))
         # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
-        return period, ars * (ars >= P.ars.seuil_nv)
-
+        return period_br, ars * (ars >= P.ars.seuil_nv)
