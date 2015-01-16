@@ -153,7 +153,7 @@ def preprocess_compact_legislation(compact_legislation):
     compact_legislation.cotsoc.cotisations_employeur = CompactNode()
     compact_legislation.cotsoc.cotisations_salarie = CompactNode()
     cotsoc = compact_legislation.cotsoc
-    for cotisation_name, bareme in (('cotisations_employeur', pat), ('cotisations_salarie', sal)):
-        for category, bareme in bareme.iteritems():
+    for cotisation_name, baremes in (('cotisations_employeur', pat), ('cotisations_salarie', sal)):
+        for category, bareme in baremes.iteritems():
             if category in CAT._nums:
                 cotsoc[cotisation_name][category] = bareme
