@@ -334,7 +334,7 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
                 )
         else:
             taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
-            # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
+            # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales
 
 
