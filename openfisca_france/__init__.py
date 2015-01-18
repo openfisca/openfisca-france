@@ -123,7 +123,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
 
         legislation_xml_file_path = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
 
-        preprocess_compact_legislation = staticmethod(preprocessing.preprocess_compact_legislation)
+        preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
 
         REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
         REV_TYP = None  # utils.REV_TYP  # Not defined for France

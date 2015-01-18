@@ -60,6 +60,10 @@ def check_legislation_xml_file(year):
             unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
 
+    # Create tax_benefit system only now, to be able to debug XML validation errors in above code.
+    if base.tax_benefit_system.preprocess_legislation is not None:
+        base.tax_benefit_system.preprocess_legislation(legislation_json)
+
     legislation_json = legislations.generate_dated_legislation_json(legislation_json, year)
     legislation_json, errors = legislations.validate_dated_legislation_json(legislation_json,
         state = conv.default_state)
@@ -74,9 +78,6 @@ def check_legislation_xml_file(year):
             ).encode('utf-8'))
 
     compact_legislation = legislations.compact_dated_node_json(legislation_json)
-    # Create tax_benefit system only now, to be able to debug XML validation errors in above code.
-    if base.tax_benefit_system.preprocess_compact_legislation is not None:
-        base.tax_benefit_system.preprocess_compact_legislation(compact_legislation)
 
 
 def test_legislation_xml_file():
