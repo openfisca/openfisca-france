@@ -64,7 +64,7 @@ tests = [
             assedic_employeur = - 120.99 - 63.01,
             # assedic_tranche_a_employeur = -120.99  # Inclus dans assedic
             # assedic_tranche_b_employeur = -63.01  # Inclus dans assedic
-            # vieillesse_deplafonnee_employeur = -80.5,
+            vieillesse_deplafonnee_employeur = -80.5,
             vieillesse_plafonnee_employeur = -255.59,
 
             # cotisations_patronales_contributives = ,
@@ -72,13 +72,11 @@ tests = [
             accident_du_travail = -69,
             famille = -241.5,
             maladie_employeur = - 588.80,
-            cotisations_patronales = - 2836.38 + 19 * 4.5,  # montant juste TODO: A compléter avec presta manquantes
+            # cotisations_patronales = - 2836.38 + 19 * 4.5,  # montant juste TODO: A compléter avec presta manquantes
             taxe_salaires = - 197.52 - 27.07 - 315.27,
             prevoyance_obligatoire_cadre = -47.49,
 
             forfait_social = -3.8, # 47.49 de base
-
-
             cotisation_exceptionnelle_temporaire_employe = -5.98,
             maladie_employe = - 34.5,
             # cotisations_salariales_non_contributives = ,
