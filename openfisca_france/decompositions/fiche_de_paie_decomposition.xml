@@ -38,8 +38,7 @@
             <NODE code="prevoyance_obligatoire_cadre" color="249,208,211" desc="Prérevoyance obligatoire des cadres" shortname="Prev. oblig. cadres" />
             <NODE code="taxe_apprentissage" color="249,208,211" desc="Taxe d'apprentisssage" shortname="Taxe apprenti." />
             <NODE code="versement_transport" color="249,208,211" desc="Versement transport" shortname="Transport" />
-        </NODE>
-      </NODE>
+          </NODE>
       <NODE code="allegement_fillon" color="0,171,208" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
       <NODE code="alleg_cice" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
       <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
