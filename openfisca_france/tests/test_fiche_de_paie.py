@@ -99,7 +99,6 @@ def assert_variable(variable, name, monthly_amount, output):
         "error for {} ({}) : should be {} instead of {} ".format(variable, name, monthly_amount, output)
 
 
-
 def test_decomposition(print_decomposition = False):
     from openfisca_core.decompositions import calculate, get_decomposition_json
     import json
@@ -137,5 +136,5 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    from openfisca_france.tests.thesard1_2011_07 import tests
-    simple_check(tests = tests)
+    for arguments in test_check():
+        arguments[0](*arguments[1:])

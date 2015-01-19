@@ -25,11 +25,10 @@
 
 from __future__ import division
 
+import collections
 import copy
 import logging
 
-
-from openfisca_core.legislations import CompactNode
 
 from ..base import *  # noqa
 
@@ -40,87 +39,89 @@ log = logging.getLogger(__name__)
 # TODO: contribution patronale de prévoyance complémentaire
 
 
-def build_pat(_P):
-    """Construit le dictionnaire de barèmes des cotisations patronales à partir de _P.cotsoc.pat"""
-    pat = _P.cotsoc.pat.copy(deep = True)
+def build_pat(node_json):
+    """Construit le dictionnaire de barèmes des cotisations patronales à partir de node_json['children']['cotsoc'][
+        'children']['pat']"""
+    pat = copy.deepcopy(node_json['children']['cotsoc']['children']['pat'])
+    commun = pat['children'].pop('commun')
 
     for bareme in ['apprentissage', 'apprentissage_add']:
-        pat['commun'][bareme] = pat['commun']['apprentissage_node'][bareme]
-    del pat['commun']['apprentissage_node']
+        commun['children'][bareme] = commun['children']['apprentissage_node']['children'][bareme]
+    del commun['children']['apprentissage_node']
 
-    pat['commun']['formprof_09'] = pat['commun']['formprof_node']['formprof_09']
-    pat['commun']['formprof_1019'] = pat['commun']['formprof_node']['formprof_1019']
-    pat['commun']['formprof_20'] = pat['commun']['formprof_node']['formprof_20']
-    del pat['commun']['formprof_node']
+    commun['children']['formprof_09'] = commun['children']['formprof_node']['children']['formprof_09']
+    commun['children']['formprof_1019'] = commun['children']['formprof_node']['children']['formprof_1019']
+    commun['children']['formprof_20'] = commun['children']['formprof_node']['children']['formprof_20']
+    del commun['children']['formprof_node']
 
-    pat['commun']['construction'] = pat['commun']['construction_node']['construction_20']
-    del pat['commun']['construction_node']
+    commun['children']['construction'] = commun['children']['construction_node']['children']['construction_20']
+    del commun['children']['construction_node']
 
-    pat['noncadre'].update(pat['commun'])
-    pat['cadre'].update(pat['commun'])
-    pat['fonc']['contract'].update(pat['commun'])
+    pat['children']['noncadre']['children'].update(commun['children'])
+    pat['children']['cadre']['children'].update(commun['children'])
+    pat['children']['fonc']['children']['contract']['children'].update(commun['children'])
 
-    # Renaiming
-    pat['prive_non_cadre'] = pat.pop('noncadre')
-    pat['prive_cadre'] = pat.pop('cadre')
+    # Renaming
+    pat['children']['prive_non_cadre'] = pat['children'].pop('noncadre')
+    pat['children']['prive_cadre'] = pat['children'].pop('cadre')
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
                 "formprof_1019", "formprof_20", "vieillessedeplaf", "vieillesseplaf"]:
-        del pat['commun'][var]
+        del commun['children'][var]
 
     for var in ["apprentissage", "apprentissage_add", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
                 "construction", "assedic"]:
-        del pat['fonc']['contract'][var]
+        del pat['children']['fonc']['children']['contract']['children'][var]
 
-    pat['fonc']['etat'].update(pat['commun'])
-    pat['fonc']['colloc'].update(pat['commun'])
-    del pat['commun']
+    pat['children']['fonc']['children']['etat']['children'].update(commun['children'])
+    pat['children']['fonc']['children']['colloc']['children'].update(commun['children'])
 
-    pat['etat_t'] = pat['fonc']['etat']
-    pat['colloc_t'] = pat['fonc']['colloc']
-    pat['contract'] = pat['fonc']['contract']
+    pat['children']['etat_t'] = pat['children']['fonc']['children']['etat']
+    pat['children']['colloc_t'] = pat['children']['fonc']['children']['colloc']
+    pat['children']['contract'] = pat['children']['fonc']['children']['contract']
 
     for var in ['etat', 'colloc', 'contract']:
-        del pat['fonc'][var]
+        del pat['children']['fonc']['children'][var]
 
     # Renaming
-    pat['public_titulaire_etat'] = pat.pop('etat_t')
-    # del pat['public_titulaire_etat']['rafp']
+    pat['children']['public_titulaire_etat'] = pat['children'].pop('etat_t')
+    # del pat['children']['public_titulaire_etat']['children']['rafp']
 
-    pat['public_titulaire_territoriale'] = pat.pop('colloc_t')
+    pat['children']['public_titulaire_territoriale'] = pat['children'].pop('colloc_t')
 
-    pat['public_titulaire_hospitaliere'] = copy.deepcopy(pat['public_titulaire_territoriale'])
+    pat['children']['public_titulaire_hospitaliere'] = copy.deepcopy(pat['children']['public_titulaire_territoriale'])
     for category in ['territoriale', 'hospitaliere']:
-        for name, bareme in pat['public_titulaire_' + category][category].iteritems():
-            pat['public_titulaire_{}'.format(category)][name] = bareme
+        for name, bareme in pat['children']['public_titulaire_' + category]['children'][category]['children'].iteritems(
+                ):
+            pat['children']['public_titulaire_{}'.format(category)]['children'][name] = bareme
 
     for category in ['territoriale', 'hospitaliere']:
-        del pat['public_titulaire_territoriale'][category]
-        del pat['public_titulaire_hospitaliere'][category]
+        del pat['children']['public_titulaire_territoriale']['children'][category]
+        del pat['children']['public_titulaire_hospitaliere']['children'][category]
 
-    pat['public_non_titulaire'] = pat.pop('contract')
+    pat['children']['public_non_titulaire'] = pat['children'].pop('contract')
 
     return pat
 
 
-def build_sal(_P):
+def build_sal(node_json):
     '''
     Construit le dictionnaire de barèmes des cotisations salariales
-    à partir des informations contenues dans P.cotsoc.sal
+    à partir des informations contenues dans node_json['children']['cotsoc']['children']['sal']
     '''
-    sal = _P.cotsoc.sal.copy(deep = True)
-    sal['noncadre'].update(sal['commun'])
-    sal['cadre'].update(sal['commun'])
+    sal = copy.deepcopy(node_json['children']['cotsoc']['children']['sal'])
+    sal['children']['noncadre']['children'].update(sal['children']['commun']['children'])
+    sal['children']['cadre']['children'].update(sal['children']['commun']['children'])
 
-    # Renaiming
-    sal['prive_non_cadre'] = sal.pop('noncadre')
-    sal['prive_cadre'] = sal.pop('cadre')
-    sal['public_titulaire_etat'] = sal['fonc']['etat']
+    # Renaming
+    sal['children']['prive_non_cadre'] = sal['children'].pop('noncadre')
+    sal['children']['prive_cadre'] = sal['children'].pop('cadre')
+    sal['children']['public_titulaire_etat'] = sal['children']['fonc']['children']['etat']
 
-    sal['public_titulaire_territoriale'] = sal['fonc']['colloc']
-    sal['public_titulaire_hospitaliere'] = sal['fonc']['colloc']
-    sal['public_non_titulaire'] = sal['fonc']['contract']
+    sal['children']['public_titulaire_territoriale'] = sal['children']['fonc']['children']['colloc']
+    sal['children']['public_titulaire_hospitaliere'] = sal['children']['fonc']['children']['colloc']
+    sal['children']['public_non_titulaire'] = sal['children']['fonc']['children']['contract']
 
     for type_sal_category in (
             'public_titulaire_etat',
@@ -128,32 +129,43 @@ def build_sal(_P):
             'public_titulaire_hospitaliere',
             'public_non_titulaire',
             ):
-        sal[type_sal_category]['excep_solidarite'] = sal['fonc']['commun']['solidarite']
+        sal['children'][type_sal_category]['children']['excep_solidarite'] = sal['children']['fonc']['children'][
+            'commun']['children']['solidarite']
 
-    sal['public_non_titulaire'].update(sal['commun'])
-    del sal['public_non_titulaire']['arrco']
-    del sal['public_non_titulaire']['assedic']
+    sal['children']['public_non_titulaire']['children'].update(sal['children']['commun']['children'])
+    del sal['children']['public_non_titulaire']['children']['arrco']
+    del sal['children']['public_non_titulaire']['children']['assedic']
 
     # Cleaning
-    del sal['commun']
-    del sal['fonc']['etat']
-    del sal['fonc']['colloc']
-    del sal['fonc']['contract']
+    del sal['children']['commun']
+    del sal['children']['fonc']['children']['etat']
+    del sal['children']['fonc']['children']['colloc']
+    del sal['children']['fonc']['children']['contract']
 
     return sal
 
 
-def preprocess_compact_legislation(compact_legislation):
+def preprocess_legislation(legislation_json):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal = build_sal(compact_legislation)
-    pat = build_pat(compact_legislation)
+    sal = build_sal(legislation_json)
+    pat = build_pat(legislation_json)
 
-    compact_legislation.cotsoc.cotisations_employeur = CompactNode()
-    compact_legislation.cotsoc.cotisations_salarie = CompactNode()
-    cotsoc = compact_legislation.cotsoc
-    for cotisation_name, bareme in (('cotisations_employeur', pat), ('cotisations_salarie', sal)):
-        for category, bareme in bareme.iteritems():
+    cotsoc = legislation_json["children"]["cotsoc"]
+    cotsoc["children"]["cotisations_employeur"] = collections.OrderedDict((
+        (u'@type', u'Node'),
+        (u'children', collections.OrderedDict()),
+        ))
+    cotsoc["children"]["cotisations_salarie"] = collections.OrderedDict((
+        (u'@type', u'Node'),
+        (u'children', collections.OrderedDict()),
+        ))
+
+    for cotisation_name, baremes in (
+            ('cotisations_employeur', pat['children']),
+            ('cotisations_salarie', sal['children']),
+            ):
+        for category, bareme in baremes.iteritems():
             if category in CAT._nums:
-                cotsoc[cotisation_name][category] = bareme
+                cotsoc['children'][cotisation_name]['children'][category] = bareme

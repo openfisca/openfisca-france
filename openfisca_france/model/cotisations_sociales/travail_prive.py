@@ -409,7 +409,7 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
                 )
         else:
             taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
-            # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
+            # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales
 
 
@@ -650,7 +650,6 @@ class taxe_salaires(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         bareme = law.cotsoc.taxes_sal.taux_maj
-        bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
         base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
         # TODO: exonérations apprentis
         # TODO: modify if DOM
@@ -658,6 +657,7 @@ class taxe_salaires(SimpleFormulaColumn):
         return period, - (
             bareme.calc(
                 base,
+                factor = 1 / 12,
                 round_base_decimals = 2
                 ) +
             round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
