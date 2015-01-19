@@ -573,7 +573,6 @@ class taxe_salaires(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         bareme = law.cotsoc.taxes_sal.taux_maj
-        bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
         base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
         # TODO: exonérations apprentis
         # TODO: modify if DOM
@@ -581,6 +580,7 @@ class taxe_salaires(SimpleFormulaColumn):
         return period, - (
             bareme.calc(
                 base,
+                factor = 1 / 12,
                 round_base_decimals = 2
                 ) +
             round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
