@@ -117,6 +117,7 @@ def test_decomposition(print_decomposition = False):
 if __name__ == '__main__':
     import logging
     import sys
-    test_check()
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    for arguments in test_check():
+        arguments[0](*arguments[1:])
 #    test_decomposition(print_decomposition = True)
