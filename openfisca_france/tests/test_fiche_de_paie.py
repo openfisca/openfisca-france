@@ -60,7 +60,7 @@ def iter_scenarios():
 
 def test_check():
     for test_parameters in iter_scenarios():
-        name = test_parameters["name"]
+        test_name = test_parameters["name"]
         period = test_parameters["period"]
         parent1 = dict(
             birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
@@ -71,14 +71,14 @@ def test_check():
             parent1 = parent1,
             ).new_simulation(debug = True)
 
-        for variable, monthly_amount in test_parameters['output_variables'].iteritems():
-            output = simulation.calculate(variable)
-            yield assert_variable, variable, name, monthly_amount, output
+        for variable_name, expected_value in test_parameters['output_variables'].iteritems():
+            yield check_variable, simulation, variable_name, test_name, expected_value
 
 
-def assert_variable(variable, name, monthly_amount, output):
-    assert abs(output - monthly_amount) < .01, \
-        "error for {} ({}) : should be {} instead of {} ".format(variable, name, monthly_amount, output)
+def check_variable(simulation, variable_name, test_name, expected_value):
+    output_value = simulation.calculate(variable_name)
+    assert abs(output_value - expected_value) < .01, "error for {} ({}) : should be {} instead of {} ".format(
+        variable_name, test_name, expected_value, output_value)
 
 
 def test_decomposition(print_decomposition = False):
@@ -117,7 +117,9 @@ def test_decomposition(print_decomposition = False):
 if __name__ == '__main__':
     import logging
     import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    for arguments in test_check():
-        arguments[0](*arguments[1:])
+    requested_variables_name = sys.argv[1:]
+    logging.basicConfig(level = logging.INFO, stream = sys.stdout)
+    for function, simulation, variable_name, test_name, expected_value in test_check():
+        if not requested_variables_name or variable_name in requested_variables_name:
+            function(simulation, variable_name, test_name, expected_value)
 #    test_decomposition(print_decomposition = True)
