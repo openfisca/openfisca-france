@@ -28,7 +28,7 @@ from . import (  # noqa #analysis:ignore
     education,
     input_variables,
     isf,
-    lgtm,
+    aides_logement,
     pfam,
     travailleurs_non_salaries,
     th,
