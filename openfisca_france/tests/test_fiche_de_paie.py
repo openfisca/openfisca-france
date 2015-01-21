@@ -137,5 +137,5 @@ if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    from openfisca_france.tests.thésard1_2011_07 import tests 
+    from openfisca_france.tests.fiche_de_paie.thesard1_2011_07 import tests 
     simple_check(tests = tests)
