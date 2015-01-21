@@ -482,6 +482,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity_class = Individus
+    start_date = date(2009, 6, 1)
 
     @dated_function(date(2009, 6, 1))
     def function_2009_(self, simulation, period):
@@ -509,6 +510,7 @@ class ra_rsa_i(SimpleFormulaColumn):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity_class = Individus
+    start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -546,6 +548,7 @@ class ra_rsa(SimpleFormulaColumn):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
     entity_class = Familles
+    start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -645,6 +648,7 @@ class rsa_act(DatedFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Revenu de solidarité active - activité"
+    start_date = date(2009, 6, 1)
 
     @dated_function(date(2009, 6, 1))
     def function_2009(self, simulation, period):
@@ -664,6 +668,7 @@ class rsa_act_i(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
+    start_date = date(2009, 6, 1)
 
     @dated_function(date(2009, 6, 1))
     def function_2009_(self, simulation, period):
