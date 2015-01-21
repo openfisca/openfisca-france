@@ -58,14 +58,14 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
         base = salbrut + (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)
         base = eligibles * base
         cotisation_etat = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "ati",
             base = salbrut,
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "atiacl",
             base = salbrut,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -106,7 +106,7 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
 
         # TODO: check assiette voir IPP
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 (
@@ -138,7 +138,7 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
         _P = simulation.legislation_at(period.start)
 
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
             base = (
                 salbrut + indemnite_residence # TODO check base
@@ -166,7 +166,7 @@ class ircantec_employe(SimpleFormulaColumn):
         _P = simulation.legislation_at(period.start)
 
         ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie.__dict__,
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
             bareme_name = "ircantec",
             base = (
                 salbrut - hsup + indemnite_residence + primes_fonction_publique
@@ -208,7 +208,7 @@ class ircantec_employeur(SimpleFormulaColumn):
         _P = simulation.legislation_at(period.start)
 
         ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "ircantec",
             base = (
                 salbrut - hsup + indemnite_residence + primes_fonction_publique
@@ -270,7 +270,7 @@ class pension_civile_employe(SimpleFormulaColumn):
         type_sal = simulation.calculate('type_sal', period)
         _P = simulation.legislation_at(period.start)
 
-        sal = _P.cotsoc.cotisations_salarie.__dict__
+        sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
             type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
         pension_civile_employe = (
@@ -294,7 +294,7 @@ class pension_civile_employeur(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         _P = simulation.legislation_at(period.start)
 
-        pat = _P.cotsoc.cotisations_employeur.__dict__
+        pat = _P.cotsoc.cotisations_employeur
         terr_or_hosp = (
             (type_sal == CAT['public_titulaire_territoriale']) |
             (type_sal == CAT['public_titulaire_hospitaliere'])

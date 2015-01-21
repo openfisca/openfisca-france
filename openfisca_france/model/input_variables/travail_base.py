@@ -47,6 +47,18 @@ reference_input_variable(
     name = 'allegement_fillon_mode_recouvrement',
     )
 reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Taux ARRCO tranche A employeur) propre à l'entreprise",
+    name = 'arrco_tranche_a_taux_employeur',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Taux ARRCO tranche A salarié) propre à l'entreprise",
+    name = 'arrco_tranche_a_taux_salarie',
+    )
+reference_input_variable(
     column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la taxe sur les salaires",
@@ -57,12 +69,6 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Avantages en nature (Valeur réelle)",
     name = 'avantages_en_nature_valeur_reelle',
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Base pour le calcul du remboursement des frais de transport",
-    name = 'base_remboursement_transport',
     )
 reference_input_variable(
     column = EnumCol(
@@ -171,6 +177,12 @@ reference_input_variable(
     name = 'redevable_taxe_apprentissage',
     )
 reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Base pour le calcul du remboursement des frais de transport",
+    name = 'remboursement_transport_base',
+    )
+reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Salaire de base",
@@ -219,7 +231,7 @@ reference_input_variable(
     name = 'heures_duree_collective_entreprise',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)",
     name = 'heures_non_remunerees_volume',
@@ -227,7 +239,7 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
-    label = u"Volume des heures rémunérées contractuellement (heures/mois)",
+    label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)",
     name = 'heures_remunerees_volume',
     )
 reference_input_variable(

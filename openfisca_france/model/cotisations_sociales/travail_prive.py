@@ -28,13 +28,13 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, logical_or as or_, minimum as min_, ones, round as round_
+from numpy import int16, maximum as max_, minimum as min_, logical_not as not_, ones, round as round_
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
-from ..base import *  # noqa
+from ..base import *  #noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
@@ -53,9 +53,9 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None)
     assert cotisation_type is not None
     law = simulation.legislation_at(period.start)
     if cotisation_type == "employeur":
-        bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__
+        bareme_by_type_sal_name = law.cotsoc.cotisations_employeur
     elif cotisation_type == "salarie":
-        bareme_by_type_sal_name = law.cotsoc.cotisations_salarie.__dict__
+        bareme_by_type_sal_name = law.cotsoc.cotisations_salarie
     assert bareme_name is not None
 
     assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -69,6 +69,7 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None)
         plafond_securite_sociale = plafond_securite_sociale,
         type_sal = type_sal,
         )
+
     return cotisation
 
 
@@ -84,7 +85,7 @@ class accident_du_travail(SimpleFormulaColumn):
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
         type_sal = simulation.calculate('type_sal', period)
-        assujetti = or_(type_sal <= 1, type_sal == 6)
+        assujetti = type_sal <= 1  # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
         return period, - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
@@ -116,7 +117,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
             bareme_name = "agffnc",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -124,13 +125,59 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
             )
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur.__dict__,
+            bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
             bareme_name = "agffc",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )
         return period, cotisation_cadre + cotisation_non_cadre
+
+
+@reference_formula
+class agirc_gmp_employe(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employé)"
+
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
+        taux = simulation.legislation_at(period.start).cotsoc.cotisations_salarie['prive_cadre']['agirc'].rates[1]
+        salaire_charniere = law.salaire_charniere  # annuel
+        cotisation_forfaitaire = law.cotisation_salarie
+
+        sous_plafond_securite_sociale = (assiette_cotisations_sociales <= plafond_securite_sociale)
+        cotisation = - (
+            sous_plafond_securite_sociale * cotisation_forfaitaire +
+            not_(sous_plafond_securite_sociale) * (salaire_charniere / 12 - assiette_cotisations_sociales) * taux
+            ) * (assiette_cotisations_sociales > 0)
+        return period, cotisation
+
+
+@reference_formula
+class agirc_gmp_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
+
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
+        taux = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_cadre']['arrco'].rates[1]
+        salaire_charniere = law.salaire_charniere  # annuel
+        cotisation_forfaitaire = law.cotisation_employeur
+
+        sous_plafond_securite_sociale = (assiette_cotisations_sociales <= plafond_securite_sociale)
+        cotisation = - (
+            sous_plafond_securite_sociale * cotisation_forfaitaire +
+            not_(sous_plafond_securite_sociale) * (salaire_charniere / 12 - assiette_cotisations_sociales) * taux
+            ) * (assiette_cotisations_sociales > 0)
+        return period, cotisation
 
 
 @reference_formula
@@ -142,7 +189,9 @@ class agirc_tranche_b_employe(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "agirc")
-        return period, cotisation
+        gmp_employe = simulation.calculate('agirc_gmp_employe', period)
+        type_sal = simulation.calculate('type_sal', period)
+        return period, cotisation + gmp_employe * (cotisation == 0) * (type_sal == 1)
 
 
 @reference_formula
@@ -154,14 +203,16 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "agirc")
-        return period, cotisation
+        gmp_employeur = simulation.calculate('agirc_gmp_employeur', period)
+        type_sal = simulation.calculate('type_sal', period)
+        return period, cotisation + gmp_employeur * (cotisation == 0) * (type_sal == 1)
 
 
 @reference_formula
 class ags(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"
+    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)" #noqa analysis:ignore
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -201,8 +252,21 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "arrco")
-        return period, cotisation
+
+        cotisation_minimale = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "arrco")
+
+        arrco_tranche_a_taux_salarie = simulation.calculate('arrco_tranche_a_taux_salarie', period)
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        type_sal = simulation.calculate('type_sal', period)
+
+        cotisation_entreprise = - (
+            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
+            arrco_tranche_a_taux_salarie
+            )
+        return period, (
+            cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
+            ) * (type_sal <= 1)
 
 
 @reference_formula
@@ -213,8 +277,19 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "arrco")
-        return period, cotisation
+        cotisation_minimale = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "arrco")
+        arrco_tranche_a_taux_employeur = simulation.calculate('arrco_tranche_a_taux_employeur', period)
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        type_sal = simulation.calculate('type_sal', period)
+
+        cotisation_entreprise = - (
+            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
+            arrco_tranche_a_taux_employeur
+            )
+        return period, (
+            cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
+            ) * (type_sal <= 1)
 
 
 @reference_formula
@@ -334,7 +409,7 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
                 )
         else:
             taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
-            # TODO: gestion de la place dans le XML pb avec l'arbe des paramètres / preprocessing
+            # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales
 
 
@@ -482,11 +557,13 @@ class plafond_securite_sociale(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
+        heures_non_remunerees_volume = simulation.calculate('heures_non_remunerees_volume')
         nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
         _P = simulation.legislation_at(period.start)
 
         plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
-        plafond_securite_sociale = min_(nombre_jours_calendaires, 30) / 30 * plafond_temps_plein
+        jours_travailles = nombre_jours_calendaires - heures_non_remunerees_volume / 7
+        plafond_securite_sociale = min_(jours_travailles , 30) / 30 * plafond_temps_plein
         return period, plafond_securite_sociale
 
 
@@ -573,7 +650,6 @@ class taxe_salaires(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         bareme = law.cotsoc.taxes_sal.taux_maj
-        bareme.multiply_thresholds(1 / 12, decimals = 2, inplace = True)
         base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
         # TODO: exonérations apprentis
         # TODO: modify if DOM
@@ -581,6 +657,7 @@ class taxe_salaires(SimpleFormulaColumn):
         return period, - (
             bareme.calc(
                 base,
+                factor = 1 / 12,
                 round_base_decimals = 2
                 ) +
             round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
@@ -658,7 +735,7 @@ class taux_versement_transport(SimpleFormulaColumn):
     #            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
     #                taux_versement_transport_by_localisation_entreprise[subcommune_depcom] = taux_versement_transport_by_localisation_entreprise[commune_depcom]
     #
-    #    default_value = _P.cotsoc.cotisations_employeur.__dict__['prive_non_cadre']["transport"].rates[0]
+    #    default_value = _P.cotsoc.cotisations_employeur['prive_non_cadre']["transport"].rates[0]
     #    return fromiter(
     #        (
     #            taux_versement_transport_by_localisation_entreprise.get(localisation_entreprise_cell, default_value)
@@ -666,7 +743,7 @@ class taux_versement_transport(SimpleFormulaColumn):
     #            ),
     #        dtype = float,
     #        )
-        rate = _P.cotsoc.cotisations_employeur.__dict__['prive_non_cadre']["transport"].rates[0]
+        rate = _P.cotsoc.cotisations_employeur['prive_non_cadre']["transport"].rates[0]
         return period, rate * ones(len(localisation_entreprise))
 
 
@@ -680,7 +757,6 @@ class versement_transport(SimpleFormulaColumn):
         period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
-        law = simulation.legislation_at(period.start)
         cotisation = - taux_versement_transport * assiette_cotisations_sociales
         return period, cotisation
 

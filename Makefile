@@ -1,5 +1,5 @@
 TESTS_DIR="openfisca_france/tests/"
-IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|test_fiche_de_paie_api.py|test_brut_to_imposable.py|test_net_to_brut.py|test_rsa.py)'
+IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|test_fiche_de_paie_api.py|test_brut_to_imposable.py|test_net_to_brut.py|test_rsa.py|generate_json.py|taxipp_utils.py|create_json_then_test.py|compare_openfisca_impots.py)'
 
 all: flake8 test
 

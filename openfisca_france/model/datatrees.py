@@ -45,7 +45,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'activite',  # Activité
                     'fra',  # Frais réels
-                    'hsup',  # Heures supplémentaires : revenus exonérés connus
+                    'hsup',  # Heures supplémentaires : revenus exonérés connus
                     'ppe_tp_sa',  # Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_tp_ns',  # Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_du_sa',  # Prime pour l'emploi des salariés: nombre d'heures payées dans l'année
@@ -250,7 +250,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""contrat_de_travail_duree""",  # Date de départ de l'entreprise
                     u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
                     u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
-                    u"""base_remboursement_transport""",  # Base pour le calcul du remboursement des frais de transport
+                    u"""remboursement_transport_base""",  # Base pour le calcul du remboursement des frais de transport
                     u"""effectif_entreprise""",  # Effectif de l'entreprise
                     u"""localisation_entreprise""",  # Localisation entreprise
                     u"""nombre_tickets_restaurant""",  # Nombre de tickets restaurant
@@ -315,10 +315,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'caseK',  # Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre
                     'caseL',  # Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul
-                    'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul
+                    'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul
                     'caseN',  # Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus
                     'caseP',  # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%
-                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)
+                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)
                     'caseW',  # Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseS',  # Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseG',  # Titulaire d'une pension de veuve de guerre
@@ -333,10 +333,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Traitements, salaires, primes pour l'emploi, pensions et rentes"""),
                 ('children', [
-                    'f1aw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans
-                    'f1bw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
-                    'f1cw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
-                    'f1dw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans
+                    'f1aw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans
+                    'f1bw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
+                    'f1cw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
+                    'f1dw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans
                     ]),
                 ]),
             collections.OrderedDict([
@@ -610,17 +610,17 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'b1ab',  # Valeur de la résidence principale avant abattement
                     'b1ac',  # Valeur des autres immeubles avant abattement
-                    'b1bc',  # Immeubles non bâtis : bois, fôrets et parts de groupements forestiers
-                    'b1be',  # Immeubles non bâtis : biens ruraux loués à long termes
-                    'b1bh',  # Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers
-                    'b1bk',  # Immeubles non bâtis : autres biens
+                    'b1bc',  # Immeubles non bâtis : bois, fôrets et parts de groupements forestiers
+                    'b1be',  # Immeubles non bâtis : biens ruraux loués à long termes
+                    'b1bh',  # Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers
+                    'b1bk',  # Immeubles non bâtis : autres biens
                     'b1cl',  # Parts et actions détenues par les salariés et mandataires sociaux
                     'b1cb',  # Parts et actions de sociétés avec engagement de conservation de 6 ans minimum
                     'b1cd',  # Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité
                     'b1ce',  # Autres valeurs mobilières
                     'b1cf',  # Liquidités
                     'b1cg',  # Autres biens meubles
-                    'b1co',  # Autres biens meubles : contrats d'assurance-vie
+                    'b1co',  # Autres biens meubles : contrats d'assurance-vie
                     'b2gh',  # Total du passif et autres déductions
                     'b2mt',  # Réductions pour investissements directs dans une société
                     'b2ne',  # Réductions pour investissements directs dans une société

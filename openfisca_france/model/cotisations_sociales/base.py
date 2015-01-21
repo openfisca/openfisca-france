@@ -42,13 +42,13 @@ def apply_bareme_for_relevant_type_sal(
     assert plafond_securite_sociale is not None
     assert type_sal is not None
     cotisation = zeros(len(base))
-    for type_sal_enum in CAT:
-        if type_sal_enum[0] not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
+    for type_sal_name, type_sal_index in CAT:
+        if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
             continue
-        bareme = bareme_by_type_sal_name[type_sal_enum[0]].get(bareme_name)  # TODO; should have better warnings
+        bareme = bareme_by_type_sal_name[type_sal_name].get(bareme_name)  # TODO; should have better warnings
         if bareme is not None:
             cotisation += bareme.calc(
-                base * (type_sal == type_sal_enum[1]),
+                base * (type_sal == type_sal_index),
                 factor = plafond_securite_sociale,
                 round_base_decimals = round_base_decimals,
                 )

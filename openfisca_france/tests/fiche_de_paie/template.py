@@ -25,14 +25,13 @@
 
 tests = [
     dict(
-        name = "Monsieur Dupont",
+        name = "Mr Dupont (template)",
         period = "2014-01",   #
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
             assujettie_taxe_salaires = False,
             avantages_en_nature_valeur_reelle = 0,
-            base_remboursement_transport = 0,
-            contrat_de_travail = 1,  # temps plein
+            contrat_de_travail = 0,  # temps plein
             contrat_de_travail_arrivee = "2014-01-01",
             contrat_de_travail_depart = "2014-12-31",
             contrat_de_travail_duree = 0,  # CDI
@@ -40,14 +39,17 @@ tests = [
             heures_non_remunerees_volume = 0,
             heures_remunerees_volume = 0,
             # exposition_accident = 3,
+            indemnites_journalieres_maladie = 0,
             localisation_entreprise = "75014",
             nombre_tickets_restaurant = 0,
             prevoyance_obligatoire_cadre_taux_employeur = .015,  # 1.5% est le minimum
+            primes_salaires = 0,
             prise_en_charge_employeur_retraite_complementaire = 0,
             prise_en_charge_employeur_prevoyance_complementaire = 0,
             prise_en_charge_employeur_retraite_supplementaire = 0,
             ratio_alternants = 0,
             redevable_taxe_apprentissage = 0,
+            remboursement_transport_base = 0,
             salaire_de_base = 0,
             taux_accident_travail = 0,
             taux_versement_transport = 0,
@@ -62,10 +64,13 @@ tests = [
 
             # salsuperbrut = 0,
             # cotisations_patronales = 0,
+            remboursement_transport = 0,
 
             # cotisations_patronales_contributives = 0,
             ags = 0,
             agff_tranche_a_employeur = 0,
+            agirc_gmp_employeur = 0,
+            agirc_tranche_b_employeur = 0,
             apec_employeur = 0,
             arrco_tranche_a_employeur = 0,
             assedic_employeur = 0,
@@ -99,6 +104,7 @@ tests = [
 
             allegement_fillon = 0,
             alleg_cice = 0,
+            forfait_social = 0,
             tehr = 0,
             salbrut = 0,
 
@@ -106,6 +112,7 @@ tests = [
 
             # cotisations_salariales_contributives = 0,
             agff_tranche_a_employe = 0,
+            agirc_gmp_employe = 0,
             agirc_tranche_b_employe = 0,
             apec_employe = 0,
             arrco_tranche_a_employe = 0,
@@ -128,8 +135,7 @@ tests = [
             csgsali = 0,
             crdssal = 0,
             hsup = 0,
-            sal = 0,
-
+            sal = 0,  # salaire imposable
             depense_cantine_titre_restaurant_employe = 0,
 
             salaire_net_a_payer = 0,
