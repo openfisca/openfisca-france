@@ -408,7 +408,7 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
                 (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
                 )
         else:
-            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
+            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250 * redevable_taxe_apprentissage
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales
 
