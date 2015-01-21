@@ -33,7 +33,7 @@ import logging
 
 from openfisca_core import formulas, periods, reforms
 from .. import entities
-from ..model import irpp
+from ..model.impot_revenu import ir
 
 
 log = logging.getLogger(__name__)
@@ -43,7 +43,7 @@ log = logging.getLogger(__name__)
 
 class decote(formulas.SimpleFormulaColumn):
     label = u"Nouvelle décote 2015"
-    reference = irpp.decote
+    reference = ir.decote
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')

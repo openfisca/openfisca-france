@@ -346,7 +346,7 @@ class csg_fon(SimpleFormulaColumn):
     def function(self, simulation, period):
         '''
         Calcule la CSG sur les revenus fonciers
-        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         period = period.start.offset('first-of', 'month').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
@@ -365,7 +365,7 @@ class crds_fon(SimpleFormulaColumn):
     def function(self, simulation, period):
         '''
         Calcule la CRDS sur les revenus fonciers
-        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         period = period.start.offset('first-of', 'month').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
@@ -385,7 +385,7 @@ class prelsoc_fon(DatedFormulaColumn):
     def function_20020101_20051231(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
-        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         period = period.start.offset('first-of', 'month').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
@@ -400,7 +400,7 @@ class prelsoc_fon(DatedFormulaColumn):
     def function_20060101_20081231(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
-        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         period = period.start.offset('first-of', 'month').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
@@ -415,7 +415,7 @@ class prelsoc_fon(DatedFormulaColumn):
     def function_20090101_20151231(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
-        Attention : assiette csg = asiette irpp valable 2006-2014 mais pourrait changer
+        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         period = period.start.offset('first-of', 'month').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)

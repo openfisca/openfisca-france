@@ -34,7 +34,8 @@ from numpy import maximum as max_, minimum as min_
 from openfisca_core import columns, formulas, reforms
 
 from .. import entities
-from ..model import base, irpp_reductions_impots
+from ..model import base
+from ..model.impot_revenu import reductions_impot
 
 
 log = logging.getLogger(__name__)
@@ -64,7 +65,7 @@ class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
 
 class reductions(formulas.DatedFormulaColumn):
     label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
-    reference = irpp_reductions_impots.reductions
+    reference = reductions_impot.reductions
 
     @base.dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):

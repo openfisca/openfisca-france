@@ -29,7 +29,8 @@ import logging
 
 from numpy import minimum as min_, maximum as max_
 
-from .base import *  # noqa
+
+from ..base import *  # noqa # analysis:ignore
 
 
 log = logging.getLogger(__name__)

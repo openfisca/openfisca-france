@@ -23,15 +23,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from . import (  # noqa
+from . import (  # noqa #analysis:ignore
     common,
     education,
     input_variables,
-    irpp,
-    irpp_charges_deductibles,
-    irpp_credits_impots,
-    irpp_plus_values_immo,
-    irpp_reductions_impots,
     isf,
     lgtm,
     pfam,
@@ -39,7 +34,7 @@ from . import (  # noqa
     th,
     )
 
-from .cotisations_sociales import (  # noqa
+from .cotisations_sociales import (  # noqa #analysis:ignore
     allegements,
     capital,
     remplacement,
@@ -50,7 +45,16 @@ from .cotisations_sociales import (  # noqa
     travail_verification,
     )
 
-from .minima_sociaux import (  # noqa
+from .impot_revenu import ( # noqa #analysis:ignore
+    ir,
+    charges_deductibles,
+    credits_impot,
+    plus_values_immobilieres,
+    reductions_impot,
+    )
+
+
+from .minima_sociaux import (  # noqa #analysis:ignore
     # aah,
     asi_aspa,
     ass,
@@ -58,7 +62,7 @@ from .minima_sociaux import (  # noqa
     rsa,
     )
 
-from .prestations_familiales import (  # noqa
+from .prestations_familiales import (  # noqa #analysis:ignore
     aeeh,
     af,
     ars,

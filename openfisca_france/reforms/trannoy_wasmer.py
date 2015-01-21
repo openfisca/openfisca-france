@@ -34,7 +34,8 @@ import logging
 
 from openfisca_core import columns, formulas, reforms
 from .. import entities
-from ..model import base, irpp_charges_deductibles
+from ..model import base
+from ..model.impot_revenu import charges_deductibles
 
 
 log = logging.getLogger(__name__)
@@ -42,7 +43,7 @@ log = logging.getLogger(__name__)
 
 class charges_deduc(formulas.SimpleFormulaColumn):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
-    reference = irpp_charges_deductibles.charges_deduc
+    reference = charges_deductibles.charges_deduc
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')

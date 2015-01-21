@@ -31,7 +31,7 @@ from numpy import maximum as max_
 import logging
 
 from openfisca_core import columns, formulas, reforms
-from openfisca_france.model import irpp
+from openfisca_france.model.impot_revenu import ir
 from openfisca_france import entities
 
 
@@ -43,7 +43,7 @@ VOUS = QUIFOY['vous']
 
 class rbg(formulas.SimpleFormulaColumn):
     label = u"Nouveau revenu brut global intégrant les allocations familiales"
-    reference = irpp.rbg
+    reference = ir.rbg
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
@@ -65,7 +65,7 @@ class rbg(formulas.SimpleFormulaColumn):
 
 class rfr(formulas.SimpleFormulaColumn):
     label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
-    reference = irpp.rfr
+    reference = ir.rfr
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')

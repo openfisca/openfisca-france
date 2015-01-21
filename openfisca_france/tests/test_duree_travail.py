@@ -46,7 +46,7 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            nombre_heures_remunerees = 70,
+            nombre_jours_calendaires = 12,
             ),
         ),
     )

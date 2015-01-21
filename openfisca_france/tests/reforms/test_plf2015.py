@@ -65,6 +65,9 @@ def test(year = 2014):
     error_margin = 0.1
     impo = reference_simulation.calculate('impo')
     reform_impo = reform_simulation.calculate('impo')
+    print impo
+    print reform_impo
+    boum
     assert_less(max(abs(impo - reform_impo)), error_margin)
 
 
