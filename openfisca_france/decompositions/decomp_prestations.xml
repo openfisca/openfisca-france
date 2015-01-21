@@ -24,7 +24,7 @@
     <NODE code="aefa" color="237,119,3" desc="Aide exceptionelle de fin d'année" shortname="AEFA" />
     <NODE code="api" color="208,112,4" desc="Allocation parent isolé" shortname="API" />
   </NODE>
-  <NODE code="logt" color="255,222,48" desc="Prestations logement" shortname="Prest. logement">
+  <NODE code="aides_logement" color="255,222,48" desc="Prestations logement" shortname="Prest. logement">
     <NODE code="apl" color="255,245,155" desc="Aide personalisée au logement" shortname="APL" />
     <NODE code="als" color="255,239,103" desc="Allocation logement social" shortname="ALS" />
     <NODE code="alf" color="255,233,28" desc="Allocation de logement familiale" shortname="ALF" />

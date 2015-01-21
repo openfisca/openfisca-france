@@ -356,9 +356,9 @@ class psoc(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         pfam = simulation.calculate('pfam', period)
         mini = simulation.calculate('mini', period)
-        logt = simulation.calculate('logt', period)
+        aides_logememt = simulation.calculate('aides_logememt', period)
 
-        return period, pfam + mini + logt
+        return period, pfam + mini + aides_logememt
 
 
 @reference_formula
@@ -413,7 +413,7 @@ class mini(SimpleFormulaColumn):
 
 
 @reference_formula
-class logt(SimpleFormulaColumn):
+class aides_logememt(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocations logements"
@@ -427,9 +427,9 @@ class logt(SimpleFormulaColumn):
         apl = simulation.calculate('apl', period)
         als = simulation.calculate('als', period)
         alf = simulation.calculate('alf', period)
-        crds_lgtm = simulation.calculate('crds_lgtm', period)
+        crds_logememt = simulation.calculate('crds_logememt', period)
 
-        return period, apl + als + alf + crds_lgtm
+        return period, apl + als + alf + crds_logememt
 
 
 @reference_formula
@@ -469,13 +469,13 @@ class crds(SimpleFormulaColumn):
         crds_cap_bar_declarant1 = simulation.calculate('crds_cap_bar_declarant1', period)
         crds_cap_lib_declarant1 = simulation.calculate('crds_cap_lib_declarant1', period)
         crds_pfam_holder = simulation.compute('crds_pfam', period)
-        crds_lgtm_holder = simulation.compute('crds_lgtm', period)
+        crds_logememt_holder = simulation.compute('crds_logememt', period)
         crds_mini_holder = simulation.compute('crds_mini', period)
         crds_pv_mo_holder = simulation.compute('crds_pv_mo', period)
         crds_pv_immo_holder = simulation.compute('crds_pv_immo', period)
 
         crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = VOUS)
-        crds_lgtm = self.cast_from_entity_to_role(crds_lgtm_holder, role = CHEF)
+        crds_logememt = self.cast_from_entity_to_role(crds_logememt_holder, role = CHEF)
         crds_mini = self.cast_from_entity_to_role(crds_mini_holder, role = CHEF)
         crds_pfam = self.cast_from_entity_to_role(crds_pfam_holder, role = CHEF)
         crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo_holder, role = VOUS)
@@ -483,7 +483,7 @@ class crds(SimpleFormulaColumn):
 
         return period, (crdssal + crdsrst + crdscho +
                 crds_fon + crds_cap_bar_declarant1 + crds_cap_lib_declarant1 + crds_pv_mo + crds_pv_immo +
-                crds_pfam + crds_lgtm + crds_mini)
+                crds_pfam + crds_logememt + crds_mini)
 
 
 @reference_formula
