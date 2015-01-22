@@ -26,7 +26,7 @@
 import datetime
 
 
-from ..base import *  # noqa
+from ..base import *  # noqa analysis:ignore
 
 
 # Socio-economic data
