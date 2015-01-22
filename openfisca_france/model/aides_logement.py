@@ -426,7 +426,7 @@ class aide_logement(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_logememt(SimpleFormulaColumn):
+class crds_logement(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"CRDS des allocations logement"
