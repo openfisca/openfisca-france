@@ -48,41 +48,8 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
     from .model import input_variables  # Load input variables into entities. # noqa
     from .model import model  # Load output variables into entities. # noqa
     from .model.cotisations_sociales import preprocessing
-    # from .model.model import prestation_by_name
     if qt:
         from .widgets.Composition import CompositionWidget
-
-    # assert start_from in ['brut', 'imposable']  # TODO: net
-    # column_by_name = input_variables.column_by_name.copy()
-
-    # if start_from in ['brut', 'net']:
-    #     drop_survey_only_variables = True
-
-    # if start_from == 'brut':
-    #     variables_bruts = ['salbrut', 'chobrut', 'rstbrut']
-    #     variables_imposables = ['sali', 'choi', 'rsti']
-    #     column_by_name.update(
-    #         (variable, prestation_by_name.pop(variable).to_column())
-    #         for variable in variables_bruts + ['type_sal', 'primes']
-    #         )
-    #     for variable in variables_imposables:
-    #         del column_by_name[variable]
-    # elif start_from == 'net':
-    #     raise NotImplementedError
-
-    # if drop_survey_only_variables:
-    #     survey_only_variables = [
-    #         name
-    #         for name, column in column_by_name.iteritems()
-    #         if column.survey_only
-    #         ]
-    #     for variable in survey_only_variables:
-    #         del column_by_name[variable]
-
-    #     needed_columns = ['type_sal', 'primes']
-    #     for variable in needed_columns:
-    #         if variable not in column_by_name:
-    #             column_by_name[variable] = prestation_by_name.pop(variable).to_column()
 
     # if simulate_f6de:
     #     del column_by_name['f6de']
