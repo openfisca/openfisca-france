@@ -29,7 +29,7 @@ import csv
 import json
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_not as not_, maximum as max_, minimum as min_, round
+from numpy import ceil, fromiter, int16, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, round
 
 import openfisca_france
 from .base import *  # noqa
@@ -69,7 +69,6 @@ class al_pac(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
         nbR_holder = simulation.compute('nbR', period.start.offset('first-of', 'year').period('year'))
-        enceinte_fam = simulation.calculate('enceinte_fam', period)
         D_enfch = simulation.legislation_at(period.start).al.autres.D_enfch
         af = simulation.legislation_at(period.start).fam.af
         cf = simulation.legislation_at(period.start).fam.cf
@@ -88,8 +87,6 @@ class al_pac(SimpleFormulaColumn):
         al_pac = D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
-
-        al_pac = al_pac + enceinte_fam
 
         return period, al_pac
 
@@ -172,12 +169,16 @@ class aide_logement_montant(SimpleFormulaColumn):
         so_holder = simulation.compute('so', period)
         loyer_holder = simulation.compute('loyer', period)
         coloc_holder = simulation.compute('coloc', period)
-        isol = simulation.calculate('isol', period)
         al_pac = simulation.calculate('al_pac', period)
+        enceinte_fam = simulation.calculate('enceinte_fam', period)
         zone_apl_famille = simulation.calculate('zone_apl_famille', period)
         nat_imp_holder = simulation.compute('nat_imp', period.start.period(u'year').offset('first-of'))
         al = simulation.legislation_at(period.start).al
         fam = simulation.legislation_at(period.start).fam
+
+        # le barème "couple" est utilisé pour les femmes enceintes isolées
+        couple = or_(concub, enceinte_fam)
+        personne_seule = not_(couple)
 
         so = self.cast_from_entity_to_roles(so_holder)
         so = self.filter_role(so, role = CHEF)
@@ -193,8 +194,6 @@ class aide_logement_montant(SimpleFormulaColumn):
 
         # ne prend pas en compte les chambres ni les logements-foyers.
         # variables nécéssaires dans FA
-        # isol : ménage isolé
-        # concub: ménage en couple (rq : concub = ~isol.
         # al_pac : nb de personne à charge du ménage prise en compte pour les AL
         # zone_apl
         # loyer
@@ -204,7 +203,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         #   SO==1 : Accédant à la propriété
         #   SO==2 : Propriétaire (non accédant) du logement.
         #   SO==3 : Locataire d'un logement HLM
-        #   SO==4 : Locataire ou sous-locataire d'un logement loué vie non-HLM
+        #   SO==4 : Locataire ou sous-locataire d'un logement loué vide non-HLM
         #   SO==5 : Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel.
         #   sO==6 : Logé gratuitement par des parents, des amis ou l'employeur
 
@@ -224,20 +223,20 @@ class aide_logement_montant(SimpleFormulaColumn):
         z3 = al.loyers_plafond.zone3
 
         Lz1 = (
-            isol * (al_pac == 0) * z1.L1 +
-            concub * (al_pac == 0) * z1.L2 +
+            personne_seule * (al_pac == 0) * z1.L1 +
+            couple * (al_pac == 0) * z1.L2 +
             (al_pac > 0) * z1.L3 +
             (al_pac > 1) * (al_pac - 1) * z1.L4
             ) * lp_taux
         Lz2 = (
-            isol * (al_pac == 0) * z2.L1 +
-            concub * (al_pac == 0) * z2.L2 +
+            personne_seule * (al_pac == 0) * z2.L1 +
+            couple * (al_pac == 0) * z2.L2 +
             (al_pac > 0) * z2.L3 +
             (al_pac > 1) * (al_pac - 1) * z2.L4
             ) * lp_taux
         Lz3 = (
-            isol * (al_pac == 0) * z3.L1 +
-            concub * (al_pac == 0) * z3.L2 +
+            personne_seule * (al_pac == 0) * z3.L1 +
+            couple * (al_pac == 0) * z3.L2 +
             (al_pac > 0) * z3.L3 +
             (al_pac > 1) * (al_pac - 1) * z3.L4
             ) * lp_taux
@@ -250,7 +249,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         P_fc = al.forfait_charges
         C = (
             not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) +
-            coloc * ((isol * 0.5 + concub) * P_fc.fc1 + al_pac * P_fc.fc2)
+            coloc * ((personne_seule * 0.5 + couple) * P_fc.fc1 + al_pac * P_fc.fc2)
             )
 
         # dépense éligible
@@ -261,8 +260,8 @@ class aide_logement_montant(SimpleFormulaColumn):
 
         # Plafond RO
         R1 = (
-            al.R1.taux1 * rmi * (isol) * (al_pac == 0) +
-            al.R1.taux2 * rmi * (concub) * (al_pac == 0) +
+            al.R1.taux1 * rmi * personne_seule * (al_pac == 0) +
+            al.R1.taux2 * rmi * couple * (al_pac == 0) +
             al.R1.taux3 * rmi * (al_pac == 1) +
             al.R1.taux4 * rmi * (al_pac >= 2) +
             al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
@@ -282,18 +281,19 @@ class aide_logement_montant(SimpleFormulaColumn):
 
         # Taux de famille
         TF = (
-            al.TF.taux1 * (isol) * (al_pac == 0) +
-            al.TF.taux2 * (concub) * (al_pac == 0) +
+            al.TF.taux1 * (personne_seule) * (al_pac == 0) +
+            al.TF.taux2 * (couple) * (al_pac == 0) +
             al.TF.taux3 * (al_pac == 1) +
             al.TF.taux4 * (al_pac == 2) +
             al.TF.taux5 * (al_pac == 3) +
             al.TF.taux6 * (al_pac >= 4) +
             al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
             )
+
         # Loyer de référence
         L_Ref = (
-            z2.L1 * (isol) * (al_pac == 0) +
-            z2.L2 * (concub) * (al_pac == 0) +
+            z2.L1 * (personne_seule) * (al_pac == 0) +
+            z2.L2 * (couple) * (al_pac == 0) +
             z2.L3 * (al_pac >= 1) +
             z2.L4 * (al_pac > 1) * (al_pac - 1)
             )
