@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from . import (  # noqa
+from . import (  # noqa analysis:ignore
     base,
     indemnites_allocations,
     isf,
