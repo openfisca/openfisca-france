@@ -93,7 +93,7 @@ class accident_du_travail(SimpleFormulaColumn):
 class agff_tranche_a_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation chômage AGFF tranche A (employé)"
+    label = u"Cotisation retraite AGFF tranche A (employé)"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -106,7 +106,7 @@ class agff_tranche_a_employe(SimpleFormulaColumn):
 class agff_tranche_a_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation chômage AGFF tranche A (employeur)"
+    label = u"Cotisation retraite AGFF tranche A (employeur)"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
