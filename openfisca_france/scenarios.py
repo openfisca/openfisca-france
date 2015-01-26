@@ -743,19 +743,19 @@ class Scenario(scenarios.AbstractScenario):
                         conv.empty_to_none,
                         conv.not_none,
                         ),
-                    individus = conv.uniform_mapping(
-                        conv.noop,
-                        conv.struct(
-                            dict(
-                                birth = conv.test(
-                                    lambda birth: period.start.date - birth >= datetime.timedelta(0),
-                                    error = u"L'individu doit être né au plus tard le jour de la simulation",
-                                    ),
-                                ),
-                            default = conv.noop,
-                            drop_none_values = 'missing',
-                            ),
-                        ),
+                    # individus = conv.uniform_mapping(
+                    #     conv.noop,
+                    #     conv.struct(
+                    #         dict(
+                    #             birth = conv.test(
+                    #                 lambda birth: period.start.date - birth >= datetime.timedelta(0),
+                    #                 error = u"L'individu doit être né au plus tard le jour de la simulation",
+                    #                 ),
+                    #             ),
+                    #         default = conv.noop,
+                    #         drop_none_values = 'missing',
+                    #         ),
+                    #     ),
                     menages = conv.pipe(
                         conv.uniform_mapping(
                             conv.noop,
