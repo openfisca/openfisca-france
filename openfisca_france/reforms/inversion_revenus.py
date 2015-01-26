@@ -29,7 +29,7 @@ import logging
 
 # from numpy import logical_not as not_
 from openfisca_core import columns, formulas, reforms
-from openfisca_core.taxscales import MarginalRateTaxScale
+# from openfisca_core.taxscales import MarginalRateTaxScale
 from scipy.optimize import fsolve
 
 from .. import entities
@@ -43,16 +43,12 @@ log = logging.getLogger(__name__)
 
 # Reform formulas
 
-# TODO: CHECK la csg déductible en 2006 est case GH
-# TODO:  la revenus soumis aux csg déductible et imposable sont en CG et BH en 2010
-
-
-def brut_to_net(input = None, output_name = None, period = None, simulation = None, **input_array_by_name):
+def brut_to_target(target_name = None, period = None, simulation = None, **input_array_by_name):
     simulation = simulation.clone(debug = simulation.debug, debug_all = simulation.debug_all)
-    simulation.get_holder(output_name).delete_arrays()
+    simulation.get_holder(target_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
         simulation.get_or_new_holder(variable_name).set_array(period, array)
-    return simulation.calculate(output_name)
+    return simulation.calculate(target_name)
 
 
 # Salaires
@@ -80,8 +76,8 @@ class salbrut(formulas.SimpleFormulaColumn):
                     # Quick path to avoid fsolve when using default value of input variables.
                     return period, salnet
                 simulation = self.holder.entity.simulation
-                function = lambda salbrut: brut_to_net(
-                    output_name = 'salnet',
+                function = lambda salbrut: brut_to_target(
+                    target_name = 'salnet',
                     period = period,
                     salbrut = salbrut,
                     simulation = simulation,
@@ -90,79 +86,93 @@ class salbrut(formulas.SimpleFormulaColumn):
 
             sali = simulation.calculate('sali', period)
 
-        # Calcule le salaire brut à partir du salaire imposable.
-        # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
-        # Note : le supplément familial de traitement est imposable.
+        else:
+            # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
+            if (sali == 0).all():
+                # Quick path to avoid fsolve when using default value of input variables.
+                return period, sali
+            simulation = self.holder.entity.simulation
+            function = lambda salbrut: brut_to_target(
+                target_name = 'sal',
+                period = period,
+                salbrut = salbrut,
+                simulation = simulation,
+                ) - sali
+            return period, fsolve(function, sali)
 
-        hsup = simulation.calculate('hsup', period)
-        type_sal = simulation.calculate('type_sal', period)
-        P = simulation.legislation_at(period.start)
 
-        plafond_securite_sociale = P.cotsoc.gen.plafond_securite_sociale
-
-        salarie = P.cotsoc.sal.scale_tax_scales(plafond_securite_sociale)
-        csg = P.csg.scale_tax_scales(plafond_securite_sociale)
-
-        salarie['noncadre'].update(salarie['commun'])
-        salarie['cadre'].update(salarie['commun'])
-
-        # log.info("Le dictionnaire des barèmes des cotisations salariés des titulaires de l'Etat contient : \n %s",
-        #     salarie['fonc']["etat"])
-
-        # Salariés du privé
-
-        noncadre = salarie['noncadre'].combine_tax_scales()
-        cadre = salarie['cadre'].combine_tax_scales()
-
-        # On ajoute la CSG deductible
-        noncadre.add_tax_scale(csg['activite']['deductible'])
-        cadre.add_tax_scale(csg['activite']['deductible'])
-
-        nca = noncadre.inverse()
-        cad = cadre.inverse()
-        brut_nca = nca.calc(sali)
-        brut_cad = cad.calc(sali)
-        salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
-        salbrut += brut_cad * (type_sal == CAT['prive_cadre'])
-
-        # public etat
-        # TODO: modifier la contribution exceptionelle de solidarité
-        # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
-        # et en tenant compte des éléments de l'assiette
-        salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
-
-        public_etat = salarie['fonc']['etat']['pension']
-        # public_colloc = salarie['fonc']["colloc"].combine_tax_scales()  TODO
-
-        # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
-        # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
-        bareme_csg_titulaire_etat = csg['act']['deduc'].multiply_rates(1 + TAUX_DE_PRIME, inplace = False,
-            new_name = "csg deduc titutaire etat")
-        public_etat.add_tax_scale(bareme_csg_titulaire_etat)
-        bareme_prime = MarginalRateTaxScale(name = "taux de prime")
-        bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
-        public_etat.add_tax_scale(bareme_prime)
-
-        etat = public_etat.inverse()
-
-        # TODO: complete this to deal with the fonctionnaire
-        # supp_familial_traitement = 0  # TODO: dépend de salbrut
-        # indemnite_residence = 0  # TODO: fix bug
-
-        # print 'sali', sali
-        brut_etat = etat.calc(sali)
-        # print 'brut_etat', brut_etat
-        # print 'impot', public_etat.calc(brut_etat)
-        # print 'brut_etat', brut_etat
-        salbrut_etat = (brut_etat)
-        # TODO: fonctionnaire
-        # print 'salbrut_etat', salbrut_etat
-        salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
-
-        # <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
-        # <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
-        return period, salbrut + hsup
-
+#        # Calcule le salaire brut à partir du salaire imposable.
+#        # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
+#        # Note : le supplément familial de traitement est imposable.
+#
+#        hsup = simulation.calculate('hsup', period)
+#        type_sal = simulation.calculate('type_sal', period)
+#        P = simulation.legislation_at(period.start)
+#
+#        plafond_securite_sociale = P.cotsoc.gen.plafond_securite_sociale
+#
+#        salarie = P.cotsoc.sal.scale_tax_scales(plafond_securite_sociale)
+#        csg = P.csg.scale_tax_scales(plafond_securite_sociale)
+#
+#        salarie['noncadre'].update(salarie['commun'])
+#        salarie['cadre'].update(salarie['commun'])
+#
+#        # log.info("Le dictionnaire des barèmes des cotisations salariés des titulaires de l'Etat contient : \n %s",
+#        #     salarie['fonc']["etat"])
+#
+#        # Salariés du privé
+#
+#        noncadre = salarie['noncadre'].combine_tax_scales()
+#        cadre = salarie['cadre'].combine_tax_scales()
+#
+#        # On ajoute la CSG deductible
+#        noncadre.add_tax_scale(csg['activite']['deductible'])
+#        cadre.add_tax_scale(csg['activite']['deductible'])
+#
+#        nca = noncadre.inverse()
+#        cad = cadre.inverse()
+#        brut_nca = nca.calc(sali)
+#        brut_cad = cad.calc(sali)
+#        salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
+#        salbrut += brut_cad * (type_sal == CAT['prive_cadre'])
+#
+#        # public etat
+#        # TODO: modifier la contribution exceptionelle de solidarité
+#        # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
+#        # et en tenant compte des éléments de l'assiette
+#        salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
+#
+#        public_etat = salarie['fonc']['etat']['pension']
+#        # public_colloc = salarie['fonc']["colloc"].combine_tax_scales()  TODO
+#
+#        # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
+#        # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
+#        bareme_csg_titulaire_etat = csg['act']['deduc'].multiply_rates(1 + TAUX_DE_PRIME, inplace = False,
+#            new_name = "csg deduc titutaire etat")
+#        public_etat.add_tax_scale(bareme_csg_titulaire_etat)
+#        bareme_prime = MarginalRateTaxScale(name = "taux de prime")
+#        bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
+#        public_etat.add_tax_scale(bareme_prime)
+#
+#        etat = public_etat.inverse()
+#
+#        # TODO: complete this to deal with the fonctionnaire
+#        # supp_familial_traitement = 0  # TODO: dépend de salbrut
+#        # indemnite_residence = 0  # TODO: fix bug
+#
+#        # print 'sali', sali
+#        brut_etat = etat.calc(sali)
+#        # print 'brut_etat', brut_etat
+#        # print 'impot', public_etat.calc(brut_etat)
+#        # print 'brut_etat', brut_etat
+#        salbrut_etat = (brut_etat)
+#        # TODO: fonctionnaire
+#        # print 'salbrut_etat', salbrut_etat
+#        salbrut += salbrut_etat * (type_sal == CAT['public_titulaire_etat'])
+#
+#        # <NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
+#        # <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
+#        return period, salbrut + hsup
 
 # Allocations chômage
 
@@ -185,9 +195,9 @@ class chobrut(formulas.SimpleFormulaColumn):
                     # Quick path to avoid fsolve when using default value of input variables.
                     return period, chonet
                 simulation = self.holder.entity.simulation
-                function = lambda chobrut: brut_to_net(
+                function = lambda chobrut: brut_to_target(
                     chobrut = chobrut,
-                    output_name = 'chonet',
+                    target_name = 'chonet',
                     period = period,
                     simulation = simulation,
                     ) - chonet
@@ -203,29 +213,14 @@ class chobrut(formulas.SimpleFormulaColumn):
             # Quick path to avoid fsolve when using default value of input variables.
             return period, choi
         simulation = self.holder.entity.simulation
-        function = lambda chobrut: brut_to_net(
+        function = lambda chobrut: brut_to_target(
             chobrut = chobrut,
             csg_rempl = csg_rempl,
-            output_name = 'choi',
+            target_name = 'choi',
             period = period,
             simulation = simulation,
             ) - choi
         return period, fsolve(function, choi)
-
-        # P = simulation.legislation_at(period.start)
-
-        # csg = P.csg.chom.scale_tax_scales(P.cotsoc.gen.plaf_ss)
-        # taux_plein = csg['plein']['deduc']
-        # taux_reduit = csg['reduit']['deduc']
-
-        # chom_plein = taux_plein.inverse()
-        # chom_reduit = taux_reduit.inverse()
-        # chobrut = (csg_rempl == 1) * choi + (csg_rempl == 2) * chom_reduit.calc(choi) \
-        #     + (csg_rempl == 3) * chom_plein.calc(choi)
-        # isexo = exo_csg_chom(chobrut, csg_rempl, P)
-        # chobrut = not_(isexo) * chobrut + (isexo) * choi
-
-        # return period, chobrut
 
 
 # Pensions
@@ -250,8 +245,8 @@ class rstbrut(formulas.SimpleFormulaColumn):
                     # Quick path to avoid fsolve when using default value of input variables.
                     return period, rstnet
                 simulation = self.holder.entity.simulation
-                function = lambda rstbrut: brut_to_net(
-                    output_name = 'rstnet',
+                function = lambda rstbrut: brut_to_target(
+                    target_name = 'rstnet',
                     period = period,
                     rstbrut = rstbrut,
                     simulation = simulation,
