@@ -825,8 +825,6 @@ class Scenario(scenarios.AbstractScenario):
         self_json = collections.OrderedDict()
         if self.axes is not None:
             self_json['axes'] = self.axes
-        if self.legislation_url is not None:
-            self_json['legislation_url'] = self.legislation_url
         if self.period is not None:
             self_json['period'] = str(self.period)
 
