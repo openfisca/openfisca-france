@@ -45,7 +45,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'activite',  # Activité
                     'fra',  # Frais réels
-                    'hsup',  # Heures supplémentaires : revenus exonérés connus
+                    'hsup',  # Heures supplémentaires : revenus exonérés connus
                     'ppe_tp_sa',  # Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_tp_ns',  # Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_du_sa',  # Prime pour l'emploi des salariés: nombre d'heures payées dans l'année
@@ -164,6 +164,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""enceinte""",  # Est enceinte
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""coloc""",  # Vie en colocation
+                    u"""chobrut""",  # Chômage brut
+                    u"""rstbrut""",  # Retraite brute
                     u"""aer""",  # Allocation équivalent retraite (AER)
                     u"""f5sq""",
                     u"""adoption""",  # Enfant adopté
@@ -244,31 +246,37 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
                     u"""allegement_fillon_mode_recouvrement""",  # Mode de recouvrement des allègements Fillon
-                    u"""contrat_de_travail""",  # Type contrat de travail, de forfait ou de convention de rémunération des heures travaillées
-                    u"""contrat_de_travail_arrivee""",  # Date d'arrivée dans l'entreprise
-                    u"""contrat_de_travail_depart""",  # Date de départ de l'entreprise
-                    u"""contrat_de_travail_duree""",  # Date de départ de l'entreprise
+                    u"""arrco_tranche_a_taux_employeur""",  # Taux ARRCO tranche A employeur) propre à l'entreprise
+                    u"""arrco_tranche_a_taux_salarie""",  # Taux ARRCO tranche A salarié) propre à l'entreprise
                     u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
                     u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
-                    u"""remboursement_transport_base""",  # Base pour le calcul du remboursement des frais de transport
+                    u"""contrat_de_travail""",  # Type contrat de travail
+                    u"""contrat_de_travail_arrivee""",  # Date d'arrivée dans l'entreprise
+                    u"""contrat_de_travail_depart""",  # Date de départ de l'entreprise
+                    u"""contrat_de_travail_duree""",  # Type (durée determinée ou indéterminée) du contrat de travail
                     u"""effectif_entreprise""",  # Effectif de l'entreprise
                     u"""localisation_entreprise""",  # Localisation entreprise
                     u"""nombre_tickets_restaurant""",  # Nombre de tickets restaurant
-                    u"""ratio_alternants""",  # Ratio d'alternants dans l'effectif moyen
-                    u"""prevoyance_obligatoire_cadre_taux""",  # Taux de cotisation employeur pour la prévoyance obligatoire des cadres
+                    u"""prevoyance_obligatoire_cadre_taux_employe""",  # Taux de cotisation employeur pour la prévoyance obligatoire des cadres
+                    u"""prevoyance_obligatoire_cadre_taux_employeur""",  # Taux de cotisation employeur pour la prévoyance obligatoire des cadres
                     u"""primes_salaires""",  # Indemnités, primes et avantages en argent
                     u"""prise_en_charge_employeur_prevoyance_complementaire""",  # Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur
                     u"""prise_en_charge_employeur_retraite_complementaire""",  # Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur
                     u"""prise_en_charge_employeur_retraite_supplementaire""",  # Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur
+                    u"""ratio_alternants""",  # Ratio d'alternants dans l'effectif moyen
                     u"""redevable_taxe_apprentissage""",  # Entreprise redevable de la taxe d'apprentissage
-                    u"""salarie_au_forfait""",  # Salarié au forfait
+                    u"""remboursement_transport_base""",  # Base pour le calcul du remboursement des frais de transport
                     u"""salaire_de_base""",  # Salaire de base
-                    u"""taux_participation_ticket_restaurant""",  # Taux de participation de l'employeur au ticket restaurant
+                    u"""titre_restaurant_taux_employeur""",  # Taux de participation de l'employeur au titre restaurant
+                    u"""titre_restaurant_valeur_unitaire""",  # Valeur faciale unitaire du titre restaurant
+                    u"""titre_restaurant_volume""",  # Volume des titres restaurant
                     u"""type_sal""",  # Catégorie de salarié
-                    u"""volume_heures_non_remunerees""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
-                    u"""volume_heures_remunerees""",  # Volume des heures ou jours rémunérées
+                    u"""heures_duree_collective_entreprise""",  # Durée mensuelle collective dans l'entreprise (heures, temps plein)
+                    u"""heures_non_remunerees_volume""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
+                    u"""heures_remunerees_volume""",  # Volume des heures rémunérées contractuellement (heures/mois, temps partiel)
+                    u"""forfait_heures_remunerees_volume""",  # Volume des heures rémunérées à un forfait heures
+                    u"""forfait_jours_remuneres_volume""",  # Volume des heures rémunérées à forfait jours
                     u"""volume_jours_ijss""",  # Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale
-                    u"""valeur_ticket_restaurant""",  # Valeur du ticket restaurant
                     u"""tns_chiffre_affaires_micro_entreprise""",  # Chiffre d'affaires de micro-entreprise ou assimilée
                     u"""tns_autres_revenus""",  # Autres revenus non salariés
                     u"""tns_type_structure""",  # Type de structure associée au travailleur non salarié
@@ -315,10 +323,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'caseK',  # Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre
                     'caseL',  # Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul
-                    'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul
+                    'caseE',  # Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul
                     'caseN',  # Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus
                     'caseP',  # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%
-                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)
+                    'caseF',  # Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)
                     'caseW',  # Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseS',  # Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre
                     'caseG',  # Titulaire d'une pension de veuve de guerre
@@ -333,10 +341,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Traitements, salaires, primes pour l'emploi, pensions et rentes"""),
                 ('children', [
-                    'f1aw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans
-                    'f1bw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
-                    'f1cw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
-                    'f1dw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans
+                    'f1aw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans
+                    'f1bw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans
+                    'f1cw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans
+                    'f1dw',  # Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans
                     ]),
                 ]),
             collections.OrderedDict([
@@ -610,17 +618,17 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'b1ab',  # Valeur de la résidence principale avant abattement
                     'b1ac',  # Valeur des autres immeubles avant abattement
-                    'b1bc',  # Immeubles non bâtis : bois, fôrets et parts de groupements forestiers
-                    'b1be',  # Immeubles non bâtis : biens ruraux loués à long termes
-                    'b1bh',  # Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers
-                    'b1bk',  # Immeubles non bâtis : autres biens
+                    'b1bc',  # Immeubles non bâtis : bois, fôrets et parts de groupements forestiers
+                    'b1be',  # Immeubles non bâtis : biens ruraux loués à long termes
+                    'b1bh',  # Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers
+                    'b1bk',  # Immeubles non bâtis : autres biens
                     'b1cl',  # Parts et actions détenues par les salariés et mandataires sociaux
                     'b1cb',  # Parts et actions de sociétés avec engagement de conservation de 6 ans minimum
                     'b1cd',  # Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité
                     'b1ce',  # Autres valeurs mobilières
                     'b1cf',  # Liquidités
                     'b1cg',  # Autres biens meubles
-                    'b1co',  # Autres biens meubles : contrats d'assurance-vie
+                    'b1co',  # Autres biens meubles : contrats d'assurance-vie
                     'b2gh',  # Total du passif et autres déductions
                     'b2mt',  # Réductions pour investissements directs dans une société
                     'b2ne',  # Réductions pour investissements directs dans une société
