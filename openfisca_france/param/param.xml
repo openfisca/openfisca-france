@@ -4867,14 +4867,14 @@
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="46.56" />
         </CODE>
       </NODE>
-      <CODE code="colocation" description="Si co-location" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.75" />
+      <CODE code="colocation" description="Abattement des loyers plafonds pour colocations" format="percent">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
       <CODE code="chambre" description="Si chambre" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.9" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.9" />
       </CODE>
       <CODE code="autre" description="Si article L.351-15" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.75" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
     </NODE>
     <NODE code="forfait_charges" description="Forfait de charge">
