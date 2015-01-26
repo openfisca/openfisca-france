@@ -317,13 +317,20 @@ reform_legislation_subtree = {
 # Build function
 
 def build_reform(tax_benefit_system):
+    # Update legislation
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(reform_legislation_subtree)
 
-    return reforms.make_reform(
+    # Update formulas
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
+    ReformFoyersFiscaux.column_by_name['reduction_impot_exceptionnelle'] = reduction_impot_exceptionnelle
+    ReformFoyersFiscaux.column_by_name['reductions'] = reductions
+
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
         legislation_json = reform_legislation_json,
         name = u'PLFR 2014',
-        new_formulas = (reduction_impot_exceptionnelle, reductions),
         reference = tax_benefit_system,
         )

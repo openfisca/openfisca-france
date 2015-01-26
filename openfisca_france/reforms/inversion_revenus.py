@@ -274,8 +274,17 @@ class rstbrut(formulas.SimpleFormulaColumn):
 
 # Build function
 
-build_reform = lambda tax_benefit_system: reforms.make_reform(
-    name = u'Inversion des revenus',
-    # new_formulas = (chobrut, rstbrut, salbrut),
-    reference = tax_benefit_system,
-    )
+def build_reform(tax_benefit_system):
+    # Update formulas
+
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformIndividus = reform_entity_class_by_key_plural['individus']
+    ReformIndividus.column_by_name['chobrut'] = chobrut
+    ReformIndividus.column_by_name['rstbrut'] = rstbrut
+    ReformIndividus.column_by_name['salbrut'] = salbrut
+
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
+        name = u'inversion des revenus',
+        reference = tax_benefit_system,
+        )
