@@ -111,6 +111,17 @@ reference_input_variable(
     name = 'contrat_de_travail_duree',
     )
 reference_input_variable(
+    column = EnumCol(
+        enum = Enum([
+            u"Mensuel avec régularisation en fin d'année",
+            u"Annuel",
+            ]),
+        ),
+    entity_class = Individus,
+    label = u"Mode de recouvrement des cotisations sociales",
+    name = 'cotisation_sociale_mode_recouvrement',
+    )
+reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
     label = u"Effectif de l'entreprise",
