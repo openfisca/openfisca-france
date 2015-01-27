@@ -422,7 +422,7 @@ class salsuperbrut(SimpleFormulaColumn):
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
         allegement_fillon = simulation.calculate('allegement_fillon', period)
-        alleg_cice = simulation.calculate('alleg_cice', period)
+        credit_impot_competitivite_emploi = simulation.calculate('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
         taxe_salaires = simulation.calculate('taxe_salaires', period)
@@ -432,7 +432,7 @@ class salsuperbrut(SimpleFormulaColumn):
             salbrut + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement +
             - cotisations_patronales
-            - allegement_fillon - alleg_cice - taxe_salaires - tehr
+            - allegement_fillon - credit_impot_competitivite_emploi - taxe_salaires - tehr
             )
 
         return period, salsuperbrut

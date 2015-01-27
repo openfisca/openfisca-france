@@ -103,7 +103,7 @@ tests = [
             versement_transport = 0,
 
             allegement_fillon = 0,
-            alleg_cice = 0,
+            credit_impot_competitivite_emploi = 0,
             forfait_social = 0,
             tehr = 0,
             salbrut = 0,

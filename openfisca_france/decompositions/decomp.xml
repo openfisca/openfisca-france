@@ -8,7 +8,7 @@
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
             <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
             <NODE code="allegement_fillon" color="0,171,208" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
-            <NODE code="alleg_cice" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
+            <NODE code="credit_impot_competitivite_emploi" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
             <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
           </NODE>
           <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal" />

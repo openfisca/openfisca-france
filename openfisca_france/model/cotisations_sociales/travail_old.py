@@ -355,15 +355,15 @@ def _alleg_fillon(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc 
         return 0 * salbrut
 
 
-def _alleg_cice(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
+def _credit_impot_competitivite_emploi(period, salbrut, sal_h_b, type_sal, taille_entreprise, cotsoc = law.cotsoc):
     '''
     Crédit d'imôt pour la compétitivité et l'emploi
     '''
     if period.start.year >= 2013:
         taux_cice = taux_exo_cice(sal_h_b, cotsoc)
-        alleg_cice = (taux_cice * salbrut
+        credit_impot_competitivite_emploi = (taux_cice * salbrut
             * or_((type_sal == CAT['prive_non_cadre']), (type_sal == CAT['prive_cadre'])))
-        return alleg_cice
+        return credit_impot_competitivite_emploi
     else:
         return 0 * salbrut
 
@@ -403,24 +403,24 @@ def _salnet(sal, crdssal, csgsali):
 
 
 def _salsuperbrut(salbrut, primes, indemnite_residence, supp_familial_traitement, cotpat,
-                  alleg_fillon, alleg_cice, taxes_sal, tehr):
+                  alleg_fillon, credit_impot_competitivite_emploi, taxes_sal, tehr):
     """
     Salaires superbruts
     """
     salsuperbrut = (
         salbrut + primes + indemnite_residence + supp_familial_traitement
-        - cotpat - alleg_fillon - alleg_cice - taxes_sal - tehr
+        - cotpat - alleg_fillon - credit_impot_competitivite_emploi - taxes_sal - tehr
         )
 #    expression = ("   salbrut             %s \n"
 #                  " + cotpat              %s \n"
 #                  " + primes              %s \n"
 #                  " + indemnite_residence %s \n"
 #                  " - alleg_fillon        %s \n"
-#                  " - alleg_cice          %s \n"
+#                  " - credit_impot_competitivite_emploi          %s \n"
 #                  " + taxes_sal           %s \n"
 #                  " + tehr                %s \n"
 #                  " = salsuperbut         %s") % (salbrut / 12, cotpat / 12, primes / 12, indemnite_residence / 12,
-#                                                  - alleg_fillon / 12, -alleg_cice / 12, taxes_sal / 12, tehr / 12,
+#                                                  - alleg_fillon / 12, -credit_impot_competitivite_emploi / 12, taxes_sal / 12, tehr / 12,
 #                                                  salsuperbrut / 12)
 #    log.info(expression)
 

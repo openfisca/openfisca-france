@@ -101,7 +101,7 @@ tests = [
             versement_transport = -37.69,
 
             allegement_fillon = 0,
-            alleg_cice = 2512.88 * 0.04, # pas indiqué dans la fiche
+            credit_impot_competitivite_emploi = 2512.88 * 0.04, # pas indiqué dans la fiche
             tehr = 0,
             salbrut = 2512.88,
             assiette_cotisations_sociales = 2512.88,

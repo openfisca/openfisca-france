@@ -163,7 +163,7 @@ class allegement_fillon(DatedFormulaColumn):
 
 
 @reference_formula
-class alleg_cice(DatedFormulaColumn):
+class credit_impot_competitivite_emploi(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
@@ -175,11 +175,11 @@ class alleg_cice(DatedFormulaColumn):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         cotsoc = simulation.legislation_at(period.start).cotsoc
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
-        alleg_cice = (
+        credit_impot_competitivite_emploi = (
             taux_cice
             * assiette_allegement
             )
-        return period, alleg_cice
+        return period, credit_impot_competitivite_emploi
 
 
 def compute_allegement_fillon_annuel(simulation, period):
