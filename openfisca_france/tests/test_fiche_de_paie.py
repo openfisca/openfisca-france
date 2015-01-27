@@ -34,21 +34,21 @@ from openfisca_france.tests.fiche_de_paie import modules
 
 def test_1():
     simulation = tax_benefit_system.new_scenario().init_single_entity(
-        period = "2013",
+        period = "2013-12",
         parent1 = dict(
             effectif_entreprise = 3000,
             exposition_accident = 3,
             localisation_entreprise = "75001",
             ratio_alternants = .025,
-            salaire_de_base = {"2011:3": 12 * 3000},
+            salaire_de_base = {"2013-01:12": 12 * 3000},
             taille_entreprise = 3,
-            type_sal = 0,
+            type_sal = 1,
             ),
         menage = dict(
             zone_apl = 1,
             ),
         ).new_simulation(debug = True)
-    simulation.calculate("revdisp")
+    simulation.calculate("agff_tranche_a_employe", period = "2013-12")
 
 
 def iter_scenarios():
