@@ -227,7 +227,9 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * cmu_forfait_logement_al + aspa + ass + asi + af + cf + asf + paje_clca)
+            (aide_logement > 0) * cmu_forfait_logement_al)
+
+        res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca)
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
