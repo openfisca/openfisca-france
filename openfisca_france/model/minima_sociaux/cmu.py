@@ -203,6 +203,12 @@ class cmu_base_ressources(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         aspa = simulation.calculate('aspa', period)
+        ass = simulation.calculate('ass', period)
+        asi = simulation.calculate('asi', period)
+        af = simulation.calculate('af', period)
+        cf = simulation.calculate('cf', period)
+        asf = simulation.calculate('asf', period)
+        paje_clca = simulation.calculate('paje_clca', period)
         so_holder = simulation.compute('so', period)
         aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
@@ -221,7 +227,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
             ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * cmu_forfait_logement_al + aspa)
+            (aide_logement > 0) * cmu_forfait_logement_al + aspa + ass + asi + af + cf + asf + paje_clca)
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]

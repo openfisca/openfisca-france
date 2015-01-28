@@ -187,7 +187,7 @@ class smic55(SimpleFormulaColumn):
         salbrut = simulation.calculate('salbrut', period)
         _P = simulation.legislation_at(period.start)
 
-        nbh_travaillees = 151.67
+        nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
         return period, salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
 
@@ -261,12 +261,9 @@ class div(SimpleFormulaColumn):
 class rev_coll(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"rev_coll"
+    label = u"Revenus collectifs"
 
     def function(self, simulation, period):
-        '''
-        Revenus collectifs
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period)
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)

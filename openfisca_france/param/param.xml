@@ -402,6 +402,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2279" />
       </CODE>
       <CODE code="smic_h_b" description="SMIC horaire brut" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9.53" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="9.43" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="9.40" />
@@ -4594,8 +4595,7 @@
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="8000" />
       </CODE>
       <CODE code="dar_2_2" description="Plancher ressources AL en secteur accession R. 351-7-1" format="float" type="monetary">
-     # non trouvé
-    <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
+        <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="3900" />
       </CODE>
       <CODE code="dar_3" description="Coefficient R. 351-7-1" format="float">
@@ -4640,7 +4640,7 @@
           <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1500" />
         </CODE>
       </NODE>
-      <CODE code="dar_4" description="Montant R. 351-7-2" format="float" type="monetary">
+      <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="5411.62" />
         <VALUE deb="2002-07-01" fin="2007-06-30" valeur="5500" />
         <VALUE deb="2007-07-01" fin="2008-12-31" valeur="6900" />
@@ -4649,7 +4649,7 @@
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7300" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="7500" />
       </CODE>
-      <CODE code="dar_5" description="Minoration si titulaire d'une bourse de l'enseignement supérieur" format="float" type="monetary">
+      <CODE code="dar_5" description="Minoration du plancher de ressources étudiants pour boursiers" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-11-30" valeur="990.86" />
         <VALUE deb="2002-12-01" fin="2007-06-30" valeur="1100" />
         <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1400" />
@@ -4706,6 +4706,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="282.02" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="284.84" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="290.96" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="292.62" />
         </CODE>
         <CODE code="L2" description="Zone 1 - 2 adultes" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="293.46" />
@@ -4719,6 +4720,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="340.13" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="343.53" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="350.92" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="352.92" />
         </CODE>
         <CODE code="L3" description="Zone 1 - 1 enfant" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="330.05" />
@@ -4732,6 +4734,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="384.42" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="388.26" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="396.61" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="398.87" />
         </CODE>
         <CODE code="L4" description="Zone 1 - enfants supplémentaires" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="47.87" />
@@ -4745,6 +4748,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="55.76" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="56.32" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="57.53" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="57.86" />
         </CODE>
       </NODE>
       <NODE code="zone2" description="Zone 2">
@@ -4760,6 +4764,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="245.78" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="248.24" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="253.58" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="255.03" />
         </CODE>
         <CODE code="L2" description="Zone 2 - 2 adultes" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="261.6" />
@@ -4773,6 +4778,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="300.84" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="303.85" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="310.38" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="312.15" />
         </CODE>
         <CODE code="L3" description="Zone 2 - 1 enfant" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="294.38" />
@@ -4786,6 +4792,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="338.52" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="341.91" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="349.26" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="351.25" />
         </CODE>
         <CODE code="L4" description="Zone 2 - enfants supplémentaires" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="42.84" />
@@ -4799,6 +4806,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="49.27" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="49.76" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="50.83" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="51.12" />
         </CODE>
       </NODE>
       <NODE code="zone3" description="Zone 3">
@@ -4814,6 +4822,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="230.37" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="232.67" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="237.67" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="239.02" />
         </CODE>
         <CODE code="L2" description="Zone 3 - 2 adultes" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="242.85" />
@@ -4827,6 +4836,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="279.27" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="282.06" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="288.12" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="289.76" />
         </CODE>
         <CODE code="L3" description="Zone 3 - 1 enfant" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="272.27" />
@@ -4840,6 +4850,7 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="313.12" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="316.25" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="323.05" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="324.89" />
         </CODE>
         <CODE code="L4" description="Zone 3 - enfants supplémentaires" format="float" type="monetary">
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="39.03" />
@@ -4853,16 +4864,17 @@
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="44.88" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45.33" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="46.30" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="46.56" />
         </CODE>
       </NODE>
-      <CODE code="colocation" description="Si co-location" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.75" />
+      <CODE code="colocation" description="Abattement des loyers plafonds pour colocations" format="percent">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
       <CODE code="chambre" description="Si chambre" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.9" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.9" />
       </CODE>
       <CODE code="autre" description="Si article L.351-15" format="percent">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.75" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
     </NODE>
     <NODE code="forfait_charges" description="Forfait de charge">
@@ -4875,7 +4887,8 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="50.75" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="51.31" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51.82" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="52.93" />
+        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="52.93" />
+        <VALUE deb="2014-10-01" fin="2015-09-30" valeur="53.23" />
       </CODE>
       <CODE code="fc2" description="Cas général - par personne à charge supplémentaire" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="10.52" />
@@ -4886,7 +4899,8 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="11.49" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="11.62" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11.74" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="11.99" />
+        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="11.99" />
+        <VALUE deb="2014-10-01" fin="2015-09-30" valeur="12.06" />
       </CODE>
     </NODE>
     <NODE code="pp" description="Participation personnelle minimale">
@@ -4902,7 +4916,8 @@
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="33" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="33.47" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="33.80" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="34.53" />
+        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="34.53" />
+        <VALUE deb="2014-10-01" fin="2015-09-30" valeur="34.73" />
       </CODE>
     </NODE>
     <NODE code="R1" description="R1 (% du RMI)">
@@ -4985,7 +5000,7 @@
       </CODE>
       <CODE code="abat_sal" description="Abattement salarié" format="percent">
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.28" />
-        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.10" />
+        <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.10" />
       </CODE>
       <CODE code="D_enfch" description="Enfants comptés à charge (pour scénario de réforme)" format="integer">
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="1" />

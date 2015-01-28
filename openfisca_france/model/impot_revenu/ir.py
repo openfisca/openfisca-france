@@ -360,13 +360,9 @@ class jveuf(SimpleFormulaColumn):
 class rev_sal(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"rev_sal"
+    label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
 
     def function(self, simulation, period):
-        '''
-        Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)
-        'ind'
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         sal = simulation.calculate('sal', period)
         cho = simulation.calculate('cho', period)
@@ -378,13 +374,9 @@ class rev_sal(SimpleFormulaColumn):
 class salcho_imp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"salcho_imp"
+    label = u"Salaires et chômage imposables après abattements"
 
     def function(self, simulation, period):
-        """
-        Salaires après abattements
-        'ind'
-        """
         period = period.start.offset('first-of', 'month').period('year')
         rev_sal = simulation.calculate('rev_sal', period)
         cho_ld = simulation.calculate('cho_ld', period)
@@ -2346,13 +2338,9 @@ class rnc(SimpleFormulaColumn):
 class rpns(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"rpns"
+    label = u"Revenus individuels des professions non salariées"
 
     def function(self, simulation, period):
-        '''
-        Revenus des professions non salariées individuels
-        'ind'
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         rag = simulation.calculate('rag', period)
         ric = simulation.calculate('ric', period)
