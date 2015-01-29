@@ -133,16 +133,16 @@ def test_decomposition(print_decomposition = False):
 
 if __name__ == '__main__':
     
-    from openfisca_france.tests.fiche_de_paie.ingenieur_etude5_2014_07 import tests
-    simple_check(tests = tests)
+#    from openfisca_france.tests.fiche_de_paie.ingenieur_etude5_2014_07 import tests
+#    simple_check(tests = tests)
 
-#    import logging
-#    import sys
-#
-#    requested_variables_name = sys.argv[1:]
-#    logging.basicConfig(level = logging.INFO, stream = sys.stdout)
-#    for function, simulation, variable_name, test_name, expected_value in test_check():
-#        if not requested_variables_name or variable_name in requested_variables_name:
-#            function(simulation, variable_name, test_name, expected_value)
+    import logging
+    import sys
+
+    requested_variables_name = sys.argv[1:]
+    logging.basicConfig(level = logging.INFO, stream = sys.stdout)
+    for function, simulation, variable_name, test_name, expected_value in test_check():
+        if not requested_variables_name or variable_name in requested_variables_name:
+            function(simulation, variable_name, test_name, expected_value)
 
 #    test_decomposition(print_decomposition = True)
