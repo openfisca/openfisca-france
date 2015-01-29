@@ -133,9 +133,6 @@ def test_decomposition(print_decomposition = False):
 
 if __name__ == '__main__':
     
-#    from openfisca_france.tests.fiche_de_paie.ingenieur_etude5_2014_07 import tests
-#    simple_check(tests = tests)
-
     import logging
     import sys
 
