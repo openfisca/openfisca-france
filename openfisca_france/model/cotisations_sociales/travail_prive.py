@@ -472,9 +472,9 @@ class forfait_social(SimpleFormulaColumn):
         taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
 
         # TODO: complete this
-        assiette_taux_plein = 0 # TODO: complete this
-        assiette_taux_reduit = prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
-
+        assiette_taux_plein = 0 # TODO: complete this        
+        assiette_taux_reduit = prevoyance_obligatoire_cadre - prise_en_charge_employeur_prevoyance_complementaire
+        
         return period, (
             assiette_taux_plein * taux_plein +
             assiette_taux_reduit * taux_reduit

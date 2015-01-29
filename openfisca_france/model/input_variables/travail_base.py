@@ -177,11 +177,17 @@ reference_input_variable(
     name = 'redevable_taxe_apprentissage',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Base pour le calcul du remboursement des frais de transport",
     name = 'remboursement_transport_base',
     )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Indemnités forfaitaires (transport, nourriture)",
+    name = 'indemnites_forfaitaires',
+    )    
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
