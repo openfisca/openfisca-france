@@ -85,6 +85,7 @@ reform_legislation_subtree = {
 # Build function
 
 def build_reform(tax_benefit_system):
+    # Update legislation
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_year = 2014
@@ -104,9 +105,14 @@ def build_reform(tax_benefit_system):
         )
     reform_legislation_json['children'].update(reform_legislation_subtree)
 
-    return reforms.make_reform(
+    # Update formulas
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
+    ReformFoyersFiscaux.column_by_name['decote'] = decote
+
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
         legislation_json = reform_legislation_json,
         name = u'PLF2015',
-        new_formulas = (decote, ),
         reference = tax_benefit_system,
         )

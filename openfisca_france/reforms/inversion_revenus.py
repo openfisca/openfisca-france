@@ -45,7 +45,7 @@ log = logging.getLogger(__name__)
 
 def brut_to_target(target_name = None, period = None, simulation = None, **input_array_by_name):
     simulation = simulation.clone(debug = simulation.debug, debug_all = simulation.debug_all)
-    simulation.get_or_new_holder(target_name).delete_arrays()
+    simulation.get_holder(target_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
         simulation.get_or_new_holder(variable_name).set_array(period, array)
     return simulation.calculate(target_name)
@@ -67,8 +67,7 @@ class salbrut(formulas.SimpleFormulaColumn):
         """
 #        period = period.start.offset('first-of', 'month').period('month')
 
-        # Get value for year and divide below.
-        sali = simulation.get_array('sali', period.start.offset('first-of', 'year').period('year'))
+        sali = simulation.get_array('sali', period)
         if sali is None:
             salnet = simulation.get_array('salnet', period)
             if salnet is not None:
@@ -86,21 +85,20 @@ class salbrut(formulas.SimpleFormulaColumn):
                 return period, fsolve(function, salnet)
 
             sali = simulation.calculate('sali', period)
-        else:
-            sali = sali / 12
 
-        # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
-        if (sali == 0).all():
-            # Quick path to avoid fsolve when using default value of input variables.
-            return period, sali
-        simulation = self.holder.entity.simulation
-        function = lambda salbrut: brut_to_target(
-            target_name = 'sal',
-            period = period,
-            salbrut = salbrut,
-            simulation = simulation,
-            ) - sali
-        return period, fsolve(function, sali)
+        else:
+            # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
+            if (sali == 0).all():
+                # Quick path to avoid fsolve when using default value of input variables.
+                return period, sali
+            simulation = self.holder.entity.simulation
+            function = lambda salbrut: brut_to_target(
+                target_name = 'sal',
+                period = period,
+                salbrut = salbrut,
+                simulation = simulation,
+                ) - sali
+            return period, fsolve(function, sali)
 
 
 #        # Calcule le salaire brut à partir du salaire imposable.
@@ -176,7 +174,6 @@ class salbrut(formulas.SimpleFormulaColumn):
 #        # <NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
 #        return period, salbrut + hsup
 
-
 # Allocations chômage
 
 class chobrut(formulas.SimpleFormulaColumn):
@@ -188,8 +185,8 @@ class chobrut(formulas.SimpleFormulaColumn):
     def function(self, simulation, period):
         """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
         """
-        # Get value for year and divide below.
-        choi = simulation.get_array('choi', period.start.offset('first-of', 'year').period('year'))
+
+        choi = simulation.get_array('choi', period)
         if choi is None:
             chonet = simulation.get_array('chonet', period)
             if chonet is not None:
@@ -207,8 +204,6 @@ class chobrut(formulas.SimpleFormulaColumn):
                 return period, fsolve(function, chonet)
 
             choi = simulation.calculate('choi', period)
-        else:
-            choi = choi / 12
 
         # Calcule les allocations chômage brutes à partir des allocations imposables.
 
@@ -221,7 +216,7 @@ class chobrut(formulas.SimpleFormulaColumn):
         function = lambda chobrut: brut_to_target(
             chobrut = chobrut,
             csg_rempl = csg_rempl,
-            target_name = 'cho',
+            target_name = 'choi',
             period = period,
             simulation = simulation,
             ) - choi
@@ -241,8 +236,7 @@ class rstbrut(formulas.SimpleFormulaColumn):
         """
 #        period = period.start.offset('first-of', 'month').period('month')
 
-        # Get value for year and divide below.
-        rsti = simulation.get_array('rsti', period.start.offset('first-of', 'year').period('year'))
+        rsti = simulation.get_array('rsti', period)
         if rsti is None:
             rstnet = simulation.get_array('rstnet', period)
             if rstnet is not None:
@@ -260,28 +254,32 @@ class rstbrut(formulas.SimpleFormulaColumn):
                 return period, fsolve(function, rstnet)
 
             rsti = simulation.calculate('rsti', period)
-        else:
-            rsti = rsti / 12
 
         # Calcule les pensions de retraite brutes à partir des pensions imposables.
 
         csg_rempl = simulation.calculate('csg_rempl', period)
         P = simulation.legislation_at(period.start).csg.retraite
 
-        # rst_plein = P.plein.deduc.inverse()
-        # rst_reduit = P.reduit.deduc.inverse()
-        # rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
+        rst_plein = P.plein.deduc.inverse()
+        rst_reduit = P.reduit.deduc.inverse()
+        rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
 
-        rstbrut = rsti  # FIXME
         return period, rstbrut
 
 
 # Build function
 
 def build_reform(tax_benefit_system):
-    InversionRevenusReform = reforms.make_reform(
-        name = u'Inversion des revenus',
-        new_formulas = (chobrut, rstbrut, salbrut),
+    # Update formulas
+
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformIndividus = reform_entity_class_by_key_plural['individus']
+    ReformIndividus.column_by_name['chobrut'] = chobrut
+    ReformIndividus.column_by_name['rstbrut'] = rstbrut
+    ReformIndividus.column_by_name['salbrut'] = salbrut
+
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
+        name = u'inversion des revenus',
         reference = tax_benefit_system,
         )
-    return InversionRevenusReform()

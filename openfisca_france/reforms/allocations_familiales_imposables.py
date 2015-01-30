@@ -126,16 +126,21 @@ reform_legislation_subtree = {
     }
 
 
-# Build function
-
 def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(reform_legislation_subtree)
 
-    return reforms.make_reform(
+    # Update formulas
+    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
+    ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
+    ReformFoyersFiscaux.column_by_name['rbg'] = rbg
+    ReformFoyersFiscaux.column_by_name['rfr'] = rfr
+    ReformFoyersFiscaux.column_by_name['allocations_familiales_imposables'] = allocations_familiales_imposables
+
+    return reforms.Reform(
+        entity_class_by_key_plural = reform_entity_class_by_key_plural,
         legislation_json = reform_legislation_json,
         name = u'Allocations familiales imposables',
-        new_formulas = (rbg, rfr, allocations_familiales_imposables),
         reference = tax_benefit_system,
         )
