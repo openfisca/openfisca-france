@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros
+from numpy import int32, logical_not as not_, maximum as max_, minimum as min_, zeros, logical_or as or_
 
 from ..base import *  # noqa
 
@@ -267,8 +267,13 @@ class cmu_c(SimpleFormulaColumn):
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
         residence_mayotte = simulation.calculate('residence_mayotte', this_month)
+        rsa_socle = simulation.calculate('rsa_socle', this_month)
+        ra_rsa = simulation.calculate('ra_rsa', this_month)
 
-        return period, not_(residence_mayotte) * (cmu_base_ressources <= cmu_c_plafond)
+        eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
+        eligibilite_rsa = (rsa_socle > 0) * (ra_rsa == 0)
+
+        return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
 
 @reference_formula
