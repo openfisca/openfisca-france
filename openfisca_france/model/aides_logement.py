@@ -100,7 +100,7 @@ class br_al(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
-        etudiant_holder = simulation.compute('etu', period)
+        etu_holder = simulation.compute('etu', period)
         boursier_holder = simulation.compute('boursier', period)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
@@ -109,7 +109,7 @@ class br_al(SimpleFormulaColumn):
 
         boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-        etudiant = self.split_by_roles(etudiant_holder, roles = [CHEF, PART])
+        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         rev_coll = self.sum_by_entity(rev_coll_holder)
         etudiant_demandeur = (etudiant[CHEF]) & (not_(etudiant[PART]))
         etudiant_partenaire = not_(etudiant[CHEF]) & (etudiant[PART])
