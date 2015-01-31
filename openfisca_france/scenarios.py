@@ -916,6 +916,22 @@ class Scenario(scenarios.AbstractScenario):
 # Finders
 
 
+def find_age(individu, date, default = None):
+    birth = individu.get('birth')
+    if birth is not None:
+        age = date.year - birth.year
+        if date.month < birth.month or date.month == birth.month and date.day < birth.day:
+            age -= 1
+        return age
+    age = individu.get('age')
+    if age is not None:
+        return age
+    agem = individu.get('agem')
+    if agem is not None:
+        return agem / 12.0
+    return default
+
+
 def find_famille_and_role(test_case, individu_id):
     for famille_id, famille in test_case['familles'].iteritems():
         for role in (u'parents', u'enfants'):
@@ -941,22 +957,3 @@ def find_menage_and_role(test_case, individu_id):
             if individu_id in menage[role]:
                 return menage_id, menage, role
     return None, None, None
-
-
-def find_age(individu, date, default = None):
-    birth = individu.get('birth')
-    if birth is not None:
-        age = date.year - birth.year
-        if date.month < birth.month or date.month == birth.month and date.day < birth.day:
-            age -= 1
-        return age
-    age = individu.get('age')
-    if age is not None:
-        return age
-    age = individu.get('age')
-    if age is not None:
-        return age
-    agem = individu.get('agem')
-    if agem is not None:
-        return agem / 12.0
-    return default
