@@ -85,6 +85,8 @@ class salbrut(formulas.SimpleFormulaColumn):
                 return period, fsolve(function, salnet)
 
             sali = simulation.calculate('sali', period)
+        else:
+            sali = simulation.divide_calculate('sali', period)
 
         else:
             # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
@@ -204,6 +206,8 @@ class chobrut(formulas.SimpleFormulaColumn):
                 return period, fsolve(function, chonet)
 
             choi = simulation.calculate('choi', period)
+        else:
+            choi = simulation.divide_calculate('choi', period)
 
         # Calcule les allocations chômage brutes à partir des allocations imposables.
 
@@ -254,6 +258,8 @@ class rstbrut(formulas.SimpleFormulaColumn):
                 return period, fsolve(function, rstnet)
 
             rsti = simulation.calculate('rsti', period)
+        else:
+            rsti = simulation.divide_calculate('rsti', period)
 
         # Calcule les pensions de retraite brutes à partir des pensions imposables.
 
