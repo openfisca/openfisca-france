@@ -122,6 +122,7 @@ class br_al(SimpleFormulaColumn):
 
         revCatVous = max_(br_pf_i[CHEF], etudiant_demandeur * (Pr.dar_4 - (etudiant_boursier_demandeur) * Pr.dar_5))
         revCatConj = max_(br_pf_i[PART], etudiant_partenaire * (Pr.dar_4 - (etudiant_boursier_partenaire) * Pr.dar_5))
+
         revCatVsCj = (
             not_(etudiant_les_deux) * (revCatVous + revCatConj) +
             etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
@@ -313,7 +314,11 @@ class aide_logement_montant(SimpleFormulaColumn):
         al_acc = 0 * acce
         # # APL (tous)
 
-        return period, al_loc + al_acc
+        taux_crds = simulation.legislation_at(period.start).fam.af.crds
+        al = al_loc + al_acc
+        al = round(al * (1 - taux_crds), 2)
+
+        return period, al
 
 
 @reference_formula
