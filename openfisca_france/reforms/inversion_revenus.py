@@ -88,19 +88,18 @@ class salbrut(formulas.SimpleFormulaColumn):
         else:
             sali = simulation.divide_calculate('sali', period)
 
-        else:
-            # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
-            if (sali == 0).all():
-                # Quick path to avoid fsolve when using default value of input variables.
-                return period, sali
-            simulation = self.holder.entity.simulation
-            function = lambda salbrut: brut_to_target(
-                target_name = 'sal',
-                period = period,
-                salbrut = salbrut,
-                simulation = simulation,
-                ) - sali
-            return period, fsolve(function, sali)
+        # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
+        if (sali == 0).all():
+            # Quick path to avoid fsolve when using default value of input variables.
+            return period, sali
+        simulation = self.holder.entity.simulation
+        function = lambda salbrut: brut_to_target(
+            target_name = 'sal',
+            period = period,
+            salbrut = salbrut,
+            simulation = simulation,
+            ) - sali
+        return period, fsolve(function, sali)
 
 
 #        # Calcule le salaire brut à partir du salaire imposable.
