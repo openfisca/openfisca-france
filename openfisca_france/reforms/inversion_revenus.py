@@ -44,7 +44,7 @@ log = logging.getLogger(__name__)
 # Reform formulas
 
 def brut_to_target(target_name = None, period = None, simulation = None, **input_array_by_name):
-    simulation = simulation.clone(debug = simulation.debug, debug_all = simulation.debug_all)
+    simulation = simulation.clone(debug = simulation.debug, debug_all = simulation.debug_all, trace = simulation.trace)
     simulation.get_holder(target_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
         simulation.get_or_new_holder(variable_name).set_array(period, array)
