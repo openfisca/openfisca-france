@@ -268,10 +268,9 @@ class cmu_c(SimpleFormulaColumn):
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
         residence_mayotte = simulation.calculate('residence_mayotte', this_month)
         rsa_socle = simulation.calculate('rsa_socle', this_month)
-        ra_rsa = simulation.calculate('ra_rsa', this_month)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-        eligibilite_rsa = (rsa_socle > 0) * (ra_rsa == 0)
+        eligibilite_rsa = rsa_socle > 0
 
         return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
