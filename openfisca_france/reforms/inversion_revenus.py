@@ -259,8 +259,8 @@ class rstbrut(formulas.SimpleFormulaColumn):
 
         # Calcule les pensions de retraite brutes à partir des pensions imposables.
 
-        csg_rempl = simulation.calculate('csg_rempl', period)
-        P = simulation.legislation_at(period.start).csg.retraite
+        # csg_rempl = simulation.calculate('csg_rempl', period)
+        # P = simulation.legislation_at(period.start).csg.retraite
 
         # rst_plein = P.plein.deduc.inverse()
         # rst_reduit = P.reduit.deduc.inverse()
