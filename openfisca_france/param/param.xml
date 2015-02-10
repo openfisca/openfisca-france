@@ -2180,7 +2180,7 @@
     <NODE code="tspr" description="Total salaires pensions et rentes">
       <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels">
         <CODE code="taux" description="Taux de l'abattement" format="percent">
-          <VALUE deb="1944-01-01" fin="2013-12-31" valeur="0.10" />
+          <VALUE deb="1944-01-01" fin="2015-12-31" valeur="0.10" />
         </CODE>
         <CODE code="max" description="Abattement maximum" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="12229" />
