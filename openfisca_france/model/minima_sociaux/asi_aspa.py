@@ -47,6 +47,7 @@ class br_mv_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
+        aspa_elig = simulation.calculate('aspa_elig', period)
         salnet = simulation.calculate('salnet', three_previous_months)
         chonet = simulation.calculate('chonet', three_previous_months)
         rstnet = simulation.calculate('rstnet', three_previous_months)
@@ -72,6 +73,7 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
         tns_total_revenus = simulation.calculate('tns_total_revenus', three_previous_months)
         rsa_base_ressources_patrimoine_i = simulation.calculate('rsa_base_ressources_patrimoine_i', three_previous_months)
+        aah = simulation.calculate('aah', three_previous_months)
 
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
@@ -83,7 +85,7 @@ class br_mv_i(SimpleFormulaColumn):
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
                indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
-               rsa_base_ressources_patrimoine_i
+               rsa_base_ressources_patrimoine_i + aah * not_(aspa_elig)
                ) / 3
 
 
