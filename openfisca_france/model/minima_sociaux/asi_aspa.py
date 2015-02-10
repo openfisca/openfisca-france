@@ -30,6 +30,14 @@ from numpy import (maximum as max_, logical_not as not_)
 from ..base import *  # noqa
 
 
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Individus,
+    label = u"Reconnu inapte au travail",
+    name = "inapte_travail",
+    )
+
+
 @reference_formula
 class br_mv_i(SimpleFormulaColumn):
     column = FloatCol
@@ -103,10 +111,10 @@ class aspa_elig(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         age = simulation.calculate('age', period)
-        inv = simulation.calculate('inv', period)
+        inapte_travail = simulation.calculate('inapte_travail', period)
         P = simulation.legislation_at(period.start).minim
 
-        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
+        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inapte_travail)
         return period, condition_age
 
 
