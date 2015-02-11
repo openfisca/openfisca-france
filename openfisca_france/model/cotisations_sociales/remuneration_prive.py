@@ -49,6 +49,8 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
         avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+        hsup = simulation.calculate('hsup', period)
+        indemnites_compensatrices_conges_payes = simulation.calculate('indemnites_compensatrices_conges_payes', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         primes_salaires = simulation.calculate('primes_salaires', period)
@@ -63,6 +65,8 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
             salaire_de_base +
             primes_salaires +
             avantages_en_nature +
+            heures_supplementaire_montant +
+            indemnites_compensatrices_conges_payes +
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur
             )
