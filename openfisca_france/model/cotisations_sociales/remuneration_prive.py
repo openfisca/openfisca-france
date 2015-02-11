@@ -44,7 +44,20 @@ log = logging.getLogger(__name__)
 class assiette_cotisations_sociales(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Assiette des cotisations sociales des salaries du prive et des contractuel de la fonction publique"
+    label = u"Assiette des cotisations sociales des salaries"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period(u'month')
+        assiette_cotisations_sociales_prive = simulation.calculate('assiette_cotisations_sociales_prive', period)
+        assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
+        return period, assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public
+
+
+@reference_formula
+class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Assiette des cotisations sociales des salaries du prive"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
@@ -63,10 +76,11 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
             salaire_de_base +
             primes_salaires +
             avantages_en_nature +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            (type_sal == CAT['public_non_titulaire']) * (
+                indemnite_residence + primes_fonction_publique
+                ) +
             reintegration_titre_restaurant_employeur
             )
-
         return period, max_(assiette, smic_proratise) * (assiette > 0)
 
 

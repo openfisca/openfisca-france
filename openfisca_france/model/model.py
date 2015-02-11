@@ -39,6 +39,7 @@ from .cotisations_sociales import (  # noqa #analysis:ignore
     capital,
     remplacement,
     remuneration_prive,
+    remuneration_public,
     travail_fonction_publique,
     travail_prive,
     travail_totaux,
