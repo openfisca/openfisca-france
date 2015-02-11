@@ -65,7 +65,7 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
             salaire_de_base +
             primes_salaires +
             avantages_en_nature +
-            heures_supplementaire_montant +
+            hsup +
             indemnites_compensatrices_conges_payes +
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur
