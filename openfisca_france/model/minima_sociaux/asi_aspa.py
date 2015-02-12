@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_)
+from numpy import (maximum as max_, logical_not as not_, logical_or as or_)
 
 from ..base import *  # noqa
 
@@ -78,6 +78,9 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
+        # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
+        aah = aah * or_(not_(aspa_elig), pensions_invalidite + rstnet == 0)
+
         return period, (salnet + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
@@ -85,7 +88,7 @@ class br_mv_i(SimpleFormulaColumn):
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
                indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
-               rsa_base_ressources_patrimoine_i + aah * not_(aspa_elig)
+               rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
 
