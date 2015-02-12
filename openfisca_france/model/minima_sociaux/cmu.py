@@ -225,9 +225,10 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
-            ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * cmu_forfait_logement_al)
+        forfait_logement = (((so == 2) + (so == 6)) * cmu_forfait_logement_base +
+            (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement * 12))
+
+        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
         res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca)
 
