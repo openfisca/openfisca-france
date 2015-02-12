@@ -160,6 +160,8 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
+        last_month = period.start.period('month').offset(-1)
+
         activite = simulation.calculate('activite', period)
         salnet = simulation.calculate('salnet', previous_year)
         chonet = simulation.calculate('chonet', previous_year)
@@ -172,7 +174,8 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', previous_year)
         indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        revenus_stage_formation_pro_dernier_mois = simulation.calculate('revenus_stage_formation_pro', last_month)
         allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', previous_year)
         prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', previous_year)
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', previous_year)
@@ -186,7 +189,13 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         tns_total_revenus = simulation.calculate('tns_total_revenus', previous_year)
         P = simulation.legislation_at(period.start).cmu
 
-        return period, ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - (activite == 1) * P.abattement_chomage) +
+        # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
+        revenus_stage_formation_pro = revenus_stage_formation_pro_annee * (revenus_stage_formation_pro_dernier_mois > 0)
+
+        # Abattement sur revenus d'activité si chômage ou formation professionnelle
+        abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
+
+        return period, ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
             indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
