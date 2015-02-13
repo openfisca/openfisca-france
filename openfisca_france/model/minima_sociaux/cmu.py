@@ -195,12 +195,12 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         # Abattement sur revenus d'activité si chômage ou formation professionnelle
         abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
 
-        return period, ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
+        return period, ((salnet + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
             indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
-            tns_total_revenus)
+            tns_total_revenus + revenus_stage_formation_pro)
 
 
 @reference_formula
