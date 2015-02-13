@@ -79,7 +79,7 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
-        aah = aah * or_(not_(aspa_elig), pensions_invalidite + rstnet == 0)
+        aah = aah * not_(aspa_elig)
 
         return period, (salnet + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
@@ -115,12 +115,19 @@ class aspa_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        last_month = period.start.period('month').offset(-1)
+
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
+        rstnet = simulation.calculate('rstnet', last_month)
+        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
+
         P = simulation.legislation_at(period.start).minim
 
         condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inapte_travail)
-        return period, condition_age
+        condition_pensionnement = (rstnet + pensions_invalidite) > 0
+
+        return period, condition_age * condition_pensionnement
 
 
 @reference_formula
