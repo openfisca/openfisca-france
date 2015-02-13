@@ -583,7 +583,9 @@ class tspr(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
         sal_pen_net = simulation.calculate('sal_pen_net', period)
-        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period)
+        # Quand tspr est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
+        # correspondante.
+        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
 
         return period, sal_pen_net + rto_net_declarant1
 

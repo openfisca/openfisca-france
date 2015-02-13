@@ -180,8 +180,8 @@ class chonet(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         cho = simulation.calculate('cho', period)
-        csgchoi = simulation.calculate('csgchoi', period)
-        crdscho = simulation.calculate('crdscho', period)
+        csgchoi = simulation.sum_calculate('csgchoi', period)
+        crdscho = simulation.sum_calculate('crdscho', period)
 
         return period, cho + csgchoi + crdscho
 

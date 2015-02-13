@@ -28,10 +28,10 @@ import functools
 
 from openfisca_core.accessors import law
 from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
-    PeriodSizeIndependentIntCol, reference_input_variable, StrCol)
+    PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (dated_function, DatedFormulaColumn, EntityToPersonColumn,
-    make_reference_formula_decorator, PersonToEntityColumn, SimpleFormulaColumn)
+from openfisca_core.formulas import (dated_function, DatedFormulaColumn, EntityToPersonColumn, last_duration_last_value,
+    make_reference_formula_decorator, PersonToEntityColumn, reference_input_variable, SimpleFormulaColumn)
 
 from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
 
@@ -58,6 +58,7 @@ __all__ = [
     'FoyersFiscaux',
     'Individus',
     'IntCol',
+    'last_duration_last_value',
     'law',
     'Menages',
     'PAC1',

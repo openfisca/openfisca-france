@@ -38,9 +38,10 @@ class af_nbenf(SimpleFormulaColumn):
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period.offset(-1))
+        smic55_holder = simulation.compute('smic55', period.offset(-1), accept_other_period = True)
         P = simulation.legislation_at(period.start).fam.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)

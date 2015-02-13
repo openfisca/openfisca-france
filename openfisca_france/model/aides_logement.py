@@ -84,7 +84,7 @@ class al_pac(SimpleFormulaColumn):
         age1 = af.age1
         age2 = cf.age2
         al_nbenf = nb_enf(age, smic55, age1, age2)
-        al_pac = D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
+        al_pac = D_enfch * (al_nbenf + al_nbinv)  # TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
 
@@ -120,7 +120,7 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
         boursier_holder = simulation.compute('boursier', period)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
-        biact = simulation.calculate('biact', period)
+        biact = simulation.calculate('biact', period, accept_other_period = True)
         Pr = simulation.legislation_at(period.start).al.ressources
 
         boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
@@ -141,7 +141,8 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
 
         revCatVsCj = (
             not_(etudiant_les_deux) * (revCatVous + revCatConj) +
-            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
+            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART],
+                Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
             )
 
         # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier),

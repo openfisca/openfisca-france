@@ -42,7 +42,7 @@ build_column('quimen', EnumCol(QUIMEN, is_permanent = True))
 build_column('quifoy', EnumCol(QUIFOY, is_permanent = True))
 build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
 
-build_column('birth', DateCol(is_permanent = True, label = u"Date de naissance"))
+build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
 
 build_column(Familles.name_key, StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
 build_column(FoyersFiscaux.name_key, StrCol(entity = 'foy', is_permanent = True, label = u"Nom"))

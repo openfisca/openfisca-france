@@ -342,7 +342,11 @@ class sal(SimpleFormulaColumn):
         csgsald = simulation.sum_calculate('csgsald', period)
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
         hsup = simulation.calculate('hsup', period)
-        rev_microsocial_declarant1 = simulation.calculate('rev_microsocial_declarant1', period)
+        # Quand sal est calculé sur une année glissante, rev_microsocial_declarant1 est calculé sur l'année légale
+        # correspondante. Quand sal est calculé sur un mois, rev_microsocial_declarant1 est calculé par division du
+        # montant pour l'année légale.
+        rev_microsocial_declarant1 = simulation.divide_calculate('rev_microsocial_declarant1',
+            period.offset('first-of'))
 
         return period, (
             salbrut + primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald +
@@ -363,8 +367,8 @@ class salnet(SimpleFormulaColumn):
         '''
         period = period
         sal = simulation.calculate('sal', period)
-        crdssal = simulation.calculate('crdssal', period)
-        csgsali = simulation.calculate('csgsali', period)
+        crdssal = simulation.sum_calculate('crdssal', period)
+        csgsali = simulation.sum_calculate('csgsali', period)
 
         return period, sal + crdssal + csgsali
 

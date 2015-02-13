@@ -70,7 +70,7 @@ class paje_base_temp(SimpleFormulaColumn):
         br_pf = simulation.calculate('br_pf', period)
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         P = simulation.legislation_at(period.start).fam
 
         # TODO cumul des paje si et seulement si naissance multiples
@@ -641,4 +641,3 @@ class apje(SimpleFormulaColumn):
 
         apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
         return period, round(apje, 2)
-

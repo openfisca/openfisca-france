@@ -167,7 +167,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        rsa_base_ressources_patrimoine_i = simulation.calculate('rsa_base_ressources_patrimoine_i', previous_year)
+        rsa_base_ressources_patrimoine_i = simulation.sum_calculate('rsa_base_ressources_patrimoine_i', previous_year)
         aah = simulation.calculate('aah', previous_year)
         indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', previous_year)
         indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', previous_year)
@@ -186,7 +186,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
         bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
-        tns_total_revenus = simulation.calculate('tns_total_revenus', previous_year)
+        tns_total_revenus = simulation.sum_calculate('tns_total_revenus', previous_year)
         P = simulation.legislation_at(period.start).cmu
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
@@ -215,9 +215,9 @@ class cmu_base_ressources(SimpleFormulaColumn):
         ass = simulation.calculate('ass', period)
         asi = simulation.calculate('asi', period)
         af = simulation.calculate('af', period)
-        cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
-        paje_clca = simulation.calculate('paje_clca', period)
+        cf = simulation.divide_calculate('cf', period)
+        asf = simulation.divide_calculate('asf', period)
+        paje_clca = simulation.divide_calculate('paje_clca', period)
         so_holder = simulation.compute('so', period)
         aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
@@ -272,8 +272,13 @@ class cmu_c(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        this_month = period.start.period('month')
+        # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
+        # répond pour la période demandée.
+        this_month = period.start.period('month').offset('first-of')
+        this_rolling_year = this_month.start.period('year')
+        if period.stop > this_rolling_year.stop:
+            period = this_rolling_year
+
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
         residence_mayotte = simulation.calculate('residence_mayotte', this_month)

@@ -328,7 +328,7 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2002(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
+        cf = simulation.divide_calculate('cf', period)
         asf = simulation.calculate('asf', period)
         apje = simulation.calculate('apje', period)
         ape = simulation.calculate('ape', period)
@@ -340,11 +340,11 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2003(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
+        cf = simulation.divide_calculate('cf', period)
         asf = simulation.calculate('asf', period)
-        paje_base = simulation.calculate('paje_base', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_colca = simulation.calculate('paje_colca', period)
+        paje_base = simulation.divide_calculate('paje_base', period)
+        paje_clca = simulation.divide_calculate('paje_clca', period)
+        paje_colca = simulation.divide_calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
@@ -353,11 +353,11 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2014(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
+        cf = simulation.divide_calculate('cf', period)
         rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
-        paje_base = simulation.calculate('paje_base', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_colca = simulation.calculate('paje_colca', period)
+        paje_base = simulation.divide_calculate('paje_base', period)
+        paje_clca = simulation.divide_calculate('paje_clca', period)
+        paje_colca = simulation.divide_calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf + paje_base + paje_clca + paje_colca)
@@ -517,7 +517,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         three_previous_months = period.start.period('month', 3).offset(-3)
         salnet = simulation.calculate('salnet', three_previous_months)
         hsup = simulation.calculate('hsup', three_previous_months)
-        rpns = simulation.calculate('rpns', three_previous_months)
+        rpns = simulation.divide_calculate('rpns', three_previous_months)
         etr = simulation.calculate('etr', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_journalieres_maternite = simulation.calculate(
@@ -534,7 +534,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         indemnites_stage = simulation.calculate('indemnites_stage', three_previous_months)
-        tns_total_revenus = simulation.calculate('tns_total_revenus', three_previous_months)
+        tns_total_revenus = simulation.sum_calculate('tns_total_revenus', three_previous_months)
 
         return period, (
             salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
