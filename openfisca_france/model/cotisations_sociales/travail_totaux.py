@@ -25,9 +25,11 @@
 
 from __future__ import division
 
+
 import logging
 
-from ..base import *  # noqa
+
+from ..base import *  # noqa analysis:ignore
 from .base import montant_csg_crds
 
 
@@ -248,7 +250,8 @@ class csgsald(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # TODO: mettre à part ?
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
@@ -264,7 +267,7 @@ class csgsald(SimpleFormulaColumn):
                 remuneration_principale + salaire_de_base + primes_fonction_publique + indemnite_residence +
                 supp_familial_traitement - hsup
                 ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre + indemnites_journalieres_maladie,
+            base_sans_abattement = - prevoyance_obligatoire_cadre, # TODO + indemnites_journalieres_maladie,
             plafond_securite_sociale = plafond_securite_sociale,
             )
         return period, montant_csg
@@ -280,7 +283,8 @@ class csgsali(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # TODO: mettre ailleurs
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
@@ -296,7 +300,7 @@ class csgsali(SimpleFormulaColumn):
                 salaire_de_base + remuneration_principale +
                 primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre + indemnites_journalieres_maladie,
+            base_sans_abattement = - prevoyance_obligatoire_cadre, # TODO: mettre ailleurs + indemnites_journalieres_maladie,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -313,7 +317,8 @@ class crdssal(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # TODO: mettre ailleurs
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
@@ -330,7 +335,8 @@ class crdssal(SimpleFormulaColumn):
                 salaire_de_base + remuneration_principale +
                 primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre + indemnites_journalieres_maladie,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            #  + indemnites_journalieres_maladie, TODO: mettre ailleurs
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -379,6 +385,7 @@ class salnet(SimpleFormulaColumn):
         crdssal = simulation.calculate('crdssal', period)
         csgsali = simulation.calculate('csgsali', period)
 
+        print 'sal', sal
         return period, sal + crdssal + csgsali
 
 
