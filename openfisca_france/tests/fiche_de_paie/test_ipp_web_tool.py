@@ -49,13 +49,11 @@ tests = [
             cotisations_patronales_main_d_oeuvre = -158.4 - 3,
             # -(206.4 -48) formation professionnelle conmptée deux fois
             # - 3 contribution_supplementaire_apprentissage
-            # cotisations_patronales_main_d_oeuvre_old = -206.4, changement plaf
             # patronales non contributives
             accident_du_travail = -300,
             famille = -162,
             maladie_employeur = -384,
             cotisations_patronales_non_contributives = -846,
-            # cotisations_patronales_non_contributives_old = -846, changement plaf
 
             # patronales contributives
             agff_tranche_a_employeur = -36,
@@ -65,7 +63,6 @@ tests = [
             vieillesse_deplafonnee_employeur = -48,
             vieillesse_plafonnee_employeur = -249,
             cotisations_patronales_contributives = -597,
-            # cotisations_patronales_contributives_old = -597, changement plaf
             cotisations_patronales = - 158.4 - 3 - 597 - 846,
 
             agff_tranche_a_employe = -24,
@@ -75,9 +72,7 @@ tests = [
             vieillesse_deplafonnee_employe = -3,
             vieillesse_plafonnee_employe = -199.5,
             cotisations_salariales_contributives = -388.5,
-            # cotisations_salariales_contributives_old = -388.5,  changement plaf
             cotisations_salariales_non_contributives = -22.5,
-            # cotisations_salariales_non_contributives_old = -22.5,  changement plaf
             cotisations_salariales = -388.5 - 22.5,
             csgsald = -150.32,
             csgsali = -70.74,
@@ -110,7 +105,6 @@ tests = [
             cotisations_patronales_main_d_oeuvre = - (412.8 - 96) - 6,
             # -(421.8 - 96) formation professionnelle conmptée deux fois
             # - 6 contribution_supplementaire_apprentissage
-            # cotisations_patronales_main_d_oeuvre_old = -412.8,  changement plaf
 
             # agff_tranche_a_employe = -24.25,   # TODO: pas de tranche B dans le simulateur IPP
             agff_tranche_a_employeur = -74.97,
@@ -131,11 +125,9 @@ tests = [
             famille = -324,
             maladie_employeur = -768,
             cotisations_patronales_non_contributives = - 1692,
-            cotisations_patronales_non_contributives_old = - 1692,
             cotisations_patronales = - 1692 - 1206.38 - (412.8 - 96) - 6,
             maladie_employe = - 45,
             cotisations_salariales_non_contributives = -45,
-            # cotisations_salariales_non_contributives_old = -45,  changement plaf
 
             apec_employe = -1.44,
             arrco_tranche_a_employe = -90.93,
