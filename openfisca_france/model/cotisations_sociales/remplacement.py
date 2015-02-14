@@ -165,7 +165,7 @@ class cho(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         chobrut = simulation.calculate('chobrut', period)
-        csgchod = simulation.sum_calculate('csgchod', period)
+        csgchod = simulation.calculate_add('csgchod', period)
 
         return period, chobrut + csgchod
 
@@ -180,8 +180,8 @@ class chonet(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         cho = simulation.calculate('cho', period)
-        csgchoi = simulation.sum_calculate('csgchoi', period)
-        crdscho = simulation.sum_calculate('crdscho', period)
+        csgchoi = simulation.calculate_add('csgchoi', period)
+        crdscho = simulation.calculate_add('crdscho', period)
 
         return period, cho + csgchoi + crdscho
 
@@ -285,7 +285,7 @@ class rst(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         rstbrut = simulation.calculate('rstbrut', period)
-        csgrstd = simulation.sum_calculate('csgrstd', period)
+        csgrstd = simulation.calculate_add('csgrstd', period)
 
         return period, rstbrut + csgrstd
 
@@ -302,7 +302,7 @@ class rstnet(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         rst = simulation.calculate('rst', period)
-        csgrsti = simulation.sum_calculate('csgrsti', period)
-        crdsrst = simulation.sum_calculate('crdsrst', period)
+        csgrsti = simulation.calculate_add('csgrsti', period)
+        crdsrst = simulation.calculate_add('crdsrst', period)
 
         return period, rst + csgrsti + crdsrst

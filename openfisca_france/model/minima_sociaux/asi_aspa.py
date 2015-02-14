@@ -52,12 +52,12 @@ class br_mv_i(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', three_previous_months)
         rstnet = simulation.calculate('rstnet', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        rto_declarant1 = simulation.divide_calculate('rto_declarant1', three_previous_months)
-        rpns = simulation.divide_calculate('rpns', three_previous_months)
-        rev_cap_bar_holder = simulation.divide_compute('rev_cap_bar', three_previous_months)
-        rev_cap_lib_holder = simulation.divide_compute('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.divide_calculate('rfon_ms', three_previous_months)
-        div_ms = simulation.divide_calculate('div_ms', three_previous_months)
+        rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
+        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
+        rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
+        rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
+        rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
+        div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', three_previous_months)
         prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', three_previous_months)
@@ -71,8 +71,8 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus = simulation.sum_calculate('tns_total_revenus', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.sum_calculate('rsa_base_ressources_patrimoine_i', three_previous_months)
+        tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
         aah = simulation.calculate('aah', three_previous_months)
 
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
@@ -101,7 +101,7 @@ class br_mv(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         br_mv_i_holder = simulation.compute('br_mv_i', period)
-        ass = simulation.divide_calculate('ass', period)
+        ass = simulation.calculate_divide('ass', period)
 
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
         return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
