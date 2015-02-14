@@ -29,7 +29,7 @@ import csv
 import json
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, round
+from numpy import ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_, minimum as min_, round
 
 import openfisca_france
 from .base import *  # noqa
@@ -84,7 +84,7 @@ class al_pac(SimpleFormulaColumn):
         age1 = af.age1
         age2 = cf.age2
         al_nbenf = nb_enf(age, smic55, age1, age2)
-        al_pac = D_enfch * (al_nbenf + al_nbinv)  #  TODO: manque invalides
+        al_pac = D_enfch * (al_nbenf + al_nbinv)  # TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
 
@@ -92,10 +92,26 @@ class al_pac(SimpleFormulaColumn):
 
 
 @reference_formula
-class br_al(SimpleFormulaColumn):
+class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
-    label = u"Base ressource des allocations logement"
+    label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        sal_holder = simulation.compute('sal', period.offset(-1))
+        sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
+
+        result = 12 * sal[CHEF] + sal[PART]
+
+        return period, result
+
+
+@reference_formula
+class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Base ressource par défaut des allocations logement"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -104,7 +120,7 @@ class br_al(SimpleFormulaColumn):
         boursier_holder = simulation.compute('boursier', period)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
-        biact = simulation.calculate('biact', period)
+        biact = simulation.calculate('biact', period, accept_other_period = True)
         Pr = simulation.legislation_at(period.start).al.ressources
 
         boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
@@ -122,9 +138,11 @@ class br_al(SimpleFormulaColumn):
 
         revCatVous = max_(br_pf_i[CHEF], etudiant_demandeur * (Pr.dar_4 - (etudiant_boursier_demandeur) * Pr.dar_5))
         revCatConj = max_(br_pf_i[PART], etudiant_partenaire * (Pr.dar_4 - (etudiant_boursier_partenaire) * Pr.dar_5))
+
         revCatVsCj = (
             not_(etudiant_les_deux) * (revCatVous + revCatConj) +
-            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART], Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
+            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART],
+                Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
             )
 
         # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier),
@@ -150,10 +168,33 @@ class br_al(SimpleFormulaColumn):
 
         # TODO :double résidence pour raisons professionnelles
 
-        # Base ressource des aides au logement (arrondies aux 100 euros supérieurs)
-        br_al = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
+        # Arrondi aux 100 euros supérieurs
+        result = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
 
-        return period, br_al
+        return period, result
+
+
+@reference_formula
+class aide_logement_base_ressources(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Base ressources des allocations logement"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
+        base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
+        base_ressources_eval_forfaitaire = simulation.calculate('aide_logement_base_ressources_eval_forfaitaire', period)
+        mois_precedent = period.offset(-1)
+        smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
+
+        plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
+        eval_forfaitaire = and_(base_ressources_defaut <= plafond_eval_forfaitaire, base_ressources_eval_forfaitaire > 0)
+
+        result = (base_ressources_eval_forfaitaire * eval_forfaitaire
+                  + base_ressources_defaut * not_(eval_forfaitaire))
+
+        return period, result
 
 
 @reference_formula
@@ -165,7 +206,7 @@ class aide_logement_montant(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         concub = simulation.calculate('concub', period)
-        br_al = simulation.calculate('br_al', period)
+        aide_logement_base_ressources = simulation.calculate('aide_logement_base_ressources', period)
         so_holder = simulation.compute('so', period)
         loyer_holder = simulation.compute('loyer', period)
         coloc_holder = simulation.compute('coloc', period)
@@ -197,7 +238,6 @@ class aide_logement_montant(SimpleFormulaColumn):
         # al_pac : nb de personne à charge du ménage prise en compte pour les AL
         # zone_apl
         # loyer
-        # br_al : base ressource des al après abattement.
         # coloc (1 si colocation, 0 sinon)
         # so : statut d'occupation du logement
         #   SO==1 : Accédant à la propriété
@@ -256,7 +296,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         E = L + C
 
         # ressources prises en compte
-        R = br_al
+        R = aide_logement_base_ressources
 
         # Plafond RO
         R1 = (
@@ -313,7 +353,11 @@ class aide_logement_montant(SimpleFormulaColumn):
         al_acc = 0 * acce
         # # APL (tous)
 
-        return period, al_loc + al_acc
+        taux_crds = simulation.legislation_at(period.start).fam.af.crds
+        al = al_loc + al_acc
+        al = round(al * (1 - taux_crds), 2)
+
+        return period, al
 
 
 @reference_formula

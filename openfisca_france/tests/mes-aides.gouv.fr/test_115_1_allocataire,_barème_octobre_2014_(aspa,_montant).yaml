@@ -1,0 +1,27 @@
+name: 1 allocataire, barème octobre 2014 (aspa, montant)
+description: Le montant a été revalorisé à 800 euros.
+period: "month:2014-11"
+individus:
+  activite: 3
+  age: 75
+  birth: "1940-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 545bbc0355a4c10113ad0808
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 545bbc0355a4c10113ad0808
+foyers_fiscaux:
+  declarants: 545bbc0355a4c10113ad0808
+  personnes_a_charge:
+menages:
+  depcom: 92071
+  enfants:
+  personne_de_reference: 545bbc0355a4c10113ad0808
+  so: 6
+output_variables:
+  aspa: 800

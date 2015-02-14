@@ -1,0 +1,79 @@
+name: "Abattement 30% pour les stagiaires en formation professionnelle (test 11) (base ressources, cmu-c/acs)"
+description: |
+  Les demandeurs en stage de formation professionnelle bénéficient d'un abattement de 30% sur les seuls revenus d'activité.
+  Dans le cas testé j'ai droit à l'ACS.
+period: "month:2014-12"
+individus:
+  age: 51
+  birth: "1964-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 548abf00bf2c83e6182ed9c4
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  revenus_stage_formation_pro:
+    2012: 1999.9800000000002
+    2013-12: 22.22
+    2014-01: 22.22
+    2014-02: 22.22
+    2014-03: 22.22
+    2014-04: 22.22
+    2014-05: 22.22
+    2014-06: 22.22
+    2014-07: 22.22
+    2014-08: 22.22
+    2014-09: 500
+    2014-09:3: 1800
+    2014-10: 650
+    2014-11: 650
+    year:2013-12: 1999.9800000000002
+  salbrut:
+    2012: 12986.999999999998
+    2013-12: 1442.9999999999998
+    2014-01: 1442.9999999999998
+    2014-02: 1442.9999999999998
+    2014-03: 1442.9999999999998
+    2014-04: 1442.9999999999998
+    2014-05: 1442.9999999999998
+    2014-06: 1442.9999999999998
+    2014-07: 1442.9999999999998
+    2014-08: 1442.9999999999998
+    2014-09: 0
+    2014-09:3: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 12986.999999999998
+  salnet:
+    2012: 9999.99
+    2013-12: 1111.11
+    2014-01: 1111.11
+    2014-02: 1111.11
+    2014-03: 1111.11
+    2014-04: 1111.11
+    2014-05: 1111.11
+    2014-06: 1111.11
+    2014-07: 1111.11
+    2014-08: 1111.11
+    2014-09: 0
+    2014-09:3: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 9999.99
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 548abf00bf2c83e6182ed9c4
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 548abf00bf2c83e6182ed9c4
+  personnes_a_charge:
+menages:
+  depcom: 75112
+  enfants:
+  loyer: 500
+  personne_de_reference: 548abf00bf2c83e6182ed9c4
+  so: 4
+output_variables:
+  acs: 350
+  cmu_c: false

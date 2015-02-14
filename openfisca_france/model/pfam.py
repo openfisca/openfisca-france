@@ -30,6 +30,7 @@ from numpy.core.defchararray import startswith
 
 from .base import *  # noqa
 
+
 @reference_formula
 class residence_guadeloupe(SimpleFormulaColumn):
     column = BoolCol
@@ -107,12 +108,13 @@ class nb_par(SimpleFormulaColumn):
     label = u"Nombre d'adultes (parents) dans la famille"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         quifam_holder = simulation.compute('quifam', period)
 
         quifam = self.filter_role(quifam_holder, role = PART)
 
-        return period, 1 + 1 * (quifam == 1)
+        return period, 1 + 1 * (quifam == PART)
 
 
 @reference_formula
@@ -122,10 +124,9 @@ class maries(SimpleFormulaColumn):
     label = u"maries"
 
     def function(self, simulation, period):
-        '''
-        couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?
-        '''
-        period = period.start.offset('first-of', 'month').period('year')
+        """couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?"""
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         statmarit_holder = simulation.compute('statmarit', period)
 
         statmarit = self.filter_role(statmarit_holder, role = CHEF)
@@ -143,7 +144,8 @@ class concub(SimpleFormulaColumn):
         '''
         concub = 1 si vie en couple TODO pas très heureux
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         nb_par = simulation.calculate('nb_par', period)
 
         # TODO: concub n'est pas égal à 1 pour les conjoints
@@ -157,7 +159,8 @@ class isol(SimpleFormulaColumn):
     label = u"Parent (s'il y a lieu) isolé"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         nb_par = simulation.calculate('nb_par', period)
 
         return period, nb_par == 1
@@ -170,7 +173,8 @@ class etu(SimpleFormulaColumn):
     label = u"Indicatrice individuelle étudiant"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         activite = simulation.calculate('activite', period)
 
         return period, activite == 2
@@ -265,14 +269,18 @@ class rev_coll(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
-        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period)
+        # Quand rev_coll est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
+        # correspondante.
+        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
         div = simulation.calculate('div', period)
         abat_spe_holder = simulation.compute('abat_spe', period)
         glo = simulation.calculate('glo', period)
         fon_holder = simulation.compute('fon', period)
-        alv_declarant1 = simulation.calculate('alv_declarant1', period)
+        # Quand rev_coll est calculé sur une année glissante, alv_declarant1 est calculé sur l'année légale
+        # correspondante.
+        alv_declarant1 = simulation.calculate('alv_declarant1', period.offset('first-of'))
         f7ga_holder = simulation.compute('f7ga', period)
         f7gb_holder = simulation.compute('f7gb', period)
         f7gc_holder = simulation.compute('f7gc', period)

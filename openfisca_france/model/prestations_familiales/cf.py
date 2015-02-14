@@ -56,7 +56,7 @@ class cf_temp(SimpleFormulaColumn):
         br_pf = simulation.calculate('br_pf', period) # FIXME la période de référence est l'année n-2 pour br_pf
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -100,4 +100,3 @@ class cf(SimpleFormulaColumn):
 
         cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
         return period, not_(residence_mayotte) * round(cf_brut, 2)
-

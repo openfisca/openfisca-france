@@ -1,0 +1,60 @@
+name: "Abattement de 30% pour le chômage indemnisé (abattements, base ressources, cmu-c/acs)"
+description: "Un demandeur d'emploi touchant une ARE dans la limite de 30% au-dessus du plafond de la CMU-C doit pouvoir en bénéficier"
+period: "month:2015-01"
+individus:
+  activite: 1
+  age: 34
+  ass_precondition_remplie: false
+  birth: "1980-03-02"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54c8f2dbe45751d544f05fde
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2013: 14493.506493506497
+    2014-01: 1207.7922077922078
+    2014-02: 1207.7922077922078
+    2014-03: 1207.7922077922078
+    2014-04: 1207.7922077922078
+    2014-05: 1207.7922077922078
+    2014-06: 1207.7922077922078
+    2014-07: 1207.7922077922078
+    2014-08: 1207.7922077922078
+    2014-09: 1207.7922077922078
+    2014-10: 1207.7922077922078
+    2014-10:3: 3623.3766233766237
+    2014-11: 1207.7922077922078
+    2014-12: 1207.7922077922078
+    year:2014-01: 14493.506493506497
+  salnet:
+    2013: 11160
+    2014-01: 930
+    2014-02: 930
+    2014-03: 930
+    2014-04: 930
+    2014-05: 930
+    2014-06: 930
+    2014-07: 930
+    2014-08: 930
+    2014-09: 930
+    2014-10: 930
+    2014-10:3: 2790
+    2014-11: 930
+    2014-12: 930
+    year:2014-01: 11160
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54c8f2dbe45751d544f05fde
+foyers_fiscaux:
+  declarants: 54c8f2dbe45751d544f05fde
+  personnes_a_charge:
+menages:
+  depcom: 75118
+  enfants:
+  personne_de_reference: 54c8f2dbe45751d544f05fde
+  so: 2
+output_variables:
+  cmu_c: true

@@ -171,18 +171,18 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        agff_tranche_a_employe = simulation.sum_calculate('agff_tranche_a_employe', period)
-        agirc_tranche_b_employe = simulation.sum_calculate('agirc_tranche_b_employe', period)
-        apec_employe = simulation.sum_calculate('apec_employe', period)
-        arrco_tranche_a_employe = simulation.sum_calculate('arrco_tranche_a_employe', period)
-        assedic_employe = simulation.sum_calculate('assedic_employe', period)
-        cotisation_exceptionnelle_temporaire_employe = simulation.sum_calculate(
+        agff_tranche_a_employe = simulation.calculate_add('agff_tranche_a_employe', period)
+        agirc_tranche_b_employe = simulation.calculate_add('agirc_tranche_b_employe', period)
+        apec_employe = simulation.calculate_add('apec_employe', period)
+        arrco_tranche_a_employe = simulation.calculate_add('arrco_tranche_a_employe', period)
+        assedic_employe = simulation.calculate_add('assedic_employe', period)
+        cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
             'cotisation_exceptionnelle_temporaire_employe', period)
-        ircantec_employe = simulation.sum_calculate('ircantec_employe', period)
-        pension_civile_employe = simulation.sum_calculate('pension_civile_employe', period)
-        rafp_employe = simulation.sum_calculate('rafp_employe', period)
-        vieillesse_deplafonnee_employe = simulation.sum_calculate('vieillesse_deplafonnee_employe', period)
-        vieillesse_plafonnee_employe = simulation.sum_calculate('vieillesse_plafonnee_employe', period)
+        ircantec_employe = simulation.calculate_add('ircantec_employe', period)
+        pension_civile_employe = simulation.calculate_add('pension_civile_employe', period)
+        rafp_employe = simulation.calculate_add('rafp_employe', period)
+        vieillesse_deplafonnee_employe = simulation.calculate_add('vieillesse_deplafonnee_employe', period)
+        vieillesse_plafonnee_employe = simulation.calculate_add('vieillesse_plafonnee_employe', period)
 
         cotisations_salariales_contributives = (
             # prive
@@ -211,9 +211,9 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        contribution_exceptionnelle_solidarite_employe = simulation.sum_calculate(
+        contribution_exceptionnelle_solidarite_employe = simulation.calculate_add(
             'contribution_exceptionnelle_solidarite_employe', period)
-        maladie_employe = simulation.sum_calculate('maladie_employe', period)
+        maladie_employe = simulation.calculate_add('maladie_employe', period)
 
         cotisations_salariales_non_contributives = (
             # prive
@@ -351,16 +351,19 @@ class sal(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        salaire_de_base = simulation.sum_calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.sum_calculate('primes_fonction_publique', period)
-        indemnite_residence = simulation.sum_calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.sum_calculate('supp_familial_traitement', period)
-        csgsald = simulation.sum_calculate('csgsald', period)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period)
+        primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate_add('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
+        csgsald = simulation.calculate_add('csgsald', period)
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         hsup = simulation.calculate('hsup', period)
-
-        rev_microsocial_declarant1 = simulation.calculate('rev_microsocial_declarant1', period)
+        # Quand sal est calculé sur une année glissante, rev_microsocial_declarant1 est calculé sur l'année légale
+        # correspondante. Quand sal est calculé sur un mois, rev_microsocial_declarant1 est calculé par division du
+        # montant pour l'année légale.
+        rev_microsocial_declarant1 = simulation.calculate_add_divide('rev_microsocial_declarant1',
+            period.offset('first-of'))
 
         return period, (
             salaire_de_base + remuneration_principale +
@@ -382,8 +385,8 @@ class salnet(SimpleFormulaColumn):
         '''
         period = period
         sal = simulation.calculate('sal', period)
-        crdssal = simulation.calculate('crdssal', period)
-        csgsali = simulation.calculate('csgsali', period)
+        crdssal = simulation.calculate_add('crdssal', period)
+        csgsali = simulation.calculate_add('csgsali', period)
 
         print 'sal', sal
         return period, sal + crdssal + csgsali

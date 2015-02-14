@@ -1,0 +1,57 @@
+name: "Couple, les 2 éligibles, montant = diff plafond - ressources (aspa, montant)"
+description:
+period: "month:2014-07"
+individus:
+  - age: 69
+    birth: "1945-09-14"
+    enceinte: false
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 53d2555ee40a7902009c339f
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    rstbrut:
+      2012: 3239.740820734341
+      2014-04: 1079.913606911447
+      2014-04:3: 3239.740820734341
+      2014-05: 1079.913606911447
+      2014-06: 1079.913606911447
+      year:2013-07: 3239.740820734341
+    rstnet:
+      2012: 3000
+      2014-04: 1000
+      2014-04:3: 3000
+      2014-05: 1000
+      2014-06: 1000
+      year:2013-07: 3000
+    statmarit: 2
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 69
+    birth: "1945-09-14"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 53d2555ee40a7902009c339e
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 53d2555ee40a7902009c339f
+    - 53d2555ee40a7902009c339e
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 53d2555ee40a7902009c339f
+    - 53d2555ee40a7902009c339e
+  personnes_a_charge:
+menages:
+  conjoint: 53d2555ee40a7902009c339e
+  enfants:
+  loyer: 123
+  personne_de_reference: 53d2555ee40a7902009c339f
+  so: 4
+output_variables:
+  aspa: 229.61

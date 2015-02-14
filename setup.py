@@ -61,6 +61,7 @@ setup(
         tests = [
             'Biryani >= 0.10.1',
             'pandas >= 0.13',
+            'PyYAML',
             ],
         ),
     install_requires = [

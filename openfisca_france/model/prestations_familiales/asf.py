@@ -41,12 +41,17 @@ class asf_elig(SimpleFormulaColumn):
         '''
         Eligibilité à l'allocation de soutien familial (ASF)
         '''
-        period = period.start.offset('first-of', 'month').period('year')
-        isol = simulation.calculate('isol', period)
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
-        caseT_holder = simulation.compute('caseT', period)
-        caseL_holder = simulation.compute('caseL', period)
-        alr_holder = simulation.compute('alr', period)
+        # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
+        # répond pour la période demandée.
+        this_rolling_year = period.start.offset('first-of', 'month').period('year')
+        if period.stop > this_rolling_year.stop:
+            period = this_rolling_year
+
+        isol = simulation.calculate('isol', this_rolling_year)
+        residence_mayotte = simulation.calculate('residence_mayotte', this_rolling_year)
+        caseT_holder = simulation.compute('caseT', this_rolling_year)
+        caseL_holder = simulation.compute('caseL', this_rolling_year)
+        alr_holder = simulation.compute('alr', this_rolling_year)
 
         caseT = self.cast_from_entity_to_role(caseT_holder, role = VOUS)
         caseT = self.any_by_roles(caseT)
@@ -67,9 +72,10 @@ class asf_nbenf(SimpleFormulaColumn):
         '''
         Nombre d'enfants ouvrant l'éligibilité à l'allocation de soutien familial (ASF)
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         P = simulation.legislation_at(period.start).fam
 
         # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
@@ -106,4 +112,3 @@ class asf(SimpleFormulaColumn):
 
         # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
         return period, asf_elig * max_(0, asf_nbenf * 12 * P.af.bmaf * P.asf.taux1)
-

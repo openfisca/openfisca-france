@@ -1,0 +1,88 @@
+name: "Plafond ACS 3 personnes - cas au-dessus du plafond (acs, cmu-c/acs, plafonds)"
+description: |
+  Plafond ACS 3 personnes = 21006 euros.
+  Salaires déclarés 21050 euros, donc pas droit à l'ACS.
+period: "month:2014-12"
+individus:
+  - age: 41
+    birth: "1974-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549069356e7c895302132f2a
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 27337.662337662343
+      2013-12: 2171.717171717172
+      2014-01: 2171.717171717172
+      2014-02: 2171.717171717172
+      2014-03: 2171.717171717172
+      2014-04: 2171.717171717172
+      2014-05: 2171.717171717172
+      2014-06: 2171.717171717172
+      2014-07: 2171.717171717172
+      2014-08: 2171.717171717172
+      2014-09: 2597.402597402597
+      2014-09:3: 7792.2077922077915
+      2014-10: 2597.402597402597
+      2014-11: 2597.402597402597
+      year:2013-12: 27337.662337662343
+    salnet:
+      2012: 21050.000000000004
+      2013-12: 1672.2222222222222
+      2014-01: 1672.2222222222222
+      2014-02: 1672.2222222222222
+      2014-03: 1672.2222222222222
+      2014-04: 1672.2222222222222
+      2014-05: 1672.2222222222222
+      2014-06: 1672.2222222222222
+      2014-07: 1672.2222222222222
+      2014-08: 1672.2222222222222
+      2014-09: 2000
+      2014-09:3: 6000
+      2014-10: 2000
+      2014-11: 2000
+      year:2013-12: 21050.000000000004
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 41
+    birth: "1974-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549069356e7c895302132f29
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 15
+    birth: "2000-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549069356e7c895302132f28
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants: 549069356e7c895302132f28
+  parents:
+    - 549069356e7c895302132f2a
+    - 549069356e7c895302132f29
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 549069356e7c895302132f2a
+    - 549069356e7c895302132f29
+  personnes_a_charge: 549069356e7c895302132f28
+menages:
+  conjoint: 549069356e7c895302132f29
+  depcom: 10347
+  enfants: 549069356e7c895302132f28
+  loyer: 100
+  personne_de_reference: 549069356e7c895302132f2a
+  so: 4
+output_variables:
+  acs: 0
+  cmu_c: false

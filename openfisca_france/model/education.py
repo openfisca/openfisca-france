@@ -83,12 +83,10 @@ class bourse_college(SimpleFormulaColumn):
         for scolarite in scolarites.itervalues():
             nb_enfants_college += scolarite == SCOLARITE_COLLEGE
 
-        montant = (
+        montant = nb_enfants_college * (
             eligible_taux_3 * P.montant_taux_3 +
             eligible_taux_2 * P.montant_taux_2 +
             eligible_taux_1 * P.montant_taux_1
             )
-
-        montant *= nb_enfants_college
 
         return period, montant

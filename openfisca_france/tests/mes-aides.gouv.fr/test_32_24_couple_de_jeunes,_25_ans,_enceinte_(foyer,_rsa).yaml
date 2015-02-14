@@ -1,0 +1,43 @@
+name: 24_Couple de jeunes, < 25 ans, enceinte (foyer, rsa)
+description:
+period: "month:2014-11"
+individus:
+  - activite: 1
+    age: 21
+    ass_precondition_remplie: false
+    birth: "1994-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 546b31eb5d4a0b016431dbb6
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 21
+    birth: "1994-01-01"
+    enceinte: true
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 546b31eb5d4a0b016431dbb5
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 546b31eb5d4a0b016431dbb6
+    - 546b31eb5d4a0b016431dbb5
+foyers_fiscaux:
+  declarants:
+    - 546b31eb5d4a0b016431dbb6
+    - 546b31eb5d4a0b016431dbb5
+  personnes_a_charge:
+menages:
+  conjoint: 546b31eb5d4a0b016431dbb5
+  depcom: 75114
+  enfants:
+  personne_de_reference: 546b31eb5d4a0b016431dbb6
+  so: 6
+output_variables:

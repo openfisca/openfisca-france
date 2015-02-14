@@ -1,0 +1,97 @@
+name: "3 enfants - parent isolé (al, location, ménage)"
+description: |
+  L	514,59
+  C	89,41
+  E	604
+  R	0
+  R0	8352
+  Rp	0
+  Tf	2,01
+  LR	453,49
+  RL	113,47
+  Tl	0,397
+  Tp	2,407
+  P0	51,34
+  P1	0
+  Pp	51,34
+  AL	549,9
+period: "month:2015-01"
+individus:
+  - age: 34
+    birth: "1980-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac159b83a941301681c0d7
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 34
+    birth: "1980-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac159b83a941301681c0d6
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2000-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac159b83a941301681c0d5
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2000-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac159b83a941301681c0d4
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2000-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac159b83a941301681c0d3
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+    - 54ac159b83a941301681c0d5
+    - 54ac159b83a941301681c0d4
+    - 54ac159b83a941301681c0d3
+  parents:
+    - 54ac159b83a941301681c0d7
+    - 54ac159b83a941301681c0d6
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54ac159b83a941301681c0d7
+    - 54ac159b83a941301681c0d6
+  personnes_a_charge:
+    - 54ac159b83a941301681c0d5
+    - 54ac159b83a941301681c0d4
+    - 54ac159b83a941301681c0d3
+menages:
+  conjoint: 54ac159b83a941301681c0d6
+  depcom: 75111
+  enfants:
+    - 54ac159b83a941301681c0d5
+    - 54ac159b83a941301681c0d4
+    - 54ac159b83a941301681c0d3
+  loyer: 1000
+  personne_de_reference: 54ac159b83a941301681c0d7
+  so: 4
+output_variables:
+  aide_logement: 549.9
