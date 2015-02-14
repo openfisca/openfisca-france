@@ -72,8 +72,7 @@ def simple_check(tests):
             ).new_simulation(debug = True)
 
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
-            output = simulation.calculate(variable)
-            assert_variable(variable, name, monthly_amount, output)
+            check_variable(simulation, variable, name, monthly_amount)
 
 
 def test_check():
@@ -95,7 +94,7 @@ def test_check():
 
 def check_variable(simulation, variable_name, test_name, expected_value):
     output_value = simulation.calculate(variable_name)
-    assert abs(output_value - expected_value) < .01, "error for {} ({}) : should be {} instead of {} ".format(
+    assert abs(output_value - expected_value) < 1, "error for {} ({}) : should be {} instead of {} ".format(
         variable_name, test_name, expected_value, output_value)
 
 
@@ -133,11 +132,10 @@ def test_decomposition(print_decomposition = False):
 
 
 if __name__ == '__main__':
+    
     import logging
     import sys
 
-#    from openfisca_france.tests.fiche_de_paie.thesard1_2011_07 import tests
-#    simple_check(tests = tests)
     requested_variables_name = sys.argv[1:]
     logging.basicConfig(level = logging.INFO, stream = sys.stdout)
     for function, simulation, variable_name, test_name, expected_value in test_check():

@@ -25,8 +25,8 @@
 
 tests = [
     dict(
-        name = "Mr Dupont (template)",
-        period = "2014-01",   #
+        name = "Mr Jean",
+        period = "2014-07",   #
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
             assujettie_taxe_salaires = False,
@@ -35,28 +35,26 @@ tests = [
             contrat_de_travail_arrivee = "2014-01-01",
             contrat_de_travail_depart = "2014-12-31",
             contrat_de_travail_duree = 0,  # CDI
-            effectif_entreprise = 0,
+            effectif_entreprise = 3000,
             heures_non_remunerees_volume = 0,
             heures_remunerees_volume = 0,
             # exposition_accident = 3,
-            indemnites_forfaitaires = 0,
             indemnites_journalieres_maladie = 0,
             localisation_entreprise = "75014",
-            nombre_tickets_restaurant = 0,
-            prevoyance_obligatoire_cadre_taux_employeur = .015,  # 1.5% est le minimum
+            prevoyance_obligatoire_cadre_taux_employeur = 0.0074,  # 1.5% est le minimum
             primes_salaires = 0,
             prise_en_charge_employeur_retraite_complementaire = 0,
-            prise_en_charge_employeur_prevoyance_complementaire = 0,
+            prise_en_charge_employeur_prevoyance_complementaire = 36.82,
             prise_en_charge_employeur_retraite_supplementaire = 0,
             ratio_alternants = 0,
-            redevable_taxe_apprentissage = 0,
-            remboursement_transport_base = 0,
-            salaire_de_base = 0,
+            redevable_taxe_apprentissage = 1,
+            remboursement_transport_base = 81.9,  #Le double d'indmnités de transport indiqué sur la fiche de paie
+            salaire_de_base = 3000,
             taux_accident_travail = 0,
             taux_versement_transport = 0,
-            titre_restaurant_valeur_unitaire = 0,
-            titre_restaurant_volume = 0,
-            type_sal = 0,  # non cadre
+            titre_restaurant_valeur_unitaire = 8,
+            titre_restaurant_volume = 20,
+            type_sal = 1,  # non cadre
             volume_jours_ijss = 0,
             ),
         output_variables = dict(
@@ -65,82 +63,89 @@ tests = [
 
             # salsuperbrut = 0,
             # cotisations_patronales = 0,
-            remboursement_transport = 0,
-
-            # cotisations_patronales_contributives = 0,
-            ags = 0,
-            agff_tranche_a_employeur = 0,
-            agirc_gmp_employeur = 0,
-            agirc_tranche_b_employeur = 0,
-            apec_employeur = 0,
-            arrco_tranche_a_employeur = 0,
-            assedic_employeur = 0,
-            cotisation_exceptionnelle_temporaire_employeur = 0,
-            vieillesse_deplafonnee_employeur = 0,
-            vieillesse_plafonnee_employeur = 0,
-            fonds_emploi_hospitalier = 0,
+            remboursement_transport = -40.95,
             ircantec_employeur = 0,
             pension_civile_employeur = 0,
             rafp_employeur = 0,
 
             # cotisations_patronales_non_contributives = 0,
             allocations_temporaires_invalidite = 0,
-            accident_du_travail = 0,
-            famille = 0,
-            maladie_employeur = 0,
+            accident_du_travail = -33,
+            famille = -157.5,
+            maladie_employeur = -3000*.128, #est aggrégé avec vieillesse
             taxe_salaires = 0,
 
             # cotisations_patronales_main_d_oeuvre = 0,
             conge_individuel_formation_cdd = 0,
-            contribution_developpement_apprentissage = 0,
+            contribution_developpement_apprentissage = -3000*0.0018, #aggrégé avec taxe apprentissage
             contribution_solidarite_autonomie = 0,
             contribution_supplementaire_apprentissage = 0,
             fnal_tranche_a = 0,
-            fnal_tranche_a_plus_20 = 0,
-            formation_professionnelle = 0,
-            participation_effort_construction = 0,
-            prevoyance_obligatoire_cadre = 0,
-            taxe_apprentissage = 0,
+            fnal_tranche_a_plus_20 = -15,
+
+            # cotisations_patronales_contributives = 0,
+            ags = -9,
+            agff_tranche_a_employeur = -36.00,
+            agirc_gmp_employeur = -41.17,
+            agirc_tranche_b_employeur = -137.4,
+            apec_employeur = -1.08,
+            arrco_tranche_a_employeur = 0,
+            assedic_employeur = -120,
+            cotisation_exceptionnelle_temporaire_employeur = -6.60,
+            vieillesse_deplafonnee_employeur = -3000*0.0175, #est aggrégé avec maladie
+            vieillesse_plafonnee_employeur = -253.5,
+            fonds_emploi_hospitalier = 0,
+            formation_professionnelle = -48,
+            participation_effort_construction = -13.5,
+            prevoyance_obligatoire_cadre = -22.20,
+            taxe_apprentissage = -3000*0.005, #aggrégé avec contribution supplémentaire apprentissage
             versement_transport = 0,
 
             allegement_fillon = 0,
-            credit_impot_competitivite_emploi = 0,
-            forfait_social = 0,
+            alleg_cice = 0,
+            forfait_social = -4.72,
             tehr = 0,
-            salbrut = 0,
+            salbrut = 3000,
 
             # cotisations_salariales = 0,
 
             # cotisations_salariales_contributives = 0,
-            agff_tranche_a_employe = 0,
-            agirc_gmp_employe = 0,
-            agirc_tranche_b_employe = 0,
-            apec_employe = 0,
-            arrco_tranche_a_employe = 0,
-            assedic_employe = 0,
-            cotisation_exceptionnelle_temporaire_employe = 0,
-            vieillesse_deplafonnee_employe = 0,
-            vieillesse_plafonnee_employe = 0,
+            agff_tranche_a_employe = -24,
+            agirc_gmp_employe = -25,
+            agirc_tranche_b_employe = -25.00,  # agirc_gmp_employe,
+            apec_employe = -0.72,
+            arrco_tranche_a_employe = -91.5,
+            assedic_employe = -72,
+            cotisation_exceptionnelle_temporaire_employe = -3.9,
+            vieillesse_deplafonnee_employe = -3000 * .0025,  # est agrégée avec maladie sur la fiche de paie
+            vieillesse_plafonnee_employe = -204,
             ircantec_employe = 0,
             pension_civile_employe = 0,
             rafp_employe = 0,
 
             # cotisations_salariales_non_contributives = 0,
-            maladie_employe = 0,
+            maladie_employe = -3000 * .0075, # est agrégée avec vieillesse déplaf. sur la fiche de paie
             contribution_exceptionnelle_solidarite_employe = 0,
-            csgsald = 0,
+            csgsald = -150.32,
             mhsup = 0,
-            salnet = 0,
+            salnet = 2395.55,
 
             # salaire imposable
-            csgsali = 0,
-            crdssal = 0,
+            csgsali = 1.71,
+            crdssal = -85.48,
             hsup = 0,
-            sal = 0,  # salaire imposable
+#            sal = 2395.55,  # salaire imposable
             depense_cantine_titre_restaurant_employe = 0,
 
-            salaire_net_a_payer = 0,
+            salaire_net_a_payer = 2478.49,
 
             ),
         ),
     ]
+# -*- coding: utf-8 -*-
+"""
+Éditeur de Spyder
+
+Ceci est un script temporaire.
+"""
+
