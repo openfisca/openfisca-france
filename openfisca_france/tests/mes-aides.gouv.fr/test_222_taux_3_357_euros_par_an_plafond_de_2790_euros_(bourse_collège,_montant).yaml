@@ -1,0 +1,78 @@
+name: "Taux 3 : 357 euros par an / plafond de 2790 euros (bourse collège, montant)"
+description: RFR = 2700 euros < plafond de 2790 euros pour le montant de 357 euros
+period: "month:2014-12"
+individus:
+  - age: 34
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d40b3bc432e473c703b7
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    salbrut:
+      2012: 3506.493506493506
+      2013-12: 389.6103896103896
+      2014-01: 389.6103896103896
+      2014-02: 389.6103896103896
+      2014-03: 389.6103896103896
+      2014-04: 389.6103896103896
+      2014-05: 389.6103896103896
+      2014-06: 389.6103896103896
+      2014-07: 389.6103896103896
+      2014-08: 389.6103896103896
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 3506.493506493506
+    salnet:
+      2012: 2700
+      2013-12: 300
+      2014-01: 300
+      2014-02: 300
+      2014-03: 300
+      2014-04: 300
+      2014-05: 300
+      2014-06: 300
+      2014-07: 300
+      2014-08: 300
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 2700
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2000-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d40b3bc432e473c703b6
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants: 5485d40b3bc432e473c703b6
+  parents: 5485d40b3bc432e473c703b7
+foyers_fiscaux:
+  declarants: 5485d40b3bc432e473c703b7
+  personnes_a_charge: 5485d40b3bc432e473c703b6
+  rfr:
+    2012: 2700
+menages:
+  depcom: 75111
+  enfants: 5485d40b3bc432e473c703b6
+  personne_de_reference: 5485d40b3bc432e473c703b7
+  so: 6
+output_variables:
+  bourse_college: 357

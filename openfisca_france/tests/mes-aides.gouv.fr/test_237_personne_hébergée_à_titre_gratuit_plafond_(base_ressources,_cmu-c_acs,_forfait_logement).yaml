@@ -1,0 +1,59 @@
+name: "Personne hébergée à titre gratuit > plafond (base ressources, cmu-c/acs, forfait logement)"
+description: Une personne hébergée à titre gratuit dont les ressources 730 = 670 + 60 (forfait logement) n'a pas droits à la CMUC
+period: "month:2015-01"
+individus:
+  age: 34
+  birth: "1980-03-02"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54b548fe44b1ef7a3e841b22
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2013: 10441.558441558442
+    2014-01: 870.1298701298701
+    2014-02: 870.1298701298701
+    2014-03: 870.1298701298701
+    2014-04: 870.1298701298701
+    2014-05: 870.1298701298701
+    2014-06: 870.1298701298701
+    2014-07: 870.1298701298701
+    2014-08: 870.1298701298701
+    2014-09: 870.1298701298701
+    2014-10: 870.1298701298701
+    2014-10:3: 2610.3896103896104
+    2014-11: 870.1298701298701
+    2014-12: 870.1298701298701
+    year:2014-01: 10441.558441558442
+  salnet:
+    2013: 8040
+    2014-01: 670
+    2014-02: 670
+    2014-03: 670
+    2014-04: 670
+    2014-05: 670
+    2014-06: 670
+    2014-07: 670
+    2014-08: 670
+    2014-09: 670
+    2014-10: 670
+    2014-10:3: 2010
+    2014-11: 670
+    2014-12: 670
+    year:2014-01: 8040
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54b548fe44b1ef7a3e841b22
+foyers_fiscaux:
+  declarants: 54b548fe44b1ef7a3e841b22
+  personnes_a_charge:
+menages:
+  depcom: 75118
+  enfants:
+  personne_de_reference: 54b548fe44b1ef7a3e841b22
+  so: 6
+output_variables:
+  acs: 200
+  cmu_c: false

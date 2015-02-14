@@ -1,0 +1,46 @@
+name: "Ressources exclues - indemnités de volontariat (base ressources, cmu-c/acs)"
+description: |
+  Les indemnités de volontariat ne comptent pas dans la base ressources
+  Dans ce test le demandeur touche énormément d'indemnités de volontariat, mais il doit avoir quand même droit à la CMU-C.
+period: "month:2014-11"
+individus:
+  age: 34
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54661c45f36fa43e7789896c
+  indemnites_volontariat:
+    2012: 1199988
+    2013-11: 99999
+    2013-12: 99999
+    2014-01: 99999
+    2014-02: 99999
+    2014-03: 99999
+    2014-04: 99999
+    2014-05: 99999
+    2014-06: 99999
+    2014-07: 99999
+    2014-08: 99999
+    2014-08:3: 299997
+    2014-09: 99999
+    2014-10: 99999
+    year:2013-11: 1199988
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54661c45f36fa43e7789896c
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54661c45f36fa43e7789896c
+  personnes_a_charge:
+menages:
+  depcom: 67482
+  enfants:
+  loyer: 100
+  personne_de_reference: 54661c45f36fa43e7789896c
+  so: 4
+output_variables:
+  cmu_c: true

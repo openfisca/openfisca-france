@@ -1,0 +1,62 @@
+name: "Personne seule, montant fixe en-dessous de 644,40 € de ressources par mois (ass, montant)"
+description:
+period: "month:2014-10"
+individus:
+  activite: 1
+  age: 25
+  ass_precondition_remplie: true
+  birth: "1989-09-14"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 543b9966398867032e0bf2a9
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2012: 9350.64935064935
+    2013-10: 779.2207792207791
+    2013-11: 779.2207792207791
+    2013-12: 779.2207792207791
+    2014-01: 779.2207792207791
+    2014-02: 779.2207792207791
+    2014-03: 779.2207792207791
+    2014-04: 779.2207792207791
+    2014-05: 779.2207792207791
+    2014-06: 779.2207792207791
+    2014-07: 779.2207792207791
+    2014-07:3: 2337.6623376623374
+    2014-08: 779.2207792207791
+    2014-09: 779.2207792207791
+    year:2013-10: 9350.64935064935
+  salnet:
+    2012: 7200
+    2013-10: 600
+    2013-11: 600
+    2013-12: 600
+    2014-01: 600
+    2014-02: 600
+    2014-03: 600
+    2014-04: 600
+    2014-05: 600
+    2014-06: 600
+    2014-07: 600
+    2014-07:3: 1800
+    2014-08: 600
+    2014-09: 600
+    year:2013-10: 7200
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 543b9966398867032e0bf2a9
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 543b9966398867032e0bf2a9
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 600
+  personne_de_reference: 543b9966398867032e0bf2a9
+  so: 4
+output_variables:
+  ass: 483.3

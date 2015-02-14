@@ -1,0 +1,173 @@
+name: Les enfants de plus de 16 ans et gagnant plus de 55% du SMIC ne sont pas considérés à charge (al)
+description: |
+  couple
+  1,75 SMIC au total
+  1 enfant > 16 ans avec 1 SMIC
+  1 enfant < 16 ans
+  loyer 400 €
+  zone 2
+  Commentaire : 1 enfant pas considéré à charge
+  en principe 0 € d'AL selon simulateur
+period: "month:2014-12"
+individus:
+  - age: 43
+    birth: "1972-01-09"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54931f9b297947e07a4c89a6
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 17884.402597402597
+      2013-12: 1987.155844155844
+      2014-01: 1987.155844155844
+      2014-02: 1987.155844155844
+      2014-03: 1987.155844155844
+      2014-04: 1987.155844155844
+      2014-05: 1987.155844155844
+      2014-06: 1987.155844155844
+      2014-07: 1987.155844155844
+      2014-08: 1987.155844155844
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 17884.402597402597
+    salnet:
+      2012: 13770.990000000002
+      2013-12: 1530.11
+      2014-01: 1530.11
+      2014-02: 1530.11
+      2014-03: 1530.11
+      2014-04: 1530.11
+      2014-05: 1530.11
+      2014-06: 1530.11
+      2014-07: 1530.11
+      2014-08: 1530.11
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 13770.990000000002
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 43
+    birth: "1971-04-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54931f9b297947e07a4c8999
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 13413.038961038961
+      2013-12: 1490.3376623376623
+      2014-01: 1490.3376623376623
+      2014-02: 1490.3376623376623
+      2014-03: 1490.3376623376623
+      2014-04: 1490.3376623376623
+      2014-05: 1490.3376623376623
+      2014-06: 1490.3376623376623
+      2014-07: 1490.3376623376623
+      2014-08: 1490.3376623376623
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 13413.038961038961
+    salnet:
+      2012: 10328.039999999997
+      2013-12: 1147.56
+      2014-01: 1147.56
+      2014-02: 1147.56
+      2014-03: 1147.56
+      2014-04: 1147.56
+      2014-05: 1147.56
+      2014-06: 1147.56
+      2014-07: 1147.56
+      2014-08: 1147.56
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 10328.039999999997
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 17
+    birth: "1997-09-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54931f9b297947e07a4c898c
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 17884.402597402597
+      2013-12: 1987.155844155844
+      2014-01: 1987.155844155844
+      2014-02: 1987.155844155844
+      2014-03: 1987.155844155844
+      2014-04: 1987.155844155844
+      2014-05: 1987.155844155844
+      2014-06: 1987.155844155844
+      2014-07: 1987.155844155844
+      2014-08: 1987.155844155844
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 17884.402597402597
+    salnet:
+      2012: 13770.990000000002
+      2013-12: 1530.11
+      2014-01: 1530.11
+      2014-02: 1530.11
+      2014-03: 1530.11
+      2014-04: 1530.11
+      2014-05: 1530.11
+      2014-06: 1530.11
+      2014-07: 1530.11
+      2014-08: 1530.11
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 13770.990000000002
+    scolarite: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 13
+    birth: "2001-03-08"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54931f9b297947e07a4c898b
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+    - 54931f9b297947e07a4c898c
+    - 54931f9b297947e07a4c898b
+  parents:
+    - 54931f9b297947e07a4c89a6
+    - 54931f9b297947e07a4c8999
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54931f9b297947e07a4c89a6
+    - 54931f9b297947e07a4c8999
+  personnes_a_charge:
+    - 54931f9b297947e07a4c898c
+    - 54931f9b297947e07a4c898b
+menages:
+  conjoint: 54931f9b297947e07a4c8999
+  depcom: 13209
+  enfants:
+    - 54931f9b297947e07a4c898c
+    - 54931f9b297947e07a4c898b
+  loyer: 400
+  personne_de_reference: 54931f9b297947e07a4c89a6
+  so: 4
+output_variables:
+  aide_logement: 0

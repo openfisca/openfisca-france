@@ -1,0 +1,64 @@
+name: "Éligibilité Mayotte (Test 5) (cmu-c/acs, dom)"
+description: |
+  La CMUC et l'ACS ne s'appliquent pas à Mayotte.
+  Ici, il n'a déclaré aucune ressource, il aurait droit à la CMU-C en métropole.
+  Comme il habite à Mayotte, les droits CMUC/ACS ne doit pas s'afficher.
+period: "month:2014-12"
+individus:
+  age: 51
+  birth: "1964-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 548ab7bdc6e803ec188347bf
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2012: 6493.480519480521
+    2013-12: 548.3376623376623
+    2014-01: 548.3376623376623
+    2014-02: 548.3376623376623
+    2014-03: 548.3376623376623
+    2014-04: 548.3376623376623
+    2014-05: 548.3376623376623
+    2014-06: 548.3376623376623
+    2014-07: 548.3376623376623
+    2014-08: 548.3376623376623
+    2014-09: 519.4805194805194
+    2014-09:3: 1558.4415584415583
+    2014-10: 519.4805194805194
+    2014-11: 519.4805194805194
+    year:2013-12: 6493.480519480521
+  salnet:
+    2012: 4999.980000000001
+    2013-12: 422.22
+    2014-01: 422.22
+    2014-02: 422.22
+    2014-03: 422.22
+    2014-04: 422.22
+    2014-05: 422.22
+    2014-06: 422.22
+    2014-07: 422.22
+    2014-08: 422.22
+    2014-09: 400
+    2014-09:3: 1200
+    2014-10: 400
+    2014-11: 400
+    year:2013-12: 4999.980000000001
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 548ab7bdc6e803ec188347bf
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 548ab7bdc6e803ec188347bf
+  personnes_a_charge:
+menages:
+  depcom: 97611
+  enfants:
+  loyer: 500
+  personne_de_reference: 548ab7bdc6e803ec188347bf
+  so: 4
+output_variables:
+  acs: 0
+  cmu_c: false

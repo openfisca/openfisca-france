@@ -1,0 +1,42 @@
+name: 87_Retraite du combattant (base ressources, rsa)
+description: "Ressource à exclure de la base ressources RSA (article L. 132-2 du CASF)"
+period: "month:2014-12"
+individus:
+  age: 35
+  birth: "1980-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 548181f2aad65891668c6c32
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  retraite_combattant:
+    2012: 6000
+    2013-12: 500
+    2014-01: 500
+    2014-02: 500
+    2014-03: 500
+    2014-04: 500
+    2014-05: 500
+    2014-06: 500
+    2014-07: 500
+    2014-08: 500
+    2014-09: 500
+    2014-09:3: 1500
+    2014-10: 500
+    2014-11: 500
+    year:2013-12: 6000
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 548181f2aad65891668c6c32
+foyers_fiscaux:
+  declarants: 548181f2aad65891668c6c32
+  personnes_a_charge:
+menages:
+  depcom: 52193
+  enfants:
+  personne_de_reference: 548181f2aad65891668c6c32
+  so: 6
+output_variables:
+  rsa: 448.18

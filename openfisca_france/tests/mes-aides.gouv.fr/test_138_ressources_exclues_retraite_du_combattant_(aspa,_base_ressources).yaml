@@ -1,0 +1,77 @@
+name: "Ressources exclues : retraite du combattant (aspa, base ressources)"
+description: Test concluant. Le simulateur exclut bien la retraite du combattant dans le calcul de l'ASPA.
+period: "month:2014-11"
+individus:
+  activite: 3
+  age: 65
+  birth: "1949-02-15"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 546b452f5d4a0b016431dc30
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  retraite_combattant:
+    2012: 3600
+    2013-11: 300
+    2013-12: 300
+    2014-01: 300
+    2014-02: 300
+    2014-03: 300
+    2014-04: 300
+    2014-05: 300
+    2014-06: 300
+    2014-07: 300
+    2014-08: 300
+    2014-08:3: 900
+    2014-09: 300
+    2014-10: 300
+    year:2013-11: 3600
+  rstbrut:
+    2012: 7775.377969762419
+    2013-11: 647.9481641468682
+    2013-12: 647.9481641468682
+    2014-01: 647.9481641468682
+    2014-02: 647.9481641468682
+    2014-03: 647.9481641468682
+    2014-04: 647.9481641468682
+    2014-05: 647.9481641468682
+    2014-06: 647.9481641468682
+    2014-07: 647.9481641468682
+    2014-08: 647.9481641468682
+    2014-08:3: 1943.8444924406044
+    2014-09: 647.9481641468682
+    2014-10: 647.9481641468682
+    year:2013-11: 7775.377969762419
+  rstnet:
+    2012: 7200
+    2013-11: 600
+    2013-12: 600
+    2014-01: 600
+    2014-02: 600
+    2014-03: 600
+    2014-04: 600
+    2014-05: 600
+    2014-06: 600
+    2014-07: 600
+    2014-08: 600
+    2014-08:3: 1800
+    2014-09: 600
+    2014-10: 600
+    year:2013-11: 7200
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 546b452f5d4a0b016431dc30
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 546b452f5d4a0b016431dc30
+  personnes_a_charge:
+menages:
+  depcom: 75119
+  enfants:
+  loyer: 900
+  personne_de_reference: 546b452f5d4a0b016431dc30
+  so: 3
+output_variables:
+  aspa: 200

@@ -1,0 +1,74 @@
+name: "Couple hébergé à titre gratuit > plafond (base ressources, cmu-c/acs, forfait logement)"
+description: Un couple hébergé à titre gratuit n'a pas droit à la CMUC si ses ressources = 1091 = 984 + 107 (forfait logement)
+period: "month:2015-01"
+individus:
+  - age: 34
+    birth: "1980-03-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54b54b2d44b1ef7a3e841b33
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2013: 15335.064935064935
+      2014-01: 1277.922077922078
+      2014-02: 1277.922077922078
+      2014-03: 1277.922077922078
+      2014-04: 1277.922077922078
+      2014-05: 1277.922077922078
+      2014-06: 1277.922077922078
+      2014-07: 1277.922077922078
+      2014-08: 1277.922077922078
+      2014-09: 1277.922077922078
+      2014-10: 1277.922077922078
+      2014-10:3: 3833.766233766234
+      2014-11: 1277.922077922078
+      2014-12: 1277.922077922078
+      year:2014-01: 15335.064935064935
+    salnet:
+      2013: 11808
+      2014-01: 984
+      2014-02: 984
+      2014-03: 984
+      2014-04: 984
+      2014-05: 984
+      2014-06: 984
+      2014-07: 984
+      2014-08: 984
+      2014-09: 984
+      2014-10: 984
+      2014-10:3: 2952
+      2014-11: 984
+      2014-12: 984
+      year:2014-01: 11808
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 34
+    birth: "1980-03-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54b54b2d44b1ef7a3e841b32
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 54b54b2d44b1ef7a3e841b33
+    - 54b54b2d44b1ef7a3e841b32
+foyers_fiscaux:
+  declarants:
+    - 54b54b2d44b1ef7a3e841b33
+    - 54b54b2d44b1ef7a3e841b32
+  personnes_a_charge:
+menages:
+  conjoint: 54b54b2d44b1ef7a3e841b32
+  depcom: 75118
+  enfants:
+  personne_de_reference: 54b54b2d44b1ef7a3e841b33
+  so: 6
+output_variables:
+  acs: 400
+  cmu_c: false

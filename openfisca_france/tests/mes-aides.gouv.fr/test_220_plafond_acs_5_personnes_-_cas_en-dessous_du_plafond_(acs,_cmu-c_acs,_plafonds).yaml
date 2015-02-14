@@ -1,0 +1,120 @@
+name: "Plafond ACS 5 personnes - cas en-dessous du plafond (acs, cmu-c/acs, plafonds)"
+description: |
+  Plafond ACS pour 5 personnes : 29175 euros.
+  Droits AF + ASF + CF = 594 + 384 + 170 = 1148
+  1148 * 12 = 13776
+  Salaires déclarés : 15380 euros.
+  15380 + 13776 = 29156 ce qui est inférieur au plafond
+period: "month:2014-12"
+individus:
+  - age: 41
+    birth: "1974-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549163658dac13600246a097
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 19974.02597402597
+      2013-12: 1699.8556998556999
+      2014-01: 1699.8556998556999
+      2014-02: 1699.8556998556999
+      2014-03: 1699.8556998556999
+      2014-04: 1699.8556998556999
+      2014-05: 1699.8556998556999
+      2014-06: 1699.8556998556999
+      2014-07: 1699.8556998556999
+      2014-08: 1699.8556998556999
+      2014-09: 1558.4415584415583
+      2014-09:3: 4675.324675324675
+      2014-10: 1558.4415584415583
+      2014-11: 1558.4415584415583
+      year:2013-12: 19974.02597402597
+    salnet:
+      2012: 15379.999999999998
+      2013-12: 1308.888888888889
+      2014-01: 1308.888888888889
+      2014-02: 1308.888888888889
+      2014-03: 1308.888888888889
+      2014-04: 1308.888888888889
+      2014-05: 1308.888888888889
+      2014-06: 1308.888888888889
+      2014-07: 1308.888888888889
+      2014-08: 1308.888888888889
+      2014-09: 1200
+      2014-09:3: 3600
+      2014-10: 1200
+      2014-11: 1200
+      year:2013-12: 15379.999999999998
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2001-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549163658dac13600246a095
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 12
+    birth: "2003-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549163658dac13600246a094
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 9
+    birth: "2006-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 549163658dac13600246a093
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 15
+    birth: "2000-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54c8f274d4e3b0d74454bc0d
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+    - 549163658dac13600246a095
+    - 549163658dac13600246a094
+    - 549163658dac13600246a093
+    - 54c8f274d4e3b0d74454bc0d
+  parents: 549163658dac13600246a097
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 549163658dac13600246a097
+  personnes_a_charge:
+    - 549163658dac13600246a095
+    - 549163658dac13600246a094
+    - 549163658dac13600246a093
+    - 54c8f274d4e3b0d74454bc0d
+menages:
+  depcom: 86194
+  enfants:
+    - 549163658dac13600246a095
+    - 549163658dac13600246a094
+    - 549163658dac13600246a093
+    - 54c8f274d4e3b0d74454bc0d
+  loyer: 50
+  personne_de_reference: 549163658dac13600246a097
+  so: 4
+output_variables:
+  acs: 600
+  af: 593.07
+  asf: 383.95
+  cf: 169.19
+  cmu_c: false
