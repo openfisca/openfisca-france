@@ -37,19 +37,19 @@ from . import (  # noqa #analysis:ignore
 from .cotisations_sociales import (  # noqa #analysis:ignore
     allegements,
     capital,
+    # penalites,
     remplacement,
     remuneration_prive,
     remuneration_public,
     travail_fonction_publique,
     travail_prive,
     travail_totaux,
-    travail_verification,
     )
 
-from .impot_revenu import ( # noqa #analysis:ignore
-    ir,
+from .impot_revenu import (  # noqa #analysis:ignore
     charges_deductibles,
     credits_impot,
+    ir,
     plus_values_immobilieres,
     reductions_impot,
     )
