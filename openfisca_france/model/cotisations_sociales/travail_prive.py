@@ -34,7 +34,7 @@ from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
-from ..base import *  #noqa analysis:ignore
+from ..base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
@@ -212,7 +212,7 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
 class ags(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)" #noqa analysis:ignore
+    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)" # noqa analysis:ignore
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -472,9 +472,9 @@ class forfait_social(SimpleFormulaColumn):
         taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
 
         # TODO: complete this
-        assiette_taux_plein = 0 # TODO: complete this        
+        assiette_taux_plein = 0  # TODO: complete this
         assiette_taux_reduit = prevoyance_obligatoire_cadre - prise_en_charge_employeur_prevoyance_complementaire
-        
+
         return period, (
             assiette_taux_plein * taux_plein +
             assiette_taux_reduit * taux_reduit

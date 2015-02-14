@@ -34,7 +34,7 @@ from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
-from ..base import *  #noqa analysis:ignore
+from ..base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
