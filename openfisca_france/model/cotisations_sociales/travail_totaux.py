@@ -388,7 +388,7 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         salnet = simulation.calculate('salnet', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
-        indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)    
+        indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
         salaire_net_a_payer = (
             salnet +
             depense_cantine_titre_restaurant_employe +
@@ -402,10 +402,11 @@ class tehr(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
+    url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')  # TODO: period
-        salbrut = simulation.calculate('salbrut', period)
+        salbrut = simulation.calculate_add('salbrut', period)
         law = simulation.legislation_at(period.start)
 
         bar = law.cotsoc.tehr
