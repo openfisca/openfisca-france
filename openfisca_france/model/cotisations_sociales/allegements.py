@@ -186,34 +186,27 @@ def compute_allegement_fillon_annuel(simulation, period):
     if period.start.month < 12:
         return 0
     if period.start.month == 12:
-        return compute_allegement_fillon(
-            simulation, period = period.start.offset('first-of', 'year').period('year')
-            )
+        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'year').period('year'))
 
 
 def compute_allegement_fillon_anticipe(simulation, period):
     if period.start.month < 12:
-        return compute_allegement_fillon(
-            simulation, period = period.start.offset('first-of', 'month').period('month')
-            )
+        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month'))
     if period.start.month == 12:
         cumul = simulation.calculate_add('allegement_fillon', period.start.offset('first-of', 'month').offset(-12,
             'month').period('year'))
-        return compute_allegement_fillon(
-            simulation, period = period.start.offset('first-of', 'year').period('year')
-            ) - cumul
+        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'year').period('year')) - cumul
 
 
 def compute_allegement_fillon_progressif(simulation, period):
     if period.start.month == 1:
-        return compute_allegement_fillon(
-            simulation, period = period.start.offset('first-of', 'month').period('month')
+        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month')
             )
     if period.start.month > 1:
         cumul = simulation.calculate_add('allegement_fillon', period.start.offset('first-of', 'month').offset(-12,
             'month').period('year'))
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
-        return compute_allegement_fillon(simulation, period = up_to_this_month) - cumul
+        return compute_allegement_fillon(simulation, up_to_this_month) - cumul
 
 
 # Helper functions
