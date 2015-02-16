@@ -1641,20 +1641,6 @@ class cehr(SimpleFormulaColumn):
         return period, bareme.calc(rfr / nb_adult) * nb_adult
 
 
-def _cesthra(self, sal_holder, bareme = law.ir.cesthra):
-    '''
-    Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité
-    'foy'
-    PLF 2013 (rejeté) : 'taxe à 75%'
-    '''
-    sal = self.split_by_roles(sal_holder)
-
-    cesthra = 0
-    for rev in sal.itervalues():
-        cesthra += bareme.calc(rev)
-    return cesthra
-
-
 @reference_formula
 class irpp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
@@ -1678,7 +1664,7 @@ class irpp(SimpleFormulaColumn):
             ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
             ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
             (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
-            (pre_result >= 0) * 0 * iai ))
+            (pre_result >= 0) * 0 * iai))
 
 
 ###############################################################################
