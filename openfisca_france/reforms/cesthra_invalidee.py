@@ -29,7 +29,7 @@ import copy
 
 import logging
 
-from numpy import maximum, max_
+from numpy import maximum as max_
 
 from openfisca_core import formulas, reforms
 from openfisca_france.model.impot_revenu import ir
@@ -73,7 +73,6 @@ class irpp(formulas.SimpleFormulaColumn):
         cesthra = simulation.calculate('cesthra', period = period)
         P = simulation.legislation_at(period.start).ir.recouvrement
 
-        # TODO: crade ?
         pre_result = iai - credits_impot + cehr + cesthra
         return period, ((iai > P.seuil) *
             ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
@@ -106,26 +105,6 @@ reform_legislation_subtree = {
             },
         },
     }
-
-    <BAREME code="cesthra" description="Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité" type="monetary">
-      <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.0" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche1">
-        <SEUIL>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="1000000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".75" />
-        </TAUX>
-      </TRANCHE>
-    </BAREME>
-
 
 
 def build_reform(tax_benefit_system):
