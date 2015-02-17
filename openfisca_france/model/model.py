@@ -38,6 +38,7 @@ from .cotisations_sociales import (  # noqa analysis:ignore
     allegements,
     capital,
     # penalites,
+    exonerations,
     remplacement,
     remuneration_prive,
     remuneration_public,

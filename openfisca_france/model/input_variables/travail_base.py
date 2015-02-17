@@ -90,12 +90,14 @@ reference_input_variable(
 reference_input_variable(
     column = DateCol(default = datetime.date(1870, 1, 1)),
     entity_class = Individus,
+    is_permanent = True,
     label = u"Date d'arrivée dans l'entreprise",
     name = 'contrat_de_travail_arrivee',  # debut
     )
 reference_input_variable(
     column = DateCol(default = datetime.date(2099, 12, 31)),
     entity_class = Individus,
+    is_permanent = True,
     label = u"Date de départ de l'entreprise",
     name = 'contrat_de_travail_depart',   # fin
     )
@@ -128,10 +130,34 @@ reference_input_variable(
     name = 'effectif_entreprise',
     )
 reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à la contribution économique territoriale",
+    name = 'entreprise_assujettie_cet',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)",
+    name = 'entreprise_assujettie_is',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à la TVA",
+    name = 'entreprise_assujettie_tva',
+    )
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Individus,
+    label = u"Bénéfice de l'entreprise",
+    name = 'entreprise_benefice',
+    )
+reference_input_variable(
     column = FixedStrCol(max_length = 5),
     entity_class = Individus,
     label = u"Localisation entreprise",
-    name = 'localisation_entreprise',  # TODO; à adpater sur le format depcom ?
+    name = 'localisation_entreprise',  # TODO; à adapter sur le format depcom ?
     )
 reference_input_variable(
     column = IntCol(),
@@ -204,7 +230,7 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Indemnités forfaitaires (transport, nourriture)",
     name = 'indemnites_forfaitaires',
-    )    
+    )
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
