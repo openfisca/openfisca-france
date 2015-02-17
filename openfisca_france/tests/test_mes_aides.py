@@ -27,17 +27,12 @@
 from __future__ import division
 
 import os
-import sys
 
 import numpy as np
 from openfisca_core import conv
 # from openfisca_core.tools import assert_near
-import openfisca_france
+from openfisca_france.tests.base import tax_benefit_system
 import yaml
-
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
 
 
 def assert_near2(value, target_value, error_margin = 1, message = ''):
@@ -106,6 +101,7 @@ def test():
 if __name__ == "__main__":
     import argparse
     import logging
+    import sys
 
     parser = argparse.ArgumentParser(description = __doc__)
     parser.add_argument('-n', '--number', default = None, help = "number of single test to execute")

@@ -140,6 +140,12 @@ reference_input_variable(
     name = 'nombre_tickets_restaurant',
     )
 reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Nouvelle bonification indicaire",
+    name = 'nouvelle_bonification_indiciaire',
+    )
+reference_input_variable(
     column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
@@ -224,6 +230,12 @@ reference_input_variable(
     name = 'titre_restaurant_volume',
     )
 reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Traitement indiciaire brut (TIB)",
+    name = 'traitement_indiciaire_brut',
+    )
+reference_input_variable(
     column = EnumCol(
         enum = Enum(
             [
@@ -277,3 +289,5 @@ reference_input_variable(
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale",
     name = 'volume_jours_ijss',
     )
+
+
