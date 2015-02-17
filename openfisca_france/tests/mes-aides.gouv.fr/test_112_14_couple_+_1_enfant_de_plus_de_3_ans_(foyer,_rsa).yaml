@@ -1,0 +1,50 @@
+name: 14_Couple + 1 enfant de plus de 3 ans (foyer, rsa)
+description:
+period: "month:2014-11"
+individus:
+  - age: 29
+    birth: "1986-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 545a4fdf4abd22dc4420c7a4
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    statmarit: 2
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 21
+    birth: "1994-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 545a4fdf4abd22dc4420c7a3
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 5
+    birth: "2010-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 545a4fdf4abd22dc4420c7a2
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants: 545a4fdf4abd22dc4420c7a2
+  parents:
+    - 545a4fdf4abd22dc4420c7a4
+    - 545a4fdf4abd22dc4420c7a3
+foyers_fiscaux:
+  declarants:
+    - 545a4fdf4abd22dc4420c7a4
+    - 545a4fdf4abd22dc4420c7a3
+  personnes_a_charge: 545a4fdf4abd22dc4420c7a2
+menages:
+  conjoint: 545a4fdf4abd22dc4420c7a3
+  depcom: 22278
+  enfants: 545a4fdf4abd22dc4420c7a2
+  personne_de_reference: 545a4fdf4abd22dc4420c7a4
+  so: 6
+output_variables:
+  rsa: 765.48

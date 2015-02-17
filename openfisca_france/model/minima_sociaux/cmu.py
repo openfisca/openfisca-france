@@ -160,19 +160,22 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
+        last_month = period.start.period('month').offset(-1)
+
         activite = simulation.calculate('activite', period)
         salnet = simulation.calculate('salnet', previous_year)
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        rsa_base_ressources_patrimoine_i = simulation.calculate('rsa_base_ressources_patrimoine_i', previous_year)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
         aah = simulation.calculate('aah', previous_year)
         indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', previous_year)
         indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', previous_year)
         indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', previous_year)
         indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        revenus_stage_formation_pro_dernier_mois = simulation.calculate('revenus_stage_formation_pro', last_month)
         allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', previous_year)
         prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', previous_year)
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', previous_year)
@@ -183,15 +186,21 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
         bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
-        tns_total_revenus = simulation.calculate('tns_total_revenus', previous_year)
+        tns_total_revenus = simulation.calculate_add('tns_total_revenus', previous_year)
         P = simulation.legislation_at(period.start).cmu
 
-        return period, ((salnet + revenus_stage_formation_pro + indemnites_chomage_partiel) * (1 - (activite == 1) * P.abattement_chomage) +
+        # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
+        revenus_stage_formation_pro = revenus_stage_formation_pro_annee * (revenus_stage_formation_pro_dernier_mois > 0)
+
+        # Abattement sur revenus d'activité si chômage ou formation professionnelle
+        abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
+
+        return period, ((salnet + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
             indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
-            tns_total_revenus)
+            tns_total_revenus + revenus_stage_formation_pro)
 
 
 @reference_formula
@@ -206,9 +215,9 @@ class cmu_base_ressources(SimpleFormulaColumn):
         ass = simulation.calculate('ass', period)
         asi = simulation.calculate('asi', period)
         af = simulation.calculate('af', period)
-        cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
-        paje_clca = simulation.calculate('paje_clca', period)
+        cf = simulation.calculate_divide('cf', period)
+        asf = simulation.calculate_divide('asf', period)
+        paje_clca = simulation.calculate_divide('paje_clca', period)
         so_holder = simulation.compute('so', period)
         aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
@@ -225,9 +234,10 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        res = (cmu_br_i_par[CHEF] + cmu_br_i_par[PART] +
-            ((so == 2) + (so == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * cmu_forfait_logement_al)
+        forfait_logement = (((so == 2) + (so == 6)) * cmu_forfait_logement_base +
+            (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement * 12))
+
+        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
         res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca)
 
@@ -262,16 +272,25 @@ class cmu_c(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        this_month = period.start.period('month')
+        # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
+        # répond pour la période demandée.
+        this_month = period.start.period('month').offset('first-of')
+        this_rolling_year = this_month.start.period('year')
+        if period.stop > this_rolling_year.stop:
+            period = this_rolling_year
+
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
         residence_mayotte = simulation.calculate('residence_mayotte', this_month)
+
         rsa_socle = simulation.calculate('rsa_socle', this_month)
-        ra_rsa = simulation.calculate('ra_rsa', this_month)
+        rsa_socle_majore = simulation.calculate('rsa_socle_majore', this_month)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', this_month)
+        br_rmi = simulation.calculate('br_rmi', this_month)
+        socle = max_(rsa_socle, rsa_socle_majore)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-        eligibilite_rsa = (rsa_socle > 0) * (ra_rsa == 0)
+        eligibilite_rsa = (socle > 0) * (br_rmi < socle - rsa_forfait_logement)
 
         return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 

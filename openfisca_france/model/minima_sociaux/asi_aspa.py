@@ -25,9 +25,17 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_)
+from numpy import (maximum as max_, logical_not as not_, logical_or as or_)
 
 from ..base import *  # noqa
+
+
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Individus,
+    label = u"Reconnu inapte au travail",
+    name = "inapte_travail",
+    )
 
 
 @reference_formula
@@ -39,16 +47,17 @@ class br_mv_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
+        aspa_elig = simulation.calculate('aspa_elig', period)
         salnet = simulation.calculate('salnet', three_previous_months)
         chonet = simulation.calculate('chonet', three_previous_months)
         rstnet = simulation.calculate('rstnet', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        rto_declarant1 = simulation.calculate('rto_declarant1', three_previous_months)
-        rpns = simulation.calculate('rpns', three_previous_months)
-        rev_cap_bar_holder = simulation.compute('rev_cap_bar', three_previous_months)
-        rev_cap_lib_holder = simulation.compute('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate('rfon_ms', three_previous_months)
-        div_ms = simulation.calculate('div_ms', three_previous_months)
+        rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
+        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
+        rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
+        rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
+        rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
+        div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', three_previous_months)
         prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', three_previous_months)
@@ -62,11 +71,15 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus = simulation.calculate('tns_total_revenus', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate('rsa_base_ressources_patrimoine_i', three_previous_months)
+        tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
+        aah = simulation.calculate('aah', three_previous_months)
 
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+
+        # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
+        aah = aah * or_(not_(aspa_elig), pensions_invalidite + rstnet == 0)
 
         return period, (salnet + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
@@ -75,7 +88,7 @@ class br_mv_i(SimpleFormulaColumn):
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
                indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
-               rsa_base_ressources_patrimoine_i
+               rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
 
@@ -88,7 +101,7 @@ class br_mv(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         br_mv_i_holder = simulation.compute('br_mv_i', period)
-        ass = simulation.calculate('ass', period)
+        ass = simulation.calculate_divide('ass', period)
 
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
         return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
@@ -103,10 +116,10 @@ class aspa_elig(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         age = simulation.calculate('age', period)
-        inv = simulation.calculate('inv', period)
+        inapte_travail = simulation.calculate('inapte_travail', period)
         P = simulation.legislation_at(period.start).minim
 
-        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inv)
+        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inapte_travail)
         return period, condition_age
 
 

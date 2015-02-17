@@ -2180,7 +2180,7 @@
     <NODE code="tspr" description="Total salaires pensions et rentes">
       <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels">
         <CODE code="taux" description="Taux de l'abattement" format="percent">
-          <VALUE deb="1944-01-01" fin="2013-12-31" valeur="0.10" />
+          <VALUE deb="1944-01-01" fin="2015-12-31" valeur="0.10" />
         </CODE>
         <CODE code="max" description="Abattement maximum" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="12229" />
@@ -3824,24 +3824,6 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <BAREME code="cesthra" description="Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité" type="monetary">
-      <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.0" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche1">
-        <SEUIL>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="1000000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".75" />
-        </TAUX>
-      </TRANCHE>
-    </BAREME>
     <NODE code="pv_immo" description="Plus-values immobilières">
       <CODE code="ann_det1" description="Nombre d'années pleines de détentions minimale (1er seuil)" format="integer">
         <VALUE deb="2011-01-01" fin="2012-01-31" valeur="5" />
@@ -4637,7 +4619,7 @@
           <VALUE deb="2013-07-01" fin="2014-06-30" valeur="14145" />
         </CODE>
         <CODE code="dar_3b" description="Coefficient multiplicateur du smic horaire brut au 01/07 précédent la date d'ouverture des droits (R. 351-7) pour un employeur ou un travailleur indépendant" format="float">
-          <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1500" />
+          <VALUE deb="2007-07-01" fin="2015-12-31" valeur="1500" />
         </CODE>
       </NODE>
       <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" type="monetary">
@@ -4648,12 +4630,13 @@
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="7200" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7300" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="7500" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7600" />
       </CODE>
       <CODE code="dar_5" description="Minoration du plancher de ressources étudiants pour boursiers" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-11-30" valeur="990.86" />
         <VALUE deb="2002-12-01" fin="2007-06-30" valeur="1100" />
         <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1400" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1500" />
+        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1500" />
       </CODE>
       <CODE code="dar_6" description="Demandes antérieures au 1er juillet" format="float" type="monetary">
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="4420.76" />

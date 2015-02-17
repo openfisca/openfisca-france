@@ -118,19 +118,16 @@ class Scenario(scenarios.AbstractScenario):
                 conv.struct(
                     dict(
                         familles = conv.pipe(
-                            conv.condition(
-                                conv.test_isinstance(list),
-                                conv.pipe(
-                                    conv.uniform_sequence(
-                                        conv.test_isinstance(dict),
-                                        drop_none_items = True,
-                                        ),
-                                    conv.function(lambda values: collections.OrderedDict(
-                                        (value.pop('id', index), value)
-                                        for index, value in enumerate(values)
-                                        )),
-                                    ),
+                            conv.make_item_to_singleton(),
+                            conv.test_isinstance(list),
+                            conv.uniform_sequence(
+                                conv.test_isinstance(dict),
+                                drop_none_items = True,
                                 ),
+                            conv.function(lambda values: collections.OrderedDict(
+                                (value.pop('id', index), value)
+                                for index, value in enumerate(values)
+                                )),
                             conv.test_isinstance(dict),
                             conv.uniform_mapping(
                                 conv.pipe(
@@ -143,6 +140,7 @@ class Scenario(scenarios.AbstractScenario):
                                         dict(itertools.chain(
                                             dict(
                                                 enfants = conv.pipe(
+                                                    conv.make_item_to_singleton(),
                                                     conv.test_isinstance(list),
                                                     conv.uniform_sequence(
                                                         conv.test_isinstance((basestring, int)),
@@ -151,6 +149,7 @@ class Scenario(scenarios.AbstractScenario):
                                                     conv.default([]),
                                                     ),
                                                 parents = conv.pipe(
+                                                    conv.make_item_to_singleton(),
                                                     conv.test_isinstance(list),
                                                     conv.uniform_sequence(
                                                         conv.test_isinstance((basestring, int)),
@@ -173,19 +172,16 @@ class Scenario(scenarios.AbstractScenario):
                             conv.default({}),
                             ),
                         foyers_fiscaux = conv.pipe(
-                            conv.condition(
-                                conv.test_isinstance(list),
-                                conv.pipe(
-                                    conv.uniform_sequence(
-                                        conv.test_isinstance(dict),
-                                        drop_none_items = True,
-                                        ),
-                                    conv.function(lambda values: collections.OrderedDict(
-                                        (value.pop('id', index), value)
-                                        for index, value in enumerate(values)
-                                        )),
-                                    ),
+                            conv.make_item_to_singleton(),
+                            conv.test_isinstance(list),
+                            conv.uniform_sequence(
+                                conv.test_isinstance(dict),
+                                drop_none_items = True,
                                 ),
+                            conv.function(lambda values: collections.OrderedDict(
+                                (value.pop('id', index), value)
+                                for index, value in enumerate(values)
+                                )),
                             conv.test_isinstance(dict),
                             conv.uniform_mapping(
                                 conv.pipe(
@@ -198,6 +194,7 @@ class Scenario(scenarios.AbstractScenario):
                                         dict(itertools.chain(
                                             dict(
                                                 declarants = conv.pipe(
+                                                    conv.make_item_to_singleton(),
                                                     conv.test_isinstance(list),
                                                     conv.uniform_sequence(
                                                         conv.test_isinstance((basestring, int)),
@@ -206,6 +203,7 @@ class Scenario(scenarios.AbstractScenario):
                                                     conv.default([]),
                                                     ),
                                                 personnes_a_charge = conv.pipe(
+                                                    conv.make_item_to_singleton(),
                                                     conv.test_isinstance(list),
                                                     conv.uniform_sequence(
                                                         conv.test_isinstance((basestring, int)),
@@ -228,19 +226,16 @@ class Scenario(scenarios.AbstractScenario):
                             conv.default({}),
                             ),
                         individus = conv.pipe(
-                            conv.condition(
-                                conv.test_isinstance(list),
-                                conv.pipe(
-                                    conv.uniform_sequence(
-                                        conv.test_isinstance(dict),
-                                        drop_none_items = True,
-                                        ),
-                                    conv.function(lambda values: collections.OrderedDict(
-                                        (value.pop('id', index), value)
-                                        for index, value in enumerate(values)
-                                        )),
-                                    ),
+                            conv.make_item_to_singleton(),
+                            conv.test_isinstance(list),
+                            conv.uniform_sequence(
+                                conv.test_isinstance(dict),
+                                drop_none_items = True,
                                 ),
+                            conv.function(lambda values: collections.OrderedDict(
+                                (value.pop('id', index), value)
+                                for index, value in enumerate(values)
+                                )),
                             conv.test_isinstance(dict),
                             conv.uniform_mapping(
                                 conv.pipe(
@@ -265,19 +260,16 @@ class Scenario(scenarios.AbstractScenario):
                             conv.not_none,
                             ),
                         menages = conv.pipe(
-                            conv.condition(
-                                conv.test_isinstance(list),
-                                conv.pipe(
-                                    conv.uniform_sequence(
-                                        conv.test_isinstance(dict),
-                                        drop_none_items = True,
-                                        ),
-                                    conv.function(lambda values: collections.OrderedDict(
-                                        (value.pop('id', index), value)
-                                        for index, value in enumerate(values)
-                                        )),
-                                    ),
+                            conv.make_item_to_singleton(),
+                            conv.test_isinstance(list),
+                            conv.uniform_sequence(
+                                conv.test_isinstance(dict),
+                                drop_none_items = True,
                                 ),
+                            conv.function(lambda values: collections.OrderedDict(
+                                (value.pop('id', index), value)
+                                for index, value in enumerate(values)
+                                )),
                             conv.test_isinstance(dict),
                             conv.uniform_mapping(
                                 conv.pipe(
@@ -291,6 +283,7 @@ class Scenario(scenarios.AbstractScenario):
                                             dict(
                                                 autres = conv.pipe(
                                                     # personnes ayant un lien autre avec la personne de référence
+                                                    conv.make_item_to_singleton(),
                                                     conv.test_isinstance(list),
                                                     conv.uniform_sequence(
                                                         conv.test_isinstance((basestring, int)),
@@ -302,6 +295,7 @@ class Scenario(scenarios.AbstractScenario):
                                                 conjoint = conv.test_isinstance((basestring, int)),
                                                 enfants = conv.pipe(
                                                     # enfants de la personne de référence ou de son conjoint
+                                                    conv.make_item_to_singleton(),
                                                     conv.test_isinstance(list),
                                                     conv.uniform_sequence(
                                                         conv.test_isinstance((basestring, int)),

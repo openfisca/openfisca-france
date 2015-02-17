@@ -1,0 +1,107 @@
+name: Couple salariés 1,5 SMIC sans enfant zone 2 (al)
+description: Simulateur CAF indique 0 € d'AL
+period: "month:2014-12"
+individus:
+  - age: 43
+    birth: "1972-01-09"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5493f834c85c31d77ab6bf6c
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 17884.402597402597
+      2013-12: 1987.155844155844
+      2014-01: 1987.155844155844
+      2014-02: 1987.155844155844
+      2014-03: 1987.155844155844
+      2014-04: 1987.155844155844
+      2014-05: 1987.155844155844
+      2014-06: 1987.155844155844
+      2014-07: 1987.155844155844
+      2014-08: 1987.155844155844
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 17884.402597402597
+    salnet:
+      2012: 13770.990000000002
+      2013-12: 1530.11
+      2014-01: 1530.11
+      2014-02: 1530.11
+      2014-03: 1530.11
+      2014-04: 1530.11
+      2014-05: 1530.11
+      2014-06: 1530.11
+      2014-07: 1530.11
+      2014-08: 1530.11
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 13770.990000000002
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 43
+    birth: "1971-04-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5493f834c85c31d77ab6bf5f
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salbrut:
+      2012: 8941.558441558442
+      2013-12: 993.5064935064935
+      2014-01: 993.5064935064935
+      2014-02: 993.5064935064935
+      2014-03: 993.5064935064935
+      2014-04: 993.5064935064935
+      2014-05: 993.5064935064935
+      2014-06: 993.5064935064935
+      2014-07: 993.5064935064935
+      2014-08: 993.5064935064935
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 8941.558441558442
+    salnet:
+      2012: 6885
+      2013-12: 765
+      2014-01: 765
+      2014-02: 765
+      2014-03: 765
+      2014-04: 765
+      2014-05: 765
+      2014-06: 765
+      2014-07: 765
+      2014-08: 765
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 6885
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 5493f834c85c31d77ab6bf6c
+    - 5493f834c85c31d77ab6bf5f
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 5493f834c85c31d77ab6bf6c
+    - 5493f834c85c31d77ab6bf5f
+  personnes_a_charge:
+menages:
+  conjoint: 5493f834c85c31d77ab6bf5f
+  depcom: 13209
+  enfants:
+  loyer: 400
+  personne_de_reference: 5493f834c85c31d77ab6bf6c
+  so: 4
+output_variables:
+  aide_logement: 0

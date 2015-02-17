@@ -1,0 +1,69 @@
+name: 2 enfants (al, location, ménage)
+description: |
+  L	456,73
+  C	77,35
+  E	534,08
+  R	0
+  R0	8031
+  Rp	0
+  Tf	2,38
+  LR	453,49
+  RL	100,71
+  Tl	0,31
+  Tp	2,69
+  P0	45,4
+  P1	0
+  Pp	45,4
+  AL	486,24
+period: "month:2015-01"
+individus:
+  - age: 34
+    birth: "1980-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac12a5608e752d1629ea3b
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2000-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac12a5608e752d1629ea3a
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    birth: "2000-07-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54ac12a5608e752d1629ea39
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+    - 54ac12a5608e752d1629ea3a
+    - 54ac12a5608e752d1629ea39
+  parents: 54ac12a5608e752d1629ea3b
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54ac12a5608e752d1629ea3b
+  personnes_a_charge:
+    - 54ac12a5608e752d1629ea3a
+    - 54ac12a5608e752d1629ea39
+menages:
+  depcom: 75111
+  enfants:
+    - 54ac12a5608e752d1629ea3a
+    - 54ac12a5608e752d1629ea39
+  loyer: 1000
+  personne_de_reference: 54ac12a5608e752d1629ea3b
+  so: 4
+output_variables:
+  aide_logement: 486.24

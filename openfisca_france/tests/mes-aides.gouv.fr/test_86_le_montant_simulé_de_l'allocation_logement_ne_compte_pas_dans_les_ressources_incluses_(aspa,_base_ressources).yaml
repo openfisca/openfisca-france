@@ -1,0 +1,28 @@
+name: Le montant simulé de l'allocation logement ne compte pas dans les ressources incluses (aspa, base ressources)
+description:
+period: "month:2014-07"
+individus:
+  age: 69
+  birth: "1945-09-14"
+  enceinte: false
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 53d2663ae40a7902009c33b8
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 53d2663ae40a7902009c33b8
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 53d2663ae40a7902009c33b8
+  personnes_a_charge:
+menages:
+  enfants:
+  loyer: 600
+  personne_de_reference: 53d2663ae40a7902009c33b8
+  so: 4
+output_variables:
+  aspa: 791.99

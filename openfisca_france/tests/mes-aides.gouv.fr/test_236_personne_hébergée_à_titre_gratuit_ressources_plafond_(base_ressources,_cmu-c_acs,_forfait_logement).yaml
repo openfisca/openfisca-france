@@ -1,0 +1,58 @@
+name: "Personne hébergée à titre gratuit ressources < plafond (base ressources, cmu-c/acs, forfait logement)"
+description: Une personne hébergée à titre gratuit si c'est ressources <720 euros = 650eur + 60 eur (forfait logement) a droit à la CMUC
+period: "month:2015-01"
+individus:
+  age: 34
+  birth: "1980-03-02"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54b544f65d6c356f3ea1cb25
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2013: 10129.870129870133
+    2014-01: 844.1558441558442
+    2014-02: 844.1558441558442
+    2014-03: 844.1558441558442
+    2014-04: 844.1558441558442
+    2014-05: 844.1558441558442
+    2014-06: 844.1558441558442
+    2014-07: 844.1558441558442
+    2014-08: 844.1558441558442
+    2014-09: 844.1558441558442
+    2014-10: 844.1558441558442
+    2014-10:3: 2532.4675324675327
+    2014-11: 844.1558441558442
+    2014-12: 844.1558441558442
+    year:2014-01: 10129.870129870133
+  salnet:
+    2013: 7800
+    2014-01: 650
+    2014-02: 650
+    2014-03: 650
+    2014-04: 650
+    2014-05: 650
+    2014-06: 650
+    2014-07: 650
+    2014-08: 650
+    2014-09: 650
+    2014-10: 650
+    2014-10:3: 1950
+    2014-11: 650
+    2014-12: 650
+    year:2014-01: 7800
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54b544f65d6c356f3ea1cb25
+foyers_fiscaux:
+  declarants: 54b544f65d6c356f3ea1cb25
+  personnes_a_charge:
+menages:
+  depcom: 77389
+  enfants:
+  personne_de_reference: 54b544f65d6c356f3ea1cb25
+  so: 6
+output_variables:
+  cmu_c: true

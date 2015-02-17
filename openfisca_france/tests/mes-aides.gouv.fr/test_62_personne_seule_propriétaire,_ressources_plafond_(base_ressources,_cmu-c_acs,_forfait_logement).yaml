@@ -1,0 +1,58 @@
+name: "Personne seule propriétaire, ressources > plafond (base ressources, cmu-c/acs, forfait logement)"
+description: "Le demandeur n'a pas droit à la CMU s'il est propriétaire de son logement et que ses ressources dépassent 720 (salaires) - 60 (forfait logement) = 660 € par mois."
+period: "month:2014-10"
+individus:
+  age: 34
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 5446686d7b2551d654d31779
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2012: 10441.558441558442
+    2013-10: 870.1298701298701
+    2013-11: 870.1298701298701
+    2013-12: 870.1298701298701
+    2014-01: 870.1298701298701
+    2014-02: 870.1298701298701
+    2014-03: 870.1298701298701
+    2014-04: 870.1298701298701
+    2014-05: 870.1298701298701
+    2014-06: 870.1298701298701
+    2014-07: 870.1298701298701
+    2014-07:3: 2610.3896103896104
+    2014-08: 870.1298701298701
+    2014-09: 870.1298701298701
+    year:2013-10: 10441.558441558442
+  salnet:
+    2012: 8040
+    2013-10: 670
+    2013-11: 670
+    2013-12: 670
+    2014-01: 670
+    2014-02: 670
+    2014-03: 670
+    2014-04: 670
+    2014-05: 670
+    2014-06: 670
+    2014-07: 670
+    2014-07:3: 2010
+    2014-08: 670
+    2014-09: 670
+    year:2013-10: 8040
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 5446686d7b2551d654d31779
+foyers_fiscaux:
+  declarants: 5446686d7b2551d654d31779
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  personne_de_reference: 5446686d7b2551d654d31779
+  so: 2
+output_variables:
+  cmu_c: false

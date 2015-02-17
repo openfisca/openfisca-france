@@ -1,0 +1,80 @@
+name: Prise en compte à 3% de la valeur vénale des résidences secondaires #OpenLab (aspa, base ressources, patrimoine)
+description: |
+  les biens immobiliers autre que la résidence principale (loués ou non) sont valorisés à 3% du montant de la valeur vénale (prix du marché)
+  cas testé : propriétaire de la résidence principale et d'un autre bien
+  le moteur ne tient pas compte de cet autre bien
+  le résultat devrait être 0, le moteur renvoie 400 euros
+period: "month:2014-11"
+individus:
+  activite: 3
+  age: 74
+  birth: "1940-12-05"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54648fa93005e57370c2f36e
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  revenus_locatifs:
+    2012: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-08:3: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  rstbrut:
+    2012: 5183.585313174946
+    2013-11: 431.9654427645788
+    2013-12: 431.9654427645788
+    2014-01: 431.9654427645788
+    2014-02: 431.9654427645788
+    2014-03: 431.9654427645788
+    2014-04: 431.9654427645788
+    2014-05: 431.9654427645788
+    2014-06: 431.9654427645788
+    2014-07: 431.9654427645788
+    2014-08: 431.9654427645788
+    2014-08:3: 1295.8963282937366
+    2014-09: 431.9654427645788
+    2014-10: 431.9654427645788
+    year:2013-11: 5183.585313174946
+  rstnet:
+    2012: 4800
+    2013-11: 400
+    2013-12: 400
+    2014-01: 400
+    2014-02: 400
+    2014-03: 400
+    2014-04: 400
+    2014-05: 400
+    2014-06: 400
+    2014-07: 400
+    2014-08: 400
+    2014-08:3: 1200
+    2014-09: 400
+    2014-10: 400
+    year:2013-11: 4800
+  valeur_locative_immo_non_loue:
+    2013-11: 1000000
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54648fa93005e57370c2f36e
+foyers_fiscaux:
+  declarants: 54648fa93005e57370c2f36e
+  personnes_a_charge:
+menages:
+  depcom: 94046
+  enfants:
+  personne_de_reference: 54648fa93005e57370c2f36e
+  so: 2
+output_variables:
+  aspa: 0

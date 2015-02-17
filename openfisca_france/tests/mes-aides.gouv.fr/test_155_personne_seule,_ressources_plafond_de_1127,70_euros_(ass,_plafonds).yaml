@@ -1,0 +1,58 @@
+name: Personne seule, ressources > plafond de 1127,70 euros (ass, plafonds)
+description:
+period: "month:2014-11"
+individus:
+  age: 34
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 546f515e48f57f393d6d1eb0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salbrut:
+    2012: 17579.22077922078
+    2013-11: 1464.935064935065
+    2013-12: 1464.935064935065
+    2014-01: 1464.935064935065
+    2014-02: 1464.935064935065
+    2014-03: 1464.935064935065
+    2014-04: 1464.935064935065
+    2014-05: 1464.935064935065
+    2014-06: 1464.935064935065
+    2014-07: 1464.935064935065
+    2014-08: 1464.935064935065
+    2014-08:3: 4394.805194805194
+    2014-09: 1464.935064935065
+    2014-10: 1464.935064935065
+    year:2013-11: 17579.22077922078
+  salnet:
+    2012: 13536
+    2013-11: 1128
+    2013-12: 1128
+    2014-01: 1128
+    2014-02: 1128
+    2014-03: 1128
+    2014-04: 1128
+    2014-05: 1128
+    2014-06: 1128
+    2014-07: 1128
+    2014-08: 1128
+    2014-08:3: 3384
+    2014-09: 1128
+    2014-10: 1128
+    year:2013-11: 13536
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 546f515e48f57f393d6d1eb0
+foyers_fiscaux:
+  declarants: 546f515e48f57f393d6d1eb0
+  personnes_a_charge:
+menages:
+  depcom: 67482
+  enfants:
+  personne_de_reference: 546f515e48f57f393d6d1eb0
+  so: 6
+output_variables:
+  ass: 0

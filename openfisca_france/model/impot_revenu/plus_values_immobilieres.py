@@ -25,7 +25,7 @@
 
 from numpy import maximum as max_, minimum as min_
 
-from ..base import *  # analysis:ignore
+from ..base import *  # noqa analysis:ignore
 
 
 ########################################################################
@@ -125,4 +125,3 @@ class ir_pv_immo(SimpleFormulaColumn):
     #64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
     #(POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
         return period, -impo
-

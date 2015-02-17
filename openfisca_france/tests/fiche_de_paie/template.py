@@ -39,6 +39,7 @@ tests = [
             heures_non_remunerees_volume = 0,
             heures_remunerees_volume = 0,
             # exposition_accident = 3,
+            indemnites_forfaitaires = 0,
             indemnites_journalieres_maladie = 0,
             localisation_entreprise = "75014",
             nombre_tickets_restaurant = 0,

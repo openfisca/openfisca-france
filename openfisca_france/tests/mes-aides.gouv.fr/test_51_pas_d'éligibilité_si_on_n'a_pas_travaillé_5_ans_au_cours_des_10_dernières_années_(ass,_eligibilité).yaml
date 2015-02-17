@@ -1,0 +1,30 @@
+name: Pas d'éligibilité si on n'a pas travaillé 5 ans au cours des 10 dernières années (ass, eligibilité)
+description:
+period: "month:2014-10"
+individus:
+  activite: 1
+  age: 34
+  ass_precondition_remplie: false
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 5438034cc7d061e50d572904
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 5438034cc7d061e50d572904
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 5438034cc7d061e50d572904
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 800
+  personne_de_reference: 5438034cc7d061e50d572904
+  so: 4
+output_variables:
+  ass: 0
