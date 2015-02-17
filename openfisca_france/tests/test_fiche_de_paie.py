@@ -25,8 +25,8 @@
 
 from __future__ import division
 
-
 import datetime
+
 from openfisca_core import periods
 from openfisca_france.tests.base import tax_benefit_system
 from openfisca_france.tests.fiche_de_paie import modules
@@ -132,14 +132,22 @@ def test_decomposition(print_decomposition = False):
 
 
 if __name__ == '__main__':
-    
+    import argparse
     import logging
     import sys
 
-    requested_variables_name = sys.argv[1:]
-    logging.basicConfig(level = logging.INFO, stream = sys.stdout)
+    parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('-t', '--test', action = 'append', help = "filename of single YAML test to execute")
+    parser.add_argument('-n', '--name', action = 'append', help = "names of variables to calculate")
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    args = parser.parse_args()
+    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+
     for function, simulation, variable_name, test_name, expected_value in test_check():
-        if not requested_variables_name or variable_name in requested_variables_name:
-            function(simulation, variable_name, test_name, expected_value)
+        if args.test and test_name not in args.test:
+            continue
+        if args.name and variable_name not in args.name:
+            continue
+        function(simulation, variable_name, test_name, expected_value)
 
 #    test_decomposition(print_decomposition = True)
