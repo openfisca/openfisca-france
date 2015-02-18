@@ -143,6 +143,27 @@ class aspa_elig(SimpleFormulaColumn):
 
 
 @reference_formula
+class asi_elig(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        last_month = period.start.period('month').offset(-1)
+
+        aspa_elig = simulation.calculate('aspa_elig', period)
+        inv = simulation.calculate('inv', period)
+        rstnet = simulation.calculate('rstnet', last_month)
+        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
+
+        condition_situation = inv & not_(aspa_elig)
+        condition_pensionnement = (rstnet + pensions_invalidite) > 0
+
+        return period, condition_situation * condition_pensionnement
+
+
+@reference_formula
 class asi_aspa_nb_alloc(SimpleFormulaColumn):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
@@ -157,21 +178,6 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
         aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
         return period, (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
-
-
-@reference_formula
-class asi_elig(SimpleFormulaColumn):
-    column = BoolCol
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        aspa_elig = simulation.calculate('aspa_elig', period)
-        inv = simulation.calculate('inv', period)
-        activite = simulation.calculate('activite', period)
-
-        return period, inv & (activite == 3) & not_(aspa_elig)
 
 
 @reference_formula
