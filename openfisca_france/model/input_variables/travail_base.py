@@ -130,28 +130,40 @@ reference_input_variable(
     name = 'effectif_entreprise',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la contribution économique territoriale",
     name = 'entreprise_assujettie_cet',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)",
     name = 'entreprise_assujettie_is',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = BoolCol(),
     entity_class = Individus,
     label = u"Entreprise assujettie à la TVA",
     name = 'entreprise_assujettie_tva',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Bénéfice de l'entreprise",
     name = 'entreprise_benefice',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Bilan de l'entreprise",
+    name = 'entreprise_bilan',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Chiffre d'affaire de l'entreprise",
+    name = 'entreprise_chiffre_affaire',
     )
 reference_input_variable(
     column = FixedStrCol(max_length = 5),
