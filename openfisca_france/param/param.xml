@@ -5232,11 +5232,20 @@
         <VALUE deb="2014-10-01" fin="2015-12-31" valeur="14904" />
       </CODE>
       <CODE code="maj_3enf" description="Majoration pour 3 enfants" format="percent">
-        <VALUE code="maj_3enf" deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
-        <VALUE code="maj_3enf" deb="2007-02-01" fin="2015-12-31" valeur="0" />
+        <VALUE deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
+        <VALUE deb="2007-02-01" fin="2015-12-31" valeur="0" />
       </CODE>
       <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
-        <VALUE code="age_min" deb="2002-01-01" fin="2014-03-31" valeur="65" />
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="65" />
+      </CODE>
+      <CODE code="abattement_forfaitaire_nb_h" description="Nombre d'heures travaillées forfaitaires" format="float">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151.67" />
+      </CODE>
+      <CODE code="abattement_forfaitaire_tx_seul" description="Fraction du SMIC pour l'abattement (personne seule)" format="float">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.9" />
+      </CODE>
+      <CODE code="abattement_forfaitaire_tx_couple" description="Fraction du SMIC pour l'abattement (couple)" format="float">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
       </CODE>
     </NODE>
     <NODE code="asi" description="Allocation supplémentaire d'invalidité">

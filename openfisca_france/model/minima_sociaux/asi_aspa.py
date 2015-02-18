@@ -48,6 +48,7 @@ class br_mv_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
+        aspa_couple_holder = simulation.compute('aspa_couple', period)
         salnet = simulation.calculate('salnet', three_previous_months)
         chonet = simulation.calculate('chonet', three_previous_months)
         rstnet = simulation.calculate('rstnet', three_previous_months)
@@ -75,11 +76,22 @@ class br_mv_i(SimpleFormulaColumn):
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
         aah = simulation.calculate('aah', three_previous_months)
 
+        legislation = simulation.legislation_at(period.start)
+
+        aspa_couple = self.cast_from_entity_to_role(aspa_couple_holder, role = VOUS)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
         aah = aah * not_(aspa_elig)
+
+        # Abattement sur les salaires (appliqué sur une base trimestrielle)
+        abattement_forfaitaire_base = legislation.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+        abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
+            not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
+            )
+        abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
+        salnet = max_(0, salnet - abattement_forfaitaire)
 
         return period, (salnet + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
