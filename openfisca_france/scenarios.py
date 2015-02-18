@@ -828,7 +828,7 @@ class Scenario(scenarios.AbstractScenario):
             foyers_fiscaux_json = []
             for foyer_fiscal in (test_case.get('foyers_fiscaux') or []):
                 foyer_fiscal_json = collections.OrderedDict()
-                foyer_fiscal_json['id'] = foyer_fiscal_json['id']
+                foyer_fiscal_json['id'] = foyer_fiscal['id']
                 declarants = foyer_fiscal.get('declarants')
                 if declarants:
                     foyer_fiscal_json['declarants'] = declarants
@@ -848,6 +848,7 @@ class Scenario(scenarios.AbstractScenario):
             individus_json = []
             for individu in (test_case.get('individus') or []):
                 individu_json = collections.OrderedDict()
+                individu_json['id'] = individu['id']
                 for column_name, variable_value in individu.iteritems():
                     column = column_by_name.get(column_name)
                     if column is not None and column.entity == 'ind':
@@ -861,6 +862,7 @@ class Scenario(scenarios.AbstractScenario):
             menages_json = []
             for menage in (test_case.get('menages') or []):
                 menage_json = collections.OrderedDict()
+                menage_json['id'] = menage['id']
                 personne_de_reference = menage.get('personne_de_reference')
                 if personne_de_reference is not None:
                     menage_json['personne_de_reference'] = personne_de_reference
