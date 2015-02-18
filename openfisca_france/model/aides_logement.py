@@ -173,7 +173,7 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
         # TODO :double résidence pour raisons professionnelles
 
         # Arrondi aux 100 euros supérieurs
-        result = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
+        result = max_(revNet - abatDoubleAct, 0)
 
         return period, result
 
@@ -197,6 +197,9 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
 
         result = (base_ressources_eval_forfaitaire * eval_forfaitaire
                   + base_ressources_defaut * not_(eval_forfaitaire))
+
+        # Arrondi aux 100 euros supérieurs
+        result = ceil(result / 100) * 100
 
         return period, result
 
