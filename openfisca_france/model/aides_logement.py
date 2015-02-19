@@ -120,60 +120,20 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
-        etu_holder = simulation.compute('etu', period)
-        boursier_holder = simulation.compute('boursier', period)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
         biact = simulation.calculate('biact', period, accept_other_period = True)
         Pr = simulation.legislation_at(period.start).al.ressources
-
-        boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         rev_coll = self.sum_by_entity(rev_coll_holder)
-        etudiant_demandeur = (etudiant[CHEF]) & (not_(etudiant[PART]))
-        etudiant_partenaire = not_(etudiant[CHEF]) & (etudiant[PART])
-        etudiant_les_deux = (etudiant[CHEF]) & (etudiant[PART])
 
-        # Boursiers
-        # TODO: distinguer boursier foyer/boursier locatif
-        etudiant_boursier_demandeur = etudiant[CHEF] & boursier[CHEF]
-        etudiant_boursier_partenaire = etudiant[PART] & boursier[PART]
+        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll
 
-        revCatVous = max_(br_pf_i[CHEF], etudiant_demandeur * (Pr.dar_4 - (etudiant_boursier_demandeur) * Pr.dar_5))
-        revCatConj = max_(br_pf_i[PART], etudiant_partenaire * (Pr.dar_4 - (etudiant_boursier_partenaire) * Pr.dar_5))
-
-        revCatVsCj = (
-            not_(etudiant_les_deux) * (revCatVous + revCatConj) +
-            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART],
-                Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
-            )
-
-        # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier),
-        # les inclure dans le calcul somme des revenus catégoriels après abatement
-        revCat = revCatVsCj + rev_coll
-
-        # TODO: charges déductibles : pension alimentaires et abatements spéciaux
-        revNet = revCat
-
-        # On ne considère pas l'abattement sur les ressources de certaines
-        # personnes (enfant, ascendants ou grands infirmes).
-
-        # abattement forfaitaire double activité
-        abatDoubleAct = biact * Pr.dar_1
-
-        # TODO: neutralisation des ressources
-        # ...
-
-        # TODO: abbattement sur les ressources
-        # ...
-
-        # TODO: évaluation forfaitaire des ressources (première demande)
-
-        # TODO :double résidence pour raisons professionnelles
+        # Abattement forfaitaire pour double activité
+        abattement_double_activite = biact * Pr.dar_1
 
         # Arrondi aux 100 euros supérieurs
-        result = max_(revNet - abatDoubleAct, 0)
+        result = max_(ressources - abattement_double_activite, 0)
 
         return period, result
 
@@ -213,12 +173,22 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
         eval_forfaitaire &= aah == 0
         eval_forfaitaire &= not_(neutral_jeune)
 
-        result = (base_ressources_eval_forfaitaire * eval_forfaitaire + base_ressources_defaut * not_(eval_forfaitaire))
+        ressources = (base_ressources_eval_forfaitaire * eval_forfaitaire + base_ressources_defaut * not_(eval_forfaitaire))
+
+        # Planchers de ressources pour étudiants
+        # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
+        Pr = simulation.legislation_at(period.start).al.ressources
+        etu_holder = simulation.compute('etu', period)
+        boursier_holder = simulation.compute('boursier', period)
+        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
+        montant_plancher_ressources = max_(0, etudiant[CHEF] * Pr.dar_4 - boursier[CHEF] * Pr.dar_5)
+        ressources = max_(ressources, montant_plancher_ressources)
 
         # Arrondi aux 100 euros supérieurs
-        result = ceil(result / 100) * 100
+        ressources = ceil(ressources / 100) * 100
 
-        return period, result
+        return period, ressources
 
 
 @reference_formula
