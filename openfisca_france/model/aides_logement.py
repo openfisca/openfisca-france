@@ -100,11 +100,11 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         sal_holder = simulation.compute('sal', period.offset(-1))
-        sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
+        sal = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
 
         # Application de l'abattement pour frais professionnels
         params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
-        somme_salaires_mois_precedent = 12 * (sal[CHEF] + sal[PART])
+        somme_salaires_mois_precedent = 12 * sal
         montant_abattement = round(min_(max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min), params_abattement.max))
         result = max_(0, somme_salaires_mois_precedent - montant_abattement)
 
