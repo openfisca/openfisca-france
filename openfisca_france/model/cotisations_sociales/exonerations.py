@@ -332,11 +332,15 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         return period, taux_exoneraion * entreprise_benefice
         # TODO: mettre sur toutes les  années
 
+
 @reference_formula
 class bassin_emploi_redynamiser(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Individus
     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
+    # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
+    # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
+    # et Midi-Pyrénées (zone d'emploi de Lavelanet).
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
