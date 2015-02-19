@@ -12,7 +12,7 @@ individus:
     id: 54787d2bf54659627efad23b
     interets_epargne_sur_livrets: 0
     inv: 0
-    salbrut:
+    salaire_de_base:
       2012: 19480.519480519484
       2013-11: 2164.5021645021648
       2013-12: 2164.5021645021648
@@ -53,7 +53,7 @@ individus:
     id: 54787d2bf54659627efad22e
     interets_epargne_sur_livrets: 0
     inv: 0
-    salbrut:
+    salaire_de_base:
       2012: 3376.623376623377
       2013-11: 375.1803751803752
       2013-12: 375.1803751803752
