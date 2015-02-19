@@ -166,6 +166,13 @@ reference_input_variable(
     name = 'entreprise_chiffre_affaire',
     )
 reference_input_variable(
+    column = DateCol(),
+    entity_class = Individus,
+    is_permanent = True,
+    label = u"Date de création de l'entreprise",
+    name = 'entreprise_creation',
+    )
+reference_input_variable(
     column = FixedStrCol(max_length = 5),
     entity_class = Individus,
     label = u"Localisation entreprise",

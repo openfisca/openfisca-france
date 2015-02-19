@@ -137,7 +137,6 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
         seuil_min = 1.4
 
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
-        print 'taux_exoneration', taux_exoneration
         exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_arrivee)
         large_rate_by_year_passed = {
             0: 1,
@@ -167,7 +166,6 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
             }  # TODO: insert in parameter
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
-        print exoneration_relative_year_passed
         for year_passed, rate in large_rate_by_year_passed.iteritems():
             large_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
 
@@ -179,10 +177,6 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
             large_taux_exoneration * (effectif_entreprise > 5)
             )
 
-        print 'small + mlarge', (
-            small_taux_exoneration * (effectif_entreprise <= 5) +
-            large_taux_exoneration * (effectif_entreprise > 5)
-            )
         return period, exoneration_cotisations_zfu
         # TODO: propager dans le temps
 
@@ -211,35 +205,33 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         assiette_allegement = simulation.calculate('assiette_allegement', period)
-        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
-        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        entreprise_creation = simulation.calculate('entreprise_creation', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
-        zone_revitalisation_rurale = simulation.calculate('zone_revitalisation_rurale', period)
+        zone_restructuration_defense = simulation.calculate('zone_restructuration_defense', period)
 
-        duree_cdd_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
-        # TODO parameter
-        contrat_de_travail_eligible = (
-            contrat_de_travail_duree == 0) + (
-            (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
-            )
-
-        duree_validite = (datetime64(period.start) - contrat_de_travail_arrivee).astype('timedelta64[Y]') < 5
-
-        eligible = (
-            contrat_de_travail_eligible *
-            (effectif_entreprise <= 50) *
-            zone_revitalisation_rurale *
-            duree_validite
-            )
-        taux_max = .281 # TODO: parameters
+        eligible = zone_restructuration_defense
+        taux_max = .281  # TODO: parameters
         seuil_max = 2.4
         seuil_min = 1.4
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
-        exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
-        return period, exoneration_cotisations_zrr
+        exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
+        print exoneration_relative_year_passed
+        rate_by_year_passed = {
+            0: 1,
+            1: 1,
+            2: 1,
+            3: 2 / 3,
+            4: 1 / 3,
+            }  # TODO: insert in parameter
+        ratio = eligible * 0.0
+        for year_passed, rate in rate_by_year_passed.iteritems():
+            ratio[exoneration_relative_year_passed == year_passed] = rate
+
+        print 'ratio', ratio
+        exoneration_cotisations_zrd = ratio * taux_exoneration * assiette_allegement * eligible
+
+        return period, exoneration_cotisations_zrd
 
 
 @reference_formula
@@ -400,5 +392,7 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
         )
 
 
-def exoneration_relative_year(period, contrat_de_travail_arrivee):
-    return 1 + (datetime64(period.start) - contrat_de_travail_arrivee).astype('timedelta64[Y]')
+def exoneration_relative_year(period, other_date):
+    print 'period', period
+    print 'date', other_date
+    return (datetime64(period.start) - other_date).astype('timedelta64[Y]')
