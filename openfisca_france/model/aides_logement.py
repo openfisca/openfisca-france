@@ -186,14 +186,16 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        mois_precedent = period.offset(-1)
         last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
         base_ressources_eval_forfaitaire = simulation.calculate('aide_logement_base_ressources_eval_forfaitaire', period)
-        mois_precedent = period.offset(-1)
+        aah_holder = simulation.compute('aah', mois_precedent)
+        aah = self.sum_by_entity(aah_holder, roles = [CHEF, PART])
         smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
-        eval_forfaitaire = and_(base_ressources_defaut <= plafond_eval_forfaitaire, base_ressources_eval_forfaitaire > 0)
+        eval_forfaitaire = and_(aah == 0, and_(base_ressources_defaut <= plafond_eval_forfaitaire, base_ressources_eval_forfaitaire > 0))
 
         result = (base_ressources_eval_forfaitaire * eval_forfaitaire
                   + base_ressources_defaut * not_(eval_forfaitaire))
