@@ -88,7 +88,6 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
 # territoriales) ne peut dépasser le plafond des aides de minimis, fixé à 200 000 euros sur une période glissante de 36
 # mois (100 000 euros pour les entreprises de transport routier).
 
-
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         assiette_allegement = simulation.calculate('assiette_allegement', period)
@@ -216,7 +215,6 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
 
         exoneration_relative_year_passed = exoneration_relative_year(period, entreprise_creation)
-        print exoneration_relative_year_passed
         rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -228,7 +226,6 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
         for year_passed, rate in rate_by_year_passed.iteritems():
             ratio[exoneration_relative_year_passed == year_passed] = rate
 
-        print 'ratio', ratio
         exoneration_cotisations_zrd = ratio * taux_exoneration * assiette_allegement * eligible
 
         return period, exoneration_cotisations_zrd
@@ -271,7 +268,8 @@ class exoneration_cotisations_patronales_zrr(SimpleFormulaColumn):
             (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
             )
 
-        duree_validite = (datetime64(period.start) - contrat_de_travail_arrivee).astype('timedelta64[Y]') < 5
+        duree_validite = (
+            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_arrivee).astype('timedelta64[Y]') < 1
 
         eligible = (
             contrat_de_travail_eligible *
@@ -393,6 +391,4 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
 
 
 def exoneration_relative_year(period, other_date):
-    print 'period', period
-    print 'date', other_date
-    return (datetime64(period.start) - other_date).astype('timedelta64[Y]')
+    return (datetime64(period.start) + timedelta64(1, 'D') - other_date).astype('timedelta64[Y]')

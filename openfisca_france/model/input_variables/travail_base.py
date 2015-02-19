@@ -126,6 +126,7 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
+    is_permanent = True,  # TODO: should be: is_period_size_independent = True,
     label = u"Effectif de l'entreprise",
     name = 'effectif_entreprise',
     )

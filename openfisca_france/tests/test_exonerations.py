@@ -28,17 +28,26 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods
+from nose.tools import assert_equal
+import numpy
 
+
+from openfisca_core import periods
+from openfisca_france.model.cotisations_sociales.exonerations import exoneration_relative_year
 from openfisca_france.tests.base import tax_benefit_system
 
+
+def test_exoneration_relative_year():
+    period = periods.period("2014-01-01")
+    other_date = numpy.datetime64(periods.period("2011-01-01").start)
+    assert_equal(exoneration_relative_year(period, other_date), 4 - 1)
 
 test_case_by_employee_type = dict(
     exoneration_cotisations_patronales_zfu = dict(
         input_variables = dict(
-            contrat_de_travail_arrivee = "2011-01-01",
+            contrat_de_travail_arrivee = "2010-01-01",
             effectif_entreprise = {
-                "2014:15": 20 * 15,
+                "2014:15": 20,
                 },
             salaire_de_base = {  # 9 smic horaire 2011
                 "2014": 35 * 52 * 9.53,
@@ -52,12 +61,12 @@ test_case_by_employee_type = dict(
             ),
         output_variables = dict(
             exoneration_cotisations_patronales_zfu = {
-                "2014": 35 * 52 * 9.53 * .301,
-                "2014-01": 35 * 52 * 9.53 * .301 / 12,
+                "2014": 35 * 52 * 9.53 * .306,
+                "2014-01": 35 * 52 * 9.53 * .306 / 12,
 #                "2015": 35 * 52 * 9.61 * .281 * 8 / 12,
-                "2015-01": 35 * 52 * 9.61 * .3015 * .6 / 12,
-                "2015-09": 35 * 52 * 9.61 * .3015 * .6 / 12,
-                "2016": 35 * 52 * 9.61 * .3015 * .4,
+                "2015-01": 35 * 52 * 9.61 * .3065 * .6 / 12,
+                "2015-09": 35 * 52 * 9.61 * .3065 * .6 / 12,
+                "2016": 35 * 52 * 9.61 * .307 * .4,
                 }
             ),
         ),
@@ -92,7 +101,7 @@ test_case_by_employee_type = dict(
         ),
     exoneration_cotisations_patronales_zrr_smic = dict(
         input_variables = dict(
-            contrat_de_travail_arrivee = "2010-05-01",
+            contrat_de_travail_arrivee = "2014-01-01",
             effectif_entreprise = 20,
             salaire_de_base = {  # 9 smic horaire 2011
                 "2014": 35 * 52 * 9.53,
@@ -107,18 +116,17 @@ test_case_by_employee_type = dict(
             exoneration_cotisations_patronales_zrr= {
                 "2014": 35 * 52 * 9.53 * .281,
                 "2014-01": 35 * 52 * 9.53 * .281 / 12,
-#                "2015": 35 * 52 * 9.61 * .281 * 8 / 12,
-                "2015-01": 35 * 52 * 9.61 * .281 / 12,
-                "2015-09": 0,
-                "2016": 0}
+                "2015": 0,
+                "2015-01": 0,
+                }
             ),
         ),
     exonearation_cotisations_patronales_zrr_1p4_smic = dict(
         input_variables = dict(
-            contrat_de_travail_arrivee = "2010-05-01",
+            contrat_de_travail_arrivee = "2014-05-01",
             effectif_entreprise = 20,
             salaire_de_base = {  # 9 smic horaire 2011
-                "2014": 35 * 52 * 9.53 * 1.4,
+                "2014-05:8": 35 * 52 * 9.53 * 1.4 * 8 / 12,
                 "2015": 35 * 52 * 9.61 * 1.4,
                 },
             zone_revitalisation_rurale = {
@@ -128,9 +136,8 @@ test_case_by_employee_type = dict(
             ),
         output_variables = dict(
             exoneration_cotisations_patronales_zrr = {
-                "2014": 35 * 52 * 9.53 * 1.4 * .281,
-                "2014-01": 35 * 52 * 9.53 * 1.4 * .281 / 12,
-#                "2015": 35 * 52 * 9.61 * 1.4 * .281 * 8 / 12,
+                "2014": 35 * 52 * 9.53 * 1.4 * 8 / 12 * .281,
+                "2014-06": 35 * 52 * 9.53 * 1.4 * .281 / 12,
                 "2015-01": 35 * 52 * 9.61 * 1.4 * .281 / 12,
                 "2015-09": 0,
                 "2016": 0,
