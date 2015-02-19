@@ -190,15 +190,30 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
         last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
         base_ressources_eval_forfaitaire = simulation.calculate('aide_logement_base_ressources_eval_forfaitaire', period)
+        concub = simulation.calculate('concub', period)
         aah_holder = simulation.compute('aah', mois_precedent)
         aah = self.sum_by_entity(aah_holder, roles = [CHEF, PART])
+        age_holder = simulation.compute('age', period)
+        age = self.split_by_roles(age_holder, roles = [CHEF, PART])
         smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
+        sal_holder = simulation.compute('sal', period.offset(-1))
+        somme_salaires = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
-        eval_forfaitaire = and_(aah == 0, and_(base_ressources_defaut <= plafond_eval_forfaitaire, base_ressources_eval_forfaitaire > 0))
 
-        result = (base_ressources_eval_forfaitaire * eval_forfaitaire
-                  + base_ressources_defaut * not_(eval_forfaitaire))
+        plafond_salaire_jeune_isole = simulation.legislation_at(period).al.ressources.dar_8
+        plafond_salaire_jeune_couple = simulation.legislation_at(period).al.ressources.dar_9
+        plafond_salaire_jeune = not_(concub) * plafond_salaire_jeune_isole + concub * plafond_salaire_jeune_couple
+
+        neutral_jeune = or_(age[CHEF] < 25, and_(concub, age[PART] < 25))
+        neutral_jeune &= somme_salaires < plafond_salaire_jeune
+
+        eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire
+        eval_forfaitaire &= base_ressources_eval_forfaitaire > 0
+        eval_forfaitaire &= aah == 0
+        eval_forfaitaire &= not_(neutral_jeune)
+
+        result = (base_ressources_eval_forfaitaire * eval_forfaitaire + base_ressources_defaut * not_(eval_forfaitaire))
 
         # Arrondi aux 100 euros supérieurs
         result = ceil(result / 100) * 100
