@@ -36,6 +36,7 @@ from . import (  # noqa analysis:ignore
 
 from .cotisations_sociales import (  # noqa analysis:ignore
     allegements,
+    apprentissage,
     capital,
     # penalites,
     exonerations,

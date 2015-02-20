@@ -35,7 +35,7 @@ from ..base import *  # noqa analysis:ignore
 class remuneration_apprenti(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"ERémunération de l'apprenti"
+    label = u"Rémunération de l'apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 
     # Aux jeunes de 16 à 25 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
@@ -51,25 +51,50 @@ class remuneration_apprenti(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
 
-        anciennete_contrat = (datetime64(period.start) - apprentissage_contrat_debut).astype('timedelta64[Y]')
+        output = age * 0.0
 
-        sal_en_smic_by_year_by_age_interval = {  # TODO: move to parameters
-            "<18": {
-                1: .25,
-                2: .41,
-                3: .53,
-                },
-            "18-21": {
-                1: .37,
-                2: .49,
-                3: .61,
-                },
-            ">21": {
-                1: .53,
-                2: .65,
-                3: .78,
-                },
-            }
+        anciennete_contrat = (datetime64(period.start) - apprentissage_contrat_debut).astype('timedelta64[Y]')
+        print 'age', age
+        print 'anciennete_contrat', anciennete_contrat
+        salaire_en_smic = [  # TODO: move to parameters
+            dict(
+                part_de_smic = {
+                    1: .25,
+                    2: .41,
+                    3: .53,
+                    },
+                age_min = 15,
+                age_max = 18,
+                ),
+            dict(
+                part_de_smic = {
+                    1: .37,
+                    2: .49,
+                    3: .61,
+                    },
+                age_min = 18,
+                age_max = 21,
+                ),
+            dict(
+                part_de_smic = {
+                    1: .53,
+                    2: .65,
+                    3: .78,
+                    },
+                age_min = 21,
+                age_max = 99
+                )
+            ]
+        for age_interval in salaire_en_smic:
+            age_condition = age_interval["age_min"] <= age <= age_interval["age_max"]
+
+            output[age_condition] = sum([
+                (anciennete_contrat[age_condition] == anciennete) * part_de_smic
+                for anciennete, part_de_smic in age_interval['part_de_smic'].iteritems()
+                ])
+        print output
+
+        return period, output
 
 
 @reference_formula

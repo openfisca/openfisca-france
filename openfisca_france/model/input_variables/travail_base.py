@@ -46,6 +46,15 @@ reference_input_variable(
     label = u"Mode de recouvrement des allègements Fillon",
     name = 'allegement_fillon_mode_recouvrement',
     )
+
+
+reference_input_variable(
+    column = DateCol(),
+    entity_class = Individus,
+    is_permanent = True,
+    label = u"Date de début du contrat d'apprentissage",
+    name = 'apprentissage_contrat_debut')
+
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
