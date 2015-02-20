@@ -84,6 +84,7 @@ class br_mv_i(SimpleFormulaColumn):
         aah = simulation.calculate('aah', three_previous_months)
 
         legislation = simulation.legislation_at(period.start)
+        leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
 
         aspa_couple = self.cast_from_entity_to_role(aspa_couple_holder, role = VOUS)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
@@ -93,7 +94,7 @@ class br_mv_i(SimpleFormulaColumn):
         aah = aah * not_(aspa_elig)
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
-        abattement_forfaitaire_base = legislation.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+        abattement_forfaitaire_base = leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
         abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
             not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
             )
