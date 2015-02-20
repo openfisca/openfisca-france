@@ -43,8 +43,9 @@ tests = [
             contrat_de_travail_depart = "2011-12-31",
             contrat_de_travail_duree = 1,  # CDI
             effectif_entreprise = 10000,
-            heures_non_remunerees_volume = 0,            # exposition_accident = 3,
-            indemnite_residence = 0, # WARNING
+            # exposition_accident = 3,
+            heures_non_remunerees_volume = 0,
+            indemnite_residence = 0,  # WARNING
             localisation_entreprise = "21000",
             nombre_tickets_restaurant = 0,
             prevoyance_obligatoire_cadre_taux_employeur = .015,  # 1.5% est le minimum
@@ -61,7 +62,7 @@ tests = [
             titre_restaurant_volume = 0,
             type_sal = 6,  # non cadre
             volume_jours_ijss = 0,
-                        ),
+            ),
         output_variables = dict(
             # TODO à inclure dans la décomposition et à finir de coder forfait_social = -3.8, # 47.49 de base
             # TODO à coder taxe_handicapes = 18.40
@@ -105,7 +106,7 @@ tests = [
 
             allegement_fillon = 0,
             credit_impot_competitivite_emploi = 0,
-            tehr = 0,
+            tehr = {'2011': 0},
             salbrut = 1900,
 
             # cotisations_salariales = 0,
@@ -134,7 +135,7 @@ tests = [
             csgsali = -44.23,
             crdssal = -9.21,
             hsup = 0,
-            #sal = 0,
+            # sal = 0,
 
             depense_cantine_titre_restaurant_employe = 0,
 

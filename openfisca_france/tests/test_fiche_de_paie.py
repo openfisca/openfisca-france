@@ -71,8 +71,12 @@ def simple_check(tests):
             parent1 = parent1,
             ).new_simulation(debug = True)
 
-        for variable, monthly_amount in test_parameters['output_variables'].iteritems():
-            check_variable(simulation, variable, name, monthly_amount)
+        for variable_name, expected_value in test_parameters['output_variables'].iteritems():
+            if isinstance(expected_value, dict):
+                for item_period, item_value in expected_value.iteritems():
+                    check_variable(simulation, variable_name, test_name, item_period, item_value)
+            else:
+                check_variable(simulation, variable_name, test_name, period, expected_value)
 
 
 def test_check():
@@ -89,11 +93,15 @@ def test_check():
             ).new_simulation(debug = True)
 
         for variable_name, expected_value in test_parameters['output_variables'].iteritems():
-            yield check_variable, simulation, variable_name, test_name, expected_value
+            if isinstance(expected_value, dict):
+                for item_period, item_value in expected_value.iteritems():
+                    yield check_variable, simulation, variable_name, test_name, item_period, item_value
+            else:
+                yield check_variable, simulation, variable_name, test_name, period, expected_value
 
 
-def check_variable(simulation, variable_name, test_name, expected_value):
-    output_value = simulation.calculate(variable_name)
+def check_variable(simulation, variable_name, test_name, period, expected_value):
+    output_value = simulation.calculate(variable_name, period)
     assert abs(output_value - expected_value) < 1, "error for {} ({}) : should be {} instead of {} ".format(
         variable_name, test_name, expected_value, output_value)
 

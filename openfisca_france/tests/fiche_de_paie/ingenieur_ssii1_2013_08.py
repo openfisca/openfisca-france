@@ -101,8 +101,8 @@ tests = [
             versement_transport = -37.69,
 
             allegement_fillon = 0,
-            credit_impot_competitivite_emploi = 2512.88 * 0.04, # pas indiqué dans la fiche
-            tehr = 0,
+            credit_impot_competitivite_emploi = 2512.88 * 0.04,  # pas indiqué dans la fiche
+            tehr = {'2013': 0},
             salbrut = 2512.88,
             assiette_cotisations_sociales = 2512.88,
 
@@ -124,19 +124,19 @@ tests = [
             # cotisations_salariales_non_contributives = 0,
             maladie_employe = -18.85,
             contribution_exceptionnelle_solidarite_employe = 0,
-#            csgsald = -127.45,
+            # csgsald = -127.45,
             mhsup = 0,
-#            salnet = 1969.3,
+            # salnet = 1969.3,
 
             # salaire imposable
             # csgsali = -59.98,
-#            crdssal = -12.5,
+            # crdssal = -12.5,
             hsup = 0,
             # sal = 1955.78,
 
             depense_cantine_titre_restaurant_employe = 0,
 
-#            salaire_net_a_payer = 1969.3,
+            # salaire_net_a_payer = 1969.3,
 
             ),
         ),
