@@ -47,7 +47,7 @@ class assiette_allegement(SimpleFormulaColumn):
     label = u"Assiette des allègements de cotisations sociales patronales"
 
     def function(self, simulation, period):
-        salbrut = simulation.calculate('salbrut', period)
+        salbrut = simulation.calculate_add('salbrut', period)
         type_sal = simulation.calculate('type_sal', period)
         period = period
         # TODO vérifier changement d'assiette

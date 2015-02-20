@@ -39,7 +39,7 @@ test_case_by_employee_type = dict(
             allegement_fillon_mode_recouvrement = 1,
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
-            salaire_de_base = { # 9 smic horaire 2011
+            salaire_de_base = {  # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,
                 "2011-03": 35 * 52 / 12 * 9,
@@ -69,9 +69,9 @@ test_case_by_employee_type = dict(
                 "2011-09": 0,
                 "2011-10": 354.9,
                 "2011-11": 354.9,
-                "2011-12": - 315.49,  # employeur est redevable
+                "2011-12": -315.49,  # employeur est redevable
                 "2011": 3233.51,
-            }
+                },
             ),
         ),
     circulaire_acoss_2011_progressif = dict(
@@ -79,7 +79,7 @@ test_case_by_employee_type = dict(
             allegement_fillon_mode_recouvrement = 2,
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
-            salaire_de_base = { # 9 smic horaire 2011
+            salaire_de_base = {  # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,
                 "2011-03": 35 * 52 / 12 * 9,
@@ -149,7 +149,7 @@ def test_check():
         for variable, amounts in test_parameters['output_variables'].iteritems():
             if isinstance(amounts, dict):
                 for period_str, amount in sorted(amounts.iteritems()):
-                    output = simulation.calculate(variable, period = periods.period(period_str))
+                    output = simulation.calculate_add_divide(variable, period = periods.period(period_str))
                     variable_message = "{} at {}".format(variable, period_str)
                     yield assert_variable, variable_message, employee_type, amount, output
             else:

@@ -373,7 +373,7 @@ class pfam(SimpleFormulaColumn):
         Prestations familiales
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        af = simulation.calculate('af', period)
+        af = simulation.calculate_add('af', period)
         cf = simulation.calculate('cf', period)
         ars = simulation.calculate('ars', period)
         aeeh = simulation.calculate('aeeh', period)
@@ -396,11 +396,11 @@ class mini(SimpleFormulaColumn):
         Minima sociaux
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        aspa = simulation.calculate('aspa', period)
+        aspa = simulation.calculate_add('aspa', period)
         aah_holder = simulation.compute('aah', period)
         caah_holder = simulation.compute('caah', period)
-        asi = simulation.calculate('asi', period)
-        rsa = simulation.calculate('rsa', period)
+        asi = simulation.calculate_add('asi', period)
+        rsa = simulation.calculate_add('rsa', period)
         aefa = simulation.calculate('aefa', period)
         api = simulation.calculate('api', period)
         ass = simulation.calculate('ass', period)
@@ -424,10 +424,10 @@ class aides_logement(SimpleFormulaColumn):
         Prestations logement
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        apl = simulation.calculate('apl', period)
-        als = simulation.calculate('als', period)
-        alf = simulation.calculate('alf', period)
-        crds_logement = simulation.calculate('crds_logement', period)
+        apl = simulation.calculate_add('apl', period)
+        als = simulation.calculate_add('als', period)
+        alf = simulation.calculate_add('alf', period)
+        crds_logement = simulation.calculate_add('crds_logement', period)
 
         return period, apl + als + alf + crds_logement
 
@@ -462,15 +462,15 @@ class crds(SimpleFormulaColumn):
     def function(self, simulation, period):
         """Contribution au remboursement de la dette sociale"""
         period = period.start.offset('first-of', 'month').period('year')
-        crdssal = simulation.calculate('crdssal', period)
-        crdsrst = simulation.calculate('crdsrst', period)
-        crdscho = simulation.calculate('crdscho', period)
+        crdssal = simulation.calculate_add('crdssal', period)
+        crdsrst = simulation.calculate_add('crdsrst', period)
+        crdscho = simulation.calculate_add('crdscho', period)
         crds_fon_holder = simulation.compute('crds_fon', period)
         crds_cap_bar_declarant1 = simulation.calculate('crds_cap_bar_declarant1', period)
         crds_cap_lib_declarant1 = simulation.calculate('crds_cap_lib_declarant1', period)
         crds_pfam_holder = simulation.compute('crds_pfam', period)
-        crds_logement_holder = simulation.compute('crds_logement', period)
-        crds_mini_holder = simulation.compute('crds_mini', period)
+        crds_logement_holder = simulation.compute_add('crds_logement', period)
+        crds_mini_holder = simulation.compute_add('crds_mini', period)
         crds_pv_mo_holder = simulation.compute('crds_pv_mo', period)
         crds_pv_immo_holder = simulation.compute('crds_pv_immo', period)
 
@@ -495,12 +495,12 @@ class csg(SimpleFormulaColumn):
     def function(self, simulation, period):
         """Contribution sociale généralisée"""
         period = period.start.offset('first-of', 'month').period('year')
-        csgsali = simulation.calculate('csgsali', period)
-        csgsald = simulation.calculate('csgsald', period)
-        csgchoi = simulation.calculate('csgchoi', period)
-        csgchod = simulation.calculate('csgchod', period)
-        csgrsti = simulation.calculate('csgrsti', period)
-        csgrstd = simulation.calculate('csgrstd', period)
+        csgsali = simulation.calculate_add('csgsali', period)
+        csgsald = simulation.calculate_add('csgsald', period)
+        csgchoi = simulation.calculate_add('csgchoi', period)
+        csgchod = simulation.calculate_add('csgchod', period)
+        csgrsti = simulation.calculate_add('csgrsti', period)
+        csgrstd = simulation.calculate_add('csgrstd', period)
         csg_fon_holder = simulation.compute('csg_fon', period)
         csg_cap_lib_declarant1 = simulation.calculate('csg_cap_lib_declarant1', period)
         csg_cap_bar_declarant1 = simulation.calculate('csg_cap_bar_declarant1', period)

@@ -289,7 +289,7 @@ class paje_clmg(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         aah_holder = simulation.compute('aah', period)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute_add('smic55', period)
         etu_holder = simulation.compute('etu', period)
         sal_holder = simulation.compute('sal', period)
         hsup_holder = simulation.compute('hsup', period)

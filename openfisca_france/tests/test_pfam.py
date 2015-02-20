@@ -44,7 +44,7 @@ def check_af2(year):
             dict(birth = datetime.date(year - 9, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -71,7 +71,7 @@ def check_af2b(year):
             dict(birth = datetime.date(1990, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -98,7 +98,7 @@ def check_af2c(year):
             dict(birth = datetime.date(1988, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -124,7 +124,7 @@ def check_af2m(year):
             dict(birth = datetime.date(1990, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -151,7 +151,7 @@ def check_af3(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -178,7 +178,7 @@ def check_af3m(year):
             dict(birth = datetime.date(1990, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -205,7 +205,7 @@ def check_af3m1(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -232,7 +232,7 @@ def check_af31f06(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -257,7 +257,7 @@ def check_af31f08(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -282,7 +282,7 @@ def check_af31f09(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -309,7 +309,7 @@ def check_af3bis(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -338,7 +338,7 @@ def check_af3ter(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -366,7 +366,7 @@ def check_af3qua(year):
             dict(birth = datetime.date(2005, 1, 1)),
             ],
         ).new_simulation(debug = True)
-    af_array = simulation.calculate('af')
+    af_array = simulation.calculate_add('af')
     assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
         expected_af_by_year[year])
 
@@ -395,7 +395,7 @@ def test_af3qua():
 #            dict(birth = datetime.date(2004, 1, 1)),
 #            ],
 #        ).new_simulation(debug = True)
-#    af_array = simulation.calculate('af')
+#    af_array = simulation.calculate_add('af')
 #    assert abs(af_array[0] - expected_af_by_year[year]) < 1e-3, 'Got: {}. Expected {}'.format(af_array,
 #        expected_af_by_year[year])
 
