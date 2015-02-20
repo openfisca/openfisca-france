@@ -37,6 +37,13 @@ reference_input_variable(
     name = "inapte_travail",
     )
 
+reference_input_variable(
+    column = IntCol,
+    entity_class = Individus,
+    label = u"Taux d'invalidité",
+    name = "taux_invalidite",
+    )
+
 
 @reference_formula
 class br_mv_i(SimpleFormulaColumn):
@@ -131,13 +138,18 @@ class aspa_elig(SimpleFormulaColumn):
 
         age = simulation.calculate('age', period)
         inv = simulation.calculate('inv', period)
+        taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         rstnet = simulation.calculate('rstnet', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
         P = simulation.legislation_at(period.start).minim
 
-        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & (inapte_travail | inv))
+        condition_age_base = (age >= P.aspa.age_min)
+        condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
+        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & inv & (taux_invalidite >= 50)
+
+        condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
         condition_pensionnement = (rstnet + pensions_invalidite) > 0
 
         return period, condition_age * condition_pensionnement
