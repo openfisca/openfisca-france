@@ -47,8 +47,35 @@ taux_versement_transport_by_localisation_entreprise = None
 # check hsup everywhere !
 # versement transport dépdendant de la localité (décommenter et compléter)
 
+# Helpers
 
-def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None):
+def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
+    # period = period.start.offset('first-of', 'month').period('month')
+    cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
+    cotisation = (
+        # en fin d'année
+        cotisation_mode_recouvrement == 1) * (
+            compute_cotisation_annuelle(
+                simulation,
+                period,
+                cotisation_type = cotisation_type,
+                bareme_name = bareme_name,
+                )
+            ) + (
+        # anticipé
+        cotisation_mode_recouvrement == 0) * (
+            compute_cotisation_anticipee(
+                simulation,
+                period,
+                cotisation_type = cotisation_type,
+                bareme_name = bareme_name,
+                variable_name = variable_name,
+                )
+            )
+    return cotisation
+
+
+def compute_cotisation(simulation, period, cotisation_type = None, bareme_name = None):
 
     assert cotisation_type is not None
     law = simulation.legislation_at(period.start)
@@ -69,8 +96,42 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None)
         plafond_securite_sociale = plafond_securite_sociale,
         type_sal = type_sal,
         )
-
     return cotisation
+
+
+def compute_cotisation_annuelle(simulation, period, cotisation_type = None, bareme_name = None):
+    if period.start.month < 12:
+        return 0
+    if period.start.month == 12:
+        return compute_cotisation(
+            simulation,
+            period = period.start.offset('first-of', 'year').period('year'),
+            cotisation_type = cotisation_type,
+            bareme_name = bareme_name,
+            )
+
+
+def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
+    if period.start.month < 12:
+        return compute_cotisation(
+            simulation,
+            period = period.start.offset('first-of', 'month').period('month'),
+            cotisation_type = cotisation_type,
+            bareme_name = bareme_name,
+            )
+    if period.start.month == 12:
+        cumul = simulation.calculate_add(variable_name, period.start.offset('first-of', 'month').offset(
+            -11, 'month').period('month', 11))
+
+        return compute_cotisation(
+            simulation,
+            period = period.start.offset('first-of', 'year').period('year'),
+            cotisation_type = cotisation_type,
+            bareme_name = bareme_name,
+            ) - cumul
+
+
+# Cotisations proprement dites
 
 
 @reference_formula
@@ -80,7 +141,6 @@ class accident_du_travail(SimpleFormulaColumn):
     label = u"Cotisations patronales accident du travail et maladie professionelle"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
@@ -96,9 +156,13 @@ class agff_tranche_a_employe(SimpleFormulaColumn):
     label = u"Cotisation retraite AGFF tranche A (employé)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
-            simulation, period, cotisation_type = "salarie", bareme_name = "agff")
+            simulation,
+            period,
+            cotisation_type = "salarie",
+            bareme_name = "agff",
+            variable_name = self.__class__.__name__
+            )
         return period, cotisation
 
 
@@ -107,6 +171,7 @@ class agff_tranche_a_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation retraite AGFF tranche A (employeur)"
+    # TODO: améliorer pour gérer mensuel/annuel
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -139,6 +204,7 @@ class agirc_gmp_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employé)"
+    # TODO: gestion annuel/mensuel
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -162,6 +228,7 @@ class agirc_gmp_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
+    # TODO: gestion annuel/mensuel
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -187,8 +254,13 @@ class agirc_tranche_b_employe(SimpleFormulaColumn):
     label = u"Cotisation AGIRC tranche B (employé)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "agirc")
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "salarie",
+            bareme_name = "agirc",
+            variable_name = self.__class__.__name__
+            )
         gmp_employe = simulation.calculate('agirc_gmp_employe', period)
         type_sal = simulation.calculate('type_sal', period)
         return period, cotisation + gmp_employe * (cotisation == 0) * (type_sal == 1)
@@ -201,8 +273,12 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
     label = u"Cotisation AGIRC tranche B (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "agirc")
+        cotisation = apply_bareme(
+            simulation, period,
+            cotisation_type = "employeur",
+            bareme_name = "agirc",
+            variable_name = self.__class__.__name__
+            )
         gmp_employeur = simulation.calculate('agirc_gmp_employeur', period)
         type_sal = simulation.calculate('type_sal', period)
         return period, cotisation + gmp_employeur * (cotisation == 0) * (type_sal == 1)
@@ -215,8 +291,12 @@ class ags(SimpleFormulaColumn):
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)" # noqa analysis:ignore
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "chomfg")
+        cotisation = apply_bareme(
+            simulation, period,
+            cotisation_type = "employeur",
+            bareme_name = "chomfg",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -227,8 +307,12 @@ class apec_employe(SimpleFormulaColumn):
     label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "apec")
+        cotisation = apply_bareme(
+            simulation, period,
+            cotisation_type = "salarie",
+            bareme_name = "apec",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation  # TODO: check public notamment contractuel
 
 
@@ -239,8 +323,13 @@ class apec_employeur(SimpleFormulaColumn):
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "apec")
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "employeur",
+            bareme_name = "apec",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation  # TODO: check public notamment contractuel
 
 
@@ -249,17 +338,21 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employé)"
+    # TODO: check gestion mensuel/annuel
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-
-        cotisation_minimale = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "arrco")
-
+        cotisation_minimale = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "salarie",
+            bareme_name = "arrco",
+            variable_name = self.__class__.__name__,
+            )
         arrco_tranche_a_taux_salarie = simulation.calculate('arrco_tranche_a_taux_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
 
+        type_sal = simulation.calculate('type_sal', period)
         cotisation_entreprise = - (
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_salarie
@@ -276,7 +369,6 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
     label = u"Cotisation ARRCO tranche A (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         cotisation_minimale = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "arrco")
         arrco_tranche_a_taux_employeur = simulation.calculate('arrco_tranche_a_taux_employeur', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -299,8 +391,13 @@ class assedic_employe(SimpleFormulaColumn):
     label = u"Cotisation chômage tranche A (employé)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "salarie", bareme_name = "assedic")
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "salarie",
+            bareme_name = "assedic",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -311,8 +408,13 @@ class assedic_employeur(SimpleFormulaColumn):
     label = u"Cotisation chômage tranche A (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "assedic")
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "employeur",
+            bareme_name = "assedic",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -324,7 +426,6 @@ class conge_individuel_formation_cdd(SimpleFormulaColumn):
 
     # TODO: date de début
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         law = simulation.legislation_at(period.start).cotsoc.conge_individuel_formation
@@ -340,10 +441,14 @@ class contribution_developpement_apprentissage(SimpleFormulaColumn):
     label = u"Contribution additionnelle au développement de l'apprentissage"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
         cotisation = apply_bareme(
-            simulation, period, cotisation_type = "employeur", bareme_name = "apprentissage_add")
+            simulation,
+            period,
+            cotisation_type = "employeur",
+            bareme_name = "apprentissage_add",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation * redevable_taxe_apprentissage
 
 
@@ -354,8 +459,13 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
     label = u"Contribution solidarité autonomie (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "csa")
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "employeur",
+            bareme_name = "csa",
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -366,8 +476,13 @@ class cotisation_exceptionnelle_temporaire_employe(SimpleFormulaColumn):
     label = u"Cotisation_exceptionnelle_temporaire (employe)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'cet')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'salarie',
+            bareme_name = 'cet',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -378,8 +493,13 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
     label = u"Cotisation exceptionnelle temporaire (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'cet')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'cet',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -391,7 +511,6 @@ class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
 
     # TODO: date de debut
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         ratio_alternants = simulation.calculate('ratio_alternants', period)
@@ -420,8 +539,13 @@ class famille(SimpleFormulaColumn):
     label = u"Cotisation famille (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'famille')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'famille',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -432,9 +556,14 @@ class fnal_tranche_a(SimpleFormulaColumn):
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'fnal1')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal1',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation * (taille_entreprise <= 2)
 
 
@@ -445,9 +574,14 @@ class fnal_tranche_a_plus_20(SimpleFormulaColumn):
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'fnal2')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal2',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation * (taille_entreprise > 2)
 
 
@@ -463,7 +597,6 @@ class forfait_social(SimpleFormulaColumn):
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
     def function(self, simulation, period):
-
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
         prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate(
             'prise_en_charge_employeur_prevoyance_complementaire', period)
@@ -480,6 +613,7 @@ class forfait_social(SimpleFormulaColumn):
             assiette_taux_reduit * taux_reduit
             )
 
+
 @reference_formula
 class formation_professionnelle(SimpleFormulaColumn):
     column = FloatCol
@@ -487,16 +621,27 @@ class formation_professionnelle(SimpleFormulaColumn):
     label = u"Formation professionnelle"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-
         cotisation_0_9 = (taille_entreprise == 1) * apply_bareme(
-            simulation, period, cotisation_type = 'employeur', bareme_name = 'formprof_09')
+            simulation,
+            period, cotisation_type = 'employeur',
+            bareme_name = 'formprof_09',
+            variable_name = self.__class__.__name__,
+            )
         cotisation_10_19 = (taille_entreprise == 2) * apply_bareme(
-            simulation, period, cotisation_type = 'employeur', bareme_name = 'formprof_1019')
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'formprof_1019',
+            variable_name = self.__class__.__name__,
+            )
         cotisation_20 = (taille_entreprise > 2) * apply_bareme(
-            simulation, period, cotisation_type = 'employeur', bareme_name = 'formprof_20')
-
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'formprof_20',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation_0_9 + cotisation_10_19 + cotisation_20
 
 
@@ -507,8 +652,13 @@ class maladie_employe(SimpleFormulaColumn):
     label = u"Cotisation maladie (employé)"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'maladie')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'salarie',
+            bareme_name = 'maladie',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -520,7 +670,13 @@ class maladie_employeur(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'maladie')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'maladie',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -545,7 +701,13 @@ class participation_effort_construction(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'construction')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'construction',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -554,6 +716,7 @@ class plafond_securite_sociale(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Plafond de la securite sociale"
+    # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -563,7 +726,7 @@ class plafond_securite_sociale(SimpleFormulaColumn):
 
         plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
         jours_travailles = nombre_jours_calendaires - heures_non_remunerees_volume / 7
-        plafond_securite_sociale = min_(jours_travailles , 30) / 30 * plafond_temps_plein
+        plafond_securite_sociale = min_(jours_travailles, 30) / 30 * plafond_temps_plein
         return period, plafond_securite_sociale
 
 
@@ -572,6 +735,7 @@ class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation de prévoyance pour les cadres et assimilés"
+    # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -629,8 +793,13 @@ class taxe_apprentissage(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'apprentissage')
-
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'apprentissage',
+            variable_name = self.__class__.__name__,
+            )
         return period, redevable_taxe_apprentissage * cotisation
 
 
@@ -769,7 +938,13 @@ class vieillesse_deplafonnee_employe(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'vieillessedeplaf')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'salarie',
+            bareme_name = 'vieillessedeplaf',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -781,7 +956,12 @@ class vieillesse_plafonnee_employe(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'salarie', bareme_name = 'vieillesse')
+        cotisation = apply_bareme(
+            simulation, period,
+            cotisation_type = 'salarie',
+            bareme_name = 'vieillesse',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -793,7 +973,12 @@ class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'vieillessedeplaf')
+        cotisation = apply_bareme(
+            simulation,
+            period, cotisation_type = 'employeur',
+            bareme_name = 'vieillessedeplaf',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation
 
 
@@ -805,5 +990,10 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(simulation, period, cotisation_type = 'employeur', bareme_name = 'vieillesseplaf')
+        cotisation = apply_bareme(
+            simulation,
+            period, cotisation_type = 'employeur',
+            bareme_name = 'vieillesseplaf',
+            variable_name = self.__class__.__name__,
+            )
         return period, cotisation

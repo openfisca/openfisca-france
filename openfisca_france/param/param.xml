@@ -3824,24 +3824,6 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <BAREME code="cesthra" description="Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité" type="monetary">
-      <TRANCHE code="tranche0">
-        <SEUIL>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.0" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche1">
-        <SEUIL>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="1000000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".75" />
-        </TAUX>
-      </TRANCHE>
-    </BAREME>
     <NODE code="pv_immo" description="Plus-values immobilières">
       <CODE code="ann_det1" description="Nombre d'années pleines de détentions minimale (1er seuil)" format="integer">
         <VALUE deb="2011-01-01" fin="2012-01-31" valeur="5" />

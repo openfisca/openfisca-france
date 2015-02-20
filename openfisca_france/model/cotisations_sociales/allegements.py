@@ -34,7 +34,7 @@ from numpy import (
 
 import logging
 
-from ..base import *  # noqa
+from ..base import *  # noqa analysis:ignore
 from ...assets.holidays import holidays
 
 log = logging.getLogger(__name__)
@@ -54,6 +54,32 @@ class assiette_allegement(SimpleFormulaColumn):
         return period, salbrut * (
             (type_sal == CAT['prive_non_cadre']) | (type_sal == CAT['prive_cadre'])
             )
+
+
+@reference_formula
+class allegement_fillon(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
+
+    @dated_function(date(2005, 7, 1))
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
+        allegement = (
+            # en fin d'année
+            allegement_fillon_mode_recouvrement == 0) * (
+                compute_allegement_fillon_annuel(simulation, period)
+                ) + (
+            # anticipé
+            allegement_fillon_mode_recouvrement == 1) * (
+                compute_allegement_fillon_anticipe(simulation, period)
+                ) + (
+            # cumul progressif
+            allegement_fillon_mode_recouvrement == 2) * (
+                compute_allegement_fillon_progressif(simulation, period)
+            )
+        return period, allegement
 
 
 @reference_formula
@@ -123,46 +149,6 @@ class coefficient_proratisation(SimpleFormulaColumn):
 
 
 @reference_formula
-class smic_proratise(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"SMIC annuel proratisé"
-
-    def function(self, simulation, period):
-        period = period
-        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
-        smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
-        smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
-        return period, smic_proratise
-
-
-@reference_formula
-class allegement_fillon(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
-
-    @dated_function(date(2005, 7, 1))
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-        allegement = (
-            # en fin d'année
-            allegement_fillon_mode_recouvrement == 0) * (
-                compute_allegement_fillon_annuel(simulation, period)
-                ) + (
-            # anticipé
-            allegement_fillon_mode_recouvrement == 1) * (
-                compute_allegement_fillon_anticipe(simulation, period)
-                ) + (
-            # cumul progressif
-            allegement_fillon_mode_recouvrement == 2) * (
-                compute_allegement_fillon_progressif(simulation, period)
-            )
-        return period, allegement
-
-
-@reference_formula
 class credit_impot_competitivite_emploi(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -182,6 +168,23 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
         return period, credit_impot_competitivite_emploi
 
 
+@reference_formula
+class smic_proratise(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"SMIC annuel proratisé"
+
+    def function(self, simulation, period):
+        period = period
+        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
+        smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
+        smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
+        return period, smic_proratise
+
+
+# Helper functions
+
+
 def compute_allegement_fillon_annuel(simulation, period):
     if period.start.month < 12:
         return 0
@@ -193,23 +196,24 @@ def compute_allegement_fillon_anticipe(simulation, period):
     if period.start.month < 12:
         return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month'))
     if period.start.month == 12:
-        cumul = simulation.calculate_add('allegement_fillon', period.start.offset('first-of', 'month').offset(-12,
-            'month').period('year'))
-        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'year').period('year')) - cumul
+        cumul = simulation.calculate_add(
+            'allegement_fillon',
+            period.start.offset('first-of', 'month').offset(-11, 'month').period('month', 11))
+        return compute_allegement_fillon(
+            simulation, period = period.start.offset('first-of', 'year').period('year')
+            ) - cumul
 
 
 def compute_allegement_fillon_progressif(simulation, period):
     if period.start.month == 1:
-        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month')
-            )
+        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month'))
+
     if period.start.month > 1:
-        cumul = simulation.calculate_add('allegement_fillon', period.start.offset('first-of', 'month').offset(-12,
-            'month').period('year'))
+        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
+        up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
+        cumul = simulation.calculate_add('allegement_fillon', up_to_previous_month)
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         return compute_allegement_fillon(simulation, up_to_this_month) - cumul
-
-
-# Helper functions
 
 
 def compute_allegement_fillon(simulation, period):

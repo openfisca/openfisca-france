@@ -111,6 +111,17 @@ reference_input_variable(
     name = 'contrat_de_travail_duree',
     )
 reference_input_variable(
+    column = EnumCol(
+        enum = Enum([
+            u"Mensuel avec régularisation en fin d'année",
+            u"Annuel",
+            ]),
+        ),
+    entity_class = Individus,
+    label = u"Mode de recouvrement des cotisations sociales",
+    name = 'cotisation_sociale_mode_recouvrement',
+    )
+reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
     label = u"Effectif de l'entreprise",
@@ -127,6 +138,12 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Nombre de tickets restaurant",
     name = 'nombre_tickets_restaurant',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Nouvelle bonification indicaire",
+    name = 'nouvelle_bonification_indiciaire',
     )
 reference_input_variable(
     column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
@@ -213,6 +230,12 @@ reference_input_variable(
     name = 'titre_restaurant_volume',
     )
 reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Traitement indiciaire brut (TIB)",
+    name = 'traitement_indiciaire_brut',
+    )
+reference_input_variable(
     column = EnumCol(
         enum = Enum(
             [
@@ -266,3 +289,5 @@ reference_input_variable(
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale",
     name = 'volume_jours_ijss',
     )
+
+
