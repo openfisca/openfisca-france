@@ -23,7 +23,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import copy
+# import copy
 import logging
 
 import numpy as np
@@ -168,16 +168,17 @@ def adapt_to_survey(tax_benefit_system):
     from openfisca_france_data.model.model import add_survey_formulas_to_entities
     add_survey_formulas_to_entities(survey_entity_class_by_key_plural)
 
-    survey_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
+    # survey_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
 
     from openfisca_core import reforms
-    survey_tax_benefit_system = reforms.Reform(
-        entity_class_by_key_plural = survey_entity_class_by_key_plural,
-        legislation_json = survey_legislation_json,
+    SurveyTaxBenefitSystem = reforms.make_reform(
+        # entity_class_by_key_plural = survey_entity_class_by_key_plural,
+        # legislation_json = survey_legislation_json,
         name = u'openfisca-france-survey',
+        # new_formulas = (),
         reference = tax_benefit_system,
         )
-
+    survey_tax_benefit_system = SurveyTaxBenefitSystem()
     return survey_tax_benefit_system
 
 

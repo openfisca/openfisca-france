@@ -6,6 +6,7 @@
 .pydevproject
 .spyderproject
 /.coverage
+/.noseids
 /.project
 /.settings
 /build

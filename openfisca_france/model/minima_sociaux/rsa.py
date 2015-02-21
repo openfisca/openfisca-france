@@ -341,7 +341,7 @@ class br_rmi_pf(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
         cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate('asf', period)
+        asf = simulation.calculate_divide('asf', period)
         paje_base = simulation.calculate_divide('paje_base', period)
         paje_clca = simulation.calculate_divide('paje_clca', period)
         paje_colca = simulation.calculate_divide('paje_colca', period)

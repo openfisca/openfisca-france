@@ -111,16 +111,10 @@ def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(reform_legislation_subtree)
-
-    # Update formulas
-    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
-    ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
-    ReformFoyersFiscaux.column_by_name['irpp'] = irpp
-    ReformFoyersFiscaux.column_by_name['cesthra'] = cesthra
-
-    return reforms.Reform(
-        entity_class_by_key_plural = reform_entity_class_by_key_plural,
+    Reform = reforms.make_reform(
         legislation_json = reform_legislation_json,
         name = u"Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)",
+        new_formulas = (cesthra, irpp),
         reference = tax_benefit_system,
         )
+    return Reform()

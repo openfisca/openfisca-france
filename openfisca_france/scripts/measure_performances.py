@@ -79,7 +79,7 @@ def add_member(entity, **variables_value_by_name):
         column = variable_holder.column
         if isinstance(value, dict):
             for period, period_value in value.iteritems():
-                array = variable_holder.get_array(period, exact = True)
+                array = variable_holder.get_array(period)
                 if array is None:
                     array = np.empty(entity.count, dtype = column.dtype)
                     array.fill(column.default)
@@ -87,7 +87,7 @@ def add_member(entity, **variables_value_by_name):
                 array[member_index] = period_value
         else:
             period = simulation.period
-            array = variable_holder.get_array(period, exact = True)
+            array = variable_holder.get_array(period)
             if array is None:
                 array = np.empty(entity.count, dtype = column.dtype)
                 array.fill(column.default)

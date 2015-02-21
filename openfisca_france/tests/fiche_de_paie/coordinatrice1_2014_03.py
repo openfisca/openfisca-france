@@ -107,7 +107,7 @@ tests = [
 
             # allegement_fillon = 222.12, TODO: (devrait être 0)
             credit_impot_competitivite_emploi = 0,
-            tehr = 0,
+            tehr = {'2014': 0},
             salbrut = 1800,
 
             # cotisations_salariales = 0,

@@ -31,13 +31,13 @@ from numpy import maximum as max_
 import logging
 
 from openfisca_core import columns, formulas, reforms
-from openfisca_france.model.impot_revenu import ir
 from openfisca_france import entities
+from openfisca_france.model.base import QUIFOY
+from openfisca_france.model.impot_revenu import ir
 
 
 log = logging.getLogger(__name__)
 
-from openfisca_france.model.base import QUIFOY
 VOUS = QUIFOY['vous']
 
 
@@ -126,21 +126,16 @@ reform_legislation_subtree = {
     }
 
 
+# Build function
+
 def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(reform_legislation_subtree)
-
-    # Update formulas
-    reform_entity_class_by_key_plural = reforms.clone_entity_classes(entities.entity_class_by_key_plural)
-    ReformFoyersFiscaux = reform_entity_class_by_key_plural['foyers_fiscaux']
-    ReformFoyersFiscaux.column_by_name['rbg'] = rbg
-    ReformFoyersFiscaux.column_by_name['rfr'] = rfr
-    ReformFoyersFiscaux.column_by_name['allocations_familiales_imposables'] = allocations_familiales_imposables
-
-    return reforms.Reform(
-        entity_class_by_key_plural = reform_entity_class_by_key_plural,
+    Reform = reforms.make_reform(
         legislation_json = reform_legislation_json,
         name = u'Allocations familiales imposables',
+        new_formulas = (rbg, rfr, allocations_familiales_imposables),
         reference = tax_benefit_system,
         )
+    return Reform()

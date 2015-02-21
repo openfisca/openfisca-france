@@ -26,20 +26,20 @@
 from ..base import *  # noqa
 
 
-reference_input_variable(column = FloatCol, entity_class = Individus, function = last_duration_last_value,
+reference_input_variable(base_function = last_duration_last_value, column = FloatCol, entity_class = Individus,
     label = u"Épargne non rémunérée", name = 'epargne_non_remuneree')
 
-reference_input_variable(column = FloatCol, entity_class = Individus, function = last_duration_last_value,
+reference_input_variable(base_function = last_duration_last_value, column = FloatCol, entity_class = Individus,
     label = u"Intérêts versés pour l'épargne sur livret", name = 'interets_epargne_sur_livrets')
 
-reference_input_variable(column = FloatCol, entity_class = Individus, function = last_duration_last_value,
+reference_input_variable(base_function = last_duration_last_value, column = FloatCol, entity_class = Individus,
     label = u"Revenus du capital", name = 'revenus_capital')
 
-reference_input_variable(column = FloatCol, entity_class = Individus, function = last_duration_last_value,
+reference_input_variable(base_function = last_duration_last_value, column = FloatCol, entity_class = Individus,
     label = u"Revenus locatifs", name = 'revenus_locatifs')
 
-reference_input_variable(column = FloatCol, entity_class = Individus, function = last_duration_last_value,
+reference_input_variable(base_function = last_duration_last_value, column = FloatCol, entity_class = Individus,
     label = u"Valeur locative des biens immobiliers possédés et non loués", name = 'valeur_locative_immo_non_loue')
 
-reference_input_variable(column = FloatCol, entity_class = Individus, function = last_duration_last_value,
+reference_input_variable(base_function = last_duration_last_value, column = FloatCol, entity_class = Individus,
     label = u"Valeur locative des terrains possédés et non loués", name = 'valeur_locative_terrains_non_loue')

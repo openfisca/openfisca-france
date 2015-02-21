@@ -454,7 +454,7 @@ class salsuperbrut(SimpleFormulaColumn):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
 
         taxe_salaires = simulation.calculate('taxe_salaires', period)
-        tehr = simulation.calculate('tehr', period)
+        tehr = simulation.calculate_divide('tehr', period)
 
         salsuperbrut = (
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +

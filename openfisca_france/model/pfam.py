@@ -335,7 +335,7 @@ class crds_pfam(SimpleFormulaColumn):
         Renvoie la CRDS des prestations familiales
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        af = simulation.calculate('af', period)
+        af = simulation.calculate_add('af', period)
         cf = simulation.calculate('cf', period)
         asf = simulation.calculate('asf', period)
         ars = simulation.calculate('ars', period)

@@ -104,7 +104,7 @@ tests = [
             allegement_fillon = 0,
             alleg_cice = 0,
             forfait_social = -4.72,
-            tehr = 0,
+            tehr = {'2014': 0},
             salbrut = 3000,
 
             # cotisations_salariales = 0,
@@ -148,4 +148,3 @@ tests = [
 
 Ceci est un script temporaire.
 """
-
