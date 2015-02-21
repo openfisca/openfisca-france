@@ -47,10 +47,10 @@ class remuneration_apprenti(SimpleFormulaColumn):
     # alternance (DIMA).
 
     def function(self, simulation, period):
-
+        period = period.start.offset('first-of', 'month').period('month')
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
-
+        smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
         output = age * 0.0
 
         anciennete_contrat = (datetime64(period.start) - apprentissage_contrat_debut).astype('timedelta64[Y]')
@@ -94,7 +94,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
                 ])
         print output
 
-        return period, output
+        return period, output * smic
 
 
 @reference_formula
@@ -124,7 +124,15 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
     #
 
     def function(self, simulation, period):
-        pass
+        period = period.start.offset('first-of', 'month').period('month')
+        bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
+        taux_max = (
+            bareme_by_name['vieillessedeplaf'].rates[0] +
+            bareme_by_name['vieillesseplaf'].rates[0] +
+            bareme_by_name['maladie'].rates[0] +
+            bareme_by_name['famille'].rates[0] +
+
+        TODO
 
 
 @reference_formula
@@ -135,8 +143,9 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 
     def function(self, simulation, period):
-        pass
-
+        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
+        TODO
+        return period, cotisations_salariales
 
 @reference_formula
 class prime_apprentissage(SimpleFormulaColumn):
