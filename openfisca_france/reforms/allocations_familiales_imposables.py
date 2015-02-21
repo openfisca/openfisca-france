@@ -31,13 +31,13 @@ from numpy import maximum as max_
 import logging
 
 from openfisca_core import columns, formulas, reforms
-from openfisca_france.model.impot_revenu import ir
 from openfisca_france import entities
+from openfisca_france.model.base import QUIFOY
+from openfisca_france.model.impot_revenu import ir
 
 
 log = logging.getLogger(__name__)
 
-from openfisca_france.model.base import QUIFOY
 VOUS = QUIFOY['vous']
 
 
