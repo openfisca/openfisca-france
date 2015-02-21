@@ -128,10 +128,11 @@ def test_check():
             period = periods.period("year", "2011"),
             value = 9,
             )
-        reform = reforms.Reform(
-            name = u'smic_h_b_9_euros',
+
+        reform = reforms.make_reform(
             label = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
             legislation_json = reform_legislation_json,
+            name = u'smic_h_b_9_euros',
             reference = tax_benefit_system,
             )
 

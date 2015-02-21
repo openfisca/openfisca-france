@@ -42,10 +42,10 @@ def test_parametric_reform():
         value = 1,
         )
 
-    reform = reforms.Reform(
-        name = u'IR_100_tranche_1',
+    reform = reforms.make_reform(
         label = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
         legislation_json = reform_legislation_json,
+        name = u'IR_100_tranche_1',
         reference = tax_benefit_system,
         )
 
