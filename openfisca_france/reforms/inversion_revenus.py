@@ -273,9 +273,9 @@ class rstbrut(formulas.SimpleFormulaColumn):
 # Build function
 
 def build_reform(tax_benefit_system):
-    InversionRevenusReform = reforms.make_reform(
+    Reform = reforms.make_reform(
         name = u'Inversion des revenus',
         new_formulas = (chobrut, rstbrut, salbrut),
         reference = tax_benefit_system,
         )
-    return InversionRevenusReform()
+    return Reform()

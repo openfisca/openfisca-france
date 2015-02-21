@@ -129,12 +129,13 @@ def test_check():
             value = 9,
             )
 
-        reform = reforms.make_reform(
-            label = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
+        Reform = reforms.make_reform(
             legislation_json = reform_legislation_json,
-            name = u'smic_h_b_9_euros',
+            # name = u'smic_h_b_9_euros',
+            name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
             reference = tax_benefit_system,
             )
+        reform = Reform()
 
         simulation_period = 2011
         parent1 = dict(

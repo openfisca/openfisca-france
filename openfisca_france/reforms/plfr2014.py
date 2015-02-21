@@ -320,10 +320,10 @@ def build_reform(tax_benefit_system):
     reference_legislation_json = tax_benefit_system.legislation_json
     reform_legislation_json = copy.deepcopy(reference_legislation_json)
     reform_legislation_json['children'].update(reform_legislation_subtree)
-
-    return reforms.make_reform(
+    Reform = reforms.make_reform(
         legislation_json = reform_legislation_json,
         name = u'PLFR 2014',
         new_formulas = (reduction_impot_exceptionnelle, reductions),
         reference = tax_benefit_system,
         )
+    return Reform()
