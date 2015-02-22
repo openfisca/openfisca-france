@@ -83,7 +83,7 @@ def test():
     for file_name in sorted(os.listdir(dir_path), key = lambda name: name.split('_', 4)[3]):
         if not file_name.endswith('.yaml'):
             continue
-        test_id = file_name.split('_', 4)[3]
+        test_id = file_name.split('_', 4)[3].split('.')[0]
         with open(os.path.join(dir_path, file_name)) as yaml_file:
             test = yaml.load(yaml_file)
             if test.pop('ignore', False):
