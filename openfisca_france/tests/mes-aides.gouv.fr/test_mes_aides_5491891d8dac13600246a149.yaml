@@ -1,0 +1,63 @@
+name: "Plancher ACS pour une personne seule dans les DOM (acs, cmu-c/acs, dom, plafonds)"
+description: Test réalisé avec des ressources légèrement supérieures au plafond CMUc.
+period: "month:2014-12"
+individus:
+  age: 40
+  agem: 491
+  alt: 0
+  birth: "1974-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 549185161abb1c570220a2be
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salaire_de_base:
+    2012: 12335.897435897436
+    2013-12: 1071.5099715099716
+    2014-01: 1071.5099715099716
+    2014-02: 1071.5099715099716
+    2014-03: 1071.5099715099716
+    2014-04: 1071.5099715099716
+    2014-05: 1071.5099715099716
+    2014-06: 1071.5099715099716
+    2014-07: 1071.5099715099716
+    2014-08: 1071.5099715099716
+    2014-09: 897.4358974358975
+    2014-09:3: 2692.3076923076924
+    2014-10: 897.4358974358975
+    2014-11: 897.4358974358975
+    year:2013-12: 12335.897435897436
+  salnet:
+    2012: 9621.999999999998
+    2013-12: 835.7777777777778
+    2014-01: 835.7777777777778
+    2014-02: 835.7777777777778
+    2014-03: 835.7777777777778
+    2014-04: 835.7777777777778
+    2014-05: 835.7777777777778
+    2014-06: 835.7777777777778
+    2014-07: 835.7777777777778
+    2014-08: 835.7777777777778
+    2014-09: 700
+    2014-09:3: 2100
+    2014-10: 700
+    2014-11: 700
+    year:2013-12: 9621.999999999998
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 549185161abb1c570220a2be
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 549185161abb1c570220a2be
+  personnes_a_charge:
+menages:
+  depcom: 97130
+  enfants:
+  loyer: 50
+  personne_de_reference: 549185161abb1c570220a2be
+  so: 4
+output_variables:
+  acs: 200

@@ -1,0 +1,63 @@
+name: "550 euros pour les > 60 ans (acs, cmu-c/acs, montant)"
+description:
+period: "month:2014-10"
+individus:
+  age: 64
+  agem: 769
+  alt: 0
+  birth: "1950-09-14"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 544798e0700e06b826532b49
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salaire_de_base:
+    2012: 14953.84615384615
+    2013-10: 1246.1538461538462
+    2013-11: 1246.1538461538462
+    2013-12: 1246.1538461538462
+    2014-01: 1246.1538461538462
+    2014-02: 1246.1538461538462
+    2014-03: 1246.1538461538462
+    2014-04: 1246.1538461538462
+    2014-05: 1246.1538461538462
+    2014-06: 1246.1538461538462
+    2014-07: 1246.1538461538462
+    2014-07:3: 3738.4615384615386
+    2014-08: 1246.1538461538462
+    2014-09: 1246.1538461538462
+    year:2013-10: 14953.84615384615
+  salnet:
+    2012: 11664
+    2013-10: 972
+    2013-11: 972
+    2013-12: 972
+    2014-01: 972
+    2014-02: 972
+    2014-03: 972
+    2014-04: 972
+    2014-05: 972
+    2014-06: 972
+    2014-07: 972
+    2014-07:3: 2916
+    2014-08: 972
+    2014-09: 972
+    year:2013-10: 11664
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 544798e0700e06b826532b49
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 544798e0700e06b826532b49
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 100
+  personne_de_reference: 544798e0700e06b826532b49
+  so: 4
+output_variables:
+  acs: 550

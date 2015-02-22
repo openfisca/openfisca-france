@@ -1,0 +1,62 @@
+name: 93_Couple d'étudiants + 1 enfant (foyer, rsa)
+description: "Non éligible (L. 262-4 CASF)"
+period: "month:2014-12"
+individus:
+  - activite: 2
+    age: 34
+    agem: 419
+    alt: 0
+    birth: "1980-01-01"
+    boursier: false
+    epargne_non_remuneree: 0
+    etu: 1
+    id: 54818e8de061e493666d52b1
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - activite: 2
+    age: 34
+    agem: 419
+    alt: 0
+    birth: "1980-01-01"
+    boursier: false
+    epargne_non_remuneree: 0
+    etu: 1
+    id: 54818e8de061e493666d52af
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 4
+    agem: 59
+    alt: 0
+    birth: "2010-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54818e8de061e493666d52ae
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants: 54818e8de061e493666d52ae
+  parents:
+    - 54818e8de061e493666d52b1
+    - 54818e8de061e493666d52af
+foyers_fiscaux:
+  declarants:
+    - 54818e8de061e493666d52b1
+    - 54818e8de061e493666d52af
+  personnes_a_charge: 54818e8de061e493666d52ae
+menages:
+  conjoint: 54818e8de061e493666d52af
+  depcom: 41230
+  enfants: 54818e8de061e493666d52ae
+  personne_de_reference: 54818e8de061e493666d52b1
+  so: 6
+output_variables:

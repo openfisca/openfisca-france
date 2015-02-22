@@ -1,0 +1,48 @@
+name: Zone 2 (al, location, zones)
+description: |
+  L	255,03
+  C	53,23
+  E	308,26
+  R	0
+  R0	4593
+  Rp	0
+  Tf	2,83
+  LR	255,03
+  RL	100
+  Tl	0,305
+  Tp	3,135
+  P0	34,73
+  P1	0
+  Pp	34,73
+  AL	272,16
+  
+  caf.fr : 272,17
+period: "month:2015-01"
+individus:
+  age: 34
+  agem: 412
+  alt: 0
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54abaf5ed20bc238169b42a1
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54abaf5ed20bc238169b42a1
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54abaf5ed20bc238169b42a1
+  personnes_a_charge:
+menages:
+  depcom: "06004"
+  enfants:
+  loyer: 500
+  personne_de_reference: 54abaf5ed20bc238169b42a1
+  so: 4
+output_variables:
+  als: 272.16

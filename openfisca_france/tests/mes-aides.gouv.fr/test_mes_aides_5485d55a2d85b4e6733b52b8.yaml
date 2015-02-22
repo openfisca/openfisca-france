@@ -1,0 +1,134 @@
+name: "Le plafond augmente de 30% par enfant à charge supplémentaire (cas en-dessous du plafond) (bourse collège, plafonds)"
+description: |
+  Ici 4 enfants déclarés dont 1 scolarisé au collège
+  pour un montant de 228 euros, le plafond est de 13383 euros, pour ici un rfr de 13300 euros
+period: "month:2014-12"
+individus:
+  - age: 34
+    agem: 411
+    alr:
+      2013: 0
+    alt: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d4def8356af173ccbf20
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    salaire_de_base:
+      2012: 17051.30769230769
+      2013-12: 1894.5897435897434
+      2014-01: 1894.5897435897434
+      2014-02: 1894.5897435897434
+      2014-03: 1894.5897435897434
+      2014-04: 1894.5897435897434
+      2014-05: 1894.5897435897434
+      2014-06: 1894.5897435897434
+      2014-07: 1894.5897435897434
+      2014-08: 1894.5897435897434
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 17051.30769230769
+    salnet:
+      2012: 13300.020000000002
+      2013-12: 1477.78
+      2014-01: 1477.78
+      2014-02: 1477.78
+      2014-03: 1477.78
+      2014-04: 1477.78
+      2014-05: 1477.78
+      2014-06: 1477.78
+      2014-07: 1477.78
+      2014-08: 1477.78
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 13300.020000000002
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 14
+    agem: 171
+    alt: 0
+    birth: "2000-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d4def8356af173ccbf1f
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 4
+    agem: 51
+    alt: 0
+    birth: "2010-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d4def8356af173ccbf1e
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 4
+    agem: 51
+    alt: 0
+    birth: "2010-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d4def8356af173ccbf1d
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 4
+    agem: 51
+    alt: 0
+    birth: "2010-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 5485d4def8356af173ccbf1c
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+    - 5485d4def8356af173ccbf1f
+    - 5485d4def8356af173ccbf1e
+    - 5485d4def8356af173ccbf1d
+    - 5485d4def8356af173ccbf1c
+  parents: 5485d4def8356af173ccbf20
+foyers_fiscaux:
+  declarants: 5485d4def8356af173ccbf20
+  personnes_a_charge:
+    - 5485d4def8356af173ccbf1f
+    - 5485d4def8356af173ccbf1e
+    - 5485d4def8356af173ccbf1d
+    - 5485d4def8356af173ccbf1c
+  rfr:
+    2012: 13300
+menages:
+  depcom: 75111
+  enfants:
+    - 5485d4def8356af173ccbf1f
+    - 5485d4def8356af173ccbf1e
+    - 5485d4def8356af173ccbf1d
+    - 5485d4def8356af173ccbf1c
+  personne_de_reference: 5485d4def8356af173ccbf20
+  so: 6
+output_variables:
+  bourse_college: 228

@@ -1,0 +1,81 @@
+name: Couple, les revenus du conjoint sont inclus dans la base ressource (ass, base ressources)
+description: Si le conjoint gagne 10000 euros par mois, l'ASS ne doit pas être proposée car ça compte dans la base ressource.
+period: "month:2014-11"
+individus:
+  - activite: 1
+    age: 34
+    agem: 411
+    alt: 0
+    ass_precondition_remplie: true
+    birth: "1980-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 546f598a1e6217443d9188c8
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 34
+    agem: 411
+    alt: 0
+    birth: "1980-08-12"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 546f598a1e6217443d9188bb
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salaire_de_base:
+      2012: 153846.15384615381
+      2013-11: 12820.51282051282
+      2013-12: 12820.51282051282
+      2014-01: 12820.51282051282
+      2014-02: 12820.51282051282
+      2014-03: 12820.51282051282
+      2014-04: 12820.51282051282
+      2014-05: 12820.51282051282
+      2014-06: 12820.51282051282
+      2014-07: 12820.51282051282
+      2014-08: 12820.51282051282
+      2014-08:3: 38461.53846153846
+      2014-09: 12820.51282051282
+      2014-10: 12820.51282051282
+      year:2013-11: 153846.15384615381
+    salnet:
+      2012: 120000
+      2013-11: 10000
+      2013-12: 10000
+      2014-01: 10000
+      2014-02: 10000
+      2014-03: 10000
+      2014-04: 10000
+      2014-05: 10000
+      2014-06: 10000
+      2014-07: 10000
+      2014-08: 10000
+      2014-08:3: 30000
+      2014-09: 10000
+      2014-10: 10000
+      year:2013-11: 120000
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 546f598a1e6217443d9188c8
+    - 546f598a1e6217443d9188bb
+foyers_fiscaux:
+  declarants:
+    - 546f598a1e6217443d9188c8
+    - 546f598a1e6217443d9188bb
+  personnes_a_charge:
+menages:
+  conjoint: 546f598a1e6217443d9188bb
+  depcom: 67482
+  enfants:
+  personne_de_reference: 546f598a1e6217443d9188c8
+  so: 6
+output_variables:
+  ass: 0

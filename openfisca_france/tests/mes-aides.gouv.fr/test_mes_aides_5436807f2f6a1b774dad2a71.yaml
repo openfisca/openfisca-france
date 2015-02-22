@@ -1,0 +1,34 @@
+name: "La valeur locative des terrains non loués est prise en compte à 80% (base ressources, cmu-c/acs, patrimoine)"
+description: |
+  valeur locative terrains = 1300 euros
+  1300 * 0.8 = 1040 : supérieur au plafond de 972 euros
+period: "month:2014-10"
+individus:
+  age: 34
+  agem: 409
+  alt: 0
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54367e6893aeb8714ddd28d5
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 1300
+familles:
+  enfants:
+  parents: 54367e6893aeb8714ddd28d5
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54367e6893aeb8714ddd28d5
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 800
+  personne_de_reference: 54367e6893aeb8714ddd28d5
+  so: 4
+output_variables:
+  acs: 0
+  cmu_c: false

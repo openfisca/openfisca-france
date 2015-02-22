@@ -1,0 +1,43 @@
+name: 22_Jeune < 25 ans, 1 enfant (rsa)
+description:
+period: "month:2014-11"
+individus:
+  - activite: 1
+    age: 20
+    agem: 250
+    alt: 0
+    ass_precondition_remplie: false
+    birth: "1994-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 546b24bd492eaff5637e3be5
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 4
+    agem: 58
+    alt: 0
+    birth: "2010-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 546b24bd492eaff5637e3be4
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants: 546b24bd492eaff5637e3be4
+  parents: 546b24bd492eaff5637e3be5
+foyers_fiscaux:
+  declarants: 546b24bd492eaff5637e3be5
+  personnes_a_charge: 546b24bd492eaff5637e3be4
+menages:
+  depcom: 75114
+  enfants: 546b24bd492eaff5637e3be4
+  personne_de_reference: 546b24bd492eaff5637e3be5
+  so: 6
+output_variables:
+  rsa: 658.37

@@ -1,0 +1,63 @@
+name: Couple, 1 des 2 éligible, ressources < plafond bas (aspa, plafonds)
+description: Plafond bas = 5251 € / an
+period: "month:2014-07"
+individus:
+  - age: 68
+    agem: 826
+    alt: 0
+    birth: "1945-09-14"
+    enceinte: false
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 53d2510ee40a7902009c3380
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    rstbrut:
+      2012: 599.9999999999999
+      2014-04: 199.99999999999997
+      2014-04:3: 599.9999999999999
+      2014-05: 199.99999999999997
+      2014-06: 199.99999999999997
+      year:2013-07: 599.9999999999999
+    rstnet:
+      2012: 555.5999999999999
+      2014-04: 185.2
+      2014-04:3: 555.5999999999999
+      2014-05: 185.2
+      2014-06: 185.2
+      year:2013-07: 555.5999999999999
+    statmarit: 2
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 33
+    agem: 406
+    alt: 0
+    birth: "1980-09-14"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 53d2510ee40a7902009c337f
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 53d2510ee40a7902009c3380
+    - 53d2510ee40a7902009c337f
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 53d2510ee40a7902009c3380
+    - 53d2510ee40a7902009c337f
+  personnes_a_charge:
+menages:
+  conjoint: 53d2510ee40a7902009c337f
+  enfants:
+  loyer: 123
+  personne_de_reference: 53d2510ee40a7902009c3380
+  so: 4
+output_variables:
+  aspa: 791.99

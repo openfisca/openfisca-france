@@ -1,0 +1,63 @@
+name: "Plafond ACS 1 personne - cas en-dessous du plafond (acs, cmu-c/acs, plafonds)"
+description: "11669 euros déclarés en année glissante, ce qui est inférieur au plafond ACS pour 1 personne en métropole (11670 euros) : droit ACS."
+period: "month:2014-12"
+individus:
+  age: 50
+  agem: 611
+  alt: 0
+  birth: "1964-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 548ec77d40562f54026eead1
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  salaire_de_base:
+    2012: 14960.256410256407
+    2013-12: 1234.9002849002848
+    2014-01: 1234.9002849002848
+    2014-02: 1234.9002849002848
+    2014-03: 1234.9002849002848
+    2014-04: 1234.9002849002848
+    2014-05: 1234.9002849002848
+    2014-06: 1234.9002849002848
+    2014-07: 1234.9002849002848
+    2014-08: 1234.9002849002848
+    2014-09: 1282.051282051282
+    2014-09:3: 3846.1538461538457
+    2014-10: 1282.051282051282
+    2014-11: 1282.051282051282
+    year:2013-12: 14960.256410256407
+  salnet:
+    2012: 11669.000000000002
+    2013-12: 963.2222222222222
+    2014-01: 963.2222222222222
+    2014-02: 963.2222222222222
+    2014-03: 963.2222222222222
+    2014-04: 963.2222222222222
+    2014-05: 963.2222222222222
+    2014-06: 963.2222222222222
+    2014-07: 963.2222222222222
+    2014-08: 963.2222222222222
+    2014-09: 1000
+    2014-09:3: 3000
+    2014-10: 1000
+    2014-11: 1000
+    year:2013-12: 11669.000000000002
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 548ec77d40562f54026eead1
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 548ec77d40562f54026eead1
+  personnes_a_charge:
+menages:
+  depcom: 75115
+  enfants:
+  loyer: 50
+  personne_de_reference: 548ec77d40562f54026eead1
+  so: 4
+output_variables:
+  acs: 350

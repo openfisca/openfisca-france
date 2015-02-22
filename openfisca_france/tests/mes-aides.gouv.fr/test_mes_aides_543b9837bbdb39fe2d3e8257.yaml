@@ -1,0 +1,83 @@
+name: "Couple, le montant est fixe en-dessous de 1288,80 € de ressources par mois (ass, montant)"
+description:
+period: "month:2014-10"
+individus:
+  - activite: 1
+    age: 25
+    agem: 300
+    alt: 0
+    ass_precondition_remplie: true
+    birth: "1989-09-14"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 543b98172e3c4d092e64f021
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salaire_de_base:
+      2012: 18461.538461538465
+      2013-10: 1538.4615384615383
+      2013-11: 1538.4615384615383
+      2013-12: 1538.4615384615383
+      2014-01: 1538.4615384615383
+      2014-02: 1538.4615384615383
+      2014-03: 1538.4615384615383
+      2014-04: 1538.4615384615383
+      2014-05: 1538.4615384615383
+      2014-06: 1538.4615384615383
+      2014-07: 1538.4615384615383
+      2014-07:3: 4615.384615384615
+      2014-08: 1538.4615384615383
+      2014-09: 1538.4615384615383
+      year:2013-10: 18461.538461538465
+    salnet:
+      2012: 14400
+      2013-10: 1200
+      2013-11: 1200
+      2013-12: 1200
+      2014-01: 1200
+      2014-02: 1200
+      2014-03: 1200
+      2014-04: 1200
+      2014-05: 1200
+      2014-06: 1200
+      2014-07: 1200
+      2014-07:3: 3600
+      2014-08: 1200
+      2014-09: 1200
+      year:2013-10: 14400
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 25
+    agem: 300
+    alt: 0
+    birth: "1989-09-14"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 543b98172e3c4d092e64f020
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 543b98172e3c4d092e64f021
+    - 543b98172e3c4d092e64f020
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 543b98172e3c4d092e64f021
+    - 543b98172e3c4d092e64f020
+  personnes_a_charge:
+menages:
+  conjoint: 543b98172e3c4d092e64f020
+  depcom: 67382
+  enfants:
+  loyer: 67
+  personne_de_reference: 543b98172e3c4d092e64f021
+  so: 4
+output_variables:
+  ass: 483.3

@@ -1,0 +1,47 @@
+name: 12_Couple sans enfant (foyer, rsa)
+description:
+period: "month:2014-11"
+individus:
+  - age: 28
+    agem: 346
+    alt: 0
+    birth: "1986-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 545a4d050e9bb9d9441ed62e
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 28
+    agem: 346
+    alt: 0
+    birth: "1986-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 545a4d050e9bb9d9441ed62d
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 545a4d050e9bb9d9441ed62e
+    - 545a4d050e9bb9d9441ed62d
+foyers_fiscaux:
+  declarants:
+    - 545a4d050e9bb9d9441ed62e
+    - 545a4d050e9bb9d9441ed62d
+  personnes_a_charge:
+menages:
+  conjoint: 545a4d050e9bb9d9441ed62d
+  depcom: 86194
+  enfants:
+  personne_de_reference: 545a4d050e9bb9d9441ed62e
+  so: 6
+output_variables:
+  rsa: 641.72

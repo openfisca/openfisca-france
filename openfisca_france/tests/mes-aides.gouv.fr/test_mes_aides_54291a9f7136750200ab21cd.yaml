@@ -1,0 +1,30 @@
+name: Les étudiants ne peuvent pas toucher le RSA (rsa)
+description: Dans le cas général, un étudiant n'a pas droit au RSA
+period: "month:2014-09"
+individus:
+  activite: 2
+  age: 34
+  agem: 409
+  alt: 0
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 1
+  id: 54291a817136750200ab21cb
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54291a817136750200ab21cb
+foyers_fiscaux:
+  declarants: 54291a817136750200ab21cb
+  personnes_a_charge:
+menages:
+  depcom: 67382
+  enfants:
+  personne_de_reference: 54291a817136750200ab21cb
+  so: 6
+output_variables:
+  rsa: 0

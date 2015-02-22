@@ -1,0 +1,48 @@
+name: Zone 3 (al, location, zones)
+description: |
+  L	239,02
+  C	53,23
+  E	292,25
+  R	0
+  R0	4593
+  Rp	0
+  Tf	2,83
+  LR	255,03
+  RL	93,72
+  Tl	0,262
+  Tp	3,092
+  P0	34,73
+  P1	0
+  Pp	34,73
+  AL	256,23
+  
+  caf.fr : 256,24
+period: "month:2014-10"
+individus:
+  age: 34
+  agem: 409
+  alt: 0
+  birth: "1980-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 542ec2bc5e3a9c02007e90c6
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 542ec2bc5e3a9c02007e90c6
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 542ec2bc5e3a9c02007e90c6
+  personnes_a_charge:
+menages:
+  depcom: 67382
+  enfants:
+  loyer: 600
+  personne_de_reference: 542ec2bc5e3a9c02007e90c6
+  so: 4
+output_variables:
+  als: 256.23

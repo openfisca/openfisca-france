@@ -1,0 +1,46 @@
+name: Droit à l'ASI si invalide retraité (asi, eligibilité)
+description: "Valeur attendue saisie : montant brut maximal personne seule SP.fr"
+period: "month:2014-12"
+individus:
+  activite: 3
+  age: 59
+  agem: 719
+  alt: 0
+  birth: "1955-01-01"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 5481e2d95f35e8cf064b9bc5
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 1
+  pensions_invalidite:
+    2012: 1200
+    2013-12: 100
+    2014-01: 100
+    2014-02: 100
+    2014-03: 100
+    2014-04: 100
+    2014-05: 100
+    2014-06: 100
+    2014-07: 100
+    2014-08: 100
+    2014-09: 100
+    2014-09:3: 300
+    2014-10: 100
+    2014-11: 100
+    year:2013-12: 1200
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 5481e2d95f35e8cf064b9bc5
+foyers_fiscaux:
+  declarants: 5481e2d95f35e8cf064b9bc5
+  personnes_a_charge:
+menages:
+  depcom: 92071
+  enfants:
+  personne_de_reference: 5481e2d95f35e8cf064b9bc5
+  so: 6
+output_variables:
+  asi: 403.76

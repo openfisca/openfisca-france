@@ -1,0 +1,31 @@
+name: Pas d'éligibilité si inapte au travail < 62 ans (age, aspa, eligibilité)
+description: Ici la personne est inapte au travail mais a 61 ans, donc inéligible.
+period: "month:2015-02"
+individus:
+  age: 61
+  agem: 738
+  alt: 0
+  birth: "1953-08-12"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54dc7aa54ec19fce44227a7f
+  inapte_travail: 1
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54dc7aa54ec19fce44227a7f
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54dc7aa54ec19fce44227a7f
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 100
+  personne_de_reference: 54dc7aa54ec19fce44227a7f
+  so: 4
+output_variables:
+  aspa: 0

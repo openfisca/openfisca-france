@@ -1,0 +1,149 @@
+name: Couple cumul retraites et salaire (abattements, aspa, plafonds)
+description: |
+  Demandeur = 500 euros de retraite + 833 euros de salaire
+  Application abattement de 1,5 SMIC d' où 833 - 728,77 = 104,23 euros
+  Conjoint = 150 euros de retraite
+  Total : 1242 - (500 + 104,23 + 150) = 487,77
+period: "month:2015-02"
+individus:
+  - activite: 3
+    age: 74
+    agem: 897
+    alt: 0
+    birth: "1940-05-05"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54e223cbfe7cc56a2d0dc062
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    rstbrut:
+      2013: 6000
+      2014-02: 500
+      2014-03: 500
+      2014-04: 500
+      2014-05: 500
+      2014-06: 500
+      2014-07: 500
+      2014-08: 500
+      2014-09: 500
+      2014-10: 500
+      2014-11: 500
+      2014-11:3: 1500
+      2014-12: 500
+      2015-01: 500
+      year:2014-02: 6000
+    rstnet:
+      2013: 5556
+      2014-02: 463
+      2014-03: 463
+      2014-04: 463
+      2014-05: 463
+      2014-06: 463
+      2014-07: 463
+      2014-08: 463
+      2014-09: 463
+      2014-10: 463
+      2014-11: 463
+      2014-11:3: 1389
+      2014-12: 463
+      2015-01: 463
+      year:2014-02: 5556
+    salaire_de_base:
+      2013: 9996
+      2014-02: 833
+      2014-03: 833
+      2014-04: 833
+      2014-05: 833
+      2014-06: 833
+      2014-07: 833
+      2014-08: 833
+      2014-09: 833
+      2014-10: 833
+      2014-11: 833
+      2014-11:3: 2499
+      2014-12: 833
+      2015-01: 833
+      year:2014-02: 9996
+    salnet:
+      2013: 7796.879999999998
+      2014-02: 649.74
+      2014-03: 649.74
+      2014-04: 649.74
+      2014-05: 649.74
+      2014-06: 649.74
+      2014-07: 649.74
+      2014-08: 649.74
+      2014-09: 649.74
+      2014-10: 649.74
+      2014-11: 649.74
+      2014-11:3: 1949.22
+      2014-12: 649.74
+      2015-01: 649.74
+      year:2014-02: 7796.879999999998
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - activite: 3
+    age: 74
+    agem: 897
+    alt: 0
+    birth: "1940-05-05"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54e223cbfe7cc56a2d0dc054
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    rstbrut:
+      2013: 1800
+      2014-02: 150
+      2014-03: 150
+      2014-04: 150
+      2014-05: 150
+      2014-06: 150
+      2014-07: 150
+      2014-08: 150
+      2014-09: 150
+      2014-10: 150
+      2014-11: 150
+      2014-11:3: 450
+      2014-12: 150
+      2015-01: 150
+      year:2014-02: 1800
+    rstnet:
+      2013: 1666.8000000000004
+      2014-02: 138.9
+      2014-03: 138.9
+      2014-04: 138.9
+      2014-05: 138.9
+      2014-06: 138.9
+      2014-07: 138.9
+      2014-08: 138.9
+      2014-09: 138.9
+      2014-10: 138.9
+      2014-11: 138.9
+      2014-11:3: 416.70000000000005
+      2014-12: 138.9
+      2015-01: 138.9
+      year:2014-02: 1666.8000000000004
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 54e223cbfe7cc56a2d0dc062
+    - 54e223cbfe7cc56a2d0dc054
+foyers_fiscaux:
+  declarants:
+    - 54e223cbfe7cc56a2d0dc062
+    - 54e223cbfe7cc56a2d0dc054
+  personnes_a_charge:
+menages:
+  conjoint: 54e223cbfe7cc56a2d0dc054
+  depcom: 76540
+  enfants:
+  personne_de_reference: 54e223cbfe7cc56a2d0dc062
+  so: 2
+output_variables:
+  aspa: 487.77

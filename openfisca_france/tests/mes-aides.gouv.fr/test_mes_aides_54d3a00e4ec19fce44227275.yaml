@@ -1,0 +1,87 @@
+name: Le montant ne peut pas être inférieur à 15 euros (al, montant)
+description: |
+  L	292,62
+  C	53,23
+  E	345,85
+  R	14000
+  R0	4593
+  Rp	9407
+  Tf	2,83
+  LR	255,03
+  RL	114,74
+  Tl	0,405
+  Tp	3,235
+  P0	34,73
+  P1	304,32
+  Pp	339,05
+  AL	6,77 (montant théorique), mais comme il est < 15 on obtient 0
+period: "month:2015-02"
+individus:
+  age: 34
+  agem: 413
+  alr:
+    2013: 0
+  alt: 0
+  birth: "1980-08-12"
+  cho:
+    2013: 0
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 54d39f89f675ddd34432e918
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  rst:
+    2013: 0
+  sal:
+    2013: 15555
+  salaire_de_base:
+    2013: 15384.615384615381
+    2014-02: 1282.051282051282
+    2014-03: 1282.051282051282
+    2014-04: 1282.051282051282
+    2014-05: 1282.051282051282
+    2014-06: 1282.051282051282
+    2014-07: 1282.051282051282
+    2014-08: 1282.051282051282
+    2014-09: 1282.051282051282
+    2014-10: 1282.051282051282
+    2014-11: 1282.051282051282
+    2014-11:3: 3846.1538461538457
+    2014-12: 1282.051282051282
+    2015-01: 1282.051282051282
+    year:2014-02: 15384.615384615381
+  salnet:
+    2013: 12000
+    2014-02: 1000
+    2014-03: 1000
+    2014-04: 1000
+    2014-05: 1000
+    2014-06: 1000
+    2014-07: 1000
+    2014-08: 1000
+    2014-09: 1000
+    2014-10: 1000
+    2014-11: 1000
+    2014-11:3: 3000
+    2014-12: 1000
+    2015-01: 1000
+    year:2014-02: 12000
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 54d39f89f675ddd34432e918
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54d39f89f675ddd34432e918
+  personnes_a_charge:
+  rfr:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 54d39f89f675ddd34432e918
+  so: 4
+output_variables:
+  aide_logement: 0

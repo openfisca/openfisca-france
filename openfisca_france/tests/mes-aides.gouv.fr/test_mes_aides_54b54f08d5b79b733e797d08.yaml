@@ -1,0 +1,93 @@
+name: "Couple ayant un enfant hébergés à titre gratuit > plafond (base ressources, cmu-c/acs, forfait logement)"
+description: Un couple ayant un enfant hébergés à titre gratuit dont les ressources = 1307 = 1177 + 130 (forfait logement) n'a pas droit à la CMUC
+period: "month:2015-01"
+individus:
+  - age: 34
+    agem: 418
+    alt: 0
+    birth: "1980-03-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54b54eae397579703e58d05b
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salaire_de_base:
+      2013: 18107.69230769231
+      2014-01: 1508.974358974359
+      2014-02: 1508.974358974359
+      2014-03: 1508.974358974359
+      2014-04: 1508.974358974359
+      2014-05: 1508.974358974359
+      2014-06: 1508.974358974359
+      2014-07: 1508.974358974359
+      2014-08: 1508.974358974359
+      2014-09: 1508.974358974359
+      2014-10: 1508.974358974359
+      2014-10:3: 4526.923076923076
+      2014-11: 1508.974358974359
+      2014-12: 1508.974358974359
+      year:2014-01: 18107.69230769231
+    salnet:
+      2013: 14124
+      2014-01: 1177
+      2014-02: 1177
+      2014-03: 1177
+      2014-04: 1177
+      2014-05: 1177
+      2014-06: 1177
+      2014-07: 1177
+      2014-08: 1177
+      2014-09: 1177
+      2014-10: 1177
+      2014-10:3: 3531
+      2014-11: 1177
+      2014-12: 1177
+      year:2014-01: 14124
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 34
+    agem: 418
+    alt: 0
+    birth: "1980-03-02"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54b54eae397579703e58d05a
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 9
+    agem: 119
+    alt: 0
+    birth: "2005-02-05"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54b54eae397579703e58d059
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants: 54b54eae397579703e58d059
+  parents:
+    - 54b54eae397579703e58d05b
+    - 54b54eae397579703e58d05a
+foyers_fiscaux:
+  declarants:
+    - 54b54eae397579703e58d05b
+    - 54b54eae397579703e58d05a
+  personnes_a_charge: 54b54eae397579703e58d059
+menages:
+  conjoint: 54b54eae397579703e58d05a
+  depcom: 75118
+  enfants: 54b54eae397579703e58d059
+  personne_de_reference: 54b54eae397579703e58d05b
+  so: 6
+output_variables:
+  acs: 500
+  cmu_c: false

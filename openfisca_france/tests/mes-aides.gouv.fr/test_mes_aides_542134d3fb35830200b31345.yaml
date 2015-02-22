@@ -1,0 +1,30 @@
+name: Montant soustrait de 1% des intérêts théoriques mensuels de l'épargne sur livret (patrimoine, rsa)
+description:
+period: "month:2014-09"
+individus:
+  age: 34
+  agem: 409
+  alt: 0
+  birth: "1980-08-12"
+  enceinte: false
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 5421345afb35830200b31344
+  inapte_travail: 0
+  interets_epargne_sur_livrets: 1000
+  inv: 0
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 5421345afb35830200b31344
+foyers_fiscaux:
+  declarants: 5421345afb35830200b31344
+  personnes_a_charge:
+menages:
+  depcom: 67382
+  enfants:
+  personne_de_reference: 5421345afb35830200b31344
+  so: 6
+output_variables:
+  rsa: 364.85

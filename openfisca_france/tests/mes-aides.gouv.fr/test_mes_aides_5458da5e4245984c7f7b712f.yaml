@@ -1,0 +1,62 @@
+name: Les personnes inaptes au travail sont éligibles à partir de 62 ans (age, aspa, eligibilité)
+description: La personne a 62 ans et a coché la case "inapte au travail", elle est donc éligible.
+period: "month:2014-11"
+individus:
+  activite: 3
+  age: 62
+  agem: 746
+  alt: 0
+  birth: "1952-08-25"
+  epargne_non_remuneree: 0
+  etu: 0
+  id: 5458cfe44c6e1e4b7fca58c0
+  inapte_travail: 1
+  interets_epargne_sur_livrets: 0
+  inv: 0
+  rstbrut:
+    2012: 1199.9999999999998
+    2013-11: 99.99999999999999
+    2013-12: 99.99999999999999
+    2014-01: 99.99999999999999
+    2014-02: 99.99999999999999
+    2014-03: 99.99999999999999
+    2014-04: 99.99999999999999
+    2014-05: 99.99999999999999
+    2014-06: 99.99999999999999
+    2014-07: 99.99999999999999
+    2014-08: 99.99999999999999
+    2014-08:3: 299.99999999999994
+    2014-09: 99.99999999999999
+    2014-10: 99.99999999999999
+    year:2013-11: 1199.9999999999998
+  rstnet:
+    2012: 1111.2
+    2013-11: 92.6
+    2013-12: 92.6
+    2014-01: 92.6
+    2014-02: 92.6
+    2014-03: 92.6
+    2014-04: 92.6
+    2014-05: 92.6
+    2014-06: 92.6
+    2014-07: 92.6
+    2014-08: 92.6
+    2014-08:3: 277.79999999999995
+    2014-09: 92.6
+    2014-10: 92.6
+    year:2013-11: 1111.2
+  valeur_locative_immo_non_loue: 0
+  valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents: 5458cfe44c6e1e4b7fca58c0
+foyers_fiscaux:
+  declarants: 5458cfe44c6e1e4b7fca58c0
+  personnes_a_charge:
+menages:
+  depcom: 75102
+  enfants:
+  personne_de_reference: 5458cfe44c6e1e4b7fca58c0
+  so: 2
+output_variables:
+  aspa: 700

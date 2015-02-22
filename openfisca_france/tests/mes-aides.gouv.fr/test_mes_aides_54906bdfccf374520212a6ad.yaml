@@ -1,0 +1,120 @@
+name: "Plafond CMU-C pour 4 personnes (cmu-c, cmu-c/acs, plafonds)"
+description: |
+  Plafond CMU-C pour 4 personnes : 18153 euros.
+  Ici éligible aux AF : le montant simulé de ces ressources est inclus dans la base ressources.
+  12*130 = 1560 euros
+  Salaire déclaré en année glissante : 16580 euros
+  16580 + 1560 = 18140 < 18153, donc droit CMU-C
+period: "month:2014-12"
+individus:
+  - age: 40
+    agem: 491
+    alt: 0
+    birth: "1974-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54906b7edf990f5b0286c752
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salaire_de_base:
+      2012: 21256.410256410258
+      2013-12: 1771.2250712250714
+      2014-01: 1771.2250712250714
+      2014-02: 1771.2250712250714
+      2014-03: 1771.2250712250714
+      2014-04: 1771.2250712250714
+      2014-05: 1771.2250712250714
+      2014-06: 1771.2250712250714
+      2014-07: 1771.2250712250714
+      2014-08: 1771.2250712250714
+      2014-09: 1771.7948717948718
+      2014-09:3: 5315.384615384615
+      2014-10: 1771.7948717948718
+      2014-11: 1771.7948717948718
+      year:2013-12: 21256.410256410258
+    salnet:
+      2012: 16579.999999999996
+      2013-12: 1381.5555555555557
+      2014-01: 1381.5555555555557
+      2014-02: 1381.5555555555557
+      2014-03: 1381.5555555555557
+      2014-04: 1381.5555555555557
+      2014-05: 1381.5555555555557
+      2014-06: 1381.5555555555557
+      2014-07: 1381.5555555555557
+      2014-08: 1381.5555555555557
+      2014-09: 1382
+      2014-09:3: 4146
+      2014-10: 1382
+      2014-11: 1382
+      year:2013-12: 16579.999999999996
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 40
+    agem: 491
+    alt: 0
+    birth: "1974-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54906b7edf990f5b0286c745
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 15
+    agem: 191
+    alt: 0
+    birth: "1999-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54906b7edf990f5b0286c744
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 4
+    agem: 59
+    alt: 0
+    birth: "2010-01-01"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 54906b7edf990f5b0286c743
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+    - 54906b7edf990f5b0286c744
+    - 54906b7edf990f5b0286c743
+  parents:
+    - 54906b7edf990f5b0286c752
+    - 54906b7edf990f5b0286c745
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54906b7edf990f5b0286c752
+    - 54906b7edf990f5b0286c745
+  personnes_a_charge:
+    - 54906b7edf990f5b0286c744
+    - 54906b7edf990f5b0286c743
+menages:
+  conjoint: 54906b7edf990f5b0286c745
+  depcom: "01237"
+  enfants:
+    - 54906b7edf990f5b0286c744
+    - 54906b7edf990f5b0286c743
+  loyer: 10
+  personne_de_reference: 54906b7edf990f5b0286c752
+  so: 4
+output_variables:
+  acs: 0
+  af: 129.99
+  aide_logement: 0
+  cmu_c: true

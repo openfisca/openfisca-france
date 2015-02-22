@@ -1,0 +1,63 @@
+name: "Couple qui touche une AL, ressources < plafond (base ressources, cmu-c/acs, forfait logement)"
+description: "Forfait logement pour 2 personnes : 120 €, ressources < 1080 - 120 = 960."
+period: "month:2014-07"
+individus:
+  - age: 24
+    agem: 298
+    alt: 0
+    birth: "1989-09-14"
+    enceinte: false
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 53d22068159e330200810b8a
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    salaire_de_base:
+      2012: 3653.8461538461543
+      2014-04: 1217.948717948718
+      2014-04:3: 3653.8461538461543
+      2014-05: 1217.948717948718
+      2014-06: 1217.948717948718
+      year:2013-07: 3653.8461538461543
+    salnet:
+      2012: 2850
+      2014-04: 950
+      2014-04:3: 2850
+      2014-05: 950
+      2014-06: 950
+      year:2013-07: 2850
+    statmarit: 1
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+  - age: 24
+    agem: 298
+    alt: 0
+    birth: "1989-09-14"
+    epargne_non_remuneree: 0
+    etu: 0
+    id: 53d22068159e330200810b89
+    inapte_travail: 0
+    interets_epargne_sur_livrets: 0
+    inv: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_locative_terrains_non_loue: 0
+familles:
+  enfants:
+  parents:
+    - 53d22068159e330200810b8a
+    - 53d22068159e330200810b89
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 53d22068159e330200810b8a
+    - 53d22068159e330200810b89
+  personnes_a_charge:
+menages:
+  conjoint: 53d22068159e330200810b89
+  enfants:
+  loyer: 500
+  personne_de_reference: 53d22068159e330200810b8a
+  so: 4
+output_variables:
+  cmu_c: true
