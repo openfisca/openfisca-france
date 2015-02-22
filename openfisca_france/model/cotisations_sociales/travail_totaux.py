@@ -388,7 +388,6 @@ class salnet(SimpleFormulaColumn):
         crdssal = simulation.calculate_add('crdssal', period)
         csgsali = simulation.calculate_add('csgsali', period)
 
-        print 'sal', sal
         return period, sal + crdssal + csgsali
 
 
