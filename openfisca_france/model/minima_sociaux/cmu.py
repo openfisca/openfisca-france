@@ -25,9 +25,9 @@
 
 from __future__ import division
 
-from collections import OrderedDict
 from functools import partial
-from numpy import apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, zeros, logical_or as or_
+from numpy import (apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, zeros,
+    logical_or as or_)
 
 from ..base import *  # noqa
 
@@ -134,25 +134,25 @@ class cmu_c_plafond(SimpleFormulaColumn):
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu
 
-        # Calcul du pourcentage de ressources dues aux enfants
+        # Calcule le pourcentage de ressources dues aux enfants.
         coefficients_array = array(
             [P.coeff_p3_p4, P.coeff_p3_p4, P.coeff_p5_plus] + [0] * (len(ENFS) - 3)
             )
-        ages = self.split_by_roles(age, roles = ENFS)
-        alts = self.split_by_roles(alt, roles = ENFS)
-        d = dict()
-        for key in ages.keys():
-            d[key] = ages[key] * 10 + alts[key]
-        ages_matrix = array(
-            OrderedDict(
-                sorted(d.items(), key=lambda x: x[0])
-                ).values()
+        # Trie les enfants par âge décroissant en mettant, à âge égal, les enfants en garde alternée avant.
+        age_by_role = self.split_by_roles(age, roles = ENFS)
+        alt_by_role = self.split_by_roles(alt, roles = ENFS)
+        age_and_alt_matrix = array(
+            [
+                age_by_role[role] * 10 + alt_by_role[role]
+                for role in sorted(age_by_role)
+                ]
             ).transpose()
         reverse_sorted = partial(sorted, reverse = True)
-        sorted_age_matrix = apply_along_axis(reverse_sorted, 1, ages_matrix)
-        sorted_age_present_matrix = sorted_age_matrix > 0
-        sorted_age_alt_matrix = (sorted_age_matrix%10) * sorted_age_present_matrix
-        weighted_alt_matrix = sorted_age_present_matrix - sorted_age_alt_matrix * 0.5
+        sorted_age_and_alt_matrix = apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
+        # Calcule weighted_alt_matrix, qui vaut 0.5 pour les enfants en garde alternée, 1 sinon.
+        sorted_present_matrix = sorted_age_and_alt_matrix > 0
+        sorted_alt_matrix = (sorted_age_and_alt_matrix % 10) * sorted_present_matrix
+        weighted_alt_matrix = sorted_present_matrix - sorted_alt_matrix * 0.5
         coeff_pac = weighted_alt_matrix.dot(coefficients_array)
         return period, (P.plafond_base *
             (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
