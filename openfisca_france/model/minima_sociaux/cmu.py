@@ -150,7 +150,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
         reverse_sorted = partial(sorted, reverse = True)
         sorted_age_and_alt_matrix = apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
         # Calcule weighted_alt_matrix, qui vaut 0.5 pour les enfants en garde alternée, 1 sinon.
-        sorted_present_matrix = sorted_age_and_alt_matrix > 0
+        sorted_present_matrix = sorted_age_and_alt_matrix >= 0
         sorted_alt_matrix = (sorted_age_and_alt_matrix % 10) * sorted_present_matrix
         weighted_alt_matrix = sorted_present_matrix - sorted_alt_matrix * 0.5
         coeff_pac = weighted_alt_matrix.dot(coefficients_array)
