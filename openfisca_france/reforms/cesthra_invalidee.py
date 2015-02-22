@@ -31,9 +31,9 @@ import logging
 
 from numpy import maximum as max_
 
-from openfisca_core import formulas, reforms
-from openfisca_france.model.impot_revenu import ir
+from openfisca_core import columns, formulas, reforms
 from openfisca_france import entities
+from openfisca_france.model.impot_revenu import ir
 
 
 log = logging.getLogger(__name__)
@@ -43,6 +43,8 @@ VOUS = QUIFOY['vous']
 
 
 class cesthra(formulas.SimpleFormulaColumn):
+    column = columns.FloatCol
+    entity_class = entities.FoyersFiscaux
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
