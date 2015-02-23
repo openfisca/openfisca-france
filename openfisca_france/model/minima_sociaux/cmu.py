@@ -313,6 +313,8 @@ class cmu_c(SimpleFormulaColumn):
         this_rolling_year = this_month.start.period('year')
         if period.stop > this_rolling_year.stop:
             period = this_rolling_year
+        else:
+            period = this_month
 
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
@@ -340,15 +342,15 @@ class acs(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        this_month = period.start.period('month')
-        cmu_c = simulation.calculate('cmu_c', this_month)
-        cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
-        acs_plafond = simulation.calculate('acs_plafond', this_month)
-        acs_montant = simulation.calculate('acs_montant', this_month)
-        residence_mayotte = simulation.calculate('residence_mayotte', this_month)
+        period = period.start.period('month').offset('first-of')
 
-        return period, not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant
+        cmu_c = simulation.calculate('cmu_c', period)
+        cmu_base_ressources = simulation.calculate('cmu_base_ressources', period)
+        acs_plafond = simulation.calculate('acs_plafond', period)
+        acs_montant = simulation.calculate('acs_montant', period)
+        residence_mayotte = simulation.calculate('residence_mayotte', period)
+
+        return period, not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant / 12
 
 
 ############################################################################
