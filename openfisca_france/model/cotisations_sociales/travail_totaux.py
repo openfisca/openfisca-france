@@ -424,7 +424,7 @@ class tehr(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period) # TODO: check base
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
         law = simulation.legislation_at(period.start)
 
         bar = law.cotsoc.tehr
