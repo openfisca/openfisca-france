@@ -1,0 +1,57 @@
+name: 27_Couple dont jeune < 25 ans (foyer, rsa)
+description:
+period: "month:2014-11"
+individus:
+  - activite: 1
+    age: 20
+    agem: 250
+    ass_precondition_remplie: false
+    birth: "1994-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 546b386ef76135f463c9e260
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - activite: 1
+    age: 28
+    agem: 346
+    ass_precondition_remplie: false
+    birth: "1986-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 546b386ef76135f463c9e25e
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 546b386ef76135f463c9e260
+    - 546b386ef76135f463c9e25e
+foyers_fiscaux:
+  declarants:
+    - 546b386ef76135f463c9e260
+    - 546b386ef76135f463c9e25e
+  personnes_a_charge:
+menages:
+  conjoint: 546b386ef76135f463c9e25e
+  depcom: 75114
+  enfants:
+  personne_de_reference: 546b386ef76135f463c9e260
+  so: 6
+output_variables:
+  rsa: 641.72

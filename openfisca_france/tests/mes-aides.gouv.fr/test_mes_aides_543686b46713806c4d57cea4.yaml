@@ -1,0 +1,51 @@
+name: "Pas droit à l'ACS si le montant des revenus locatifs est supérieur au plafond (base ressources, cmu-c/acs, patrimoine)"
+description:
+period: "month:2014-10"
+individus:
+  age: 34
+  agem: 409
+  birth: "1980-08-12"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54368647fd1bd16b4de541ab
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  revenus_locatifs:
+    2012: 11760
+    2013-10: 980
+    2013-11: 980
+    2013-12: 980
+    2014-01: 980
+    2014-02: 980
+    2014-03: 980
+    2014-04: 980
+    2014-05: 980
+    2014-06: 980
+    2014-07: 980
+    2014-07:3: 2940
+    2014-08: 980
+    2014-09: 980
+    year:2013-10: 11760
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54368647fd1bd16b4de541ab
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54368647fd1bd16b4de541ab
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 800
+  personne_de_reference: 54368647fd1bd16b4de541ab
+  so: 4
+output_variables:
+  acs: 0
+  cmu_c: false

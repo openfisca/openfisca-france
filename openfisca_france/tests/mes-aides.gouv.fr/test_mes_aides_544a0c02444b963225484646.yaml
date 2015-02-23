@@ -1,0 +1,89 @@
+name: "Couple, revenus demandeur < plafond (cmu-c, cmu-c/acs, plafonds)"
+description: |
+  Plafond de référence = 12967 (au 1er juillet 2014) = 1080 € / mois (en métropole)
+  http://www.cmu.fr/cmu-complementaire.php
+period: "month:2014-10"
+individus:
+  - age: 34
+    agem: 410
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 544a0be1444b963225484639
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 16615.384615384613
+      2013-10: 1384.6153846153845
+      2013-11: 1384.6153846153845
+      2013-12: 1384.6153846153845
+      2014-01: 1384.6153846153845
+      2014-02: 1384.6153846153845
+      2014-03: 1384.6153846153845
+      2014-04: 1384.6153846153845
+      2014-05: 1384.6153846153845
+      2014-06: 1384.6153846153845
+      2014-07: 1384.6153846153845
+      2014-07:3: 4153.846153846153
+      2014-08: 1384.6153846153845
+      2014-09: 1384.6153846153845
+      year:2013-10: 16615.384615384613
+    salnet:
+      2012: 12960
+      2013-10: 1080
+      2013-11: 1080
+      2013-12: 1080
+      2014-01: 1080
+      2014-02: 1080
+      2014-03: 1080
+      2014-04: 1080
+      2014-05: 1080
+      2014-06: 1080
+      2014-07: 1080
+      2014-07:3: 3240
+      2014-08: 1080
+      2014-09: 1080
+      year:2013-10: 12960
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 410
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 544a0be1444b963225484638
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 544a0be1444b963225484639
+    - 544a0be1444b963225484638
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 544a0be1444b963225484639
+    - 544a0be1444b963225484638
+  personnes_a_charge:
+menages:
+  conjoint: 544a0be1444b963225484638
+  depcom: 75111
+  enfants:
+  loyer: 100
+  personne_de_reference: 544a0be1444b963225484639
+  so: 4
+output_variables:
+  cmu_c: true

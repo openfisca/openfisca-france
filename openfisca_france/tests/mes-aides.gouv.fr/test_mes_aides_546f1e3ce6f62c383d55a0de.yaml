@@ -1,0 +1,32 @@
+name: Pas d'éligibilité si pas demandeur d'emploi (ass, eligibilité)
+description:
+period: "month:2014-11"
+individus:
+  age: 34
+  agem: 411
+  birth: "1980-08-12"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546f1e1548f57f393d6d1e32
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 546f1e1548f57f393d6d1e32
+foyers_fiscaux:
+  declarants: 546f1e1548f57f393d6d1e32
+  personnes_a_charge:
+menages:
+  depcom: 67482
+  enfants:
+  personne_de_reference: 546f1e1548f57f393d6d1e32
+  so: 6
+output_variables:
+  ass: 0

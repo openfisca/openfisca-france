@@ -1,0 +1,46 @@
+name: "Jeune, petit salaire : pas de RSA (rsa)"
+description:
+period: "month:2014-07"
+individus:
+  age: 20
+  agem: 246
+  birth: "1994-01-01"
+  enceinte: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 53d79f60f6aa390200a6cd40
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2012: 3076.923076923077
+    2014-04: 1025.6410256410256
+    2014-04:3: 3076.923076923077
+    2014-05: 1025.6410256410256
+    2014-06: 1025.6410256410256
+    year:2013-07: 3076.923076923077
+  salnet:
+    2012: 2400
+    2014-04: 800
+    2014-04:3: 2400
+    2014-05: 800
+    2014-06: 800
+    year:2013-07: 2400
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 53d79f60f6aa390200a6cd40
+foyers_fiscaux:
+  declarants: 53d79f60f6aa390200a6cd40
+  personnes_a_charge:
+menages:
+  enfants:
+  personne_de_reference: 53d79f60f6aa390200a6cd40
+  so: 6
+output_variables:
+  rsa: 0

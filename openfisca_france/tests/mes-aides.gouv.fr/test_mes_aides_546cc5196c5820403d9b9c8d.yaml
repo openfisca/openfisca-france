@@ -1,0 +1,92 @@
+name: "Couple qui touche une AL, forfait logement de 120 euros fait dépasser le plafond (base ressources, cmu-c/acs, forfait logement)"
+description: |
+  Forfait logement pour 2 personnes qui touchent une allocation logement : 120 €
+  Plafond 1080 euros
+  Salaires déclarés 970 euros
+  Forfait logement = 120 euros
+  970 + 120 = 1090 euros > plafond de 1080
+period: "month:2014-11"
+individus:
+  - age: 34
+    agem: 411
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 546cc4cb1fdfd7423d81f44b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 14923.076923076927
+      2013-11: 1243.5897435897436
+      2013-12: 1243.5897435897436
+      2014-01: 1243.5897435897436
+      2014-02: 1243.5897435897436
+      2014-03: 1243.5897435897436
+      2014-04: 1243.5897435897436
+      2014-05: 1243.5897435897436
+      2014-06: 1243.5897435897436
+      2014-07: 1243.5897435897436
+      2014-08: 1243.5897435897436
+      2014-08:3: 3730.769230769231
+      2014-09: 1243.5897435897436
+      2014-10: 1243.5897435897436
+      year:2013-11: 14923.076923076927
+    salnet:
+      2012: 11640
+      2013-11: 970
+      2013-12: 970
+      2014-01: 970
+      2014-02: 970
+      2014-03: 970
+      2014-04: 970
+      2014-05: 970
+      2014-06: 970
+      2014-07: 970
+      2014-08: 970
+      2014-08:3: 2910
+      2014-09: 970
+      2014-10: 970
+      year:2013-11: 11640
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 411
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 546cc4cb1fdfd7423d81f44a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 546cc4cb1fdfd7423d81f44b
+    - 546cc4cb1fdfd7423d81f44a
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 546cc4cb1fdfd7423d81f44b
+    - 546cc4cb1fdfd7423d81f44a
+  personnes_a_charge:
+menages:
+  conjoint: 546cc4cb1fdfd7423d81f44a
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 546cc4cb1fdfd7423d81f44b
+  so: 4
+output_variables:
+  cmu_c: false

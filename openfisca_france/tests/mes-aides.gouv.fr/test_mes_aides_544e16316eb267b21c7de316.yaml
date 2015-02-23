@@ -1,0 +1,65 @@
+name: Neutralisation du RSA par l'ARE (rsa)
+description: 
+period: "month:2014-10"
+individus:
+  activite: 1
+  age: 32
+  agem: 393
+  birth: "1982-01-01"
+  chobrut:
+    2012: 10594.009418736501
+    2013-10: 882.8341182280416
+    2013-11: 882.8341182280416
+    2013-12: 882.8341182280416
+    2014-01: 882.8341182280416
+    2014-02: 882.8341182280416
+    2014-03: 882.8341182280416
+    2014-04: 882.8341182280416
+    2014-05: 882.8341182280416
+    2014-06: 882.8341182280416
+    2014-07: 882.8341182280416
+    2014-07:3: 2648.502354684125
+    2014-08: 882.8341182280416
+    2014-09: 882.8341182280416
+    year:2013-10: 10594.009418736501
+  chonet:
+    2012: 9600
+    2013-10: 800
+    2013-11: 800
+    2013-12: 800
+    2014-01: 800
+    2014-02: 800
+    2014-03: 800
+    2014-04: 800
+    2014-05: 800
+    2014-06: 800
+    2014-07: 800
+    2014-07:3: 2400
+    2014-08: 800
+    2014-09: 800
+    year:2013-10: 9600
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 544e15fd1dddcaa51c2c8ef0
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 544e15fd1dddcaa51c2c8ef0
+foyers_fiscaux:
+  declarants: 544e15fd1dddcaa51c2c8ef0
+  personnes_a_charge:
+menages:
+  depcom: 92071
+  enfants:
+  personne_de_reference: 544e15fd1dddcaa51c2c8ef0
+  so: 6
+output_variables:
+  rsa: 0

@@ -1,0 +1,33 @@
+name: Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus (patrimoine, rsa)
+description: 
+period: "month:2014-09"
+individus:
+  age: 34
+  agem: 409
+  birth: "1980-08-12"
+  enceinte: false
+  epargne_non_remuneree:
+    2012-01: 30000
+  etu: 0
+  id: 54213529fb35830200b3134b
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54213529fb35830200b3134b
+foyers_fiscaux:
+  declarants: 54213529fb35830200b3134b
+  personnes_a_charge:
+menages:
+  depcom: 67382
+  enfants:
+  personne_de_reference: 54213529fb35830200b3134b
+  so: 6
+output_variables:
+  rsa: 373.18

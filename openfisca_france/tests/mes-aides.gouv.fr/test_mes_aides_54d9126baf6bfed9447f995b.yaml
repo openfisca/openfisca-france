@@ -1,0 +1,57 @@
+name: Pas d'éligibilité si l'enfant n'est pas scolarisé au collège (bourse collège)
+description:
+period: "month:2015-02"
+individus:
+  - age: 34
+    agem: 413
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54d91222f675ddd34432ef12
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 173
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54d91222f675ddd34432ef11
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 54d91222f675ddd34432ef11
+  parents: 54d91222f675ddd34432ef12
+foyers_fiscaux:
+  declarants: 54d91222f675ddd34432ef12
+  personnes_a_charge: 54d91222f675ddd34432ef11
+  rfr:
+menages:
+  depcom: 67482
+  enfants: 54d91222f675ddd34432ef11
+  personne_de_reference: 54d91222f675ddd34432ef12
+  so: 6
+output_variables:
+  bourse_college: 0

@@ -1,0 +1,66 @@
+name: "Application eval forfaitaire pour moins de 25 ans si salaire m-1 > plafond (al, base ressources, eval forfaitaire)"
+description: La personne déclare un salaire > 1273 euros, on applique donc bien l'eval forfaitaire même si elle a moins de 25 ans.
+period: "month:2015-02"
+individus:
+  age: 22
+  agem: 270
+  birth: "1992-08-12"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54e5b03b1b7dba5b403a097c
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2013: 23076.923076923074
+    2014-02: 1923.076923076923
+    2014-03: 1923.076923076923
+    2014-04: 1923.076923076923
+    2014-05: 1923.076923076923
+    2014-06: 1923.076923076923
+    2014-07: 1923.076923076923
+    2014-08: 1923.076923076923
+    2014-09: 1923.076923076923
+    2014-10: 1923.076923076923
+    2014-11: 1923.076923076923
+    2014-11:3: 5769.2307692307695
+    2014-12: 1923.076923076923
+    2015-01: 1923.076923076923
+    year:2014-02: 23076.923076923074
+  salnet:
+    2013: 18000
+    2014-02: 1500
+    2014-03: 1500
+    2014-04: 1500
+    2014-05: 1500
+    2014-06: 1500
+    2014-07: 1500
+    2014-08: 1500
+    2014-09: 1500
+    2014-10: 1500
+    2014-11: 1500
+    2014-11:3: 4500
+    2014-12: 1500
+    2015-01: 1500
+    year:2014-02: 18000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54e5b03b1b7dba5b403a097c
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54e5b03b1b7dba5b403a097c
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 54e5b03b1b7dba5b403a097c
+  so: 4
+output_variables:
+  aide_logement: 0

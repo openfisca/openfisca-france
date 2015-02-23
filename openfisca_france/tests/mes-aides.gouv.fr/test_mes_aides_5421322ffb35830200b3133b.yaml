@@ -1,0 +1,49 @@
+name: Montant soustrait de la moyenne des revenus locatifs des 3 derniers mois (patrimoine, rsa)
+description:
+period: "month:2014-09"
+individus:
+  age: 34
+  agem: 409
+  birth: "1980-08-12"
+  enceinte: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54213203fb35830200b3133a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  revenus_locatifs:
+    2012: 2400
+    2013-09: 200
+    2013-10: 200
+    2013-11: 200
+    2013-12: 200
+    2014-01: 200
+    2014-02: 200
+    2014-03: 200
+    2014-04: 200
+    2014-05: 200
+    2014-06: 100
+    2014-06:3: 600
+    2014-07: 300
+    2014-08: 200
+    year:2013-09: 2400
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54213203fb35830200b3133a
+foyers_fiscaux:
+  declarants: 54213203fb35830200b3133a
+  personnes_a_charge:
+menages:
+  depcom: 67382
+  enfants:
+  personne_de_reference: 54213203fb35830200b3133a
+  so: 6
+output_variables:
+  rsa: 248.18

@@ -1,0 +1,66 @@
+name: "Personne éligible au RSA socle a droit à la CMUC (cmu-c/acs)"
+description: Cette personne a droit à un RSA socle seul et donc est éligible à la CMUC
+period: "month:2015-02"
+individus:
+  age: 34
+  agem: 419
+  birth: "1980-03-02"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54d4def2e45751d544f06b0f
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2013: 8307.692307692307
+    2014-02: 923.0769230769231
+    2014-03: 923.0769230769231
+    2014-04: 923.0769230769231
+    2014-05: 923.0769230769231
+    2014-06: 923.0769230769231
+    2014-07: 923.0769230769231
+    2014-08: 923.0769230769231
+    2014-09: 923.0769230769231
+    2014-10: 923.0769230769231
+    2014-11: 0
+    2014-11:3: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 8307.692307692307
+  salnet:
+    2013: 6480
+    2014-02: 720
+    2014-03: 720
+    2014-04: 720
+    2014-05: 720
+    2014-06: 720
+    2014-07: 720
+    2014-08: 720
+    2014-09: 720
+    2014-10: 720
+    2014-11: 0
+    2014-11:3: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 6480
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54d4def2e45751d544f06b0f
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54d4def2e45751d544f06b0f
+  personnes_a_charge:
+menages:
+  depcom: 76540
+  enfants:
+  loyer: 1
+  personne_de_reference: 54d4def2e45751d544f06b0f
+output_variables:
+  cmu_c: true
+  rsa: 513.88

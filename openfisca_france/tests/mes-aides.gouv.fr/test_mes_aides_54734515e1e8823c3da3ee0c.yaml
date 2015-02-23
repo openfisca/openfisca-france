@@ -1,0 +1,89 @@
+name: Majoration pour l'aîné si plus de 2 enfants (af, majoration)
+description: |
+  Montant de base pour 3 enfants : 295,05 euros
+  L'aîné a plus de 14 ans, les deux autres moins de 14 ans
+  La majoration de 64,67 euros s'applique sur l’aîné car il y a plus de 2 enfants
+period: "month:2014-11"
+individus:
+  - age: 34
+    agem: 411
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 547344b76c5820403d9ba3a8
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 16
+    agem: 195
+    birth: "1998-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 547344b76c5820403d9ba3a7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 51
+    birth: "2010-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 547344b76c5820403d9ba3a6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 51
+    birth: "2010-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 547344b76c5820403d9ba3a5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 547344b76c5820403d9ba3a7
+    - 547344b76c5820403d9ba3a6
+    - 547344b76c5820403d9ba3a5
+  parents: 547344b76c5820403d9ba3a8
+foyers_fiscaux:
+  declarants: 547344b76c5820403d9ba3a8
+  personnes_a_charge:
+    - 547344b76c5820403d9ba3a7
+    - 547344b76c5820403d9ba3a6
+    - 547344b76c5820403d9ba3a5
+menages:
+  depcom: 67482
+  enfants:
+    - 547344b76c5820403d9ba3a7
+    - 547344b76c5820403d9ba3a6
+    - 547344b76c5820403d9ba3a5
+  personne_de_reference: 547344b76c5820403d9ba3a8
+  so: 6
+output_variables:
+  af: 361.53

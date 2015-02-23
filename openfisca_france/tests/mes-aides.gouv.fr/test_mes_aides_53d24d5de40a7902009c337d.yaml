@@ -1,0 +1,48 @@
+name: Pas d'ASPA si ressources > plafond (aspa, plafonds)
+description:
+period: "month:2014-07"
+individus:
+  age: 68
+  agem: 826
+  birth: "1945-09-14"
+  enceinte: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 53d24d39e40a7902009c3379
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  rstbrut:
+    2012: 2399.9999999999995
+    2014-04: 799.9999999999999
+    2014-04:3: 2399.9999999999995
+    2014-05: 799.9999999999999
+    2014-06: 799.9999999999999
+    year:2013-07: 2399.9999999999995
+  rstnet:
+    2012: 2222.3999999999996
+    2014-04: 740.8
+    2014-04:3: 2222.3999999999996
+    2014-05: 740.8
+    2014-06: 740.8
+    year:2013-07: 2222.3999999999996
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 53d24d39e40a7902009c3379
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 53d24d39e40a7902009c3379
+  personnes_a_charge:
+menages:
+  enfants:
+  loyer: 123
+  personne_de_reference: 53d24d39e40a7902009c3379
+  so: 4
+output_variables:
+  aspa: 0

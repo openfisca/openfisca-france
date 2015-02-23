@@ -1,0 +1,90 @@
+name: "Taux 2 : 228 euros par an / plafond de 7908 euros (bourse collège, montant)"
+description: RFR = 7900 euros < plafond de 7908 euros pour un montant de 228 euros
+period: "month:2014-12"
+individus:
+  - age: 34
+    agem: 411
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5485d3c3f8d2cee973b59a6b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    salaire_de_base:
+      2012: 10128.23076923077
+      2013-12: 1125.3589743589744
+      2014-01: 1125.3589743589744
+      2014-02: 1125.3589743589744
+      2014-03: 1125.3589743589744
+      2014-04: 1125.3589743589744
+      2014-05: 1125.3589743589744
+      2014-06: 1125.3589743589744
+      2014-07: 1125.3589743589744
+      2014-08: 1125.3589743589744
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 10128.23076923077
+    salnet:
+      2012: 7900.019999999999
+      2013-12: 877.78
+      2014-01: 877.78
+      2014-02: 877.78
+      2014-03: 877.78
+      2014-04: 877.78
+      2014-05: 877.78
+      2014-06: 877.78
+      2014-07: 877.78
+      2014-08: 877.78
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 7900.019999999999
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 171
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5485d3c3f8d2cee973b59a6a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 5485d3c3f8d2cee973b59a6a
+  parents: 5485d3c3f8d2cee973b59a6b
+foyers_fiscaux:
+  declarants: 5485d3c3f8d2cee973b59a6b
+  personnes_a_charge: 5485d3c3f8d2cee973b59a6a
+  rfr:
+    2012: 7900
+menages:
+  depcom: 75111
+  enfants: 5485d3c3f8d2cee973b59a6a
+  personne_de_reference: 5485d3c3f8d2cee973b59a6b
+  so: 6
+output_variables:
+  bourse_college: 228

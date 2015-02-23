@@ -1,0 +1,33 @@
+name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré) (rsa)
+description:
+period: "month:2014-11"
+individus:
+  age: 28
+  agem: 346
+  birth: "1986-01-01"
+  enceinte: true
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546b4b2cfc9936ff63f8579a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 546b4b2cfc9936ff63f8579a
+foyers_fiscaux:
+  declarants: 546b4b2cfc9936ff63f8579a
+  personnes_a_charge:
+menages:
+  depcom: 75114
+  enfants:
+  personne_de_reference: 546b4b2cfc9936ff63f8579a
+  so: 6
+output_variables:
+  rsa: 592.89

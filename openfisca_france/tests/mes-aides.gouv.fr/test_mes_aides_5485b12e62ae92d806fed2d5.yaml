@@ -1,0 +1,108 @@
+name: "1 allocataire - couple - Ressources retenues = indemnités journalières du conjoint = 600 euros moyenne mensuelle (aspa, base ressources)"
+description: |
+  Ressources du couple = 1200
+  Plafond de ressources couple = 1242
+  Dépassement de ressources = 758
+  => l'Aspa réduit s'élève à 42,00 euros
+period: "month:2014-12"
+individus:
+  - activite: 3
+    age: 66
+    agem: 795
+    birth: "1948-08-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5485b08f5f35e8cf064ba47f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rstbrut:
+      2012: 7200
+      2013-12: 600
+      2014-01: 600
+      2014-02: 600
+      2014-03: 600
+      2014-04: 600
+      2014-05: 600
+      2014-06: 600
+      2014-07: 600
+      2014-08: 600
+      2014-09: 600
+      2014-09:3: 1800
+      2014-10: 600
+      2014-11: 600
+      year:2013-12: 7200
+    rstnet:
+      2012: 6667.200000000002
+      2013-12: 555.6
+      2014-01: 555.6
+      2014-02: 555.6
+      2014-03: 555.6
+      2014-04: 555.6
+      2014-05: 555.6
+      2014-06: 555.6
+      2014-07: 555.6
+      2014-08: 555.6
+      2014-09: 555.6
+      2014-09:3: 1666.8000000000002
+      2014-10: 555.6
+      2014-11: 555.6
+      year:2013-12: 6667.200000000002
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 60
+    agem: 723
+    birth: "1954-08-17"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5485b08f5f35e8cf064ba472
+    inapte_travail: 0
+    indemnites_journalieres_maladie:
+      2012: 7200
+      2013-12: 600
+      2014-01: 600
+      2014-02: 600
+      2014-03: 600
+      2014-04: 600
+      2014-05: 600
+      2014-06: 600
+      2014-07: 600
+      2014-08: 600
+      2014-09: 600
+      2014-09:3: 1800
+      2014-10: 600
+      2014-11: 600
+      year:2013-12: 7200
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 5485b08f5f35e8cf064ba47f
+    - 5485b08f5f35e8cf064ba472
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 5485b08f5f35e8cf064ba47f
+    - 5485b08f5f35e8cf064ba472
+  personnes_a_charge:
+menages:
+  conjoint: 5485b08f5f35e8cf064ba472
+  depcom: 75119
+  enfants:
+  loyer: 700
+  personne_de_reference: 5485b08f5f35e8cf064ba47f
+  so: 3
+output_variables:
+  aspa: 42

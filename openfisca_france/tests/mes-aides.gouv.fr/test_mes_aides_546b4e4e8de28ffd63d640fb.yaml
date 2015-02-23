@@ -1,0 +1,64 @@
+name: 42_Personne seule, EEE, salariée => Eligible (rsa)
+description: Eligible au RSA en vertu de son activité professionnelle
+period: "month:2014-11"
+individus:
+  age: 34
+  agem: 418
+  birth: "1980-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546b4e02fb9f05fb6373bde5
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2012: -0.02564102564087989
+    2013-11: -227.9230769230769
+    2013-12: -227.9230769230769
+    2014-01: -227.9230769230769
+    2014-02: -227.9230769230769
+    2014-03: -227.9230769230769
+    2014-04: -227.9230769230769
+    2014-05: -227.9230769230769
+    2014-06: -227.9230769230769
+    2014-07: -227.9230769230769
+    2014-08: 1025.6410256410256
+    2014-08:3: 2051.2820512820513
+    2014-09: 1025.6410256410256
+    2014-10: 0
+    year:2013-11: -0.02564102564087989
+  salnet:
+    2012: -0.01999999999981128
+    2013-11: -177.78
+    2013-12: -177.78
+    2014-01: -177.78
+    2014-02: -177.78
+    2014-03: -177.78
+    2014-04: -177.78
+    2014-05: -177.78
+    2014-06: -177.78
+    2014-07: -177.78
+    2014-08: 800
+    2014-08:3: 1600
+    2014-09: 800
+    2014-10: 0
+    year:2013-11: -0.01999999999981128
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 546b4e02fb9f05fb6373bde5
+foyers_fiscaux:
+  declarants: 546b4e02fb9f05fb6373bde5
+  personnes_a_charge:
+menages:
+  depcom: 75114
+  enfants:
+  personne_de_reference: 546b4e02fb9f05fb6373bde5
+  so: 6
+output_variables:
+  rsa: 245.52

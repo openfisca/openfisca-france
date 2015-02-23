@@ -1,0 +1,92 @@
+name: Le forfait de charges est inchangé pour un couple en colocation (al, colocation, location)
+description: |
+  On teste ici simplement que le forfait de charges spécial pour les personnes seules en colocation n'est pas appliqué aux couples, qui gardent le même forfait de charges qu'un couple qui n'est pas en colocation.
+  
+  L	264,69
+  C	53,23
+  E	317,92
+  R	0
+  R0	4593
+  Rp	0
+  Tf	3,15
+  LR	312,15
+  RL	84,8
+  Tl	0,202
+  Tp	3,352
+  P0	34,73
+  P1	0
+  Pp	34,73
+  AL	281,77
+  
+  caf.fr : 281,78
+period: "month:2015-02"
+individus:
+  - age: 34
+    agem: 413
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    coloc: 1
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54d8e0041fe4e8cf448e2bf2
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 413
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54d8e0041fe4e8cf448e2bf1
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 54d8e0041fe4e8cf448e2bf2
+    - 54d8e0041fe4e8cf448e2bf1
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54d8e0041fe4e8cf448e2bf2
+    - 54d8e0041fe4e8cf448e2bf1
+  personnes_a_charge:
+  rfr:
+menages:
+  conjoint: 54d8e0041fe4e8cf448e2bf1
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 54d8e0041fe4e8cf448e2bf2
+  so: 4
+output_variables:
+  aide_logement: 281.77

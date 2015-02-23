@@ -1,0 +1,67 @@
+name: "Ressources exclues - RSA - 1 bénéficiaire - personne seule (aspa, base ressources)"
+description: "Le test est concluant - Le simulateur exclut bien le RSA en ressource."
+period: "month:2014-11"
+individus:
+  activite: 3
+  age: 65
+  agem: 789
+  birth: "1949-02-15"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546b3bfdfb9f05fb6373bd1d
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  rstbrut:
+    2012: 7200
+    2013-11: 600
+    2013-12: 600
+    2014-01: 600
+    2014-02: 600
+    2014-03: 600
+    2014-04: 600
+    2014-05: 600
+    2014-06: 600
+    2014-07: 600
+    2014-08: 600
+    2014-08:3: 1800
+    2014-09: 600
+    2014-10: 600
+    year:2013-11: 7200
+  rstnet:
+    2012: 6667.200000000002
+    2013-11: 555.6
+    2013-12: 555.6
+    2014-01: 555.6
+    2014-02: 555.6
+    2014-03: 555.6
+    2014-04: 555.6
+    2014-05: 555.6
+    2014-06: 555.6
+    2014-07: 555.6
+    2014-08: 555.6
+    2014-08:3: 1666.8000000000002
+    2014-09: 555.6
+    2014-10: 555.6
+    year:2013-11: 6667.200000000002
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 546b3bfdfb9f05fb6373bd1d
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 546b3bfdfb9f05fb6373bd1d
+  personnes_a_charge:
+menages:
+  depcom: 75119
+  enfants:
+  loyer: 900
+  personne_de_reference: 546b3bfdfb9f05fb6373bd1d
+  so: 3
+output_variables:
+  aspa: 200

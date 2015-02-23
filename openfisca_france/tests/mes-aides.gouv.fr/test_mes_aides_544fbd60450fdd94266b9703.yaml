@@ -1,0 +1,68 @@
+name: "Plafond majoré pour les DOM (hors Mayotte) (cmu-c, cmu-c/acs, dom, plafonds)"
+description: |
+  Test sur une ville de la Guadeloupe (DOM).
+  Le plafond est de 9621 € / an (801.75 € / mois).
+period: "month:2014-10"
+individus:
+  age: 34
+  agem: 417
+  birth: "1980-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 544fbd3258d3be9826107645
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2012: 11538.461538461537
+    2013-10: 961.5384615384615
+    2013-11: 961.5384615384615
+    2013-12: 961.5384615384615
+    2014-01: 961.5384615384615
+    2014-02: 961.5384615384615
+    2014-03: 961.5384615384615
+    2014-04: 961.5384615384615
+    2014-05: 961.5384615384615
+    2014-06: 961.5384615384615
+    2014-07: 961.5384615384615
+    2014-07:3: 2884.6153846153848
+    2014-08: 961.5384615384615
+    2014-09: 961.5384615384615
+    year:2013-10: 11538.461538461537
+  salnet:
+    2012: 9000
+    2013-10: 750
+    2013-11: 750
+    2013-12: 750
+    2014-01: 750
+    2014-02: 750
+    2014-03: 750
+    2014-04: 750
+    2014-05: 750
+    2014-06: 750
+    2014-07: 750
+    2014-07:3: 2250
+    2014-08: 750
+    2014-09: 750
+    year:2013-10: 9000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 544fbd3258d3be9826107645
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 544fbd3258d3be9826107645
+  personnes_a_charge:
+menages:
+  depcom: 97105
+  enfants:
+  loyer: 100
+  personne_de_reference: 544fbd3258d3be9826107645
+  so: 4
+output_variables:
+  cmu_c: true

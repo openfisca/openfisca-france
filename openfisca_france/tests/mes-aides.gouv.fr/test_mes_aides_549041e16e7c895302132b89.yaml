@@ -1,0 +1,139 @@
+name: "Plafond CMU-C pour 3 personnes (cmu-c, cmu-c/acs, plafonds)"
+description: |
+  Plafond CMU-C pour 3 personnes : 15560 euros.
+  Somme des salaires déclarés en année glissante : 15559 euros
+  Donc droit à la CMU-C
+period: "month:2014-12"
+individus:
+  - age: 40
+    agem: 491
+    birth: "1974-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5490416440562f54026efb60
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 12820.499999999998
+      2013-12: 1424.4999999999998
+      2014-01: 1424.4999999999998
+      2014-02: 1424.4999999999998
+      2014-03: 1424.4999999999998
+      2014-04: 1424.4999999999998
+      2014-05: 1424.4999999999998
+      2014-06: 1424.4999999999998
+      2014-07: 1424.4999999999998
+      2014-08: 1424.4999999999998
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 12820.499999999998
+    salnet:
+      2012: 9999.99
+      2013-12: 1111.11
+      2014-01: 1111.11
+      2014-02: 1111.11
+      2014-03: 1111.11
+      2014-04: 1111.11
+      2014-05: 1111.11
+      2014-06: 1111.11
+      2014-07: 1111.11
+      2014-08: 1111.11
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 9999.99
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 40
+    agem: 491
+    birth: "1974-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5490416440562f54026efb53
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 7126.961538461538
+      2013-12: 791.8846153846154
+      2014-01: 791.8846153846154
+      2014-02: 791.8846153846154
+      2014-03: 791.8846153846154
+      2014-04: 791.8846153846154
+      2014-05: 791.8846153846154
+      2014-06: 791.8846153846154
+      2014-07: 791.8846153846154
+      2014-08: 791.8846153846154
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 7126.961538461538
+    salnet:
+      2012: 5559.03
+      2013-12: 617.67
+      2014-01: 617.67
+      2014-02: 617.67
+      2014-03: 617.67
+      2014-04: 617.67
+      2014-05: 617.67
+      2014-06: 617.67
+      2014-07: 617.67
+      2014-08: 617.67
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 5559.03
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 15
+    agem: 191
+    birth: "1999-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5490416440562f54026efb52
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 5490416440562f54026efb52
+  parents:
+    - 5490416440562f54026efb60
+    - 5490416440562f54026efb53
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 5490416440562f54026efb60
+    - 5490416440562f54026efb53
+  personnes_a_charge: 5490416440562f54026efb52
+menages:
+  conjoint: 5490416440562f54026efb53
+  depcom: 93006
+  enfants: 5490416440562f54026efb52
+  loyer: 150
+  personne_de_reference: 5490416440562f54026efb60
+  so: 4
+output_variables:
+  acs: 0
+  cmu_c: true

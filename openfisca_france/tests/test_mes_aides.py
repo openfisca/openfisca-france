@@ -66,7 +66,7 @@ def assert_near2(value, target_value, error_margin = 1, message = ''):
                     abs(value - target_value), error_margin)
 
 
-def check(test_number, test_name, scenario_data, output_variables):
+def check(test_id, test_name, scenario_data, output_variables):
     scenario = conv.check(tax_benefit_system.Scenario.make_json_to_instance(
         tax_benefit_system = tax_benefit_system,
         ))(scenario_data)
@@ -80,10 +80,10 @@ def check(test_number, test_name, scenario_data, output_variables):
 
 def test():
     dir_path = os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')
-    for file_name in sorted(os.listdir(dir_path), key = lambda name: int(name.split('_', 2)[1])):
+    for file_name in sorted(os.listdir(dir_path), key = lambda name: name.split('_', 4)[3]):
         if not file_name.endswith('.yaml'):
             continue
-        test_number = file_name.split('_', 2)[1]
+        test_id = file_name.split('_', 4)[3].split('.')[0]
         with open(os.path.join(dir_path, file_name)) as yaml_file:
             test = yaml.load(yaml_file)
             if test.pop('ignore', False):
@@ -95,7 +95,7 @@ def test():
                 period = test.pop('period'),
                 test_case = test,
                 )
-            yield check, test_number, test_name, scenario_data, output_variables
+            yield check, test_id, test_name, scenario_data, output_variables
 
 
 if __name__ == "__main__":
@@ -104,15 +104,15 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('-n', '--number', default = None, help = "number of single test to execute")
+    parser.add_argument('-i', '--id', default = None, help = "ID of single test to execute")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for function, test_number, test_name, scenario_data, output_variables in test():
-        if args.number is not None and args.number != test_number:
+    for function, test_id, test_name, scenario_data, output_variables in test():
+        if args.number is not None and args.number != test_id:
             continue
         print("=" * 120)
-        print("Test {}: {}".format(test_number, test_name.encode('utf-8')))
+        print("Test {}: {}".format(test_id, test_name.encode('utf-8')))
         print("=" * 120)
-        function(test_number, test_name, scenario_data, output_variables)
+        function(test_id, test_name, scenario_data, output_variables)

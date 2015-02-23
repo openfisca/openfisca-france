@@ -1,0 +1,69 @@
+name: "Couple, 1 des 2 éligible, ressources < plafond haut, montant = diff plafond - ressources (aspa, montant)"
+description:
+period: "month:2014-07"
+individus:
+  - age: 68
+    agem: 826
+    birth: "1945-09-14"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d25181e40a7902009c3387
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rstbrut:
+      2012: 2550
+      2014-04: 850
+      2014-04:3: 2550
+      2014-05: 850
+      2014-06: 850
+      year:2013-07: 2550
+    rstnet:
+      2012: 2361.3
+      2014-04: 787.1
+      2014-04:3: 2361.3
+      2014-05: 787.1
+      2014-06: 787.1
+      year:2013-07: 2361.3
+    statmarit: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 33
+    agem: 406
+    birth: "1980-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d25181e40a7902009c3386
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 53d25181e40a7902009c3387
+    - 53d25181e40a7902009c3386
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 53d25181e40a7902009c3387
+    - 53d25181e40a7902009c3386
+  personnes_a_charge:
+menages:
+  conjoint: 53d25181e40a7902009c3386
+  enfants:
+  loyer: 123
+  personne_de_reference: 53d25181e40a7902009c3387
+  so: 4
+output_variables:
+  aspa: 379.61

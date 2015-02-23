@@ -1,0 +1,64 @@
+name: 4_Personne seule salariée (rsa)
+description:
+period: "month:2014-11"
+individus:
+  age: 28
+  agem: 346
+  birth: "1986-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 545a3823d550a12d2ae7b68e
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2012: 12307.692307692307
+    2013-11: 1025.6410256410256
+    2013-12: 1025.6410256410256
+    2014-01: 1025.6410256410256
+    2014-02: 1025.6410256410256
+    2014-03: 1025.6410256410256
+    2014-04: 1025.6410256410256
+    2014-05: 1025.6410256410256
+    2014-06: 1025.6410256410256
+    2014-07: 1025.6410256410256
+    2014-08: 1025.6410256410256
+    2014-08:3: 3076.923076923077
+    2014-09: 1025.6410256410256
+    2014-10: 1025.6410256410256
+    year:2013-11: 12307.692307692307
+  salnet:
+    2012: 9600
+    2013-11: 800
+    2013-12: 800
+    2014-01: 800
+    2014-02: 800
+    2014-03: 800
+    2014-04: 800
+    2014-05: 800
+    2014-06: 800
+    2014-07: 800
+    2014-08: 800
+    2014-08:3: 2400
+    2014-09: 800
+    2014-10: 800
+    year:2013-11: 9600
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 545a3823d550a12d2ae7b68e
+foyers_fiscaux:
+  declarants: 545a3823d550a12d2ae7b68e
+  personnes_a_charge:
+menages:
+  depcom: 78646
+  enfants:
+  personne_de_reference: 545a3823d550a12d2ae7b68e
+  so: 6
+output_variables:
+  rsa: 144.18

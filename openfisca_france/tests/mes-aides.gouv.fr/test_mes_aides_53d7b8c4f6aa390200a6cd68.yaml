@@ -1,0 +1,88 @@
+name: Les enfants doivent avoir moins de 21 ans (cf)
+description: "Enfant > 21 ans : non éligible"
+period: "month:2014-07"
+individus:
+  - age: 24
+    agem: 298
+    birth: "1989-09-14"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d7b8a5f6aa390200a6cd67
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    agem: 82
+    birth: "2007-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54bd2361177a6f0a23f5aa2e
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    agem: 82
+    birth: "2007-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54bd2361177a6f0a23f5aa2d
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 21
+    agem: 262
+    birth: "1992-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54bd23c7177a6f0a23f5aa2f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 54bd2361177a6f0a23f5aa2e
+    - 54bd2361177a6f0a23f5aa2d
+    - 54bd23c7177a6f0a23f5aa2f
+  parents: 53d7b8a5f6aa390200a6cd67
+foyers_fiscaux:
+  declarants: 53d7b8a5f6aa390200a6cd67
+  personnes_a_charge:
+    - 54bd2361177a6f0a23f5aa2e
+    - 54bd2361177a6f0a23f5aa2d
+    - 54bd23c7177a6f0a23f5aa2f
+menages:
+  depcom: 55268
+  enfants:
+    - 54bd2361177a6f0a23f5aa2e
+    - 54bd2361177a6f0a23f5aa2d
+    - 54bd23c7177a6f0a23f5aa2f
+  personne_de_reference: 53d7b8a5f6aa390200a6cd67
+  so: 6
+output_variables:
+  cf: 0

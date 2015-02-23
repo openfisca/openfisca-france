@@ -1,0 +1,137 @@
+name: Retraites et biens immobiliers du conjoint à prendre en compte (aspa, base ressources)
+description: Les ressources du concubin font échec au droit Aspa du demandeur
+period: "month:2014-11"
+individus:
+  - activite: 3
+    age: 88
+    agem: 1059
+    birth: "1926-08-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5475a9af76a4260d7262ae13
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    revenus_locatifs:
+      2012: 0
+      2013-11: 0
+      2013-12: 0
+      2014-01: 0
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-08:3: 0
+      2014-09: 0
+      2014-10: 0
+      year:2013-11: 0
+    rstbrut:
+      2012: 7200
+      2013-11: 600
+      2013-12: 600
+      2014-01: 600
+      2014-02: 600
+      2014-03: 600
+      2014-04: 600
+      2014-05: 600
+      2014-06: 600
+      2014-07: 600
+      2014-08: 600
+      2014-08:3: 1800
+      2014-09: 600
+      2014-10: 600
+      year:2013-11: 7200
+    rstnet:
+      2012: 6667.200000000002
+      2013-11: 555.6
+      2013-12: 555.6
+      2014-01: 555.6
+      2014-02: 555.6
+      2014-03: 555.6
+      2014-04: 555.6
+      2014-05: 555.6
+      2014-06: 555.6
+      2014-07: 555.6
+      2014-08: 555.6
+      2014-08:3: 1666.8000000000002
+      2014-09: 555.6
+      2014-10: 555.6
+      year:2013-11: 6667.200000000002
+    statmarit: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 60000
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - activite: 3
+    age: 88
+    agem: 1059
+    birth: "1926-08-17"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5475a9af76a4260d7262ae05
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rstbrut:
+      2012: 8400
+      2013-11: 700
+      2013-12: 700
+      2014-01: 700
+      2014-02: 700
+      2014-03: 700
+      2014-04: 700
+      2014-05: 700
+      2014-06: 700
+      2014-07: 700
+      2014-08: 700
+      2014-08:3: 2100
+      2014-09: 700
+      2014-10: 700
+      year:2013-11: 8400
+    rstnet:
+      2012: 7778.399999999999
+      2013-11: 648.2
+      2013-12: 648.2
+      2014-01: 648.2
+      2014-02: 648.2
+      2014-03: 648.2
+      2014-04: 648.2
+      2014-05: 648.2
+      2014-06: 648.2
+      2014-07: 648.2
+      2014-08: 648.2
+      2014-08:3: 1944.6000000000001
+      2014-09: 648.2
+      2014-10: 648.2
+      year:2013-11: 7778.399999999999
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 5475a9af76a4260d7262ae13
+    - 5475a9af76a4260d7262ae05
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 5475a9af76a4260d7262ae13
+    - 5475a9af76a4260d7262ae05
+  personnes_a_charge:
+menages:
+  conjoint: 5475a9af76a4260d7262ae05
+  depcom: 75119
+  enfants:
+  loyer: 700
+  personne_de_reference: 5475a9af76a4260d7262ae13
+  so: 3
+output_variables:
+  aspa: 0

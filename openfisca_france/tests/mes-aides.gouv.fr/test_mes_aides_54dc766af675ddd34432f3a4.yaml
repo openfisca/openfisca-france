@@ -1,0 +1,34 @@
+name: "Cas général : pas d'éligibilité si le demandeur a moins de 65 ans (age, aspa, eligibilité)"
+description: Le demandeur a 65 ans et aucune ressource. Dans le cas général (pas d'inaptitude au travail) il n'est pas éligible.
+period: "month:2015-02"
+individus:
+  age: 64
+  agem: 774
+  birth: "1950-08-12"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54dc75f5e45751d544f07233
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54dc75f5e45751d544f07233
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54dc75f5e45751d544f07233
+  personnes_a_charge:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 100
+  personne_de_reference: 54dc75f5e45751d544f07233
+  so: 4
+output_variables:
+  aspa: 0

@@ -1,0 +1,47 @@
+name: Chômeur, 1 enfant (rsa)
+description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour trancher)"
+period: "month:2014-07"
+individus:
+  - age: 34
+    agem: 414
+    birth: "1979-12-31"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d79a06f6aa390200a6cd0b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 54
+    birth: "2009-12-31"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d79a06f6aa390200a6cd0a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 53d79a06f6aa390200a6cd0a
+  parents: 53d79a06f6aa390200a6cd0b
+foyers_fiscaux:
+  declarants: 53d79a06f6aa390200a6cd0b
+  personnes_a_charge: 53d79a06f6aa390200a6cd0a
+menages:
+  enfants: 53d79a06f6aa390200a6cd0a
+  personne_de_reference: 53d79a06f6aa390200a6cd0b
+  so: 6
+output_variables:
+  rsa: 643.67

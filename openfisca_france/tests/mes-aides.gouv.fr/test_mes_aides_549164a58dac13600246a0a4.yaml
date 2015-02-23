@@ -1,0 +1,141 @@
+name: "Plafond ACS 5 personnes (acs, cmu-c/acs, dom, plafonds)"
+description: Test réalisé avec des ressources immédiatement supérieures au plafond ACS pour 5 personnes.
+period: "month:2014-12"
+individus:
+  - age: 40
+    agem: 491
+    birth: "1974-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5491643f09d6285e02d4faa9
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 37435.89743589743
+      2013-12: 3304.843304843305
+      2014-01: 3304.843304843305
+      2014-02: 3304.843304843305
+      2014-03: 3304.843304843305
+      2014-04: 3304.843304843305
+      2014-05: 3304.843304843305
+      2014-06: 3304.843304843305
+      2014-07: 3304.843304843305
+      2014-08: 3304.843304843305
+      2014-09: 2564.102564102564
+      2014-09:3: 7692.3076923076915
+      2014-10: 2564.102564102564
+      2014-11: 2564.102564102564
+      year:2013-12: 37435.89743589743
+    salnet:
+      2012: 29199.999999999996
+      2013-12: 2577.777777777778
+      2014-01: 2577.777777777778
+      2014-02: 2577.777777777778
+      2014-03: 2577.777777777778
+      2014-04: 2577.777777777778
+      2014-05: 2577.777777777778
+      2014-06: 2577.777777777778
+      2014-07: 2577.777777777778
+      2014-08: 2577.777777777778
+      2014-09: 2000
+      2014-09:3: 6000
+      2014-10: 2000
+      2014-11: 2000
+      year:2013-12: 29199.999999999996
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 15
+    agem: 191
+    birth: "1999-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5491643f09d6285e02d4faa8
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 13
+    agem: 167
+    birth: "2001-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5491643f09d6285e02d4faa7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    agem: 143
+    birth: "2003-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5491643f09d6285e02d4faa6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 8
+    agem: 107
+    birth: "2006-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5491643f09d6285e02d4faa5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 5491643f09d6285e02d4faa8
+    - 5491643f09d6285e02d4faa7
+    - 5491643f09d6285e02d4faa6
+    - 5491643f09d6285e02d4faa5
+  parents: 5491643f09d6285e02d4faa9
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 5491643f09d6285e02d4faa9
+  personnes_a_charge:
+    - 5491643f09d6285e02d4faa8
+    - 5491643f09d6285e02d4faa7
+    - 5491643f09d6285e02d4faa6
+    - 5491643f09d6285e02d4faa5
+menages:
+  depcom: 65440
+  enfants:
+    - 5491643f09d6285e02d4faa8
+    - 5491643f09d6285e02d4faa7
+    - 5491643f09d6285e02d4faa6
+    - 5491643f09d6285e02d4faa5
+  loyer: 50
+  personne_de_reference: 5491643f09d6285e02d4faa9
+  so: 4
+output_variables:
+  cmu_c: false
