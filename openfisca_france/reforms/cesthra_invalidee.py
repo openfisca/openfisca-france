@@ -57,7 +57,7 @@ class cesthra(formulas.SimpleFormulaColumn):
         cesthra = 0
         for rev in sal.itervalues():
             cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
-        return cesthra
+        return period, cesthra
 
 
 class irpp(formulas.SimpleFormulaColumn):

@@ -55,7 +55,12 @@ def test_cesthra_invalidee():
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
 
-    impo = reference_simulation.calculate('impo')
+    reference_impo = reference_simulation.calculate('impo')
+    reference_revdisp = reference_simulation.calculate('revdisp', period = periods.period('year', year))
+
+    reform_impo = reference_simulation.calculate('impo')
+    reform_revdisp = reference_simulation.calculate('revdisp', period = periods.period('year', year))
+
 
 if __name__ == '__main__':
     import logging
