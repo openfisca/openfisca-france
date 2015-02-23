@@ -107,7 +107,7 @@ tests = [
             credit_impot_competitivite_emploi = 0,
             forfait_social = 0,
             tehr = {'2014': 0},
-            salbrut = 0,
+            assiette_cotisations_sociales = 0,
 
             # cotisations_salariales = 0,
 
