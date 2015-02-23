@@ -146,9 +146,10 @@ class cmu_c_plafond(SimpleFormulaColumn):
         # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant en mettant
         age_by_role = self.split_by_roles(age, roles = PAC)
         alt_by_role = self.split_by_roles(alt, roles = PAC)
+
         age_and_alt_matrix = array(
             [
-                (role == PART) * 10000 + age_by_role[role] * 10 + alt_by_role[role]
+                (role == PART) * 10000 + age_by_role[role] * 10 + alt_by_role[role] - (age_by_role[role] <= 0) * 999999
                 for role in sorted(age_by_role)
                 ]
             ).transpose()
