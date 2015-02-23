@@ -59,7 +59,7 @@ class bourse_college(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
         rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
         age_holder = simulation.compute('age', period)
         scolarite_holder = simulation.compute('scolarite', period)
@@ -89,4 +89,4 @@ class bourse_college(SimpleFormulaColumn):
             eligible_taux_1 * P.montant_taux_1
             )
 
-        return period, montant
+        return period, montant / 12

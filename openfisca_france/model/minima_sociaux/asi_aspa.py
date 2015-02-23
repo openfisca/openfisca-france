@@ -37,6 +37,13 @@ reference_input_variable(
     name = "inapte_travail",
     )
 
+reference_input_variable(
+    column = IntCol,
+    entity_class = Individus,
+    label = u"Taux d'invalidité",
+    name = "taux_invalidite",
+    )
+
 
 @reference_formula
 class br_mv_i(SimpleFormulaColumn):
@@ -48,9 +55,10 @@ class br_mv_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
-        salnet = simulation.calculate('salnet', three_previous_months)
+        aspa_couple_holder = simulation.compute('aspa_couple', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', three_previous_months)
         chonet = simulation.calculate('chonet', three_previous_months)
-        rstnet = simulation.calculate('rstnet', three_previous_months)
+        rstbrut = simulation.calculate('rstbrut', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
         rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
@@ -75,13 +83,25 @@ class br_mv_i(SimpleFormulaColumn):
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
         aah = simulation.calculate('aah', three_previous_months)
 
+        legislation = simulation.legislation_at(period.start)
+        leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
+
+        aspa_couple = self.cast_from_entity_to_role(aspa_couple_holder, role = VOUS)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
-        aah = aah * or_(not_(aspa_elig), pensions_invalidite + rstnet == 0)
+        aah = aah * not_(aspa_elig)
 
-        return period, (salnet + chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rpns +
+        # Abattement sur les salaires (appliqué sur une base trimestrielle)
+        abattement_forfaitaire_base = leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+        abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
+            not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
+            )
+        abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
+        salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
+
+        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
@@ -115,12 +135,46 @@ class aspa_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        last_month = period.start.period('month').offset(-1)
+
         age = simulation.calculate('age', period)
+        inv = simulation.calculate('inv', period)
+        taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
+        rstbrut = simulation.calculate('rstbrut', last_month)
+        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
+
         P = simulation.legislation_at(period.start).minim
 
-        condition_age = (age >= P.aspa.age_min) | ((age >= P.aah.age_legal_retraite) & inapte_travail)
-        return period, condition_age
+        condition_age_base = (age >= P.aspa.age_min)
+        condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
+        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & inv & (taux_invalidite >= 50)
+
+        condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
+        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+
+        return period, condition_age * condition_pensionnement
+
+
+@reference_formula
+class asi_elig(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        last_month = period.start.period('month').offset(-1)
+
+        aspa_elig = simulation.calculate('aspa_elig', period)
+        inv = simulation.calculate('inv', period)
+        rstbrut = simulation.calculate('rstbrut', last_month)
+        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
+
+        condition_situation = inv & not_(aspa_elig)
+        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+
+        return period, condition_situation * condition_pensionnement
 
 
 @reference_formula
@@ -138,21 +192,6 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
         aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
         return period, (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
-
-
-@reference_formula
-class asi_elig(SimpleFormulaColumn):
-    column = BoolCol
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        aspa_elig = simulation.calculate('aspa_elig', period)
-        inv = simulation.calculate('inv', period)
-        activite = simulation.calculate('activite', period)
-
-        return period, inv & (activite == 3) & not_(aspa_elig)
 
 
 @reference_formula
