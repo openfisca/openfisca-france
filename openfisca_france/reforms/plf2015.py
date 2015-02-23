@@ -32,7 +32,6 @@ import copy
 import logging
 
 from openfisca_core import formulas, periods, reforms
-from .. import entities
 from ..model.impot_revenu import ir
 
 
