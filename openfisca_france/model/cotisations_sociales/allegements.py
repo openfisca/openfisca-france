@@ -125,7 +125,7 @@ class coefficient_proratisation(SimpleFormulaColumn):
         heures_remunerees_volume = (
             (contrat_de_travail == 0) * (
                 heures_temps_plein * not_(mois_incomplet) +  # 151.67
-                jours_travailles * 7 * mois_incomplet
+                jours_travailles * 7 * mois_incomplet # TODO: 7 = heures / jours
                 ) +
             (contrat_de_travail == 1) * heures_remunerees_volume
             )
@@ -172,13 +172,14 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
 class smic_proratise(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"SMIC annuel proratisé"
+    label = u"SMIC proratisé"
 
     def function(self, simulation, period):
-        period = period
+        period = period.start.offset('first-of', 'month').period('month')
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
         smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
         smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
+
         return period, smic_proratise
 
 
@@ -221,8 +222,8 @@ def compute_allegement_fillon(simulation, period):
     Exonération Fillon
     http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
     '''
-    assiette_allegement = simulation.calculate('assiette_allegement', period)
-    smic_proratise = simulation.calculate('smic_proratise', period)
+    assiette_allegement = simulation.calculate_add('assiette_allegement', period)
+    smic_proratise = simulation.calculate_add('smic_proratise', period)
     taille_entreprise = simulation.calculate('taille_entreprise', period)
     majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
     # Calcul du taux
