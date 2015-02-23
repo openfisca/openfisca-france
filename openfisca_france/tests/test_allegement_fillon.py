@@ -34,6 +34,33 @@ from openfisca_france.tests.base import tax_benefit_system
 
 
 test_case_by_employee_type = dict(
+    annuel = dict(
+        input_variables = dict(
+            allegement_fillon_mode_recouvrement = 0,
+            effectif_entreprise = 3000,
+            localisation_entreprise = "75001",
+            salaire_de_base = {  # 9 smic horaire 2011
+                "2011-01": 35 * 52 / 12 * 9,
+                "2011-02": 35 * 52 / 12 * 9,
+                "2011-03": 35 * 52 / 12 * 9,
+                "2011-04": 35 * 52 / 12 * 9,
+                "2011-05": 35 * 52 / 12 * 9,
+                "2011-06": 35 * 52 / 12 * 9,
+                "2011-07": 35 * 52 / 12 * 9,
+                "2011-08": 35 * 52 / 12 * 9,
+                "2011-09": 35 * 52 / 12 * 9 + 1000,
+                "2011-10": 35 * 52 / 12 * 9,
+                "2011-11": 35 * 52 / 12 * 9,
+                "2011-12": 35 * 52 / 12 * 9 * 2,
+                },
+            type_sal = 0,
+            ),
+        output_variables = dict(
+            allegement_fillon = {
+                "2011": 3233.51,
+                },
+            ),
+        ),
     circulaire_acoss_2011_regularisation_fin_de_periode = dict(
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,
@@ -53,7 +80,6 @@ test_case_by_employee_type = dict(
                 "2011-11": 35 * 52 / 12 * 9,
                 "2011-12": 35 * 52 / 12 * 9 * 2,
                 },
-            taille_entreprise = 3,
             type_sal = 0,
             ),
         output_variables = dict(
@@ -93,7 +119,6 @@ test_case_by_employee_type = dict(
                 "2011-11": 35 * 52 / 12 * 9,
                 "2011-12": 35 * 52 / 12 * 9 * 2,
                 },
-            taille_entreprise = 3,
             type_sal = 0,
             ),
         output_variables = dict(
@@ -110,7 +135,7 @@ test_case_by_employee_type = dict(
                 "2011-10": 355.44,
                 "2011-11": 354.39,
                 "2011-12": -236.94,
-                # "2011": 10*354.9 - 78.58 - 236.94,
+                # "2011": 10 * 354.9 - 78.58 - 236.94,
                 },
             ),
         ),
