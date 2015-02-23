@@ -4,13 +4,14 @@ period: "month:2015-02"
 individus:
   age: 34
   agem: 419
-  alt: 0
   birth: "1980-03-02"
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 54d4def2e45751d544f06b0f
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   salaire_de_base:
     2013: 8307.692307692307
@@ -44,21 +45,22 @@ individus:
     2014-12: 0
     2015-01: 0
     year:2014-02: 6480
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54d4def2e45751d544f06b0f
-  proprietaire_proche_famille: false
+  proprietaire_proche_famille: true
 foyers_fiscaux:
   declarants: 54d4def2e45751d544f06b0f
   personnes_a_charge:
 menages:
-  depcom: 75117
+  depcom: 76540
   enfants:
-  loyer: 600
+  loyer: 1
   personne_de_reference: 54d4def2e45751d544f06b0f
-  so: 4
 output_variables:
   cmu_c: true
-  rsa: 452.21
+  rsa: 513.88

@@ -4,9 +4,9 @@ period: "month:2014-12"
 individus:
   age: 34
   agem: 419
-  alt: 0
   birth: "1980-01-01"
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 54817dd876be8a87669fc438
   inapte_travail: 0
@@ -90,7 +90,8 @@ individus:
     2014-10: 50
     2014-11: 50
     year:2013-12: 600
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   revenus_stage_formation_pro:
     2012: 600
@@ -140,8 +141,10 @@ individus:
     2014-10: 50
     2014-11: 50
     year:2013-12: 600
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54817dd876be8a87669fc438

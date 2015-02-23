@@ -25,23 +25,26 @@ individus:
   agem: 412
   alr:
     2013: 0
-  alt: 0
   birth: "1980-09-12"
   cho:
     2013: 0
   coloc: 1
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 54d8dd8cb93972db44593f6e
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   rst:
     2013: 0
   sal:
     2013: 0
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54d8dd8cb93972db44593f6e

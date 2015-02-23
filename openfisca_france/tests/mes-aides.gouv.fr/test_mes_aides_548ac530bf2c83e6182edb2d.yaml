@@ -4,13 +4,14 @@ period: "month:2014-12"
 individus:
   - age: 50
     agem: 611
-    alt: 0
     birth: "1964-01-01"
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 548ac39ffc1609f0180de26a
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     salaire_de_base:
       2012: 14102.564102564105
@@ -44,31 +45,37 @@ individus:
       2014-10: 1000
       2014-11: 1000
       year:2013-12: 10999.999999999998
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
   - age: 16
     agem: 203
-    alt: 1
+    alt: true
     birth: "1998-01-01"
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
-    id: 54e76da54ff4db9411a17c8e
+    id: 54eb4a9010c49b0772c74580
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
 familles:
-  enfants: 54e76da54ff4db9411a17c8e
+  enfants: 54eb4a9010c49b0772c74580
   parents: 548ac39ffc1609f0180de26a
   proprietaire_proche_famille: true
 foyers_fiscaux:
   declarants: 548ac39ffc1609f0180de26a
-  personnes_a_charge: 54e76da54ff4db9411a17c8e
+  personnes_a_charge: 54eb4a9010c49b0772c74580
 menages:
   depcom: 75112
-  enfants: 54e76da54ff4db9411a17c8e
+  enfants: 54eb4a9010c49b0772c74580
   loyer: 500
   personne_de_reference: 548ac39ffc1609f0180de26a
   so: 4

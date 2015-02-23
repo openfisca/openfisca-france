@@ -39,7 +39,6 @@ individus:
     2014-08: 45
     2014-09: 45
     year:2013-10: 540
-  alt: 0
   birth: "1980-08-12"
   chobrut:
     2012: 595.913029803928
@@ -89,7 +88,8 @@ individus:
     2014-08: 45
     2014-09: 45
     year:2013-10: 540
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   gains_exceptionnels:
     2012: 540
@@ -205,7 +205,8 @@ individus:
     2014-08: 45
     2014-09: 45
     year:2013-10: 540
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   pensions_alimentaires_percues:
     2012: 540
@@ -351,8 +352,10 @@ individus:
     2014-08: 35.1
     2014-09: 35.1
     year:2013-10: 421.2000000000001
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 544f7ddb75fec1b37e6c01af

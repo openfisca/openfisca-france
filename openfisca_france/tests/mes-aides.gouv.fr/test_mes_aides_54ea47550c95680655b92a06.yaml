@@ -1,0 +1,96 @@
+name: Chômeur seul locataire (al, caf.fr)
+description: |
+  Zone 2
+  
+  L	255,03
+  C	53,23
+  E	308,26
+  R	7800
+  R0	4593
+  Rp	3207
+  Tf	2,83
+  LR	255,03
+  RL	100
+  Tl	0,305
+  Tp	3,135
+  P0	34,73
+  P1	100,54
+  Pp	135,27
+  AL	172,13
+  
+  caf.fr : 173,72
+period: "month:2015-02"
+individus:
+  activite: 1
+  age: 34
+  agem: 414
+  alr:
+    2013: 0
+  ass_precondition_remplie: false
+  birth: "1980-08-12"
+  cho:
+    2013: 8580
+  chobrut:
+    2013: 8991.665494152605
+    2014-02: 749.3054578460502
+    2014-03: 749.3054578460502
+    2014-04: 749.3054578460502
+    2014-05: 749.3054578460502
+    2014-06: 749.3054578460502
+    2014-07: 749.3054578460502
+    2014-08: 749.3054578460502
+    2014-09: 749.3054578460502
+    2014-10: 749.3054578460502
+    2014-11: 749.3054578460502
+    2014-11:3: 2247.9163735381508
+    2014-12: 749.3054578460502
+    2015-01: 749.3054578460502
+    year:2014-02: 8991.665494152605
+  chonet:
+    2013: 8148
+    2014-02: 679
+    2014-03: 679
+    2014-04: 679
+    2014-05: 679
+    2014-06: 679
+    2014-07: 679
+    2014-08: 679
+    2014-09: 679
+    2014-10: 679
+    2014-11: 679
+    2014-11:3: 2037
+    2014-12: 679
+    2015-01: 679
+    year:2014-02: 8148
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54ea473f0f7afafd54c4d64d
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  rst:
+    2013: 0
+  sal:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54ea473f0f7afafd54c4d64d
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54ea473f0f7afafd54c4d64d
+  personnes_a_charge:
+  rfr:
+menages:
+  depcom: 44069
+  enfants:
+  loyer: 329
+  personne_de_reference: 54ea473f0f7afafd54c4d64d
+  so: 4
+output_variables:
+  aide_logement: 172.13

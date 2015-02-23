@@ -5,13 +5,14 @@ individus:
   activite: 3
   age: 65
   agem: 789
-  alt: 0
   birth: "1949-02-15"
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 546b452f5d4a0b016431dc30
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   retraite_combattant:
     2012: 3600
@@ -61,8 +62,10 @@ individus:
     2014-09: 555.6
     2014-10: 555.6
     year:2013-11: 6667.200000000002
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 546b452f5d4a0b016431dc30

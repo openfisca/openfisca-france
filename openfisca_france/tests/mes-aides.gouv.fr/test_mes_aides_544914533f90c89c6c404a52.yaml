@@ -4,13 +4,14 @@ period: "month:2014-10"
 individus:
   age: 14
   agem: 170
-  alt: 0
   birth: "2000-08-12"
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 54490dababeded7b476b92f6
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   salaire_de_base:
     2012: 13846.15384615385
@@ -44,8 +45,10 @@ individus:
     2014-08: 900
     2014-09: 900
     year:2013-10: 10800
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54490dababeded7b476b92f6

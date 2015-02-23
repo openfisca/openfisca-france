@@ -7,13 +7,14 @@ period: "month:2014-11"
 individus:
   - age: 40
     agem: 490
-    alt: 0
     birth: "1974-01-01"
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 54787d2bf54659627efad23b
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     salaire_de_base:
       2012: 19230.76923076923
@@ -47,17 +48,20 @@ individus:
       2014-09: 0
       2014-10: 0
       year:2013-11: 14999.999999999998
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
   - age: 20
     agem: 250
-    alt: 0
     birth: "1994-01-01"
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 54787d2bf54659627efad22e
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     salaire_de_base:
       2012: 3333.3333333333335
@@ -91,8 +95,10 @@ individus:
       2014-09: 0
       2014-10: 0
       year:2013-11: 2600
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
 familles:
   enfants: 54787d2bf54659627efad22e
   parents: 54787d2bf54659627efad23b

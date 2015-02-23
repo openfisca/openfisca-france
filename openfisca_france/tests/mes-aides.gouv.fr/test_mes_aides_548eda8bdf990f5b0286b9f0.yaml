@@ -5,7 +5,6 @@ individus:
   - activite: 1
     age: 45
     agem: 541
-    alt: 0
     ass_precondition_remplie: true
     birth: "1969-10-26"
     chobrut:
@@ -40,19 +39,22 @@ individus:
       2014-10: 1000
       2014-11: 1000
       year:2013-12: 12000
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 548ed9e5df990f5b0286b9e2
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     statmarit: 1
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
   - activite: 1
     age: 45
     agem: 541
-    alt: 0
     ass_precondition_remplie: true
     birth: "1969-10-26"
     chobrut:
@@ -87,11 +89,13 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 9000
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 548ed9e5df990f5b0286b9c8
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     rstbrut:
       2012: 19438.44492440604
@@ -125,8 +129,10 @@ individus:
       2014-10: 1500
       2014-11: 1500
       year:2013-12: 18000
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
 familles:
   enfants:
   parents:

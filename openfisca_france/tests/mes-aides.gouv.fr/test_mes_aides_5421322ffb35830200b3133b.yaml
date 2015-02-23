@@ -4,14 +4,15 @@ period: "month:2014-09"
 individus:
   age: 34
   agem: 409
-  alt: 0
   birth: "1980-08-12"
   enceinte: false
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 54213203fb35830200b3133a
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   revenus_locatifs:
     2012: 2400
@@ -29,8 +30,10 @@ individus:
     2014-07: 300
     2014-08: 200
     year:2013-09: 2400
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54213203fb35830200b3133a

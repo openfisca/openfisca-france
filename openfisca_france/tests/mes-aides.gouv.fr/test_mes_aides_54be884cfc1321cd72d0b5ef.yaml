@@ -39,15 +39,16 @@ individus:
   agem: 426
   alr:
     2013: 0
-  alt: 0
   birth: "1979-07-12"
   cho:
     2013: 0
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 54be86a5d337b5d372377c27
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 1
   rst:
     2013: 0
@@ -85,8 +86,10 @@ individus:
     2014-11: 0
     2014-12: 800
     year:2014-01: 3200.0300000000007
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54be86a5d337b5d372377c27

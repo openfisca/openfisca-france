@@ -11,17 +11,20 @@ individus:
     year:2013-08: 2370
   age: 33
   agem: 407
-  alt: 0
   birth: "1980-09-14"
   enceinte: false
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 53fb5e674a2eb80200056daf
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 53fb5e674a2eb80200056daf

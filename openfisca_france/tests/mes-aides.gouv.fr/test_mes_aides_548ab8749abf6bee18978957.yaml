@@ -7,13 +7,14 @@ period: "month:2014-12"
 individus:
   age: 50
   agem: 611
-  alt: 0
   birth: "1964-01-01"
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 548ab7bdc6e803ec188347bf
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   salaire_de_base:
     2012: 6410.2307692307695
@@ -47,8 +48,10 @@ individus:
     2014-10: 400
     2014-11: 400
     year:2013-12: 4999.980000000001
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 548ab7bdc6e803ec188347bf

@@ -5,7 +5,6 @@ individus:
   activite: 1
   age: 32
   agem: 393
-  alt: 0
   birth: "1982-01-01"
   chobrut:
     2012: 10594.009418736501
@@ -39,14 +38,18 @@ individus:
     2014-08: 800
     2014-09: 800
     year:2013-10: 9600
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 544e15fd1dddcaa51c2c8ef0
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 544e15fd1dddcaa51c2c8ef0

@@ -5,14 +5,15 @@ individus:
   activite: 1
   age: 25
   agem: 300
-  alt: 0
   birth: "1989-09-14"
   enceinte: false
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   id: 5422c2915be58c0200a0757f
   inapte_travail: 0
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   salaire_de_base:
     2012: 19230.769230769227
@@ -46,8 +47,10 @@ individus:
     2014-07: 1250
     2014-08: 1250
     year:2013-09: 15000
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 5422c2915be58c0200a0757f

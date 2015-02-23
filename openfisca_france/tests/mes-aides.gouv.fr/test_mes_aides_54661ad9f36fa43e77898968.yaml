@@ -40,7 +40,6 @@ individus:
     2014-09: 37
     2014-10: 37
     year:2013-11: 444
-  alt: 0
   birth: "1980-08-12"
   bourse_enseignement_sup:
     2012: 444
@@ -122,7 +121,8 @@ individus:
     2014-09: 37
     2014-10: 37
     year:2013-11: 444
-  epargne_non_remuneree: 0
+  epargne_non_remuneree:
+    2012-01: 0
   etu: 0
   gains_exceptionnels:
     2012: 444
@@ -238,7 +238,8 @@ individus:
     2014-09: 37
     2014-10: 37
     year:2013-11: 444
-  interets_epargne_sur_livrets: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   inv: 0
   pensions_alimentaires_percues:
     2012: 444
@@ -384,8 +385,10 @@ individus:
     2014-09: 37
     2014-10: 37
     year:2013-11: 444
-  valeur_locative_immo_non_loue: 0
-  valeur_locative_terrains_non_loue: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
   enfants:
   parents: 54661952f5fa2f3c77568208

@@ -9,13 +9,14 @@ individus:
   - activite: 3
     age: 74
     agem: 897
-    alt: 0
     birth: "1940-05-05"
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 54e223cbfe7cc56a2d0dc062
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     rstbrut:
       2013: 6000
@@ -82,18 +83,21 @@ individus:
       2015-01: 649.74
       year:2014-02: 7796.879999999998
     statmarit: 1
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
   - activite: 3
     age: 74
     agem: 897
-    alt: 0
     birth: "1940-05-05"
-    epargne_non_remuneree: 0
+    epargne_non_remuneree:
+      2012-01: 0
     etu: 0
     id: 54e223cbfe7cc56a2d0dc054
     inapte_travail: 0
-    interets_epargne_sur_livrets: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
     inv: 0
     rstbrut:
       2013: 1800
@@ -127,8 +131,10 @@ individus:
       2014-12: 138.9
       2015-01: 138.9
       year:2014-02: 1666.8000000000004
-    valeur_locative_immo_non_loue: 0
-    valeur_locative_terrains_non_loue: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
 familles:
   enfants:
   parents:
