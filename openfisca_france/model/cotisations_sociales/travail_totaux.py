@@ -423,8 +423,8 @@ class tehr(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')  # TODO: period
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        period = period.start.period(u'year').offset('first-of')
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
         law = simulation.legislation_at(period.start)
 
         bar = law.cotsoc.tehr
