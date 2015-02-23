@@ -124,6 +124,7 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
+    is_permanent = True,
     label = u"Effectif de l'entreprise",
     name = 'effectif_entreprise',
     )
@@ -204,7 +205,7 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Indemnités forfaitaires (transport, nourriture)",
     name = 'indemnites_forfaitaires',
-    )    
+    )
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
