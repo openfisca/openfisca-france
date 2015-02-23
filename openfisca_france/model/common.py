@@ -105,7 +105,7 @@ class revdisp(SimpleFormulaColumn):
         Revenu disponible - ménage
         'men'
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.period('year').offset('first-of')
         rev_trav_holder = simulation.compute('rev_trav', period)
         pen_holder = simulation.compute('pen', period)
         rev_cap_holder = simulation.compute('rev_cap', period)
@@ -268,7 +268,7 @@ class pen(SimpleFormulaColumn):
         '''
         Pensions
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.period('year').offset('first-of')
         chonet = simulation.calculate('chonet', period)
         rstnet = simulation.calculate('rstnet', period)
         alr = simulation.calculate('alr', period)
@@ -288,7 +288,7 @@ class cotsoc_bar_declarant1(SimpleFormulaColumn):
         '''
         Cotisations sociales sur les revenus du capital imposés au barème
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.period('year').offset('first-of')
         csg_cap_bar_declarant1 = simulation.calculate('csg_cap_bar_declarant1', period)
         prelsoc_cap_bar_declarant1 = simulation.calculate('prelsoc_cap_bar_declarant1', period)
         crds_cap_bar_declarant1 = simulation.calculate('crds_cap_bar_declarant1', period)
