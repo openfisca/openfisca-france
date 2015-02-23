@@ -37,7 +37,8 @@ class ass_eligibilite_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
+
         activite = simulation.calculate('activite', period)
         ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
 
@@ -51,8 +52,9 @@ class ass_base_ressources_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        previous_year = period.offset(-1)
+        period = period.start.offset('first-of', 'month').period('month')
+        previous_year = period.start.period('year').offset(-1)
+
         salnet = simulation.calculate('salnet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
@@ -70,7 +72,7 @@ class ass_base_ressources(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
 
         ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
@@ -113,7 +115,8 @@ class ass(SimpleFormulaColumn):
             ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
             ou justifiant d'au moins 160 trimestres de cotisation retraite.
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
+
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_i', period)
         concub = simulation.calculate('concub', period)
@@ -124,14 +127,13 @@ class ass(SimpleFormulaColumn):
         majo = 0  # TODO
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
         plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
-        plafond = plafond_mensuel * 12
         montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
 
-        revenus = ass_base_ressources + 12 * montant_mensuel
+        revenus = ass_base_ressources / 12 + montant_mensuel
 
-        ass = 12 * montant_mensuel * (revenus <= plafond) + (revenus > plafond) * max_(plafond + 12 * montant_mensuel - revenus, 0)
+        ass = montant_mensuel * (revenus <= plafond_mensuel) + (revenus > plafond_mensuel) * max_(plafond_mensuel + montant_mensuel - revenus, 0)
         ass = ass * elig
-        ass = ass * not_(ass / 12 < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
+        ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
         return period, ass
 
