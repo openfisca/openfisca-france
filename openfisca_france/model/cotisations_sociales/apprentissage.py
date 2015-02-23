@@ -130,10 +130,10 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
             bareme_by_name['vieillessedeplaf'].rates[0] +
             bareme_by_name['vieillesseplaf'].rates[0] +
             bareme_by_name['maladie'].rates[0] +
-            bareme_by_name['famille'].rates[0] +
+            bareme_by_name['famille'].rates[0])
 
-        TODO
-
+        #TODO
+        return period, 0
 
 @reference_formula
 class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):

@@ -740,14 +740,14 @@ class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         type_sal = simulation.calculate('type_sal', period)
-        salbrut = simulation.calculate('salbrut', period)
+        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = simulation.calculate(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
             (type_sal == CAT['prive_cadre']) *
-            min_(salbrut, plafond_securite_sociale) *
+            min_(assiette_cotisations_sociales, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux_employeur
             )
         return period, cotisation
