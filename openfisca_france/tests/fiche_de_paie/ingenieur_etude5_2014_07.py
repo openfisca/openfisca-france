@@ -105,7 +105,7 @@ tests = [
             alleg_cice = 0,
             forfait_social = -4.72,
             tehr = {'2014': 0},
-            salbrut = 3000,
+            salaire_de_base = 3000,
 
             # cotisations_salariales = 0,
 
