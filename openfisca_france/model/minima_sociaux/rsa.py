@@ -65,7 +65,7 @@ class aefa(DatedFormulaColumn):
         nb_par = simulation.calculate('nb_par', period)
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
-        api = simulation.calculate('api', period)
+        api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
         af = simulation.legislation_at(period.start).fam.af
@@ -102,7 +102,7 @@ class aefa(DatedFormulaColumn):
         nb_par = simulation.calculate('nb_par', period)
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
-        api = simulation.calculate('api', period)
+        api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
         af = simulation.legislation_at(period.start).fam.af
@@ -140,7 +140,7 @@ class aefa(DatedFormulaColumn):
         nb_par = simulation.calculate('nb_par', period)
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
-        api = simulation.calculate('api', period)
+        api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
         af = simulation.legislation_at(period.start).fam.af
@@ -181,7 +181,7 @@ class api(DatedFormulaColumn):
         """
         Allocation de parent isolé
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
         agem_holder = simulation.compute('agem', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
@@ -236,7 +236,7 @@ class api(DatedFormulaColumn):
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS
-        return period, 12 * api  # annualisé
+        return period, api  # annualisé
         # TODO API: temps partiel qui modifie la base ressource
         # Cumul
         # Cumul avec un revenu
@@ -448,7 +448,7 @@ class psa(DatedFormulaColumn):
     label = u"Prime de solidarité active"
     url = u"http://www.service-public.fr/actualites/001077.html"
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
+    @dated_function(start = date(2009, 4, 1), stop = date(2009, 4, 30))
     def function_2009(self, simulation, period):
         '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
@@ -459,7 +459,7 @@ class psa(DatedFormulaColumn):
         d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
-        period = period.start.offset('first-of', 'year').offset(3, 'month').period('month')
+        period = period.start.offset('first-of', 'month').period('month')
         api = simulation.calculate('api', period)
         rsa = simulation.calculate('rsa', period)
         activite_holder = simulation.compute('activite', period)
