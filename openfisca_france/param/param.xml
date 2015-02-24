@@ -4674,6 +4674,9 @@
         <VALUE deb="2003-07-01" fin="2007-06-30" valeur="2071" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="2589" />
       </CODE>
+      <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent">
+        <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
+      </CODE>
     </NODE>
     <NODE code="loyers_plafond" description="Loyers plafond">
       <NODE code="zone1" description="Zone 1">
