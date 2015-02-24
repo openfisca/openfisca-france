@@ -31,7 +31,6 @@ from ..model.base import CAT
 from . import base
 
 
-
 tests_infos = [
     dict(
         period = year,
@@ -50,6 +49,7 @@ tests_infos = [
 
 def check_run(simulation, period):
     assert simulation.calculate('revdisp') is not None, "Can't compute revdisp on period {}".format(period)
+    assert simulation.calculate('salsuperbrut') is not None, "Can't compute salsuperbrut on period {}".format(period)
 
 
 def test():
