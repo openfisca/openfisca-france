@@ -35,7 +35,7 @@ class tns_total_revenus(DatedFormulaColumn):
     entity_class = Individus
 #    start = "2008-01-01"
 
-    @dated_function(date(2007, 1, 1))
+    @dated_function(date(2008, 1, 1))
     def function_2008__(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
