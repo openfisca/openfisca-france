@@ -4,6 +4,7 @@ description: |
   MF = 749,77 €
   ASF prise en compte : 91,40 € (0.225 * 406.21)
   Donc RSA : 658,37 €
+ignore: true
 period: "month:2014-11"
 individus:
   - age: 20
