@@ -120,12 +120,15 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
-        chomage_net_m_1 = simulation.compute('chonet', period.offset(-1))
-        chomage_net_m_2 = simulation.compute('chonet', period.offset(-2))
-        revenus_activite_pro = simulation.compute('sal', two_years_ago)
+        chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
+        chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
+        revenus_activite_pro = simulation.calculate('sal', two_years_ago)
         taux_abattement = simulation.legislation_at(period).al.ressources.abattement_chomage_indemnise
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
+
+        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
+        abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
 
         return period, abattement
 
