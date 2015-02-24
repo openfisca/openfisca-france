@@ -132,7 +132,7 @@ class depense_cantine_titre_restaurant_employe(SimpleFormulaColumn):
 class depense_cantine_titre_restaurant_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Dépense de cantine et de titre restaurant à cahrge de l'employeur"
+    label = u"Dépense de cantine et de titre restaurant à charge de l'employeur"
 
     def function(self, simulation, period):
         period = period
