@@ -188,12 +188,12 @@ class smic55(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        salbrut = simulation.calculate('salbrut', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
         _P = simulation.legislation_at(period.start)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-        return period, salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
+        return period, salaire_de_base >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
 
 
 @reference_formula
