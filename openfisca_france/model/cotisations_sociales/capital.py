@@ -490,10 +490,10 @@ class prelsoc_cap_lib(SimpleFormulaColumn):
         rev_cap_lib = simulation.calculate('rev_cap_lib', period)
         prelsoc = simulation.legislation_at(period.start).prelsoc
 
-        year = period.start.year
-        if year < 2006:
+        start_year = period.start.year
+        if start_year < 2006:
             total = prelsoc.base_pat
-        elif year < 2009:
+        elif start_year < 2009:
             total = prelsoc.base_pat + prelsoc.add_pat
         else:
             total = prelsoc.base_pat + prelsoc.add_pat + prelsoc.rsa
