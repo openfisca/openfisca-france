@@ -61,7 +61,7 @@ def print_computed_variables():
     pprint.pprint(computed_variables)
 
     log_file = open('variables' + '.txt', 'w')
-    pprint.pprint(computed_variables, stream = log_file, indent = 4)
+    pprint.pprint(computed_variables, stream = log_file, indent = 2)
 
 
 def print_input_variables():
@@ -85,4 +85,4 @@ def print_input_variables():
 
 if __name__ == '__main__':
 
-    print_input_variables()
+    print_computed_variables()

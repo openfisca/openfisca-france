@@ -31,7 +31,7 @@ import logging
 from numpy import int16, maximum as max_, minimum as min_, logical_not as not_, ones, round as round_
 from openfisca_core.enumerations import Enum
 from openfisca_core.columns import EnumCol, FloatCol
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.formulas import DatedFormulaColumn, SimpleFormulaColumn
 
 
 from ..base import *  # noqa analysis:ignore
@@ -504,12 +504,12 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class contribution_supplementaire_apprentissage(SimpleFormulaColumn):
+class contribution_supplementaire_apprentissage(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution supplémentaire à l'apprentissage"
 
-    # TODO: date de debut
+    @dated_function(date(2010, 1, 1))
     def function(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -841,9 +841,9 @@ class taux_accident_travail(SimpleFormulaColumn):
     start_date = date(2012, 1, 1)
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')  # TODO month ?
-        exposition_accident = simulation.calculate('exposition_accident', period)
-        accident = simulation.legislation_at(period.start).cotsoc.accident
+        period_extract = period.start.period(u'month').offset('first-of')
+        exposition_accident = simulation.calculate('exposition_accident', period_extract)
+        accident = simulation.legislation_at(period_extract.start).cotsoc.accident
 
         return period, (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
             + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
