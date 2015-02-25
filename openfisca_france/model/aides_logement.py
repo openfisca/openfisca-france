@@ -272,7 +272,8 @@ class aide_logement_montant(SimpleFormulaColumn):
 
         # # aides au logement pour les locataires
         # loyer mensuel;
-        L1 = loyer
+        L1 = round((so == 5) * loyer * 2 / 3 + (so != 5) * loyer, 2)
+
         # loyer plafond;
         lp_taux = (not_(coloc)) * 1 + coloc * al.loyers_plafond.colocation
 
