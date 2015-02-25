@@ -371,8 +371,8 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
     def function(self, simulation, period):
         cotisation_minimale = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "arrco")
         arrco_tranche_a_taux_employeur = simulation.calculate('arrco_tranche_a_taux_employeur', period)
-        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
         type_sal = simulation.calculate('type_sal', period)
 
         cotisation_entreprise = - (

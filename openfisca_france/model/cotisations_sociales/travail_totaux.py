@@ -440,9 +440,9 @@ class salsuperbrut(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate_add('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         cotisations_patronales = simulation.calculate('cotisations_patronales', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
