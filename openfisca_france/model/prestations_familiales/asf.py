@@ -105,10 +105,10 @@ class asf(SimpleFormulaColumn):
 
         http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
         '''
-        period = period.start.offset('first-of', 'month').period('year')
-        asf_elig = simulation.calculate('asf_elig', period)
-        asf_nbenf = simulation.calculate('asf_nbenf', period)
+        period = period.start.period('month').offset('first-of')
+        asf_elig = simulation.calculate('asf_elig', period)#, accept_other_period = True)
+        asf_nbenf = simulation.calculate('asf_nbenf', period)#, accept_other_period = True)
         P = simulation.legislation_at(period.start).fam
 
         # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
-        return period, asf_elig * max_(0, asf_nbenf * 12 * P.af.bmaf * P.asf.taux1)
+        return period, asf_elig * max_(0, asf_nbenf * P.af.bmaf * P.asf.taux1)

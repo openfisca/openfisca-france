@@ -135,7 +135,7 @@ class aefa(DatedFormulaColumn):
     def function__2008_(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_par = simulation.calculate('nb_par', period)
         ass = simulation.calculate_add('ass', period)
@@ -330,8 +330,8 @@ class br_rmi_pf(DatedFormulaColumn):
         af_base = simulation.calculate('af_base', period)
         cf = simulation.calculate_divide('cf', period)
         asf = simulation.calculate('asf', period)
-        apje = simulation.calculate('apje', period)
-        ape = simulation.calculate('ape', period)
+        apje = simulation.calculate_divide('apje', period)
+        ape = simulation.calculate_divide('ape', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
