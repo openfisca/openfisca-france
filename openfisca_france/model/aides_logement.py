@@ -228,6 +228,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         so_holder = simulation.compute('so', period)
         loyer_holder = simulation.compute('loyer', period)
         coloc_holder = simulation.compute('coloc', period)
+        logement_chambre_holder = simulation.compute('logement_chambre', period)
         al_pac = simulation.calculate('al_pac', period)
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         zone_apl_famille = simulation.calculate('zone_apl_famille', period)
@@ -247,6 +248,8 @@ class aide_logement_montant(SimpleFormulaColumn):
         zone_apl = zone_apl_famille
         # Variables individuelles
         coloc = self.any_by_roles(coloc_holder)
+        chambre = self.any_by_roles(logement_chambre_holder)
+
         # Variables du foyer fiscal
         nat_imp = self.cast_from_entity_to_roles(nat_imp_holder)
         nat_imp = self.any_by_roles(nat_imp)
@@ -267,40 +270,43 @@ class aide_logement_montant(SimpleFormulaColumn):
 
         loca = (3 <= so) & (5 >= so)
         acce = so == 1
-        rmi = al.rmi
-        bmaf = fam.af.bmaf_n_2
 
         # # aides au logement pour les locataires
-        # loyer mensuel;
+        # loyer mensuel, multiplié par 2/3 pour les meublés
         L1 = round((so == 5) * loyer * 2 / 3 + (so != 5) * loyer, 2)
 
-        # loyer plafond;
-        lp_taux = (not_(coloc)) * 1 + coloc * al.loyers_plafond.colocation
+        # taux à appliquer sur le loyer plafond
+        taux_loyer_plafond = (and_(not_(coloc), not_(chambre)) * 1
+                             + chambre * al.loyers_plafond.chambre
+                             + not_(chambre) * coloc * al.loyers_plafond.colocation)
+
+        loyer_plafond_personne_seule = or_(personne_seule * (al_pac == 0), chambre)
+        loyer_plafond_famille = not_(loyer_plafond_personne_seule) * (al_pac > 0)
+        loyer_plafond_couple = and_(not_(loyer_plafond_famille), not_(loyer_plafond_personne_seule))
 
         z1 = al.loyers_plafond.zone1
         z2 = al.loyers_plafond.zone2
         z3 = al.loyers_plafond.zone3
 
         Lz1 = (
-            personne_seule * (al_pac == 0) * z1.L1 +
-            couple * (al_pac == 0) * z1.L2 +
-            (al_pac > 0) * z1.L3 +
-            (al_pac > 1) * (al_pac - 1) * z1.L4
-            ) * lp_taux
+            loyer_plafond_personne_seule * z1.L1 +
+            loyer_plafond_couple * z1.L2 +
+            loyer_plafond_famille * (z1.L3 + (al_pac > 1) * (al_pac - 1) * z1.L4)
+            )
         Lz2 = (
-            personne_seule * (al_pac == 0) * z2.L1 +
-            couple * (al_pac == 0) * z2.L2 +
-            (al_pac > 0) * z2.L3 +
-            (al_pac > 1) * (al_pac - 1) * z2.L4
-            ) * lp_taux
+            loyer_plafond_personne_seule * z2.L1 +
+            loyer_plafond_couple * z2.L2 +
+            loyer_plafond_famille * (z2.L3 + (al_pac > 1) * (al_pac - 1) * z2.L4)
+            )
         Lz3 = (
-            personne_seule * (al_pac == 0) * z3.L1 +
-            couple * (al_pac == 0) * z3.L2 +
-            (al_pac > 0) * z3.L3 +
-            (al_pac > 1) * (al_pac - 1) * z3.L4
-            ) * lp_taux
+            loyer_plafond_personne_seule * z3.L1 +
+            loyer_plafond_couple * z3.L2 +
+            loyer_plafond_famille * (z3.L3 + (al_pac > 1) * (al_pac - 1) * z3.L4)
+            )
 
         L2 = Lz1 * (zone_apl == 1) + Lz2 * (zone_apl == 2) + Lz3 * (zone_apl == 3)
+        L2 = round(L2 * taux_loyer_plafond, 2)
+
         # loyer retenu
         L = min_(L1, L2)
 
@@ -318,6 +324,7 @@ class aide_logement_montant(SimpleFormulaColumn):
         R = aide_logement_base_ressources
 
         # Plafond RO
+        rmi = al.rmi
         R1 = (
             al.R1.taux1 * rmi * personne_seule * (al_pac == 0) +
             al.R1.taux2 * rmi * couple * (al_pac == 0) +
@@ -326,6 +333,7 @@ class aide_logement_montant(SimpleFormulaColumn):
             al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
             )
 
+        bmaf = fam.af.bmaf_n_2
         R2 = (
             al.R2.taux4 * bmaf * (al_pac >= 2) +
             al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)

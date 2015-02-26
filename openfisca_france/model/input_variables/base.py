@@ -78,6 +78,7 @@ build_column('gar_dom', BoolCol(entity = 'fam',
 
 # Autres
 build_column('coloc', BoolCol(label = u"Vie en colocation"))
+build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
 build_column(
     'csg_rempl',
     EnumCol(
