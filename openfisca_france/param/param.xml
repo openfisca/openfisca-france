@@ -376,7 +376,7 @@
     </NODE>
     <NODE code="conge_individuel_formation" description="Congé individuel de formation"> # TODO: find a better place
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
-        <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
+        <VALUE deb="1990-07-14" fin="2015-12-31" valeur=".01" />
       </CODE>
     </NODE>
     <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool"> # TODO: find a better place
@@ -4673,6 +4673,9 @@
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="2034" />
         <VALUE deb="2003-07-01" fin="2007-06-30" valeur="2071" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="2589" />
+      </CODE>
+      <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent">
+        <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
       </CODE>
     </NODE>
     <NODE code="loyers_plafond" description="Loyers plafond">

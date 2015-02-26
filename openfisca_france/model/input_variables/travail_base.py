@@ -344,5 +344,3 @@ reference_input_variable(
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale",
     name = 'volume_jours_ijss',
     )
-
-

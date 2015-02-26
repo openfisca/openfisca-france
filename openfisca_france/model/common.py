@@ -378,7 +378,7 @@ class pfam(SimpleFormulaColumn):
         ars = simulation.calculate('ars', period)
         aeeh = simulation.calculate('aeeh', period)
         paje = simulation.calculate('paje', period)
-        asf = simulation.calculate('asf', period)
+        asf = simulation.calculate_add('asf', period)
         crds_pfam = simulation.calculate('crds_pfam', period)
 
         return period, af + cf + ars + aeeh + paje + asf + crds_pfam
@@ -404,7 +404,7 @@ class mini(SimpleFormulaColumn):
         aefa = simulation.calculate('aefa', period)
         api = simulation.calculate('api', period)
         ass = simulation.calculate('ass', period)
-        psa = simulation.calculate('psa', period)
+        psa = simulation.calculate_add('psa', period)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)

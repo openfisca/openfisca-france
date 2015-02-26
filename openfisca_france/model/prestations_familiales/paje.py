@@ -289,7 +289,7 @@ class paje_clmg(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         aah_holder = simulation.compute('aah', period)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute_add('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         etu_holder = simulation.compute('etu', period)
         sal_holder = simulation.compute('sal', period)
         hsup_holder = simulation.compute('hsup', period)
@@ -525,7 +525,7 @@ class ape_temp(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', accept_other_period = True)
         inactif = simulation.calculate('inactif', period)
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
@@ -568,7 +568,7 @@ class apje_temp(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         br_pf = simulation.calculate('br_pf', period)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', accept_other_period = True)
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
         P = simulation.legislation_at(period.start).fam

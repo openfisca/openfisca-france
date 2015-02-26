@@ -112,6 +112,28 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
+class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
+        chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
+        revenus_activite_pro = simulation.calculate('sal', two_years_ago)
+        taux_abattement = simulation.legislation_at(period).al.ressources.abattement_chomage_indemnise
+
+        abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
+
+        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
+        abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
+
+        return period, abattement
+
+
+@reference_formula
 class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
@@ -122,12 +144,14 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
+        rev_coll = self.sum_by_entity(rev_coll_holder)
         biact = simulation.calculate('biact', period, accept_other_period = True)
         Pr = simulation.legislation_at(period.start).al.ressources
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-        rev_coll = self.sum_by_entity(rev_coll_holder)
+        abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
+        abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
 
-        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll
+        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll - abattement_chomage_indemnise
 
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biact * Pr.dar_1
