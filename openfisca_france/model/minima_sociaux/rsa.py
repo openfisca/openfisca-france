@@ -60,7 +60,7 @@ class aefa(DatedFormulaColumn):
     def function_2009__(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_par = simulation.calculate('nb_par', period)
         ass = simulation.calculate_add('ass', period)
@@ -97,7 +97,7 @@ class aefa(DatedFormulaColumn):
     def function_2008(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_par = simulation.calculate('nb_par', period)
         ass = simulation.calculate_add('ass', period)
