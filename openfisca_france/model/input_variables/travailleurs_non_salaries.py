@@ -23,21 +23,37 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from ..base import *  # noqa analysis:ignore
 
 
-build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))
-build_column('tns_autres_revenus', FloatCol(entity = 'ind', is_permanent = True, label = u"Autres revenus non salariés"))
-
-build_column('tns_type_structure', EnumCol(
-    entity = 'ind',
-    enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
-    default = 1,
-    is_permanent = True,
-    label = u"Type de structure associée au travailleur non salarié"))
-
-build_column('tns_type_activite', EnumCol(
-    entity = 'ind',
-    enum = Enum([u'achat_revente', u'bic', u'bnc']),
-    is_permanent = True,
-    label = u"Valeur locative des biens immobiliés possédés et non loués"))
+reference_input_variable(
+    base_function = requested_period_last_value,
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Chiffre d'affaires de micro-entreprise ou assimilée",
+    name = 'tns_chiffre_affaires_micro_entreprise',
+    )
+reference_input_variable(
+    base_function = requested_period_last_value,
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Autres revenus non salariés",
+    name = 'tns_autres_revenus',
+    )
+reference_input_variable(
+    column = EnumCol(
+        enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
+        default = 1,
+        ),
+    entity_class = Individus,
+    label = u"Type de structure associée au travailleur non salarié",
+    name = 'tns_type_structure',
+    )
+reference_input_variable(
+    column = EnumCol(
+        enum = Enum([u'achat_revente', u'bic', u'bnc']),
+        ),
+    entity_class = Individus,
+    label = u"Valeur locative des biens immobiliés possédés et non loués",
+    name = 'tns_type_activite',
+    )

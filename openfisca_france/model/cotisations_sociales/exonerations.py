@@ -367,7 +367,6 @@ class zone_franche_urbaine(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-
         return period, (effectif_entreprise >= 1) * False
 
 
@@ -379,7 +378,6 @@ class zone_revitalisation_rurale(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-
         return period, (effectif_entreprise >= 1) * False
 
 

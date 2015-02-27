@@ -46,15 +46,12 @@ reference_input_variable(
     label = u"Mode de recouvrement des allègements Fillon",
     name = 'allegement_fillon_mode_recouvrement',
     )
-
-
 reference_input_variable(
     column = DateCol(),
     entity_class = Individus,
-    is_permanent = True,
     label = u"Date de début du contrat d'apprentissage",
-    name = 'apprentissage_contrat_debut')
-
+    name = 'apprentissage_contrat_debut',
+    )
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
@@ -99,14 +96,12 @@ reference_input_variable(
 reference_input_variable(
     column = DateCol(default = datetime.date(1870, 1, 1)),
     entity_class = Individus,
-    is_permanent = True,
     label = u"Date d'arrivée dans l'entreprise",
     name = 'contrat_de_travail_arrivee',  # debut
     )
 reference_input_variable(
     column = DateCol(default = datetime.date(2099, 12, 31)),
     entity_class = Individus,
-    is_permanent = True,
     label = u"Date de départ de l'entreprise",
     name = 'contrat_de_travail_depart',   # fin
     )
@@ -135,7 +130,7 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
-    is_permanent = True,  # TODO: should be: is_period_size_independent = True,
+    base_function = requested_period_last_value,
     label = u"Effectif de l'entreprise",
     name = 'effectif_entreprise',
     )
@@ -178,7 +173,6 @@ reference_input_variable(
 reference_input_variable(
     column = DateCol(),
     entity_class = Individus,
-    is_permanent = True,
     label = u"Date de création de l'entreprise",
     name = 'entreprise_creation',
     )
@@ -189,6 +183,7 @@ reference_input_variable(
     name = 'localisation_entreprise',  # TODO; à adapter sur le format depcom ?
     )
 reference_input_variable(
+    base_function = requested_period_last_value,
     column = IntCol(),
     entity_class = Individus,
     label = u"Nombre de tickets restaurant",
@@ -201,12 +196,14 @@ reference_input_variable(
     name = 'nouvelle_bonification_indiciaire',
     )
 reference_input_variable(
+    base_function = requested_period_last_value,
     column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux_employe',
     )
 reference_input_variable(
+    base_function = requested_period_last_value,
     column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
