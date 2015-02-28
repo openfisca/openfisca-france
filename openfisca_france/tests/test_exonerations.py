@@ -49,10 +49,10 @@ test_case_by_employee_type = dict(
             effectif_entreprise = {
                 "2014:15": 20,
                 },
-            salaire_de_base = {  # 9 smic horaire 2011
-                "2014": 35 * 52 * 9.53,
-                "2015": 35 * 52 * 9.61,
-                "2016": 35 * 52 * 9.61,
+            salaire_de_base = {
+                periods.period("2014-01:12"): 35 * 52 * 9.53 / 12,
+                "2015-01:12": 35 * 52 * 9.61 / 12,
+                "2016-01:12": 35 * 52 * 9.61 / 12,
                 },
             zone_franche_urbaine = {
                 "2014:15": True,
@@ -76,11 +76,11 @@ test_case_by_employee_type = dict(
             effectif_entreprise = {
                 "2014:15": 20 * 15,
                 },
-            salaire_de_base = {  # 9 smic horaire 2011
-                "2014": 35 * 52 * 9.53,
-                "2015": 35 * 52 * 9.61,
-                "2016": 35 * 52 * 9.61,
-                "2017": 35 * 52 * 9.61,
+            salaire_de_base = {
+                "2014-01:12": 35 * 52 * 9.53 / 12,
+                "2015-01:12": 35 * 52 * 9.61 / 12,
+                "2016-01:12": 35 * 52 * 9.61 / 12,
+                "2017-01:12": 35 * 52 * 9.61 / 12,
                 },
             zone_restructuration_defense = {
                 "2014:15": True,
@@ -103,9 +103,10 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2014-01-01",
             effectif_entreprise = 20,
-            salaire_de_base = {  # 9 smic horaire 2011
-                "2014": 35 * 52 * 9.53,
-                "2015": 35 * 52 * 9.61,
+            salaire_de_base = {
+                "2014-01": 35 * 52 * 9.53 / 12,
+                "2014-01:12": 35 * 52 * 9.53,
+                "2015-01:12": 35 * 52 * 9.61,
                 },
             zone_revitalisation_rurale = {
                 "2014:5": True,
@@ -113,11 +114,14 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zrr= {
+            exoneration_cotisations_patronales_zrr = {
                 "2014": 35 * 52 * 9.53 * .281,
                 "2014-01": 35 * 52 * 9.53 * .281 / 12,
                 "2015": 0,
                 "2015-01": 0,
+                },
+            salaire_de_base = {
+                "2014-01": 35 * 52 * 9.53 / 12,
                 }
             ),
         ),
@@ -125,9 +129,9 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2014-05-01",
             effectif_entreprise = 20,
-            salaire_de_base = {  # 9 smic horaire 2011
+            salaire_de_base = {
                 "2014-05:8": 35 * 52 * 9.53 * 1.4 * 8 / 12,
-                "2015": 35 * 52 * 9.61 * 1.4,
+                "2015-01:12": 35 * 52 * 9.61 * 1.4 / 12,
                 },
             zone_revitalisation_rurale = {
                 "2014:5": True,
@@ -148,9 +152,9 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2010-05-01",
             effectif_entreprise = 20,
-            salaire_de_base = {  # 9 smic horaire 2011
-                "2014": 35 * 52 * 9.53 * 2.5,
-                "2015": 35 * 52 * 9.61 * 2.5,
+            salaire_de_base = {
+                "2014-01:12": 35 * 52 * 9.53 * 2.5 / 12,
+                "2015-01:12": 35 * 52 * 9.61 * 2.5 / 12,
                 },
             zone_revitalisation_rurale = {
                 "2014:5": True,
@@ -174,9 +178,9 @@ test_case_by_employee_type = dict(
             entreprise_benefice = {
                 "2014:10": 1 * 10,
                 },
-            salaire_de_base = {  # 9 smic horaire 2011
-                "2014": 35 * 52 * 9.53,
-                "2015": 35 * 52 * 9.64,
+            salaire_de_base = {
+                "2014-01:12": 35 * 52 * 9.53 / 12,
+                "2015-01:12": 35 * 52 * 9.64 / 12,
                 },
             zone_revitalisation_rurale = {
                 "2014:10": True,
@@ -202,7 +206,7 @@ test_case_by_employee_type = dict(
 def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
 
-        simulation_period = 2011
+        simulation_period = 2014
         parent1 = dict(
             birth = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
             )
