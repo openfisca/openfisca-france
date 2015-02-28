@@ -392,30 +392,41 @@ class br_rmi_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
+
         ra_rsa_i = simulation.calculate('ra_rsa_i', period)
-        chonet = simulation.calculate('chonet', three_previous_months)
-        rstnet = simulation.calculate('rstnet', three_previous_months)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        rto_declarant1 = simulation.calculate('rto_declarant1', three_previous_months)
+
+        def calcule_type_ressource(type, neutralisable = False):
+            ressource_trois_derniers_mois = simulation.calculate(type, three_previous_months)
+            if neutralisable:
+                ressource_mois_courant = simulation.calculate(type, period)
+                return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
+            else:
+                return ressource_trois_derniers_mois
+
+        # Ressources neutralisables
+        chonet = calcule_type_ressource('chonet', True)
+        pensions_alimentaires_percues = calcule_type_ressource('pensions_alimentaires_percues', True)
+        allocation_aide_retour_emploi = calcule_type_ressource('allocation_aide_retour_emploi', True)
+        allocation_securisation_professionnelle = calcule_type_ressource('allocation_securisation_professionnelle', True)
+        prestation_compensatoire = calcule_type_ressource('prestation_compensatoire', True)
+
+        # Autres ressources
+        rstnet = calcule_type_ressource('rstnet')
+        rto_declarant1 = calcule_type_ressource('rto_declarant1')
+        rfon_ms = calcule_type_ressource('rfon_ms')
+        div_ms = calcule_type_ressource('div_ms')
+        gains_exceptionnels = calcule_type_ressource('gains_exceptionnels')
+        dedommagement_victime_amiante = calcule_type_ressource('dedommagement_victime_amiante')
+        pensions_invalidite = calcule_type_ressource('pensions_invalidite')
+        bourse_enseignement_sup = calcule_type_ressource('bourse_enseignement_sup')
+        bourse_recherche = calcule_type_ressource('bourse_recherche')
+        rsa_base_ressources_patrimoine_i = calcule_type_ressource('rsa_base_ressources_patrimoine_i')
+
         rev_cap_bar_holder = simulation.compute('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate('rfon_ms', three_previous_months)
-        div_ms = simulation.calculate('div_ms', three_previous_months)
-        gains_exceptionnels = simulation.calculate('gains_exceptionnels', three_previous_months)
-        dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
-        allocation_aide_retour_emploi = simulation.calculate('allocation_aide_retour_emploi', three_previous_months)
-
-        allocation_securisation_professionnelle = simulation.calculate(
-            'allocation_securisation_professionnelle', three_previous_months)
-        prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
-        bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', three_previous_months)
-        bourse_recherche = simulation.calculate('bourse_recherche', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate(
-            'rsa_base_ressources_patrimoine_i', three_previous_months)
-
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+
         return period, ra_rsa_i + (
             chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
             rev_cap_lib + rfon_ms + div_ms +
@@ -515,26 +526,34 @@ class ra_rsa_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
-        salnet = simulation.calculate('salnet', three_previous_months)
-        hsup = simulation.calculate('hsup', three_previous_months)
-        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
-        etr = simulation.calculate('etr', three_previous_months)
-        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
-        indemnites_journalieres_maternite = simulation.calculate(
-            'indemnites_journalieres_maternite', three_previous_months)
-        indemnites_journalieres_paternite = simulation.calculate(
-            'indemnites_journalieres_paternite', three_previous_months)
-        indemnites_journalieres_adoption = simulation.calculate(
-            'indemnites_journalieres_adoption', three_previous_months)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', three_previous_months)
-        indemnites_journalieres_accident_travail = simulation.calculate(
-            'indemnites_journalieres_accident_travail', three_previous_months)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate(
-            'indemnites_journalieres_maladie_professionnelle', three_previous_months)
-        indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
-        indemnites_stage = simulation.calculate('indemnites_stage', three_previous_months)
+
+        def calcule_type_ressource(type, neutralisable = False):
+            ressource_trois_derniers_mois = simulation.calculate(type, three_previous_months)
+            if neutralisable:
+                ressource_mois_courant = simulation.calculate(type, period)
+                return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
+            else:
+                return ressource_trois_derniers_mois
+
+        # Ressources neutralisables
+        salnet = calcule_type_ressource('salnet', True)
+        indemnites_chomage_partiel = calcule_type_ressource('indemnites_chomage_partiel', True)
+        indemnites_journalieres_maternite = calcule_type_ressource('indemnites_journalieres_maternite', True)
+        indemnites_journalieres_paternite = calcule_type_ressource('indemnites_journalieres_paternite', True)
+        indemnites_journalieres_adoption = calcule_type_ressource('indemnites_journalieres_adoption', True)
+        indemnites_journalieres_maladie = calcule_type_ressource('indemnites_journalieres_maladie', True)
+        indemnites_journalieres_accident_travail = calcule_type_ressource('indemnites_journalieres_accident_travail', True)
+        indemnites_journalieres_maladie_professionnelle = calcule_type_ressource('indemnites_journalieres_maladie_professionnelle', True)
+        indemnites_volontariat = calcule_type_ressource('indemnites_volontariat', True)
+        revenus_stage_formation_pro = calcule_type_ressource('revenus_stage_formation_pro', True)
+        indemnites_stage = calcule_type_ressource('indemnites_stage', True)
+
+        # Autres ressources
+        hsup = calcule_type_ressource('hsup')
+        etr = calcule_type_ressource('etr')
+
         tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
+        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
 
         return period, (
             salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
