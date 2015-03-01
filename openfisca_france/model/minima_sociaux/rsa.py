@@ -578,20 +578,37 @@ class ra_rsa(SimpleFormulaColumn):
 
 
 @reference_formula
+class rsa_forfait_asf_i(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"RSA - Montant individuel de forfait ASF"
+    start_date = date(2014, 4, 1)
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        pfam = simulation.legislation_at(period.start).fam
+        minim = simulation.legislation_at(period.start).minim
+
+        return period, asf_elig_i * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+
+
+@reference_formula
 class rsa_forfait_asf(SimpleFormulaColumn):
-    column = FloatCol
+    column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
     start_date = date(2014, 4, 1)
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        asf_elig = simulation.calculate('asf_elig', period)
-        asf_nbenf = simulation.calculate('asf_nbenf', period)
-        bmaf = simulation.legislation_at(period.start).fam.af.bmaf
-        forfait_asf = simulation.legislation_at(period.start).minim.rmi.forfait_asf
 
-        return period, asf_elig * max_(0, asf_nbenf * bmaf * forfait_asf.taux1)
+        asf_elig = simulation.calculate('asf_elig', period)
+        rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_i', period)
+        montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
+
+        return period, asf_elig * montant
 
 
 @reference_formula
