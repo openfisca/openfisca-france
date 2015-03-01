@@ -31,6 +31,24 @@ import datetime
 from openfisca_core import periods
 from openfisca_france.tests.base import tax_benefit_system
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+def zip_period_with_values(period_str, values):
+    period = periods.period(period_str)
+    size = period.size
+    assert is_number(values) or size == len(values)
+    casted_values = [values / size] * size if is_number(values) else values
+    start = period.start
+    unit = period.unit
+    period_list = [str(start.offset(index, unit)) for index in range(size)]
+    return dict(zip(period_list, casted_values))
+
 
 default_period = "2014"
 
@@ -40,9 +58,7 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
-            salaire_de_base = {
-                "2010-04:9": 9 * 1500,
-                },
+            salaire_de_base = zip_period_with_values("2010-04:9", 9 * 1500),
             contrat_de_travail_arrivee = datetime.date(2010, 4, 19),
             taille_entreprise = 3,
             type_sal = 0,
