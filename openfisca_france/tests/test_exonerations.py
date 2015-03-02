@@ -35,25 +35,9 @@ import numpy
 from openfisca_core import periods
 from openfisca_france.model.cotisations_sociales.exonerations import exoneration_relative_year
 from openfisca_france.tests.base import tax_benefit_system
+from openfisca_france.tests.utils import zip_period_with_values
 
 
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
-
-
-def zip_period_with_values(period_str, values):
-    period = periods.period(period_str)
-    size = period.size
-    assert is_number(values) or size == len(values)
-    casted_values = [values / size] * size if is_number(values) else values
-    start = period.start
-    unit = period.unit
-    period_list = [str(start.offset(index, unit)) for index in range(size)]
-    return dict(zip(period_list, casted_values))
 
 
 def test_exoneration_relative_year():
@@ -147,7 +131,7 @@ test_case_by_employee_type = dict(
             effectif_entreprise = 20,
             salaire_de_base = dict(
                 zip_period_with_values("2014-05:8", 35 * 52 * 9.53 * 1.4 * 8 / 12).items() +
-                zip_period_with_values("2015-01:12", 35 * 52 * 9.61 * 1.4 / 12).items(),
+                zip_period_with_values("2015-01:12", 35 * 52 * 9.61 * 1.4).items(),
                 ),
             zone_revitalisation_rurale = {
                 "2014:5": True,
@@ -178,10 +162,10 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zrr= {
+            exoneration_cotisations_patronales_zrr = {
                 "2014": 35 * 52 * 9.53 * 2.5 * 0,
                 "2014-01": 35 * 52 * 9.53 * 2.5 * 0 / 12,
-#                "2015": 35 * 52 * 9.61 * 2.5 * .281 * 8 / 12,
+                # "2015": 35 * 52 * 9.61 * 2.5 * .281 * 8 / 12,
                 "2015-01": 35 * 52 * 9.61 * 1.4 * 0 / 12,
                 "2015-09": 0,
                 "2016": 0}
