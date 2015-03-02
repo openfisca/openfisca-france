@@ -57,21 +57,23 @@ class cf_temp(SimpleFormulaColumn):
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
-        P = simulation.legislation_at(period.start).fam
+
+        pfam = simulation.legislation_at(period.start).fam
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-        bmaf = P.af.bmaf
-        bmaf2 = P.af.bmaf_n_2
-        cf_nbenf = nb_enf(age, smic55, P.cf.age1, P.cf.age2)
+        bmaf = pfam.af.bmaf
+        bmaf2 = pfam_n_2.af.bmaf
+        cf_nbenf = nb_enf(age, smic55, pfam.cf.age1, pfam.cf.age2)
 
-        cf_base_n_2 = P.cf.tx * bmaf2
-        cf_base = P.cf.tx * bmaf
+        cf_base_n_2 = pfam.cf.tx * bmaf2
+        cf_base = pfam.cf.tx * bmaf
 
-        cf_plaf_tx = 1 + P.cf.plaf_tx1 * min_(cf_nbenf, 2) + P.cf.plaf_tx2 * max_(cf_nbenf - 2, 0)
+        cf_plaf_tx = 1 + pfam.cf.plaf_tx1 * min_(cf_nbenf, 2) + pfam.cf.plaf_tx2 * max_(cf_nbenf - 2, 0)
         cf_majo = isol | biact
-        cf_plaf = P.cf.plaf * cf_plaf_tx + P.cf.plaf_maj * cf_majo
+        cf_plaf = pfam.cf.plaf * cf_plaf_tx + pfam.cf.plaf_maj * cf_majo
         cf_plaf2 = cf_plaf + 12 * cf_base_n_2
 
         cf = (cf_nbenf >= 3) * ((br_pf <= cf_plaf) * cf_base +

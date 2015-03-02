@@ -223,11 +223,11 @@ class biact(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         br_pf_i_holder = simulation.compute('br_pf_i', period)
-        _P = simulation.legislation_at(period.start)
+        pfam = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
 
-        seuil_rev = 12 * _P.fam.af.bmaf_n_2
+        seuil_rev = 12 * pfam.af.bmaf
         biact = (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
         return period, biact
 

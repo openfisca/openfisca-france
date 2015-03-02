@@ -234,7 +234,9 @@ class aide_logement_montant(SimpleFormulaColumn):
         zone_apl_famille = simulation.calculate('zone_apl_famille', period)
         nat_imp_holder = simulation.compute('nat_imp', period.start.period(u'year').offset('first-of'))
         al = simulation.legislation_at(period.start).al
-        fam = simulation.legislation_at(period.start).fam
+
+        pfam = simulation.legislation_at(period.start).fam
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         # le barème "couple" est utilisé pour les femmes enceintes isolées
         couple = or_(concub, enceinte_fam)
@@ -333,7 +335,7 @@ class aide_logement_montant(SimpleFormulaColumn):
             al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
             )
 
-        bmaf = fam.af.bmaf_n_2
+        bmaf = pfam_n_2.af.bmaf
         R2 = (
             al.R2.taux4 * bmaf * (al_pac >= 2) +
             al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)
@@ -380,9 +382,8 @@ class aide_logement_montant(SimpleFormulaColumn):
         al_acc = 0 * acce
         # # APL (tous)
 
-        taux_crds = simulation.legislation_at(period.start).fam.af.crds
         al = al_loc + al_acc
-        al = round(al * (1 - taux_crds), 2)
+        al = round(al * (1 - pfam.af.crds), 2)
 
         return period, al
 

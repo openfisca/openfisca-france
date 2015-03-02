@@ -71,7 +71,9 @@ class paje_base_temp(SimpleFormulaColumn):
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
-        P = simulation.legislation_at(period.start).fam
+
+        pfam = simulation.legislation_at(period.start).fam
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         # TODO cumul des paje si et seulement si naissance multiples
 
@@ -81,20 +83,20 @@ class paje_base_temp(SimpleFormulaColumn):
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-        bmaf = P.af.bmaf
-        bmaf2 = P.af.bmaf_n_2
+        bmaf = pfam.af.bmaf
+        bmaf2 = pfam_n_2.af.bmaf
 
-        base = round(P.paje.base.taux * bmaf, 2)
-        base2 = round(P.paje.base.taux * bmaf2, 2)
+        base = round(pfam.paje.base.taux * bmaf, 2)
+        base2 = round(pfam.paje.base.taux * bmaf2, 2)
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
 
-        nbenf = nb_enf(age, smic55, 0, P.paje.base.age - 1)
+        nbenf = nb_enf(age, smic55, 0, pfam.paje.base.age - 1)
 
-        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) + pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
         majo = isol | biact
-        plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
+        plaf = pfam.paje.base.plaf * plaf_tx + (plaf_tx > 0) * pfam.paje.base.plaf_maj * majo
         plaf2 = plaf + 12 * base2  # TODO vérifier l'aspect différentielle de la PAJE et le plaf2 de la paje
 
         paje_base = (nbenf > 0) * ((br_pf < plaf) * base +
