@@ -29,6 +29,7 @@ from __future__ import division
 import datetime
 
 from openfisca_core import periods
+from openfisca_france.tests.utils import zip_period_with_values
 from openfisca_france.tests.base import tax_benefit_system
 
 
@@ -40,12 +41,16 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             effectif_entreprise = 3000,
             localisation_entreprise = "75001",
-            salaire_de_base = 12 * 1500,
+            salaire_de_base = zip_period_with_values("2010-04", [1500] * 3),
             contrat_de_travail_arrivee = datetime.date(2010, 4, 19),
             taille_entreprise = 3,
             type_sal = 0,
             ),
         output_variables = dict(
+            salaire_de_base = {
+                "2010-05": 1500,
+                "2010-06": 1500,
+                },
             nombre_jours_calendaires = 12,
             ),
         ),
