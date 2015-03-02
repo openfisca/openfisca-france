@@ -32,6 +32,46 @@ from ..pfam import nb_enf
 
 
 @reference_formula
+class cf_enfant_a_charge(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = Individus
+    label = u"Complément familial - Enfant considéré à charge"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        mois_dernier = period.offset(-1)
+
+        est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
+        smic55 = simulation.calculate('smic55', mois_dernier)
+        age = simulation.calculate('age', period)
+        rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
+
+        pfam = simulation.legislation_at(period.start).fam
+
+        condition_enfant = ((age >= pfam.cf.age1) * (age < pfam.enfants.age_intermediaire) *
+            rempli_obligation_scolaire)
+        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age2) * not_(smic55)
+
+        return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
+
+
+@reference_formula
+class cf_ressources_i(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Complément familial - Ressources de l'individu prises en compte"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        br_pf_i = simulation.calculate('br_pf_i')
+        est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
+        cf_enfant_a_charge = simulation.calculate('cf_enfant_a_charge', period)
+
+        return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * br_pf_i
+
+
+@reference_formula
 class cf_temp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -51,22 +91,21 @@ class cf_temp(SimpleFormulaColumn):
         # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
         # pouvoir déflater les revenus de l'année courante pour en tenir compte.
         """
-        period = period.start.offset('first-of', 'month').period('year')
-        age_holder = simulation.compute('age', period)
-        br_pf = simulation.calculate('br_pf', period) # FIXME la période de référence est l'année n-2 pour br_pf
+        period = period.start.offset('first-of', 'month').period('month')
+
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
+        cf_ressources_i_holder = simulation.compute('cf_ressources_i', period)
+        cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
 
         pfam = simulation.legislation_at(period.start).fam
         pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        cf_nbenf = self.sum_by_entity(cf_enfant_a_charge_holder)
+        ressources = self.sum_by_entity(cf_ressources_i_holder)
 
         bmaf = pfam.af.bmaf
         bmaf2 = pfam_n_2.af.bmaf
-        cf_nbenf = nb_enf(age, smic55, pfam.cf.age1, pfam.cf.age2)
 
         cf_base_n_2 = pfam.cf.tx * bmaf2
         cf_base = pfam.cf.tx * bmaf
@@ -76,10 +115,10 @@ class cf_temp(SimpleFormulaColumn):
         cf_plaf = pfam.cf.plaf * cf_plaf_tx + pfam.cf.plaf_maj * cf_majo
         cf_plaf2 = cf_plaf + 12 * cf_base_n_2
 
-        cf = (cf_nbenf >= 3) * ((br_pf <= cf_plaf) * cf_base +
-                                 (br_pf > cf_plaf) * max_(cf_plaf2 - br_pf, 0) / 12.0)
+        cf = (cf_nbenf >= 3) * ((ressources <= cf_plaf) * cf_base +
+                                 (ressources > cf_plaf) * max_(cf_plaf2 - ressources, 0) / 12)
 
-        return period, 12 * cf
+        return period, cf
 
 
 @reference_formula
@@ -93,7 +132,7 @@ class cf(SimpleFormulaColumn):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
         paje_base_temp = simulation.calculate('paje_base_temp', period)
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)

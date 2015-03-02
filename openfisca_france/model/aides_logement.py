@@ -142,10 +142,10 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
-        br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
+        br_pf_i_holder = simulation.compute('br_pf_i', period)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
         rev_coll = self.sum_by_entity(rev_coll_holder)
-        biact = simulation.calculate('biact', period, accept_other_period = True)
+        biact = simulation.calculate('biact', period)
         Pr = simulation.legislation_at(period.start).al.ressources
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
         abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)

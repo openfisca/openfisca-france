@@ -47,7 +47,7 @@ class ars(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         smic55_holder = simulation.compute('smic55', period)
-        br_pf = simulation.calculate('br_pf', period_br)
+        br_pf = simulation.calculate('br_pf', period_br.start.offset('first-of', 'month').period('month'))
         P = simulation.legislation_at(period.start).fam
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive

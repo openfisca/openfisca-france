@@ -3950,6 +3950,17 @@
     </NODE>
   </NODE>
   <NODE code="fam" description="Prestations familiales">
+    <NODE code="enfants" description="Enfants à charge">
+      <CODE code="age_minimal" description="Âge minimal pour être considéré comme enfant à charge" format="integer" type="age">
+        <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
+      </CODE>
+      <CODE code="age_intermediaire" description="Âge intermédiaire à partir duquel une condition de ressource s'applique pour être considéré comme enfant à charge" format="integer" type="age">
+        <VALUE deb="2001-01-01" fin="2015-12-31" valeur="16" />
+      </CODE>
+      <CODE code="age_limite" description="Âge limite (strict) pour être considéré comme enfant à charge" format="integer" type="age">
+        <VALUE deb="2001-01-01" fin="2015-12-31" valeur="20" />
+      </CODE>
+    </NODE>
     <NODE code="af" description="Allocations familiales">
       <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" type="monetary">
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="334.84" />
@@ -4038,7 +4049,7 @@
       <CODE code="age2" description="Âge limite supérieur" format="integer" type="age">
         <VALUE deb="1986-01-01" fin="1996-12-31" valeur="17" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
-        <VALUE deb="1998-01-01" fin="2014-03-31" valeur="20" />
+        <VALUE deb="1998-01-01" fin="2014-03-31" valeur="21" />
       </CODE>
       <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="13421" />

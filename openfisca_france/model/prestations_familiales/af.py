@@ -41,7 +41,7 @@ class af_nbenf(SimpleFormulaColumn):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period.offset(-1), accept_other_period = True)
+        smic55_holder = simulation.compute('smic55', period.start.offset('first-of', 'month').period('month'))
         P = simulation.legislation_at(period.start).fam.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -75,7 +75,7 @@ class af_base(DatedFormulaColumn):
 #        period = period.start.offset('first-of', 'month').period('month')
 #
 #        af_nbenf = simulation.calculate('af_nbenf', period)
-#        br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'year').period('year').offset(-2)) / 12
+#        br_pf = simulation.calculate('br_pf', period) / 12
 #
 #        legislation_af = simulation.legislation_at(period.start).fam.af
 #        bmaf = legislation_af.bmaf
