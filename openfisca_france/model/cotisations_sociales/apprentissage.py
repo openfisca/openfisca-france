@@ -26,7 +26,8 @@
 from __future__ import division
 
 
-from numpy import datetime64, maximum as max_, minimum as min_, round as round_, timedelta64
+from numpy import datetime64, timedelta64
+
 
 from ..base import *  # noqa analysis:ignore
 
@@ -51,11 +52,10 @@ class remuneration_apprenti(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
-        output = age * 0.0
 
-        anciennete_contrat = (datetime64(period.start) - apprentissage_contrat_debut).astype('timedelta64[Y]')
-        print 'age', age
-        print 'anciennete_contrat', anciennete_contrat
+        anciennete_contrat = (
+            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            ).astype('timedelta64[Y]')
         salaire_en_smic = [  # TODO: move to parameters
             dict(
                 part_de_smic = {
@@ -85,6 +85,8 @@ class remuneration_apprenti(SimpleFormulaColumn):
                 age_max = 99
                 )
             ]
+
+        output = age * 0.0
         for age_interval in salaire_en_smic:
             age_condition = age_interval["age_min"] <= age <= age_interval["age_max"]
 
@@ -92,8 +94,6 @@ class remuneration_apprenti(SimpleFormulaColumn):
                 (anciennete_contrat[age_condition] == anciennete) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic'].iteritems()
                 ])
-        print output
-
         return period, output * smic
 
 
@@ -103,7 +103,6 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-
     # Artisans et employeurs de moins de 11 salariés
     #
     # - exonération totale (part patronale et salariale) des charges sociales,
@@ -130,10 +129,11 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
             bareme_by_name['vieillessedeplaf'].rates[0] +
             bareme_by_name['vieillesseplaf'].rates[0] +
             bareme_by_name['maladie'].rates[0] +
-            bareme_by_name['famille'].rates[0])
-
+            bareme_by_name['famille'].rates[0]
+            )
         #TODO
-        return period, 0
+        return period, - taux_max * remuneration_apprenti
+
 
 @reference_formula
 class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
@@ -144,8 +144,8 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
-        TODO
-        return period, cotisations_salariales
+        return period, - cotisations_salariales
+
 
 @reference_formula
 class prime_apprentissage(SimpleFormulaColumn):
@@ -166,7 +166,7 @@ class prime_apprentissage(SimpleFormulaColumn):
     # des jeunes sur le territoire de la région (ou de la collectivité territoriale de Corse).
     #
     # Son montant est au minimum de 1 000 euros par année de cycle de formation.
-    # nouveau.gifDepuis le 1er janvier 2014 , cette aide n'est versée qu'aux entreprises de moins de 11 salariés.
+    # nouveau. Depuis le 1er janvier 2014 , cette aide n'est versée qu'aux entreprises de moins de 11 salariés.
     #
     # Son versement est subordonné à la condition que l'embauche de l'apprenti soit confirmée à l'issue des deux
     # premiers mois de l'apprentissage.

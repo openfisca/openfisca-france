@@ -37,11 +37,11 @@ test_case_by_employee_type = dict(
     apprentissage = dict(
         input_variables = dict(
             apprentissage_contrat_debut = "2013-01-01",
-            birth = datetime.date(2015 - 18 - 1, 1,1),
+            birth = datetime.date(2015 - 18 - 1, 1, 1),
             ),
         output_variables = dict(
             remuneration_apprenti = {
-                "2015": 0,
+                "2015": 35 * 52 * 9.61 * .49,
                 }
             ),
         ),
@@ -51,7 +51,7 @@ test_case_by_employee_type = dict(
 def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
 
-        simulation_period = 2013
+        simulation_period = 2015
         parent1 = dict(
             birth = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
             )
