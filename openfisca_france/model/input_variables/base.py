@@ -44,10 +44,10 @@ build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
 
 build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
 
-build_column(Familles.name_key, StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
-build_column(FoyersFiscaux.name_key, StrCol(entity = 'foy', is_permanent = True, label = u"Nom"))
-build_column(Individus.name_key, StrCol(is_permanent = True, label = u"Prénom"))
-build_column(Menages.name_key, StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
+build_column('nom_famille', StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
+build_column('nom_foyer_fiscal', StrCol(entity = 'foy', is_permanent = True, label = u"Nom"))
+build_column('nom_individu', StrCol(is_permanent = True, label = u"Prénom"))
+build_column('nom_menage', StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
 
 
 build_column('enceinte', BoolCol(entity = 'ind', label = u"Est enceinte"))

@@ -25,6 +25,7 @@
 
 import datetime
 
+from openfisca_core import periods
 from openfisca_core.tools import assert_near
 
 from . import base
@@ -72,3 +73,26 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
 def check_simulation_variable(description, simulation, variable, expected_value, error_margin):
     calculated_value = simulation.calculate(variable).sum()
     yield check_calculation, variable, calculated_value, expected_value, error_margin
+
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+def zip_period_with_values(period_str, values):
+    period = periods.period(period_str)
+    size = period.size
+    if not isinstance(values, list):
+        assert is_number(values)
+        casted_values = [values / size] * size
+    else:
+        if size < len(values) and size == 1:
+            size = len(values)
+        casted_values = values
+    period_list = [str(period.start.period(period.unit).offset(index)) for index in range(size)]
+    return dict(zip(period_list, casted_values))
+
