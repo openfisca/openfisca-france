@@ -39,10 +39,9 @@ class cf_enfant_a_charge(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        mois_dernier = period.offset(-1)
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        smic55 = simulation.calculate('smic55', mois_dernier)
+        smic55 = simulation.calculate('smic55', period)
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
