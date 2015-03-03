@@ -184,12 +184,15 @@ class paje_clca(SimpleFormulaColumn):
         http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
         """
         period = period.start.offset('first-of', 'month').period('year')
-        agem_holder = simulation.compute('agem', period)
+        period_new = period.start.period('month')
+
+        agem_holder = simulation.compute('agem', period_new)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        paje_base = simulation.calculate('paje_base', period)
+        paje_base = simulation.calculate('paje_base', period_new)
         inactif = simulation.calculate('inactif', period)
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
+
         P = simulation.legislation_at(period.start).fam
 
         agem = self.split_by_roles(agem_holder, roles = ENFS)
@@ -369,14 +372,16 @@ class paje_colca(SimpleFormulaColumn):
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
         period = period.start.offset('first-of', 'month').period('year')
+        period_new = period.start.period('month')
+
         af_nbenf = simulation.calculate('af_nbenf', period)
-        agem_holder = simulation.compute('agem', period)
+        agem_holder = simulation.compute('agem', period_new)
         opt_colca = simulation.calculate('opt_colca', period)
-        paje_base = simulation.calculate('paje_base', period)
+        paje_base = simulation.calculate('paje_base', period_new)
+
         P = simulation.legislation_at(period.start).fam
 
         agem = self.split_by_roles(agem_holder, roles = ENFS)
-
         age_m_benjamin = age_en_mois_benjamin(agem)
         condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
         nbenf = af_nbenf
@@ -401,15 +406,14 @@ class paje_base(SimpleFormulaColumn):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.start.offset('first-of', 'month').period('year')
-        period_new = period.start.offset('first-of', 'month').period('month')
+        period = period.start.offset('first-of', 'month').period('month')
 
-        paje_base_temp = 12 * simulation.calculate('paje_base_temp', period_new)
-        cf_temp = 12 * simulation.calculate('cf_temp', period_new)
+        paje_base_temp = simulation.calculate('paje_base_temp', period)
+        cf_temp = simulation.calculate('cf_temp', period)
 
         # On regarde ce qui est le plus intéressant pour la famille, chaque mois
         paje_base = (paje_base_temp >= cf_temp) * paje_base_temp
-        return period, round(paje_base, 2)
+        return period, paje_base
 
 
 def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
