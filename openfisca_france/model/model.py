@@ -27,7 +27,6 @@ from . import (  # noqa analysis:ignore
     common,
     education,
     input_variables,
-    isf,
     aides_logement,
     pfam,
     travailleurs_non_salaries,
@@ -52,6 +51,10 @@ from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
     ir,
     plus_values_immobilieres,
     reductions_impot,
+    )
+
+from .prelevements_obligatoires import(  # noqa analysis:ignore
+    isf,
     )
 
 from .minima_sociaux import (  # noqa analysis:ignore

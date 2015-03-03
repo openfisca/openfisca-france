@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import maximum as max_, minimum as min_
 
-from .base import *  # noqa
+from ..base import *  # noqa
 
 
 # 1 ACTIF BRUT
