@@ -216,10 +216,10 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_montant(SimpleFormulaColumn):
+class aide_logement_montant_brut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
-    label = u"Formule des aides aux logements en secteur locatif"
+    label = u"Formule des aides aux logements en secteur locatif en montant brut avant CRDS"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -235,7 +235,6 @@ class aide_logement_montant(SimpleFormulaColumn):
         nat_imp_holder = simulation.compute('nat_imp', period.start.period(u'year').offset('first-of'))
         al = simulation.legislation_at(period.start).al
 
-        pfam = simulation.legislation_at(period.start).fam
         pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         # le barème "couple" est utilisé pour les femmes enceintes isolées
@@ -383,9 +382,23 @@ class aide_logement_montant(SimpleFormulaColumn):
         # # APL (tous)
 
         al = al_loc + al_acc
-        al = round(al * (1 - pfam.af.crds), 2)
 
         return period, al
+
+
+@reference_formula
+class aide_logement_montant(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Montant des aides au logement net de CRDS"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
+        crds_logement = simulation.calculate('crds_logement', period)
+        montant = round(aide_logement_montant_brut + crds_logement, 2)
+
+        return period, montant
 
 
 @reference_formula
@@ -506,9 +519,9 @@ class crds_logement(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        aide_logement_montant = simulation.calculate('aide_logement_montant', period)
+        aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds = simulation.legislation_at(period.start).fam.af.crds
-        return period, -aide_logement_montant * crds
+        return period, -aide_logement_montant_brut * crds
 
 
 @reference_formula
