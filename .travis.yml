@@ -10,5 +10,5 @@ before_install:
 install:
   - pip install flake8  # Not yet available in Debian stable
   - pip install -r requirements.txt
-  - pip install -e git+https://github.com/openfisca/openfisca-france-data.git#egg=OpenFisca-France-Data  # For test_from_taxipp
+  # - pip install -e git+https://github.com/openfisca/openfisca-france-data.git#egg=OpenFisca-France-Data  # For test_from_taxipp which is ignored in Makefile
 script: make test-ci
