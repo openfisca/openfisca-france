@@ -47,7 +47,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
     from .model import datatrees
     from .model import input_variables  # Load input variables into entities. # noqa analysis:ignore
     from .model import model  # Load output variables into entities. # noqa analysis:ignore
-    from .model.cotisations_sociales import preprocessing
+    from .model.prelevements_obligatoires.cotisations_sociales import preprocessing
     if qt:
         from .widgets.Composition import CompositionWidget
 

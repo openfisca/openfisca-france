@@ -34,7 +34,7 @@ from . import (  # noqa analysis:ignore
     th,
     )
 
-from .cotisations_sociales import (  # noqa analysis:ignore
+from .prelevements_obligatoires.cotisations_sociales import (  # noqa analysis:ignore
     allegements,
     capital,
     # penalites,
