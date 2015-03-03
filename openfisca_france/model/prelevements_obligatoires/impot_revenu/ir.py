@@ -30,7 +30,7 @@ import logging
 from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 
-from ..base import *  # noqa analysis:ignore
+from ...base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)

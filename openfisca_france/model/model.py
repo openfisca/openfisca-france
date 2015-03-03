@@ -46,8 +46,7 @@ from .cotisations_sociales import (  # noqa analysis:ignore
     travail_totaux,
     )
 
-from .impot_revenu import (  # noqa analysis:ignore
-    ir,
+from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
     charges_deductibles,
     credits_impot,
     ir,
