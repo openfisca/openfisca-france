@@ -60,7 +60,7 @@ setup(
     extras_require = dict(
         tests = [
             'Biryani >= 0.10.1',
-            'pandas >= 0.13',
+            # 'pandas >= 0.13',  # Only for taxipp_utils.py which is ignored in Makefile
             'PyYAML',
             ],
         ),
