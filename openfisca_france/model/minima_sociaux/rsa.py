@@ -418,8 +418,6 @@ class br_rmi_i(SimpleFormulaColumn):
         gains_exceptionnels = calcule_type_ressource('gains_exceptionnels')
         dedommagement_victime_amiante = calcule_type_ressource('dedommagement_victime_amiante')
         pensions_invalidite = calcule_type_ressource('pensions_invalidite')
-        bourse_enseignement_sup = calcule_type_ressource('bourse_enseignement_sup')
-        bourse_recherche = calcule_type_ressource('bourse_recherche')
         rsa_base_ressources_patrimoine_i = calcule_type_ressource('rsa_base_ressources_patrimoine_i')
 
         rev_cap_bar_holder = simulation.compute('rev_cap_bar', three_previous_months)
@@ -432,7 +430,7 @@ class br_rmi_i(SimpleFormulaColumn):
             rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
-            bourse_enseignement_sup + bourse_recherche + rsa_base_ressources_patrimoine_i
+            rsa_base_ressources_patrimoine_i
             ) / 3
 
 
@@ -547,6 +545,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         indemnites_volontariat = calcule_type_ressource('indemnites_volontariat', True)
         revenus_stage_formation_pro = calcule_type_ressource('revenus_stage_formation_pro', True)
         indemnites_stage = calcule_type_ressource('indemnites_stage', True)
+        bourse_recherche = calcule_type_ressource('bourse_recherche', True)
 
         # Autres ressources
         hsup = calcule_type_ressource('hsup')
@@ -559,7 +558,8 @@ class ra_rsa_i(SimpleFormulaColumn):
             salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus) / 3
+            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus +
+            bourse_recherche) / 3
 
 
 @reference_formula
