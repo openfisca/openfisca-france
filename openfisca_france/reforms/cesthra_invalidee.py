@@ -33,7 +33,7 @@ from numpy import maximum as max_
 
 from openfisca_core import columns, formulas, reforms
 from openfisca_france import entities
-from openfisca_france.model.impot_revenu import ir
+from openfisca_france.model.prelevements_obligatoires.impot_revenu import ir
 
 
 log = logging.getLogger(__name__)
