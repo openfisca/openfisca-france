@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import (floor, minimum as min_, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
 from ..base import *  # noqa
 from ..pfam import nb_enf, age_en_mois_benjamin
@@ -652,13 +652,16 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         avantage_nature = or_(so == 2, so == 6)
         avantage_al = aide_logement > 0
 
-        avantage = or_(avantage_nature, avantage_al)
-
-        return period, rmi * avantage * (
+        montant_forfait = rmi * (
             (rmi_nbp == 1) * forf_logement.taux1 +
             (rmi_nbp == 2) * forf_logement.taux2 +
             (rmi_nbp >= 3) * forf_logement.taux3
             )
+
+        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_nature = avantage_nature * montant_forfait
+
+        return period, max_(montant_al, montant_nature)
 
 
 @reference_formula
