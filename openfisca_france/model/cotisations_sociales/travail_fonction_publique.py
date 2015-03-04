@@ -382,10 +382,10 @@ class supp_familial_traitement(SimpleFormulaColumn):
         period = period.start.period(u'month').offset('first-of')
         type_sal = simulation.calculate('type_sal', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        #af_nbenf_holder = simulation.compute('af_nbenf', period)
+        af_nbenf_holder = simulation.compute('af_nbenf', period)
         _P = simulation.legislation_at(period.start)
 
-        fonc_nbenf = 0 #self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
+        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
         P = _P.fonc.supp_fam
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
