@@ -1,0 +1,64 @@
+name: "Meublé : 2/3 du loyer charges comprises (al, location)"
+description: |
+  Le loyer pris en compte est égal à 2/3 du loyer CC pour un meublé ou un hôtel
+  http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189
+  
+  L	133,33
+  C	53,23
+  E	186,56
+  R	0
+  R0	4593
+  Rp	0
+  Tf	2,83
+  LR	255,03
+  RL	52,28
+  Tl	0,033
+  Tp	2,863
+  P0	34,73
+  P1	0
+  Pp	34,73
+  AL	151,07
+period: "month:2014-12"
+individus:
+  age: 34
+  agem: 412
+  alr:
+    2012: 0
+  birth: "1980-08-12"
+  boursier: true
+  cho:
+    2012: 0
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 548ef9d98dac136002468a88
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  rst:
+    2012: 0
+  sal:
+    2012: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 548ef9d98dac136002468a88
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 548ef9d98dac136002468a88
+  f6el:
+    2012: 0
+  personnes_a_charge:
+  rfr:
+menages:
+  depcom: 75101
+  enfants:
+  loyer: 200
+  personne_de_reference: 548ef9d98dac136002468a88
+  so: 5
+output_variables:
+  aide_logement: 151.07
