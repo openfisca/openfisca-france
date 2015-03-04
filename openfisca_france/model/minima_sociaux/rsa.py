@@ -811,6 +811,44 @@ class rmi(DatedFormulaColumn):
 
 
 @reference_formula
+class rsa_non_majore(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenu de solidarité active - non majoré"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        rsa_socle = simulation.calculate('rsa_socle', period)
+        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        br_rmi = simulation.calculate('br_rmi', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+
+@reference_formula
+class rsa_majore(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenu de solidarité active - majoré"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
+        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        br_rmi = simulation.calculate('br_rmi', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+
+@reference_formula
 class rsa(SimpleFormulaColumn):
     column = FloatCol
     label = u"Revenu de solidarité active"
@@ -818,15 +856,9 @@ class rsa(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        rsa_socle = simulation.calculate('rsa_socle', period)
-        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
-        ra_rsa = simulation.calculate('ra_rsa', period)
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period) # TODO: not used ?
-        br_rmi = simulation.calculate('br_rmi', period)
-        P = simulation.legislation_at(period.start).minim.rmi
+        rsa_majore = simulation.calculate('rsa_majore', period)
+        rsa_non_majore = simulation.calculate('rsa_non_majore', period)
 
-        socle = max_(rsa_socle, rsa_socle_majore)
-        base_normalise = max_(socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+        rsa = max_(rsa_majore, rsa_non_majore)
 
-        return period, base_normalise * (base_normalise >= P.rsa_nv)
+        return period, rsa
