@@ -247,7 +247,7 @@ class pfam_ressources_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        br_pf_i = simulation.calculate('br_pf_i')
+        br_pf_i = simulation.calculate('br_pf_i', period)
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         pfam_enfant_a_charge = simulation.calculate('pfam_enfant_a_charge', period)
 
