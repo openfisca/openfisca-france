@@ -28,6 +28,7 @@ from __future__ import division
 
 import logging
 
+from numpy import zeros
 
 from ..base import *  # noqa analysis:ignore
 from .base import montant_csg_crds
@@ -384,6 +385,11 @@ class salnet(SimpleFormulaColumn):
         net = net de csg et crds
         '''
         period = period
+
+        salaire_de_base = simulation.get_array('salaire_de_base', period)
+        if salaire_de_base is None:
+            return period, zeros(self.holder.entity.count)
+
         sal = simulation.calculate('sal', period)
         crdssal = simulation.calculate_add('crdssal', period)
         csgsali = simulation.calculate_add('csgsali', period)

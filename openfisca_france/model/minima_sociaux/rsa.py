@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import (floor, minimum as min_, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
 from ..base import *  # noqa
 from ..pfam import nb_enf, age_en_mois_benjamin
@@ -392,36 +392,45 @@ class br_rmi_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
+
         ra_rsa_i = simulation.calculate('ra_rsa_i', period)
-        chonet = simulation.calculate('chonet', three_previous_months)
-        rstnet = simulation.calculate('rstnet', three_previous_months)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        rto_declarant1 = simulation.calculate('rto_declarant1', three_previous_months)
+
+        def calcule_type_ressource(type, neutralisable = False):
+            ressource_trois_derniers_mois = simulation.calculate(type, three_previous_months)
+            if neutralisable:
+                ressource_mois_courant = simulation.calculate(type, period)
+                return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
+            else:
+                return ressource_trois_derniers_mois
+
+        # Ressources neutralisables
+        chonet = calcule_type_ressource('chonet', True)
+        pensions_alimentaires_percues = calcule_type_ressource('pensions_alimentaires_percues', True)
+        allocation_aide_retour_emploi = calcule_type_ressource('allocation_aide_retour_emploi', True)
+        allocation_securisation_professionnelle = calcule_type_ressource('allocation_securisation_professionnelle', True)
+        prestation_compensatoire = calcule_type_ressource('prestation_compensatoire', True)
+
+        # Autres ressources
+        rstnet = calcule_type_ressource('rstnet')
+        rto_declarant1 = calcule_type_ressource('rto_declarant1')
+        rfon_ms = calcule_type_ressource('rfon_ms')
+        div_ms = calcule_type_ressource('div_ms')
+        gains_exceptionnels = calcule_type_ressource('gains_exceptionnels')
+        dedommagement_victime_amiante = calcule_type_ressource('dedommagement_victime_amiante')
+        pensions_invalidite = calcule_type_ressource('pensions_invalidite')
+        rsa_base_ressources_patrimoine_i = calcule_type_ressource('rsa_base_ressources_patrimoine_i')
+
         rev_cap_bar_holder = simulation.compute('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate('rfon_ms', three_previous_months)
-        div_ms = simulation.calculate('div_ms', three_previous_months)
-        gains_exceptionnels = simulation.calculate('gains_exceptionnels', three_previous_months)
-        dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
-        allocation_aide_retour_emploi = simulation.calculate('allocation_aide_retour_emploi', three_previous_months)
-
-        allocation_securisation_professionnelle = simulation.calculate(
-            'allocation_securisation_professionnelle', three_previous_months)
-        prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
-        bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', three_previous_months)
-        bourse_recherche = simulation.calculate('bourse_recherche', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate(
-            'rsa_base_ressources_patrimoine_i', three_previous_months)
-
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+
         return period, ra_rsa_i + (
             chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
             rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
-            bourse_enseignement_sup + bourse_recherche + rsa_base_ressources_patrimoine_i
+            rsa_base_ressources_patrimoine_i
             ) / 3
 
 
@@ -437,8 +446,8 @@ class br_rmi(SimpleFormulaColumn):
         br_rmi_ms = simulation.calculate('br_rmi_ms', period)
         br_rmi_i_holder = simulation.compute('br_rmi_i', period)
 
-        br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + br_rmi_i[PART]
+        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
+        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total
 
 
 @reference_formula
@@ -515,32 +524,42 @@ class ra_rsa_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
-        salnet = simulation.calculate('salnet', three_previous_months)
-        hsup = simulation.calculate('hsup', three_previous_months)
-        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
-        etr = simulation.calculate('etr', three_previous_months)
-        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
-        indemnites_journalieres_maternite = simulation.calculate(
-            'indemnites_journalieres_maternite', three_previous_months)
-        indemnites_journalieres_paternite = simulation.calculate(
-            'indemnites_journalieres_paternite', three_previous_months)
-        indemnites_journalieres_adoption = simulation.calculate(
-            'indemnites_journalieres_adoption', three_previous_months)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', three_previous_months)
-        indemnites_journalieres_accident_travail = simulation.calculate(
-            'indemnites_journalieres_accident_travail', three_previous_months)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate(
-            'indemnites_journalieres_maladie_professionnelle', three_previous_months)
-        indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
-        indemnites_stage = simulation.calculate('indemnites_stage', three_previous_months)
+
+        def calcule_type_ressource(type, neutralisable = False):
+            ressource_trois_derniers_mois = simulation.calculate(type, three_previous_months)
+            if neutralisable:
+                ressource_mois_courant = simulation.calculate(type, period)
+                return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
+            else:
+                return ressource_trois_derniers_mois
+
+        # Ressources neutralisables
+        salnet = calcule_type_ressource('salnet', True)
+        indemnites_chomage_partiel = calcule_type_ressource('indemnites_chomage_partiel', True)
+        indemnites_journalieres_maternite = calcule_type_ressource('indemnites_journalieres_maternite', True)
+        indemnites_journalieres_paternite = calcule_type_ressource('indemnites_journalieres_paternite', True)
+        indemnites_journalieres_adoption = calcule_type_ressource('indemnites_journalieres_adoption', True)
+        indemnites_journalieres_maladie = calcule_type_ressource('indemnites_journalieres_maladie', True)
+        indemnites_journalieres_accident_travail = calcule_type_ressource('indemnites_journalieres_accident_travail', True)
+        indemnites_journalieres_maladie_professionnelle = calcule_type_ressource('indemnites_journalieres_maladie_professionnelle', True)
+        indemnites_volontariat = calcule_type_ressource('indemnites_volontariat', True)
+        revenus_stage_formation_pro = calcule_type_ressource('revenus_stage_formation_pro', True)
+        indemnites_stage = calcule_type_ressource('indemnites_stage', True)
+        bourse_recherche = calcule_type_ressource('bourse_recherche', True)
+
+        # Autres ressources
+        hsup = calcule_type_ressource('hsup')
+        etr = calcule_type_ressource('etr')
+
         tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
+        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
 
         return period, (
             salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus) / 3
+            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus +
+            bourse_recherche) / 3
 
 
 @reference_formula
@@ -554,25 +573,42 @@ class ra_rsa(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
 
-        ra_rsa = self.split_by_roles(ra_rsa_i_holder)
-        return period, ra_rsa[CHEF] + ra_rsa[PART]
+        ra_rsa = self.sum_by_entity(ra_rsa_i_holder)
+        return period, ra_rsa
+
+
+@reference_formula
+class rsa_forfait_asf_i(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"RSA - Montant individuel de forfait ASF"
+    start_date = date(2014, 4, 1)
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        pfam = simulation.legislation_at(period.start).fam
+        minim = simulation.legislation_at(period.start).minim
+
+        return period, asf_elig_i * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
 
 @reference_formula
 class rsa_forfait_asf(SimpleFormulaColumn):
-    column = FloatCol
+    column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
     start_date = date(2014, 4, 1)
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        asf_elig = simulation.calculate('asf_elig', period)
-        asf_nbenf = simulation.calculate('asf_nbenf', period)
-        bmaf = simulation.legislation_at(period.start).fam.af.bmaf
-        forfait_asf = simulation.legislation_at(period.start).minim.rmi.forfait_asf
 
-        return period, asf_elig * max_(0, asf_nbenf * bmaf * forfait_asf.taux1)
+        asf_elig = simulation.calculate('asf_elig', period)
+        rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_i', period)
+        montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
+
+        return period, asf_elig * montant
 
 
 @reference_formula
@@ -616,13 +652,16 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         avantage_nature = or_(so == 2, so == 6)
         avantage_al = aide_logement > 0
 
-        avantage = or_(avantage_nature, avantage_al)
-
-        return period, rmi * avantage * (
+        montant_forfait = rmi * (
             (rmi_nbp == 1) * forf_logement.taux1 +
             (rmi_nbp == 2) * forf_logement.taux2 +
             (rmi_nbp >= 3) * forf_logement.taux3
             )
+
+        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_nature = avantage_nature * montant_forfait
+
+        return period, max_(montant_al, montant_nature)
 
 
 @reference_formula
@@ -772,6 +811,44 @@ class rmi(DatedFormulaColumn):
 
 
 @reference_formula
+class rsa_non_majore(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenu de solidarité active - non majoré"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        rsa_socle = simulation.calculate('rsa_socle', period)
+        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        br_rmi = simulation.calculate('br_rmi', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+
+@reference_formula
+class rsa_majore(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Revenu de solidarité active - majoré"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
+        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        br_rmi = simulation.calculate('br_rmi', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+
+@reference_formula
 class rsa(SimpleFormulaColumn):
     column = FloatCol
     label = u"Revenu de solidarité active"
@@ -779,15 +856,9 @@ class rsa(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        rsa_socle = simulation.calculate('rsa_socle', period)
-        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
-        ra_rsa = simulation.calculate('ra_rsa', period)
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period) # TODO: not used ?
-        br_rmi = simulation.calculate('br_rmi', period)
-        P = simulation.legislation_at(period.start).minim.rmi
+        rsa_majore = simulation.calculate('rsa_majore', period)
+        rsa_non_majore = simulation.calculate('rsa_non_majore', period)
 
-        socle = max_(rsa_socle, rsa_socle_majore)
-        base_normalise = max_(socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+        rsa = max_(rsa_majore, rsa_non_majore)
 
-        return period, base_normalise * (base_normalise >= P.rsa_nv)
+        return period, rsa

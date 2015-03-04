@@ -99,6 +99,8 @@ familles:
   parents: 5485d6a83bc432e473c703d8
 foyers_fiscaux:
   declarants: 5485d6a83bc432e473c703d8
+  f6el:
+    2012: 0
   personnes_a_charge:
     - 5485d6a83bc432e473c703d7
     - 5485d6a83bc432e473c703d6

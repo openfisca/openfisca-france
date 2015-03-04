@@ -29,6 +29,7 @@ individus:
     2014-08:3: 1800
     2014-09: 600
     2014-10: 600
+    2014-11: 600
     year:2013-11: 7200
   rstnet:
     2012: 6667.200000000002
@@ -45,6 +46,7 @@ individus:
     2014-08:3: 1666.8000000000002
     2014-09: 555.6
     2014-10: 555.6
+    2014-11: 555.6
     year:2013-11: 6667.200000000002
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -62,6 +64,5 @@ menages:
   enfants:
   loyer: 900
   personne_de_reference: 546b3bfdfb9f05fb6373bd1d
-  so: 3
 output_variables:
   aspa: 200

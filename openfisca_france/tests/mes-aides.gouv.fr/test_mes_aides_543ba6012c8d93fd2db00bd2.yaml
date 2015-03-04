@@ -1,0 +1,120 @@
+name: Parent isolé, non éligible si ressources > plafond (cf)
+description:
+period: "month:2014-10"
+individus:
+  - age: 25
+    agem: 300
+    birth: "1989-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 543ba5e779b1c2ff2d25dc38
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 92307.6923076923
+      2013-10: 7692.307692307692
+      2013-11: 7692.307692307692
+      2013-12: 7692.307692307692
+      2014-01: 7692.307692307692
+      2014-02: 7692.307692307692
+      2014-03: 7692.307692307692
+      2014-04: 7692.307692307692
+      2014-05: 7692.307692307692
+      2014-06: 7692.307692307692
+      2014-07: 7692.307692307692
+      2014-07:3: 23076.923076923078
+      2014-08: 7692.307692307692
+      2014-09: 7692.307692307692
+      2014-10: 7692.307692307692
+      year:2013-10: 92307.6923076923
+    salnet:
+      2012: 72000
+      2013-10: 6000
+      2013-11: 6000
+      2013-12: 6000
+      2014-01: 6000
+      2014-02: 6000
+      2014-03: 6000
+      2014-04: 6000
+      2014-05: 6000
+      2014-06: 6000
+      2014-07: 6000
+      2014-07:3: 18000
+      2014-08: 6000
+      2014-09: 6000
+      2014-10: 6000
+      year:2013-10: 72000
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    agem: 87
+    birth: "2007-07-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 543ba5e779b1c2ff2d25dc37
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    agem: 87
+    birth: "2007-07-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 543ba5e779b1c2ff2d25dc36
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    agem: 87
+    birth: "2007-07-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 543ba5e779b1c2ff2d25dc35
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 543ba5e779b1c2ff2d25dc37
+    - 543ba5e779b1c2ff2d25dc36
+    - 543ba5e779b1c2ff2d25dc35
+  parents: 543ba5e779b1c2ff2d25dc38
+foyers_fiscaux:
+  declarants: 543ba5e779b1c2ff2d25dc38
+  personnes_a_charge:
+    - 543ba5e779b1c2ff2d25dc37
+    - 543ba5e779b1c2ff2d25dc36
+    - 543ba5e779b1c2ff2d25dc35
+menages:
+  depcom: 75111
+  enfants:
+    - 543ba5e779b1c2ff2d25dc37
+    - 543ba5e779b1c2ff2d25dc36
+    - 543ba5e779b1c2ff2d25dc35
+  personne_de_reference: 543ba5e779b1c2ff2d25dc38
+  so: 6
+output_variables:
+  cf: 0

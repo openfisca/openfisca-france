@@ -51,6 +51,8 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54d8dd8cb93972db44593f6e
+  f6el:
+    2013: 0
   personnes_a_charge:
   rfr:
 menages:

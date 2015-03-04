@@ -1,0 +1,68 @@
+name: Le loyer plafond est pris à 90% (al, chambres, location)
+description: |
+  http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
+  
+  Pour les chambres, on doit multiplier le loyer plafond calculé par 0.9
+  Ici la personne est seul en zone 1 donc L = 292,62 * 0.9 = 263,36
+  
+  L	263,36
+  C	53,23
+  E	316,59
+  R	0
+  R0	4593
+  Rp	0
+  Tf	2,83
+  LR	402,37
+  RL	65,45
+  Tl	0,092
+  Tp	2,922
+  P0	34,73
+  P1	0
+  Pp	34,73
+  AL	280,45
+  
+  caf.fr : 280,46 €
+period: "month:2015-02"
+individus:
+  age: 34
+  agem: 414
+  alr:
+    2013: 0
+  birth: "1980-08-12"
+  cho:
+    2013: 0
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54ef4cd17516fb5d75533549
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  logement_chambre: 1
+  rst:
+    2013: 0
+  sal:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54ef4cd17516fb5d75533549
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54ef4cd17516fb5d75533549
+  f6el:
+    2013: 0
+  personnes_a_charge:
+  rfr:
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 54ef4cd17516fb5d75533549
+  so: 4
+output_variables:
+  aide_logement: 280.45

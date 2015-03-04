@@ -43,14 +43,16 @@ class paje(SimpleFormulaColumn):
         '''
         Prestation d'accueil du jeune enfant
         '''
-        period = period.start.offset('first-of', 'month').period('year')
-        paje_base = simulation.calculate('paje_base', period)
-        paje_nais = simulation.calculate('paje_nais', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_clmg = simulation.calculate('paje_clmg', period)
-        paje_colca = simulation.calculate('paje_colca', period)
+        period = period.start.offset('first-of', 'month').period('month')
+        period_legacy = period.start.offset('first-of', 'month').period('year')
 
-        return period, paje_base + paje_nais + paje_clca + paje_clmg + paje_colca
+        paje_base = simulation.calculate('paje_base', period)
+        paje_nais = simulation.calculate('paje_nais', period_legacy)
+        paje_clca = simulation.calculate('paje_clca', period_legacy)
+        paje_clmg = simulation.calculate('paje_clmg', period_legacy)
+        paje_colca = simulation.calculate('paje_colca', period_legacy)
+
+        return period, paje_base + (paje_nais + paje_clca + paje_clmg + paje_colca) / 12
 
 
 @reference_formula
@@ -61,46 +63,44 @@ class paje_base_temp(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
 
     def function(self, simulation, period):
-        '''
-        Prestation d'accueil du jeune enfant - allocation de base
-        '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
+        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+
         age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         br_pf = simulation.calculate('br_pf', period)
-        isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
+        isol = simulation.calculate('isol', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
-        P = simulation.legislation_at(period.start).fam
+
+        pfam = simulation.legislation_at(period.start).fam
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         # TODO cumul des paje si et seulement si naissance multiples
 
-        # TODO : théorie, il faut comparer les revenus de l'année n-2 à la bmaf de
-        # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
-        # pouvoir déflater les revenus de l'année courante pour en tenir compte.
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-        bmaf = P.af.bmaf
-        bmaf2 = P.af.bmaf_n_2
+        bmaf = pfam.af.bmaf
+        bmaf2 = pfam_n_2.af.bmaf
 
-        base = round(P.paje.base.taux * bmaf, 2)
-        base2 = round(P.paje.base.taux * bmaf2, 2)
+        base = round(pfam.paje.base.taux * bmaf, 2)
+        base2 = round(pfam.paje.base.taux * bmaf2, 2)
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
 
-        nbenf = nb_enf(age, smic55, 0, P.paje.base.age - 1)
+        nbenf = nb_enf(age, smic55, 0, pfam.paje.base.age - 1)
 
-        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) + pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
         majo = isol | biact
-        plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
+        plaf = pfam.paje.base.plaf * plaf_tx + (plaf_tx > 0) * pfam.paje.base.plaf_maj * majo
         plaf2 = plaf + 12 * base2  # TODO vérifier l'aspect différentielle de la PAJE et le plaf2 de la paje
 
         paje_base = (nbenf > 0) * ((br_pf < plaf) * base +
                                (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
         # non cumulabe avec la CF, voir Paje_CumulCf
-        return period, 12 * paje_base  # annualisé
+        return period, paje_base
 
 
 @reference_formula
@@ -115,12 +115,14 @@ class paje_nais(SimpleFormulaColumn):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
+        period_legacy = period.start.period('year')
+
         agem_holder = simulation.compute('agem', period)
         age_holder = simulation.compute('age', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
+        af_nbenf = simulation.calculate('af_nbenf', period_legacy)
         br_pf = simulation.calculate('br_pf', period)
-        isol = simulation.calculate('isol', period)
+        isol = simulation.calculate('isol', period_legacy)
         biact = simulation.calculate('biact', period)
         P = simulation.legislation_at(period.start).fam
 
@@ -149,7 +151,7 @@ class paje_nais(SimpleFormulaColumn):
         plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
         elig = (br_pf <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
-        return period, nais_brut
+        return period_legacy, nais_brut
 
 
 @reference_formula
@@ -182,12 +184,15 @@ class paje_clca(SimpleFormulaColumn):
         http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
         """
         period = period.start.offset('first-of', 'month').period('year')
-        agem_holder = simulation.compute('agem', period)
+        period_new = period.start.period('month')
+
+        agem_holder = simulation.compute('agem', period_new)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        paje_base = simulation.calculate('paje_base', period)
+        paje_base = simulation.calculate('paje_base', period_new)
         inactif = simulation.calculate('inactif', period)
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
+
         P = simulation.legislation_at(period.start).fam
 
         agem = self.split_by_roles(agem_holder, roles = ENFS)
@@ -295,7 +300,7 @@ class paje_clmg(SimpleFormulaColumn):
         hsup_holder = simulation.compute('hsup', period)
         concub = simulation.calculate('concub', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        br_pf = simulation.calculate('br_pf', period)
+        br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'month').period('month'))
         empl_dir = simulation.calculate('empl_dir', period)
         ass_mat = simulation.calculate('ass_mat', period)
         gar_dom = simulation.calculate('gar_dom', period)
@@ -367,14 +372,16 @@ class paje_colca(SimpleFormulaColumn):
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
         period = period.start.offset('first-of', 'month').period('year')
+        period_new = period.start.period('month')
+
         af_nbenf = simulation.calculate('af_nbenf', period)
-        agem_holder = simulation.compute('agem', period)
+        agem_holder = simulation.compute('agem', period_new)
         opt_colca = simulation.calculate('opt_colca', period)
-        paje_base = simulation.calculate('paje_base', period)
+        paje_base = simulation.calculate('paje_base', period_new)
+
         P = simulation.legislation_at(period.start).fam
 
         agem = self.split_by_roles(agem_holder, roles = ENFS)
-
         age_m_benjamin = age_en_mois_benjamin(agem)
         condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
         nbenf = af_nbenf
@@ -399,13 +406,14 @@ class paje_base(SimpleFormulaColumn):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
+
         paje_base_temp = simulation.calculate('paje_base_temp', period)
         cf_temp = simulation.calculate('cf_temp', period)
 
         # On regarde ce qui est le plus intéressant pour la famille, chaque mois
         paje_base = (paje_base_temp >= cf_temp) * paje_base_temp
-        return period, round(paje_base, 2)
+        return period, paje_base
 
 
 def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
@@ -566,11 +574,11 @@ class apje_temp(SimpleFormulaColumn):
         Allocation pour jeune enfant
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        br_pf = simulation.calculate('br_pf', period)
+        br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'month').period('month'))
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', accept_other_period = True)
-        isol = simulation.calculate('isol', period)
+        smic55_holder = simulation.compute('smic55', period.start.offset('first-of', 'month').period('month'))
         biact = simulation.calculate('biact', period)
+        isol = simulation.calculate('isol', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
