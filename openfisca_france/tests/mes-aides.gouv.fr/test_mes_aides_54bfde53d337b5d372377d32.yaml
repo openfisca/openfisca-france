@@ -1,0 +1,66 @@
+name: 121_Neutral revenus pro (rsa)
+description: Les ressources ne sont plus perçues => Neutralisation
+period: "month:2015-01"
+individus:
+  activite: 1
+  age: 35
+  agem: 420
+  ass_precondition_remplie: false
+  birth: "1980-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54bfddf06d9c06c9722b3aff
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2013: 46153.84615384615
+    2014-01: 3846.153846153846
+    2014-02: 3846.153846153846
+    2014-03: 3846.153846153846
+    2014-04: 3846.153846153846
+    2014-05: 3846.153846153846
+    2014-06: 3846.153846153846
+    2014-07: 3846.153846153846
+    2014-08: 3846.153846153846
+    2014-09: 3846.153846153846
+    2014-10: 3846.153846153846
+    2014-10:3: 11538.461538461539
+    2014-11: 3846.153846153846
+    2014-12: 3846.153846153846
+    year:2014-01: 46153.84615384615
+  salnet:
+    2013: 36000
+    2014-01: 3000
+    2014-02: 3000
+    2014-03: 3000
+    2014-04: 3000
+    2014-05: 3000
+    2014-06: 3000
+    2014-07: 3000
+    2014-08: 3000
+    2014-09: 3000
+    2014-10: 3000
+    2014-10:3: 9000
+    2014-11: 3000
+    2014-12: 3000
+    year:2014-01: 36000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54bfddf06d9c06c9722b3aff
+foyers_fiscaux:
+  declarants: 54bfddf06d9c06c9722b3aff
+  personnes_a_charge:
+menages:
+  depcom: 70429
+  enfants:
+  personne_de_reference: 54bfddf06d9c06c9722b3aff
+  so: 6
+output_variables:
+  rsa: 452.21

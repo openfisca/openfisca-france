@@ -1,0 +1,148 @@
+name: 18 Cf Ressources supérieures au plafond (base ressources, cf)
+description: |
+  Le plafond de ressources du Cf pour un couple avec un seul revenu d'activité et 3 enfants est de 37 555 €.
+  Les ressources 2013 du foyer (40 000 €) dépassent le plafond.
+  Donc pas de droit au Cf.
+  Or le simulateur restitue un droit au Cf 170 €.
+period: "month:2015-02"
+individus:
+  - age: 65
+    agem: 780
+    birth: "1950-02-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54e7077070a3f65f40b60f12
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2013: 51282.05128205128
+      2014-02: 5698.005698005698
+      2014-03: 5698.005698005698
+      2014-04: 5698.005698005698
+      2014-05: 5698.005698005698
+      2014-06: 5698.005698005698
+      2014-07: 5698.005698005698
+      2014-08: 5698.005698005698
+      2014-09: 5698.005698005698
+      2014-10: 5698.005698005698
+      2014-11: 0
+      2014-11:3: 0
+      2014-12: 0
+      2015-01: 0
+      year:2014-02: 51282.05128205128
+    salnet:
+      2013: 40000
+      2014-02: 4444.444444444444
+      2014-03: 4444.444444444444
+      2014-04: 4444.444444444444
+      2014-05: 4444.444444444444
+      2014-06: 4444.444444444444
+      2014-07: 4444.444444444444
+      2014-08: 4444.444444444444
+      2014-09: 4444.444444444444
+      2014-10: 4444.444444444444
+      2014-11: 0
+      2014-11:3: 0
+      2014-12: 0
+      2015-01: 0
+      year:2014-02: 40000
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 66
+    agem: 792
+    birth: "1949-02-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54e7077070a3f65f40b60f05
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    agem: 132
+    birth: "2004-02-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54e7077070a3f65f40b60f04
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 12
+    agem: 144
+    birth: "2003-02-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54e7077070a3f65f40b60f03
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 15
+    agem: 180
+    birth: "2000-02-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54e7077070a3f65f40b60f02
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 54e7077070a3f65f40b60f04
+    - 54e7077070a3f65f40b60f03
+    - 54e7077070a3f65f40b60f02
+  parents:
+    - 54e7077070a3f65f40b60f12
+    - 54e7077070a3f65f40b60f05
+foyers_fiscaux:
+  declarants:
+    - 54e7077070a3f65f40b60f12
+    - 54e7077070a3f65f40b60f05
+  personnes_a_charge:
+    - 54e7077070a3f65f40b60f04
+    - 54e7077070a3f65f40b60f03
+    - 54e7077070a3f65f40b60f02
+  rfr:
+    2013: 40000
+menages:
+  conjoint: 54e7077070a3f65f40b60f05
+  depcom: 75114
+  enfants:
+    - 54e7077070a3f65f40b60f04
+    - 54e7077070a3f65f40b60f03
+    - 54e7077070a3f65f40b60f02
+  personne_de_reference: 54e7077070a3f65f40b60f12
+  so: 6
+output_variables:
+  cf: 0

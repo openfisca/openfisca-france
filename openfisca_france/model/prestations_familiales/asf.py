@@ -32,83 +32,68 @@ from ..pfam import nb_enf
 
 
 @reference_formula
-class asf_elig(SimpleFormulaColumn):
+class asf_elig_i(SimpleFormulaColumn):
     column = BoolCol(default = False)
-    entity_class = Familles
-    label = u"asf_elig"
+    entity_class = Individus
+    label = u"Éligibilité à l'ASF (individuelle)"
 
     def function(self, simulation, period):
-        '''
-        Eligibilité à l'allocation de soutien familial (ASF)
-        '''
-        # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
-        # répond pour la période demandée.
-        this_rolling_year = period.start.offset('first-of', 'month').period('year')
-        if period.stop > this_rolling_year.stop:
-            period = this_rolling_year
+        period = period.start.offset('first-of', 'month').period('month')
 
-        isol = simulation.calculate('isol', this_rolling_year)
-        residence_mayotte = simulation.calculate('residence_mayotte', this_rolling_year)
-        caseT_holder = simulation.compute('caseT', this_rolling_year)
-        caseL_holder = simulation.compute('caseL', this_rolling_year)
-        alr_holder = simulation.compute('alr', this_rolling_year)
+        age = simulation.calculate('age', period)
+        smic55 = simulation.calculate('smic55', period)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
 
-        caseT = self.cast_from_entity_to_role(caseT_holder, role = VOUS)
-        caseT = self.any_by_roles(caseT)
-        caseL = self.cast_from_entity_to_role(caseL_holder, role = VOUS)
-        caseL = self.any_by_roles(caseL)
-        alr = self.sum_by_entity(alr_holder)
+        pfam = simulation.legislation_at(period.start).fam
 
-        return period, not_(residence_mayotte) * isol * (caseT | caseL) * not_(alr > 0)
+        eligibilite = (
+            (age >= pfam.af.age1) * (age <= pfam.af.age3) * # Âge compatible avec les prestations familiales
+            not_(smic55) * # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            (pensions_alimentaires_percues == 0)) # Ne perçoit pas de pension alimentaire
+
+        return period, eligibilite
+
+@reference_formula
+class asf_i(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Individus
+    label = u"Montant à verser à l'individu pour l'ASF"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        pfam = simulation.legislation_at(period.start).fam
+
+        return period, asf_elig_i * pfam.af.bmaf * pfam.asf.taux1
 
 
 @reference_formula
-class asf_nbenf(SimpleFormulaColumn):
-    column = PeriodSizeIndependentIntCol(default = 0)
+class asf_elig(SimpleFormulaColumn):
+    column = BoolCol(default = False)
     entity_class = Familles
-    label = u"asf_nbenf"
+    label = u"Éligibilité à l'ASF"
 
     def function(self, simulation, period):
-        '''
-        Nombre d'enfants ouvrant l'éligibilité à l'allocation de soutien familial (ASF)
-        '''
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
-        P = simulation.legislation_at(period.start).fam
+        period = period.start.offset('first-of', 'month').period('month')
 
-        # TODO: Ajouter orphelin recueilli, soustraction à l'obligation d'entretien (et date de celle-ci),
-        # action devant le TGI pour complêter l'éligibilité
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        isol = simulation.calculate('isol', period)
+        residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        return period, nb_enf(age, smic55, P.af.age1, P.af.age3)
+        return period, not_(residence_mayotte) * isol # Parent isolé et ne résident pas à Mayotte
 
 
 @reference_formula
 class asf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Allocation de soutien familial"
-    url = "http://vosdroits.service-public.fr/particuliers/F815.xhtml"
+    label = u"Allocation de soutien familial (ASF)"
 
     def function(self, simulation, period):
-        '''
-        Allocation de soutien familial
+        period = period.start.offset('first-of', 'month').period('month')
 
-        L’ASF permet d’aider le conjoint survivant ou le parent isolé ayant la garde
-        d’un enfant et les familles ayant à la charge effective et permanente un enfant
-        orphelin.
-        Vous avez au moins un enfant à votre charge. Vous êtes son père ou sa mère et vous vivez seul(e),
-        ou vous avez recueilli cet enfant et vous vivez seul ou en couple.
+        asf_elig = simulation.calculate('asf_elig', period)
+        asf_i_holder = simulation.compute('asf_i', period)
+        montant = self.sum_by_entity(asf_i_holder, roles = ENFS)
 
-        http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf
-        '''
-        period = period.start.period('month').offset('first-of')
-        asf_elig = simulation.calculate('asf_elig', period)#, accept_other_period = True)
-        asf_nbenf = simulation.calculate('asf_nbenf', period)#, accept_other_period = True)
-        P = simulation.legislation_at(period.start).fam
-
-        # TODO: la valeur est annualisé mais l'ASF peut ne pas être versée toute l'année
-        return period, asf_elig * max_(0, asf_nbenf * P.af.bmaf * P.asf.taux1)
+        return period, asf_elig * montant

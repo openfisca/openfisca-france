@@ -51,6 +51,7 @@ individus:
     2014-11:3: 3846.1538461538457
     2014-12: 1282.051282051282
     2015-01: 1282.051282051282
+    2015-02: 1282.051282051282
     year:2014-02: 15384.615384615381
   salnet:
     2013: 12000
@@ -67,6 +68,7 @@ individus:
     2014-11:3: 3000
     2014-12: 1000
     2015-01: 1000
+    2015-02: 1000
     year:2014-02: 12000
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -78,6 +80,8 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54d39f89f675ddd34432e918
+  f6el:
+    2013: 0
   personnes_a_charge:
   rfr:
 menages:
