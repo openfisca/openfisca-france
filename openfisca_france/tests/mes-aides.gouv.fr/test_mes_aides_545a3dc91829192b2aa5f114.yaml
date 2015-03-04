@@ -1,10 +1,9 @@
-name: 6_Personne seule, 1 enfant de 24 ans (rsa)
+name: 6_Personne seule, 1 enfant de 24 ans (majoration, rsa)
 description: |
   Petit écart de centime, dû à ??
   MF = 749,77 €
   ASF prise en compte : 91,40 € (0.225 * 406.21)
   Donc RSA : 658,37 €
-ignore: true
 period: "month:2014-11"
 individus:
   - age: 20

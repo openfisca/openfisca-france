@@ -1,0 +1,68 @@
+name: 5_Perception de revenus interrompue (rsa)
+description: |
+  La personne se déclare demandeuse d'emploi. De plus, son salaire est diminué sur le dernier mois (700 € 2 mois puis 200€ seulement) : son activité a pris fin, il faut neutraliser les revenus dont la perception est interrompue.
+  Il manque l'information que le demandeur devrait pouvoir remplir : "La perception de ce revenu est-elle interrompue ?".
+period: "month:2014-11"
+individus:
+  activite: 1
+  age: 28
+  agem: 346
+  ass_precondition_remplie: false
+  birth: "1986-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 545a38fa462d93232aac08be
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  salaire_de_base:
+    2012: 10128.205128205129
+    2013-11: 897.4358974358975
+    2013-12: 897.4358974358975
+    2014-01: 897.4358974358975
+    2014-02: 897.4358974358975
+    2014-03: 897.4358974358975
+    2014-04: 897.4358974358975
+    2014-05: 897.4358974358975
+    2014-06: 897.4358974358975
+    2014-07: 897.4358974358975
+    2014-08: 897.4358974358975
+    2014-08:3: 2051.2820512820513
+    2014-09: 897.4358974358975
+    2014-10: 256.4102564102564
+    year:2013-11: 10128.205128205129
+  salnet:
+    2012: 7900
+    2013-11: 700
+    2013-12: 700
+    2014-01: 700
+    2014-02: 700
+    2014-03: 700
+    2014-04: 700
+    2014-05: 700
+    2014-06: 700
+    2014-07: 700
+    2014-08: 700
+    2014-08:3: 1600
+    2014-09: 700
+    2014-10: 200
+    year:2013-11: 7900
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 545a38fa462d93232aac08be
+foyers_fiscaux:
+  declarants: 545a38fa462d93232aac08be
+  personnes_a_charge:
+menages:
+  depcom: 21032
+  enfants:
+  personne_de_reference: 545a38fa462d93232aac08be
+  so: 6
+output_variables:
+  rsa: 448.18

@@ -79,6 +79,8 @@ foyers_fiscaux:
   declarants:
     - 54d8e0041fe4e8cf448e2bf2
     - 54d8e0041fe4e8cf448e2bf1
+  f6el:
+    2013: 0
   personnes_a_charge:
   rfr:
 menages:

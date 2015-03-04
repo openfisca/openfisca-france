@@ -41,6 +41,7 @@ individus:
       2014-09:3: 2507.6923076923076
       2014-10: 835.8974358974359
       2014-11: 835.8974358974359
+      2014-12: 835.8974358974359
       year:2013-12: 10000.000000000002
     salnet:
       2012: 7799.999999999999
@@ -57,6 +58,7 @@ individus:
       2014-09:3: 1956
       2014-10: 652
       2014-11: 652
+      2014-12: 652
       year:2013-12: 7799.999999999999
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -135,6 +137,8 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54915fa1df990f5b0286cf13
+  f6el:
+    2012: 0
   personnes_a_charge:
     - 54915fa1df990f5b0286cf12
     - 54915fa1df990f5b0286cf11
