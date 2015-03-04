@@ -198,14 +198,14 @@ class smic55(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        salnet = simulation.calculate('salnet', period.start.period('month', 6).offset(-6))
+        salnet = simulation.calculate_add('salnet', period.start.period('month', 6).offset(-6)) / 6
         _P = simulation.legislation_at(period.start)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
         # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return period, salnet >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
+        return period, salnet >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 reference_input_variable(
