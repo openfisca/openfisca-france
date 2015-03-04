@@ -100,11 +100,37 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         sal_holder = simulation.compute('sal', period.offset(-1))
-        sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
+        sal = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
 
-        result = 12 * sal[CHEF] + sal[PART]
+        # Application de l'abattement pour frais professionnels
+        params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
+        somme_salaires_mois_precedent = 12 * sal
+        montant_abattement = round(min_(max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min), params_abattement.max))
+        result = max_(0, somme_salaires_mois_precedent - montant_abattement)
 
         return period, result
+
+
+@reference_formula
+class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
+        chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
+        revenus_activite_pro = simulation.calculate('sal', two_years_ago)
+        taux_abattement = simulation.legislation_at(period).al.ressources.abattement_chomage_indemnise
+
+        abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
+
+        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
+        abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
+
+        return period, abattement
 
 
 @reference_formula
@@ -116,60 +142,22 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
-        etu_holder = simulation.compute('etu', period)
-        boursier_holder = simulation.compute('boursier', period)
         br_pf_i_holder = simulation.compute('br_pf_i', two_years_ago)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
+        rev_coll = self.sum_by_entity(rev_coll_holder)
         biact = simulation.calculate('biact', period, accept_other_period = True)
         Pr = simulation.legislation_at(period.start).al.ressources
-
-        boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        rev_coll = self.sum_by_entity(rev_coll_holder)
-        etudiant_demandeur = (etudiant[CHEF]) & (not_(etudiant[PART]))
-        etudiant_partenaire = not_(etudiant[CHEF]) & (etudiant[PART])
-        etudiant_les_deux = (etudiant[CHEF]) & (etudiant[PART])
+        abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
+        abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
 
-        # Boursiers
-        # TODO: distinguer boursier foyer/boursier locatif
-        etudiant_boursier_demandeur = etudiant[CHEF] & boursier[CHEF]
-        etudiant_boursier_partenaire = etudiant[PART] & boursier[PART]
+        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll - abattement_chomage_indemnise
 
-        revCatVous = max_(br_pf_i[CHEF], etudiant_demandeur * (Pr.dar_4 - (etudiant_boursier_demandeur) * Pr.dar_5))
-        revCatConj = max_(br_pf_i[PART], etudiant_partenaire * (Pr.dar_4 - (etudiant_boursier_partenaire) * Pr.dar_5))
-
-        revCatVsCj = (
-            not_(etudiant_les_deux) * (revCatVous + revCatConj) +
-            etudiant_les_deux * max_(br_pf_i[CHEF] + br_pf_i[PART],
-                Pr.dar_4 - (etudiant_boursier_demandeur | etudiant_boursier_partenaire) * Pr.dar_5 + Pr.dar_7)
-            )
-
-        # TODO: ajouter les paramètres pour les étudiants en foyer (boursier et non boursier),
-        # les inclure dans le calcul somme des revenus catégoriels après abatement
-        revCat = revCatVsCj + rev_coll
-
-        # TODO: charges déductibles : pension alimentaires et abatements spéciaux
-        revNet = revCat
-
-        # On ne considère pas l'abattement sur les ressources de certaines
-        # personnes (enfant, ascendants ou grands infirmes).
-
-        # abattement forfaitaire double activité
-        abatDoubleAct = biact * Pr.dar_1
-
-        # TODO: neutralisation des ressources
-        # ...
-
-        # TODO: abbattement sur les ressources
-        # ...
-
-        # TODO: évaluation forfaitaire des ressources (première demande)
-
-        # TODO :double résidence pour raisons professionnelles
+        # Abattement forfaitaire pour double activité
+        abattement_double_activite = biact * Pr.dar_1
 
         # Arrondi aux 100 euros supérieurs
-        result = ceil(max_(revNet - abatDoubleAct, 0) / 100) * 100
+        result = max_(ressources - abattement_double_activite, 0)
 
         return period, result
 
@@ -182,19 +170,49 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        mois_precedent = period.offset(-1)
         last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
         base_ressources_eval_forfaitaire = simulation.calculate('aide_logement_base_ressources_eval_forfaitaire', period)
-        mois_precedent = period.offset(-1)
+        concub = simulation.calculate('concub', period)
+        aah_holder = simulation.compute('aah', mois_precedent)
+        aah = self.sum_by_entity(aah_holder, roles = [CHEF, PART])
+        age_holder = simulation.compute('age', period)
+        age = self.split_by_roles(age_holder, roles = [CHEF, PART])
         smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
+        sal_holder = simulation.compute('sal', period.offset(-1))
+        somme_salaires = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
-        eval_forfaitaire = and_(base_ressources_defaut <= plafond_eval_forfaitaire, base_ressources_eval_forfaitaire > 0)
 
-        result = (base_ressources_eval_forfaitaire * eval_forfaitaire
-                  + base_ressources_defaut * not_(eval_forfaitaire))
+        plafond_salaire_jeune_isole = simulation.legislation_at(period).al.ressources.dar_8
+        plafond_salaire_jeune_couple = simulation.legislation_at(period).al.ressources.dar_9
+        plafond_salaire_jeune = not_(concub) * plafond_salaire_jeune_isole + concub * plafond_salaire_jeune_couple
 
-        return period, result
+        neutral_jeune = or_(age[CHEF] < 25, and_(concub, age[PART] < 25))
+        neutral_jeune &= somme_salaires < plafond_salaire_jeune
+
+        eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire
+        eval_forfaitaire &= base_ressources_eval_forfaitaire > 0
+        eval_forfaitaire &= aah == 0
+        eval_forfaitaire &= not_(neutral_jeune)
+
+        ressources = (base_ressources_eval_forfaitaire * eval_forfaitaire + base_ressources_defaut * not_(eval_forfaitaire))
+
+        # Planchers de ressources pour étudiants
+        # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
+        Pr = simulation.legislation_at(period.start).al.ressources
+        etu_holder = simulation.compute('etu', period)
+        boursier_holder = simulation.compute('boursier', period)
+        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
+        montant_plancher_ressources = max_(0, etudiant[CHEF] * Pr.dar_4 - boursier[CHEF] * Pr.dar_5)
+        ressources = max_(ressources, montant_plancher_ressources)
+
+        # Arrondi aux 100 euros supérieurs
+        ressources = ceil(ressources / 100) * 100
+
+        return period, ressources
 
 
 @reference_formula

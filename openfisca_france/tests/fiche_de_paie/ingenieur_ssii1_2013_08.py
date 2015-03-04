@@ -103,7 +103,6 @@ tests = [
             allegement_fillon = 0,
             credit_impot_competitivite_emploi = 2512.88 * 0.04,  # pas indiqué dans la fiche
             tehr = {'2013': 0},
-            salbrut = 2512.88,
             assiette_cotisations_sociales = 2512.88,
 
             # cotisations_salariales = 0,

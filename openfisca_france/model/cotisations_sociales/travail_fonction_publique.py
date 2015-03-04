@@ -133,7 +133,7 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
-            base = assiette_cotisations_sociales_public,  # salbrut + indemnite_residence TODO check base
+            base = assiette_cotisations_sociales_public,  # TODO: check base
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
             )

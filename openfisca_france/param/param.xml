@@ -376,7 +376,7 @@
     </NODE>
     <NODE code="conge_individuel_formation" description="Congé individuel de formation"> # TODO: find a better place
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
-        <VALUE deb="2010-01-01" fin="2015-12-31" valeur=".01" />  # TODO: dates inconnues
+        <VALUE deb="1990-07-14" fin="2015-12-31" valeur=".01" />
       </CODE>
     </NODE>
     <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool"> # TODO: find a better place
@@ -4056,7 +4056,7 @@
       <CODE code="age2" description="Âge limite supérieur" format="integer" type="age">
         <VALUE deb="1986-01-01" fin="1996-12-31" valeur="17" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
-        <VALUE deb="1998-01-01" fin="2014-03-31" valeur="21" />
+        <VALUE deb="1998-01-01" fin="2014-03-31" valeur="20" />
       </CODE>
       <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="13421" />
@@ -4674,6 +4674,9 @@
         <VALUE deb="2003-07-01" fin="2007-06-30" valeur="2071" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="2589" />
       </CODE>
+      <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent">
+        <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
+      </CODE>
     </NODE>
     <NODE code="loyers_plafond" description="Loyers plafond">
       <NODE code="zone1" description="Zone 1">
@@ -5232,11 +5235,23 @@
         <VALUE deb="2014-10-01" fin="2015-12-31" valeur="14904" />
       </CODE>
       <CODE code="maj_3enf" description="Majoration pour 3 enfants" format="percent">
-        <VALUE code="maj_3enf" deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
-        <VALUE code="maj_3enf" deb="2007-02-01" fin="2015-12-31" valeur="0" />
+        <VALUE deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
+        <VALUE deb="2007-02-01" fin="2015-12-31" valeur="0" />
       </CODE>
       <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
-        <VALUE code="age_min" deb="2002-01-01" fin="2014-03-31" valeur="65" />
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="65" />
+      </CODE>
+      <CODE code="abattement_forfaitaire_nb_h" description="Nombre d'heures travaillées forfaitaires" format="float">
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151.67" />
+      </CODE>
+      <CODE code="abattement_forfaitaire_tx_seul" description="Fraction du SMIC pour l'abattement (personne seule)" format="float">
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.9" />
+      </CODE>
+      <CODE code="abattement_forfaitaire_tx_couple" description="Fraction du SMIC pour l'abattement (couple)" format="float">
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
       </CODE>
     </NODE>
     <NODE code="asi" description="Allocation supplémentaire d'invalidité">

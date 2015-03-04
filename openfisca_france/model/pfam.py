@@ -188,12 +188,12 @@ class smic55(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        salbrut = simulation.calculate('salbrut', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
         _P = simulation.legislation_at(period.start)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
-        return period, salbrut >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
+        return period, salaire_de_base >= _P.fam.af.seuil_rev_taux * smic_mensuel_brut
 
 
 @reference_formula
@@ -337,7 +337,7 @@ class crds_pfam(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         af = simulation.calculate_add('af', period)
         cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
+        asf = simulation.calculate_add('asf', period)
         ars = simulation.calculate('ars', period)
         paje = simulation.calculate('paje', period)
         ape = simulation.calculate('ape', period)

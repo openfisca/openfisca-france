@@ -204,28 +204,28 @@ class remboursement_transport(SimpleFormulaColumn):
         return period, - .5 * remboursement_transport_base
 
 
-@reference_formula
-class salbrut(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Salaire brut"
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period(u'month')
-        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
-#        indemnite_residence = simulation.calculate('indemnite_residence', period)
-#        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        primes_salaires = simulation.calculate('primes_salaires', period)
-        reintegration_titre_restaurant_employeur = simulation.calculate(
-            "reintegration_titre_restaurant_employeur", period
-            )
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-#        type_sal = simulation.calculate('type_sal', period)
-
-        return period, (
-            salaire_de_base +
-            primes_salaires +
-            avantages_en_nature +
-#            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) + # TODO: a rajouter quand l'assiette cotisations sociales sera corrigée
-            reintegration_titre_restaurant_employeur
-            )
+#@reference_formula
+#class salbrut(SimpleFormulaColumn):
+#    column = FloatCol
+#    entity_class = Individus
+#    label = u"Salaire brut"
+#
+#    def function(self, simulation, period):
+#        period = period.start.offset('first-of', 'month').period(u'month')
+#        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+##        indemnite_residence = simulation.calculate('indemnite_residence', period)
+##        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+#        primes_salaires = simulation.calculate('primes_salaires', period)
+#        reintegration_titre_restaurant_employeur = simulation.calculate(
+#            "reintegration_titre_restaurant_employeur", period
+#            )
+#        salaire_de_base = simulation.calculate('salaire_de_base', period)
+##        type_sal = simulation.calculate('type_sal', period)
+#
+#        return period, (
+#            salaire_de_base +
+#            primes_salaires +
+#            avantages_en_nature +
+##            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) + # TODO: a rajouter quand l'assiette cotisations sociales sera corrigée
+#            reintegration_titre_restaurant_employeur
+#            )

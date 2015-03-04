@@ -128,35 +128,47 @@ class cmu_c_plafond(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        age = simulation.calculate('age', period)
-        alt = simulation.calculate('alt', period)
+        age_holder = simulation.compute('age', period)
+        alt_holder = simulation.compute('alt', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu
 
-        # Calcule le pourcentage de ressources dues aux enfants.
+        PAC = [PART] + ENFS
+
+        # Calcul du coefficient personnes à charge, avec prise en compte de la garde alternée
+
+        # Tableau des coefficients
         coefficients_array = array(
-            [P.coeff_p3_p4, P.coeff_p3_p4, P.coeff_p5_plus] + [0] * (len(ENFS) - 3)
+            [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4, P.coeff_p5_plus] + [0] * (len(PAC) - 4)
             )
-        # Trie les enfants par âge décroissant en mettant, à âge égal, les enfants en garde alternée avant.
-        age_by_role = self.split_by_roles(age, roles = ENFS)
-        alt_by_role = self.split_by_roles(alt, roles = ENFS)
+
+        # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant en mettant
+        age_by_role = self.split_by_roles(age_holder, roles = PAC)
+        alt_by_role = self.split_by_roles(alt_holder, roles = PAC)
+
         age_and_alt_matrix = array(
             [
-                age_by_role[role] * 10 + alt_by_role[role]
+                (role == PART) * 10000 + age_by_role[role] * 10 + alt_by_role[role] - (age_by_role[role] < 0) * 999999
                 for role in sorted(age_by_role)
                 ]
             ).transpose()
+
+        # Calcul avec matrices intermédiaires
         reverse_sorted = partial(sorted, reverse = True)
+
         sorted_age_and_alt_matrix = apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
         # Calcule weighted_alt_matrix, qui vaut 0.5 pour les enfants en garde alternée, 1 sinon.
         sorted_present_matrix = sorted_age_and_alt_matrix >= 0
         sorted_alt_matrix = (sorted_age_and_alt_matrix % 10) * sorted_present_matrix
         weighted_alt_matrix = sorted_present_matrix - sorted_alt_matrix * 0.5
+
+        # Calcul final du coefficient
         coeff_pac = weighted_alt_matrix.dot(coefficients_array)
+
         return period, (P.plafond_base *
             (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
-            (1 + (cmu_nbp_foyer >= 2) * P.coeff_p2 + coeff_pac)
+            (1 + coeff_pac)
             )
 
 
@@ -301,6 +313,8 @@ class cmu_c(SimpleFormulaColumn):
         this_rolling_year = this_month.start.period('year')
         if period.stop > this_rolling_year.stop:
             period = this_rolling_year
+        else:
+            period = this_month
 
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
@@ -328,15 +342,15 @@ class acs(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        this_month = period.start.period('month')
-        cmu_c = simulation.calculate('cmu_c', this_month)
-        cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
-        acs_plafond = simulation.calculate('acs_plafond', this_month)
-        acs_montant = simulation.calculate('acs_montant', this_month)
-        residence_mayotte = simulation.calculate('residence_mayotte', this_month)
+        period = period.start.period('month').offset('first-of')
 
-        return period, not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant
+        cmu_c = simulation.calculate('cmu_c', period)
+        cmu_base_ressources = simulation.calculate('cmu_base_ressources', period)
+        acs_plafond = simulation.calculate('acs_plafond', period)
+        acs_montant = simulation.calculate('acs_montant', period)
+        residence_mayotte = simulation.calculate('residence_mayotte', period)
+
+        return period, not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant / 12
 
 
 ############################################################################

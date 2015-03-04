@@ -69,18 +69,18 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         ags = simulation.calculate('ags', period)
-        agff_tranche_a_employeur = simulation.calculate('agff_tranche_a_employeur', period)
+        agff_tranche_a_employeur = simulation.calculate_add('agff_tranche_a_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_tranche_a_employeur = simulation.calculate('arrco_tranche_a_employeur', period)
         assedic_employeur = simulation.calculate('assedic_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
             'cotisation_exceptionnelle_temporaire_employeur', period)
-        fonds_emploi_hospitalier = simulation.calculate('fonds_emploi_hospitalier', period)
-        ircantec_employeur = simulation.calculate('ircantec_employeur', period)
-        pension_civile_employeur = simulation.calculate('pension_civile_employeur', period)
-        rafp_employeur = simulation.calculate('rafp_employeur', period)
-        vieillesse_deplafonnee_employeur = simulation.calculate('vieillesse_deplafonnee_employeur', period)
-        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
+        fonds_emploi_hospitalier = simulation.calculate_add('fonds_emploi_hospitalier', period)
+        ircantec_employeur = simulation.calculate_add('ircantec_employeur', period)
+        pension_civile_employeur = simulation.calculate_add('pension_civile_employeur', period)
+        rafp_employeur = simulation.calculate_add('rafp_employeur', period)
+        vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
 
         cotisations_patronales_contributives = (
             # prive
@@ -118,10 +118,10 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
         fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
         fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
-        participation_effort_construction = simulation.calculate('participation_effort_construction', period)
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre')
-        taxe_apprentissage = simulation.calculate('taxe_apprentissage', period)
-        versement_transport = simulation.calculate('versement_transport', period)
+        participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
+        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre')
+        taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
+        versement_transport = simulation.calculate_add('versement_transport', period)
 
         cotisations_patronales_main_d_oeuvre = (
             conge_individuel_formation_cdd +
@@ -148,10 +148,10 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         accident_du_travail = simulation.calculate('accident_du_travail', period)
-        allocations_temporaires_invalidite = simulation.calculate('allocations_temporaires_invalidite', period)
+        allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
         famille = simulation.calculate('famille', period)
-        maladie_employeur = simulation.calculate('maladie_employeur', period)
-        taxe_salaires = simulation.calculate('taxe_salaires', period)
+        maladie_employeur = simulation.calculate_add('maladie_employeur', period)
+        taxe_salaires = simulation.calculate_add('taxe_salaires', period)
 
         cotisations_patronales_non_contributives = (
             allocations_temporaires_invalidite +
@@ -423,8 +423,8 @@ class tehr(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')  # TODO: period
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        period = period.start.period(u'year').offset('first-of')
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
         law = simulation.legislation_at(period.start)
 
         bar = law.cotsoc.tehr
@@ -440,14 +440,14 @@ class salsuperbrut(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate_add('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         cotisations_patronales = simulation.calculate('cotisations_patronales', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
-        allegement_fillon = simulation.calculate('allegement_fillon', period)
-        credit_impot_competitivite_emploi = simulation.calculate('credit_impot_competitivite_emploi', period)
+        allegement_fillon = simulation.calculate_add('allegement_fillon', period)
+        credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)

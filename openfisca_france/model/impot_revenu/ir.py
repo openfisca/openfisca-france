@@ -1092,7 +1092,7 @@ class ir_ss_qf(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         '''
-        Impôt sans quotient familial
+        Impôt sans avantage du quotient familial des personnes à chage (inclu cependan quotient conjugual)
         '''
         period = period.start.offset('first-of', 'month').period('year')
         ir_brut = simulation.calculate('ir_brut', period)
@@ -1100,8 +1100,7 @@ class ir_ss_qf(SimpleFormulaColumn):
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).ir.bareme
 
-        A = bareme.calc(rni / nb_adult)
-        return period, nb_adult * A
+        return period, nb_adult * bareme.calc(rni / nb_adult)
 
 
 @reference_formula
