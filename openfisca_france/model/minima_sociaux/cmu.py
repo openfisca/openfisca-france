@@ -131,7 +131,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         alt_holder = simulation.compute('alt', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
-        cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
+        # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu
 
         PAC = [PART] + ENFS
@@ -143,7 +143,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
             [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4, P.coeff_p5_plus] + [0] * (len(PAC) - 4)
             )
 
-        # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant en mettant
+        # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant
         age_by_role = self.split_by_roles(age_holder, roles = PAC)
         alt_by_role = self.split_by_roles(alt_holder, roles = PAC)
 
