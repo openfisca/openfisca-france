@@ -133,8 +133,8 @@ class cf(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('month')
         paje_base_temp = simulation.calculate('paje_base_temp', period)
-        apje_temp = simulation.calculate('apje_temp', period)
-        ape_temp = simulation.calculate('ape_temp', period)
+        apje_temp = simulation.calculate_divide('apje_temp', period)
+        ape_temp = simulation.calculate_divide('ape_temp', period)
         cf_temp = simulation.calculate('cf_temp', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 

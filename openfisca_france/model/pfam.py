@@ -400,7 +400,7 @@ class crds_pfam(SimpleFormulaColumn):
         cf = simulation.calculate_add('cf', period)
         asf = simulation.calculate_add('asf', period)
         ars = simulation.calculate('ars', period)
-        paje = simulation.calculate('paje', period)
+        paje = simulation.calculate_add('paje', period)
         ape = simulation.calculate('ape', period)
         apje = simulation.calculate('apje', period)
         _P = simulation.legislation_at(period.start)

@@ -627,7 +627,7 @@ class ape(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_temp = simulation.calculate_add('cf_temp', period)
 
         ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
         return period, round(ape, 2)
@@ -648,7 +648,7 @@ class apje(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_temp = simulation.calculate_add('cf_temp', period)
 
         apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
         return period, round(apje, 2)

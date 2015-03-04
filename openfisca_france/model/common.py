@@ -377,7 +377,7 @@ class pfam(SimpleFormulaColumn):
         cf = simulation.calculate_add('cf', period)
         ars = simulation.calculate('ars', period)
         aeeh = simulation.calculate('aeeh', period)
-        paje = simulation.calculate('paje', period)
+        paje = simulation.calculate_add('paje', period)
         asf = simulation.calculate_add('asf', period)
         crds_pfam = simulation.calculate('crds_pfam', period)
 
