@@ -397,7 +397,7 @@ class crds_pfam(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         af = simulation.calculate_add('af', period)
-        cf = simulation.calculate('cf', period)
+        cf = simulation.calculate_add('cf', period)
         asf = simulation.calculate_add('asf', period)
         ars = simulation.calculate('ars', period)
         paje = simulation.calculate('paje', period)

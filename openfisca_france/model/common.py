@@ -374,7 +374,7 @@ class pfam(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         af = simulation.calculate_add('af', period)
-        cf = simulation.calculate('cf', period)
+        cf = simulation.calculate_add('cf', period)
         ars = simulation.calculate('ars', period)
         aeeh = simulation.calculate('aeeh', period)
         paje = simulation.calculate('paje', period)

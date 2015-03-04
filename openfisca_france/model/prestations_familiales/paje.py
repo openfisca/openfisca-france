@@ -577,7 +577,7 @@ class apje_temp(SimpleFormulaColumn):
         br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'month').period('month'))
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period.start.offset('first-of', 'month').period('month'))
-        biact = simulation.calculate('biact', period)
+        biact = simulation.calculate_add('biact', period)
         isol = simulation.calculate('isol', period)
         P = simulation.legislation_at(period.start).fam
 
