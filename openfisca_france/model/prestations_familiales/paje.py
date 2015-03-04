@@ -307,6 +307,7 @@ class paje_clmg(SimpleFormulaColumn):
         paje_clca_taux_partiel = simulation.calculate('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = simulation.calculate('paje_clca_taux_plein', period)
         P = simulation.legislation_at(period.start).fam
+        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
@@ -317,8 +318,9 @@ class paje_clmg(SimpleFormulaColumn):
 
         # condition de revenu minimal
 
+        bmaf_n_2 = P_n_2.af.bmaf
         cond_age_enf = (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
-        cond_sal = (sal[CHEF] + sal[PART] + hsup[CHEF] + hsup[PART] > 12 * P.af.bmaf_n_2 * (1 + concub))
+        cond_sal = (sal[CHEF] + sal[PART] + hsup[CHEF] + hsup[PART] > 12 * bmaf_n_2 * (1 + concub))
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
 
@@ -580,6 +582,7 @@ class apje_temp(SimpleFormulaColumn):
         biact = simulation.calculate_add('biact', period)
         isol = simulation.calculate('isol', period)
         P = simulation.legislation_at(period.start).fam
+        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
@@ -587,7 +590,7 @@ class apje_temp(SimpleFormulaColumn):
         # TODO: APJE courte voir doc ERF 2006
         nbenf = nb_enf(age, smic55, 0, P.apje.age - 1)
         bmaf = P.af.bmaf
-        bmaf_n_2 = P.af.bmaf_n_2
+        bmaf_n_2 = P_n_2.af.bmaf
         base = round(P.apje.taux * bmaf, 2)
         base2 = round(P.apje.taux * bmaf_n_2, 2)
 
