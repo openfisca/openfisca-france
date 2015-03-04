@@ -446,8 +446,8 @@ class br_rmi(SimpleFormulaColumn):
         br_rmi_ms = simulation.calculate('br_rmi_ms', period)
         br_rmi_i_holder = simulation.compute('br_rmi_i', period)
 
-        br_rmi_i = self.split_by_roles(br_rmi_i_holder, roles = [CHEF, PART])
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i[CHEF] + br_rmi_i[PART]
+        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
+        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total
 
 
 @reference_formula
@@ -573,8 +573,8 @@ class ra_rsa(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
 
-        ra_rsa = self.split_by_roles(ra_rsa_i_holder)
-        return period, ra_rsa[CHEF] + ra_rsa[PART]
+        ra_rsa = self.sum_by_entity(ra_rsa_i_holder)
+        return period, ra_rsa
 
 
 @reference_formula
