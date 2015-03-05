@@ -28,7 +28,6 @@ from . import (  # noqa analysis:ignore
     input_variables,
     pfam,
     travailleurs_non_salaries,
-    th,
     )
 
 from .prelevements_obligatoires.cotisations_sociales import (  # noqa analysis:ignore
@@ -53,6 +52,7 @@ from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
 
 from .prelevements_obligatoires import(  # noqa analysis:ignore
     isf,
+    taxe_habitation,
     )
 
 from .prestations import (  # noqa analysis:ignore

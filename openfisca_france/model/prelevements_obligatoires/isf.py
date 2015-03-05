@@ -586,7 +586,7 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
         irpp = simulation.calculate('irpp', period)
-        tax_hab_holder = simulation.compute('tax_hab', period)
+        taxe_habitation_holder = simulation.compute('taxe_habitation', period)
         tax_fonc = simulation.calculate('tax_fonc', period)
         isf_tot = simulation.calculate('isf_tot', period)
         cotsoc_lib_declarant1_holder = simulation.compute('cotsoc_lib_declarant1', period)
@@ -609,8 +609,8 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
         csgsali = self.sum_by_entity(csgsali_holder)
         csgrstd = self.sum_by_entity(csgrstd_holder)
         csgrsti = self.sum_by_entity(csgrsti_holder)
-        tax_hab = self.cast_from_entity_to_role(tax_hab_holder, role = PREF)
-        tax_hab = self.sum_by_entity(tax_hab)
+        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)
+        taxe_habitation = self.sum_by_entity(taxe_habitation)
 
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
@@ -619,7 +619,7 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
-        imp2 = irpp + isf_tot + tax_hab + tax_fonc + csgsali + csgchoi + csgrsti
+        imp2 = irpp + isf_tot + taxe_habitation + tax_fonc + csgsali + csgchoi + csgrsti
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''
@@ -680,4 +680,3 @@ class bouclier_fiscal(SimpleFormulaColumn):
         P = simulation.legislation_at(period.start).bouclier_fiscal
 
         return period, max_(0, bouclier_sumimp - (bouclier_rev * P.taux))
-

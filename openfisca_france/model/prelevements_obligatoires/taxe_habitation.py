@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_
 
-from .base import *  # noqa
+from ..base import *  # noqa analysis:ignore
 
 
 @reference_formula
@@ -58,7 +58,6 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
         statmarit_holder = simulation.compute('statmarit', period)
-        zthabm = simulation.calculate('zthabm', period)
         _P = simulation.legislation_at(period.start)
 
         aah = self.sum_by_entity(aah_holder)
@@ -83,7 +82,7 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
 
 
 @reference_formula
-class tax_hab(SimpleFormulaColumn):
+class taxe_habitation(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Menages
     label = u"Taxe d'habitation"
@@ -91,7 +90,6 @@ class tax_hab(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
-        zthabm = simulation.calculate('zthabm', period)
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
         nombre_enfants_a_charge_menage = simulation.calculate('nombre_enfants_a_charge_menage', period)
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
@@ -197,4 +195,4 @@ class tax_hab(SimpleFormulaColumn):
         prelevement_residence_secondaire = 0  # TODO
 
 
-        return period, -zthabm * 0
+        return period, - exonere_taxe_habitation * 0

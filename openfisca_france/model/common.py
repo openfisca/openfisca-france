@@ -445,12 +445,12 @@ class impo(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         irpp_holder = simulation.compute('irpp', period)
-        tax_hab = simulation.calculate('tax_hab', period)
+        taxe_habitation = simulation.calculate('taxe_habitation', period)
 
         irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
         irpp = self.sum_by_entity(irpp)
 
-        return period, irpp + tax_hab
+        return period, irpp + taxe_habitation
 
 
 @reference_formula
