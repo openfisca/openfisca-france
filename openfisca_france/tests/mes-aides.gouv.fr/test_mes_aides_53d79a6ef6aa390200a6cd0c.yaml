@@ -1,5 +1,6 @@
 name: Chômeur, 1 enfant (rsa)
 description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour trancher)"
+ignore: true
 period: "month:2014-07"
 individus:
   - age: 34
