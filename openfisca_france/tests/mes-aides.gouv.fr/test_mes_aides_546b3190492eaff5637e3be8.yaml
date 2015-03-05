@@ -1,5 +1,6 @@
 name: 21_Jeune < 25 ans, 1 enfant, enceinte (majoration, rsa)
 description:
+ignore: true
 period: "month:2014-11"
 individus:
   - age: 20

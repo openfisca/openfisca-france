@@ -65,10 +65,16 @@ reference_input_variable(
     name = 'assujettie_taxe_salaires',
     )
 reference_input_variable(
-    column = BoolCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Avantages en nature (Valeur réelle)",
     name = 'avantages_en_nature_valeur_reelle',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"indemnites_compensatrices_conges_payes",
+    name = 'indemnites_compensatrices_conges_payes',
     )
 reference_input_variable(
     column = EnumCol(
