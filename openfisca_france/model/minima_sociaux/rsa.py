@@ -404,11 +404,12 @@ class br_rmi_i(SimpleFormulaColumn):
                 return ressource_trois_derniers_mois
 
         # Ressources neutralisables
-        chonet = calcule_type_ressource('chonet', True)
-        pensions_alimentaires_percues = calcule_type_ressource('pensions_alimentaires_percues', True)
-        allocation_aide_retour_emploi = calcule_type_ressource('allocation_aide_retour_emploi', True)
-        allocation_securisation_professionnelle = calcule_type_ressource('allocation_securisation_professionnelle', True)
-        prestation_compensatoire = calcule_type_ressource('prestation_compensatoire', True)
+        chonet = calcule_type_ressource('chonet', neutralisable = True)
+        pensions_alimentaires_percues = calcule_type_ressource('pensions_alimentaires_percues', neutralisable = True)
+        allocation_aide_retour_emploi = calcule_type_ressource('allocation_aide_retour_emploi', neutralisable = True)
+        allocation_securisation_professionnelle = calcule_type_ressource('allocation_securisation_professionnelle',
+            neutralisable = True)
+        prestation_compensatoire = calcule_type_ressource('prestation_compensatoire', neutralisable = True)
 
         # Autres ressources
         rstnet = calcule_type_ressource('rstnet')
@@ -534,18 +535,22 @@ class ra_rsa_i(SimpleFormulaColumn):
                 return ressource_trois_derniers_mois
 
         # Ressources neutralisables
-        salnet = calcule_type_ressource('salnet', True)
-        indemnites_chomage_partiel = calcule_type_ressource('indemnites_chomage_partiel', True)
-        indemnites_journalieres_maternite = calcule_type_ressource('indemnites_journalieres_maternite', True)
-        indemnites_journalieres_paternite = calcule_type_ressource('indemnites_journalieres_paternite', True)
+        salnet = calcule_type_ressource('salnet', neutralisable = True)
+        indemnites_chomage_partiel = calcule_type_ressource('indemnites_chomage_partiel', neutralisable = True)
+        indemnites_journalieres_maternite = calcule_type_ressource('indemnites_journalieres_maternite',
+            neutralisable = True)
+        indemnites_journalieres_paternite = calcule_type_ressource('indemnites_journalieres_paternite',
+            neutralisable = True)
         indemnites_journalieres_adoption = calcule_type_ressource('indemnites_journalieres_adoption', True)
         indemnites_journalieres_maladie = calcule_type_ressource('indemnites_journalieres_maladie', True)
-        indemnites_journalieres_accident_travail = calcule_type_ressource('indemnites_journalieres_accident_travail', True)
-        indemnites_journalieres_maladie_professionnelle = calcule_type_ressource('indemnites_journalieres_maladie_professionnelle', True)
-        indemnites_volontariat = calcule_type_ressource('indemnites_volontariat', True)
-        revenus_stage_formation_pro = calcule_type_ressource('revenus_stage_formation_pro', True)
-        indemnites_stage = calcule_type_ressource('indemnites_stage', True)
-        bourse_recherche = calcule_type_ressource('bourse_recherche', True)
+        indemnites_journalieres_accident_travail = calcule_type_ressource('indemnites_journalieres_accident_travail',
+            neutralisable = True)
+        indemnites_journalieres_maladie_professionnelle = calcule_type_ressource(
+            'indemnites_journalieres_maladie_professionnelle', neutralisable = True)
+        indemnites_volontariat = calcule_type_ressource('indemnites_volontariat', neutralisable = True)
+        revenus_stage_formation_pro = calcule_type_ressource('revenus_stage_formation_pro', neutralisable = True)
+        indemnites_stage = calcule_type_ressource('indemnites_stage', neutralisable = True)
+        bourse_recherche = calcule_type_ressource('bourse_recherche', neutralisable = True)
 
         # Autres ressources
         hsup = calcule_type_ressource('hsup')
@@ -780,7 +785,7 @@ class rsa_socle_majore(SimpleFormulaColumn):
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
-        nb_par = simulation.calculate('nb_par', period)
+        # nb_par = simulation.calculate('nb_par', period)
         isol = simulation.calculate('isol', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
