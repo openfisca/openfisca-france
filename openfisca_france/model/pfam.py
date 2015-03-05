@@ -187,7 +187,7 @@ class est_enfant_dans_famille(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         quifam = simulation.calculate('quifam', period)
-        return period, quifam >= QUIFAM['enf1']
+        return period, quifam > PART
 
 
 @reference_formula
