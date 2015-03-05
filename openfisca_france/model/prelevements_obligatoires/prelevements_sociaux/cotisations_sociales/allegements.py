@@ -34,8 +34,8 @@ from numpy import (
 
 import logging
 
-from ...base import *  # noqa analysis:ignore
-from ....assets.holidays import holidays
+from ....base import *  # noqa analysis:ignore
+from .....assets.holidays import holidays
 
 log = logging.getLogger(__name__)
 

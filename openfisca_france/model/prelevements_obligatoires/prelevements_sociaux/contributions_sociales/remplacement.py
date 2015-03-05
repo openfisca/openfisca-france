@@ -30,7 +30,7 @@ import logging
 from numpy import logical_not as not_
 
 
-from ...base import *  # noqa
+from ....base import *  # noqa analysis:ignore
 from .base import montant_csg_crds
 
 
@@ -67,10 +67,10 @@ def csgchod_sans_exo(chobrut, csg_rempl, law):
     CSG déductible sur les allocations chômage sans exonération
     '''
     montant_csg = montant_csg_crds(
-        law_node = law.csg.chomage.deductible,
         base_avec_abattement = chobrut,
         indicatrice_taux_plein = (csg_rempl == 3),
         indicatrice_taux_reduit = (csg_rempl == 2),
+        law_node = law.csg.chomage.deductible,
         plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
         )
     return montant_csg
@@ -81,8 +81,8 @@ def csgchoi_sans_exo(chobrut, law):
     CSG imposable sur les allocations chômage sans exonération
     '''
     montant_csg = montant_csg_crds(
-        law_node = law.csg.chomage.imposable,
         base_avec_abattement = chobrut,
+        law_node = law.csg.chomage.imposable,
         plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
         )
     return montant_csg
@@ -93,8 +93,8 @@ def crdscho_sans_exo(chobrut, csg_rempl, law):
     CRDS sur les allocations chômage sans exonération
     '''
     montant_crds = montant_csg_crds(
-        law_node = law.crds.activite,
         base_avec_abattement = chobrut,
+        law_node = law.crds.activite,
         plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
         )
     return montant_crds * (2 <= csg_rempl)
@@ -204,10 +204,10 @@ class csgrstd(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            law_node = law.csg.retraite.deductible,
             base_sans_abattement = rstbrut,
             indicatrice_taux_plein = (csg_rempl == 3),
             indicatrice_taux_reduit = (csg_rempl == 2),
+            law_node = law.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return period, montant_csg
@@ -226,8 +226,8 @@ class csgrsti(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            law_node = law.csg.retraite.imposable,
             base_sans_abattement = rstbrut,
+            law_node = law.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return period, montant_csg
@@ -247,8 +247,8 @@ class crdsrst(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
-            law_node = law.crds.retraite,
             base_sans_abattement = rstbrut,
+            law_node = law.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (csg_rempl == 1)
         return period, montant_crds

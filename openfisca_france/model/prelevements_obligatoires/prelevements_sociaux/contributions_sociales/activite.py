@@ -30,7 +30,7 @@ import logging
 
 from numpy import zeros
 
-from ...base import *  # noqa analysis:ignore
+from ....base import *  # noqa analysis:ignore
 from .base import montant_csg_crds
 
 
@@ -39,206 +39,6 @@ log = logging.getLogger(__name__)
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 # T0D0 : gérer assiette csg
-
-
-@reference_formula
-class cotisations_patronales(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Cotisations sociales patronales"
-
-    def function(self, simulation, period):
-        period = period
-        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
-        cotisations_patronales_non_contributives = simulation.calculate(
-            'cotisations_patronales_non_contributives', period)
-        cotisations_patronales_main_d_oeuvre = simulation.calculate('cotisations_patronales_main_d_oeuvre', period)
-
-        return period, (
-            cotisations_patronales_contributives +
-            cotisations_patronales_non_contributives +
-            cotisations_patronales_main_d_oeuvre
-            )
-
-
-@reference_formula
-class cotisations_patronales_contributives(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales patronales contributives"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        ags = simulation.calculate('ags', period)
-        agff_tranche_a_employeur = simulation.calculate_add('agff_tranche_a_employeur', period)
-        apec_employeur = simulation.calculate('apec_employeur', period)
-        arrco_tranche_a_employeur = simulation.calculate('arrco_tranche_a_employeur', period)
-        assedic_employeur = simulation.calculate('assedic_employeur', period)
-        cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
-            'cotisation_exceptionnelle_temporaire_employeur', period)
-        fonds_emploi_hospitalier = simulation.calculate_add('fonds_emploi_hospitalier', period)
-        ircantec_employeur = simulation.calculate_add('ircantec_employeur', period)
-        pension_civile_employeur = simulation.calculate_add('pension_civile_employeur', period)
-        rafp_employeur = simulation.calculate_add('rafp_employeur', period)
-        vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
-        vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
-
-        cotisations_patronales_contributives = (
-            # prive
-            ags +
-            agff_tranche_a_employeur +
-            apec_employeur +
-            arrco_tranche_a_employeur +
-            assedic_employeur +
-            cotisation_exceptionnelle_temporaire_employeur +
-            vieillesse_deplafonnee_employeur +
-            vieillesse_plafonnee_employeur +
-            # public
-            fonds_emploi_hospitalier +
-            ircantec_employeur +
-            pension_civile_employeur +
-            rafp_employeur
-            )
-        return period, cotisations_patronales_contributives
-
-
-@reference_formula
-class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisation sociales patronales main d'oeuvre"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
-        contribution_developpement_apprentissage = simulation.calculate(
-            'contribution_developpement_apprentissage', period)
-        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
-        contribution_supplementaire_apprentissage = simulation.calculate(
-            'contribution_supplementaire_apprentissage', period)
-        fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
-        fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
-        formation_professionnelle = simulation.calculate('formation_professionnelle', period)
-        participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
-        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre')
-        taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
-        versement_transport = simulation.calculate_add('versement_transport', period)
-
-        cotisations_patronales_main_d_oeuvre = (
-            conge_individuel_formation_cdd +
-            contribution_developpement_apprentissage +
-            contribution_solidarite_autonomie +
-            contribution_supplementaire_apprentissage +
-            formation_professionnelle +
-            fnal_tranche_a +
-            fnal_tranche_a_plus_20 +
-            participation_effort_construction +
-            prevoyance_obligatoire_cadre +
-            taxe_apprentissage +
-            versement_transport
-            )
-        return period, cotisations_patronales_main_d_oeuvre
-
-
-@reference_formula
-class cotisations_patronales_non_contributives(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales patronales non-contributives"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        accident_du_travail = simulation.calculate('accident_du_travail', period)
-        allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
-        famille = simulation.calculate('famille', period)
-        maladie_employeur = simulation.calculate_add('maladie_employeur', period)
-        taxe_salaires = simulation.calculate_add('taxe_salaires', period)
-
-        cotisations_patronales_non_contributives = (
-            allocations_temporaires_invalidite +
-            accident_du_travail +
-            famille +
-            maladie_employeur +
-            taxe_salaires
-            )
-        return period, cotisations_patronales_non_contributives
-
-
-@reference_formula
-class cotisations_salariales_contributives(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales salariales contributives"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        agff_tranche_a_employe = simulation.calculate_add('agff_tranche_a_employe', period)
-        agirc_tranche_b_employe = simulation.calculate_add('agirc_tranche_b_employe', period)
-        apec_employe = simulation.calculate_add('apec_employe', period)
-        arrco_tranche_a_employe = simulation.calculate_add('arrco_tranche_a_employe', period)
-        assedic_employe = simulation.calculate_add('assedic_employe', period)
-        cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
-            'cotisation_exceptionnelle_temporaire_employe', period)
-        ircantec_employe = simulation.calculate_add('ircantec_employe', period)
-        pension_civile_employe = simulation.calculate_add('pension_civile_employe', period)
-        rafp_employe = simulation.calculate_add('rafp_employe', period)
-        vieillesse_deplafonnee_employe = simulation.calculate_add('vieillesse_deplafonnee_employe', period)
-        vieillesse_plafonnee_employe = simulation.calculate_add('vieillesse_plafonnee_employe', period)
-
-        cotisations_salariales_contributives = (
-            # prive
-            agff_tranche_a_employe +
-            agirc_tranche_b_employe +
-            apec_employe +
-            arrco_tranche_a_employe +
-            assedic_employe +
-            cotisation_exceptionnelle_temporaire_employe +
-            vieillesse_deplafonnee_employe +
-            vieillesse_plafonnee_employe +
-            # public
-            ircantec_employe +
-            pension_civile_employe +
-            rafp_employe
-            )
-
-        return period, cotisations_salariales_contributives
-
-
-@reference_formula
-class cotisations_salariales_non_contributives(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales salariales non-contributives"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        contribution_exceptionnelle_solidarite_employe = simulation.calculate_add(
-            'contribution_exceptionnelle_solidarite_employe', period)
-        maladie_employe = simulation.calculate_add('maladie_employe', period)
-
-        cotisations_salariales_non_contributives = (
-            # prive
-            maladie_employe +
-            # public
-            contribution_exceptionnelle_solidarite_employe
-            )
-
-        return period, cotisations_salariales_non_contributives
-
-
-@reference_formula
-class cotisations_salariales(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisations sociales salariales"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = simulation.calculate(
-            'cotisations_salariales_non_contributives', period)
-
-        return period, cotisations_salariales_contributives + cotisations_salariales_non_contributives
 
 
 @reference_formula
@@ -263,12 +63,12 @@ class csgsald(SimpleFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            law_node = law.csg.activite.deductible,
             base_avec_abattement = (
                 remuneration_principale + salaire_de_base + primes_fonction_publique + indemnite_residence +
                 supp_familial_traitement - hsup
                 ),
             base_sans_abattement = - prevoyance_obligatoire_cadre, # TODO + indemnites_journalieres_maladie,
+            law_node = law.csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
         return period, montant_csg

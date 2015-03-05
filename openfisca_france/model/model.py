@@ -30,17 +30,22 @@ from . import (  # noqa analysis:ignore
     travailleurs_non_salaries,
     )
 
-from .prelevements_obligatoires.cotisations_sociales import (  # noqa analysis:ignore
+from .prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import (  # noqa analysis:ignore
     allegements,
-    capital,
     # penalites,
-    remplacement,
     remuneration_prive,
     remuneration_public,
     travail_fonction_publique,
     travail_prive,
     travail_totaux,
     )
+
+from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales import (  # noqa analysis:ignore
+    activite,
+    capital,
+    remplacement,
+    )
+
 
 from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
     charges_deductibles,

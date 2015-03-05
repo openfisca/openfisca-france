@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from ...base import *  # noqa
+from ....base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
@@ -200,7 +200,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):
@@ -233,8 +233,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_20090101_20151231(self, simulation, period):
         """
-        Calcule le prélèvement social sur les plus-values
-        de cession de valeurs mobilières
+        Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
         period = period.start.offset('first-of', 'month').period('year')
         f3vg = simulation.calculate('f3vg', period)
@@ -379,7 +378,7 @@ class prelsoc_fon(DatedFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvements sociaux sur les revenus fonciers"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):

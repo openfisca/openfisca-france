@@ -34,7 +34,7 @@ from numpy import (
     )
 
 
-from ...base import *  # noqa
+from ....base import *  # noqa
 
 
 log = logging.getLogger(__name__)

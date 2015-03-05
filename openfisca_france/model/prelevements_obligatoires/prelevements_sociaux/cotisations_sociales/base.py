@@ -25,7 +25,7 @@
 
 from numpy import zeros
 
-from ...base import CAT
+from ....base import CAT
 
 
 def apply_bareme_for_relevant_type_sal(

@@ -34,7 +34,7 @@ from openfisca_core.columns import EnumCol, FloatCol
 from openfisca_core.formulas import DatedFormulaColumn, SimpleFormulaColumn
 
 
-from ...base import *  # noqa analysis:ignore
+from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
