@@ -29,7 +29,7 @@ from functools import partial
 from numpy import (apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, zeros,
     logical_or as or_)
 
-from ..base import *  # noqa
+from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula

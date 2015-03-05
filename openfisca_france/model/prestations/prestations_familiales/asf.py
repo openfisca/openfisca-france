@@ -27,8 +27,8 @@ from __future__ import division
 
 from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
 
-from ..base import *  # noqa
-from ..pfam import nb_enf
+from ...base import *  # noqa
+from ...pfam import nb_enf
 
 
 @reference_formula

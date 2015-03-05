@@ -27,8 +27,8 @@ from __future__ import division
 
 from numpy import round, maximum as max_, minimum as min_
 
-from ..base import *  # noqa
-from ..pfam import nb_enf, age_aine
+from ...base import *  # noqa
+from ...pfam import nb_enf, age_aine
 
 
 @reference_formula

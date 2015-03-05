@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from ..base import *  # noqa
+from ...base import *  # noqa
 
 
 @reference_formula
@@ -124,4 +124,3 @@ class aeeh(DatedFormulaColumn):
 
         # Ces allocations ne sont pas soumis à la CRDS
         return period, 12 * aeeh  # annualisé
-

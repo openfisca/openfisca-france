@@ -25,9 +25,7 @@
 
 from . import (  # noqa analysis:ignore
     common,
-    education,
     input_variables,
-    aides_logement,
     pfam,
     travailleurs_non_salaries,
     th,
@@ -57,7 +55,12 @@ from .prelevements_obligatoires import(  # noqa analysis:ignore
     isf,
     )
 
-from .minima_sociaux import (  # noqa analysis:ignore
+from .prestations import (  # noqa analysis:ignore
+    aides_logement,
+    education,
+    )
+
+from prestations.minima_sociaux import (  # noqa analysis:ignore
     # aah,
     asi_aspa,
     ass,
@@ -65,7 +68,7 @@ from .minima_sociaux import (  # noqa analysis:ignore
     rsa,
     )
 
-from .prestations_familiales import (  # noqa analysis:ignore
+from prestations.prestations_familiales import (  # noqa analysis:ignore
     aeeh,
     af,
     ars,

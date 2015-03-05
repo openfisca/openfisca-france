@@ -32,8 +32,8 @@ import pkg_resources
 from numpy import ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_, minimum as min_, round
 
 import openfisca_france
-from .base import *  # noqa  analysis:ignore
-from .pfam import nb_enf
+from ..base import *  # noqa  analysis:ignore
+from ..pfam import nb_enf
 
 
 zone_apl_by_depcom = None

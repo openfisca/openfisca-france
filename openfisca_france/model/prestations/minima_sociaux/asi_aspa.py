@@ -25,9 +25,9 @@
 
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, logical_or as or_)
+from numpy import maximum as max_, logical_not as not_
 
-from ..base import *  # noqa
+from ...base import *  # noqa analysis:ignore
 
 
 reference_input_variable(
