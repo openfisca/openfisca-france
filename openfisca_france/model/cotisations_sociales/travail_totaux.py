@@ -268,7 +268,7 @@ class csgsald(SimpleFormulaColumn):
                 remuneration_principale + salaire_de_base + primes_fonction_publique + indemnite_residence +
                 supp_familial_traitement - hsup
                 ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre, # TODO + indemnites_journalieres_maladie,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,  # TODO + indemnites_journalieres_maladie,
             plafond_securite_sociale = plafond_securite_sociale,
             )
         return period, montant_csg
@@ -301,7 +301,8 @@ class csgsali(SimpleFormulaColumn):
                 salaire_de_base + remuneration_principale +
                 primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
                 ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre, # TODO: mettre ailleurs + indemnites_journalieres_maladie,
+            base_sans_abattement = - prevoyance_obligatoire_cadre,
+            # TODO: mettre ailleurs + indemnites_journalieres_maladie,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
