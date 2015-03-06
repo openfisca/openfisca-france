@@ -54,7 +54,7 @@ class aefa(DatedFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
-    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"
+    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(self, simulation, period):
