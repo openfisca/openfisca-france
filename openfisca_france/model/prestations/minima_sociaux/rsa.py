@@ -541,8 +541,10 @@ class ra_rsa_i(SimpleFormulaColumn):
             neutralisable = True)
         indemnites_journalieres_paternite = calcule_type_ressource('indemnites_journalieres_paternite',
             neutralisable = True)
-        indemnites_journalieres_adoption = calcule_type_ressource('indemnites_journalieres_adoption', True)
-        indemnites_journalieres_maladie = calcule_type_ressource('indemnites_journalieres_maladie', True)
+        indemnites_journalieres_adoption = calcule_type_ressource('indemnites_journalieres_adoption',
+            neutralisable = True)
+        indemnites_journalieres_maladie = calcule_type_ressource('indemnites_journalieres_maladie',
+            neutralisable = True)
         indemnites_journalieres_accident_travail = calcule_type_ressource('indemnites_journalieres_accident_travail',
             neutralisable = True)
         indemnites_journalieres_maladie_professionnelle = calcule_type_ressource(

@@ -111,7 +111,7 @@ def compute_cotisation_annuelle(simulation, period, cotisation_type = None, bare
     if period.start.month == 12:
         return compute_cotisation(
             simulation,
-            period = period.start.offset('first-of', 'year').period('year'),
+            period.start.offset('first-of', 'year').period('year'),
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             )
@@ -121,7 +121,7 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
     if period.start.month < 12:
         return compute_cotisation(
             simulation,
-            period = period.start.offset('first-of', 'month').period('month'),
+            period.start.offset('first-of', 'month').period('month'),
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             )
@@ -131,7 +131,7 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
 
         return compute_cotisation(
             simulation,
-            period = period.start.offset('first-of', 'year').period('year'),
+            period.start.offset('first-of', 'year').period('year'),
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             ) - cumul
