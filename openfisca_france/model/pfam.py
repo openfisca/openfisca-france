@@ -179,6 +179,7 @@ class etu(SimpleFormulaColumn):
 
         return period, activite == 2
 
+
 @reference_formula
 class est_enfant_dans_famille(SimpleFormulaColumn):
     column = BoolCol
@@ -237,6 +238,7 @@ class pfam_enfant_a_charge(SimpleFormulaColumn):
         condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.enfants.age_limite) * not_(smic55)
 
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
+
 
 @reference_formula
 class pfam_ressources_i(SimpleFormulaColumn):
@@ -332,7 +334,7 @@ class rev_coll(SimpleFormulaColumn):
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
-        div = simulation.calculate('div', period)
+        # div = simulation.calculate('div', period)
         abat_spe_holder = simulation.compute('abat_spe', period)
         glo = simulation.calculate('glo', period)
         fon_holder = simulation.compute('fon', period)
@@ -355,8 +357,8 @@ class rev_coll(SimpleFormulaColumn):
         f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
         rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb - f7gc - abat_spe
-            + rev_cat_pv)
+        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb
+            - f7gc - abat_spe + rev_cat_pv)
 
 
 @reference_formula
@@ -371,7 +373,7 @@ class br_pf(SimpleFormulaColumn):
         'fam'
         '''
         period = period.start.offset('first-of', 'month').period('month')
-        period_legacy = period.start.offset('first-of', 'month').period('year')
+        # period_legacy = period.start.offset('first-of', 'month').period('year')
         annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
 
         pfam_ressources_i_holder = simulation.compute('pfam_ressources_i', period)
@@ -412,6 +414,7 @@ class crds_pfam(SimpleFormulaColumn):
 # Helper functions
 ############################################################################
 
+
 def nb_enf(ages, smic55, ag1, ag2):
     """
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
@@ -423,7 +426,8 @@ def nb_enf(ages, smic55, ag1, ag2):
 #        le versement à lieu en début de mois suivant
     res = None
     for key, age in ages.iteritems():
-        if res is None: res = zeros(len(age), dtype = int32)
+        if res is None:
+            res = zeros(len(age), dtype = int32)
         res += (ag1 <= age) & (age <= ag2) & not_(smic55[key])
     return res
 
