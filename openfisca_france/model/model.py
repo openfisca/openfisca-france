@@ -24,10 +24,15 @@
 
 
 from . import (  # noqa analysis:ignore
-    common,
+    mesures,
     input_variables,
     pfam,
     travailleurs_non_salaries,
+    )
+
+
+from .caracteristiques_socio_demographiques import (  # noqa analysis:ignore
+    demographie,
     )
 
 from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales import (  # noqa analysis:ignore
