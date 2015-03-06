@@ -28,11 +28,7 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, maximum as max_, minimum as min_, logical_not as not_, ones, round as round_
-from openfisca_core.enumerations import Enum
-from openfisca_core.columns import EnumCol, FloatCol
-from openfisca_core.formulas import DatedFormulaColumn, SimpleFormulaColumn
-
+from numpy import int16, maximum as max_, minimum as min_, logical_not as not_
 
 from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
@@ -288,7 +284,7 @@ class agirc_tranche_b_employeur(SimpleFormulaColumn):
 class ags(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)" # noqa analysis:ignore
+    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"  # noqa analysis:ignore
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
