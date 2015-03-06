@@ -62,6 +62,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 545bbc0355a4c10113ad0808
-  so: 6
+  statut_occupation: 6
 output_variables:
   aspa: 700

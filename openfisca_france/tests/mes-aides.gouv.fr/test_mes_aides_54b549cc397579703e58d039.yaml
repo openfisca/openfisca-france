@@ -61,7 +61,7 @@ menages:
   depcom: 75118
   enfants:
   personne_de_reference: 54b548fe44b1ef7a3e841b22
-  so: 6
+  statut_occupation: 6
 output_variables:
   acs: 200
   cmu_c: false

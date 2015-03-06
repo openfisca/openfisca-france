@@ -389,6 +389,6 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 544f7ddb75fec1b37e6c01af
-  so: 4
+  statut_occupation: 4
 output_variables:
   aspa: 0

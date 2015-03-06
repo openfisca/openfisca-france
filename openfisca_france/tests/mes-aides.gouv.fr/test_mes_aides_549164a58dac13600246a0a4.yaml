@@ -138,6 +138,6 @@ menages:
     - 5491643f09d6285e02d4faa5
   loyer: 50
   personne_de_reference: 5491643f09d6285e02d4faa9
-  so: 4
+  statut_occupation: 4
 output_variables:
   cmu_c: false

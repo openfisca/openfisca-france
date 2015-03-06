@@ -1,9 +1,9 @@
 name: Les allocations familiales sont exclues de la base ressources (aspa, base ressources)
 description: |
   J'ai indiqué avoir 2 enfants mineurs à charge et le simulateur ne me demande pas le montant de mes allocations familiales.
-  
+
   Pour autant le résultat du montant ASPA est juste car les prestations familiales sont exclues des ressources à retenir pour le calcul de l'ASPA (article R 815-22 du code de la sécurité sociale).
-  
+
   Edit Arnaud Kleinpeter : c'est normal, le montant simulé des allocations familiales est suffisamment précis pour qu'on n'ait pas besoin de le demander
 period: "month:2014-11"
 individus:
@@ -105,7 +105,7 @@ menages:
     - 546b190bfc9936ff63f8566a
   loyer: 1000
   personne_de_reference: 546b190bfc9936ff63f8566c
-  so: 4
+  statut_occupation: 4
 output_variables:
   af: 129.99
   aspa: 200

@@ -15,7 +15,7 @@ description: |
   P1	0
   Pp	34,73
   AL	256,23
-  
+
   caf.fr : 256,24
 period: "month:2014-10"
 individus:
@@ -46,6 +46,6 @@ menages:
   enfants:
   loyer: 600
   personne_de_reference: 542ec2bc5e3a9c02007e90c6
-  so: 4
+  statut_occupation: 4
 output_variables:
   als: 256.23

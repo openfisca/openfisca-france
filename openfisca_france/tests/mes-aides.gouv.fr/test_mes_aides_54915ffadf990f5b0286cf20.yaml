@@ -155,6 +155,6 @@ menages:
     - 54915fa1df990f5b0286cf0f
   loyer: 50
   personne_de_reference: 54915fa1df990f5b0286cf13
-  so: 4
+  statut_occupation: 4
 output_variables:
   cmu_c: true

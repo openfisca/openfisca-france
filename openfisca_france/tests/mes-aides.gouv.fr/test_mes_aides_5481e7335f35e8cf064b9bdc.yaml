@@ -1,5 +1,5 @@
 name: Pas d'ASI si pas retraité (asi, eligibilité)
-description: 
+description:
 period: "month:2014-12"
 individus:
   age: 34
@@ -29,6 +29,6 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 5481e7029f3789cc06d512f5
-  so: 4
+  statut_occupation: 4
 output_variables:
   asi: 0

@@ -159,9 +159,6 @@ build_column('exposition_accident', EnumCol(label = u"Exposition au risque pour 
                                u"Très élevé",
                                ])))
 
-build_column('boursier', BoolCol(label = u"Élève ou étudiant boursier"))
-
-
 build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
     val_type = "monetary"))
 build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",

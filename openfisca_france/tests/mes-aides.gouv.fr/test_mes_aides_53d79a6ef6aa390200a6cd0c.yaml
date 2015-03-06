@@ -43,6 +43,6 @@ foyers_fiscaux:
 menages:
   enfants: 53d79a06f6aa390200a6cd0a
   personne_de_reference: 53d79a06f6aa390200a6cd0b
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 643.67

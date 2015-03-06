@@ -47,6 +47,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 548eaf29ccf3745202129282
-  so: 4
+  statut_occupation: 4
 output_variables:
   cmu_c: true

@@ -126,7 +126,7 @@ menages:
     - 54915a9e7b85005902284a7e
   loyer: 200
   personne_de_reference: 54915a9e7b85005902284a8d
-  so: 4
+  statut_occupation: 4
 output_variables:
   acs: 0
   af: 129.99

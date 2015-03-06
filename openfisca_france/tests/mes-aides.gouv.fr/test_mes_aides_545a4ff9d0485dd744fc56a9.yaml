@@ -63,6 +63,6 @@ menages:
   depcom: 22278
   enfants: 545a4fdf4abd22dc4420c7a2
   personne_de_reference: 545a4fdf4abd22dc4420c7a4
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 765.48
