@@ -33,6 +33,7 @@ from . import (  # noqa analysis:ignore
 
 from .caracteristiques_socio_demographiques import (  # noqa analysis:ignore
     demographie,
+    logement,
     )
 
 from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales import (  # noqa analysis:ignore

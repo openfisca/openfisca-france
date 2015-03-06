@@ -30,7 +30,7 @@ build_column('loyer', IntCol(label = u"Loyer mensuel",
                  entity = 'men',
                  val_type = "monetary"))  # Loyer mensuel
 
-build_column('so', EnumCol(label = u"Statut d'occupation",
+build_column('statut_occupation', EnumCol(label = u"Statut d'occupation",
                entity = 'men',
                enum = Enum([u"Non renseigné",
                             u"Accédant à la propriété",

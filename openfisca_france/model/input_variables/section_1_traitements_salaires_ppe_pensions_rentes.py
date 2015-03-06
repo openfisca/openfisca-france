@@ -133,21 +133,6 @@ build_column('jour_xyz', IntCol(default = 360,
                     entity = "foy",
                     label = u"Jours décomptés au titre de cette déclaration"))
 
-build_column('loyer', IntCol(label = u"Loyer mensuel",
-                 entity = 'men',
-                 val_type = "monetary"))  # Loyer mensuel
-
-build_column('so', EnumCol(label = u"Statut d'occupation",
-               entity = 'men',
-               enum = Enum([u"Non renseigné",
-                            u"Accédant à la propriété",
-                            u"Propriétaire (non accédant) du logement",
-                            u"Locataire d'un logement HLM",
-                            u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-                            u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-                            u"Logé gratuitement par des parents, des amis ou l'employeur"])))
-
-
 build_column('nbsala', EnumCol(label = u"Nombre de salariés dans l'établissement de l'emploi actuel",
                 enum = Enum([u"Sans objet",
                             u"Aucun salarié",
@@ -175,10 +160,6 @@ build_column('exposition_accident', EnumCol(label = u"Exposition au risque pour 
                                ])))
 
 build_column('boursier', BoolCol(label = u"Élève ou étudiant boursier"))
-
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
-
-
 
 
 build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
