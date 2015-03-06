@@ -130,6 +130,6 @@
       <NODE code="isf_tot" color="232,79,95" desc="Impôt de solidarité sur la fortune" shortname="ISF" />
       <NODE code="bouclier_fiscal" color="182,34,131" desc="Bouclier fiscal" shortname="Bouclier fiscal" />
     </NODE>
-    <NODE code="tax_hab" color="232,79,95" desc="Taxe d'habitation" shortname="TH" />
+    <NODE code="taxe_habitation" color="232,79,95" desc="Taxe d'habitation" shortname="TH" />
   </NODE>
 </NODE>

@@ -28,7 +28,7 @@ from __future__ import division
 from numpy import int32, logical_not as not_, logical_or as or_, zeros
 from numpy.core.defchararray import startswith
 
-from .base import *  # noqa
+from .base import *  # noqa analysis:ignore
 
 
 @reference_formula
@@ -124,7 +124,7 @@ class maries(SimpleFormulaColumn):
     label = u"maries"
 
     def function(self, simulation, period):
-        """couple = 1 si couple marié sinon 0 TODO faire un choix avec couple ?"""
+        """couple = 1 si couple marié sinon 0 TODO: faire un choix avec couple ?"""
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         statmarit_holder = simulation.compute('statmarit', period)
@@ -142,7 +142,7 @@ class concub(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         '''
-        concub = 1 si vie en couple TODO pas très heureux
+        concub = 1 si vie en couple TODO: pas très heureux
         '''
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
@@ -334,7 +334,7 @@ class rev_coll(SimpleFormulaColumn):
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
         rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
-        # div = simulation.calculate('div', period)
+        # div = simulation.calculate('div', period)  # TODO why is this variable not used ?
         abat_spe_holder = simulation.compute('abat_spe', period)
         glo = simulation.calculate('glo', period)
         fon_holder = simulation.compute('fon', period)

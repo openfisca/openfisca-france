@@ -858,7 +858,7 @@ class Logement(QDialog, Ui_Logement):
         self.spinCP.setValue(scenario.menage[0]['code_postal'])
         self.spinLoyer.setValue(scenario.menage[0]['loyer'])
         self.comboSo.setCurrentIndex(scenario.menage[0]['so'] - 1)  # -1 because 0 is "non renseigné"
-        self.spinTH.setValue(scenario.menage[0]['zthabm'])  # -1 because 0 is "non renseigné"
+        self.spinTH.setValue(scenario.menage[0]['taxe_habitation'])  # -1 because 0 is "non renseigné"
 
         def update_ville(code):
             commune = get_zone(code)
@@ -898,6 +898,6 @@ class Logement(QDialog, Ui_Logement):
             'so': int(self.comboSo.currentIndex() + 1),  # +1 because 0 is "non renseigné"
             'zone_apl': int(self.spinZone.value()),
             'code_postal': int(self.spinCP.value()),
-            'zthabm': int(self.spinTH.value())
+            'taxe_habitation': int(self.spinTH.value())
             })
         QDialog.accept(self)

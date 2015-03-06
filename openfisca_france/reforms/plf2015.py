@@ -32,7 +32,7 @@ import copy
 import logging
 
 from openfisca_core import formulas, periods, reforms
-from ..model.impot_revenu import ir
+from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
 log = logging.getLogger(__name__)

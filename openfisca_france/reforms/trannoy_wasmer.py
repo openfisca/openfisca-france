@@ -35,7 +35,7 @@ import logging
 from openfisca_core import columns, formulas, reforms
 from .. import entities
 from ..model import base
-from ..model.impot_revenu import charges_deductibles
+from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
 log = logging.getLogger(__name__)

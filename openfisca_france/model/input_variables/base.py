@@ -110,11 +110,9 @@ reference_input_variable(
     )
 
 
-
-build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))  # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
+build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))
+# L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 build_column('f5sq', IntCol())
-
-build_column('zthabm', IntCol(entity = 'men'))  # TODO: Devrait être renommée tax_hab
 
 build_column(
     'proprietaire_proche_famille',
@@ -132,4 +130,4 @@ build_column('elig_creimp_jeunes', BoolCol(entity = "ind", label = u"Éligible a
                     start = date(2005, 1, 1),
                     end = date(2008, 1, 1))) #Sert à savoir si son secteur d'activité permet au jeune de bénéficier du crédit impôts jeunes
 
-# ('tax_hab', IntCol())
+# ('taxe_habitation', IntCol())

@@ -25,20 +25,20 @@
 
 from . import (  # noqa analysis:ignore
     common,
-    education,
     input_variables,
-    isf,
-    aides_logement,
     pfam,
     travailleurs_non_salaries,
-    th,
     )
 
-from .cotisations_sociales import (  # noqa analysis:ignore
-    allegements,
+from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales import (  # noqa analysis:ignore
+    activite,
     capital,
-    # penalites,
     remplacement,
+    )
+
+from .prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import (  # noqa analysis:ignore
+    allegements,
+    # penalites,
     remuneration_prive,
     remuneration_public,
     travail_fonction_publique,
@@ -46,8 +46,9 @@ from .cotisations_sociales import (  # noqa analysis:ignore
     travail_totaux,
     )
 
-from .impot_revenu import (  # noqa analysis:ignore
-    ir,
+from .prelevements_obligatoires.prelevements_sociaux import taxes_salaires_main_oeuvre # noqa analysis:ignore
+
+from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
     charges_deductibles,
     credits_impot,
     ir,
@@ -55,7 +56,17 @@ from .impot_revenu import (  # noqa analysis:ignore
     reductions_impot,
     )
 
-from .minima_sociaux import (  # noqa analysis:ignore
+from .prelevements_obligatoires import(  # noqa analysis:ignore
+    isf,
+    taxe_habitation,
+    )
+
+from .prestations import (  # noqa analysis:ignore
+    aides_logement,
+    education,
+    )
+
+from prestations.minima_sociaux import (  # noqa analysis:ignore
     # aah,
     asi_aspa,
     ass,
@@ -63,7 +74,7 @@ from .minima_sociaux import (  # noqa analysis:ignore
     rsa,
     )
 
-from .prestations_familiales import (  # noqa analysis:ignore
+from prestations.prestations_familiales import (  # noqa analysis:ignore
     aeeh,
     af,
     ars,
