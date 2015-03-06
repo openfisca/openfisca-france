@@ -123,7 +123,7 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
         chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
         revenus_activite_pro = simulation.calculate('sal', two_years_ago)
-        taux_abattement = simulation.legislation_at(period).al.ressources.abattement_chomage_indemnise
+        taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
 
@@ -185,8 +185,8 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 
-        plafond_salaire_jeune_isole = simulation.legislation_at(period).al.ressources.dar_8
-        plafond_salaire_jeune_couple = simulation.legislation_at(period).al.ressources.dar_9
+        plafond_salaire_jeune_isole = simulation.legislation_at(period.start).al.ressources.dar_8
+        plafond_salaire_jeune_couple = simulation.legislation_at(period.start).al.ressources.dar_9
         plafond_salaire_jeune = not_(concub) * plafond_salaire_jeune_isole + concub * plafond_salaire_jeune_couple
 
         neutral_jeune = or_(age[CHEF] < 25, and_(concub, age[PART] < 25))
