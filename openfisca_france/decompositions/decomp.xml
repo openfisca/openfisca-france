@@ -17,6 +17,7 @@
         </NODE>
         <NODE code="csgsali" color="235,114,118" desc="CSG non déductible (salaires)" shortname="CSG imp. sal." />
         <NODE code="crdssal" color="229,48,56" desc="CRDS (salaires)" shortname="CRDS sal." />
+        <NODE code="forfait_social" color="235,114,118" desc="Forfait social" shortname="Forfait social" />
         <NODE code="hsup" color="0,115,170" desc="Heures supplémentaires" shortname="Heures sup" />
       </NODE>
       <NODE code="rag" desc="Revenus agricoles" shortname="Rev. agric." />
