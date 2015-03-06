@@ -120,7 +120,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
         fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
         participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
-        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre')
+        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
         taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
         versement_transport = simulation.calculate_add('versement_transport', period)
 
