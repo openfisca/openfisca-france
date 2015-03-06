@@ -395,10 +395,10 @@ class br_rmi_i(SimpleFormulaColumn):
 
         ra_rsa_i = simulation.calculate('ra_rsa_i', period)
 
-        def calcule_type_ressource(type, neutralisable = False):
-            ressource_trois_derniers_mois = simulation.calculate(type, three_previous_months)
+        def calcule_type_ressource(variable_name, neutralisable = False):
+            ressource_trois_derniers_mois = simulation.calculate(variable_name, three_previous_months)
             if neutralisable:
-                ressource_mois_courant = simulation.calculate(type, period)
+                ressource_mois_courant = simulation.calculate(variable_name, period)
                 return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
             else:
                 return ressource_trois_derniers_mois
@@ -526,10 +526,10 @@ class ra_rsa_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
 
-        def calcule_type_ressource(type, neutralisable = False):
-            ressource_trois_derniers_mois = simulation.calculate(type, three_previous_months)
+        def calcule_type_ressource(variable_name, neutralisable = False):
+            ressource_trois_derniers_mois = simulation.calculate(variable_name, three_previous_months)
             if neutralisable:
-                ressource_mois_courant = simulation.calculate(type, period)
+                ressource_mois_courant = simulation.calculate(variable_name, period)
                 return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
             else:
                 return ressource_trois_derniers_mois
