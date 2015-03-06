@@ -126,6 +126,7 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
             bareme_name = bareme_name,
             )
     if period.start.month == 12:
+        assert variable_name is not None
         cumul = simulation.calculate_add(variable_name, period.start.offset('first-of', 'month').offset(
             -11, 'month').period('month', 11))
 
