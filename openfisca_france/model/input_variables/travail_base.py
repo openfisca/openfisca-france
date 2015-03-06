@@ -273,7 +273,7 @@ reference_input_variable(
     name = 'heures_non_remunerees_volume',
     )
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Individus,
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)",
     name = 'heures_remunerees_volume',
