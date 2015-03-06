@@ -1,6 +1,6 @@
 ﻿<NODE code="revdisp" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp." typevar="2">
   <!-- # TODO: missing indemnite_residence and sft -->
-  <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  <!-- # TODO: change color -->
+  <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  <!-- # TODO: remove unexisting variable? change color -->
     <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
       <NODE code="salnet" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
         <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
