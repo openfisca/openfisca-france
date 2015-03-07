@@ -110,7 +110,7 @@ if __name__ == "__main__":
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
     for function, test_id, test_name, scenario_data, output_variables in test():
-        if args.number is not None and args.number != test_id:
+        if args.id is not None and args.id != test_id:
             continue
         print("=" * 120)
         print("Test {}: {}".format(test_id, test_name.encode('utf-8')))
