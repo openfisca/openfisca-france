@@ -186,10 +186,13 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
 
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
-        jours_travailles = busday_count(
-            max_(contrat_de_travail_arrivee, debut_mois),
-            min_(contrat_de_travail_depart, fin_mois)
+        fin_mois = datetime64(period.start.offset('last-of', 'month'))
+        jours_travailles = max_(
+            busday_count(
+                max_(contrat_de_travail_arrivee, debut_mois),
+                min_(contrat_de_travail_depart, fin_mois) + timedelta64(1, 'D')
+                ),
+            0,
             )
         return period, jours_travailles
 
