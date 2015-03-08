@@ -25,14 +25,7 @@
 
 from __future__ import division
 
-
-from functools import partial
 import logging
-from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
-    minimum as min_, timedelta64
-    )
-
 
 from ....base import *  # noqa
 
@@ -66,16 +59,14 @@ class assiette_cotisations_sociales_public(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        # indemnite_residence = simulation.calculate('indemnite_residence', period)
         type_sal = simulation.calculate('type_sal', period)
         public = (type_sal >= 2)
-        titulaire = (type_sal >= 2) * (type_sal <= 5)
+        # titulaire = (type_sal >= 2) * (type_sal <= 5)
         assiette = public * (
             remuneration_principale
-#        + not_(titulaire) * (
-#                indemnite_residence + primes_fonction_publique
-#                )
+            # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
             )
         return period, assiette
 

@@ -29,8 +29,8 @@ from __future__ import division
 from functools import partial
 import logging
 from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
-    minimum as min_, timedelta64
+    busday_count as original_busday_count, datetime64, logical_not as not_, maximum as max_, minimum as min_,
+    timedelta64
     )
 
 
@@ -149,7 +149,7 @@ class depense_cantine_titre_restaurant_employeur(SimpleFormulaColumn):
 class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"
+    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
 
     def function(self, simulation, period):
         period = period  # TODO
@@ -206,28 +206,29 @@ class remboursement_transport(SimpleFormulaColumn):
         return period, - .5 * remboursement_transport_base
 
 
-#@reference_formula
-#class salbrut(SimpleFormulaColumn):
-#    column = FloatCol
-#    entity_class = Individus
-#    label = u"Salaire brut"
+# @reference_formula
+# class salbrut(SimpleFormulaColumn):
+#     column = FloatCol
+#     entity_class = Individus
+#     label = u"Salaire brut"
 #
-#    def function(self, simulation, period):
-#        period = period.start.offset('first-of', 'month').period(u'month')
-#        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
-##        indemnite_residence = simulation.calculate('indemnite_residence', period)
-##        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-#        primes_salaires = simulation.calculate('primes_salaires', period)
-#        reintegration_titre_restaurant_employeur = simulation.calculate(
-#            "reintegration_titre_restaurant_employeur", period
-#            )
-#        salaire_de_base = simulation.calculate('salaire_de_base', period)
-##        type_sal = simulation.calculate('type_sal', period)
+#     def function(self, simulation, period):
+#         period = period.start.offset('first-of', 'month').period(u'month')
+#         avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+#         # indemnite_residence = simulation.calculate('indemnite_residence', period)
+#         # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+#         primes_salaires = simulation.calculate('primes_salaires', period)
+#         reintegration_titre_restaurant_employeur = simulation.calculate(
+#             "reintegration_titre_restaurant_employeur", period
+#             )
+#         salaire_de_base = simulation.calculate('salaire_de_base', period)
+#         # type_sal = simulation.calculate('type_sal', period)
 #
-#        return period, (
-#            salaire_de_base +
-#            primes_salaires +
-#            avantages_en_nature +
-##            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) + # TODO: a rajouter quand l'assiette cotisations sociales sera corrigée
-#            reintegration_titre_restaurant_employeur
-#            )
+#         return period, (
+#             salaire_de_base +
+#             primes_salaires +
+#             avantages_en_nature +
+#             # (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+#             #     TODO: a rajouter quand l'assiette cotisations sociales sera corrigée
+#             reintegration_titre_restaurant_employeur
+#             )
