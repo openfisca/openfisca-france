@@ -1,0 +1,51 @@
+- period: "month:2015-01"
+  output_variables:
+    nombre_jours_calendaires: 31
+
+- period: "month:2015-02"
+  output_variables:
+    nombre_jours_calendaires: 28
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_arrivee: "2014-01-01"
+  output_variables:
+    nombre_jours_calendaires: 28
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_arrivee: "2015-02-02"
+  output_variables:
+    nombre_jours_calendaires: 27
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_depart: "2015-12-31"
+  output_variables:
+    nombre_jours_calendaires: 28
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_depart: "2015-02-27"
+  output_variables:
+    nombre_jours_calendaires: 27
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_arrivee: "2015-02-02"
+    contrat_de_travail_depart: "2015-12-31"
+  output_variables:
+    nombre_jours_calendaires: 27
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_arrivee: "2015-02-02"
+    contrat_de_travail_depart: "2015-02-27"
+  output_variables:
+    nombre_jours_calendaires: 26
+
+- period: "month:2015-02"
+  input_variables:
+    contrat_de_travail_depart: "2014-12-31"
+  output_variables:
+    nombre_jours_calendaires: 0
