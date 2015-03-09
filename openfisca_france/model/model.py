@@ -92,3 +92,8 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
 from revenus.activite import (  # noqa analysis:ignore
     salarie
     )
+
+from revenus.remplacement import (  # noqa analysis:ignore
+    chomage,
+    retraite,
+    )

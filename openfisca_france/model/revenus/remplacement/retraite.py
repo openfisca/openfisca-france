@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa analysis:ignore
+from ...base import *  # noqa analysis:ignore
 
 
 build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
