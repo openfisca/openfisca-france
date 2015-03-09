@@ -27,11 +27,64 @@ from __future__ import division
 
 from numpy import maximum as max_, minimum as min_
 
-from ..base import *  # noqa
+from ..base import *  # noqa analysis:ignore
 
+# Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF
+
+## Immeubles bâtis
+build_column('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary"))
+build_column('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary"))
+
+## non bâtis
+build_column('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary"))
+build_column('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis : biens ruraux loués à long termes", val_type = "monetary"))
+build_column('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary"))
+build_column('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis : autres biens", val_type = "monetary"))
+
+## droits sociaux- valeurs mobilières-liquidités- autres meubles
+build_column('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary"))
+build_column('b1cb', IntCol(entity = 'foy', label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type = "monetary"))
+build_column('b1cd', IntCol(entity = 'foy', label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type = "monetary"))
+build_column('b1ce', IntCol(entity = 'foy', label = u"Autres valeurs mobilières", val_type = "monetary"))
+build_column('b1cf', IntCol(entity = 'foy', label = u"Liquidités", val_type = "monetary"))
+build_column('b1cg', IntCol(entity = 'foy', label = u"Autres biens meubles", val_type = "monetary"))
+
+build_column('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : contrats d'assurance-vie", val_type = "monetary"))
+
+#    b1ch
+#    b1ci
+#    b1cj
+#    b1ck
+
+
+## passifs et autres réductions
+build_column('b2gh', IntCol(entity = 'foy', label = u"Total du passif et autres déductions", val_type = "monetary"))
+
+## réductions
+build_column('b2mt', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary"))
+build_column('b2ne', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary"))
+build_column('b2mv', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings" , val_type = "monetary"))
+build_column('b2nf', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings", val_type = "monetary"))
+build_column('b2mx', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FIP", val_type = "monetary"))
+build_column('b2na', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type = "monetary"))
+build_column('b2nc', IntCol(entity = 'foy', label = u"Réductions pour dons à certains organismes d'intérêt général", val_type = "monetary"))
+
+##  montant impôt acquitté hors de France
+build_column('b4rs', IntCol(entity = 'foy', label = u"Montant de l'impôt acquitté hors de France", val_type = "monetary"))
+
+## BOUCLIER FISCAL
+
+build_column('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
+build_column('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
+
+build_column('tax_fonc', IntCol(entity = 'foy', label = u"Taxe foncière", val_type = "monetary"))
+build_column('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
+build_column('etr', IntCol())
+
+
+# Calcul de l'impôt de solidarité sur la fortune
 
 # 1 ACTIF BRUT
-
 
 @reference_formula
 class isf_imm_bati(SimpleFormulaColumn):
@@ -127,9 +180,7 @@ class ass_isf(SimpleFormulaColumn):
     label = u"ass_isf"
 
     def function(self, simulation, period):
-        '''
-        TODO: Gérer les trois option meubles meublants
-        '''
+        # TODO: Gérer les trois option meubles meublants
         period = period.start.offset('first-of', 'month').period('year')
         isf_imm_bati = simulation.calculate('isf_imm_bati', period)
         isf_imm_non_bati = simulation.calculate('isf_imm_non_bati', period)
@@ -157,18 +208,14 @@ class isf_iai(DatedFormulaColumn):
     def function_20020101_20101231(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
         ass_isf = simulation.calculate('ass_isf', period)
-        _P = simulation.legislation_at(period.start)
         bareme = simulation.legislation_at(period.start).isf.bareme
-
         return period, bareme.calc(ass_isf)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2015, 12, 31))
     def function_20110101_20151231(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
         ass_isf = simulation.calculate('ass_isf', period)
-        _P = simulation.legislation_at(period.start)
         bareme = simulation.legislation_at(period.start).isf.bareme
-
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
         return period, bareme.calc(ass_isf)
 
@@ -290,24 +337,25 @@ class tot_impot(SimpleFormulaColumn):
         csg = self.split_by_roles(csg_holder, roles = [VOUS, CONJ])
         prelsoc_cap = self.split_by_roles(prelsoc_cap_holder, roles = [VOUS, CONJ])
 
-        return period, -irpp + isf_avant_plaf - (crds[VOUS] + crds[CONJ]) - (csg[VOUS] + csg[CONJ]) - (prelsoc_cap[VOUS] + prelsoc_cap[CONJ])
+        return period, (-irpp + isf_avant_plaf -
+            (crds[VOUS] + crds[CONJ]) - (csg[VOUS] + csg[CONJ]) - (prelsoc_cap[VOUS] + prelsoc_cap[CONJ])
+            )
 
-
-# irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
-# + prélèvement libé de l'année passée + montant de la csg TODO:
+        # TODO: irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
+        # + prélèvement libé de l'année passée + montant de la csg
 
 
 @reference_formula
 class revetproduits(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"revetproduits"
+    label = u"Revenus et produits perçus (avant abattement)"
 
     def function(self, simulation, period):
         '''
-        Revenus et produits perçus (avant abattement),
         Utilisé pour calculer le montant du plafonnement de l'ISF
-        Cf. http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
+        Cf.
+        http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
         period = period.start.offset('first-of', 'month').period('year')
         salcho_imp_holder = simulation.compute('salcho_imp', period)
@@ -332,8 +380,11 @@ class revetproduits(SimpleFormulaColumn):
 
         # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
         # # def rev_exon et rev_etranger dans data? ##
-        pt = max_(0,
-            salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon + rpns_pvct + imp_lib + fon)
+        pt = max_(
+            0,
+            salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
+            rpns_pvct + imp_lib + fon
+            )
         return period, pt * P.taux
 
 
@@ -341,16 +392,12 @@ class revetproduits(SimpleFormulaColumn):
 class decote_isf(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"decote_isf"
+    label = u"Décote de l'ISF"
     start_date = date(2013, 1, 1)
 
     def function(self, simulation, period):
-        '''
-        Décote d el'ISF
-        '''
         period = period.start.offset('first-of', 'month').period('year')
         ass_isf = simulation.calculate('ass_isf', period)
-        _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).isf.decote
 
         elig = (ass_isf >= P.min) & (ass_isf <= P.max)
@@ -362,48 +409,38 @@ class decote_isf(SimpleFormulaColumn):
 class isf_apres_plaf(DatedFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"isf_apres_plaf"
+    label = u"Impôt sur la fortune après plafonnement"
+    # Plafonnement supprimé pour l'année 2012
 
     @dated_function(start = date(2002, 1, 1), stop = date(2011, 12, 31))
     def function_20020101_20111231(self, simulation, period):
-        """
-        Impôt sur la fortune après plafonnement
-        """
         period = period.start.offset('first-of', 'month').period('year')
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
-        _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).isf.plaf
 
-        # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-        # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-        # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
-
-        # Plafonnement supprimé pour l'année 2012
+        # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
+        # si entre les deux seuils; l'allègement est limité au 1er seuil
+        # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement
+        #    est limité à 50% de l'ISF
         plafonnement = max_(tot_impot - revetproduits, 0)
         limitationplaf = (
-                          (isf_avant_plaf <= P.seuil1) * plafonnement +
-                          (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
-                          (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement))
+            (isf_avant_plaf <= P.seuil1) * plafonnement +
+            (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
+            (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement)
+            )
         return period, max_(isf_avant_plaf - limitationplaf, 0)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
-        """
-        Impôt sur la fortune après plafonnement
-        """
         period = period.start.offset('first-of', 'month').period('year')
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
-        _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).isf.plaf
 
-        # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-        # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-        # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
-
-        # Plafonnement supprimé pour l'année 2012
-
+        # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
+        # si entre les deux seuils; l'allègement est limité au 1er seuil ##
+        # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement
+        #    est limité à 50% de l'ISF
         return period, isf_avant_plaf
 
     @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
@@ -415,14 +452,6 @@ class isf_apres_plaf(DatedFormulaColumn):
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
-        _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).isf.plaf
-
-        # # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-        # # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-        # # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement est limité à 50% de l'ISF ##
-
-        # Plafonnement supprimé pour l'année 2012
 
         plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
         return period, max_(isf_avant_plaf - plafond, 0)

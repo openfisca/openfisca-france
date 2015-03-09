@@ -26,7 +26,6 @@
 from . import (  # noqa analysis:ignore
     base,
     indemnites_allocations,
-    isf,
     patrimoine,
     section_1_traitements_salaires_ppe_pensions_rentes,
     section_8_divers,

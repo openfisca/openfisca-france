@@ -27,13 +27,16 @@ from . import (  # noqa analysis:ignore
     mesures,
     input_variables,
     pfam,
-    travailleurs_non_salaries,
     )
 
 
 from .caracteristiques_socio_demographiques import (  # noqa analysis:ignore
     demographie,
     logement,
+    )
+
+from . import (  # noqa analysis:ignore
+    mesures,
     )
 
 from .prelevements_obligatoires import(  # noqa analysis:ignore
