@@ -23,14 +23,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from ...base import *  # noqa
 
 
 # TODO: 5QL
 
 
-# Nomenclature : première lettre : (e : auto-entrepreneur / m : micro entreprise, déclaratif spécial / n : bénéfice réel sans CGA / a : bénéfice réel avec CGA ou viseur / f : forfait / c : déclaration contrôlée)
-# trois lettres suivantes : catégorie du revenu ( rag : agricole / bic : industriel et commercial pro / bnc : non commercial pro / acc : industriel et commercial non pro / ncn : non commercial non pro)
+# Nomenclature :
+# première lettre :
+#    e : auto-entrepreneur
+#    m : micro entreprise, déclaratif spécial
+#    n : bénéfice réel sans CGA
+#    a : bénéfice réel avec CGA ou viseur
+#    f : forfait
+#    c : déclaration contrôlée)
+# trois lettres suivantes, catégorie du revenu :
+#    rag : agricole
+#    bic : industriel et commercial pro
+#    bnc : non commercial pro
+#    acc : industriel et commercial non pro
+#    ncn : non commercial non pro
 # après l'underscore : abbréviation du label de la case
 
 build_column('f5qm', IntCol(entity = 'ind',

@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from ...base import *  # noqa
 
 
 # RVCM

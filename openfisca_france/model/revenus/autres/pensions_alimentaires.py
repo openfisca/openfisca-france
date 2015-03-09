@@ -23,13 +23,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from . import (  # noqa analysis:ignore
-    base,
-    indemnites_allocations,
-    isf,
-    patrimoine,
-    section_1_traitements_salaires_ppe_pensions_rentes,
-    section_8_divers,
-    travail_base,
-    travailleurs_non_salaries,
-    )
+from ...base import *  # noqa analysis:ignore
+
+
+build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
+               val_type = "monetary",
+               cerfa_field = {QUIFOY['vous']: u"1AO",
+                              QUIFOY['conj']: u"1BO",
+                              QUIFOY['pac1']: u"1CO",
+                              QUIFOY['pac2']: u"1DO",
+                              QUIFOY['pac3']: u"1EO",
+                              }))  # (f1ao, f1bo, f1co, f1do, f1eo)
+build_column('alr_decl', BoolCol(label = u"Pension déclarée", default = True))

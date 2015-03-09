@@ -23,7 +23,27 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from ...base import *  # noqa
+
+
+# Rentes viagères
+build_column('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1AW'))
+
+build_column('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1BW'))
+build_column('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1CW'))
+build_column('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
+                entity = 'foy',
+                val_type = "monetary",
+                cerfa_field = u'1DW'))
 
 
 # Revenus fonciers

@@ -26,41 +26,10 @@
 from ..base import *  # noqa
 
 
-build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
-               val_type = "monetary",
-               cerfa_field = {QUIFOY['vous']: u"1AO",
-                              QUIFOY['conj']: u"1BO",
-                              QUIFOY['pac1']: u"1CO",
-                              QUIFOY['pac2']: u"1DO",
-                              QUIFOY['pac3']: u"1EO",
-                              }))  # (f1ao, f1bo, f1co, f1do, f1eo)
-build_column('alr_decl', BoolCol(label = u"Pension déclarée", default = True))
-
-
 # pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
 # la case P exsite déjà plus bas ligne 339 sous le nom caseP
 
 build_column('inv', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
-
-
-# Rentes viagères
-build_column('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
-                entity = 'foy',
-                val_type = "monetary",
-                cerfa_field = u'1AW'))
-
-build_column('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
-                entity = 'foy',
-                val_type = "monetary",
-                cerfa_field = u'1BW'))
-build_column('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
-                entity = 'foy',
-                val_type = "monetary",
-                cerfa_field = u'1CW'))
-build_column('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
-                entity = 'foy',
-                val_type = "monetary",
-                cerfa_field = u'1DW'))
 
 build_column('jour_xyz', IntCol(default = 360,
                     entity = "foy",
@@ -73,36 +42,6 @@ build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de réfé
     val_type = "monetary"))
 build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
     val_type = "monetary"))
-
-
-# Gain de levée d'options
-# Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv
-# et les mettre en f1tvm comme pour sali
-# Il faut aussi le faire en amont dans les tables
-
-# là je ne comprends pas pourquoi il faut changer les f1uv en f1tvm....
-# du coups je n'ai pas changé et j'ai fait un dico comme pour sali
-
-build_column('f1tv', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans",
-                        entity = 'ind',
-                        val_type = "monetary",
-                        cerfa_field = {QUIFOY['vous']: u"1TV",
-                                       QUIFOY['conj']: u"1UV",
-                                       }))  # (f1tv,f1uv))
-
-build_column('f1tw', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans",
-                        entity = 'ind',
-                        val_type = "monetary",
-                        cerfa_field = {QUIFOY['vous']: u"1TW",
-                                       QUIFOY['conj']: u"1UW",
-                                       }))  # (f1tw,f1uw))
-
-build_column('f1tx', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans",
-                        entity = 'ind',
-                        val_type = "monetary",
-                        cerfa_field = {QUIFOY['vous']: u"1TX",
-                                       QUIFOY['conj']: u"1UX",
-                        }))  # (f1tx,f1ux))
 
 
 # """

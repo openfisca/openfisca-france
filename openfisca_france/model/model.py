@@ -36,6 +36,20 @@ from .caracteristiques_socio_demographiques import (  # noqa analysis:ignore
     logement,
     )
 
+from .prelevements_obligatoires import(  # noqa analysis:ignore
+    isf,
+    taxe_habitation,
+    )
+
+from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
+    charges_deductibles,
+    credits_impot,
+    ir,
+    plus_values_immobilieres,
+    reductions_impot,
+    variables_reductions_credits,
+    )
+
 from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales import (  # noqa analysis:ignore
     activite,
     capital,
@@ -53,19 +67,6 @@ from .prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import
     )
 
 from .prelevements_obligatoires.prelevements_sociaux import taxes_salaires_main_oeuvre # noqa analysis:ignore
-
-from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
-    charges_deductibles,
-    credits_impot,
-    ir,
-    plus_values_immobilieres,
-    reductions_impot,
-    )
-
-from .prelevements_obligatoires import(  # noqa analysis:ignore
-    isf,
-    taxe_habitation,
-    )
 
 from .prestations import (  # noqa analysis:ignore
     aides_logement,
@@ -90,10 +91,23 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     )
 
 from revenus.activite import (  # noqa analysis:ignore
-    salarie
+    non_salarie,
+    salarie,
+    )
+
+from revenus.autres import (  # noqa analysis:ignore
+    pensions_alimentaires,
+    )
+
+
+from revenus.capital import (  # noqa analysis:ignore
+    financier,
+    foncier,
+    plus_value,
     )
 
 from revenus.remplacement import (  # noqa analysis:ignore
     chomage,
     retraite,
     )
+
