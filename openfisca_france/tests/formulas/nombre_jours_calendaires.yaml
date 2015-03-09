@@ -49,3 +49,10 @@
     contrat_de_travail_depart: "2014-12-31"
   output_variables:
     nombre_jours_calendaires: 0
+
+- period: "month:2015-02"
+  output_variables:
+    nombre_jours_calendaires:
+      "month:2015-01": 31
+      "month:2015-02": 28
+      "month:2015-03": 31

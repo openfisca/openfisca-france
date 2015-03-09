@@ -41,8 +41,13 @@ def check(name, period_str, test):
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         for variable_name, expected_value in output_variables.iteritems():
-            assert_near(simulation.calculate(variable_name, accept_other_period = True), expected_value,
-                error_margin = 0.005, message = u'{}: '.format(variable_name))
+            if isinstance(expected_value, dict):
+                for requested_period, expected_value_at_period in expected_value.iteritems():
+                    assert_near(simulation.calculate(variable_name, requested_period), expected_value_at_period,
+                        error_margin = 0.005, message = u'{}@{}: '.format(variable_name, requested_period))
+            else:
+                assert_near(simulation.calculate(variable_name), expected_value, error_margin = 0.005,
+                    message = u'{}@{}: '.format(variable_name, period_str))
 
 
 def test():
