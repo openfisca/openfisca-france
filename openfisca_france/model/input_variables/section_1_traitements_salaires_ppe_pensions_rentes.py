@@ -26,15 +26,6 @@
 from ..base import *  # noqa
 
 
-build_column('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
-                   cerfa_field = {QUIFOY['vous']: u"1AI",
-                                  QUIFOY['conj']: u"1BI",
-                                  QUIFOY['pac1']: u"1CI",
-                                  QUIFOY['pac2']: u"1DI",
-                                  QUIFOY['pac3']: u"1EI",
-                               }))  # Pour toutes les variables de ce type, les pac3 ne sont plus proposés après 2007
-
-
 build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
                val_type = "monetary",
                cerfa_field = {QUIFOY['vous']: u"1AO",
@@ -45,23 +36,6 @@ build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
                               }))  # (f1ao, f1bo, f1co, f1do, f1eo)
 build_column('alr_decl', BoolCol(label = u"Pension déclarée", default = True))
 
-build_column('choi', IntCol(label = u"Autres revenus imposables (chômage, préretraite)",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"1AP",
-                               QUIFOY['conj']: u"1BP",
-                               QUIFOY['pac1']: u"1CP",
-                               QUIFOY['pac2']: u"1DP",
-                               QUIFOY['pac3']: u"1EP",
-                               }))  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-
-build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"1AS",
-                               QUIFOY['conj']: u"1BS",
-                               QUIFOY['pac1']: u"1CS",
-                               QUIFOY['pac2']: u"1DS",
-                               QUIFOY['pac3']: u"1ES",
-                               }))  # (f1as, f1bs, f1cs, f1ds, f1es)
 
 # pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
 # la case P exsite déjà plus bas ligne 339 sous le nom caseP
