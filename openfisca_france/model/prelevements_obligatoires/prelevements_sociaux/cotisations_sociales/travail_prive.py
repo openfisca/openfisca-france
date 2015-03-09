@@ -30,6 +30,7 @@ import logging
 
 from numpy import int16, maximum as max_, minimum as min_, logical_not as not_
 
+
 from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme, apply_bareme_for_relevant_type_sal
 

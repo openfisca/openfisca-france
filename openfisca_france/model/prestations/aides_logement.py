@@ -225,7 +225,7 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         concub = simulation.calculate('concub', period)
         aide_logement_base_ressources = simulation.calculate('aide_logement_base_ressources', period)
-        so_holder = simulation.compute('so', period)
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         loyer_holder = simulation.compute('loyer', period)
         coloc_holder = simulation.compute('coloc', period)
         logement_chambre_holder = simulation.compute('logement_chambre', period)
@@ -241,8 +241,8 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         couple = or_(concub, enceinte_fam)
         personne_seule = not_(couple)
 
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
+        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
+        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
         loyer = self.cast_from_entity_to_roles(loyer_holder)
         loyer = self.filter_role(loyer, role = CHEF)
 
@@ -261,20 +261,20 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         # zone_apl
         # loyer
         # coloc (1 si colocation, 0 sinon)
-        # so : statut d'occupation du logement
-        #   SO==1 : Accédant à la propriété
-        #   SO==2 : Propriétaire (non accédant) du logement.
-        #   SO==3 : Locataire d'un logement HLM
-        #   SO==4 : Locataire ou sous-locataire d'un logement loué vide non-HLM
-        #   SO==5 : Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel.
-        #   sO==6 : Logé gratuitement par des parents, des amis ou l'employeur
+        # statut_occupation : statut d'occupation du logement
+        #   statut_occupation==1 : Accédant à la propriété
+        #   statut_occupation==2 : Propriétaire (non accédant) du logement.
+        #   statut_occupation==3 : Locataire d'un logement HLM
+        #   statut_occupation==4 : Locataire ou statut_occupationus-locataire d'un logement loué vide non-HLM
+        #   statut_occupation==5 : Locataire ou statut_occupationus-locataire d'un logement loué meublé ou d'une chambre d'hôtel.
+        #   statut_occupation==6 : Logé gratuitement par des parents, des amis ou l'employeur
 
-        loca = (3 <= so) & (5 >= so)
-        acce = so == 1
+        loca = (3 <= statut_occupation) & (5 >= statut_occupation)
+        acce = statut_occupation == 1
 
         # # aides au logement pour les locataires
         # loyer mensuel, multiplié par 2/3 pour les meublés
-        L1 = round((so == 5) * loyer * 2 / 3 + (so != 5) * loyer, 2)
+        L1 = round((statut_occupation == 5) * loyer * 2 / 3 + (statut_occupation != 5) * loyer, 2)
 
         # taux à appliquer sur le loyer plafond
         taux_loyer_plafond = (and_(not_(coloc), not_(chambre)) * 1
@@ -412,11 +412,11 @@ class alf(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
-        so_famille = simulation.calculate('so_famille', period)
+        statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-        so = so_famille
-        return period, (al_pac >= 1) * (so != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+        statut_occupation = statut_occupation_famille
+        return period, (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
 
 
 @reference_formula
@@ -430,13 +430,13 @@ class als_nonet(SimpleFormulaColumn):
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         etu_holder = simulation.compute('etu', period)
-        so_famille = simulation.calculate('so_famille', period)
+        statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-        so = so_famille
+        statut_occupation = statut_occupation_famille
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return period, (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * aide_logement_montant
+        return period, (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * aide_logement_montant
 
 
 @reference_formula
@@ -451,14 +451,14 @@ class alset(SimpleFormulaColumn):
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         etu_holder = simulation.compute('etu', period)
-        so_holder = simulation.compute('so', period)
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
+        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
+        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return period, (al_pac == 0) * (so != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * aide_logement_montant
+        return period, (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * aide_logement_montant
 
 
 @reference_formula
@@ -488,11 +488,11 @@ class apl(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
-        so_holder = simulation.compute('so', period)
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
 
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
-        return period, aide_logement_montant * (so == 3)
+        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
+        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
+        return period, aide_logement_montant * (statut_occupation == 3)
 
 
 @reference_formula
@@ -525,18 +525,18 @@ class crds_logement(SimpleFormulaColumn):
 
 
 @reference_formula
-class so_individu(EntityToPersonColumn):
+class statut_occupation_individu(EntityToPersonColumn):
     entity_class = Individus
     label = u"Statut d'occupation de l'individu"
-    variable = Menages.column_by_name["so"]
+    variable = Menages.column_by_name['statut_occupation']
 
 
 @reference_formula
-class so_famille(PersonToEntityColumn):
+class statut_occupation_famille(PersonToEntityColumn):
     entity_class = Familles
     label = u"Statut d'occupation de la famille"
     role = CHEF
-    variable = Individus.column_by_name["so_individu"]
+    variable = Individus.column_by_name['statut_occupation_individu']
 
 
 @reference_formula

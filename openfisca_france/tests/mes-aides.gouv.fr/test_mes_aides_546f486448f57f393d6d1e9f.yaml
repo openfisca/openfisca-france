@@ -80,6 +80,6 @@ menages:
   depcom: 67482
   enfants:
   personne_de_reference: 546f4850bbaefa3e3dc48b3f
-  so: 6
+  statut_occupation: 6
 output_variables:
   ass: 483.3

@@ -118,6 +118,6 @@ menages:
     - 54e6febe70a3f65f40b60eda
     - 54e86c740f7afafd54c4d4d4
   personne_de_reference: 54e6febe70a3f65f40b60edc
-  so: 6
+  statut_occupation: 6
 output_variables:
   cf: 0

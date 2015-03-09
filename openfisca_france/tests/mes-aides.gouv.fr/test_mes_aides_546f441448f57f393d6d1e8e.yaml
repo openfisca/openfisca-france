@@ -59,6 +59,6 @@ menages:
   depcom: 75120
   enfants: 546f4304e1e8823c3da3eb4c
   personne_de_reference: 546f4304e1e8823c3da3eb59
-  so: 6
+  statut_occupation: 6
 output_variables:
   asf: 0

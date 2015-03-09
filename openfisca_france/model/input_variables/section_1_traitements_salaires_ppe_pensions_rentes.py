@@ -34,23 +34,6 @@ build_column('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus 
                                   QUIFOY['pac3']: u"1EI",
                                }))  # Pour toutes les variables de ce type, les pac3 ne sont plus proposés après 2007
 
-build_column('sali', IntCol(label = u"Revenus d'activité imposables",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"1AJ",
-                               QUIFOY['conj']: u"1BJ",
-                               QUIFOY['pac1']: u"1CJ",
-                               QUIFOY['pac2']: u"1DJ",
-                               QUIFOY['pac3']: u"1EJ",
-                               }))  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-
-build_column('fra', IntCol(label = u"Frais réels",
-               val_type = "monetary",
-               cerfa_field = {QUIFOY['vous']: u"1AK",
-                              QUIFOY['conj']: u"1BK",
-                              QUIFOY['pac1']: u"1CK",
-                              QUIFOY['pac2']: u"1DK",
-                              QUIFOY['pac3']: u"1EK",
-                              }))  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
 build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
                val_type = "monetary",
@@ -80,53 +63,27 @@ build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposa
                                QUIFOY['pac3']: u"1ES",
                                }))  # (f1as, f1bs, f1cs, f1ds, f1es)
 
-build_column('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
-                val_type = "monetary",
-                start = date(2007, 1, 1),
-                cerfa_field = {QUIFOY['vous']: u"1AU",
-                               QUIFOY['conj']: u"1BU",
-                               QUIFOY['pac1']: u"1CU",
-                               QUIFOY['pac2']: u"1DU",
-                               }))  # (f1au, f1bu, f1cu, f1du, f1eu)
-
 # pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
 # la case P exsite déjà plus bas ligne 339 sous le nom caseP
 
 build_column('inv', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
 
-build_column('alt', BoolCol(label = u'Enfant en garde alternée'))  # TODO: cerfa_field
-
-build_column('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
-                     cerfa_field = {QUIFOY['vous']: u"1AV",
-                                    QUIFOY['conj']: u"1BV",
-                                    QUIFOY['pac1']: u"1CV",
-                                    QUIFOY['pac2']: u"1DV",
-                                    QUIFOY['pac3']: u"1QV",
-                                    }))  # (f1av, f1bv, f1cv, f1dv, f1qv)
-
-build_column('ppe_tp_sa', BoolCol(label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière",
-                      cerfa_field = {QUIFOY['vous']: u"1AX",
-                                     QUIFOY['conj']: u"1BX",
-                                     QUIFOY['pac1']: u"1CX",
-                                     QUIFOY['pac2']: u"1DX",
-                                     QUIFOY['pac3']: u"1QX",
-                                     }))  # (f1ax, f1bx, f1cx, f1dx, f1qx)
 
 # Rentes viagères
-build_column('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
+build_column('f1aw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans",
                 entity = 'foy',
                 val_type = "monetary",
                 cerfa_field = u'1AW'))
 
-build_column('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
+build_column('f1bw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans",
                 entity = 'foy',
                 val_type = "monetary",
                 cerfa_field = u'1BW'))
-build_column('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
+build_column('f1cw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans",
                 entity = 'foy',
                 val_type = "monetary",
                 cerfa_field = u'1CW'))
-build_column('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
+build_column('f1dw', IntCol(label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans",
                 entity = 'foy',
                 val_type = "monetary",
                 cerfa_field = u'1DW'))
@@ -135,113 +92,6 @@ build_column('jour_xyz', IntCol(default = 360,
                     entity = "foy",
                     label = u"Jours décomptés au titre de cette déclaration"))
 
-build_column('loyer', IntCol(label = u"Loyer mensuel",
-                 entity = 'men',
-                 val_type = "monetary"))  # Loyer mensuel
-
-build_column('so', EnumCol(label = u"Statut d'occupation",
-               entity = 'men',
-               enum = Enum([u"Non renseigné",
-                            u"Accédant à la propriété",
-                            u"Propriétaire (non accédant) du logement",
-                            u"Locataire d'un logement HLM",
-                            u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-                            u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-                            u"Logé gratuitement par des parents, des amis ou l'employeur"])))
-
-build_column('activite', EnumCol(label = u'Activité',
-                     enum = Enum([u'Actif occupé',
-                                u'Chômeur',
-                                u'Étudiant, élève',
-                                u'Retraité',
-                                u'Autre inactif']), default = 4))
-
-build_column('nbsala', EnumCol(label = u"Nombre de salariés dans l'établissement de l'emploi actuel",
-                enum = Enum([u"Sans objet",
-                            u"Aucun salarié",
-                            u"1 à 4 salariés",
-                            u"5 à 9 salariés",
-                            u"10 à 19 salariés",
-                            u"20 à 49 salariés",
-                            u"50 à 199 salariés",
-                            u"200 à 499 salariés",
-                            u"500 à 999 salariés",
-                            u"1000 salariés ou plus",
-                            u"Ne sait pas",
-                            ])))
-
-build_column('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
-                    default = True))
-
-#    build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))  # TODO: Complete label, add enum and relevant default.
-
-build_column('exposition_accident', EnumCol(label = u"Exposition au risque pour les accidents du travail",
-                        enum = Enum([u"Faible",
-                               u"Moyen",
-                               u"Élevé",
-                               u"Très élevé",
-                               ])))
-
-build_column('boursier', BoolCol(label = u"Élève ou étudiant boursier"))
-
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
-
-build_column('statmarit', EnumCol(label = u"Statut marital",
-                      default = 2,
-                      enum = Enum([u"Marié",
-                                u"Célibataire",
-                                u"Divorcé",
-                                u"Veuf",
-                                u"Pacsé",
-                                u"Jeune veuf"], start = 1)))
-
-build_column('nbN', PeriodSizeIndependentIntCol(cerfa_field = u'N', entity = 'foy',
-    label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille"))
-build_column('nbR', PeriodSizeIndependentIntCol(cerfa_field = u'R', entity = 'foy',
-    label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %"))
-
-build_column('caseE', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul",
-                  entity = 'foy',
-                  cerfa_field = u'E', end = date(2012, 12, 31)))
-build_column('caseF', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)",
-                  entity = 'foy',
-                  cerfa_field = u'F'))
-build_column('caseG', BoolCol(label = u"Titulaire d'une pension de veuve de guerre",
-                  entity = 'foy',
-                  cerfa_field = u'G'))  # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche
-build_column('caseH', PeriodSizeIndependentIntCol(label = u"Année de naissance des enfants à charge en garde alternée", entity = 'foy',
-                 cerfa_field = u'H'))
-# il ne s'agit pas à proprement parlé de la case H, les cases permettant d'indiquer l'année de naissance
-#    se rapportent bien à nbH mais ne sont pas nommées, choisissons nous de laisser cerfa_field = u'H' pour caseH ?
-#    De plus les caseH peuvent être multiples puisqu'il peut y avoir plusieurs enfants? donc faut-il les nommer caseH1, caseH2...caseH6 (les 6 présentes dans la déclaration) ?
-#    il faut aussi créer les cases F, G, R et I qui donnent également les années de naissances des PAC
-
-
-build_column('caseK', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre",
-                  entity = 'foy',
-                  cerfa_field = u'K', end = date(2011, 12, 31)))
-
-build_column('caseL', BoolCol(label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul",
-                  entity = 'foy',
-                  cerfa_field = u'L'))
-
-build_column('caseN', BoolCol(label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus",
-                  entity = 'foy',
-                  cerfa_field = u'N'))
-build_column('caseP', BoolCol(label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%",
-                  entity = 'foy',
-                  cerfa_field = u'P'))
-build_column('caseS', BoolCol(label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
-                  entity = 'foy',
-                  cerfa_field = u'S'))
-
-build_column('caseT', BoolCol(label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus",
-                  entity = 'foy',
-                  cerfa_field = u'T'))
-
-build_column('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre",
-                  entity = 'foy',
-                  cerfa_field = u'W'))
 
 build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
     val_type = "monetary"))

@@ -118,6 +118,6 @@ menages:
     - 543ba81c855844062e40b7d3
     - 543ba81c855844062e40b7d2
   personne_de_reference: 543ba81c855844062e40b7d5
-  so: 6
+  statut_occupation: 6
 output_variables:
   cf: 169.19

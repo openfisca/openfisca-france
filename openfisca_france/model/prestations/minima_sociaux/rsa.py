@@ -650,13 +650,13 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         rmi = simulation.legislation_at(period.start).minim.rmi.rmi
 
         rmi_nbp = simulation.calculate('rmi_nbp', period)
-        so_holder = simulation.compute('so', period)
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
+        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
+        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
-        avantage_nature = or_(so == 2, so == 6)
+        avantage_nature = or_(statut_occupation == 2, statut_occupation == 6)
         avantage_al = aide_logement > 0
 
         montant_forfait = rmi * (

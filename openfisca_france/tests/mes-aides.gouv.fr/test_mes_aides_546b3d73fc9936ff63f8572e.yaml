@@ -64,7 +64,7 @@ menages:
   depcom: 75114
   enfants: 546b3d12fc9936ff63f85713
   personne_de_reference: 546b3d12fc9936ff63f85714
-  so: 6
+  statut_occupation: 6
 output_variables:
   asf: 0
   rsa_non_majore: 541.72

@@ -4,7 +4,7 @@ description: |
   On force le loyer plafond d'une personne seule à hauteur de 90% pour les chambres même quand c'est un couple ou une famille qui y vit.
   Ici le demandeur est en couple et a deux enfants, mais L vaut 292,62 * 0,9 = 263,36 car il est dans une chambre.
   Par contre le reste du calcul est en base famille (forfait de charges, taux famille, taux loyer, LR, etc).
-  
+
   L	263,36
   C	77,35
   E	340,71
@@ -20,7 +20,7 @@ description: |
   P1	201,94
   Pp	236,67
   AL	103,52
-  
+
   caf.fr : 101,24
 period: "month:2015-02"
 individus:
@@ -131,6 +131,6 @@ menages:
     - 54ef4df1d36576597541953e
   loyer: 1000
   personne_de_reference: 54ef4df1d365765975419541
-  so: 4
+  statut_occupation: 4
 output_variables:
   aide_logement: 103.52
