@@ -25,10 +25,35 @@
 
 from __future__ import division
 
-from numpy import (round, floor, zeros, maximum as max_, minimum as min_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_)
 
-from ...base import *  # noqa
+from ...base import *  # noqa analysis:ignore
 from ...pfam import nb_enf, age_en_mois_benjamin
+
+
+# Prestations familiales
+build_column('inactif', BoolCol(entity = 'fam',
+                    label = u"Parent inactif (PAJE-CLCA)"))
+
+build_column('partiel1', BoolCol(entity = 'fam',
+                     label = u"Parent actif à moins de 50% (PAJE-CLCA)"))
+
+build_column('partiel2', BoolCol(entity = 'fam',
+                     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"))
+
+build_column('categ_inv', PeriodSizeIndependentIntCol(label = u"Catégorie de handicap (AEEH)"))
+
+build_column('opt_colca', BoolCol(entity = 'fam',
+                      label = u"Opte pour le COLCA"))
+
+build_column('empl_dir', BoolCol(entity = 'fam',
+                     label = u"Emploi direct (CLCMG)"))
+
+build_column('ass_mat', BoolCol(entity = 'fam',
+                    label = u"Assistante maternelle (CLCMG)"))
+
+build_column('gar_dom', BoolCol(entity = 'fam',
+                    label = u"Garde à domicile (CLCMG)"))
 
 
 @reference_formula
@@ -354,7 +379,8 @@ class paje_clmg(SimpleFormulaColumn):
                 ((br_pf >= seuil1) & (br_pf < seuil2)) * P.paje.clmg.domi2 +
                 (br_pf >= seuil2) * P.paje.clmg.domi3))
         # TODO: connecter avec le crédit d'impôt
-        # Si vous bénéficiez du Clca taux plein (= vous ne travaillez plus ou interrompez votre activité professionnelle),
+        # Si vous bénéficiez du Clca taux plein
+        # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
         paje_clmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
@@ -642,9 +668,7 @@ class apje(SimpleFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(self, simulation, period):
-        '''
-        L'APJE n'est pas cumulable avec le complément familial et l'APE
-        '''
+        # L'APJE n'est pas cumulable avec le complément familial et l'APE
         period = period.start.offset('first-of', 'month').period('year')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)

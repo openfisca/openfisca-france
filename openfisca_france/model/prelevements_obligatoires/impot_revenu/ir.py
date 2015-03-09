@@ -36,7 +36,6 @@ from ...base import *  # noqa analysis:ignore
 log = logging.getLogger(__name__)
 
 
-# TODO: contribution exceptionnelle sur les hauts revenus (>=2011)
 # TODO: 8ti et 8tk (cerfa 2047)
 # TODO: CSG, CRDS et prélèvements sociaux sur revenu du patrimione, d'activité et de remplacement
 # TODO: finir RPNS (prise en compte des plafonds / cases non codées : codées pour certaines années mais pas pour
@@ -63,6 +62,19 @@ log = logging.getLogger(__name__)
 #
 #    # impot sur le revenu du foyer (hors prélèvement libératoire, revenus au quotient)
 #    irpp   = -(mciria + ppetot - mcirra )
+
+
+build_column('jour_xyz', IntCol(default = 360,
+                    entity = "foy",
+                    label = u"Jours décomptés au titre de cette déclaration"))
+
+
+build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
+    val_type = "monetary"))
+build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
+    val_type = "monetary"))
+build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
+    val_type = "monetary"))
 
 
 ###############################################################################

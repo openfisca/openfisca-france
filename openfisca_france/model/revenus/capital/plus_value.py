@@ -23,7 +23,37 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from ...base import *  # noqa analysis:ignore
+
+# Gain de levée d'options
+# Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv
+# et les mettre en f1tvm comme pour sali
+# Il faut aussi le faire en amont dans les tables
+
+# là je ne comprends pas pourquoi il faut changer les f1uv en f1tvm....
+# du coups je n'ai pas changé et j'ai fait un dico comme pour sali
+
+build_column('f1tv', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans",
+                        entity = 'ind',
+                        val_type = "monetary",
+                        cerfa_field = {QUIFOY['vous']: u"1TV",
+                                       QUIFOY['conj']: u"1UV",
+                                       }))  # (f1tv,f1uv))
+
+build_column('f1tw', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans",
+                        entity = 'ind',
+                        val_type = "monetary",
+                        cerfa_field = {QUIFOY['vous']: u"1TW",
+                                       QUIFOY['conj']: u"1UW",
+                                       }))  # (f1tw,f1uw))
+
+build_column('f1tx', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans",
+                        entity = 'ind',
+                        val_type = "monetary",
+                        cerfa_field = {QUIFOY['vous']: u"1TX",
+                                       QUIFOY['conj']: u"1UX",
+                        }))  # (f1tx,f1ux))
+
 
 
 build_column('f3si', IntCol(entity = 'foy',

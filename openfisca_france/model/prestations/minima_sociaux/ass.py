@@ -30,6 +30,9 @@ from numpy import maximum as max_, logical_not as not_, logical_or as or_, logic
 from ...base import *  # noqa analysis:ignore
 
 
+build_column('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Éligible à l'ASS"))
+
+
 @reference_formula
 class ass_eligibilite_i(SimpleFormulaColumn):
     column = BoolCol
