@@ -26,22 +26,7 @@
 from ..base import *  # noqa
 
 
-# pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
-# la case P exsite déjà plus bas ligne 339 sous le nom caseP
 
-build_column('inv', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
-
-build_column('jour_xyz', IntCol(default = 360,
-                    entity = "foy",
-                    label = u"Jours décomptés au titre de cette déclaration"))
-
-
-build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
-    val_type = "monetary"))
-build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
-    val_type = "monetary"))
-build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
-    val_type = "monetary"))
 
 
 # """
@@ -98,14 +83,6 @@ build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"
 #
 #     #total de vos salaires
 
-build_column('sal_pen_exo_etr', IntCol(entity = 'ind',
-                     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
-                     val_type = "monetary",
-                     cerfa_field = {QUIFOY['vous']: u"1AC",
-                                    QUIFOY['conj']: u"1BC",
-                                    QUIFOY['pac1']: u"1CC",
-                                    QUIFOY['pac2']: u"1DC", },
-                     start = date(2013, 1, 1),))
 
 #     vous:1AC
 #     conj:1BC

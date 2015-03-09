@@ -26,9 +26,24 @@
 from ..base import *  # noqa
 
 
+build_column('coloc', BoolCol(label = u"Vie en colocation"))
+
+build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
+
+
+build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
+
 build_column('loyer', IntCol(label = u"Loyer mensuel",
                  entity = 'men',
                  val_type = "monetary"))  # Loyer mensuel
+
+build_column(
+    'proprietaire_proche_famille',
+    BoolCol(
+        entity = "fam",
+        label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint",
+        ),
+    )
 
 build_column('statut_occupation', EnumCol(label = u"Statut d'occupation",
                entity = 'men',
@@ -39,8 +54,4 @@ build_column('statut_occupation', EnumCol(label = u"Statut d'occupation",
                             u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
                             u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
                             u"Logé gratuitement par des parents, des amis ou l'employeur"])))
-
-
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
-
 

@@ -990,7 +990,31 @@ build_column('f5mt', IntCol(entity = 'foy',
                 start = date(2007, 1, 1),
                 cerfa_field = u'5MT'))
 
+build_column('f5sq', IntCol())
+
+
+
 # TODO: Introudit par mes aides à consolider
+
+# Input variables
+build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))
+build_column('tns_autres_revenus', FloatCol(entity = 'ind', is_permanent = True, label = u"Autres revenus non salariés"))
+
+build_column('tns_type_structure', EnumCol(
+    entity = 'ind',
+    enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
+    default = 1,
+    is_permanent = True,
+    label = u"Type de structure associée au travailleur non salarié"))
+
+build_column('tns_type_activite', EnumCol(
+    entity = 'ind',
+    enum = Enum([u'achat_revente', u'bic', u'bnc']),
+    is_permanent = True,
+    label = u"Valeur locative des biens immobiliés possédés et non loués"))
+
+
+# Computed variables
 @reference_formula
 class tns_total_revenus(DatedFormulaColumn):
     column = FloatCol

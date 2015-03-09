@@ -80,3 +80,13 @@ build_column('f4bf', IntCol(entity = 'foy',
 
 build_column('f4bl', IntCol(entity = 'foy', label = u"",
     end = date(2009, 12, 31)))  # TODO: cf 2010 2011
+
+# Variables utilisées par mes aides TODO: consolider
+reference_input_variable(column = FloatCol, entity_class = Individus,
+    label = u"Revenus locatifs", name = 'revenus_locatifs')
+
+reference_input_variable(base_function = requested_period_last_value, column = FloatCol, entity_class = Individus,
+    label = u"Valeur locative des biens immobiliers possédés et non loués", name = 'valeur_locative_immo_non_loue')
+
+reference_input_variable(base_function = requested_period_last_value, column = FloatCol, entity_class = Individus,
+    label = u"Valeur locative des terrains possédés et non loués", name = 'valeur_locative_terrains_non_loue')

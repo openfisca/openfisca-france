@@ -43,6 +43,22 @@ log = logging.getLogger(__name__)
 #       des revenus du chômage sous un smic
 
 
+build_column(
+    'csg_rempl',
+    EnumCol(
+        label = u"Taux retenu sur la CSG des revenus de remplacment",
+        entity = 'ind',
+        enum = Enum([
+            u"Non renseigné/non pertinent",
+            u"Exonéré",
+            u"Taux réduit",
+            u"Taux plein",
+            ]),
+        default = 3,
+        ),
+    )
+
+
 ############################################################################
 # # Allocations chômage
 ############################################################################

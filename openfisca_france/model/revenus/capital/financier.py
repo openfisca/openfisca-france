@@ -162,3 +162,14 @@ build_column('f2gr', IntCol(entity = 'foy',
                 cerfa_field = u'2GR',
                 start = date(2005, 1, 1),
                 end = date(2009, 12, 31)))  # TODO: vérifier existence à partir de 2011
+
+
+# Utilisés par mes aides. TODO: à consolider
+reference_input_variable(base_function = requested_period_last_value, column = FloatCol, entity_class = Individus,
+    label = u"Épargne non rémunérée", name = 'epargne_non_remuneree')
+
+reference_input_variable(base_function = requested_period_last_value, column = FloatCol, entity_class = Individus,
+    label = u"Intérêts versés pour l'épargne sur livret", name = 'interets_epargne_sur_livrets')
+
+reference_input_variable(column = FloatCol, entity_class = Individus,
+    label = u"Revenus du capital", name = 'revenus_capital')

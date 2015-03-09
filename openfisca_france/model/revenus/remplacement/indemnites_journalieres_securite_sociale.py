@@ -25,13 +25,10 @@
 
 from ...base import *  # noqa analysis:ignore
 
+build_column('indemnites_journalieres_maternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de maternité"))
+build_column('indemnites_journalieres_paternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de paternité"))
+build_column('indemnites_journalieres_adoption', FloatCol(entity = 'ind', label = u"Indemnités journalières d'adoption"))
+build_column('indemnites_journalieres_maladie', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie"))
+build_column('indemnites_journalieres_accident_travail', FloatCol(entity = 'ind', label = u"Indemnités journalières d'accident du travail"))
+build_column('indemnites_journalieres_maladie_professionnelle', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie professionnelle"))
 
-build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
-               val_type = "monetary",
-               cerfa_field = {QUIFOY['vous']: u"1AO",
-                              QUIFOY['conj']: u"1BO",
-                              QUIFOY['pac1']: u"1CO",
-                              QUIFOY['pac2']: u"1DO",
-                              QUIFOY['pac3']: u"1EO",
-                              }))  # (f1ao, f1bo, f1co, f1do, f1eo)
-build_column('alr_decl', BoolCol(label = u"Pension déclarée", default = True))

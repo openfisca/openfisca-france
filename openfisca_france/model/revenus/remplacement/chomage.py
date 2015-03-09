@@ -44,3 +44,12 @@ build_column('choi', IntCol(label = u"Autres revenus imposables (chômage, prér
                                QUIFOY['pac3']: u"1EP",
                                }))  # (f1ap, f1bp, f1cp, f1dp, f1ep)
 
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Chômage brut",
+    name = 'chobrut',
+    )
+
+
+build_column('indemnites_chomage_partiel', FloatCol(entity = 'ind', label = u"Indemnités de chômage partiel"))

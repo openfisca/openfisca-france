@@ -24,8 +24,6 @@
 
 
 from . import (  # noqa analysis:ignore
-    mesures,
-    input_variables,
     pfam,
     )
 
@@ -77,7 +75,7 @@ from .prestations import (  # noqa analysis:ignore
     )
 
 from prestations.minima_sociaux import (  # noqa analysis:ignore
-    # aah,
+    aah,
     asi_aspa,
     ass,
     cmu,
@@ -93,14 +91,13 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     cf,
     )
 
+from revenus import autres
+
 from revenus.activite import (  # noqa analysis:ignore
     non_salarie,
     salarie,
     )
 
-from revenus.autres import (  # noqa analysis:ignore
-    pensions_alimentaires,
-    )
 
 
 from revenus.capital import (  # noqa analysis:ignore
@@ -112,5 +109,6 @@ from revenus.capital import (  # noqa analysis:ignore
 from revenus.remplacement import (  # noqa analysis:ignore
     chomage,
     retraite,
+    indemnites_journalieres_securite_sociale,
     )
 

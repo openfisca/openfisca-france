@@ -26,6 +26,24 @@
 from ..base import *  # noqa
 
 
+build_column('idmen', IntCol(is_permanent = True, label = u"Identifiant du ménage"))
+build_column('idfoy', IntCol(is_permanent = True, label = u"Identifiant du foyer"))
+build_column('idfam', IntCol(is_permanent = True, label = u"Identifiant de la famille"))
+
+build_column('quimen', EnumCol(QUIMEN, is_permanent = True))
+build_column('quifoy', EnumCol(QUIFOY, is_permanent = True))
+build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
+
+build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
+
+build_column('nom_famille', StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
+build_column('nom_foyer_fiscal', StrCol(entity = 'foy', is_permanent = True, label = u"Nom"))
+build_column('nom_individu', StrCol(is_permanent = True, label = u"Prénom"))
+build_column('nom_menage', StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
+
+
+build_column('adoption', BoolCol(entity = "ind", label = u"Enfant adopté"))
+
 build_column('alt', BoolCol(label = u'Enfant en garde alternée'))  # TODO: cerfa_field
 
 
@@ -35,6 +53,9 @@ build_column('activite', EnumCol(label = u'Activité',
                                 u'Étudiant, élève',
                                 u'Retraité',
                                 u'Autre inactif']), default = 4))
+
+
+build_column('enceinte', BoolCol(entity = 'ind', label = u"Est enceinte"))
 
 
 build_column('statmarit', EnumCol(label = u"Statut marital",
@@ -94,3 +115,6 @@ build_column('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est d
                   entity = 'foy',
                   cerfa_field = u'W'))
 
+# pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
+# la case P exsite déjà plus bas ligne 339 sous le nom caseP
+build_column('inv', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
