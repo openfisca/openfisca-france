@@ -57,20 +57,26 @@ def test():
             continue
         filename_core = os.path.splitext(filename)[0]
         with open(os.path.join(dir_path, filename)) as yaml_file:
-            test = yaml.load(yaml_file)
+            tests = yaml.load(yaml_file)
             tests, error = conv.pipe(
                 conv.make_item_to_singleton(),
                 conv.uniform_sequence(
-                    scenarios.make_json_or_python_to_test(tax_benefit_system),
+                    conv.noop,
                     drop_none_items = True,
                     ),
-                )(test)
+                )(tests)
             if error is not None:
                 embedding_error = conv.embed_error(tests, u'errors', error)
                 assert embedding_error is None, embedding_error
                 conv.check((tests, error))  # Generate an error.
 
             for test in tests:
+                test, error = scenarios.make_json_or_python_to_test(tax_benefit_system)(test)
+                if error is not None:
+                    embedding_error = conv.embed_error(test, u'errors', error)
+                    assert embedding_error is None, embedding_error
+                    conv.check((test, error))  # Generate an error.
+
                 if test.get(u'ignore', False):
                     continue
                 yield check, test.get('name') or filename_core, unicode(test['scenario'].period), test
