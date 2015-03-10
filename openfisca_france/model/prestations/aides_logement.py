@@ -29,12 +29,13 @@ import csv
 import json
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_, minimum as min_, round
+from numpy import ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, \
+    maximum as max_, minimum as min_, round
 
 import openfisca_france
-from ..base import *  # noqa  analysis:ignore
-from ..pfam import nb_enf
 
+from ..base import *  # noqa  analysis:ignore
+from .prestations_familiales.base_ressource import nb_enf
 
 zone_apl_by_depcom = None
 
@@ -105,7 +106,12 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
         # Application de l'abattement pour frais professionnels
         params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
         somme_salaires_mois_precedent = 12 * sal
-        montant_abattement = round(min_(max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min), params_abattement.max))
+        montant_abattement = round(
+            min_(
+                max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
+                params_abattement.max
+                )
+            )
         result = max_(0, somme_salaires_mois_precedent - montant_abattement)
 
         return period, result
@@ -173,7 +179,8 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
         mois_precedent = period.offset(-1)
         last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
-        base_ressources_eval_forfaitaire = simulation.calculate('aide_logement_base_ressources_eval_forfaitaire', period)
+        base_ressources_eval_forfaitaire = simulation.calculate(
+            'aide_logement_base_ressources_eval_forfaitaire', period)
         concub = simulation.calculate('concub', period)
         aah_holder = simulation.compute('aah', mois_precedent)
         aah = self.sum_by_entity(aah_holder, roles = [CHEF, PART])
@@ -196,9 +203,9 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
         eval_forfaitaire &= base_ressources_eval_forfaitaire > 0
         eval_forfaitaire &= aah == 0
         eval_forfaitaire &= not_(neutral_jeune)
-
-        ressources = (base_ressources_eval_forfaitaire * eval_forfaitaire + base_ressources_defaut * not_(eval_forfaitaire))
-
+        ressources = (
+            base_ressources_eval_forfaitaire * eval_forfaitaire + base_ressources_defaut * not_(eval_forfaitaire)
+            )
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
         Pr = simulation.legislation_at(period.start).al.ressources
@@ -266,7 +273,8 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         #   statut_occupation==2 : Propriétaire (non accédant) du logement.
         #   statut_occupation==3 : Locataire d'un logement HLM
         #   statut_occupation==4 : Locataire ou statut_occupationus-locataire d'un logement loué vide non-HLM
-        #   statut_occupation==5 : Locataire ou statut_occupationus-locataire d'un logement loué meublé ou d'une chambre d'hôtel.
+        #   statut_occupation==5 : Locataire ou statut_occupationus-locataire d'un logement loué meublé
+        #                          ou d'une chambre d'hôtel.
         #   statut_occupation==6 : Logé gratuitement par des parents, des amis ou l'employeur
 
         loca = (3 <= statut_occupation) & (5 >= statut_occupation)
@@ -416,7 +424,8 @@ class alf(SimpleFormulaColumn):
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
         statut_occupation = statut_occupation_famille
-        return period, (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+        return period, \
+            (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
 
 
 @reference_formula
@@ -436,7 +445,10 @@ class als_nonet(SimpleFormulaColumn):
         statut_occupation = statut_occupation_famille
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return period, (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * not_(etu[CHEF] | etu[PART]) * aide_logement_montant
+        return period, (
+            (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
+            not_(etu[CHEF] | etu[PART]) * aide_logement_montant
+            )
 
 
 @reference_formula
@@ -458,7 +470,10 @@ class alset(SimpleFormulaColumn):
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
-        return period, (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * (etu[CHEF] | etu[PART]) * aide_logement_montant
+        return period, (
+            (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
+            (etu[CHEF] | etu[PART]) * aide_logement_montant
+            )
 
 
 @reference_formula

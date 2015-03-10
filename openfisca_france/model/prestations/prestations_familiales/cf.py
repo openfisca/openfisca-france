@@ -25,10 +25,9 @@
 
 from __future__ import division
 
-from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import (round, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_)
 
-from ...base import *  # noqa
-from ...pfam import nb_enf
+from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
@@ -114,8 +113,9 @@ class cf_temp(SimpleFormulaColumn):
         cf_plaf = pfam.cf.plaf * cf_plaf_tx + pfam.cf.plaf_maj * cf_majo
         cf_plaf2 = cf_plaf + 12 * cf_base_n_2
 
-        cf = (cf_nbenf >= 3) * ((ressources <= cf_plaf) * cf_base +
-                                 (ressources > cf_plaf) * max_(cf_plaf2 - ressources, 0) / 12)
+        cf = (cf_nbenf >= 3) * (
+            (ressources <= cf_plaf) * cf_base + (ressources > cf_plaf) * max_(cf_plaf2 - ressources, 0) / 12
+            )
 
         return period, cf
 

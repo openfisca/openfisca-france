@@ -25,11 +25,10 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_, minimum as min_
+from numpy import int32, logical_not as not_, logical_or as or_, zeros
 
-from ...base import *  # noqa
-from ...pfam import nb_enf, age_aine
 
+from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
@@ -219,7 +218,6 @@ class br_pf(SimpleFormulaColumn):
         return period, br_pf
 
 
-
 ############################################################################
 # Helper functions
 ############################################################################
@@ -264,5 +262,3 @@ def age_en_mois_benjamin(agems):
         isbenjamin = (agem < agem_benjamin) & (agem != -9999)
         agem_benjamin = isbenjamin * agem + not_(isbenjamin) * agem_benjamin
     return agem_benjamin
-
-
