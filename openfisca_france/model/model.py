@@ -23,11 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from . import (  # noqa analysis:ignore
-    pfam,
-    )
-
-
 from .caracteristiques_socio_demographiques import (  # noqa analysis:ignore
     demographie,
     logement,

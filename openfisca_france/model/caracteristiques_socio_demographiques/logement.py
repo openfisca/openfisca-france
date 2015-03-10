@@ -23,7 +23,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from numpy.core.defchararray import startswith
+
+
+from ..base import *  # noqa analysis:ignore
 
 
 build_column('coloc', BoolCol(label = u"Vie en colocation"))
@@ -55,3 +58,72 @@ build_column('statut_occupation', EnumCol(label = u"Statut d'occupation",
                             u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
                             u"Logé gratuitement par des parents, des amis ou l'employeur"])))
 
+
+@reference_formula
+class residence_guadeloupe(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return period, startswith(depcom, '971')
+
+
+@reference_formula
+class residence_martinique(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return period, startswith(depcom, '972')
+
+
+@reference_formula
+class residence_guyane(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return period, startswith(depcom, '973')
+
+
+@reference_formula
+class residence_reunion(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return period, startswith(depcom, '974')
+
+
+@reference_formula
+class residence_mayotte(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period
+        depcom_holder = simulation.compute('depcom', period)
+
+        depcom = self.cast_from_entity_to_roles(depcom_holder)
+        depcom = self.filter_role(depcom, role = CHEF)
+        return period, startswith(depcom, '976')
