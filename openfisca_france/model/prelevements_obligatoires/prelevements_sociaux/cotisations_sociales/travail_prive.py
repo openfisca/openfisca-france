@@ -45,6 +45,80 @@ taux_versement_transport_by_localisation_entreprise = None
 # versement transport dépdendant de la localité (décommenter et compléter)
 
 
+@reference_formula
+class assiette_cotisations_sociales(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Assiette des cotisations sociales des salaries"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period(u'month')
+        assiette_cotisations_sociales_prive = simulation.calculate('assiette_cotisations_sociales_prive', period)
+        assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
+        return period, assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public
+
+
+@reference_formula
+class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Assiette des cotisations sociales des salaries du prive"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period(u'month')
+        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+        hsup = simulation.calculate('hsup', period)
+        indemnites_compensatrices_conges_payes = simulation.calculate('indemnites_compensatrices_conges_payes', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        primes_salaires = simulation.calculate('primes_salaires', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            "reintegration_titre_restaurant_employeur", period
+            )
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        type_sal = simulation.calculate('type_sal', period)
+        smic_proratise = simulation.calculate('smic_proratise', period)
+
+        assiette = (
+            salaire_de_base +
+            primes_salaires +
+            avantages_en_nature +
+            hsup +
+            indemnites_compensatrices_conges_payes +
+            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            reintegration_titre_restaurant_employeur
+            )
+        return period, max_(assiette, smic_proratise) * (assiette > 0)
+
+
+
+@reference_formula
+class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
+
+    def function(self, simulation, period):
+        period = period  # TODO
+        valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
+        volume = simulation.calculate("titre_restaurant_volume", period)
+        taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
+        cantines_titres_restaurants = simulation.legislation_at(
+            period.start).cotsoc.assiette.cantines_titres_restaurants
+
+        taux_minimum_exoneration = cantines_titres_restaurants.taux_minimum_exoneration
+        taux_maximum_exoneration = cantines_titres_restaurants.taux_maximum_exoneration
+        seuil_prix_titre = cantines_titres_restaurants.seuil_prix_titre
+        condition_exoneration_taux = (
+            (taux_minimum_exoneration <= taux_employeur) *
+            (taux_maximum_exoneration >= taux_employeur)
+            )
+        montant_reintegration = volume * (
+            condition_exoneration_taux * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0) +
+            not_(condition_exoneration_taux) * valeur_unitaire * taux_employeur
+            )
+        return period, montant_reintegration
+
 # Cotisations proprement dites
 
 
