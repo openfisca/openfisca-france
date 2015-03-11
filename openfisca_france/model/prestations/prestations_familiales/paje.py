@@ -28,7 +28,7 @@ from __future__ import division
 from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_)
 
 from ...base import *  # noqa analysis:ignore
-from ...pfam import nb_enf, age_en_mois_benjamin
+from .base_ressource import nb_enf, age_en_mois_benjamin
 
 
 # Prestations familiales
@@ -114,16 +114,17 @@ class paje_base_temp(SimpleFormulaColumn):
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-
         nbenf = nb_enf(age, smic55, 0, pfam.paje.base.age - 1)
-
-        plaf_tx = (nbenf > 0) + pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) + pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+        plaf_tx = (
+            (nbenf > 0) +
+            pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) +
+            pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+            )
         majo = isol | biact
         plaf = pfam.paje.base.plaf * plaf_tx + (plaf_tx > 0) * pfam.paje.base.plaf_maj * majo
         plaf2 = plaf + 12 * base2  # TODO vérifier l'aspect différentielle de la PAJE et le plaf2 de la paje
 
-        paje_base = (nbenf > 0) * ((br_pf < plaf) * base +
-                               (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
+        paje_base = (nbenf > 0) * ((br_pf < plaf) * base + (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
         # non cumulabe avec la CF, voir Paje_CumulCf
         return period, paje_base
 
@@ -144,14 +145,14 @@ class paje_nais(SimpleFormulaColumn):
         period_legacy = period.start.period('year')
 
         agem_holder = simulation.compute('agem', period)
-        age_holder = simulation.compute('age', period)
+        # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period_legacy)
         br_pf = simulation.calculate('br_pf', period)
         isol = simulation.calculate('isol', period_legacy)
         biact = simulation.calculate('biact', period)
         P = simulation.legislation_at(period.start).fam
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
+        # age = self.split_by_roles(age_holder, roles = ENFS)
         agem = self.split_by_roles(agem_holder, roles = ENFS)
 
         bmaf = P.af.bmaf
@@ -168,8 +169,6 @@ class paje_nais(SimpleFormulaColumn):
             nbaf += (age_m >= 10)
 
         nbenf = nbaf + nbnais  # On ajoute l'enfant à  naître;
-
-        paje_plaf = P.paje.base.plaf
 
         plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
         majo = isol | biact

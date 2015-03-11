@@ -227,7 +227,6 @@ def compute_allegement_fillon(simulation, period):
     taille_entreprise = simulation.calculate('taille_entreprise', period)
     majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
     # Calcul du taux
-    # La divison par zéro engendre un warning
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;
     # il est égal au produit de la totalité de la rémunération annuelle telle

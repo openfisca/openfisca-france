@@ -27,9 +27,9 @@ from __future__ import division
 
 import math
 
-from numpy import maximum as max_, minimum as min_, zeros
+from numpy import minimum as min_
 
-from ....base import *  # noqa
+from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
@@ -64,6 +64,32 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return period, cotisation_etat + cotisation_collectivites_locales
+
+
+@reference_formula
+class assiette_cotisations_sociales_public(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
+    # TODO: gestion des heures supplémentaires
+
+    def function(self, simulation, period):
+        remuneration_principale = simulation.calculate('remuneration_principale', period)
+        # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        # indemnite_residence = simulation.calculate('indemnite_residence', period)
+        type_sal = simulation.calculate('type_sal', period)
+        public = (type_sal >= 2)
+        # titulaire = (type_sal >= 2) * (type_sal <= 5)
+        assiette = public * (
+            remuneration_principale
+            # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
+            )
+        return period, assiette
+
+
+# sft dans assiette csg et RAFP et Cotisation exceptionnelle de solidarité et taxe sur les salaires
+# primes dont indemnites de residences idem sft
+# avantages en nature contrib exceptionnelle de solidarite, RAFP, CSG, CRDS.
 
 
 @reference_formula
@@ -141,20 +167,6 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
 
 
 @reference_formula
-class gipa(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
-    # TODO: à coder
-
-    def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
-
-        return period, zeros(len(type_sal))
-
-
-@reference_formula
 class ircantec_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -198,48 +210,6 @@ class ircantec_employeur(SimpleFormulaColumn):
             type_sal = type_sal,
             )
         return period, ircantec
-
-
-@reference_formula
-class indemnite_residence(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indemnité de résidence des fonctionnaires"
-
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        type_sal = simulation.calculate('type_sal', period)
-        zone_apl_individu = simulation.calculate('zone_apl_individu', period)
-        _P = simulation.legislation_at(period.start)
-
-        zone_apl = zone_apl_individu  # TODO: ces zones ne correpondent pas aux zones APL
-        P = _P.fonc.indem_resid
-        min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
-        plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
-
-        return period, max_(
-            plancher,
-            taux * (traitement_indiciaire_brut + salaire_de_base)
-            ) * (type_sal >= 2)
-
-
-@reference_formula
-class indice_majore(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indice majoré"
-
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        _P = simulation.legislation_at(period.start)
-
-        traitement_annuel_brut = _P.fonc.IM_100
-        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (type_sal >= 2)
 
 
 @reference_formula
@@ -290,26 +260,6 @@ class pension_civile_employeur(SimpleFormulaColumn):
             terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
             )
         return period, -cot_pat_pension_civile
-
-
-@reference_formula
-class primes_fonction_publique(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Calcul des primes pour les fonctionnaries"
-    url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
-
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
-
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        public = (
-            (type_sal == CAT['public_titulaire_etat'])
-            + (type_sal == CAT['public_titulaire_territoriale'])
-            + (type_sal == CAT['public_titulaire_hospitaliere'])
-            )
-        return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
 
 @reference_formula
@@ -370,75 +320,6 @@ class rafp_employeur(SimpleFormulaColumn):
         return period, - rafp_employeur
 
 
-@reference_formula
-class supp_familial_traitement(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Supplément familial de traitement"
-    # Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
-    # TODO: gérer le cas encore problématique du conjoint fonctionnaire
-
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        af_nbenf_holder = simulation.compute('af_nbenf', period)
-        _P = simulation.legislation_at(period.start)
-
-        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
-        P = _P.fonc.supp_fam
-        part_fixe_1 = P.fixe.enf1
-        part_fixe_2 = P.fixe.enf2
-        part_fixe_supp = P.fixe.enfsupp
-        part_fixe = (
-            part_fixe_1 * (fonc_nbenf == 1) + part_fixe_2 * (fonc_nbenf == 2)
-            + part_fixe_supp * max_(0, fonc_nbenf - 2)
-            )
-        # pct_variable_1 = 0
-        pct_variable_2 = P.prop.enf2
-        pct_variable_3 = P.prop.enf3
-        pct_variable_supp = P.prop.enfsupp
-        pct_variable = (
-            pct_variable_2 * (fonc_nbenf == 2) + (pct_variable_3) * (fonc_nbenf == 3)
-            + pct_variable_supp * max_(0, fonc_nbenf - 3))
-
-        indice_maj_min = P.IM_min
-        indice_maj_max = P.IM_max
-
-        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P)
-        plancher_mensuel_1 = part_fixe
-        plancher_mensuel_2 = part_fixe + traitement_brut_mensuel_min * pct_variable_2
-        plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
-        plancher_mensuel_supp = traitement_brut_mensuel_min * pct_variable_supp
-
-        plancher = (plancher_mensuel_1 * (fonc_nbenf == 1) +
-                    plancher_mensuel_2 * (fonc_nbenf == 2) +
-                    plancher_mensuel_3 * (fonc_nbenf >= 3) +
-                    plancher_mensuel_supp * max_(0, fonc_nbenf - 3))
-
-        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P)
-        plafond_mensuel_1 = part_fixe
-        plafond_mensuel_2 = part_fixe + traitement_brut_mensuel_max * pct_variable_2
-        plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
-        plafond_mensuel_supp = traitement_brut_mensuel_max * pct_variable_supp
-
-        plafond = (plafond_mensuel_1 * (fonc_nbenf == 1) + plafond_mensuel_2 * (fonc_nbenf == 2) +
-                   plafond_mensuel_3 * (fonc_nbenf == 3) +
-                   plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
-
-        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (type_sal >= 2)
-        # Nota Bene:
-        # type_sal is an EnumCol which enum is:
-        # CAT = Enum(['prive_non_cadre',
-        #             'prive_cadre',
-        #             'public_titulaire_etat',
-        #             'public_titulaire_militaire',
-        #             'public_titulaire_territoriale',
-        #             'public_titulaire_hospitaliere',
-        #             'public_non_titulaire'])
-        return period, sft
-
-
 def seuil_fds(law):
     '''
     Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
@@ -449,7 +330,3 @@ def seuil_fds(law):
     return seuil_mensuel
 
 
-def _traitement_brut_mensuel(indice_maj, law):
-    Indice_majore_100_annuel = law.fonc.IM_100
-    traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
-    return traitement_brut
