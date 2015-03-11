@@ -16,179 +16,19 @@
 #
 # OpenFisca is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 from __future__ import division
 
 from numpy import int32, logical_not as not_, logical_or as or_, zeros
-from numpy.core.defchararray import startswith
-
-from .base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class residence_guadeloupe(SimpleFormulaColumn):
-    column = BoolCol
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-        return period, startswith(depcom, '971')
-
-
-@reference_formula
-class residence_martinique(SimpleFormulaColumn):
-    column = BoolCol
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-        return period, startswith(depcom, '972')
-
-
-@reference_formula
-class residence_guyane(SimpleFormulaColumn):
-    column = BoolCol
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-        return period, startswith(depcom, '973')
-
-
-@reference_formula
-class residence_reunion(SimpleFormulaColumn):
-    column = BoolCol
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-        return period, startswith(depcom, '974')
-
-
-@reference_formula
-class residence_mayotte(SimpleFormulaColumn):
-    column = BoolCol
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
-        return period, startswith(depcom, '976')
-
-
-@reference_formula
-class nb_par(SimpleFormulaColumn):
-    column = PeriodSizeIndependentIntCol(default = 0)
-    entity_class = Familles
-    label = u"Nombre d'adultes (parents) dans la famille"
-
-    def function(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        quifam_holder = simulation.compute('quifam', period)
-
-        quifam = self.filter_role(quifam_holder, role = PART)
-
-        return period, 1 + 1 * (quifam == PART)
-
-
-@reference_formula
-class maries(SimpleFormulaColumn):
-    column = BoolCol(default = False)
-    entity_class = Familles
-    label = u"maries"
-
-    def function(self, simulation, period):
-        """couple = 1 si couple marié sinon 0 TODO: faire un choix avec couple ?"""
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        statmarit_holder = simulation.compute('statmarit', period)
-
-        statmarit = self.filter_role(statmarit_holder, role = CHEF)
-
-        return period, statmarit == 1
-
-
-@reference_formula
-class concub(SimpleFormulaColumn):
-    column = BoolCol(default = False)
-    entity_class = Familles
-    label = u"Indicatrice de vie en couple"
-
-    def function(self, simulation, period):
-        '''
-        concub = 1 si vie en couple TODO: pas très heureux
-        '''
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        nb_par = simulation.calculate('nb_par', period)
-
-        # TODO: concub n'est pas égal à 1 pour les conjoints
-        return period, nb_par == 2
-
-
-@reference_formula
-class isol(SimpleFormulaColumn):
-    column = BoolCol(default = False)
-    entity_class = Familles
-    label = u"Parent (s'il y a lieu) isolé"
-
-    def function(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        nb_par = simulation.calculate('nb_par', period)
-
-        return period, nb_par == 1
-
-
-@reference_formula
-class etu(SimpleFormulaColumn):
-    column = BoolCol(default = False)
-    entity_class = Individus
-    label = u"Indicatrice individuelle étudiant"
-
-    def function(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        activite = simulation.calculate('activite', period)
-
-        return period, activite == 2
-
-
-@reference_formula
-class est_enfant_dans_famille(SimpleFormulaColumn):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Indique qe l'individu est un enfant dans une famille"
-
-    def function(self, simulation, period):
-        quifam = simulation.calculate('quifam', period)
-        return period, quifam > PART
+from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
@@ -207,14 +47,6 @@ class smic55(SimpleFormulaColumn):
 
         # Oui on compare du salaire net avec un bout du SMIC brut ...
         return period, salnet / 6 >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
-
-
-reference_input_variable(
-    name = "rempli_obligation_scolaire",
-    column = BoolCol(default = True),
-    entity_class = Individus,
-    label = u"Rempli l'obligation scolaire",
-    )
 
 
 @reference_formula
@@ -384,30 +216,6 @@ class br_pf(SimpleFormulaColumn):
 
         br_pf = br_pf_i_total + rev_coll[CHEF] + rev_coll[PART]
         return period, br_pf
-
-
-@reference_formula
-class crds_pfam(SimpleFormulaColumn):
-    column = FloatCol(default = 0)
-    entity_class = Familles
-    label = u"CRDS (prestations familiales)"
-    url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
-
-    def function(self, simulation, period):
-        '''
-        Renvoie la CRDS des prestations familiales
-        '''
-        period = period.start.offset('first-of', 'month').period('year')
-        af = simulation.calculate_add('af', period)
-        cf = simulation.calculate_add('cf', period)
-        asf = simulation.calculate_add('asf', period)
-        ars = simulation.calculate('ars', period)
-        paje = simulation.calculate_add('paje', period)
-        ape = simulation.calculate('ape', period)
-        apje = simulation.calculate('apje', period)
-        _P = simulation.legislation_at(period.start)
-
-        return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
 
 
 ############################################################################

@@ -97,44 +97,6 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Cotisation sociales patronales main d'oeuvre"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period
-        conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
-        contribution_developpement_apprentissage = simulation.calculate(
-            'contribution_developpement_apprentissage', period)
-        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
-        contribution_supplementaire_apprentissage = simulation.calculate(
-            'contribution_supplementaire_apprentissage', period)
-        fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
-        fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
-        formation_professionnelle = simulation.calculate('formation_professionnelle', period)
-        participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
-        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
-        taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
-        versement_transport = simulation.calculate_add('versement_transport', period)
-
-        cotisations_patronales_main_d_oeuvre = (
-            conge_individuel_formation_cdd +
-            contribution_developpement_apprentissage +
-            contribution_solidarite_autonomie +
-            contribution_supplementaire_apprentissage +
-            formation_professionnelle +
-            fnal_tranche_a +
-            fnal_tranche_a_plus_20 +
-            participation_effort_construction +
-            prevoyance_obligatoire_cadre +
-            taxe_apprentissage +
-            versement_transport
-            )
-        return period, cotisations_patronales_main_d_oeuvre
-
-
-@reference_formula
 class cotisations_patronales_non_contributives(SimpleFormulaColumn):
     column = FloatCol
     label = u"Cotisations sociales patronales non-contributives"
