@@ -126,7 +126,7 @@
   <NODE code="impo" color="232,79,95" desc="Impôts directs" shortname="Impôts directs">
     <NODE code="irpp" color="232,79,95" desc="Impôt sur le revenu" shortname="IRPP" />
     <NODE code="ir_pv_immo" color="232,79,95" desc="Impôt sur le revenu afférent à la plus-value immobilière" shortname="IR immo." />
-    <NODE code="isf net" color="182,34,131" desc="ISF net" shortname="ISF net">
+    <NODE code="isf_net" color="182,34,131" desc="isf_net" shortname="isf_net">
       <NODE code="isf_tot" color="232,79,95" desc="Impôt de solidarité sur la fortune" shortname="ISF" />
       <NODE code="bouclier_fiscal" color="182,34,131" desc="Bouclier fiscal" shortname="Bouclier fiscal" />
     </NODE>
