@@ -1,0 +1,18 @@
+- period: "month:2015-03"
+  input_variables:
+    depcom_entreprise: "75101"
+    effectif_entreprise: 3
+  output_variables:
+    taux_versement_transport: 0
+- period: "month:2015-03"
+  input_variables:
+    depcom_entreprise: "34108"
+    effectif_entreprise: 13
+  output_variables:
+    taux_versement_transport: 1.2
+- period: "month:2015-03"
+  input_variables:
+    depcom_entreprise: "34108"
+    effectif_entreprise: 9
+  output_variables:
+    taux_versement_transport: 0

@@ -241,8 +241,8 @@ reference_input_variable(
 reference_input_variable(
     column = FixedStrCol(max_length = 5),
     entity_class = Individus,
-    label = u"Localisation entreprise",
-    name = 'localisation_entreprise',  # TODO; à adpater sur le format depcom ?
+    label = u"Localisation entreprise (depcom)",
+    name = 'depcom_entreprise',
     )
 reference_input_variable(
     column = IntCol(),

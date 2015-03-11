@@ -25,19 +25,21 @@
 
 from __future__ import division
 
+import csv
 import logging
+import pkg_resources
+
+from numpy import fromiter, round as round_
 
 
-from numpy import ones, round as round_
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import DatedFormulaColumn, SimpleFormulaColumn
-
-
+import openfisca_france
 from ...base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
-taux_versement_transport_by_localisation_entreprise = None
+
+taux_aot_by_depcom = None
+taux_smt_by_depcom = None
 
 
 # TODO:
@@ -294,63 +296,28 @@ class taux_versement_transport(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        localisation_entreprise = simulation.calculate('localisation_entreprise', period)
-        _P = simulation.legislation_at(period.start)
+        preload_taux_versement_transport()
+        depcom_entreprise = simulation.calculate('depcom_entreprise', period)
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        aot_salarie = 0 # Autorité organisatrice des transports du salarié (nul si absent)
-        smt_salarie = 0 # Syndicat mixte des transports du salarié (nul si absent)
-
-        entreprise_seuil_employe_aot = 0 # "L'entreprise emploie-t-elle 9 salariés ou plus dans le périmètre
-                                   # de l'Autorité organisatrice de transport (AOT) suivante :"
-    #  Taux du versement de transport dans l'AOT du salari<E9> -> *SALARIE.TX_VT (Valeur par d<E9>faut: '0.00000')
-    #
-    #% Cas ou le salari<E9> travaille dans une commune avec AOT
-    #
-    #        2.6.2 [Versement de transport additionnel]
-    #
-    #              # Question : "L'entreprise emploie-t-elle 9 salari<E9>s ou plus dans le p<E9>rim<E8>tre du Syndicat mixte de tranports (SMT) suivant ?"
-    #
-    #              # Affichage : Afficher le nom du SMT (SALARIE.NOM_SMT) ainsi que toutes les communes couvertes par le SMT (SALARIE.SMT.LISTE_COMMUNES)
-    #
-    #              # Mode de saisie : <E0> cocher au choix : "oui" / "non" (case coch<E9>e par d<E9>faut : "oui")
-    #
-    #              # Enregistrements:
-    #                R<E9>ponse -> *SALARIE.IS_SMT_9P (bool : '1' si "oui" / '0' si "non")
-    #                Taux du versement de transport additionel dans le SMT du salari<E9> -> *SALARIE.TX_VTA (Valeur par d<E9>faut: '0.0000')
-    #
-    #        }
-
-    #    global taux_versement_transport_by_localisation_entreprise
-    #    if taux_versement_transport_by_localisation_entreprise is None:
-    #        with pkg_resources.resource_stream(
-    #            openfisca_france.__name__,
-    #            'assets/versement_transport/versement_transport.csv',
-    #            ) as csv_file:
-    #            csv_reader = csv.DictReader(csv_file)
-    #            taux_versement_transport_by_localisation_entreprise = {
-    #                # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
-    #                row['CODGEO']: int(row['Taux'][0])
-    #                for row in csv_reader
-    #                }
-    #        # Add subcommunes (arrondissements and communes associées), use the same value as their parent commune.
-    #        with pkg_resources.resource_stream(
-    #            openfisca_france.__name__,
-    #            'assets/versement_transport/versement_transport_by_subcommune_depcom.json',
-    #            ) as json_file:
-    #            commune_depcom_by_subcommune_depcom = json.load(json_file)
-    #            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
-    #                taux_versement_transport_by_localisation_entreprise[subcommune_depcom] = taux_versement_transport_by_localisation_entreprise[commune_depcom]
-    #
-    #    default_value = _P.cotsoc.cotisations_employeur['prive_non_cadre']["transport"].rates[0]
-    #    return fromiter(
-    #        (
-    #            taux_versement_transport_by_localisation_entreprise.get(localisation_entreprise_cell, default_value)
-    #            for localisation_entreprise_cell in localisation_entreprise
-    #            ),
-    #        dtype = float,
-    #        )
-        rate = _P.cotsoc.cotisations_employeur['prive_non_cadre']["transport"].rates[0]
-        return period, rate * ones(len(localisation_entreprise))
+        default_value = 0.0
+        taux_aot = fromiter(
+            (
+                taux_aot_by_depcom.get(depcom_cell, default_value)
+                for depcom_cell in depcom_entreprise
+                ),
+            dtype = 'float',
+            )
+        taux_smt = fromiter(
+            (
+                taux_smt_by_depcom.get(depcom_cell, default_value)
+                for depcom_cell in depcom_entreprise
+                ),
+            dtype = 'float',
+            )
+        # "L'entreprise emploie-t-elle plus de 9 salariés  dans le périmètre de l'Autorité organisatrice de transport
+        # (AOT) suivante ou syndicat mixte de transport (SMT)"
+        return period, (taux_aot + taux_smt) * (effectif_entreprise > 9)
 
 
 @reference_formula
@@ -367,3 +334,26 @@ class versement_transport(SimpleFormulaColumn):
         return period, cotisation
 
 
+def preload_taux_versement_transport():
+    global taux_aot_by_depcom
+    global taux_smt_by_depcom
+    if taux_aot_by_depcom is None:
+        with pkg_resources.resource_stream(
+                openfisca_france.__name__,
+                'assets/versement_transport/taux.csv',
+                ) as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            taux_aot_by_depcom = {
+                row['code INSEE']: float(row['taux'] or 0)  # autorité organisatrice des transports
+                for row in csv_reader
+                }
+    if taux_smt_by_depcom is None:
+        with pkg_resources.resource_stream(
+                openfisca_france.__name__,
+                'assets/versement_transport/taux.csv',
+                ) as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            taux_smt_by_depcom = {
+                row['code INSEE']: float(row['taux additionnel'] or 0)  # syndicat mixte de transport
+                for row in csv_reader
+                }
