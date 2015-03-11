@@ -29,7 +29,7 @@ import csv
 import logging
 import pkg_resources
 
-from numpy import fromiter, round as round_
+from numpy import fromiter, logical_or as or_, round as round_
 
 
 import openfisca_france
@@ -295,11 +295,14 @@ class taux_versement_transport(SimpleFormulaColumn):
     label = u""
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         preload_taux_versement_transport()
+
+        period = period.start.period(u'month').offset('first-of')
         depcom_entreprise = simulation.calculate('depcom_entreprise', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        type_sal = simulation.calculate('type_sal', period)
 
+        public = (type_sal >= 2)
         default_value = 0.0
         taux_aot = fromiter(
             (
@@ -317,7 +320,7 @@ class taux_versement_transport(SimpleFormulaColumn):
             )
         # "L'entreprise emploie-t-elle plus de 9 salariés  dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return period, (taux_aot + taux_smt) * (effectif_entreprise > 9)
+        return period, (taux_aot + taux_smt) * or_(effectif_entreprise > 9, public) / 100
 
 
 @reference_formula
