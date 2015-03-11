@@ -90,3 +90,30 @@ class bourse_college(SimpleFormulaColumn):
             )
 
         return period, montant / 12
+
+@reference_formula
+class bourse_lycee(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Montant de la bourse de lycée"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
+        age_holder = simulation.compute('age', period)
+        scolarite_holder = simulation.compute('scolarite', period)
+        # P = simulation.legislation_at(period.start).bourses_education.bourse_college
+
+        ages = self.split_by_roles(age_holder, roles = ENFS)
+        nb_enfants = zeros(len(rfr))
+        for age in ages.itervalues():
+            nb_enfants += age >= 0
+
+        scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
+        nb_enfants_college = zeros(len(rfr))
+        for scolarite in scolarites.itervalues():
+            nb_enfants_college += scolarite == SCOLARITE_LYCEE
+
+        montant = zeros(len(rfr))
+
+        return period, montant / 12
