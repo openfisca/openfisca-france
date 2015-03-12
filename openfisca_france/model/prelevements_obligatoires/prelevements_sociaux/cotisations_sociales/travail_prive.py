@@ -90,7 +90,6 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         return period, max_(assiette, smic_proratise) * (assiette > 0)
 
 
-
 @reference_formula
 class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
     column = FloatCol
@@ -117,6 +116,7 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
             not_(condition_exoneration_taux) * valeur_unitaire * taux_employeur
             )
         return period, montant_reintegration
+
 
 # Cotisations proprement dites
 
@@ -354,6 +354,7 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employeur)"
+    # TODO: check gestion mensuel/annuel
 
     def function(self, simulation, period):
         cotisation_minimale = apply_bareme(
