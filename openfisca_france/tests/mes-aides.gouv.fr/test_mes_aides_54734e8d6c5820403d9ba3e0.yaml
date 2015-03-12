@@ -1,5 +1,5 @@
 name: Les enfants qui travaillent et gagnent plus de 55% du smic ne sont pas considérés à charge (af, enfants à charge)
-description: Pas d'allocations familiales versées car dans l'exemple l'enfant gagne 900 euros par mois
+description: Pas d'allocations familiales versées car dans l'exemple l'enfant gagne 900 euros par mois, ce qui est supérieur au maximum de 893 euros par mois.
 period: "month:2014-11"
 individus:
   - age: 34
@@ -43,6 +43,7 @@ individus:
       2014-08:3: 3461.5384615384614
       2014-09: 1153.8461538461538
       2014-10: 1153.8461538461538
+      2014-11: 1153.8461538461538
       year:2013-11: 13846.15384615385
     salnet:
       2012: 10800
@@ -59,6 +60,7 @@ individus:
       2014-08:3: 2700
       2014-09: 900
       2014-10: 900
+      2014-11: 900
       year:2013-11: 10800
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -95,6 +97,6 @@ menages:
     - 54734de71e6217443d918ae0
     - 54734de71e6217443d918adf
   personne_de_reference: 54734de71e6217443d918aed
-  so: 6
+  statut_occupation: 6
 output_variables:
   af: 0

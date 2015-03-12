@@ -2,7 +2,7 @@ name: 11_Revenus de stage de la formation professionnelle (rsa)
 description: |
   La rémunération d'un stage de la formation professionnelle doit être assimilée à un revenu d'activité : dont prise en compte après abattement de 62 % (R. 262-8 2°).
   RSA attendu : 448,18 - 500 x 0.38 = 258,18€
-  
+
   Réponse : ajout de la rémunération de stage FP dans la base revenu d'activité du RSA
 period: "month:2014-11"
 individus:
@@ -32,6 +32,7 @@ individus:
     2014-08:3: 1500
     2014-09: 500
     2014-10: 500
+    2014-11: 500
     year:2013-11: -0.029999999999915872
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -47,6 +48,6 @@ menages:
   depcom: 87085
   enfants:
   personne_de_reference: 545a4bebd0485dd744fc568d
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 258.18

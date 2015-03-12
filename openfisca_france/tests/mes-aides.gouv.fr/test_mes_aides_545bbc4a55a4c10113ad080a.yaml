@@ -29,6 +29,7 @@ individus:
     2014-08:3: 299.99999999999994
     2014-09: 99.99999999999999
     2014-10: 99.99999999999999
+    2014-11: 99.99999999999999
     year:2013-11: 1199.9999999999998
   rstnet:
     2012: 1111.2
@@ -45,6 +46,7 @@ individus:
     2014-08:3: 277.79999999999995
     2014-09: 92.6
     2014-10: 92.6
+    2014-11: 92.6
     year:2013-11: 1111.2
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -60,6 +62,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 545bbc0355a4c10113ad0808
-  so: 6
+  statut_occupation: 6
 output_variables:
   aspa: 700

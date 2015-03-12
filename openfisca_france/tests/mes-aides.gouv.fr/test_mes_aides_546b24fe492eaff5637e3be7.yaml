@@ -1,4 +1,4 @@
-name: 22_Jeune < 25 ans, 1 enfant (rsa)
+name: 22_Jeune < 25 ans, 1 enfant (majoration, rsa)
 description:
 ignore: true
 period: "month:2014-11"
@@ -45,6 +45,6 @@ menages:
   depcom: 75114
   enfants: 546b24bd492eaff5637e3be4
   personne_de_reference: 546b24bd492eaff5637e3be5
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 658.37

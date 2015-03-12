@@ -35,7 +35,7 @@ from openfisca_core import columns, formulas, reforms
 
 from .. import entities
 from ..model import base
-from ..model.impot_revenu import reductions_impot
+from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
 log = logging.getLogger(__name__)

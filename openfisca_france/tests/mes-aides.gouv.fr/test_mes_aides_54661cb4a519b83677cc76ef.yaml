@@ -27,6 +27,7 @@ individus:
     2014-08:3: 299997
     2014-09: 99999
     2014-10: 99999
+    2014-11: 99999
     year:2013-11: 1199988
   interets_epargne_sur_livrets:
     2012-01: 0
@@ -47,6 +48,6 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 54661c45f36fa43e7789896c
-  so: 4
+  statut_occupation: 4
 output_variables:
   cmu_c: true

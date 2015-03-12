@@ -25,6 +25,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   indemnites_journalieres_accident_travail:
     2012: 600
@@ -41,6 +42,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   indemnites_journalieres_maladie:
     2012: 600
@@ -57,6 +59,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   indemnites_journalieres_maladie_professionnelle:
     2012: 600
@@ -73,6 +76,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   indemnites_journalieres_maternite:
     2012: 600
@@ -89,6 +93,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   interets_epargne_sur_livrets:
     2012-01: 0
@@ -108,6 +113,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   salaire_de_base:
     2012: 769.2307692307692
@@ -124,6 +130,7 @@ individus:
     2014-09:3: 192.30769230769232
     2014-10: 64.1025641025641
     2014-11: 64.1025641025641
+    2014-12: 64.1025641025641
     year:2013-12: 769.2307692307692
   salnet:
     2012: 600
@@ -140,6 +147,7 @@ individus:
     2014-09:3: 150
     2014-10: 50
     2014-11: 50
+    2014-12: 50
     year:2013-12: 600
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -155,6 +163,6 @@ menages:
   depcom: 75112
   enfants:
   personne_de_reference: 54817dd876be8a87669fc438
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 315.18

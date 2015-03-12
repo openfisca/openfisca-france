@@ -33,6 +33,7 @@ individus:
       2014-09:3: 7692.3076923076915
       2014-10: 2564.102564102564
       2014-11: 2564.102564102564
+      2014-12: 2564.102564102564
       year:2013-12: 26923.076923076922
     salnet:
       2012: 21000
@@ -49,6 +50,7 @@ individus:
       2014-09:3: 6000
       2014-10: 2000
       2014-11: 2000
+      2014-12: 2000
       year:2013-12: 21000
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -103,6 +105,6 @@ menages:
   enfants: 54c8e64f4ec19fce442267ca
   loyer: 200
   personne_de_reference: 549051ec6e7c895302132cad
-  so: 4
+  statut_occupation: 4
 output_variables:
   acs: 600

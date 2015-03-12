@@ -46,12 +46,14 @@ familles:
   parents: 54d91222f675ddd34432ef12
 foyers_fiscaux:
   declarants: 54d91222f675ddd34432ef12
+  f6el:
+    2013: 0
   personnes_a_charge: 54d91222f675ddd34432ef11
   rfr:
 menages:
   depcom: 67482
   enfants: 54d91222f675ddd34432ef11
   personne_de_reference: 54d91222f675ddd34432ef12
-  so: 6
+  statut_occupation: 6
 output_variables:
   bourse_college: 0

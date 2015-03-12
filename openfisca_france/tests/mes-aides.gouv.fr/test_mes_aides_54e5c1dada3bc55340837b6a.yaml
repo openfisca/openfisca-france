@@ -2,7 +2,7 @@ name: Pas d'eval forfaitaire si le conjoint a moins de 25 ans et si somme des sa
 description: |
   Le demandeur a 34 ans mais le conjoint a 22 ans.
   On n'applique pas l'eval forfaitaire car le demandeur n'a déclaré que 1000 euros mensuels, ce qui est inférieur au plafond de 1273 euros.
-  
+
   L	352,92
   C	53,23
   E	406,15
@@ -54,6 +54,7 @@ individus:
       2014-11:3: 3846.1538461538457
       2014-12: 1282.051282051282
       2015-01: 1282.051282051282
+      2015-02: 1282.051282051282
       year:2014-02: 15384.615384615381
     salnet:
       2013: 12000
@@ -70,6 +71,7 @@ individus:
       2014-11:3: 3000
       2014-12: 1000
       2015-01: 1000
+      2015-02: 1000
       year:2014-02: 12000
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -109,6 +111,8 @@ foyers_fiscaux:
   declarants:
     - 54e5c1d77c92ea5940ba4e55
     - 54e5c1d77c92ea5940ba4e54
+  f6el:
+    2013: 0
   personnes_a_charge:
   rfr:
 menages:
@@ -117,6 +121,6 @@ menages:
   enfants:
   loyer: 1000
   personne_de_reference: 54e5c1d77c92ea5940ba4e55
-  so: 4
+  statut_occupation: 4
 output_variables:
   aide_logement: 369.56

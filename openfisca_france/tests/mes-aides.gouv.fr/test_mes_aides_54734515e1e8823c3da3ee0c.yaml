@@ -1,4 +1,4 @@
-name: Majoration pour l'aîné si plus de 2 enfants (af, majoration)
+name: "3 enfants de plus de 14 ans : majoration pour tous les enfants (af, majoration)"
 description: |
   Montant de base pour 3 enfants : 295,05 euros
   L'aîné a plus de 14 ans, les deux autres moins de 14 ans
@@ -84,6 +84,6 @@ menages:
     - 547344b76c5820403d9ba3a6
     - 547344b76c5820403d9ba3a5
   personne_de_reference: 547344b76c5820403d9ba3a8
-  so: 6
+  statut_occupation: 6
 output_variables:
   af: 361.53

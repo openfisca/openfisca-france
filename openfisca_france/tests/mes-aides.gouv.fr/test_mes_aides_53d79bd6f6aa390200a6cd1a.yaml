@@ -20,6 +20,7 @@ individus:
     2014-04:3: 1302
     2014-05: 434
     2014-06: 434
+    2014-07: 434
     year:2013-07: 1302
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -34,6 +35,6 @@ foyers_fiscaux:
 menages:
   enfants:
   personne_de_reference: 53d79bbcf6aa390200a6cd16
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 0

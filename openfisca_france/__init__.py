@@ -45,9 +45,8 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
 
     from . import decompositions, entities, scenarios
     from .model import datatrees
-    from .model import input_variables  # Load input variables into entities. # noqa analysis:ignore
     from .model import model  # Load output variables into entities. # noqa analysis:ignore
-    from .model.cotisations_sociales import preprocessing
+    from .model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
     if qt:
         from .widgets.Composition import CompositionWidget
 
@@ -99,7 +98,9 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
 
         def prefill_cache(self):
             # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
-            from .model import aides_logement
+            from .model.prestations import aides_logement
             aides_logement.preload_zone_apl()
+            from .model.prelevements_obligatoires.prelevements_sociaux import taxes_salaires_main_oeuvre
+            taxes_salaires_main_oeuvre.preload_taux_versement_transport()
 
     return TaxBenefitSystem

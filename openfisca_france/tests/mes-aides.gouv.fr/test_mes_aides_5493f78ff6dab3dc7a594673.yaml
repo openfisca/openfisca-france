@@ -4,7 +4,7 @@ description: |
   sans enfant ni personne autre à charge
   non meublé : loyer 400 €
   zone 2
-  
+
   Commentaires : manque la question sur perception du RSA ( neutralisation ressources RNC de N-2)
   Problème : simulateur donne même montant d'AL pour meublé et non meublé : anomalie
   simulateur CAF indique  : 329 € (plus élevé que pour un meublé)
@@ -62,6 +62,6 @@ menages:
   enfants:
   loyer: 400
   personne_de_reference: 5493f63b297947e07a4c8ace
-  so: 4
+  statut_occupation: 4
 output_variables:
   aide_logement: 329

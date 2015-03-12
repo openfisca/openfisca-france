@@ -1,6 +1,6 @@
 ﻿<NODE code="revdisp" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp." typevar="2">
   <!-- # TODO: missing indemnite_residence and sft -->
-  <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  <!-- # TODO: change color -->
+  <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  <!-- # TODO: remove unexisting variable? change color -->
     <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
       <NODE code="salnet" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
         <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
@@ -17,6 +17,7 @@
         </NODE>
         <NODE code="csgsali" color="235,114,118" desc="CSG non déductible (salaires)" shortname="CSG imp. sal." />
         <NODE code="crdssal" color="229,48,56" desc="CRDS (salaires)" shortname="CRDS sal." />
+        <NODE code="forfait_social" color="235,114,118" desc="Forfait social" shortname="Forfait social" />
         <NODE code="hsup" color="0,115,170" desc="Heures supplémentaires" shortname="Heures sup" />
       </NODE>
       <NODE code="rag" desc="Revenus agricoles" shortname="Rev. agric." />
@@ -117,10 +118,10 @@
   <NODE code="impo" color="232,79,95" desc="Impôts directs" shortname="Impôts directs">
     <NODE code="irpp" color="232,79,95" desc="Impôt sur le revenu" shortname="IRPP" />
     <NODE code="ir_pv_immo" color="232,79,95" desc="Impôt sur le revenu afférent à la plus-value immobilière" shortname="IR immo." />
-    <NODE code="isf net" color="182,34,131" desc="ISF net" shortname="ISF net">
+    <NODE code="isf_net" color="182,34,131" desc="ISF net" shortname="ISF net">
       <NODE code="isf_tot" color="232,79,95" desc="Impôt de solidarité sur la fortune" shortname="ISF" />
       <NODE code="bouclier_fiscal" color="182,34,131" desc="Bouclier fiscal" shortname="Bouclier fiscal" />
     </NODE>
-    <NODE code="tax_hab" color="232,79,95" desc="Taxe d'habitation" shortname="TH" />
+    <NODE code="taxe_habitation" color="232,79,95" desc="Taxe d'habitation" shortname="TH" />
   </NODE>
 </NODE>

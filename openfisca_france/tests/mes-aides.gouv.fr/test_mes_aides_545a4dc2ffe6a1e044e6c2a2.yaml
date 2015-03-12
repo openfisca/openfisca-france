@@ -48,6 +48,6 @@ menages:
   depcom: 86194
   enfants:
   personne_de_reference: 545a4d050e9bb9d9441ed62e
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 641.72

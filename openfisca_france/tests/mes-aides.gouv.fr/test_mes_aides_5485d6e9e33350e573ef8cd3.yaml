@@ -99,6 +99,8 @@ familles:
   parents: 5485d6a83bc432e473c703d8
 foyers_fiscaux:
   declarants: 5485d6a83bc432e473c703d8
+  f6el:
+    2012: 0
   personnes_a_charge:
     - 5485d6a83bc432e473c703d7
     - 5485d6a83bc432e473c703d6
@@ -114,6 +116,6 @@ menages:
     - 5485d6a83bc432e473c703d5
     - 5485d6a83bc432e473c703d4
   personne_de_reference: 5485d6a83bc432e473c703d8
-  so: 6
+  statut_occupation: 6
 output_variables:
   bourse_college: 714

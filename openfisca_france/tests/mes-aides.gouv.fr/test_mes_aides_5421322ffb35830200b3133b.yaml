@@ -29,6 +29,7 @@ individus:
     2014-06:3: 600
     2014-07: 300
     2014-08: 200
+    2014-09: 200
     year:2013-09: 2400
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -44,6 +45,6 @@ menages:
   depcom: 67382
   enfants:
   personne_de_reference: 54213203fb35830200b3133a
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 248.18

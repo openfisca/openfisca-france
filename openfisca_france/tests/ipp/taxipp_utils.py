@@ -275,13 +275,13 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
             j += 1
         return data[qui]
 
-    def _so(data):
-        data["so"] = 0
-        data.loc[data['proprio_empr'] == 1, 'so'] = 1
-        data.loc[data['proprio'] == 1, 'so'] = 2
-        data.loc[data['locat'] == 1, 'so'] = 4
-        data.loc[data['loge'] == 1, 'so'] = 6
-        return data['so']
+    def _statut_occupation(data):
+        data["statut_occupation"] = 0
+        data.loc[data['proprio_empr'] == 1, 'statut_occupation'] = 1
+        data.loc[data['proprio'] == 1, 'statut_occupation'] = 2
+        data.loc[data['locat'] == 1, 'statut_occupation'] = 4
+        data.loc[data['loge'] == 1, 'statut_occupation'] = 6
+        return data['statut_occupation']
 
     def _compl(var):
         var = 1 - var
@@ -366,7 +366,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
     data["quifam"] = data['quimen']
 
     # print data[['idfoy','idmen', 'quimen','quifoy', 'decl', 'conj', 'con2']].to_string()
-    data['so'] = _so(data)
+    data['statut_occupation'] = _statut_occupation(data)
     data = _count_enf(data)
     data = _workstate(data)
     data["caseN"] = _compl(data["caseN"])

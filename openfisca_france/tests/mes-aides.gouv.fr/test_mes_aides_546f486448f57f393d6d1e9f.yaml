@@ -22,6 +22,7 @@ individus:
     2014-08:3: 33106.27943355156
     2014-09: 11035.426477850518
     2014-10: 11035.426477850518
+    2014-11: 11035.426477850518
     year:2013-11: 132425.11773420623
   chonet:
     2012: 120000
@@ -38,6 +39,7 @@ individus:
     2014-08:3: 30000
     2014-09: 10000
     2014-10: 10000
+    2014-11: 10000
     year:2013-11: 120000
   epargne_non_remuneree:
     2012-01: 0
@@ -62,6 +64,7 @@ individus:
     2014-08:3: 30000
     2014-09: 10000
     2014-10: 10000
+    2014-11: 10000
     year:2013-11: 120000
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -77,6 +80,6 @@ menages:
   depcom: 67482
   enfants:
   personne_de_reference: 546f4850bbaefa3e3dc48b3f
-  so: 6
+  statut_occupation: 6
 output_variables:
   ass: 483.3

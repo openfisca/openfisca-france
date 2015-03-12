@@ -20,6 +20,7 @@ individus:
       2014-04:3: 3750
       2014-05: 1250
       2014-06: 1250
+      2014-07: 1250
       year:2013-07: 3750
     rstnet:
       2012: 3472.5
@@ -27,6 +28,7 @@ individus:
       2014-04:3: 3472.5
       2014-05: 1157.5
       2014-06: 1157.5
+      2014-07: 1157.5
       year:2013-07: 3472.5
     statmarit: 2
     valeur_locative_immo_non_loue:
@@ -64,6 +66,6 @@ menages:
   enfants:
   loyer: 123
   personne_de_reference: 53d255dae40a7902009c33a6
-  so: 4
+  statut_occupation: 4
 output_variables:
   aspa: 0

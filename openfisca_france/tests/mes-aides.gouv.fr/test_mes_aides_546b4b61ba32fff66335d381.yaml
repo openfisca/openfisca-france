@@ -1,4 +1,4 @@
-name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré) (rsa)
+name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré) (majoration, rsa)
 description:
 period: "month:2014-11"
 individus:
@@ -28,6 +28,6 @@ menages:
   depcom: 75114
   enfants:
   personne_de_reference: 546b4b2cfc9936ff63f8579a
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 592.89
