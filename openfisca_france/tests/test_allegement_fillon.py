@@ -38,7 +38,7 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 0,
             effectif_entreprise = 3000,
-            localisation_entreprise = "75001",
+            code_postal_entreprise = "75001",
             salaire_de_base = {  # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,
@@ -65,7 +65,7 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,
             effectif_entreprise = 3000,
-            localisation_entreprise = "75001",
+            code_postal_entreprise = "75001",
             salaire_de_base = {  # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,
@@ -104,7 +104,7 @@ test_case_by_employee_type = dict(
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 2,
             effectif_entreprise = 3000,
-            localisation_entreprise = "75001",
+            code_postal_entreprise = "75001",
             salaire_de_base = {  # 9 smic horaire 2011
                 "2011-01": 35 * 52 / 12 * 9,
                 "2011-02": 35 * 52 / 12 * 9,

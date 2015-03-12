@@ -38,7 +38,7 @@ def test_1():
         parent1 = dict(
             effectif_entreprise = 3000,
             exposition_accident = 3,
-            localisation_entreprise = "75001",
+            code_postal_entreprise = "75001",
             ratio_alternants = .025,
             salaire_de_base = {"2013-01:12": 12 * 3000},
             taille_entreprise = 3,
@@ -115,7 +115,7 @@ def test_decomposition(print_decomposition = False):
         parent1 = dict(
             effectif_entreprise = 3000,
             exposition_accident = 3,
-            localisation_entreprise = "75001",
+            code_postal_entreprise = "75001",
             ratio_alternants = .025,
             salaire_de_base = {"2013": 12 * 3000},
             taille_entreprise = 3,

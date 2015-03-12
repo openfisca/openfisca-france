@@ -46,6 +46,7 @@ def test():
             description = u"Célibataire public_titulaire_etat",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
@@ -103,6 +104,7 @@ def test():
             description = u"Célibataire public_titulaire_territoriale",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
@@ -155,6 +157,7 @@ def test():
             description = u"Célibataire public_titulaire_hospitaliere",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
@@ -211,6 +214,7 @@ def test():
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
@@ -272,6 +276,7 @@ def test():
             description = u"Couple 1 fonctionnaire public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
@@ -330,6 +335,7 @@ def test():
             description = u"Couple 2 fonctionnaires public_titulaire_etat 2 enfants",
             parent1 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
@@ -337,6 +343,7 @@ def test():
                 ),
             parent2 = dict(
                 birth = datetime.date(1972, 1, 1),
+                depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this

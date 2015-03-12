@@ -232,17 +232,23 @@ reference_input_variable(
     name = 'cotisation_sociale_mode_recouvrement',
     )
 reference_input_variable(
+    column = FixedStrCol(max_length = 5),
+    entity_class = Individus,
+    label = u"Localisation entreprise (depcom)",
+    name = 'depcom_entreprise',
+    )
+reference_input_variable(
+    column = FixedStrCol(max_length = 5),
+    entity_class = Individus,
+    label = u"Localisation entreprise (Code postal)",
+    name = 'code_postal_entreprise',
+    )
+reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
     is_permanent = True,
     label = u"Effectif de l'entreprise",
     name = 'effectif_entreprise',
-    )
-reference_input_variable(
-    column = FixedStrCol(max_length = 5),
-    entity_class = Individus,
-    label = u"Localisation entreprise",
-    name = 'localisation_entreprise',  # TODO; à adpater sur le format depcom ?
     )
 reference_input_variable(
     column = IntCol(),
