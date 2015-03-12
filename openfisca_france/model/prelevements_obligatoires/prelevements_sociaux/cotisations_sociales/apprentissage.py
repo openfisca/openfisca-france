@@ -148,53 +148,53 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
         return period, - cotisations_salariales
 
 
-@reference_formula
-class prime_apprentissage(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+# @reference_formula
+# class prime_apprentissage(SimpleFormulaColumn):
+#     column = FloatCol
+#     entity_class = Individus
+#     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
+#     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+#
+#     def function(self, simulation, period):
+#         pass
+#     # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
+#     # une prime d'apprentissage.
+#     #
+#     # Les conditions d'attribution de cette aide sont fixées par chaque région (ou pour la Corse, par la collectivité
+#     # territoriale de Corse) après avis du comité de coordination régional de l'emploi et de la formation
+#     # professionnelle en tenant compte notamment de l'ensemble de l'effort de l'employeur dans le domaine de
+#     # l'apprentissage, de la durée de la formation et des objectifs de développement de la formation professionnelle
+#     # des jeunes sur le territoire de la région (ou de la collectivité territoriale de Corse).
+#     #
+#     # Son montant est au minimum de 1 000 euros par année de cycle de formation.
+#     # nouveau. Depuis le 1er janvier 2014 , cette aide n'est versée qu'aux entreprises de moins de 11 salariés.
+#     #
+#     # Son versement est subordonné à la condition que l'embauche de l'apprenti soit confirmée à l'issue des deux
+#     # premiers mois de l'apprentissage.
+#     #
+#     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
-    def function(self, simulation, period):
-        pass
-    # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
-    # une prime d'apprentissage.
-    #
-    # Les conditions d'attribution de cette aide sont fixées par chaque région (ou pour la Corse, par la collectivité
-    # territoriale de Corse) après avis du comité de coordination régional de l'emploi et de la formation
-    # professionnelle en tenant compte notamment de l'ensemble de l'effort de l'employeur dans le domaine de
-    # l'apprentissage, de la durée de la formation et des objectifs de développement de la formation professionnelle
-    # des jeunes sur le territoire de la région (ou de la collectivité territoriale de Corse).
-    #
-    # Son montant est au minimum de 1 000 euros par année de cycle de formation.
-    # nouveau. Depuis le 1er janvier 2014 , cette aide n'est versée qu'aux entreprises de moins de 11 salariés.
-    #
-    # Son versement est subordonné à la condition que l'embauche de l'apprenti soit confirmée à l'issue des deux
-    # premiers mois de l'apprentissage.
-    #
-    # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
-
-@reference_formula
-class credit_impot_emploi_apprenti(SimpleFormulaColumn):
-    column = FloatCol
-    entity_class = Individus
-    label = u" Crédit d'impôt pour l'emploi d'apprentis"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-
-    def function(self, simulation, period):
-        pass
-    # Cet avantage fiscal est réservé aux entreprises imposées selon un régime d'imposition du réel.
-    # Précision : les entreprises exonérées d'impôt sur les bénéfices au titre des entreprises nouvelles, d'une
-    # implantation en zone franche urbaine, du statut de jeune entreprise innovante ou d'une implantation en Corse
-    # peuvent également en bénéficier.
-    #
-    # Le crédit d'impôt est égal au nombre moyen d'apprentis dont le contrat de travail a atteint une durée d'au moins
-    # 1 mois au cours de l'année civile multiplié par :
-    # - 1 600 €,
-    # - ou 2 200 € si l'apprenti est reconnu travailleur handicapé et qu'il bénéficie d'un accompagnement personnalisé,
-    # ou si l'apprenti est employé par une entreprise portant le label "Entreprise du patrimoine vivant", ou s'il est
-    # recruté dans le cadre d'une "formation apprentissage junior".
-    #
-    # L'avantage fiscal est plafonné au montant des dépenses de personnel afférentes aux apprentis minoré des
-    # subventions perçues en contrepartie de leur embauche.
+# @reference_formula
+# class credit_impot_emploi_apprenti(SimpleFormulaColumn):
+#     column = FloatCol
+#     entity_class = Individus
+#     label = u" Crédit d'impôt pour l'emploi d'apprentis"
+#     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+#
+#     def function(self, simulation, period):
+#         pass
+#     # Cet avantage fiscal est réservé aux entreprises imposées selon un régime d'imposition du réel.
+#     # Précision : les entreprises exonérées d'impôt sur les bénéfices au titre des entreprises nouvelles, d'une
+#     # implantation en zone franche urbaine, du statut de jeune entreprise innovante ou d'une implantation en Corse
+#     # peuvent également en bénéficier.
+#     #
+#     # Le crédit d'impôt est égal au nombre moyen d'apprentis dont le contrat de travail a atteint une durée d'au moins
+#     # 1 mois au cours de l'année civile multiplié par :
+#     # - 1 600 €,
+#     # - ou 2 200 € si l'apprenti est reconnu travailleur handicapé et qu'il bénéficie d'un accompagnement personnalisé,
+#     # ou si l'apprenti est employé par une entreprise portant le label "Entreprise du patrimoine vivant", ou s'il est
+#     # recruté dans le cadre d'une "formation apprentissage junior".
+#     #
+#     # L'avantage fiscal est plafonné au montant des dépenses de personnel afférentes aux apprentis minoré des
+#     # subventions perçues en contrepartie de leur embauche.
