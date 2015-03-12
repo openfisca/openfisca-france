@@ -124,6 +124,7 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
         bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
         taux_max = (
             bareme_by_name['vieillessedeplaf'].rates[0] +
