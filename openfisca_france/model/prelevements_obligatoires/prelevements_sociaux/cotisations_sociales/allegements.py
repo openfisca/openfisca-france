@@ -199,7 +199,7 @@ def compute_allegement_fillon_anticipe(simulation, period):
     if period.start.month == 12:
         cumul = simulation.calculate_add(
             'allegement_fillon',
-            period.start.offset('first-of', 'month').offset(-11, 'month').period('month', 11))
+            period.start.offset('first-of', 'year').period('month', 11))
         return compute_allegement_fillon(
             simulation, period = period.start.offset('first-of', 'year').period('year')
             ) - cumul

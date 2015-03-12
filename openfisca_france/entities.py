@@ -29,6 +29,30 @@ import itertools
 from openfisca_core import entities
 
 
+class Enntreprises(entities.AbstractEntity):
+    column_by_name = collections.OrderedDict()
+    index_for_person_variable_name = 'entreprise_id'
+    key_plural = 'entreprises'
+    key_singular = 'entreprise'
+    label = u'Entreprise'
+    name_key = 'nom_entreprise'
+    role_for_person_variable_name = 'entreprise_role'
+    roles_key = ['salaries']  # 'dirigeants']
+    label_by_role_key = {
+        'salaries': u'Salariés',
+        # 'dirigeants': u'Dirigeants',
+        }
+    symbol = 'entreprise'
+
+    def iter_member_persons_role_and_id(self, member):
+        role = 0
+
+        salaries_id = member['salariés']
+        for salarie_role, salarie_id in enumerate(salaries_id, role):
+            assert salarie_id is not None
+            yield salarie_role, salarie_id
+
+
 class Familles(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
     index_for_person_variable_name = 'idfam'

@@ -95,4 +95,3 @@ def zip_period_with_values(period_str, values):
         casted_values = values
     period_list = [str(period.start.period(period.unit).offset(index)) for index in range(size)]
     return dict(zip(period_list, casted_values))
-

@@ -151,6 +151,12 @@ reference_input_variable(
     name = 'allegement_fillon_mode_recouvrement',
     )
 reference_input_variable(
+    column = DateCol(),
+    entity_class = Individus,
+    label = u"Date de début du contrat d'apprentissage",
+    name = 'apprentissage_contrat_debut',
+    )
+reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Taux ARRCO tranche A employeur) propre à l'entreprise",
@@ -246,11 +252,54 @@ reference_input_variable(
 reference_input_variable(
     column = IntCol(),
     entity_class = Individus,
-    is_permanent = True,
+    base_function = requested_period_last_value,
     label = u"Effectif de l'entreprise",
     name = 'effectif_entreprise',
     )
 reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à la contribution économique territoriale",
+    name = 'entreprise_assujettie_cet',
+    )
+reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)",
+    name = 'entreprise_assujettie_is',
+    )
+reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"Entreprise assujettie à la TVA",
+    name = 'entreprise_assujettie_tva',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Bénéfice de l'entreprise",
+    name = 'entreprise_benefice',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Bilan de l'entreprise",
+    name = 'entreprise_bilan',
+    )
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Individus,
+    label = u"Chiffre d'affaire de l'entreprise",
+    name = 'entreprise_chiffre_affaire',
+    )
+reference_input_variable(
+    column = DateCol(),
+    entity_class = Individus,
+    label = u"Date de création de l'entreprise",
+    name = 'entreprise_creation',
+    )
+reference_input_variable(
+    base_function = requested_period_last_value,
     column = IntCol(),
     entity_class = Individus,
     label = u"Nombre de tickets restaurant",
@@ -263,12 +312,14 @@ reference_input_variable(
     name = 'nouvelle_bonification_indiciaire',
     )
 reference_input_variable(
+    base_function = requested_period_last_value,
     column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux_employe',
     )
 reference_input_variable(
+    base_function = requested_period_last_value,
     column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",

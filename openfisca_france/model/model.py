@@ -36,7 +36,6 @@ from .prelevements_obligatoires import(  # noqa analysis:ignore
     isf,
     taxe_habitation,
     )
-
 from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
     charges_deductibles,
     credits_impot,
@@ -54,6 +53,8 @@ from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales impo
 
 from .prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import (  # noqa analysis:ignore
     allegements,
+    apprentissage,
+    exonerations,
     # penalites,
     # remuneration_public,
     travail_fonction_publique,
