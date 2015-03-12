@@ -29,7 +29,7 @@ from __future__ import division
 from numpy import datetime64, timedelta64
 
 
-from ..base import *  # noqa analysis:ignore
+from ....base import *  # noqa analysis:ignore
 
 
 @reference_formula

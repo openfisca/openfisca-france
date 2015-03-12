@@ -33,11 +33,10 @@ import numpy
 
 
 from openfisca_core import periods
-from openfisca_france.model.cotisations_sociales.exonerations import exoneration_relative_year
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.exonerations \
+    import exoneration_relative_year
 from openfisca_france.tests.base import tax_benefit_system
 from openfisca_france.tests.utils import zip_period_with_values
-
-
 
 
 def test_exoneration_relative_year():
@@ -49,6 +48,7 @@ test_case_by_employee_type = dict(
     exoneration_cotisations_patronales_zfu = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2010-01-01",
+            depcom_entreprise = "69381",
             effectif_entreprise = {
                 "2014:15": 20,
                 },
@@ -64,12 +64,11 @@ test_case_by_employee_type = dict(
             ),
         output_variables = dict(
             exoneration_cotisations_patronales_zfu = {
-                "2014": 35 * 52 * 9.53 * .306,
-                "2014-01": 35 * 52 * 9.53 * .306 / 12,
-#                "2015": 35 * 52 * 9.61 * .281 * 8 / 12,
-                "2015-01": 35 * 52 * 9.61 * .3065 * .6 / 12,
-                "2015-09": 35 * 52 * 9.61 * .3065 * .6 / 12,
-                "2016": 35 * 52 * 9.61 * .307 * .4,
+                "2014": - 35 * 52 * 9.53 * .306,
+                "2014-01": - 35 * 52 * 9.53 * .306 / 12,
+                "2015-01": - 35 * 52 * 9.61 * .3065 * .6 / 12,
+                "2015-09": - 35 * 52 * 9.61 * .3065 * .6 / 12,
+                "2016": - 35 * 52 * 9.61 * .307 * .4,
                 }
             ),
         ),
@@ -90,13 +89,12 @@ test_case_by_employee_type = dict(
             ),
         output_variables = dict(
             exoneration_cotisations_patronales_zrd = {
-                "2014": 35 * 52 * 9.53 * .281,
-                "2014-01": 35 * 52 * 9.53 * .281 / 12,
-#                "2015": 35 * 52 * 9.61 * .281 * 8 / 12,
-                "2015-01": 35 * 52 * 9.61 * .281 / 12,
-                "2015-09": 35 * 52 * 9.61 * .281 / 12,
-                "2017-02": 35 * 52 * 9.61 * .281 * 2 / 3 / 12,
-                "2017": 35 * 52 * 9.61 * .281 * 2 / 3,
+                "2014": - 35 * 52 * 9.53 * .281,
+                "2014-01": - 35 * 52 * 9.53 * .281 / 12,
+                "2015-01": - 35 * 52 * 9.61 * .281 / 12,
+                "2015-09": - 35 * 52 * 9.61 * .281 / 12,
+                "2017-02": - 35 * 52 * 9.61 * .281 * 2 / 3 / 12,
+                "2017": - 35 * 52 * 9.61 * .281 * 2 / 3,
                 },
             ),
         ),
@@ -114,12 +112,12 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-#            exoneration_cotisations_patronales_zrr = {
-#                "2014": 35 * 52 * 9.53 * .281,
-#                "2014-01": 35 * 52 * 9.53 * .281 / 12,
-#                "2015": 0,
-#                "2015-01": 0,
-#                },
+            exoneration_cotisations_patronales_zrr = {
+                "2014": - 35 * 52 * 9.53 * .281,
+                "2014-01": - 35 * 52 * 9.53 * .281 / 12,
+                "2015": 0,
+                "2015-01": 0,
+                },
             salaire_de_base = {
                 "2014-01": 35 * 52 * 9.53 / 12,
                 }
@@ -140,11 +138,11 @@ test_case_by_employee_type = dict(
             ),
         output_variables = dict(
             exoneration_cotisations_patronales_zrr = {
-                "2014": 35 * 52 * 9.53 * 1.4 * 8 / 12 * .281,
-                "2014-06": 35 * 52 * 9.53 * 1.4 * .281 / 12,
-                "2015-01": 35 * 52 * 9.61 * 1.4 * .281 / 12,
-                "2015-09": 0,
-                "2016": 0,
+                "2014": - 35 * 52 * 9.53 * 1.4 * 8 / 12 * .281,
+                "2014-06": - 35 * 52 * 9.53 * 1.4 * .281 / 12,
+                "2015-01": - 35 * 52 * 9.61 * 1.4 * .281 / 12,
+                "2015-09": - 0,
+                "2016": - 0,
                 }
             ),
         ),
@@ -163,15 +161,16 @@ test_case_by_employee_type = dict(
             ),
         output_variables = dict(
             exoneration_cotisations_patronales_zrr = {
-                "2014": 35 * 52 * 9.53 * 2.5 * 0,
-                "2014-01": 35 * 52 * 9.53 * 2.5 * 0 / 12,
-                # "2015": 35 * 52 * 9.61 * 2.5 * .281 * 8 / 12,
-                "2015-01": 35 * 52 * 9.61 * 1.4 * 0 / 12,
-                "2015-09": 0,
-                "2016": 0}
+                "2014": - 35 * 52 * 9.53 * 2.5 * 0,
+                "2014-01": - 35 * 52 * 9.53 * 2.5 * 0 / 12,
+                "2015": 35 * 52 * 9.61 * 2.5 * .281 * 0 / 12,
+                "2015-01": - 35 * 52 * 9.61 * 1.4 * 0 / 12,
+                "2015-09": - 0,
+                "2016": - 0}
             ),
         ),
     creation_zrr = dict(
+        period = "2014",
         input_variables = dict(
             contrat_de_travail_arrivee = "2014-01-01",
             effectif_entreprise = 20,
@@ -180,21 +179,19 @@ test_case_by_employee_type = dict(
                 zip_period_with_values("2014-01:12", 35 * 52 * 9.53).items() +
                 zip_period_with_values("2015-01:12", 35 * 52 * 9.64).items(),
                 ),
-            zone_revitalisation_rurale = {
-                "2014:10": True,
-                },
+            zone_revitalisation_rurale = True,
             type_sal = 0,
             ),
         output_variables = dict(
             exoneration_is_creation_zrr = {
-                "2014": 1,
-                "2015": 1,
-                "2016": 1,
-                "2017": 1,
-                "2018": 1,
-                "2019": .75,
-                "2020": .50,
-                "2021": .25,
+                "2014": - 1,
+                "2015": - 1,
+                "2016": - 1,
+                "2017": - 1,
+                "2018": - 1,
+                "2019": - .75,
+                "2020": - .50,
+                "2021": - .25,
                 }
             ),
         ),
@@ -217,11 +214,15 @@ def test_check():
         for variable, amounts in test_parameters['output_variables'].iteritems():
             if isinstance(amounts, dict):
                 for period_str, amount in sorted(amounts.iteritems()):
-                    output = simulation.calculate_add(variable, period = periods.period(period_str))
+                    try:
+                        output = simulation.calculate_add(variable, period = periods.period(period_str))
+                    except AssertionError:  # for yearly values
+                        output = simulation.calculate(variable, period = periods.period(period_str))
                     variable_message = "{} at {}".format(variable, period_str)
                     yield assert_variable, variable_message, employee_type, amount, output
             else:
-                output = simulation.calculate_add(variable)
+                print "test: default period {}".format(variable)
+                output = simulation.calculate(variable)
                 variable_message = variable
                 amount = amounts
                 yield assert_variable, variable_message, employee_type, amount, output
