@@ -744,9 +744,12 @@ class Scenario(scenarios.AbstractScenario):
         return json_or_python_to_test_case
 
     def suggest(self):
+        test_case = self.test_case
+        if test_case is None:
+            return None
+
         period_start_date = self.period.start.date
         period_start_year = self.period.start.year
-        test_case = self.test_case
         suggestions = dict()
 
         for individu in test_case['individus']:
