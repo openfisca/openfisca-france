@@ -201,7 +201,7 @@ def compute_allegement_fillon_anticipe(simulation, period):
             'allegement_fillon',
             period.start.offset('first-of', 'year').period('month', 11))
         return compute_allegement_fillon(
-            simulation, period = period.start.offset('first-of', 'year').period('year')
+            simulation, period.start.offset('first-of', 'year').period('year')
             ) - cumul
 
 
