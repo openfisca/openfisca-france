@@ -43,6 +43,22 @@ log = logging.getLogger(__name__)
 #       des revenus du chômage sous un smic
 
 
+build_column(
+    'csg_rempl',
+    EnumCol(
+        label = u"Taux retenu sur la CSG des revenus de remplacment",
+        entity = 'ind',
+        enum = Enum([
+            u"Non renseigné/non pertinent",
+            u"Exonéré",
+            u"Taux réduit",
+            u"Taux plein",
+            ]),
+        default = 3,
+        ),
+    )
+
+
 ############################################################################
 # # Allocations chômage
 ############################################################################
@@ -306,3 +322,29 @@ class rstnet(SimpleFormulaColumn):
         crdsrst = simulation.calculate_add('crdsrst', period)
 
         return period, rst + csgrsti + crdsrst
+
+
+@reference_formula
+class crds_pfam(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = Familles
+    label = u"CRDS sur les prestations familiales)"
+    url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
+
+    def function(self, simulation, period):
+        '''
+        Renvoie la CRDS des prestations familiales
+        '''
+        period = period.start.offset('first-of', 'month').period('year')
+        af = simulation.calculate_add('af', period)
+        cf = simulation.calculate_add('cf', period)
+        asf = simulation.calculate_add('asf', period)
+        ars = simulation.calculate('ars', period)
+        paje = simulation.calculate_add('paje', period)
+        ape = simulation.calculate('ape', period)
+        apje = simulation.calculate('apje', period)
+        _P = simulation.legislation_at(period.start)
+
+        return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
+
+

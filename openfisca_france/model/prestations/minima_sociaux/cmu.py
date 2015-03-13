@@ -253,7 +253,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
         cf = simulation.calculate_divide('cf', period)
         asf = simulation.calculate_divide('asf', period)
         paje_clca = simulation.calculate_divide('paje_clca', period)
-        so_holder = simulation.compute('so', period)
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
@@ -261,15 +261,15 @@ class cmu_base_ressources(SimpleFormulaColumn):
         cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_i', period)
         P = simulation.legislation_at(period.start).cmu
 
-        so = self.cast_from_entity_to_roles(so_holder)
-        so = self.filter_role(so, role = CHEF)
+        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
+        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_base_ressources_i_holder, roles = ENFS)
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        forfait_logement = (((so == 2) + (so == 6)) * cmu_forfait_logement_base +
+        forfait_logement = (((statut_occupation == 2) + (statut_occupation == 6)) * cmu_forfait_logement_base +
             (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement * 12))
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement

@@ -1,5 +1,5 @@
 name: Neutralisation du RSA par l'ARE (rsa)
-description: 
+description:
 period: "month:2014-10"
 individus:
   activite: 1
@@ -62,6 +62,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 544e15fd1dddcaa51c2c8ef0
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 0

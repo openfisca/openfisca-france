@@ -25,10 +25,10 @@
 
 from __future__ import division
 
-from numpy import (floor, maximum as max_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import maximum as max_
 
-from ...base import *  # noqa
-from ...pfam import nb_enf
+from ...base import *  # noqa analysis:ignore
+from .base_ressource import nb_enf
 
 
 @reference_formula

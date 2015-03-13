@@ -23,14 +23,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from ..base import *  # noqa
+from ...base import *  # noqa
 
 
 # TODO: 5QL
 
 
-# Nomenclature : première lettre : (e : auto-entrepreneur / m : micro entreprise, déclaratif spécial / n : bénéfice réel sans CGA / a : bénéfice réel avec CGA ou viseur / f : forfait / c : déclaration contrôlée)
-# trois lettres suivantes : catégorie du revenu ( rag : agricole / bic : industriel et commercial pro / bnc : non commercial pro / acc : industriel et commercial non pro / ncn : non commercial non pro)
+# Nomenclature :
+# première lettre :
+#    e : auto-entrepreneur
+#    m : micro entreprise, déclaratif spécial
+#    n : bénéfice réel sans CGA
+#    a : bénéfice réel avec CGA ou viseur
+#    f : forfait
+#    c : déclaration contrôlée)
+# trois lettres suivantes, catégorie du revenu :
+#    rag : agricole
+#    bic : industriel et commercial pro
+#    bnc : non commercial pro
+#    acc : industriel et commercial non pro
+#    ncn : non commercial non pro
 # après l'underscore : abbréviation du label de la case
 
 build_column('f5qm', IntCol(entity = 'ind',
@@ -977,3 +989,67 @@ build_column('f5mt', IntCol(entity = 'foy',
                 val_type = "monetary",
                 start = date(2007, 1, 1),
                 cerfa_field = u'5MT'))
+
+build_column('f5sq', IntCol())
+
+
+
+# TODO: Introudit par mes aides à consolider
+
+# Input variables
+build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))
+build_column('tns_autres_revenus', FloatCol(entity = 'ind', is_permanent = True, label = u"Autres revenus non salariés"))
+
+build_column('tns_type_structure', EnumCol(
+    entity = 'ind',
+    enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
+    default = 1,
+    is_permanent = True,
+    label = u"Type de structure associée au travailleur non salarié"))
+
+build_column('tns_type_activite', EnumCol(
+    entity = 'ind',
+    enum = Enum([u'achat_revente', u'bic', u'bnc']),
+    is_permanent = True,
+    label = u"Valeur locative des biens immobiliés possédés et non loués"))
+
+
+# Computed variables
+@reference_formula
+class tns_total_revenus(DatedFormulaColumn):
+    column = FloatCol
+    label = u"Total des revenus non salariés"
+    entity_class = Individus
+#    start = "2008-01-01"
+
+    @dated_function(date(2008, 1, 1))
+    def function_2008__(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+        tns_type_structure = simulation.calculate('tns_type_structure', period)
+        tns_type_activite = simulation.calculate('tns_type_activite', period)
+        tns_chiffre_affaires_micro_entreprise = simulation.calculate('tns_chiffre_affaires_micro_entreprise', period)
+        bareme = simulation.legislation_at(period.start).tns
+
+        cs_ae = bareme.auto_entrepreneur
+        abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
+
+        total_revenus = (
+            tns_autres_revenus / 12 +
+            # cas des auto-entrepreneurs
+            (tns_type_structure == 0) * tns_chiffre_affaires_micro_entreprise / 12 * (
+                1 -
+                (tns_type_activite == 0) * cs_ae.achat_revente -
+                (tns_type_activite == 1) * cs_ae.bic -
+                (tns_type_activite == 2) * cs_ae.bnc) +
+            # cas des autres micro-entreprises
+            (tns_type_structure == 1) * tns_chiffre_affaires_micro_entreprise / 12 * (
+                1 -
+                (tns_type_activite == 0) * abatt_fp_me.achat_revente -
+                (tns_type_activite == 1) * abatt_fp_me.bic -
+                (tns_type_activite == 2) * abatt_fp_me.bnc
+                ) * (1 - bareme.micro_entreprise.cotisations_sociales)
+            )
+
+        return period, total_revenus
+

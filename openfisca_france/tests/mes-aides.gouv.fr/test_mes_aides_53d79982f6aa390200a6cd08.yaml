@@ -61,6 +61,6 @@ menages:
   enfants: 53d79969f6aa390200a6cd00
   loyer: 499
   personne_de_reference: 53d79969f6aa390200a6cd01
-  so: 4
+  statut_occupation: 4
 output_variables:
   rsa_majore: 535.06

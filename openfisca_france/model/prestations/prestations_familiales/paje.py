@@ -25,10 +25,35 @@
 
 from __future__ import division
 
-from numpy import (round, floor, zeros, maximum as max_, minimum as min_, logical_not as not_, logical_and as and_, logical_or as or_)
+from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_)
 
-from ...base import *  # noqa
-from ...pfam import nb_enf, age_en_mois_benjamin
+from ...base import *  # noqa analysis:ignore
+from .base_ressource import nb_enf, age_en_mois_benjamin
+
+
+# Prestations familiales
+build_column('inactif', BoolCol(entity = 'fam',
+                    label = u"Parent inactif (PAJE-CLCA)"))
+
+build_column('partiel1', BoolCol(entity = 'fam',
+                     label = u"Parent actif à moins de 50% (PAJE-CLCA)"))
+
+build_column('partiel2', BoolCol(entity = 'fam',
+                     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"))
+
+build_column('categ_inv', PeriodSizeIndependentIntCol(label = u"Catégorie de handicap (AEEH)"))
+
+build_column('opt_colca', BoolCol(entity = 'fam',
+                      label = u"Opte pour le COLCA"))
+
+build_column('empl_dir', BoolCol(entity = 'fam',
+                     label = u"Emploi direct (CLCMG)"))
+
+build_column('ass_mat', BoolCol(entity = 'fam',
+                    label = u"Assistante maternelle (CLCMG)"))
+
+build_column('gar_dom', BoolCol(entity = 'fam',
+                    label = u"Garde à domicile (CLCMG)"))
 
 
 @reference_formula
@@ -89,16 +114,17 @@ class paje_base_temp(SimpleFormulaColumn):
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-
         nbenf = nb_enf(age, smic55, 0, pfam.paje.base.age - 1)
-
-        plaf_tx = (nbenf > 0) + pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) + pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+        plaf_tx = (
+            (nbenf > 0) +
+            pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) +
+            pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+            )
         majo = isol | biact
         plaf = pfam.paje.base.plaf * plaf_tx + (plaf_tx > 0) * pfam.paje.base.plaf_maj * majo
         plaf2 = plaf + 12 * base2  # TODO vérifier l'aspect différentielle de la PAJE et le plaf2 de la paje
 
-        paje_base = (nbenf > 0) * ((br_pf < plaf) * base +
-                               (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
+        paje_base = (nbenf > 0) * ((br_pf < plaf) * base + (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
         # non cumulabe avec la CF, voir Paje_CumulCf
         return period, paje_base
 
@@ -119,14 +145,14 @@ class paje_nais(SimpleFormulaColumn):
         period_legacy = period.start.period('year')
 
         agem_holder = simulation.compute('agem', period)
-        age_holder = simulation.compute('age', period)
+        # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period_legacy)
         br_pf = simulation.calculate('br_pf', period)
         isol = simulation.calculate('isol', period_legacy)
         biact = simulation.calculate('biact', period)
         P = simulation.legislation_at(period.start).fam
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
+        # age = self.split_by_roles(age_holder, roles = ENFS)
         agem = self.split_by_roles(agem_holder, roles = ENFS)
 
         bmaf = P.af.bmaf
@@ -143,8 +169,6 @@ class paje_nais(SimpleFormulaColumn):
             nbaf += (age_m >= 10)
 
         nbenf = nbaf + nbnais  # On ajoute l'enfant à  naître;
-
-        paje_plaf = P.paje.base.plaf
 
         plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
         majo = isol | biact
@@ -354,7 +378,8 @@ class paje_clmg(SimpleFormulaColumn):
                 ((br_pf >= seuil1) & (br_pf < seuil2)) * P.paje.clmg.domi2 +
                 (br_pf >= seuil2) * P.paje.clmg.domi3))
         # TODO: connecter avec le crédit d'impôt
-        # Si vous bénéficiez du Clca taux plein (= vous ne travaillez plus ou interrompez votre activité professionnelle),
+        # Si vous bénéficiez du Clca taux plein
+        # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
         paje_clmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
@@ -642,9 +667,7 @@ class apje(SimpleFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(self, simulation, period):
-        '''
-        L'APJE n'est pas cumulable avec le complément familial et l'APE
-        '''
+        # L'APJE n'est pas cumulable avec le complément familial et l'APE
         period = period.start.offset('first-of', 'month').period('year')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)

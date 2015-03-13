@@ -63,6 +63,6 @@ menages:
   enfants:
   loyer: 50
   personne_de_reference: 548ec77d40562f54026eead1
-  so: 4
+  statut_occupation: 4
 output_variables:
   acs: 350

@@ -35,23 +35,6 @@ SCOLARITE_COLLEGE = 1
 SCOLARITE_LYCEE = 2
 
 
-reference_input_variable(
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"Inconnue",
-                u"Collège",
-                u"Lycée"
-                ],
-            ),
-        default = 0
-        ),
-    entity_class = Individus,
-    label = u"Scolarité de l'enfant : collège, lycée...",
-    name = "scolarite",
-    )
-
-
 @reference_formula
 class bourse_college(SimpleFormulaColumn):
     column = FloatCol
@@ -172,3 +155,28 @@ class bourse_lycee(SimpleFormulaColumn):
         montant = nombre_parts * 45.3 * nb_enfants_lycee
 
         return period, montant / 12
+
+
+reference_input_variable(
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"Inconnue",
+                u"Collège",
+                u"Lycée"
+                ],
+            ),
+        default = 0
+        ),
+    entity_class = Individus,
+    label = u"Scolarité de l'enfant : collège, lycée...",
+    name = "scolarite",
+    )
+
+
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Individus,
+    label = u"Élève ou étudiant boursier",
+    name = 'boursier',
+    )

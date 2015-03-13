@@ -122,6 +122,6 @@ menages:
     - 54ac159b83a941301681c0d3
   loyer: 1000
   personne_de_reference: 54ac159b83a941301681c0d7
-  so: 4
+  statut_occupation: 4
 output_variables:
   aide_logement: 549.9

@@ -143,6 +143,6 @@ menages:
     - 54c8f274d4e3b0d74454bc0d
   loyer: 50
   personne_de_reference: 549163658dac13600246a097
-  so: 4
+  statut_occupation: 4
 output_variables:
   acs: 600

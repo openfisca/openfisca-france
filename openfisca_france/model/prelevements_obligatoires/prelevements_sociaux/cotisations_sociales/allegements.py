@@ -125,7 +125,7 @@ class coefficient_proratisation(SimpleFormulaColumn):
         heures_remunerees_volume = (
             (contrat_de_travail == 0) * (
                 heures_temps_plein * not_(mois_incomplet) +  # 151.67
-                jours_travailles * 7 * mois_incomplet # TODO: 7 = heures / jours
+                jours_travailles * 7 * mois_incomplet  # TODO: 7 = heures / jours
                 ) +
             (contrat_de_travail == 1) * heures_remunerees_volume
             )
@@ -227,7 +227,6 @@ def compute_allegement_fillon(simulation, period):
     taille_entreprise = simulation.calculate('taille_entreprise', period)
     majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
     # Calcul du taux
-    # La divison par zéro engendre un warning
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;
     # il est égal au produit de la totalité de la rémunération annuelle telle

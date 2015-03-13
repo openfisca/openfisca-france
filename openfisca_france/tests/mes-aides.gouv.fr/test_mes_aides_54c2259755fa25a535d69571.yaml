@@ -2,7 +2,7 @@ name: Cas RL < 45 (al, location, taux loyer)
 description: |
   On veut rentrer dans ce test dans le cas où RL est inférieur à 45
   Dans l'exemple, personne seule en zone 1, loyer = 90 euros, salaires 2013 = 7000 euros
-  
+
   L	90
   C	53,23
   E	143,23
@@ -59,6 +59,6 @@ menages:
   enfants:
   loyer: 90
   personne_de_reference: 54c2245a084d68a935465867
-  so: 4
+  statut_occupation: 4
 output_variables:
   aide_logement: 59.89

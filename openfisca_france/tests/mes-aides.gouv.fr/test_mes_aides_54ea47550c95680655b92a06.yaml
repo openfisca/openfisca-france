@@ -1,7 +1,7 @@
 name: Chômeur seul locataire (al, caf.fr)
 description: |
   Zone 2
-  
+
   L	255,03
   C	53,23
   E	308,26
@@ -17,7 +17,7 @@ description: |
   P1	100,54
   Pp	135,27
   AL	172,13
-  
+
   caf.fr : 173,72
 period: "month:2015-02"
 individus:
@@ -95,6 +95,6 @@ menages:
   enfants:
   loyer: 329
   personne_de_reference: 54ea473f0f7afafd54c4d64d
-  so: 4
+  statut_occupation: 4
 output_variables:
   aide_logement: 172.13

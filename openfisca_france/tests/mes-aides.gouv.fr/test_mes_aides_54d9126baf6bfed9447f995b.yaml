@@ -54,6 +54,6 @@ menages:
   depcom: 67482
   enfants: 54d91222f675ddd34432ef11
   personne_de_reference: 54d91222f675ddd34432ef12
-  so: 6
+  statut_occupation: 6
 output_variables:
   bourse_college: 0

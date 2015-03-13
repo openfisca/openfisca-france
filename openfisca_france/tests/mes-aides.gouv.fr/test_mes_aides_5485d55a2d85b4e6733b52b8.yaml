@@ -146,6 +146,6 @@ menages:
     - 5485d4def8356af173ccbf1d
     - 5485d4def8356af173ccbf1c
   personne_de_reference: 5485d4def8356af173ccbf20
-  so: 6
+  statut_occupation: 6
 output_variables:
   bourse_college: 228

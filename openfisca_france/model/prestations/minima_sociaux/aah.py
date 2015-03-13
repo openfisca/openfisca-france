@@ -26,7 +26,11 @@ from __future__ import division
 
 from numpy import (maximum as max_)
 
-from ..base import *  # noqa
+from ...base import *  # noqa analysis:ignore
+
+
+build_column('aah', FloatCol(entity = 'ind', label = u"Allocation de l'adulte handicapé"))
+build_column('caah', FloatCol(entity = 'ind', label = u"Complément de l'allocation de l'adulte handicapé"))
 
 
 def _br_aah(br_pf, asi, aspa):

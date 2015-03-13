@@ -1,5 +1,5 @@
 name: Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus (patrimoine, rsa)
-description: 
+description:
 period: "month:2014-09"
 individus:
   age: 34
@@ -28,6 +28,6 @@ menages:
   depcom: 67382
   enfants:
   personne_de_reference: 54213529fb35830200b3134b
-  so: 6
+  statut_occupation: 6
 output_variables:
   rsa: 373.18

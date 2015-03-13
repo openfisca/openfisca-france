@@ -80,7 +80,7 @@ menages:
   enfants: 54eb4a9010c49b0772c74580
   loyer: 500
   personne_de_reference: 548ac39ffc1609f0180de26a
-  so: 4
+  statut_occupation: 4
 output_variables:
   acs: 550
   cmu_c: false

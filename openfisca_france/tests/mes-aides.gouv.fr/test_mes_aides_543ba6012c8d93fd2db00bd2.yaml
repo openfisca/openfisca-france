@@ -115,6 +115,6 @@ menages:
     - 543ba5e779b1c2ff2d25dc36
     - 543ba5e779b1c2ff2d25dc35
   personne_de_reference: 543ba5e779b1c2ff2d25dc38
-  so: 6
+  statut_occupation: 6
 output_variables:
   cf: 0

@@ -101,6 +101,6 @@ menages:
   depcom: 54084
   enfants:
   personne_de_reference: 54857348bf1777d606ad1be5
-  so: 2
+  statut_occupation: 2
 output_variables:
   asi: 666.27
