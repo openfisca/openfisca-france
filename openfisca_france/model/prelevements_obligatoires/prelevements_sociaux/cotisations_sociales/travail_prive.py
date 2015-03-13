@@ -357,7 +357,13 @@ class arrco_tranche_a_employeur(SimpleFormulaColumn):
     label = u"Cotisation ARRCO tranche A (employeur)"
 
     def function(self, simulation, period):
-        cotisation_minimale = apply_bareme(simulation, period, cotisation_type = "employeur", bareme_name = "arrco")
+        cotisation_minimale = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = "employeur",
+            bareme_name = "arrco",
+            variable_name = self.__class__.__name__,
+            )
         arrco_tranche_a_taux_employeur = simulation.calculate('arrco_tranche_a_taux_employeur', period)
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
