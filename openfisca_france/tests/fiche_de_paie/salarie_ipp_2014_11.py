@@ -48,9 +48,7 @@ tests = [
             conge_individuel_formation_cdd = -46,
             contribution_solidarite_autonomie = -13.8,
             participation_effort_construction = -20.70,
-            fnal_tranche_a = 0,
-            fnal_tranche_a_plus_20 = -23,
-            # fnal_tranche_b_plus_20 # Inclus dans fnal_tranche_a_plus_20
+            fnal = -23,
             formation_professionnelle = -73.6,
             versement_transport = -124.20,
             # cotisations_patronales_main_d_oeuvre = ,

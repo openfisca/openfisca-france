@@ -130,8 +130,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
         contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         contribution_supplementaire_apprentissage = simulation.calculate(
             'contribution_supplementaire_apprentissage', period)
-        fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
-        fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
+        fnal = simulation.calculate('fnal', period)
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
         participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
         prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
@@ -144,14 +143,25 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
             contribution_solidarite_autonomie +
             contribution_supplementaire_apprentissage +
             formation_professionnelle +
-            fnal_tranche_a +
-            fnal_tranche_a_plus_20 +
+            fnal +
             participation_effort_construction +
             prevoyance_obligatoire_cadre +
             taxe_apprentissage +
             versement_transport
             )
         return period, cotisations_patronales_main_d_oeuvre
+
+
+@reference_formula
+class fnal(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisation fonds national action logement (FNAL)"
+
+    def function(self, simulation, period):
+        fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
+        fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
+        return period, fnal_tranche_a + fnal_tranche_a_plus_20
 
 
 @reference_formula

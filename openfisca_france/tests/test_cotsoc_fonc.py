@@ -59,8 +59,7 @@ def test():
             error_margin = 1,
             expected_values = dict(
 
-                fnal_tranche_a = 0,
-                fnal_tranche_a_plus_20 = -8 - 2,
+                fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
                 contribution_solidarite_autonomie = - 6,
                 cotisations_patronales_main_d_oeuvre = -51,
@@ -69,7 +68,7 @@ def test():
                 maladie_employeur = -194,
                 famille = -108,
                 cotisations_patronales_non_contributives = -308,
-                # maladie_employeur, famille, fnal_tranche_a, fnal_tranche_a_plus_20, versement_transport,
+                # maladie_employeur, famille, fnal, versement_transport,
                 # allocations_temporaires_invalidite contribution_solidarite_autonomie
 
                 rafp_employeur = -20,
@@ -116,8 +115,7 @@ def test():
 
             error_margin = 1,
             expected_values = dict(
-                fnal_tranche_a = 0,
-                fnal_tranche_a_plus_20 = -8 -2 ,
+                fnal = -8 -2 ,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
                 cotisations_patronales_main_d_oeuvre = -51,
@@ -170,8 +168,7 @@ def test():
             error_margin = 1,
             expected_values = dict(
 
-                fnal_tranche_a = 0,
-                fnal_tranche_a_plus_20 = -8 -2,
+                fnal = -8 -2,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
 
@@ -228,8 +225,7 @@ def test():
             expected_values = dict(
 
                 contribution_solidarite_autonomie = - 7.68,
-                fnal_tranche_a = 0,
-                fnal_tranche_a_plus_20 = - 10.24 - 2.56,
+                fnal = - 10.24 - 2.56,
                 versement_transport = -2560 * 0.0175,
                 cotisations_patronales_main_d_oeuvre = -65.28,
 
@@ -296,8 +292,7 @@ def test():
             error_margin = 2,
             expected_values = dict(
                 contribution_solidarite_autonomie = - 6,
-                fnal_tranche_a = 0,
-                fnal_tranche_a_plus_20 = -8 - 2,
+                fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
                 cotisations_patronales_main_d_oeuvre = -51,
 
@@ -362,8 +357,7 @@ def test():
                 # pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
                 contribution_solidarite_autonomie = - 6 * 2,
-                fnal_tranche_a = 0,
-                fnal_tranche_a_plus_20 = - 8 * 2 - 2 * 2,
+                fnal = - 8 * 2 - 2 * 2,
                 versement_transport = -2000 * 0.0175 * 2,  # = 35
                 cotisations_patronales_main_d_oeuvre = -51 * 2,
 
