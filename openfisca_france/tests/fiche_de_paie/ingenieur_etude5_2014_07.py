@@ -80,8 +80,7 @@ tests = [
             contribution_developpement_apprentissage = -3000*0.0018, #aggrégé avec taxe apprentissage
             contribution_solidarite_autonomie = 0,
             contribution_supplementaire_apprentissage = 0,
-            fnal_tranche_a = 0,
-            fnal_tranche_a_plus_20 = -15,
+            fnal = -15,
 
             # cotisations_patronales_contributives = 0,
             ags = -9,
