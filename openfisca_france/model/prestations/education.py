@@ -146,13 +146,14 @@ class bourse_lycee(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         nombre_parts = simulation.calculate('bourse_lycee_nombre_parts', period)
         scolarite_holder = simulation.compute('scolarite', period)
+        valeur_part = simulation.legislation_at(period.start).bourses_education.bourse_lycee.valeur_part
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
         nb_enfants_lycee = zeros(len(nombre_parts))
         for scolarite in scolarites.itervalues():
             nb_enfants_lycee += scolarite == SCOLARITE_LYCEE
 
-        montant = nombre_parts * 45.3 * nb_enfants_lycee
+        montant = nombre_parts * valeur_part * nb_enfants_lycee
 
         return period, montant / 12
 
