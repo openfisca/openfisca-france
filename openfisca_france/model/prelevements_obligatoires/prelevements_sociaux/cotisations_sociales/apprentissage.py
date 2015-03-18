@@ -96,8 +96,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
 
         output = age * 0.0
         for age_interval in salaire_en_smic:
-            age_condition = age_interval["age_min"] <= age < age_interval["age_max"]
-
+            age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
                 (anciennete_contrat[age_condition] == anciennete) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
