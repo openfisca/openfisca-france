@@ -25,7 +25,7 @@
 
 tests = [
     dict(
-        name = "Mr Jean",
+        name = "ingenieur_etude5_2014_07",
         period = "2014-07",   #
         input_variables = dict(
             allegement_fillon_mode_recouvrement = 1,  # "anticipe_regularisation_fin_de_periode"
