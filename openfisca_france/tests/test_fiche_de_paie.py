@@ -60,7 +60,7 @@ def iter_scenarios():
 
 def simple_check(tests):
     for test_parameters in tests:
-        name = test_parameters["name"]
+        test_name = test_parameters["name"]
         period = test_parameters["period"]
         parent1 = dict(
             birth = datetime.date(periods.period(period).start.year - 40, 1, 1),

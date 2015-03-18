@@ -74,6 +74,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         reintegration_titre_restaurant_employeur = simulation.calculate(
             "reintegration_titre_restaurant_employeur", period
             )
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         type_sal = simulation.calculate('type_sal', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
@@ -84,6 +85,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
             avantages_en_nature +
             hsup +
             indemnites_compensatrices_conges_payes +
+            remuneration_apprenti +
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur
             )
