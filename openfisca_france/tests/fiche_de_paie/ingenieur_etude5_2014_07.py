@@ -39,21 +39,22 @@ tests = [
             heures_non_remunerees_volume = 0,
             heures_remunerees_volume = 0,
             # exposition_accident = 3,
+            indemnites_forfaitaires = 160 + 40.95,  # indemnités transports et repas
             indemnites_journalieres_maladie = 0,
             code_postal_entreprise = "75014",
             prevoyance_obligatoire_cadre_taux_employeur = 0.0074,  # 1.5% est le minimum
             primes_salaires = 0,
             prise_en_charge_employeur_retraite_complementaire = 0,
-            prise_en_charge_employeur_prevoyance_complementaire = 36.82,
+            prise_en_charge_employeur_prevoyance_complementaire = 30.82,
             prise_en_charge_employeur_retraite_supplementaire = 0,
             ratio_alternants = 0,
             redevable_taxe_apprentissage = 1,
-            remboursement_transport_base = 81.9,  #Le double d'indmnités de transport indiqué sur la fiche de paie
+            remboursement_transport_base = 0,  # Le double d'indmnités de transport indiqué sur la fiche de paie
             salaire_de_base = 3000,
-            taux_accident_travail = 0,
+            taux_accident_travail = 0.011,
             taux_versement_transport = 0,
-            titre_restaurant_valeur_unitaire = 8,
-            titre_restaurant_volume = 20,
+            titre_restaurant_valeur_unitaire = 0,
+            titre_restaurant_volume = 0,
             type_sal = 1,  # non cadre
             volume_jours_ijss = 0,
             ),
@@ -63,7 +64,7 @@ tests = [
 
             # salsuperbrut = 0,
             # cotisations_patronales = 0,
-            remboursement_transport = -40.95,
+            remboursement_transport = 0,
             ircantec_employeur = 0,
             pension_civile_employeur = 0,
             rafp_employeur = 0,
@@ -72,12 +73,12 @@ tests = [
             allocations_temporaires_invalidite = 0,
             accident_du_travail = -33,
             famille = -157.5,
-            maladie_employeur = -3000*.128, #est aggrégé avec vieillesse
+            maladie_employeur = -3000 * .128,  # est aggrégé avec vieillesse
             taxe_salaires = 0,
 
             # cotisations_patronales_main_d_oeuvre = 0,
             conge_individuel_formation_cdd = 0,
-            contribution_developpement_apprentissage = -3000*0.0018, #aggrégé avec taxe apprentissage
+            contribution_developpement_apprentissage = -3000 * 0.0018,  # aggrégé avec taxe apprentissage
             contribution_solidarite_autonomie = 0,
             contribution_supplementaire_apprentissage = 0,
             fnal = -15,
@@ -86,22 +87,22 @@ tests = [
             ags = -9,
             agff_tranche_a_employeur = -36.00,
             agirc_gmp_employeur = -41.17,
-            agirc_tranche_b_employeur = -137.4,
+            agirc_tranche_b_employeur = -41.17,
             apec_employeur = -1.08,
-            arrco_tranche_a_employeur = 0,
+            arrco_tranche_a_employeur = -137.4,
             assedic_employeur = -120,
             cotisation_exceptionnelle_temporaire_employeur = -6.60,
-            vieillesse_deplafonnee_employeur = -3000*0.0175, #est aggrégé avec maladie
+            vieillesse_deplafonnee_employeur = -3000 * 0.0175,  # est aggrégé avec maladie
             vieillesse_plafonnee_employeur = -253.5,
             fonds_emploi_hospitalier = 0,
             formation_professionnelle = -48,
             participation_effort_construction = -13.5,
-            prevoyance_obligatoire_cadre = -22.20,
-            taxe_apprentissage = -3000*0.005, #aggrégé avec contribution supplémentaire apprentissage
+            prevoyance_obligatoire_cadre = -22.2,
+            taxe_apprentissage = -3000 * 0.005,  # aggrégé avec contribution supplémentaire apprentissage
             versement_transport = 0,
 
             allegement_fillon = 0,
-            alleg_cice = 0,
+            credit_impot_competitivite_emploi = 120,
             forfait_social = -4.72,
             tehr = {'2014': 0},
             salaire_de_base = 3000,
@@ -123,27 +124,21 @@ tests = [
             rafp_employe = 0,
 
             # cotisations_salariales_non_contributives = 0,
-            maladie_employe = -3000 * .0075, # est agrégée avec vieillesse déplaf. sur la fiche de paie
+            maladie_employe = -3000 * .0075,  # est agrégée avec vieillesse déplaf. sur la fiche de paie
             contribution_exceptionnelle_solidarite_employe = 0,
             csgsald = -150.32,
             mhsup = 0,
             salnet = 2395.55,
 
             # salaire imposable
-            csgsali = 1.71,
-            crdssal = -85.48,
+            csgsali = -70.74,
+            crdssal = -14.74,  # 0.5*2947.50 (attention dans fiche, taux csg/crds aggrégé)
             hsup = 0,
-#            sal = 2395.55,  # salaire imposable
+            # sal = 2395.55,  # salaire imposable
             depense_cantine_titre_restaurant_employe = 0,
 
-            salaire_net_a_payer = 2478.49,
+            #salaire_net_a_payer = 2478.49,
 
             ),
         ),
     ]
-# -*- coding: utf-8 -*-
-"""
-Éditeur de Spyder
-
-Ceci est un script temporaire.
-"""
