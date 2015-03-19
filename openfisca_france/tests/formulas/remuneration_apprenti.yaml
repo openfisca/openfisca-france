@@ -5,3 +5,14 @@
     birth: "1996-01-01"
   output_variables:
     remuneration_apprenti: 35 * 52 * 9.61 * .49 / 12
+- period: "month:2015-03"
+  input_variables:
+    apprenti:
+      "month:2015-01": 1
+    apprentissage_contrat_debut:
+      "month:2015-01": "2013-01-01"
+    birth: "1996-01-01"
+  output_variables:
+    remuneration_apprenti:
+      "month:2015-01": 35 * 52 * 9.61 * .49 / 12
+      "month:2015-03": 35 * 52 * 9.61 * .49 / 12
