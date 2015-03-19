@@ -26,7 +26,7 @@
 import glob
 import os
 
-ignored_modules = ["thesard1_2011_07.py", "ingenieur_etude5_2014_07.py"]
+ignored_modules = ["thesard1_2011_07.py", "ingenieur_etude5_2014_07.py", "montaigne1_2013_05.py"]
 
 modules = [
     module_path

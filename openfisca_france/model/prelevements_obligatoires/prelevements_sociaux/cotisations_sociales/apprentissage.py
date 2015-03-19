@@ -32,6 +32,14 @@ from numpy import datetime64, timedelta64
 from ....base import *  # noqa analysis:ignore
 
 
+reference_input_variable(
+    column = BoolCol(),
+    entity_class = Individus,
+    label = u"L'individu est apprenti",
+    name = 'apprenti',
+    )
+
+
 @reference_formula
 class remuneration_apprenti(SimpleFormulaColumn):
     column = FloatCol
@@ -52,13 +60,13 @@ class remuneration_apprenti(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
-
         anciennete_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
+        apprenti = simulation.calculate('apprenti', period)
         salaire_en_smic = [  # TODO: move to parameters
             dict(
-                part_de_smic = {
+                part_de_smic_by_anciennete = {
                     1: .25,
                     2: .41,
                     3: .53,
@@ -67,7 +75,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
                 age_max = 18,
                 ),
             dict(
-                part_de_smic = {
+                part_de_smic_by_anciennete = {
                     1: .37,
                     2: .49,
                     3: .61,
@@ -76,7 +84,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
                 age_max = 21,
                 ),
             dict(
-                part_de_smic = {
+                part_de_smic_by_anciennete = {
                     1: .53,
                     2: .65,
                     3: .78,
@@ -88,13 +96,12 @@ class remuneration_apprenti(SimpleFormulaColumn):
 
         output = age * 0.0
         for age_interval in salaire_en_smic:
-            age_condition = age_interval["age_min"] <= age < age_interval["age_max"]
-
+            age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
                 (anciennete_contrat[age_condition] == anciennete) * part_de_smic
-                for anciennete, part_de_smic in age_interval['part_de_smic'].iteritems()
+                for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
                 ])
-        return period, output * smic
+        return period, output * smic * apprenti
 
 
 @reference_formula
@@ -120,21 +127,29 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
     #   chômage et d'AGFF, le versement transport ainsi que les cotisations Fnal.
     # Précision : le décompte de l'effectif des entreprises non artisanales s'apprécie au 31 décembre précédant la date
     # de conclusion du contrat d'apprentissage.
-    #
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
         bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
-        taux_max = (
-            bareme_by_name['vieillessedeplaf'].rates[0] +
-            bareme_by_name['vieillesseplaf'].rates[0] +
-            bareme_by_name['maladie'].rates[0] +
-            bareme_by_name['famille'].rates[0]
-            )
-        #TODO
-        return period, - taux_max * remuneration_apprenti
+        cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        exoneration_moins_11 = cotisations_patronales
+        cotisations_non_exonerees = [
+            'accident_du_travail'
+            ]
+        for cotisation_non_exoneree in cotisations_non_exonerees:
+            exoneration_moins_11 -= simulation.calculate(cotisation_non_exoneree, period)
 
+        exoneration_plus_11 = 0
+        cotisations_exonerees = [
+            'famille', 'maladie_employeur', 'vieillesse_employeur', 'vieillesse_deplafonne_employeur']
+        for cotisation_exoneree in cotisations_exonerees:
+            exoneration_plus_11 -= simulation.calculate(cotisation_exoneree, period)
+
+        # TODO
+        return period, (
+            exoneration_plus_11 * (effectif_entreprise >= 11) +
+            exoneration_moins_11 * (effectif_entreprise < 11)
+            )
 
 @reference_formula
 class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):

@@ -36,6 +36,7 @@ from openfisca_france.tests.base import tax_benefit_system
 test_case_by_employee_type = dict(
     apprentissage = dict(
         input_variables = dict(
+            apprenti = True,
             apprentissage_contrat_debut = "2013-01-01",
             birth = datetime.date(2015 - 18 - 1, 1, 1),
             ),
