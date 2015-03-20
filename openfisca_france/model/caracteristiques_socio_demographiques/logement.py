@@ -65,7 +65,7 @@ class residence_guadeloupe(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -79,7 +79,7 @@ class residence_martinique(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -93,7 +93,7 @@ class residence_guyane(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -107,7 +107,7 @@ class residence_reunion(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -121,7 +121,7 @@ class residence_mayotte(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)

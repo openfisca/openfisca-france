@@ -182,7 +182,7 @@ class sal(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
@@ -215,7 +215,7 @@ class salnet(SimpleFormulaColumn):
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds
         '''
-        period = period.offset('first-of')
+        period = period
 
         salaire_de_base = simulation.get_array('salaire_de_base', period)
         if salaire_de_base is None:
@@ -239,7 +239,7 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         Calcul du salaire net à payer après déduction des sommes
         dues par les salarié avancées par l'employeur
         '''
-        period = period.offset('first-of')
+        period = period
         salnet = simulation.calculate('salnet', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
@@ -275,7 +275,7 @@ class salsuperbrut(SimpleFormulaColumn):
     label = u"Salaires superbruts/coût du travail"
 
     def function(self, simulation, period):
-        period = period.offset('first-of')
+        period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
