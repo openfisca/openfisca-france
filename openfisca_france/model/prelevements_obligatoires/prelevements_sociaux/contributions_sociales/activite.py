@@ -231,7 +231,7 @@ class salnet(SimpleFormulaColumn):
 @reference_formula
 class salaire_net_a_payer(SimpleFormulaColumn):
     column = FloatCol
-    label = u"Salaires nets d'après définition INSEE"
+    label = u"Salaire net à payer (fiche de paie)"
     entity_class = Individus
 
     def function(self, simulation, period):
