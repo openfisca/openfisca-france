@@ -131,7 +131,7 @@ def test_decomposition(print_decomposition = False):
         "fiche_de_paie_decomposition.xml"
         )
 
-    decomposition_json = get_decomposition_json(xml_file_path, tax_benefit_system)
+    decomposition_json = get_decomposition_json(tax_benefit_system, xml_file_path = xml_file_path)
     response = calculate(simulation, decomposition_json)
     if print_decomposition:
         print unicode(
