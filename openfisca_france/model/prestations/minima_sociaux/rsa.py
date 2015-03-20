@@ -267,7 +267,7 @@ class enceinte_fam(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period
+        period = period.offset('first-of')
         agem_holder = simulation.compute('agem', period)
         enceinte_holder = simulation.compute('enceinte', period)
 
@@ -702,7 +702,7 @@ class rsa_act(DatedFormulaColumn):
         Calcule le montant du RSA activité
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
-        period = period
+        period = period.offset('first-of')
         rsa = simulation.calculate('rsa', period)
         rmi = simulation.calculate('rmi', period)
 
