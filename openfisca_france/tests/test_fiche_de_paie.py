@@ -107,7 +107,7 @@ def check_variable(simulation, variable_name, test_name, period, expected_value)
 
 
 def test_decomposition(print_decomposition = False):
-    from openfisca_core.decompositions import calculate, get_decomposition_json
+    from openfisca_core import decompositions
     import json
     import os
     simulation = tax_benefit_system.new_scenario().init_single_entity(
@@ -131,8 +131,9 @@ def test_decomposition(print_decomposition = False):
         "fiche_de_paie_decomposition.xml"
         )
 
-    decomposition_json = get_decomposition_json(tax_benefit_system, xml_file_path = xml_file_path)
-    response = calculate(simulation, decomposition_json)
+    decomposition_json = decompositions.get_decomposition_json(tax_benefit_system, xml_file_path = xml_file_path)
+    simulations = [simulation]
+    response = decompositions.calculate(simulations, decomposition_json)
     if print_decomposition:
         print unicode(
             json.dumps(response, encoding = 'utf-8', ensure_ascii = False, indent = 2)
