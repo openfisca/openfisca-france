@@ -250,7 +250,7 @@ class agirc_tranche_b_employe(SimpleFormulaColumn):
             bareme_name = "agirc",
             variable_name = self.__class__.__name__
             )
-        gmp_employe = simulation.calculate('agirc_gmp_employe', period)
+        gmp_employe = simulation.calculate_add('agirc_gmp_employe', period)
         type_sal = simulation.calculate('type_sal', period)
         return period, cotisation + gmp_employe * (cotisation == 0) * (type_sal == 1)
 
@@ -338,8 +338,8 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
             variable_name = self.__class__.__name__,
             )
         arrco_tranche_a_taux_salarie = simulation.calculate('arrco_tranche_a_taux_salarie', period)
-        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
 
         type_sal = simulation.calculate('type_sal', period)
         cotisation_entreprise = - (
