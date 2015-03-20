@@ -1007,7 +1007,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'nom_menage',  # Nom
                     'loyer',  # Loyer mensuel
-                    'so',  # Statut d'occupation
+                    'statut_occupation',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
                     ]),
                 ]),
