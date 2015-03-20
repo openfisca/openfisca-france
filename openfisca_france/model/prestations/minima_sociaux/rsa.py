@@ -527,7 +527,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         three_previous_months = period.start.period('month', 3).offset(-3)
 
         def calcule_type_ressource(variable_name, neutralisable = False):
-            ressource_trois_derniers_mois = simulation.calculate(variable_name, three_previous_months)
+            ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
             if neutralisable:
                 ressource_mois_courant = simulation.calculate(variable_name, period)
                 return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
