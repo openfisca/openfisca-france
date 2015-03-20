@@ -106,7 +106,7 @@ tests = [
             allegement_fillon = 0,
             credit_impot_competitivite_emploi = 0,
             tehr = {'2011': 0},
-            salbrut = 1900,
+            salaire_de_base = 1900,
 
             # cotisations_salariales = 0,
 
