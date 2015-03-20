@@ -30,9 +30,9 @@ from openfisca_core.accessors import law
 from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (dated_function, DatedFormulaColumn, EntityToPersonColumn, last_duration_last_value,
-    make_reference_formula_decorator, PersonToEntityColumn, reference_input_variable, requested_period_default_value,
-    requested_period_last_value, SimpleFormulaColumn)
+from openfisca_core.formulas import (dated_function, DatedFormulaColumn, divide_input_by_month, EntityToPersonColumn,
+    last_duration_last_value, make_reference_formula_decorator, PersonToEntityColumn, reference_input_variable,
+    requested_period_default_value, requested_period_last_value, SimpleFormulaColumn)
 
 from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
 
@@ -49,6 +49,7 @@ __all__ = [
     'DateCol',
     'dated_function',
     'DatedFormulaColumn',
+    'divide_input_by_month',
     'ENFS',
     'EntityToPersonColumn',
     'Enum',

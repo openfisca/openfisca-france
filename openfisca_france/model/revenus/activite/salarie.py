@@ -378,6 +378,7 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Salaire de base",
     name = 'salaire_de_base',
+    set_input = divide_input_by_month,
     )
 reference_input_variable(
     column = FloatCol(default = .5),
@@ -723,5 +724,3 @@ class remuneration_principale(SimpleFormulaColumn):
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
             )
-
-
