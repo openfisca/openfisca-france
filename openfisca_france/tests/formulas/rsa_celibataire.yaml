@@ -1,0 +1,268 @@
+- period: "2014"
+  name: "RSA célibataire, salnet = 0"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    # salnet: 0
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 0
+    br_rmi:
+      "2014-01": 0
+    ra_rsa:
+      "2014-01": 0
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 439.39
+    rsa:
+      "2014-01": 439.39
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 5000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 5000
+      2013: 5000
+      2014: 5000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 416.67
+    br_rmi:
+      "2014-01": 416.67
+    ra_rsa:
+      "2014-01": 416.67
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 281.06
+    rsa:
+      "2014-01": 281.06
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 10000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 10000
+      2013: 10000
+      2014: 10000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 833.33
+    br_rmi:
+      "2014-01": 833.33
+    ra_rsa:
+      "2014-01": 833.33
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 122.73
+    rsa:
+      "2014-01": 122.73
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 12000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 12000
+      2013: 12000
+      2014: 12000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 1000
+    br_rmi:
+      "2014-01": 1000
+    ra_rsa:
+      "2014-01": 1000
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 59.39
+    rsa:
+      "2014-01": 59.39
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 13000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 13000
+      2013: 13000
+      2014: 13000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 1083.33
+    br_rmi:
+      "2014-01": 1083.33
+    ra_rsa:
+      "2014-01": 1083.33
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 27.73
+    rsa:
+      "2014-01": 27.73
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 14000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 14000
+      2013: 14000
+      2014: 14000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 1166.67
+    br_rmi:
+      "2014-01": 1166.67
+    ra_rsa:
+      "2014-01": 1166.67
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 0
+    rsa:
+      "2014-01": 0
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 15000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 15000
+      2013: 15000
+      2014: 15000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 1250
+    br_rmi:
+      "2014-01": 1250
+    ra_rsa:
+      "2014-01": 1250
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 0
+    rsa:
+      "2014-01": 0
+
+- period: "2014"
+  name: "RSA célibataire, salnet = 20000"
+  input_variables:
+    birth: "1985-01-01"  # 29 ans
+    salnet:
+      2012: 20000
+      2013: 20000
+      2014: 20000
+    statut_occupation:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    rmi_nbp:
+      "2014-01": 1
+    statut_occupation:
+      "2014-01": 2
+    ra_rsa_i:
+      "2014-01": 1666.67
+    br_rmi:
+      "2014-01": 1666.67
+    ra_rsa:
+      "2014-01": 1666.67
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore:
+      "2014-01": 0
+    rsa_non_majore:
+      "2014-01": 0
+    rsa:
+      "2014-01": 0
