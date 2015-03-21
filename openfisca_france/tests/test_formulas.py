@@ -50,7 +50,7 @@ def check(name, period_str, test):
                     message = u'{}@{}: '.format(variable_name, period_str))
 
 
-def test():
+def test(name_filter = None):
     dir_path = os.path.join(os.path.dirname(__file__), 'formulas')
     for filename in sorted(os.listdir(dir_path)):
         if not filename.endswith('.yaml'):
@@ -58,28 +58,31 @@ def test():
         filename_core = os.path.splitext(filename)[0]
         with open(os.path.join(dir_path, filename)) as yaml_file:
             tests = yaml.load(yaml_file)
-            tests, error = conv.pipe(
-                conv.make_item_to_singleton(),
-                conv.uniform_sequence(
-                    conv.noop,
-                    drop_none_items = True,
-                    ),
-                )(tests)
+        tests, error = conv.pipe(
+            conv.make_item_to_singleton(),
+            conv.uniform_sequence(
+                conv.noop,
+                drop_none_items = True,
+                ),
+            )(tests)
+        if error is not None:
+            embedding_error = conv.embed_error(tests, u'errors', error)
+            assert embedding_error is None, embedding_error
+            conv.check((tests, error))  # Generate an error.
+
+        for test in tests:
+            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system)(test)
             if error is not None:
-                embedding_error = conv.embed_error(tests, u'errors', error)
+                embedding_error = conv.embed_error(test, u'errors', error)
                 assert embedding_error is None, embedding_error
-                conv.check((tests, error))  # Generate an error.
+                conv.check((test, error))  # Generate an error.
 
-            for test in tests:
-                test, error = scenarios.make_json_or_python_to_test(tax_benefit_system)(test)
-                if error is not None:
-                    embedding_error = conv.embed_error(test, u'errors', error)
-                    assert embedding_error is None, embedding_error
-                    conv.check((test, error))  # Generate an error.
-
-                if test.get(u'ignore', False):
-                    continue
-                yield check, test.get('name') or filename_core, unicode(test['scenario'].period), test
+            if test.get(u'ignore', False):
+                continue
+            if name_filter is not None and name_filter not in filename_core \
+                    and name_filter not in (test.get('name') or u''):
+                continue
+            yield check, test.get('name') or filename_core, unicode(test['scenario'].period), test
 
 
 if __name__ == "__main__":
@@ -93,9 +96,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for test_index, (function, name, period_str, test) in enumerate(test(), 1):
-        if args.name is not None and args.name not in name:
-            continue
+    for test_index, (function, name, period_str, test) in enumerate(test(name_filter = args.name), 1):
         print("=" * 120)
         print("Test {}: {} - {}".format(test_index, name.encode('utf-8'), period_str))
         print("=" * 120)
