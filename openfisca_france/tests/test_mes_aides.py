@@ -29,8 +29,7 @@ from __future__ import division
 import os
 
 import numpy as np
-from openfisca_core import conv
-# from openfisca_core.tools import assert_near
+from openfisca_core import conv, scenarios
 from openfisca_france.tests.base import tax_benefit_system
 import yaml
 
@@ -66,36 +65,40 @@ def assert_near2(value, target_value, error_margin = 1, message = ''):
                     abs(value - target_value), error_margin)
 
 
-def check(test_id, test_name, scenario_data, output_variables):
-    scenario = conv.check(tax_benefit_system.Scenario.make_json_to_instance(
-        tax_benefit_system = tax_benefit_system,
-        ))(scenario_data)
+def check(name, period_str, test):
+    scenario = test['scenario']
     scenario.suggest()
     simulation = scenario.new_simulation(debug = True)
+    output_variables = test.get(u'output_variables')
     if output_variables is not None:
         for variable_name, expected_value in output_variables.iteritems():
-            assert_near2(simulation.calculate(variable_name, accept_other_period = True), expected_value,
-                error_margin = 0.007, message = "{}: ".format(variable_name))
+            if isinstance(expected_value, dict):
+                for requested_period, expected_value_at_period in expected_value.iteritems():
+                    assert_near2(simulation.calculate(variable_name, requested_period, accept_other_period = True),
+                        expected_value_at_period, error_margin = 0.007,
+                        message = u'{}@{}: '.format(variable_name, requested_period))
+            else:
+                assert_near2(simulation.calculate(variable_name, accept_other_period = True), expected_value,
+                    error_margin = 0.007, message = u'{}@{}: '.format(variable_name, period_str))
 
 
 def test():
     dir_path = os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')
-    for file_name in sorted(os.listdir(dir_path), key = lambda name: name.split('_', 4)[3]):
+    for file_name in sorted(os.listdir(dir_path)):
         if not file_name.endswith('.yaml'):
             continue
-        test_id = file_name.split('_', 4)[3].split('.')[0]
         with open(os.path.join(dir_path, file_name)) as yaml_file:
             test = yaml.load(yaml_file)
-            if test.pop('ignore', False):
+            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system)(test)
+            if error is not None:
+                embedding_error = conv.embed_error(test, u'errors', error)
+                assert embedding_error is None, embedding_error
+                conv.check((test, error))  # Generate an error.
+
+            if test.get(u'ignore', False):
                 continue
-            test_name = test.pop('name')
-            test.pop('description')
-            output_variables = test.pop('output_variables')
-            scenario_data = dict(
-                period = test.pop('period'),
-                test_case = test,
-                )
-            yield check, test_id, test_name, scenario_data, output_variables
+
+            yield check, test['name'], unicode(test['scenario'].period), test
 
 
 if __name__ == "__main__":
@@ -104,15 +107,15 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('-i', '--id', default = None, help = "ID of single test to execute")
+    parser.add_argument('-n', '--name', default = None, help = "partial name of tests to execute")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for function, test_id, test_name, scenario_data, output_variables in test():
-        if args.id is not None and args.id != test_id:
+    for test_index, (function, name, period_str, test) in enumerate(test(), 1):
+        if args.name is not None and args.name not in name:
             continue
         print("=" * 120)
-        print("Test {}: {}".format(test_id, test_name.encode('utf-8')))
+        print("Test {}: {} - {}".format(test_index, name.encode('utf-8'), period_str))
         print("=" * 120)
-        function(test_id, test_name, scenario_data, output_variables)
+        function(name, period_str, test)
