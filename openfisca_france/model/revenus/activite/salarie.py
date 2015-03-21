@@ -47,14 +47,18 @@ build_column('sali', IntCol(label = u"Revenus d'activité imposables",
                                }))  # (f1aj, f1bj, f1cj, f1dj, f1ej)
 
 
-build_column('sal_pen_exo_etr', IntCol(entity = 'ind',
-                     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
-                     val_type = "monetary",
-                     cerfa_field = {QUIFOY['vous']: u"1AC",
-                                    QUIFOY['conj']: u"1BC",
-                                    QUIFOY['pac1']: u"1CC",
-                                    QUIFOY['pac2']: u"1DC", },
-                     start = date(2013, 1, 1),))
+build_column('sal_pen_exo_etr', IntCol(
+    entity = 'ind',
+    label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
+    val_type = "monetary",
+    cerfa_field = {
+        QUIFOY['vous']: u"1AC",
+        QUIFOY['conj']: u"1BC",
+        QUIFOY['pac1']: u"1CC",
+        QUIFOY['pac2']: u"1DC",
+        },
+    start = date(2013, 1, 1),
+    ))
 
 
 build_column('fra', IntCol(label = u"Frais réels",
