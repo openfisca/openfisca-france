@@ -26,12 +26,25 @@
 
 from __future__ import division
 
+import collections
 import os
 
 from openfisca_core import conv, scenarios
 from openfisca_core.tools import assert_near
 from openfisca_france.tests.base import tax_benefit_system
 import yaml
+
+# YAML configuration
+
+
+def dict_constructor(loader, node):
+    return collections.OrderedDict(loader.construct_pairs(node))
+
+
+yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constructor)
+
+
+# Functions
 
 
 def check(name, period_str, test):
