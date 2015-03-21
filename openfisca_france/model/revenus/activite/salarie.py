@@ -378,7 +378,7 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Salaire de base",
     name = 'salaire_de_base',
-    set_input = divide_input_by_month,
+    set_input = set_input_divide_by_period,
     )
 reference_input_variable(
     column = FloatCol(default = .5),
@@ -462,6 +462,7 @@ reference_input_variable(
 
 @reference_formula
 class avantages_en_nature(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Avantages en nature"
@@ -476,6 +477,7 @@ class avantages_en_nature(SimpleFormulaColumn):
 
 @reference_formula
 class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
+    # base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Evaluation fofaitaire des avantages en nature "
@@ -490,6 +492,7 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
 
 @reference_formula
 class depense_cantine_titre_restaurant_employe(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Dépense de cantine et de titre restaurant à charge de l'employe"
@@ -506,6 +509,7 @@ class depense_cantine_titre_restaurant_employe(SimpleFormulaColumn):
 
 @reference_formula
 class depense_cantine_titre_restaurant_employeur(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Dépense de cantine et de titre restaurant à charge de l'employeur"

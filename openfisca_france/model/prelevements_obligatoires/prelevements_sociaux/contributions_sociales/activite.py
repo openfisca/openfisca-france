@@ -177,9 +177,11 @@ class forfait_social(SimpleFormulaColumn):
 
 @reference_formula
 class sal(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Salaires imposables"
     entity_class = Individus
+    label = u"Salaires imposables"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
@@ -206,9 +208,11 @@ class sal(SimpleFormulaColumn):
 
 @reference_formula
 class salnet(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Salaires nets d'après définition INSEE"
     entity_class = Individus
+    label = u"Salaires nets d'après définition INSEE"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         '''
@@ -230,9 +234,11 @@ class salnet(SimpleFormulaColumn):
 
 @reference_formula
 class salaire_net_a_payer(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Salaire net à payer (fiche de paie)"
     entity_class = Individus
+    label = u"Salaire net à payer (fiche de paie)"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         '''
@@ -270,9 +276,11 @@ class tehr(SimpleFormulaColumn):
 
 @reference_formula
 class salsuperbrut(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Salaires superbruts/coût du travail"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period

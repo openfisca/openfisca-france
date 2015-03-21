@@ -173,9 +173,11 @@ class crdscho(SimpleFormulaColumn):
 
 @reference_formula
 class cho(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Allocations chômage imposables"
+    set_input = set_input_divide_by_period
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
 
     def function(self, simulation, period):
@@ -188,9 +190,11 @@ class cho(SimpleFormulaColumn):
 
 @reference_formula
 class chonet(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Allocations chômage nettes"
+    set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
     def function(self, simulation, period):
@@ -293,9 +297,11 @@ class casa(DatedFormulaColumn):
 
 @reference_formula
 class rst(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Pensions de retraite imposables"
+    set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
 
     def function(self, simulation, period):
@@ -308,9 +314,11 @@ class rst(SimpleFormulaColumn):
 
 @reference_formula
 class rstnet(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Pensions de retraite nettes"
+    set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
     # def function(self, rst, csgrsti, crdsrst, casa):
@@ -346,5 +354,3 @@ class crds_pfam(SimpleFormulaColumn):
         _P = simulation.legislation_at(period.start)
 
         return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
-
-

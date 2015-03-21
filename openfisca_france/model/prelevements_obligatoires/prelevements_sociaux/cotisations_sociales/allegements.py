@@ -42,6 +42,7 @@ log = logging.getLogger(__name__)
 
 @reference_formula
 class assiette_allegement(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Assiette des allègements de cotisations sociales patronales"

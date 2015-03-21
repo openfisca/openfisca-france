@@ -118,9 +118,10 @@ class contribution_supplementaire_apprentissage(DatedFormulaColumn):
 
 @reference_formula
 class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Cotisation sociales patronales main d'oeuvre"
     entity_class = Individus
+    label = u"Cotisation sociales patronales main d'oeuvre"
 
     def function(self, simulation, period):
         period = period

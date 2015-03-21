@@ -37,9 +37,11 @@ log = logging.getLogger(__name__)
 
 @reference_formula
 class cotisations_patronales(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations sociales patronales"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
@@ -57,9 +59,11 @@ class cotisations_patronales(SimpleFormulaColumn):
 
 @reference_formula
 class cotisations_patronales_contributives(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Cotisations sociales patronales contributives"
     entity_class = Individus
+    label = u"Cotisations sociales patronales contributives"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
@@ -98,9 +102,11 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
 
 @reference_formula
 class cotisations_patronales_non_contributives(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Cotisations sociales patronales non-contributives"
     entity_class = Individus
+    label = u"Cotisations sociales patronales non-contributives"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
@@ -122,9 +128,11 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
 
 @reference_formula
 class cotisations_salariales_contributives(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Cotisations sociales salariales contributives"
     entity_class = Individus
+    label = u"Cotisations sociales salariales contributives"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
@@ -162,9 +170,11 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
 
 @reference_formula
 class cotisations_salariales_non_contributives(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Cotisations sociales salariales non-contributives"
     entity_class = Individus
+    label = u"Cotisations sociales salariales non-contributives"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
@@ -184,9 +194,11 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
 
 @reference_formula
 class cotisations_salariales(SimpleFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
-    label = u"Cotisations sociales salariales"
     entity_class = Individus
+    label = u"Cotisations sociales salariales"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period

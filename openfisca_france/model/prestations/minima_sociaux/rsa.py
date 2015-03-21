@@ -691,6 +691,7 @@ class crds_mini(DatedFormulaColumn):
 
 @reference_formula
 class rsa_act(DatedFormulaColumn):
+    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Familles
     label = u"Revenu de solidarité active - activité"
