@@ -375,8 +375,8 @@ class br_rmi_ms(SimpleFormulaColumn):
         aspa = simulation.calculate('aspa', period)
         asi = simulation.calculate('asi', period)
         ass = simulation.calculate('ass', period)
-        aah_holder = simulation.compute('aah', three_previous_months)
-        caah_holder = simulation.compute('caah', three_previous_months)
+        aah_holder = simulation.compute_add('aah', three_previous_months)
+        caah_holder = simulation.compute_add('caah', three_previous_months)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
@@ -396,7 +396,7 @@ class br_rmi_i(SimpleFormulaColumn):
         ra_rsa_i = simulation.calculate('ra_rsa_i', period)
 
         def calcule_type_ressource(variable_name, neutralisable = False):
-            ressource_trois_derniers_mois = simulation.calculate(variable_name, three_previous_months)
+            ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
             if neutralisable:
                 ressource_mois_courant = simulation.calculate(variable_name, period)
                 return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
@@ -421,8 +421,8 @@ class br_rmi_i(SimpleFormulaColumn):
         pensions_invalidite = calcule_type_ressource('pensions_invalidite')
         rsa_base_ressources_patrimoine_i = calcule_type_ressource('rsa_base_ressources_patrimoine_i')
 
-        rev_cap_bar_holder = simulation.compute('rev_cap_bar', three_previous_months)
-        rev_cap_lib_holder = simulation.compute('rev_cap_lib', three_previous_months)
+        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
+        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
