@@ -5,6 +5,7 @@
       <NODE code="salsuperbrut" color="0,66,92" desc="Coût du travail" shortname="Coût travail" />
       <NODE code="remboursement_transport" color="0,66,92" desc="Remboursement transport" shortname="Remb. transport" />
       <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. soc. pat.">
+    </NODE>
           <NODE code="cotisations_patronales_contributives" color="249,208,211" desc="Cotisations sociales patronales contributives" shortname="Cotsoc pat contrib" >
             <NODE code="ags" color="249,208,211" desc="AGS" shortname="AGS" />
             <NODE code="agff_tranche_a_employeur" color="249,208,211" desc="AGFF (employeur)" shortname="AGFF" />
@@ -26,7 +27,7 @@
             <NODE code="maladie_employeur" color="249,208,211" desc="Maladie (employeur)" shortname="Maladie" />
             <NODE code="taxe_salaires" color="249,208,211" desc="Taxes sur les salaires" shortname="Taxe salaires" />
           </NODE>
-          <NODE code="cotisations_patronales_main_d_oeuvre" color="249,208,211" desc="Cotisations sociales patronales main d'oeuvre" shortname="Cotsoc pat main oeuvre" />
+          <NODE code="cotisations_patronales_main_d_oeuvre" color="249,208,211" desc="Cotisations sociales patronales main d'oeuvre" shortname="Cotsoc pat main oeuvre" >
             <NODE code="conge_individuel_formation_cdd" color="249,208,211" desc="Congé individuel de formation CDD" shortname="CIF CDD" />
             <NODE code="contribution_developpement_apprentissage" color="249,208,211" desc="Contribution au Développement de l'apprentissage" shortname="Dév. apprenti." />
             <NODE code="contribution_solidarite_autonomie" color="249,208,211" desc="Contribution solidarite autonomie" shortname="CSA" />
@@ -42,7 +43,7 @@
       <NODE code="credit_impot_competitivite_emploi" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
       <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
     </NODE>
-    <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cot. soc. sal.">
+    <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salarié" shortname="Cot. soc. sal.">
       <NODE code="cotisations_salariales_contributives" color="249,208,211" desc="Cotisations sociales salariales contributives" shortname="Cotsoc sal contrib">
         <NODE code="agff_tranche_a_employe" color="249,208,211" desc="AGFF (employé)" shortname="AGFF" />
         <NODE code="agirc_tranche_b_employe" color="249,208,211" desc="AGIRC" shortname="AGIRC" />
@@ -69,5 +70,5 @@
     <NODE code="forfait_social" color="235,114,118" desc="Forfait social" shortname="Forfait social" />
     <NODE code="hsup" color="0,115,170" desc="Heures supplémentaires" shortname="Heures sup." />
   </NODE>
-  <NODE code="depense_cantine_titre_restaurant_employe" color="0,115,170" desc="Dépense de cantine et titres restaurants à charge de l'employé" shortname="Titres rest." />
-</NODE>
+    <NODE code="depense_cantine_titre_restaurant_employe" color="0,115,170" desc="Dépense de cantine et titres restaurants à charge de l'employé" shortname="Titres rest." />
+  </NODE>
