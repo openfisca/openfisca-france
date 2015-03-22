@@ -4101,6 +4101,7 @@
       <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
+        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
       </CODE>
     </NODE>
     <NODE code="ars" description="Allocation de rentrée scolaire">
@@ -4158,10 +4159,12 @@
       <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.225" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
+        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2476" />
       </CODE>
       <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.3" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
+        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.33" />
       </CODE>
     </NODE>
     <NODE code="ape" description="Allocation parentale d'éducation (APE)">
