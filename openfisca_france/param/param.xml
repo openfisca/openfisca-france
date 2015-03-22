@@ -4051,7 +4051,7 @@
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
         <VALUE deb="1998-01-01" fin="2014-03-31" valeur="21" />
       </CODE>
-      <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
+      <CODE code="plafond" description="Plafond de ressources" format="integer" type="monetary">
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="13421" />
         <VALUE deb="2001-07-01" fin="2002-06-30" valeur="13636" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="13854" />
@@ -4068,7 +4068,7 @@
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="20864" />
       </CODE>
-      <CODE code="plaf_maj" description="Majoration du plafond pour biactifs ou isolé" format="integer" type="monetary">
+      <CODE code="majoration_plafond_biact_isole" description="Majoration du plafond pour biactifs ou isolé" format="integer" type="monetary">
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="5394" />
         <VALUE deb="2001-07-01" fin="2002-06-30" valeur="5481" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="5568" />
@@ -4085,14 +4085,22 @@
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="8328" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
       </CODE>
-      <CODE code="plaf_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
+      <CODE code="majoration_plafond_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="plaf_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
+      <CODE code="majoration_plafond_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
       </CODE>
+      <CODE code="plafond_cf_majore" description="Plafond de ressources pour avoir droit au CF majoré" format="percent">
+        <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.5" />
+      </CODE>
       <CODE code="tx" description="Taux du complément familial" format="percent">
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4165" />
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.4165" />
+
+      </CODE>
+      <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
       </CODE>
     </NODE>
     <NODE code="ars" description="Allocation de rentrée scolaire">
