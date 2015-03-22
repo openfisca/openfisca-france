@@ -795,7 +795,7 @@ class salsuperbrut(SimpleFormulaColumn):
             - allegement_fillon
             - exoneration_cotisations_patronales_geographiques
             - credit_impot_competitivite_emploi
-            - tehr +
+            - tehr
             )
 
         return period, salsuperbrut
