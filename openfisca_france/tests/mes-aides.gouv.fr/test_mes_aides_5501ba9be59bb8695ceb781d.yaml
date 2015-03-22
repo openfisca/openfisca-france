@@ -7,7 +7,6 @@ description: |
   Plafond 4 parts = 11319 euros
   Donc on a 3 parts => montant = 45,3 * 3 = 135,9
 period: "month:2015-03"
-ignore: true
 individus:
   - age: 34
     agem: 415
