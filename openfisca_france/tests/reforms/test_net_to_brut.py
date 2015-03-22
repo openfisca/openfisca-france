@@ -64,7 +64,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
     inverse_simulation.get_or_new_holder('chonet').array = chonet
     new_chobrut = inverse_simulation.calculate('chobrut')
 
-    assert_near(new_chobrut, chobrut, error_margin = 0.1)
+    assert_near(new_chobrut, chobrut, absolute_error_margin = 0.1)
 
 
 def test_chonet_to_chobrut():
@@ -107,7 +107,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
     inverse_simulation.get_or_new_holder('rstnet').array = rstnet
     new_rstbrut = inverse_simulation.calculate('rstbrut')
 
-    assert_near(new_rstbrut, rstbrut, error_margin = 0.1)
+    assert_near(new_rstbrut, rstbrut, absolute_error_margin = 0.1)
 
 
 def test_rstnet_to_rstbrut():
@@ -151,7 +151,7 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
     inverse_simulation.get_or_new_holder('salnet').array = salnet
     new_salbrut = inverse_simulation.calculate('salbrut')
 
-    assert_near(new_salbrut, salbrut, error_margin = 0.1)
+    assert_near(new_salbrut, salbrut, absolute_error_margin = 0.1)
 
 
 def test_salnet_to_salbrut():

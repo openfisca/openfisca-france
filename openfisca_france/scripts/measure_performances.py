@@ -132,7 +132,7 @@ def test_irpp(year, irpp, **variables_value_by_name):
     add_member(foyer_fiscal, **variables_value_by_name_by_entity.get(foyer_fiscal, {}))
     add_member(menage, **variables_value_by_name_by_entity.get(menage, {}))
     add_member(individu, quifam = 1, quifoy = 1, quimen = 1, **variables_value_by_name_by_entity.get(individu, {}))
-    assert_near(simulation.calculate('irpp'), irpp, error_margin = 0.51)
+    assert_near(simulation.calculate('irpp'), irpp, absolute_error_margin = 0.51)
 
 
 def main():

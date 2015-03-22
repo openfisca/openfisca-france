@@ -104,7 +104,7 @@ def check_variable(args):
         openfisca_array = simulation.calculate(openfisca_name)
         assert_equal(openfisca_array.shape, (1,))
         openfisca_value = openfisca_array[0]
-    assert_near(abs(openfisca_value), args['field']['value'], error_margin = 2)
+    assert_near(abs(openfisca_value), args['field']['value'], absolute_error_margin = 2)
 
 
 def test_jsons():

@@ -34,6 +34,7 @@ from openfisca_core.tools import assert_near
 from openfisca_france.tests.base import tax_benefit_system
 import yaml
 
+
 # YAML configuration
 
 
@@ -56,11 +57,21 @@ def check(name, period_str, test):
         for variable_name, expected_value in output_variables.iteritems():
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
-                    assert_near(simulation.calculate(variable_name, requested_period), expected_value_at_period,
-                        error_margin = 0.005, message = u'{}@{}: '.format(variable_name, requested_period))
+                    assert_near(
+                        simulation.calculate(variable_name, requested_period),
+                        expected_value_at_period,
+                        absolute_error_margin = test.get('absolute_error_margin'),
+                        message = u'{}@{}: '.format(variable_name, requested_period),
+                        relative_error_margin = test.get('relative_error_margin'),
+                        )
             else:
-                assert_near(simulation.calculate(variable_name), expected_value, error_margin = 0.005,
-                    message = u'{}@{}: '.format(variable_name, period_str))
+                assert_near(
+                    simulation.calculate(variable_name),
+                    expected_value,
+                    absolute_error_margin = test.get('absolute_error_margin'),
+                    message = u'{}@{}: '.format(variable_name, period_str),
+                    relative_error_margin = test.get('relative_error_margin'),
+                    )
 
 
 def test(name_filter = None):
@@ -84,7 +95,8 @@ def test(name_filter = None):
             conv.check((tests, error))  # Generate an error.
 
         for test in tests:
-            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system)(test)
+            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system,
+                default_absolute_error_margin = 0.005)(test)
             if error is not None:
                 embedding_error = conv.embed_error(test, u'errors', error)
                 assert embedding_error is None, embedding_error
@@ -93,7 +105,8 @@ def test(name_filter = None):
             if test.get(u'ignore', False):
                 continue
             if name_filter is not None and name_filter not in filename_core \
-                    and name_filter not in (test.get('name') or u''):
+                    and name_filter not in (test.get('name', u'')) \
+                    and name_filter not in (test.get('keywords', [])):
                 continue
             yield check, test.get('name') or filename_core, unicode(test['scenario'].period), test
 
@@ -110,7 +123,14 @@ if __name__ == "__main__":
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
     for test_index, (function, name, period_str, test) in enumerate(test(name_filter = args.name), 1):
-        print("=" * 120)
-        print("Test {}: {} - {}".format(test_index, name.encode('utf-8'), period_str))
-        print("=" * 120)
+        keywords = test.get('keywords', [])
+        title = "Test {}: {}{} - {}".format(
+            test_index,
+            u'[{}] '.format(u', '.join(keywords)).encode('utf-8') if keywords else '',
+            name.encode('utf-8'),
+            period_str,
+            )
+        print("=" * len(title))
+        print(title)
+        print("=" * len(title))
         function(name, period_str, test)

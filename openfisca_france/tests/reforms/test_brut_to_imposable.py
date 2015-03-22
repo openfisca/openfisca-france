@@ -58,7 +58,7 @@ def test_cho(year = 2014):
     inverse_simulation.get_holder('chobrut').delete_arrays()
     inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
     new_brut = inverse_simulation.calculate('chobrut')
-    assert_near(new_brut, brut, error_margin = 1)
+    assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
 def test_rst(year = 2014):
@@ -77,7 +77,7 @@ def test_rst(year = 2014):
     inverse_simulation.get_or_new_holder('rsti').array = imposable.copy()
     new_brut = inverse_simulation.calculate('rstbrut')
 
-    assert_near(new_brut, brut, error_margin = 1)
+    assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
 def check_sal(type_sal, year = 2014):
@@ -97,7 +97,7 @@ def check_sal(type_sal, year = 2014):
     inverse_simulation.get_or_new_holder('sali').array = imposable.copy()
     new_brut = inverse_simulation.calculate('salbrut')
 
-    assert_near(new_brut, brut, error_margin = 1)
+    assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
 def test_sal(year = 2014):

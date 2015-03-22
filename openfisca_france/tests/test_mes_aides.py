@@ -26,6 +26,7 @@
 
 from __future__ import division
 
+import collections
 import os
 
 import numpy as np
@@ -34,7 +35,22 @@ from openfisca_france.tests.base import tax_benefit_system
 import yaml
 
 
-def assert_near2(value, target_value, error_margin = 1, message = ''):
+# YAML configuration
+
+
+def dict_constructor(loader, node):
+    return collections.OrderedDict(loader.construct_pairs(node))
+
+
+yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constructor)
+
+
+# Functions
+
+
+def assert_near2(value, target_value, absolute_error_margin = 0, message = '', relative_error_margin = None):
+    # Redefinition of assert_near that accepts to compare monthy values with yearly values.
+    assert absolute_error_margin is not None or relative_error_margin is not None
     if isinstance(value, (list, tuple)):
         value = np.array(value)
     if isinstance(target_value, (list, tuple)):
@@ -42,27 +58,40 @@ def assert_near2(value, target_value, error_margin = 1, message = ''):
     if isinstance(message, unicode):
         message = message.encode('utf-8')
     if isinstance(value, np.ndarray):
-        if error_margin <= 0:
+        if absolute_error_margin is not None and absolute_error_margin <= 0 \
+                or relative_error_margin is not None and relative_error_margin <= 0:
             assert (target_value == value).all() or (target_value == value * 12).all() \
                 or (target_value == value / 12).all(), '{}{} differs from {}'.format(message, value, target_value)
         else:
-            assert (target_value - error_margin < value).all() and (value < target_value + error_margin).all() \
-                or (target_value - error_margin < value * 12).all() \
-                and (value * 12 < target_value + error_margin).all() \
-                or (target_value - error_margin < value / 12).all() \
-                and (value / 12 < target_value + error_margin).all(), \
-                '{}{} differs from {} with a margin {} >= {}'.format(message, value, target_value,
-                    abs(value - target_value), error_margin)
+            if absolute_error_margin is not None:
+                assert (abs(target_value - value) < absolute_error_margin).all() \
+                    or (abs(target_value - value * 12) < absolute_error_margin).all() \
+                    or (abs(target_value - value / 12) < absolute_error_margin).all(), \
+                    '{}{} differs from {} with an absolute margin {} >= {}'.format(message, value, target_value,
+                        abs(target_value - value), absolute_error_margin)
+            if relative_error_margin is not None:
+                assert (abs(target_value - value) < abs(relative_error_margin * target_value)).all() \
+                    or (abs(target_value - value * 12) < abs(relative_error_margin * target_value)).all() \
+                    or (abs(target_value - value / 12) < abs(relative_error_margin * target_value)).all(), \
+                    '{}{} differs from {} with a relative margin {} >= {}'.format(message, value, target_value,
+                        abs(target_value - value), abs(relative_error_margin * target_value))
+    elif absolute_error_margin is not None and absolute_error_margin <= 0 \
+            or relative_error_margin is not None and relative_error_margin <= 0:
+        assert target_value == value or target_value == value * 12 or target_value == value / 12, \
+            '{}{} differs from {}'.format(message, value, target_value)
     else:
-        if error_margin <= 0:
-            assert target_value == value or target_value == value * 12 or target_value == value / 12, \
-                '{}{} differs from {}'.format(message, value, target_value)
-        else:
-            assert target_value - error_margin < value < target_value + error_margin \
-                or target_value - error_margin < value * 12 < target_value + error_margin \
-                or target_value - error_margin < value / 12 < target_value + error_margin, \
-                '{}{} differs from {} with a margin {} >= {}'.format(message, value, target_value,
-                    abs(value - target_value), error_margin)
+        if absolute_error_margin is not None:
+            assert abs(target_value - value) < absolute_error_margin \
+                or abs(target_value - value * 12) < absolute_error_margin \
+                or abs(target_value - value / 12) < absolute_error_margin, \
+                '{}{} differs from {} with an absolute margin {} >= {}'.format(message, value, target_value,
+                    abs(target_value - value), absolute_error_margin)
+        if relative_error_margin is not None:
+            assert abs(target_value - value) < abs(relative_error_margin * target_value) \
+                or abs(target_value - value * 12) < abs(relative_error_margin * target_value) \
+                or abs(target_value - value / 12) < abs(relative_error_margin * target_value), \
+                '{}{} differs from {} with a relative margin {} >= {}'.format(message, value, target_value,
+                    abs(target_value - value), abs(relative_error_margin * target_value))
 
 
 def check(name, period_str, test):
@@ -74,22 +103,46 @@ def check(name, period_str, test):
         for variable_name, expected_value in output_variables.iteritems():
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
-                    assert_near2(simulation.calculate(variable_name, requested_period, accept_other_period = True),
-                        expected_value_at_period, error_margin = 0.007,
-                        message = u'{}@{}: '.format(variable_name, requested_period))
+                    assert_near2(
+                        simulation.calculate(variable_name, requested_period, accept_other_period = True),
+                        expected_value_at_period,
+                        absolute_error_margin = test.get('absolute_error_margin'),
+                        message = u'{}@{}: '.format(variable_name, requested_period),
+                        relative_error_margin = test.get('relative_error_margin'),
+                        )
             else:
-                assert_near2(simulation.calculate(variable_name, accept_other_period = True), expected_value,
-                    error_margin = 0.007, message = u'{}@{}: '.format(variable_name, period_str))
+                assert_near2(
+                    simulation.calculate(variable_name, accept_other_period = True),
+                    expected_value,
+                    absolute_error_margin = test.get('absolute_error_margin'),
+                    message = u'{}@{}: '.format(variable_name, period_str),
+                    relative_error_margin = test.get('relative_error_margin'),
+                    )
 
 
-def test():
+def test(name_filter = None):
     dir_path = os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')
-    for file_name in sorted(os.listdir(dir_path)):
-        if not file_name.endswith('.yaml'):
+    for filename in sorted(os.listdir(dir_path)):
+        if not filename.endswith('.yaml'):
             continue
-        with open(os.path.join(dir_path, file_name)) as yaml_file:
-            test = yaml.load(yaml_file)
-            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system)(test)
+        filename_core = os.path.splitext(filename)[0]
+        with open(os.path.join(dir_path, filename)) as yaml_file:
+            tests = yaml.load(yaml_file)
+        tests, error = conv.pipe(
+            conv.make_item_to_singleton(),
+            conv.uniform_sequence(
+                conv.noop,
+                drop_none_items = True,
+                ),
+            )(tests)
+        if error is not None:
+            embedding_error = conv.embed_error(tests, u'errors', error)
+            assert embedding_error is None, embedding_error
+            conv.check((tests, error))  # Generate an error.
+
+        for test in tests:
+            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system,
+                default_absolute_error_margin = 0.007)(test)
             if error is not None:
                 embedding_error = conv.embed_error(test, u'errors', error)
                 assert embedding_error is None, embedding_error
@@ -97,8 +150,11 @@ def test():
 
             if test.get(u'ignore', False):
                 continue
-
-            yield check, test['name'], unicode(test['scenario'].period), test
+            if name_filter is not None and name_filter not in filename_core \
+                    and name_filter not in (test.get('name', u'')) \
+                    and name_filter not in (test.get('keywords', [])):
+                continue
+            yield check, test.get('name') or filename_core, unicode(test['scenario'].period), test
 
 
 if __name__ == "__main__":
@@ -112,10 +168,15 @@ if __name__ == "__main__":
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for test_index, (function, name, period_str, test) in enumerate(test(), 1):
-        if args.name is not None and args.name not in name:
-            continue
-        print("=" * 120)
-        print("Test {}: {} - {}".format(test_index, name.encode('utf-8'), period_str))
-        print("=" * 120)
+    for test_index, (function, name, period_str, test) in enumerate(test(name_filter = args.name), 1):
+        keywords = test.get('keywords', [])
+        title = "Test {}: {}{} - {}".format(
+            test_index,
+            u'[{}] '.format(u', '.join(keywords)).encode('utf-8') if keywords else '',
+            name.encode('utf-8'),
+            period_str,
+            )
+        print("=" * len(title))
+        print(title)
+        print("=" * len(title))
         function(name, period_str, test)

@@ -55,21 +55,21 @@ def test_allocations_familiales_imposables():
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
 
-    error_margin = 0.01
+    absolute_error_margin = 0.01
     af = reference_simulation.calculate_add('af')
     expected_af = [1528.35] * 10
-    assert_near(expected_af, af, error_margin)
+    assert_near(expected_af, af, absolute_error_margin = absolute_error_margin)
     rbg = reference_simulation.calculate('rbg')
 
     reform_simulation = scenario.new_simulation(debug = True)
     reform_af = reform_simulation.calculate_add('af')
 
-    assert_near(expected_af, reform_af, error_margin)
+    assert_near(expected_af, reform_af, absolute_error_margin = absolute_error_margin)
     reform_af_imposables = reform_simulation.calculate('allocations_familiales_imposables')
-    assert_near(expected_af, reform_af_imposables, error_margin)
+    assert_near(expected_af, reform_af_imposables, absolute_error_margin = absolute_error_margin)
 
     reform_rbg = reform_simulation.calculate('rbg')
-    assert_near(reform_rbg, rbg + af, error_margin)
+    assert_near(reform_rbg, rbg + af, absolute_error_margin = absolute_error_margin)
 
 
 if __name__ == '__main__':

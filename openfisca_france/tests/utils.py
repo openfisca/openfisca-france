@@ -32,7 +32,7 @@ from . import base
 
 
 def check_calculation(variable, calculated_value, expected_value, error_margin):
-    assert_near(calculated_value, expected_value, error_margin)
+    assert_near(calculated_value, expected_value, absolute_error_margin = error_margin)
 
 
 def process_tests_list(tests_list, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):

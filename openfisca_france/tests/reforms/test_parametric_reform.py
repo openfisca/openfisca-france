@@ -64,10 +64,12 @@ def test_parametric_reform():
         )
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
-    assert_near(reference_simulation.calculate('impo'), [0, -7889.20019531, -23435.52929688], error_margin = .01)
+    assert_near(reference_simulation.calculate('impo'), [0, -7889.20019531, -23435.52929688],
+        absolute_error_margin = .01)
 
     reform_simulation = scenario.new_simulation(debug = True)
-    assert_near(reform_simulation.calculate('impo'), [0, -13900.20019531, -29446.52929688], error_margin = .0001)
+    assert_near(reform_simulation.calculate('impo'), [0, -13900.20019531, -29446.52929688],
+        absolute_error_margin = .0001)
 
 
 if __name__ == '__main__':
