@@ -75,6 +75,8 @@ def check(name, period_str, test):
 
 
 def test(name_filter = None):
+    if isinstance(name_filter, str):
+        name_filter = name_filter.decode('utf-8')
     dir_path = os.path.join(os.path.dirname(__file__), 'fiches_de_paie')
     for filename in sorted(os.listdir(dir_path)):
         if not filename.endswith('.yaml'):
