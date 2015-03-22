@@ -777,21 +777,25 @@ class salsuperbrut(SimpleFormulaColumn):
         cotisations_patronales = simulation.calculate('cotisations_patronales', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
+        exoneration_cotisations_patronales_geographiques = simulation.calculate(
+            'exoneration_cotisations_patronales_geographiques', period)
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
 
-        taxe_salaires = simulation.calculate('taxe_salaires', period)
         tehr = simulation.calculate_divide('tehr', period)
 
         salsuperbrut = (
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             remuneration_principale +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_patronales
-            - allegement_fillon - credit_impot_competitivite_emploi - taxe_salaires - tehr
+            - allegement_fillon
+            - exoneration_cotisations_patronales_geographiques
+            - credit_impot_competitivite_emploi
+            - tehr +
             )
 
         return period, salsuperbrut

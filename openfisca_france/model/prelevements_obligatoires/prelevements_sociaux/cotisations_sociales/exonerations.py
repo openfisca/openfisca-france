@@ -30,6 +30,21 @@ from ....base import *  # noqa analysis:ignore
 
 
 @reference_formula
+class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Exonrérations de cotisations patronales dépednant d'une zone géographique"
+    url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
+
+    def function(self, simulation, period):
+
+        return period, (
+            exoneration_cotisations_patronales_zfu + exoneration_cotisations_patronales_zrd +
+            exoneration_cotisations_patronales_zrd
+            )
+
+
+@reference_formula
 class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -176,7 +191,7 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
             large_taux_exoneration * (effectif_entreprise > 5)
             )
 
-        return period, - exoneration_cotisations_zfu
+        return period, exoneration_cotisations_zfu
         # TODO: propager dans le temps
 
 
@@ -228,7 +243,7 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
 
         exoneration_cotisations_zrd = ratio * taux_exoneration * assiette_allegement * eligible
 
-        return period, - exoneration_cotisations_zrd
+        return period, exoneration_cotisations_zrd
 
 
 @reference_formula
@@ -283,7 +298,7 @@ class exoneration_cotisations_patronales_zrr(SimpleFormulaColumn):
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
-        return period, - exoneration_cotisations_zrr
+        return period, exoneration_cotisations_zrr
 
 
 # Aides à la création
@@ -330,7 +345,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         for year_passed, rate in rate_by_year_passed.iteritems():
             taux_exoneraion[exoneration_relative_year_passed == year_passed] = rate
 
-        return period, - taux_exoneraion * entreprise_benefice
+        return period, taux_exoneraion * entreprise_benefice
         # TODO: mettre sur toutes les années
 
 
