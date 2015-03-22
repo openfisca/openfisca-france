@@ -70,54 +70,137 @@ class cf_ressources_i(SimpleFormulaColumn):
 
 
 @reference_formula
+class cf_plafond(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Plafond d'éligibilité au Complément Familial"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        pfam = simulation.legislation_at(period.start).fam
+
+        isol = simulation.calculate('isol', period)
+        biact = simulation.calculate('biact', period)
+        cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
+
+        # Calcul du nombre d'enfants à charge au sens du CF
+        cf_nbenf = self.sum_by_entity(cf_enfant_a_charge_holder)
+
+        # Calcul du taux à appliquer au plafond de base
+        taux_plafond = 1 + pfam.cf.majoration_plafond_tx1 * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_tx2 * max_(cf_nbenf - 2, 0)
+
+        # Majoration du plafond pour biactivité ou isolement
+        majoration_plafond = (isol | biact)
+
+        plafond = pfam.cf.plafond * taux_plafond + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
+
+        return period, plafond
+
+
+@reference_formula
+class cf_majore_plafond(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Plafond d'éligibilité au Complément Familial majoré"
+
+    @dated_function(date(2014, 4, 1))
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        plafond_base = simulation.calculate('cf_plafond', period)
+        pfam = simulation.legislation_at(period.start).fam
+        return period, plafond_base * pfam.cf.plafond_cf_majore
+
+
+@reference_formula
+class cf_ressources(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Ressources prises en compte pour l'éligibilité au complément familial"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        cf_ressources_i_holder = simulation.compute('cf_ressources_i', period)
+        ressources = self.sum_by_entity(cf_ressources_i_holder)
+        return period, ressources
+
+
+@reference_formula
+class cf_eligibilite_base(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
+        cf_nbenf = self.sum_by_entity(cf_enfant_a_charge_holder)
+        return period, cf_nbenf >= 3
+
+
+@reference_formula
+class cf_non_majore_avant_cumul(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Complément familial non majoré avant cumul"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
+        ressources = simulation.calculate('cf_ressources', period)
+        plafond = simulation.calculate('cf_plafond', period)
+
+        pfam = simulation.legislation_at(period.start).fam
+
+        # Complément familial
+        eligibilite = eligibilite_base * (ressources <= plafond)
+        montant = pfam.af.bmaf * pfam.cf.tx
+
+        # Complément familial différentiel
+        plafond_diff = plafond + 12 * montant
+        eligibilite_diff = not_(eligibilite) * eligibilite_base * (
+            ressources <= plafond_diff)
+        montant_diff = (plafond_diff - ressources) / 12
+
+        return period, max_(eligibilite * montant, eligibilite_diff * montant_diff)
+
+
+@reference_formula
+class cf_majore_avant_cumul(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Complément familial majoré avant cumul"
+
+    @dated_function(date(2014, 4, 1))
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
+        ressources = simulation.calculate('cf_ressources', period)
+        plafond_majore = simulation.calculate('cf_majore_plafond', period)
+
+        pfam = simulation.legislation_at(period.start).fam
+
+        eligibilite = eligibilite_base * (ressources <= plafond_majore)
+        montant = pfam.af.bmaf * pfam.cf.tx_majore
+
+        return period, eligibilite * montant
+
+
+@reference_formula
 class cf_temp(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Complément familial avant d'éventuels cumuls"
-    url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 
     def function(self, simulation, period):
-        """
-        Complément familial
-        Vous avez au moins 3 enfants à charge tous âgés de plus de 3 ans.
-        Vos ressources ne dépassent pas certaines limites.
-        Vous avez peut-être droit au Complément Familial à partir du mois
-        suivant les 3 ans du 3ème, 4ème, etc. enfant.
-
-        # TODO:
-        # En théorie, il faut comparer les revenus de l'année n-2 à la bmaf de
-        # l'année n-2 pour déterminer l'éligibilité avec le cf_seuil. Il faudrait
-        # pouvoir déflater les revenus de l'année courante pour en tenir compte.
-        """
         period = period.start.offset('first-of', 'month').period('month')
 
-        isol = simulation.calculate('isol', period)
-        biact = simulation.calculate('biact', period)
-        cf_ressources_i_holder = simulation.compute('cf_ressources_i', period)
-        cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
+        cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
+        cf_majore_avant_cumul = simulation.calculate('cf_majore_avant_cumul', period)
 
-        pfam = simulation.legislation_at(period.start).fam
-        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
-
-        cf_nbenf = self.sum_by_entity(cf_enfant_a_charge_holder)
-        ressources = self.sum_by_entity(cf_ressources_i_holder)
-
-        bmaf = pfam.af.bmaf
-        bmaf2 = pfam_n_2.af.bmaf
-
-        cf_base_n_2 = pfam.cf.tx * bmaf2
-        cf_base = pfam.cf.tx * bmaf
-
-        cf_plaf_tx = 1 + pfam.cf.plaf_tx1 * min_(cf_nbenf, 2) + pfam.cf.plaf_tx2 * max_(cf_nbenf - 2, 0)
-        cf_majo = isol | biact
-        cf_plaf = pfam.cf.plaf * cf_plaf_tx + pfam.cf.plaf_maj * cf_majo
-        cf_plaf2 = cf_plaf + 12 * cf_base_n_2
-
-        cf = (cf_nbenf >= 3) * (
-            (ressources <= cf_plaf) * cf_base + (ressources > cf_plaf) * max_(cf_plaf2 - ressources, 0) / 12
-            )
-
-        return period, cf
+        return period, max_(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
 
 
 @reference_formula
