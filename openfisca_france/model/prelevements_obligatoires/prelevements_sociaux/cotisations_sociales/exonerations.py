@@ -33,7 +33,7 @@ from ....base import *  # noqa analysis:ignore
 class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales dépednant d'une zone géographique"
+    label = u"Exonérations de cotisations patronales dépendant d'une zone géographique"
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
 
     def function(self, simulation, period):
