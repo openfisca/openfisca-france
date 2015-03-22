@@ -1,4 +1,7 @@
-name: Couple, 1 enfant (foyer, rsa)
+name: Couple, 1 enfant
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-07"
 individus:

@@ -1,4 +1,7 @@
-name: Les salaires de l'allocataire et du conjoint sont pris en compte (aspa, base ressources)
+name: Les salaires de l'allocataire et du conjoint sont pris en compte
+keywords:
+  - aspa
+  - base ressources
 description: Test concluant, les salaires de l'allocataire et du conjoint sont bien pris en compte dans le calcul de l'ASPA.
 period: "month:2014-12"
 individus:

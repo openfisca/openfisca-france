@@ -1,4 +1,8 @@
-name: "Couple 2 enfants en garde alternée (cmu-c/acs, majoration, plafonds)"
+name: Couple 2 enfants en garde alternée
+keywords:
+  - "cmu-c/acs"
+  - majoration
+  - plafonds
 description: |
   Coefficient de majoration à appliquer:
   demandeur NA

@@ -1,4 +1,8 @@
-name: Zone 3 (al, location, zones)
+name: Zone 3
+keywords:
+  - al
+  - location
+  - zones
 description: |
   L	239,02
   C	53,23

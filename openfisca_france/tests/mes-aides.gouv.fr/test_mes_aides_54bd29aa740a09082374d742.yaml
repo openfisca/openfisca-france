@@ -1,4 +1,7 @@
-name: Les enfants touchant plus de 55% du SMIC ne sont pas considérés à charge (cf, enfants à charge)
+name: Les enfants touchant plus de 55% du SMIC ne sont pas considérés à charge
+keywords:
+  - cf
+  - enfants à charge
 description: |
   cf. http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/les-enfants-a-charge
   Ici, un des enfants déclare toucher 1000 euros nets par mois, ce qui est supérieur à la limite de 55% du SMIC brut (893 euros).

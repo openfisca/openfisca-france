@@ -1,4 +1,8 @@
-name: "Couple, revenus demandeur < plafond (cmu-c, cmu-c/acs, plafonds)"
+name: Couple, revenus demandeur < plafond
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond de référence = 12967 (au 1er juillet 2014) = 1080 € / mois (en métropole)
   http://www.cmu.fr/cmu-complementaire.php

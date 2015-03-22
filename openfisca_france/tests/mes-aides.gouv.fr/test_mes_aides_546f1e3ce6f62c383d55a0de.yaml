@@ -1,4 +1,7 @@
-name: Pas d'éligibilité si pas demandeur d'emploi (ass, eligibilité)
+name: Pas d'éligibilité si pas demandeur d'emploi
+keywords:
+  - ass
+  - eligibilité
 description:
 period: "month:2014-11"
 individus:

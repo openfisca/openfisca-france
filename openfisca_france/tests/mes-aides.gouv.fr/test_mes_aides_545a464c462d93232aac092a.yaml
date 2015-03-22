@@ -1,4 +1,7 @@
-name: "8_Personne seule en outre-mer (dom, rsa)"
+name: "8_Personne seule en outre-mer"
+keywords:
+  - dom
+  - rsa
 description:
 period: "month:2014-11"
 individus:

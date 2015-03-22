@@ -1,4 +1,7 @@
-name: ARE du conjoint exclue du calcul en cas de retraite (ass, base ressources)
+name: ARE du conjoint exclue du calcul en cas de retraite
+keywords:
+  - ass
+  - base ressources
 description: le système ne retient que les indemnités de retraites
 period: "month:2014-12"
 individus:

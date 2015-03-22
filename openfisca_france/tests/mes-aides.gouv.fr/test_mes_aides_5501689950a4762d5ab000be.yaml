@@ -1,4 +1,7 @@
-name: "2ème enfant : 1 point (bourse lycée, points de charge)"
+name: "2ème enfant : 1 point"
+keywords:
+  - bourse lycée
+  - points de charge
 description: |
   1 point de charge supplémentaire pour le deuxième enfant
   Points de charge = 10

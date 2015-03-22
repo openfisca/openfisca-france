@@ -1,4 +1,8 @@
-name: "Plafond ACS 1 personne - cas au-dessus du plafond (acs, cmu-c/acs, plafonds)"
+name: "Plafond ACS 1 personne - cas au-dessus du plafond"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - plafonds
 description: Le dépassement du plafond ACS pour une personne seule (11670 €) ne permet pas l'accès à la prestation.
 period: "month:2014-12"
 individus:

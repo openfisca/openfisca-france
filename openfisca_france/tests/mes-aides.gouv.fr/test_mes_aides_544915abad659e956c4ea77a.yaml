@@ -1,4 +1,8 @@
-name: "350 euros pour les 50-59 ans (acs, cmu-c/acs, montant)"
+name: "350 euros pour les 50-59 ans"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - montant
 description:
 period: "month:2014-10"
 individus:

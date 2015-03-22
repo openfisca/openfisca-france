@@ -1,4 +1,5 @@
-name: Chômeur, 1 enfant (rsa)
+name: Chômeur, 1 enfant
+keywords: rsa
 description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour trancher)"
 period: "month:2014-07"
 individus:

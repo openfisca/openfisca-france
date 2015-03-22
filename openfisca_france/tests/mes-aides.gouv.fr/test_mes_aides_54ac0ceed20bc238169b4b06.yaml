@@ -1,0 +1,91 @@
+name: 1 enfant
+keywords:
+  - al
+  - location
+  - ménage
+description: |
+  L	398,87
+  C	65,29
+  E	464,16
+  R	0
+  R0	7844
+  Rp	0
+  Tf	2,7
+  LR	351,25
+  RL	113,56
+  Tl	0,397
+  Tp	3,097
+  P0	39,45
+  P1	0
+  Pp	39,45
+  AL	422,59
+period: "month:2015-01"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    agem: 412
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54ac0b9ed20bc238169b4b05
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 412
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54ac0b9ed20bc238169b4b04
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 172
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54ac0b9ed20bc238169b4b03
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 54ac0b9ed20bc238169b4b03
+  parents:
+    - 54ac0b9ed20bc238169b4b05
+    - 54ac0b9ed20bc238169b4b04
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54ac0b9ed20bc238169b4b05
+    - 54ac0b9ed20bc238169b4b04
+  personnes_a_charge: 54ac0b9ed20bc238169b4b03
+menages:
+  conjoint: 54ac0b9ed20bc238169b4b04
+  depcom: 75111
+  enfants: 54ac0b9ed20bc238169b4b03
+  loyer: 1000
+  personne_de_reference: 54ac0b9ed20bc238169b4b05
+  statut_occupation: 4
+output_variables:
+  aide_logement: 422.59

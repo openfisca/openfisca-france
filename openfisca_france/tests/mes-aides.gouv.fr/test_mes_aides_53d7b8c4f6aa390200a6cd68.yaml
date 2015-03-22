@@ -1,4 +1,5 @@
-name: Les enfants doivent avoir moins de 21 ans (cf)
+name: Les enfants doivent avoir moins de 21 ans
+keywords: cf
 description: "Enfant > 21 ans : non éligible"
 period: "month:2014-07"
 individus:

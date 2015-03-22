@@ -1,4 +1,7 @@
-name: Le montant ne peut pas être inférieur à 15 euros (al, montant)
+name: Le montant ne peut pas être inférieur à 15 euros
+keywords:
+  - al
+  - montant
 description: |
   L	292,62
   C	53,23

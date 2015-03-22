@@ -1,0 +1,87 @@
+name: isolé 2 enfants ress 2012 nulles
+keywords: al
+description: |
+  L	402,37
+  C	77,35
+  E	479,72
+  R	0
+  R0	4593
+  Rp	0
+  Tf	2,38
+  LR	402,37
+  RL	100
+  Tl	0,305
+  Tp	2,685
+  P0	40,78
+  P1	0
+  Pp	40,78
+  AL	436,75
+period: "month:2014-09"
+relative_error_margin: 0.02
+individus:
+  - age: 49
+    agem: 592
+    birth: "1965-04-20"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54113b47db10e7020066c729
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    agem: 143
+    birth: "2002-09-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54113b47db10e7020066c728
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 10
+    agem: 124
+    birth: "2004-04-21"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54113b47db10e7020066c727
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 54113b47db10e7020066c728
+    - 54113b47db10e7020066c727
+  parents: 54113b47db10e7020066c729
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54113b47db10e7020066c729
+  personnes_a_charge:
+    - 54113b47db10e7020066c728
+    - 54113b47db10e7020066c727
+menages:
+  enfants:
+    - 54113b47db10e7020066c728
+    - 54113b47db10e7020066c727
+  loyer: 795
+  personne_de_reference: 54113b47db10e7020066c729
+  statut_occupation: 4
+output_variables:
+  alf: 436.75

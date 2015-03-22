@@ -1,4 +1,8 @@
-name: "Plafond ACS 5 personnes - cas en-dessous du plafond (acs, cmu-c/acs, plafonds)"
+name: "Plafond ACS 5 personnes - cas en-dessous du plafond"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond ACS pour 5 personnes : 29175 euros.
   Droits AF + ASF + CF = 594 + 384 + 170 = 1148

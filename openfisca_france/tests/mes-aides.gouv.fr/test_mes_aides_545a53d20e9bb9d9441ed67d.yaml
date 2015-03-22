@@ -1,0 +1,117 @@
+name: 16_Couple + 3 enfants
+keywords:
+  - foyer
+  - rsa
+description: |
+  Sans revenu, le foyer a droit au complément familial majoré.
+  Sur le RSA ;
+  MF : 1121,99
+  AF : 296,53
+  CF non majoré (pris en compte pour le RSA) : 169,19 (et non 166)
+  => RSA : 656,27
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - age: 44
+    agem: 538
+    birth: "1970-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a52d90e9bb9d9441ed67c
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 44
+    agem: 538
+    birth: "1970-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a52d90e9bb9d9441ed67b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 8
+    agem: 106
+    birth: "2006-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a52d90e9bb9d9441ed67a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    agem: 82
+    birth: "2008-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a52d90e9bb9d9441ed679
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 58
+    birth: "2010-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a52d90e9bb9d9441ed678
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 545a52d90e9bb9d9441ed67a
+    - 545a52d90e9bb9d9441ed679
+    - 545a52d90e9bb9d9441ed678
+  parents:
+    - 545a52d90e9bb9d9441ed67c
+    - 545a52d90e9bb9d9441ed67b
+foyers_fiscaux:
+  declarants:
+    - 545a52d90e9bb9d9441ed67c
+    - 545a52d90e9bb9d9441ed67b
+  personnes_a_charge:
+    - 545a52d90e9bb9d9441ed67a
+    - 545a52d90e9bb9d9441ed679
+    - 545a52d90e9bb9d9441ed678
+menages:
+  conjoint: 545a52d90e9bb9d9441ed67b
+  depcom: 84007
+  enfants:
+    - 545a52d90e9bb9d9441ed67a
+    - 545a52d90e9bb9d9441ed679
+    - 545a52d90e9bb9d9441ed678
+  personne_de_reference: 545a52d90e9bb9d9441ed67c
+  statut_occupation: 6
+output_variables:
+  rsa: 656.27

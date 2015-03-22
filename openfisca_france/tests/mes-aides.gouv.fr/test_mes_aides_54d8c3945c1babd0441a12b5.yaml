@@ -1,0 +1,66 @@
+name: Le plancher de ressources spécifique aux boursiers ne s'applique pas si c'est le conjoint qui est boursier
+keywords:
+  - al
+  - base ressources
+  - étudiants
+description: |
+  on ne doit pas tenir compte du statut étudiant boursier du conjoint pour le calcul de l'aide, le plafond spécifique s'applique uniquement lorsque l'allocataire est boursier, cf. article D542-10 du CSS
+  http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737381
+period: "month:2015-02"
+relative_error_margin: 0.02
+individus:
+  - activite: 2
+    age: 22
+    agem: 269
+    birth: "1992-08-12"
+    boursier: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 1
+    id: 54d8c2b0e45751d544f06cc1
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - activite: 2
+    age: 22
+    agem: 269
+    birth: "1992-08-12"
+    boursier: true
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 1
+    id: 54d8c2b0e45751d544f06cbf
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 54d8c2b0e45751d544f06cc1
+    - 54d8c2b0e45751d544f06cbf
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54d8c2b0e45751d544f06cc1
+    - 54d8c2b0e45751d544f06cbf
+  personnes_a_charge:
+menages:
+  conjoint: 54d8c2b0e45751d544f06cbf
+  depcom: 75111
+  enfants:
+  loyer: 400
+  personne_de_reference: 54d8c2b0e45751d544f06cc1
+  statut_occupation: 4
+output_variables:
+  aide_logement: 336.98

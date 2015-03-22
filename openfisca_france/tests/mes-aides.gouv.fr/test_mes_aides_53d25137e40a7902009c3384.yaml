@@ -1,4 +1,7 @@
-name: Couple, 1 des 2 éligible, ressources < plafond bas (aspa, plafonds)
+name: Couple, 1 des 2 éligible, ressources < plafond bas
+keywords:
+  - aspa
+  - plafonds
 description: Plafond bas = 5251 € / an
 period: "month:2014-07"
 individus:

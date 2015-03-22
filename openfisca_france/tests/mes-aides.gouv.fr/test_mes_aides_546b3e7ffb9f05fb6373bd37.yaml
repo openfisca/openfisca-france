@@ -1,4 +1,7 @@
-name: 30_Personne seule, 1 enfant > 3 ans, RSA majoré depuis 1 an (majoration, rsa)
+name: 30_Personne seule, 1 enfant > 3 ans, RSA majoré depuis 1 an
+keywords:
+  - majoration
+  - rsa
 description: |
   La personne perçoit du RSA majoré depuis un an, et son enfant a plus de 3 ans => Elle n'a plus droit au RSA majoré.
   Elle perçoit une pension alimentaire supérieure à l'ASF => N'ouvre pas droit à l'ASF.

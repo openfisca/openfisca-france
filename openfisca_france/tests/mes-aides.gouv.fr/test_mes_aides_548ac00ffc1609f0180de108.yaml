@@ -1,4 +1,7 @@
-name: "Abattement 30% pour les stagiaires en formation professionnelle (test 11) (base ressources, cmu-c/acs)"
+name: Abattement 30% pour les stagiaires en formation professionnelle (test 11)
+keywords:
+  - base ressources
+  - "cmu-c/acs"
 description: |
   Les demandeurs en stage de formation professionnelle bénéficient d'un abattement de 30% sur les seuls revenus d'activité.
   Dans le cas testé j'ai droit à l'ACS.

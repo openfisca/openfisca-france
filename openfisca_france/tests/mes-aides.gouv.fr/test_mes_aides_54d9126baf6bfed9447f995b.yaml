@@ -1,4 +1,5 @@
-name: Pas d'éligibilité si l'enfant n'est pas scolarisé au collège (bourse collège)
+name: Pas d'éligibilité si l'enfant n'est pas scolarisé au collège
+keywords: bourse collège
 description:
 period: "month:2015-02"
 individus:

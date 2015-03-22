@@ -1,4 +1,8 @@
-name: "Plafond ACS 1 personne - cas en-dessous du plafond (acs, cmu-c/acs, plafonds)"
+name: "Plafond ACS 1 personne - cas en-dessous du plafond"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - plafonds
 description: "11669 euros déclarés en année glissante, ce qui est inférieur au plafond ACS pour 1 personne en métropole (11670 euros) : droit ACS."
 period: "month:2014-12"
 individus:

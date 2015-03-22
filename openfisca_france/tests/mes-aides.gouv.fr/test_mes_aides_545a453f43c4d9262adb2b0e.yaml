@@ -1,4 +1,5 @@
-name: 7_Jeune < 25 ans (rsa)
+name: 7_Jeune < 25 ans
+keywords: rsa
 description:
 period: "month:2014-11"
 individus:

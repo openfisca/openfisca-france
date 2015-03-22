@@ -1,4 +1,9 @@
-name: "Plafond CMU 1 personne seule dans les DOM (cmu-c, cmu-c/acs, dom, plafonds)"
+name: Plafond CMU 1 personne seule dans les DOM
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - dom
+  - plafonds
 description: Test avec des revenus légèrement inférieurs au plafond CMUc pour une personne seule.
 period: "month:2014-12"
 individus:

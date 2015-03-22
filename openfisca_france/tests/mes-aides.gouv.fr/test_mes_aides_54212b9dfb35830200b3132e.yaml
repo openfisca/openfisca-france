@@ -1,4 +1,7 @@
-name: Montant soustrait de 80% de la valeur locative des terrains non loués (patrimoine, rsa)
+name: Montant soustrait de 80% de la valeur locative des terrains non loués
+keywords:
+  - patrimoine
+  - rsa
 description:
 period: "month:2014-09"
 individus:

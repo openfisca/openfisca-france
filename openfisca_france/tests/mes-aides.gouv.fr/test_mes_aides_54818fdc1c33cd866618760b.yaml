@@ -1,4 +1,7 @@
-name: "94_Couple dont 1 étudiant et 1 DE - 25 ans (foyer, rsa)"
+name: "94_Couple dont 1 étudiant et 1 DE - 25 ans"
+keywords:
+  - foyer
+  - rsa
 description: Non éligible
 period: "month:2014-12"
 individus:

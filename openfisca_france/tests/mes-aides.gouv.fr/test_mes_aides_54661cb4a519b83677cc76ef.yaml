@@ -1,4 +1,7 @@
-name: "Ressources exclues - indemnités de volontariat (base ressources, cmu-c/acs)"
+name: "Ressources exclues - indemnités de volontariat"
+keywords:
+  - base ressources
+  - "cmu-c/acs"
 description: |
   Les indemnités de volontariat ne comptent pas dans la base ressources
   Dans ce test le demandeur touche énormément d'indemnités de volontariat, mais il doit avoir quand même droit à la CMU-C.

@@ -1,4 +1,7 @@
-name: Couple, 1 allocataire, pension d'invalidité du conjoint (aspa, base ressources)
+name: Couple, 1 allocataire, pension d'invalidité du conjoint
+keywords:
+  - aspa
+  - base ressources
 description: "Test concluant : la pension d'invalidité du conjoint est bien prise en compte dans les ressources"
 period: "month:2014-11"
 individus:

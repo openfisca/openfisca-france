@@ -1,4 +1,5 @@
-name: "Personne éligible au RSA socle a droit à la CMUC (cmu-c/acs)"
+name: Personne éligible au RSA socle a droit à la CMUC
+keywords: "cmu-c/acs"
 description: Cette personne a droit à un RSA socle seul et donc est éligible à la CMUC
 period: "month:2015-02"
 individus:

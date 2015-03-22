@@ -1,4 +1,7 @@
-name: Ressources incluses (base ressources, rsa)
+name: Ressources incluses
+keywords:
+  - base ressources
+  - rsa
 description: 25 types de ressources incluses * 48 euros par mois = 1200 euros par mois > plafond RSA pour personne seule
 period: "month:2014-10"
 individus:

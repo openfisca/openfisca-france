@@ -1,0 +1,53 @@
+name: 62_remuneration de stage hors formation professionnelle #OpenLab
+keywords: rsa
+description: 
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  activite: 1
+  age: 28
+  agem: 346
+  ass_precondition_remplie: false
+  birth: "1986-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546c61f120be78254b02d73d
+  inapte_travail: 0
+  indemnites_stage:
+    2012: 2400
+    2013-11: 200
+    2013-12: 200
+    2014-01: 200
+    2014-02: 200
+    2014-03: 200
+    2014-04: 200
+    2014-05: 200
+    2014-06: 200
+    2014-07: 200
+    2014-08: 200
+    2014-08:3: 600
+    2014-09: 200
+    2014-10: 200
+    2014-11: 200
+    year:2013-11: 2400
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 546c61f120be78254b02d73d
+foyers_fiscaux:
+  declarants: 546c61f120be78254b02d73d
+  personnes_a_charge:
+menages:
+  depcom: 75120
+  enfants:
+  personne_de_reference: 546c61f120be78254b02d73d
+  statut_occupation: 6
+output_variables:
+  rsa: 372

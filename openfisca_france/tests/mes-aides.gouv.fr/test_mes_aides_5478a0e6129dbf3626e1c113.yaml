@@ -1,4 +1,7 @@
-name: Personne seule, 1 allocataire, Rente AT (aspa, base ressources)
+name: Personne seule, 1 allocataire, Rente AT
+keywords:
+  - aspa
+  - base ressources
 description: Test concluant
 period: "month:2014-11"
 individus:

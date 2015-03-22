@@ -1,0 +1,57 @@
+name: 0_Personne seule, 1 enfant < 3 ans
+keywords:
+  - enfants à charge
+  - majoration
+  - rsa
+description: |
+  Le résultat du droit RSA semble prendre en compte l'allocation de base PAJE de la personne alors qu'elle n'a déclaré aucune ressource. Il serait plus cohérent et lisible sur la page des résultats, :
+  - ou bien de recenser l'ensemble des prestations prises en compte pour le calcul du RSA (et autres peut-être),
+  - ou bien de ne pas prendre en compte cette prestation.
+  
+  Par ailleurs, il y a une erreur certes marginale, mais dont l'origine devrait être explicitée, sur le montant RSA : Le MF est de 749,77€. On y enleve 91,40€ (ASF) et 185,54€ (AB PAJE), cela fait 472,83€ et non 471,72€. Quelle est l'origine de cette différence ?
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - age: 28
+    agem: 346
+    birth: "1986-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5458f6acaf63db2c33f15db6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 2
+    agem: 34
+    birth: "2012-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5458f6acaf63db2c33f15db5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 5458f6acaf63db2c33f15db5
+  parents: 5458f6acaf63db2c33f15db6
+foyers_fiscaux:
+  declarants: 5458f6acaf63db2c33f15db6
+  personnes_a_charge: 5458f6acaf63db2c33f15db5
+menages:
+  depcom: 75114
+  enfants: 5458f6acaf63db2c33f15db5
+  personne_de_reference: 5458f6acaf63db2c33f15db6
+  statut_occupation: 6
+output_variables:
+  rsa: 472.83

@@ -1,4 +1,8 @@
-name: "200 € pour les 16-49 ans (acs, cmu-c/acs, montant)"
+name: "200 € pour les 16-49 ans"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - montant
 description:
 period: "month:2014-10"
 individus:

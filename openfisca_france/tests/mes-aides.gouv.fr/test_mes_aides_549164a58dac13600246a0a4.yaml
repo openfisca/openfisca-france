@@ -1,4 +1,9 @@
-name: "Plafond ACS 5 personnes (acs, cmu-c/acs, dom, plafonds)"
+name: Plafond ACS 5 personnes
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - dom
+  - plafonds
 description: Test réalisé avec des ressources immédiatement supérieures au plafond ACS pour 5 personnes.
 period: "month:2014-12"
 individus:

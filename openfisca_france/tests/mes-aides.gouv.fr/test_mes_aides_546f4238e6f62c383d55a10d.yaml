@@ -1,4 +1,5 @@
-name: Exclusion de Mayotte du dispositif (asf)
+name: Exclusion de Mayotte du dispositif
+keywords: asf
 description: Pas d'Asf à Mayotte.
 period: "month:2014-11"
 individus:

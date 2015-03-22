@@ -1,4 +1,7 @@
-name: 14_Couple + 1 enfant de plus de 3 ans (foyer, rsa)
+name: 14_Couple + 1 enfant de plus de 3 ans
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-11"
 individus:

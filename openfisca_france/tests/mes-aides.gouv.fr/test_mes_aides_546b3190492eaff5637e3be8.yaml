@@ -1,4 +1,7 @@
-name: 21_Jeune < 25 ans, 1 enfant, enceinte (majoration, rsa)
+name: 21_Jeune < 25 ans, 1 enfant, enceinte
+keywords:
+  - majoration
+  - rsa
 description:
 period: "month:2014-11"
 individus:

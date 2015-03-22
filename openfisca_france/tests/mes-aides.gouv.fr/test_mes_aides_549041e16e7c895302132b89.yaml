@@ -1,4 +1,8 @@
-name: "Plafond CMU-C pour 3 personnes (cmu-c, cmu-c/acs, plafonds)"
+name: "Plafond CMU-C pour 3 personnes"
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond CMU-C pour 3 personnes : 15560 euros.
   Somme des salaires déclarés en année glissante : 15559 euros

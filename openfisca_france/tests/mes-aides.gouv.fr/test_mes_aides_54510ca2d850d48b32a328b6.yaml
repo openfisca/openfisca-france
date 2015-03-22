@@ -1,0 +1,43 @@
+name: Micro Entreprise Achat Vente
+keywords:
+  - rsa
+  - tns
+description: |
+  Revenu brut mensuel : 1000
+  Brut abattu (71%) : 290
+  Net abattu : 145
+  = 509.3 - 61.12 - 38% * 145 = 393.08
+period: "month:2014-10"
+relative_error_margin: 0.02
+individus:
+  age: 34
+  agem: 408
+  birth: "1980-10-10"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54510c79e22d869132493316
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  tns_chiffre_affaires_micro_entreprise: 12000
+  tns_type_activite: achat_revente
+  tns_type_structure: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54510c79e22d869132493316
+foyers_fiscaux:
+  declarants: 54510c79e22d869132493316
+  personnes_a_charge:
+menages:
+  depcom: 92050
+  enfants:
+  personne_de_reference: 54510c79e22d869132493316
+  statut_occupation: 6
+output_variables:
+  rsa: 393.08

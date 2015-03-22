@@ -1,4 +1,7 @@
-name: "Personne seule, montant fixe en-dessous de 644,40 € de ressources par mois (ass, montant)"
+name: "Personne seule, montant fixe en-dessous de 644,40 € de ressources par mois"
+keywords:
+  - ass
+  - montant
 description:
 period: "month:2014-10"
 individus:

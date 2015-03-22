@@ -1,4 +1,8 @@
-name: "Plafond ACS 4 personnes - cas au-dessus du plafond (acs, cmu-c/acs, plafonds)"
+name: "Plafond ACS 4 personnes - cas au-dessus du plafond"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond ACS 4 personnes = 24507 euros.
   Droits AF = 130 euros

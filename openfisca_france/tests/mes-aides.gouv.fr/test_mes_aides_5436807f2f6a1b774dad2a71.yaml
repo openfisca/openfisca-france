@@ -1,4 +1,8 @@
-name: "La valeur locative des terrains non loués est prise en compte à 80% (base ressources, cmu-c/acs, patrimoine)"
+name: La valeur locative des terrains non loués est prise en compte à 80%
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - patrimoine
 description: |
   valeur locative terrains = 1300 euros
   1300 * 0.8 = 1040 : supérieur au plafond de 972 euros

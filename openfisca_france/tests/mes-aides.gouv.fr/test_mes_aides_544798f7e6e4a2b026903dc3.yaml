@@ -1,4 +1,8 @@
-name: "550 euros pour les > 60 ans (acs, cmu-c/acs, montant)"
+name: 550 euros pour les > 60 ans
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - montant
 description:
 period: "month:2014-10"
 individus:

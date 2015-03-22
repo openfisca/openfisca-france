@@ -1,4 +1,5 @@
-name: Les étudiants ne peuvent pas toucher le RSA (rsa)
+name: Les étudiants ne peuvent pas toucher le RSA
+keywords: rsa
 description: Dans le cas général, un étudiant n'a pas droit au RSA
 period: "month:2014-09"
 individus:

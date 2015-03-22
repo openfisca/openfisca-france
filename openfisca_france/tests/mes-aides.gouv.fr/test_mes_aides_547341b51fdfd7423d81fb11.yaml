@@ -1,0 +1,90 @@
+name: 3 enfants
+keywords:
+  - af
+  - montant
+description: Le petit écart est dû à la CRDS qui n'est pas prise en compte dans le simulateur...
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    agem: 411
+    birth: "1980-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5473419b1fdfd7423d81fb10
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 51
+    birth: "2010-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5473419b1fdfd7423d81fb0f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 51
+    birth: "2010-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5473419b1fdfd7423d81fb0e
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 51
+    birth: "2010-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5473419b1fdfd7423d81fb0d
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 5473419b1fdfd7423d81fb0f
+    - 5473419b1fdfd7423d81fb0e
+    - 5473419b1fdfd7423d81fb0d
+  parents: 5473419b1fdfd7423d81fb10
+foyers_fiscaux:
+  declarants: 5473419b1fdfd7423d81fb10
+  personnes_a_charge:
+    - 5473419b1fdfd7423d81fb0f
+    - 5473419b1fdfd7423d81fb0e
+    - 5473419b1fdfd7423d81fb0d
+menages:
+  depcom: 67482
+  enfants:
+    - 5473419b1fdfd7423d81fb0f
+    - 5473419b1fdfd7423d81fb0e
+    - 5473419b1fdfd7423d81fb0d
+  personne_de_reference: 5473419b1fdfd7423d81fb10
+  statut_occupation: 6
+output_variables:
+  af: 295.05

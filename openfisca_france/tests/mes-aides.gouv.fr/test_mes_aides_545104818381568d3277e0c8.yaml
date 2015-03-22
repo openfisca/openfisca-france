@@ -1,4 +1,7 @@
-name: Autoentrepreneur BIC (rsa, tns)
+name: Autoentrepreneur BIC
+keywords:
+  - rsa
+  - tns
 description: |
   Revenu brut mensuel : 1000
   Net abattu : (1-24.8%) * 1000 = 752

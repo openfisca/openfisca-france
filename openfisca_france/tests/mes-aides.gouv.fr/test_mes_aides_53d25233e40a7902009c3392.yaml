@@ -1,4 +1,7 @@
-name: Couple, 1 des 2 éligible, ressources > plafond haut (aspa, plafonds)
+name: Couple, 1 des 2 éligible, ressources > plafond haut
+keywords:
+  - aspa
+  - plafonds
 description:
 period: "month:2014-07"
 individus:

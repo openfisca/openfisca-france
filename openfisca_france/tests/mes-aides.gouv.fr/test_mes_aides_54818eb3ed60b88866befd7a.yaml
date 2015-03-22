@@ -1,4 +1,7 @@
-name: 93_Couple d'étudiants + 1 enfant (foyer, rsa)
+name: 93_Couple d'étudiants + 1 enfant
+keywords:
+  - foyer
+  - rsa
 description: "Non éligible (L. 262-4 CASF)"
 period: "month:2014-12"
 individus:

@@ -1,4 +1,5 @@
-name: 2_Patrimoine sur livret (rsa)
+name: 2_Patrimoine sur livret
+keywords: rsa
 description: Le patrimoine non productif de revenus est pris en compte à hauteur de 3% par an, soit, ici, 50€ mensuels. Le MF du RSA, de 448,18 €, doit donc être diminué d'autant, pour atteindre 398,18 €
 period: "month:2014-11"
 individus:

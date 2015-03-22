@@ -1,4 +1,7 @@
-name: "5ème enfant : 3 points (bourse lycée, points de charge)"
+name: "5ème enfant : 3 points"
+keywords:
+  - bourse lycée
+  - points de charge
 description: |
   3 points de charge supplémentaires pour le 5ème enfant à charge
   Points de charge = 9 + 1 + 2 + 2 + 3 = 17

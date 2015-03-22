@@ -1,4 +1,5 @@
-name: Chômage partiel (rsa)
+name: Chômage partiel
+keywords: rsa
 description: Il y a une pente à appliquer sur les indemnités de chômage partiel
 period: "month:2014-08"
 individus:

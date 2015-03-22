@@ -1,4 +1,7 @@
-name: Les enfants qui travaillent et gagnent plus de 55% du smic ne sont pas considérés à charge (af, enfants à charge)
+name: Les enfants qui travaillent et gagnent plus de 55% du smic ne sont pas considérés à charge
+keywords:
+  - af
+  - enfants à charge
 description: Pas d'allocations familiales versées car dans l'exemple l'enfant gagne 900 euros par mois, ce qui est supérieur au maximum de 893 euros par mois.
 period: "month:2014-11"
 individus:

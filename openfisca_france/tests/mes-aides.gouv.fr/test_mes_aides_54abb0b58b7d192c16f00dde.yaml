@@ -1,4 +1,8 @@
-name: Zone 2 (al, location, zones)
+name: Zone 2
+keywords:
+  - al
+  - location
+  - zones
 description: |
   L	255,03
   C	53,23

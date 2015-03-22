@@ -1,4 +1,7 @@
-name: Couple jeune sans ressources (foyer, rsa)
+name: Couple jeune sans ressources
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-07"
 individus:

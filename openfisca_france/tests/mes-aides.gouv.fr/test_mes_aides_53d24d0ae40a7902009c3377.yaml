@@ -1,4 +1,7 @@
-name: "Ressources < plafond, montant = différence plafond - ressources (aspa, montant)"
+name: "Ressources < plafond, montant = différence plafond - ressources"
+keywords:
+  - aspa
+  - montant
 description:
 period: "month:2014-07"
 individus:

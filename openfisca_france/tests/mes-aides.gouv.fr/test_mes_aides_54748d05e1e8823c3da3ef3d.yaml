@@ -1,4 +1,7 @@
-name: Couple, ressources > plafond de 1288,80, montant = plafond haut soustrait des ressources (ass, montant)
+name: Couple, ressources > plafond de 1288,80, montant = plafond haut soustrait des ressources
+keywords:
+  - ass
+  - montant
 description: |
   plafond haut = 1 772,10
   revenus mensuels moyens sur l'année glissante = 1600

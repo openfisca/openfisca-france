@@ -1,4 +1,7 @@
-name: Chômeur, 2 enfants, pensions (majoration, rsa)
+name: Chômeur, 2 enfants, pensions
+keywords:
+  - majoration
+  - rsa
 description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour trancher)"
 period: "month:2014-07"
 individus:

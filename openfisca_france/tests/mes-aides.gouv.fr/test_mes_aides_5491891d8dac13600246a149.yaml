@@ -1,4 +1,9 @@
-name: "Plancher ACS pour une personne seule dans les DOM (acs, cmu-c/acs, dom, plafonds)"
+name: Plancher ACS pour une personne seule dans les DOM
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - dom
+  - plafonds
 description: Test réalisé avec des ressources légèrement supérieures au plafond CMUc.
 period: "month:2014-12"
 individus:

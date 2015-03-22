@@ -1,4 +1,5 @@
-name: 17_Personne seule + 1 enfant, non majoré (rsa)
+name: 17_Personne seule + 1 enfant, non majoré
+keywords: rsa
 description: |
   Le demandeur perçoit du RSA depuis au moins un an. De plus, son enfant a plus de 3 ans. Il n'a donc plus droit au RSA majoré.
   MF = 641,72 ;

@@ -1,0 +1,68 @@
+name: "Femme enceinte isolée : calcul sur base couple"
+keywords:
+  - al
+  - location
+description: |
+  Pour une femme enceinte isolée sans enfants, on fait comme si elle était en couple. cf. D542-6 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737370&cidTexte=LEGITEXT000006073189
+  
+  L	352,92
+  C	53,23
+  E	406,15
+  R	8100
+  R0	6576
+  Rp	1524
+  Tf	3,15
+  LR	312,15
+  RL	113,06
+  Tl	0,394
+  Tp	3,544
+  P0	34,73
+  P1	54,01
+  Pp	88,74
+  AL	315,82
+period: "month:2015-01"
+relative_error_margin: 0.02
+individus:
+  age: 34
+  agem: 413
+  alr:
+    2013: 0
+  birth: "1980-08-12"
+  cho:
+    2013: 0
+  enceinte: true
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54c22a358a248fab3505d37a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  rst:
+    2013: 0
+  sal:
+    2013: 9000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54c22a358a248fab3505d37a
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54c22a358a248fab3505d37a
+  f6el:
+    2013: 0
+  personnes_a_charge:
+  rfr:
+    2013: 0
+menages:
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 54c22a358a248fab3505d37a
+  statut_occupation: 4
+output_variables:
+  aide_logement: 315.82

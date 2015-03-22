@@ -1,4 +1,7 @@
-name: "1 allocataire - couple - Ressources retenues = indemnités journalières du conjoint = 600 euros moyenne mensuelle (aspa, base ressources)"
+name: "1 allocataire - couple - Ressources retenues = indemnités journalières du conjoint = 600 euros moyenne mensuelle"
+keywords:
+  - aspa
+  - base ressources
 description: |
   Ressources du couple = 1200
   Plafond de ressources couple = 1242

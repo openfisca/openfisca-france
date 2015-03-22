@@ -1,4 +1,8 @@
-name: "La valeur locative des biens immobiliers non loués est prise en compte à 50% (base ressources, cmu-c/acs, patrimoine)"
+name: La valeur locative des biens immobiliers non loués est prise en compte à 50%
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - patrimoine
 description: |
   valeur locative : 2000 euros
   plafond de ressources pour personne seule : 972 euros

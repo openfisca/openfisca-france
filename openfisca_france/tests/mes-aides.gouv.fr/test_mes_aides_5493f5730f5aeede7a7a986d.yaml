@@ -1,0 +1,69 @@
+name: Neutralisation des ressources pour les bénéficiares du RSA socle
+keywords: al
+description: |
+  couple
+  demandeurs d'emploi
+  avec RSA couple
+  sans enfant ni personne autre à charge
+  meublé 400 €
+  zone 2
+  Commentaire : dans la rubrique ressources n'apparait pas le RSA or perception du RSA socle entraîne la neutralisation des ressources N-2
+  Simulateur CAF indique droit aux AL : 284 € (avec RNC 2 SMIC pour le couple en 2012
+period: "month:2014-12"
+relative_error_margin: 0.02
+individus:
+  - activite: 1
+    age: 42
+    agem: 515
+    ass_precondition_remplie: true
+    birth: "1972-01-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5493f3ddf170fae47a4bfc17
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - activite: 1
+    age: 43
+    agem: 524
+    ass_precondition_remplie: true
+    birth: "1971-04-02"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5493f3ddf170fae47a4bfc15
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 5493f3ddf170fae47a4bfc17
+    - 5493f3ddf170fae47a4bfc15
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 5493f3ddf170fae47a4bfc17
+    - 5493f3ddf170fae47a4bfc15
+  personnes_a_charge:
+menages:
+  conjoint: 5493f3ddf170fae47a4bfc15
+  depcom: 13209
+  enfants:
+  loyer: 400
+  personne_de_reference: 5493f3ddf170fae47a4bfc17
+  statut_occupation: 5
+output_variables:
+  aide_logement: 284

@@ -1,4 +1,8 @@
-name: "Plafond ACS 2 personnes - cas au-dessus du plafond (acs, cmu-c/acs, plafonds)"
+name: "Plafond ACS 2 personnes - cas au-dessus du plafond"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond ACS pour 2 personnes : 17505 euros.
   Ici, salaires déclarés = 17600 euros, donc pas droit à l'ACS.

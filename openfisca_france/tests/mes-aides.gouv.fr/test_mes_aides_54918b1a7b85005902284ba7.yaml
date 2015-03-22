@@ -1,4 +1,9 @@
-name: "Plafond CMU pour un couple dans les DOM (cmu-c, cmu-c/acs, dom, plafonds)"
+name: Plafond CMU pour un couple dans les DOM
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - dom
+  - plafonds
 description: Test réalisé avec des ressources immédiatement inférieures à celles du plafond CMU.
 period: "month:2014-12"
 individus:

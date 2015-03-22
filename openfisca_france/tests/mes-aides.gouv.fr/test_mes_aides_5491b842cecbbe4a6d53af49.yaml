@@ -1,4 +1,7 @@
-name: Les enfants de plus de 20 ans ne sont pas considérés à charge (af, enfants à charge)
+name: Les enfants de plus de 20 ans ne sont pas considérés à charge
+keywords:
+  - af
+  - enfants à charge
 description: Dans l'exemple, un enfant a moins de 14 ans et l'autre a plus de 20 ans
 period: "month:2014-12"
 individus:

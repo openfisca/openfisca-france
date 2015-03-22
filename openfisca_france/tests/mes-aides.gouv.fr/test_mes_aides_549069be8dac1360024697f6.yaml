@@ -1,4 +1,8 @@
-name: "Plafond ACS 3 personnes - cas au-dessus du plafond (acs, cmu-c/acs, plafonds)"
+name: "Plafond ACS 3 personnes - cas au-dessus du plafond"
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond ACS 3 personnes = 21006 euros.
   Salaires déclarés 21050 euros, donc pas droit à l'ACS.

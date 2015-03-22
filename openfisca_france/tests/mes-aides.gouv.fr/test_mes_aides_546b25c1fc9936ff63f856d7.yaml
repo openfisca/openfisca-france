@@ -1,0 +1,37 @@
+name: 23_Jeune < 25 ans, enceinte
+keywords:
+  - majoration
+  - rsa
+description:
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  age: 20
+  agem: 250
+  birth: "1994-01-01"
+  enceinte: true
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546b2540fc9936ff63f856d6
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 546b2540fc9936ff63f856d6
+foyers_fiscaux:
+  declarants: 546b2540fc9936ff63f856d6
+  personnes_a_charge:
+menages:
+  depcom: 75114
+  enfants:
+  personne_de_reference: 546b2540fc9936ff63f856d6
+  statut_occupation: 6
+output_variables:
+  rsa: 592.88

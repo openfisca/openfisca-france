@@ -1,4 +1,5 @@
-name: 3_Personne seule sans enfant ni revenu (rsa)
+name: 3_Personne seule sans enfant ni revenu
+keywords: rsa
 description:
 period: "month:2014-11"
 individus:

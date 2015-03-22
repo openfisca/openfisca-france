@@ -1,4 +1,7 @@
-name: 12_Couple sans enfant (foyer, rsa)
+name: 12_Couple sans enfant
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-11"
 individus:

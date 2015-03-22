@@ -1,4 +1,7 @@
-name: L'AAH servie au conjoint non pensionné est incluse dans la base ressources (aspa, base ressources)
+name: L'AAH servie au conjoint non pensionné est incluse dans la base ressources
+keywords:
+  - aspa
+  - base ressources
 description: |
   Lorsque l'AAH est servie au conjoint du demandeur de l'ASPA, celle-ci est :
   - retenue si ce conjoint n'est pas lui-même pensionné de l'ASPA

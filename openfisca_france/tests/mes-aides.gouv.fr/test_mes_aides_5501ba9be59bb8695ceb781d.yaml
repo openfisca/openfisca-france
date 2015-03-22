@@ -1,4 +1,5 @@
-name: "Projection en n-2 de l'année glissante si RFR non spécifié (bourse lycée)"
+name: "Projection en n-2 de l'année glissante si RFR non spécifié"
+keywords: bourse lycée
 description: |
   Ce test vérifie que lorsque l'utilisateur n'a pas encore entré ses ressources n-2, on projette ses revenus année glissante en n-2.
   Dans ce cas, 10200 euros de salaires nets en année glissante, ce que OpenFisca transforme en un RFR de 11769 euros.

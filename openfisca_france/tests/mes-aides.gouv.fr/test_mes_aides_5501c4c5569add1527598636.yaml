@@ -1,4 +1,7 @@
-name: "1 enfant : 9 points (bourse lycée, points de charge)"
+name: "1 enfant : 9 points"
+keywords:
+  - bourse lycée
+  - points de charge
 description: |
   Pour une famille avec 1 seul enfant, 9 points de charge
   Plafond RFR correspondant : 12098 euros

@@ -1,4 +1,7 @@
-name: Les allocations familiales sont exclues de la base ressources (aspa, base ressources)
+name: Les allocations familiales sont exclues de la base ressources
+keywords:
+  - aspa
+  - base ressources
 description: |
   J'ai indiqué avoir 2 enfants mineurs à charge et le simulateur ne me demande pas le montant de mes allocations familiales.
   

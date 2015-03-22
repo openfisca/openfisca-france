@@ -1,4 +1,7 @@
-name: "Couple, le montant est fixe en-dessous de 1288,80 € de ressources par mois (ass, montant)"
+name: "Couple, le montant est fixe en-dessous de 1288,80 € de ressources par mois"
+keywords:
+  - ass
+  - montant
 description:
 period: "month:2014-10"
 individus:

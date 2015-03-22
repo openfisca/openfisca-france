@@ -1,4 +1,7 @@
-name: 36_Couple dont 1 étudiant + 1 enfant (foyer, rsa)
+name: 36_Couple dont 1 étudiant + 1 enfant
+keywords:
+  - foyer
+  - rsa
 description: Eligible
 period: "month:2014-12"
 individus:

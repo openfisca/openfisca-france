@@ -1,4 +1,5 @@
-name: Bénéficiaire AAH isolé (rsa)
+name: Bénéficiaire AAH isolé
+keywords: rsa
 description: L'AAH doit être prise en compte dans le calcul
 period: "month:2014-08"
 individus:

@@ -1,4 +1,8 @@
-name: "3 enfants - parent isolé (al, location, ménage)"
+name: "3 enfants - parent isolé"
+keywords:
+  - al
+  - location
+  - ménage
 description: |
   L	514,59
   C	89,41

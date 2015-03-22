@@ -1,4 +1,7 @@
-name: "Le plafond augmente de 30% par enfant à charge supplémentaire (cas en-dessous du plafond) (bourse collège, plafonds)"
+name: "Le plafond augmente de 30% par enfant à charge supplémentaire (cas en-dessous du plafond)"
+keywords:
+  - bourse collège
+  - plafonds
 description: |
   Ici 4 enfants déclarés dont 1 scolarisé au collège
   pour un montant de 228 euros, le plafond est de 13383 euros, pour ici un rfr de 13300 euros

@@ -1,4 +1,7 @@
-name: Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus (patrimoine, rsa)
+name: Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
+keywords:
+  - patrimoine
+  - rsa
 description: 
 period: "month:2014-09"
 individus:

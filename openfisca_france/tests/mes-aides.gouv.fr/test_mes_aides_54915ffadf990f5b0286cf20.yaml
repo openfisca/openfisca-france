@@ -1,4 +1,8 @@
-name: "Plafond CMU-C pour 5 personnes (cmu-c, cmu-c/acs, plafonds)"
+name: "Plafond CMU-C pour 5 personnes"
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond CMU-C pour 5 personnes : 21611 euros.
   Ici éligible aux AF, à l'ASF, au CF : le montant simulé de ces ressources est inclus dans la base ressources.

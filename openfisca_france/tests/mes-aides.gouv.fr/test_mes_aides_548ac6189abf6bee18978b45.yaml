@@ -1,4 +1,7 @@
-name: "Ressource incluse : prestation compensatoire versée par l'ex-conjoint (aspa, base ressources)"
+name: "Ressource incluse : prestation compensatoire versée par l'ex-conjoint"
+keywords:
+  - aspa
+  - base ressources
 description: "La prestation compensatoire en cas de divorce, versée sous forme de capital ou mensuellement, doit être prise en compte dans les ressources (non visée aux articles R 815-22 et R 815-30 CSS)."
 period: "month:2014-12"
 individus:

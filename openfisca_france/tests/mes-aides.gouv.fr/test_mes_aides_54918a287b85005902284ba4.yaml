@@ -1,4 +1,9 @@
-name: "Plafond ACS 1 personne seule dans les DOM (acs, cmu-c/acs, dom, plafonds)"
+name: Plafond ACS 1 personne seule dans les DOM
+keywords:
+  - acs
+  - "cmu-c/acs"
+  - dom
+  - plafonds
 description: Test réalisé avec des ressources immédiatement inférieures au plafond ACS pour une personne seule
 period: "month:2014-12"
 individus:

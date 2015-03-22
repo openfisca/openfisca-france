@@ -1,4 +1,7 @@
-name: "Couple, 1 des 2 éligible, ressources < plafond haut, montant = diff plafond - ressources (aspa, montant)"
+name: "Couple, 1 des 2 éligible, ressources < plafond haut, montant = diff plafond - ressources"
+keywords:
+  - aspa
+  - montant
 description:
 period: "month:2014-07"
 individus:

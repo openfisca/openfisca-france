@@ -1,4 +1,8 @@
-name: Le loyer plafond est pris à 90% (al, chambres, location)
+name: Le loyer plafond est pris à 90%
+keywords:
+  - al
+  - chambres
+  - location
 description: |
   http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
   

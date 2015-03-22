@@ -1,4 +1,8 @@
-name: "Micro Entreprise Achat-Vente > 720 Net abattu (base ressources, cmu-c/acs, tns)"
+name: "Micro Entreprise Achat-Vente > 720 Net abattu"
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - tns
 description: |
   Revenu brut mensuel : 6000
   Brut abattu (71%) : 1740

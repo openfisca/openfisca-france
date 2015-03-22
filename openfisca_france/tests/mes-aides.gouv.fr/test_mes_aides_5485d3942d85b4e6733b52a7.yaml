@@ -1,4 +1,7 @@
-name: "Taux 1 : 84 euros par an / plafond de 14628 euros (bourse collège, montant)"
+name: "Taux 1 : 84 euros par an / plafond de 14628 euros"
+keywords:
+  - bourse collège
+  - montant
 description: Ressources déclarées = 14000 euros, inférieur au plafond de 14628 euros de référence pour 1 enfant à charge, montant correspondant = 84 euros
 period: "month:2014-12"
 individus:

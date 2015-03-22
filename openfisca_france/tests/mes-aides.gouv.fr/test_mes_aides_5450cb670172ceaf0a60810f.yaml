@@ -1,0 +1,38 @@
+name: Locataire meublé non conventionné
+keywords:
+  - al
+  - caf.fr
+description:
+period: "month:2014-10"
+relative_error_margin: 0.02
+individus:
+  age: 34
+  agem: 417
+  birth: "1980-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 5450cac80172ceaf0a60810e
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 5450cac80172ceaf0a60810e
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 5450cac80172ceaf0a60810e
+  personnes_a_charge:
+menages:
+  depcom: 92071
+  enfants:
+  loyer: 500
+  personne_de_reference: 5450cac80172ceaf0a60810e
+  statut_occupation: 5
+output_variables:
+  als: 309.57

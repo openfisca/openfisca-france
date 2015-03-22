@@ -1,4 +1,8 @@
-name: "Couple qui touche une AL, ressources < plafond (base ressources, cmu-c/acs, forfait logement)"
+name: Couple qui touche une AL, ressources < plafond
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - forfait logement
 description: "Forfait logement pour 2 personnes : 120 €, ressources < 1080 - 120 = 960."
 period: "month:2014-07"
 individus:

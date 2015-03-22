@@ -1,4 +1,7 @@
-name: Montant soustrait de 1% des intérêts théoriques mensuels de l'épargne sur livret (patrimoine, rsa)
+name: Montant soustrait de 1% des intérêts théoriques mensuels de l'épargne sur livret
+keywords:
+  - patrimoine
+  - rsa
 description:
 period: "month:2014-09"
 individus:

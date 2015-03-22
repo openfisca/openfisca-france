@@ -1,4 +1,7 @@
-name: "Ressources exclues - RSA - 1 bénéficiaire - personne seule (aspa, base ressources)"
+name: "Ressources exclues - RSA - 1 bénéficiaire - personne seule"
+keywords:
+  - aspa
+  - base ressources
 description: "Le test est concluant - Le simulateur exclut bien le RSA en ressource."
 period: "month:2014-11"
 individus:

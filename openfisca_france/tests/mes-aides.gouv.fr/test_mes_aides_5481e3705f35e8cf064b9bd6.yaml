@@ -1,4 +1,7 @@
-name: Droit à l'ASI si invalide retraité (asi, eligibilité)
+name: Droit à l'ASI si invalide retraité
+keywords:
+  - asi
+  - eligibilité
 description: "Valeur attendue saisie : montant brut maximal personne seule SP.fr"
 period: "month:2014-12"
 individus:

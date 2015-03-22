@@ -1,0 +1,106 @@
+name: Pas d'eval forfaitaire si RNC > 1015 fois le SMIC
+keywords:
+  - al
+  - base ressources
+  - eval forfaitaire
+description: |
+  Pas d'application de l'évaluation forfaitaire dans le cas d'un allocataire qui perçoit une rémunération mensuelle en m-1 et dont les RNC N-2 sont supérieurs à 1015 fois le SMIC horaire brut n-2 (9,43 € en 2013).
+  9,43 * 1015 = 9571
+  Ici revenus d'activité = 11000 > 9571
+  
+  L	160
+  C	53,23
+  E	213,23
+  R	9900
+  R0	4593
+  Rp	5307
+  Tf	2,83
+  LR	255,03
+  RL	62,74
+  Tl	0,08
+  Tp	2,91
+  P0	34,73
+  P1	154,43
+  Pp	189,16
+  AL	23,95
+  
+  Résultat caf.fr = 22,53€
+period: "month:2015-01"
+relative_error_margin: 0.02
+individus:
+  age: 36
+  agem: 441
+  alr:
+    2013: 0
+  birth: "1978-04-12"
+  cho:
+    2013: 0
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54be835fd337b5d372377c19
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  inv: 0
+  rst:
+    2013: 0
+  sal:
+    2013: 11000
+  salaire_de_base:
+    2013: 51282.01282051282
+    2014-01: 4273.5
+    2014-02: 4273.5
+    2014-03: 4273.5
+    2014-04: 4273.5
+    2014-05: 4273.5
+    2014-06: 4273.5
+    2014-07: 4273.5
+    2014-08: 4273.5
+    2014-09: 4273.5
+    2014-10: 0
+    2014-10:3: 12820.51282051282
+    2014-11: 0
+    2014-12: 12820.51282051282
+    2015-01: 12820.51282051282
+    year:2014-01: 51282.01282051282
+  salnet:
+    2013: 39999.97000000001
+    2014-01: 3333.33
+    2014-02: 3333.33
+    2014-03: 3333.33
+    2014-04: 3333.33
+    2014-05: 3333.33
+    2014-06: 3333.33
+    2014-07: 3333.33
+    2014-08: 3333.33
+    2014-09: 3333.33
+    2014-10: 0
+    2014-10:3: 10000
+    2014-11: 0
+    2014-12: 10000
+    2015-01: 10000
+    year:2014-01: 39999.97000000001
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54be835fd337b5d372377c19
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54be835fd337b5d372377c19
+  f6el:
+    2013: 0
+  personnes_a_charge:
+  rfr:
+    2013: 0
+menages:
+  depcom: 62263
+  enfants:
+  loyer: 160
+  personne_de_reference: 54be835fd337b5d372377c19
+  statut_occupation: 4
+output_variables:
+  aide_logement: 23.95

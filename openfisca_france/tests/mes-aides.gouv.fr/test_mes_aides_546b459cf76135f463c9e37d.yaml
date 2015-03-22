@@ -1,4 +1,7 @@
-name: "Ressources exclues : retraite du combattant (aspa, base ressources)"
+name: "Ressources exclues : retraite du combattant"
+keywords:
+  - aspa
+  - base ressources
 description: Test concluant. Le simulateur exclut bien la retraite du combattant dans le calcul de l'ASPA.
 period: "month:2014-11"
 individus:

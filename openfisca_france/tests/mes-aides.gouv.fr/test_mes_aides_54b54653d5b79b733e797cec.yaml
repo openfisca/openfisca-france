@@ -1,4 +1,8 @@
-name: "Personne hébergée à titre gratuit ressources < plafond (base ressources, cmu-c/acs, forfait logement)"
+name: Personne hébergée à titre gratuit ressources < plafond
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - forfait logement
 description: Une personne hébergée à titre gratuit si c'est ressources <720 euros = 650eur + 60 eur (forfait logement) a droit à la CMUC
 period: "month:2015-01"
 individus:

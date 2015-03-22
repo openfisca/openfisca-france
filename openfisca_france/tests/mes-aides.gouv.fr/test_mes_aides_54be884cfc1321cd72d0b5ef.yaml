@@ -1,4 +1,8 @@
-name: Pas d'eval forfaitaire pour une personne qui touche l'AAH (al, base ressources, eval forfaitaire)
+name: Pas d'eval forfaitaire pour une personne qui touche l'AAH
+keywords:
+  - al
+  - base ressources
+  - eval forfaitaire
 description: |
   Salaire en m-1 et RNC n-2 = 0, on n'applique pas l'évaluation forfaitaire car bénéficiaire de l'AAH, donc R = 0.
   

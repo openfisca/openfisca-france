@@ -1,4 +1,7 @@
-name: 29_Personne seule, 1 enfant > 3 ans, RSA non majoré (majoration, rsa)
+name: 29_Personne seule, 1 enfant > 3 ans, RSA non majoré
+keywords:
+  - majoration
+  - rsa
 description: |
   La personne perçoit une pension alimentaire > ASF (100 € mensuels), donc elle n'ouvre pas droit à l'ASF.
   La personne perçoit du RSA non majoré : elle n'ouvre plus droit au RSA majoré (enfant > 3 ans).

@@ -1,0 +1,158 @@
+name: 4 enfants
+keywords:
+  - af
+  - montant
+description: "isolé avec 4 enfants à charge de moins de 14 ans : droit aux AF4"
+period: "month:2015-01"
+relative_error_margin: 0.02
+individus:
+  - age: 43
+    agem: 516
+    alr:
+      2013: 0
+    birth: "1972-01-09"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54cb5a1cb93972db44593425
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 14000
+    salaire_de_base:
+      2013: 20000
+      2014-01: 1666.6666666666665
+      2014-02: 1666.6666666666665
+      2014-03: 1666.6666666666665
+      2014-04: 1666.6666666666665
+      2014-05: 1666.6666666666665
+      2014-06: 1666.6666666666665
+      2014-07: 1666.6666666666665
+      2014-08: 1666.6666666666665
+      2014-09: 1666.6666666666665
+      2014-10: 1666.6666666666665
+      2014-10:3: 5000
+      2014-11: 1666.6666666666665
+      2014-12: 1666.6666666666665
+      2015-01: 1666.6666666666665
+      year:2014-01: 20000
+    salnet:
+      2013: 15600
+      2014-01: 1300
+      2014-02: 1300
+      2014-03: 1300
+      2014-04: 1300
+      2014-05: 1300
+      2014-06: 1300
+      2014-07: 1300
+      2014-08: 1300
+      2014-09: 1300
+      2014-10: 1300
+      2014-10:3: 3900
+      2014-11: 1300
+      2014-12: 1300
+      2015-01: 1300
+      year:2014-01: 15600
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 3
+    agem: 36
+    birth: "2012-01-02"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54cb5a1cb93972db44593424
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 8
+    agem: 96
+    birth: "2007-01-17"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54cb5a1cb93972db44593423
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    agem: 134
+    birth: "2003-11-23"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54cb5a1cb93972db44593422
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 13
+    agem: 166
+    birth: "2001-03-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54cb5a1cb93972db44593421
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 54cb5a1cb93972db44593424
+    - 54cb5a1cb93972db44593423
+    - 54cb5a1cb93972db44593422
+    - 54cb5a1cb93972db44593421
+  parents: 54cb5a1cb93972db44593425
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54cb5a1cb93972db44593425
+  f6el:
+    2013: 0
+  personnes_a_charge:
+    - 54cb5a1cb93972db44593424
+    - 54cb5a1cb93972db44593423
+    - 54cb5a1cb93972db44593422
+    - 54cb5a1cb93972db44593421
+  rfr:
+    2013: 0
+menages:
+  depcom: 94022
+  enfants:
+    - 54cb5a1cb93972db44593424
+    - 54cb5a1cb93972db44593423
+    - 54cb5a1cb93972db44593422
+    - 54cb5a1cb93972db44593421
+  loyer: 900
+  personne_de_reference: 54cb5a1cb93972db44593425
+  statut_occupation: 4
+output_variables:
+  af: 460.77

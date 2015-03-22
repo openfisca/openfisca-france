@@ -1,4 +1,7 @@
-name: 118_Bourses (base ressources, rsa)
+name: 118_Bourses
+keywords:
+  - base ressources
+  - rsa
 description: |
   Bourses de l'enseignement supérieur => Non prises en compte
   Bourses d'étude => Prises en compte comme un revenu d'activité (abattement 62%)

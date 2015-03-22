@@ -1,4 +1,7 @@
-name: Personne handicapée à 50% éligible à l'ASPA  à partir de 62 ans (aspa, eligibilité)
+name: Personne handicapée à 50% éligible à l'ASPA  à partir de 62 ans
+keywords:
+  - aspa
+  - eligibilité
 description:
 period: "month:2015-02"
 individus:

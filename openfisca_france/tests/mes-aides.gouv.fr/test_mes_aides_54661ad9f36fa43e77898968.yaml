@@ -1,4 +1,7 @@
-name: "Ressources incluses (base ressources, cmu-c/acs)"
+name: Ressources incluses
+keywords:
+  - base ressources
+  - "cmu-c/acs"
 description: |
   Test sur les ressources incluses dans la base ressource cmu-c/acs.
   Pour une personne seule : plafond de 8645 euros sur l'année glissante.

@@ -1,4 +1,7 @@
-name: Pension alimentaire reçue de la part de son frère à prendre en compte (aspa, base ressources)
+name: Pension alimentaire reçue de la part de son frère à prendre en compte
+keywords:
+  - aspa
+  - base ressources
 description: |
   La pension alimentaire doit être prise en compte car les collatéraux (frères et soeurs, oncles et tantes) ne sont pas concernés par l'obligation alimentaire. 
   Toutefois, le simulateur ne permet pas de déclarer qui verse ou reçoit la pension alimentaire.

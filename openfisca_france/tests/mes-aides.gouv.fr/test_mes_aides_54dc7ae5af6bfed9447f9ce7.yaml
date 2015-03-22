@@ -1,4 +1,8 @@
-name: Pas d'éligibilité si inapte au travail < 62 ans (age, aspa, eligibilité)
+name: Pas d'éligibilité si inapte au travail < 62 ans
+keywords:
+  - age
+  - aspa
+  - eligibilité
 description: Ici la personne est inapte au travail mais a 61 ans, donc inéligible.
 period: "month:2015-02"
 individus:

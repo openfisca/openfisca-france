@@ -1,4 +1,7 @@
-name: "1 allocataire - couple - Ressource retenue = ASS du conjoint (aspa, base ressources)"
+name: "1 allocataire - couple - Ressource retenue = ASS du conjoint"
+keywords:
+  - aspa
+  - base ressources
 description: |
   Total des revenus perçus par le couple = 1083,3
   Plafond de ressources couple = 1242,00

@@ -1,4 +1,5 @@
-name: Pas éligible si l'enfant n'est pas scolarisé au lycée (bourse lycée)
+name: Pas éligible si l'enfant n'est pas scolarisé au lycée
+keywords: bourse lycée
 description: "L'utilisateur a sélectionné \"au collège\" : pas de bourse de lycée"
 period: "month:2015-03"
 individus:

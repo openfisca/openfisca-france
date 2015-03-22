@@ -1,4 +1,8 @@
-name: Prise en compte à 3% de la valeur vénale des résidences secondaires #OpenLab (aspa, base ressources, patrimoine)
+name: Prise en compte à 3% de la valeur vénale des résidences secondaires #OpenLab
+keywords:
+  - aspa
+  - base ressources
+  - patrimoine
 description: |
   les biens immobiliers autre que la résidence principale (loués ou non) sont valorisés à 3% du montant de la valeur vénale (prix du marché)
   cas testé : propriétaire de la résidence principale et d'un autre bien

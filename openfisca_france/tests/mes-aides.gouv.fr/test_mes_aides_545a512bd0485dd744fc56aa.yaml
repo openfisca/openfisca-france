@@ -1,0 +1,97 @@
+name: 15_Couple + 2 enfants
+keywords:
+  - foyer
+  - rsa
+description: |
+  MF RSA : 918,27 
+  AF : 129,99
+  PAJE : 185,54
+  => RSA : 602,74
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - age: 28
+    agem: 346
+    birth: "1986-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a50a5ffe6a1e044e6c2a8
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 20
+    agem: 250
+    birth: "1994-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a50a5ffe6a1e044e6c2a7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 58
+    birth: "2010-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a50a5ffe6a1e044e6c2a6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 2
+    agem: 34
+    birth: "2012-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 545a50a5ffe6a1e044e6c2a5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 545a50a5ffe6a1e044e6c2a6
+    - 545a50a5ffe6a1e044e6c2a5
+  parents:
+    - 545a50a5ffe6a1e044e6c2a8
+    - 545a50a5ffe6a1e044e6c2a7
+foyers_fiscaux:
+  declarants:
+    - 545a50a5ffe6a1e044e6c2a8
+    - 545a50a5ffe6a1e044e6c2a7
+  personnes_a_charge:
+    - 545a50a5ffe6a1e044e6c2a6
+    - 545a50a5ffe6a1e044e6c2a5
+menages:
+  conjoint: 545a50a5ffe6a1e044e6c2a7
+  depcom: 88469
+  enfants:
+    - 545a50a5ffe6a1e044e6c2a6
+    - 545a50a5ffe6a1e044e6c2a5
+  personne_de_reference: 545a50a5ffe6a1e044e6c2a8
+  statut_occupation: 6
+output_variables:
+  rsa: 602.74

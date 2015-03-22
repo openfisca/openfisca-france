@@ -1,4 +1,8 @@
-name: Le loyer plafond est celui d'une personne isolée même pour les familles (al, chambres, location)
+name: Le loyer plafond est celui d'une personne isolée même pour les familles
+keywords:
+  - al
+  - chambres
+  - location
 description: |
   http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
   On force le loyer plafond d'une personne seule à hauteur de 90% pour les chambres même quand c'est un couple ou une famille qui y vit.

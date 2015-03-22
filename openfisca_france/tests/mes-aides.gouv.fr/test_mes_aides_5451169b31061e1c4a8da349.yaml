@@ -1,4 +1,8 @@
-name: "Micro entreprise Achat-Vente < 720€ (base ressources, cmu-c/acs, tns)"
+name: "Micro entreprise Achat-Vente < 720€"
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - tns
 description: |
   Revenu brut mensuel : 4500
   Brut abattu (71%) : 1305

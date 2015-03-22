@@ -1,4 +1,7 @@
-name: 84_Revenus professionnels (base ressources, rsa)
+name: 84_Revenus professionnels
+keywords:
+  - base ressources
+  - rsa
 description: Application de la pente sur ces revenus
 period: "month:2014-12"
 individus:

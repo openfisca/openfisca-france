@@ -1,0 +1,109 @@
+name: Couple, 2 enfants, retraite
+keywords:
+  - foyer
+  - rsa
+description:
+period: "month:2014-07"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    agem: 414
+    birth: "1980-01-01"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d79d42f6aa390200a6cd28
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rstbrut:
+      2012: 647.9481641468683
+      2014-04: 215.9827213822894
+      2014-04:3: 647.9481641468683
+      2014-05: 215.9827213822894
+      2014-06: 215.9827213822894
+      2014-07: 215.9827213822894
+      year:2013-07: 647.9481641468683
+    rstnet:
+      2012: 600
+      2014-04: 200
+      2014-04:3: 600
+      2014-05: 200
+      2014-06: 200
+      2014-07: 200
+      year:2013-07: 600
+    statmarit: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 414
+    birth: "1980-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d79d42f6aa390200a6cd27
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 54
+    birth: "2010-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d79d42f6aa390200a6cd26
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    agem: 54
+    birth: "2010-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53d79d42f6aa390200a6cd25
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 53d79d42f6aa390200a6cd26
+    - 53d79d42f6aa390200a6cd25
+  parents:
+    - 53d79d42f6aa390200a6cd28
+    - 53d79d42f6aa390200a6cd27
+foyers_fiscaux:
+  declarants:
+    - 53d79d42f6aa390200a6cd28
+    - 53d79d42f6aa390200a6cd27
+  personnes_a_charge:
+    - 53d79d42f6aa390200a6cd26
+    - 53d79d42f6aa390200a6cd25
+menages:
+  conjoint: 53d79d42f6aa390200a6cd27
+  enfants:
+    - 53d79d42f6aa390200a6cd26
+    - 53d79d42f6aa390200a6cd25
+  personne_de_reference: 53d79d42f6aa390200a6cd28
+  statut_occupation: 6
+output_variables:
+  rsa: 570.26

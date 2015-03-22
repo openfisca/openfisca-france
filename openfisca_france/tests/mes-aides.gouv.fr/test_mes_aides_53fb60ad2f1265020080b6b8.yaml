@@ -1,0 +1,97 @@
+name: Couple deux enfants de + de 3 ans sans ressources
+keywords:
+  - foyer
+  - rsa
+description: "1048,55 - 148,3 - 129,99 = 770,26"
+period: "month:2014-08"
+relative_error_margin: 0.02
+individus:
+  - age: 33
+    agem: 407
+    birth: "1980-09-14"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53fb60822f1265020080b6b7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    statmarit: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 33
+    agem: 407
+    birth: "1980-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53fb60822f1265020080b6b6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 3
+    agem: 47
+    birth: "2010-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53fb60822f1265020080b6b5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 3
+    agem: 47
+    birth: "2010-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 53fb60822f1265020080b6b4
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 53fb60822f1265020080b6b5
+    - 53fb60822f1265020080b6b4
+  parents:
+    - 53fb60822f1265020080b6b7
+    - 53fb60822f1265020080b6b6
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 53fb60822f1265020080b6b7
+    - 53fb60822f1265020080b6b6
+  personnes_a_charge:
+    - 53fb60822f1265020080b6b5
+    - 53fb60822f1265020080b6b4
+menages:
+  conjoint: 53fb60822f1265020080b6b6
+  depcom: "02709"
+  enfants:
+    - 53fb60822f1265020080b6b5
+    - 53fb60822f1265020080b6b4
+  loyer: 124
+  personne_de_reference: 53fb60822f1265020080b6b7
+  statut_occupation: 4
+output_variables:
+  af: 129.99
+  rsa: 770.26

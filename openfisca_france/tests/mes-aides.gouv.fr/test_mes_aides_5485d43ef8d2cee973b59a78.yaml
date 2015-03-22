@@ -1,4 +1,7 @@
-name: "Taux 3 : 357 euros par an / plafond de 2790 euros (bourse collège, montant)"
+name: "Taux 3 : 357 euros par an / plafond de 2790 euros"
+keywords:
+  - bourse collège
+  - montant
 description: RFR = 2700 euros < plafond de 2790 euros pour le montant de 357 euros
 period: "month:2014-12"
 individus:

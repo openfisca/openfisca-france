@@ -1,4 +1,7 @@
-name: 33_Couple, dont 1 femme enceinte (foyer, rsa)
+name: 33_Couple, dont 1 femme enceinte
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-11"
 individus:

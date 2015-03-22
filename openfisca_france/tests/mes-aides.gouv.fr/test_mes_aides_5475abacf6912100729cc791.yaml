@@ -1,4 +1,7 @@
-name: Retraites et biens immobiliers du conjoint à prendre en compte (aspa, base ressources)
+name: Retraites et biens immobiliers du conjoint à prendre en compte
+keywords:
+  - aspa
+  - base ressources
 description: Les ressources du concubin font échec au droit Aspa du demandeur
 period: "month:2014-11"
 individus:

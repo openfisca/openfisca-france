@@ -1,4 +1,5 @@
-name: Le montant est multiplié par le nombre d'enfants scolarisés au lycée (bourse lycée)
+name: Le montant est multiplié par le nombre d'enfants scolarisés au lycée
+keywords: bourse lycée
 description: |
   Ici 2 parents avec 2 enfants au lycée.
   RFR = 0 donc 10 parts, montant pour 1 enfant = 10*45,3 = 453

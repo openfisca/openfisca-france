@@ -1,4 +1,8 @@
-name: "Cas général : pas d'éligibilité si le demandeur a moins de 65 ans (age, aspa, eligibilité)"
+name: "Cas général : pas d'éligibilité si le demandeur a moins de 65 ans"
+keywords:
+  - age
+  - aspa
+  - eligibilité
 description: Le demandeur a 65 ans et aucune ressource. Dans le cas général (pas d'inaptitude au travail) il n'est pas éligible.
 period: "month:2015-02"
 individus:

@@ -1,4 +1,7 @@
-name: RFR < plafond 10 parts (bourse lycée, parts)
+name: RFR < plafond 10 parts
+keywords:
+  - bourse lycée
+  - parts
 description: |
   Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
   Nombre de parts = 10 car rfr = 5800, points de charge = 9 et plafond = 5889

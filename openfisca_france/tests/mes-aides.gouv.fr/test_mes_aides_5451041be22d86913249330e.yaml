@@ -1,4 +1,7 @@
-name: "Auto-entrepreneur Achat-Vente (rsa, tns)"
+name: "Auto-entrepreneur Achat-Vente"
+keywords:
+  - rsa
+  - tns
 description: |
   Revenu brut mensuel : 1000
   Net abattu : (1-14.2%) * 1000 = 858

@@ -1,4 +1,7 @@
-name: 2 allocataires, barème octobre 2014 (aspa, montant)
+name: 2 allocataires, barème octobre 2014
+keywords:
+  - aspa
+  - montant
 description: Le montant a été revalorisé à 1242 euros.
 period: "month:2014-11"
 individus:

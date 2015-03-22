@@ -1,4 +1,5 @@
-name: 121_Neutral revenus pro (rsa)
+name: 121_Neutral revenus pro
+keywords: rsa
 description: Les ressources ne sont plus perçues => Neutralisation
 period: "month:2015-01"
 individus:

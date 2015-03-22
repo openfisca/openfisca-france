@@ -1,4 +1,8 @@
-name: "Couple, somme des revenus < plafond (cmu-c, cmu-c/acs, plafonds)"
+name: Couple, somme des revenus < plafond
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - plafonds
 description: Des ressources inférieures au plafond CMUc pour un couple marié permet l'accès à la prestation.
 period: "month:2014-12"
 individus:

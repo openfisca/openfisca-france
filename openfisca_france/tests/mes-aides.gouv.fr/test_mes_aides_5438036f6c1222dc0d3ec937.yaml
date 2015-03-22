@@ -1,4 +1,7 @@
-name: Pas d'éligibilité si on n'a pas travaillé 5 ans au cours des 10 dernières années (ass, eligibilité)
+name: Pas d'éligibilité si on n'a pas travaillé 5 ans au cours des 10 dernières années
+keywords:
+  - ass
+  - eligibilité
 description:
 period: "month:2014-10"
 individus:

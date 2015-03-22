@@ -1,4 +1,7 @@
-name: Le montant affiché est multiplié par le nombre d'enfants déclarés au collège (bourse collège, montant)
+name: Le montant affiché est multiplié par le nombre d'enfants déclarés au collège
+keywords:
+  - bourse collège
+  - montant
 description: |
   Ici, RFR = 0 donc éligible au montant max. de 357 euros par enfant
   4 enfants déclarés dont deux comme scolarisés au collège : montant servi = 357 * 2 = 714

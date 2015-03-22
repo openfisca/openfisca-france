@@ -1,4 +1,8 @@
-name: "Couple + 1 enfant hébergés à titre gratuit < plafond (base ressources, cmu-c/acs, forfait logement)"
+name: Couple + 1 enfant hébergés à titre gratuit < plafond
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - forfait logement
 description: Un couple ayant un enfant hébergés à titre gratuit a droit à la CMUC si ses ressources = 1287 = 1157 + 130 (forfait logement)
 period: "month:2015-01"
 individus:

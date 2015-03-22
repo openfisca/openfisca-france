@@ -1,4 +1,7 @@
-name: 27_Couple dont jeune < 25 ans (foyer, rsa)
+name: 27_Couple dont jeune < 25 ans
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-11"
 individus:

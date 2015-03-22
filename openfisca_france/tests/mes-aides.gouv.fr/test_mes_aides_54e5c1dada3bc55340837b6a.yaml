@@ -1,4 +1,8 @@
-name: Pas d'eval forfaitaire si le conjoint a moins de 25 ans et si somme des salaires < plafond (al, base ressources, eval forfaitaire)
+name: Pas d'eval forfaitaire si le conjoint a moins de 25 ans et si somme des salaires < plafond
+keywords:
+  - al
+  - base ressources
+  - eval forfaitaire
 description: |
   Le demandeur a 34 ans mais le conjoint a 22 ans.
   On n'applique pas l'eval forfaitaire car le demandeur n'a déclaré que 1000 euros mensuels, ce qui est inférieur au plafond de 1273 euros.

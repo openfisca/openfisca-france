@@ -1,4 +1,8 @@
-name: Couple cumul retraites et salaire (abattements, aspa, plafonds)
+name: Couple cumul retraites et salaire
+keywords:
+  - abattements
+  - aspa
+  - plafonds
 description: |
   Demandeur = 500 euros de retraite + 833 euros de salaire
   Application abattement de 1,5 SMIC d' où 833 - 728,77 = 104,23 euros

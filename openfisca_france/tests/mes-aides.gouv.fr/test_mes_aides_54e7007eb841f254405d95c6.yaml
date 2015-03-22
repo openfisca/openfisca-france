@@ -1,4 +1,7 @@
-name: "14 Cf - enfant de plus de 20 ans (age, cf)"
+name: "14 Cf - enfant de plus de 20 ans"
+keywords:
+  - age
+  - cf
 description: |
   Pour avoir droit au complément familial en métropole, il faut avoir trois enfants à charge âgés de 3 à 20 ans.
   Dans le cas, il y 2 enfants de 16 et 17 ans et un enfant de 21 ans donc pas de droit au Cf.

@@ -1,4 +1,8 @@
-name: "Plafond CMU-C pour 4 personnes (cmu-c, cmu-c/acs, plafonds)"
+name: "Plafond CMU-C pour 4 personnes"
+keywords:
+  - "cmu-c"
+  - "cmu-c/acs"
+  - plafonds
 description: |
   Plafond CMU-C pour 4 personnes : 18153 euros.
   Ici éligible aux AF : le montant simulé de ces ressources est inclus dans la base ressources.

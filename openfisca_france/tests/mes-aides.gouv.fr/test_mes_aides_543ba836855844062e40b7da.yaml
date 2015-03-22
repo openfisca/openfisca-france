@@ -1,4 +1,5 @@
-name: Montant de base pour personnes seules (cf)
+name: Montant de base pour personnes seules
+keywords: cf
 description: |
   Montant = taux de base (41,65%) * BMAF (406,21) = 169.19
   Pour les personnes seules, les ressources doivent être comprises entre 22813 € et 45623 €

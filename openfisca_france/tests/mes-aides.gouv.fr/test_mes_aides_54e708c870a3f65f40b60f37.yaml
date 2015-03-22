@@ -1,4 +1,7 @@
-name: 18 Cf Ressources supérieures au plafond (base ressources, cf)
+name: 18 Cf Ressources supérieures au plafond
+keywords:
+  - base ressources
+  - cf
 description: |
   Le plafond de ressources du Cf pour un couple avec un seul revenu d'activité et 3 enfants est de 37 555 €.
   Les ressources 2013 du foyer (40 000 €) dépassent le plafond.

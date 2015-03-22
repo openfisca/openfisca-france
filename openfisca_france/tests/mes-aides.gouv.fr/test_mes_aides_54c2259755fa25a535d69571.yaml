@@ -1,4 +1,8 @@
-name: Cas RL < 45 (al, location, taux loyer)
+name: Cas RL < 45
+keywords:
+  - al
+  - location
+  - taux loyer
 description: |
   On veut rentrer dans ce test dans le cas où RL est inférieur à 45
   Dans l'exemple, personne seule en zone 1, loyer = 90 euros, salaires 2013 = 7000 euros

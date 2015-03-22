@@ -1,4 +1,5 @@
-name: Parent isolé, non éligible si ressources > plafond (cf)
+name: Parent isolé, non éligible si ressources > plafond
+keywords: cf
 description:
 period: "month:2014-10"
 individus:

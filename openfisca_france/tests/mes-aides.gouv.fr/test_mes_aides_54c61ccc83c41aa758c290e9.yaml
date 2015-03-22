@@ -1,0 +1,96 @@
+name: Les ressources du conjoint doivent être ajoutées à la base ressources
+keywords:
+  - al
+  - base ressources
+description: |
+  Ce test vérifie simplement que les ressources n-2 déclarées par le conjoint sont bien intégrées dans la base de ressources.
+  Ici il déclare 3597 * 4 = 14388 euros de revenus et 3000 euros de pensions alimentaires versées donc R = (14388 * 0.9) - 3000 ~= 10000
+  
+  L	352,92
+  C	53,23
+  E	406,15
+  R	10000
+  R0	6576
+  Rp	3424
+  Tf	3,15
+  LR	312,15
+  RL	113,06
+  Tl	0,394
+  Tp	3,544
+  P0	34,73
+  P1	121,35
+  Pp	156,08
+  AL	248,82
+period: "month:2015-01"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    agem: 413
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54c61ba694cccbb0584256c1
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 413
+    alr:
+      2013: 3597
+    birth: "1980-08-12"
+    cho:
+      2013: 3597
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54c61ba694cccbb0584256b4
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 3597
+    sal:
+      2013: 3597
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 54c61ba694cccbb0584256c1
+    - 54c61ba694cccbb0584256b4
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants:
+    - 54c61ba694cccbb0584256c1
+    - 54c61ba694cccbb0584256b4
+  f6el:
+    2013: 3000
+  personnes_a_charge:
+  rfr:
+menages:
+  conjoint: 54c61ba694cccbb0584256b4
+  depcom: 75111
+  enfants:
+  loyer: 1000
+  personne_de_reference: 54c61ba694cccbb0584256c1
+  statut_occupation: 4
+output_variables:
+  aide_logement: 248.82

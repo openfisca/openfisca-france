@@ -1,4 +1,7 @@
-name: Ressources exclues (ass, base ressources)
+name: Ressources exclues
+keywords:
+  - ass
+  - base ressources
 description:
 period: "month:2014-11"
 individus:

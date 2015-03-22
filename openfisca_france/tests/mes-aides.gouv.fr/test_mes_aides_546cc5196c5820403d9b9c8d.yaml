@@ -1,4 +1,8 @@
-name: "Couple qui touche une AL, forfait logement de 120 euros fait dépasser le plafond (base ressources, cmu-c/acs, forfait logement)"
+name: Couple qui touche une AL, forfait logement de 120 euros fait dépasser le plafond
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - forfait logement
 description: |
   Forfait logement pour 2 personnes qui touchent une allocation logement : 120 €
   Plafond 1080 euros

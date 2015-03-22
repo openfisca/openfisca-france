@@ -1,4 +1,5 @@
-name: Chômeur seul, pension alimentaire (rsa)
+name: Chômeur seul, pension alimentaire
+keywords: rsa
 description:
 period: "month:2014-07"
 individus:

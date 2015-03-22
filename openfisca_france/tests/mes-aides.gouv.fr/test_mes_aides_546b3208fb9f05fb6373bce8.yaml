@@ -1,4 +1,7 @@
-name: 24_Couple de jeunes, < 25 ans, enceinte (foyer, rsa)
+name: 24_Couple de jeunes, < 25 ans, enceinte
+keywords:
+  - foyer
+  - rsa
 description:
 period: "month:2014-11"
 individus:

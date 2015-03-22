@@ -1,4 +1,7 @@
-name: Les enfants qui travaillent et gagnent moins de 55% du smic sont considérés à charge (af, enfants à charge)
+name: Les enfants qui travaillent et gagnent moins de 55% du smic sont considérés à charge
+keywords:
+  - af
+  - enfants à charge
 description: L'enfant gagne ici 800 euros nets par mois ce qui est moins de 55% du smic brut mensuel (893,25 euros), les allocations sont donc versées.
 period: "month:2015-01"
 individus:

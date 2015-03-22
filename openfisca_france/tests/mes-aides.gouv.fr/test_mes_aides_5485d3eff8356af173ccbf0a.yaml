@@ -1,4 +1,7 @@
-name: "Taux 2 : 228 euros par an / plafond de 7908 euros (bourse collège, montant)"
+name: "Taux 2 : 228 euros par an / plafond de 7908 euros"
+keywords:
+  - bourse collège
+  - montant
 description: RFR = 7900 euros < plafond de 7908 euros pour un montant de 228 euros
 period: "month:2014-12"
 individus:

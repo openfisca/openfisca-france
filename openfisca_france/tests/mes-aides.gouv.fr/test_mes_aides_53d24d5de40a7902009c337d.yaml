@@ -1,4 +1,7 @@
-name: Pas d'ASPA si ressources > plafond (aspa, plafonds)
+name: Pas d'ASPA si ressources > plafond
+keywords:
+  - aspa
+  - plafonds
 description:
 period: "month:2014-07"
 individus:

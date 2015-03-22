@@ -1,4 +1,7 @@
-name: "Parent élevant seul ses enfants : 3 points (bourse lycée, points de charge)"
+name: "Parent élevant seul ses enfants : 3 points"
+keywords:
+  - bourse lycée
+  - points de charge
 description: |
   3 points de charge supplémentaires pour un parent élevant seul un enfant.
   Points de charge = 9 + 3 = 12

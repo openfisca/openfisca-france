@@ -1,4 +1,8 @@
-name: Le forfait de charges est inchangé pour un couple en colocation (al, colocation, location)
+name: Le forfait de charges est inchangé pour un couple en colocation
+keywords:
+  - al
+  - colocation
+  - location
 description: |
   On teste ici simplement que le forfait de charges spécial pour les personnes seules en colocation n'est pas appliqué aux couples, qui gardent le même forfait de charges qu'un couple qui n'est pas en colocation.
   

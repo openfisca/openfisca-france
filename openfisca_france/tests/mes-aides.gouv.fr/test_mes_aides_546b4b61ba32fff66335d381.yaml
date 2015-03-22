@@ -1,4 +1,7 @@
-name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré) (majoration, rsa)
+name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré)
+keywords:
+  - majoration
+  - rsa
 description:
 period: "month:2014-11"
 individus:

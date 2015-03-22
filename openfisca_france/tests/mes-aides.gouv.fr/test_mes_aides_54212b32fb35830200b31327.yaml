@@ -1,4 +1,7 @@
-name: Montant soustrait de 50% de la valeur locative des biens immobiliers non loués (patrimoine, rsa)
+name: Montant soustrait de 50% de la valeur locative des biens immobiliers non loués
+keywords:
+  - patrimoine
+  - rsa
 description:
 period: "month:2014-09"
 individus:

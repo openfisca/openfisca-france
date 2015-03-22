@@ -1,4 +1,8 @@
-name: "Couple hébergé à titre gratuit > plafond (base ressources, cmu-c/acs, forfait logement)"
+name: Couple hébergé à titre gratuit > plafond
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - forfait logement
 description: Un couple hébergé à titre gratuit n'a pas droit à la CMUC si ses ressources = 1091 = 984 + 107 (forfait logement)
 period: "month:2015-01"
 individus:

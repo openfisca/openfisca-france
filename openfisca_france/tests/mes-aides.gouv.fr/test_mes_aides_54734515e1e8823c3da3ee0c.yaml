@@ -1,4 +1,7 @@
-name: "3 enfants de plus de 14 ans : majoration pour tous les enfants (af, majoration)"
+name: "3 enfants de plus de 14 ans : majoration pour tous les enfants"
+keywords:
+  - af
+  - majoration
 description: |
   Montant de base pour 3 enfants : 295,05 euros
   L'aîné a plus de 14 ans, les deux autres moins de 14 ans

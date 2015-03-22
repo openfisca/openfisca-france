@@ -1,4 +1,7 @@
-name: Chômeur, 1 enfant, locataire (majoration, rsa)
+name: Chômeur, 1 enfant, locataire
+keywords:
+  - majoration
+  - rsa
 description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour trancher)"
 period: "month:2014-07"
 individus:

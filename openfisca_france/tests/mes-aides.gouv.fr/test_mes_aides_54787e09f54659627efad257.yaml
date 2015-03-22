@@ -1,4 +1,7 @@
-name: "Les ressources des enfants de moins de 20 ans sont incluses dans le calcul (base ressources, cmu-c/acs)"
+name: Les ressources des enfants de moins de 20 ans sont incluses dans le calcul
+keywords:
+  - base ressources
+  - "cmu-c/acs"
 description: |
   Le demandeur a des ressources de 15000€ inférieures au seuil de l'ACS.
   Mais le foyer comporte un enfant à charge, qui a perçu 2600€ dans la période de référence.

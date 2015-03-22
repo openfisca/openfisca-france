@@ -1,4 +1,7 @@
-name: Montant mensuel minimal = 16.11 (ass, montant)
+name: Montant mensuel minimal = 16.11
+keywords:
+  - ass
+  - montant
 description: Si le montant calculé est < à 16.11, le montant réel est 0
 period: "month:2014-09"
 individus:
