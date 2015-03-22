@@ -353,14 +353,18 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2014(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
+        cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
+        cf = simulation.calculate('cf', period)
         rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
         paje_base = simulation.calculate_divide('paje_base', period)
         paje_clca = simulation.calculate_divide('paje_clca', period)
         paje_colca = simulation.calculate_divide('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
-        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf + paje_base + paje_clca + paje_colca)
+        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
+        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+
+        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca + paje_colca)
 
 
 @reference_formula
