@@ -1,14 +1,12 @@
 - period: "month:2015-03"
   input_variables:
-    apprenti: 1
     apprentissage_contrat_debut: "2013-01-01"
     birth: "1996-01-01"
   output_variables:
+    apprenti: 1
     remuneration_apprenti: 35 * 52 * 9.61 * .49 / 12
 - period: "month:2015-03"
   input_variables:
-    apprenti:
-      "2013-01-01": 1
     apprentissage_contrat_debut:
       "2013-01-01": "2013-01-01"
     birth: "1996-01-01"

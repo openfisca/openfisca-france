@@ -32,12 +32,24 @@ from numpy import datetime64, timedelta64
 from ....base import *  # noqa analysis:ignore
 
 
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"L'individu est apprenti",
-    name = 'apprenti',
-    )
+@reference_formula
+class apprenti(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'individu est apprenti"
+    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age = simulation.calculate('age', period)
+        age_condition = (16 <= age) * (age < 25)
+        apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
+        duree_contrat = (
+            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            ).astype('timedelta64[Y]')
+        anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
+
+        return period, age_condition * anciennete_contrat
 
 
 @reference_formula
@@ -130,26 +142,27 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
         cotisations_patronales = simulation.calculate('cotisations_patronales', period)
-        exoneration_moins_11 = cotisations_patronales
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        exoneration_moins_11 = - cotisations_patronales
         cotisations_non_exonerees = [
             'accident_du_travail'
             ]
         for cotisation_non_exoneree in cotisations_non_exonerees:
-            exoneration_moins_11 -= simulation.calculate(cotisation_non_exoneree, period)
+            exoneration_moins_11 = exoneration_moins_11 + simulation.calculate(cotisation_non_exoneree, period)
 
         exoneration_plus_11 = 0
         cotisations_exonerees = [
-            'famille', 'maladie_employeur', 'vieillesse_employeur', 'vieillesse_deplafonne_employeur']
+            'famille', 'maladie_employeur', 'vieillesse_plafonnee_employeur', 'vieillesse_deplafonnee_employeur']
         for cotisation_exoneree in cotisations_exonerees:
-            exoneration_plus_11 -= simulation.calculate(cotisation_exoneree, period)
+            exoneration_plus_11 = exoneration_plus_11 - simulation.calculate(cotisation_exoneree, period)
 
         # TODO
         return period, (
             exoneration_plus_11 * (effectif_entreprise >= 11) +
             exoneration_moins_11 * (effectif_entreprise < 11)
             )
+
 
 @reference_formula
 class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):

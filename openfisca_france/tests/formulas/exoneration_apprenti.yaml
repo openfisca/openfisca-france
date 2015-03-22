@@ -1,0 +1,22 @@
+- period: "month:2015-03"
+  input_variables:
+    apprentissage_contrat_debut: "2014-01-01"
+    birth: "1998-01-01"
+    effectif_entreprise: 10
+  output_variables:
+    apprenti: 1
+    remuneration_apprenti: 35 * 52 * 9.61 * .25 / 12
+    exoneration_cotisations_patronales_apprenti: 149.13
+
+#- period: "month:2015-03"
+#  input_variables:
+#    apprentissage_contrat_debut:
+#      "2013-01-01": "2013-01-01"
+#    birth: "1996-01-01"
+#  output_variables:
+#    apprenti:
+#      "month:2015-01": 1
+#      "month:2015-03": 1
+#    remuneration_apprenti:
+#      "month:2015-01": 35 * 52 * 9.61 * .49 / 12
+#      "month:2015-03": 35 * 52 * 9.61 * .49 / 12
