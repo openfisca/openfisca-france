@@ -1,6 +1,6 @@
 name: Bénéficiaire AAH en couple et grossesse en cours (rsa)
 description: |
-  Couple et grossesse en cours avec Aah taux plein pour conjoint.
+  Couple et grossesse en cours avec Aah taux plein pour conjoint. 
   Le droit devrait être nul.
 period: "month:2014-08"
 individus:

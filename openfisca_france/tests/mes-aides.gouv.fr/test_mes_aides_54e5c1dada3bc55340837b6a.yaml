@@ -2,7 +2,7 @@ name: Pas d'eval forfaitaire si le conjoint a moins de 25 ans et si somme des sa
 description: |
   Le demandeur a 34 ans mais le conjoint a 22 ans.
   On n'applique pas l'eval forfaitaire car le demandeur n'a déclaré que 1000 euros mensuels, ce qui est inférieur au plafond de 1273 euros.
-
+  
   L	352,92
   C	53,23
   E	406,15

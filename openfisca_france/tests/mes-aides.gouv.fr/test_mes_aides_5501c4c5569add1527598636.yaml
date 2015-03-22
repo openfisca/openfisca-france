@@ -1,0 +1,93 @@
+name: "1 enfant : 9 points (bourse lycée, points de charge)"
+description: |
+  Pour une famille avec 1 seul enfant, 9 points de charge
+  Plafond RFR correspondant : 12098 euros
+  RFR déclaré : 12000, donc parts = 3, montant = 3*45,3 = 135,9
+period: "month:2015-03"
+individus:
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5501c4b56d04f819275813c7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5501c4b56d04f819275813c6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 175
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5501c4b56d04f819275813c5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 5501c4b56d04f819275813c5
+  parents:
+    - 5501c4b56d04f819275813c7
+    - 5501c4b56d04f819275813c6
+foyers_fiscaux:
+  declarants:
+    - 5501c4b56d04f819275813c7
+    - 5501c4b56d04f819275813c6
+  f6el:
+    2013: 0
+  personnes_a_charge: 5501c4b56d04f819275813c5
+  rfr:
+    2013: 12000
+menages:
+  conjoint: 5501c4b56d04f819275813c6
+  depcom: 67482
+  enfants: 5501c4b56d04f819275813c5
+  personne_de_reference: 5501c4b56d04f819275813c7
+  statut_occupation: 6
+output_variables:
+  bourse_lycee: 135.9

@@ -2,7 +2,7 @@ name: "Personne éligible au RSA socle : éligibiité sans condition de ressourc
 description: |
   Le bénéficiaire du RSA socle a droit à la CMU-C peu importe ses ressources déclarées en année glissante.
   Cf. L861-2 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745379
-
+  
   Dans le cas testé, le demandeur déclare 200 euros par mois de salaire sur les 3 derniers mois et est donc éligible à la fois au RSA socle et au RSA activité.
   Il déclare également 20000 euros de salaires sur l'année glissante, ce qui devrait en théorie lui enlever le droit à la CMU-C. Mais la fraction de RSA socle dont il dispose lui octroie automatiquement le droit à la CMU-C.
 period: "month:2014-11"

@@ -1,0 +1,93 @@
+name: RFR < plafond 3 parts (bourse lycée, parts)
+description: |
+  Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
+  Nombre de parts = 3 car rfr = 12000, points de charge = 9 et plafond = 12098
+  Montant = 3 * 45,3 = 271,8 euros
+period: "month:2015-03"
+individus:
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016783110d64385a0318e6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016783110d64385a0318e5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 175
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016783110d64385a0318e4
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 55016783110d64385a0318e4
+  parents:
+    - 55016783110d64385a0318e6
+    - 55016783110d64385a0318e5
+foyers_fiscaux:
+  declarants:
+    - 55016783110d64385a0318e6
+    - 55016783110d64385a0318e5
+  f6el:
+    2013: 0
+  personnes_a_charge: 55016783110d64385a0318e4
+  rfr:
+    2013: 12000
+menages:
+  conjoint: 55016783110d64385a0318e5
+  depcom: 67482
+  enfants: 55016783110d64385a0318e4
+  personne_de_reference: 55016783110d64385a0318e6
+  statut_occupation: 6
+output_variables:
+  bourse_lycee: 135.9

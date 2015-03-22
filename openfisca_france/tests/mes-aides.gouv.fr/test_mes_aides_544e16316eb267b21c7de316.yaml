@@ -1,5 +1,5 @@
 name: Neutralisation du RSA par l'ARE (rsa)
-description:
+description: 
 period: "month:2014-10"
 individus:
   activite: 1

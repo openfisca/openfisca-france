@@ -1,0 +1,115 @@
+name: "2ème enfant : 1 point (bourse lycée, points de charge)"
+description: |
+  1 point de charge supplémentaire pour le deuxième enfant
+  Points de charge = 10
+  Plafond RFR correspondant : 13441 euros
+  RFR déclaré : 13400, donc parts = 3, montant = 3*45,3 = 135,9
+period: "month:2015-03"
+individus:
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016893110d64385a0318ed
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016893110d64385a0318ec
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 175
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016893110d64385a0318eb
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 0
+    agem: 7
+    birth: "2014-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016893110d64385a0318ea
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 55016893110d64385a0318eb
+    - 55016893110d64385a0318ea
+  parents:
+    - 55016893110d64385a0318ed
+    - 55016893110d64385a0318ec
+foyers_fiscaux:
+  declarants:
+    - 55016893110d64385a0318ed
+    - 55016893110d64385a0318ec
+  f6el:
+    2013: 0
+  personnes_a_charge:
+    - 55016893110d64385a0318eb
+    - 55016893110d64385a0318ea
+  rfr:
+    2013: 13400
+menages:
+  conjoint: 55016893110d64385a0318ec
+  depcom: 67482
+  enfants:
+    - 55016893110d64385a0318eb
+    - 55016893110d64385a0318ea
+  personne_de_reference: 55016893110d64385a0318ed
+  statut_occupation: 6
+output_variables:
+  bourse_lycee: 135.9

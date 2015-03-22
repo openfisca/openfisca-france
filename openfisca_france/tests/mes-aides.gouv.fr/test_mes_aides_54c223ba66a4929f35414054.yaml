@@ -2,7 +2,7 @@ name: Cas RL compris entre 45 et 75 (al, location, taux loyer)
 description: |
   On veut rentrer dans ce test dans le cas où RL est compris entre 45 et 75
   Dans l'exemple, personne seule en zone 1, loyer = 150 euros, salaires 2013 = 9000 euros
-
+  
   L	150
   C	53,23
   E	203,23

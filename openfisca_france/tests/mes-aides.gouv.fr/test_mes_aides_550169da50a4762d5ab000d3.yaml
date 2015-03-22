@@ -1,0 +1,133 @@
+name: "3ème enfant : 2 points (bourse lycée, points de charge)"
+description: |
+  2 points de charge supplémentaires pour le 3ème enfant à charge
+  Points de charge = 9 + 1 + 2 = 12
+  Plafond pour 3 parts correspondant :  16130 euros
+  RFR = 16100, donc montant = 135,9
+period: "month:2015-03"
+individus:
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550169b2cc1bb4365a5d7269
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550169b2cc1bb4365a5d7268
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 175
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550169b2cc1bb4365a5d7267
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 0
+    agem: 7
+    birth: "2014-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550169b2cc1bb4365a5d7266
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 0
+    agem: 7
+    birth: "2014-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550169b2cc1bb4365a5d7265
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 550169b2cc1bb4365a5d7267
+    - 550169b2cc1bb4365a5d7266
+    - 550169b2cc1bb4365a5d7265
+  parents:
+    - 550169b2cc1bb4365a5d7269
+    - 550169b2cc1bb4365a5d7268
+foyers_fiscaux:
+  declarants:
+    - 550169b2cc1bb4365a5d7269
+    - 550169b2cc1bb4365a5d7268
+  f6el:
+    2013: 0
+  personnes_a_charge:
+    - 550169b2cc1bb4365a5d7267
+    - 550169b2cc1bb4365a5d7266
+    - 550169b2cc1bb4365a5d7265
+  rfr:
+    2013: 16100
+menages:
+  conjoint: 550169b2cc1bb4365a5d7268
+  depcom: 67482
+  enfants:
+    - 550169b2cc1bb4365a5d7267
+    - 550169b2cc1bb4365a5d7266
+    - 550169b2cc1bb4365a5d7265
+  personne_de_reference: 550169b2cc1bb4365a5d7269
+  statut_occupation: 6
+output_variables:
+  bourse_lycee: 135.9

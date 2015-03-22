@@ -1,0 +1,93 @@
+name: RFR < plafond 10 parts (bourse lycée, parts)
+description: |
+  Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
+  Nombre de parts = 10 car rfr = 5800, points de charge = 9 et plafond = 5889
+  Montant = 10 * 45,3 = 453 euros
+period: "month:2015-03"
+individus:
+  - age: 34
+    agem: 414
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5500761a3774028f471fb19b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    agem: 414
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5500761a3774028f471fb19a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 174
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5500761a3774028f471fb199
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 5500761a3774028f471fb199
+  parents:
+    - 5500761a3774028f471fb19b
+    - 5500761a3774028f471fb19a
+foyers_fiscaux:
+  declarants:
+    - 5500761a3774028f471fb19b
+    - 5500761a3774028f471fb19a
+  f6el:
+    2013: 0
+  personnes_a_charge: 5500761a3774028f471fb199
+  rfr:
+    2013: 5800
+menages:
+  conjoint: 5500761a3774028f471fb19a
+  depcom: 67482
+  enfants: 5500761a3774028f471fb199
+  personne_de_reference: 5500761a3774028f471fb19b
+  statut_occupation: 6
+output_variables:
+  bourse_lycee: 453

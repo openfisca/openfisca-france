@@ -1,0 +1,64 @@
+name: "Parent élevant seul ses enfants : 3 points (bourse lycée, points de charge)"
+description: |
+  3 points de charge supplémentaires pour un parent élevant seul un enfant.
+  Points de charge = 9 + 3 = 12
+  Plafond pour 3 parts correspondant : 16130 euros
+  RFR = 16100, donc montant = 135,9
+period: "month:2015-03"
+individus:
+  - age: 34
+    agem: 415
+    alr:
+      2013: 0
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016d38c1724a2b5a08c153
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    agem: 175
+    birth: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55016d38c1724a2b5a08c152
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 55016d38c1724a2b5a08c152
+  parents: 55016d38c1724a2b5a08c153
+foyers_fiscaux:
+  declarants: 55016d38c1724a2b5a08c153
+  f6el:
+    2013: 0
+  personnes_a_charge: 55016d38c1724a2b5a08c152
+  rfr:
+    2013: 16100
+menages:
+  depcom: 67482
+  enfants: 55016d38c1724a2b5a08c152
+  personne_de_reference: 55016d38c1724a2b5a08c153
+  statut_occupation: 6
+output_variables:
+  bourse_lycee: 135.9

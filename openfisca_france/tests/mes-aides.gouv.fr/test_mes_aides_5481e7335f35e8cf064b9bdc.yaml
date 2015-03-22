@@ -1,5 +1,5 @@
 name: Pas d'ASI si pas retraité (asi, eligibilité)
-description:
+description: 
 period: "month:2014-12"
 individus:
   age: 34
