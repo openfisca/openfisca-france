@@ -57,7 +57,7 @@
         <NODE code="rafp_employe" color="249,208,211" desc="Retraite additionnelle de la fonction publique (employé)" shortname="RAFP" />
       </NODE>
       <NODE code="cotisations_salariales_non_contributives" color="249,208,211" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncontrib" >
-      <NODE code="maladie_employe" color="249,208,211" desc="Maladie (employé)" shortname="Maladie" />
+      <NODE code="mmid_salarie" color="249,208,211" desc="Maladie (employé)" shortname="Maladie" />
       <NODE code="contribution_exceptionnelle_solidarite_employe" color="249,208,211" desc="Contribution exceptionnelle solidarite (employé)" shortname="Contrib. excep. temp." />
     </NODE>
     </NODE>

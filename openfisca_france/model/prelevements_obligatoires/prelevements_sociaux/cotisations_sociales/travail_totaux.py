@@ -180,11 +180,11 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
         period = period
         contribution_exceptionnelle_solidarite_employe = simulation.calculate_add(
             'contribution_exceptionnelle_solidarite_employe', period)
-        maladie_employe = simulation.calculate_add('maladie_employe', period)
+        mmid_salarie = simulation.calculate_add('mmid_salarie', period)
 
         cotisations_salariales_non_contributives = (
             # prive
-            maladie_employe +
+            mmid_salarie +
             # public
             contribution_exceptionnelle_solidarite_employe
             )

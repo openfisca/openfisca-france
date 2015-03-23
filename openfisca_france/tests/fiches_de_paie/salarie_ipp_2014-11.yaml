@@ -48,7 +48,7 @@ output_variables:
 
   forfait_social: -3.8 # 47.49 de base
   cotisation_exceptionnelle_temporaire_employe: -5.98
-  maladie_employe: -34.5
+  mmid_salarie: -34.5
   # cotisations_salariales_non_contributives:
 
   apec_employe: -.73 - .38

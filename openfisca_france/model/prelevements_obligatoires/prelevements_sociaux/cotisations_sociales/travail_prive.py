@@ -484,7 +484,7 @@ class famille(SimpleFormulaColumn):
 
 
 @reference_formula
-class maladie_employe(SimpleFormulaColumn):
+class mmid_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation maladie (employé)"

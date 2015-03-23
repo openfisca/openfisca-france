@@ -90,7 +90,7 @@ output_variables:
   rafp_employe: 0
 
   # cotisations_salariales_non_contributives: 0
-  maladie_employe: -13.5 # regroupée avec vieillesse dans la fiche de paie
+  mmid_salarie: -13.5 # regroupée avec vieillesse dans la fiche de paie
   contribution_exceptionnelle_solidarite_employe: 0
   csgsald: -90.19
   mhsup: 0
