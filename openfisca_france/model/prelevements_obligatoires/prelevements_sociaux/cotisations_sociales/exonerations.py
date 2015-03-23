@@ -44,7 +44,7 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
             ]
         exonerations_montant = 0
         for exoneration in exonerations_geographiques:
-            exonerations_montant = exonerations_montant + simulation.calculate(exoneration, period)
+            exonerations_montant = exonerations_montant + simulation.calculate_add(exoneration, period)
 
         return period, exonerations_montant
 
