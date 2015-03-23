@@ -42,7 +42,7 @@ output_variables:
   agff_employeur: -30.15
   apec_employeur: -0.9
   arrco_employeur: -114.06
-  agirc_tranche_b_employeur: -41.13
+  agirc_employeur: -41.13
   assedic_employeur: -100.52
   cotisation_exceptionnelle_temporaire_employeur: -5.53
   vieillesse_deplafonnee_employeur: -40.21

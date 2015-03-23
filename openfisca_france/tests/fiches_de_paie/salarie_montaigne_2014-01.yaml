@@ -45,7 +45,7 @@ output_variables:
   ags: -11.95
   agff_employeur: -37.55
   agirc_gmp_employeur: 0
-  agirc_tranche_b_employeur: -108.26
+  agirc_employeur: -108.26
   apec_employeur: -0.31
   arrco_employeur: -143.31
   assedic_employeur: -(125.16 + 34.15)

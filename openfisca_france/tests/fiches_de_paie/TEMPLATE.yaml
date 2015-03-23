@@ -46,7 +46,7 @@ output_variables:
   ags: 0
   agff_employeur: 0
   agirc_gmp_employeur: 0
-  agirc_tranche_b_employeur: 0
+  agirc_employeur: 0
   apec_employeur: 0
   arrco_employeur: 0
   assedic_employeur: 0
