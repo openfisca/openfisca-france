@@ -186,16 +186,17 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
         for year_passed, rate in large_rate_by_year_passed.iteritems():
-            large_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
+            if (exoneration_relative_year_passed == year_passed).any():
+                large_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
 
         for year_passed, rate in small_rate_by_year_passed.iteritems():
-            small_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
+            if (exoneration_relative_year_passed == year_passed).any():
+                small_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
 
         exoneration_cotisations_zfu = eligible * assiette_allegement * (
             small_taux_exoneration * (effectif_entreprise <= 5) +
             large_taux_exoneration * (effectif_entreprise > 5)
             )
-
         return period, exoneration_cotisations_zfu
         # TODO: propager dans le temps
 
@@ -244,7 +245,8 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
             }  # TODO: insert in parameter
         ratio = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
-            ratio[exoneration_relative_year_passed == year_passed] = rate
+            if (exoneration_relative_year_passed == year_passed).any():
+                ratio[exoneration_relative_year_passed == year_passed] = rate
 
         exoneration_cotisations_zrd = ratio * taux_exoneration * assiette_allegement * eligible
 
