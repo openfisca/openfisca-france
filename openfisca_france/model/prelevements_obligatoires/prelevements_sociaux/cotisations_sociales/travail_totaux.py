@@ -71,7 +71,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
         agff_employeur = simulation.calculate_add('agff_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
-        assedic_employeur = simulation.calculate('assedic_employeur', period)
+        chomage_employeur = simulation.calculate('chomage_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
             'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = simulation.calculate_add('fonds_emploi_hospitalier', period)
@@ -87,7 +87,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
             agff_employeur +
             apec_employeur +
             arrco_employeur +
-            assedic_employeur +
+            chomage_employeur +
             cotisation_exceptionnelle_temporaire_employeur +
             vieillesse_deplafonnee_employeur +
             vieillesse_plafonnee_employeur +
@@ -140,7 +140,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
         apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
-        assedic_employe = simulation.calculate_add('assedic_employe', period)
+        chomage_salarie = simulation.calculate_add('chomage_salarie', period)
         cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
             'cotisation_exceptionnelle_temporaire_employe', period)
         ircantec_employe = simulation.calculate_add('ircantec_employe', period)
@@ -155,7 +155,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             agirc_salarie +
             apec_salarie +
             arrco_salarie +
-            assedic_employe +
+            chomage_salarie +
             cotisation_exceptionnelle_temporaire_employe +
             vielleisse_deplafonnee_salarie +
             vielleisse_plafonnee_salarie +
