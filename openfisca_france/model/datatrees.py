@@ -161,61 +161,37 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    u"""enceinte""",  # Est enceinte
-                    u"""categ_inv""",  # Catégorie de handicap (AEEH)
-                    u"""coloc""",  # Vie en colocation
-                    u"""chobrut""",  # Chômage brut
-                    u"""rstbrut""",  # Retraite brute
-                    u"""aer""",  # Allocation équivalent retraite (AER)
-                    u"""f5sq""",
                     u"""adoption""",  # Enfant adopté
-                    u"""ass_precondition_remplie""",  # Éligible à l'ASS
+                    u"""alt""",  # Enfant en garde alternée
+                    u"""enceinte""",  # Est enceinte
+                    u"""inv""",  # Invalide
+                    u"""rempli_obligation_scolaire""",  # Rempli l'obligation scolaire
+                    u"""coloc""",  # Vie en colocation
+                    u"""logement_chambre""",  # Le logement est considéré comme une chambre
+                    u"""etr""",
+                    u"""f6ps""",  # Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)
+                    u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
+                    u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
+                    u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
                     u"""elig_creimp_jeunes""",  # Éligible au crédit d'impôt jeunes
-                    u"""indemnites_journalieres_maternite""",  # Indemnités journalières de maternité
-                    u"""indemnites_journalieres_paternite""",  # Indemnités journalières de paternité
-                    u"""indemnites_journalieres_adoption""",  # Indemnités journalières d'adoption
-                    u"""indemnites_journalieres_maladie""",  # Indemnités journalières de maladie
-                    u"""indemnites_journalieres_accident_travail""",  # Indemnités journalières d'accident du travail
-                    u"""indemnites_journalieres_maladie_professionnelle""",  # Indemnités journalières de maladie professionnelle
-                    u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
+                    u"""scolarite""",  # Scolarité de l'enfant : collège, lycée...
+                    u"""boursier""",  # Élève ou étudiant boursier
+                    u"""aah""",  # Allocation de l'adulte handicapé
+                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
+                    u"""inapte_travail""",  # Reconnu inapte au travail
+                    u"""taux_invalidite""",  # Taux d'invalidité
+                    u"""ass_precondition_remplie""",  # Éligible à l'ASS
+                    u"""categ_inv""",  # Catégorie de handicap (AEEH)
+                    u"""pensions_alimentaires_percues""",  # Pensions alimentaires perçues
+                    u"""gains_exceptionnels""",  # Gains exceptionnels
                     u"""allocation_aide_retour_emploi""",  # Allocation d'aide au retour à l'emploi
                     u"""allocation_securisation_professionnelle""",  # Allocation de sécurisation professionnelle
                     u"""prime_forfaitaire_mensuelle_reprise_activite""",  # Prime forfaitaire mensuelle pour la reprise d'activité
                     u"""indemnites_volontariat""",  # Indemnités de volontariat
                     u"""dedommagement_victime_amiante""",  # Dédommagement versé aux victimes de l'amiante
                     u"""prestation_compensatoire""",  # Dédommagement versé aux victimes de l'amiante
-                    u"""aah""",  # Allocation de l'adulte handicapé
-                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
-                    u"""gains_exceptionnels""",  # Gains exceptionnels
                     u"""pensions_invalidite""",  # Pensions d'invalidité
                     u"""bourse_enseignement_sup""",  # Bourse de l'enseignement supérieur
-                    u"""bourse_recherche""",  # Bourse de recherche
-                    u"""retraite_combattant""",  # Retraite du combattant
-                    u"""indemnites_stage""",  # Indemnités de stage
-                    u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
-                    u"""pensions_alimentaires_percues""",  # Pensions alimentaires perçues
-                    u"""etr""",
-                    u"""interets_epargne_sur_livrets""",  # Intérêts versés pour l'épargne sur livret
-                    u"""epargne_non_remuneree""",  # Épargne non rémunérée
-                    u"""revenus_capital""",  # Revenus du capital
-                    u"""valeur_locative_immo_non_loue""",  # Valeur locative des biens immobiliés possédés et non loués
-                    u"""valeur_locative_terrains_non_loue""",  # Valeur locative des terrains possédés et non loués
-                    u"""revenus_locatifs""",  # Revenus locatifs
-                    u"""inv""",  # Invalide
-                    u"""alt""",  # Enfant en garde alternée
-                    u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
-                    u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
-                    u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
-                    u"""boursier""",  # Élève ou étudiant boursier
-                    u"""f1tv""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans
-                    u"""f1tw""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans
-                    u"""f1tx""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans
-                    u"""sal_pen_exo_etr""",  # Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
-                    u"""f3vd""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
-                    u"""f3vf""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
-                    u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
-                    u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
-                    u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
                     u"""f5qm""",  # Agents généraux d’assurances: indemnités de cessation d’activité
                     u"""nbic_mvct""",  # Revenus industriels et commerciaux professionnels moins-values nettes à court terme
                     u"""aacc_gits""",  # Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)
@@ -241,22 +217,42 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""revimpres""",  # Revenus nets à imposer aux prélèvements sociaux
                     u"""pveximpres""",  # Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux
                     u"""pvtaimpres""",  # Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux
-                    u"""f6ps""",  # Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)
-                    u"""f6rs""",  # Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S
-                    u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
-                    u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
+                    u"""f5sq""",
+                    u"""tns_chiffre_affaires_micro_entreprise""",  # Chiffre d'affaires de micro-entreprise ou assimilée
+                    u"""tns_autres_revenus""",  # Autres revenus non salariés
+                    u"""tns_type_structure""",  # Type de structure associée au travailleur non salarié
+                    u"""tns_type_activite""",  # Valeur locative des biens immobiliés possédés et non loués
+                    u"""indemnites_stage""",  # Indemnités de stage
+                    u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
+                    u"""bourse_recherche""",  # Bourse de recherche
+                    u"""sal_pen_exo_etr""",  # Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif
+                    u"""nbsala""",  # Nombre de salariés dans l'établissement de l'emploi actuel
+                    u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
+                    u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
                     u"""allegement_fillon_mode_recouvrement""",  # Mode de recouvrement des allègements Fillon
+                    u"""apprentissage_contrat_debut""",  # Date de début du contrat d'apprentissage
                     u"""arrco_tranche_a_taux_employeur""",  # Taux ARRCO tranche A employeur) propre à l'entreprise
                     u"""arrco_tranche_a_taux_salarie""",  # Taux ARRCO tranche A salarié) propre à l'entreprise
                     u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
                     u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
+                    u"""indemnites_compensatrices_conges_payes""",
                     u"""contrat_de_travail""",  # Type contrat de travail
                     u"""contrat_de_travail_arrivee""",  # Date d'arrivée dans l'entreprise
                     u"""contrat_de_travail_depart""",  # Date de départ de l'entreprise
                     u"""contrat_de_travail_duree""",  # Type (durée determinée ou indéterminée) du contrat de travail
+                    u"""cotisation_sociale_mode_recouvrement""",  # Mode de recouvrement des cotisations sociales
+                    u"""depcom_entreprise""",  # Localisation entreprise (depcom)
+                    u"""code_postal_entreprise""",  # Localisation entreprise (Code postal)
                     u"""effectif_entreprise""",  # Effectif de l'entreprise
-                    u"""localisation_entreprise""",  # Localisation entreprise
+                    u"""entreprise_assujettie_cet""",  # Entreprise assujettie à la contribution économique territoriale
+                    u"""entreprise_assujettie_is""",  # Entreprise assujettie à l'impôt sur les sociétés (IS)
+                    u"""entreprise_assujettie_tva""",  # Entreprise assujettie à la TVA
+                    u"""entreprise_benefice""",  # Bénéfice de l'entreprise
+                    u"""entreprise_bilan""",  # Bilan de l'entreprise
+                    u"""entreprise_chiffre_affaire""",  # Chiffre d'affaire de l'entreprise
+                    u"""entreprise_creation""",  # Date de création de l'entreprise
                     u"""nombre_tickets_restaurant""",  # Nombre de tickets restaurant
+                    u"""nouvelle_bonification_indiciaire""",  # Nouvelle bonification indicaire
                     u"""prevoyance_obligatoire_cadre_taux_employe""",  # Taux de cotisation employeur pour la prévoyance obligatoire des cadres
                     u"""prevoyance_obligatoire_cadre_taux_employeur""",  # Taux de cotisation employeur pour la prévoyance obligatoire des cadres
                     u"""primes_salaires""",  # Indemnités, primes et avantages en argent
@@ -266,10 +262,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""ratio_alternants""",  # Ratio d'alternants dans l'effectif moyen
                     u"""redevable_taxe_apprentissage""",  # Entreprise redevable de la taxe d'apprentissage
                     u"""remboursement_transport_base""",  # Base pour le calcul du remboursement des frais de transport
+                    u"""indemnites_forfaitaires""",  # Indemnités forfaitaires (transport, nourriture)
                     u"""salaire_de_base""",  # Salaire de base
                     u"""titre_restaurant_taux_employeur""",  # Taux de participation de l'employeur au titre restaurant
                     u"""titre_restaurant_valeur_unitaire""",  # Valeur faciale unitaire du titre restaurant
                     u"""titre_restaurant_volume""",  # Volume des titres restaurant
+                    u"""traitement_indiciaire_brut""",  # Traitement indiciaire brut (TIB)
                     u"""type_sal""",  # Catégorie de salarié
                     u"""heures_duree_collective_entreprise""",  # Durée mensuelle collective dans l'entreprise (heures, temps plein)
                     u"""heures_non_remunerees_volume""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
@@ -277,11 +275,31 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""forfait_heures_remunerees_volume""",  # Volume des heures rémunérées à un forfait heures
                     u"""forfait_jours_remuneres_volume""",  # Volume des heures rémunérées à forfait jours
                     u"""volume_jours_ijss""",  # Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale
-                    u"""tns_chiffre_affaires_micro_entreprise""",  # Chiffre d'affaires de micro-entreprise ou assimilée
-                    u"""tns_autres_revenus""",  # Autres revenus non salariés
-                    u"""tns_type_structure""",  # Type de structure associée au travailleur non salarié
-                    u"""tns_type_activite""",  # Valeur locative des biens immobiliés possédés et non loués
-                    u"""scolarite""",  # Scolarité de l'enfant : collège, lycée...
+                    u"""epargne_non_remuneree""",  # Épargne non rémunérée
+                    u"""interets_epargne_sur_livrets""",  # Intérêts versés pour l'épargne sur livret
+                    u"""revenus_capital""",  # Revenus du capital
+                    u"""revenus_locatifs""",  # Revenus locatifs
+                    u"""valeur_locative_immo_non_loue""",  # Valeur locative des biens immobiliers possédés et non loués
+                    u"""valeur_locative_terrains_non_loue""",  # Valeur locative des terrains possédés et non loués
+                    u"""f1tv""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans
+                    u"""f1tw""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans
+                    u"""f1tx""",  # Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans
+                    u"""f3vd""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %
+                    u"""f3vf""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %
+                    u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
+                    u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
+                    u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
+                    u"""chobrut""",  # Chômage brut
+                    u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
+                    u"""rstbrut""",  # Retraite brute
+                    u"""aer""",  # Allocation équivalent retraite (AER)
+                    u"""retraite_combattant""",  # Retraite du combattant
+                    u"""indemnites_journalieres_maternite""",  # Indemnités journalières de maternité
+                    u"""indemnites_journalieres_paternite""",  # Indemnités journalières de paternité
+                    u"""indemnites_journalieres_adoption""",  # Indemnités journalières d'adoption
+                    u"""indemnites_journalieres_maladie""",  # Indemnités journalières de maladie
+                    u"""indemnites_journalieres_accident_travail""",  # Indemnités journalières d'accident du travail
+                    u"""indemnites_journalieres_maladie_professionnelle""",  # Indemnités journalières de maladie professionnelle
                     ]),
                 ]),
             ]),
@@ -647,41 +665,10 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
-                    u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
-                    u"""f2ck""",  # Crédit d'impôt égal au prélèvement forfaitaire déjà versé
-                    u"""f2dm""",  # Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %
-                    u"""f3vv_end_2010""",  # Pertes ouvrant droit au crédit d’impôt de 19 %
-                    u"""f5qf""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-6)
-                    u"""f5qg""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-5)
-                    u"""f5qn""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-4)
-                    u"""f5qo""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-3)
-                    u"""f5qp""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-2)
-                    u"""f5qq""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-1)
-                    u"""f5ga""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)
-                    u"""f5gb""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)
-                    u"""f5gc""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)
-                    u"""f5gd""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)
-                    u"""f5ge""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)
-                    u"""f5gf""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)
-                    u"""f5gg""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)
-                    u"""f5gh""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)
-                    u"""f5gi""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)
-                    u"""f5gj""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)
-                    u"""f5rn""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)
-                    u"""f5ro""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-5)
-                    u"""f5rp""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-4)
-                    u"""f5rq""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-3)
-                    u"""f5rr""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-2)
-                    u"""f5rw""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-1)
-                    u"""f5ht""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)
-                    u"""f5it""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)
-                    u"""f5jt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)
-                    u"""f5kt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)
-                    u"""f5lt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)
-                    u"""f5mt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hm""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
+                    u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
                     u"""f7va""",  # Dons à des organismes d'aides aux personnes établis dans un Etat européen
                     u"""f7vc""",  # Dons à des autres organismes établis dans un Etat européen
                     u"""f7uh_2007""",  # Intérêts payés la première année de remboursement du prêt pour l'habitation principale
@@ -988,14 +975,45 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7tw""",  # Dépenses de travaux dans l'habitation principale
                     u"""f7gh""",  # Investissements locatifs intermédiaires en métropole
                     u"""f7gi""",  # Investissements locatifs intermédiaires outre-mer
-                    u"""f8td_2002_2005""",  # Contribution exceptionnelle sur les hauts revenus
-                    u"""f8ti""",  # Revenus de l'étranger exonérés d'impôt
-                    u"""f8tk""",  # Revenus de l'étranger imposables
                     u"""f8tl""",  # Crédit d'impôt compétitivité emploi (CICE), entreprises bénéficiant de la restitution immédiate
                     u"""f8ts""",  # Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt
                     u"""f8uw""",  # Crédit d'impôt compétitivité emploi (CICE), autres entreprises
                     u"""f8wc__2008""",  # Crédit d'impôt en faveur des entreprises: Nouvelles technologies
                     u"""elig_creimp_exc_2008""",  # Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008
+                    u"""f8td_2002_2005""",  # Contribution exceptionnelle sur les hauts revenus
+                    u"""f8ti""",  # Revenus de l'étranger exonérés d'impôt
+                    u"""f8tk""",  # Revenus de l'étranger imposables
+                    u"""f5qf""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-6)
+                    u"""f5qg""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-5)
+                    u"""f5qn""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-4)
+                    u"""f5qo""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-3)
+                    u"""f5qp""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-2)
+                    u"""f5qq""",  # Déficits des revenus agricoles des années antérieures non encore déduits (n-1)
+                    u"""f5ga""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)
+                    u"""f5gb""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)
+                    u"""f5gc""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)
+                    u"""f5gd""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)
+                    u"""f5ge""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)
+                    u"""f5gf""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)
+                    u"""f5gg""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)
+                    u"""f5gh""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)
+                    u"""f5gi""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)
+                    u"""f5gj""",  # Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)
+                    u"""f5rn""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)
+                    u"""f5ro""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-5)
+                    u"""f5rp""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-4)
+                    u"""f5rq""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-3)
+                    u"""f5rr""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-2)
+                    u"""f5rw""",  # Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-1)
+                    u"""f5ht""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)
+                    u"""f5it""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)
+                    u"""f5jt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)
+                    u"""f5kt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)
+                    u"""f5lt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)
+                    u"""f5mt""",  # Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)
+                    u"""f2ck""",  # Crédit d'impôt égal au prélèvement forfaitaire déjà versé
+                    u"""f2dm""",  # Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %
+                    u"""f3vv_end_2010""",  # Pertes ouvrant droit au crédit d’impôt de 19 %
                     ]),
                 ]),
             ]),
@@ -1009,12 +1027,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'loyer',  # Loyer mensuel
                     'statut_occupation',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
-                    ]),
-                ]),
-            collections.OrderedDict([
-                ('label', u"""Autres"""),
-                ('children', [
-                    u"""taxe_habitation""",
                     ]),
                 ]),
             ]),

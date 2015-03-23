@@ -37,7 +37,9 @@ import os
 import pprint
 import sys
 
-from openfisca_france import entities, init_country, model
+from openfisca_core import formulas
+
+from openfisca_france import init_country, model
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
 except ImportError:
@@ -83,7 +85,8 @@ def cleanup_tree(entity, tree):
 
 def is_valid_input_column(column):
     return column.name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen') \
-        and column.formula_class is None and not column.survey_only
+        and issubclass(column.formula_class, formulas.SimpleFormula) and column.formula_class.function is None \
+        and not column.survey_only
 
 
 def iter_placed_tree(tree):
