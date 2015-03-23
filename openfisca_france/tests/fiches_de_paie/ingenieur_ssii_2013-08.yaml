@@ -39,7 +39,7 @@ output_variables:
 
   # cotisations_employeur_contributives: 0
   ags: -7.54
-  agff_tranche_a_employeur: -30.15
+  agff_employeur: -30.15
   apec_employeur: -0.9
   arrco_employeur: -114.06
   agirc_tranche_b_employeur: -41.13

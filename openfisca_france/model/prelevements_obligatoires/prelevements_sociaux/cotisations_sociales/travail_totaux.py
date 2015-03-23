@@ -68,7 +68,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         ags = simulation.calculate('ags', period)
-        agff_tranche_a_employeur = simulation.calculate_add('agff_tranche_a_employeur', period)
+        agff_employeur = simulation.calculate_add('agff_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
         assedic_employeur = simulation.calculate('assedic_employeur', period)
@@ -84,7 +84,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
         cotisations_employeur_contributives = (
             # prive
             ags +
-            agff_tranche_a_employeur +
+            agff_employeur +
             apec_employeur +
             arrco_employeur +
             assedic_employeur +
