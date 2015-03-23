@@ -732,3 +732,70 @@ class remuneration_principale(SimpleFormulaColumn):
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
             )
+
+
+@reference_formula
+class salaire_net_a_payer(SimpleFormulaColumn):
+    base_function = requested_period_added_value
+    column = FloatCol
+    entity_class = Individus
+    label = u"Salaire net à payer (fiche de paie)"
+    set_input = set_input_divide_by_period
+
+    def function(self, simulation, period):
+        '''
+        Calcul du salaire net à payer après déduction des sommes
+        dues par les salarié avancées par l'employeur
+        '''
+        period = period
+        salaire_net = simulation.calculate('salaire_net', period)
+        depense_cantine_titre_restaurant_employe = simulation.calculate(
+            'depense_cantine_titre_restaurant_employe')
+        indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
+        salaire_net_a_payer = (
+            salaire_net +
+            depense_cantine_titre_restaurant_employe +
+            indemnites_forfaitaires
+            )
+        return period, salaire_net_a_payer
+
+
+@reference_formula
+class salsuperbrut(SimpleFormulaColumn):
+    base_function = requested_period_added_value
+    column = FloatCol
+    entity_class = Individus
+    label = u"Salaires superbruts/coût du travail"
+    set_input = set_input_divide_by_period
+
+    def function(self, simulation, period):
+        period = period
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate_add('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
+        cotisations_employeur = simulation.calculate('cotisations_employeur', period)
+        depense_cantine_titre_restaurant_employeur = simulation.calculate(
+            'depense_cantine_titre_restaurant_employeur', period)
+        exoneration_cotisations_patronales_geographiques = simulation.calculate(
+            'exoneration_cotisations_patronales_geographiques', period)
+        allegement_fillon = simulation.calculate_add('allegement_fillon', period)
+        credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            'reintegration_titre_restaurant_employeur', period)
+        remuneration_principale = simulation.calculate('remuneration_principale', period)
+
+        tehr = simulation.calculate_divide('tehr', period)
+
+        salsuperbrut = (
+            salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
+            remuneration_principale +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement
+            - cotisations_employeur
+            - allegement_fillon
+            - exoneration_cotisations_patronales_geographiques
+            - credit_impot_competitivite_emploi
+            - tehr
+            )
+
+        return period, salsuperbrut

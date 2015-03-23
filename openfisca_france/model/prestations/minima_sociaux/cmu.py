@@ -198,7 +198,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         last_month = period.start.period('month').offset(-1)
 
         activite = simulation.calculate('activite', period)
-        salnet = simulation.calculate('salnet', previous_year)
+        salaire_net = simulation.calculate('salaire_net', previous_year)
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
@@ -230,7 +230,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         # Abattement sur revenus d'activité si chômage ou formation professionnelle
         abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
 
-        return period, ((salnet + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
+        return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
             indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +

@@ -94,7 +94,7 @@ output_variables:
   contribution_exceptionnelle_solidarite_employe: 0
   csgsald: -90.19
   mhsup: 0
-  salnet: 1405.62
+  salaire_net: 1405.62
 
   # salaire imposable
   csgsali: -42.44
