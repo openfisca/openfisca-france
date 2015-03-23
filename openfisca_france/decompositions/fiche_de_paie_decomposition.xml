@@ -4,7 +4,7 @@
     <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
       <NODE code="salsuperbrut" color="0,66,92" desc="Coût du travail" shortname="Coût travail" />
       <NODE code="remboursement_transport" color="0,66,92" desc="Remboursement transport" shortname="Remb. transport" />
-      <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. soc. pat.">
+      <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. soc. pat.">
           <NODE code="cotisations_patronales_contributives" color="249,208,211" desc="Cotisations sociales patronales contributives" shortname="Cotsoc pat contrib" >
             <NODE code="ags" color="249,208,211" desc="AGS" shortname="AGS" />
             <NODE code="agff_tranche_a_employeur" color="249,208,211" desc="AGFF (employeur)" shortname="AGFF" />

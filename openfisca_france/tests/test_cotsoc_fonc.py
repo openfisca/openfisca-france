@@ -76,7 +76,7 @@ def test():
                 cotisations_patronales_contributives = - 1371.80 - 20,
                 # pension_civile_employeur, rafp_employeur
 
-                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, transport csa,
 
                 pension_civile_employe = -167.80,
@@ -129,7 +129,7 @@ def test():
                 rafp_employeur = -20,
                 cotisations_patronales_contributives = -(546 + 20),
 
-                cotisations_patronales = -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
                 pension_civile_employe = -167.80,
@@ -186,7 +186,7 @@ def test():
                 rafp_employeur = -20,
                 cotisations_patronales_contributives = -(546 + 20 + 20),
                 # pension,  rafp, feh
-                cotisations_patronales = -(546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6),
 
                 pension_civile_employe = -167.80,
                 rafp_employe = -20,
@@ -238,7 +238,7 @@ def test():
 
                 cotisations_patronales_non_contributives = -465.92,
 
-                cotisations_patronales = -(
+                cotisations_employeur = -(
                     212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68
                     ),
 
@@ -305,7 +305,7 @@ def test():
                 rafp_employeur = -20,
                 cotisations_patronales_contributives = - 1371.80 - 20,
 
-                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
                 pension_civile_employe = -167.80,
@@ -371,7 +371,7 @@ def test():
                 famille = -108 * 2,
                 cotisations_patronales_non_contributives = -617.2,
 
-                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
+                cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 
                 pension_civile_employe = -167.80 * 2,
                 rafp_employe = -20 * 2,

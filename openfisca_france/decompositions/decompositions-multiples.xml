@@ -6,7 +6,7 @@
           <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
             <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
               <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
-              <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
+              <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
               <NODE code="allegement_fillon" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
               <NODE code="credit_impot_competitivite_emploi" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
               <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
@@ -166,7 +166,7 @@
         <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
           <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
-            <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
+            <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
             <NODE code="allegement_fillon" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
             <NODE code="credit_impot_competitivite_emploi" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
             <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />

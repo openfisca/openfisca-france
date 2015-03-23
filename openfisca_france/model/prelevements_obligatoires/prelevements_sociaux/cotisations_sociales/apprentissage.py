@@ -142,7 +142,7 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        cotisations_employeur = simulation.calculate('cotisations_patronales', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         exoneration_moins_11 = - cotisations_patronales
         cotisations_non_exonerees = [

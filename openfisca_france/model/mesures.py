@@ -234,7 +234,7 @@ def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salaria
     Il est égale à la valeur ajoutée produite par les résidents
     'men'
     '''
-    return rev_trav + rev_cap - cotisations_patronales - cotisations_salariales - cho
+    return rev_trav + rev_cap - cotisations_employeur - cotisations_salariales - cho
 
 
 @reference_formula
