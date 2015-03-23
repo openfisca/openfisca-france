@@ -25,3 +25,17 @@
     age: 40
   output_variables:
     agem: 40 * 12
+- name: "Âge (en années) d'après l'âge en années, le même jour d'une autre année"
+  period: "2013"
+  input_variables:
+    age:
+      2010: 30
+  output_variables:
+    age: 33
+- name: "Âge (en mois) d'après l'âge en mois, le même jour d'un autre mois"
+  period: "2013"
+  input_variables:
+    agem:
+      2010-07: 31 * 12
+  output_variables:
+    agem: 33 * 12 + 6

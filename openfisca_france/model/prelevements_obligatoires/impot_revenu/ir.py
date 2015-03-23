@@ -84,11 +84,21 @@ build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"
 
 @reference_formula
 class age(SimpleFormulaColumn):
+    base_function = missing_value
     column = AgeCol(val_type = "age")
     entity_class = Individus
     label = u"Âge (en années)"
 
     def function(self, simulation, period):
+        # If age is known at the same day & month of another year, compute the new age from it.
+        holder = self.holder
+        start = period.start
+        if holder._array_by_period is not None:
+            for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
+                last_start = last_period.start
+                if last_start.day == start.day and last_start.month == start.month:
+                    return period, last_array + (start.year - last_start.year)
+
         birth = simulation.get_array('birth', period)
         if birth is None:
             agem = simulation.get_array('agem', period)
@@ -100,11 +110,21 @@ class age(SimpleFormulaColumn):
 
 @reference_formula
 class agem(SimpleFormulaColumn):
+    base_function = missing_value
     column = AgeCol(val_type = "months")
     entity_class = Individus
     label = u"Âge (en mois)"
 
     def function(self, simulation, period):
+        # If agem is known at the same day of another month, compute the new agem from it.
+        holder = self.holder
+        start = period.start
+        if holder._array_by_period is not None:
+            for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
+                last_start = last_period.start
+                if last_start.day == start.day:
+                    return period, last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
+
         birth = simulation.get_array('birth', period)
         if birth is None:
             age = simulation.get_array('age', period)
