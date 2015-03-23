@@ -1,0 +1,27 @@
+- name: "Âge (en années) par défaut"
+  period: "2013"
+  output_variables:
+    age: 43
+- name: "Âge (en années) par défaut"
+  period: "2014"
+  output_variables:
+    age: 44
+- name: "Âge (en années) d'après l'âge en mois"
+  period: "2013"
+  input_variables:
+    agem: 40 * 12 + 6
+  output_variables:
+    age: 40
+- name: "Âge d'après la date de naissance"
+  period: "2013"
+  input_variables:
+    birth: "1973-01-01"
+  output_variables:
+    age: 40
+    agem: 40 * 12
+- name: "Âge (en mois) d'après l'âge en années"
+  period: "2013"
+  input_variables:
+    age: 40
+  output_variables:
+    agem: 40 * 12
