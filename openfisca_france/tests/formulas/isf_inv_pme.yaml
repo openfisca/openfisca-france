@@ -1,0 +1,13 @@
+- name: "Impôt sur la fortune - Célibataire"
+  keywords: isf
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    sal: 50000
+    b1bc: 5000
+    b1ab: 2500000
+    b2nf: 7000
+  output_variables:
+    irpp: -7889
+    isf_inv_pme: 3500
+    # tot_impot: 2144 + 7889  # TODO: Check this value.
