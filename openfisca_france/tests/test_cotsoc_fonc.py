@@ -246,7 +246,7 @@ def test():
                 rafp_employe = 0,
                 ircantec_employe = - 60.16,  # TODO: Trouver source extérieur site IPP buggé
                 vielleisse_deplafonnee_salarie = -2.56,
-                vieillesse_plafonnee_employe = -170.24,
+                vielleisse_plafonnee_salarie = -170.24,
                 cotisations_salariales_contributives = -232.96,
 
                 contribution_exceptionnelle_solidarite_employe = -23.16,

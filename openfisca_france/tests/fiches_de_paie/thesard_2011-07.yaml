@@ -84,7 +84,7 @@ output_variables:
   # assedic_employe: -17.14 ERROR: devrait être 0
   cotisation_exceptionnelle_temporaire_employe: 0
   vielleisse_deplafonnee_salarie: -1.91
-  vieillesse_plafonnee_employe: 0
+  vielleisse_plafonnee_salarie: 0
   # ircantec_employe: -43.32 TODO: corriger
   pension_civile_employe: 0
   rafp_employe: 0
