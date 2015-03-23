@@ -58,7 +58,7 @@ output_variables:
   # assedic_tranche_b_employe: 37.81  # Inclus dans assedic
   assedic_employe: -72.59 - 37.81
 
-  vieillesse_deplafonnee_employe: -11.5
+  vielleisse_deplafonnee_salarie: -11.5
   vieillesse_plafonnee_employe: -205.68
   # cotisations_salariales_contributives:
 

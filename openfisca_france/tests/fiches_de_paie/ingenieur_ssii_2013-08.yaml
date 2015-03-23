@@ -85,7 +85,7 @@ output_variables:
   arrco_salarie: -75.99
   assedic_employe: -60.31
   cotisation_exceptionnelle_temporaire_employe: -3.27
-  vieillesse_deplafonnee_employe: -2.51
+  vielleisse_deplafonnee_salarie: -2.51
   vieillesse_plafonnee_employe: -169.62
   ircantec_employe: 0
   pension_civile_employe: 0

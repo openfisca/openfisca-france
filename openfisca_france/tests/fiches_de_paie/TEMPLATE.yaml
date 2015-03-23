@@ -93,7 +93,7 @@ output_variables:
   arrco_salarie: 0
   assedic_employe: 0
   cotisation_exceptionnelle_temporaire_employe: 0
-  vieillesse_deplafonnee_employe: 0
+  vielleisse_deplafonnee_salarie: 0
   vieillesse_plafonnee_employe: 0
   ircantec_employe: 0
   pension_civile_employe: 0
