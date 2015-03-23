@@ -250,7 +250,7 @@ def test():
                 cotisations_salariales_contributives = -232.96,
 
                 contribution_exceptionnelle_solidarite_employe = -23.16,
-                maladie_employe = -19.20,
+                mmid_salarie = -19.20,
 
                 cotisations_salariales_non_contributives = - 23.16 - 19.20,
 
