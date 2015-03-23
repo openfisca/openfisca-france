@@ -35,7 +35,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'nom_individu',  # Prénom
                     'birth',  # Date de naissance
                     'statmarit',  # Statut marital
-                    'sali',  # Revenus d'activité imposables
+                    'salaire_de_base',  # Revenus d'activité imposables
                     'choi',  # Autres revenus imposables (chômage, préretraite)
                     'rsti',  # Pensions, retraites, rentes connues imposables
                     ]),
