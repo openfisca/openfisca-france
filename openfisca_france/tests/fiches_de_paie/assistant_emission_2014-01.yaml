@@ -77,7 +77,7 @@ output_variables:
 
   # cotisations_salariales_contributives: 0
   agff_salarie: 0
-  agirc_tranche_b_employe: 0
+  agirc_salarie: 0
   apec_employe: 0
   arrco_salarie: 0
   assedic_employe: 0
