@@ -44,7 +44,7 @@
     </NODE>
     <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cot. soc. sal.">
       <NODE code="cotisations_salariales_contributives" color="249,208,211" desc="Cotisations sociales salariales contributives" shortname="Cotsoc sal contrib">
-        <NODE code="agff_tranche_a_employe" color="249,208,211" desc="AGFF (employé)" shortname="AGFF" />
+        <NODE code="agff_salarie" color="249,208,211" desc="AGFF (employé)" shortname="AGFF" />
         <NODE code="agirc_tranche_b_employe" color="249,208,211" desc="AGIRC" shortname="AGIRC" />
         <NODE code="apec_employe" color="249,208,211" desc="APEC" shortname="APEC (employé)" />
         <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (employé)" shortname="ARRCO" />

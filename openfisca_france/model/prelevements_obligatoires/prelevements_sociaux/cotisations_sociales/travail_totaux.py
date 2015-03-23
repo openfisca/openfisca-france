@@ -136,7 +136,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        agff_tranche_a_employe = simulation.calculate_add('agff_tranche_a_employe', period)
+        agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_tranche_b_employe = simulation.calculate_add('agirc_tranche_b_employe', period)
         apec_employe = simulation.calculate_add('apec_employe', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
@@ -151,7 +151,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
 
         cotisations_salariales_contributives = (
             # prive
-            agff_tranche_a_employe +
+            agff_salarie +
             agirc_tranche_b_employe +
             apec_employe +
             arrco_salarie +
