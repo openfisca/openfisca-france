@@ -192,13 +192,13 @@ class revenu_initial_individu(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
+        cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         pen = simulation.calculate('pen', period)
         rev_cap = simulation.calculate('rev_cap', period)
         rev_trav = simulation.calculate('rev_trav', period)
 
-        return period, rev_trav + pen + rev_cap - cotisations_patronales_contributives - cotisations_salariales_contributives
+        return period, rev_trav + pen + rev_cap - cotisations_employeur_contributives - cotisations_salariales_contributives
 
 
 @reference_formula

@@ -45,20 +45,20 @@ class cotisations_employeur(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
+        cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
         cotisations_patronales_non_contributives = simulation.calculate(
             'cotisations_patronales_non_contributives', period)
         cotisations_employeur_main_d_oeuvre = simulation.calculate('cotisations_employeur_main_d_oeuvre', period)
 
         return period, (
-            cotisations_patronales_contributives +
+            cotisations_employeur_contributives +
             cotisations_patronales_non_contributives +
             cotisations_employeur_main_d_oeuvre
             )
 
 
 @reference_formula
-class cotisations_patronales_contributives(SimpleFormulaColumn):
+class cotisations_employeur_contributives(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -81,7 +81,7 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
         vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
         vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
 
-        cotisations_patronales_contributives = (
+        cotisations_employeur_contributives = (
             # prive
             ags +
             agff_tranche_a_employeur +
@@ -97,7 +97,7 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
             pension_civile_employeur +
             rafp_employeur
             )
-        return period, cotisations_patronales_contributives
+        return period, cotisations_employeur_contributives
 
 
 @reference_formula

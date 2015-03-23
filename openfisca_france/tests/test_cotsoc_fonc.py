@@ -73,7 +73,7 @@ def test():
 
                 rafp_employeur = -20,
                 pension_civile_employeur = -1371.80,
-                cotisations_patronales_contributives = - 1371.80 - 20,
+                cotisations_employeur_contributives = - 1371.80 - 20,
                 # pension_civile_employeur, rafp_employeur
 
                 cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
@@ -127,7 +127,7 @@ def test():
 
                 pension_civile_employeur = -546,
                 rafp_employeur = -20,
-                cotisations_patronales_contributives = -(546 + 20),
+                cotisations_employeur_contributives = -(546 + 20),
 
                 cotisations_employeur = -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
@@ -184,7 +184,7 @@ def test():
                 pension_civile_employeur = -546,
                 fonds_emploi_hospitalier = -20,
                 rafp_employeur = -20,
-                cotisations_patronales_contributives = -(546 + 20 + 20),
+                cotisations_employeur_contributives = -(546 + 20 + 20),
                 # pension,  rafp, feh
                 cotisations_employeur = -(546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6),
 
@@ -234,7 +234,7 @@ def test():
                 pension_civile_employeur = 0,
                 rafp_employeur = 0,
                 ircantec_employeur = -90.24,  # TODO: Trouver source extérieur site IPP buggé
-                cotisations_patronales_contributives = -343.68,
+                cotisations_employeur_contributives = -343.68,
 
                 cotisations_patronales_non_contributives = -465.92,
 
@@ -303,7 +303,7 @@ def test():
 
                 pension_civile_employeur = -1371.80,
                 rafp_employeur = -20,
-                cotisations_patronales_contributives = - 1371.80 - 20,
+                cotisations_employeur_contributives = - 1371.80 - 20,
 
                 cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
@@ -364,7 +364,7 @@ def test():
 
                 pension_civile_employeur = -1371.80 * 2,
                 rafp_employeur = -20 * 2,
-                cotisations_patronales_contributives = -2783.6,
+                cotisations_employeur_contributives = -2783.6,
 
                 allocations_temporaires_invalidite = -6.6 * 2,
                 mmid_employeur = -194 * 2,

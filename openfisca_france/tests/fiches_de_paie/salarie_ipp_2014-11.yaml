@@ -37,7 +37,7 @@ output_variables:
   vieillesse_deplafonnee_employeur: -80.5
   vieillesse_plafonnee_employeur: -255.59
 
-  # cotisations_patronales_contributives:
+  # cotisations_employeur_contributives:
 
   accident_du_travail: -69
   famille: -241.5
