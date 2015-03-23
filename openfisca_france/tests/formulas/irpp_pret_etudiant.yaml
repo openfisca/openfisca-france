@@ -1,0 +1,104 @@
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2005
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -1137
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2006
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -759
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2007
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -743
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2008
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7td: 2000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -706
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2009
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7td: 2000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -701
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2010
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7td: 2000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -681
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2011
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7td: 2000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -681
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2012
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7td: 2000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -681
+
+- name: "IRPP - Crédit d'impôt prêt étudiant"
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    cho: 0
+    sal: 20000
+    f7td: 2000
+    f7uk: 4000
+    f7vo: 1
+  output_variables:
+    irpp: -670
