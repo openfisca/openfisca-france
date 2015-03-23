@@ -37,11 +37,16 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
 
     def function(self, simulation, period):
+        exonerations_geographiques = [
+            'exoneration_cotisations_patronales_zfu',
+            'exoneration_cotisations_patronales_zrd',
+            'exoneration_cotisations_patronales_zrr',
+            ]
+        exonerations_montant = 0
+        for exoneration in exonerations_geographiques:
+            exonerations_montant = exonerations_montant + simulation.calculate(exoneration, period)
 
-        return period, (
-            exoneration_cotisations_patronales_zfu + exoneration_cotisations_patronales_zrd +
-            exoneration_cotisations_patronales_zrd
-            )
+        return period, exonerations_montant
 
 
 @reference_formula
