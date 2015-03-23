@@ -1,8 +1,8 @@
 - period: "2014"
-  name: "RSA célibataire, salnet = 0"
+  name: "RSA célibataire, salaire_net = 0"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    # salnet: 0
+    # salaire_net: 0
     statut_occupation:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
@@ -30,10 +30,10 @@
       "2014-01": 439.39
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 5000"
+  name: "RSA célibataire, salaire_net = 5000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 5000
       2013: 5000
       2014: 5000
@@ -64,10 +64,10 @@
       "2014-01": 281.06
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 10000"
+  name: "RSA célibataire, salaire_net = 10000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 10000
       2013: 10000
       2014: 10000
@@ -98,10 +98,10 @@
       "2014-01": 122.73
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 12000"
+  name: "RSA célibataire, salaire_net = 12000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 12000
       2013: 12000
       2014: 12000
@@ -132,10 +132,10 @@
       "2014-01": 59.39
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 13000"
+  name: "RSA célibataire, salaire_net = 13000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 13000
       2013: 13000
       2014: 13000
@@ -166,10 +166,10 @@
       "2014-01": 27.73
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 14000"
+  name: "RSA célibataire, salaire_net = 14000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 14000
       2013: 14000
       2014: 14000
@@ -200,10 +200,10 @@
       "2014-01": 0
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 15000"
+  name: "RSA célibataire, salaire_net = 15000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 15000
       2013: 15000
       2014: 15000
@@ -234,10 +234,10 @@
       "2014-01": 0
 
 - period: "2014"
-  name: "RSA célibataire, salnet = 20000"
+  name: "RSA célibataire, salaire_net = 20000"
   input_variables:
     birth: "1985-01-01"  # 29 ans
-    salnet:
+    salaire_net:
       2012: 20000
       2013: 20000
       2014: 20000

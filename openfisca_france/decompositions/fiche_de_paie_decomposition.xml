@@ -1,5 +1,5 @@
 ﻿<NODE code="salaire_net_a_payer" color="0,138,201" desc="Net à payer" shortname="Net à payer">
-  <NODE code="salnet" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
+  <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
     <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
     <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
       <NODE code="salsuperbrut" color="0,66,92" desc="Coût du travail" shortname="Coût travail" />

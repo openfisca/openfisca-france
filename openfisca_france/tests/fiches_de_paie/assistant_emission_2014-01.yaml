@@ -93,7 +93,7 @@ output_variables:
   contribution_exceptionnelle_solidarite_employe: 0
   csgsald: 0
   mhsup: 0
-  salnet: 0
+  salaire_net: 0
 
   # salaire imposable
   csgsali: 0

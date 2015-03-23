@@ -207,7 +207,7 @@ class sal(SimpleFormulaColumn):
 
 
 @reference_formula
-class salnet(SimpleFormulaColumn):
+class salaire_net(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -246,12 +246,12 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         dues par les salarié avancées par l'employeur
         '''
         period = period
-        salnet = simulation.calculate('salnet', period)
+        salaire_net = simulation.calculate('salaire_net', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
         salaire_net_a_payer = (
-            salnet +
+            salaire_net +
             depense_cantine_titre_restaurant_employe +
             indemnites_forfaitaires
             )
