@@ -92,7 +92,7 @@ output_variables:
   arrco_salarie: -91.5
   assedic_employe: -72
   cotisation_exceptionnelle_temporaire_employe: -3.9
-  vieillesse_deplafonnee_employe: -3000 * .0025  # est agrégée avec maladie sur la fiche de paie
+  vielleisse_deplafonnee_salarie: -3000 * .0025  # est agrégée avec maladie sur la fiche de paie
   vieillesse_plafonnee_employe: -204
   ircantec_employe: 0
   pension_civile_employe: 0
