@@ -23,7 +23,7 @@ output_variables:
   fnal: -23
   formation_professionnelle: -73.6
   versement_transport: -124.20
-  # cotisations_patronales_main_d_oeuvre:
+  # cotisations_employeur_main_d_oeuvre:
   agff_tranche_a_employe: -24.20 - 14.18
   agff_tranche_a_employeur: -36.30 - 20.48
   ags: -13.80

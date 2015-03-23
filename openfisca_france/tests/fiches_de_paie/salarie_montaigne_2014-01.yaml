@@ -64,7 +64,7 @@ output_variables:
   mmid_employeur: -509.80
   taxe_salaires: 504.24
 
-  # cotisations_patronales_main_d_oeuvre: 0
+  # cotisations_employeur_main_d_oeuvre: 0
   conge_individuel_formation_cdd: 0
   contribution_developpement_apprentissage: 0
   contribution_solidarite_autonomie: -11.95

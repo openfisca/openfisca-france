@@ -48,12 +48,12 @@ class cotisations_employeur(SimpleFormulaColumn):
         cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
         cotisations_patronales_non_contributives = simulation.calculate(
             'cotisations_patronales_non_contributives', period)
-        cotisations_patronales_main_d_oeuvre = simulation.calculate('cotisations_patronales_main_d_oeuvre', period)
+        cotisations_employeur_main_d_oeuvre = simulation.calculate('cotisations_employeur_main_d_oeuvre', period)
 
         return period, (
             cotisations_patronales_contributives +
             cotisations_patronales_non_contributives +
-            cotisations_patronales_main_d_oeuvre
+            cotisations_employeur_main_d_oeuvre
             )
 
 

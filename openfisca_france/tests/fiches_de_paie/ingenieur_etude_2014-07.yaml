@@ -50,7 +50,7 @@ output_variables:
   mmid_employeur: -3000 * .128  # est aggrégé avec vieillesse
   taxe_salaires: 0
 
-  # cotisations_patronales_main_d_oeuvre: 0
+  # cotisations_employeur_main_d_oeuvre: 0
   conge_individuel_formation_cdd: 0
   contribution_developpement_apprentissage: -3000 * 0.0018  # aggrégé avec taxe apprentissage
   contribution_solidarite_autonomie: 0

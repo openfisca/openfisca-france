@@ -62,7 +62,7 @@ def test():
                 fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
                 contribution_solidarite_autonomie = - 6,
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -6.6,
                 mmid_employeur = -194,
@@ -118,7 +118,7 @@ def test():
                 fnal = -8 -2 ,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -10,
                 mmid_employeur = -230,
@@ -172,7 +172,7 @@ def test():
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
 
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -10,
                 mmid_employeur = -230,
@@ -227,7 +227,7 @@ def test():
                 contribution_solidarite_autonomie = - 7.68,
                 fnal = - 10.24 - 2.56,
                 versement_transport = -2560 * 0.0175,
-                cotisations_patronales_main_d_oeuvre = -65.28,
+                cotisations_employeur_main_d_oeuvre = -65.28,
 
                 vieillesse_deplafonnee_employeur = -40.96,
                 vieillesse_plafonnee_employeur = -212.48,
@@ -294,7 +294,7 @@ def test():
                 contribution_solidarite_autonomie = - 6,
                 fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -6.6,
                 mmid_employeur = -194,
@@ -359,7 +359,7 @@ def test():
                 contribution_solidarite_autonomie = - 6 * 2,
                 fnal = - 8 * 2 - 2 * 2,
                 versement_transport = -2000 * 0.0175 * 2,  # = 35
-                cotisations_patronales_main_d_oeuvre = -51 * 2,
+                cotisations_employeur_main_d_oeuvre = -51 * 2,
 
 
                 pension_civile_employeur = -1371.80 * 2,
