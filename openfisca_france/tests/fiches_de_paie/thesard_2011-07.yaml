@@ -54,7 +54,7 @@ output_variables:
   allocations_temporaires_invalidite: 0
   accident_du_travail: 0
   famille: -102.6
-  # maladie_employeur: 0 problème d'assiette
+  # mmid_employeur: 0 problème d'assiette
   taxe_salaires: 0
 
   # cotisations_patronales_main_d_oeuvre: 0

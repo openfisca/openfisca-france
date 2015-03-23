@@ -61,7 +61,7 @@ output_variables:
   allocations_temporaires_invalidite: 0
   accident_du_travail: -59.74
   famille: -209.10
-  maladie_employeur: -509.80
+  mmid_employeur: -509.80
   taxe_salaires: 504.24
 
   # cotisations_patronales_main_d_oeuvre: 0

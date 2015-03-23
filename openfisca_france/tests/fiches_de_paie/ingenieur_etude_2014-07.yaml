@@ -47,7 +47,7 @@ output_variables:
   allocations_temporaires_invalidite: 0
   accident_du_travail: -33
   famille: -157.5
-  maladie_employeur: -3000 * .128  # est aggrégé avec vieillesse
+  mmid_employeur: -3000 * .128  # est aggrégé avec vieillesse
   taxe_salaires: 0
 
   # cotisations_patronales_main_d_oeuvre: 0
