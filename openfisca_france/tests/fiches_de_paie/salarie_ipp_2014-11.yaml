@@ -29,7 +29,7 @@ output_variables:
   ags: -13.80
   apec_employeur: -1.09 - .57
   cotisation_exceptionnelle_temporaire_employeur: -10.12
-  arrco_tranche_a_employeur: -138.53 - 199.75
+  arrco_employeur: -138.53 - 199.75
   # agirc_tranche_b_employeur: -199.75  # Inclus dans arcco
   assedic_employeur: -120.99 - 63.01
   # assedic_tranche_a_employeur: -120.99  # Inclus dans assedic
@@ -52,7 +52,7 @@ output_variables:
   # cotisations_salariales_non_contributives:
 
   apec_employe: -.73 - .38
-  arrco_tranche_a_employe: -92.25
+  arrco_salarie: -92.25
   agirc_tranche_b_employe: -122.09
   # assedic_tranche_a_employe: -72.59  # Inclus dans assedic
   # assedic_tranche_b_employe: 37.81  # Inclus dans assedic

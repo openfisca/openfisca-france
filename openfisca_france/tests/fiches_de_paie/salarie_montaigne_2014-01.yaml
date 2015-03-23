@@ -47,7 +47,7 @@ output_variables:
   agirc_gmp_employeur: 0
   agirc_tranche_b_employeur: -108.26
   apec_employeur: -0.31
-  arrco_tranche_a_employeur: -143.31
+  arrco_employeur: -143.31
   assedic_employeur: -(125.16 + 34.15)
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -69.70
@@ -90,7 +90,7 @@ output_variables:
   agirc_gmp_employe: 0
   agirc_tranche_b_employe: -66.17
   apec_employe: -0.20
-  arrco_tranche_a_employe: -95.43
+  arrco_salarie: -95.43
   assedic_employe: -(20.49 + 75.10)
   cotisation_exceptionnelle_temporaire_employe: 0
   vieillesse_deplafonnee_employe: -9.96

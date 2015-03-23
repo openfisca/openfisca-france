@@ -70,7 +70,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
         ags = simulation.calculate('ags', period)
         agff_tranche_a_employeur = simulation.calculate_add('agff_tranche_a_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
-        arrco_tranche_a_employeur = simulation.calculate('arrco_tranche_a_employeur', period)
+        arrco_employeur = simulation.calculate('arrco_employeur', period)
         assedic_employeur = simulation.calculate('assedic_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
             'cotisation_exceptionnelle_temporaire_employeur', period)
@@ -86,7 +86,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
             ags +
             agff_tranche_a_employeur +
             apec_employeur +
-            arrco_tranche_a_employeur +
+            arrco_employeur +
             assedic_employeur +
             cotisation_exceptionnelle_temporaire_employeur +
             vieillesse_deplafonnee_employeur +
@@ -139,7 +139,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         agff_tranche_a_employe = simulation.calculate_add('agff_tranche_a_employe', period)
         agirc_tranche_b_employe = simulation.calculate_add('agirc_tranche_b_employe', period)
         apec_employe = simulation.calculate_add('apec_employe', period)
-        arrco_tranche_a_employe = simulation.calculate_add('arrco_tranche_a_employe', period)
+        arrco_salarie = simulation.calculate_add('arrco_salarie', period)
         assedic_employe = simulation.calculate_add('assedic_employe', period)
         cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
             'cotisation_exceptionnelle_temporaire_employe', period)
@@ -154,7 +154,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             agff_tranche_a_employe +
             agirc_tranche_b_employe +
             apec_employe +
-            arrco_tranche_a_employe +
+            arrco_salarie +
             assedic_employe +
             cotisation_exceptionnelle_temporaire_employe +
             vieillesse_deplafonnee_employe +
