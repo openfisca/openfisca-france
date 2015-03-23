@@ -1,0 +1,85 @@
+name: "56_Rsa majoré- montant forfaitaire erroné"
+keywords:
+  - majoration
+  - rsa
+description: Le montant forfaitaire initial du Rsa est le montant pour une personne seule avec un enfant et non le montant Rsa majoré
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - age: 28
+    agem: 338
+    birth: "1986-08-25"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 546b541b492eaff5637e3d22
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    salaire_de_base:
+      2012: 7692.307692307691
+      2013-11: 641.025641025641
+      2013-12: 641.025641025641
+      2014-01: 641.025641025641
+      2014-02: 641.025641025641
+      2014-03: 641.025641025641
+      2014-04: 641.025641025641
+      2014-05: 641.025641025641
+      2014-06: 641.025641025641
+      2014-07: 641.025641025641
+      2014-08: 641.025641025641
+      2014-08:3: 1923.0769230769229
+      2014-09: 641.025641025641
+      2014-10: 641.025641025641
+      2014-11: 641.025641025641
+      year:2013-11: 7692.307692307691
+    salnet:
+      2012: 6000
+      2013-11: 500
+      2013-12: 500
+      2014-01: 500
+      2014-02: 500
+      2014-03: 500
+      2014-04: 500
+      2014-05: 500
+      2014-06: 500
+      2014-07: 500
+      2014-08: 500
+      2014-08:3: 1500
+      2014-09: 500
+      2014-10: 500
+      2014-11: 500
+      year:2013-11: 6000
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 2
+    agem: 34
+    birth: "2012-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 546b541b492eaff5637e3d21
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 546b541b492eaff5637e3d21
+  parents: 546b541b492eaff5637e3d22
+foyers_fiscaux:
+  declarants: 546b541b492eaff5637e3d22
+  personnes_a_charge: 546b541b492eaff5637e3d21
+menages:
+  depcom: 75120
+  enfants: 546b541b492eaff5637e3d21
+  personne_de_reference: 546b541b492eaff5637e3d22
+  statut_occupation: 6
+output_variables:
+  rsa: 281.22

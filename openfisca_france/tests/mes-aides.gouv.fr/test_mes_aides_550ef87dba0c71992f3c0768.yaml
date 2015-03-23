@@ -1,0 +1,57 @@
+name: Montant de base au 1er avril 2015
+keywords: asf
+description: |
+  BMAF (montant en vigueur au 1er avril 2014) : 406,21 €
+  Taux pour le calcul de l'ASF (montant en vigueur au 1er avril 2015) : 24,76 %
+  Montant brut : BMAF * Tx = 100,58 €
+  CRDS : 0,5 % * 100,58 = 0,50 €
+  Montant net : 100,58 - 0,50 = 100,08 €
+  
+  Remarque : test à mettre à jour quand le montant de la BMAF au 1er avril 2015 sera connue.
+period: "month:2015-04"
+relative_error_margin: 0.02
+individus:
+  - age: 35
+    agem: 423
+    birth: "1980-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550ef8772f7d278e2ff97b9d
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 15
+    agem: 183
+    birth: "2000-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550ef8772f7d278e2ff97b9c
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 550ef8772f7d278e2ff97b9c
+  parents: 550ef8772f7d278e2ff97b9d
+foyers_fiscaux:
+  declarants: 550ef8772f7d278e2ff97b9d
+  personnes_a_charge: 550ef8772f7d278e2ff97b9c
+menages:
+  depcom: 92071
+  enfants: 550ef8772f7d278e2ff97b9c
+  personne_de_reference: 550ef8772f7d278e2ff97b9d
+  statut_occupation: 6
+output_variables:
+  asf: 100.08

@@ -1,0 +1,110 @@
+name: Montant majoré au 1er avril 2015
+keywords: cf
+description: |
+  BMAF (montant en vigueur au 1er avril 2014) : 406,21 €
+  Taux pour le calcul du CF majoré (montant en vigueur au 1er avril 2015) : 49,99 %
+  Montant brut : BMAF * Tx = 203,06 €
+  CRDS : 0,5 % * 203,06 = 1,02 €
+  Montant net : 203,06 - 1,02 = 202,04 €
+  
+  Remarque : test à mettre à jour quand le montant de la BMAF au 1er avril 2015 sera connue.
+period: "month:2015-04"
+relative_error_margin: 0.02
+individus:
+  - age: 35
+    agem: 423
+    alr:
+      2013: 0
+    birth: "1980-01-01"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550ef43331b367952f71033a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 15
+    agem: 183
+    birth: "2000-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550ef43331b367952f710339
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 13
+    agem: 159
+    birth: "2002-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550ef43331b367952f710338
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    agem: 135
+    birth: "2004-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 550ef43331b367952f710337
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    inv: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 550ef43331b367952f710339
+    - 550ef43331b367952f710338
+    - 550ef43331b367952f710337
+  parents: 550ef43331b367952f71033a
+foyers_fiscaux:
+  declarants: 550ef43331b367952f71033a
+  f6el:
+    2013: 0
+  personnes_a_charge:
+    - 550ef43331b367952f710339
+    - 550ef43331b367952f710338
+    - 550ef43331b367952f710337
+  rfr:
+    2013: 0
+menages:
+  depcom: 92071
+  enfants:
+    - 550ef43331b367952f710339
+    - 550ef43331b367952f710338
+    - 550ef43331b367952f710337
+  personne_de_reference: 550ef43331b367952f71033a
+  statut_occupation: 6
+output_variables:
+  cf: 202.04

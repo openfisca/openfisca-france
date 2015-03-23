@@ -7,6 +7,7 @@ description: |
   Les enfants touchant un salaire net de moins de 55% du SMIC brut (soit 893 euros) sont considérés à charge.
   Ici on verse bien le CF car l'enfant qui touche des salaires touche 800 euros.
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   - age: 34
     agem: 413
@@ -124,4 +125,4 @@ menages:
   personne_de_reference: 54bd2854740a09082374d73e
   statut_occupation: 6
 output_variables:
-  cf: 169.19
+  cf: 185.19
