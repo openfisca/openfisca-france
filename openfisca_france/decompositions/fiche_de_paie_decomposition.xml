@@ -46,7 +46,7 @@
       <NODE code="cotisations_salariales_contributives" color="249,208,211" desc="Cotisations sociales salariales contributives" shortname="Cotsoc sal contrib">
         <NODE code="agff_salarie" color="249,208,211" desc="AGFF (employé)" shortname="AGFF" />
         <NODE code="agirc_salarie" color="249,208,211" desc="AGIRC" shortname="AGIRC" />
-        <NODE code="apec_employe" color="249,208,211" desc="APEC" shortname="APEC (employé)" />
+        <NODE code="apec_salarie" color="249,208,211" desc="APEC" shortname="APEC (employé)" />
         <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (employé)" shortname="ARRCO" />
         <NODE code="assedic_employe" color="249,208,211" desc="ASSEDIC (employé)" shortname="ASSEDIC" />
         <NODE code="cotisation_exceptionnelle_temporaire_employe" color="249,208,211" desc="CET (employé)" shortname="CET" />

@@ -138,7 +138,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         period = period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
-        apec_employe = simulation.calculate_add('apec_employe', period)
+        apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
         assedic_employe = simulation.calculate_add('assedic_employe', period)
         cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
@@ -153,7 +153,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             # prive
             agff_salarie +
             agirc_salarie +
-            apec_employe +
+            apec_salarie +
             arrco_salarie +
             assedic_employe +
             cotisation_exceptionnelle_temporaire_employe +
