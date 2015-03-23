@@ -51,7 +51,7 @@ output_variables:
   mmid_salarie: -34.5
   # cotisations_salariales_non_contributives:
 
-  apec_employe: -.73 - .38
+  apec_salarie: -.73 - .38
   arrco_salarie: -92.25
   agirc_salarie: -122.09
   # assedic_tranche_a_employe: -72.59  # Inclus dans assedic

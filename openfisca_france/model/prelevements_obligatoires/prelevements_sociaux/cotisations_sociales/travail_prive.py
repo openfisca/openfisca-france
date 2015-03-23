@@ -291,7 +291,7 @@ class ags(SimpleFormulaColumn):
 
 
 @reference_formula
-class apec_employe(SimpleFormulaColumn):
+class apec_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"

@@ -89,7 +89,7 @@ output_variables:
   agff_salarie: 0
   agirc_gmp_employe: 0
   agirc_salarie: 0
-  apec_employe: 0
+  apec_salarie: 0
   arrco_salarie: 0
   assedic_employe: 0
   cotisation_exceptionnelle_temporaire_employe: 0

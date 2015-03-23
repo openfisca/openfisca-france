@@ -81,7 +81,7 @@ output_variables:
   # cotisations_salariales_contributives: 0
   agff_salarie: -20.10
   agirc_salarie: -25.13
-  apec_employe: -0.6
+  apec_salarie: -0.6
   arrco_salarie: -75.99
   assedic_employe: -60.31
   cotisation_exceptionnelle_temporaire_employe: -3.27
