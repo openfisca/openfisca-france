@@ -1,0 +1,75 @@
+- name: "IRPP - Déficits des revenus de capitaux mobiliers - Célibataire pour un revenu salarial de 20 000 €"
+  keywords: rcm
+  period: 2009
+  absolute_error_margin: 0.5
+  input_variables:
+    sal: 20000
+    f2dc: 5000
+    f2aa: 1000
+    f2al: 1000
+    f2am: 1000
+    f2an: 1000
+    f2aq: 1000
+    f2ar: 1000
+  output_variables:
+    irpp: -1086
+- name: "IRPP - Déficits des revenus de capitaux mobiliers - Célibataire pour un revenu salarial de 20 000 €"
+  keywords: rcm
+  period: 2010
+  absolute_error_margin: 0.5
+  input_variables:
+    sal: 20000
+    f2dc: 5000
+    f2aa: 1000
+    f2al: 1000
+    f2am: 1000
+    f2an: 1000
+    f2aq: 1000
+    f2ar: 1000
+  output_variables:
+    irpp: -1181
+- name: "IRPP - Déficits des revenus de capitaux mobiliers - Célibataire pour un revenu salarial de 20 000 €"
+  keywords: rcm
+  period: 2011
+  absolute_error_margin: 0.5
+  input_variables:
+    sal: 20000
+    f2dc: 5000
+    f2aa: 1000
+    f2al: 1000
+    f2am: 1000
+    f2an: 1000
+    f2aq: 1000
+    f2ar: 1000
+  output_variables:
+    irpp: -1181
+- name: "IRPP - Déficits des revenus de capitaux mobiliers - Célibataire pour un revenu salarial de 20 000 €"
+  keywords: rcm
+  period: 2012
+  absolute_error_margin: 0.5
+  input_variables:
+    sal: 20000
+    f2dc: 5000
+    f2aa: 1000
+    f2al: 1000
+    f2am: 1000
+    f2an: 1000
+    f2aq: 1000
+    f2ar: 1000
+  output_variables:
+    irpp: -1181
+- name: "IRPP - Déficits des revenus de capitaux mobiliers - Célibataire pour un revenu salarial de 20 000 €"
+  keywords: rcm
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    sal: 20000
+    f2dc: 5000
+    f2aa: 1000
+    f2al: 1000
+    f2am: 1000
+    f2an: 1000
+    f2aq: 1000
+    f2ar: 1000
+  output_variables:
+    irpp: -1170
