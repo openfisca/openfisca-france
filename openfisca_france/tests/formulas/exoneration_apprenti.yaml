@@ -6,7 +6,7 @@
   output_variables:
     apprenti: 1
     remuneration_apprenti: 35 * 52 * 9.61 * .25 / 12
-    exoneration_cotisations_patronales_apprenti: 149.13
+    exoneration_cotisations_employeur_apprenti: 149.13
 
 #- period: "month:2015-03"
 #  input_variables:

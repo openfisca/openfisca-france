@@ -45,7 +45,7 @@ def test_exoneration_relative_year():
     assert_equal(exoneration_relative_year(period, other_date), 4 - 1)
 
 test_case_by_employee_type = dict(
-    exoneration_cotisations_patronales_zfu = dict(
+    exoneration_cotisations_employeur_zfu = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2010-01-01",
             depcom_entreprise = "69381",
@@ -63,7 +63,7 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zfu = {
+            exoneration_cotisations_employeur_zfu = {
                 "2014": - 35 * 52 * 9.53 * .306,
                 "2014-01": - 35 * 52 * 9.53 * .306 / 12,
                 "2015-01": - 35 * 52 * 9.61 * .3065 * .6 / 12,
@@ -72,7 +72,7 @@ test_case_by_employee_type = dict(
                 }
             ),
         ),
-    exoneration_cotisations_patronales_zrd = dict(
+    exoneration_cotisations_employeur_zrd = dict(
         input_variables = dict(
             entreprise_creation = "2014-01-01",
             effectif_entreprise = zip_period_with_values("2014:15", 20 * 15),
@@ -88,7 +88,7 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zrd = {
+            exoneration_cotisations_employeur_zrd = {
                 "2014": - 35 * 52 * 9.53 * .281,
                 "2014-01": - 35 * 52 * 9.53 * .281 / 12,
                 "2015-01": - 35 * 52 * 9.61 * .281 / 12,
@@ -98,7 +98,7 @@ test_case_by_employee_type = dict(
                 },
             ),
         ),
-    exoneration_cotisations_patronales_zrr_smic = dict(
+    exoneration_cotisations_employeur_zrr_smic = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2014-01-01",
             effectif_entreprise = 20,
@@ -112,7 +112,7 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zrr = {
+            exoneration_cotisations_employeur_zrr = {
                 "2014": - 35 * 52 * 9.53 * .281,
                 "2014-01": - 35 * 52 * 9.53 * .281 / 12,
                 "2015": 0,
@@ -123,7 +123,7 @@ test_case_by_employee_type = dict(
                 }
             ),
         ),
-    exonearation_cotisations_patronales_zrr_1p4_smic = dict(
+    exonearation_cotisations_employeur_zrr_1p4_smic = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2014-05-01",
             effectif_entreprise = 20,
@@ -137,7 +137,7 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zrr = {
+            exoneration_cotisations_employeur_zrr = {
                 "2014": - 35 * 52 * 9.53 * 1.4 * 8 / 12 * .281,
                 "2014-06": - 35 * 52 * 9.53 * 1.4 * .281 / 12,
                 "2015-01": - 35 * 52 * 9.61 * 1.4 * .281 / 12,
@@ -146,7 +146,7 @@ test_case_by_employee_type = dict(
                 }
             ),
         ),
-    exonearation_cotisations_patronales_zrr_2p5_smic = dict(
+    exonearation_cotisations_employeur_zrr_2p5_smic = dict(
         input_variables = dict(
             contrat_de_travail_arrivee = "2010-05-01",
             effectif_entreprise = 20,
@@ -160,7 +160,7 @@ test_case_by_employee_type = dict(
             type_sal = 0,
             ),
         output_variables = dict(
-            exoneration_cotisations_patronales_zrr = {
+            exoneration_cotisations_employeur_zrr = {
                 "2014": - 35 * 52 * 9.53 * 2.5 * 0,
                 "2014-01": - 35 * 52 * 9.53 * 2.5 * 0 / 12,
                 "2015": 35 * 52 * 9.61 * 2.5 * .281 * 0 / 12,

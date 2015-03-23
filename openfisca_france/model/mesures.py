@@ -227,7 +227,7 @@ class nivvie_ini(SimpleFormulaColumn):
         return period, revini / uc
 
 
-def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salariales):
+def _revprim(rev_trav, cho, rev_cap, cotisations_employeur, cotisations_salariales):
     '''
     Revenu primaire du ménage
     Ensemble des revenus d'activités superbruts avant tout prélèvement

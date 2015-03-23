@@ -38,7 +38,7 @@ output_variables:
   # TODO à coder taxe_handicapes: 18.40
 
   # salsuperbrut: 0
-  # cotisations_patronales: 0
+  # cotisations_employeur: 0
   remboursement_transport: 33.55
 
   # cotisations_employeur_contributives: 0

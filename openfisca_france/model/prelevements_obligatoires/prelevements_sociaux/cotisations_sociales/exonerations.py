@@ -30,7 +30,7 @@ from ....base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations patronales pour l'embauche en zone franche urbaine (ZFU)"
@@ -181,7 +181,7 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"
@@ -232,7 +232,7 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_zrr(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"

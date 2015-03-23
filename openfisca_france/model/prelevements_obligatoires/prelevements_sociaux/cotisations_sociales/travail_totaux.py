@@ -36,7 +36,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class cotisations_patronales(SimpleFormulaColumn):
+class cotisations_employeur(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
