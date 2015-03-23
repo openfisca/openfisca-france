@@ -7,7 +7,7 @@
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
             <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. pat.">
               <NODE code="cotisations_employeur_contributives" color="249,208,211" desc="Cotisations sociales patronales contributtives" shortname="Cot. pat. contrib." />
-              <NODE code="cotisations_patronales_non_contributives" color="249,208,211" desc="Cotisations sociales patronales non contributives" shortname="Cot. pat. noncontrib." />
+              <NODE code="cotisations_employeur_non_contributives" color="249,208,211" desc="Cotisations sociales patronales non contributives" shortname="Cot. pat. noncontrib." />
               <NODE code="cotisations_employeur_main_d_oeuvre" color="249,208,211" desc="Cotisations sur la main d'oeuvre" shortname="Cot. pat. main d'oeuvre" />
             </NODE>
             <NODE code="taxes_sal" desc="Taxe sur les salaires" shortname="Taxe sal." />
