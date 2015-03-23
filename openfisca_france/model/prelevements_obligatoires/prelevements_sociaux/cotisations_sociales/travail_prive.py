@@ -238,7 +238,7 @@ class agirc_gmp_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_tranche_b_employe(SimpleFormulaColumn):
+class agirc_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (employé)"
