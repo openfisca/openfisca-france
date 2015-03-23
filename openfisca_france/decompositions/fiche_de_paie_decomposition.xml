@@ -9,7 +9,7 @@
             <NODE code="ags" color="249,208,211" desc="AGS" shortname="AGS" />
             <NODE code="agff_tranche_a_employeur" color="249,208,211" desc="AGFF (employeur)" shortname="AGFF" />
             <NODE code="apec_employeur" color="249,208,211" desc="APEC (employeur)" shortname="APEC" />
-            <NODE code="arrco_tranche_a_employeur" color="249,208,211" desc="ARRCO (employeur)" shortname="ARRCO" />
+            <NODE code="arrco_employeur" color="249,208,211" desc="ARRCO (employeur)" shortname="ARRCO" />
             <NODE code="assedic_employeur" color="249,208,211" desc="ASSEDIC (employeur)" shortname="ASSEDIC" />
             <NODE code="cotisation_exceptionnelle_temporaire_employeur" color="249,208,211" desc="CET (employeur)" shortname="CET" />
             <NODE code="vieillesse_deplafonnee_employeur" color="249,208,211" desc="Vieillesse déplafonnée (employeur)" shortname="Vieil. déplaf." />
@@ -47,7 +47,7 @@
         <NODE code="agff_tranche_a_employe" color="249,208,211" desc="AGFF (employé)" shortname="AGFF" />
         <NODE code="agirc_tranche_b_employe" color="249,208,211" desc="AGIRC" shortname="AGIRC" />
         <NODE code="apec_employe" color="249,208,211" desc="APEC" shortname="APEC (employé)" />
-        <NODE code="arrco_tranche_a_employe" color="249,208,211" desc="ARRCO (employé)" shortname="ARRCO" />
+        <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (employé)" shortname="ARRCO" />
         <NODE code="assedic_employe" color="249,208,211" desc="ASSEDIC (employé)" shortname="ASSEDIC" />
         <NODE code="cotisation_exceptionnelle_temporaire_employe" color="249,208,211" desc="CET (employé)" shortname="CET" />
         <NODE code="vieillesse_deplafonnee_employe" color="249,208,211" desc="Vieillesse déplafonnée (employé)" shortname="Vieil. déplaf." />

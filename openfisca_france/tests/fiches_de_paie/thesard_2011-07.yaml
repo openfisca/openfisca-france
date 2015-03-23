@@ -40,7 +40,7 @@ output_variables:
   ags: 0
   agff_tranche_a_employeur: 0
   apec_employeur: 0
-  arrco_tranche_a_employeur: 0
+  arrco_employeur: 0
   assedic_employeur: -104.46
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -30.4
@@ -80,7 +80,7 @@ output_variables:
   agff_tranche_a_employe: 0
   agirc_tranche_b_employe: 0
   apec_employe: 0
-  arrco_tranche_a_employe: 0
+  arrco_salarie: 0
   # assedic_employe: -17.14 ERROR: devrait être 0
   cotisation_exceptionnelle_temporaire_employe: 0
   vieillesse_deplafonnee_employe: -1.91

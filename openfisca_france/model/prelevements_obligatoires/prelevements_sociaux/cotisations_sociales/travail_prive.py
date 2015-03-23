@@ -324,7 +324,7 @@ class apec_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class arrco_tranche_a_employe(SimpleFormulaColumn):
+class arrco_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employé)"
@@ -353,7 +353,7 @@ class arrco_tranche_a_employe(SimpleFormulaColumn):
 
 
 @reference_formula
-class arrco_tranche_a_employeur(SimpleFormulaColumn):
+class arrco_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation ARRCO tranche A (employeur)"
