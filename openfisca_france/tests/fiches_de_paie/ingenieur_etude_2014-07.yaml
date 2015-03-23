@@ -85,7 +85,7 @@ output_variables:
   # cotisations_salariales: 0
 
   # cotisations_salariales_contributives: 0
-  agff_tranche_a_employe: -24
+  agff_salarie: -24
   agirc_gmp_employe: -25
   agirc_tranche_b_employe: -25.00  # agirc_gmp_employe
   apec_employe: -0.72

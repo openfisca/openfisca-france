@@ -24,7 +24,7 @@ output_variables:
   formation_professionnelle: -73.6
   versement_transport: -124.20
   # cotisations_employeur_main_d_oeuvre:
-  agff_tranche_a_employe: -24.20 - 14.18
+  agff_salarie: -24.20 - 14.18
   agff_employeur: -36.30 - 20.48
   ags: -13.80
   apec_employeur: -1.09 - .57

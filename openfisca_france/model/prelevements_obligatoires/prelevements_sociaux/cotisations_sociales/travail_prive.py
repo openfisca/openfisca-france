@@ -140,7 +140,7 @@ class accident_du_travail(SimpleFormulaColumn):
 
 
 @reference_formula
-class agff_tranche_a_employe(SimpleFormulaColumn):
+class agff_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation retraite AGFF tranche A (employé)"
