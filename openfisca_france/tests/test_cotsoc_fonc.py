@@ -65,10 +65,10 @@ def test():
                 cotisations_patronales_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -6.6,
-                maladie_employeur = -194,
+                mmid_employeur = -194,
                 famille = -108,
                 cotisations_patronales_non_contributives = -308,
-                # maladie_employeur, famille, fnal, versement_transport,
+                # mmid_employeur, famille, fnal, versement_transport,
                 # allocations_temporaires_invalidite contribution_solidarite_autonomie
 
                 rafp_employeur = -20,
@@ -121,7 +121,7 @@ def test():
                 cotisations_patronales_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -10,
-                maladie_employeur = -230,
+                mmid_employeur = -230,
                 famille = -108,
                 cotisations_patronales_non_contributives  = -( 230 + 108 + 10),
 
@@ -175,7 +175,7 @@ def test():
                 cotisations_patronales_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -10,
-                maladie_employeur = -230,
+                mmid_employeur = -230,
                 famille = -108,
                 cotisations_patronales_non_contributives = -348,
                 # cotisations_patronales_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
@@ -297,7 +297,7 @@ def test():
                 cotisations_patronales_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -6.6,
-                maladie_employeur = -194,
+                mmid_employeur = -194,
                 famille = -108,
                 cotisations_patronales_non_contributives = -308,
 
@@ -367,7 +367,7 @@ def test():
                 cotisations_patronales_contributives = -2783.6,
 
                 allocations_temporaires_invalidite = -6.6 * 2,
-                maladie_employeur = -194 * 2,
+                mmid_employeur = -194 * 2,
                 famille = -108 * 2,
                 cotisations_patronales_non_contributives = -617.2,
 

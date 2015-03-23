@@ -113,14 +113,14 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
         accident_du_travail = simulation.calculate('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
         famille = simulation.calculate('famille', period)
-        maladie_employeur = simulation.calculate_add('maladie_employeur', period)
+        mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
 
         cotisations_patronales_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
             famille +
-            maladie_employeur +
+            mmid_employeur +
             taxe_salaires
             )
         return period, cotisations_patronales_non_contributives

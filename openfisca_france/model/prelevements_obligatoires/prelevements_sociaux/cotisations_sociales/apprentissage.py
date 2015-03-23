@@ -153,7 +153,7 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
 
         exoneration_plus_11 = 0
         cotisations_exonerees = [
-            'famille', 'maladie_employeur', 'vieillesse_plafonnee_employeur', 'vieillesse_deplafonnee_employeur']
+            'famille', 'mmid_employeur', 'vieillesse_plafonnee_employeur', 'vieillesse_deplafonnee_employeur']
         for cotisation_exoneree in cotisations_exonerees:
             exoneration_plus_11 = exoneration_plus_11 - simulation.calculate(cotisation_exoneree, period)
 
