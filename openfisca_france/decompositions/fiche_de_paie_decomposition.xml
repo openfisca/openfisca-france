@@ -7,7 +7,7 @@
       <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. soc. pat.">
           <NODE code="cotisations_employeur_contributives" color="249,208,211" desc="Cotisations sociales patronales contributives" shortname="Cotsoc pat contrib" >
             <NODE code="ags" color="249,208,211" desc="AGS" shortname="AGS" />
-            <NODE code="agff_tranche_a_employeur" color="249,208,211" desc="AGFF (employeur)" shortname="AGFF" />
+            <NODE code="agff_employeur" color="249,208,211" desc="AGFF (employeur)" shortname="AGFF" />
             <NODE code="apec_employeur" color="249,208,211" desc="APEC (employeur)" shortname="APEC" />
             <NODE code="arrco_employeur" color="249,208,211" desc="ARRCO (employeur)" shortname="ARRCO" />
             <NODE code="assedic_employeur" color="249,208,211" desc="ASSEDIC (employeur)" shortname="ASSEDIC" />

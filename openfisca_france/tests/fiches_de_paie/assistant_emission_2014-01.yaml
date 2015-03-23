@@ -38,7 +38,7 @@ output_variables:
 
   # cotisations_employeur_contributives: 0
   ags: 0
-  agff_tranche_a_employeur: 0
+  agff_employeur: 0
   apec_employeur: 0
   arrco_employeur: 0
   assedic_employeur: 0
