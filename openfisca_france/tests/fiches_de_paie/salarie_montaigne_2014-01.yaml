@@ -48,7 +48,7 @@ output_variables:
   agirc_employeur: -108.26
   apec_employeur: -0.31
   arrco_employeur: -143.31
-  assedic_employeur: -(125.16 + 34.15)
+  chomage_employeur: -(125.16 + 34.15)
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -69.70
   vieillesse_plafonnee_employeur: -264.40
@@ -91,7 +91,7 @@ output_variables:
   agirc_salarie: -66.17
   apec_salarie: -0.20
   arrco_salarie: -95.43
-  assedic_employe: -(20.49 + 75.10)
+  chomage_salarie: -(20.49 + 75.10)
   cotisation_exceptionnelle_temporaire_employe: 0
   vielleisse_deplafonnee_salarie: -9.96
   vielleisse_plafonnee_salarie: -212.77

@@ -382,7 +382,7 @@ class arrco_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class assedic_employe(SimpleFormulaColumn):
+class chomage_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employé)"
@@ -399,7 +399,7 @@ class assedic_employe(SimpleFormulaColumn):
 
 
 @reference_formula
-class assedic_employeur(SimpleFormulaColumn):
+class chomage_employeur(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employeur)"
