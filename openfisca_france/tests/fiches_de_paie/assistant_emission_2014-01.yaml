@@ -34,7 +34,7 @@ output_variables:
   # TODO à coder taxe_handicapes: 18.40
 
   # salsuperbrut: 0
-  # cotisations_patronales: 0
+  # cotisations_employeur: 0
 
   # cotisations_patronales_contributives: 0
   ags: 0
