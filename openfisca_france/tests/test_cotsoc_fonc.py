@@ -67,7 +67,7 @@ def test():
                 allocations_temporaires_invalidite = -6.6,
                 mmid_employeur = -194,
                 famille = -108,
-                cotisations_patronales_non_contributives = -308,
+                cotisations_employeur_non_contributives = -308,
                 # mmid_employeur, famille, fnal, versement_transport,
                 # allocations_temporaires_invalidite contribution_solidarite_autonomie
 
@@ -123,7 +123,7 @@ def test():
                 allocations_temporaires_invalidite = -10,
                 mmid_employeur = -230,
                 famille = -108,
-                cotisations_patronales_non_contributives  = -( 230 + 108 + 10),
+                cotisations_employeur_non_contributives  = -( 230 + 108 + 10),
 
                 pension_civile_employeur = -546,
                 rafp_employeur = -20,
@@ -177,8 +177,8 @@ def test():
                 allocations_temporaires_invalidite = -10,
                 mmid_employeur = -230,
                 famille = -108,
-                cotisations_patronales_non_contributives = -348,
-                # cotisations_patronales_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur_non_contributives = -348,
+                # cotisations_employeur_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
 
                 pension_civile_employeur = -546,
@@ -236,7 +236,7 @@ def test():
                 ircantec_employeur = -90.24,  # TODO: Trouver source extérieur site IPP buggé
                 cotisations_employeur_contributives = -343.68,
 
-                cotisations_patronales_non_contributives = -465.92,
+                cotisations_employeur_non_contributives = -465.92,
 
                 cotisations_employeur = -(
                     212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68
@@ -299,7 +299,7 @@ def test():
                 allocations_temporaires_invalidite = -6.6,
                 mmid_employeur = -194,
                 famille = -108,
-                cotisations_patronales_non_contributives = -308,
+                cotisations_employeur_non_contributives = -308,
 
                 pension_civile_employeur = -1371.80,
                 rafp_employeur = -20,
@@ -369,7 +369,7 @@ def test():
                 allocations_temporaires_invalidite = -6.6 * 2,
                 mmid_employeur = -194 * 2,
                 famille = -108 * 2,
-                cotisations_patronales_non_contributives = -617.2,
+                cotisations_employeur_non_contributives = -617.2,
 
                 cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 

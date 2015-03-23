@@ -50,7 +50,7 @@ output_variables:
   pension_civile_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_patronales_non_contributives: 0
+  # cotisations_employeur_non_contributives: 0
   allocations_temporaires_invalidite: 0
   accident_du_travail: 0
   famille: 0

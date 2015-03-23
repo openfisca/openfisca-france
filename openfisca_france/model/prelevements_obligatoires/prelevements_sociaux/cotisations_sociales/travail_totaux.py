@@ -46,13 +46,13 @@ class cotisations_employeur(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
-        cotisations_patronales_non_contributives = simulation.calculate(
-            'cotisations_patronales_non_contributives', period)
+        cotisations_employeur_non_contributives = simulation.calculate(
+            'cotisations_employeur_non_contributives', period)
         cotisations_employeur_main_d_oeuvre = simulation.calculate('cotisations_employeur_main_d_oeuvre', period)
 
         return period, (
             cotisations_employeur_contributives +
-            cotisations_patronales_non_contributives +
+            cotisations_employeur_non_contributives +
             cotisations_employeur_main_d_oeuvre
             )
 
@@ -101,7 +101,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_patronales_non_contributives(SimpleFormulaColumn):
+class cotisations_employeur_non_contributives(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -116,14 +116,14 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
         mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
 
-        cotisations_patronales_non_contributives = (
+        cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
             famille +
             mmid_employeur +
             taxe_salaires
             )
-        return period, cotisations_patronales_non_contributives
+        return period, cotisations_employeur_non_contributives
 
 
 @reference_formula
