@@ -26,7 +26,7 @@
             <NODE code="mmid_employeur" color="249,208,211" desc="Maladie (employeur)" shortname="Maladie" />
             <NODE code="taxe_salaires" color="249,208,211" desc="Taxes sur les salaires" shortname="Taxe salaires" />
           </NODE>
-          <NODE code="cotisations_patronales_main_d_oeuvre" color="249,208,211" desc="Cotisations sociales patronales main d'oeuvre" shortname="Cotsoc pat main oeuvre" />
+          <NODE code="cotisations_employeur_main_d_oeuvre" color="249,208,211" desc="Cotisations sociales patronales main d'oeuvre" shortname="Cotsoc pat main oeuvre" />
             <NODE code="conge_individuel_formation_cdd" color="249,208,211" desc="Congé individuel de formation CDD" shortname="CIF CDD" />
             <NODE code="contribution_developpement_apprentissage" color="249,208,211" desc="Contribution au Développement de l'apprentissage" shortname="Dév. apprenti." />
             <NODE code="contribution_solidarite_autonomie" color="249,208,211" desc="Contribution solidarite autonomie" shortname="CSA" />

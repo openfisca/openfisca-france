@@ -117,7 +117,7 @@ class contribution_supplementaire_apprentissage(DatedFormulaColumn):
 
 
 @reference_formula
-class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
+class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -138,7 +138,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
         taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
         versement_transport = simulation.calculate_add('versement_transport', period)
 
-        cotisations_patronales_main_d_oeuvre = (
+        cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd +
             contribution_developpement_apprentissage +
             contribution_solidarite_autonomie +
@@ -150,7 +150,7 @@ class cotisations_patronales_main_d_oeuvre(SimpleFormulaColumn):
             taxe_apprentissage +
             versement_transport
             )
-        return period, cotisations_patronales_main_d_oeuvre
+        return period, cotisations_employeur_main_d_oeuvre
 
 
 @reference_formula
