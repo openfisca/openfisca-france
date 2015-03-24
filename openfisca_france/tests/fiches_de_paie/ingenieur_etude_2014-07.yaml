@@ -95,7 +95,7 @@ output_variables:
   vielleisse_deplafonnee_salarie: -3000 * .0025  # est agrégée avec maladie sur la fiche de paie
   vielleisse_plafonnee_salarie: -204
   ircantec_salarie: 0
-  pension_civile_employe: 0
+  pension_civile_salarie: 0
   rafp_employe: 0
 
   # cotisations_salariales_non_contributives: 0

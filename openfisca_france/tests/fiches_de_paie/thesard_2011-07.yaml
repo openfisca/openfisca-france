@@ -86,7 +86,7 @@ output_variables:
   vielleisse_deplafonnee_salarie: -1.91
   vielleisse_plafonnee_salarie: 0
   # ircantec_salarie: -43.32 TODO: corriger
-  pension_civile_employe: 0
+  pension_civile_salarie: 0
   rafp_employe: 0
 
   # cotisations_salariales_non_contributives: 0
