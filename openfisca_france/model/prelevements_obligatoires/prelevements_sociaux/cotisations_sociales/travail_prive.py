@@ -143,7 +143,7 @@ class accident_du_travail(SimpleFormulaColumn):
 class agff_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation retraite AGFF tranche A (employé)"
+    label = u"Cotisation retraite AGFF tranche A (salarié)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -193,7 +193,7 @@ class agff_employeur(SimpleFormulaColumn):
 class agirc_gmp_employe(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employé)"
+    label = u"Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     # TODO: gestion annuel/mensuel
 
     def function(self, simulation, period):
@@ -241,7 +241,7 @@ class agirc_gmp_employeur(SimpleFormulaColumn):
 class agirc_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation AGIRC tranche B (employé)"
+    label = u"Cotisation AGIRC tranche B (salarié)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -294,7 +294,7 @@ class ags(SimpleFormulaColumn):
 class apec_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisations agence pour l'emploi des cadres (APEC, employé)"
+    label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -327,7 +327,7 @@ class apec_employeur(SimpleFormulaColumn):
 class arrco_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation ARRCO tranche A (employé)"
+    label = u"Cotisation ARRCO tranche A (salarié)"
     # TODO: check gestion mensuel/annuel
 
     def function(self, simulation, period):
@@ -385,7 +385,7 @@ class arrco_employeur(SimpleFormulaColumn):
 class chomage_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation chômage tranche A (employé)"
+    label = u"Cotisation chômage tranche A (salarié)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -487,7 +487,7 @@ class famille(SimpleFormulaColumn):
 class mmid_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation maladie (employé)"
+    label = u"Cotisation maladie (salarié)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -624,7 +624,7 @@ class taux_accident_travail(SimpleFormulaColumn):
 class vielleisse_deplafonnee_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation vieillesse déplafonnée (employé)"
+    label = u"Cotisation vieillesse déplafonnée (salarié)"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -642,7 +642,7 @@ class vielleisse_deplafonnee_salarie(SimpleFormulaColumn):
 class vielleisse_plafonnee_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation vieillesse plafonnée (employé)"
+    label = u"Cotisation vieillesse plafonnée (salarié)"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')

@@ -96,7 +96,7 @@ output_variables:
   vielleisse_plafonnee_salarie: -204
   ircantec_salarie: 0
   pension_civile_salarie: 0
-  rafp_employe: 0
+  rafp_salarie: 0
 
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -3000 * .0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
