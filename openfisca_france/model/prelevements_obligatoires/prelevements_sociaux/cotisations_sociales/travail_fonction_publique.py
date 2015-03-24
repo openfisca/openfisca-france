@@ -93,10 +93,10 @@ class assiette_cotisations_sociales_public(SimpleFormulaColumn):
 
 
 @reference_formula
-class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
+class contribution_exceptionnelle_solidarite(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation exceptionnelle de solidarité (employe)"
+    label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -328,5 +328,3 @@ def seuil_fds(law):
     pt_ind_mensuel = law.cotsoc.sal.fonc.commun.pt_ind / 12
     seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
     return seuil_mensuel
-
-

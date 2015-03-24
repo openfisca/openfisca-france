@@ -59,7 +59,7 @@
         </NODE>
         <NODE code="cotisations_salariales_non_contributives" color="249,208,211" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncontrib" >
           <NODE code="mmid_salarie" color="249,208,211" desc="Maladie (salarié)" shortname="Maladie" />
-          <NODE code="contribution_exceptionnelle_solidarite_employe" color="249,208,211" desc="Contribution exceptionnelle solidarite (salarié)" shortname="Contrib. excep. temp." />
+          <NODE code="contribution_exceptionnelle_solidarite" color="249,208,211" desc="Contribution exceptionnelle solidarité (salarié)" shortname="Contrib. excep. temp." />
         </NODE>
       </NODE>
       <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG déuc." />

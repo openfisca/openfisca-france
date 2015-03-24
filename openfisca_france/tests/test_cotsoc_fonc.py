@@ -84,7 +84,7 @@ def test():
                 cotisations_salariales_contributives = - (167.80 + 20),
                 # pension rafp
 
-                contribution_exceptionnelle_solidarite_employe = - 23.72,
+                contribution_exceptionnelle_solidarite = - 23.72,
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
@@ -138,7 +138,7 @@ def test():
 
                 # pension rafp
 
-                contribution_exceptionnelle_solidarite_employe = -23.72,
+                contribution_exceptionnelle_solidarite = -23.72,
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
@@ -193,7 +193,7 @@ def test():
 
                 cotisations_salariales_contributives = - (167.80 + 20),
 
-                contribution_exceptionnelle_solidarite_employe = - 23.72,
+                contribution_exceptionnelle_solidarite = - 23.72,
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
@@ -249,7 +249,7 @@ def test():
                 vielleisse_plafonnee_salarie = -170.24,
                 cotisations_salariales_contributives = -232.96,
 
-                contribution_exceptionnelle_solidarite_employe = -23.16,
+                contribution_exceptionnelle_solidarite = -23.16,
                 mmid_salarie = -19.20,
 
                 cotisations_salariales_non_contributives = - 23.16 - 19.20,
@@ -312,7 +312,7 @@ def test():
                 rafp_salarie = -20,
                 cotisations_salariales_contributives = -187.8,
 
-                contribution_exceptionnelle_solidarite_employe = - 23.72,
+                contribution_exceptionnelle_solidarite = - 23.72,
                 cotisations_salariales_non_contributives = -23.72,
                 cotisations_salariales = -(167.80 + 20 + 23.72),
 
@@ -377,7 +377,7 @@ def test():
                 rafp_salarie = -20 * 2,
                 cotisations_salariales_contributives = -375.6,
 
-                contribution_exceptionnelle_solidarite_employe = -23.72 * 2,
+                contribution_exceptionnelle_solidarite = -23.72 * 2,
                 cotisations_salariales_non_contributives = -23.72 * 2,
 
                 cotisations_salariales = -422.24,

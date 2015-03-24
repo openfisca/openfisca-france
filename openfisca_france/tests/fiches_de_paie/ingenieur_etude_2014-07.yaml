@@ -100,7 +100,7 @@ output_variables:
 
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -3000 * .0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
-  contribution_exceptionnelle_solidarite_employe: 0
+  contribution_exceptionnelle_solidarite: 0
   csgsald: -150.32
   mhsup: 0
   salaire_net: 2395.55
