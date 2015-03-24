@@ -141,8 +141,8 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
         chomage_salarie = simulation.calculate_add('chomage_salarie', period)
-        cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
-            'cotisation_exceptionnelle_temporaire_employe', period)
+        cotisation_exceptionnelle_temporaire_salarie = simulation.calculate_add(
+            'cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = simulation.calculate_add('ircantec_salarie', period)
         pension_civile_employe = simulation.calculate_add('pension_civile_employe', period)
         rafp_employe = simulation.calculate_add('rafp_employe', period)
@@ -156,7 +156,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             apec_salarie +
             arrco_salarie +
             chomage_salarie +
-            cotisation_exceptionnelle_temporaire_employe +
+            cotisation_exceptionnelle_temporaire_salarie +
             vielleisse_deplafonnee_salarie +
             vielleisse_plafonnee_salarie +
             # public
