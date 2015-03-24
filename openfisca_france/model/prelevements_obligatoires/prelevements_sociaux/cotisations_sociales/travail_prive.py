@@ -433,7 +433,7 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisation_exceptionnelle_temporaire_employe(SimpleFormulaColumn):
+class cotisation_exceptionnelle_temporaire_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation_exceptionnelle_temporaire (employe)"
