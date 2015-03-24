@@ -54,7 +54,7 @@
           <NODE code="vielleisse_deplafonnee_salarie" color="249,208,211" desc="Vieillesse déplafonnée (employé)" shortname="Vieil. déplaf." />
           <NODE code="vielleisse_plafonnee_salarie" color="249,208,211" desc="Vieillesse plafonnée (employé)" shortname="Vieil. plaf." />
           <NODE code="ircantec_salarie" color="249,208,211" desc="Ircantec employé" shortname="Ircantec" />
-          <NODE code="pension_civile_employe" color="249,208,211" desc="Pension civile (employé)" shortname="Pension civile" />
+          <NODE code="pension_civile_salarie" color="249,208,211" desc="Pension civile (employé)" shortname="Pension civile" />
           <NODE code="rafp_employe" color="249,208,211" desc="Retraite additionnelle de la fonction publique (employé)" shortname="RAFP" />
         </NODE>
         <NODE code="cotisations_salariales_non_contributives" color="249,208,211" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncontrib" >

@@ -106,7 +106,7 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         rafp_employe = simulation.calculate('rafp_employe', period)
-        pension_civile_employe = simulation.calculate('pension_civile_employe', period)
+        pension_civile_salarie = simulation.calculate('pension_civile_salarie', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
@@ -131,7 +131,7 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
             base = assujettis * min_(
                 (
                     traitement_indiciaire_brut + salaire_de_base - hsup + indemnite_residence + rafp_employe +
-                    pension_civile_employe +
+                    pension_civile_salarie +
                     primes_fonction_publique +
                     (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
                     ),
@@ -213,7 +213,7 @@ class ircantec_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class pension_civile_employe(SimpleFormulaColumn):
+class pension_civile_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Pension civile employé"
@@ -228,12 +228,12 @@ class pension_civile_employe(SimpleFormulaColumn):
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
             type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
-        pension_civile_employe = (
+        pension_civile_salarie = (
             (type_sal == CAT['public_titulaire_etat']) *
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
-        return period, -pension_civile_employe
+        return period, -pension_civile_salarie
 
 
 @reference_formula
