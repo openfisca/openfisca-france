@@ -167,7 +167,7 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
 
 
 @reference_formula
-class ircantec_employe(SimpleFormulaColumn):
+class ircantec_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Ircantec employé"
