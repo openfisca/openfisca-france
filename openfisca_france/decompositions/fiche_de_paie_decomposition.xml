@@ -45,21 +45,21 @@
       </NODE>
       <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cot. soc. sal.">
         <NODE code="cotisations_salariales_contributives" color="249,208,211" desc="Cotisations sociales salariales contributives" shortname="Cotsoc sal contrib">
-          <NODE code="agff_salarie" color="249,208,211" desc="AGFF (employé)" shortname="AGFF" />
+          <NODE code="agff_salarie" color="249,208,211" desc="AGFF (salarié)" shortname="AGFF" />
           <NODE code="agirc_salarie" color="249,208,211" desc="AGIRC" shortname="AGIRC" />
-          <NODE code="apec_salarie" color="249,208,211" desc="APEC" shortname="APEC (employé)" />
-          <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (employé)" shortname="ARRCO" />
-          <NODE code="chomage_salarie" color="249,208,211" desc="CHÔMAGE (employé)" shortname="CHÔMAGE" />
-          <NODE code="cotisation_exceptionnelle_temporaire_salarie" color="249,208,211" desc="CET (employé)" shortname="CET" />
-          <NODE code="vielleisse_deplafonnee_salarie" color="249,208,211" desc="Vieillesse déplafonnée (employé)" shortname="Vieil. déplaf." />
-          <NODE code="vielleisse_plafonnee_salarie" color="249,208,211" desc="Vieillesse plafonnée (employé)" shortname="Vieil. plaf." />
-          <NODE code="ircantec_salarie" color="249,208,211" desc="Ircantec employé" shortname="Ircantec" />
-          <NODE code="pension_civile_salarie" color="249,208,211" desc="Pension civile (employé)" shortname="Pension civile" />
-          <NODE code="rafp_employe" color="249,208,211" desc="Retraite additionnelle de la fonction publique (employé)" shortname="RAFP" />
+          <NODE code="apec_salarie" color="249,208,211" desc="APEC" shortname="APEC (salarié)" />
+          <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (salarié)" shortname="ARRCO" />
+          <NODE code="chomage_salarie" color="249,208,211" desc="CHÔMAGE (salarié)" shortname="CHÔMAGE" />
+          <NODE code="cotisation_exceptionnelle_temporaire_salarie" color="249,208,211" desc="CET (salarié)" shortname="CET" />
+          <NODE code="vielleisse_deplafonnee_salarie" color="249,208,211" desc="Vieillesse déplafonnée (salarié)" shortname="Vieil. déplaf." />
+          <NODE code="vielleisse_plafonnee_salarie" color="249,208,211" desc="Vieillesse plafonnée (salarié)" shortname="Vieil. plaf." />
+          <NODE code="ircantec_salarie" color="249,208,211" desc="Ircantec salarié" shortname="Ircantec" />
+          <NODE code="pension_civile_salarie" color="249,208,211" desc="Pension civile (salarié)" shortname="Pension civile" />
+          <NODE code="rafp_salarie" color="249,208,211" desc="Retraite additionnelle de la fonction publique (salarié)" shortname="RAFP" />
         </NODE>
         <NODE code="cotisations_salariales_non_contributives" color="249,208,211" desc="Cotisations sociales salariales non contributives" shortname="Cotsoc sal noncontrib" >
-          <NODE code="mmid_salarie" color="249,208,211" desc="Maladie (employé)" shortname="Maladie" />
-          <NODE code="contribution_exceptionnelle_solidarite_employe" color="249,208,211" desc="Contribution exceptionnelle solidarite (employé)" shortname="Contrib. excep. temp." />
+          <NODE code="mmid_salarie" color="249,208,211" desc="Maladie (salarié)" shortname="Maladie" />
+          <NODE code="contribution_exceptionnelle_solidarite_employe" color="249,208,211" desc="Contribution exceptionnelle solidarite (salarié)" shortname="Contrib. excep. temp." />
         </NODE>
       </NODE>
       <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG déuc." />
@@ -70,5 +70,5 @@
     <NODE code="forfait_social" color="235,114,118" desc="Forfait social" shortname="Forfait social" />
     <NODE code="hsup" color="0,115,170" desc="Heures supplémentaires" shortname="Heures sup." />
   </NODE>
-  <NODE code="depense_cantine_titre_restaurant_employe" color="0,115,170" desc="Dépense de cantine et titres restaurants à charge de l'employé" shortname="Titres rest." />
+  <NODE code="depense_cantine_titre_restaurant_employe" color="0,115,170" desc="Dépense de cantine et titres restaurants à charge du salarié" shortname="Titres rest." />
 </NODE>

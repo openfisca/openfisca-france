@@ -87,7 +87,7 @@ output_variables:
   vielleisse_plafonnee_salarie: -122.4
   ircantec_salarie: 0
   pension_civile_salarie: 0
-  rafp_employe: 0
+  rafp_salarie: 0
 
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -13.5 # regroupée avec vieillesse dans la fiche de paie
