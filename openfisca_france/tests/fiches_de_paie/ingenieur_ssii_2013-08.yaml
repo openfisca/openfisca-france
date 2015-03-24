@@ -93,7 +93,7 @@ output_variables:
 
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -18.85
-  contribution_exceptionnelle_solidarite_employe: 0
+  contribution_exceptionnelle_solidarite: 0
   # csgsald: -127.45
   mhsup: 0
   # salaire_net: 1969.3

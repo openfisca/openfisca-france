@@ -178,15 +178,15 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        contribution_exceptionnelle_solidarite_employe = simulation.calculate_add(
-            'contribution_exceptionnelle_solidarite_employe', period)
+        contribution_exceptionnelle_solidarite = simulation.calculate_add(
+            'contribution_exceptionnelle_solidarite', period)
         mmid_salarie = simulation.calculate_add('mmid_salarie', period)
 
         cotisations_salariales_non_contributives = (
             # prive
             mmid_salarie +
             # public
-            contribution_exceptionnelle_solidarite_employe
+            contribution_exceptionnelle_solidarite
             )
 
         return period, cotisations_salariales_non_contributives
