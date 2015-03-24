@@ -143,7 +143,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         chomage_salarie = simulation.calculate_add('chomage_salarie', period)
         cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
             'cotisation_exceptionnelle_temporaire_employe', period)
-        ircantec_employe = simulation.calculate_add('ircantec_employe', period)
+        ircantec_salarie = simulation.calculate_add('ircantec_salarie', period)
         pension_civile_employe = simulation.calculate_add('pension_civile_employe', period)
         rafp_employe = simulation.calculate_add('rafp_employe', period)
         vielleisse_deplafonnee_salarie = simulation.calculate_add('vielleisse_deplafonnee_salarie', period)
@@ -160,7 +160,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             vielleisse_deplafonnee_salarie +
             vielleisse_plafonnee_salarie +
             # public
-            ircantec_employe +
+            ircantec_salarie +
             pension_civile_employe +
             rafp_employe
             )
