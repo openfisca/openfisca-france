@@ -111,7 +111,7 @@ def check(name, period_str, test):
                     )
 
 
-def test(name_filter = None):
+def test(force = False, name_filter = None):
     if isinstance(name_filter, str):
         name_filter = name_filter.decode('utf-8')
     dir_path = os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')
@@ -141,7 +141,7 @@ def test(name_filter = None):
                 assert embedding_error is None, embedding_error
                 conv.check((test, error))  # Generate an error.
 
-            if test.get(u'ignore', False):
+            if not force and test.get(u'ignore', False):
                 continue
             if name_filter is not None and name_filter not in filename_core \
                     and name_filter not in (test.get('name', u'')) \
@@ -156,12 +156,15 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('-f', '--force', action = 'store_true', default = False,
+        help = 'force testing of tests with "ignore" flag')
     parser.add_argument('-n', '--name', default = None, help = "partial name of tests to execute")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for test_index, (function, name, period_str, test) in enumerate(test(name_filter = args.name), 1):
+    for test_index, (function, name, period_str, test) in enumerate(test(force = args.force, name_filter = args.name),
+            1):
         keywords = test.get('keywords', [])
         title = "Test {}: {}{} - {}".format(
             test_index,
