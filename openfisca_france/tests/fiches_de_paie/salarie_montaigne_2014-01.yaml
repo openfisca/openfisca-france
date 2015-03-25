@@ -95,7 +95,7 @@ output_variables:
   chomage_salarie: -(20.49 + 75.10)
   cotisation_exceptionnelle_temporaire_salarie: 0
   vielleisse_deplafonnee_salarie: -9.96
-  vielleisse_plafonnee_salarie: -212.77
+  vieillesse_plafonnee_salarie: -212.77
   ircantec_salarie: 0
   pension_civile_salarie: 0
   rafp_salarie: 0

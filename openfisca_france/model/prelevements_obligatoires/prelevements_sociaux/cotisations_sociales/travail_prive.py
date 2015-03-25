@@ -639,7 +639,7 @@ class vielleisse_deplafonnee_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class vielleisse_plafonnee_salarie(SimpleFormulaColumn):
+class vieillesse_plafonnee_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (salarié)"

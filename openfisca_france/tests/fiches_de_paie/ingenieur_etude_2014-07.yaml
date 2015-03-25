@@ -88,7 +88,7 @@ output_variables:
   chomage_salarie: -72
   cotisation_exceptionnelle_temporaire_salarie: -3.9
   vielleisse_deplafonnee_salarie: -3000 * .0025  # est agrégée avec maladie sur la fiche de paie
-  vielleisse_plafonnee_salarie: -204
+  vieillesse_plafonnee_salarie: -204
   ircantec_salarie: 0
   pension_civile_salarie: 0
   rafp_salarie: 0

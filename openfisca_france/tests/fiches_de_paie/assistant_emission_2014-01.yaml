@@ -83,7 +83,7 @@ output_variables:
   chomage_salarie: 0
   cotisation_exceptionnelle_temporaire_salarie: 0
   vielleisse_deplafonnee_salarie: 0
-  vielleisse_plafonnee_salarie: 0
+  vieillesse_plafonnee_salarie: 0
   ircantec_salarie: 0
   pension_civile_salarie: 0
   rafp_salarie: 0
