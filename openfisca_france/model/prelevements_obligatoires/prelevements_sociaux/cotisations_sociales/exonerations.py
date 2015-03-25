@@ -38,9 +38,9 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         exonerations_geographiques = [
-            'exoneration_cotisations_patronales_zfu',
-            'exoneration_cotisations_patronales_zrd',
-            'exoneration_cotisations_patronales_zrr',
+            'exoneration_cotisations_employeur_zfu',
+            'exoneration_cotisations_employeur_zrd',
+            'exoneration_cotisations_employeur_zrr',
             ]
         exonerations_montant = 0
         for exoneration in exonerations_geographiques:
@@ -50,7 +50,7 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations patronales pour l'embauche en zone franche urbaine (ZFU)"
@@ -202,7 +202,7 @@ class exoneration_cotisations_patronales_zfu(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"
@@ -254,7 +254,7 @@ class exoneration_cotisations_patronales_zrd(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_zrr(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"
