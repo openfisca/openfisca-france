@@ -359,13 +359,13 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".002" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".001" />
      </CODE>
-     <CODE code="entre_2_3_pc_alternants" description="Taux pour les entreprises comprenant 1%  à 2% d'atlernants" format="percent">
+     <CODE code="entre_2_3_pc_alternants" description="Taux pour les entreprises comprenant 2%  à 3% d'atlernants" format="percent">
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".001" />
       </CODE>
-      <CODE code="entre_3_4_pc_alternants" description="Taux pour les entreprises comprenant 1%  à 2% d'atlernants" format="percent">
+      <CODE code="entre_3_4_pc_alternants" description="Taux pour les entreprises comprenant 3%  à 4% d'atlernants" format="percent">
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".0005" />
       </CODE>
-      <CODE code="entre_4_5_pc_alternants" description="Taux pour les entreprises comprenant 1%  à 2% d'atlernants" format="percent">
+      <CODE code="entre_4_5_pc_alternants" description="Taux pour les entreprises comprenant 4%  à 5% d'atlernants" format="percent">
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0005" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0" />
       </CODE>
