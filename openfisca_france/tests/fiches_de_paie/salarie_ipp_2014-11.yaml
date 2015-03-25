@@ -7,12 +7,12 @@ input_variables:
   effectif_entreprise: 3000
   # exposition_accident: 3
   code_postal_entreprise: "75014"
+  depcom_entreprise: "75114"
   prevoyance_obligatoire_cadre_taux_employeur: .0157
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0
   salaire_de_base: 4600
   taux_accident_travail: .015
-  taux_versement_transport: .027
   titre_restaurant_valeur_unitaire: 9
   titre_restaurant_volume: 19
   type_sal: 1

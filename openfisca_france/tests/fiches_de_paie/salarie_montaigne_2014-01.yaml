@@ -6,6 +6,7 @@ input_variables:
   assujettie_taxe_salaires: True
   avantages_en_nature_valeur_reelle: 0
   code_postal_entreprise: "75014"
+  depcom_entreprise: "75114"
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_arrivee: "2014-01-01"
   contrat_de_travail_depart: "2014-12-31"
@@ -28,7 +29,6 @@ input_variables:
   remboursement_transport_base: -67.10
   salaire_de_base: 3420
   taux_accident_travail: 0
-  taux_versement_transport: 0.027
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
   type_sal: 1  # non cadre
@@ -75,6 +75,7 @@ output_variables:
   participation_effort_construction: 0
   prevoyance_obligatoire_cadre: -105.83
   taxe_apprentissage: 0
+  taux_versement_transport: 0.027
   versement_transport: -26.88
 
   allegement_fillon: 0
