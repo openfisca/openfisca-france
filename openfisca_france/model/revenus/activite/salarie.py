@@ -259,6 +259,7 @@ reference_input_variable(
     base_function = requested_period_last_value,
     label = u"Effectif de l'entreprise",
     name = 'effectif_entreprise',
+    set_input = set_input_dispatch_by_period,
     )
 reference_input_variable(
     column = BoolCol(),
@@ -283,6 +284,7 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Bénéfice de l'entreprise",
     name = 'entreprise_benefice',
+    set_input = set_input_divide_by_period,
     )
 reference_input_variable(
     column = FloatCol(),
