@@ -31,7 +31,7 @@ CURRENCY = u"€"
 REVENUES_CATEGORIES = {
     'brut': ['salbrut', 'chobrut', 'rstbrut', 'alr', 'alv', 'rev_cap_brut', 'fon'],
     'imposable': ['sal', 'cho', 'rst', 'alr', 'alv', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
-    'net': ['salnet', 'chonet', 'rstnet', 'alr', 'alv', 'rev_cap_net', 'fon'],
+    'net': ['salaire_net', 'chonet', 'rstnet', 'alr', 'alv', 'rev_cap_net', 'fon'],
     'superbrut': ['salsuperbrut', 'chobrut', 'rstbrut', 'alr', 'alv', 'rev_cap_brut', 'fon'],
     }
 

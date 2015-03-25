@@ -62,29 +62,29 @@ def test():
                 fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
                 contribution_solidarite_autonomie = - 6,
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -6.6,
-                maladie_employeur = -194,
+                mmid_employeur = -194,
                 famille = -108,
-                cotisations_patronales_non_contributives = -308,
-                # maladie_employeur, famille, fnal, versement_transport,
+                cotisations_employeur_non_contributives = -308,
+                # mmid_employeur, famille, fnal, versement_transport,
                 # allocations_temporaires_invalidite contribution_solidarite_autonomie
 
                 rafp_employeur = -20,
                 pension_civile_employeur = -1371.80,
-                cotisations_patronales_contributives = - 1371.80 - 20,
+                cotisations_employeur_contributives = - 1371.80 - 20,
                 # pension_civile_employeur, rafp_employeur
 
-                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, transport csa,
 
-                pension_civile_employe = -167.80,
-                rafp_employe = -20,
+                pension_civile_salarie = -167.80,
+                rafp_salarie = -20,
                 cotisations_salariales_contributives = - (167.80 + 20),
                 # pension rafp
 
-                contribution_exceptionnelle_solidarite_employe = - 23.72,
+                contribution_exceptionnelle_solidarite = - 23.72,
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
@@ -94,7 +94,7 @@ def test():
                 csgsali = -60.36,
                 crdssal = -12.58,
                 indemnite_residence = 60,
-                salnet = 2147.26,
+                salaire_net = 2147.26,
                 salsuperbrut = 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
                 ),
             ),
@@ -118,27 +118,27 @@ def test():
                 fnal = -8 -2 ,
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -10,
-                maladie_employeur = -230,
+                mmid_employeur = -230,
                 famille = -108,
-                cotisations_patronales_non_contributives  = -( 230 + 108 + 10),
+                cotisations_employeur_non_contributives  = -( 230 + 108 + 10),
 
                 pension_civile_employeur = -546,
                 rafp_employeur = -20,
-                cotisations_patronales_contributives = -(546 + 20),
+                cotisations_employeur_contributives = -(546 + 20),
 
-                cotisations_patronales = -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
-                pension_civile_employe = -167.80,
-                rafp_employe = -20,
+                pension_civile_salarie = -167.80,
+                rafp_salarie = -20,
                 cotisations_salariales_contributives = - (167.80 + 20),
 
                 # pension rafp
 
-                contribution_exceptionnelle_solidarite_employe = -23.72,
+                contribution_exceptionnelle_solidarite = -23.72,
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
@@ -146,7 +146,7 @@ def test():
                 csgsali = -60.36,
                 crdssal = -12.58,
                 indemnite_residence = 60,
-                salnet = 2147.26,
+                salaire_net = 2147.26,
                 salsuperbrut = 3542 + 2000 * (0.0175 - 0.026),
                 ),
             ),
@@ -172,28 +172,28 @@ def test():
                 versement_transport = -2000 * 0.0175,
                 contribution_solidarite_autonomie = - 6,
 
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -10,
-                maladie_employeur = -230,
+                mmid_employeur = -230,
                 famille = -108,
-                cotisations_patronales_non_contributives = -348,
-                # cotisations_patronales_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur_non_contributives = -348,
+                # cotisations_employeur_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
 
                 pension_civile_employeur = -546,
                 fonds_emploi_hospitalier = -20,
                 rafp_employeur = -20,
-                cotisations_patronales_contributives = -(546 + 20 + 20),
+                cotisations_employeur_contributives = -(546 + 20 + 20),
                 # pension,  rafp, feh
-                cotisations_patronales = -(546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(546 + 10 + 20 + 230 + 108 + 20 + 2 + 8 + 2000 * 0.0175 + 6),
 
-                pension_civile_employe = -167.80,
-                rafp_employe = -20,
+                pension_civile_salarie = -167.80,
+                rafp_salarie = -20,
 
                 cotisations_salariales_contributives = - (167.80 + 20),
 
-                contribution_exceptionnelle_solidarite_employe = - 23.72,
+                contribution_exceptionnelle_solidarite = - 23.72,
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
@@ -202,7 +202,7 @@ def test():
                 csgsali = -60.36,
                 crdssal = -12.58,
                 indemnite_residence = 60,
-                salnet = 2147.26,
+                salaire_net = 2147.26,
                 salsuperbrut = 3562 + 2000 * (0.0175 - 0.026),
                 ),
             ),
@@ -227,30 +227,30 @@ def test():
                 contribution_solidarite_autonomie = - 7.68,
                 fnal = - 10.24 - 2.56,
                 versement_transport = -2560 * 0.0175,
-                cotisations_patronales_main_d_oeuvre = -65.28,
+                cotisations_employeur_main_d_oeuvre = -65.28,
 
                 vieillesse_deplafonnee_employeur = -40.96,
                 vieillesse_plafonnee_employeur = -212.48,
                 pension_civile_employeur = 0,
                 rafp_employeur = 0,
                 ircantec_employeur = -90.24,  # TODO: Trouver source extérieur site IPP buggé
-                cotisations_patronales_contributives = -343.68,
+                cotisations_employeur_contributives = -343.68,
 
-                cotisations_patronales_non_contributives = -465.92,
+                cotisations_employeur_non_contributives = -465.92,
 
-                cotisations_patronales = -(
+                cotisations_employeur = -(
                     212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68
                     ),
 
-                pension_civile_employe = 0,
-                rafp_employe = 0,
-                ircantec_employe = - 60.16,  # TODO: Trouver source extérieur site IPP buggé
-                vieillesse_deplafonnee_employe = -2.56,
-                vieillesse_plafonnee_employe = -170.24,
+                pension_civile_salarie = 0,
+                rafp_salarie = 0,
+                ircantec_salarie = - 60.16,  # TODO: Trouver source extérieur site IPP buggé
+                vielleisse_deplafonnee_salarie = -2.56,
+                vielleisse_plafonnee_salarie = -170.24,
                 cotisations_salariales_contributives = -232.96,
 
-                contribution_exceptionnelle_solidarite_employe = -23.16,
-                maladie_employe = -19.20,
+                contribution_exceptionnelle_solidarite = -23.16,
+                mmid_salarie = -19.20,
 
                 cotisations_salariales_non_contributives = - 23.16 - 19.20,
 
@@ -263,7 +263,7 @@ def test():
                 csgsali = -60.36,
                 crdssal = -12.58,
                 indemnite_residence = 60,
-                # salnet = 2091.20, # TODO: Trouver source extérieur site IPP buggé
+                # salaire_net = 2091.20, # TODO: Trouver source extérieur site IPP buggé
                 # salsuperbrut = 3367.36 + 2560 * (0.0175 - 0.026),
                 ),
             ),
@@ -294,25 +294,25 @@ def test():
                 contribution_solidarite_autonomie = - 6,
                 fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
-                cotisations_patronales_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -51,
 
                 allocations_temporaires_invalidite = -6.6,
-                maladie_employeur = -194,
+                mmid_employeur = -194,
                 famille = -108,
-                cotisations_patronales_non_contributives = -308,
+                cotisations_employeur_non_contributives = -308,
 
                 pension_civile_employeur = -1371.80,
                 rafp_employeur = -20,
-                cotisations_patronales_contributives = - 1371.80 - 20,
+                cotisations_employeur_contributives = - 1371.80 - 20,
 
-                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
+                cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
-                pension_civile_employe = -167.80,
-                rafp_employe = -20,
+                pension_civile_salarie = -167.80,
+                rafp_salarie = -20,
                 cotisations_salariales_contributives = -187.8,
 
-                contribution_exceptionnelle_solidarite_employe = - 23.72,
+                contribution_exceptionnelle_solidarite = - 23.72,
                 cotisations_salariales_non_contributives = -23.72,
                 cotisations_salariales = -(167.80 + 20 + 23.72),
 
@@ -320,7 +320,7 @@ def test():
                 csgsald = -131.94,
                 csgsali = -62.09,
                 indemnite_residence = 60,
-                # salnet = 2213.83,
+                # salaire_net = 2213.83,
                 salsuperbrut = 4401.44 + 2000 * (.0175 - .026),
                 supp_familial_traitement = 73.04,
                 ),
@@ -359,25 +359,25 @@ def test():
                 contribution_solidarite_autonomie = - 6 * 2,
                 fnal = - 8 * 2 - 2 * 2,
                 versement_transport = -2000 * 0.0175 * 2,  # = 35
-                cotisations_patronales_main_d_oeuvre = -51 * 2,
+                cotisations_employeur_main_d_oeuvre = -51 * 2,
 
 
                 pension_civile_employeur = -1371.80 * 2,
                 rafp_employeur = -20 * 2,
-                cotisations_patronales_contributives = -2783.6,
+                cotisations_employeur_contributives = -2783.6,
 
                 allocations_temporaires_invalidite = -6.6 * 2,
-                maladie_employeur = -194 * 2,
+                mmid_employeur = -194 * 2,
                 famille = -108 * 2,
-                cotisations_patronales_non_contributives = -617.2,
+                cotisations_employeur_non_contributives = -617.2,
 
-                cotisations_patronales = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
+                cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 
-                pension_civile_employe = -167.80 * 2,
-                rafp_employe = -20 * 2,
+                pension_civile_salarie = -167.80 * 2,
+                rafp_salarie = -20 * 2,
                 cotisations_salariales_contributives = -375.6,
 
-                contribution_exceptionnelle_solidarite_employe = -23.72 * 2,
+                contribution_exceptionnelle_solidarite = -23.72 * 2,
                 cotisations_salariales_non_contributives = -23.72 * 2,
 
                 cotisations_salariales = -422.24,

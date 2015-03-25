@@ -117,7 +117,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
@@ -142,9 +142,9 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        exoneration_moins_11 = - cotisations_patronales
+        exoneration_moins_11 = - cotisations_employeur
         cotisations_non_exonerees = [
             'accident_du_travail'
             ]
@@ -153,7 +153,7 @@ class exoneration_cotisations_patronales_apprenti(SimpleFormulaColumn):
 
         exoneration_plus_11 = 0
         cotisations_exonerees = [
-            'famille', 'maladie_employeur', 'vieillesse_plafonnee_employeur', 'vieillesse_deplafonnee_employeur']
+            'famille', 'mmid_employeur', 'vieillesse_plafonnee_employeur', 'vieillesse_deplafonnee_employeur']
         for cotisation_exoneree in cotisations_exonerees:
             exoneration_plus_11 = exoneration_plus_11 - simulation.calculate(cotisation_exoneree, period)
 

@@ -48,9 +48,9 @@ class asf_elig_i(SimpleFormulaColumn):
         pfam = simulation.legislation_at(period.start).fam
 
         eligibilite = (
-            (age >= pfam.af.age1) * (age <= pfam.af.age3) * # Âge compatible avec les prestations familiales
-            not_(smic55) * # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
-            (pensions_alimentaires_percues == 0)) # Ne perçoit pas de pension alimentaire
+            (age >= pfam.af.age1) * (age <= pfam.af.age3) *  # Âge compatible avec les prestations familiales
+            not_(smic55) *  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            (pensions_alimentaires_percues == 0))  # Ne perçoit pas de pension alimentaire
 
         return period, eligibilite
 

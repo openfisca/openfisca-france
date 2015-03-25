@@ -2,11 +2,11 @@
   <!-- # TODO: missing indemnite_residence and sft -->
   <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  <!-- # TODO: remove unexisting variable? change color -->
     <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
-      <NODE code="salnet" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
+      <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
         <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
           <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
-            <NODE code="cotisations_patronales" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
+            <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cotsoc pat" />
             <NODE code="allegement_fillon" color="0,171,208" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
             <NODE code="credit_impot_competitivite_emploi" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
             <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />

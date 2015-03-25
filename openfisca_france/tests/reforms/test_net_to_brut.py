@@ -118,7 +118,7 @@ def test_rstnet_to_rstbrut():
         yield check_rstnet_to_rstbrut, count, rstbrut_max, rstbrut_min, year
 
 
-def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
+def check_salaire_net_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
     scenario_args = dict(
         axes = [
             dict(
@@ -140,7 +140,7 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
         ).new_simulation()
 
     salbrut = simulation.get_holder('salbrut').array
-    salnet = simulation.calculate('salnet')
+    salaire_net = simulation.calculate('salaire_net')
 
     inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
@@ -148,19 +148,19 @@ def check_salnet_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
         ).new_simulation()
 
     inverse_simulation.get_holder('salbrut').delete_arrays()
-    inverse_simulation.get_or_new_holder('salnet').array = salnet
+    inverse_simulation.get_or_new_holder('salaire_net').array = salaire_net
     new_salbrut = inverse_simulation.calculate('salbrut')
 
     assert_near(new_salbrut, salbrut, absolute_error_margin = 0.1)
 
 
-def test_salnet_to_salbrut():
+def test_salaire_net_to_salbrut():
     count = 11
     salbrut_max = 48000
     salbrut_min = 0
     for year in range(2006, 2015):
         for type_sal in CAT._vars:
-            yield check_salnet_to_salbrut, count, salbrut_max, salbrut_min, type_sal, year
+            yield check_salaire_net_to_salbrut, count, salbrut_max, salbrut_min, type_sal, year
 
 
 if __name__ == '__main__':
@@ -168,6 +168,6 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salnet_to_salbrut):
+    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salbrut):
         for function_and_arguments in test():
             function_and_arguments[0](*function_and_arguments[1:])

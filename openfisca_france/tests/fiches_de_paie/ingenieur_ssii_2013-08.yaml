@@ -35,15 +35,15 @@ output_variables:
   # TODO à coder taxe_handicapes: 18.40
 
   # salsuperbrut: 0
-  # cotisations_patronales: 0
+  # cotisations_employeur: 0
 
-  # cotisations_patronales_contributives: 0
+  # cotisations_employeur_contributives: 0
   ags: -7.54
-  agff_tranche_a_employeur: -30.15
+  agff_employeur: -30.15
   apec_employeur: -0.9
-  arrco_tranche_a_employeur: -114.06
-  agirc_tranche_b_employeur: -41.13
-  assedic_employeur: -100.52
+  arrco_employeur: -114.06
+  agirc_employeur: -41.13
+  chomage_employeur: -100.52
   cotisation_exceptionnelle_temporaire_employeur: -5.53
   vieillesse_deplafonnee_employeur: -40.21
   vieillesse_plafonnee_employeur: -211.08
@@ -52,14 +52,14 @@ output_variables:
   pension_civile_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_patronales_non_contributives: 0
+  # cotisations_employeur_non_contributives: 0
   allocations_temporaires_invalidite: 0
   accident_du_travail: -27.64
   famille: -135.70
-  maladie_employeur: -321.65
+  mmid_employeur: -321.65
   taxe_salaires: 0
 
-  # cotisations_patronales_main_d_oeuvre: 0
+  # cotisations_employeur_main_d_oeuvre: 0
   conge_individuel_formation_cdd: 0
   contribution_developpement_apprentissage: -4.52
   contribution_solidarite_autonomie: -7.54
@@ -79,24 +79,24 @@ output_variables:
   # cotisations_salariales: 0
 
   # cotisations_salariales_contributives: 0
-  agff_tranche_a_employe: -20.10
-  agirc_tranche_b_employe: -25.13
-  apec_employe: -0.6
-  arrco_tranche_a_employe: -75.99
-  assedic_employe: -60.31
-  cotisation_exceptionnelle_temporaire_employe: -3.27
-  vieillesse_deplafonnee_employe: -2.51
-  vieillesse_plafonnee_employe: -169.62
-  ircantec_employe: 0
-  pension_civile_employe: 0
-  rafp_employe: 0
+  agff_salarie: -20.10
+  agirc_salarie: -25.13
+  apec_salarie: -0.6
+  arrco_salarie: -75.99
+  chomage_salarie: -60.31
+  cotisation_exceptionnelle_temporaire_salarie: -3.27
+  vielleisse_deplafonnee_salarie: -2.51
+  vielleisse_plafonnee_salarie: -169.62
+  ircantec_salarie: 0
+  pension_civile_salarie: 0
+  rafp_salarie: 0
 
   # cotisations_salariales_non_contributives: 0
-  maladie_employe: -18.85
-  contribution_exceptionnelle_solidarite_employe: 0
+  mmid_salarie: -18.85
+  contribution_exceptionnelle_solidarite: 0
   # csgsald: -127.45
   mhsup: 0
-  # salnet: 1969.3
+  # salaire_net: 1969.3
 
   # salaire imposable
   # csgsali: -59.98

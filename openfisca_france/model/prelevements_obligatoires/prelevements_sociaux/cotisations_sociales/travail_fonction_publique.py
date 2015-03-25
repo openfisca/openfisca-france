@@ -93,10 +93,10 @@ class assiette_cotisations_sociales_public(SimpleFormulaColumn):
 
 
 @reference_formula
-class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
+class contribution_exceptionnelle_solidarite(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation exceptionnelle de solidarité (employe)"
+    label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -105,8 +105,8 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
         type_sal = simulation.calculate('type_sal', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        rafp_employe = simulation.calculate('rafp_employe', period)
-        pension_civile_employe = simulation.calculate('pension_civile_employe', period)
+        rafp_salarie = simulation.calculate('rafp_salarie', period)
+        pension_civile_salarie = simulation.calculate('pension_civile_salarie', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
@@ -130,8 +130,8 @@ class contribution_exceptionnelle_solidarite_employe(SimpleFormulaColumn):
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 (
-                    traitement_indiciaire_brut + salaire_de_base - hsup + indemnite_residence + rafp_employe +
-                    pension_civile_employe +
+                    traitement_indiciaire_brut + salaire_de_base - hsup + indemnite_residence + rafp_salarie +
+                    pension_civile_salarie +
                     primes_fonction_publique +
                     (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
                     ),
@@ -167,10 +167,10 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
 
 
 @reference_formula
-class ircantec_employe(SimpleFormulaColumn):
+class ircantec_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Ircantec employé"
+    label = u"Ircantec salarié"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -213,10 +213,10 @@ class ircantec_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class pension_civile_employe(SimpleFormulaColumn):
+class pension_civile_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Pension civile employé"
+    label = u"Pension civile salarié"
     url = u"http://www.ac-besancon.fr/spip.php?article2662",
 
     def function(self, simulation, period):
@@ -228,12 +228,12 @@ class pension_civile_employe(SimpleFormulaColumn):
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
             type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
-        pension_civile_employe = (
+        pension_civile_salarie = (
             (type_sal == CAT['public_titulaire_etat']) *
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
-        return period, -pension_civile_employe
+        return period, -pension_civile_salarie
 
 
 @reference_formula
@@ -263,7 +263,7 @@ class pension_civile_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class rafp_employe(SimpleFormulaColumn):
+class rafp_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Part salariale de la retraite additionelle de la fonction publique"
@@ -287,8 +287,8 @@ class rafp_employe(SimpleFormulaColumn):
         base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
-        rafp_employe = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
-        return period, -rafp_employe
+        rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
+        return period, -rafp_salarie
 
 
 @reference_formula
@@ -328,5 +328,3 @@ def seuil_fds(law):
     pt_ind_mensuel = law.cotsoc.sal.fonc.commun.pt_ind / 12
     seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
     return seuil_mensuel
-
-

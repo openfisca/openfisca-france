@@ -539,7 +539,7 @@ class ra_rsa_i(SimpleFormulaColumn):
                 return ressource_trois_derniers_mois
 
         # Ressources neutralisables
-        salnet = calcule_type_ressource('salnet', neutralisable = True)
+        salaire_net = calcule_type_ressource('salaire_net', neutralisable = True)
         indemnites_chomage_partiel = calcule_type_ressource('indemnites_chomage_partiel', neutralisable = True)
         indemnites_journalieres_maternite = calcule_type_ressource('indemnites_journalieres_maternite',
             neutralisable = True)
@@ -566,7 +566,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
 
         return period, (
-            salnet + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
+            salaire_net + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
             indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus +

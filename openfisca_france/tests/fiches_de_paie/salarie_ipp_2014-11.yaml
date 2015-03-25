@@ -23,43 +23,43 @@ output_variables:
   fnal: -23
   formation_professionnelle: -73.6
   versement_transport: -124.20
-  # cotisations_patronales_main_d_oeuvre:
-  agff_tranche_a_employe: -24.20 - 14.18
-  agff_tranche_a_employeur: -36.30 - 20.48
+  # cotisations_employeur_main_d_oeuvre:
+  agff_salarie: -24.20 - 14.18
+  agff_employeur: -36.30 - 20.48
   ags: -13.80
   apec_employeur: -1.09 - .57
   cotisation_exceptionnelle_temporaire_employeur: -10.12
-  arrco_tranche_a_employeur: -138.53 - 199.75
-  # agirc_tranche_b_employeur: -199.75  # Inclus dans arcco
-  assedic_employeur: -120.99 - 63.01
-  # assedic_tranche_a_employeur: -120.99  # Inclus dans assedic
-  # assedic_tranche_b_employeur: -63.01  # Inclus dans assedic
+  arrco_employeur: -138.53 - 199.75
+  # agirc_employeur: -199.75  # Inclus dans arcco
+  chomage_employeur: -120.99 - 63.01
+  # chomage_tranche_a_employeur: -120.99  # Inclus dans assedic
+  # chomage_tranche_b_employeur: -63.01  # Inclus dans assedic
   vieillesse_deplafonnee_employeur: -80.5
   vieillesse_plafonnee_employeur: -255.59
 
-  # cotisations_patronales_contributives:
+  # cotisations_employeur_contributives:
 
   accident_du_travail: -69
   famille: -241.5
-  maladie_employeur: -588.80
-  # cotisations_patronales: - 2836.38 + 19 * 4.5  # montant juste TODO: A compléter avec presta manquantes
+  mmid_employeur: -588.80
+  # cotisations_employeur: - 2836.38 + 19 * 4.5  # montant juste TODO: A compléter avec presta manquantes
   taxe_salaires: -197.52 - 27.07 - 315.27
   prevoyance_obligatoire_cadre: -47.49
 
   forfait_social: -3.8 # 47.49 de base
-  cotisation_exceptionnelle_temporaire_employe: -5.98
-  maladie_employe: -34.5
+  cotisation_exceptionnelle_temporaire_salarie: -5.98
+  mmid_salarie: -34.5
   # cotisations_salariales_non_contributives:
 
-  apec_employe: -.73 - .38
-  arrco_tranche_a_employe: -92.25
-  agirc_tranche_b_employe: -122.09
-  # assedic_tranche_a_employe: -72.59  # Inclus dans assedic
-  # assedic_tranche_b_employe: 37.81  # Inclus dans assedic
-  assedic_employe: -72.59 - 37.81
+  apec_salarie: -.73 - .38
+  arrco_salarie: -92.25
+  agirc_salarie: -122.09
+  # chomage_tranche_a_employe: -72.59  # Inclus dans assedic
+  # chomage_tranche_b_employe: 37.81  # Inclus dans assedic
+  chomage_salarie: -72.59 - 37.81
 
-  vieillesse_deplafonnee_employe: -11.5
-  vieillesse_plafonnee_employe: -205.68
+  vielleisse_deplafonnee_salarie: -11.5
+  vielleisse_plafonnee_salarie: -205.68
   # cotisations_salariales_contributives:
 
   # cotisations_salariales:

@@ -207,7 +207,7 @@ class sal(SimpleFormulaColumn):
 
 
 @reference_formula
-class salnet(SimpleFormulaColumn):
+class salaire_net(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus

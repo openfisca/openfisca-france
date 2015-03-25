@@ -36,7 +36,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class cotisations_patronales(SimpleFormulaColumn):
+class cotisations_employeur(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -45,20 +45,20 @@ class cotisations_patronales(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
-        cotisations_patronales_non_contributives = simulation.calculate(
-            'cotisations_patronales_non_contributives', period)
-        cotisations_patronales_main_d_oeuvre = simulation.calculate('cotisations_patronales_main_d_oeuvre', period)
+        cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
+        cotisations_employeur_non_contributives = simulation.calculate(
+            'cotisations_employeur_non_contributives', period)
+        cotisations_employeur_main_d_oeuvre = simulation.calculate('cotisations_employeur_main_d_oeuvre', period)
 
         return period, (
-            cotisations_patronales_contributives +
-            cotisations_patronales_non_contributives +
-            cotisations_patronales_main_d_oeuvre
+            cotisations_employeur_contributives +
+            cotisations_employeur_non_contributives +
+            cotisations_employeur_main_d_oeuvre
             )
 
 
 @reference_formula
-class cotisations_patronales_contributives(SimpleFormulaColumn):
+class cotisations_employeur_contributives(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -68,10 +68,10 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         ags = simulation.calculate('ags', period)
-        agff_tranche_a_employeur = simulation.calculate_add('agff_tranche_a_employeur', period)
+        agff_employeur = simulation.calculate_add('agff_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
-        arrco_tranche_a_employeur = simulation.calculate('arrco_tranche_a_employeur', period)
-        assedic_employeur = simulation.calculate('assedic_employeur', period)
+        arrco_employeur = simulation.calculate('arrco_employeur', period)
+        chomage_employeur = simulation.calculate('chomage_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
             'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = simulation.calculate_add('fonds_emploi_hospitalier', period)
@@ -81,13 +81,13 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
         vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
         vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
 
-        cotisations_patronales_contributives = (
+        cotisations_employeur_contributives = (
             # prive
             ags +
-            agff_tranche_a_employeur +
+            agff_employeur +
             apec_employeur +
-            arrco_tranche_a_employeur +
-            assedic_employeur +
+            arrco_employeur +
+            chomage_employeur +
             cotisation_exceptionnelle_temporaire_employeur +
             vieillesse_deplafonnee_employeur +
             vieillesse_plafonnee_employeur +
@@ -97,11 +97,11 @@ class cotisations_patronales_contributives(SimpleFormulaColumn):
             pension_civile_employeur +
             rafp_employeur
             )
-        return period, cotisations_patronales_contributives
+        return period, cotisations_employeur_contributives
 
 
 @reference_formula
-class cotisations_patronales_non_contributives(SimpleFormulaColumn):
+class cotisations_employeur_non_contributives(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -113,17 +113,17 @@ class cotisations_patronales_non_contributives(SimpleFormulaColumn):
         accident_du_travail = simulation.calculate('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
         famille = simulation.calculate('famille', period)
-        maladie_employeur = simulation.calculate_add('maladie_employeur', period)
+        mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
 
-        cotisations_patronales_non_contributives = (
+        cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
             famille +
-            maladie_employeur +
+            mmid_employeur +
             taxe_salaires
             )
-        return period, cotisations_patronales_non_contributives
+        return period, cotisations_employeur_non_contributives
 
 
 @reference_formula
@@ -136,33 +136,33 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        agff_tranche_a_employe = simulation.calculate_add('agff_tranche_a_employe', period)
-        agirc_tranche_b_employe = simulation.calculate_add('agirc_tranche_b_employe', period)
-        apec_employe = simulation.calculate_add('apec_employe', period)
-        arrco_tranche_a_employe = simulation.calculate_add('arrco_tranche_a_employe', period)
-        assedic_employe = simulation.calculate_add('assedic_employe', period)
-        cotisation_exceptionnelle_temporaire_employe = simulation.calculate_add(
-            'cotisation_exceptionnelle_temporaire_employe', period)
-        ircantec_employe = simulation.calculate_add('ircantec_employe', period)
-        pension_civile_employe = simulation.calculate_add('pension_civile_employe', period)
-        rafp_employe = simulation.calculate_add('rafp_employe', period)
-        vieillesse_deplafonnee_employe = simulation.calculate_add('vieillesse_deplafonnee_employe', period)
-        vieillesse_plafonnee_employe = simulation.calculate_add('vieillesse_plafonnee_employe', period)
+        agff_salarie = simulation.calculate_add('agff_salarie', period)
+        agirc_salarie = simulation.calculate_add('agirc_salarie', period)
+        apec_salarie = simulation.calculate_add('apec_salarie', period)
+        arrco_salarie = simulation.calculate_add('arrco_salarie', period)
+        chomage_salarie = simulation.calculate_add('chomage_salarie', period)
+        cotisation_exceptionnelle_temporaire_salarie = simulation.calculate_add(
+            'cotisation_exceptionnelle_temporaire_salarie', period)
+        ircantec_salarie = simulation.calculate_add('ircantec_salarie', period)
+        pension_civile_salarie = simulation.calculate_add('pension_civile_salarie', period)
+        rafp_salarie = simulation.calculate_add('rafp_salarie', period)
+        vielleisse_deplafonnee_salarie = simulation.calculate_add('vielleisse_deplafonnee_salarie', period)
+        vielleisse_plafonnee_salarie = simulation.calculate_add('vielleisse_plafonnee_salarie', period)
 
         cotisations_salariales_contributives = (
             # prive
-            agff_tranche_a_employe +
-            agirc_tranche_b_employe +
-            apec_employe +
-            arrco_tranche_a_employe +
-            assedic_employe +
-            cotisation_exceptionnelle_temporaire_employe +
-            vieillesse_deplafonnee_employe +
-            vieillesse_plafonnee_employe +
+            agff_salarie +
+            agirc_salarie +
+            apec_salarie +
+            arrco_salarie +
+            chomage_salarie +
+            cotisation_exceptionnelle_temporaire_salarie +
+            vielleisse_deplafonnee_salarie +
+            vielleisse_plafonnee_salarie +
             # public
-            ircantec_employe +
-            pension_civile_employe +
-            rafp_employe
+            ircantec_salarie +
+            pension_civile_salarie +
+            rafp_salarie
             )
 
         return period, cotisations_salariales_contributives
@@ -178,15 +178,15 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        contribution_exceptionnelle_solidarite_employe = simulation.calculate_add(
-            'contribution_exceptionnelle_solidarite_employe', period)
-        maladie_employe = simulation.calculate_add('maladie_employe', period)
+        contribution_exceptionnelle_solidarite = simulation.calculate_add(
+            'contribution_exceptionnelle_solidarite', period)
+        mmid_salarie = simulation.calculate_add('mmid_salarie', period)
 
         cotisations_salariales_non_contributives = (
             # prive
-            maladie_employe +
+            mmid_salarie +
             # public
-            contribution_exceptionnelle_solidarite_employe
+            contribution_exceptionnelle_solidarite
             )
 
         return period, cotisations_salariales_non_contributives

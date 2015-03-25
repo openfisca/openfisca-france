@@ -192,13 +192,13 @@ class revenu_initial_individu(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        cotisations_patronales_contributives = simulation.calculate('cotisations_patronales_contributives', period)
+        cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         pen = simulation.calculate('pen', period)
         rev_cap = simulation.calculate('rev_cap', period)
         rev_trav = simulation.calculate('rev_trav', period)
 
-        return period, rev_trav + pen + rev_cap - cotisations_patronales_contributives - cotisations_salariales_contributives
+        return period, rev_trav + pen + rev_cap - cotisations_employeur_contributives - cotisations_salariales_contributives
 
 
 @reference_formula
@@ -227,14 +227,14 @@ class nivvie_ini(SimpleFormulaColumn):
         return period, revini / uc
 
 
-def _revprim(rev_trav, cho, rev_cap, cotisations_patronales, cotisations_salariales):
+def _revprim(rev_trav, cho, rev_cap, cotisations_employeur, cotisations_salariales):
     '''
     Revenu primaire du ménage
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
     'men'
     '''
-    return rev_trav + rev_cap - cotisations_patronales - cotisations_salariales - cho
+    return rev_trav + rev_cap - cotisations_employeur - cotisations_salariales - cho
 
 
 @reference_formula
@@ -526,12 +526,12 @@ class cotsoc_noncontrib(SimpleFormulaColumn):
         Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        cotisations_patronales_non_contributives = simulation.calculate('cotisations_patronales_non_contributives',
+        cotisations_employeur_non_contributives = simulation.calculate('cotisations_employeur_non_contributives',
             period)
         cotisations_salariales_non_contributives = simulation.calculate('cotisations_salariales_non_contributives',
             period)
 
-        return period, cotisations_patronales_non_contributives + cotisations_salariales_non_contributives
+        return period, cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
 
 
 @reference_formula

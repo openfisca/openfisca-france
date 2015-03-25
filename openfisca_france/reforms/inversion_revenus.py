@@ -70,20 +70,20 @@ class salbrut(formulas.SimpleFormulaColumn):
         # Get value for year and divide below.
         sali = simulation.get_array('sali', period.start.offset('first-of', 'year').period('year'))
         if sali is None:
-            salnet = simulation.get_array('salnet', period)
-            if salnet is not None:
+            salaire_net = simulation.get_array('salaire_net', period)
+            if salaire_net is not None:
                 # Calcule le salaire brut à partir du salaire net par inversion numérique.
-                if (salnet == 0).all():
+                if (salaire_net == 0).all():
                     # Quick path to avoid fsolve when using default value of input variables.
-                    return period, salnet
+                    return period, salaire_net
                 simulation = self.holder.entity.simulation
                 function = lambda salbrut: brut_to_target(
-                    target_name = 'salnet',
+                    target_name = 'salaire_net',
                     period = period,
                     salbrut = salbrut,
                     simulation = simulation,
-                    ) - salnet
-                return period, fsolve(function, salnet)
+                    ) - salaire_net
+                return period, fsolve(function, salaire_net)
 
             sali = simulation.calculate_add_divide('sali', period)
 

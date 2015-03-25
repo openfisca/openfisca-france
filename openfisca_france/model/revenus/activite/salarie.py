@@ -748,12 +748,12 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         dues par les salarié avancées par l'employeur
         '''
         period = period
-        salnet = simulation.calculate('salnet', period)
+        salaire_net = simulation.calculate('salaire_net', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
         salaire_net_a_payer = (
-            salnet +
+            salaire_net +
             depense_cantine_titre_restaurant_employe +
             indemnites_forfaitaires
             )
@@ -774,7 +774,7 @@ class salsuperbrut(SimpleFormulaColumn):
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
-        cotisations_patronales = simulation.calculate('cotisations_patronales', period)
+        cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
         exoneration_cotisations_patronales_geographiques = simulation.calculate(
@@ -791,7 +791,7 @@ class salsuperbrut(SimpleFormulaColumn):
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            - cotisations_patronales
+            - cotisations_employeur
             - allegement_fillon
             - exoneration_cotisations_patronales_geographiques
             - credit_impot_competitivite_emploi
