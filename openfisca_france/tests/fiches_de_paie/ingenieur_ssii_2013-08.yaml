@@ -25,7 +25,7 @@ input_variables:
   remboursement_transport_base: 0
   salaire_de_base: 2887.79 - 399.79
   taux_accident_travail: 0.011
-  taux_versement_transport: 0.015
+  taux_versement_transport: 0.015  # Codé en dur car le taux a changé depuis et on ne dispose pas d'historique
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
   type_sal: {"2013-08": 1}  # cadre
