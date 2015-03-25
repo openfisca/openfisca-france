@@ -13,8 +13,8 @@ input_variables:
   heures_non_remunerees_volume: 0
   code_postal_entreprise: "75014"
   nombre_tickets_restaurant: 0
-  prevoyance_obligatoire_cadre_taux_employeur: 0
-  prevoyance_obligatoire_cadre_taux_employe: .015  # 1.5% est le minimum en 2014 et le défaut
+  prevoyance_obligatoire_cadre_taux_employeur: .015  # 1.5% est le minimum en 2014 et le défaut
+  prevoyance_obligatoire_cadre_taux_employe: 0
   prise_en_charge_employeur_retraite_complementaire: 0
   prise_en_charge_employeur_prevoyance_complementaire: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
@@ -82,7 +82,7 @@ output_variables:
   arrco_salarie: 0
   chomage_salarie: 0
   cotisation_exceptionnelle_temporaire_salarie: 0
-  vielleisse_deplafonnee_salarie: 0
+  vieillesse_deplafonnee_salarie: 0
   vieillesse_plafonnee_salarie: 0
   ircantec_salarie: 0
   pension_civile_salarie: 0

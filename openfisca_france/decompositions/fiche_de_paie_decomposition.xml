@@ -51,7 +51,7 @@
           <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (salarié)" shortname="ARRCO" />
           <NODE code="chomage_salarie" color="249,208,211" desc="CHÔMAGE (salarié)" shortname="CHÔMAGE" />
           <NODE code="cotisation_exceptionnelle_temporaire_salarie" color="249,208,211" desc="CET (salarié)" shortname="CET" />
-          <NODE code="vielleisse_deplafonnee_salarie" color="249,208,211" desc="Vieillesse déplafonnée (salarié)" shortname="Vieil. déplaf." />
+          <NODE code="vieillesse_deplafonnee_salarie" color="249,208,211" desc="Vieillesse déplafonnée (salarié)" shortname="Vieil. déplaf." />
           <NODE code="vieillesse_plafonnee_salarie" color="249,208,211" desc="Vieillesse plafonnée (salarié)" shortname="Vieil. plaf." />
           <NODE code="ircantec_salarie" color="249,208,211" desc="Ircantec salarié" shortname="Ircantec" />
           <NODE code="pension_civile_salarie" color="249,208,211" desc="Pension civile (salarié)" shortname="Pension civile" />
