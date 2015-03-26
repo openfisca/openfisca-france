@@ -147,7 +147,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         pension_civile_salarie = simulation.calculate_add('pension_civile_salarie', period)
         rafp_salarie = simulation.calculate_add('rafp_salarie', period)
         vielleisse_deplafonnee_salarie = simulation.calculate_add('vielleisse_deplafonnee_salarie', period)
-        vielleisse_plafonnee_salarie = simulation.calculate_add('vielleisse_plafonnee_salarie', period)
+        vieillesse_plafonnee_salarie = simulation.calculate_add('vieillesse_plafonnee_salarie', period)
 
         cotisations_salariales_contributives = (
             # prive
@@ -158,7 +158,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             chomage_salarie +
             cotisation_exceptionnelle_temporaire_salarie +
             vielleisse_deplafonnee_salarie +
-            vielleisse_plafonnee_salarie +
+            vieillesse_plafonnee_salarie +
             # public
             ircantec_salarie +
             pension_civile_salarie +

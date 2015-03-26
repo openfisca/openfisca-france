@@ -84,7 +84,7 @@ output_variables:
   # chomage_salarie: -17.14 ERROR: devrait être 0
   cotisation_exceptionnelle_temporaire_salarie: 0
   vielleisse_deplafonnee_salarie: -1.91
-  vielleisse_plafonnee_salarie: 0
+  vieillesse_plafonnee_salarie: 0
   # ircantec_salarie: -43.32 TODO: corriger
   pension_civile_salarie: 0
   rafp_salarie: 0
