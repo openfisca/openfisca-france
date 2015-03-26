@@ -621,7 +621,7 @@ class taux_accident_travail(SimpleFormulaColumn):
 
 
 @reference_formula
-class vielleisse_deplafonnee_salarie(SimpleFormulaColumn):
+class vieillesse_deplafonnee_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée (salarié)"
