@@ -24,6 +24,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+"""Test YAML files."""
+
+
 from __future__ import division
 
 import collections
@@ -31,8 +34,29 @@ import os
 
 import numpy as np
 from openfisca_core import conv, scenarios
+from openfisca_core.tools import assert_near
 from openfisca_france.tests.base import tax_benefit_system
 import yaml
+
+
+options_by_dir = {
+    os.path.join(os.path.dirname(__file__), 'fiches_de_paie'): dict(
+        accept_other_period = False,
+        default_absolute_error_margin = 0.005,
+        ),
+    os.path.join(os.path.dirname(__file__), 'formulas'): dict(
+        accept_other_period = False,
+        default_absolute_error_margin = 0.005,
+        ),
+    os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr'): dict(
+        accept_other_period = True,
+        default_absolute_error_margin = 0.007,
+        ),
+    os.path.join(os.path.dirname(__file__), 'ui.openfisca.fr'): dict(
+        accept_other_period = False,
+        default_absolute_error_margin = 0.005,
+        ),
+    }
 
 
 # YAML configuration
@@ -85,13 +109,45 @@ def assert_near2(value, target_value, absolute_error_margin = 0, message = '', r
                     abs(target_value - value), abs(relative_error_margin * target_value))
 
 
-def check(name, period_str, test):
+def check(name, period_str, test, force):
     scenario = test['scenario']
     scenario.suggest()
     simulation = scenario.new_simulation(debug = True)
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
+        output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
         for variable_name, expected_value in output_variables.iteritems():
+            if not force and variable_name in output_variables_name_to_ignore:
+                continue
+            if isinstance(expected_value, dict):
+                for requested_period, expected_value_at_period in expected_value.iteritems():
+                    assert_near(
+                        simulation.calculate(variable_name, requested_period),
+                        expected_value_at_period,
+                        absolute_error_margin = test.get('absolute_error_margin'),
+                        message = u'{}@{}: '.format(variable_name, requested_period),
+                        relative_error_margin = test.get('relative_error_margin'),
+                        )
+            else:
+                assert_near(
+                    simulation.calculate(variable_name),
+                    expected_value,
+                    absolute_error_margin = test.get('absolute_error_margin'),
+                    message = u'{}@{}: '.format(variable_name, period_str),
+                    relative_error_margin = test.get('relative_error_margin'),
+                    )
+
+
+def check_any_period(name, period_str, test, force):
+    scenario = test['scenario']
+    scenario.suggest()
+    simulation = scenario.new_simulation(debug = True)
+    output_variables = test.get(u'output_variables')
+    if output_variables is not None:
+        output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
+        for variable_name, expected_value in output_variables.iteritems():
+            if not force and variable_name in output_variables_name_to_ignore:
+                continue
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
                     assert_near2(
@@ -111,43 +167,46 @@ def check(name, period_str, test):
                     )
 
 
-def test(force = False, name_filter = None):
-    if isinstance(name_filter, str):
-        name_filter = name_filter.decode('utf-8')
-    dir_path = os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')
-    for filename in sorted(os.listdir(dir_path)):
-        if not filename.endswith('.yaml'):
-            continue
-        filename_core = os.path.splitext(filename)[0]
-        with open(os.path.join(dir_path, filename)) as yaml_file:
-            tests = yaml.load(yaml_file)
-        tests, error = conv.pipe(
-            conv.make_item_to_singleton(),
-            conv.uniform_sequence(
-                conv.noop,
-                drop_none_items = True,
-                ),
-            )(tests)
-        if error is not None:
-            embedding_error = conv.embed_error(tests, u'errors', error)
-            assert embedding_error is None, embedding_error
-            conv.check((tests, error))  # Generate an error.
-
-        for test in tests:
-            test, error = scenarios.make_json_or_python_to_test(tax_benefit_system,
-                default_absolute_error_margin = 0.007)(test)
+def test(current_options_by_dir = None, force = False, name_filter = None):
+    if current_options_by_dir is None:
+        current_options_by_dir = options_by_dir
+    for dir, options in sorted(current_options_by_dir.iteritems()):
+        if isinstance(name_filter, str):
+            name_filter = name_filter.decode('utf-8')
+        for filename in sorted(os.listdir(dir)):
+            if not filename.endswith('.yaml'):
+                continue
+            filename_core = os.path.splitext(filename)[0]
+            with open(os.path.join(dir, filename)) as yaml_file:
+                tests = yaml.load(yaml_file)
+            tests, error = conv.pipe(
+                conv.make_item_to_singleton(),
+                conv.uniform_sequence(
+                    conv.noop,
+                    drop_none_items = True,
+                    ),
+                )(tests)
             if error is not None:
-                embedding_error = conv.embed_error(test, u'errors', error)
+                embedding_error = conv.embed_error(tests, u'errors', error)
                 assert embedding_error is None, embedding_error
-                conv.check((test, error))  # Generate an error.
+                conv.check((tests, error))  # Generate an error.
 
-            if not force and test.get(u'ignore', False):
-                continue
-            if name_filter is not None and name_filter not in filename_core \
-                    and name_filter not in (test.get('name', u'')) \
-                    and name_filter not in (test.get('keywords', [])):
-                continue
-            yield check, test.get('name') or filename_core, unicode(test['scenario'].period), test
+            for test in tests:
+                test, error = scenarios.make_json_or_python_to_test(tax_benefit_system,
+                    default_absolute_error_margin = options['default_absolute_error_margin'], force = force)(test)
+                if error is not None:
+                    embedding_error = conv.embed_error(test, u'errors', error)
+                    assert embedding_error is None, embedding_error
+                    conv.check((test, error))  # Generate an error.
+
+                if not force and test.get(u'ignore', False):
+                    continue
+                if name_filter is not None and name_filter not in filename_core \
+                        and name_filter not in (test.get('name', u'')) \
+                        and name_filter not in (test.get('keywords', [])):
+                    continue
+                checker = check_any_period if options['accept_other_period'] else check
+                yield checker, test.get('name') or filename_core, unicode(test['scenario'].period), test, force
 
 
 if __name__ == "__main__":
@@ -156,14 +215,32 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('-d', '--dir', default = None, help = "directory of tests to execute")
     parser.add_argument('-f', '--force', action = 'store_true', default = False,
-        help = 'force testing of tests with "ignore" flag')
+        help = 'force testing of tests with "ignore" flag and formulas belonging to "ignore_output_variables" list')
     parser.add_argument('-n', '--name', default = None, help = "partial name of tests to execute")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    for test_index, (function, name, period_str, test) in enumerate(test(force = args.force, name_filter = args.name),
+    if args.dir is None:
+        current_options_by_dir = None
+    else:
+        dir = os.path.abspath(args.dir)
+        options = options_by_dir.get(dir)
+        if options is None:
+            options = dict(
+                accept_other_period = False,
+                default_absolute_error_margin = 0.005,
+                )
+        current_options_by_dir = {dir: options}
+
+    for test_index, (function, name, period_str, test, force) in enumerate(
+            test(
+                current_options_by_dir = current_options_by_dir,
+                force = args.force,
+                name_filter = args.name,
+                ),
             1):
         keywords = test.get('keywords', [])
         title = "Test {}: {}{} - {}".format(
@@ -175,4 +252,6 @@ if __name__ == "__main__":
         print("=" * len(title))
         print(title)
         print("=" * len(title))
-        function(name, period_str, test)
+        function(name, period_str, test, force)
+
+    sys.exit(0)
