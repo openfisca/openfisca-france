@@ -77,13 +77,15 @@ class salbrut(formulas.SimpleFormulaColumn):
                     # Quick path to avoid fsolve when using default value of input variables.
                     return period, salaire_net
                 simulation = self.holder.entity.simulation
-                function = lambda salbrut: brut_to_target(
-                    target_name = 'salaire_net',
-                    period = period,
-                    salbrut = salbrut,
-                    simulation = simulation,
-                    ) - salaire_net
-                return period, fsolve(function, salaire_net)
+
+                def solve_function(salbrut):
+                    return brut_to_target(
+                        target_name = 'salaire_net',
+                        period = period,
+                        salbrut = salbrut,
+                        simulation = simulation,
+                        ) - salaire_net
+                return period, fsolve(solve_function, salaire_net)
 
             sali = simulation.calculate_add_divide('sali', period)
 
@@ -92,13 +94,15 @@ class salbrut(formulas.SimpleFormulaColumn):
             # Quick path to avoid fsolve when using default value of input variables.
             return period, sali
         simulation = self.holder.entity.simulation
-        function = lambda salbrut: brut_to_target(
-            target_name = 'sal',
-            period = period,
-            salbrut = salbrut,
-            simulation = simulation,
-            ) - sali
-        return period, fsolve(function, sali)
+
+        def solve_function(salbrut):
+            return brut_to_target(
+                target_name = 'sal',
+                period = period,
+                salbrut = salbrut,
+                simulation = simulation,
+                ) - sali
+        return period, fsolve(solve_function, sali)
 
 
 #        # Calcule le salaire brut à partir du salaire imposable.
@@ -196,13 +200,15 @@ class chobrut(formulas.SimpleFormulaColumn):
                     # Quick path to avoid fsolve when using default value of input variables.
                     return period, chonet
                 simulation = self.holder.entity.simulation
-                function = lambda chobrut: brut_to_target(
-                    chobrut = chobrut,
-                    target_name = 'chonet',
-                    period = period,
-                    simulation = simulation,
-                    ) - chonet
-                return period, fsolve(function, chonet)
+
+                def solve_function(chobrut):
+                    return brut_to_target(
+                        chobrut = chobrut,
+                        target_name = 'chonet',
+                        period = period,
+                        simulation = simulation,
+                        ) - chonet
+                return period, fsolve(solve_function, chonet)
 
             choi = simulation.calculate_add_divide('choi', period)
 
@@ -214,14 +220,16 @@ class chobrut(formulas.SimpleFormulaColumn):
             # Quick path to avoid fsolve when using default value of input variables.
             return period, choi
         simulation = self.holder.entity.simulation
-        function = lambda chobrut: brut_to_target(
-            chobrut = chobrut,
-            csg_rempl = csg_rempl,
-            target_name = 'cho',
-            period = period,
-            simulation = simulation,
-            ) - choi
-        return period, fsolve(function, choi)
+
+        def solve_function(chobrut):
+            return brut_to_target(
+                chobrut = chobrut,
+                csg_rempl = csg_rempl,
+                target_name = 'cho',
+                period = period,
+                simulation = simulation,
+                ) - choi
+        return period, fsolve(solve_function, choi)
 
 
 # Pensions
@@ -247,13 +255,15 @@ class rstbrut(formulas.SimpleFormulaColumn):
                     # Quick path to avoid fsolve when using default value of input variables.
                     return period, rstnet
                 simulation = self.holder.entity.simulation
-                function = lambda rstbrut: brut_to_target(
-                    target_name = 'rstnet',
-                    period = period,
-                    rstbrut = rstbrut,
-                    simulation = simulation,
-                    ) - rstnet
-                return period, fsolve(function, rstnet)
+
+                def solve_function(rstbrut):
+                    return brut_to_target(
+                        target_name = 'rstnet',
+                        period = period,
+                        rstbrut = rstbrut,
+                        simulation = simulation,
+                        ) - rstnet
+                return period, fsolve(solve_function, rstnet)
 
             rsti = simulation.calculate_add_divide('rsti', period)
 
