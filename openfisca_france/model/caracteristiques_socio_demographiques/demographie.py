@@ -36,11 +36,6 @@ build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
 
 build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
 
-build_column('nom_famille', StrCol(entity = 'fam', is_permanent = True, label = u"Nom"))
-build_column('nom_foyer_fiscal', StrCol(entity = 'foy', is_permanent = True, label = u"Nom"))
-build_column('nom_individu', StrCol(is_permanent = True, label = u"Prénom"))
-build_column('nom_menage', StrCol(entity = 'men', is_permanent = True, label = u"Nom"))
-
 
 build_column('adoption', BoolCol(entity = "ind", label = u"Enfant adopté"))
 

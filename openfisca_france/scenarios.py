@@ -54,9 +54,6 @@ class Scenario(scenarios.AbstractScenario):
     #         dtype = object)
     #
     #
-    #     individus.get_or_new_holder(entities.Individus.name_key).array = np.array(
-    #         [individu[entities.Individus.name_key] for individu in test_case[u'individus'].itervalues()],
-    #         dtype = object)
     #     familles.get_or_new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
     #     foyers_fiscaux.get_or_new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
     #     menages.get_or_new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)

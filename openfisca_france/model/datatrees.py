@@ -32,7 +32,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'nom_individu',  # Prénom
                     'birth',  # Date de naissance
                     'statmarit',  # Statut marital
                     'salaire_de_base',  # Revenus d'activité imposables
@@ -309,7 +308,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    u"""nom_famille""",  # Nom
                     u"""inactif""",  # Parent inactif (PAJE-CLCA)
                     u"""partiel1""",  # Parent actif à moins de 50% (PAJE-CLCA)
                     u"""partiel2""",  # Parent actif entre 50% et 80% (PAJE-CLCA)
@@ -332,7 +330,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    u"""nom_foyer_fiscal""",  # Nom
                     u"""jour_xyz""",  # Jours décomptés au titre de cette déclaration
                     ]),
                 ]),
@@ -1023,7 +1020,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'nom_menage',  # Nom
                     'loyer',  # Loyer mensuel
                     'statut_occupation',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
