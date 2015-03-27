@@ -158,15 +158,18 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
     @dated_function(date(2013, 1, 1))
     def function_2013_(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        smic_proratise = simulation.calculate('smic_proratise', period)
         assiette_allegement = simulation.calculate('assiette_allegement', period)
+        jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
+        smic_proratise = simulation.calculate('smic_proratise', period)
         cotsoc = simulation.legislation_at(period.start).cotsoc
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
         credit_impot_competitivite_emploi = (
             taux_cice
             * assiette_allegement
             )
-        return period, credit_impot_competitivite_emploi
+        non_cumul = jeune_entreprise_innovante == 0
+
+        return period, credit_impot_competitivite_emploi * non_cumul
 
 
 @reference_formula

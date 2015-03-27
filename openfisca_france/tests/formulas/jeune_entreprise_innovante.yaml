@@ -1,0 +1,27 @@
+- period: "month:2015-03"
+  input_variables:
+    jeune_entreprise_innovante: 1
+    effectif_entreprise: 30
+    salaire_de_base: 2500
+  output_variables:
+    famille: -131.25
+    maladie_employeur: -320
+    vieillesse_deplafonnee_employeur: -43.75
+    vieillesse_plafonnee_employeur: -212.5
+    exoneration_cotisations_patronales_jei: -(-131.25 - 320 - 43.75 - 212.5)
+- period: "month:2015-03"
+  input_variables:
+    entreprise_creation: "2015-01-01"
+    jei_date_demande: "2015-01-01"
+    effectif_entreprise: 430
+    salaire_de_base: 2500
+  output_variables:
+    exoneration_cotisations_patronales_jei: 0
+- period: "month:2015-03"
+  input_variables:
+    entreprise_creation: "2007-03-01"
+    jei_date_demande: "2015-01-01"
+    effectif_entreprise: 200
+    salaire_de_base: 2500
+  output_variables:
+    exoneration_cotisations_patronales_jei: -(-131.25 - 320 - 43.75 - 212.5)
