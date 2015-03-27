@@ -211,5 +211,3 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Rempli l'obligation scolaire",
     )
-
-
