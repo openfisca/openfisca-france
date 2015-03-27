@@ -39,25 +39,6 @@ year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]
 
 
 class Scenario(scenarios.AbstractScenario):
-    # def fill_simulation(self, simulation, variables_name_to_skip = None):
-    #     super(Scenario, self).fill_simulation(simulation, variables_name_to_skip = variables_name_to_skip)
-    #
-    #     column_by_name = self.tax_benefit_system.column_by_name
-    #     individus = simulation.entity_by_key_plural['individus']
-    #     steps_count = simulation.steps_count
-    #     individus.get_or_new_holder('id').array = np.array(
-    #         [
-    #             individu_id + (u'-{}'.format(step_index) if step_index > 0 else u'')
-    #             for step_index in range(steps_count)
-    #             for individu_index, individu_id in enumerate(test_case[u'individus'].iterkeys())
-    #             ],
-    #         dtype = object)
-    #
-    #
-    #     familles.get_or_new_holder('id').array = np.array(test_case[u'familles'].keys(), dtype = object)
-    #     foyers_fiscaux.get_or_new_holder('id').array = np.array(test_case[u'foyers_fiscaux'].keys(), dtype = object)
-    #     menages.get_or_new_holder('id').array = np.array(test_case[u'menages'].keys(), dtype = object)
-
     def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
             parent1 = None, parent2 = None, period = None):
         if enfants is None:
