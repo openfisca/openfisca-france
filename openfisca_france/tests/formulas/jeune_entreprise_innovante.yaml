@@ -5,7 +5,7 @@
     salaire_de_base: 2500
   output_variables:
     famille: -131.25
-    maladie_employeur: -320
+    mmid_employeur: -320
     vieillesse_deplafonnee_employeur: -43.75
     vieillesse_plafonnee_employeur: -212.5
     exoneration_cotisations_patronales_jei: -(-131.25 - 320 - 43.75 - 212.5)
