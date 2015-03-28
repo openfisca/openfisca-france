@@ -110,7 +110,7 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        accident_du_travail = simulation.calculate('accident_du_travail', period)
+        accident_du_travail = simulation.calculate_add('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
         famille = simulation.calculate('famille', period)
         mmid_employeur = simulation.calculate_add('mmid_employeur', period)
