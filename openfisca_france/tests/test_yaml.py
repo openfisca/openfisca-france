@@ -193,7 +193,7 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
 
             for test in tests:
                 test, error = scenarios.make_json_or_python_to_test(tax_benefit_system,
-                    default_absolute_error_margin = options['default_absolute_error_margin'], force = force)(test)
+                    default_absolute_error_margin = options['default_absolute_error_margin'])(test)
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
                     assert embedding_error is None, embedding_error
