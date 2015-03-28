@@ -100,7 +100,8 @@ class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
             7: 1,
             }  # TODO: move to legislatiion parameters file
         for year_passed, rate in rate_by_year_passed.iteritems():
-            exoneration[exoneration_relative_year_passed == year_passed] = rate * exoneration
+            if (exoneration_relative_year_passed == year_passed).any():
+                exoneration[exoneration_relative_year_passed == year_passed] = rate * exoneration
 
         return period, - exoneration * jeune_entreprise_innovante
 
