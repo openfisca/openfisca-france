@@ -72,7 +72,7 @@ yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constr
 # Functions
 
 
-def assert_near2(value, target_value, absolute_error_margin = 0, message = '', relative_error_margin = None):
+def assert_near_any_period(value, target_value, absolute_error_margin = 0, message = '', relative_error_margin = None):
     # Redefinition of assert_near that accepts to compare monthy values with yearly values.
     assert absolute_error_margin is not None or relative_error_margin is not None
     if isinstance(value, (list, tuple)):
@@ -150,7 +150,7 @@ def check_any_period(name, period_str, test, force):
                 continue
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
-                    assert_near2(
+                    assert_near_any_period(
                         simulation.calculate(variable_name, requested_period, accept_other_period = True),
                         expected_value_at_period,
                         absolute_error_margin = test.get('absolute_error_margin'),
@@ -158,7 +158,7 @@ def check_any_period(name, period_str, test, force):
                         relative_error_margin = test.get('relative_error_margin'),
                         )
             else:
-                assert_near2(
+                assert_near_any_period(
                     simulation.calculate(variable_name, accept_other_period = True),
                     expected_value,
                     absolute_error_margin = test.get('absolute_error_margin'),
