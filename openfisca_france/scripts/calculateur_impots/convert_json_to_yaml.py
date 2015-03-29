@@ -27,6 +27,8 @@
 import argparse
 import collections
 import cStringIO
+import hashlib
+import json
 import logging
 import os
 import sys
@@ -48,6 +50,8 @@ json_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 
 log = logging.getLogger(app_name)
 TaxBenefitSystem = init_country()
 tax_benefit_system = TaxBenefitSystem()
+tax_calculator_tests_dir = os.path.join(os.path.dirname(__file__), 'tests_calculateur_impots')
+tests_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'calculateur_impots'))
 variables_name_file_path = os.path.join(os.path.dirname(__file__), 'noms_variables.yaml')
 
 
@@ -164,12 +168,19 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
+    if not os.path.exists(tax_calculator_tests_dir):
+        os.makedirs(tax_calculator_tests_dir)
+
+    if not os.path.exists(tests_dir):
+        os.makedirs(tests_dir)
+
     if os.path.exists(variables_name_file_path):
         with open(variables_name_file_path) as variables_name_file:
             name_by_year_by_code = yaml.load(variables_name_file)
     else:
         name_by_year_by_code = {}
 
+    name_by_year_by_code_changed = False
     for json_filename in sorted(os.listdir(json_dir)):
         if not json_filename.endswith('.json'):
             continue
@@ -177,11 +188,16 @@ def main():
         with open(os.path.join(json_dir, json_filename)) as json_file:
             data = conv.check(input_to_json_data)(json_file.read())
         scenario = data['scenario']
+        tax_calculator_inputs = transform_scenario_to_tax_calculator_inputs(scenario)
         tax_year = scenario.period.start.year + 1
         if tax_year <= 2011:
             # Tax calculator is no more available for years before 2011.
-            tax_calculator_outputs = data['resultat_officiel']
-            for code, infos in tax_calculator_outputs.iteritems():
+            tax_calculator_outputs = collections.OrderedDict()
+            tax_calculator_outputs_infos = data['resultat_officiel']
+            for code, infos in tax_calculator_outputs_infos.iteritems():
+                float_value = infos['value']
+                int_value = int(float_value)
+                tax_calculator_outputs[code] = int_value if float_value == int_value else float_value
                 name = infos['name'].strip().rstrip(u'*').rstrip()
                 name = u' '.join(name.split())  # Remove duplicate spaces.
                 if name not in (u'', u'?', u'nom inconnu'):
@@ -191,14 +207,15 @@ def main():
                             and not name.lower().endswith(current_name.lower()):
                         log.warning(u'Ignoring rename of variable {} for year {} from:\n  {}\nto:\n  {}'.format(code,
                             tax_year, current_name, name))
-                    name_by_year[tax_year] = name
+                    elif current_name != name:
+                        name_by_year[tax_year] = name
+                        name_by_year_by_code_changed = True
         else:
-            tax_calculator_inputs = transform_scenario_to_tax_calculator_inputs(scenario)
             page = call_tax_calculator(tax_year, tax_calculator_inputs)
             page_doc = etree.parse(cStringIO.StringIO(page), html_parser)
 
             codes_without_name = set()
-            fields = collections.OrderedDict()
+            tax_calculator_outputs = collections.OrderedDict()
             for element in page_doc.xpath('//input[@type="hidden"][@name]'):
                 code = element.get('name')
                 name = None
@@ -223,29 +240,53 @@ def main():
                         table = tr.getparent()
                         tr = table[table.index(tr) - 1]
                 codes_without_name.discard(code)
-                fields[code] = dict(
-                    code = code,
-                    name = name,
-                    value = float(element.get('value').strip()),
-                    )
+                float_value = float(element.get('value').strip())
+                int_value = int(float_value)
+                tax_calculator_outputs[code] = int_value if float_value == int_value else float_value
                 name_by_year = name_by_year_by_code.setdefault(code, {})
                 current_name = name_by_year.get(tax_year)
                 if current_name is not None and current_name != name \
                         and not name.lower().endswith(current_name.lower()):
                     log.warning(u'Renaming variable {} for year {} from:\n  {}\nto:\n  {}'.format(code, tax_year,
                         current_name, name))
-                name_by_year[tax_year] = name
+                if current_name != name and (current_name is None or not name.lower().endswith(current_name.lower())):
+                    name_by_year[tax_year] = name
+                    name_by_year_by_code_changed = True
 
             assert not codes_without_name, 'Output variables {} have no name in page:\n{}'.format(
                 sorted(codes_without_name), page.decode('iso-8859-1').encode('utf-8'))
 
-        variables_name_data = collections.OrderedDict(
-            (code, collections.OrderedDict(sorted(name_by_year.iteritems())))
-            for code, name_by_year in sorted(name_by_year_by_code.iteritems())
-            )
-        with open(variables_name_file_path, 'w') as variables_name_file:
-            yaml.dump(variables_name_data, variables_name_file, allow_unicode = True, default_flow_style = False,
+        main_input_variable_name = json_filename.split('-', 1)[0]
+        sorted_tax_calculator_inputs = collections.OrderedDict(sorted(tax_calculator_inputs.iteritems()))
+        tax_calculator_test_file_path = os.path.join(tax_calculator_tests_dir, '{}.yaml'.format(
+            hashlib.md5(json.dumps(sorted_tax_calculator_inputs)).hexdigest()))
+        if os.path.exists(tax_calculator_test_file_path):
+            with open(tax_calculator_test_file_path) as tax_calculator_test_file:
+                tax_calculator_test = yaml.load(tax_calculator_test_file)
+                tax_calculator_test['output_variables'][str(tax_year)] = collections.OrderedDict(sorted(
+                    tax_calculator_outputs.iteritems()))
+                tax_calculator_test['output_variables'] = collections.OrderedDict(sorted(
+                    tax_calculator_test['output_variables'].iteritems()))
+        else:
+            tax_calculator_test = collections.OrderedDict((
+                ('input_variables', sorted_tax_calculator_inputs),
+                ('output_variables', collections.OrderedDict((
+                    (str(tax_year), collections.OrderedDict(sorted(tax_calculator_outputs.iteritems()))),
+                    ))),
+                ))
+        with open(tax_calculator_test_file_path, 'w') as tax_calculator_test_file:
+            yaml.dump(tax_calculator_test, tax_calculator_test_file, allow_unicode = True, default_flow_style = False,
                 indent = 2, width = 120)
+
+        if name_by_year_by_code_changed:
+            variables_name_data = collections.OrderedDict(
+                (code, collections.OrderedDict(sorted(name_by_year.iteritems())))
+                for code, name_by_year in sorted(name_by_year_by_code.iteritems())
+                )
+            with open(variables_name_file_path, 'w') as variables_name_file:
+                yaml.dump(variables_name_data, variables_name_file, allow_unicode = True, default_flow_style = False,
+                    indent = 2, width = 120)
+            name_by_year_by_code_changed = False
 
     return 0
 

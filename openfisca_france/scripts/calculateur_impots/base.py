@@ -35,7 +35,10 @@ def call_tax_calculator(year, inputs):
     request = urllib2.Request(url, headers = {
         'User-Agent': 'OpenFisca-Script',
         })
-    response = urllib2.urlopen(request, urllib.urlencode(inputs))
+    response = urllib2.urlopen(request, urllib.urlencode([
+        (name, str(value))
+        for name, value in inputs.iteritems()
+        ]))
     response_html = response.read()
     if 'Erreur' in response_html:
         raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
@@ -59,7 +62,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
             declarant = individu_by_id[declarant_id].copy()
 
             birth = declarant.pop('birth')
-            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = str(birth.year)
+            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = birth.year
 
             statmarit = declarant.pop('statmarit', None)
             column = tax_benefit_system.column_by_name['statmarit']
@@ -88,14 +91,14 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 column = tax_benefit_system.column_by_name[column_code]
                 cerfa_field = column.cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-                impots_arguments[cerfa_field[declarant_index]] = str(value)
+                impots_arguments[cerfa_field[declarant_index]] = value
 
         impots_arguments['0CF'] = len(foyer_fiscal['personnes_a_charge'])
         for personne_a_charge_index, personne_a_charge_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
             personne_a_charge = individu_by_id[personne_a_charge_id].copy()
 
             birth = personne_a_charge.pop('birth')
-            impots_arguments['0F{}'.format(personne_a_charge_index)] = str(birth.year)
+            impots_arguments['0F{}'.format(personne_a_charge_index)] = birth.year
 
             personne_a_charge.pop('statmarit', None)
 
@@ -109,7 +112,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 column = tax_benefit_system.column_by_name[column_code]
                 cerfa_field = column.cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-                impots_arguments[cerfa_field[personne_a_charge_index]] = str(value)
+                impots_arguments[cerfa_field[personne_a_charge_index]] = value
 
         if foyer_fiscal.pop('caseT', False):
             impots_arguments['0BT'] = '1'
@@ -126,6 +129,6 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
             column = tax_benefit_system.column_by_name[column_code]
             cerfa_field = column.cerfa_field
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
-            impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else str(value)
+            impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else value
 
     return impots_arguments
