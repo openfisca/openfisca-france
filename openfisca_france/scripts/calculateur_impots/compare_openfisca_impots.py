@@ -44,7 +44,9 @@ import urllib2
 
 from lxml import etree
 import numpy as np
+
 import openfisca_france
+from .base import transform_scenario_to_tax_calculator_inputs
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -103,7 +105,7 @@ def compare(scenario, tested = False):
     year = scenario.period.date.year
     totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
 
-    impots_arguments = transform_scenario_to_impots_arguments(scenario)
+    impots_arguments = transform_scenario_to_tax_calculator_inputs(scenario)
     simulation = scenario.new_simulation(debug = True)
 
     request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
@@ -321,90 +323,6 @@ def compare(scenario, tested = False):
             compare_variable('IINETIR', fields['IINET'], simulation, totpac, year)
 
     return fields
-
-
-def transform_scenario_to_impots_arguments(scenario): # Transforme un scenario en un json { CERFA_FIELD: Valeur }
-    tax_benefit_system = scenario.tax_benefit_system
-    test_case = scenario.test_case
-    impots_arguments = {
-        'pre_situation_residence': 'M',  # Métropole
-        }
-    individus = test_case['individus']
-    for foyer_fiscal in test_case['foyers_fiscaux'].itervalues():
-        foyer_fiscal = foyer_fiscal.copy()
-
-        for declarant_index, declarant_id in enumerate(foyer_fiscal.pop('declarants')):
-            declarant = individus[declarant_id].copy()
-
-            birth = declarant.pop('birth')
-            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = str(birth.year)
-
-            statmarit = declarant.pop('statmarit', None)
-            column = tax_benefit_system.column_by_name['statmarit']
-            if statmarit is None:
-                statmarit = column.enum._vars[column.default]
-            pre_situation_famille = {
-                u"Marié": 'M',
-                u"Célibataire": 'C',
-                u"Divorcé": 'D',
-                u"Veuf": 'V',
-                u"Pacsé": 'O',
-                # u"Jeune veuf": TODO
-                }[statmarit if isinstance(statmarit, basestring) else column.enum._vars[statmarit]]
-            assert 'pre_situation_famille' not in impots_arguments \
-                or impots_arguments['pre_situation_famille'] == pre_situation_famille, str((impots_arguments,
-                    pre_situation_famille))
-            impots_arguments['pre_situation_famille'] = pre_situation_famille
-
-            for column_code, value in declarant.iteritems():
-                if column_code in (
-                        'activite',
-                        'cadre',
-                        ):
-                    continue
-                column = tax_benefit_system.column_by_name[column_code]
-                cerfa_field = column.cerfa_field
-                assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-                impots_arguments[cerfa_field[declarant_index]] = str(value)
-
-        impots_arguments['0CF'] = len(foyer_fiscal['personnes_a_charge'])
-        for personne_a_charge_index, personne_a_charge_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
-            personne_a_charge = individus[personne_a_charge_id].copy()
-
-            birth = personne_a_charge.pop('birth')
-            impots_arguments['0F{}'.format(personne_a_charge_index)] = str(birth.year)
-
-            personne_a_charge.pop('statmarit', None)
-
-            for column_code, value in personne_a_charge.iteritems():
-                if column_code in (
-                        'activite',
-                        'cadre',
-                        ):
-                    continue
-                column = tax_benefit_system.column_by_name[column_code]
-                cerfa_field = column.cerfa_field
-                assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-                impots_arguments[cerfa_field[personne_a_charge_index]] = str(value)
-
-        if foyer_fiscal.pop('caseT', False):
-            impots_arguments['0BT'] = '1'
-
-        for column_code, value in foyer_fiscal.iteritems():
-            if column_code == 'f7uf':
-                impots_arguments['7UG'] = str(value) # bug dans le site des impots
-            if column_code == 'f7ud':
-                impots_arguments['7UE'] = str(value) # bug dans le site des impots
-            if column_code == 'f7vc':
-                impots_arguments['7VD'] = str(value) # bug dans le site des impots
-            column = tax_benefit_system.column_by_name[column_code]
-            cerfa_field = column.cerfa_field
-            assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
-            impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else str(value)
-
-#    print json.dumps(impots_arguments, encoding = 'utf-8', ensure_ascii = False, indent = 2)
-
-    return impots_arguments
 
 
 if __name__ == "__main__":
