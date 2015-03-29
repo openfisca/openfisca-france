@@ -781,7 +781,7 @@ class salsuperbrut(SimpleFormulaColumn):
             'depense_cantine_titre_restaurant_employeur', period)
         exoneration_cotisations_patronales_geographiques = simulation.calculate(
             'exoneration_cotisations_patronales_geographiques', period)
-        exoneration_cotisations_patronales_jei = simulation.calculate('exoneration_cotisations_patronales_jei', period)
+        exoneration_cotisations_patronales_jei = simulation.calculate_add('exoneration_cotisations_patronales_jei', period)
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
