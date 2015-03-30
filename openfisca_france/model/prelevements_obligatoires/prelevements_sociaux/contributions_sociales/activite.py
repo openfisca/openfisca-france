@@ -38,7 +38,43 @@ log = logging.getLogger(__name__)
 
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
-# T0D0 : gérer assiette csg
+
+
+@reference_formula
+class assiette_csg_abattue(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Assiette CSG - CRDS"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        primes_salaires = simulation.calculate('primes_salaires', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+        # TODO: mettre à part ?
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        hsup = simulation.calculate('hsup', period)
+        remuneration_principale = simulation.calculate('remuneration_principale', period)
+
+        return period, (
+            remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
+            indemnite_residence + supp_familial_traitement - hsup
+            )
+
+
+@reference_formula
+class assiette_csg_non_abattue(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Assiette CSG - CRDS"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        # TODO + indemnites_journalieres_maladie,
+        return period, - prevoyance_obligatoire_cadre
 
 
 @reference_formula
@@ -49,25 +85,14 @@ class csgsald(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
-        # TODO: mettre à part ?
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
+        assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        hsup = simulation.calculate('hsup', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
 
         law = simulation.legislation_at(period.start)
-
         montant_csg = montant_csg_crds(
-            base_avec_abattement = (
-                remuneration_principale + salaire_de_base + primes_fonction_publique + indemnite_residence +
-                supp_familial_traitement - hsup
-                ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre,  # TODO + indemnites_journalieres_maladie,
+            base_avec_abattement = assiette_csg_abattue,
+            base_sans_abattement = assiette_csg_non_abattue,
             law_node = law.csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
@@ -82,27 +107,15 @@ class csgsali(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
-        # TODO: mettre ailleurs
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
+        assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
-
-        hsup = simulation.calculate('hsup', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
+            base_avec_abattement = assiette_csg_abattue,
+            base_sans_abattement = assiette_csg_non_abattue,
             law_node = law.csg.activite.imposable,
-            base_avec_abattement = (
-                salaire_de_base + remuneration_principale +
-                primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
-                ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre,
-            # TODO: mettre ailleurs + indemnites_journalieres_maladie,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -117,28 +130,16 @@ class crdssal(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
-        # TODO: mettre ailleurs
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
+        assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        hsup = simulation.calculate('hsup', period)
-
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
 
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
             law_node = law.crds.activite,
-            base_avec_abattement = (
-                salaire_de_base + remuneration_principale +
-                primes_fonction_publique + indemnite_residence + supp_familial_traitement - hsup
-                ),
-            base_sans_abattement = - prevoyance_obligatoire_cadre,
-            #  + indemnites_journalieres_maladie, TODO: mettre ailleurs
+            base_avec_abattement = assiette_csg_abattue,
+            base_sans_abattement = assiette_csg_non_abattue,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -186,6 +187,7 @@ class sal(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)
+        primes_salaires = simulation.calculate_add('primes_salaires', period)
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
@@ -200,7 +202,7 @@ class sal(SimpleFormulaColumn):
             period.offset('first-of'))
 
         return period, (
-            salaire_de_base + remuneration_principale +
+            salaire_de_base + primes_salaires + remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald +
             cotisations_salariales - hsup + rev_microsocial_declarant1
             )

@@ -131,6 +131,7 @@ class accident_du_travail(SimpleFormulaColumn):
     label = u"Cotisations patronales accident du travail et maladie professionelle"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)

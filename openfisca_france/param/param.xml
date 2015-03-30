@@ -543,6 +543,7 @@
               <VALUE deb="2004-07-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".003" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0025" />
               <VALUE deb="2004-07-01" fin="2013-12-31" valeur=".001" />
             </TAUX>
@@ -1330,7 +1331,8 @@
               <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0.0175" />
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0175" />
               <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.016" />
             </TAUX>
           </TRANCHE>

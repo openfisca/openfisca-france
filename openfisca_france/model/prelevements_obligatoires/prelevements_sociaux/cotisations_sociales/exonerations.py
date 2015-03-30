@@ -27,6 +27,15 @@ from __future__ import division
 from numpy import datetime64, maximum as max_, minimum as min_, round as round_, timedelta64
 
 from ....base import *  # noqa analysis:ignore
+from .base import apply_bareme_for_relevant_type_sal
+
+
+reference_input_variable(
+    column = DateCol(),
+    entity_class = Individus,
+    label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)",
+    name = 'jei_date_demande',
+    )
 
 
 @reference_formula
@@ -48,6 +57,54 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
             exoneration_cotisations_employeur_zrr)
 
         return period, exonerations_geographiques
+
+
+@reference_formula
+class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Exonrérations de cotisations patronales pour une jeune entreprise innovante"
+    url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        assiette_allegement = simulation.calculate('assiette_allegement', period)
+        jei_date_demande = simulation.calculate('jei_date_demande', period)
+        jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        smic_proratise = simulation.calculate('smic_proratise', period)
+        type_sal = simulation.calculate('type_sal', period)
+
+        bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
+        bareme_names = ['vieillessedeplaf', 'vieillesseplaf', 'maladie', 'famille']
+
+        exoneration = smic_proratise * 0.0
+        for bareme_name in bareme_names:
+            exoneration += apply_bareme_for_relevant_type_sal(
+                bareme_by_type_sal_name = bareme_by_type_sal_name,
+                bareme_name = bareme_name,
+                type_sal = type_sal,
+                base = min_(assiette_allegement, 4.5 * smic_proratise),
+                plafond_securite_sociale = plafond_securite_sociale,
+                round_base_decimals = 2,
+                )
+
+        exoneration_relative_year_passed = exoneration_relative_year(period, jei_date_demande)
+        rate_by_year_passed = {
+            0: 1,
+            1: 1,
+            2: 1,
+            3: 1,
+            4: 1,
+            5: 1,
+            6: 1,
+            7: 1,
+            }  # TODO: move to legislatiion parameters file
+        for year_passed, rate in rate_by_year_passed.iteritems():
+            if (exoneration_relative_year_passed == year_passed).any():
+                exoneration[exoneration_relative_year_passed == year_passed] = rate * exoneration
+
+        return period, - exoneration * jeune_entreprise_innovante
 
 
 @reference_formula
@@ -121,19 +178,20 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         smic_proratise = simulation.calculate('smic_proratise', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
 
-        entreprise_eligible = (entreprise_chiffre_affaire <= 1e7) | (entreprise_bilan <= 1e7)  # TODO: param
+        # TODO: move to legislatiion parameters file
+        entreprise_eligible = (entreprise_chiffre_affaire <= 1e7) | (entreprise_bilan <= 1e7)
 
         smic_proratise = simulation.calculate('smic_proratise', period)
         zone_franche_urbaine = simulation.calculate('zone_franche_urbaine', period)
 
         duree_cdd_eligible = (contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D'))
-        # TODO parameter
-        contrat_de_travail_eligible = (contrat_de_travail_arrivee < datetime64("2014-12-31")) * (
+        # TODO: move to legislatiion parameters file
+        contrat_de_travail_eligible = (contrat_de_travail_arrivee <= datetime64("2014-12-31")) * (
             (contrat_de_travail_duree == 0) + (
                 (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
                 )
             )
-        # TODO parameter
+        # TODO: move to legislatiion parameters file
 
         eligible = (
             contrat_de_travail_eligible *
@@ -152,7 +210,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             bareme_by_name['fnal2'].rates[0] * (effectif_entreprise >= 20) +
             taux_versement_transport
             )
-        # TODO: parameters voir http://www.urssaf.fr/images/ref_lc2009-077.pdf
+        # TODO: move to legislatiion parameters file : voir http://www.urssaf.fr/images/ref_lc2009-077.pdf
         seuil_max = 2
         seuil_min = 1.4
 
@@ -167,7 +225,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             5: .60,
             6: .40,
             7: .20,
-            }  # TODO: insert in parameter
+            }  # TODO: move to legislatiion parameters file
         small_rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -183,7 +241,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             11: .40,
             12: .20,
             13: .20,
-            }  # TODO: insert in parameter
+            }  # TODO: move to legislatiion parameters file
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
         for year_passed, rate in large_rate_by_year_passed.iteritems():
@@ -231,7 +289,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
         zone_restructuration_defense = simulation.calculate('zone_restructuration_defense', period)
 
         eligible = zone_restructuration_defense
-        taux_max = .281  # TODO: parameters
+        taux_max = .281  # TODO: move to legislatiion parameters file
         seuil_max = 2.4
         seuil_min = 1.4
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
@@ -243,7 +301,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
             2: 1,
             3: 2 / 3,
             4: 1 / 3,
-            }  # TODO: insert in parameter
+            }  # TODO: move to legislatiion parameters file
         ratio = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
             if (exoneration_relative_year_passed == year_passed).any():
@@ -285,7 +343,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
         zone_revitalisation_rurale = simulation.calculate('zone_revitalisation_rurale', period)
 
         duree_cdd_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
-        # TODO parameter
+        # TODO: move to legislatiion parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
             (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
@@ -300,7 +358,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
             zone_revitalisation_rurale *
             duree_validite
             )
-        taux_max = .281  # TODO: parameters
+        taux_max = .281  # TODO: move to legislatiion parameters file
         seuil_max = 2.4
         seuil_min = 1.5
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
@@ -327,7 +385,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
         contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
         duree_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
-        # TODO parameter
+        # TODO: move to legislatiion parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
             (contrat_de_travail_duree == 1) * (duree_eligible)
@@ -348,7 +406,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
             5: .75,
             6: .50,
             7: .25,
-            }  # TODO: insert in parameter
+            }  # TODO: move to legislatiion parameters file
         taux_exoneraion = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
             taux_exoneraion[exoneration_relative_year_passed == year_passed] = rate
@@ -357,11 +415,83 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         # TODO: mettre sur toutes les années
 
 
+# @reference_formula
+# class bassin_emploi_redynamiser(SimpleFormulaColumn):
+#     column = BoolCol
+#     entity_class = Individus
+#     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
+#     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
+#     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
+#     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
+#
+#     def function(self, simulation, period):
+#         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+#         return period, (effectif_entreprise >= 1) * False
+
+@reference_formula
+class jeune_entreprise_innovante(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'entreprise est une jeune entreprise innovante"
+
+    def function(self, simulation, period):
+        # Toute entreprise existante au 1er janvier 2004 ou créée entre le 1er janvier 2004 et le 31 décembre 2016 à
+        # condition de remplir les conditions suivantes :
+        #
+        # avoir moins de 8 ans d'existence au moment de la demande
+        #
+        # être réellement nouvelle, c'est-à-dire ne pas avoir été créée dans le cadre d'une concentration,
+        # d'une restructuration, d'une extension d'activité préexistante ou d'une reprise
+        #
+        # employer moins de 250 personnes au cours de l'exercice au titre duquel elle demande à bénéficier de ce statut
+        #
+        # réaliser un chiffre d'affaires inférieur à 50 M€  et disposer d'un total de bilan inférieur à 43 M€
+        #
+        # être indépendante, c'est-à-dire que son capital doit être détenu pour 50 % au minimum par :
+        #
+        # - des personnes physiques
+        #
+        # - une ou plusieurs autres JEI dont 50 % du capital au moins est détenu par des personnes physiques
+        #
+        # - des associations ou fondations reconnues d'utilité publique à caractère scientifique
+        #
+        # - des établissements de recherche et d'enseignement et leurs filiales
+        #
+        # - des structures d'investissement sous réserve qu'il n'y ait pas de lien de dépendance telles que des :
+        #   -  fonds communs de placement dans l'innovation (FCPI)
+        #   -  sociétés de capital-risque
+        #   -  fonds d'investissement de proximité (FIP)
+        #   -  sociétés de développement régional (SDR)
+        #   -  sociétés financières d'innovation (SFI)
+        #   -  sociétés unipersonnelles d'investissements à risques (SUIR).
+        #
+        # réaliser des dépenses de R§D représentant au moins 15 % des charges fiscalement déductibles au titre du même
+        # exercice.
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        entreprise_bilan = simulation.calculate('entreprise_bilan', period)
+        entreprise_chiffre_affaire = simulation.calculate('entreprise_chiffre_affaire', period)
+        entreprise_creation = simulation.calculate('entreprise_creation', period)
+        # entreprise_depenses_rd =  simulation.calculate('entreprise_depenses_rd', period)
+        jei_date_demande = simulation.calculate('jei_date_demande', period)
+        # TODO: move to legislatiion parameters file
+        # entreprise_depenses_rd > .15 TODO
+        independance = True
+        jeune_entreprise_innovante = (
+            independance *
+            (effectif_entreprise < 250) *
+            (entreprise_creation <= datetime64("2016-12-31")) *
+            ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < 8) *
+            (entreprise_chiffre_affaire < 50e6) *
+            (entreprise_bilan < 43e6)
+            )
+        return period, jeune_entreprise_innovante
+
+
 @reference_formula
 class bassin_emploi_redynamiser(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Individus
-    label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
+    label = u"L'entreprise est située danns un bassin d'emploi à redynamiser (BER)"
     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
@@ -376,7 +506,7 @@ class bassin_emploi_redynamiser(SimpleFormulaColumn):
 class zone_restructuration_defense(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Individus
-    label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD))"
+    label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -409,7 +539,7 @@ class zone_revitalisation_rurale(SimpleFormulaColumn):
 
 def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min = 1):
     ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
-    # règle d'arrondi: 4 décimales au dix-millième le plus proche (TODO: reprise de l'allègement Fillon unchecked)
+    # règle d'arrondi: 4 décimales au dix-millième le plus proche ( # TODO: reprise de l'allègement Fillon unchecked)
     return round_(
         taux_max * min_(1, max_(seuil_max * seuil_min * ratio_smic_salaire - seuil_min, 0) / (seuil_max - seuil_min)),
         4,
