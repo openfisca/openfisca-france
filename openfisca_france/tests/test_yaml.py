@@ -30,6 +30,7 @@
 from __future__ import division
 
 import collections
+import logging
 import os
 
 import numpy as np
@@ -39,23 +40,33 @@ from openfisca_france.tests.base import tax_benefit_system
 import yaml
 
 
+log = logging.getLogger(__name__)
 options_by_dir = {
-    os.path.join(os.path.dirname(__file__), 'fiches_de_paie'): dict(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'calculateur_impots')): dict(
+        accept_other_period = False,
+        default_absolute_error_margin = 0.5,
+        reform = 'inversion_revenus',
+        ),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'fiches_de_paie')): dict(
         accept_other_period = False,
         default_absolute_error_margin = 0.005,
         ),
-    os.path.join(os.path.dirname(__file__), 'formulas'): dict(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas')): dict(
         accept_other_period = False,
         default_absolute_error_margin = 0.005,
         ),
-    os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr'): dict(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')): dict(
         accept_other_period = True,
         default_absolute_error_margin = 0.007,
         ),
-    os.path.join(os.path.dirname(__file__), 'ui.openfisca.fr'): dict(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'ui.openfisca.fr')): dict(
         accept_other_period = False,
         default_absolute_error_margin = 0.005,
         ),
+    }
+
+tax_benefit_system_by_reform_name = {
+    None: tax_benefit_system,
     }
 
 
@@ -167,10 +178,24 @@ def check_any_period(name, period_str, test, force):
                     )
 
 
+def get_tax_benefit_system(reform_name):
+    reform = tax_benefit_system_by_reform_name.get(reform_name)
+    if reform is None:
+        assert reform_name == 'inversion_revenus', 'Unknown reform: {}'.format(reform_name)
+        from openfisca_france.reforms import inversion_revenus
+
+        reform = inversion_revenus.build_reform(tax_benefit_system)
+        tax_benefit_system_by_reform_name[reform_name] = reform
+    return reform
+
+
 def test(current_options_by_dir = None, force = False, name_filter = None):
     if current_options_by_dir is None:
         current_options_by_dir = options_by_dir
     for dir, options in sorted(current_options_by_dir.iteritems()):
+        if not os.path.isdir(dir):
+            log.warning(u'Skipping missing directory: {}'.format(dir))
+            continue
         if isinstance(name_filter, str):
             name_filter = name_filter.decode('utf-8')
         for filename in sorted(os.listdir(dir)):
@@ -192,7 +217,7 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
                 conv.check((tests, error))  # Generate an error.
 
             for test in tests:
-                test, error = scenarios.make_json_or_python_to_test(tax_benefit_system,
+                test, error = scenarios.make_json_or_python_to_test(get_tax_benefit_system(options.get('reform')),
                     default_absolute_error_margin = options['default_absolute_error_margin'])(test)
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
@@ -226,7 +251,7 @@ if __name__ == "__main__":
     if args.dir is None:
         current_options_by_dir = None
     else:
-        dir = os.path.abspath(args.dir)
+        dir = os.path.abspath(args.dir).rstrip(os.sep)
         options = options_by_dir.get(dir)
         if options is None:
             options = dict(

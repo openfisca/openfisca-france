@@ -40,6 +40,7 @@ import yaml
 from openfisca_france import init_country
 from openfisca_france.scripts.calculateur_impots.base import (
     call_tax_calculator,
+    openfisca_variable_name_by_tax_calculator_code,
     transform_scenario_to_tax_calculator_inputs,
     )
 
@@ -171,7 +172,11 @@ def main():
     if not os.path.exists(tax_calculator_tests_dir):
         os.makedirs(tax_calculator_tests_dir)
 
-    if not os.path.exists(tests_dir):
+    if os.path.exists(tests_dir):
+        for filename in os.listdir(tests_dir):
+            if filename.endswith(filename):
+                os.remove(os.path.join(tests_dir, filename))
+    else:
         os.makedirs(tests_dir)
 
     if os.path.exists(variables_name_file_path):
@@ -256,7 +261,7 @@ def main():
             assert not codes_without_name, 'Output variables {} have no name in page:\n{}'.format(
                 sorted(codes_without_name), page.decode('iso-8859-1').encode('utf-8'))
 
-        main_input_variable_name = json_filename.split('-', 1)[0]
+        # Create or update test for "calculateur impôt".
         sorted_tax_calculator_inputs = collections.OrderedDict(sorted(tax_calculator_inputs.iteritems()))
         tax_calculator_test_file_path = os.path.join(tax_calculator_tests_dir, '{}.yaml'.format(
             hashlib.md5(json.dumps(sorted_tax_calculator_inputs)).hexdigest()))
@@ -278,6 +283,7 @@ def main():
             yaml.dump(tax_calculator_test, tax_calculator_test_file, allow_unicode = True, default_flow_style = False,
                 indent = 2, width = 120)
 
+        # Create or update YAML file containing the names associated to each result code of "calculateur impôt".
         if name_by_year_by_code_changed:
             variables_name_data = collections.OrderedDict(
                 (code, collections.OrderedDict(sorted(name_by_year.iteritems())))
@@ -287,6 +293,35 @@ def main():
                 yaml.dump(variables_name_data, variables_name_file, allow_unicode = True, default_flow_style = False,
                     indent = 2, width = 120)
             name_by_year_by_code_changed = False
+
+        # Create or update YAML file containing OpenFisca test.
+        main_input_variable_name = json_filename.split('-', 1)[0]
+        test = collections.OrderedDict((
+            ('name', main_input_variable_name),
+            ))
+        test.update(scenario.to_json())
+        test['period'] = scenario.period.start.year  # Replace period string with an integer.
+        test_case = test.pop('test_case', None)
+        for entity_name_plural, entity_variables in test_case.iteritems():
+            test[entity_name_plural] = entity_variables
+        test['output_variables'] = collections.OrderedDict(sorted(
+            (variable_name, variable_value)
+            for variable_name, variable_value in (
+                (openfisca_variable_name_by_tax_calculator_code[code], value)
+                for code, value in tax_calculator_outputs.iteritems()
+                )
+            if variable_name is not None
+            ))
+        tests_file_path = os.path.join(tests_dir, '{}.yaml'.format(main_input_variable_name))
+        if os.path.exists(tests_file_path):
+            with open(tests_file_path) as tests_file:
+                tests = yaml.load(tests_file)
+                tests.append(test)
+                tests.sort(key = lambda test: (test['name'], test['period']))
+        else:
+            tests = [test]
+        with open(tests_file_path, 'w') as tests_file:
+            yaml.dump(tests, tests_file, allow_unicode = True, default_flow_style = False, indent = 2, width = 120)
 
     return 0
 
