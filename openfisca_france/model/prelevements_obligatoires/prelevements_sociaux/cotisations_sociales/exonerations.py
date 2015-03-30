@@ -99,7 +99,7 @@ class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
             5: 1,
             6: 1,
             7: 1,
-            }  # TODO: move to legislatiion parameters file
+            }  # TODO: move to legislation parameters file
         for year_passed, rate in rate_by_year_passed.iteritems():
             if (exoneration_relative_year_passed == year_passed).any():
                 exoneration[exoneration_relative_year_passed == year_passed] = rate * exoneration
@@ -178,20 +178,20 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         smic_proratise = simulation.calculate('smic_proratise', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
 
-        # TODO: move to legislatiion parameters file
+        # TODO: move to legislation parameters file
         entreprise_eligible = (entreprise_chiffre_affaire <= 1e7) | (entreprise_bilan <= 1e7)
 
         smic_proratise = simulation.calculate('smic_proratise', period)
         zone_franche_urbaine = simulation.calculate('zone_franche_urbaine', period)
 
         duree_cdd_eligible = (contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D'))
-        # TODO: move to legislatiion parameters file
+        # TODO: move to legislation parameters file
         contrat_de_travail_eligible = (contrat_de_travail_arrivee <= datetime64("2014-12-31")) * (
             (contrat_de_travail_duree == 0) + (
                 (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
                 )
             )
-        # TODO: move to legislatiion parameters file
+        # TODO: move to legislation parameters file
 
         eligible = (
             contrat_de_travail_eligible *
@@ -210,7 +210,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             bareme_by_name['fnal2'].rates[0] * (effectif_entreprise >= 20) +
             taux_versement_transport
             )
-        # TODO: move to legislatiion parameters file : voir http://www.urssaf.fr/images/ref_lc2009-077.pdf
+        # TODO: move to legislation parameters file : voir http://www.urssaf.fr/images/ref_lc2009-077.pdf
         seuil_max = 2
         seuil_min = 1.4
 
@@ -225,7 +225,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             5: .60,
             6: .40,
             7: .20,
-            }  # TODO: move to legislatiion parameters file
+            }  # TODO: move to legislation parameters file
         small_rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -241,7 +241,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             11: .40,
             12: .20,
             13: .20,
-            }  # TODO: move to legislatiion parameters file
+            }  # TODO: move to legislation parameters file
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
         for year_passed, rate in large_rate_by_year_passed.iteritems():
@@ -289,7 +289,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
         zone_restructuration_defense = simulation.calculate('zone_restructuration_defense', period)
 
         eligible = zone_restructuration_defense
-        taux_max = .281  # TODO: move to legislatiion parameters file
+        taux_max = .281  # TODO: move to legislation parameters file
         seuil_max = 2.4
         seuil_min = 1.4
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
@@ -301,7 +301,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
             2: 1,
             3: 2 / 3,
             4: 1 / 3,
-            }  # TODO: move to legislatiion parameters file
+            }  # TODO: move to legislation parameters file
         ratio = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
             if (exoneration_relative_year_passed == year_passed).any():
@@ -343,7 +343,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
         zone_revitalisation_rurale = simulation.calculate('zone_revitalisation_rurale', period)
 
         duree_cdd_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
-        # TODO: move to legislatiion parameters file
+        # TODO: move to legislation parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
             (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
@@ -358,7 +358,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
             zone_revitalisation_rurale *
             duree_validite
             )
-        taux_max = .281  # TODO: move to legislatiion parameters file
+        taux_max = .281  # TODO: move to legislation parameters file
         seuil_max = 2.4
         seuil_min = 1.5
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
@@ -385,7 +385,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
         contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
         duree_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
-        # TODO: move to legislatiion parameters file
+        # TODO: move to legislation parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
             (contrat_de_travail_duree == 1) * (duree_eligible)
@@ -406,7 +406,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
             5: .75,
             6: .50,
             7: .25,
-            }  # TODO: move to legislatiion parameters file
+            }  # TODO: move to legislation parameters file
         taux_exoneraion = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
             taux_exoneraion[exoneration_relative_year_passed == year_passed] = rate
@@ -473,7 +473,7 @@ class jeune_entreprise_innovante(SimpleFormulaColumn):
         entreprise_creation = simulation.calculate('entreprise_creation', period)
         # entreprise_depenses_rd =  simulation.calculate('entreprise_depenses_rd', period)
         jei_date_demande = simulation.calculate('jei_date_demande', period)
-        # TODO: move to legislatiion parameters file
+        # TODO: move to legislation parameters file
         # entreprise_depenses_rd > .15 TODO
         independance = True
         jeune_entreprise_innovante = (
