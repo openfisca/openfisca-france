@@ -306,13 +306,12 @@ class taux_versement_transport(SimpleFormulaColumn):
     label = u""
 
     def function(self, simulation, period):
-        preload_taux_versement_transport()
-
         period = period.start.period(u'month').offset('first-of')
         depcom_entreprise = simulation.calculate('depcom_entreprise', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         type_sal = simulation.calculate('type_sal', period)
 
+        preload_taux_versement_transport()
         public = (type_sal >= 2)
         default_value = 0.0
         taux_aot = fromiter(

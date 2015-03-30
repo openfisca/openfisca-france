@@ -37,16 +37,17 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
 
     def function(self, simulation, period):
-        exonerations_geographiques = [
-            'exoneration_cotisations_employeur_zfu',
-            'exoneration_cotisations_employeur_zrd',
-            'exoneration_cotisations_employeur_zrr',
-            ]
-        exonerations_montant = 0
-        for exoneration in exonerations_geographiques:
-            exonerations_montant = exonerations_montant + simulation.calculate_add(exoneration, period)
+        exoneration_cotisations_employeur_zfu = simulation.calculate_add('exoneration_cotisations_employeur_zfu',
+            period)
+        exoneration_cotisations_employeur_zrd = simulation.calculate_add('exoneration_cotisations_employeur_zrd',
+            period)
+        exoneration_cotisations_employeur_zrr = simulation.calculate_add('exoneration_cotisations_employeur_zrr',
+            period)
 
-        return period, exonerations_montant
+        exonerations_geographiques = (exoneration_cotisations_employeur_zfu + exoneration_cotisations_employeur_zrd +
+            exoneration_cotisations_employeur_zrr)
+
+        return period, exonerations_geographiques
 
 
 @reference_formula
@@ -120,7 +121,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         smic_proratise = simulation.calculate('smic_proratise', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
 
-        entreprise_eligible = (entreprise_chiffre_affaire <= 1e7) | (entreprise_bilan <= 1e7) # TODO: param
+        entreprise_eligible = (entreprise_chiffre_affaire <= 1e7) | (entreprise_bilan <= 1e7)  # TODO: param
 
         smic_proratise = simulation.calculate('smic_proratise', period)
         zone_franche_urbaine = simulation.calculate('zone_franche_urbaine', period)
@@ -299,7 +300,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
             zone_revitalisation_rurale *
             duree_validite
             )
-        taux_max = .281 # TODO: parameters
+        taux_max = .281  # TODO: parameters
         seuil_max = 2.4
         seuil_min = 1.5
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)

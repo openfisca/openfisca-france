@@ -142,20 +142,20 @@ class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        accident_du_travail = simulation.calculate('accident_du_travail', period)
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        exoneration_moins_11 = - cotisations_employeur
-        cotisations_non_exonerees = [
-            'accident_du_travail'
-            ]
-        for cotisation_non_exoneree in cotisations_non_exonerees:
-            exoneration_moins_11 = exoneration_moins_11 + simulation.calculate(cotisation_non_exoneree, period)
+        famille = simulation.calculate('famille', period)
+        mmid_employeur = simulation.calculate('mmid_employeur', period)
+        vieillesse_deplafonnee_employeur = simulation.calculate('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
 
-        exoneration_plus_11 = 0
-        cotisations_exonerees = [
-            'famille', 'mmid_employeur', 'vieillesse_plafonnee_employeur', 'vieillesse_deplafonnee_employeur']
-        for cotisation_exoneree in cotisations_exonerees:
-            exoneration_plus_11 = exoneration_plus_11 - simulation.calculate(cotisation_exoneree, period)
+        cotisations_non_exonerees = accident_du_travail
+        exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
+
+        cotisations_exonerees = (famille + mmid_employeur + vieillesse_plafonnee_employeur +
+            vieillesse_deplafonnee_employeur)
+        exoneration_plus_11 = -cotisations_exonerees
 
         # TODO
         return period, (
