@@ -47,11 +47,12 @@ from openfisca_france.scripts.calculateur_impots.base import (
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 html_parser = etree.HTMLParser()
+income_taxes_test_cases_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..',
+    'french-income-taxes-test-cases'))
 json_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'json'))
 log = logging.getLogger(app_name)
 TaxBenefitSystem = init_country()
 tax_benefit_system = TaxBenefitSystem()
-tax_calculator_tests_dir = os.path.join(os.path.dirname(__file__), 'tests_calculateur_impots')
 tests_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'calculateur_impots'))
 variables_name_file_path = os.path.join(os.path.dirname(__file__), 'noms_variables.yaml')
 
@@ -169,8 +170,8 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    if not os.path.exists(tax_calculator_tests_dir):
-        os.makedirs(tax_calculator_tests_dir)
+    if not os.path.exists(income_taxes_test_cases_dir):
+        os.makedirs(income_taxes_test_cases_dir)
 
     if os.path.exists(tests_dir):
         for filename in os.listdir(tests_dir):
@@ -263,25 +264,25 @@ def main():
 
         # Create or update test for "calculateur impôt".
         sorted_tax_calculator_inputs = collections.OrderedDict(sorted(tax_calculator_inputs.iteritems()))
-        tax_calculator_test_file_path = os.path.join(tax_calculator_tests_dir, '{}.yaml'.format(
+        income_taxes_test_case_file_path = os.path.join(income_taxes_test_cases_dir, '{}.yaml'.format(
             hashlib.md5(json.dumps(sorted_tax_calculator_inputs)).hexdigest()))
-        if os.path.exists(tax_calculator_test_file_path):
-            with open(tax_calculator_test_file_path) as tax_calculator_test_file:
-                tax_calculator_test = yaml.load(tax_calculator_test_file)
-                tax_calculator_test['output_variables'][str(tax_year)] = collections.OrderedDict(sorted(
+        if os.path.exists(income_taxes_test_case_file_path):
+            with open(income_taxes_test_case_file_path) as income_taxes_test_case_file:
+                income_taxes_test_case = yaml.load(income_taxes_test_case_file)
+                income_taxes_test_case['output_variables'][str(tax_year)] = collections.OrderedDict(sorted(
                     tax_calculator_outputs.iteritems()))
-                tax_calculator_test['output_variables'] = collections.OrderedDict(sorted(
-                    tax_calculator_test['output_variables'].iteritems()))
+                income_taxes_test_case['output_variables'] = collections.OrderedDict(sorted(
+                    income_taxes_test_case['output_variables'].iteritems()))
         else:
-            tax_calculator_test = collections.OrderedDict((
+            income_taxes_test_case = collections.OrderedDict((
                 ('input_variables', sorted_tax_calculator_inputs),
                 ('output_variables', collections.OrderedDict((
                     (str(tax_year), collections.OrderedDict(sorted(tax_calculator_outputs.iteritems()))),
                     ))),
                 ))
-        with open(tax_calculator_test_file_path, 'w') as tax_calculator_test_file:
-            yaml.dump(tax_calculator_test, tax_calculator_test_file, allow_unicode = True, default_flow_style = False,
-                indent = 2, width = 120)
+        with open(income_taxes_test_case_file_path, 'w') as income_taxes_test_case_file:
+            yaml.dump(income_taxes_test_case, income_taxes_test_case_file, allow_unicode = True,
+                default_flow_style = False, indent = 2, width = 120)
 
         # Create or update YAML file containing the names associated to each result code of "calculateur impôt".
         if name_by_year_by_code_changed:
