@@ -48,13 +48,14 @@ from openfisca_france.scripts.calculateur_impots.base import (
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 html_parser = etree.HTMLParser()
 income_taxes_test_cases_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..',
-    'french-income-taxes-test-cases'))
+    'french-income-taxes-test-cases', 'test_cases'))
 json_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'json'))
 log = logging.getLogger(app_name)
 TaxBenefitSystem = init_country()
 tax_benefit_system = TaxBenefitSystem()
 tests_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'calculateur_impots'))
-variables_name_file_path = os.path.join(os.path.dirname(__file__), 'noms_variables.yaml')
+variables_name_file_path = os.path.normpath(os.path.join(income_taxes_test_cases_dir, '..',
+    'output_variables_names.yaml'))
 
 
 # YAML configuration
