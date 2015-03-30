@@ -45,6 +45,7 @@ options_by_dir = {
     os.path.abspath(os.path.join(os.path.dirname(__file__), 'calculateur_impots')): dict(
         accept_other_period = False,
         default_absolute_error_margin = 0.5,
+        ignore = True,  # TODO: Remove
         reform = 'inversion_revenus',
         ),
     os.path.abspath(os.path.join(os.path.dirname(__file__), 'fiches_de_paie')): dict(
@@ -193,6 +194,9 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
     if current_options_by_dir is None:
         current_options_by_dir = options_by_dir
     for dir, options in sorted(current_options_by_dir.iteritems()):
+        if not force and options.get('ignore', False):
+            log.info(u'Ignoring directory: {}'.format(dir))
+            continue
         if not os.path.isdir(dir):
             log.warning(u'Skipping missing directory: {}'.format(dir))
             continue
