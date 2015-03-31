@@ -10,7 +10,7 @@ check-syntax-errors:
 	test -z "`flake8 --first $(shell git ls-files | grep "\.py$$") | grep E901`"
 
 clean-pyc:
-	find -name '*.pyc' -exec rm \{\} \;
+	find . -name '*.pyc' -exec rm \{\} \;
 
 ctags:
 	ctags --recurse=yes .
