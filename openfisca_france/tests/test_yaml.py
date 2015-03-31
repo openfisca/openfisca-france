@@ -30,11 +30,12 @@
 from __future__ import division
 
 import collections
+import copy
 import logging
 import os
 
 import numpy as np
-from openfisca_core import conv, scenarios
+from openfisca_core import conv, periods, scenarios
 from openfisca_core.tools import assert_near
 from openfisca_france.tests.base import tax_benefit_system
 import yaml
@@ -74,11 +75,37 @@ tax_benefit_system_by_reform_name = {
 # YAML configuration
 
 
+class folded_unicode(unicode):
+    pass
+
+
+class literal_unicode(unicode):
+    pass
+
+
 def dict_constructor(loader, node):
     return collections.OrderedDict(loader.construct_pairs(node))
 
 
 yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constructor)
+
+yaml.add_representer(collections.OrderedDict, lambda dumper, data: dumper.represent_dict(
+    (copy.deepcopy(key), value)
+    for key, value in data.iteritems()
+    ))
+yaml.add_representer(dict, lambda dumper, data: dumper.represent_dict(
+    (copy.deepcopy(key), value)
+    for key, value in data.iteritems()
+    ))
+yaml.add_representer(folded_unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str',
+    data, style='>'))
+yaml.add_representer(literal_unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str',
+    data, style='|'))
+yaml.add_representer(np.ndarray, lambda dumper, data: dumper.represent_list(data.tolist()))
+yaml.add_representer(periods.Instant, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', str(data)))
+yaml.add_representer(periods.Period, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', str(data)))
+yaml.add_representer(tuple, lambda dumper, data: dumper.represent_list(data))
+yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', data))
 
 
 # Functions
@@ -218,7 +245,8 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
             if error is not None:
                 embedding_error = conv.embed_error(tests, u'errors', error)
                 assert embedding_error is None, embedding_error
-                conv.check((tests, error))  # Generate an error.
+                raise ValueError("Error in test:\n{}".format(yaml.dump(tests, allow_unicode = True,
+                    default_flow_style = False, indent = 2, width = 120)))
 
             for test in tests:
                 test, error = scenarios.make_json_or_python_to_test(get_tax_benefit_system(options.get('reform')),
@@ -226,7 +254,8 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
                     assert embedding_error is None, embedding_error
-                    conv.check((test, error))  # Generate an error.
+                    raise ValueError("Error in test:\n{}".format(yaml.dump(test, allow_unicode = True,
+                        default_flow_style = False, indent = 2, width = 120)))
 
                 if not force and test.get(u'ignore', False):
                     continue
