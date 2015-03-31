@@ -1,6 +1,5 @@
 name: "Business Develop (N)"
 period: "2015-02"
-output_variables_name_to_ignore: cotisations_employeur
 input_variables:
   contrat_de_travail: 4  # forfait jour année
   depcom_entreprise: "75102"
@@ -34,21 +33,21 @@ output_variables:
   # cotisations_employeur (somme de la feuille de paie)
   # .35 + 23.90 + 6.52 + 2.17 + 74.97 + 78.77 + 86.92 + 6.52 + 101.4 + 41.16 + .78 + 4.78 + 26.07 + 16.08
   # = 470.39 != 496.76
-  cotisations_employeur: -470.39 - 2172.9 * (.018 + .0850 + .128)
-  cotisations_employeur_non_contributives: -2172.9 * (.018 + .0850 + .0525 + .128 - .004)
+  IGNORE_cotisations_employeur: -470.39 - 2172.9 * (.018 + .0850 + .128)
+  IGNORE_cotisations_employeur_non_contributives: -2172.9 * (.018 + .0850 + .0525 + .128 - .004)
   allocations_temporaires_invalidite: 0
   accident_du_travail: -23.9
   taxe_salaires: 0
-  cotisations_employeur_main_d_oeuvre: 0
+  IGNORE_cotisations_employeur_main_d_oeuvre: 0
   conge_individuel_formation_cdd: 0
-  # TODO: contribution_developpement_apprentissage: 0
+  IGNORE_contribution_developpement_apprentissage: 0
   contribution_solidarite_autonomie: -6.52
   # contribution_supplementaire_apprentissage
-  # TODO: fnal: 0
-  formation_professionnelle: 0
-  # TODO: participation_effort_construction: 0
+  IGNORE_fnal: 0
+  IGNORE_formation_professionnelle: 0
+  IGNORE_participation_effort_construction: 0
   prevoyance_obligatoire_cadre: -16.08
-  # taxe_apprentissage: 0
+  IGNORE_taxe_apprentissage: 0
   versement_transport: 0 # -.027 * 2172.9
   allegement_fillon: 0
   credit_impot_competitivite_emploi: 0
@@ -81,4 +80,4 @@ output_variables:
   hsup: 0
   depense_cantine_titre_restaurant_employe: 0
   salaire_net_a_payer: 1663.75 +.01
-  salsuperbrut: 2172.90 + 496.76
+  IGNORE_salsuperbrut: 2172.90 + 496.76
