@@ -1,6 +1,5 @@
-name: "Thésard"
+name: "Thésard 1"
 period: "2011-07"
-ignore: true
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
@@ -8,9 +7,8 @@ input_variables:
   contrat_de_travail: 1  # temps plein
   contrat_de_travail_arrivee: "2011-01-01"
   contrat_de_travail_depart: "2011-12-31"
-  contrat_de_travail_duree: 1  # CDI
+  contrat_de_travail_duree: 1  # CDD
   effectif_entreprise: 10000
-  # exposition_accident: 3
   heures_non_remunerees_volume: 0
   indemnite_residence: 0  # WARNING
   code_postal_entreprise: "21000"
@@ -24,41 +22,39 @@ input_variables:
   remboursement_transport_base: 0
   salaire_de_base: 1900
   taux_accident_travail: 0
-  taux_versement_transport: 0
+  taux_versement_transport: .026
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 6  # non cadre
+  type_sal: 6  # contractuel FP
   volume_jours_ijss: 0
 output_variables:
-  # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
-  # TODO à coder taxe_handicapes: 18.40
 
   # salsuperbrut: 0
-  # cotisations_employeur: 0
+  IGNORE_cotisations_employeur: -767.75
 
-  # cotisations_employeur_contributives: 0
+  # cotisations_employeur_contributives
   ags: 0
   agff_employeur: 0
   apec_employeur: 0
   arrco_employeur: 0
-  chomage_employeur: -104.46
+  IGNORE_chomage_employeur: -104.46  # TODO: mieux gérer les contractuels de la FP
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -30.4
   vieillesse_plafonnee_employeur: -157.70
   fonds_emploi_hospitalier: 0
-  ircantec_employeur: -64.79
+  IGNORE_ircantec_employeur: -64.79  # TODO problème de taux
   pension_civile_employeur: 0
   rafp_employeur: 0
 
-  # cotisations_employeur_non_contributives: 0
+  # cotisations_employeur_non_contributives
   allocations_temporaires_invalidite: 0
   accident_du_travail: 0
   famille: -102.6
-  # mmid_employeur: 0 problème d'assiette
+  mmid_employeur: -243.20  # problème d'assiette
   taxe_salaires: 0
 
-  # cotisations_employeur_main_d_oeuvre: 0
-  conge_individuel_formation_cdd: 0
+  # cotisations_employeur_main_d_oeuvre
+  IGNORE_conge_individuel_formation_cdd: 0  # TODO: voir situation contractuel FP
   contribution_developpement_apprentissage: 0
   contribution_solidarite_autonomie: -5.7
   contribution_supplementaire_apprentissage: 0
@@ -67,41 +63,39 @@ output_variables:
   participation_effort_construction: 0
   prevoyance_obligatoire_cadre: 0
   taxe_apprentissage: 0
-  versement_transport: 0
+  versement_transport: -49.40
 
   allegement_fillon: 0
   credit_impot_competitivite_emploi: 0
   tehr: {'2011': 0}
   salaire_de_base: 1900
 
-  # cotisations_salariales: 0
+  IGNORE_cotisations_salariales: -350.39 + 93.99 + 44.23 + 9.21
 
-  # cotisations_salariales_contributives: 0
   agff_salarie: 0
   agirc_salarie: 0
   apec_salarie: 0
   arrco_salarie: 0
-  # chomage_salarie: -17.14 ERROR: devrait être 0
+  IGNORE_chomage_salarie: -17.14 # TODO: devrait être 0
   cotisation_exceptionnelle_temporaire_salarie: 0
-  vieillesse_deplafonnee_salarie: -1.91
-  vieillesse_plafonnee_salarie: 0
-  # ircantec_salarie: -43.32 TODO: corriger
+  vieillesse_deplafonnee_salarie: -1.9
+  vieillesse_plafonnee_salarie: -126.35
+  IGNORE_ircantec_salarie: -43.32 # TODO: corriger
   pension_civile_salarie: 0
   rafp_salarie: 0
 
-  # cotisations_salariales_non_contributives: 0
-  # mmid_salarie: -14.25 devrait être -14.39
-  # contribution_exceptionnelle_solidarite: 0
+  mmid_salarie: -14.25 # devrait être -14.39
+  IGNORE_contribution_exceptionnelle_solidarite: 0
   csgsald: -93.99
   mhsup: 0
-  salaire_net: 1549.61
+  IGNORE_salaire_net: 1549.61
 
-  # salaire imposable
   csgsali: -44.23
-  crdssal: -9.21
+  # salaire imposable
+  IGNORE_crdssal: -9.21  # TODO check arrondi crds
   hsup: 0
-  # sal: 0
+  IGNORE_sal: 1603.05
 
   depense_cantine_titre_restaurant_employe: 0
 
-  salaire_net_a_payer: 1549.61
+  IGNORE_salaire_net_a_payer: 1549.61
