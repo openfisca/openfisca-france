@@ -1,6 +1,6 @@
-name: "Salarié de l'institut Montaigne"
+name: "Salarié de l'Institut Montaigne"
 period: "2014-01"
-ignore: true
+# ignore: true
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
