@@ -27,7 +27,7 @@ description: |
 period: "month:2015-02"
 individus:
   age: 22
-  agem: 273
+  age_en_mois: 273
   alr:
     2013: 0
   birth: "1992-05-17"

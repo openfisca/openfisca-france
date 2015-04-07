@@ -14,7 +14,7 @@ description: |
 period: "month:2014-12"
 individus:
   - age: 42
-    agem: 515
+    age_en_mois: 515
     birth: "1972-01-09"
     epargne_non_remuneree:
       2012-01: 0
@@ -62,7 +62,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 43
-    agem: 524
+    age_en_mois: 524
     birth: "1971-04-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -109,7 +109,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 17
-    agem: 207
+    age_en_mois: 207
     birth: "1997-09-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -159,7 +159,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 13
-    agem: 165
+    age_en_mois: 165
     birth: "2001-03-08"
     epargne_non_remuneree:
       2012-01: 0

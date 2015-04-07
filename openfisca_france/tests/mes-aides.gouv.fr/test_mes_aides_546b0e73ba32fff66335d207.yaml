@@ -12,7 +12,7 @@ period: "month:2014-11"
 individus:
   - activite: 3
     age: 88
-    agem: 1059
+    age_en_mois: 1059
     birth: "1926-08-14"
     epargne_non_remuneree:
       2012-01: 0
@@ -79,7 +79,7 @@ individus:
       2014-11: 800
       year:2013-11: 9600
     age: 88
-    agem: 1059
+    age_en_mois: 1059
     birth: "1926-08-17"
     epargne_non_remuneree:
       2012-01: 0

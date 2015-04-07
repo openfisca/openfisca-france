@@ -6,7 +6,7 @@ description: Pas droit à l'AL si le propriétaire du logement loué est un asce
 period: "month:2015-02"
 individus:
   age: 27
-  agem: 326
+  age_en_mois: 326
   birth: "1987-12-12"
   epargne_non_remuneree:
     2012-01: 0

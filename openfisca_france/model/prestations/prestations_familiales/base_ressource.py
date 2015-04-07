@@ -253,12 +253,12 @@ def age_aine(ages, smic55, ag1, ag2):
     return ageaine
 
 
-def age_en_mois_benjamin(agems):
+def age_en_mois_benjamin(ages_en_mois):
     '''
-    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check agem > 0
+    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check age_en_mois > 0
     '''
-    agem_benjamin = 12 * 9999
-    for agem in agems.itervalues():
-        isbenjamin = (agem < agem_benjamin) & (agem != -9999)
-        agem_benjamin = isbenjamin * agem + not_(isbenjamin) * agem_benjamin
-    return agem_benjamin
+    age_en_mois_benjamin = 12 * 9999
+    for age_en_mois in ages_en_mois.itervalues():
+        isbenjamin = (age_en_mois < age_en_mois_benjamin) & (age_en_mois != -9999)
+        age_en_mois_benjamin = isbenjamin * age_en_mois + not_(isbenjamin) * age_en_mois_benjamin
+    return age_en_mois_benjamin

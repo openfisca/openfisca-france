@@ -102,22 +102,22 @@ class age(SimpleFormulaColumn):
 
         has_birth = simulation.get_or_new_holder('birth')._array is not None
         if not has_birth:
-            has_agem = bool(simulation.get_or_new_holder('agem')._array_by_period)
-            if has_agem:
-                return period, simulation.calculate('agem', period) // 12
+            has_age_en_mois = bool(simulation.get_or_new_holder('age_en_mois')._array_by_period)
+            if has_age_en_mois:
+                return period, simulation.calculate('age_en_mois', period) // 12
         birth = simulation.calculate('birth', period)
         return period, (datetime64(period.start) - birth).astype('timedelta64[Y]')
 
 
 @reference_formula
-class agem(SimpleFormulaColumn):
+class age_en_mois(SimpleFormulaColumn):
     base_function = missing_value
     column = AgeCol(val_type = "months")
     entity_class = Individus
     label = u"Âge (en mois)"
 
     def function(self, simulation, period):
-        # If agem is known at the same day of another month, compute the new agem from it.
+        # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
         holder = self.holder
         start = period.start
         if holder._array_by_period is not None:

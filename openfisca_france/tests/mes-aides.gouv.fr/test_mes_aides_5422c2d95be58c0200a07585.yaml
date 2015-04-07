@@ -7,7 +7,7 @@ period: "month:2014-09"
 individus:
   activite: 1
   age: 25
-  agem: 300
+  age_en_mois: 300
   birth: "1989-09-14"
   enceinte: false
   epargne_non_remuneree:

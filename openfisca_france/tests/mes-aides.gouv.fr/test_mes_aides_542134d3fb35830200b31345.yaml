@@ -6,7 +6,7 @@ description:
 period: "month:2014-09"
 individus:
   age: 34
-  agem: 409
+  age_en_mois: 409
   birth: "1980-08-12"
   enceinte: false
   epargne_non_remuneree:

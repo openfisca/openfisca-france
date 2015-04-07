@@ -4,7 +4,7 @@ description:
 period: "month:2014-11"
 individus:
   age: 20
-  agem: 250
+  age_en_mois: 250
   birth: "1994-01-01"
   epargne_non_remuneree:
     2012-01: 0

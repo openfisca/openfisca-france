@@ -6,7 +6,7 @@ description: RFR = 2700 euros < plafond de 2790 euros pour le montant de 357 eur
 period: "month:2014-12"
 individus:
   - age: 34
-    agem: 411
+    age_en_mois: 411
     alr:
       2013: 0
     birth: "1980-08-12"
@@ -61,7 +61,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 171
+    age_en_mois: 171
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0

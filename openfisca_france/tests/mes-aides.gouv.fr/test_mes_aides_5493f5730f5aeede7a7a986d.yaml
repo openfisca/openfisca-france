@@ -14,7 +14,7 @@ relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 42
-    agem: 515
+    age_en_mois: 515
     ass_precondition_remplie: true
     birth: "1972-01-09"
     epargne_non_remuneree:
@@ -32,7 +32,7 @@ individus:
       2012-01: 0
   - activite: 1
     age: 43
-    agem: 524
+    age_en_mois: 524
     ass_precondition_remplie: true
     birth: "1971-04-02"
     epargne_non_remuneree:

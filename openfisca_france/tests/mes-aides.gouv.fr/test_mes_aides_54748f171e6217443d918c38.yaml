@@ -8,7 +8,7 @@ relative_error_margin: 0.02
 individus:
   activite: 1
   age: 34
-  agem: 411
+  age_en_mois: 411
   ass_precondition_remplie: true
   birth: "1980-08-12"
   epargne_non_remuneree:

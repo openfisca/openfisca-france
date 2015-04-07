@@ -23,7 +23,7 @@ individus:
     2014-10: 48
     year:2013-10: 576
   age: 34
-  agem: 410
+  age_en_mois: 410
   allocation_securisation_professionnelle:
     2012: 576
     2013-10: 48

@@ -7,7 +7,7 @@ description: Un couple ayant un enfant hébergés à titre gratuit dont les ress
 period: "month:2015-01"
 individus:
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -57,7 +57,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -72,7 +72,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 9
-    agem: 119
+    age_en_mois: 119
     birth: "2005-02-05"
     epargne_non_remuneree:
       2012-01: 0

@@ -4,7 +4,7 @@ description:
 period: "month:2014-07"
 individus:
   age: 34
-  agem: 414
+  age_en_mois: 414
   birth: "1980-01-01"
   enceinte: false
   epargne_non_remuneree:

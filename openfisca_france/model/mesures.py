@@ -42,14 +42,14 @@ class uc(SimpleFormulaColumn):
         'men'
         '''
         period = period.start.offset('first-of', 'month').period('year')
-        agem_holder = simulation.compute('agem', period)
+        age_en_mois_holder = simulation.compute('age_en_mois', period)
 
-        agem = self.split_by_roles(agem_holder)
+        age_en_mois = self.split_by_roles(age_en_mois_holder)
 
         uc_adt = 0.5
         uc_enf = 0.3
         uc = 0.5
-        for agm in agem.itervalues():
+        for agm in age_en_mois.itervalues():
             age = floor(agm / 12)
             adt = (15 <= age) & (age <= 150)
             enf = (0 <= age) & (age <= 14)

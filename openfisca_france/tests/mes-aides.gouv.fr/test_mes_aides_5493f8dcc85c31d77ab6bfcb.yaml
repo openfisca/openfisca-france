@@ -4,7 +4,7 @@ description: Simulateur CAF indique 0 € d'AL
 period: "month:2014-12"
 individus:
   - age: 42
-    agem: 515
+    age_en_mois: 515
     birth: "1972-01-09"
     epargne_non_remuneree:
       2012-01: 0
@@ -52,7 +52,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 43
-    agem: 524
+    age_en_mois: 524
     birth: "1971-04-02"
     epargne_non_remuneree:
       2012-01: 0

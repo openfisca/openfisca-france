@@ -5,7 +5,7 @@ period: "month:2015-01"
 individus:
   activite: 1
   age: 35
-  agem: 420
+  age_en_mois: 420
   ass_precondition_remplie: false
   birth: "1980-01-01"
   epargne_non_remuneree:

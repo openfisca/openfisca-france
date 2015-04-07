@@ -8,7 +8,7 @@ description: Test réalisé avec des ressources immédiatement supérieures au p
 period: "month:2014-12"
 individus:
   - age: 40
-    agem: 491
+    age_en_mois: 491
     birth: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -57,7 +57,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 15
-    agem: 191
+    age_en_mois: 191
     birth: "1999-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -73,7 +73,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 13
-    agem: 167
+    age_en_mois: 167
     birth: "2001-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -89,7 +89,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 11
-    agem: 143
+    age_en_mois: 143
     birth: "2003-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -105,7 +105,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 8
-    agem: 107
+    age_en_mois: 107
     birth: "2006-01-01"
     epargne_non_remuneree:
       2012-01: 0

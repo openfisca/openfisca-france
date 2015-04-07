@@ -6,7 +6,7 @@ description: Application de la pente sur ces revenus
 period: "month:2014-12"
 individus:
   age: 34
-  agem: 419
+  age_en_mois: 419
   birth: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0

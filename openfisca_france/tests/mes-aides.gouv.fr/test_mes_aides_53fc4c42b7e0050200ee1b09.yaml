@@ -4,7 +4,7 @@ description: Il y a une pente à appliquer sur les indemnités de chômage parti
 period: "month:2014-08"
 individus:
   age: 34
-  agem: 415
+  age_en_mois: 415
   birth: "1980-01-01"
   enceinte: false
   epargne_non_remuneree:

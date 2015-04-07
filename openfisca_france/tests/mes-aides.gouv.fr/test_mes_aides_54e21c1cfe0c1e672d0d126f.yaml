@@ -13,7 +13,7 @@ relative_error_margin: 0.02
 individus:
   activite: 3
   age: 74
-  agem: 897
+  age_en_mois: 897
   birth: "1940-05-05"
   epargne_non_remuneree:
     2012-01: 0

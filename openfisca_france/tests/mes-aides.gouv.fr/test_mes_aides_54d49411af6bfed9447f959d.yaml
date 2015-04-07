@@ -32,7 +32,7 @@ relative_error_margin: 0.02
 individus:
   activite: 3
   age: 88
-  agem: 1061
+  age_en_mois: 1061
   alr:
     2013: 0
   birth: "1926-09-05"

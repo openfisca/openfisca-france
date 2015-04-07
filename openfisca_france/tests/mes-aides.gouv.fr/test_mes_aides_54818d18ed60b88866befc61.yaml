@@ -5,7 +5,7 @@ period: "month:2014-12"
 individus:
   activite: 2
   age: 34
-  agem: 419
+  age_en_mois: 419
   birth: "1980-01-01"
   boursier: false
   epargne_non_remuneree:

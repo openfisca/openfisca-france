@@ -10,7 +10,7 @@ description: |
 period: "month:2015-01"
 individus:
   age: 34
-  agem: 413
+  age_en_mois: 413
   birth: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0

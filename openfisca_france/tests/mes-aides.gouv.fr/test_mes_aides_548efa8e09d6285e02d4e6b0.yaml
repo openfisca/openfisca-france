@@ -24,7 +24,7 @@ description: |
 period: "month:2014-12"
 individus:
   age: 34
-  agem: 412
+  age_en_mois: 412
   alr:
     2012: 0
   birth: "1980-08-12"

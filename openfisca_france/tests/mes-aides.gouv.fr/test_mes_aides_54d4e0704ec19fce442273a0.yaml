@@ -4,7 +4,7 @@ description: Cette personne a droit à un RSA socle seul et donc est éligible �
 period: "month:2015-02"
 individus:
   age: 34
-  agem: 419
+  age_en_mois: 419
   birth: "1980-03-02"
   epargne_non_remuneree:
     2012-01: 0

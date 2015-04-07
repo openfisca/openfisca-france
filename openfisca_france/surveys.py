@@ -142,7 +142,7 @@ def adapt_to_survey(tax_benefit_system):
     survey_menages_column_by_name = menages_class.column_by_name.copy()
 
     del survey_individus_column_by_name['birth']
-    survey_individus_column_by_name['agem'].formula_class = None
+    survey_individus_column_by_name['age_en_mois'].formula_class = None
     survey_individus_column_by_name['age'].formula_class = None
 
     class SurveyIndividus(individus_class):

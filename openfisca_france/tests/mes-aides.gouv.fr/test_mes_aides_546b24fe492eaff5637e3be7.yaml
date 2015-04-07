@@ -7,7 +7,7 @@ period: "month:2014-11"
 individus:
   - activite: 1
     age: 20
-    agem: 250
+    age_en_mois: 250
     ass_precondition_remplie: false
     birth: "1994-01-01"
     epargne_non_remuneree:
@@ -23,7 +23,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 58
+    age_en_mois: 58
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0

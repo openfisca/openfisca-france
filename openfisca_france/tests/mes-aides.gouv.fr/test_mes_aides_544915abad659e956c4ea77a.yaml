@@ -7,7 +7,7 @@ description:
 period: "month:2014-10"
 individus:
   age: 57
-  agem: 686
+  age_en_mois: 686
   birth: "1957-08-12"
   epargne_non_remuneree:
     2012-01: 0

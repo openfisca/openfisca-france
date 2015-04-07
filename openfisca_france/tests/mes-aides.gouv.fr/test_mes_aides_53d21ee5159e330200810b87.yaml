@@ -7,7 +7,7 @@ description: "Le demandeur a droit à la CMU s'il est propriétaire de son logem
 period: "month:2014-07"
 individus:
   age: 24
-  agem: 298
+  age_en_mois: 298
   birth: "1989-09-14"
   enceinte: false
   epargne_non_remuneree:

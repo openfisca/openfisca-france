@@ -144,7 +144,7 @@ class paje_nais(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         period_legacy = period.start.period('year')
 
-        agem_holder = simulation.compute('agem', period)
+        age_en_mois_holder = simulation.compute('age_en_mois', period)
         # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period_legacy)
         br_pf = simulation.calculate('br_pf', period)
@@ -153,19 +153,19 @@ class paje_nais(SimpleFormulaColumn):
         P = simulation.legislation_at(period.start).fam
 
         # age = self.split_by_roles(age_holder, roles = ENFS)
-        agem = self.split_by_roles(agem_holder, roles = ENFS)
+        age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
         bmaf = P.af.bmaf
         nais_prime = round(100 * P.paje.nais.prime_tx * bmaf) / 100
         # Versée au 7e mois de grossesse dans l'année
         # donc les enfants concernés sont les enfants qui ont -2 mois
         nbnais = 0
-        for age_m in agem.itervalues():
+        for age_m in age_en_mois.itervalues():
             # nbnais += (age_m == -2) cas mensuel
             nbnais += (age_m >= -2) * (age_m < 10)
 
         nbaf = 0  # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
-        for age_m in agem.itervalues():
+        for age_m in age_en_mois.itervalues():
             nbaf += (age_m >= 10)
 
         nbenf = nbaf + nbnais  # On ajoute l'enfant à  naître;
@@ -210,7 +210,7 @@ class paje_clca(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('year')
         period_new = period.start.period('month')
 
-        agem_holder = simulation.compute('agem', period_new)
+        age_en_mois_holder = simulation.compute('age_en_mois', period_new)
         af_nbenf = simulation.calculate('af_nbenf', period)
         paje_base = simulation.calculate('paje_base', period_new)
         inactif = simulation.calculate('inactif', period)
@@ -219,7 +219,7 @@ class paje_clca(SimpleFormulaColumn):
 
         P = simulation.legislation_at(period.start).fam
 
-        agem = self.split_by_roles(agem_holder, roles = ENFS)
+        age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
         paje = paje_base >= 0
         # durée de versement :
@@ -230,7 +230,7 @@ class paje_clca(SimpleFormulaColumn):
 
         # Calcul de l'année et mois de naisage_in_months( du cadet
         # TODO: ajuster en fonction de la cessation des IJ etc
-        age_m_benjamin = age_en_mois_benjamin(agem)
+        age_m_benjamin = age_en_mois_benjamin(age_en_mois)
         condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
         age_benjamin = floor(age_m_benjamin / 12)
         condition2 = (age_benjamin <= (P.paje.base.age - 1))
@@ -402,14 +402,14 @@ class paje_colca(SimpleFormulaColumn):
         period_new = period.start.period('month')
 
         af_nbenf = simulation.calculate('af_nbenf', period)
-        agem_holder = simulation.compute('agem', period_new)
+        age_en_mois_holder = simulation.compute('age_en_mois', period_new)
         opt_colca = simulation.calculate('opt_colca', period)
         paje_base = simulation.calculate('paje_base', period_new)
 
         P = simulation.legislation_at(period.start).fam
 
-        agem = self.split_by_roles(agem_holder, roles = ENFS)
-        age_m_benjamin = age_en_mois_benjamin(agem)
+        age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
+        age_m_benjamin = age_en_mois_benjamin(age_en_mois)
         condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
         nbenf = af_nbenf
         paje = (paje_base > 0)

@@ -6,7 +6,7 @@ description: Il n'y a pas d'APL dans les DOM, on ne peut que toucher l'ALS ou l'
 period: "month:2014-11"
 individus:
   age: 46
-  agem: 559
+  age_en_mois: 559
   birth: "1968-03-30"
   epargne_non_remuneree:
     2012-01: 0

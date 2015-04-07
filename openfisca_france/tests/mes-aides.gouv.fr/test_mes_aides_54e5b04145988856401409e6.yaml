@@ -7,7 +7,7 @@ description: La personne déclare un salaire > 1273 euros, on applique donc bien
 period: "month:2015-02"
 individus:
   age: 22
-  agem: 270
+  age_en_mois: 270
   birth: "1992-08-12"
   epargne_non_remuneree:
     2012-01: 0

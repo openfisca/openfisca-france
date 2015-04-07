@@ -7,7 +7,7 @@ period: "month:2014-12"
 individus:
   - activite: 1
     age: 45
-    agem: 541
+    age_en_mois: 541
     ass_precondition_remplie: true
     birth: "1969-10-26"
     chobrut:
@@ -59,7 +59,7 @@ individus:
       2012-01: 0
   - activite: 1
     age: 45
-    agem: 541
+    age_en_mois: 541
     ass_precondition_remplie: true
     birth: "1969-10-26"
     chobrut:

@@ -8,7 +8,7 @@ description: |
 period: "month:2015-01"
 individus:
   age: 35
-  agem: 420
+  age_en_mois: 420
   birth: "1980-01-01"
   bourse_enseignement_sup:
     2013: 24000

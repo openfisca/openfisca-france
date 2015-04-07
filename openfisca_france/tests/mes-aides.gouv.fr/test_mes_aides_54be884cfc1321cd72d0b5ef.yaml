@@ -41,7 +41,7 @@ individus:
     2015-01: 200
     year:2014-01: 2400
   age: 35
-  agem: 426
+  age_en_mois: 426
   alr:
     2013: 0
   birth: "1979-07-12"

@@ -6,7 +6,7 @@ relative_error_margin: 0.02
 individus:
   activite: 1
   age: 28
-  agem: 346
+  age_en_mois: 346
   ass_precondition_remplie: false
   birth: "1986-01-01"
   epargne_non_remuneree:

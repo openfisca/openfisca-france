@@ -12,7 +12,7 @@ period: "month:2015-04"
 relative_error_margin: 0.02
 individus:
   - age: 35
-    agem: 423
+    age_en_mois: 423
     birth: "1980-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -27,7 +27,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 15
-    agem: 183
+    age_en_mois: 183
     birth: "2000-01-01"
     epargne_non_remuneree:
       2012-01: 0

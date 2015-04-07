@@ -31,7 +31,7 @@ period: "month:2015-03"
 relative_error_margin: 0.02
 individus:
   age: 43
-  agem: 516
+  age_en_mois: 516
   alr:
     2013: 0
   birth: "1972-02-17"

@@ -33,7 +33,7 @@ relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 88
-    agem: 1061
+    age_en_mois: 1061
     alr:
       2013: 0
     birth: "1926-09-05"
@@ -91,7 +91,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 173
+    age_en_mois: 173
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0

@@ -182,7 +182,7 @@ class api(DatedFormulaColumn):
         Allocation de parent isolé
         """
         period = period.start.offset('first-of', 'month').period('month')
-        agem_holder = simulation.compute('agem', period)
+        age_en_mois_holder = simulation.compute('age_en_mois', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
         isol = simulation.calculate('isol', period)
@@ -194,7 +194,7 @@ class api(DatedFormulaColumn):
         api = simulation.legislation_at(period.start).minim.api
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        agem = self.split_by_roles(agem_holder, roles = ENFS)
+        age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         # TODO:
         #    Majoration pour isolement
@@ -212,12 +212,12 @@ class api(DatedFormulaColumn):
         #    d’une période de 18 mois suivant l’événement.
         #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé
         #    jusqu'à ses 3 ans.
-        benjamin = age_en_mois_benjamin(agem)
+        benjamin = age_en_mois_benjamin(age_en_mois)
         enceinte = (benjamin < 0) * (benjamin > -6)
         # TODO: quel mois mettre ?
         # TODO: pas complètement exact
         # L'allocataire perçoit l'API :
-        # jusqu'à ce que le plus jeune enfant ait 3 ans,
+        # jusqu'�� ce que le plus jeune enfant ait 3 ans,
         # ou pendant 12 mois consécutifs si les enfants sont âgés de plus de 3 ans
         #    et s'il a présenté sa demande dans les 6 mois à partir du moment où il
         #    assure seul la charge de l'enfant.
@@ -268,13 +268,13 @@ class enceinte_fam(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        agem_holder = simulation.compute('agem', period)
+        age_en_mois_holder = simulation.compute('age_en_mois', period)
         enceinte_holder = simulation.compute('enceinte', period)
 
-        agem_enf = self.split_by_roles(agem_holder, roles = ENFS)
+        age_en_mois_enf = self.split_by_roles(age_en_mois_holder, roles = ENFS)
         enceinte = self.split_by_roles(enceinte_holder, roles = [CHEF, PART])
 
-        benjamin = age_en_mois_benjamin(agem_enf)
+        benjamin = age_en_mois_benjamin(age_en_mois_enf)
         enceinte_compat = and_(benjamin < 0, benjamin > -6)
         return period, or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
 

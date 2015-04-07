@@ -29,7 +29,7 @@ period: "month:2015-01"
 relative_error_margin: 0.02
 individus:
   age: 36
-  agem: 441
+  age_en_mois: 441
   alr:
     2013: 0
   birth: "1978-04-12"

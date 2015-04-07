@@ -7,7 +7,7 @@ description: Des ressources inférieures au plafond CMUc pour un couple marié p
 period: "month:2014-12"
 individus:
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -55,7 +55,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0

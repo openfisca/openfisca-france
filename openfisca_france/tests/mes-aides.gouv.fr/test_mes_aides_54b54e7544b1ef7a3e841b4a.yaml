@@ -7,7 +7,7 @@ description: Un couple ayant un enfant hébergés à titre gratuit a droit à la
 period: "month:2015-01"
 individus:
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -57,7 +57,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -72,7 +72,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 179
+    age_en_mois: 179
     birth: "2000-02-02"
     epargne_non_remuneree:
       2012-01: 0

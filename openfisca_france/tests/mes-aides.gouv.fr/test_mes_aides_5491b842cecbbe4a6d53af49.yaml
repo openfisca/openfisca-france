@@ -6,7 +6,7 @@ description: Dans l'exemple, un enfant a moins de 14 ans et l'autre a plus de 20
 period: "month:2014-12"
 individus:
   - age: 34
-    agem: 412
+    age_en_mois: 412
     birth: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 52
+    age_en_mois: 52
     birth: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -36,7 +36,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 20
-    agem: 246
+    age_en_mois: 246
     birth: "1994-06-01"
     epargne_non_remuneree:
       2012-01: 0

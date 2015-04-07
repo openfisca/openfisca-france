@@ -7,7 +7,7 @@ period: "month:2014-10"
 individus:
   activite: 1
   age: 25
-  agem: 300
+  age_en_mois: 300
   ass_precondition_remplie: true
   birth: "1989-09-14"
   epargne_non_remuneree:

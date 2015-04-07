@@ -25,7 +25,7 @@ description: |
 period: "month:2015-02"
 individus:
   - age: 34
-    agem: 414
+    age_en_mois: 414
     alr:
       2013: 0
     birth: "1980-08-12"
@@ -83,7 +83,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 22
-    agem: 270
+    age_en_mois: 270
     alr:
       2013: 0
     birth: "1992-08-12"

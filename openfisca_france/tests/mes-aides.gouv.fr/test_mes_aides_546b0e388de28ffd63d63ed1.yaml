@@ -4,7 +4,7 @@ description: "L'existence de la case \"handicap\" et d'un taux d'invalidité pos
 period: "month:2014-11"
 individus:
   age: 28
-  agem: 346
+  age_en_mois: 346
   birth: "1986-01-01"
   epargne_non_remuneree:
     2012-01: 0

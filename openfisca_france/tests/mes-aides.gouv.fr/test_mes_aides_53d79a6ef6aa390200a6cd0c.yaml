@@ -4,7 +4,7 @@ description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour t
 period: "month:2014-07"
 individus:
   - age: 34
-    agem: 414
+    age_en_mois: 414
     birth: "1979-12-31"
     enceinte: false
     epargne_non_remuneree:
@@ -20,7 +20,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 54
+    age_en_mois: 54
     birth: "2009-12-31"
     epargne_non_remuneree:
       2012-01: 0

@@ -6,7 +6,7 @@ description: Pas d'allocations familiales versées car dans l'exemple l'enfant g
 period: "month:2014-11"
 individus:
   - age: 34
-    agem: 411
+    age_en_mois: 411
     birth: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 18
-    agem: 219
+    age_en_mois: 219
     birth: "1996-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -70,7 +70,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 51
+    age_en_mois: 51
     birth: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0

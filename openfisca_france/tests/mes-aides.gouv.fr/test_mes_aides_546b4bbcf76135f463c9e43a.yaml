@@ -6,7 +6,7 @@ description:
 period: "month:2014-11"
 individus:
   - age: 28
-    agem: 346
+    age_en_mois: 346
     birth: "1986-01-01"
     enceinte: true
     epargne_non_remuneree:
@@ -23,7 +23,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 28
-    agem: 346
+    age_en_mois: 346
     birth: "1986-01-01"
     epargne_non_remuneree:
       2012-01: 0

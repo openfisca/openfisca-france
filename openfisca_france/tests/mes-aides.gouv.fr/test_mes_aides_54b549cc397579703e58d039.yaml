@@ -7,7 +7,7 @@ description: Une personne hébergée à titre gratuit dont les ressources 730 = 
 period: "month:2015-01"
 individus:
   age: 34
-  agem: 418
+  age_en_mois: 418
   birth: "1980-03-02"
   epargne_non_remuneree:
     2012-01: 0

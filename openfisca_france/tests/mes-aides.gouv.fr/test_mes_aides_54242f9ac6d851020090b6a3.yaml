@@ -9,7 +9,7 @@ description: |
 period: "month:2014-09"
 individus:
   age: 44
-  agem: 536
+  age_en_mois: 536
   birth: "1970-01-01"
   enceinte: false
   epargne_non_remuneree:

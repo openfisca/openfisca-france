@@ -7,7 +7,7 @@ description: Ici la personne est inapte au travail mais a 61 ans, donc inéligib
 period: "month:2015-02"
 individus:
   age: 61
-  agem: 738
+  age_en_mois: 738
   birth: "1953-08-12"
   epargne_non_remuneree:
     2012-01: 0

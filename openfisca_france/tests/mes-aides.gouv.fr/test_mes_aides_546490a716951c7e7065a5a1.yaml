@@ -12,7 +12,7 @@ period: "month:2014-11"
 individus:
   activite: 3
   age: 73
-  agem: 887
+  age_en_mois: 887
   birth: "1940-12-05"
   epargne_non_remuneree:
     2012-01: 0

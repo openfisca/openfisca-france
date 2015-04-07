@@ -5,7 +5,7 @@ period: "month:2014-10"
 individus:
   activite: 1
   age: 32
-  agem: 393
+  age_en_mois: 393
   birth: "1982-01-01"
   chobrut:
     2012: 10594.009418736501

@@ -735,7 +735,7 @@ class Scenario(scenarios.AbstractScenario):
 
         for individu in test_case['individus']:
             individu_id = individu['id']
-            if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
+            if individu.get('age') is None and individu.get('age_en_mois') is None and individu.get('birth') is None:
                 # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'])
                 birth_year = period_start_year - 40 if is_parent else period_start_year - 10
@@ -886,9 +886,9 @@ def find_age(individu, date, default = None):
     age = individu.get('age')
     if age is not None:
         return age
-    agem = individu.get('agem')
-    if agem is not None:
-        return agem / 12.0
+    age_en_mois = individu.get('age_en_mois')
+    if age_en_mois is not None:
+        return age_en_mois / 12.0
     return default
 
 

@@ -6,7 +6,7 @@ description: L'enfant gagne ici 800 euros nets par mois ce qui est moins de 55% 
 period: "month:2015-01"
 individus:
   - age: 34
-    agem: 412
+    age_en_mois: 412
     birth: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 52
+    age_en_mois: 52
     birth: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -36,7 +36,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 17
-    agem: 208
+    age_en_mois: 208
     birth: "1997-08-12"
     epargne_non_remuneree:
       2012-01: 0
