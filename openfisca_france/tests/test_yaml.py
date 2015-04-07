@@ -233,7 +233,8 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
             if not filename.endswith('.yaml'):
                 continue
             filename_core = os.path.splitext(filename)[0]
-            with open(os.path.join(dir, filename)) as yaml_file:
+            file_path = os.path.join(dir, filename)
+            with open(file_path) as yaml_file:
                 tests = yaml.load(yaml_file)
             tests, error = conv.pipe(
                 conv.make_item_to_singleton(),
@@ -245,7 +246,7 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
             if error is not None:
                 embedding_error = conv.embed_error(tests, u'errors', error)
                 assert embedding_error is None, embedding_error
-                raise ValueError("Error in test:\n{}".format(yaml.dump(tests, allow_unicode = True,
+                raise ValueError("Error in test {}:\n{}".format(file_path, yaml.dump(tests, allow_unicode = True,
                     default_flow_style = False, indent = 2, width = 120)))
 
             for test in tests:
@@ -254,7 +255,7 @@ def test(current_options_by_dir = None, force = False, name_filter = None):
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
                     assert embedding_error is None, embedding_error
-                    raise ValueError("Error in test:\n{}".format(yaml.dump(test, allow_unicode = True,
+                    raise ValueError("Error in test {}:\n{}".format(file_path, yaml.dump(test, allow_unicode = True,
                         default_flow_style = False, indent = 2, width = 120)))
 
                 if not force and test.get(u'ignore', False):
