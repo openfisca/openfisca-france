@@ -96,15 +96,16 @@ class age(SimpleFormulaColumn):
         if holder._array_by_period is not None:
             for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
                 last_start = last_period.start
-                if last_start.day == start.day and last_start.month == start.month:
-                    return period, last_array + (start.year - last_start.year)
+                if last_start.day == start.day:
+                    return period, last_array + int((start.year - last_start.year) +
+                        (start.month - last_start.month) // 12)
 
-        birth = simulation.get_array('birth', period)
-        if birth is None:
-            agem = simulation.get_array('agem', period)
-            if agem is not None:
-                return period, agem // 12
-            birth = simulation.calculate('birth', period)
+        has_birth = simulation.get_or_new_holder('birth')._array is not None
+        if not has_birth:
+            has_agem = bool(simulation.get_or_new_holder('agem')._array_by_period)
+            if has_agem:
+                return period, simulation.calculate('agem', period) // 12
+        birth = simulation.calculate('birth', period)
         return period, (datetime64(period.start) - birth).astype('timedelta64[Y]')
 
 
@@ -125,12 +126,12 @@ class agem(SimpleFormulaColumn):
                 if last_start.day == start.day:
                     return period, last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
 
-        birth = simulation.get_array('birth', period)
-        if birth is None:
-            age = simulation.get_array('age', period)
-            if age is not None:
-                return period, age * 12
-            birth = simulation.calculate('birth', period)
+        has_birth = simulation.get_or_new_holder('birth')._array is not None
+        if not has_birth:
+            has_age = bool(simulation.get_or_new_holder('age')._array_by_period)
+            if has_age:
+                return period, simulation.calculate('age', period) * 12
+        birth = simulation.calculate('birth', period)
         return period, (datetime64(period.start) - birth).astype('timedelta64[M]')
 
 
