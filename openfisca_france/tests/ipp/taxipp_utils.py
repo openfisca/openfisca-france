@@ -322,9 +322,9 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         data['statut'] = 8
         data.loc[data['public'] == 1, 'statut'] = 11
         # [0"Non renseigné/non pertinent",1"Exonéré",2"Taux réduit",3"Taux plein"]
-        data['csg_rempl'] = 3
-        data.loc[data['csg_exo'] == 1, 'csg_rempl'] = 1
-        data.loc[data['csg_part'] == 1, 'csg_rempl'] = 2
+        data['taux_csg_remplacement'] = 3
+        data.loc[data['csg_exo'] == 1, 'taux_csg_remplacement'] = 1
+        data.loc[data['csg_part'] == 1, 'taux_csg_remplacement'] = 2
         data = data.drop(['csg_tout', 'csg_exo', 'csg_part'], axis = 1)
         # data['ebic_impv'] = 20000
         data['exposition_accident'] = 0

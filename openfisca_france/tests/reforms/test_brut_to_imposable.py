@@ -35,25 +35,22 @@ from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 
 def test_cho(year = 2014):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [dict(count = 11, max = 24000, min = 0, name = 'chobrut')],
-        period = year,
+    period = "{}-01".format(year)
+    single_entity_kwargs = dict(
+        axes = [dict(count = 11, max = 2000, min = 0, name = 'chobrut')],
+        period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
-        ).new_simulation(debug = True)
+        )
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        **single_entity_kwargs).new_simulation(debug = True)
     brut = simulation.get_holder('chobrut').array
     imposable = simulation.calculate('cho')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
-
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
-        axes = [dict(count = 11, max = 24000, min = 0, name = 'chobrut')],
-        period = year,
-        parent1 = dict(
-            birth = datetime.date(year - 40, 1, 1),
-            ),
-        ).new_simulation(debug = True)
+        **single_entity_kwargs).new_simulation(debug = True)
 
     inverse_simulation.get_holder('chobrut').delete_arrays()
     inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
@@ -62,17 +59,24 @@ def test_cho(year = 2014):
 
 
 def test_rst(year = 2014):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [dict(count = 11, max = 24000, min = 0, name = 'rstbrut')],
-        period = year,
+    period = "{}-01".format(year)
+    single_entity_kwargs = dict(
+        axes = [dict(count = 11, max = 2000, min = 0, name = 'rstbrut')],
+        period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
+        )
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        **single_entity_kwargs
         ).new_simulation(debug = True)
     brut = simulation.get_holder('rstbrut').array
     imposable = simulation.calculate('rst')
 
-    inverse_simulation = simulation.clone(debug = True)
+    inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
+    inverse_simulation = inversion_reform.new_scenario().init_single_entity(
+        **single_entity_kwargs).new_simulation(debug = True)
+
     inverse_simulation.get_holder('rstbrut').delete_arrays()
     inverse_simulation.get_or_new_holder('rsti').array = imposable.copy()
     new_brut = inverse_simulation.calculate('rstbrut')
@@ -81,21 +85,25 @@ def test_rst(year = 2014):
 
 
 def check_sal(type_sal, year = 2014):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [dict(count = 11, max = 24000, min = 0, name = 'salbrut')],
-        period = year,
+    period = "{}-01".format(year)
+    single_entity_kwargs = dict(
+        axes = [dict(count = 11, max = 2000, min = 0, name = 'rstbrut')],
+        period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             type_sal = type_sal,
             ),
+        )
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
+        **single_entity_kwargs
         ).new_simulation(debug = False)
-    brut = simulation.get_holder('salbrut').array
+    brut = simulation.get_holder('salaire_de_base').array
     imposable = simulation.calculate('sal')
 
     inverse_simulation = simulation.clone(debug = True)
-    inverse_simulation.get_holder('salbrut').delete_arrays()
+    inverse_simulation.get_holder('salaire_de_base').delete_arrays()
     inverse_simulation.get_or_new_holder('sali').array = imposable.copy()
-    new_brut = inverse_simulation.calculate('salbrut')
+    new_brut = inverse_simulation.calculate('salaire_de_base')
 
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
@@ -111,5 +119,5 @@ if __name__ == '__main__':
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cho()
-#    test_rst()
-#    test_sal()
+    test_rst()
+    # test_sal()

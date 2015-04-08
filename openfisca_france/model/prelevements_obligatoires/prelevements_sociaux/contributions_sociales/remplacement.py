@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_
+from numpy import logical_not as not_, maximum as max_
 
 
 from ....base import *  # noqa analysis:ignore
@@ -44,7 +44,7 @@ log = logging.getLogger(__name__)
 
 
 build_column(
-    'csg_rempl',
+    'taux_csg_remplacement',
     EnumCol(
         label = u"Taux retenu sur la CSG des revenus de remplacment",
         entity = 'ind',
@@ -63,58 +63,6 @@ build_column(
 # # Allocations chômage
 ############################################################################
 
-def exo_csg_chom(chobrut, csg_rempl, law):
-    '''
-    Indicatrice d'exonération de la CSG sur les revenus du chômage sans exonération
-    '''
-    chonet_sans_exo = (
-        chobrut +
-        csgchod_sans_exo(chobrut, csg_rempl, law) +
-        csgchoi_sans_exo(chobrut, law) +
-        crdscho_sans_exo(chobrut, csg_rempl, law)
-        )
-    nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-    cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-    return (chonet_sans_exo <= cho_seuil_exo)
-
-
-def csgchod_sans_exo(chobrut, csg_rempl, law):
-    '''
-    CSG déductible sur les allocations chômage sans exonération
-    '''
-    montant_csg = montant_csg_crds(
-        base_avec_abattement = chobrut,
-        indicatrice_taux_plein = (csg_rempl == 3),
-        indicatrice_taux_reduit = (csg_rempl == 2),
-        law_node = law.csg.chomage.deductible,
-        plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-        )
-    return montant_csg
-
-
-def csgchoi_sans_exo(chobrut, law):
-    '''
-    CSG imposable sur les allocations chômage sans exonération
-    '''
-    montant_csg = montant_csg_crds(
-        base_avec_abattement = chobrut,
-        law_node = law.csg.chomage.imposable,
-        plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-        )
-    return montant_csg
-
-
-def crdscho_sans_exo(chobrut, csg_rempl, law):
-    '''
-    CRDS sur les allocations chômage sans exonération
-    '''
-    montant_crds = montant_csg_crds(
-        base_avec_abattement = chobrut,
-        law_node = law.crds.activite,
-        plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-        )
-    return montant_crds * (2 <= csg_rempl)
-
 
 @reference_formula
 class csgchod(SimpleFormulaColumn):
@@ -126,12 +74,21 @@ class csgchod(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
+        csgchoi = simulation.calculate('csgchoi', period)
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
-        isexo = exo_csg_chom(chobrut, csg_rempl, law)
-        csgchod = csgchod_sans_exo(chobrut, csg_rempl, law) * not_(isexo)
+        montant_csg = montant_csg_crds(
+            base_avec_abattement = chobrut,
+            indicatrice_taux_plein = (taux_csg_remplacement == 3),
+            indicatrice_taux_reduit = (taux_csg_remplacement == 2),
+            law_node = law.csg.chomage.deductible,
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            )
+        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
+        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        csgchod = max_(- montant_csg - max_(cho_seuil_exo - chobrut + csgchoi + montant_csg, 0), 0)
 
-        return period, csgchod
+        return period, - csgchod
 
 
 @reference_formula
@@ -144,12 +101,17 @@ class csgchoi(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
         law = simulation.legislation_at(period.start)
-        isexo = exo_csg_chom(chobrut, csg_rempl, law)
-        csgchoi = csgchoi_sans_exo(chobrut, law) * not_(isexo)
 
-        return period, csgchoi
+        montant_csg = montant_csg_crds(
+            base_avec_abattement = chobrut,
+            law_node = law.csg.chomage.imposable,
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            )
+        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
+        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        csgchoi = max_(- montant_csg - max_(cho_seuil_exo - chobrut + montant_csg, 0), 0)
+        return period, - csgchoi
 
 
 @reference_formula
@@ -162,13 +124,22 @@ class crdscho(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
+        csgchod = simulation.calculate('csgchod', period)
+        csgchoi = simulation.calculate('csgchoi', period)
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
-        isexo = exo_csg_chom(chobrut, csg_rempl, law)
-        crdscho = crdscho_sans_exo(chobrut, csg_rempl, law) * not_(isexo)
+        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
+        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
 
-        return period, crdscho
+        montant_crds = montant_csg_crds(
+            base_avec_abattement = chobrut,
+            law_node = law.crds.activite,
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            ) * (2 <= taux_csg_remplacement)
+
+        crdscho = max_(-montant_crds - max_(cho_seuil_exo - chobrut + csgchoi + csgchod + montant_crds, 0), 0)
+        return period, -crdscho
 
 
 @reference_formula
@@ -220,13 +191,13 @@ class csgrstd(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = rstbrut,
-            indicatrice_taux_plein = (csg_rempl == 3),
-            indicatrice_taux_reduit = (csg_rempl == 2),
+            indicatrice_taux_plein = (taux_csg_remplacement == 3),
+            indicatrice_taux_reduit = (taux_csg_remplacement == 2),
             law_node = law.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
@@ -263,14 +234,14 @@ class crdsrst(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = rstbrut,
             law_node = law.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-            ) * (csg_rempl == 1)
+            ) * (taux_csg_remplacement == 1)
         return period, montant_crds
 
 
@@ -286,11 +257,11 @@ class casa(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
         irpp_holder = simulation.compute('irpp', period)
-        csg_rempl = simulation.calculate('csg_rempl', period)
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         irpp = self.cast_from_entity_to_roles(irpp_holder)
-        casa = (csg_rempl == 3) * law.prelsoc.add_ret * rstbrut * (irpp > law.ir.recouvrement.seuil)
+        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (irpp > law.ir.recouvrement.seuil)
 
         return period, - casa
 

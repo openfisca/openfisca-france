@@ -43,7 +43,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
                 min = chobrut_min,
                 ),
             ],
-        period = year,
+        period = "{}-01".format(year),
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
@@ -85,7 +85,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
                 min = rstbrut_min,
                 ),
             ],
-        period = year,
+        period = "{}-01".format(year),
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             ),
@@ -118,17 +118,17 @@ def test_rstnet_to_rstbrut():
         yield check_rstnet_to_rstbrut, count, rstbrut_max, rstbrut_min, year
 
 
-def check_salaire_net_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year):
+def check_salaire_net_to_salaire_de_base(count, salaire_de_base_max, salaire_de_base_min, type_sal, year):
     scenario_args = dict(
         axes = [
             dict(
                 count = count,
-                name = 'salbrut',
-                max = salbrut_max,
-                min = salbrut_min,
+                name = 'salaire_de_base',
+                max = salaire_de_base_max,
+                min = salaire_de_base_min,
                 ),
             ],
-        period = year,
+        period = "{}-01".format(year),
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
             type_sal = type_sal,
@@ -139,7 +139,7 @@ def check_salaire_net_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year
         **scenario_args
         ).new_simulation()
 
-    salbrut = simulation.get_holder('salbrut').array
+    salaire_de_base = simulation.get_holder('salaire_de_base').array
     salaire_net = simulation.calculate('salaire_net')
 
     inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
@@ -147,20 +147,20 @@ def check_salaire_net_to_salbrut(count, salbrut_max, salbrut_min, type_sal, year
         **scenario_args
         ).new_simulation()
 
-    inverse_simulation.get_holder('salbrut').delete_arrays()
+    inverse_simulation.get_holder('salaire_de_base').delete_arrays()
     inverse_simulation.get_or_new_holder('salaire_net').array = salaire_net
-    new_salbrut = inverse_simulation.calculate('salbrut')
+    new_salaire_de_base = inverse_simulation.calculate('salaire_de_base')
 
-    assert_near(new_salbrut, salbrut, absolute_error_margin = 0.1)
+    assert_near(new_salaire_de_base, salaire_de_base, absolute_error_margin = 0.1)
 
 
-def test_salaire_net_to_salbrut():
+def test_salaire_net_to_salaire_de_base():
     count = 11
-    salbrut_max = 48000
-    salbrut_min = 0
+    salaire_de_base_max = 48000
+    salaire_de_base_min = 0
     for year in range(2006, 2015):
         for type_sal in CAT._vars:
-            yield check_salaire_net_to_salbrut, count, salbrut_max, salbrut_min, type_sal, year
+            yield check_salaire_net_to_salaire_de_base, count, salaire_de_base_max, salaire_de_base_min, type_sal, year
 
 
 if __name__ == '__main__':
@@ -168,6 +168,6 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salbrut):
+    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):
         for function_and_arguments in test():
             function_and_arguments[0](*function_and_arguments[1:])

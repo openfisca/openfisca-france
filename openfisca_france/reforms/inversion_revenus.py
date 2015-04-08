@@ -53,7 +53,7 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
 
 # Salaires
 
-class salbrut(formulas.SimpleFormulaColumn):
+class salaire_de_base(formulas.SimpleFormulaColumn):
     column = columns.FloatCol
     entity_class = entities.Individus
     label = u"Salaire brut ou traitement indiciaire brut"
@@ -78,11 +78,11 @@ class salbrut(formulas.SimpleFormulaColumn):
                     return period, salaire_net
                 simulation = self.holder.entity.simulation
 
-                def solve_function(salbrut):
+                def solve_function(salaire_de_base):
                     return brut_to_target(
                         target_name = 'salaire_net',
                         period = period,
-                        salbrut = salbrut,
+                        salaire_de_base = salaire_de_base,
                         simulation = simulation,
                         ) - salaire_net
                 return period, fsolve(solve_function, salaire_net)
@@ -95,11 +95,11 @@ class salbrut(formulas.SimpleFormulaColumn):
             return period, sali
         simulation = self.holder.entity.simulation
 
-        def solve_function(salbrut):
+        def solve_function(salaire_de_base):
             return brut_to_target(
                 target_name = 'sal',
                 period = period,
-                salbrut = salbrut,
+                salaire_de_base = salaire_de_base,
                 simulation = simulation,
                 ) - sali
         return period, fsolve(solve_function, sali)
@@ -213,9 +213,8 @@ class chobrut(formulas.SimpleFormulaColumn):
             choi = simulation.calculate_add_divide('choi', period)
 
         # Calcule les allocations chômage brutes à partir des allocations imposables.
-
-        csg_rempl = simulation.calculate('csg_rempl', period)
-
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
+        print 'taux_csg_remplacement: ', taux_csg_remplacement
         if (choi == 0).all():
             # Quick path to avoid fsolve when using default value of input variables.
             return period, choi
@@ -224,7 +223,7 @@ class chobrut(formulas.SimpleFormulaColumn):
         def solve_function(chobrut):
             return brut_to_target(
                 chobrut = chobrut,
-                csg_rempl = csg_rempl,
+                taux_csg_remplacement = taux_csg_remplacement,
                 target_name = 'cho',
                 period = period,
                 simulation = simulation,
@@ -269,12 +268,12 @@ class rstbrut(formulas.SimpleFormulaColumn):
 
         # Calcule les pensions de retraite brutes à partir des pensions imposables.
 
-        # csg_rempl = simulation.calculate('csg_rempl', period)
-        # P = simulation.legislation_at(period.start).csg.retraite
+        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
+        P = simulation.legislation_at(period.start).csg.retraite
 
-        # rst_plein = P.plein.deduc.inverse()
-        # rst_reduit = P.reduit.deduc.inverse()
-        # rstbrut = (csg_rempl == 2) * rst_reduit.calc(rsti) + (csg_rempl == 3) * rst_plein.calc(rsti)
+        rst_plein = P.plein.deduc.inverse()
+        rst_reduit = P.reduit.deduc.inverse()
+        rstbrut = (taux_csg_remplacement == 2) * rst_reduit.calc(rsti) + (taux_csg_remplacement == 3) * rst_plein.calc(rsti)
 
         rstbrut = rsti  # FIXME
         return period, rstbrut
@@ -285,7 +284,7 @@ class rstbrut(formulas.SimpleFormulaColumn):
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
         name = u'Inversion des revenus',
-        new_formulas = (chobrut, rstbrut, salbrut),
+        new_formulas = (chobrut, rstbrut, salaire_de_base),
         reference = tax_benefit_system,
         )
     return Reform()
