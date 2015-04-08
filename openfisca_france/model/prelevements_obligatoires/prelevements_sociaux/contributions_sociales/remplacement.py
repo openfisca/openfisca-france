@@ -37,12 +37,6 @@ from .base import montant_csg_crds
 log = logging.getLogger(__name__)
 
 
-# Exonération de CSG et de CRDS sur les revenus du chômage
-# et des préretraites si cela abaisse ces revenus sous le smic brut
-# TODO: mettre un trigger pour l'éxonération
-#       des revenus du chômage sous un smic
-
-
 build_column(
     'taux_csg_remplacement',
     EnumCol(
@@ -86,7 +80,7 @@ class csgchod(SimpleFormulaColumn):
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csgchod = max_(- montant_csg - max_(cho_seuil_exo - chobrut + csgchoi + montant_csg, 0), 0)
+        csgchod = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + csgchoi + montant_csg), 0), 0)
 
         return period, - csgchod
 
@@ -110,7 +104,7 @@ class csgchoi(SimpleFormulaColumn):
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csgchoi = max_(- montant_csg - max_(cho_seuil_exo - chobrut + montant_csg, 0), 0)
+        csgchoi = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + montant_csg), 0), 0)
         return period, - csgchoi
 
 
@@ -138,7 +132,7 @@ class crdscho(SimpleFormulaColumn):
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (2 <= taux_csg_remplacement)
 
-        crdscho = max_(-montant_crds - max_(cho_seuil_exo - chobrut + csgchoi + csgchod + montant_crds, 0), 0)
+        crdscho = max_(-montant_crds - max_(cho_seuil_exo - (chobrut + csgchoi + csgchod + montant_crds), 0), 0)
         return period, -crdscho
 
 

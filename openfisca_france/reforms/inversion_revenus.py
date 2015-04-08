@@ -102,6 +102,7 @@ class salaire_de_base(formulas.SimpleFormulaColumn):
                 salaire_de_base = salaire_de_base,
                 simulation = simulation,
                 ) - sali
+
         return period, fsolve(solve_function, sali)
 
 
@@ -214,7 +215,6 @@ class chobrut(formulas.SimpleFormulaColumn):
 
         # Calcule les allocations chômage brutes à partir des allocations imposables.
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        print 'taux_csg_remplacement: ', taux_csg_remplacement
         if (choi == 0).all():
             # Quick path to avoid fsolve when using default value of input variables.
             return period, choi
@@ -267,16 +267,21 @@ class rstbrut(formulas.SimpleFormulaColumn):
             rsti = simulation.calculate_add_divide('rsti', period)
 
         # Calcule les pensions de retraite brutes à partir des pensions imposables.
-
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        P = simulation.legislation_at(period.start).csg.retraite
+        if (rsti == 0).all():
+            # Quick path to avoid fsolve when using default value of input variables.
+            return period, rsti
+        simulation = self.holder.entity.simulation
 
-        rst_plein = P.plein.deduc.inverse()
-        rst_reduit = P.reduit.deduc.inverse()
-        rstbrut = (taux_csg_remplacement == 2) * rst_reduit.calc(rsti) + (taux_csg_remplacement == 3) * rst_plein.calc(rsti)
-
-        rstbrut = rsti  # FIXME
-        return period, rstbrut
+        def solve_function(rstbrut):
+            return brut_to_target(
+                rstbrut = rstbrut,
+                taux_csg_remplacement = taux_csg_remplacement,
+                target_name = 'rst',
+                period = period,
+                simulation = simulation,
+                ) - rsti
+        return period, fsolve(solve_function, rsti)
 
 
 # Build function

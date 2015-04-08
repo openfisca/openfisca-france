@@ -80,14 +80,13 @@ def test_rst(year = 2014):
     inverse_simulation.get_holder('rstbrut').delete_arrays()
     inverse_simulation.get_or_new_holder('rsti').array = imposable.copy()
     new_brut = inverse_simulation.calculate('rstbrut')
-
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
 def check_sal(type_sal, year = 2014):
     period = "{}-01".format(year)
     single_entity_kwargs = dict(
-        axes = [dict(count = 11, max = 2000, min = 0, name = 'rstbrut')],
+        axes = [dict(count = 11, max = 2000, min = 0, name = 'salaire_de_base')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -104,7 +103,6 @@ def check_sal(type_sal, year = 2014):
     inverse_simulation.get_holder('salaire_de_base').delete_arrays()
     inverse_simulation.get_or_new_holder('sali').array = imposable.copy()
     new_brut = inverse_simulation.calculate('salaire_de_base')
-
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
@@ -120,4 +118,4 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cho()
     test_rst()
-    # test_sal()
+    test_sal()

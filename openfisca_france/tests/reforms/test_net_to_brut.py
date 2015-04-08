@@ -68,8 +68,8 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
 
 
 def test_chonet_to_chobrut():
-    count = 11
-    chobrut_max = 50000
+    count = 101
+    chobrut_max = 5000
     chobrut_min = 0
     for year in range(2006, 2015):
         yield check_chonet_to_chobrut, count, chobrut_max, chobrut_min, year
@@ -111,8 +111,8 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
 
 
 def test_rstnet_to_rstbrut():
-    count = 11
-    rstbrut_max = 24000
+    count = 101
+    rstbrut_max = 5000
     rstbrut_min = 0
     for year in range(2006, 2015):
         yield check_rstnet_to_rstbrut, count, rstbrut_max, rstbrut_min, year
@@ -155,8 +155,8 @@ def check_salaire_net_to_salaire_de_base(count, salaire_de_base_max, salaire_de_
 
 
 def test_salaire_net_to_salaire_de_base():
-    count = 11
-    salaire_de_base_max = 48000
+    count = 101
+    salaire_de_base_max = 5000
     salaire_de_base_min = 0
     for year in range(2006, 2015):
         for type_sal in CAT._vars:
