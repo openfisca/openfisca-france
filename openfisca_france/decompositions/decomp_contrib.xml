@@ -3,7 +3,7 @@
   <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
       <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
         <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
-          <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
+          <NODE code=salaire_brut color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
             <NODE code="salsuperbrut" color="0,66,92" desc="Salaires super bruts" shortname="Coût travail" />
             <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. pat.">
               <NODE code="cotisations_employeur_contributives" color="249,208,211" desc="Cotisations sociales patronales contributtives" shortname="Cot. pat. contrib." />

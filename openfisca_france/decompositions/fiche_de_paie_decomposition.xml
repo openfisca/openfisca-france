@@ -1,7 +1,7 @@
 ﻿<NODE code="salaire_net_a_payer" color="0,138,201" desc="Net à payer" shortname="Net à payer">
   <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
     <NODE code="sal" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
-      <NODE code="salbrut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
+      <NODE code=salaire_brut color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
         <NODE code="salsuperbrut" color="0,66,92" desc="Coût du travail" shortname="Coût travail" />
         <NODE code="remboursement_transport" color="0,66,92" desc="Remboursement transport" shortname="Remb. transport" />
         <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales patronales" shortname="Cot. soc. pat.">
