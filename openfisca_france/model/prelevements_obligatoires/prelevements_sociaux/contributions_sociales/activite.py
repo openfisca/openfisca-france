@@ -223,10 +223,9 @@ class salaire_net(SimpleFormulaColumn):
         '''
         period = period
 
-        salaire_de_base = simulation.get_array('salaire_de_base', period)
-        if salaire_de_base is None:
-            return period, zeros(self.holder.entity.count)
-
+        # salaire_de_base = simulation.get_array('salaire_de_base', period)
+        # if salaire_de_base is None:
+        #     return period, zeros(self.holder.entity.count)
         sal = simulation.calculate('sal', period)
         crdssal = simulation.calculate_add('crdssal', period)
         csgsali = simulation.calculate_add('csgsali', period)
