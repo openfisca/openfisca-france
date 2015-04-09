@@ -140,7 +140,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
 
         # Tableau des coefficients
         coefficients_array = array(
-            [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4, P.coeff_p5_plus] + [0] * (len(PAC) - 4)
+            [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4] + [P.coeff_p5_plus] * (len(PAC) - 3)
             )
 
         # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant
