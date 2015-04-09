@@ -98,7 +98,7 @@ class age(SimpleFormulaColumn):
                 last_start = last_period.start
                 if last_start.day == start.day:
                     return period, last_array + int((start.year - last_start.year) +
-                        (start.month - last_start.month) // 12)
+                        (start.month - last_start.month) / 12)
 
         has_birth = simulation.get_or_new_holder('birth')._array is not None
         if not has_birth:
