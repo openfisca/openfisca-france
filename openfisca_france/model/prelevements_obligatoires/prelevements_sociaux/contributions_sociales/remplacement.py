@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_not as not_, maximum as max_
+from numpy import maximum as max_
 
 
 from ....base import *  # noqa analysis:ignore
@@ -314,8 +314,8 @@ class crds_pfam(SimpleFormulaColumn):
         asf = simulation.calculate_add('asf', period)
         ars = simulation.calculate('ars', period)
         paje = simulation.calculate_add('paje', period)
-        ape = simulation.calculate('ape', period)
-        apje = simulation.calculate('apje', period)
+        ape = simulation.calculate_add('ape', period)
+        apje = simulation.calculate_add('apje', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds

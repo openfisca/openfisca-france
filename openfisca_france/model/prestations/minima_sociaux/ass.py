@@ -58,7 +58,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
 
-        salaire_net = simulation.calculate('salaire_net', previous_year)
+        salaire_net = simulation.calculate_add('salaire_net', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         aah = simulation.calculate('aah', previous_year)
@@ -139,4 +139,3 @@ class ass(SimpleFormulaColumn):
         ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
         return period, ass
-
