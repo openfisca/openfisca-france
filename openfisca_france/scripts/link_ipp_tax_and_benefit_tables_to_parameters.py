@@ -160,7 +160,7 @@ def main():
                 log.info(u'  Skipping file {} without "Valeurs"'.format(relative_file_path))
                 continue
             for value_index, value_item in enumerate(value_items):
-                start = value_item.get(u"Date d'entrée en vigueur")
+                start = value_item.get(u"Date d'effet")
                 if start is None:
                     continue
                 if isinstance(start, datetime.date):
@@ -169,7 +169,7 @@ def main():
                     start = start[u"Année Revenus"].isoformat()
 
                 for name, child in value_item.iteritems():
-                    if name == u"Date d'entrée en vigueur":
+                    if name == u"Date d'effet":
                         continue
                     for path, value in iter_ipp_values(child):
                         if isinstance(value, basestring):
@@ -277,7 +277,6 @@ def main():
     with open(args.target, 'w') as target_file:
         yaml.dump(openfisca_path_by_ipp_tree, target_file, allow_unicode = True, default_flow_style = False, indent = 2,
             width = 120)
-
 
     return 0
 
