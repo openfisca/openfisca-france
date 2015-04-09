@@ -382,7 +382,7 @@ reference_input_variable(
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
-    label = u"Salaire de base (salaire brut sur la fiche de paie, valeur annuelle)",
+    label = u"Salaire de base (présent sur la fiche de paie, valeur annuelle)",
     name = 'salaire_de_base',
     set_input = set_input_divide_by_period,
     )

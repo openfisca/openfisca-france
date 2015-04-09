@@ -264,22 +264,8 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"
+    label = u"Exonrérations de cotisations patronales pour l'embauche en zone de restructuration de la Défense (ZRD)"
     url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
-
-    # http://www.urssaf.fr/images/ref_LCIRC-2012-0000001.pdf
-    # Les entreprises et groupements d'employeurs exerçant une activité industrielle, commerciale, artisanale, agricole
-    # ou libérale et cotisant au régime d'assurance chômage.
-    # Les entreprises concernées, y compris chacune de celles appartenant à un groupement d'employeurs, doivent avoir
-    # au moins un établissement situé en zone de revitalisation rurale.
-    #
-    # A noter : les associations à but non lucratif sont exclues du dispositif. Par contre, quelle que soit leur forme
-    # juridique, les entreprises d'insertion ou d'intérim d'insertion peuvent en bénéficier. Les régies de quartier
-    # peuvent en bénéficier lorsque leur activité est susceptible d'entraîner l'assujettissement à la TVA à l'impôt sur
-    # les sociétés ainsi qu'à la contribution économique territoriale qu'elles en soient effectivement redevables
-    # ou non.
-    #
-    # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
