@@ -271,7 +271,7 @@ class rst(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        rstbrut = simulation.calculate('rstbrut', period)
+        rstbrut = simulation.calculate_add('rstbrut', period)
         csgrstd = simulation.calculate_add('csgrstd', period)
 
         return period, rstbrut + csgrstd

@@ -257,7 +257,7 @@ individus:
     year:2013-11: 444
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   pensions_alimentaires_percues:
     2012: 444
     2013-11: 37

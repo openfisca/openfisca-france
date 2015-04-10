@@ -100,7 +100,7 @@ individus:
     year:2013-12: 600
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   revenus_stage_formation_pro:
     2012: 600
     2013-12: 50

@@ -372,7 +372,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
     data["caseN"] = _compl(data["caseN"])
     data = _var_to_ppe(data)
     data = _var_to_pfam(data)
-    data['inv'] = 0
+    data['invalide'] = 0
 
     variables_to_drop = [
         variable

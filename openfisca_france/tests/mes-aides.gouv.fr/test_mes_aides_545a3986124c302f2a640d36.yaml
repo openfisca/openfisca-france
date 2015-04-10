@@ -17,7 +17,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   salaire_de_base:
     2012: 10128.205128205129
     2013-11: 897.4358974358975

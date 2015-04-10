@@ -51,7 +51,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   prime_forfaitaire_mensuelle_reprise_activite:
     2012: 120000
     2013-11: 10000

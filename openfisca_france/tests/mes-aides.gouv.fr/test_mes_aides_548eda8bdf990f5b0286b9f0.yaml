@@ -51,7 +51,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -101,7 +101,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     rstbrut:
       2012: 19438.44492440604
       2013-12: 1619.8704103671705
