@@ -60,6 +60,7 @@ class br_mv_i(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', three_previous_months)
         rstbrut = simulation.calculate('rstbrut', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
+        pensions_alimentaires_versees = simulation.calculate('pensions_alimentaires_versees', three_previous_months)
         rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
@@ -101,7 +102,7 @@ class br_mv_i(SimpleFormulaColumn):
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
-        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues + rto_declarant1 + rpns +
+        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs(pensions_alimentaires_versees) + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
