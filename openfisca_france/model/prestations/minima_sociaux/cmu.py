@@ -202,6 +202,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
+        pensions_alimentaires_versees = simulation.calculate('pensions_alimentaires_versees', previous_year)
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
         aah = simulation.calculate('aah', previous_year)
         indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', previous_year)
@@ -235,7 +236,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
-            tns_total_revenus + revenus_stage_formation_pro)
+            tns_total_revenus + revenus_stage_formation_pro  - abs(pensions_alimentaires_versees))
 
 
 @reference_formula
