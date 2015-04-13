@@ -56,9 +56,9 @@ class br_mv_i(SimpleFormulaColumn):
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', three_previous_months)
-        chonet = simulation.calculate('chonet', three_previous_months)
-        rstbrut = simulation.calculate('rstbrut', three_previous_months)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
+        chonet = simulation.calculate_add('chonet', three_previous_months)
+        rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
         rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
@@ -100,7 +100,6 @@ class br_mv_i(SimpleFormulaColumn):
             )
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
-
         return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
@@ -148,11 +147,10 @@ class aspa_elig(SimpleFormulaColumn):
 
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
-        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide & (taux_invalidite >= 50)
+        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide # & (taux_invalidite >= 50)
 
         condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
         condition_pensionnement = (rstbrut + pensions_invalidite) > 0
-
         return period, condition_age * condition_pensionnement
 
 
