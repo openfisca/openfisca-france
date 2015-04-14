@@ -878,17 +878,26 @@ class Scenario(scenarios.AbstractScenario):
 
 def find_age(individu, date, default = None):
     birth = individu.get('birth')
+    if isinstance(birth, dict):
+        birth = birth.values()[0] if birth else None
     if birth is not None:
         age = date.year - birth.year
         if date.month < birth.month or date.month == birth.month and date.day < birth.day:
             age -= 1
         return age
+
     age = individu.get('age')
+    if isinstance(age, dict):
+        age = age.values()[0] if age else None
     if age is not None:
         return age
+
     age_en_mois = individu.get('age_en_mois')
+    if isinstance(age_en_mois, dict):
+        age_en_mois = age_en_mois.values()[0] if age_en_mois else None
     if age_en_mois is not None:
         return age_en_mois / 12.0
+
     return default
 
 
