@@ -37,6 +37,7 @@ build_column('alr', IntCol(label = u"Pensions alimentaires perçues",
 build_column('alr_decl', BoolCol(label = u"Pension déclarée", default = True))
 
 build_column('pensions_alimentaires_percues', FloatCol(entity = 'ind', label = u"Pensions alimentaires perçues"))
+build_column('pensions_alimentaires_versees', FloatCol(entity = 'ind', label = u"Pensions alimentaires versées"))
 
 build_column('gains_exceptionnels', FloatCol(entity = 'ind', label = u"Gains exceptionnels"))
 
