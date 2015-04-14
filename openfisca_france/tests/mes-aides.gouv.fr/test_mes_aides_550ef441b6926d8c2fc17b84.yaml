@@ -13,7 +13,7 @@ relative_error_margin: 0.02
 individus:
   - age: 35
     agem: 423
-    alr:
+    pensions_alim_percues:
       2013: 0
     birth: "1980-01-01"
     cho:

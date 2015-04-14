@@ -25,7 +25,7 @@ period: "month:2014-12"
 individus:
   age: 34
   agem: 412
-  alr:
+  pensions_alim_percues:
     2012: 0
   birth: "1980-08-12"
   boursier: true

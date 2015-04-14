@@ -471,11 +471,11 @@ class rev_pen(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
-        alr = simulation.calculate('alr', period)
-        alr_decl = simulation.calculate('alr_decl', period)
+        pensions_alim_percues = simulation.calculate('pensions_alim_percues', period)
+        pensions_alim_percues_decl = simulation.calculate('pensions_alim_percues_decl', period)
         rst = simulation.calculate('rst', period)
 
-        return period, alr * alr_decl + rst
+        return period, pensions_alim_percues * pensions_alim_percues_decl + rst
 
 
 @reference_formula

@@ -33,7 +33,7 @@ individus:
   activite: 1
   age: 34
   agem: 413
-  alr:
+  pensions_alim_percues:
     2013: 0
   ass_precondition_remplie: false
   birth: "1980-08-12"

@@ -27,7 +27,7 @@ period: "month:2015-02"
 individus:
   age: 34
   agem: 412
-  alr:
+  pensions_alim_percues:
     2013: 0
   birth: "1980-09-12"
   cho:

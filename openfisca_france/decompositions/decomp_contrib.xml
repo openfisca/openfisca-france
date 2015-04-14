@@ -48,7 +48,7 @@
         <NODE code="crdsrst" color="229,48,56" desc="CRDS (pensions)" shortname="CRDS (pens.)" />
         <NODE code="crdsrst" color="229,48,56" desc="Contribution additionnelle de solidarité pour l'autonomie" shortname="CASA (pens.)" />
       </NODE>
-      <NODE code="alr" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
+      <NODE code="pensions_alim_percues" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
       <NODE code="pensions_alim_versees" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
       <NODE code="rto" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
     </NODE>

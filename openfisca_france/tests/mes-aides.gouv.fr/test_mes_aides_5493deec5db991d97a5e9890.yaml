@@ -29,7 +29,7 @@ relative_error_margin: 0.02
 individus:
   - age: 42
     agem: 515
-    alr:
+    pensions_alim_percues:
       2012: 0
     birth: "1972-01-09"
     cho:
