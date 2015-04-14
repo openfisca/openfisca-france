@@ -42,7 +42,7 @@
         <NODE code="crdsrst" color="229,48,56" desc="CRDS (pensions)" shortname="CRDS (pens.)" />
       </NODE>
       <NODE code="alr" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
-      <NODE code="alv" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
+      <NODE code="pensions_alim_versees" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
       <NODE code="rto" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
     </NODE>
     <NODE code="rev_cap_net" color="255,222,48" desc="Revenus du capital net" shortname="Rev. cap. net">

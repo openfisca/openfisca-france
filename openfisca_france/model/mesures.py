@@ -272,10 +272,10 @@ class pen(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', period)
         rstnet = simulation.calculate('rstnet', period)
         alr = simulation.calculate('alr', period)
-        alv_declarant1 = simulation.calculate('alv_declarant1', period)
+        pensions_alim_versees_declarant1 = simulation.calculate('pensions_alim_versees_declarant1', period)
         rto_declarant1 = simulation.calculate('rto_declarant1', period)
 
-        return period, chonet + rstnet + alr + alv_declarant1 + rto_declarant1
+        return period, chonet + rstnet + alr + pensions_alim_versees_declarant1 + rto_declarant1
 
 
 @reference_formula
