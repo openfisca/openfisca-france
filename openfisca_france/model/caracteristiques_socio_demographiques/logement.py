@@ -36,9 +36,13 @@ build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de rés
 
 build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
 
-build_column('loyer', IntCol(label = u"Loyer mensuel",
-                 entity = 'men',
-                 val_type = "monetary"))  # Loyer mensuel
+reference_input_variable(
+    column = IntCol(),
+    entity_class = Menages,
+    label = u'Loyer',
+    name = 'loyer',
+    set_input = set_input_divide_by_period,
+    )
 
 build_column(
     'proprietaire_proche_famille',
@@ -48,15 +52,22 @@ build_column(
         ),
     )
 
-build_column('statut_occupation', EnumCol(label = u"Statut d'occupation",
-               entity = 'men',
-               enum = Enum([u"Non renseigné",
-                            u"Accédant à la propriété",
-                            u"Propriétaire (non accédant) du logement",
-                            u"Locataire d'un logement HLM",
-                            u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-                            u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-                            u"Logé gratuitement par des parents, des amis ou l'employeur"])))
+reference_input_variable(
+    column = EnumCol(
+        enum = Enum([
+            u"Non renseigné",
+            u"Accédant à la propriété",
+            u"Propriétaire (non accédant) du logement",
+            u"Locataire d'un logement HLM",
+            u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
+            u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
+            u"Logé gratuitement par des parents, des amis ou l'employeur"])
+        ),
+    entity_class = Menages,
+    label = u"Statut d'occupation",
+    name = 'statut_occupation',
+    set_input = set_input_dispatch_by_period,
+    )
 
 
 @reference_formula

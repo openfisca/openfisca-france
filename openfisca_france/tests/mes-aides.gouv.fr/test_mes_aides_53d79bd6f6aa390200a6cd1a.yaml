@@ -14,7 +14,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   pensions_alimentaires_percues:
     2012: 1302
     2014-04: 434

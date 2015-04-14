@@ -678,7 +678,7 @@ class Scenario(scenarios.AbstractScenario):
                                     personnes_a_charge = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                individu_by_id[individu_id].get('inv', False)
+                                                individu_by_id[individu_id].get('invalide', False)
                                                 or find_age(individu_by_id[individu_id], period.start.date,
                                                     default = 0) < 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"

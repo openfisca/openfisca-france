@@ -393,7 +393,6 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         # # APL (tous)
 
         al = al_loc + al_acc
-
         return period, al
 
 

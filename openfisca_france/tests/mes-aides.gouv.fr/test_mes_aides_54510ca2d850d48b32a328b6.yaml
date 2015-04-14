@@ -20,7 +20,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   tns_chiffre_affaires_micro_entreprise: 12000
   tns_type_activite: achat_revente
   tns_type_structure: 1

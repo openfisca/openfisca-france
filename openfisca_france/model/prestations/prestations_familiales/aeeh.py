@@ -50,17 +50,17 @@ class aeeh(DatedFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
-        inv_holder = simulation.compute('inv', period)
-        categ_inv_holder = simulation.compute('categ_inv', period)
+        invalide_holder = simulation.compute('invalide', period)
+        categ_invalide_holder = simulation.compute('categ_inv', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        categ_inv = self.split_by_roles(categ_inv_holder, roles = ENFS)
-        inv = self.split_by_roles(inv_holder, roles = ENFS)
+        categ_inv = self.split_by_roles(categ_invalide_holder, roles = ENFS)
+        invalide = self.split_by_roles(invalide_holder, roles = ENFS)
 
         aeeh = 0
         for enfant in age.iterkeys():
-            enfhand = inv[enfant] * (age[enfant] < P.aeeh.age) / 12
+            enfhand = invalide[enfant] * (age[enfant] < P.aeeh.age) / 12
             categ = categ_inv[enfant]
             aeeh += 0 * enfhand  # TODO:
 
@@ -91,18 +91,18 @@ class aeeh(DatedFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
-        inv_holder = simulation.compute('inv', period)
+        invalide_holder = simulation.compute('invalide', period)
         isol = simulation.calculate('isol', period)
-        categ_inv_holder = simulation.compute('categ_inv', period)
+        categ_invalide_holder = simulation.compute('categ_inv', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        categ_inv = self.split_by_roles(categ_inv_holder, roles = ENFS)
-        inv = self.split_by_roles(inv_holder, roles = ENFS)
+        categ_inv = self.split_by_roles(categ_invalide_holder, roles = ENFS)
+        invalide = self.split_by_roles(invalide_holder, roles = ENFS)
 
         aeeh = 0
         for enfant in age.iterkeys():
-            enfhand = inv[enfant] * (age[enfant] < P.aeeh.age) / 12
+            enfhand = invalide[enfant] * (age[enfant] < P.aeeh.age) / 12
             categ = categ_inv[enfant]
             aeeh += enfhand * (P.af.bmaf * (P.aeeh.base +
                                   P.aeeh.cpl1 * (categ == 1) +

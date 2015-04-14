@@ -176,10 +176,10 @@ class enfant_a_charge(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         age = simulation.calculate('age', period)
         alt = simulation.calculate('alt', period)
-        inv = simulation.calculate('inv', period)
+        invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, or_(age < 18, inv)), not_(alt))
+        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), not_(alt))
 
 
 @reference_formula
@@ -210,10 +210,10 @@ class enfant_a_charge_invalide(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         alt = simulation.calculate('alt', period)
-        inv = simulation.calculate('inv', period)
+        invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, inv), not_(alt))
+        return period, and_(and_(quifoy >= 2, invalide), not_(alt))
 
 
 @reference_formula
@@ -236,10 +236,10 @@ class enfant_a_charge_garde_alternee(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         age = simulation.calculate('age', period)
         alt = simulation.calculate('alt', period)
-        inv = simulation.calculate('inv', period)
+        invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, or_(age < 18, inv)), alt)
+        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), alt)
 
 
 @reference_formula
@@ -261,10 +261,10 @@ class enfant_a_charge_garde_alternee_invalide(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         alt = simulation.calculate('alt', period)
-        inv = simulation.calculate('inv', period)
+        invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, inv), alt)
+        return period, and_(and_(quifoy >= 2, invalide), alt)
 
 
 @reference_formula
@@ -285,10 +285,10 @@ class enfant_majeur_celibataire_sans_enfant(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         age = simulation.calculate('age', period)
-        inv = simulation.calculate('inv', period)
+        invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, age >= 18), not_(inv))
+        return period, and_(and_(quifoy >= 2, age >= 18), not_(invalide))
 
 
 @reference_formula

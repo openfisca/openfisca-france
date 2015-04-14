@@ -42,7 +42,7 @@ def _br_aah(br_pf, asi, aspa):
     return br_aah
 
 
-def _aah(self, br_pf_i_holder, br_aah, inv_holder, age_holder, smic55_holder, concub, af_nbenf, aah = law.minim.aah,
+def _aah(self, br_pf_i_holder, br_aah, invalide_holder, age_holder, smic55_holder, concub, af_nbenf, aah = law.minim.aah,
         aeeh = law.fam.aeeh):
     '''
     Allocation adulte handicapé
@@ -84,15 +84,15 @@ def _aah(self, br_pf_i_holder, br_aah, inv_holder, age_holder, smic55_holder, co
     '''
     age = self.split_by_roles(age_holder, roles = [CHEF, PART])
     br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
-    inv = self.split_by_roles(inv_holder, roles = [CHEF, PART])
+    invalide = self.split_by_roles(invalide_holder, roles = [CHEF, PART])
     smic55 = self.split_by_roles(smic55_holder, roles = [CHEF, PART])
 
 #    TODO éligibilité AAH, notamment avoir le % d'incapacité ?
 
-    eligC = (((inv[CHEF]) & (age[CHEF] <= aah.age_legal_retraite)) &
+    eligC = (((invalide[CHEF]) & (age[CHEF] <= aah.age_legal_retraite)) &
               ((age[CHEF] >= aeeh.age) | ((age[CHEF] >= 16) & (smic55[CHEF]))))
 
-    eligP = (((inv[PART]) & (age[PART] <= aah.age_legal_retraite)) &
+    eligP = (((invalide[PART]) & (age[PART] <= aah.age_legal_retraite)) &
               ((age[PART] >= aeeh.age) | ((age[PART] >= 16) & (smic55[PART]))))
 
     plaf_aah = 12 * aah.montant * (1 + concub + aah.tx_plaf_supp * af_nbenf)

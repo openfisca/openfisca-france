@@ -30,7 +30,7 @@ from numpy import (
 
 
 from ...base import *  # noqa analysis:ignore
-
+from ...prestations.prestations_familiales.base_ressource import nb_enf
 
 build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
 build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
@@ -645,6 +645,29 @@ class primes_fonction_publique(SimpleFormulaColumn):
 
 
 @reference_formula
+class af_nbenf_fonc(SimpleFormulaColumn):
+    column = FloatCol  # TODO: shouldn't be an integer ?
+    entity_class = Familles
+    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
+    # Hack pour éviter une boucle infinie
+
+    def function(self, simulation, period):
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
+        age_holder = simulation.compute('age', period)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
+        law = simulation.legislation_at(period.start)
+        nbh_travaillees = 169
+        smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
+        smic55_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        af_nbenf = nb_enf(age, smic55, law.fam.af.age1, law.fam.af.age2)
+
+        return period, af_nbenf
+
+
+@reference_formula
 class supp_familial_traitement(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -656,10 +679,10 @@ class supp_familial_traitement(SimpleFormulaColumn):
         period = period.start.period(u'month').offset('first-of')
         type_sal = simulation.calculate('type_sal', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        af_nbenf_holder = simulation.compute('af_nbenf', period)
+        af_nbenf_fonc_holder = simulation.compute('af_nbenf_fonc', period)
         _P = simulation.legislation_at(period.start)
 
-        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
+        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_fonc_holder, role = CHEF)
         P = _P.fonc.supp_fam
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
