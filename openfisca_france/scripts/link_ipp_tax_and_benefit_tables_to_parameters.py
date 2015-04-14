@@ -41,6 +41,13 @@ import yaml
 from openfisca_france import init_country
 
 
+date_names = (
+    u"Age de départ (AAD=Age d'annulation de la décôte)",
+    u"Date",
+    u"Date d'effet",
+    u"Date de perception du salaire",
+    u"Date ISF",
+    )
 log = logging.getLogger(__name__)
 
 
@@ -155,21 +162,25 @@ def main():
             log.info(u'Loading file {}'.format(relative_file_path))
             with open(source_file_path_encoded) as source_file:
                 data = yaml.load(source_file)
-            value_items = data.get(u"Valeurs")
-            if value_items is None:
+            rows = data.get(u"Valeurs")
+            if rows is None:
                 log.info(u'  Skipping file {} without "Valeurs"'.format(relative_file_path))
                 continue
-            for value_index, value_item in enumerate(value_items):
-                start = value_item.get(u"Date d'effet")
+            for row in rows:
+                start = row.get(u"Date d'effet")
                 if start is None:
-                    continue
-                if isinstance(start, datetime.date):
-                    start = start.isoformat()
-                else:
-                    start = start[u"Année Revenus"].isoformat()
+                    for date_name in date_names:
+                        start = row.get(date_name)
+                        if start is not None:
+                            break
+                    else:
+                        # No date found. Skip row.
+                        continue
+                elif not isinstance(start, datetime.date):
+                    start = start[u"Année Revenus"]
 
-                for name, child in value_item.iteritems():
-                    if name == u"Date d'effet":
+                for name, child in row.iteritems():
+                    if name in date_names:
                         continue
                     for path, value in iter_ipp_values(child):
                         if isinstance(value, basestring):
