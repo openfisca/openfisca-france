@@ -51,8 +51,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'ppe_du_ns',  # Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année
                     'cho_ld',  # Demandeur d'emploi inscrit depuis plus d'un an
                     'csg_rempl',  # Taux retenu sur la CSG des revenus de remplacment
-                    'pensions_alim_percues',  # Pensions alimentaires perçues
-                    'pensions_alim_percues_decl',  # Pension déclarée
+                    'pensions_alimentaires_percues',  # Pensions alimentaires perçues
+                    'pensions_alimentaires_percues_decl',  # Pension déclarée
                     ]),
                 ]),
             collections.OrderedDict([

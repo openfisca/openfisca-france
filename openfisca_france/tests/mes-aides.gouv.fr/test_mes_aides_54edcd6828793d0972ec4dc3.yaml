@@ -29,7 +29,7 @@ relative_error_margin: 0.02
 individus:
   - age: 46
     agem: 555
-    pensions_alim_percues:
+    pensions_alimentaires_percues:
       2013: 2738
     birth: "1968-11-25"
     cho:

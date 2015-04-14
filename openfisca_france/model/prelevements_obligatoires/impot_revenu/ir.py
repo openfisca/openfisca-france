@@ -471,11 +471,11 @@ class rev_pen(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
-        pensions_alim_percues = simulation.calculate('pensions_alim_percues', period)
-        pensions_alim_percues_decl = simulation.calculate('pensions_alim_percues_decl', period)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
+        pensions_alimentaires_percues_decl = simulation.calculate('pensions_alimentaires_percues_decl', period)
         rst = simulation.calculate('rst', period)
 
-        return period, pensions_alim_percues * pensions_alim_percues_decl + rst
+        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + rst
 
 
 @reference_formula
@@ -1705,7 +1705,7 @@ class irpp(SimpleFormulaColumn):
 
 
 @reference_formula
-class pensions_alim_versees(SimpleFormulaColumn):
+class pensions_alimentaires_versees (SimpleFormulaColumn):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Pensions alimentaires versées"
@@ -1724,11 +1724,11 @@ class pensions_alim_versees(SimpleFormulaColumn):
 
 
 @reference_formula
-class pensions_alim_versees_declarant1(EntityToPersonColumn):
+class pensions_alimentaires_versees_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Pensions alimentaires versées (pour le premier déclarant du foyer fiscal)"
     role = VOUS
-    variable = pensions_alim_versees
+    variable = pensions_alimentaires_versees 
 
 
 @reference_formula

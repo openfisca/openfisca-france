@@ -271,11 +271,11 @@ class pen(SimpleFormulaColumn):
         period = period.start.period('year').offset('first-of')
         chonet = simulation.calculate('chonet', period)
         rstnet = simulation.calculate('rstnet', period)
-        pensions_alim_percues = simulation.calculate('pensions_alim_percues', period)
-        pensions_alim_versees_declarant1 = simulation.calculate('pensions_alim_versees_declarant1', period)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
+        pensions_alimentaires_versees_declarant1 = simulation.calculate('pensions_alimentaires_versees_declarant1', period)
         rto_declarant1 = simulation.calculate('rto_declarant1', period)
 
-        return period, chonet + rstnet + pensions_alim_percues + pensions_alim_versees_declarant1 + rto_declarant1
+        return period, chonet + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 + rto_declarant1
 
 
 @reference_formula

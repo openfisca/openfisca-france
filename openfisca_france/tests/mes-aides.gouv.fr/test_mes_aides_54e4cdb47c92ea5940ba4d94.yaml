@@ -28,7 +28,7 @@ period: "month:2015-02"
 individus:
   age: 22
   agem: 273
-  pensions_alim_percues:
+  pensions_alimentaires_percues:
     2013: 0
   birth: "1992-05-17"
   cho:
