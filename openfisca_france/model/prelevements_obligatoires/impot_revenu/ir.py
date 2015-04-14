@@ -90,21 +90,22 @@ class age(SimpleFormulaColumn):
     label = u"Âge (en années)"
 
     def function(self, simulation, period):
-        # If age is known at the same day & month of another year, compute the new age from it.
-        holder = self.holder
-        start = period.start
-        if holder._array_by_period is not None:
-            for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
-                last_start = last_period.start
-                if last_start.day == start.day:
-                    return period, last_array + int((start.year - last_start.year) +
-                        (start.month - last_start.month) / 12)
-
         has_birth = simulation.get_or_new_holder('birth')._array is not None
         if not has_birth:
             has_age_en_mois = bool(simulation.get_or_new_holder('age_en_mois')._array_by_period)
             if has_age_en_mois:
                 return period, simulation.calculate('age_en_mois', period) // 12
+
+            # If age is known at the same day of another year, compute the new age from it.
+            holder = self.holder
+            start = period.start
+            if holder._array_by_period is not None:
+                for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
+                    last_start = last_period.start
+                    if last_start.day == start.day:
+                        return period, last_array + int((start.year - last_start.year) +
+                            (start.month - last_start.month) / 12)
+
         birth = simulation.calculate('birth', period)
         return period, (datetime64(period.start) - birth).astype('timedelta64[Y]')
 
