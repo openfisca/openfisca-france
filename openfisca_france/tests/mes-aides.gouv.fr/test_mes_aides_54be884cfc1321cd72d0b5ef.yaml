@@ -42,7 +42,7 @@ individus:
     year:2014-01: 2400
   age: 35
   age_en_mois: 426
-  alr:
+  pensions_alimentaires_percues:
     2013: 0
   birth: "1979-07-12"
   cho:
