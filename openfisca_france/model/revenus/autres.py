@@ -26,7 +26,7 @@
 from ..base import *  # noqa analysis:ignore
 
 
-build_column('pensions_alimentaires_percues', IntCol(label = u"Pensions alimentaires perçues",
+build_column('pensions_alimentaires_percues', FloatCol(entity = 'ind', label = u"Pensions alimentaires perçues",
                val_type = "monetary",
                cerfa_field = {QUIFOY['vous']: u"1AO",
                               QUIFOY['conj']: u"1BO",
@@ -35,8 +35,6 @@ build_column('pensions_alimentaires_percues', IntCol(label = u"Pensions alimenta
                               QUIFOY['pac3']: u"1EO",
                               }))  # (f1ao, f1bo, f1co, f1do, f1eo)
 build_column('pensions_alimentaires_percues_decl', BoolCol(label = u"Pension déclarée", default = True))
-
-build_column('pensions_alimentaires_percues', FloatCol(entity = 'ind', label = u"Pensions alimentaires perçues"))
 
 build_column('gains_exceptionnels', FloatCol(entity = 'ind', label = u"Gains exceptionnels"))
 
