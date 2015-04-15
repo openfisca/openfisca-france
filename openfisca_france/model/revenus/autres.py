@@ -36,6 +36,8 @@ build_column('pensions_alimentaires_percues', FloatCol(entity = 'ind', label = u
                               }))  # (f1ao, f1bo, f1co, f1do, f1eo)
 build_column('pensions_alimentaires_percues_decl', BoolCol(label = u"Pension déclarée", default = True))
 
+build_column('pensions_alimentaires_versees_individu', FloatCol(entity = 'ind', label = u"Pensions alimentaires versées pour un individu"))
+
 build_column('gains_exceptionnels', FloatCol(entity = 'ind', label = u"Gains exceptionnels"))
 
 build_column('allocation_aide_retour_emploi', FloatCol(entity = 'ind', label = u"Allocation d'aide au retour à l'emploi"))
