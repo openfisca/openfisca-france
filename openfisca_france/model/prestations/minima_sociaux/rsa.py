@@ -285,12 +285,13 @@ class div_ms(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        f3vc_holder = simulation.compute('f3vc', period)
-        f3ve_holder = simulation.compute('f3ve', period)
-        f3vg_holder = simulation.compute('f3vg', period)
-        f3vl_holder = simulation.compute('f3vl', period)
-        f3vm_holder = simulation.compute('f3vm', period)
+        period = period.start.offset('first-of', 'month').period('month')
+        period_declaration = period.start.offset('first-of', 'year').period('year')
+        f3vc_holder = simulation.compute('f3vc', period_declaration)
+        f3ve_holder = simulation.compute('f3ve', period_declaration)
+        f3vg_holder = simulation.compute('f3vg', period_declaration)
+        f3vl_holder = simulation.compute('f3vl', period_declaration)
+        f3vm_holder = simulation.compute('f3vm', period_declaration)
 
         f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
         f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
@@ -298,7 +299,7 @@ class div_ms(SimpleFormulaColumn):
         f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
 
-        return period, f3vc + f3ve + f3vg + f3vl + f3vm
+        return period, (f3vc + f3ve + f3vg + f3vl + f3vm) / 12
 
 
 @reference_formula
@@ -308,14 +309,15 @@ class rfon_ms(SimpleFormulaColumn):
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        f4ba_holder = simulation.compute('f4ba', period)
-        f4be_holder = simulation.compute('f4be', period)
+        period = period.start.offset('first-of', 'month').period('month')
+        period_declaration = period.start.offset('first-of', 'year').period('year')
+        f4ba_holder = simulation.compute('f4ba', period_declaration)
+        f4be_holder = simulation.compute('f4be', period_declaration)
 
         f4ba = self.cast_from_entity_to_role(f4ba_holder, role = VOUS)
         f4be = self.cast_from_entity_to_role(f4be_holder, role = VOUS)
 
-        return period, f4ba + f4be
+        return period, (f4ba + f4be) / 12
 
 
 @reference_formula

@@ -558,19 +558,23 @@ class sal_pen_net(SimpleFormulaColumn):
 
 @reference_formula
 class rto(SimpleFormulaColumn):
-    """Rentes viagères à titre onéreux (avant abattements)"""
+    """Rentes viagères à titre onéreux (avant abattements)
+
+    Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
+    """
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Rentes viagères (rentes à titre onéreux)"
+    set_input = set_input_divide_by_period
     url = u"http://fr.wikipedia.org/wiki/Rente_viagère"
 
     def function(self, simulation, period):
-        period_declaration = period.start.period(u'year').offset('first-of')
+        year = period.start.period(u'year').offset('first-of')
         period = period.start.offset('first-of', 'month').period('month')
-        f1aw = simulation.calculate('f1aw', period_declaration)
-        f1bw = simulation.calculate('f1bw', period_declaration)
-        f1cw = simulation.calculate('f1cw', period_declaration)
-        f1dw = simulation.calculate('f1dw', period_declaration)
+        f1aw = simulation.calculate('f1aw', year)
+        f1bw = simulation.calculate('f1bw', year)
+        f1cw = simulation.calculate('f1cw', year)
+        f1dw = simulation.calculate('f1dw', year)
 
         return period, (f1aw + f1bw + f1cw + f1dw) / 12
 
@@ -1753,7 +1757,7 @@ class rfr(SimpleFormulaColumn):
         rfr_rvcm = simulation.calculate('rfr_rvcm', period)
         rpns_exon_holder = simulation.compute('rpns_exon', period)
         rpns_pvce_holder = simulation.compute('rpns_pvce', period)
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         f3vz = simulation.calculate('f3vz', period)
         microentreprise = simulation.calculate('microentreprise', period)
 
@@ -1789,27 +1793,30 @@ class glo(SimpleFormulaColumn):
 
 @reference_formula
 class rev_cap_bar(SimpleFormulaColumn):
+    """Revenus du capital imposés au barème
+
+    Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
+    """
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rev_cap_bar"
+    set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
     def function(self, simulation, period):
-        """
-        Revenus du capital imposés au barème
-        """
-        period = period.start.offset('first-of', 'month').period('year')
-        f2dc = simulation.calculate('f2dc', period)
-        f2gr = simulation.calculate('f2gr', period)
-        f2ch = simulation.calculate('f2ch', period)
-        f2ts = simulation.calculate('f2ts', period)
-        f2go = simulation.calculate('f2go', period)
-        f2tr = simulation.calculate('f2tr', period)
-        f2fu = simulation.calculate('f2fu', period)
-        avf = simulation.calculate('avf', period)
-        f2da = simulation.calculate('f2da', period)
-        f2ee = simulation.calculate('f2ee', period)
-        finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
+        period = period.start.offset('first-of', 'month').period('month')
+        year = period.start.offset('first-of', 'year').period('year')
+        f2dc = simulation.calculate('f2dc', year)
+        f2gr = simulation.calculate('f2gr', year)
+        f2ch = simulation.calculate('f2ch', year)
+        f2ts = simulation.calculate('f2ts', year)
+        f2go = simulation.calculate('f2go', year)
+        f2tr = simulation.calculate('f2tr', year)
+        f2fu = simulation.calculate('f2fu', year)
+        avf = simulation.calculate('avf', year)
+        f2da = simulation.calculate('f2da', year)
+        f2ee = simulation.calculate('f2ee', year)
+        finpfl = simulation.legislation_at(period.start).ir.autre.finpfl  # TODO remove ad check case
         majGO = simulation.legislation_at(period.start).ir.rvcm.majGO
 
         # year = period.start.year
@@ -1817,7 +1824,7 @@ class rev_cap_bar(SimpleFormulaColumn):
         #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
         # elif year > 2011:
         #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
-        return period, f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl
+        return period, (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
 
 
     # We add f2da an f2ee to allow for comparaison between years
@@ -1825,39 +1832,40 @@ class rev_cap_bar(SimpleFormulaColumn):
 
 @reference_formula
 class rev_cap_lib(DatedFormulaColumn):
+    '''Revenu du capital imposé au prélèvement libératoire
+
+    Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
+    '''
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rev_cap_lib"
+    set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function_20020101_20071231(self, simulation, period):
-        '''
-        Revenu du capital imposé au prélèvement libératoire
-        '''
-        period = period.start.offset('first-of', 'month').period('year')
-        f2dh = simulation.calculate('f2dh', period)
-        f2ee = simulation.calculate('f2ee', period)
+        period = period.start.offset('first-of', 'month').period('month')
+        year = period.start.offset('first-of', 'year').period('year')
+        f2dh = simulation.calculate('f2dh', year)
+        f2ee = simulation.calculate('f2ee', year)
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
 
         out = f2dh + f2ee
-        return period, out * not_(finpfl)
+        return period, out * not_(finpfl) / 12
 
     @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
     def function_20080101_20151231(self, simulation, period):
-        '''
-        Revenu du capital imposé au prélèvement libératoire
-        '''
-        period = period.start.offset('first-of', 'month').period('year')
-        f2da = simulation.calculate('f2da', period)
-        f2dh = simulation.calculate('f2dh', period)
-        f2ee = simulation.calculate('f2ee', period)
+        period = period.start.offset('first-of', 'month').period('month')
+        year = period.start.offset('first-of', 'year').period('year')
+        f2da = simulation.calculate('f2da', year)
+        f2dh = simulation.calculate('f2dh', year)
+        f2ee = simulation.calculate('f2ee', year)
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
 
         out = f2da + f2dh + f2ee
-        return period, out * not_(finpfl)
+        return period, out * not_(finpfl) / 12
 
 
 @reference_formula

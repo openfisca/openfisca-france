@@ -327,9 +327,9 @@ class rev_cap(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         fon_holder = simulation.compute('fon', period)
-        rev_cap_bar_holder = simulation.compute('rev_cap_bar', period)
+        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
         cotsoc_bar_declarant1 = simulation.calculate('cotsoc_bar_declarant1', period)
-        rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
+        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         cotsoc_lib_declarant1 = simulation.calculate('cotsoc_lib_declarant1', period)
         imp_lib_holder = simulation.compute('imp_lib', period)
         rac = simulation.calculate('rac', period)
