@@ -41,7 +41,7 @@ class uc(SimpleFormulaColumn):
         Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'insee
         'men'
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         age_en_mois_holder = simulation.compute('age_en_mois', period)
 
         age_en_mois = self.split_by_roles(age_en_mois_holder)
@@ -69,7 +69,7 @@ class typ_men(SimpleFormulaColumn):
         'men'
         TODO: prendre les enfants du ménage et non ceux de la famille
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         isol_holder = simulation.compute('isol', period)
         af_nbenf_holder = simulation.compute('af_nbenf', period)
 
@@ -135,7 +135,7 @@ class nivvie(SimpleFormulaColumn):
         Niveau de vie du ménage
         'men'
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         revdisp = simulation.calculate('revdisp', period)
         uc = simulation.calculate('uc', period)
 
@@ -177,7 +177,7 @@ class nivvie_net(SimpleFormulaColumn):
         Niveau de vie net du ménage
         'men'
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         revnet = simulation.calculate('revnet', period)
         uc = simulation.calculate('uc', period)
 
@@ -220,7 +220,7 @@ class nivvie_ini(SimpleFormulaColumn):
         Niveau de vie initial du ménage
         'men'
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         revini = simulation.calculate('revini', period)
         uc = simulation.calculate('uc', period)
 
@@ -248,7 +248,7 @@ class rev_trav(SimpleFormulaColumn):
         '''
         Revenu du travail
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_sal = simulation.calculate('rev_sal', period)
         rag = simulation.calculate('rag', period)
         ric = simulation.calculate('ric', period)
@@ -306,7 +306,7 @@ class cotsoc_lib_declarant1(SimpleFormulaColumn):
         '''
         Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         csg_cap_lib_declarant1 = simulation.calculate('csg_cap_lib_declarant1', period)
         prelsoc_cap_lib_declarant1 = simulation.calculate('prelsoc_cap_lib_declarant1', period)
         crds_cap_lib_declarant1 = simulation.calculate('crds_cap_lib_declarant1', period)
@@ -325,7 +325,7 @@ class rev_cap(SimpleFormulaColumn):
         '''
         Revenus du patrimoine
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         fon_holder = simulation.compute('fon', period)
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
         cotsoc_bar_declarant1 = simulation.calculate('cotsoc_bar_declarant1', period)
@@ -353,7 +353,7 @@ class psoc(SimpleFormulaColumn):
         '''
         Prestations sociales
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         pfam = simulation.calculate('pfam', period)
         mini = simulation.calculate('mini', period)
         aides_logement = simulation.calculate('aides_logement', period)
@@ -372,7 +372,7 @@ class pfam(SimpleFormulaColumn):
         '''
         Prestations familiales
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         af = simulation.calculate_add('af', period)
         cf = simulation.calculate_add('cf', period)
         ars = simulation.calculate('ars', period)
@@ -395,7 +395,7 @@ class mini(SimpleFormulaColumn):
         '''
         Minima sociaux
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         aspa = simulation.calculate_add('aspa', period)
         aah_holder = simulation.compute('aah', period)
         caah_holder = simulation.compute('caah', period)
@@ -423,7 +423,7 @@ class aides_logement(SimpleFormulaColumn):
         '''
         Prestations logement
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         apl = simulation.calculate_add('apl', period)
         als = simulation.calculate_add('als', period)
         alf = simulation.calculate_add('alf', period)
@@ -443,7 +443,7 @@ class impo(SimpleFormulaColumn):
         '''
         Impôts directs
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         irpp_holder = simulation.compute('irpp', period)
         taxe_habitation = simulation.calculate('taxe_habitation', period)
 
@@ -461,7 +461,7 @@ class crds(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         """Contribution au remboursement de la dette sociale"""
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         crdssal = simulation.calculate_add('crdssal', period)
         crdsrst = simulation.calculate_add('crdsrst', period)
         crdscho = simulation.calculate_add('crdscho', period)
@@ -494,7 +494,7 @@ class csg(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         """Contribution sociale généralisée"""
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         csgsali = simulation.calculate_add('csgsali', period)
         csgsald = simulation.calculate_add('csgsald', period)
         csgchoi = simulation.calculate_add('csgchoi', period)
@@ -525,7 +525,7 @@ class cotsoc_noncontrib(SimpleFormulaColumn):
         '''
         Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         cotisations_employeur_non_contributives = simulation.calculate('cotisations_employeur_non_contributives',
             period)
         cotisations_salariales_non_contributives = simulation.calculate('cotisations_salariales_non_contributives',
@@ -545,7 +545,7 @@ class prelsoc_cap(SimpleFormulaColumn):
         """
         Prélèvements sociaux sur les revenus du capital
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         prelsoc_fon_holder = simulation.compute('prelsoc_fon', period)
         prelsoc_cap_lib_declarant1 = simulation.calculate('prelsoc_cap_lib_declarant1', period)
         prelsoc_cap_bar_declarant1 = simulation.calculate('prelsoc_cap_bar_declarant1', period)
@@ -566,7 +566,7 @@ class check_csk(SimpleFormulaColumn):
     label = u"check_csk"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         prelsoc_cap_bar_declarant1_holder = simulation.compute('prelsoc_cap_bar_declarant1', period)
         prelsoc_pv_mo_holder = simulation.compute('prelsoc_pv_mo', period)
         prelsoc_fon_holder = simulation.compute('prelsoc_fon', period)
@@ -587,7 +587,7 @@ class check_csg(SimpleFormulaColumn):
     label = u"check_csg"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         csg_cap_bar_declarant1_holder = simulation.compute('csg_cap_bar_declarant1', period)
         csg_pv_mo_holder = simulation.compute('csg_pv_mo', period)
         csg_fon_holder = simulation.compute('csg_fon', period)
@@ -608,7 +608,7 @@ class check_crds(SimpleFormulaColumn):
     label = u"check_crds"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         crds_cap_bar_declarant1_holder = simulation.compute('crds_cap_bar_declarant1', period)
         crds_pv_mo_holder = simulation.compute('crds_pv_mo', period)
         crds_fon_holder = simulation.compute('crds_fon', period)
