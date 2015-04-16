@@ -148,9 +148,9 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
                 },
             'typ_tot_default': 'rev_cap_brut'
             },
-        'alr': {
-            'name': 'alr',
-            'col_name': 'alr',
+        'pensions_alimentaires_percues': {
+            'name': 'pensions_alimentaires_percues',
+            'col_name': 'pensions_alimentaires_percues',
             'typ_tot': {
                 'pen': "Pensions"
                 },

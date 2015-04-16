@@ -12,7 +12,7 @@ relative_error_margin: 0.02
 individus:
   - age: 65
     age_en_mois: 780
-    alr:
+    pensions_alimentaires_percues:
       2013: 0
     birth: "1950-02-01"
     cho:

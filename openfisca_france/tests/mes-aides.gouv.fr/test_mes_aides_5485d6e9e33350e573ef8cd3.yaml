@@ -9,7 +9,7 @@ period: "month:2014-12"
 individus:
   - age: 34
     age_en_mois: 411
-    alr:
+    pensions_alimentaires_percues:
       2012: 0
     birth: "1980-08-12"
     cho:

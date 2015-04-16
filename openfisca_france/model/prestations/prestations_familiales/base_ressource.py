@@ -170,16 +170,16 @@ class rev_coll(SimpleFormulaColumn):
         abat_spe_holder = simulation.compute('abat_spe', period)
         glo = simulation.calculate('glo', period)
         fon_holder = simulation.compute('fon', period)
-        # Quand rev_coll est calculé sur une année glissante, alv_declarant1 est calculé sur l'année légale
+        # Quand rev_coll est calculé sur une année glissante, pensions_alimentaires_versees_declarant1 est calculé sur l'année légale
         # correspondante.
-        alv_declarant1 = simulation.calculate('alv_declarant1', period.offset('first-of'))
+        pensions_alimentaires_versees_declarant1 = simulation.calculate('pensions_alimentaires_versees_declarant1', period.offset('first-of'))
         f7ga_holder = simulation.compute('f7ga', period)
         f7gb_holder = simulation.compute('f7gb', period)
         f7gc_holder = simulation.compute('f7gc', period)
         rev_cat_pv_holder = simulation.compute('rev_cat_pv', period)
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
-        # alv_declarant1 is negative since it is paid by the declaree
+        # pensions_alimentaires_versees_declarant1 is negative since it is paid by the declaree
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm_holder, role = VOUS)
         abat_spe = self.cast_from_entity_to_role(abat_spe_holder, role = VOUS)
@@ -189,7 +189,7 @@ class rev_coll(SimpleFormulaColumn):
         f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
         rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb
+        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
             - f7gc - abat_spe + rev_cat_pv)
 
 
