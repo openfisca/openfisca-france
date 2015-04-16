@@ -74,7 +74,7 @@ class csg_cap_bar(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_bar * _P.csg.capital.glob
@@ -98,7 +98,7 @@ class crds_cap_bar(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_bar * _P.crds.capital
@@ -123,7 +123,7 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_2002_2005(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).prelsoc
 
         total = P.base_pat
@@ -132,7 +132,7 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_2006_2008(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).prelsoc
 
         total = P.base_pat + P.add_pat
@@ -141,7 +141,7 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009_2015(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).prelsoc
 
         total = P.base_pat + P.add_pat + P.rsa
@@ -438,7 +438,7 @@ class csg_cap_lib(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_lib * _P.csg.capital.glob
@@ -462,7 +462,7 @@ class crds_cap_lib(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_lib * _P.crds.capital
@@ -486,7 +486,7 @@ class prelsoc_cap_lib(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         prelsoc = simulation.legislation_at(period.start).prelsoc
 
         start_year = period.start.year

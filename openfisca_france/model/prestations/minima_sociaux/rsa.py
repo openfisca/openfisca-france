@@ -338,7 +338,7 @@ class br_rmi_pf(DatedFormulaColumn):
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
 
-    @dated_function(date(2004, 1, 1), date(2014, 3, 31))
+    @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
     def function_2003(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
@@ -351,7 +351,7 @@ class br_rmi_pf(DatedFormulaColumn):
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
 
-    @dated_function(date(2014, 4, 1))
+    @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
@@ -500,7 +500,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
     entity_class = Individus
     start_date = date(2009, 6, 1)
 
-    @dated_function(date(2009, 6, 1))
+    @dated_function(start = date(2009, 6, 1))
     def function_2009_(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         interets_epargne_sur_livrets = simulation.calculate('interets_epargne_sur_livrets', period)
@@ -703,7 +703,7 @@ class rsa_act(DatedFormulaColumn):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
 
-    @dated_function(date(2009, 6, 1))
+    @dated_function(start = date(2009, 6, 1))
     def function_2009(self, simulation, period):
         '''
         Calcule le montant du RSA activité
@@ -723,7 +723,7 @@ class rsa_act_i(DatedFormulaColumn):
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
     start_date = date(2009, 6, 1)
 
-    @dated_function(date(2009, 6, 1))
+    @dated_function(start = date(2009, 6, 1))
     def function_2009_(self, simulation, period):
         period = period   # TODO: rentre dans le calcul de la PPE check period !!!
         rsa_act_holder = simulation.compute('rsa_act', period)
@@ -811,7 +811,7 @@ class rmi(DatedFormulaColumn):
     entity_class = Familles
     label = u"Revenu Minimum d'Insertion"
 
-    @dated_function(date(start = 1988, 12, 1), date(stop = 2009, 5, 31))
+    @dated_function(start =  date(1988, 12, 1), stop = date(2009, 5, 31))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle = simulation.calculate('rsa_socle', period)
@@ -829,7 +829,7 @@ class rsa_non_majore(DatedFormulaColumn):
     label = u"Revenu de solidarité active - non majoré"
     entity_class = Familles
 
-    @dated_function(date(start = 2006, 06, 1))
+    @dated_function(start = date(2006, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle = simulation.calculate('rsa_socle', period)
@@ -849,7 +849,7 @@ class rsa_majore(DatedFormulaColumn):
     label = u"Revenu de solidarité active - majoré"
     entity_class = Familles
 
-    @dated_function(date(start = 2006, 06, 1))
+    @dated_function(start = date(2006, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
@@ -869,7 +869,7 @@ class rsa(DatedFormulaColumn):
     label = u"Revenu de solidarité active"
     entity_class = Familles
 
-    @dated_function(date(start = 2006, 06, 1))
+    @dated_function(start = date(2006, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_majore = simulation.calculate('rsa_majore', period)
