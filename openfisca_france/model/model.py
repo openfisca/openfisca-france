@@ -106,4 +106,3 @@ from revenus.remplacement import (  # noqa analysis:ignore
     retraite,
     indemnites_journalieres_securite_sociale,
     )
-

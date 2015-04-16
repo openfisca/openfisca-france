@@ -792,7 +792,6 @@ class rsa_socle_majore(SimpleFormulaColumn):
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
-        # nb_par = simulation.calculate('nb_par', period)
         isol = simulation.calculate('isol', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 

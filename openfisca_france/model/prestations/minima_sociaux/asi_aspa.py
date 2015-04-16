@@ -56,9 +56,9 @@ class br_mv_i(SimpleFormulaColumn):
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
-        salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
+        salaire_net = simulation.calculate_add('salaire_net', three_previous_months)
         chonet = simulation.calculate_add('chonet', three_previous_months)
-        rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
+        rstnet = simulation.calculate_add('rstnet', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', three_previous_months)
         rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
@@ -100,9 +100,11 @@ class br_mv_i(SimpleFormulaColumn):
             not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
             )
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
-        salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
-        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
+        salaire_net = max_(0, salaire_net - abattement_forfaitaire)
+
+        return period, (salaire_net + chonet + rstnet + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
+
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
@@ -142,7 +144,7 @@ class aspa_elig(SimpleFormulaColumn):
         invalide = simulation.calculate('invalide', period)
         taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
+        rstnet = simulation.calculate('rstnet', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
         P = simulation.legislation_at(period.start).minim
@@ -152,7 +154,7 @@ class aspa_elig(SimpleFormulaColumn):
         condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide # & (taux_invalidite >= 50)
 
         condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+        condition_pensionnement = (rstnet + pensions_invalidite) > 0
         return period, condition_age * condition_pensionnement
 
 
@@ -168,11 +170,11 @@ class asi_elig(SimpleFormulaColumn):
 
         aspa_elig = simulation.calculate('aspa_elig', period)
         invalide = simulation.calculate('invalide', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
+        rstnet = simulation.calculate('rstnet', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
         condition_situation = invalide & not_(aspa_elig)
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+        condition_pensionnement = (rstnet + pensions_invalidite) > 0
 
         return period, condition_situation * condition_pensionnement
 

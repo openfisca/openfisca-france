@@ -141,7 +141,6 @@ class paje_nais(SimpleFormulaColumn):
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
         period = period.start.offset('first-of', 'month').period('month')
-
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -159,16 +158,12 @@ class paje_nais(SimpleFormulaColumn):
         # donc les enfants concernés sont les enfants qui ont -2 mois
         nbnais = 0
         for age_m in age_en_mois.itervalues():
-            # nbnais += (age_m == -2) cas mensuel
-            nbnais += (age_m >= -2) * (age_m < 10)
+            nbnais += (age_m == -2) # cas mensuel
+            # nbnais += (age_m >= -2) * (age_m < 10) # cas annuel
 
-        nbaf = 0  # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
-        for age_m in age_en_mois.itervalues():
-            nbaf += (age_m >= 10)
+        nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
 
-        nbenf = nbaf + nbnais  # On ajoute l'enfant à  naître;
-
-        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(nbenf, 2) + P.paje.base.plaf_tx2 * max_(nbenf - 2, 0)
         majo = isol | biact
         plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
         elig = (br_pf <= plaf) * (nbnais != 0)
