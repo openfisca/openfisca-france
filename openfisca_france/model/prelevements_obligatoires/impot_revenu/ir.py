@@ -565,13 +565,14 @@ class rto(SimpleFormulaColumn):
     url = u"http://fr.wikipedia.org/wiki/Rente_viagère"
 
     def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')
-        f1aw = simulation.calculate('f1aw', period)
-        f1bw = simulation.calculate('f1bw', period)
-        f1cw = simulation.calculate('f1cw', period)
-        f1dw = simulation.calculate('f1dw', period)
+        period_declaration = period.start.period(u'year').offset('first-of')
+        period = period.start.offset('first-of', 'month').period('month')
+        f1aw = simulation.calculate('f1aw', period_declaration)
+        f1bw = simulation.calculate('f1bw', period_declaration)
+        f1cw = simulation.calculate('f1cw', period_declaration)
+        f1dw = simulation.calculate('f1dw', period_declaration)
 
-        return period, f1aw + f1bw + f1cw + f1dw
+        return period, (f1aw + f1bw + f1cw + f1dw) / 12
 
 
 @reference_formula

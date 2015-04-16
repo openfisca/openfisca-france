@@ -273,7 +273,7 @@ class pen(SimpleFormulaColumn):
         rstnet = simulation.calculate('rstnet', period)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
         pensions_alimentaires_versees_declarant1 = simulation.calculate('pensions_alimentaires_versees_declarant1', period)
-        rto_declarant1 = simulation.calculate('rto_declarant1', period)
+        rto_declarant1 = simulation.calculate_add('rto_declarant1', period)
 
         return period, chonet + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 + rto_declarant1
 

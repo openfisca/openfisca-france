@@ -61,7 +61,7 @@ class br_mv_i(SimpleFormulaColumn):
         rstnet = simulation.calculate_add('rstnet', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', three_previous_months)
-        rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
+        rto_declarant1 = simulation.calculate_add('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
