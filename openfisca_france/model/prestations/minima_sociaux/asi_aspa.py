@@ -104,7 +104,6 @@ class br_mv_i(SimpleFormulaColumn):
         salaire_net = max_(0, salaire_net - abattement_forfaitaire)
 
         return period, (salaire_net + chonet + rstnet + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
-
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
