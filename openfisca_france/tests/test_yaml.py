@@ -294,6 +294,7 @@ if __name__ == "__main__":
                 )
         current_options_by_dir = {dir: options}
 
+    tests_found = False
     for test_index, (function, name, period_str, test, force) in enumerate(
             test(
                 current_options_by_dir = current_options_by_dir,
@@ -312,5 +313,9 @@ if __name__ == "__main__":
         print(title)
         print("=" * len(title))
         function(name, period_str, test, force)
+        tests_found = True
+    if not tests_found:
+        print("No test found!")
+        sys.exit(1)
 
     sys.exit(0)
