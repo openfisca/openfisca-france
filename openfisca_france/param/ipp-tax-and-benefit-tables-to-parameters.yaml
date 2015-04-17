@@ -1,0 +1,7 @@
+baremes-ipp-impot-revenu:
+  RENAME: impot_revenu
+  bareme-ir:
+    TYPE: BAREME
+    Nombre de tranches: null
+    Seuils inférieurs des tranches: SEUIL
+    Taux marginaux des tranches: TAUX
