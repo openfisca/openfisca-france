@@ -45,7 +45,7 @@ class assiette_allegement(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Assiette des allègements de cotisations sociales patronales"
+    label = u"Assiette des allègements de cotisations sociales employeur"
 
     def function(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
@@ -61,7 +61,7 @@ class assiette_allegement(SimpleFormulaColumn):
 class allegement_fillon(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
+    label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
 
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):

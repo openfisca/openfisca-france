@@ -39,10 +39,10 @@ reference_input_variable(
 
 
 @reference_formula
-class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_geographiques(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonérations de cotisations patronales dépendant d'une zone géographique"
+    label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
 
     def function(self, simulation, period):
@@ -60,10 +60,10 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_jei(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour une jeune entreprise innovante"
+    label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
     url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
 
     def function(self, simulation, period):
@@ -111,7 +111,7 @@ class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone franche urbaine (ZFU)"
+    label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
     url = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
 
 # TODO
@@ -151,7 +151,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
 # Le salarié résident doit être titulaire d'un contrat à durée indéterminée ou d'un contrat à durée déterminée d'au
 # moins 12 mois, conclu pour une durée minimale de 16 heures par semaine.
 # 5 ans +
-# Dans les entreprises de 5 salariés et plus, les cotisations patronales bénéficient d'un abattement sur la base
+# Dans les entreprises de 5 salariés et plus, les cotisations employeur bénéficient d'un abattement sur la base
 # imposable pendant 3 ans de :
 # - 60 % la première année,
 # - 40 % la seconde année,
@@ -264,7 +264,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone de restructuration de la Défense (ZRD)"
+    label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
     url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
 
     def function(self, simulation, period):
@@ -302,7 +302,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"
+    label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
     url = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
 
     # Les entreprises et groupements d'employeurs exerçant une activité industrielle, commerciale, artisanale, agricole

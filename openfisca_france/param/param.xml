@@ -1280,7 +1280,7 @@
         </NODE>
       </NODE>
     </NODE>
-    <NODE code="pat" description="Patronales">
+    <NODE code="pat" description="employeur">
       <NODE code="commun" description="Communes aux cadres et non cadres">
         <BAREME code="maladie" description="Maladie, maternité, invalidité, décès" option="noncontrib">
           <TRANCHE code="tranche0">

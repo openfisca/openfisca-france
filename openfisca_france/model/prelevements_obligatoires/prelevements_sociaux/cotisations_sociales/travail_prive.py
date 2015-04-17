@@ -128,7 +128,7 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
 class accident_du_travail(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisations patronales accident du travail et maladie professionelle"
+    label = u"Cotisations employeur accident du travail et maladie professionelle"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')

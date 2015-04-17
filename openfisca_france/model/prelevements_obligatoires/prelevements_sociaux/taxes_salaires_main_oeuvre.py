@@ -121,7 +121,7 @@ class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation sociales patronales main d'oeuvre"
+    label = u"Cotisation sociales employeur main d'oeuvre"
 
     def function(self, simulation, period):
         period = period

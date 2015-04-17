@@ -120,7 +120,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
+    label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     # Artisans et employeurs de moins de 11 salariés
     #

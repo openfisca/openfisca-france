@@ -802,9 +802,9 @@ class salsuperbrut(SimpleFormulaColumn):
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
-        exoneration_cotisations_patronales_geographiques = simulation.calculate(
-            'exoneration_cotisations_patronales_geographiques', period)
-        exoneration_cotisations_patronales_jei = simulation.calculate_add('exoneration_cotisations_patronales_jei', period)
+        exoneration_cotisations_employeur_geographiques = simulation.calculate(
+            'exoneration_cotisations_employeur_geographiques', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate_add('exoneration_cotisations_employeur_jei', period)
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
@@ -819,8 +819,8 @@ class salsuperbrut(SimpleFormulaColumn):
             primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_employeur
             - allegement_fillon
-            - exoneration_cotisations_patronales_geographiques
-            - exoneration_cotisations_patronales_jei
+            - exoneration_cotisations_employeur_geographiques
+            - exoneration_cotisations_employeur_jei
             - credit_impot_competitivite_emploi
             - tehr
             )

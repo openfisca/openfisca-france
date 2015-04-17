@@ -40,7 +40,7 @@ log = logging.getLogger(__name__)
 
 
 def build_pat(node_json):
-    """Construit le dictionnaire de barèmes des cotisations patronales à partir de node_json['children']['cotsoc'][
+    """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json['children']['cotsoc'][
         'children']['pat']"""
     pat = copy.deepcopy(node_json['children']['cotsoc']['children']['pat'])
     commun = pat['children'].pop('commun')
