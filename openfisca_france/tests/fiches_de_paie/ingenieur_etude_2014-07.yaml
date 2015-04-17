@@ -81,8 +81,8 @@ output_variables:
 
   # cotisations_salariales_contributives: 0
   agff_salarie: -24
-  agirc_gmp_employe: -25.17 # erreur dans la fiche de paie
-  agirc_salarie: -25.17  # agirc_gmp_employe
+  agirc_gmp_salarie: -25.17 # erreur dans la fiche de paie
+  agirc_salarie: -25.17  # agirc_gmp_salarie
   apec_salarie: -0.72
   arrco_salarie: -91.5
   chomage_salarie: -72

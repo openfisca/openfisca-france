@@ -191,7 +191,7 @@ class agff_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_gmp_employe(SimpleFormulaColumn):
+class agirc_gmp_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
@@ -252,7 +252,7 @@ class agirc_salarie(SimpleFormulaColumn):
             bareme_name = "agirc",
             variable_name = self.__class__.__name__
             )
-        gmp_employe = simulation.calculate_add('agirc_gmp_employe', period)
+        gmp_employe = simulation.calculate_add('agirc_gmp_salarie', period)
         type_sal = simulation.calculate('type_sal', period)
         return period, cotisation + gmp_employe * (cotisation == 0) * (type_sal == 1)
 
