@@ -5162,6 +5162,7 @@
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1094.10" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1113" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1127.10" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1137.50" />
       </CODE>
       <CODE code="plaf_coup" description="Plafond de ressources pour un couple (mensuel)" format="float" type="monetary">
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="1774.80" />
@@ -5174,6 +5175,7 @@
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1719.30" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1749" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1772.10" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1787.50" />
       </CODE>
     </NODE>
     <NODE code="aspa" description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)">
