@@ -236,8 +236,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
                     u"""indemnites_compensatrices_conges_payes""",
                     u"""contrat_de_travail""",  # Type contrat de travail
-                    u"""contrat_de_travail_arrivee""",  # Date d'arrivée dans l'entreprise
-                    u"""contrat_de_travail_depart""",  # Date de départ de l'entreprise
+                    u"""contrat_de_travail_debut""",  # Date d'arrivée dans l'entreprise
+                    u"""contrat_de_travail_fin""",  # Date de départ de l'entreprise
                     u"""contrat_de_travail_duree""",  # Type (durée determinée ou indéterminée) du contrat de travail
                     u"""cotisation_sociale_mode_recouvrement""",  # Mode de recouvrement des cotisations sociales
                     u"""depcom_entreprise""",  # Localisation entreprise (depcom)
@@ -747,7 +747,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7rv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7rw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise
                     u"""f7rx""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
-                    u"""f7ry""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
+                    u"""f7ry""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la r��duction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7nu""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7nv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7nw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise

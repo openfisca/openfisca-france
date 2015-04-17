@@ -97,8 +97,8 @@ class coefficient_proratisation(SimpleFormulaColumn):
         # u"forfait_heures_annee",
         # u"forfait_jours_annee",
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         forfait_heures_remunerees_volume = simulation.calculate('forfait_heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
         heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
@@ -112,10 +112,10 @@ class coefficient_proratisation(SimpleFormulaColumn):
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
 
-        mois_incomplet = or_(contrat_de_travail_arrivee > debut_mois, contrat_de_travail_depart < fin_mois)
+        mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)
         jours_travailles = busday_count(
-            max_(contrat_de_travail_arrivee, debut_mois),
-            min_(contrat_de_travail_depart, fin_mois)
+            max_(contrat_de_travail_debut, debut_mois),
+            min_(contrat_de_travail_fin, fin_mois)
             )
 
         duree_legale = 35 * 52 / 12  # mensuelle_temps_plein

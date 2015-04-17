@@ -1,7 +1,7 @@
 - name: "Exonération cotisations employeur zone franche urbaine (ZFU)"
   period: "2014"
   input_variables:
-    contrat_de_travail_arrivee: "2010-01-01"
+    contrat_de_travail_debut: "2010-01-01"
     depcom_entreprise: 69381
     effectif_entreprise:
       "2014:15": 20

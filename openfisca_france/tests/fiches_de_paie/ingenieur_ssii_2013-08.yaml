@@ -7,8 +7,8 @@ input_variables:
   assujettie_taxe_salaires: False
   avantages_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
-  contrat_de_travail_arrivee: "2013-01-01"
-  contrat_de_travail_depart: "2013-12-31"
+  contrat_de_travail_debut: "2013-01-01"
+  contrat_de_travail_fin: "2013-12-31"
   contrat_de_travail_duree: 0  # CDI
   effectif_entreprise: 5000
   heures_non_remunerees_volume: 21.0

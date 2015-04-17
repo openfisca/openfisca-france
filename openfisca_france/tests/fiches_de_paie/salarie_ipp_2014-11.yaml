@@ -3,7 +3,7 @@ period: "2014-11"
 input_variables:
   assujettie_taxe_salaires: True
   contrat_de_travail_duree: 1  # CDD
-  contrat_de_travail_arrivee: "2014-11-02"
+  contrat_de_travail_debut: "2014-11-02"
   effectif_entreprise: 3000
   # exposition_accident: 3
   code_postal_entreprise: "75014"

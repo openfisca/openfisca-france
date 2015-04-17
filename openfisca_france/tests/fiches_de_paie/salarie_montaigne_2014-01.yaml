@@ -8,8 +8,8 @@ input_variables:
   code_postal_entreprise: "75014"
   depcom_entreprise: "75114"
   contrat_de_travail: 0  # temps plein
-  contrat_de_travail_arrivee: "2014-01-01"
-  contrat_de_travail_depart: "2014-12-31"
+  contrat_de_travail_debut: "2014-01-01"
+  contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
   effectif_entreprise: 500
   heures_non_remunerees_volume: 0

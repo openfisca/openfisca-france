@@ -211,13 +211,13 @@ reference_input_variable(
     column = DateCol(default = date(1870, 1, 1)),
     entity_class = Individus,
     label = u"Date d'arrivée dans l'entreprise",
-    name = 'contrat_de_travail_arrivee',  # debut
+    name = 'contrat_de_travail_debut',  # debut
     )
 reference_input_variable(
     column = DateCol(default = date(2099, 12, 31)),
     entity_class = Individus,
     label = u"Date de départ de l'entreprise",
-    name = 'contrat_de_travail_depart',   # fin
+    name = 'contrat_de_travail_fin',   # fin
     )
 reference_input_variable(
     column = EnumCol(
@@ -537,16 +537,16 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
 
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month'))
         jours_travailles = max_(
             busday_count(
-                max_(contrat_de_travail_arrivee, debut_mois),
-                min_(contrat_de_travail_depart, fin_mois) + timedelta64(1, 'D')
+                max_(contrat_de_travail_debut, debut_mois),
+                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
                 ),
             0,
             )

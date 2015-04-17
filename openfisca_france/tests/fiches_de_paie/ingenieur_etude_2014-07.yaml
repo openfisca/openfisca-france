@@ -6,8 +6,8 @@ input_variables:
   avantages_en_nature_valeur_reelle: 0
   birth: "1974-01-01"
   contrat_de_travail: 0  # temps plein
-  contrat_de_travail_arrivee: "2014-01-01"
-  contrat_de_travail_depart: "2014-12-31"
+  contrat_de_travail_debut: "2014-01-01"
+  contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
   depcom_entreprise : "75114"
   effectif_entreprise: 3000

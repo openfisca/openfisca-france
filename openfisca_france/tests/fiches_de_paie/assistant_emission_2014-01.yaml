@@ -5,8 +5,8 @@ input_variables:
   assujettie_taxe_salaires: False
   avantages_en_nature_valeur_reelle: 0
   contrat_de_travail: 1  # temps plein
-  contrat_de_travail_arrivee: "2014-01-01"
-  contrat_de_travail_depart: "2014-12-31"
+  contrat_de_travail_debut: "2014-01-01"
+  contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
   effectif_entreprise: 0
   # exposition_accident: 3
