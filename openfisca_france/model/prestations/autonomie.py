@@ -87,14 +87,3 @@ reference_input_variable(
     label = u"Groupe iso-ressources de l'individu",
     name = "gir",
     )
-<<<<<<< HEAD
-=======
-
-
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Élève ou étudiant boursier",
-    name = 'boursier',
-    )
->>>>>>> Stub for dependance (WIP)
