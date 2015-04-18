@@ -29,12 +29,11 @@
 
 import argparse
 import collections
-import cStringIO
 import datetime
 import logging
 import os
 import sys
-from xml.sax.saxutils import quoteattr
+import xml.etree.ElementTree as etree
 
 from biryani import strings
 import yaml
@@ -91,6 +90,11 @@ def main():
     parser.add_argument('-i', '--ipp-translations',
         default = os.path.join(parameters_dir, 'ipp-tax-and-benefit-tables-to-parameters.yaml'),
         help = 'path of YAML file containing the association between IPP fields and OpenFisca parameters')
+    parser.add_argument('-o', '--origin', default = os.path.join(parameters_dir, 'param.xml'),
+        help = 'path of XML file containing the original OpenFisca parameters')
+    parser.add_argument('-p', '--param-translations',
+        default = os.path.join(parameters_dir, 'param-to-parameters.yaml'),
+        help = 'path of YAML file containing the association between param elements and OpenFisca parameters')
     parser.add_argument('-s', '--source-dir', default = 'yaml-clean',
         help = 'path of source directory containing clean IPP YAML files')
     parser.add_argument('-t', '--target', default = os.path.join(parameters_dir, 'parameters.xml'),
@@ -100,6 +104,44 @@ def main():
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
     file_system_encoding = sys.getfilesystemencoding()
+
+    original_element_tree = etree.parse(args.origin)
+    original_root_element = original_element_tree.getroot()
+
+    # Apply translations to original parameters.
+    with open(args.param_translations) as param_translations_file:
+        param_translations = yaml.load(param_translations_file)
+    for old_path, new_path in param_translations.iteritems():
+        parent_element = None
+        element = original_root_element
+        for name in old_path.split('.'):
+            for child in element:
+                if child.get('code') == name:
+                    parent_element = element
+                    element = child
+                    break
+            else:
+                assert False, 'Path "{}" not found in "{}"'.format(old_path, args.origin)
+        parent_element.remove(element)
+        if new_path is not None:
+            parent_element = original_root_element
+            split_new_path = new_path.split('.')
+            for name in split_new_path[:-1]:
+                for child in parent_element:
+                    if child.get('code') == name:
+                        parent_element = child
+                        break
+                else:
+                    parent_element = etree.SubElement(parent_element, 'NODE', attrib = dict(
+                        code = name,
+                        ))
+            name = split_new_path[-1]
+            assert all(
+                child.get('code') != name
+                for child in parent_element
+                ), 'Path "{}" already exists in "{}"'.format(new_path, args.origin)
+            element.set('code', name)
+            parent_element.append(element)
 
     with open(args.ipp_translations) as ipp_translations_file:
         ipp_translations = yaml.load(ipp_translations_file)
@@ -168,11 +210,6 @@ def main():
                         # Either x or y paths are missing in relative_ipp_paths => Their order can't be compared.
                         continue
                 return -1
-                # print x
-                # print y
-                # print unsorted_relative_ipp_paths
-                # print relative_ipp_paths_by_start
-                # assert False, "This should not occur."
 
             sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
 
@@ -215,18 +252,32 @@ def main():
                         while sub_path:
                             fragment = sub_path.pop(0)
                             translated_path.append(fragment)
-                            if fragment == u'BAREME':
+                            if fragment == u'ASSIETTE':
+                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
+                                assert not sub_path
+                                slice_name = remaining_path.pop(0)
+                                assert not remaining_path
+                                sub_tree = sub_tree.setdefault(u'ASSIETTE', collections.OrderedDict()).setdefault(
+                                    slice_name, [])
+                            elif fragment == u'BAREME':
                                 existing_type = sub_tree.get('TYPE')
                                 if existing_type is None:
                                     sub_tree['TYPE'] = fragment
                                 else:
                                     assert existing_type == fragment
+                            elif fragment == u'MONTANT':
+                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
+                                assert not sub_path
+                                slice_name = remaining_path.pop(0)
+                                assert not remaining_path
+                                sub_tree = sub_tree.setdefault(u'MONTANT', collections.OrderedDict()).setdefault(
+                                    slice_name, [])
                             elif fragment == u'SEUIL':
                                 assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
                                 assert not sub_path
                                 slice_name = remaining_path.pop(0)
                                 assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'SEUILS', collections.OrderedDict()).setdefault(
+                                sub_tree = sub_tree.setdefault(u'SEUIL', collections.OrderedDict()).setdefault(
                                     slice_name, [])
                             elif fragment == u'TAUX':
                                 assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
@@ -235,9 +286,6 @@ def main():
                                 assert not remaining_path
                                 sub_tree = sub_tree.setdefault(u'TAUX', collections.OrderedDict()).setdefault(
                                     slice_name, [])
-                            # elif fragment == u'TRANCHE':
-                            #     assert sub_tree.get('TYPE') == u'BAREME'
-                            #     sub_tree = sub_tree.setdefault(u'TRANCHES', [])
                             elif sub_path or remaining_path:
                                 sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
                                 if type is not None:
@@ -260,10 +308,54 @@ def main():
                         value = value,
                         ))
 
-    with open(args.target, 'w') as target_file:
-        print_xml(target_file, u'root', tree)
+    root_element = transform_node_to_element(u'root', tree)
+    root_element.set('deb', original_root_element.get('deb'))
+    root_element.set('fin', original_root_element.get('fin'))
+    merge_elements(root_element, original_root_element)
+    sort_elements(root_element)
+    reindent(root_element)
+
+    element_tree = etree.ElementTree(root_element)
+    element_tree.write(args.target, encoding = 'utf-8')
 
     return 0
+
+
+def merge_elements(element, original_element, path = None):
+    if path is None:
+        path = []
+    else:
+        path = path[:]
+    path.append(element.get('code'))
+    assert element.tag == original_element.tag, 'At {}, IPP element "{}"" differs from original element "{}"'.format(
+        '.'.join(path), element.tag, original_element.tag)
+    if element.tag == 'NODE':
+        for original_child in original_element:
+            for child in element:
+                if child.get('code') == original_child.get('code'):
+                    merge_elements(child, original_child)
+                    break
+            else:
+                # A child with the same code as the original child doesn't exist yet.
+                element.append(original_child)
+
+
+def sort_elements(element):
+    if element.tag in ('BAREME', 'NODE', 'TRANCHE'):
+        if element.tag == 'NODE':
+            children = list(element)
+            for child in children:
+                element.remove(child)
+            children.sort(key = lambda child: child.get('code'))
+            element.extend(children)
+        for child in element:
+            sort_elements(child)
+    else:
+        children = list(element)
+        for child in children:
+            element.remove(child)
+        children.sort(key = lambda child: child.get('deb') or '', reverse = True)
+        element.extend(children)
 
 
 def prepare_xml_values(name, leafs):
@@ -322,158 +414,115 @@ def prepare_xml_values(name, leafs):
     return leafs, format, type
 
 
-def print_xml(file, name, node, depth = 0):
+def reindent(elem, depth = 0):
+    # cf http://effbot.org/zone/element-lib.htm
+    indent = "\n" + depth * "  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = indent + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = indent
+        for elem in elem:
+            reindent(elem, depth + 1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = indent
+    else:
+        if depth and (not elem.tail or not elem.tail.strip()):
+            elem.tail = indent
+
+
+def transform_node_to_element(name, node):
     if isinstance(node, dict):
         if node.get('TYPE') == u'BAREME':
-            slices_file = cStringIO.StringIO()
-            has_slices = False
-            slices_name = node.get('SEUILS', {}).keys()
-            for slice_name in slices_name:
-                has_amounts = False
-                amounts_file = cStringIO.StringIO()
-                amounts, format, type = prepare_xml_values(name, node.get('MONTANT', {}).get(slice_name, []))
-                for amount in amounts:
-                    has_amounts = print_xml_value(amounts_file, amount, depth = depth + 3) or has_amounts
+            scale_element = etree.Element('BAREME', attrib = dict(
+                code = strings.slugify(name, separator = u'_'),
+                ))
+            for slice_name in node.get('SEUIL', {}).keys():
+                slice_element = etree.Element('TRANCHE', attrib = dict(
+                    code = strings.slugify(slice_name, separator = u'_'),
+                    ))
 
-                has_bases = False
-                bases_file = cStringIO.StringIO()
-                bases, format, type = prepare_xml_values(name, node.get('ASSIETTE', {}).get(slice_name, []))
-                for base in bases:
-                    has_bases = print_xml_value(bases_file, base, depth = depth + 3) or has_bases
+                threshold_element = etree.Element('SEUIL')
+                values, format, type = prepare_xml_values(name, node.get('SEUIL', {}).get(slice_name, []))
+                for value in values:
+                    value_element = transform_value_to_element(value)
+                    if value_element is not None:
+                        threshold_element.append(value_element)
+                if len(threshold_element) > 0:
+                    slice_element.append(threshold_element)
 
-                has_rates = False
-                rates_file = cStringIO.StringIO()
-                rates, format, type = prepare_xml_values(name, node.get('TAUX', {}).get(slice_name, []))
-                for rate in rates:
-                    has_rates = print_xml_value(rates_file, rate, depth = depth + 3) or has_rates
+                amount_element = etree.Element('MONTANT')
+                values, format, type = prepare_xml_values(name, node.get('MONTANT', {}).get(slice_name, []))
+                for value in values:
+                    value_element = transform_value_to_element(value)
+                    if value_element is not None:
+                        amount_element.append(value_element)
+                if len(amount_element) > 0:
+                    slice_element.append(amount_element)
 
-                has_thresholds = False
-                thresholds_file = cStringIO.StringIO()
-                thresholds, format, type = prepare_xml_values(name, node.get('SEUILS', {}).get(slice_name, []))
-                for threshold in thresholds:
-                    has_thresholds = print_xml_value(thresholds_file, threshold, depth = depth + 3) or has_thresholds
+                rate_element = etree.Element('TAUX')
+                values, format, type = prepare_xml_values(name, node.get('TAUX', {}).get(slice_name, []))
+                for value in values:
+                    value_element = transform_value_to_element(value)
+                    if value_element is not None:
+                        rate_element.append(value_element)
+                if len(rate_element) > 0:
+                    slice_element.append(rate_element)
 
-                if has_bases or has_amounts or has_rates or has_thresholds:
-                    slices_file.write(u'{indent}<TRANCHE code="{name}">\n'.format(
-                        indent = u'  ' * (depth + 1),
-                        name = strings.slugify(slice_name, separator = u'_'),
-                        ).encode('utf-8'))
-                    if has_thresholds:
-                        slices_file.write(u'{indent}<SEUIL>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                        slices_file.write(thresholds_file.getvalue())
-                        slices_file.write(u'{indent}</SEUIL>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                    if has_amounts:
-                        slices_file.write(u'{indent}<MONTANT>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                        slices_file.write(amounts_file.getvalue())
-                        slices_file.write(u'{indent}</MONTANT>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                    if has_rates:
-                        slices_file.write(u'{indent}<TAUX>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                        slices_file.write(rates_file.getvalue())
-                        slices_file.write(u'{indent}</TAUX>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                    if has_bases:
-                        slices_file.write(u'{indent}<ASSIETTE>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                        slices_file.write(bases_file.getvalue())
-                        slices_file.write(u'{indent}</ASSIETTE>\n'.format(
-                            indent = u'  ' * (depth + 2),
-                            ).encode('utf-8'))
-                    slices_file.write(u'{indent}</TRANCHE>\n'.format(
-                        indent = u'  ' * (depth + 1),
-                        ).encode('utf-8'))
-                    has_slices = True
-            if not has_slices:
-                return False
-            file.write(u'{indent}<BAREME code="{name}">\n'.format(
-                indent = u'  ' * depth,
-                name = strings.slugify(name, separator = u'_'),
-                ).encode('utf-8'))
-            file.write(slices_file.getvalue())
-            file.write(u'{indent}</BAREME>\n'.format(
-                indent = u'  ' * depth,
-                ).encode('utf-8'))
-            return True
+                base_element = etree.Element('ASSIETTE')
+                values, format, type = prepare_xml_values(name, node.get('ASSIETTE', {}).get(slice_name, []))
+                for value in values:
+                    value_element = transform_value_to_element(value)
+                    if value_element is not None:
+                        base_element.append(value_element)
+                if len(base_element) > 0:
+                    slice_element.append(base_element)
+
+                if len(slice_element) > 0:
+                    scale_element.append(slice_element)
+            return scale_element if len(scale_element) > 0 else None
         else:
-            items_file = cStringIO.StringIO()
-            has_children = False
+            node_element = etree.Element('NODE', attrib = dict(
+                code = strings.slugify(name, separator = u'_'),
+                ))
             for key, value in node.iteritems():
-                has_children = print_xml(items_file, key, value, depth = depth + 1) or has_children
-            if not has_children:
-                return False
-            file.write(u'{indent}<NODE code="{name}">\n'.format(
-                indent = u'  ' * depth,
-                name = strings.slugify(name, separator = u'_'),
-                ).encode('utf-8'))
-            file.write(items_file.getvalue())
-            file.write(u'{indent}</NODE>\n'.format(
-                indent = u'  ' * depth,
-                ).encode('utf-8'))
-            return True
+                child_element = transform_node_to_element(key, value)
+                if child_element is not None:
+                    node_element.append(child_element)
+            return node_element if len(node_element) > 0 else None
     else:
         assert isinstance(node, list), node
-        # Print list of leafs as a single CODE element.
-        leafs, format, type = prepare_xml_values(name, node)
-        if not leafs:
-            return False
-        file.write(u'{indent}<CODE code="{name}"{format}{type}>\n'.format(
-            format = u' format="{}"'.format(format) if format is not None else u'',
-            indent = u'  ' * depth,
-            name = strings.slugify(name, separator = u'_'),
-            type = u' type="{}"'.format(type) if type is not None else u'',
-            ).encode('utf-8'))
-        for leaf in leafs:
-            print_xml_value(file, leaf, depth = depth + 1)
-        file.write(u'{}</CODE>\n'.format(u'  ' * depth).encode('utf-8'))
-        return True
+        values, format, type = prepare_xml_values(name, node)
+        if not values:
+            return None
+        code_element = etree.Element('CODE', attrib = dict(
+            code = strings.slugify(name, separator = u'_'),
+            ))
+        if format is not None:
+            code_element.set('format', format)
+        if type is not None:
+            code_element.set('type', type)
+        for value in values:
+            value_element = transform_value_to_element(value)
+            if value_element is not None:
+                code_element.append(value_element)
+        return code_element if len(code_element) > 0 else None
 
 
-def print_xml_value(file, leaf, depth = 0):
+def transform_value_to_element(leaf):
+    value = leaf.get('value')
+    if value is None:
+        return None
+    value_element = etree.Element('VALUE', attrib = dict(
+        valeur = unicode(value),
+        ))
     start = leaf.get('start')
+    if start is not None:
+        value_element.set('deb', start.isoformat())
     stop = leaf.get('stop')
-    file.write(u'{indent}<VALUE{start}{stop} valeur={value}/>\n'.format(
-        indent = u'  ' * depth,
-        start = u' deb="{}"'.format(start.isoformat()) if start is not None else u'',
-        stop = u' fin="{}"'.format(stop.isoformat()) if stop is not None else u'',
-        value = quoteattr(unicode(leaf['value'])),
-        ).encode('utf-8'))
-    return True
-
-
-# def translate_path(remaining_path, translations, translated_path = None):
-#     if not remaining_path:
-#         return translated_path
-#     if isinstance(remaining_path, tuple):
-#         remaining_path = list(remaining_path)
-#     if translated_path is None:
-#         translated_path = ()
-#     name = remaining_path.pop(0)
-#     if translations is not None:
-#         translations = translations.get(name)
-#         if translations is not None:
-#             if isinstance(translations, dict):
-#                 translation = translations.get('RENAME')
-#                 if translation is not None:
-#                     name = translation
-#             else:
-#                 name = translations
-#                 translations = None
-#     if isinstance(name, basestring):
-#         name = (name,)
-#     if isinstance(name, list):
-#         name = tuple(name)
-#     return translate_path(remaining_path, translations, translated_path + name)
+    if stop is not None:
+        value_element.set('fin', stop.isoformat())
+    return value_element
 
 
 if __name__ == "__main__":
