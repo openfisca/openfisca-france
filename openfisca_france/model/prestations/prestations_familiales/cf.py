@@ -140,6 +140,8 @@ class cf_plafond(SimpleFormulaColumn):
 
         pfam = simulation.legislation_at(period.start).fam
 
+        eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
+        eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
         isol = simulation.calculate('isol', period)
         biact = simulation.calculate('biact', period)
         cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
@@ -147,13 +149,22 @@ class cf_plafond(SimpleFormulaColumn):
         # Calcul du nombre d'enfants à charge au sens du CF
         cf_nbenf = self.sum_by_entity(cf_enfant_a_charge_holder)
 
-        # Calcul du taux à appliquer au plafond de base
-        taux_plafond = 1 + pfam.cf.majoration_plafond_tx1 * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_tx2 * max_(cf_nbenf - 2, 0)
+        # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
+        taux_plafond_metropole = 1 + pfam.cf.majoration_plafond_tx1 * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_tx2 * max_(cf_nbenf - 2, 0)
 
-        # Majoration du plafond pour biactivité ou isolement
+        # Majoration du plafond pour biactivité ou isolement (France métropolitaine)
         majoration_plafond = (isol | biact)
 
-        plafond = pfam.cf.plafond * taux_plafond + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
+        # Calcul du plafond pour la France métropolitaine
+        plafond_metropole = pfam.cf.plafond * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
+
+        # Calcul du taux à appliquer au plafond de base pour les DOM
+        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.plaf_enf_supp
+
+        # Calcul du plafond pour les DOM
+        plafond_dom = pfam.ars.plaf * taux_plafond_dom
+
+        plafond = (eligibilite_base * plafond_metropole + eligibilite_dom * plafond_dom)
 
         return period, plafond
 

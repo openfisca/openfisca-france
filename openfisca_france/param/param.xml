@@ -4146,7 +4146,7 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="18697" />
       </CODE>
       <CODE code="plaf_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent">
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.3" />
       </CODE>
       <CODE code="tx0610" description="Taux pour les écoliers (en % de bmaf)" format="percent">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
