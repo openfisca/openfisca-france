@@ -45,7 +45,7 @@ class decote(formulas.SimpleFormulaColumn):
     reference = ir.decote
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         plf = simulation.legislation_at(period.start).plf2015

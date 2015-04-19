@@ -96,7 +96,7 @@ class isf_imm_bati(SimpleFormulaColumn):
         '''
         Immeubles bâtis
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         b1ab = simulation.calculate('b1ab', period)
         b1ac = simulation.calculate('b1ac', period)
         P = simulation.legislation_at(period.start).isf.res_princ
@@ -114,7 +114,7 @@ class isf_imm_non_bati(SimpleFormulaColumn):
         '''
         Immeubles non bâtis
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         b1bc = simulation.calculate('b1bc', period)
         b1be = simulation.calculate('b1be', period)
         b1bh = simulation.calculate('b1bh', period)
@@ -146,7 +146,7 @@ class isf_actions_sal(SimpleFormulaColumn):  # # non présent en 2005##
         '''
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         b1cl = simulation.calculate('b1cl', period)
         P = simulation.legislation_at(period.start).isf.droits_soc
 
@@ -160,7 +160,7 @@ class isf_droits_sociaux(SimpleFormulaColumn):
     label = u"isf_droits_sociaux"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         isf_actions_sal = simulation.calculate('isf_actions_sal', period)
         b1cb = simulation.calculate('b1cb', period)
         b1cd = simulation.calculate('b1cd', period)
@@ -181,7 +181,7 @@ class ass_isf(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         # TODO: Gérer les trois option meubles meublants
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         isf_imm_bati = simulation.calculate('isf_imm_bati', period)
         isf_imm_non_bati = simulation.calculate('isf_imm_non_bati', period)
         isf_droits_sociaux = simulation.calculate('isf_droits_sociaux', period)
@@ -206,14 +206,14 @@ class isf_iai(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
     def function_20020101_20101231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         ass_isf = simulation.calculate('ass_isf', period)
         bareme = simulation.legislation_at(period.start).isf.bareme
         return period, bareme.calc(ass_isf)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2015, 12, 31))
     def function_20110101_20151231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         ass_isf = simulation.calculate('ass_isf', period)
         bareme = simulation.legislation_at(period.start).isf.bareme
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
@@ -227,7 +227,7 @@ class isf_avant_reduction(SimpleFormulaColumn):
     label = u"isf_avant_reduction"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         isf_iai = simulation.calculate('isf_iai', period)
         decote_isf = simulation.calculate('decote_isf', period)
 
@@ -244,7 +244,7 @@ class isf_reduc_pac(SimpleFormulaColumn):
         '''
         Réductions pour personnes à charges
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         nb_pac = simulation.calculate('nb_pac', period)
         nbH = simulation.calculate('nbH', period)
         P = simulation.legislation_at(period.start).isf.reduc_pac
@@ -264,7 +264,7 @@ class isf_inv_pme(SimpleFormulaColumn):
         Réductions pour investissements dans les PME
         à partir de 2008!
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         b2mt = simulation.calculate('b2mt', period)
         b2ne = simulation.calculate('b2ne', period)
         b2mv = simulation.calculate('b2mv', period)
@@ -287,7 +287,7 @@ class isf_org_int_gen(SimpleFormulaColumn):
     label = u"isf_org_int_gen"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         b2nc = simulation.calculate('b2nc', period)
         P = simulation.legislation_at(period.start).isf.pme
 
@@ -304,7 +304,7 @@ class isf_avant_plaf(SimpleFormulaColumn):
         '''
         Montant de l'impôt avant plafonnement
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         isf_avant_reduction = simulation.calculate('isf_avant_reduction', period)
         isf_inv_pme = simulation.calculate('isf_inv_pme', period)
         isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)
@@ -326,7 +326,7 @@ class tot_impot(SimpleFormulaColumn):
         Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF
         Utilisé pour calculer le montant du plafonnement de l'ISF
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         irpp = simulation.calculate('irpp', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
         crds_holder = simulation.compute('crds', period)
@@ -357,7 +357,7 @@ class revetproduits(SimpleFormulaColumn):
         Cf.
         http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         salcho_imp_holder = simulation.compute('salcho_imp', period)
         pen_net_holder = simulation.compute('pen_net', period)
         rto_net = simulation.calculate('rto_net', period)
@@ -396,7 +396,7 @@ class decote_isf(SimpleFormulaColumn):
     start_date = date(2013, 1, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         ass_isf = simulation.calculate('ass_isf', period)
         P = simulation.legislation_at(period.start).isf.decote
 
@@ -414,7 +414,7 @@ class isf_apres_plaf(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2011, 12, 31))
     def function_20020101_20111231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
@@ -434,7 +434,7 @@ class isf_apres_plaf(DatedFormulaColumn):
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
@@ -448,7 +448,7 @@ class isf_apres_plaf(DatedFormulaColumn):
         """
         Impôt sur la fortune après plafonnement
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
@@ -465,7 +465,7 @@ class isf_tot(SimpleFormulaColumn):
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         b4rs = simulation.calculate('b4rs', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
         isf_apres_plaf = simulation.calculate('isf_apres_plaf', period)
@@ -490,7 +490,7 @@ class rvcm_plus_abat(SimpleFormulaColumn):
         '''
         Revenu catégoriel avec abattement de 40% réintégré.
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_cat_rvcm = simulation.calculate('rev_cat_rvcm', period)
         rfr_rvcm = simulation.calculate('rfr_rvcm', period)
 
@@ -555,7 +555,7 @@ class bouclier_rev(SimpleFormulaColumn):
         '''
         Total des revenus sur l'année 'n' net de charges
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rbg = simulation.calculate('rbg', period)
         maj_cga = simulation.calculate('maj_cga', period)
         csg_deduc = simulation.calculate('csg_deduc', period)
@@ -613,7 +613,7 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
     stop_date = date(2010, 12, 31)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         irpp = simulation.calculate('irpp', period)
         taxe_habitation_holder = simulation.compute('taxe_habitation', period)
         tax_fonc = simulation.calculate('tax_fonc', period)
@@ -667,7 +667,7 @@ class restitutions(SimpleFormulaColumn):
         '''
         Restitutions d'impôt sur le revenu et degrèvements percus en l'année 'n'
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         ppe = simulation.calculate('ppe', period)
         restit_imp = simulation.calculate('restit_imp', period)
 
@@ -686,7 +686,7 @@ class bouclier_sumimp(SimpleFormulaColumn):
         '''
         Somme totale des impôts moins restitutions et degrèvements
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         bouclier_imp_gen = simulation.calculate('bouclier_imp_gen', period)
         restitutions = simulation.calculate('restitutions', period)
 
@@ -703,7 +703,7 @@ class bouclier_fiscal(SimpleFormulaColumn):
     url = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         bouclier_sumimp = simulation.calculate('bouclier_sumimp', period)
         bouclier_rev = simulation.calculate('bouclier_rev', period)
         P = simulation.legislation_at(period.start).bouclier_fiscal

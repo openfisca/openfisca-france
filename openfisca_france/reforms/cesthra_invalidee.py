@@ -68,7 +68,7 @@ class irpp(formulas.SimpleFormulaColumn):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         iai = simulation.calculate('iai', period)
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
