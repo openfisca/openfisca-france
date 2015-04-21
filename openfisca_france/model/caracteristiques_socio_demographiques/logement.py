@@ -23,6 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from numpy import logical_not as not_, logical_or as or_
 from numpy.core.defchararray import startswith
 
 
@@ -71,12 +72,25 @@ reference_input_variable(
 
 
 @reference_formula
+class residence_dom(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        residence_guadeloupe = simulation.calculate('residence_guadeloupe', period)
+        residence_martinique = simulation.calculate('residence_martinique', period)
+        residence_guyane = simulation.calculate('residence_guyane', period)
+        residence_reunion = simulation.calculate('residence_reunion', period)
+        residence_mayotte = simulation.calculate('residence_mayotte', period)
+        return period, or_(or_(residence_guadeloupe, residence_martinique), or_(or_(residence_reunion, residence_guyane), residence_mayotte))
+
+
+@reference_formula
 class residence_guadeloupe(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -90,7 +104,6 @@ class residence_martinique(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -104,7 +117,6 @@ class residence_guyane(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -118,7 +130,6 @@ class residence_reunion(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)
@@ -132,7 +143,6 @@ class residence_mayotte(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period
         depcom_holder = simulation.compute('depcom', period)
 
         depcom = self.cast_from_entity_to_roles(depcom_holder)

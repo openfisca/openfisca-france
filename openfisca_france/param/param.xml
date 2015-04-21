@@ -3978,7 +3978,7 @@
         <VALUE deb="2011-01-01" fin="2012-03-31" valeur="395.04" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="399" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="406.21" />
+        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
       </CODE>
       <CODE code="crds" description="Taux de crds" format="percent">
         <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
@@ -4048,6 +4048,9 @@
       <CODE code="age1" description="Âge limite inférieur" format="integer" type="age">
         <VALUE deb="1986-01-01" fin="2014-03-31" valeur="3" />
       </CODE>
+      <CODE code="age_limite_dom" description="Âge limite DOM" format="integer" type="age">
+        <VALUE deb="1986-01-01" fin="2014-03-31" valeur="5" />
+      </CODE>
       <CODE code="age2" description="Âge limite supérieur" format="integer" type="age">
         <VALUE deb="1986-01-01" fin="1996-12-31" valeur="17" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
@@ -4098,12 +4101,19 @@
       </CODE>
       <CODE code="tx" description="Taux du complément familial" format="percent">
         <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.4165" />
-
+      </CODE>
+      <CODE code="tx_dom" description="Taux du complément familial dans les DOM" format="percent">
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
       </CODE>
       <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
+      </CODE>
+      <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.2379" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />
+        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
       </CODE>
     </NODE>
     <NODE code="ars" description="Allocation de rentrée scolaire">
@@ -4136,7 +4146,7 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="18697" />
       </CODE>
       <CODE code="plaf_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent">
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.3" />
       </CODE>
       <CODE code="tx0610" description="Taux pour les écoliers (en % de bmaf)" format="percent">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
