@@ -392,14 +392,12 @@ class br_rmi_ms(SimpleFormulaColumn):
 @reference_formula
 class br_rmi_i(SimpleFormulaColumn):
     column = FloatCol
-    label = u"Base ressource individuelle du RSA/RMI"
+    label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity_class = Individus
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
-
-        ra_rsa_i = simulation.calculate('ra_rsa_i', period)
 
         def calcule_type_ressource(variable_name, neutralisable = False):
             ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
@@ -432,7 +430,7 @@ class br_rmi_i(SimpleFormulaColumn):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        return period, ra_rsa_i + (
+        return period, (
             chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
             rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
@@ -442,12 +440,13 @@ class br_rmi_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class br_rmi(SimpleFormulaColumn):
+class br_rmi(DatedFormulaColumn):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
 
-    def function(self, simulation, period):
+    @dated_function(stop = date(2009, 5, 31))
+    def function_rmi(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         br_rmi_pf = simulation.calculate('br_rmi_pf', period)
         br_rmi_ms = simulation.calculate('br_rmi_ms', period)
@@ -455,6 +454,18 @@ class br_rmi(SimpleFormulaColumn):
 
         br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
         return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total
+
+    @dated_function(start = date(2009, 6, 1))
+    def function_rsa(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
+        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
+        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
+        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
+
+        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
+        ra_rsa_i_total = self.sum_by_entity(ra_rsa_i_holder)
+        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + ra_rsa_i_total
 
 
 @reference_formula
@@ -814,12 +825,13 @@ class rmi(DatedFormulaColumn):
     @dated_function(start =  date(1988, 12, 1), stop = date(2009, 5, 31))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        activite = simulation.calculate('activite', period)
+        br_rmi = simulation.calculate('br_rmi', period)
         rsa_socle = simulation.calculate('rsa_socle', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        br_rmi = simulation.calculate('br_rmi', period)
 
-        return period, max_(0, rsa_socle - rsa_forfait_logement - br_rmi)
-
+        return period, (activite != 0) * (activite != 2) * (activite != 3) * (
+            max_(0, rsa_socle - rsa_forfait_logement - br_rmi))
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
@@ -829,7 +841,7 @@ class rsa_non_majore(DatedFormulaColumn):
     label = u"Revenu de solidarité active - non majoré"
     entity_class = Familles
 
-    @dated_function(start = date(2006, 06, 1))
+    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle = simulation.calculate('rsa_socle', period)
@@ -849,7 +861,7 @@ class rsa_majore(DatedFormulaColumn):
     label = u"Revenu de solidarité active - majoré"
     entity_class = Familles
 
-    @dated_function(start = date(2006, 06, 1))
+    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
@@ -869,7 +881,7 @@ class rsa(DatedFormulaColumn):
     label = u"Revenu de solidarité active"
     entity_class = Familles
 
-    @dated_function(start = date(2006, 06, 1))
+    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_majore = simulation.calculate('rsa_majore', period)
