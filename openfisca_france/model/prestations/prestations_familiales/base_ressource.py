@@ -240,19 +240,6 @@ def nb_enf(ages, smic55, ag1, ag2):
     return res
 
 
-def age_aine(ages, smic55, ag1, ag2):
-    '''
-    Renvoie un vecteur avec l'âge de l'ainé (au sens des allocations
-    familiales) de chaque famille
-    '''
-    ageaine = -9999
-    for key, age in ages.iteritems():
-        ispacaf = (ag1 <= age) & (age <= ag2) & not_(smic55[key])
-        isaine = ispacaf & (age > ageaine)
-        ageaine = isaine * age + not_(isaine) * ageaine
-    return ageaine
-
-
 def age_en_mois_benjamin(agems):
     '''
     Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check agem > 0

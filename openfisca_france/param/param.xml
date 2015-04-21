@@ -3996,21 +3996,24 @@
         <VALUE deb="2001-07-01" fin="2014-03-31" valeur=".55" />
       </CODE>
       <NODE code="taux" description="Taux (% de la BMAF)">
+        <CODE code="enf_seul" description="Un seul enfant à charge (DOM)" format="percent">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0588" />
+        </CODE>
         <CODE code="enf1" description="Premier enfant à charge" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0" />
         </CODE>
         <CODE code="enf2" description="Deuxième enfant à charge" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.32" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.32" />
         </CODE>
         <CODE code="enf3" description="Troisième enfant à charge et suivants" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.41" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.41" />
         </CODE>
         <CODE code="forfait" description="Allocation forfaitaire par enfant de 20 ans" format="percent">
           <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
-          <VALUE deb="2003-07-01" fin="2014-03-31" valeur="0.20234" />
+          <VALUE deb="2003-07-01" fin="2016-03-31" valeur="0.20234" />
         </CODE>
       </NODE>
-      <NODE code="maj_age" description="Majorations pour âge">
+      <NODE code="maj_age_deux_enfants" description="Majorations pour âge">
         <CODE code="taux1" description="1ère majoration pour âge" format="percent">
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="0.09" />
           <VALUE deb="2008-05-01" fin="2014-03-31" valeur="0.00" />
@@ -4024,6 +4027,20 @@
         <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="16" />
           <VALUE deb="2008-05-01" fin="2014-03-31" valeur="14" />
+        </CODE>
+      </NODE>
+      <NODE code="maj_age_un_enfant" description="Majorations pour âge">
+        <CODE code="taux1" description="1ère majoration pour âge" format="percent">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0369" />
+        </CODE>
+        <CODE code="taux2" description="2ème majoration pour âge" format="percent">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0567" />
+        </CODE>
+        <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="11" />
+        </CODE>
+        <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="16" />
         </CODE>
       </NODE>
       <NODE code="modulation" description="Modulation des allocations familiales en fonction des ressources">
