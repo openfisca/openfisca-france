@@ -829,7 +829,7 @@ class rsa_non_majore(DatedFormulaColumn):
     label = u"Revenu de solidarité active - non majoré"
     entity_class = Familles
 
-    @dated_function(start = date(2006, 06, 1))
+    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle = simulation.calculate('rsa_socle', period)
@@ -849,7 +849,7 @@ class rsa_majore(DatedFormulaColumn):
     label = u"Revenu de solidarité active - majoré"
     entity_class = Familles
 
-    @dated_function(start = date(2006, 06, 1))
+    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
@@ -869,7 +869,7 @@ class rsa(DatedFormulaColumn):
     label = u"Revenu de solidarité active"
     entity_class = Familles
 
-    @dated_function(start = date(2006, 06, 1))
+    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_majore = simulation.calculate('rsa_majore', period)
