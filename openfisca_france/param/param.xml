@@ -5764,13 +5764,16 @@
     </NODE>
     <NODE code="auto_entrepreneur" description="Taux global de cotisations sociales et formation à appliquer au CA de l'auto-entrepreneur">
       <CODE code="achat_revente" description="Activité de type Achat-Revente" format="percent">
-        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.142" />
+        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.142" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.134" />
       </CODE>
       <CODE code="bic" description="Activité de type BIC" format="percent">
-        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.248" />
+        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.248" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.232" />
       </CODE>
       <CODE code="bnc" description="Activité de type BNC" format="percent">
-        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.235" />
+        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.235" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.231" />
       </CODE>
     </NODE>
   </NODE>
