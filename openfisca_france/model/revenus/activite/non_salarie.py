@@ -997,29 +997,97 @@ build_column('f5sq', IntCol())
 # TODO: Introudit par mes aides à consolider
 
 # Input variables
-build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))
-build_column('tns_autres_revenus', FloatCol(entity = 'ind', is_permanent = True, label = u"Autres revenus non salariés"))
+reference_input_variable(
+   name ='tns_auto_entrepreneur_chiffre_affaires',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Chiffre d'affaires en tant qu'auto-entrepreneur",
+   set_input = set_input_divide_by_period
+   )
 
-build_column('tns_type_structure', EnumCol(
-    entity = 'ind',
-    enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
-    default = 1,
-    is_permanent = True,
-    label = u"Type de structure associée au travailleur non salarié"))
+reference_input_variable(
+   name ='tns_micro_entreprise_chiffre_affaires',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Chiffre d'affaires en de micro-entrepriser",
+   set_input = set_input_divide_by_period
+   )
 
-build_column('tns_type_activite', EnumCol(
-    entity = 'ind',
-    enum = Enum([u'achat_revente', u'bic', u'bnc']),
-    is_permanent = True,
-    label = u"Valeur locative des biens immobiliés possédés et non loués"))
+enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
+
+reference_input_variable(
+   name='tns_auto_entrepreneur_type_activite',
+   column = EnumCol(enum = enum_tns_type_activite),
+   entity_class = Individus,
+   is_permanent = True,
+   label = u"Type d'activité de l'auto-entrepreneur")
+
+reference_input_variable(
+   name='tns_micro_entreprise_type_activite',
+   column = EnumCol(enum = enum_tns_type_activite),
+   entity_class = Individus,
+   is_permanent = True,
+   label = u"Type d'activité de la micro-entreprise")
+
+reference_input_variable(
+   name ='tns_autres_revenus',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Autres revenus non salariés",
+   set_input = set_input_divide_by_period
+   )
 
 
 # Computed variables
+
+# Auxiliary function
+def compute_benefice_auto_entrepreneur_micro_entreprise(simulation, period, type_activite, chiffre_affaire):
+   bareme = simulation.legislation_at(period.start).tns
+   abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
+   benefice =  chiffre_affaire * (
+         1 -
+          (type_activite == 0) * abatt_fp_me.achat_revente -
+          (type_activite == 1) * abatt_fp_me.bic -
+          (type_activite == 2) * abatt_fp_me.bnc
+         )
+   return benefice
+
+
+
+@reference_formula
+class tns_auto_entrepreneur_benefice(SimpleFormulaColumn):
+   column = FloatCol
+   label = u"Bénéfice en tant qu'auto-entrepreneur"
+   entity_class = Individus
+
+   def function(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
+      tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
+
+      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(simulation,period,tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
+      return period, benefice
+
+@reference_formula
+class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
+   column = FloatCol
+   label = u"Bénéfice de la micro entreprise"
+   entity_class = Individus
+
+   def function(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
+      tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
+
+      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(simulation,period,tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
+      return period, benefice
+
+
 @reference_formula
 class tns_total_revenus(DatedFormulaColumn):
-    column = FloatCol
-    label = u"Total des revenus non salariés"
-    entity_class = Individus
+   column = FloatCol
+   label = u"Total des revenus non salariés"
+   entity_class = Individus
 #    start = "2008-01-01"
 
     @dated_function(date(2008, 1, 1))
@@ -1052,4 +1120,3 @@ class tns_total_revenus(DatedFormulaColumn):
             )
 
         return period, total_revenus
-
