@@ -135,7 +135,7 @@ def iter_openfisca_values(node):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--source-dir', default = 'yaml-raw',
+    parser.add_argument('-s', '--source-dir', default = 'yaml-clean',
         help = 'path of source directory containing clean IPP YAML files')
     parser.add_argument('-t', '--target', default = 'ipp-tax-and-benefit-tables-to-openfisca-parameters.yaml',
         help = 'path of generated YAML file containing the association between IPP fields to OpenFisca parameters')
