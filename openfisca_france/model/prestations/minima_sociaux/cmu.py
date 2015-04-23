@@ -222,7 +222,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
         bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
-        tns_total_revenus = simulation.calculate_add('tns_total_revenus', previous_year)
+        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', previous_year)
         P = simulation.legislation_at(period.start).cmu
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
@@ -236,7 +236,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
             indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
-            tns_total_revenus + revenus_stage_formation_pro)
+            tns_total_revenus_net + revenus_stage_formation_pro)
 
 
 @reference_formula

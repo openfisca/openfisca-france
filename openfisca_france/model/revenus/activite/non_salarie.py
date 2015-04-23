@@ -1041,8 +1041,7 @@ reference_input_variable(
 # Computed variables
 
 # Auxiliary function
-def compute_benefice_auto_entrepreneur_micro_entreprise(simulation, period, type_activite, chiffre_affaire):
-   bareme = simulation.legislation_at(period.start).tns
+def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, chiffre_affaire):
    abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
    benefice =  chiffre_affaire * (
          1 -
@@ -1064,8 +1063,9 @@ class tns_auto_entrepreneur_benefice(SimpleFormulaColumn):
       period = period.start.offset('first-of', 'month').period('month')
       tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
       tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
+      bareme = simulation.legislation_at(period.start).tns
 
-      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(simulation,period,tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
+      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
       return period, benefice
 
 @reference_formula
@@ -1078,8 +1078,9 @@ class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
       period = period.start.offset('first-of', 'month').period('month')
       tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
       tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
+      bareme = simulation.legislation_at(period.start).tns
 
-      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(simulation,period,tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
+      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
       return period, benefice
 
 @reference_formula
@@ -1119,7 +1120,7 @@ class tns_micro_entreprise_revenus_net(SimpleFormulaColumn) :
       return period, revenus
 
 @reference_formula
-class tns_total_revenus(DatedFormulaColumn):
+class tns_total_revenus_net(DatedFormulaColumn):
    column = FloatCol
    label = u"Total des revenus non salariés"
    entity_class = Individus
