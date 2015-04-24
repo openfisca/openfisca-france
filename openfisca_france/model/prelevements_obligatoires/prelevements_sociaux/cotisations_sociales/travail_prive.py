@@ -54,8 +54,12 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period(u'month')
         assiette_cotisations_sociales_prive = simulation.calculate('assiette_cotisations_sociales_prive', period)
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        return period, assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public
-
+        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
+        return period, (
+            assiette_cotisations_sociales_prive +
+            assiette_cotisations_sociales_public +
+            stage_gratification_reintegration
+            )
 
 @reference_formula
 class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
@@ -145,6 +149,7 @@ class agff_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation retraite AGFF tranche A (salarié)"
+    # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -170,6 +175,7 @@ class agff_employeur(SimpleFormulaColumn):
             'assiette_cotisations_sociales', period)
         type_sal = simulation.calculate('type_sal', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+
         law = simulation.legislation_at(period.start)
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
