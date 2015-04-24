@@ -29,8 +29,6 @@ relative_error_margin: 0.02
 individus:
   - age: 42
     age_en_mois: 515
-    pensions_alimentaires_percues:
-      2012: 0
     birth: "1972-01-09"
     cho:
       2012: 0
@@ -42,6 +40,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2012: 0
     rst:
       2012: 0
     sal:
@@ -203,7 +203,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 5493dde7c54524d87a61aaca
-  f6el:
+  pensions_alimentaires_versees:
     2012: 0
   personnes_a_charge:
     - 5493dde7c54524d87a61aac9

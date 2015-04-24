@@ -1,0 +1,117 @@
+name: Foyer 2 enfants âgés de 3 à 5 ans < plafond montant CF majoré
+keywords:
+  - cf
+  - dom
+description: Cette personne, habitant à La Réunion, qui a deux enfants âgés de 3 à 5 ans et qui touche 12 000/an a droit à un CF de 105,78 euros
+period: "month:2015-04"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    age_en_mois: 416
+    birth: "1980-08-12"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 552e7198366d30921bab926b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 12000
+    salaire_de_base:
+      2013: 15384.615384615383
+      2014-04: 1709.4017094017092
+      2014-05: 1709.4017094017092
+      2014-06: 1709.4017094017092
+      2014-07: 1709.4017094017092
+      2014-08: 1709.4017094017092
+      2014-09: 1709.4017094017092
+      2014-10: 1709.4017094017092
+      2014-11: 1709.4017094017092
+      2014-12: 1709.4017094017092
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 15384.615384615383
+    salaire_net:
+      2013: 12000
+      2014-04: 1333.3333333333333
+      2014-05: 1333.3333333333333
+      2014-06: 1333.3333333333333
+      2014-07: 1333.3333333333333
+      2014-08: 1333.3333333333333
+      2014-09: 1333.3333333333333
+      2014-10: 1333.3333333333333
+      2014-11: 1333.3333333333333
+      2014-12: 1333.3333333333333
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 12000
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    age_en_mois: 55
+    birth: "2010-09-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 552e7198366d30921bab926a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 3
+    age_en_mois: 38
+    birth: "2012-02-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 552e7198366d30921bab9269
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 552e7198366d30921bab926a
+    - 552e7198366d30921bab9269
+  parents: 552e7198366d30921bab926b
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 552e7198366d30921bab926b
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 552e7198366d30921bab926a
+    - 552e7198366d30921bab9269
+  rfr:
+menages:
+  depcom: 97419
+  enfants:
+    - 552e7198366d30921bab926a
+    - 552e7198366d30921bab9269
+  loyer: 800
+  personne_de_reference: 552e7198366d30921bab926b
+  statut_occupation: 4
+output_variables:
+  cf: 115.4

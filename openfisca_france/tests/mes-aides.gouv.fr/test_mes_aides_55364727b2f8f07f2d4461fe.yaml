@@ -1,0 +1,95 @@
+name: "Couple, montant fixe en-dessous de 1300 € de ressources par mois"
+keywords:
+  - ass
+  - montant
+description: |
+  Revenu = 1000 < 1300
+  donc ASS complète = 487,50
+period: "month:2015-04"
+individus:
+  - activite: 1
+    age: 24
+    age_en_mois: 294
+    ass_precondition_remplie: true
+    birth: "1990-10-10"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55364722c03d26772db57794
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    salaire_de_base:
+      2013: 15384.615384615381
+      2014-04: 1282.051282051282
+      2014-05: 1282.051282051282
+      2014-06: 1282.051282051282
+      2014-07: 1282.051282051282
+      2014-08: 1282.051282051282
+      2014-09: 1282.051282051282
+      2014-10: 1282.051282051282
+      2014-11: 1282.051282051282
+      2014-12: 1282.051282051282
+      2015-01: 1282.051282051282
+      2015-01:3: 3846.1538461538457
+      2015-02: 1282.051282051282
+      2015-03: 1282.051282051282
+      2015-04: 1282.051282051282
+      year:2014-04: 15384.615384615381
+    salaire_net:
+      2013: 12000
+      2014-04: 1000
+      2014-05: 1000
+      2014-06: 1000
+      2014-07: 1000
+      2014-08: 1000
+      2014-09: 1000
+      2014-10: 1000
+      2014-11: 1000
+      2014-12: 1000
+      2015-01: 1000
+      2015-01:3: 3000
+      2015-02: 1000
+      2015-03: 1000
+      2015-04: 1000
+      year:2014-04: 12000
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 24
+    age_en_mois: 294
+    birth: "1990-10-10"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55364722c03d26772db57793
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 55364722c03d26772db57794
+    - 55364722c03d26772db57793
+foyers_fiscaux:
+  declarants:
+    - 55364722c03d26772db57794
+    - 55364722c03d26772db57793
+  personnes_a_charge:
+menages:
+  conjoint: 55364722c03d26772db57793
+  depcom: 93070
+  enfants:
+  personne_de_reference: 55364722c03d26772db57794
+  statut_occupation: 6
+output_variables:
+  ass: 487.5

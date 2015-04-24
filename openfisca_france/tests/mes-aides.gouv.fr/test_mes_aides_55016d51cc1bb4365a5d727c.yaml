@@ -4,15 +4,13 @@ keywords:
   - points de charge
 description: |
   3 points de charge supplémentaires pour un parent élevant seul un enfant.
-  Points de charge = 9 + 3 = 12
-  Plafond pour 3 parts correspondant : 16130 euros
-  RFR = 16100, donc montant = 135,9
+  Points de charge = 9 (points de base) + 2 (enfant scolarisé au lycée) + 3 = 14
+  Plafond pour 3 parts correspondant : 18819 euros
+  RFR = 18800, donc montant = 135,9
 period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -24,6 +22,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -53,11 +53,11 @@ familles:
   parents: 55016d38c1724a2b5a08c153
 foyers_fiscaux:
   declarants: 55016d38c1724a2b5a08c153
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 55016d38c1724a2b5a08c152
   rfr:
-    2013: 16100
+    2013: 18800
 menages:
   depcom: 67482
   enfants: 55016d38c1724a2b5a08c152

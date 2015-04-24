@@ -1,0 +1,172 @@
+name: Foyer 5 enfants ressources comprises entre CF majoré et CF
+keywords:
+  - cf
+  - dom
+description:
+period: "month:2015-04"
+relative_error_margin: 0.02
+individus:
+  - age: 44
+    age_en_mois: 536
+    birth: "1970-08-09"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553125bada3de56a7b3c8cd5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    logement_chambre: 1
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 26667
+    salaire_de_base:
+      2013: 30769.230769230766
+      2014-04: 3418.8034188034185
+      2014-05: 3418.8034188034185
+      2014-06: 3418.8034188034185
+      2014-07: 3418.8034188034185
+      2014-08: 3418.8034188034185
+      2014-09: 3418.8034188034185
+      2014-10: 3418.8034188034185
+      2014-11: 3418.8034188034185
+      2014-12: 3418.8034188034185
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 30769.230769230766
+    salaire_net:
+      2013: 24000
+      2014-04: 2666.6666666666665
+      2014-05: 2666.6666666666665
+      2014-06: 2666.6666666666665
+      2014-07: 2666.6666666666665
+      2014-08: 2666.6666666666665
+      2014-09: 2666.6666666666665
+      2014-10: 2666.6666666666665
+      2014-11: 2666.6666666666665
+      2014-12: 2666.6666666666665
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 24000
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 3
+    age_en_mois: 44
+    birth: "2011-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553125bada3de56a7b3c8cd4
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    age_en_mois: 56
+    birth: "2010-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553125bada3de56a7b3c8cd3
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 5
+    age_en_mois: 68
+    birth: "2009-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553125bada3de56a7b3c8cd2
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    age_en_mois: 93
+    birth: "2007-07-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553125bada3de56a7b3c8cd1
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 5
+    age_en_mois: 68
+    birth: "2009-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553125bada3de56a7b3c8cd0
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 553125bada3de56a7b3c8cd4
+    - 553125bada3de56a7b3c8cd3
+    - 553125bada3de56a7b3c8cd2
+    - 553125bada3de56a7b3c8cd1
+    - 553125bada3de56a7b3c8cd0
+  parents: 553125bada3de56a7b3c8cd5
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 553125bada3de56a7b3c8cd5
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 553125bada3de56a7b3c8cd4
+    - 553125bada3de56a7b3c8cd3
+    - 553125bada3de56a7b3c8cd2
+    - 553125bada3de56a7b3c8cd1
+    - 553125bada3de56a7b3c8cd0
+  rfr:
+menages:
+  depcom: 97419
+  enfants:
+    - 553125bada3de56a7b3c8cd4
+    - 553125bada3de56a7b3c8cd3
+    - 553125bada3de56a7b3c8cd2
+    - 553125bada3de56a7b3c8cd1
+    - 553125bada3de56a7b3c8cd0
+  loyer: 500
+  personne_de_reference: 553125bada3de56a7b3c8cd5
+  statut_occupation: 4
+output_variables:
+  cf: 96.16

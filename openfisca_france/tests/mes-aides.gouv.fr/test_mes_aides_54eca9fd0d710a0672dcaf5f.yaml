@@ -1,0 +1,100 @@
+name: Foyer 1 enfant de 4 ans avec ressources > plafond montant CF
+keywords:
+  - cf
+  - dom
+description: |
+  Dans les DOM droit au CF dès un enfant à charge d'au moins 3 ans et de moins de 5 ans mais plafond de ressources spécifique (24 306€ par an pour 1 enfant à charge)
+  
+  Dans le cas d'espèce pas de droit au CF car ressources excèdent le plafond de ressources applicable
+period: "month:2015-02"
+individus:
+  - age: 43
+    age_en_mois: 517
+    birth: "1972-01-09"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54eca9e37bcef51072ca0903
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    sal:
+      2013: 30000
+    salaire_de_base:
+      2013: 32046.153846153844
+      2014-02: 2670.5128205128203
+      2014-03: 2670.5128205128203
+      2014-04: 2670.5128205128203
+      2014-05: 2670.5128205128203
+      2014-06: 2670.5128205128203
+      2014-07: 2670.5128205128203
+      2014-08: 2670.5128205128203
+      2014-09: 2670.5128205128203
+      2014-10: 2670.5128205128203
+      2014-11: 2670.5128205128203
+      2014-11:3: 8011.538461538461
+      2014-12: 2670.5128205128203
+      2015-01: 2670.5128205128203
+      2015-02: 2670.5128205128203
+      year:2014-02: 32046.153846153844
+    salaire_net:
+      2013: 24996
+      2014-02: 2083
+      2014-03: 2083
+      2014-04: 2083
+      2014-05: 2083
+      2014-06: 2083
+      2014-07: 2083
+      2014-08: 2083
+      2014-09: 2083
+      2014-10: 2083
+      2014-11: 2083
+      2014-11:3: 6249
+      2014-12: 2083
+      2015-01: 2083
+      2015-02: 2083
+      year:2014-02: 24996
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    age_en_mois: 49
+    birth: "2011-01-02"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 54eca9e37bcef51072ca0902
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants: 54eca9e37bcef51072ca0902
+  parents: 54eca9e37bcef51072ca0903
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 54eca9e37bcef51072ca0903
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge: 54eca9e37bcef51072ca0902
+  rfr:
+menages:
+  depcom: 97105
+  enfants: 54eca9e37bcef51072ca0902
+  loyer: 300
+  personne_de_reference: 54eca9e37bcef51072ca0903
+  statut_occupation: 4
+output_variables:
+  cf: 0

@@ -1,0 +1,150 @@
+name: "Plafond CMUC pour 5 personnes - cas au-dessus du plafond"
+keywords:
+  - "cmu-c/acs"
+  - plafonds
+description: |
+  Plafond CMUC pour 5 personnes = 21611
+  Ici éligible à l'AF (360 x 12) + CF (170 X 12) = 6 360
+  Revenus = 20000 + 6360 = 26360 donc > plafond
+period: "month:2015-04"
+individus:
+  - age: 19
+    age_en_mois: 234
+    birth: "1995-09-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55252bc877c7b0c6117a2937
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    salaire_de_base:
+      2013: 25641.02564102564
+      2014-04: 2849.002849002849
+      2014-05: 2849.002849002849
+      2014-06: 2849.002849002849
+      2014-07: 2849.002849002849
+      2014-08: 2849.002849002849
+      2014-09: 2849.002849002849
+      2014-10: 2849.002849002849
+      2014-11: 2849.002849002849
+      2014-12: 2849.002849002849
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 25641.02564102564
+    salaire_net:
+      2013: 20000
+      2014-04: 2222.222222222222
+      2014-05: 2222.222222222222
+      2014-06: 2222.222222222222
+      2014-07: 2222.222222222222
+      2014-08: 2222.222222222222
+      2014-09: 2222.222222222222
+      2014-10: 2222.222222222222
+      2014-11: 2222.222222222222
+      2014-12: 2222.222222222222
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 20000
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 19
+    age_en_mois: 239
+    birth: "1995-05-03"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55252bc877c7b0c6117a2936
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    age_en_mois: 92
+    birth: "2007-07-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55252bc877c7b0c6117a2935
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 115
+    birth: "2005-09-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55252bc877c7b0c6117a2934
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 176
+    birth: "2000-07-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55252bc877c7b0c6117a2933
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 55252bc877c7b0c6117a2935
+    - 55252bc877c7b0c6117a2934
+    - 55252bc877c7b0c6117a2933
+  parents:
+    - 55252bc877c7b0c6117a2937
+    - 55252bc877c7b0c6117a2936
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 55252bc877c7b0c6117a2937
+    - 55252bc877c7b0c6117a2936
+  personnes_a_charge:
+    - 55252bc877c7b0c6117a2935
+    - 55252bc877c7b0c6117a2934
+    - 55252bc877c7b0c6117a2933
+menages:
+  conjoint: 55252bc877c7b0c6117a2936
+  depcom: 76540
+  enfants:
+    - 55252bc877c7b0c6117a2935
+    - 55252bc877c7b0c6117a2934
+    - 55252bc877c7b0c6117a2933
+  loyer: 600
+  personne_de_reference: 55252bc877c7b0c6117a2937
+  statut_occupation: 4
+output_variables:
+  cmu_c: false

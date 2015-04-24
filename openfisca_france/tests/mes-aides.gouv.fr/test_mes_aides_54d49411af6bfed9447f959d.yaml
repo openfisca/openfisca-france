@@ -33,8 +33,6 @@ individus:
   activite: 3
   age: 88
   age_en_mois: 1061
-  pensions_alimentaires_percues:
-    2013: 0
   birth: "1926-09-05"
   cho:
     2013: 0
@@ -46,6 +44,8 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 12000
   rstbrut:
@@ -94,7 +94,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54d49218f675ddd34432ea79
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:
