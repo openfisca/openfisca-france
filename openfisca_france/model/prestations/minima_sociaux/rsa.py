@@ -580,10 +580,10 @@ class ra_rsa_i(SimpleFormulaColumn):
         # standard sur le CA, mais pas les cotisations pour charges sociales. Dans l'attente d'une éventuelle correction, nous
         # implémentons selon leurs instructions. Si changement, il suffira de remplacer le tns_auto_entrepreneur_benefice par
         # tns_auto_entrepreneur_revenus_net
-        tns_auto_entrepreneur_revenus_rsa = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
+        tns_auto_entrepreneur_revenus_rsa = calcule_type_ressource('tns_auto_entrepreneur_benefice', neutralisable = True)
+        tns_micro_entreprise_revenus_net = calcule_type_ressource('tns_micro_entreprise_revenus_net')
+        tns_autres_revenus = calcule_type_ressource('tns_autres_revenus')
 
-        tns_micro_entreprise_revenus_net = simulation.calculate_add('tns_micro_entreprise_revenus_net', three_previous_months)
-        tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', three_previous_months)
 
         tns_total_revenus_pour_rsa = tns_autres_revenus + tns_micro_entreprise_revenus_net + tns_auto_entrepreneur_revenus_rsa
 
