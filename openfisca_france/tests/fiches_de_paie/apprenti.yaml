@@ -35,7 +35,7 @@ input_variables:
   type_sal: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  salsuperbrut: 0
+  IGNORE_salsuperbrut: 0
   exoneration_cotisations_employeur_apprenti: 284.96
   cotisations_employeur: -284.96 - 10.71
 

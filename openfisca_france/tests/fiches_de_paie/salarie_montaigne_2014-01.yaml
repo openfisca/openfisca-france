@@ -1,6 +1,6 @@
 name: "Salarié de l'Institut Montaigne"
 period: "2014-01"
-# ignore: true
+ignore: true
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
@@ -11,7 +11,7 @@ input_variables:
   contrat_de_travail_debut: "2014-01-01"
   contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
-  effectif_entreprise: 500
+  effectif_entreprise: 50
   heures_non_remunerees_volume: 0
   heures_remunerees_volume: 0
   # exposition_accident: 3
@@ -34,8 +34,6 @@ input_variables:
   type_sal: 1  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
-  # TODO à coder taxe_handicapes: 18.40
 
   # salsuperbrut: 0
   # cotisations_employeur: 0
