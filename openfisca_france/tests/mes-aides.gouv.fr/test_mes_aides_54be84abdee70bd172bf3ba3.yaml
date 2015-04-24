@@ -30,8 +30,6 @@ relative_error_margin: 0.02
 individus:
   age: 36
   age_en_mois: 441
-  pensions_alimentaires_percues:
-    2013: 0
   birth: "1978-04-12"
   cho:
     2013: 0
@@ -43,6 +41,8 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 0
   sal:
@@ -91,7 +91,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54be835fd337b5d372377c19
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

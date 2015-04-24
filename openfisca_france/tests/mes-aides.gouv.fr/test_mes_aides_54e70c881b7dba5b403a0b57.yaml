@@ -13,8 +13,6 @@ relative_error_margin: 0.02
 individus:
   - age: 65
     age_en_mois: 780
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1950-02-01"
     cho:
       2013: 0
@@ -26,6 +24,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -122,7 +122,7 @@ familles:
   parents: 54e70c4f003c75524011601b
 foyers_fiscaux:
   declarants: 54e70c4f003c75524011601b
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 54e70c4f003c75524011601a

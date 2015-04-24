@@ -4,15 +4,13 @@ keywords:
   - points de charge
 description: |
   3 points de charge supplémentaires pour le 5ème enfant à charge
-  Points de charge = 9 + 1 + 2 + 2 + 3 = 17
-  Plafond pour 3 parts correspondant : 22851 euros
-  RFR = 22800, donc montant = 135,9
+  Points de charge = (9 + 2) + 1 + 2 + 2 + 3 = 19
+  Plafond pour 3 parts correspondant : 25540 euros
+  RFR = 25500, donc montant = 135,9
 period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -24,6 +22,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -35,8 +35,6 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -48,6 +46,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -147,7 +147,7 @@ foyers_fiscaux:
   declarants:
     - 55016c28cc1bb4365a5d727b
     - 55016c28cc1bb4365a5d727a
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 55016c28cc1bb4365a5d7279
@@ -156,7 +156,7 @@ foyers_fiscaux:
     - 55016c28cc1bb4365a5d7276
     - 55016c28cc1bb4365a5d7275
   rfr:
-    2013: 22800
+    2013: 25500
 menages:
   conjoint: 55016c28cc1bb4365a5d727a
   depcom: 67482

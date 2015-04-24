@@ -4,14 +4,12 @@ keywords:
   - parts
 description: |
   Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
-  Nombre de parts = 10 car rfr = 5800, points de charge = 9 et plafond = 5889
+  Nombre de parts = 10 car rfr = 7100, points de charge = 11 et plafond = 7198
   Montant = 10 * 45,3 = 453 euros
 period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 414
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -23,6 +21,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -34,8 +34,6 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 414
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -47,6 +45,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -81,7 +81,7 @@ foyers_fiscaux:
   declarants:
     - 5500761a3774028f471fb19b
     - 5500761a3774028f471fb19a
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 5500761a3774028f471fb199
   rfr:

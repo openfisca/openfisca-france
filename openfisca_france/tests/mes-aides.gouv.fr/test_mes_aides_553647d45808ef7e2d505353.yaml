@@ -1,76 +1,76 @@
-name: Couple, ressources > plafond de 1288,80, montant = plafond haut soustrait des ressources
+name: "Couple, ressources > plafond de 1300 montant = plafond haut - ressources"
 keywords:
   - ass
   - montant
 description: |
-  plafond haut = 1 772,10
-  revenus mensuels moyens sur l'année glissante = 1600
-  montant = 1772.10 - 1600
-period: "month:2014-11"
+  BR = 1600 > 1300
+  Donc ASS = 1 787,50 - 1600 = 187,5
+period: "month:2015-04"
 individus:
   - activite: 1
-    age: 34
-    age_en_mois: 411
+    age: 24
+    age_en_mois: 294
     ass_precondition_remplie: true
-    birth: "1980-08-12"
+    birth: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
-    id: 54748c711e6217443d918c2a
+    id: 553647ce88bcee752ddf9414
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
     salaire_de_base:
-      2012: 24615.384615384613
-      2013-11: 2051.2820512820513
-      2013-12: 2051.2820512820513
-      2014-01: 2051.2820512820513
-      2014-02: 2051.2820512820513
-      2014-03: 2051.2820512820513
+      2013: 24615.384615384613
       2014-04: 2051.2820512820513
       2014-05: 2051.2820512820513
       2014-06: 2051.2820512820513
       2014-07: 2051.2820512820513
       2014-08: 2051.2820512820513
-      2014-08:3: 6153.846153846154
       2014-09: 2051.2820512820513
       2014-10: 2051.2820512820513
       2014-11: 2051.2820512820513
-      year:2013-11: 24615.384615384613
+      2014-12: 2051.2820512820513
+      2015-01: 2051.2820512820513
+      2015-01:3: 6153.846153846154
+      2015-02: 2051.2820512820513
+      2015-03: 2051.2820512820513
+      2015-04: 2051.2820512820513
+      year:2014-04: 24615.384615384613
     salaire_net:
-      2012: 19200
-      2013-11: 1600
-      2013-12: 1600
-      2014-01: 1600
-      2014-02: 1600
-      2014-03: 1600
+      2013: 19200
       2014-04: 1600
       2014-05: 1600
       2014-06: 1600
       2014-07: 1600
       2014-08: 1600
-      2014-08:3: 4800
       2014-09: 1600
       2014-10: 1600
       2014-11: 1600
-      year:2013-11: 19200
+      2014-12: 1600
+      2015-01: 1600
+      2015-01:3: 4800
+      2015-02: 1600
+      2015-03: 1600
+      2015-04: 1600
+      year:2014-04: 19200
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - age: 34
-    age_en_mois: 411
-    birth: "1980-08-12"
+  - age: 24
+    age_en_mois: 294
+    birth: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
-    id: 54748c711e6217443d918c29
+    id: 553647ce88bcee752ddf9413
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -78,18 +78,18 @@ individus:
 familles:
   enfants:
   parents:
-    - 54748c711e6217443d918c2a
-    - 54748c711e6217443d918c29
+    - 553647ce88bcee752ddf9414
+    - 553647ce88bcee752ddf9413
 foyers_fiscaux:
   declarants:
-    - 54748c711e6217443d918c2a
-    - 54748c711e6217443d918c29
+    - 553647ce88bcee752ddf9414
+    - 553647ce88bcee752ddf9413
   personnes_a_charge:
 menages:
-  conjoint: 54748c711e6217443d918c29
-  depcom: 67482
+  conjoint: 553647ce88bcee752ddf9413
+  depcom: 93070
   enfants:
-  personne_de_reference: 54748c711e6217443d918c2a
+  personne_de_reference: 553647ce88bcee752ddf9414
   statut_occupation: 6
 output_variables:
-  ass: 172.1
+  ass: 187.5

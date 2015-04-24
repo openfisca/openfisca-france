@@ -4,15 +4,13 @@ keywords:
   - points de charge
 description: |
   1 point de charge supplémentaire pour le deuxième enfant
-  Points de charge = 10
-  Plafond RFR correspondant : 13441 euros
-  RFR déclaré : 13400, donc parts = 3, montant = 3*45,3 = 135,9
+  Points de charge = (9 + 2) + 1 = 12
+  Plafond RFR correspondant : 16130 euros
+  RFR déclaré : 16100, donc parts = 3, montant = 3 * 45,3 = 135,9
 period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -24,6 +22,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -35,8 +35,6 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -48,6 +46,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -99,13 +99,13 @@ foyers_fiscaux:
   declarants:
     - 55016893110d64385a0318ed
     - 55016893110d64385a0318ec
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 55016893110d64385a0318eb
     - 55016893110d64385a0318ea
   rfr:
-    2013: 13400
+    2013: 16100
 menages:
   conjoint: 55016893110d64385a0318ec
   depcom: 67482

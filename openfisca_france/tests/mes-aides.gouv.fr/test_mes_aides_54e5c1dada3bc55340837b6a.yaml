@@ -26,8 +26,6 @@ period: "month:2015-02"
 individus:
   - age: 34
     age_en_mois: 414
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -39,6 +37,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -84,8 +84,6 @@ individus:
       2012-01: 0
   - age: 22
     age_en_mois: 270
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1992-08-12"
     cho:
       2013: 0
@@ -97,6 +95,8 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
     sal:
@@ -115,7 +115,7 @@ foyers_fiscaux:
   declarants:
     - 54e5c1d77c92ea5940ba4e55
     - 54e5c1d77c92ea5940ba4e54
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:
