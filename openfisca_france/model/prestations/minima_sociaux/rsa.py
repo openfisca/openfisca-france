@@ -531,7 +531,6 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             revenus_locatifs
             )
 
-
 @reference_formula
 class ra_rsa_i(SimpleFormulaColumn):
     column = FloatCol
@@ -575,15 +574,25 @@ class ra_rsa_i(SimpleFormulaColumn):
         hsup = calcule_type_ressource('hsup')
         etr = calcule_type_ressource('etr')
 
-        tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
-        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
+        # Ressources TNS
+
+        # WARNING : D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que l'abattement
+        # standard sur le CA, mais pas les cotisations pour charges sociales. Dans l'attente d'une éventuelle correction, nous
+        # implémentons selon leurs instructions. Si changement, il suffira de remplacer le tns_auto_entrepreneur_benefice par
+        # tns_auto_entrepreneur_revenus_net
+        tns_auto_entrepreneur_revenus_rsa = calcule_type_ressource('tns_auto_entrepreneur_benefice', neutralisable = True)
+        tns_micro_entreprise_revenus_net = calcule_type_ressource('tns_micro_entreprise_revenus_net')
+        tns_autres_revenus = calcule_type_ressource('tns_autres_revenus')
+
+
+        tns_total_revenus_pour_rsa = tns_autres_revenus + tns_micro_entreprise_revenus_net + tns_auto_entrepreneur_revenus_rsa
 
         return period, (
-            salaire_net + hsup + rpns + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
+            salaire_net + hsup + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + tns_total_revenus +
-            bourse_recherche) / 3
+            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + bourse_recherche + tns_total_revenus_pour_rsa
+            ) / 3
 
 
 @reference_formula

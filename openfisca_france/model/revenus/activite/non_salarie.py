@@ -997,59 +997,141 @@ build_column('f5sq', IntCol())
 # TODO: Introudit par mes aides à consolider
 
 # Input variables
-build_column('tns_chiffre_affaires_micro_entreprise', FloatCol(entity = 'ind', is_permanent = True, label = u"Chiffre d'affaires de micro-entreprise ou assimilée"))
-build_column('tns_autres_revenus', FloatCol(entity = 'ind', is_permanent = True, label = u"Autres revenus non salariés"))
+reference_input_variable(
+   name ='tns_auto_entrepreneur_chiffre_affaires',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Chiffre d'affaires en tant qu'auto-entrepreneur",
+   set_input = set_input_divide_by_period
+   )
 
-build_column('tns_type_structure', EnumCol(
-    entity = 'ind',
-    enum = Enum([u'auto_entrepreneur', u'micro_entreprise']),
-    default = 1,
-    is_permanent = True,
-    label = u"Type de structure associée au travailleur non salarié"))
+reference_input_variable(
+   name ='tns_micro_entreprise_chiffre_affaires',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Chiffre d'affaires en de micro-entrepriser",
+   set_input = set_input_divide_by_period
+   )
 
-build_column('tns_type_activite', EnumCol(
-    entity = 'ind',
-    enum = Enum([u'achat_revente', u'bic', u'bnc']),
-    is_permanent = True,
-    label = u"Valeur locative des biens immobiliés possédés et non loués"))
+enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
+
+reference_input_variable(
+   name='tns_auto_entrepreneur_type_activite',
+   column = EnumCol(enum = enum_tns_type_activite),
+   entity_class = Individus,
+   is_permanent = True,
+   label = u"Type d'activité de l'auto-entrepreneur")
+
+reference_input_variable(
+   name='tns_micro_entreprise_type_activite',
+   column = EnumCol(enum = enum_tns_type_activite),
+   entity_class = Individus,
+   is_permanent = True,
+   label = u"Type d'activité de la micro-entreprise")
+
+reference_input_variable(
+   name ='tns_autres_revenus',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Autres revenus non salariés",
+   set_input = set_input_divide_by_period
+   )
 
 
 # Computed variables
+
+# Auxiliary function
+def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, chiffre_affaire):
+   abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
+   benefice =  chiffre_affaire * (
+         1 -
+          (type_activite == 0) * abatt_fp_me.achat_revente -
+          (type_activite == 1) * abatt_fp_me.bic -
+          (type_activite == 2) * abatt_fp_me.bnc
+         )
+   return benefice
+
+
+
 @reference_formula
-class tns_total_revenus(DatedFormulaColumn):
-    column = FloatCol
-    label = u"Total des revenus non salariés"
-    entity_class = Individus
+class tns_auto_entrepreneur_benefice(SimpleFormulaColumn):
+   column = FloatCol
+   label = u"Bénéfice en tant qu'auto-entrepreneur"
+   entity_class = Individus
+
+   def function(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
+      tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
+      bareme = simulation.legislation_at(period.start).tns
+
+      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
+      return period, benefice
+
+@reference_formula
+class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
+   column = FloatCol
+   label = u"Bénéfice de la micro entreprise"
+   entity_class = Individus
+
+   def function(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
+      tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
+      bareme = simulation.legislation_at(period.start).tns
+
+      benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
+      return period, benefice
+
+@reference_formula
+class tns_auto_entrepreneur_revenus_net(SimpleFormulaColumn) :
+   column = FloatCol
+   label = u"Revenu d'un auto-entrepreneur"
+   entity_class = Individus
+
+   def function(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_auto_entrepreneur_benefice = simulation.calculate('tns_auto_entrepreneur_benefice', period)
+      tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
+      tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
+      bareme_cs_ae = simulation.legislation_at(period.start).tns.auto_entrepreneur
+      taux_cotisations_sociales_sur_CA = (
+         (tns_auto_entrepreneur_type_activite == 0) * bareme_cs_ae.achat_revente +
+         (tns_auto_entrepreneur_type_activite == 1) * bareme_cs_ae.bic +
+         (tns_auto_entrepreneur_type_activite == 2) * bareme_cs_ae.bnc)
+      tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
+      revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
+
+      return period, revenus
+
+@reference_formula
+class tns_micro_entreprise_revenus_net(SimpleFormulaColumn) :
+   column = FloatCol
+   label = u"Revenu d'un TNS dans une micro-entreprise"
+   entity_class = Individus
+
+   def function(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period)
+      taux_cotisations_sociales = simulation.legislation_at(period.start).tns.micro_entreprise.cotisations_sociales
+      tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales
+      revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
+
+      return period, revenus
+
+@reference_formula
+class tns_total_revenus_net(DatedFormulaColumn):
+   column = FloatCol
+   label = u"Total des revenus non salariés"
+   entity_class = Individus
 #    start = "2008-01-01"
 
-    @dated_function(date(2008, 1, 1))
-    def function_2008__(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        tns_type_structure = simulation.calculate('tns_type_structure', period)
-        tns_type_activite = simulation.calculate('tns_type_activite', period)
-        tns_chiffre_affaires_micro_entreprise = simulation.calculate('tns_chiffre_affaires_micro_entreprise', period)
-        bareme = simulation.legislation_at(period.start).tns
+   @dated_function(date(2008, 1, 1))
+   def function_2008__(self, simulation, period):
+      period = period.start.offset('first-of', 'month').period('month')
+      tns_auto_entrepreneur_revenus_net = simulation.calculate('tns_auto_entrepreneur_revenus_net', period)
+      tns_micro_entreprise_revenus_net = simulation.calculate('tns_micro_entreprise_revenus_net', period)
+      tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+      total_revenus = tns_autres_revenus + tns_auto_entrepreneur_revenus_net + tns_micro_entreprise_revenus_net
 
-        cs_ae = bareme.auto_entrepreneur
-        abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
-
-        total_revenus = (
-            tns_autres_revenus / 12 +
-            # cas des auto-entrepreneurs
-            (tns_type_structure == 0) * tns_chiffre_affaires_micro_entreprise / 12 * (
-                1 -
-                (tns_type_activite == 0) * cs_ae.achat_revente -
-                (tns_type_activite == 1) * cs_ae.bic -
-                (tns_type_activite == 2) * cs_ae.bnc) +
-            # cas des autres micro-entreprises
-            (tns_type_structure == 1) * tns_chiffre_affaires_micro_entreprise / 12 * (
-                1 -
-                (tns_type_activite == 0) * abatt_fp_me.achat_revente -
-                (tns_type_activite == 1) * abatt_fp_me.bic -
-                (tns_type_activite == 2) * abatt_fp_me.bnc
-                ) * (1 - bareme.micro_entreprise.cotisations_sociales)
-            )
-
-        return period, total_revenus
-
+      return period, total_revenus

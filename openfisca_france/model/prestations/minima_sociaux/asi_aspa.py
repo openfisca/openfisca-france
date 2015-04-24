@@ -80,7 +80,7 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
+        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
         aah = simulation.calculate('aah', three_previous_months)
 
@@ -110,7 +110,7 @@ class br_mv_i(SimpleFormulaColumn):
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
-               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
+               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus_net +
                rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
