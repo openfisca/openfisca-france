@@ -66,6 +66,8 @@ class allegement_fillon(DatedFormulaColumn):
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        stagiaire = simulation.calculate('stagiaire', period)
+        apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
         allegement = (
             # en fin d'année
@@ -80,7 +82,7 @@ class allegement_fillon(DatedFormulaColumn):
             allegement_fillon_mode_recouvrement == 2) * (
                 compute_allegement_fillon_progressif(simulation, period)
             )
-        return period, allegement
+        return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
 @reference_formula
