@@ -1,0 +1,19 @@
+- name: "Stage à temps complet gratification minimale"
+  period: 2015-03
+  input_variables:
+    stage_duree_heures: 22 * 7
+  output_variables:
+    stagiaire: 1
+    stage_gratification: 22 * 7 * 3.30
+    cotisations_employeur: 0
+    accident_du_travail: 0
+- name: "Stage à temps complet gratification supérieure au minimum"
+  period: 2015-03
+  input_variables:
+    stage_duree_heures: 22 * 7
+    stage_gratification: 22 * 7 * 3.30 + 300
+  output_variables:
+    stagiaire: 1
+    stage_gratification_reintegration: 300
+    agff_employeur: 0
+    IGNORE_accident_du_travail: 10

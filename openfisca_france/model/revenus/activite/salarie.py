@@ -795,6 +795,7 @@ class salsuperbrut(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
+        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
@@ -802,9 +803,15 @@ class salsuperbrut(SimpleFormulaColumn):
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
+        exoneration_cotisations_employeur_apprenti = simulation.calculate_add(
+            'exoneration_cotisations_employeur_apprenti', period)
         exoneration_cotisations_employeur_geographiques = simulation.calculate(
             'exoneration_cotisations_employeur_geographiques', period)
-        exoneration_cotisations_employeur_jei = simulation.calculate_add('exoneration_cotisations_employeur_jei', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate_add(
+            'exoneration_cotisations_employeur_jei', period)
+        exoneration_cotisations_employeur_stagiaire = simulation.calculate_add(
+            'exoneration_cotisations_employeur_stagiaire', period)
+
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
@@ -814,6 +821,7 @@ class salsuperbrut(SimpleFormulaColumn):
         tehr = simulation.calculate_divide('tehr', period)
 
         salsuperbrut = (
+            remuneration_apprenti +
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement
@@ -821,6 +829,8 @@ class salsuperbrut(SimpleFormulaColumn):
             - allegement_fillon
             - exoneration_cotisations_employeur_geographiques
             - exoneration_cotisations_employeur_jei
+            - exoneration_cotisations_employeur_apprenti
+            - exoneration_cotisations_employeur_stagiaire
             - credit_impot_competitivite_emploi
             - tehr
             )

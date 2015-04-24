@@ -57,10 +57,11 @@ class assiette_csg_abattue(SimpleFormulaColumn):
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
+        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
 
         return period, (
             remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
-            indemnite_residence + supp_familial_traitement - hsup
+            indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup
             )
 
 
