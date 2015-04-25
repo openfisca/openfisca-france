@@ -15,5 +15,3 @@
   output_variables:
     stagiaire: 1
     stage_gratification_reintegration: 300
-    agff_employeur: 0
-    IGNORE_accident_du_travail: 10
