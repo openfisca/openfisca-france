@@ -1,7 +1,7 @@
 - name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -27,7 +27,7 @@
 - name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -53,7 +53,7 @@
 - name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -79,7 +79,7 @@
 - name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -106,7 +106,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990 et 1992"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -132,7 +132,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990 et 1992"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -158,7 +158,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990 et 1992"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -184,7 +184,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990 et 1992"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -211,7 +211,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1988 et 1991"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -237,7 +237,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1988 et 1991"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -263,7 +263,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1988 et 1991"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -289,7 +289,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1988 et 1991"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -316,7 +316,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -342,7 +342,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -368,7 +368,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -394,7 +394,7 @@
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -421,7 +421,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 2003, 2004 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -449,7 +449,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 2003, 2004 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -477,7 +477,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 2003, 2004 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -505,7 +505,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 2003, 2004 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -534,7 +534,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -562,7 +562,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -590,7 +590,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -618,7 +618,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -647,7 +647,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -675,7 +675,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -703,7 +703,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -731,7 +731,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1990, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -760,7 +760,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1985, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -788,7 +788,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1985, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -816,7 +816,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1985, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -844,7 +844,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1985, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -873,7 +873,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -901,7 +901,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -929,7 +929,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -957,7 +957,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -986,7 +986,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1989, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1014,7 +1014,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1989, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1042,7 +1042,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1989, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1070,7 +1070,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1989, 2005 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1099,7 +1099,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1993 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1127,7 +1127,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1993 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1155,7 +1155,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1993 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1183,7 +1183,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1993 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1212,7 +1212,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1987, 1988 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1240,7 +1240,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1987, 1988 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1268,7 +1268,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1987, 1988 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1296,7 +1296,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1987, 1988 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1325,7 +1325,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1991 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1353,7 +1353,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1991 et 2005"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1381,7 +1381,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1991 et 2005"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1409,7 +1409,7 @@
 - name: "Allocations familiales - Couple, 3 enfants nés en 1988, 1991 et 2005"
   description: Montant AF brut de CRDS
   period: 2009-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -1438,7 +1438,7 @@
 - name: "Allocations familiales - Couple, 5 enfants nés en 2000, 2001, 2002, 2003 et 2004"
   description: Montant AF brut de CRDS
   period: 2006-01
-  absolute_error_margin: 0.01  # TODO: Erreur d'1 centime ?
+  absolute_error_margin: 0.03  # TODO: Erreur d'1 centime ?
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
@@ -1471,7 +1471,7 @@
 - name: "Allocations familiales - Couple, 5 enfants nés en 2000, 2001, 2002, 2003 et 2004"
   description: Montant AF brut de CRDS
   period: 2007-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
@@ -1504,7 +1504,7 @@
 - name: "Allocations familiales - Couple, 5 enfants nés en 2000, 2001, 2002, 2003 et 2004"
   description: Montant AF brut de CRDS
   period: 2008-01
-  absolute_error_margin: 0.001
+  absolute_error_margin: 0.03
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
