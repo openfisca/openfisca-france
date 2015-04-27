@@ -463,8 +463,8 @@ class crds(SimpleFormulaColumn):
         """Contribution au remboursement de la dette sociale"""
         period = period.start.offset('first-of', 'year').period('year')
         crdssal = simulation.calculate_add('crdssal', period)
-        crdsrst = simulation.calculate_add('crdsrst', period)
-        crdscho = simulation.calculate_add('crdscho', period)
+        crds_retraite = simulation.calculate_add('crds_retraite', period)
+        crds_chomage = simulation.calculate_add('crds_chomage', period)
         crds_fon_holder = simulation.compute('crds_fon', period)
         crds_cap_bar_declarant1 = simulation.calculate('crds_cap_bar_declarant1', period)
         crds_cap_lib_declarant1 = simulation.calculate('crds_cap_lib_declarant1', period)
@@ -481,7 +481,7 @@ class crds(SimpleFormulaColumn):
         crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo_holder, role = VOUS)
         crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = VOUS)
 
-        return period, (crdssal + crdsrst + crdscho +
+        return period, (crdssal + crds_retraite + crds_chomage +
                 crds_fon + crds_cap_bar_declarant1 + crds_cap_lib_declarant1 + crds_pv_mo + crds_pv_immo +
                 crds_pfam + crds_logement + crds_mini)
 
@@ -497,10 +497,10 @@ class csg(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         csgsali = simulation.calculate_add('csgsali', period)
         csgsald = simulation.calculate_add('csgsald', period)
-        csgchoi = simulation.calculate_add('csgchoi', period)
-        csgchod = simulation.calculate_add('csgchod', period)
-        csgrsti = simulation.calculate_add('csgrsti', period)
-        csgrstd = simulation.calculate_add('csgrstd', period)
+        csg_imposable_chomage = simulation.calculate_add('csg_imposable_chomage', period)
+        csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
+        csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
+        csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
         csg_fon_holder = simulation.compute('csg_fon', period)
         csg_cap_lib_declarant1 = simulation.calculate('csg_cap_lib_declarant1', period)
         csg_cap_bar_declarant1 = simulation.calculate('csg_cap_bar_declarant1', period)
@@ -511,7 +511,7 @@ class csg(SimpleFormulaColumn):
         csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
         csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
 
-        return period, (csgsali + csgsald + csgchoi + csgchod + csgrsti + csgrstd +
+        return period, (csgsali + csgsald + csg_imposable_chomage + csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite +
                 csg_fon + csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
 
 

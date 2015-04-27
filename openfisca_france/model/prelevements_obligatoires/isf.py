@@ -623,32 +623,32 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
         csgsald_holder = simulation.compute('csgsald', period)
         csgsali_holder = simulation.compute('csgsali', period)
         crdssal_holder = simulation.compute('crdssal', period)
-        csgchoi_holder = simulation.compute('csgchoi', period)
-        csgchod_holder = simulation.compute('csgchod', period)
-        csgrstd_holder = simulation.compute('csgrstd', period)
-        csgrsti_holder = simulation.compute('csgrsti', period)
+        csg_imposable_chomage_holder = simulation.compute('csg_imposable_chomage', period)
+        csg_deductible_chomage_holder = simulation.compute('csg_deductible_chomage', period)
+        csg_deductible_retraite_holder = simulation.compute('csg_deductible_retraite', period)
+        csg_imposable_retraite_holder = simulation.compute('csg_imposable_retraite', period)
         imp_lib = simulation.calculate('imp_lib', period)
 
         cotsoc_bar = self.sum_by_entity(cotsoc_bar_declarant1_holder)
         cotsoc_lib = self.sum_by_entity(cotsoc_lib_declarant1_holder)
         crdssal = self.sum_by_entity(crdssal_holder)
-        csgchod = self.sum_by_entity(csgchod_holder)
-        csgchoi = self.sum_by_entity(csgchoi_holder)
+        csg_deductible_chomage = self.sum_by_entity(csg_deductible_chomage_holder)
+        csg_imposable_chomage = self.sum_by_entity(csg_imposable_chomage_holder)
         csgsald = self.sum_by_entity(csgsald_holder)
         csgsali = self.sum_by_entity(csgsali_holder)
-        csgrstd = self.sum_by_entity(csgrstd_holder)
-        csgrsti = self.sum_by_entity(csgrsti_holder)
+        csg_deductible_retraite = self.sum_by_entity(csg_deductible_retraite_holder)
+        csg_imposable_retraite = self.sum_by_entity(csg_imposable_retraite_holder)
         taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)
         taxe_habitation = self.sum_by_entity(taxe_habitation)
 
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
         # # impôt sur les plus-values immo et cession de fonds de commerce
-        imp1 = cotsoc_lib + cotsoc_bar + csgsald + csgchod + crdssal + csgrstd + imp_lib
+        imp1 = cotsoc_lib + cotsoc_bar + csgsald + csg_deductible_chomage + crdssal + csg_deductible_retraite + imp_lib
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
-        imp2 = irpp + isf_tot + taxe_habitation + tax_fonc + csgsali + csgchoi + csgrsti
+        imp2 = irpp + isf_tot + taxe_habitation + tax_fonc + csgsali + csg_imposable_chomage + csg_imposable_retraite
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''

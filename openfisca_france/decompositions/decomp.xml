@@ -28,18 +28,18 @@
       <NODE code="chonet" color="136,120,178" desc="Chômage net" shortname="Chômage net">
         <NODE code="cho" desc="Chômage" shortname="Chômage decl.">
           <NODE code="chobrut" desc="Chômage brut" shortname="Chômage brut" />
-          <NODE code="csgchod" color="235,114,118" desc="CSG déductible (chômage)" shortname="CSG déd. chôm." />
+          <NODE code="csg_deductible_chomage" color="235,114,118" desc="CSG déductible (chômage)" shortname="CSG déd. chôm." />
         </NODE>
-        <NODE code="csgchoi" color="235,114,118" desc="CSG non déductible (chômage)" shortname="CSG imp. chôm." />
-        <NODE code="crdscho" color="229,48,56" desc="CRDS (chômage)" shortname="CRDS chôm." />
+        <NODE code="csg_imposable_chomage" color="235,114,118" desc="CSG non déductible (chômage)" shortname="CSG imp. chôm." />
+        <NODE code="crds_chomage" color="229,48,56" desc="CRDS (chômage)" shortname="CRDS chôm." />
       </NODE>
       <NODE code="rstnet" color="87,88,138" desc="Retraites nettes" shortname="Retraites nettes">
         <NODE code="rst" desc="Retraites" shortname="Retr. décl.">
           <NODE code="rstbrut" desc="Retraites brutes" shortname="Retr. brutes" />
-          <NODE code="csgrstd" color="235,114,118" desc="CSG déductible (retraite)" shortname="CSG déd. ret." />
+          <NODE code="csg_deductible_retraite" color="235,114,118" desc="CSG déductible (retraite)" shortname="CSG déd. ret." />
         </NODE>
-        <NODE code="csgrsti" color="235,114,118" desc="CSG non déductible (pensions)" shortname="CSG imp. pens." />
-        <NODE code="crdsrst" color="229,48,56" desc="CRDS (pensions)" shortname="CRDS (pens.)" />
+        <NODE code="csg_imposable_retraite" color="235,114,118" desc="CSG non déductible (pensions)" shortname="CSG imp. pens." />
+        <NODE code="crds_retraite" color="229,48,56" desc="CRDS (pensions)" shortname="CRDS (pens.)" />
       </NODE>
       <NODE code="pensions_alimentaires_percues" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
       <NODE code="pensions_alimentaires_versees" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
