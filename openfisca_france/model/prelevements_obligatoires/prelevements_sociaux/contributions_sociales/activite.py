@@ -79,7 +79,7 @@ class assiette_csg_non_abattue(SimpleFormulaColumn):
 
 
 @reference_formula
-class csgsald(SimpleFormulaColumn):
+class csg_deductible_salaire(SimpleFormulaColumn):
     column = FloatCol
     label = u"CSG déductible sur les salaires"
     entity_class = Individus
@@ -101,7 +101,7 @@ class csgsald(SimpleFormulaColumn):
 
 
 @reference_formula
-class csgsali(SimpleFormulaColumn):
+class csg_imposable_salaire(SimpleFormulaColumn):
     column = FloatCol
     label = u"CSG imposables sur les salaires"
     entity_class = Individus
@@ -124,7 +124,7 @@ class csgsali(SimpleFormulaColumn):
 
 
 @reference_formula
-class crdssal(SimpleFormulaColumn):
+class crds_salaire(SimpleFormulaColumn):
     column = FloatCol
     label = u"CRDS sur les salaires"
     entity_class = Individus
@@ -192,7 +192,7 @@ class sal(SimpleFormulaColumn):
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
-        csgsald = simulation.calculate_add('csgsald', period)
+        csg_deductible_salaire = simulation.calculate_add('csg_deductible_salaire', period)
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         hsup = simulation.calculate('hsup', period)
@@ -204,7 +204,7 @@ class sal(SimpleFormulaColumn):
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
             cotisations_salariales - hsup + rev_microsocial_declarant1
             )
 
@@ -228,10 +228,10 @@ class salaire_net(SimpleFormulaColumn):
         # if salaire_de_base is None:
         #     return period, zeros(self.holder.entity.count)
         sal = simulation.calculate('sal', period)
-        crdssal = simulation.calculate_add('crdssal', period)
-        csgsali = simulation.calculate_add('csgsali', period)
+        crds_salaire = simulation.calculate_add('crds_salaire', period)
+        csg_imposable_salaire = simulation.calculate_add('csg_imposable_salaire', period)
 
-        return period, sal + crdssal + csgsali
+        return period, sal + crds_salaire + csg_imposable_salaire
 
 
 @reference_formula

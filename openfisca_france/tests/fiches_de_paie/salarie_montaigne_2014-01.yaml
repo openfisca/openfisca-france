@@ -101,13 +101,13 @@ output_variables:
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -29.87
   contribution_exceptionnelle_solidarite: 0
-  csgsald: -220.17
+  csg_deductible_salaire: -220.17
   mhsup: -26
   salaire_net: 3048.55
 
   # salaire imposable
-  csgsali: -103.61
-  crdssal: -21.59
+  csg_imposable_salaire: -103.61
+  crds_salaire: -21.59
   hsup: 17
   sal: 3354.54  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0

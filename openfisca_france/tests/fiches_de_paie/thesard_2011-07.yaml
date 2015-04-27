@@ -86,13 +86,13 @@ output_variables:
 
   mmid_salarie: -14.25 # devrait être -14.39
   IGNORE_contribution_exceptionnelle_solidarite: 0
-  csgsald: -93.99
+  csg_deductible_salaire: -93.99
   mhsup: 0
   IGNORE_salaire_net: 1549.61
 
-  csgsali: -44.23
+  csg_imposable_salaire: -44.23
   # salaire imposable
-  IGNORE_crdssal: -9.21  # TODO check arrondi crds
+  IGNORE_crds_salaire: -9.21  # TODO check arrondi crds
   hsup: 0
   IGNORE_sal: 1603.05
 

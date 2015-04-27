@@ -96,14 +96,14 @@ output_variables:
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -3000 * .0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
   contribution_exceptionnelle_solidarite: 0
-  csgsald: -150.32 - 3.01
+  csg_deductible_salaire: -150.32 - 3.01
   mhsup: 0
   salaire_net: 3000 - (722.46 - 30.82) - .17 # moitié de la mutuelle et erreur de .17 gmp
 
 
   # salaire imposable
-  csgsali: -0.024 * (.9825 * 3000 + 59.02)
-  crdssal: -0.005 * (3000 * .9825 + 59.02)  # = - 14.74 (attention dans fiche taux csg/crds aggrégé)
+  csg_imposable_salaire: -0.024 * (.9825 * 3000 + 59.02)
+  crds_salaire: -0.005 * (3000 * .9825 + 59.02)  # = - 14.74 (attention dans fiche taux csg/crds aggrégé)
   hsup: 0
   sal: 2395.55 -.17 #  .17 due à l'erreur sur gmp salaire imposable
   depense_cantine_titre_restaurant_employe: 0

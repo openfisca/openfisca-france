@@ -62,11 +62,11 @@
           <NODE code="contribution_exceptionnelle_solidarite" color="249,208,211" desc="Contribution exceptionnelle solidarité (salarié)" shortname="Contrib. excep. temp." />
         </NODE>
       </NODE>
-      <NODE code="csgsald" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG déuc." />
+      <NODE code="csg_deductible_salaire" color="235,114,118" desc="CSG déductible (salaires)" shortname="CSG déuc." />
       <NODE code="mhsup" color="0,115,170" desc="Heures supplémentaires éxonérées" shortname="Heures sup." />
     </NODE>
-    <NODE code="csgsali" color="235,114,118" desc="CSG non déductible (salaires)" shortname="CSG imp. sal." />
-    <NODE code="crdssal" color="229,48,56" desc="CRDS (salaires)" shortname="CRDS sal." />
+    <NODE code="csg_imposable_salaire" color="235,114,118" desc="CSG non déductible (salaires)" shortname="CSG imp. sal." />
+    <NODE code="crds_salaire" color="229,48,56" desc="CRDS (salaires)" shortname="CRDS sal." />
     <NODE code="forfait_social" color="235,114,118" desc="Forfait social" shortname="Forfait social" />
     <NODE code="hsup" color="0,115,170" desc="Heures supplémentaires" shortname="Heures sup." />
   </NODE>

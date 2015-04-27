@@ -94,13 +94,13 @@ output_variables:
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -18.85
   contribution_exceptionnelle_solidarite: 0
-  # csgsald: -127.45
+  # csg_deductible_salaire: -127.45
   mhsup: 0
   # salaire_net: 1969.3
 
   # salaire imposable
-  # csgsali: -59.98
-  # crdssal: -12.5
+  # csg_imposable_salaire: -59.98
+  # crds_salaire: -12.5
   hsup: 0
   # sal: 1955.78
 

@@ -71,11 +71,11 @@ output_variables:
   mmid_salarie: -22.82 * .0075/.0105  # -.0075 * 2172.9
   # mmid_salarie: -22.82
   contribution_exceptionnelle_solidarite: 0
-  csgsald: -109.7
+  csg_deductible_salaire: -109.7
   mhsup: 0
   sal: 1726.13 + .01
-  csgsali: -(2172.9 * .9825 + 16.08)*.024
-  crdssal: -(2172.9 * .9825 + 16.08)*.005
+  csg_imposable_salaire: -(2172.9 * .9825 + 16.08)*.024
+  crds_salaire: -(2172.9 * .9825 + 16.08)*.005
   salaire_net: 1663.75 +.01  # 25.18 au lieu de 25.17 agirc_gmp
   hsup: 0
   depense_cantine_titre_restaurant_employe: 0

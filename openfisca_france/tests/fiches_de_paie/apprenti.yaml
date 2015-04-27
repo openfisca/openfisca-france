@@ -100,13 +100,13 @@ output_variables:
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: -5.36
   # contribution_exceptionnelle_solidarite: 0
-  csgsald: 0
+  csg_deductible_salaire: 0
   mhsup: 0
   # salaire_net: 0
 
   # salaire imposable
-  csgsali: 0
-  crdssal: 0
+  csg_imposable_salaire: 0
+  crds_salaire: 0
   hsup: 0
   # sal: 0  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0
