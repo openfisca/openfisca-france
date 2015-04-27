@@ -315,6 +315,7 @@
 
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
+  ignore: true
   period: 2006-01
   absolute_error_margin: 0.03
   familles:
@@ -341,6 +342,7 @@
 
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
+  ignore: true
   period: 2007-01
   absolute_error_margin: 0.03
   familles:
@@ -367,6 +369,7 @@
 
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
+  ignore: true
   period: 2008-01
   absolute_error_margin: 0.03
   familles:
@@ -393,6 +396,7 @@
 
 - name: "Allocations familiales - Couple, 2 enfants nés en 1990"
   description: Montant AF brut de CRDS
+  ignore: true
   period: 2009-01
   absolute_error_margin: 0.03
   familles:
