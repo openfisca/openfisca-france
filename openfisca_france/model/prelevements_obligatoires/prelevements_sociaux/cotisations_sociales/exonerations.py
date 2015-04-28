@@ -31,7 +31,7 @@ from .base import apply_bareme_for_relevant_type_sal
 
 
 reference_input_variable(
-    column = DateCol(),
+    column = DateCol(default = date(2099, 12, 31)),
     entity_class = Individus,
     label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)",
     name = 'jei_date_demande',
