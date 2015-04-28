@@ -1037,6 +1037,14 @@ reference_input_variable(
    set_input = set_input_divide_by_period
    )
 
+reference_input_variable(
+   name = 'tns_benefice_exploitant_agricole',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Dernier bénéfice agricole",
+   set_input = set_input_dispatch_by_period
+   )
+
 
 # Computed variables
 
