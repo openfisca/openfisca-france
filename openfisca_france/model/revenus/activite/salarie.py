@@ -488,7 +488,7 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Evaluation fofaitaire des avantages en nature "
 
-    # TODO:
+    # TODO: coplete this function
     def function(self, simulation, period):
         period = period
         avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
@@ -646,10 +646,10 @@ class primes_fonction_publique(SimpleFormulaColumn):
 
 @reference_formula
 class af_nbenf_fonc(SimpleFormulaColumn):
-    column = FloatCol  # TODO: shouldn't be an integer ?
+    column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
-    # Hack pour éviter une boucle infinie
+    # Hack pour éviter une boucle infinie
 
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
@@ -777,8 +777,12 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
+        stage_gratification = simulation.calculate('stage_gratification', period)
         salaire_net_a_payer = (
             salaire_net +
+            remuneration_apprenti +
+            stage_gratification +
             depense_cantine_titre_restaurant_employe +
             indemnites_forfaitaires
             )

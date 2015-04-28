@@ -54,7 +54,7 @@ class stage_gratification(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Gratification de stage"
-    start_date = date(2014, 11, 1) # TODO: remove when updating legislation backwards
+    start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -112,7 +112,6 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
         agirc_employeur = simulation.calculate('agirc_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        smic_proratise = simulation.calculate('smic_proratise', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
         stagiaire = simulation.calculate('stagiaire', period)
         type_sal = simulation.calculate('type_sal', period)
@@ -120,7 +119,7 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
         bareme_names = ['agffnc', 'agffc', 'chomfg', 'assedic']
 
-        exoneration = smic_proratise * 0.0
+        exoneration = plafond_securite_sociale * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
@@ -145,7 +144,7 @@ class exoneration_cotisations_salarie_stagiaire(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         arrco_salarie = simulation.calculate('arrco_salarie', period)
-        smic_proratise = simulation.calculate('smic_proratise', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
         stagiaire = simulation.calculate('stagiaire', period)
         type_sal = simulation.calculate('type_sal', period)
@@ -153,7 +152,7 @@ class exoneration_cotisations_salarie_stagiaire(SimpleFormulaColumn):
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_salarie
         bareme_names = ['agff', 'assedic']
 
-        exoneration = smic_proratise * 0.0
+        exoneration = plafond_securite_sociale * 0.0
         for bareme_name in bareme_names:
             exoneration += apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,

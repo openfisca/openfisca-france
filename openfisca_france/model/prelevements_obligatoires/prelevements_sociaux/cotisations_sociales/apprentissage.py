@@ -174,8 +174,10 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         apprenti = simulation.calculate('apprenti', period)
-        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
-        return period, - cotisations_salariales * apprenti
+        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
+        cotisations_salariales_non_contributives = simulation.calculate(
+            'cotisations_salariales_non_contributives', period)
+        return period, - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
 
 @reference_formula

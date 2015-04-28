@@ -205,5 +205,14 @@ class cotisations_salariales(SimpleFormulaColumn):
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)
+        exoneration_cotisations_salariales_apprenti = simulation.calculate_add(
+            'exoneration_cotisations_salariales_apprenti', period)
+        exoneration_cotisations_salarie_stagiaire = simulation.calculate_add(
+            'exoneration_cotisations_salarie_stagiaire', period)
 
-        return period, cotisations_salariales_contributives + cotisations_salariales_non_contributives
+        return period, (
+            cotisations_salariales_contributives +
+            cotisations_salariales_non_contributives +
+            exoneration_cotisations_salariales_apprenti +
+            exoneration_cotisations_salarie_stagiaire
+            )

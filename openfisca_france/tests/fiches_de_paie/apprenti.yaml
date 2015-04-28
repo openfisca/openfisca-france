@@ -81,10 +81,11 @@ output_variables:
   tehr: {'2014': 0}
   assiette_cotisations_sociales: 35 * 52 * 9.61 * .49 / 12
   #
-  cotisations_salariales: -5.71 -22.14 -17.14 -2.14 -48.92 -5.36
+  cotisations_salariales: 0  #-5.71 -22.14 -17.14 -2.14 -48.92 -5.36
   exoneration_cotisations_salariales_apprenti: -(-5.71 -22.14 -17.14 -2.14 -48.92 -5.36)
   #
-  # # cotisations_salariales_contributives: 0
+  cotisations_salariales_contributives: -5.71 -22.14 -17.14 -2.14 -48.92
+  cotisations_salariales_non_contributives: -5.36
   agff_salarie: -5.71
   agirc_salarie: 0
   apec_salarie: 0
@@ -110,6 +111,6 @@ output_variables:
   hsup: 0
   # sal: 0  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0
-  # salaire_net_a_payer: 0
+  salaire_net_a_payer: 35 * 52 * 9.61 * .49 / 12
   apprenti: 1
   remuneration_apprenti: 35 * 52 * 9.61 * .49 / 12
