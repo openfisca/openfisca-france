@@ -763,6 +763,20 @@ class rsa_act_i(DatedFormulaColumn):
         rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
         return period, rsa_act_i
 
+@reference_formula
+class rsa_eligibilite_tns(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Eligibilité au RSA pour un travailleur non salarié"
+
+    #Pour le moment seulement condition pour agriculteur
+    def function(self, simulation,period):
+        period = period.start.offset('first-of', 'month').period('month')
+        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole',period)
+        P = simulation.legislation_at(period.start)
+        plafond_benefice_agricole = P.tns.exploitant_agricole.plafond_rsa * P.cotsoc.gen.smic_h_b
+
+        return period, tns_benefice_exploitant_agricole < plafond_benefice_agricole
 
 @reference_formula
 class rsa_socle(SimpleFormulaColumn):
