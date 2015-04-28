@@ -76,7 +76,7 @@ output_variables:
   versement_transport: 0
   #
   allegement_fillon: 0
-  credit_impot_competitivite_emploi: 0
+  credit_impot_competitivite_emploi: 42.85
   forfait_social: 0
   tehr: {'2014': 0}
   assiette_cotisations_sociales: 35 * 52 * 9.61 * .49 / 12
