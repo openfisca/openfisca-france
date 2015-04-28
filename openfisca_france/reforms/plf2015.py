@@ -80,17 +80,15 @@ def modify_legislation_json(reference_legislation_json_copy):
         }
     reform_year = 2013
     reform_period = periods.period('year', reform_year)
-    # FIXME update_legislation is deprecated.
-    reference_legislation_json_copy = reforms.update_legislation(
-        legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 1, 'rate'),
+    reform_legislation_json = reforms.update_legislation(
+        legislation_json = reform_legislation_json,
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'rate'),
         period = reform_period,
         value = 0,
         )
-    # FIXME update_legislation is deprecated.
-    reference_legislation_json_copy = reforms.update_legislation(
-        legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 2, 'threshold'),
+    reform_legislation_json = reforms.update_legislation(
+        legislation_json = reform_legislation_json,
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'threshold'),
         period = reform_period,
         value = 9690,
         )

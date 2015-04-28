@@ -64,7 +64,7 @@ from ...base import *  # noqa analysis:ignore
 #     return prix_cess_corr-valeur_venale
 #
 #
-# def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.ir.pv_immo):
+# def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.impot_revenu.pv_immo):
 #     """
 #     Calcul de la plus value immobilière nette
 #     """
@@ -108,7 +108,7 @@ class ir_pv_immo(SimpleFormulaColumn):
         """
         period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
-        pv_immo = simulation.legislation_at(period.start).ir.pv_immo
+        pv_immo = simulation.legislation_at(period.start).impot_revenu.pv_immo
 
         # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
         # (VOIR TABLEAU PAGE 3).

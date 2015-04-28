@@ -428,7 +428,7 @@ class cd_penali(SimpleFormulaColumn):
         f6el = simulation.calculate('f6el', period)
         f6em = simulation.calculate('f6em', period)
         f6gu = simulation.calculate('f6gu', period)
-        penalim = simulation.legislation_at(period.start).ir.charges_deductibles.penalim
+        penalim = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.penalim
 
         max1 = penalim.max
         taux_jgt_2006 = penalim.taux_jgt_2006
@@ -456,7 +456,7 @@ class cd_acc75a(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         f6eu = simulation.calculate('f6eu', period)
         f6ev = simulation.calculate('f6ev', period)
-        acc75a = simulation.legislation_at(period.start).ir.charges_deductibles.acc75a
+        acc75a = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.acc75a
 
         amax = acc75a.max * max_(1, f6ev)
         return period, min_(f6eu, amax)
@@ -478,7 +478,7 @@ class cd_percap(DatedFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         f6cb = simulation.calculate('f6cb', period)
         marpac = simulation.calculate('marpac', period)
-        percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
+        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.percap
 
         max_cb = percap.max_cb * (1 + marpac)
         return period, min_(f6cb, max_cb)
@@ -494,7 +494,7 @@ class cd_percap(DatedFormulaColumn):
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         marpac = simulation.calculate('marpac', period)
-        percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
+        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.percap
 
         max_cb = percap.max_cb * (1 + marpac)
         max_da = percap.max_da * (1 + marpac)
@@ -594,7 +594,7 @@ class cd_sofipe(SimpleFormulaColumn):
         f6cc = simulation.calculate('f6cc', period)
         rbg_int = simulation.calculate('rbg_int', period)
         marpac = simulation.calculate('marpac', period)
-        sofipe = simulation.legislation_at(period.start).ir.charges_deductibles.sofipe
+        sofipe = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.sofipe
 
         max1 = min_(sofipe.taux * rbg_int, sofipe.max * (1 + marpac))
         return period, min_(f6cc, max1)
@@ -617,7 +617,7 @@ class cd_cinema(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         f6aa = simulation.calculate('f6aa', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        cinema = simulation.legislation_at(period.start).ir.charges_deductibles.cinema
+        cinema = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.cinema
 
         max1 = min_(cinema.taux * rbg_int, cinema.max)
         return period, min_(f6aa, max1)
@@ -640,7 +640,7 @@ class cd_ecodev(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         f6eh = simulation.calculate('f6eh', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        ecodev = simulation.legislation_at(period.start).ir.charges_deductibles.ecodev
+        ecodev = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.ecodev
 
         max1 = min_(ecodev.taux * rbg_int, ecodev.max)
         return period, min_(f6eh, max1)
@@ -663,6 +663,6 @@ class cd_grorep(SimpleFormulaColumn):
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)
         f6hl = simulation.calculate('f6hl', period)
-        grorep = simulation.legislation_at(period.start).ir.charges_deductibles.grorep
+        grorep = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.grorep
 
         return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.max)

@@ -518,7 +518,7 @@ class maj_cga_i(SimpleFormulaColumn):
         nacc_defs = simulation.calculate('nacc_defs', period)
         nbnc_impo = simulation.calculate('nbnc_impo', period)
         nbnc_defi = simulation.calculate('nbnc_defi', period)
-        P = simulation.legislation_at(period.start).ir.rpns
+        P = simulation.legislation_at(period.start).impot_revenu.rpns
 
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
 

@@ -98,7 +98,7 @@ def main():
     parser.add_argument('-s', '--source-dir', default = 'yaml-clean',
         help = 'path of source directory containing clean IPP YAML files')
     parser.add_argument('-t', '--target', default = os.path.join(parameters_dir, 'parameters.xml'),
-        help = 'path of generated YAML file containing the association between IPP fields with OpenFisca parameters')
+        help = 'path of generated YAML file containing the association of IPP fields with OpenFisca parameters')
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
@@ -145,6 +145,7 @@ def main():
 
     with open(args.ipp_translations) as ipp_translations_file:
         ipp_translations = yaml.load(ipp_translations_file)
+        ipp_translations = slugify_ipp_translations_keys(ipp_translations)
 
     tree = collections.OrderedDict()
     for source_dir_encoded, directories_name_encoded, filenames_encoded in os.walk(args.source_dir):
@@ -233,6 +234,7 @@ def main():
                     translated_path = []
                     while remaining_path:
                         fragment = remaining_path.pop(0)
+                        fragment = slugify_ipp_translation_key(fragment)
                         type = None
                         if translations is not None:
                             translations = translations.get(fragment, fragment)
@@ -251,6 +253,7 @@ def main():
                         sub_path = [fragment] if isinstance(fragment, basestring) else fragment[:]
                         while sub_path:
                             fragment = sub_path.pop(0)
+                            fragment = slugify_ipp_translation_key(fragment)
                             translated_path.append(fragment)
                             if fragment == u'ASSIETTE':
                                 assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
@@ -338,6 +341,20 @@ def merge_elements(element, original_element, path = None):
             else:
                 # A child with the same code as the original child doesn't exist yet.
                 element.append(original_child)
+
+
+def slugify_ipp_translation_key(key):
+    return key if key in ('RENAME', 'TYPE') else strings.slugify(key, separator = u'_')
+
+
+def slugify_ipp_translations_keys(ipp_translations):
+    return collections.OrderedDict(
+        (
+            slugify_ipp_translation_key(key),
+            slugify_ipp_translations_keys(value) if isinstance(value, dict) else value,
+            )
+        for key, value in ipp_translations.iteritems()
+        )
 
 
 def sort_elements(element):

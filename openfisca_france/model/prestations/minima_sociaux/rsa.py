@@ -772,7 +772,7 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
         P_agr = P.tns.exploitant_agricole
-        P_micro = P.ir.rpns.microentreprise
+        P_micro = P.impot_revenu.rpns.microentreprise
         maj_2p = P_agr.maj_2p
         maj_1e_2ad = P_agr.maj_1e_2ad
         maj_e_sup = P_agr.maj_e_sup

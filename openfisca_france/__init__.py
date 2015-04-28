@@ -87,7 +87,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
 
         columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
 
-        legislation_xml_file_path = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
+        legislation_xml_file_path = os.path.join(COUNTRY_DIR, 'param', 'parameters.xml')
 
         preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
 

@@ -1,16 +1,85 @@
-baremes-ipp-chomage: chomage
-baremes-ipp-impot-revenu:
+baremes_ipp_chomage_unemployment:
+  RENAME: chomage
+baremes_ipp_impot_revenu_income_tax:
   RENAME: impot_revenu
-  bareme-ir:
+  bareme_ir:
     RENAME: bareme
     TYPE: BAREME
     Nombre de tranches: null
     Seuils inférieurs des tranches: SEUIL
     Taux marginaux des tranches: TAUX
-baremes-ipp-marche-du-travail: marche_du_travail
-baremes-ipp-prelevements-sociaux: prelevements_sociaux
-baremes-ipp-prestations: prestations
-baremes-ipp-retraite: retraite
-baremes-ipp-taxation-du-capital: taxation_du_capital
-baremes-ipp-taxation-indirecte: taxation_indirecte
-baremes-ipp-taxes-locales: taxes_locales
+  charg_deduc:
+    Déductions investissement DOM_TOM: null  # Value must be a float
+baremes_ipp_marche_du_travail_labour_market: marche_du_travail
+baremes_ipp_prelevements_sociaux_social_security_contributions:
+  RENAME: prelevements_sociaux
+  fillon:
+    Ensemble des entreprises:
+      Salaire de référence: null  # Value must be a float
+    Entreprises restées aux 39 heures hebdomadaires au 30/06/2003:
+      Salaire de référence: null  # Value must be a float
+    Entreprises ayant signé un accord de RTT avant le 30/06/2003:
+      Salaire de référence: null  # Value must be a float
+baremes_ipp_prestations_sociales_social_benefits:
+  RENAME: prestations
+  aa_plaf:
+    Plafonds de ressources: null  # Value must be a float
+  al_charge:
+    Cas des colocataires ou des propriétaires (1):
+      Isolé ou couple avec un enfant ou une personne à charge: null  # Value must be a float
+      Majoration par enfant de la majoration pour charges: null  # Value must be a float
+  al_pac:
+    Âge limite pour les enfants à charge: null  # Value must be a float
+    Plafonds de ressources que les potentiels personnes à charge autre que les enfants doivent respecter: null  # Value must be a float
+  al_plaf_acc:
+    Intervalle de date du certificat d'emprunt correspondant aux plafonds d'accession à la propriété: null  # Value must be a float
+  al_plaf_loc2:
+    Loyer de référence: null  # Value must be a float
+  api_fl:
+    Forfait logement:
+      Couple, 1 enfant (1): null  # Value must be a float
+      couples_2_enfants_ou_plus_1: null  # Value must be a float
+      Femmes enceintes (1): null  # Value must be a float
+  asi_cond:
+    Âge minimal: null  # Value must be a float
+    Condition d'âge et de ressources: null  # Value must be a float
+  cf_maj:
+    Majoration:
+       1er et 2ème enfants (en % du plafond de ressources avec 0 enfant): null  # Value must be a float
+       3ème enfant et plus (en % du plafond de ressources avec 0 enfant): null  # Value must be a float
+       Biactifs et parents isolés:
+    Plafond de ressources _ 0 enfant: null  # Value must be a float
+  paje_cm:
+    age_limite:
+      pour_les_enfants_adoptes: null  # Value must be a float
+  paje_cm2:
+    conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee: null  # Value must be a float
+  pjm_prets:
+    cumul_de_prets: null  # Value must be a float
+    pret_maximum:
+      pour_l_accession_a_la_propriete_d_un_logement_neuf_ou_ancien: null  # Value must be a float
+      pour_l_equipement_mobilier_et_menager: null  # Value must be a float
+      pour_les_premiers_frais_de_location: null  # Value must be a float
+baremes_ipp_retraites_pensions:
+  RENAME: retraite
+  aad_fp:
+    age_d_annulation_de_la_decote_selon_l_annee_d_ouverture_des_droits: null  # Value must be a float
+  aad_rg:
+    age_d_annulation_de_la_decote_en_fonction_de_la_date_de_naissance: null  # Value must be a float
+  aod_fp_a:
+    age_d_ouverture_des_droits_pour_la_fonction_publique_active_selon_l_annee_de_naissance: null  # Value must be a float
+  aod_fp_s:
+    age_d_ouverture_des_droits_pour_la_fonction_publique_sedentaire_selon_l_annee_de_naissance: null  # Value must be a float
+  aod_rg:
+    age_d_ouverture_des_droits_ou_age_legal_en_fonction_de_la_date_de_naissance: null  # Value must be a float
+  as:
+    plafond_de_ressources_menages: null  # Value must be a float
+  la_fp_a:
+    age_limite_fonction_publique_active_selon_l_annee_de_naissance: null  # Value must be a float
+  la_fp_s:
+    age_limite_fonction_publique_sedentaire_selon_l_annee_de_naissance: null  # Value must be a float
+  salval:
+    salaire_validant_un_trimestre:
+      metropole: null  # Value must be a float
+baremes_ipp_taxation_capital: taxation_capital
+baremes_ipp_taxation_indirecte: taxation_indirecte

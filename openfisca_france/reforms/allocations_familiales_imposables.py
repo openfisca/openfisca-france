@@ -53,7 +53,7 @@ def build_reform(tax_benefit_system):
             nacc_pvce_holder = simulation.calculate('nacc_pvce', period)
             nbic_impm_holder = simulation.calculate('nbic_impm', period)
             rev_cat = simulation.calculate('rev_cat', period)
-            cga = simulation.legislation_at(period.start).ir.rpns.cga_taux2
+            cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
             nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
             return period, max_(

@@ -103,7 +103,7 @@ class taxe_habitation(SimpleFormulaColumn):
         valeur_locative_brute = 0
         valeur_locative_moyenne = 0  # déped de la collectivité)
 
-        # Paramètres: à inclure dans param.xml
+        # Paramètres: à inclure dans parameters.xml
         taux_minimal_2_premiers = .1  # minimun depusi 2011
         majoration_2_premiers = 0
         taux_minimal_3_et_plus = .15

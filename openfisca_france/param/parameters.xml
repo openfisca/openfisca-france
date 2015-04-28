@@ -726,7 +726,7 @@
     <NODE code="alloc_base">
       <NODE code="montant_minimal_apres_degressivite">
         <CODE code="plus_de_52_ans_sous_conditions" format="float" type="monetary">
-          <VALUE deb="1999-07-01" fin="2000-06-30" valeur="134.73" />
+          <VALUE deb="1999-07-01" valeur="134.73" />
           <VALUE deb="1998-07-01" fin="1999-06-30" valeur="133.11" />
           <VALUE deb="1997-07-01" fin="1998-06-30" valeur="130.63" />
           <VALUE deb="1996-07-01" fin="1997-06-30" valeur="127.82" />
@@ -736,7 +736,7 @@
           <VALUE deb="1991-07-01" fin="1992-06-30" valeur="112.7" />
         </CODE>
         <CODE code="tous" format="float" type="monetary">
-          <VALUE deb="1999-07-01" fin="2000-06-30" valeur="107.43" />
+          <VALUE deb="1999-07-01" valeur="107.43" />
           <VALUE deb="1998-07-01" fin="1999-06-30" valeur="106.14" />
           <VALUE deb="1997-07-01" fin="1998-06-30" valeur="104.16" />
           <VALUE deb="1996-07-01" fin="1997-06-30" valeur="101.92" />
@@ -757,7 +757,7 @@
         <VALUE deb="2007-07-01" fin="2008-06-30" valeur="18.64" />
         <VALUE deb="2006-07-01" fin="2007-06-30" valeur="18.28" />
         <VALUE deb="2005-07-01" fin="2006-06-30" valeur="17.92" />
-        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="17.74" />
+        <VALUE deb="2003-07-01" fin="2005-06-30" valeur="17.74" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="17.73" />
       </CODE>
       <NODE code="montant_minimum">
@@ -1075,10 +1075,10 @@
           <VALUE deb="1979-07-01" valeur="0.6" />
         </CODE>
         <CODE code="3eme_trimestre" format="percent">
-          <VALUE deb="1979-07-01" fin="1982-12-31" valeur="0.55" />
+          <VALUE deb="1979-07-01" valeur="0.55" />
         </CODE>
         <CODE code="4eme_trismestre" format="percent">
-          <VALUE deb="1979-07-01" fin="1982-12-31" valeur="0.5" />
+          <VALUE deb="1979-07-01" valeur="0.5" />
         </CODE>
       </NODE>
     </NODE>
@@ -1257,6 +1257,170 @@
         </CODE>
       </NODE>
     </NODE>
+    <NODE code="aud">
+      <NODE code="coefficient_de_degressivite">
+        <NODE code="duree_d_affiliation_de_14_mois_au_cours_des_24_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="0.85" />
+          </CODE>
+          <CODE code="entre_25_et_50_ans">
+            <VALUE deb="1993-01-01" valeur="0.83" />
+          </CODE>
+          <CODE code="moins_de_25_ans">
+            <VALUE deb="1993-01-01" valeur="0.83" />
+          </CODE>
+        </NODE>
+        <NODE code="duree_d_affiliation_de_27_mois_au_cours_des_36_derniers_mois">
+          <CODE code="50_55_ans">
+            <VALUE deb="1993-01-01" valeur="0.85" />
+          </CODE>
+          <CODE code="55_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="0.92" />
+          </CODE>
+        </NODE>
+        <CODE code="duree_d_affiliation_de_4_mois_au_cours_des_8_derniers_mois">
+          <VALUE deb="1997-01-01" valeur="1" />
+          <VALUE deb="1993-01-01" fin="1996-12-31" valeur="0.75" />
+        </CODE>
+        <CODE code="duree_d_affiliation_de_6_mois_au_cours_des_12_derniers_mois">
+          <VALUE deb="1993-01-01" valeur="0.85" />
+        </CODE>
+        <NODE code="duree_d_affiliation_de_8_mois_au_cours_des_12_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="0.85" />
+          </CODE>
+          <CODE code="moins_de_50_ans">
+            <VALUE deb="1993-01-01" valeur="0.83" />
+          </CODE>
+        </NODE>
+      </NODE>
+      <NODE code="duree_d_indemnisation_au_taux_degressif_en_mois">
+        <NODE code="duree_d_affiliation_de_14_mois_au_cours_des_24_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-08-01" valeur="30" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="28" />
+          </CODE>
+          <CODE code="entre_25_et_50_ans">
+            <VALUE deb="1993-08-01" valeur="21" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="18" />
+          </CODE>
+          <CODE code="moins_de_25_ans">
+            <VALUE deb="1997-01-01" valeur="21" />
+            <VALUE deb="1993-08-01" fin="1996-12-31" valeur="23" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="21" />
+          </CODE>
+        </NODE>
+        <NODE code="duree_d_affiliation_de_27_mois_au_cours_des_36_derniers_mois">
+          <CODE code="50_55_ans">
+            <VALUE deb="1993-01-01" valeur="25" />
+          </CODE>
+          <CODE code="55_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="33" />
+          </CODE>
+        </NODE>
+        <CODE code="duree_d_affiliation_de_4_mois_au_cours_des_8_derniers_mois">
+          <VALUE deb="1993-01-01" valeur="4" />
+        </CODE>
+        <NODE code="duree_d_affiliation_de_6_mois_au_cours_des_12_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="3" />
+          </CODE>
+          <CODE code="moins_de_50_ans">
+            <VALUE deb="1993-01-01" valeur="3" />
+          </CODE>
+        </NODE>
+        <NODE code="duree_d_affiliation_de_8_mois_au_cours_des_12_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-08-01" valeur="14" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="13" />
+          </CODE>
+          <CODE code="moins_de_50_ans">
+            <VALUE deb="1993-08-01" valeur="11" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="10" />
+          </CODE>
+        </NODE>
+      </NODE>
+      <NODE code="duree_d_indemnisation_au_taux_plein_en_mois">
+        <NODE code="duree_d_affiliation_de_14_mois_au_cours_des_24_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-08-01" valeur="15" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="17" />
+          </CODE>
+          <CODE code="entre_25_et_50_ans">
+            <VALUE deb="1993-08-01" valeur="9" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="12" />
+          </CODE>
+          <CODE code="moins_de_25_ans">
+            <VALUE deb="1997-01-01" valeur="9" />
+            <VALUE deb="1993-08-01" fin="1996-12-31" valeur="7" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="9" />
+          </CODE>
+        </NODE>
+        <NODE code="duree_d_affiliation_de_27_mois_au_cours_des_36_derniers_mois">
+          <CODE code="50_55_ans">
+            <VALUE deb="1993-01-01" valeur="20" />
+          </CODE>
+          <CODE code="55_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="27" />
+          </CODE>
+        </NODE>
+        <CODE code="duree_d_affiliation_de_4_mois_au_cours_des_8_derniers_mois">
+          <VALUE deb="1997-01-01" valeur="4" />
+        </CODE>
+        <NODE code="duree_d_affiliation_de_6_mois_au_cours_des_12_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="4" />
+          </CODE>
+          <CODE code="moins_de_50_ans">
+            <VALUE deb="1993-01-01" valeur="4" />
+          </CODE>
+        </NODE>
+        <NODE code="duree_d_affiliation_de_8_mois_au_cours_des_12_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-08-01" valeur="7" />
+            <VALUE deb="1993-01-01" fin="1993-07-31" valeur="8" />
+          </CODE>
+          <CODE code="moins_de_50_ans">
+            <VALUE deb="1993-01-01" valeur="4" />
+          </CODE>
+        </NODE>
+      </NODE>
+      <NODE code="duree_totale_en_mois">
+        <NODE code="duree_d_affiliation_de_14_mois_au_cours_des_24_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="45" />
+          </CODE>
+          <CODE code="entre_25_et_50_ans">
+            <VALUE deb="1993-01-01" valeur="30" />
+          </CODE>
+          <CODE code="moins_de_25_ans">
+            <VALUE deb="1993-01-01" valeur="30" />
+          </CODE>
+        </NODE>
+        <NODE code="duree_d_affiliation_de_27_mois_au_cours_des_36_derniers_mois">
+          <CODE code="50_55_ans">
+            <VALUE deb="1993-01-01" valeur="45" />
+          </CODE>
+          <CODE code="55_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="60" />
+          </CODE>
+        </NODE>
+        <CODE code="duree_d_affiliation_de_4_mois_au_cours_des_8_derniers_mois">
+          <VALUE deb="1993-01-01" valeur="4" />
+        </CODE>
+        <CODE code="duree_d_affiliation_de_6_mois_au_cours_des_12_derniers_mois">
+          <VALUE deb="1993-01-01" valeur="7" />
+        </CODE>
+        <NODE code="duree_d_affiliation_de_8_mois_au_cours_des_12_derniers_mois">
+          <CODE code="50_ans_et_plus">
+            <VALUE deb="1993-01-01" valeur="21" />
+          </CODE>
+          <CODE code="moins_de_50_ans">
+            <VALUE deb="1993-01-01" valeur="15" />
+          </CODE>
+        </NODE>
+      </NODE>
+    </NODE>
     <NODE code="fne_arpe">
       <NODE code="montant_minimum">
         <CODE code="lic_demission_arpe" format="float" type="monetary">
@@ -1432,18 +1596,16 @@
         <VALUE deb="1979-04-02" fin="1979-06-30" valeur="0.05" />
         <VALUE deb="1978-10-02" fin="1979-04-01" valeur="0.074" />
         <VALUE deb="1978-04-03" fin="1978-10-01" valeur="0.061" />
-        <VALUE deb="1977-10-03" fin="1978-02-19" valeur="0.056" />
+        <VALUE deb="1977-10-03" fin="1978-04-02" valeur="0.056" />
         <VALUE deb="1977-04-04" fin="1977-10-02" valeur="0.064" />
         <VALUE deb="1976-10-04" fin="1977-04-03" valeur="0.07" />
         <VALUE deb="1976-04-05" fin="1976-10-03" valeur="0.06" />
-        <VALUE deb="1975-10-06" fin="1976-02-22" valeur="0.07" />
+        <VALUE deb="1975-10-06" fin="1976-04-04" valeur="0.07" />
         <VALUE deb="1975-06-02" fin="1975-10-05" valeur="0.06" />
-        <VALUE deb="1974-12-30" fin="1975-01-12" valeur="0.07" />
+        <VALUE deb="1974-12-30" fin="1975-06-01" valeur="0.07" />
         <VALUE deb="1974-07-01" fin="1974-12-29" valeur="0.1" />
-        <VALUE deb="1973-12-31" fin="1974-01-13" valeur="0.08" />
-        <VALUE deb="1973-07-02" fin="1973-12-30" valeur="0.06" />
-        <VALUE deb="1973-01-01" fin="1973-01-31" valeur="0.06" />
-        <VALUE deb="1972-07-03" fin="1972-11-05" valeur="0.06" />
+        <VALUE deb="1973-12-31" fin="1974-06-30" valeur="0.08" />
+        <VALUE deb="1972-07-03" fin="1973-12-30" valeur="0.06" />
       </CODE>
     </NODE>
     <NODE code="sr_61">
@@ -1852,7 +2014,8 @@
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="2399" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2359" />
       </CODE>
-      <CODE code="plafond_securite_sociale" description="Plafond de la sécurité sociale" format="integer" type="monetary">
+      <CODE code="plafond_securite_sociale" description="Plafond annuel de la sécurité sociale" format="integer" type="monetary">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3086" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="3031" />
@@ -1867,6 +2030,12 @@
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="2432" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2352" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2279" />
+      </CODE>
+      <CODE code="plafond_securite_sociale_horaire" description="Plafond horaire de la sécurité sociale " format="integer" type="monetary">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="24" />
+        <VALUE deb="2012-01-01" fin="2014-12-31" valeur="23" />
+        <VALUE deb="2010-01-01" fin="2011-12-31" valeur="22" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />
       </CODE>
       <CODE code="smic_h_b" description="SMIC horaire brut" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
@@ -3721,7 +3890,7 @@
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
       <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" type="monetary">
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="406.21" />
+        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="399" />
         <VALUE deb="2011-01-01" fin="2012-03-31" valeur="395.04" />
@@ -3739,7 +3908,7 @@
       <CODE code="crds" description="Taux de crds" format="percent">
         <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
       </CODE>
-      <NODE code="maj_age" description="Majorations pour âge">
+      <NODE code="maj_age_deux_enfants" description="Majorations pour âge">
         <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
           <VALUE deb="2002-01-01" fin="2014-03-31" valeur="11" />
         </CODE>
@@ -3753,6 +3922,20 @@
         </CODE>
         <CODE code="taux2" description="2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)" format="percent">
           <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.16" />
+        </CODE>
+      </NODE>
+      <NODE code="maj_age_un_enfant" description="Majorations pour âge">
+        <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="11" />
+        </CODE>
+        <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="16" />
+        </CODE>
+        <CODE code="taux1" description="1ère majoration pour âge" format="percent">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0369" />
+        </CODE>
+        <CODE code="taux2" description="2ème majoration pour âge" format="percent">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0567" />
         </CODE>
       </NODE>
       <NODE code="modulation" description="Modulation des allocations familiales en fonction des ressources">
@@ -3777,16 +3960,19 @@
       </CODE>
       <NODE code="taux" description="Taux (% de la BMAF)">
         <CODE code="enf1" description="Premier enfant à charge" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0" />
         </CODE>
         <CODE code="enf2" description="Deuxième enfant à charge" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.32" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.32" />
         </CODE>
         <CODE code="enf3" description="Troisième enfant à charge et suivants" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.41" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.41" />
+        </CODE>
+        <CODE code="enf_seul" description="Un seul enfant à charge (DOM)" format="percent">
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0588" />
         </CODE>
         <CODE code="forfait" description="Allocation forfaitaire par enfant de 20 ans" format="percent">
-          <VALUE deb="2003-07-01" fin="2014-03-31" valeur="0.20234" />
+          <VALUE deb="2003-07-01" fin="2016-03-31" valeur="0.20234" />
           <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
         </CODE>
       </NODE>
@@ -3926,7 +4112,7 @@
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="12027" />
       </CODE>
       <CODE code="plaf_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent">
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.3" />
       </CODE>
       <CODE code="seuil_nv" description="Seuil de non versement" format="integer" type="monetary">
         <VALUE deb="2002-01-01" fin="2015-03-31" valeur="15" />
@@ -3967,6 +4153,9 @@
         <VALUE deb="1998-01-01" fin="2014-03-31" valeur="21" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
         <VALUE deb="1986-01-01" fin="1996-12-31" valeur="17" />
+      </CODE>
+      <CODE code="age_limite_dom" description="Âge limite DOM" format="integer" type="age">
+        <VALUE deb="1986-01-01" fin="2014-03-31" valeur="5" />
       </CODE>
       <CODE code="majoration_plafond_biact_isole" description="Majoration du plafond pour biactifs ou isolé" format="integer" type="monetary">
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
@@ -4014,10 +4203,18 @@
       <CODE code="tx" description="Taux du complément familial" format="percent">
         <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.4165" />
       </CODE>
+      <CODE code="tx_dom" description="Taux du complément familial dans les DOM" format="percent">
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
+      </CODE>
       <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
+      </CODE>
+      <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
+        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />
+        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.2379" />
       </CODE>
     </NODE>
     <NODE code="enfants" description="Enfants à charge">
@@ -4595,19 +4792,18 @@
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <BAREME code="bareme">
-      <TRANCHE code="tranche_1">
+    <BAREME code="bareme" description="Tranches de l'IR" type="monetary">
+      <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE deb="2001-01-01" valeur="0" />
-          <VALUE deb="1945-01-01" fin="2000-12-31" valeur="0" />
+          <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="1945-01-01" valeur="0" />
+          <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
         </TAUX>
       </TRANCHE>
-      <TRANCHE code="tranche_2">
+      <TRANCHE code="tranche1">
         <SEUIL>
-          <VALUE deb="2014-01-01" valeur="9690" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9690" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5963" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5875" />
@@ -4619,66 +4815,17 @@
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="4262" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="4191" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="4121" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="26600" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="26230" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="26100" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="25890" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="25610" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="22610" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="22210" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="21900" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="19220" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="18690" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="18140" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="17570" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="17000" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="16560" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="16030" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="15650" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="14820" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="13770" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="12620" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="11230" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="9890" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="8725" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="7925" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="7250" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="6725" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="6125" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="5500" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="4950" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="3300" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="3100" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="2900" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="2700" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="2500" />
-          <VALUE deb="1962-01-01" fin="1964-12-31" valeur="2400" />
-          <VALUE deb="1960-01-01" fin="1961-12-31" valeur="2300" />
-          <VALUE deb="1953-01-01" fin="1959-12-31" valeur="220000" />
-          <VALUE deb="1951-01-01" fin="1952-12-31" valeur="180000" />
-          <VALUE deb="1950-01-01" fin="1950-12-31" valeur="140000" />
-          <VALUE deb="1948-01-01" fin="1949-12-31" valeur="120000" />
-          <VALUE deb="1947-01-01" fin="1947-12-31" valeur="100000" />
-          <VALUE deb="1945-01-01" fin="1946-12-31" valeur="40000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2014-01-01" valeur="0.14" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.14" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.055" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.0683" />
-          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.0705" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.075" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.0825" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.095" />
-          <VALUE deb="1996-01-01" fin="1998-12-31" valeur="0.105" />
-          <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.12" />
-          <VALUE deb="1973-01-01" fin="1992-12-31" valeur="0.05" />
-          <VALUE deb="1948-01-01" fin="1972-12-31" valeur="0.1" />
-          <VALUE deb="1945-01-01" fin="1947-12-31" valeur="0.12" />
+          <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.0705" />
         </TAUX>
       </TRANCHE>
-      <TRANCHE code="tranche_3">
+      <TRANCHE code="tranche2">
         <SEUIL>
-          <VALUE deb="2014-01-01" valeur="26764" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11991" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="11896" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11720" />
@@ -4690,68 +4837,17 @@
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="8382" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="8242" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="8104" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="52320" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="51600" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="51340" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="50930" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="50380" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="49440" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="48750" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="47900" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="20080" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="19530" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="18960" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="18370" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="17780" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="17320" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="16760" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="16360" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="15490" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="14390" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="13190" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="11740" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="10340" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="9125" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="8300" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="7600" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="7050" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="6425" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="5825" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="5200" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="5750" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="5400" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="5100" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="4800" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="4500" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="4400" />
-          <VALUE deb="1961-01-01" fin="1963-12-31" valeur="4000" />
-          <VALUE deb="1960-01-01" fin="1960-12-31" valeur="3750" />
-          <VALUE deb="1951-01-01" fin="1959-12-31" valeur="350000" />
-          <VALUE deb="1950-01-01" fin="1950-12-31" valeur="300000" />
-          <VALUE deb="1949-01-01" fin="1949-12-31" valeur="250000" />
-          <VALUE deb="1946-01-01" fin="1948-12-31" valeur="200000" />
-          <VALUE deb="1945-01-01" fin="1945-12-31" valeur="100000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2014-01-01" valeur="0.3" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.30" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.14" />
-          <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.1914" />
-          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.1974" />
+          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.1914" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.21" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.2175" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.23" />
-          <VALUE deb="1996-01-01" fin="1998-12-31" valeur="0.24" />
-          <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.25" />
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.096" />
-          <VALUE deb="1973-01-01" fin="1986-12-31" valeur="0.1" />
-          <VALUE deb="1948-01-01" fin="1972-12-31" valeur="0.15" />
-          <VALUE deb="1947-01-01" fin="1947-12-31" valeur="0.24" />
-          <VALUE deb="1945-01-01" fin="1946-12-31" valeur="0.3" />
         </TAUX>
       </TRANCHE>
-      <TRANCHE code="tranche_4">
+      <TRANCHE code="tranche3">
         <SEUIL>
-          <VALUE deb="2014-01-01" valeur="71754" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="26631" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="26420" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26030" />
@@ -4763,68 +4859,18 @@
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="14753" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="14506" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="14264" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="92090" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="90820" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="90370" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="89650" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="88670" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="87020" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="85480" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="84300" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="23800" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="23150" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="22470" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="21770" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="21070" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="20530" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="19870" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="19400" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="18370" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="17070" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="15640" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="13930" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="12270" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="10825" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="9925" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="9100" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="8450" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="7700" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="7000" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="6250" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="9500" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="8950" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="8500" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="8100" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="7600" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="7350" />
-          <VALUE deb="1961-01-01" fin="1963-12-31" valeur="6750" />
-          <VALUE deb="1960-01-01" fin="1960-12-31" valeur="6500" />
-          <VALUE deb="1951-01-01" fin="1959-12-31" valeur="600000" />
-          <VALUE deb="1949-01-01" fin="1950-12-31" valeur="500000" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="300000" />
-          <VALUE deb="1946-01-01" fin="1947-12-31" valeur="500000" />
-          <VALUE deb="1945-01-01" fin="1945-12-31" valeur="300000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2014-01-01" valeur="0.41" />
-          <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.3" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4100" />
+          <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.3000" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.2826" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.2914" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.31" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.3175" />
-          <VALUE deb="1996-01-01" fin="1999-12-31" valeur="0.33" />
-          <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.35" />
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.144" />
-          <VALUE deb="1973-01-01" fin="1986-12-31" valeur="0.15" />
-          <VALUE deb="1960-01-01" fin="1972-12-31" valeur="0.25" />
-          <VALUE deb="1948-01-01" fin="1959-12-31" valeur="0.2" />
-          <VALUE deb="1947-01-01" fin="1947-12-31" valeur="0.36" />
-          <VALUE deb="1945-01-01" fin="1946-12-31" valeur="0.45" />
+          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.3100" />
         </TAUX>
       </TRANCHE>
-      <TRANCHE code="tranche_5">
+      <TRANCHE code="tranche4">
         <SEUIL>
-          <VALUE deb="2014-01-01" valeur="151956" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="71397" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="70830" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="69783" />
@@ -4836,68 +4882,17 @@
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="23888" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="23489" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="23096" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="149110" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="147050" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="146320" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="145160" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="143580" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="140900" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="138410" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="136500" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="37620" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="36590" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="35520" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="34410" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="33310" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="32460" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="31420" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="30680" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="29050" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="26990" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="24740" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="22030" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="19410" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="17125" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="15700" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="14400" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="13400" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="12225" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="11100" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="9900" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="14050" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="13250" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="12600" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="12000" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="11250" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="10850" />
-          <VALUE deb="1961-01-01" fin="1963-12-31" valeur="10000" />
-          <VALUE deb="1960-01-01" fin="1960-12-31" valeur="9750" />
-          <VALUE deb="1951-01-01" fin="1959-12-31" valeur="900000" />
-          <VALUE deb="1950-01-01" fin="1950-12-31" valeur="750000" />
-          <VALUE deb="1949-01-01" fin="1949-12-31" valeur="800000" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="500000" />
-          <VALUE deb="1946-01-01" fin="1947-12-31" valeur="1000000" />
-          <VALUE deb="1945-01-01" fin="1945-12-31" valeur="500000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2014-01-01" valeur="0.45" />
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.41" />
-          <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.4" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4500" />
+          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.4100" />
+          <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.4000" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.3738" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.3854" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.41" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.4175" />
-          <VALUE deb="1996-01-01" fin="1999-12-31" valeur="0.43" />
-          <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.45" />
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.192" />
-          <VALUE deb="1973-01-01" fin="1986-12-31" valeur="0.2" />
-          <VALUE deb="1949-01-01" fin="1972-12-31" valeur="0.3" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="0.25" />
-          <VALUE deb="1947-01-01" fin="1947-12-31" valeur="0.48" />
-          <VALUE deb="1945-01-01" fin="1946-12-31" valeur="0.6" />
+          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.4100" />
         </TAUX>
       </TRANCHE>
-      <TRANCHE code="tranche_6">
+      <TRANCHE code="tranche5">
         <SEUIL>
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="151200" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150000" />
@@ -4906,317 +4901,26 @@
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="38868" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="38218" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="37579" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="242620" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="239270" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="238080" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="236190" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="233620" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="229260" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="225210" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="222100" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="48350" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="47030" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="45660" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="44240" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="42820" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="41730" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="40390" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="39440" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="37340" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="34700" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="31810" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="28320" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="24950" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="22275" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="20625" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="18900" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="17575" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="16575" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="15050" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="14900" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="22000" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="21050" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="20050" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="19100" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="18000" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="17500" />
-          <VALUE deb="1960-01-01" fin="1963-12-31" valeur="16250" />
-          <VALUE deb="1951-01-01" fin="1959-12-31" valeur="1500000" />
-          <VALUE deb="1949-01-01" fin="1950-12-31" valeur="1200000" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="800000" />
-          <VALUE deb="1947-01-01" fin="1947-12-31" valeur="2000000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.45" />
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.4500" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4262" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.4394" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.4675" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.4725" />
-          <VALUE deb="1996-01-01" fin="1999-12-31" valeur="0.48" />
-          <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.5" />
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.24" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.25" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="0.3" />
-          <VALUE deb="1949-01-01" fin="1972-12-31" valeur="0.4" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="0.3" />
-          <VALUE deb="1947-01-01" fin="1947-12-31" valeur="0.6" />
         </TAUX>
       </TRANCHE>
-      <TRANCHE code="tranche_7">
+      <TRANCHE code="tranche6">
         <SEUIL>
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="49624" />
           <VALUE deb="2004-01-01" fin="2004-12-31" valeur="48747" />
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="47932" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="47131" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="46343" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="299200" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="295070" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="293600" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="291270" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="288100" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="282730" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="277730" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="273900" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="60690" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="59040" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="57320" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="55540" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="53770" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="52410" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="50740" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="49550" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="46920" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="43610" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="39970" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="35590" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="31360" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="28000" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="25925" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="23800" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="22150" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="20900" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="19000" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="22000" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="43500" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="42100" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="40100" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="38200" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="36000" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="35000" />
-          <VALUE deb="1960-01-01" fin="1963-12-31" valeur="32000" />
-          <VALUE deb="1951-01-01" fin="1959-12-31" valeur="3000000" />
-          <VALUE deb="1950-01-01" fin="1950-12-31" valeur="1500000" />
-          <VALUE deb="1949-01-01" fin="1949-12-31" valeur="2000000" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="1200000" />
         </SEUIL>
         <TAUX>
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4809" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.4958" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.5275" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.5325" />
-          <VALUE deb="1996-01-01" fin="1999-12-31" valeur="0.54" />
-          <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.568" />
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.288" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.3" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="0.4" />
-          <VALUE deb="1967-01-01" fin="1972-12-31" valeur="0.5" />
-          <VALUE deb="1966-01-01" fin="1966-12-31" valeur="0.55" />
-          <VALUE deb="1949-01-01" fin="1965-12-31" valeur="0.5" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="0.4" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_8">
-        <SEUIL>
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="73450" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="71450" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="69370" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="67220" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="65070" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="63420" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="61390" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="59950" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="56770" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="52760" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="48370" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="43060" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="37970" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="33875" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="31350" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="28775" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="26775" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="25250" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="24450" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="46325" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="86500" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="84200" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="80200" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="76400" />
-          <VALUE deb="1965-01-01" fin="1968-12-31" valeur="72000" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="70000" />
-          <VALUE deb="1960-01-01" fin="1963-12-31" valeur="64000" />
-          <VALUE deb="1951-01-01" fin="1959-12-31" valeur="6000000" />
-          <VALUE deb="1950-01-01" fin="1950-12-31" valeur="5000000" />
-          <VALUE deb="1949-01-01" fin="1949-12-31" valeur="3000000" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="2000000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.336" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.35" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="0.5" />
-          <VALUE deb="1967-01-01" fin="1972-12-31" valeur="0.6" />
-          <VALUE deb="1966-01-01" fin="1966-12-31" valeur="0.65" />
-          <VALUE deb="1964-01-01" fin="1965-12-31" valeur="0.6" />
-          <VALUE deb="1963-01-01" fin="1963-12-31" valeur="0.615" />
-          <VALUE deb="1949-01-01" fin="1962-12-31" valeur="0.6" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="0.5" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_9">
-        <SEUIL>
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="84740" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="82430" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="80030" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="77550" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="75070" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="73170" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="70830" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="69170" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="65500" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="60870" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="55790" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="49680" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="43770" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="39075" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="36175" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="33200" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="30875" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="29125" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="26475" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="92125" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="3000000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.384" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.4" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="0.6" />
-          <VALUE deb="1948-01-01" fin="1948-12-31" valeur="0.6" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_10">
-        <SEUIL>
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="141190" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="137340" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="133340" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="129210" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="125080" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="121910" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="118020" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="115250" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="109140" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="101430" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="92970" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="82790" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="72940" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="65125" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="62600" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="57425" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="53425" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="50400" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="45825" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.432" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.45" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_11">
-        <SEUIL>
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="194190" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="188900" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="183400" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="177710" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="172030" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="167670" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="162310" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="158510" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="150100" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="139500" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="127860" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="113860" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="100320" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="89575" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="86125" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="79025" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="73525" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="71375" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="64900" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.49" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.5" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_12">
-        <SEUIL>
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="229710" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="223450" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="216940" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="210210" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="203490" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="198330" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="191990" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="187490" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="177550" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="165010" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="151250" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="134680" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="118660" />
-          <VALUE deb="1978-01-01" fin="1979-12-31" valeur="105950" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="100900" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="95175" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="92400" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="84000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.539" />
-          <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.55" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_13">
-        <SEUIL>
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="261290" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="254170" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="246770" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="239120" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="231480" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="225610" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="218400" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="213280" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="201970" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="187700" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="172040" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="153200" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="135000" />
-          <VALUE deb="1978-01-01" fin="1979-12-31" valeur="125050" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="119100" />
-          <VALUE deb="1975-01-01" fin="1976-12-31" valeur="113450" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="103150" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.568" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.58" />
-          <VALUE deb="1974-01-01" fin="1985-12-31" valeur="0.6" />
-        </TAUX>
-      </TRANCHE>
-      <TRANCHE code="tranche_14">
-        <SEUIL>
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="241740" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="228920" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="212750" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="195000" />
-        </SEUIL>
-        <TAUX>
-          <VALUE deb="1982-01-01" fin="1985-12-31" valeur="0.65" />
         </TAUX>
       </TRANCHE>
     </BAREME>
@@ -5352,11 +5056,6 @@
           <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218.4" />
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106.8" />
           <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019.2" />
-        </CODE>
-      </NODE>
-      <NODE code="deductions_investissement_dom_tom">
-        <CODE code="plafond">
-          <VALUE deb="1997-01-01" fin="2005-12-31" valeur="pas de limite" />
         </CODE>
       </NODE>
       <NODE code="deductions_pour_grosses_reparations">
@@ -9906,7 +9605,7 @@
         </NODE>
         <NODE code="tranche_b_depuis_81">
           <CODE code="employeur" format="percent">
-            <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.1" />
+            <VALUE deb="1995-01-01" valeur="0.1" />
             <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0968" />
             <VALUE deb="1990-01-01" fin="1993-12-31" valeur="0.0936" />
             <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.09072" />
@@ -9916,7 +9615,7 @@
             <VALUE deb="1981-01-01" fin="1982-12-31" valeur="0.0618" />
           </CODE>
           <CODE code="salarie" format="percent">
-            <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.05" />
+            <VALUE deb="1995-01-01" valeur="0.05" />
             <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0484" />
             <VALUE deb="1990-01-01" fin="1993-12-31" valeur="0.0468" />
             <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.04536" />
@@ -10742,7 +10441,7 @@
       </NODE>
       <NODE code="feh">
         <CODE code="hors_cl" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.01" />
+          <VALUE deb="2002-01-01" valeur="0.01" />
           <VALUE deb="2000-01-01" fin="2001-12-31" valeur="0.008" />
           <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0067" />
           <VALUE deb="1995-01-01" fin="1998-12-31" valeur="0.0045" />
@@ -11225,9 +10924,6 @@
             <VALUE deb="2005-07-01" fin="2007-06-30" valeur="0.26" />
           </CODE>
         </NODE>
-        <CODE code="salaire_de_reference">
-          <VALUE deb="2005-07-01" valeur="Smic" />
-        </CODE>
       </NODE>
       <NODE code="entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003">
         <CODE code="plafond">
@@ -11236,9 +10932,6 @@
         </CODE>
         <CODE code="reduction_maximale">
           <VALUE deb="2003-07-01" fin="2005-06-30" valeur="0.26" />
-        </CODE>
-        <CODE code="salaire_de_reference">
-          <VALUE deb="2003-07-01" fin="2005-06-30" valeur="GMR 2" />
         </CODE>
       </NODE>
       <NODE code="entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003">
@@ -11249,9 +10942,6 @@
         <CODE code="reduction_maximale">
           <VALUE deb="2004-07-01" fin="2005-06-30" valeur="0.234" />
           <VALUE deb="2003-07-01" fin="2004-06-30" valeur="0.208" />
-        </CODE>
-        <CODE code="salaire_de_reference">
-          <VALUE deb="2003-07-01" fin="2005-06-30" valeur="Smic" />
         </CODE>
       </NODE>
     </NODE>
@@ -12775,7 +12465,7 @@
         </CODE>
         <NODE code="cotisations_employeur">
           <CODE code="t1" format="percent">
-            <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.236" />
+            <VALUE deb="2014-01-01" valeur="0.236" />
             <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.2319" />
             <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.2291" />
             <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.2246" />
@@ -12785,7 +12475,7 @@
             <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.2252" />
           </CODE>
           <CODE code="t2" format="percent">
-            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.1172" />
+            <VALUE deb="2015-01-01" valeur="0.1172" />
             <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0.1126" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.1273" />
             <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.1262" />
@@ -12796,10 +12486,10 @@
       </NODE>
       <NODE code="regime_prevoyance">
         <CODE code="employeurs" format="percent">
-          <VALUE deb="2007-01-01" fin="2015-12-31" valeur="0.096" />
+          <VALUE deb="2007-01-01" valeur="0.096" />
         </CODE>
         <CODE code="salaries" format="percent">
-          <VALUE deb="2007-01-01" fin="2015-12-31" valeur="0.0015" />
+          <VALUE deb="2007-01-01" valeur="0.0015" />
         </CODE>
       </NODE>
     </NODE>
@@ -12962,7 +12652,7 @@
     </NODE>
     <NODE code="vt">
       <CODE code="bourg_en_bresse" format="percent">
-        <VALUE deb="2011-07-01" fin="2015-06-30" valeur="0.0075" />
+        <VALUE deb="2011-07-01" valeur="0.0075" />
         <VALUE deb="2004-07-01" fin="2011-06-30" valeur="0.006" />
         <VALUE deb="1983-07-01" fin="2004-06-30" valeur="0.005" />
       </CODE>
@@ -12980,7 +12670,7 @@
         <VALUE deb="1975-08-01" fin="1978-12-31" valeur="0.01" />
       </CODE>
       <CODE code="hauts_de_seine" format="percent">
-        <VALUE deb="2013-01-01" fin="2014-06-30" valeur="0.027" />
+        <VALUE deb="2013-01-01" valeur="0.027" />
         <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.026" />
         <VALUE deb="1996-01-01" fin="2003-12-31" valeur="0.025" />
         <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.022" />
@@ -12991,7 +12681,7 @@
         <VALUE deb="1971-09-01" fin="1975-06-30" valeur="0.017" />
       </CODE>
       <CODE code="lyon" format="percent">
-        <VALUE deb="2003-01-01" fin="2015-06-30" valeur="0.0175" />
+        <VALUE deb="2003-01-01" valeur="0.0175" />
         <VALUE deb="1994-01-01" fin="2002-12-31" valeur="0.0163" />
         <VALUE deb="1993-04-01" fin="1993-12-31" valeur="0.015" />
         <VALUE deb="1989-09-01" fin="1993-03-31" valeur="0.0175" />
@@ -13000,13 +12690,13 @@
         <VALUE deb="1974-01-01" fin="1975-07-31" valeur="0.0075" />
       </CODE>
       <CODE code="marseille" format="percent">
-        <VALUE deb="2011-01-01" fin="2015-06-30" valeur="0.02" />
+        <VALUE deb="2011-01-01" valeur="0.02" />
         <VALUE deb="2001-01-01" fin="2010-12-31" valeur="0.018" />
         <VALUE deb="1989-01-01" fin="2000-12-31" valeur="0.0175" />
         <VALUE deb="1974-01-01" fin="1988-12-31" valeur="0.015" />
       </CODE>
       <CODE code="paris" format="percent">
-        <VALUE deb="2013-01-01" fin="2015-06-30" valeur="0.027" />
+        <VALUE deb="2013-01-01" valeur="0.027" />
         <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.026" />
         <VALUE deb="1996-01-01" fin="2003-12-31" valeur="0.025" />
         <VALUE deb="1993-01-01" fin="1995-12-31" valeur="0.022" />
@@ -13033,13 +12723,13 @@
           <VALUE deb="1974-01-01" fin="1989-08-31" valeur="0.015" />
         </CODE>
         <CODE code="tout_salaire" format="percent">
-          <VALUE deb="2003-01-01" fin="2015-06-30" valeur="0.0175" />
+          <VALUE deb="2003-01-01" valeur="0.0175" />
           <VALUE deb="1994-01-01" fin="2002-12-31" valeur="0.0163" />
           <VALUE deb="1993-04-01" fin="1993-12-31" valeur="0.015" />
         </CODE>
       </NODE>
       <CODE code="toulouse" format="percent">
-        <VALUE deb="2011-07-01" fin="2015-06-30" valeur="0.02" />
+        <VALUE deb="2011-07-01" valeur="0.02" />
         <VALUE deb="2007-01-01" fin="2011-06-30" valeur="0.018" />
         <VALUE deb="1991-04-01" fin="2006-12-31" valeur="0.0175" />
         <VALUE deb="1986-04-01" fin="1991-03-31" valeur="0.015" />
@@ -13047,7 +12737,7 @@
         <VALUE deb="1974-01-01" fin="1974-12-31" valeur="0.0091" />
       </CODE>
       <CODE code="val_d_oise" format="percent">
-        <VALUE deb="2013-07-01" fin="2014-06-30" valeur="0.016" />
+        <VALUE deb="2013-07-01" valeur="0.016" />
         <VALUE deb="2013-01-01" fin="2013-06-30" valeur="0.015" />
         <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.014" />
         <VALUE deb="2001-01-01" fin="2003-12-31" valeur="0.013" />
@@ -13100,11 +12790,6 @@
       <CODE code="montant_de_l_allocation_d_adoption_en_de_la_bmaf" format="percent">
         <VALUE deb="1996-08-01" fin="2006-12-31" valeur="0.4595" />
         <VALUE deb="1995-01-01" fin="1996-07-31" valeur="0.3" />
-      </CODE>
-    </NODE>
-    <NODE code="aa_plaf">
-      <CODE code="plafonds_de_ressources">
-        <VALUE deb="1996-08-01" fin="2006-12-31" valeur="Mêmes plafonds que pour l'APJE" />
       </CODE>
     </NODE>
     <NODE code="aeeh">
@@ -13318,12 +13003,6 @@
     </NODE>
     <NODE code="al_charge">
       <NODE code="cas_des_colocataires_ou_des_proprietaires_1">
-        <CODE code="isole_ou_couple_avec_un_enfant_ou_une_personne_a_charge">
-          <VALUE deb="1994-07-01" valeur="Mêmes montants que dans le cas général" />
-        </CODE>
-        <CODE code="majoration_par_enfant_de_la_majoration_pour_charges">
-          <VALUE deb="1994-07-01" valeur="Mêmes montants que dans le cas général" />
-        </CODE>
         <CODE code="personne_isolee_ou_menage_seul" format="float" type="monetary">
           <VALUE deb="2014-10-01" valeur="26.61" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="26.46" />
@@ -13466,10 +13145,6 @@
       </NODE>
     </NODE>
     <NODE code="al_pac">
-      <CODE code="age_limite_pour_les_enfants_a_charge">
-        <VALUE deb="2000-01-01" valeur="21" />
-        <VALUE deb="1991-11-11" fin="1999-12-31" valeur="Même réglementation que pour les autres prestations familiales : cf. feuille &quot;def_pac&quot;" />
-      </CODE>
       <NODE code="age_minimal">
         <CODE code="pour_les_ascendants_et_leur_conjoint">
           <VALUE deb="1991-11-11" valeur="65" />
@@ -13478,10 +13153,6 @@
           <VALUE deb="1991-11-11" valeur="60" />
         </CODE>
       </NODE>
-      <CODE code="plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfants_doivent_respecter">
-        <VALUE deb="2007-07-01" valeur="Plafonds indiqués à l'art. L815-9 du CSS (législation sur les allocations aux personnes âgées) multipliés par 1,25" />
-        <VALUE deb="1991-11-11" fin="2007-06-30" valeur="Plafonds indiqués à l'art. L815-8 du CSS (législation sur les allocations aux personnes âgées)" />
-      </CODE>
       <CODE code="pourcentage_minimal_de_handicap_pour_les_ascendants_ou_descendants_du_3eme_degre_maximum" format="percent">
         <VALUE deb="2000-01-01" valeur="0.8" />
       </CODE>
@@ -13816,28 +13487,6 @@
       </NODE>
     </NODE>
     <NODE code="al_plaf_acc">
-      <CODE code="intervalle_de_date_du_certificat_d_emprunt_correspondant_aux_plafonds_d_accession_a_la_propriete">
-        <VALUE deb="2014-09-01" valeur="Après le 30/09/2014" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="Après le 31/12/2012" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="Après le 31/12/2011" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="Après le 31/12/2010" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="Après le 31/12/2009" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="Après le 31/12/2008" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="Après le 31/12/2007" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="Après le 31/12/2006" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="Après le 31/08/2005" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="Après le 30/06/2003" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="Après le 30/06/2002" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="Après le 30/06/2001" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="Après le 30/06/2000" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="Après le 30/06/1999" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="Après le 30/06/1998" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="Après le 30/06/1997" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="Après le 30/06/1994" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="Après le 30/06/1992" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="Après le 30/06/1991" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="Après le 30/06/1990" />
-      </CODE>
       <NODE code="plafond_pour_accession_a_la_propriete_zone_1">
         <CODE code="menage_ou_isole_avec_1_enfant" format="float" type="monetary">
           <VALUE deb="2014-09-01" valeur="403.3" />
@@ -14455,9 +14104,6 @@
       </NODE>
     </NODE>
     <NODE code="al_plaf_loc2">
-      <CODE code="loyer_de_reference">
-        <VALUE deb="2001-01-01" valeur="Même loyers que les plafonds pour la zone 2" />
-      </CODE>
       <CODE code="montant_forfaitaire_de_la_participation_minimale_po" format="float" type="monetary">
         <VALUE deb="2014-10-01" valeur="34.73" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="34.53" />
@@ -14868,25 +14514,6 @@
         <VALUE deb="1976-10-01" fin="2009-05-31" valeur="18" />
       </CODE>
     </NODE>
-    <NODE code="api_fl">
-      <NODE code="forfait_logement">
-        <CODE code="couple_1_enfant_1" format="percent">
-          <VALUE deb="2007-02-01" fin="2009-05-31" valeur="Même forfait logement que le RMI : cf. feuille &quot;RMI_FL&quot;" />
-          <VALUE deb="1997-04-01" fin="2007-01-31" valeur="0.2735" />
-          <VALUE deb="1976-10-01" fin="1997-03-31" valeur="Même évaluation de l'avantage en nature que pour les cotisations sociales" />
-        </CODE>
-        <CODE code="couples_2_enfants_ou_plus_1" format="percent">
-          <VALUE deb="2007-02-01" fin="2009-05-31" valeur="Même forfait logement que le RMI : cf. feuille &quot;RMI_FL&quot;" />
-          <VALUE deb="1997-04-01" fin="2007-01-31" valeur="0.3385" />
-          <VALUE deb="1976-10-01" fin="1997-03-31" valeur="Même évaluation de l'avantage en nature que pour les cotisations sociales" />
-        </CODE>
-        <CODE code="femmes_enceintes_1" format="percent">
-          <VALUE deb="2007-02-01" fin="2009-05-31" valeur="Même forfait logement que le RMI : cf. feuille &quot;RMI_FL&quot;" />
-          <VALUE deb="1997-04-01" fin="2007-01-31" valeur="0.1368" />
-          <VALUE deb="1976-10-01" fin="1997-03-31" valeur="Même évaluation de l'avantage en nature que pour les cotisations sociales" />
-        </CODE>
-      </NODE>
-    </NODE>
     <NODE code="api_m">
       <NODE code="montant_en_de_la_bmaf">
         <CODE code="femmes_enceintes_sans_enfant_a_charge" format="percent">
@@ -15142,12 +14769,6 @@
       </NODE>
     </NODE>
     <NODE code="asi_cond">
-      <CODE code="age_minimal">
-        <VALUE deb="2006-01-01" valeur="Pas d'âge minimum" />
-      </CODE>
-      <CODE code="condition_d_age_et_de_ressources">
-        <VALUE deb="2006-01-01" valeur="Mêmes paramètres que pour l'ASPA" />
-      </CODE>
       <CODE code="taux_minimum_d_invalidite" format="percent">
         <VALUE deb="2006-01-01" valeur="0.6666" />
       </CODE>
@@ -15334,8 +14955,7 @@
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="3" />
       </CODE>
       <CODE code="age_minimal_des_enfants_pris_en_compte">
-        <VALUE deb="1997-01-01" valeur="3" />
-        <VALUE deb="1986-07-01" fin="1986-12-31" valeur="3" />
+        <VALUE deb="1986-07-01" valeur="3" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="0" />
       </CODE>
       <NODE code="complement_familial_en_de_la_bmaf_en_de_la_bmaf">
@@ -15349,53 +14969,8 @@
         </CODE>
       </NODE>
       <CODE code="nombre_d_enfants_minimal">
-        <VALUE deb="1997-01-01" valeur="3" />
-        <VALUE deb="1986-07-01" fin="1986-12-31" valeur="3" />
+        <VALUE deb="1986-07-01" valeur="3" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="1" />
-      </CODE>
-    </NODE>
-    <NODE code="cf_maj">
-      <NODE code="majoration">
-        <CODE code="1er_et_2eme_enfants_en_du_plafond_de_ressources_avec_0_enfant" format="percent">
-          <VALUE deb="2003-07-01" valeur="0.25" />
-          <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-        </CODE>
-        <CODE code="3eme_enfant_et_plus_en_du_plafond_de_ressources_avec_0_enfant" format="percent">
-          <VALUE deb="2010-01-01" valeur="0.3" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.25" />
-          <VALUE deb="2003-07-01" fin="2008-12-31" valeur="0.3" />
-          <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-        </CODE>
-        <CODE code="biactifs_et_parents_isoles" format="float" type="monetary">
-          <VALUE deb="2015-01-01" valeur="8386" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="8328" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="8173" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="8005" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="7926" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7918" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7702" />
-          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="7588" />
-          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="5969" />
-          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="5869" />
-          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5771" />
-          <VALUE deb="2003-07-01" fin="2004-06-30" valeur="5663" />
-          <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-        </CODE>
-      </NODE>
-      <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
-        <VALUE deb="2015-01-01" valeur="20864" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="20333" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="19915" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="19718" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="19698" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="19161" />
-        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="18878" />
-        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="14850" />
-        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="14602" />
-        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="14358" />
-        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="14090" />
-        <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
       </CODE>
     </NODE>
     <NODE code="cf_plaf">
@@ -15460,9 +15035,6 @@
     </NODE>
     <NODE code="paje_cm">
       <NODE code="age_limite">
-        <CODE code="pour_les_enfants_adoptes">
-          <VALUE deb="2004-01-01" valeur="Même âge limite que pour les personnes à charge évoquées dans la feuille &quot;def_pac&quot;" />
-        </CODE>
         <CODE code="pour_un_enfant_non_adopte">
           <VALUE deb="2004-01-01" valeur="3" />
         </CODE>
@@ -15505,9 +15077,6 @@
       </NODE>
     </NODE>
     <NODE code="paje_cm2">
-      <CODE code="conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee">
-        <VALUE deb="2004-01-01" valeur="Mêmes conditions que celles pour les personnes à charge évoquées dans la feuille &quot;def_pac&quot;" />
-      </CODE>
       <NODE code="montant_en_de_la_bmaf">
         <CODE code="prime_a_l_adoption_de_la_paje_2" format="percent">
           <VALUE deb="2005-08-01" valeur="4.595" />
@@ -15610,45 +15179,6 @@
         <VALUE deb="1978-07-01" fin="1979-03-31" valeur="9.58" />
         <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8.58" />
       </CODE>
-    </NODE>
-    <NODE code="pjm_prets">
-      <CODE code="cumul_de_prets" format="float" type="monetary">
-        <VALUE deb="1982-07-01" fin="1985-05-15" valeur="Information manquante" />
-        <VALUE deb="1982-03-01" fin="1982-06-30" valeur="10800" />
-        <VALUE deb="1980-07-01" fin="1982-02-28" valeur="Information manquante" />
-        <VALUE deb="1979-07-01" fin="1980-06-30" valeur="7500" />
-        <VALUE deb="1978-07-01" fin="1979-06-30" valeur="8600" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8300" />
-        <VALUE deb="1975-01-05" fin="1977-12-31" valeur="8600" />
-      </CODE>
-      <NODE code="pret_maximum">
-        <CODE code="pour_l_accession_a_la_propriete_d_un_logement_neuf_ou_ancien" format="float" type="monetary">
-          <VALUE deb="1982-07-01" fin="1985-05-15" valeur="Information manquante" />
-          <VALUE deb="1982-03-01" fin="1982-06-30" valeur="10800" />
-          <VALUE deb="1980-07-01" fin="1982-02-28" valeur="Information manquante" />
-          <VALUE deb="1979-07-01" fin="1980-06-30" valeur="7500" />
-          <VALUE deb="1978-07-01" fin="1979-06-30" valeur="8600" />
-          <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8300" />
-          <VALUE deb="1975-01-05" fin="1977-12-31" valeur="8600" />
-        </CODE>
-        <CODE code="pour_l_equipement_mobilier_et_menager" format="float" type="monetary">
-          <VALUE deb="1982-07-01" fin="1985-05-15" valeur="Information manquante" />
-          <VALUE deb="1982-03-01" fin="1982-06-30" valeur="10800" />
-          <VALUE deb="1980-07-01" fin="1982-02-28" valeur="Information manquante" />
-          <VALUE deb="1979-07-01" fin="1980-06-30" valeur="7500" />
-          <VALUE deb="1978-07-01" fin="1979-06-30" valeur="8600" />
-          <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8300" />
-          <VALUE deb="1975-01-05" fin="1977-12-31" valeur="8600" />
-        </CODE>
-        <CODE code="pour_les_premiers_frais_de_location" format="float" type="monetary">
-          <VALUE deb="1982-07-01" fin="1985-05-15" valeur="Information manquante" />
-          <VALUE deb="1982-03-01" fin="1982-06-30" valeur="10800" />
-          <VALUE deb="1980-07-01" fin="1982-02-28" valeur="Information manquante" />
-          <VALUE deb="1979-07-01" fin="1980-06-30" valeur="2200" />
-          <VALUE deb="1978-07-01" fin="1979-06-30" valeur="2550" />
-          <VALUE deb="1978-01-01" fin="1978-06-30" valeur="2450" />
-        </CODE>
-      </NODE>
     </NODE>
     <NODE code="rmi_cond">
       <CODE code="condition_d_age_pour_l_allocataire">
@@ -15801,172 +15331,6 @@
     </NODE>
   </NODE>
   <NODE code="retraite">
-    <NODE code="aad_fp">
-      <NODE code="age_d_annulation_de_la_decote_selon_l_annee_d_ouverture_des_droits">
-        <CODE code="2006">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 16 trimestres" />
-        </CODE>
-        <CODE code="2007">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 14 trimestres" />
-        </CODE>
-        <CODE code="2008">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 12 trimestres" />
-        </CODE>
-        <CODE code="2009">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 11 trimestres" />
-        </CODE>
-        <CODE code="2010">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 10 trimestres" />
-        </CODE>
-        <CODE code="2011">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 9 trimestres" />
-        </CODE>
-        <CODE code="2012">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 8 trimestres" />
-        </CODE>
-        <CODE code="2013">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 7 trimestres" />
-        </CODE>
-        <CODE code="2014">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 6 trimestres" />
-        </CODE>
-        <CODE code="2015">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 5 trimestres" />
-        </CODE>
-        <CODE code="2016">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 4 trimestres" />
-        </CODE>
-        <CODE code="2017">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 3 trimestres" />
-        </CODE>
-        <CODE code="2018">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 2 trimestres" />
-        </CODE>
-        <CODE code="2019">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge - 1 trimestres" />
-        </CODE>
-        <CODE code="2020">
-          <VALUE deb="2006-01-01" valeur="Limite d'âge" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="aad_rg">
-      <NODE code="age_d_annulation_de_la_decote_en_fonction_de_la_date_de_naissance">
-        <CODE code="1951_07_01">
-          <VALUE deb="2011-07-01" valeur="65 ans 4 mois" />
-        </CODE>
-        <CODE code="1952_01_01">
-          <VALUE deb="2012-01-01" valeur="65 ans 9 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="65 ans 8 mois" />
-        </CODE>
-        <CODE code="1953_01_01">
-          <VALUE deb="2012-01-01" valeur="66 ans 2 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="66 ans" />
-        </CODE>
-        <CODE code="1954_01_01">
-          <VALUE deb="2012-01-01" valeur="66 ans 7 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="66 ans 4 mois" />
-        </CODE>
-        <CODE code="1955_01_01">
-          <VALUE deb="2012-01-01" valeur="67 ans" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="66 ans 8 mois" />
-        </CODE>
-        <CODE code="1956_01_01">
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="67 ans" />
-        </CODE>
-        <CODE code="avant_le_01_07_1951">
-          <VALUE deb="1983-04-01" valeur="65 ans" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="aod_fp_a">
-      <NODE code="age_d_ouverture_des_droits_pour_la_fonction_publique_active_selon_l_annee_de_naissance">
-        <CODE code="1951_07_01">
-          <VALUE deb="2011-07-01" valeur="55 ans 4 mois" />
-        </CODE>
-        <CODE code="1952_01_01">
-          <VALUE deb="2012-01-01" valeur="55 ans 9 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="55 ans 8 mois" />
-        </CODE>
-        <CODE code="1953_01_01">
-          <VALUE deb="2012-01-01" valeur="56 ans 2 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="56 ans" />
-        </CODE>
-        <CODE code="1954_01_01">
-          <VALUE deb="2012-01-01" valeur="56 ans 7 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="56 ans 4 mois" />
-        </CODE>
-        <CODE code="1955_01_01">
-          <VALUE deb="2012-01-01" valeur="57 ans" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="56 ans 8 mois" />
-        </CODE>
-        <CODE code="1956_01_01">
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="57 ans" />
-        </CODE>
-        <CODE code="avant_le_01_07_1951">
-          <VALUE deb="1985-01-01" valeur="55 ans" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="aod_fp_s">
-      <NODE code="age_d_ouverture_des_droits_pour_la_fonction_publique_sedentaire_selon_l_annee_de_naissance">
-        <CODE code="1951_07_01">
-          <VALUE deb="2011-07-01" valeur="60 ans 4 mois" />
-        </CODE>
-        <CODE code="1952_01_01">
-          <VALUE deb="2012-01-01" valeur="60 ans 9 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="60 ans 8 mois" />
-        </CODE>
-        <CODE code="1953_01_01">
-          <VALUE deb="2012-01-01" valeur="61 ans 2 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans" />
-        </CODE>
-        <CODE code="1954_01_01">
-          <VALUE deb="2012-01-01" valeur="61 ans 7 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans 4 mois" />
-        </CODE>
-        <CODE code="1955_01_01">
-          <VALUE deb="2012-01-01" valeur="62 ans" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans 8 mois" />
-        </CODE>
-        <CODE code="1956_01_01">
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="62 ans" />
-        </CODE>
-        <CODE code="avant_le_01_07_1951">
-          <VALUE deb="2011-07-01" valeur="60 ans" />
-          <VALUE deb="1985-01-01" fin="2011-06-30" valeur="65 ans" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="aod_rg">
-      <NODE code="age_d_ouverture_des_droits_ou_age_legal_en_fonction_de_la_date_de_naissance">
-        <CODE code="ne_apres_le_01_01_1952">
-          <VALUE deb="2012-01-01" valeur="60 ans 9 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="60 ans 8 mois" />
-        </CODE>
-        <CODE code="ne_apres_le_01_01_1953">
-          <VALUE deb="2012-01-01" valeur="61 ans 2 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans" />
-        </CODE>
-        <CODE code="ne_apres_le_01_01_1954">
-          <VALUE deb="2012-01-01" valeur="61 ans 7 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans 4 mois" />
-        </CODE>
-        <CODE code="ne_apres_le_01_01_1955">
-          <VALUE deb="2012-01-01" valeur="62 ans" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans 8 mois" />
-        </CODE>
-        <CODE code="ne_apres_le_01_01_1956">
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="62 ans" />
-        </CODE>
-        <CODE code="ne_apres_le_01_07_1951">
-          <VALUE deb="2011-07-01" valeur="60 ans 4 mois" />
-        </CODE>
-        <CODE code="ne_avant_le_01_07_1951">
-          <VALUE deb="1946-01-01" valeur="60 ans" />
-        </CODE>
-      </NODE>
-    </NODE>
     <NODE code="as">
       <CODE code="allocation_supplementaire_menages" format="float" type="monetary">
         <VALUE deb="2013-04-01" valeur="7947.72" />
@@ -16092,7 +15456,7 @@
         <VALUE deb="1956-04-01" fin="1960-12-31" valeur="31200" />
       </CODE>
       <CODE code="complement_exceptionnel" format="float" type="monetary">
-        <VALUE deb="1980-02-01" fin="2013-03-31" valeur="150" />
+        <VALUE deb="1980-02-01" valeur="150" />
         <VALUE deb="1979-09-01" fin="1980-01-31" valeur="200" />
         <VALUE deb="1975-09-01" fin="1979-08-31" valeur="700" />
         <VALUE deb="1974-02-01" fin="1975-08-31" valeur="100" />
@@ -16100,91 +15464,6 @@
         <VALUE deb="1961-01-01" fin="1962-03-31" valeur="108" />
         <VALUE deb="1959-01-01" fin="1960-12-31" valeur="5200" />
         <VALUE deb="1958-01-01" fin="1958-12-31" valeur="1600" />
-      </CODE>
-      <CODE code="plafond_de_ressources_menages" format="float" type="monetary">
-        <VALUE deb="2013-04-01" valeur="14667.32" />
-        <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.1" />
-        <VALUE deb="2011-04-01" fin="2012-03-31" valeur="14181.3" />
-        <VALUE deb="2010-04-01" fin="2011-03-31" valeur="13889.62" />
-        <VALUE deb="2009-04-01" fin="2010-03-31" valeur="13765.73" />
-        <VALUE deb="2008-09-01" fin="2009-03-31" valeur="13629.44" />
-        <VALUE deb="2008-01-01" fin="2008-08-31" valeur="13521.27" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.16" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="12905.41" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="12652.36" />
-        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="12440.87" />
-        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12257.01" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="78670" />
-        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="76977" />
-        <VALUE deb="1999-01-01" fin="1999-12-31" valeur="76215" />
-        <VALUE deb="1998-01-01" fin="1998-12-31" valeur="74720" />
-        <VALUE deb="1997-01-01" fin="1997-12-31" valeur="73906" />
-        <VALUE deb="1996-01-01" fin="1996-12-31" valeur="73028" />
-        <VALUE deb="1995-07-01" fin="1995-12-31" valeur="71525" />
-        <VALUE deb="1995-01-01" fin="1995-06-30" valeur="69576" />
-        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="68750" />
-        <VALUE deb="1993-01-01" fin="1993-12-31" valeur="67400" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="66520" />
-        <VALUE deb="1992-01-01" fin="1992-06-30" valeur="65340" />
-        <VALUE deb="1991-07-01" fin="1991-12-31" valeur="64690" />
-        <VALUE deb="1991-01-01" fin="1991-06-30" valeur="64180" />
-        <VALUE deb="1990-07-01" fin="1990-12-31" valeur="63110" />
-        <VALUE deb="1990-01-01" fin="1990-06-30" valeur="62300" />
-        <VALUE deb="1989-07-01" fin="1989-12-31" valeur="60990" />
-        <VALUE deb="1989-01-01" fin="1989-06-30" valeur="60260" />
-        <VALUE deb="1988-07-01" fin="1988-12-31" valeur="59490" />
-        <VALUE deb="1988-01-01" fin="1988-06-30" valeur="58730" />
-        <VALUE deb="1987-07-01" fin="1987-12-31" valeur="57240" />
-        <VALUE deb="1987-01-01" fin="1987-06-30" valeur="56670" />
-        <VALUE deb="1986-01-01" fin="1986-12-31" valeur="55940" />
-        <VALUE deb="1985-07-01" fin="1985-12-31" valeur="55220" />
-        <VALUE deb="1985-01-01" fin="1985-06-30" valeur="53870" />
-        <VALUE deb="1984-07-01" fin="1984-12-31" valeur="52300" />
-        <VALUE deb="1984-01-01" fin="1984-06-30" valeur="51380" />
-        <VALUE deb="1983-07-01" fin="1983-12-31" valeur="50470" />
-        <VALUE deb="1983-01-01" fin="1983-06-30" valeur="49000" />
-        <VALUE deb="1982-07-01" fin="1982-12-31" valeur="47200" />
-        <VALUE deb="1982-01-01" fin="1982-06-30" valeur="44400" />
-        <VALUE deb="1981-07-01" fin="1981-12-31" valeur="40800" />
-        <VALUE deb="1981-01-01" fin="1981-06-30" valeur="34000" />
-        <VALUE deb="1980-06-01" fin="1980-12-31" valeur="31200" />
-        <VALUE deb="1979-12-01" fin="1980-05-31" valeur="29200" />
-        <VALUE deb="1979-07-01" fin="1979-11-30" valeur="27600" />
-        <VALUE deb="1979-01-01" fin="1979-06-30" valeur="25800" />
-        <VALUE deb="1978-07-01" fin="1978-12-31" valeur="24000" />
-        <VALUE deb="1977-12-01" fin="1978-06-30" valeur="22000" />
-        <VALUE deb="1977-07-01" fin="1977-11-30" valeur="20000" />
-        <VALUE deb="1977-01-01" fin="1977-06-30" valeur="18000" />
-        <VALUE deb="1976-07-01" fin="1976-12-31" valeur="17000" />
-        <VALUE deb="1976-01-01" fin="1976-06-30" valeur="16100" />
-        <VALUE deb="1975-04-01" fin="1975-12-31" valeur="14600" />
-        <VALUE deb="1975-01-01" fin="1975-03-31" valeur="13600" />
-        <VALUE deb="1974-07-01" fin="1974-12-31" valeur="12600" />
-        <VALUE deb="1974-01-01" fin="1974-06-30" valeur="10400" />
-        <VALUE deb="1973-07-01" fin="1973-12-31" valeur="9600" />
-        <VALUE deb="1972-10-01" fin="1973-06-30" valeur="9 000 ,00" />
-        <VALUE deb="1972-01-01" fin="1972-09-30" valeur="7725" />
-        <VALUE deb="1971-10-01" fin="1971-12-31" valeur="7350" />
-        <VALUE deb="1971-01-01" fin="1971-09-30" valeur="7125" />
-        <VALUE deb="1970-10-01" fin="1970-12-31" valeur="6750" />
-        <VALUE deb="1970-01-01" fin="1970-09-30" valeur="6600" />
-        <VALUE deb="1969-10-01" fin="1969-12-31" valeur="6300" />
-        <VALUE deb="1969-01-01" fin="1969-09-30" valeur="6150" />
-        <VALUE deb="1968-07-01" fin="1968-12-31" valeur="6000" />
-        <VALUE deb="1968-02-01" fin="1968-06-30" valeur="5850" />
-        <VALUE deb="1968-01-01" fin="1968-01-31" valeur="5700" />
-        <VALUE deb="1967-10-01" fin="1967-12-31" valeur="5550" />
-        <VALUE deb="1967-01-01" fin="1967-09-30" valeur="5400" />
-        <VALUE deb="1966-07-01" fin="1966-12-31" valeur="5250" />
-        <VALUE deb="1966-01-01" fin="1966-06-30" valeur="5100" />
-        <VALUE deb="1965-07-01" fin="1965-12-31" valeur="5000" />
-        <VALUE deb="1964-11-01" fin="1965-06-30" valeur="4800" />
-        <VALUE deb="1964-01-01" fin="1964-10-31" valeur="4700" />
-        <VALUE deb="1963-07-01" fin="1963-12-31" valeur="4400" />
-        <VALUE deb="1962-04-01" fin="1963-06-30" valeur="3200" />
-        <VALUE deb="1961-01-01" fin="1962-03-31" valeur="2580" />
-        <VALUE deb="1956-04-01" fin="1960-12-31" valeur="258000" />
       </CODE>
       <CODE code="plafond_de_ressources_personnes_seules" format="float" type="monetary">
         <VALUE deb="2013-04-01" valeur="9447.21" />
@@ -16905,68 +16184,6 @@
         <VALUE deb="1997-01-01" valeur="120" />
         <VALUE deb="1947-01-01" fin="1996-12-31" valeur="144" />
       </CODE>
-    </NODE>
-    <NODE code="la_fp_a">
-      <NODE code="age_limite_fonction_publique_active_selon_l_annee_de_naissance">
-        <CODE code="1951_07_01">
-          <VALUE deb="2011-07-01" valeur="60 ans 4 mois" />
-        </CODE>
-        <CODE code="1952_01_01">
-          <VALUE deb="2012-01-01" valeur="60 ans 9 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="60 ans 8 mois" />
-        </CODE>
-        <CODE code="1953_01_01">
-          <VALUE deb="2012-01-01" valeur="61 ans 2 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans" />
-        </CODE>
-        <CODE code="1954_01_01">
-          <VALUE deb="2012-01-01" valeur="61 ans 7 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans 4 mois" />
-        </CODE>
-        <CODE code="1955_01_01">
-          <VALUE deb="2012-01-01" valeur="62 ans" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="61 ans 8 mois" />
-        </CODE>
-        <CODE code="1956_01_01">
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="62 ans" />
-        </CODE>
-        <CODE code="avant_le_01_07_1951">
-          <VALUE deb="1985-01-01" valeur="60 ans" />
-          <VALUE deb="1976-01-01" fin="1984-12-31" valeur="65 ans" />
-          <VALUE deb="1937-01-01" fin="1975-12-31" valeur="67 ans" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="la_fp_s">
-      <NODE code="age_limite_fonction_publique_sedentaire_selon_l_annee_de_naissance">
-        <CODE code="1951_07_01">
-          <VALUE deb="2011-07-01" valeur="65 ans 4 mois" />
-        </CODE>
-        <CODE code="1952_01_01">
-          <VALUE deb="2012-01-01" valeur="65 ans 9 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="65 ans 8 mois" />
-        </CODE>
-        <CODE code="1953_01_01">
-          <VALUE deb="2012-01-01" valeur="66 ans 2 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="66 ans" />
-        </CODE>
-        <CODE code="1954_01_01">
-          <VALUE deb="2012-01-01" valeur="66 ans 7 mois" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="66 ans 4 mois" />
-        </CODE>
-        <CODE code="1955_01_01">
-          <VALUE deb="2012-01-01" valeur="67 ans" />
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="66 ans 8 mois" />
-        </CODE>
-        <CODE code="1956_01_01">
-          <VALUE deb="2011-07-01" fin="2011-12-31" valeur="67 ans" />
-        </CODE>
-        <CODE code="avant_le_01_07_1951">
-          <VALUE deb="1985-01-01" valeur="65 ans" />
-          <VALUE deb="1976-01-01" fin="1984-12-31" valeur="68 ans" />
-          <VALUE deb="1937-01-01" fin="1975-12-31" valeur="70 ans" />
-        </CODE>
-      </NODE>
     </NODE>
     <NODE code="majconj">
       <CODE code="montant_de_la_majoration_pour_conjoint_a_charge" format="float" type="monetary">
@@ -17862,7 +17079,7 @@
     <NODE code="pt_organic">
       <NODE code="valeur_du_point_retraite_organic_regime_de_base_droits_acquis_avant_1973">
         <CODE code="valeur_du_point_acquis_par_cotisations" format="float" type="monetary">
-          <VALUE deb="2012-04-01" fin="2013-03-31" valeur="12.4048" />
+          <VALUE deb="2012-04-01" valeur="12.4048" />
           <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8.8124" />
           <VALUE deb="2009-04-01" fin="2011-03-31" valeur="11.90139" />
           <VALUE deb="2008-09-01" fin="2009-03-31" valeur="11.67846" />
@@ -18220,7 +17437,7 @@
     <NODE code="pt_rc_com">
       <CODE code="valeur_des_points_acquis_entre_1973_et_2003" format="float" type="monetary">
         <VALUE deb="2013-04-01" valeur="1.177" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1.162" />
+        <VALUE deb="2012-01-01" fin="2013-03-31" valeur="1.162" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1.138" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1.11" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1.102" />
@@ -18232,7 +17449,7 @@
       </CODE>
       <CODE code="valeur_des_points_acquis_entre_2004_et_2012" format="float" type="monetary">
         <VALUE deb="2013-04-01" valeur="1.177" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1.162" />
+        <VALUE deb="2012-01-01" fin="2013-03-31" valeur="1.162" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1.138" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1.11" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1.102" />
@@ -19053,7 +18270,7 @@
     </NODE>
     <NODE code="salref_ircantec">
       <CODE code="salaire_de_reference_igrante" format="float" type="monetary">
-        <VALUE deb="1970-01-01" fin="1970-12-31" valeur="0.395" />
+        <VALUE deb="1970-01-01" valeur="0.395" />
         <VALUE deb="1969-01-01" fin="1969-12-31" valeur="0.369" />
         <VALUE deb="1968-01-01" fin="1968-12-31" valeur="0.345" />
         <VALUE deb="1967-01-01" fin="1967-12-31" valeur="0.3" />
@@ -19092,7 +18309,7 @@
         <VALUE deb="1925-01-01" fin="1925-12-31" valeur="0.00305" />
       </CODE>
       <CODE code="salaire_de_reference_ipacte" format="float" type="monetary">
-        <VALUE deb="1970-01-01" fin="1970-12-31" valeur="0.395" />
+        <VALUE deb="1970-01-01" valeur="0.395" />
         <VALUE deb="1969-01-01" fin="1969-12-31" valeur="0.369" />
         <VALUE deb="1968-01-01" fin="1968-12-31" valeur="0.345" />
         <VALUE deb="1967-01-01" fin="1967-12-31" valeur="0.3" />
@@ -19488,72 +18705,6 @@
           <VALUE deb="1949-01-01" fin="1949-12-31" valeur="3750" />
           <VALUE deb="1948-01-01" fin="1948-12-31" valeur="1800" />
         </CODE>
-        <CODE code="metropole" format="float" type="monetary">
-          <VALUE deb="2015-01-01" valeur="1441.5" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1429.5" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1886" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1844" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1800" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1772" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1742" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="1688" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="1654" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="1606" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="1522" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="1438" />
-          <VALUE deb="2003-01-01" fin="2003-12-31" valeur="1366" />
-          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="1334" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="8404" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="8144" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="8044" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="7886" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="7582" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="7396" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="7112" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="6966" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="6812" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="6532" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="6388" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="5982" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="5752" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="5568" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="5384" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="5208" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="4872" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="4556" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="4058" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="3630" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="2958" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="2586" />
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="2262" />
-          <VALUE deb="1978-01-01" fin="1978-12-31" valeur="2012" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="1788" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="1578" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="1350" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="1086" />
-          <VALUE deb="1973-01-01" fin="1973-12-31" valeur="910" />
-          <VALUE deb="1972-01-01" fin="1972-12-31" valeur="788" />
-          <VALUE deb="1971-01-01" fin="1971-12-31" valeur="437.5" />
-          <VALUE deb="1970-01-01" fin="1970-12-31" valeur="412.5" />
-          <VALUE deb="1969-01-01" fin="1969-12-31" valeur="387.5" />
-          <VALUE deb="1968-01-01" fin="1968-12-31" valeur="362.5" />
-          <VALUE deb="1967-01-01" fin="1967-12-31" valeur="325" />
-          <VALUE deb="1966-01-01" fin="1966-12-31" valeur="287.5" />
-          <VALUE deb="1965-01-01" fin="1965-12-31" valeur="250" />
-          <VALUE deb="1964-01-01" fin="1964-12-31" valeur="225" />
-          <VALUE deb="1963-01-01" fin="1963-12-31" valeur="200" />
-          <VALUE deb="1960-01-01" fin="1962-12-31" valeur="180.95" />
-          <VALUE deb="1956-01-01" fin="1959-12-31" valeur="18095" />
-          <VALUE deb="1954-01-01" fin="1955-12-31" valeur="16450" />
-          <VALUE deb="1952-01-01" fin="1953-12-31" valeur="14950" />
-          <VALUE deb="1951-01-01" fin="1951-12-31" valeur="13000" />
-          <VALUE deb="1950-01-01" fin="1950-12-31" valeur="11250" />
-          <VALUE deb="1949-01-01" fin="1949-12-31" valeur="8500" />
-          <VALUE deb="1946-01-01" fin="1948-12-31" valeur="1800" />
-          <VALUE deb="1942-01-01" fin="1945-12-31" valeur="60" />
-          <VALUE deb="1936-01-01" fin="1941-12-31" valeur="15" />
-          <VALUE deb="1930-01-01" fin="1935-12-31" valeur="60.0 COTISATIONS" />
-        </CODE>
         <CODE code="reunion" format="float" type="monetary">
           <VALUE deb="2015-01-01" valeur="1441.5" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1429.5" />
@@ -19842,7 +18993,7 @@
       </NODE>
     </NODE>
   </NODE>
-  <NODE code="taxation_du_capital">
+  <NODE code="taxation_capital">
     <NODE code="bareme_isf">
       <NODE code="seuils_des_tranches_du_bareme_de_l_isf">
         <CODE code="1ere_tranche" format="float" type="monetary">
@@ -20379,182 +19530,19 @@
       </NODE>
     </NODE>
   </NODE>
-  <NODE code="taxes_locales">
-    <NODE code="exo_age">
-      <CODE code="age_minimal_pour_l_exoneration_de_la_tf">
-        <VALUE deb="1997-01-01" valeur="75" />
-      </CODE>
-      <CODE code="age_minimal_pour_l_exoneration_de_la_th">
-        <VALUE deb="1997-01-01" valeur="60" />
-      </CODE>
-    </NODE>
-    <NODE code="exo_seuils">
-      <CODE code="rfr_pour_chaque_demi_part_fiscale_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="2839" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="2730" />
-        <VALUE deb="2011-01-01" fin="2012-12-31" valeur="2676" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2637" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="2627" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="2553" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="2520" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="2496.25203989" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="2425.86899365" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="2394.72982774" />
-        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="1882" />
-        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="1851" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="11989.7351467" />
-        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="11790" />
-        <VALUE deb="1999-01-01" fin="1999-12-31" valeur="11740" />
-        <VALUE deb="1998-01-01" fin="1998-12-31" valeur="11650" />
-        <VALUE deb="1997-01-01" fin="1997-12-31" valeur="11530" />
-      </CODE>
-      <CODE code="rfr_pour_la_premiere_part_fiscale" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="10633" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="10224" />
-        <VALUE deb="2011-01-01" fin="2012-12-31" valeur="10024" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="9876" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="9837" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="9560" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="9437" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="9345.69174977" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="9082.18540345" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="8965.6038078" />
-        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="7046" />
-        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6928" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="44857.2703412" />
-        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="44110" />
-        <VALUE deb="1999-01-01" fin="1999-12-31" valeur="43900" />
-        <VALUE deb="1998-01-01" fin="1998-12-31" valeur="43550" />
-        <VALUE deb="1997-01-01" fin="1997-12-31" valeur="43080" />
-      </CODE>
-    </NODE>
-    <NODE code="plaf_tf">
-      <CODE code="pourcentage_du_revenu_au_dela_duquel_le_degrevement_s_applique" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.5" />
-      </CODE>
-      <CODE code="revenu_fiscal_de_reference_pour_la_premiere_part_fiscale" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="25005" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="24043" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="23572" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="23224" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="23133" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="22481" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="22192" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="16290" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="103710" />
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="48950" />
-      </CODE>
-      <CODE code="rfr_pour_la_premiere_demi_part_fiscale_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="5842" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="5617" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="5507" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="5426" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5405" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5253" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="5186" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="3806" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="24230" />
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="11530" />
-      </CODE>
-      <CODE code="rfr_pour_les_demi_part_fiscale_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="4598" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="4421" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="4334" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="4270" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="4253" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="4133" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="4080" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="2994" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="19070" />
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="11530" />
-      </CODE>
-    </NODE>
-    <NODE code="plaf_th">
-      <CODE code="abattement_a_enlever_du_revenu_servant_a_plafonner_la_th" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="5425" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5215" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="5113" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="5038" />
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="5018" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="4877" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="4814" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="3533" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="22500" />
-      </CODE>
-      <CODE code="abattement_suplementaire_pour_les_quatre_premieres_demi_part" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="1528" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1508" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1478" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1456" />
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="1450" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="1409" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="1391" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="1021" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="6500" />
-      </CODE>
-      <CODE code="abattement_supplementaire_pour_les_demi_parts_suivantes" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="2773" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="2666" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="2614" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="2575" />
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="2565" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="2493" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="2461" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="1806" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="11500" />
-      </CODE>
-      <CODE code="pourcentage_du_revenu_au_dela_duquel_le_degrevement_s_applique" format="percent">
-        <VALUE deb="2008-01-01" valeur="0.0344" />
-        <VALUE deb="2001-01-01" fin="2007-12-31" valeur="0.043" />
-      </CODE>
-      <CODE code="revenu_fiscal_de_reference_pour_la_premiere_part_fiscale" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="25005" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="24043" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="23572" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="23224" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="23133" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="22481" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="22192" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="16290" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="103710" />
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="48950" />
-      </CODE>
-      <CODE code="rfr_pour_la_premiere_demi_part_fiscale_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="5842" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="5617" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="5507" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="5426" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5405" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5253" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="5186" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="3806" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="24230" />
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="11530" />
-      </CODE>
-      <CODE code="rfr_pour_les_demi_part_fiscale_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-01-01" valeur="4598" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="4421" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="4334" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="4270" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="4253" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="4133" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="4080" />
-        <VALUE deb="2002-01-01" fin="2006-12-31" valeur="2994" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="19070" />
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="11530" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="tns" description="Travailleurs non-salariés">
     <NODE code="auto_entrepreneur" description="Taux global de cotisations sociales et formation à appliquer au CA de l'auto-entrepreneur">
       <CODE code="achat_revente" description="Activité de type Achat-Revente" format="percent">
-        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.142" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.134" />
+        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.142" />
       </CODE>
       <CODE code="bic" description="Activité de type BIC" format="percent">
-        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.248" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.232" />
+        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.248" />
       </CODE>
       <CODE code="bnc" description="Activité de type BNC" format="percent">
-        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.235" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.231" />
+        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="0.235" />
       </CODE>
     </NODE>
     <NODE code="micro_entreprise" description="Micro-entreprise">
