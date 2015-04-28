@@ -248,7 +248,6 @@ class casa(DatedFormulaColumn):
         law = simulation.legislation_at(period.start)
 
         rfr = self.cast_from_entity_to_roles(rfr_holder)
-
         casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (rfr > 13900)
         # TODO: insert in parameters file and deal with nombre de part fiscales
 

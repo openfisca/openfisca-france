@@ -13,7 +13,7 @@ def test_parametric_reform():
         # FIXME update_legislation is deprecated.
         reform_legislation_json = reforms.update_legislation(
             legislation_json = reference_legislation_json_copy,
-            path = ('children', 'ir', 'children', 'bareme', 'brackets', 0, 'rate'),
+            path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 0, 'rate'),
             period = simulation_period,
             value = 1,
             )

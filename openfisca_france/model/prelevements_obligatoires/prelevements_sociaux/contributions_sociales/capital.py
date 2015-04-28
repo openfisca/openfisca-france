@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 #
 # a = {'salaire_imposable':sal, 'pat':pat, 'csg':csg, 'crds':crds,
 #      'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps,
-#      'ir': P.ir, 'prelsoc': P.prelsoc}
+#      'impot_revenu': P.impot_revenu, 'prelsoc': P.prelsoc}
 # return Dicts2Object(**a)
 
 

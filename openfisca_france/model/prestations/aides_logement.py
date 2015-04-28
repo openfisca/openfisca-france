@@ -94,7 +94,7 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
         salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
         # Application de l'abattement pour frais professionnels
-        params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
+        params_abattement = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro
         somme_salaires_mois_precedent = 12 * salaire_imposable
         montant_abattement = round(
             min_(
@@ -123,7 +123,7 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
 
-        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
+        params_abattement_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro
         abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
 
         return period, abattement
