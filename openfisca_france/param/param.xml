@@ -5793,6 +5793,11 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.231" />
       </CODE>
     </NODE>
+    <NODE code="exploitant_agricole" description="Exploitants agricoles non salariés">
+      <CODE code="plafond_rsa" description="Plafonds d'éligibilité au RSA pour un TNS agricole, en multiple du SMIC horaire brut">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="800"/>
+      </CODE>
+    </NODE>
   </NODE>
   <NODE code="bourses_education" description="Bourses de l'Éducation nationale">
     <NODE code="bourse_college" description="Bourse des collèges">
