@@ -23,3 +23,11 @@
     remuneration_apprenti:
       "month:2015-01": 35 * 52 * 9.61 * .49 / 12
       "month:2015-03": 35 * 52 * 9.61 * .49 / 12
+
+- period: "month:2015-04"
+  input_variables:
+    effectif_entreprise: 1
+    salaire_de_base: 1445.38
+  output_variables:
+    remuneration_apprenti:
+    exoneration_cotisations_employeur_apprenti: 0
