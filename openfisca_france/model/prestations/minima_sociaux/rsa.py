@@ -763,6 +763,24 @@ class rsa_act_i(DatedFormulaColumn):
         rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
         return period, rsa_act_i
 
+
+@reference_formula
+class nb_enfant_rsa(SimpleFormulaColumn):
+    column = IntCol
+    entity_class = Familles
+    label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        rmi = simulation.legislation_at(period.start).minim.rmi
+        age_holder = simulation.compute('age', period)
+        smic55_holder = simulation.compute('smic55', period)
+        age_enf = self.split_by_roles(age_holder, roles = ENFS)
+        smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
+        nbenf = nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
+
+        return period, nbenf
+
 @reference_formula
 class rsa_eligibilite_tns(SimpleFormulaColumn):
     column = BoolCol
