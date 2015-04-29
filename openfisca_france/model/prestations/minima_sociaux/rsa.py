@@ -987,7 +987,8 @@ class rsa(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_majore = simulation.calculate('rsa_majore', period)
         rsa_non_majore = simulation.calculate('rsa_non_majore', period)
+        rsa_non_calculable_tns = simulation.calculate('rsa_non_calculable_tns', period)
 
-        rsa = max_(rsa_majore, rsa_non_majore)
+        rsa = (1 - rsa_non_calculable_tns) * max_(rsa_majore, rsa_non_majore)
 
         return period, rsa
