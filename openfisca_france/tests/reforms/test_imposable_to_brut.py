@@ -118,4 +118,5 @@ if __name__ == '__main__':
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cho()
     test_rst()
-    test_sal()
+    for function, type_sal, year in test_sal():
+        function(type_sal, year)
