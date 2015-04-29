@@ -842,6 +842,38 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
         return period, eligib
 
 @reference_formula
+class rsa_non_calculable_tns_i(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Calculabilité du RSA pour un TNS. Souvent, il ne l'est pas et l'utilisateur est renvoyé vers son PCG"
+
+    def function(self,simulation,period):
+        period = period.start.offset('first-of', 'month').period('month')
+        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole',period)
+        tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
+        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+        eligible_rsa = simulation.calculate('rsa_eligibilite', period) + simulation.calculate('rsa_majore_eligibilite', period)
+
+        return period, eligible_rsa * (
+                (tns_benefice_exploitant_agricole > 0) +
+                (tns_micro_entreprise_chiffre_affaires > 0) +
+                (tns_autres_revenus > 0))
+
+@reference_formula
+class rsa_non_calculable_tns(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Calculabilité du RSA pour une Famille (voir rsa_non_calculable_tns_i)"
+
+    def function(self,simulation,period):
+        period = period.start.offset('first-of', 'month').period('month')
+        non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
+        non_calculable_tns_parents =  self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
+        non_calculable = non_calculable_tns_parents[CHEF] + non_calculable_tns_parents[PART]
+
+        return period, non_calculable
+
+@reference_formula
 class rsa_socle(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
