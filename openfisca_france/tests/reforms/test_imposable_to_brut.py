@@ -37,7 +37,7 @@ from openfisca_france.tests.base import assert_near, tax_benefit_system
 def test_cho(year = 2014):
     period = "{}-01".format(year)
     single_entity_kwargs = dict(
-        axes = [dict(count = 11, max = 2000, min = 0, name = 'chobrut')],
+        axes = [dict(count = 101, max = 2000, min = 0, name = 'chobrut')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -61,7 +61,7 @@ def test_cho(year = 2014):
 def test_rst(year = 2014):
     period = "{}-01".format(year)
     single_entity_kwargs = dict(
-        axes = [dict(count = 11, max = 2000, min = 0, name = 'rstbrut')],
+        axes = [dict(count = 101, max = 2000, min = 0, name = 'rstbrut')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -86,7 +86,7 @@ def test_rst(year = 2014):
 def check_sal(type_sal, year = 2014):
     period = "{}-01".format(year)
     single_entity_kwargs = dict(
-        axes = [dict(count = 11, max = 2000, min = 0, name = 'salaire_de_base')],
+        axes = [dict(count = 101, max = 2000, min = 300, name = 'salaire_de_base')],  # TODO: min = 0
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
