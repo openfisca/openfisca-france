@@ -797,6 +797,51 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
         return period, tns_benefice_exploitant_agricole < plafond_benefice_agricole
 
 @reference_formula
+class rsa_eligibilite(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Eligibilité au RSA"
+
+    def function(self,simulation,period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age_holder = simulation.compute('age', period)
+        age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
+        activite_holder = simulation.compute('activite', period)
+        activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+        eligib_tns_holder = simulation.compute('rsa_eligibilite_tns', period)
+        eligib_tns_parents =  self.split_by_roles(eligib_tns_holder, roles = [CHEF, PART], default=True)
+
+        rmi = simulation.legislation_at(period.start).minim.rmi
+
+        eligib = (
+            (age_parents[CHEF] >= rmi.age_pac)
+            *
+            not_(activite_parents[CHEF] == 2)
+            ) + (
+                (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+                )
+        eligib = eligib * eligib_tns_parents[CHEF] * eligib_tns_parents[PART]
+
+        return period, eligib
+
+@reference_formula
+class rsa_majore_eligibilite(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Eligibilité au RSA majoré pour parent isolé"
+
+    def function(self, simulation,period):
+        period = period.start.offset('first-of', 'month').period('month')
+        isol = simulation.calculate('isol', period)
+        enceinte_fam = simulation.calculate('enceinte_fam', period)
+        nbenf = simulation.calculate('nb_enfant_rsa', period)
+        eligib_tns_holder = simulation.compute('rsa_eligibilite_tns', period)
+        eligib_tns_demandeur =  self.split_by_roles(eligib_tns_holder, roles = [CHEF])
+        eligib = isol * (enceinte_fam | (nbenf > 0)) * eligib_tns_demandeur[CHEF]
+
+        return period, eligib
+
+@reference_formula
 class rsa_socle(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
@@ -806,24 +851,14 @@ class rsa_socle(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
-        activite_holder = simulation.compute('activite', period)
         nb_par = simulation.calculate('nb_par', period)
+        eligib = simulation.calculate('rsa_eligibilite',period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
-        age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
-        activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         age_enf = self.split_by_roles(age_holder, roles = ENFS)
         smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
 
         nbp = nb_par + nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
-
-        eligib = (
-            (age_parents[CHEF] >= rmi.age_pac)
-            &
-            not_(activite_parents[CHEF] == 2)
-            ) | (
-                (age_parents[PART] >= rmi.age_pac) & not_(activite_parents[PART] == 2)
-                )
 
         taux = (
             1 + (nbp >= 2) * rmi.txp2 +
@@ -843,16 +878,9 @@ class rsa_socle_majore(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        enceinte_fam = simulation.calculate('enceinte_fam', period)
-        age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
-        isol = simulation.calculate('isol', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
-
-        age_enf = self.split_by_roles(age_holder, roles = ENFS)
-        smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
-        nbenf = nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
-        eligib = isol * (enceinte_fam | (nbenf > 0))
+        eligib = simulation.calculate('rsa_majore_eligibilite', period)
+        nbenf = simulation.calculate('nb_enfant_rsa', period)
         taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf
         return period, eligib * rmi.rmi * taux
 
