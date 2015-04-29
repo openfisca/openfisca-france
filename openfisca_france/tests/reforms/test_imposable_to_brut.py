@@ -99,7 +99,10 @@ def check_sal(type_sal, year = 2014):
     brut = simulation.get_holder('salaire_de_base').array
     imposable = simulation.calculate('sal')
 
-    inverse_simulation = simulation.clone(debug = True)
+    inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
+    inverse_simulation = inversion_reform.new_scenario().init_single_entity(
+        **single_entity_kwargs).new_simulation(debug = True)
+
     inverse_simulation.get_holder('salaire_de_base').delete_arrays()
     inverse_simulation.get_or_new_holder('sali').array = imposable.copy()
     new_brut = inverse_simulation.calculate('salaire_de_base')
