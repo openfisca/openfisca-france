@@ -885,12 +885,10 @@ class rsa_socle(SimpleFormulaColumn):
         smic55_holder = simulation.compute('smic55', period)
         nb_par = simulation.calculate('nb_par', period)
         eligib = simulation.calculate('rsa_eligibilite',period)
+        nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
-        age_enf = self.split_by_roles(age_holder, roles = ENFS)
-        smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
-
-        nbp = nb_par + nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
+        nbp = nb_par + nb_enfant_rsa
 
         taux = (
             1 + (nbp >= 2) * rmi.txp2 +
