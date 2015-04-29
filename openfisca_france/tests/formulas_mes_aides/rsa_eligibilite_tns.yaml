@@ -1,0 +1,47 @@
+- name: "Eligibilité au RSA pour TNS agricole quand bénéfice agricole < plafond"
+  period: "month:2015-04"
+  input_variables:
+    tns_benefice_exploitant_agricole: 7600
+  output_variables:
+    rsa_eligibilite_tns: True
+
+- name: "Non-Eligibilité au RSA pour TNS agricole quand bénéfice agricole > plafond"
+  period: "month:2015-04"
+  input_variables:
+    tns_benefice_exploitant_agricole: 7700
+  output_variables:
+    rsa_eligibilite_tns: False
+
+- name: "Non-Eligibilité au RSA quand la condition TNS n'est pas vérifiée"
+  period: "month:2015-04"
+  input_variables:
+    rsa_eligibilite_tns: False
+    age: 40
+    activite: 0
+  output_variables:
+    rsa_eligibilite: False
+
+- name: "Non-calculabilité du RSA quand TNS agricole éligible"
+  period: "month:2015-04"
+  input_variables:
+    rsa_eligibilite: True
+    tns_benefice_exploitant_agricole: 4000
+  output_variables:
+    rsa_non_calculable_tns: True
+
+- name: "Calculabilité du RSA quand travailleur non éligible"
+  period: "month:2015-04"
+  input_variables:
+    rsa_eligibilite: False
+    tns_benefice_exploitant_agricole: 10000
+  output_variables:
+    rsa_non_calculable_tns: False
+
+- name: "RSA à zéro quand non calculable"
+  period: "month:2015-04"
+  input_variables:
+    rsa_non_calculable_tns: True
+    rsa_majore: 0
+    rsa_non_majore: 500
+  output_variables:
+    rsa: 0
