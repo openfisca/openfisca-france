@@ -859,7 +859,7 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
 class rsa_non_calculable_tns_i(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Individus
-    label = u"Calculabilité du RSA pour un TNS. Souvent, il ne l'est pas et l'utilisateur est renvoyé vers son PCG"
+    label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
 
     def function(self,simulation,period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -877,7 +877,7 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
 class rsa_non_calculable(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
-    label = u"Calculabilité du RSA pour une Famille (voir rsa_non_calculable_i)"
+    label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
 
     def function(self,simulation,period):
         period = period.start.offset('first-of', 'month').period('month')
