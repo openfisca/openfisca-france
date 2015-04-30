@@ -791,6 +791,7 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
     def function(self, simulation,period):
         period = period.start.offset('first-of', 'month').period('month')
         tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole',period)
+        tns_employe = simulation.calculate('tns_employe',period)
         has_conjoint = simulation.calculate('nb_par', period) > 1
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
@@ -808,7 +809,7 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
         taux_majoration = calcul_majoration(has_conjoint, nb_enfant_rsa)
         plafond_benefice_agricole_majore = taux_majoration * plafond_benefice_agricole
 
-        return period, tns_benefice_exploitant_agricole < plafond_benefice_agricole_majore
+        return period, (tns_benefice_exploitant_agricole < plafond_benefice_agricole_majore) * (1 - tns_employe)
 
 @reference_formula
 class rsa_eligibilite(SimpleFormulaColumn):

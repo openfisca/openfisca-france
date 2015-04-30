@@ -1038,6 +1038,14 @@ reference_input_variable(
    )
 
 reference_input_variable(
+   name ='tns_employe',
+   column = BoolCol,
+   entity_class = Individus,
+   label = u"Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise",
+   set_input = set_input_dispatch_by_period
+   )
+
+reference_input_variable(
    name = 'tns_benefice_exploitant_agricole',
    column = FloatCol,
    entity_class = Individus,
