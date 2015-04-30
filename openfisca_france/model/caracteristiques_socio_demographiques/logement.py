@@ -59,7 +59,7 @@ reference_input_variable(
             u"Non renseigné",
             u"Accédant à la propriété",
             u"Propriétaire (non accédant) du logement",
-            u"Locataire d'un logement HLM",
+            u"Locataire d'un logement HLM", #FIXME : Est-ce qu'on parle vraiment d'un HLM et pas d'un foyer ? Incohérence avec mes-aides ? 
             u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
             u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
             u"Logé gratuitement par des parents, des amis ou l'employeur"])
