@@ -5797,6 +5797,15 @@
       <CODE code="plafond_rsa" description="Plafonds d'éligibilité au RSA pour un TNS agricole, en multiple du SMIC horaire brut">
         <VALUE deb="2008-01-01" fin="2015-12-31" valeur="800"/>
       </CODE>
+      <CODE code="maj_2p" description="Majoration du plafond pour un foyer de deux personnes">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.5"/>
+      </CODE>
+      <CODE code="maj_1e_2ad" description="Majoration du plafond pour 1er enfant quand deux adultes">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.3"/>
+      </CODE>
+      <CODE code="maj_e_sup" description="Majoration du plafond pour les enfants supplémentaires">
+        <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.4"/>
+      </CODE>
     </NODE>
   </NODE>
   <NODE code="bourses_education" description="Bourses de l'Éducation nationale">

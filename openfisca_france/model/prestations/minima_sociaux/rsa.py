@@ -794,11 +794,15 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
         has_conjoint = simulation.calculate('nb_par', period) > 1
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
-        plafond_benefice_agricole = P.tns.exploitant_agricole.plafond_rsa * P.cotsoc.gen.smic_h_b
+        P_agr = P.tns.exploitant_agricole
+        plafond_benefice_agricole = P_agr.plafond_rsa * P.cotsoc.gen.smic_h_b
+        maj_2p = P_agr.maj_2p
+        maj_1e_2ad = P_agr.maj_1e_2ad
+        maj_e_sup = P_agr.maj_e_sup
 
         def calcul_majoration(has_conjoint, nb_enfant_rsa):
-            taux_avec_conjoint = 1.5 + 0.30 * (nb_enfant_rsa > 0) + 0.40 * max_(nb_enfant_rsa - 1, 0)
-            taux_sans_conjoint = 1 + 0.50 * (nb_enfant_rsa > 0) + 0.40 * max_(nb_enfant_rsa - 1, 0)
+            taux_avec_conjoint = 1 + maj_2p + maj_1e_2ad * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
+            taux_sans_conjoint = 1 + maj_2p * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
             return has_conjoint * taux_avec_conjoint + (1 - has_conjoint) * taux_sans_conjoint
 
         taux_majoration = calcul_majoration(has_conjoint, nb_enfant_rsa)
