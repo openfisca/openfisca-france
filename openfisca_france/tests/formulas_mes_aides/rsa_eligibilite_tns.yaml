@@ -70,6 +70,20 @@
   output_variables:
     rsa_eligibilite: False
 
+
+- name: "Non Calculabilité du RSA quand conjoint TNS pré-éligible"
+  period: "month:2015-04"
+  familles:
+    parents: ["parent1", "parent2"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+      tns_benefice_exploitant_agricole: 8000
+  output_variables:
+    rsa_non_calculable: 2
+
 - name: "Non-Eligibilité au RSA quand la condition TNS n'est pas vérifiée"
   period: "month:2015-04"
   input_variables:

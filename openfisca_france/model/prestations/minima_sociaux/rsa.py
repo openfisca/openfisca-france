@@ -875,7 +875,14 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
 
 @reference_formula
 class rsa_non_calculable(SimpleFormulaColumn):
-    column = BoolCol
+    column = EnumCol(
+        enum = Enum([
+            u"",
+            u"tns",
+            u"conjoint_tns"
+            ]),
+        default = 0
+    )
     entity_class = Familles
     label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
 
@@ -883,7 +890,7 @@ class rsa_non_calculable(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
         non_calculable_tns_parents =  self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
-        non_calculable = non_calculable_tns_parents[CHEF] + non_calculable_tns_parents[PART]
+        non_calculable = (non_calculable_tns_parents[CHEF] > 0) * 1 +(( 1 - non_calculable_tns_parents[CHEF]) * non_calculable_tns_parents[PART] > 0) * 2
 
         return period, non_calculable
 
