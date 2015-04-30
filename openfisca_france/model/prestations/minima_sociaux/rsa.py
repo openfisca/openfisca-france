@@ -870,10 +870,10 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
                 (tns_autres_revenus > 0))
 
 @reference_formula
-class rsa_non_calculable_tns(SimpleFormulaColumn):
+class rsa_non_calculable(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
-    label = u"Calculabilité du RSA pour une Famille (voir rsa_non_calculable_tns_i)"
+    label = u"Calculabilité du RSA pour une Famille (voir rsa_non_calculable_i)"
 
     def function(self,simulation,period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -995,8 +995,8 @@ class rsa(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         rsa_majore = simulation.calculate('rsa_majore', period)
         rsa_non_majore = simulation.calculate('rsa_non_majore', period)
-        rsa_non_calculable_tns = simulation.calculate('rsa_non_calculable_tns', period)
+        rsa_non_calculable = simulation.calculate('rsa_non_calculable', period)
 
-        rsa = (1 - rsa_non_calculable_tns) * max_(rsa_majore, rsa_non_majore)
+        rsa = (1 - rsa_non_calculable) * max_(rsa_majore, rsa_non_majore)
 
         return period, rsa
