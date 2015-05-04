@@ -78,6 +78,38 @@
   output_variables:
     rsa_eligibilite_tns: False
 
+- name: "Non-Eligibilité au RSA pour TNS avec CA > plafond"
+  period: "month:2015-04"
+  input_variables:
+    tns_autres_revenus_chiffre_affaires: 90000
+    tns_autres_revenus_type_activite: 0
+  output_variables:
+    rsa_eligibilite_tns: False
+
+- name: "Eligibilité au RSA pour TNS avec CA < plafond"
+  period: "month:2015-04"
+  input_variables:
+    tns_autres_revenus_chiffre_affaires: 80000
+    tns_autres_revenus_type_activite: 0
+  output_variables:
+    rsa_eligibilite_tns: True
+
+- name: "Non-Eligibilité au RSA pour TNS avec CA > plafond"
+  period: "month:2015-04"
+  input_variables:
+    tns_autres_revenus_chiffre_affaires: 50000
+    tns_autres_revenus_type_activite: 2
+  output_variables:
+    rsa_eligibilite_tns: False
+
+- name: "Eligibilité au RSA pour TNS avec CA < plafond"
+  period: "month:2015-04"
+  input_variables:
+    tns_autres_revenus_chiffre_affaires: 30000
+    tns_autres_revenus_type_activite: 2
+  output_variables:
+    rsa_eligibilite_tns: True
+
 - name: "Non-Eligibilité au RSA quand la condition TNS n'est pas vérifiée"
   period: "month:2015-04"
   input_variables:

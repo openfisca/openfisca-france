@@ -792,24 +792,34 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole',period)
         tns_employe = simulation.calculate('tns_employe',period)
+        tns_autres_revenus_chiffre_affaires = simulation.calculate('tns_autres_revenus_chiffre_affaires',period)
+        tns_autres_revenus_type_activite = simulation.calculate('tns_autres_revenus_type_activite',period)
         has_conjoint = simulation.calculate('nb_par', period) > 1
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
         P_agr = P.tns.exploitant_agricole
-        plafond_benefice_agricole = P_agr.plafond_rsa * P.cotsoc.gen.smic_h_b
+        P_micro = P.ir.rpns.microentreprise
         maj_2p = P_agr.maj_2p
         maj_1e_2ad = P_agr.maj_1e_2ad
         maj_e_sup = P_agr.maj_e_sup
 
-        def calcul_majoration(has_conjoint, nb_enfant_rsa):
+        def eligibilite_agricole(has_conjoint, nb_enfant_rsa, tns_benefice_exploitant_agricole, P_agr):
+            plafond_benefice_agricole = P_agr.plafond_rsa * P.cotsoc.gen.smic_h_b
             taux_avec_conjoint = 1 + maj_2p + maj_1e_2ad * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
             taux_sans_conjoint = 1 + maj_2p * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
-            return has_conjoint * taux_avec_conjoint + (1 - has_conjoint) * taux_sans_conjoint
+            taux_majoration = has_conjoint * taux_avec_conjoint + (1 - has_conjoint) * taux_sans_conjoint
+            plafond_benefice_agricole_majore = taux_majoration * plafond_benefice_agricole
+            return tns_benefice_exploitant_agricole < plafond_benefice_agricole_majore
 
-        taux_majoration = calcul_majoration(has_conjoint, nb_enfant_rsa)
-        plafond_benefice_agricole_majore = taux_majoration * plafond_benefice_agricole
+        def eligibilite_chiffre_affaire(ca, type_activite, P_micro):
+            plaf_vente = P_micro.vente.max
+            plaf_service = P_micro.servi.max
+            return ((type_activite == 0) * (ca <= plaf_vente )) + ((type_activite >= 1) * (ca <= plaf_service ))
 
-        return period, (tns_benefice_exploitant_agricole < plafond_benefice_agricole_majore) * (1 - tns_employe)
+        eligibilite_agricole = eligibilite_agricole(has_conjoint, nb_enfant_rsa, tns_benefice_exploitant_agricole, P_agr)
+        eligibilite_chiffre_affaire = eligibilite_chiffre_affaire(tns_autres_revenus_chiffre_affaires, tns_autres_revenus_type_activite, P_micro)
+
+        return period, eligibilite_agricole * (1 - tns_employe) * eligibilite_chiffre_affaire
 
 @reference_formula
 class rsa_eligibilite(SimpleFormulaColumn):
