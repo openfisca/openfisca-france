@@ -346,10 +346,11 @@ class br_rmi_pf(DatedFormulaColumn):
         asf = simulation.calculate_divide('asf', period)
         paje_base = simulation.calculate_divide('paje_base', period)
         paje_clca = simulation.calculate_divide('paje_clca', period)
+        paje_prepare = simulation.calculate_divide('paje_prepare', period)
         paje_colca = simulation.calculate_divide('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_colca)
+        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
 
     @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
@@ -360,13 +361,14 @@ class br_rmi_pf(DatedFormulaColumn):
         rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
         paje_base = simulation.calculate_divide('paje_base', period)
         paje_clca = simulation.calculate_divide('paje_clca', period)
+        paje_prepare = simulation.calculate_divide('paje_prepare', period)
         paje_colca = simulation.calculate_divide('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
 
-        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca + paje_colca)
+        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca + paje_prepare + paje_colca)
 
 
 @reference_formula

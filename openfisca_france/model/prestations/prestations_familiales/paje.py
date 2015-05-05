@@ -236,6 +236,13 @@ class paje_clca(SimpleFormulaColumn):
                                 partiel2 * P.paje.clca.avecab_tx_partiel2))
         return period, paje_clca
 
+reference_input_variable(
+   name ='paje_prepare',
+   column = FloatCol,
+   entity_class = Familles,
+   label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)",
+   set_input = set_input_divide_by_period
+   )
 
 @reference_formula
 class paje_clca_taux_plein(SimpleFormulaColumn):

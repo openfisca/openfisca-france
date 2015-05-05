@@ -254,6 +254,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
         cf = simulation.calculate_divide('cf', period)
         asf = simulation.calculate_divide('asf', period)
         paje_clca = simulation.calculate_divide('paje_clca', period)
+        paje_prepare = simulation.calculate_divide('paje_prepare', period)
         statut_occupation_holder = simulation.compute('statut_occupation', period)
         aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
@@ -275,7 +276,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
-        res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca)
+        res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca + paje_prepare)
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
