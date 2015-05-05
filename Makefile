@@ -19,10 +19,10 @@ flake8: clean-pyc
 	flake8
 
 test: check-syntax-errors
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --stop --with-doctest
+	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-doctest
 
 test-ci: check-syntax-errors
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --with-doctest
+	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --with-doctest
 
 test-with-coverage:
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --stop --with-coverage --cover-package=openfisca_france --cover-erase --cover-branches --cover-html
+	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-coverage --cover-package=openfisca_france --cover-erase --cover-branches --cover-html
