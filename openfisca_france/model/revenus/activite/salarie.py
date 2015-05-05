@@ -37,7 +37,7 @@ build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"R
 build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
 
 
-build_column('sali', IntCol(label = u"Revenus d'activité imposables",
+build_column('sali', FloatCol(label = u"Revenus d'activité imposables",
                 val_type = "monetary",
                 cerfa_field = {QUIFOY['vous']: u"1AJ",
                                QUIFOY['conj']: u"1BJ",
