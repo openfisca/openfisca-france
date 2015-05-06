@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import maximum as max_
+from numpy import maximum as max_, minimum as min_
 
 
 from ....base import *  # noqa analysis:ignore
@@ -123,8 +123,11 @@ class crds_chomage(SimpleFormulaColumn):
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
-        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        smic_h_b = law.cotsoc.gen.smic_h_b
+        # salaire_mensuel_reference = chobrut / .7
+        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
+        heures_mensuelles = 35 * 52 / 12
+        cho_seuil_exo = law.csg.chomage.min_exo * heures_mensuelles * smic_h_b
 
         montant_crds = montant_csg_crds(
             base_avec_abattement = chobrut,
@@ -132,7 +135,11 @@ class crds_chomage(SimpleFormulaColumn):
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (2 <= taux_csg_remplacement)
 
-        crds_chomage = max_(-montant_crds - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0), 0)
+        crds_chomage = max_(
+            -montant_crds - max_(
+                cho_seuil_exo - (chobrut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+                ), 0
+            )
         return period, -crds_chomage
 
 
