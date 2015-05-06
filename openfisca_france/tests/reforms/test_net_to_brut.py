@@ -71,7 +71,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
 def test_chonet_to_chobrut():
     count = 101
     chobrut_max = 5000
-    chobrut_min = 0
+    chobrut_min = 2000
     for year in range(2006, 2015):
         yield check_chonet_to_chobrut, count, chobrut_max, chobrut_min, year
 
@@ -180,6 +180,6 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    for test in (test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):  # TOD0 test_chonet_to_chobrut,
+    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):  # TOD0 test_chonet_to_chobrut,
         for function_and_arguments in test():
             function_and_arguments[0](*function_and_arguments[1:])
