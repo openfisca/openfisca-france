@@ -1,0 +1,20 @@
+- name: "Prise en compte des revenus du conjoint ARE, ASS, IJ, retraite"
+  period: "2015-01"
+  familles:
+    parents: ["parent1", "parent2"]
+  individus:
+    - id: "parent1"
+      age: 40
+      sali:
+        2014: 1000
+    - id: "parent2"
+      age: 40
+      chonet:
+        2014: 1000
+      rstnet:
+        2014: 100
+      indemnites_journalieres:
+        2014: 10
+  output_variables:
+    ass_base_ressources:
+      "2015-01": 1777
