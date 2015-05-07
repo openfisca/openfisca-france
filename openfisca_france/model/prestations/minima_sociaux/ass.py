@@ -72,7 +72,31 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
-        return period, sali + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+        return period, sali + rstnet + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+
+@reference_formula
+class ass_base_ressources_conjoint(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources individuelle pour le conjoin du demandeur de l'ASS"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        previous_year = period.start.period('year').offset(-1)
+
+        sali = simulation.calculate_add('sali', previous_year)
+        rstnet = simulation.calculate('rstnet', previous_year)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
+        aah = simulation.calculate('aah', previous_year)
+        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
+        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        chonet = simulation.calculate('chonet', previous_year)
+        indemnites_journalieres = simulation.calculate_add('indemnites_journalieres', previous_year)
+        abat = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
+
+        result = sali + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro + ( 1 - abat) * (rstnet + chonet + indemnites_journalieres )
+        return period, result
 
 
 @reference_formula
@@ -84,9 +108,12 @@ class ass_base_ressources(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
+        ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
+        ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
+        ass_base_ressources_conjoint = self.filter_role(ass_base_ressources_conjoint_holder, role = PART)
 
-        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
-        return period, ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
+        result = ass_base_ressources_demandeur + ass_base_ressources_conjoint
+        return period, result
 
 
 @reference_formula
