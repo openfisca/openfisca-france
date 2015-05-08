@@ -1355,6 +1355,16 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
+        <BAREME code="financement_organisations_syndicales" description="Contribution au financement des organisations syndicales" option="main-d-oeuvre">
+          <TRANCHE code="tranche0">
+            <SEUIL>
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".00016" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
         <BAREME code="fnal1" description="Fonds national action logement (FNAL, tout employeur)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>

@@ -31,6 +31,7 @@
             <NODE code="contribution_developpement_apprentissage" color="249,208,211" desc="Contribution au Développement de l'apprentissage" shortname="Dév. apprenti." />
             <NODE code="contribution_solidarite_autonomie" color="249,208,211" desc="Contribution solidarite autonomie" shortname="CSA" />
             <NODE code="contribution_supplementaire_apprentissage" color="249,208,211" desc="Contribution supplémentaire à l'apprentissage" shortname="Suppl. apprenti." />
+            <NODE code="financement_organisations_syndicales" color="249,208,211" desc="Contribution au financement des organisations syndicales" shortname="Org. syndic." />
             <NODE code="fnal" color="249,208,211" desc="Fonds national action logement" shortname="FNAL" />
             <NODE code="formation_professionnelle" color="249,208,211" desc="Formation professionnelle" shortname="Form. prof." />
             <NODE code="participation_effort_construction" color="249,208,211" desc="Participation à l'effort de construction" shortname="Construction" />
