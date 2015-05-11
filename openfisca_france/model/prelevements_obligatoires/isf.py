@@ -563,7 +563,7 @@ class bouclier_rev(SimpleFormulaColumn):
         rev_cap_lib = simulation.calculate('rev_cap_lib', period)
         rev_exo = simulation.calculate('rev_exo', period)
         rev_or = simulation.calculate('rev_or', period)
-        cd_penali = simulation.calculate('cd_penali', period)
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
         # TODO: réintégrer les déficits antérieur
@@ -599,7 +599,7 @@ class bouclier_rev(SimpleFormulaColumn):
         # Pension alimentaires
         # Cotisations ou primes versées au titre de l'épargne retraite
 
-        charges = cd_penali + cd_eparet
+        charges = cd_pension_alimentaire + cd_eparet
 
         return period, revenus - charges
 

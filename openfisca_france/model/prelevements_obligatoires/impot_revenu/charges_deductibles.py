@@ -76,12 +76,14 @@ build_column('f6gu', IntCol(entity = 'foy',
                 val_type = "monetary",
                 cerfa_field = u'6GU'))
 
+# 2042C
 # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
 build_column('f6eu', IntCol(entity = 'foy',
                 label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin",
                 val_type = "monetary",
                 cerfa_field = u'6EU'))
 
+# 2042C
 build_column('f6ev', PeriodSizeIndependentIntCol(entity = 'foy',
                 label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit",
                 cerfa_field = u'6EV'))
@@ -153,11 +155,12 @@ build_column('f6da', IntCol(entity = 'foy',
                 cerfa_field = u'DA'))
 
 
+# 2042C
 # Dépenses de grosses réparations effectuées par les nus propriétaires
 build_column('f6cb', IntCol(entity = 'foy',
                 label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
                 val_type = "monetary",
-                start = date(2009, 1, 1),
+                start = date(2008, 1, 1),
                 cerfa_field = u'6CB'))
                                        # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
@@ -185,12 +188,14 @@ build_column('f6hm', IntCol(entity = 'foy',
                 start = date(2013, 1, 1),
                 cerfa_field = u'6HM'))
 
+# 2042C
 # Sommes à rajouter au revenu imposable
 build_column('f6gh', IntCol(entity = 'foy',
                 label = u"Sommes à ajouter au revenu imposable",
                 val_type = "monetary",
                 cerfa_field = u'6GH'))
 
+# 2042C
 # Deficits antérieurs
 build_column('f6fa', IntCol(entity = 'foy',
                 label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6",
@@ -231,7 +236,7 @@ class rfr_cd(SimpleFormulaColumn):
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_doment = simulation.calculate('cd_doment', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
@@ -252,14 +257,14 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        cd_penali = simulation.calculate('cd_penali', period)
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_percap = simulation.calculate('cd_percap', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_doment = simulation.calculate('cd_doment', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
+        niches1 = cd_pension_alimentaire + cd_acc75a + cd_percap + cd_deddiv + cd_doment
         return period, niches1
 
     @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
@@ -267,15 +272,15 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        cd_penali = simulation.calculate('cd_penali', period)
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_percap = simulation.calculate('cd_percap', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_doment = simulation.calculate('cd_doment', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
+        niches1 = cd_pension_alimentaire + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
@@ -283,14 +288,14 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        cd_penali = simulation.calculate('cd_penali', period)
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_percap = simulation.calculate('cd_percap', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
+        niches1 = cd_pension_alimentaire + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
@@ -298,13 +303,13 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        cd_penali = simulation.calculate('cd_penali', period)
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
+        niches1 = cd_pension_alimentaire + cd_acc75a + cd_deddiv + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
@@ -312,14 +317,14 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        cd_penali = simulation.calculate('cd_penali', period)
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
         cd_grorep = simulation.calculate('cd_grorep', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        niches1 = cd_pension_alimentaire + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
         return period, niches1
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
@@ -327,14 +332,14 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        cd_penali = simulation.calculate('cd_penali', period)
+        period = period.start.offset('first-of', 'month').period('year')
+        cd_pension_alimentaire = simulation.calculate('cd_pension_alimentaire', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
         cd_grorep = simulation.calculate('cd_grorep', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        niches1 = cd_pension_alimentaire + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
         # log.error("Charges déductibles to be checked because not defined for %s", 2014)
         return period, niches1
 
@@ -351,7 +356,7 @@ class cd2(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         cd_sofipe = simulation.calculate('cd_sofipe', period)
         cd_cinema = simulation.calculate('cd_cinema', period)
 
@@ -363,7 +368,7 @@ class cd2(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         cd_sofipe = simulation.calculate('cd_sofipe', period)
 
         niches2 = cd_sofipe
@@ -374,7 +379,7 @@ class cd2(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         cd_ecodev = simulation.calculate('cd_ecodev', period)
 
         niches2 = cd_ecodev
@@ -388,7 +393,7 @@ class rbg_int(SimpleFormulaColumn):
     label = u"Revenu brut global intermédiaire"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         rbg = simulation.calculate('rbg', period)
         cd1 = simulation.calculate('cd1', period)
 
@@ -403,7 +408,7 @@ class charges_deduc(SimpleFormulaColumn):
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         cd1 = simulation.calculate('cd1', period)
         cd2 = simulation.calculate('cd2', period)
 
@@ -411,17 +416,16 @@ class charges_deduc(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_penali(SimpleFormulaColumn):
+class cd_pension_alimentaire(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_penali"
-    url = "http://frederic.anne.free.fr/Cours/ITV.htm"
+    label = u"Charges déductibles pour pension alimentaire"
 
     def function(self, simulation, period):
         '''
         Pensions alimentaires
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6gi = simulation.calculate('f6gi', period)
         f6gj = simulation.calculate('f6gj', period)
         f6gp = simulation.calculate('f6gp', period)
@@ -441,7 +445,7 @@ class cd_penali(SimpleFormulaColumn):
                     min_(f6el, max1) +
                     min_(f6em, max1) +
                     f6gp * (1 + taux_jgt_2006) + f6gu)
-
+                    # f6gp & f6gu : "La pension servie est déductible pour son montant réel" => pas de plafonnement
 
 @reference_formula
 class cd_acc75a(SimpleFormulaColumn):
@@ -453,7 +457,7 @@ class cd_acc75a(SimpleFormulaColumn):
         '''
         Frais d’accueil sous votre toit d’une personne de plus de 75 ans
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6eu = simulation.calculate('f6eu', period)
         f6ev = simulation.calculate('f6ev', period)
         acc75a = simulation.legislation_at(period.start).ir.charges_deductibles.acc75a
@@ -475,7 +479,7 @@ class cd_percap(DatedFormulaColumn):
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6cb = simulation.calculate('f6cb', period)
         marpac = simulation.calculate('marpac', period)
         percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
@@ -490,7 +494,7 @@ class cd_percap(DatedFormulaColumn):
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         marpac = simulation.calculate('marpac', period)
@@ -511,7 +515,7 @@ class cd_deddiv(SimpleFormulaColumn):
         '''
         Déductions diverses (case DD)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6dd = simulation.calculate('f6dd', period)
 
         return period, f6dd
@@ -531,7 +535,7 @@ class cd_doment(SimpleFormulaColumn):
         déclaration n° 2042 complémentaire)
         2002-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6eh = simulation.calculate('f6eh', period)
 
         return period, f6eh
@@ -549,7 +553,7 @@ class cd_eparet(SimpleFormulaColumn):
         Épargne retraite - PERP, PRÉFON, COREM et CGOS
         2004-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6ps_holder = simulation.compute('f6ps', period)
         f6rs_holder = simulation.compute('f6rs', period)
         f6ss_holder = simulation.compute('f6ss', period)
@@ -590,7 +594,7 @@ class cd_sofipe(SimpleFormulaColumn):
         complémentaire)
         2002-2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6cc = simulation.calculate('f6cc', period)
         rbg_int = simulation.calculate('rbg_int', period)
         marpac = simulation.calculate('marpac', period)
@@ -614,7 +618,7 @@ class cd_cinema(SimpleFormulaColumn):
         déclaration n° 2042 complémentaire)
         2002-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6aa = simulation.calculate('f6aa', period)
         rbg_int = simulation.calculate('rbg_int', period)
         cinema = simulation.legislation_at(period.start).ir.charges_deductibles.cinema
@@ -637,7 +641,7 @@ class cd_ecodev(SimpleFormulaColumn):
         complémentaire)
         2007-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6eh = simulation.calculate('f6eh', period)
         rbg_int = simulation.calculate('rbg_int', period)
         ecodev = simulation.legislation_at(period.start).ir.charges_deductibles.ecodev
@@ -651,14 +655,14 @@ class cd_grorep(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_grorep"
-    start_date = date(2009, 1, 1)
+    start_date = date(2008, 1, 1)
 
     def function(self, simulation, period):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         2009-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         f6cb = simulation.calculate('f6cb', period)
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)
