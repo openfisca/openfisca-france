@@ -28,6 +28,9 @@ from __future__ import division
 import logging
 
 
+from numpy import logical_not as not_
+
+
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
