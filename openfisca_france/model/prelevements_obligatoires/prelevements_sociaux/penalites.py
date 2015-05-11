@@ -31,11 +31,10 @@ import logging
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
-from ....base import *  # noqa analysis:ignore
+from ...base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
-taux_versement_transport_by_localisation_entreprise = None
 
 
 # TODO: mettre les seuils entreprises dans les paramètres
