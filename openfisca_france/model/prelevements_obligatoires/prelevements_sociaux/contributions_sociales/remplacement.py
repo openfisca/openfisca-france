@@ -257,12 +257,14 @@ class casa(DatedFormulaColumn):
     def function_2013(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
-        irpp_holder = simulation.compute('irpp', period)
+        rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
-        irpp = self.cast_from_entity_to_roles(irpp_holder)
-        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (irpp > law.ir.recouvrement.seuil)
+        rfr = self.cast_from_entity_to_roles(rfr_holder)
+
+        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (rfr > 13900)
+        # TODO: insert in parameters file and deal with nombre de part fiscales
 
         return period, - casa
 
