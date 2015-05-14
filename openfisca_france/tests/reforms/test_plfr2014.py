@@ -40,7 +40,7 @@ def test_plfr2014():
                 count = 10,
                 max = 13795 * (1 + .1) * (1 + .03),
                 min = 13795 * (1 + .1) * (1 - .03),
-                name = 'sal',
+                name = 'salaire_imposable',
                 ),
             ],
         period = year,

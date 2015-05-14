@@ -24,7 +24,7 @@ individus:
       2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 10000
     salaire_de_base:
       2013: 12820.51282051282

@@ -104,7 +104,7 @@ def check_sal(type_sal, year = 2014):
     simulation.get_or_new_holder('contrat_de_travail').array = brut < smic_mensuel  # temps plein ou temps partiel
     simulation.get_or_new_holder('heures_remunerees_volume').array = brut // smic_horaire  # temps plein ou partiel
 
-    imposable = simulation.calculate('sal')
+    imposable = simulation.calculate('salaire_imposable')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(

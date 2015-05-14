@@ -82,7 +82,7 @@ individus:
     2015-01: 1000
     2015-02: 1000
     year:2014-02: 12000
-  sal:
+  salaire_imposable:
     2013: 0
   valeur_locative_immo_non_loue:
     2012-01: 0

@@ -97,7 +97,7 @@ class salaire_de_base(formulas.SimpleFormulaColumn):
 
         def solve_function(salaire_de_base):
             return brut_to_target(
-                target_name = 'sal',
+                target_name = 'salaire_imposable',
                 period = period,
                 salaire_de_base = salaire_de_base,
                 simulation = simulation,

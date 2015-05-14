@@ -112,7 +112,7 @@ output_variables:
   csg_imposable_salaire: 0
   crds_salaire: 0
   hsup: 0
-  # sal: 0  # salaire imposable
+  # salaire_imposable: 0  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0
   salaire_net_a_payer: 35 * 52 * 9.61 * .49 / 12
   apprenti: 1

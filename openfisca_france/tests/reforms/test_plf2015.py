@@ -47,7 +47,7 @@ def test(year = 2014):
                 count = count,
                 max = max_sal,
                 min = 0,
-                name = 'sal',
+                name = 'salaire_imposable',
                 ),
             ],
         period = periods.period('year', year),

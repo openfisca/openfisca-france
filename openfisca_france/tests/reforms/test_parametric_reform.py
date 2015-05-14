@@ -54,7 +54,7 @@ def test_parametric_reform():
         axes = [
             dict(
                 count = 3,
-                name = 'sal',
+                name = 'salaire_imposable',
                 max = 100000,
                 min = 0,
                 ),

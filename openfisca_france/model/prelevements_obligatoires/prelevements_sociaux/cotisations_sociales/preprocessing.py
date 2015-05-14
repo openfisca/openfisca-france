@@ -107,8 +107,8 @@ def build_pat(node_json):
 
 def build_sal(node_json):
     '''
-    Construit le dictionnaire de barèmes des cotisations salariales
     à partir des informations contenues dans node_json['children']['cotsoc']['children']['sal']
+    Construit le dictionnaire de barèmes des cotisations salariales
     '''
     sal = copy.deepcopy(node_json['children']['cotsoc']['children']['sal'])
     sal['children']['noncadre']['children'].update(sal['children']['commun']['children'])
@@ -149,7 +149,7 @@ def preprocess_legislation(legislation_json):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal = build_sal(legislation_json)
+    sal =  build_sal(legislation_json)
     pat = build_pat(legislation_json)
 
     cotsoc = legislation_json["children"]["cotsoc"]

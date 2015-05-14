@@ -109,7 +109,7 @@ output_variables:
   csg_imposable_salaire: -103.61
   crds_salaire: -21.59
   hsup: 17
-  sal: 3354.54  # salaire imposable
+  salaire_imposable: 3354.54  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0
 
   salaire_net_a_payer: 3048.55

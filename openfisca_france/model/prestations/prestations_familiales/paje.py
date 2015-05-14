@@ -312,7 +312,7 @@ class paje_clmg(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         etu_holder = simulation.compute('etu', period)
-        sal_holder = simulation.compute('sal', period)
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         hsup_holder = simulation.compute('hsup', period)
         concub = simulation.calculate('concub', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -328,7 +328,7 @@ class paje_clmg(SimpleFormulaColumn):
         age = self.split_by_roles(age_holder, roles = ENFS)
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
-        sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
+        salaire_imposable =  self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         aah = self.sum_by_entity(aah_holder)
 
@@ -336,7 +336,10 @@ class paje_clmg(SimpleFormulaColumn):
 
         bmaf_n_2 = P_n_2.af.bmaf
         cond_age_enf = (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
-        cond_sal = (sal[CHEF] + sal[PART] + hsup[CHEF] + hsup[PART] > 12 * bmaf_n_2 * (1 + concub))
+        cond_sal = (
+            salaire_imposable[CHEF] + salaire_imposable[PART] + hsup[CHEF] + hsup[PART] >
+            12 * bmaf_n_2 * (1 + concub)
+            )
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
 
@@ -619,7 +622,7 @@ class apje_temp(SimpleFormulaColumn):
                                 + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
 
         # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
-        # Cette allocation est verséE du 5ème mois de grossesse jusqu’au mois précédant le 3ème anniversaire de l’enfant.
+        # Cette allocation est verséE du 5��me mois de grossesse jusqu���au mois précédant le 3ème anniversaire de l’enfant.
 
         # Non cumul APE APJE CF
         #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes.
