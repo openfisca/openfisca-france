@@ -159,10 +159,10 @@ class forfait_social(SimpleFormulaColumn):
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
     def function(self, simulation, period):
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
-        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate(
+        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_prevoyance_complementaire', period)
-        prise_en_charge_employeur_retraite_complementaire = simulation.calculate(
+        prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_retraite_complementaire', period)
 
         taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
@@ -172,8 +172,7 @@ class forfait_social(SimpleFormulaColumn):
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
         assiette_taux_reduit = - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
         return period, - (
-            assiette_taux_plein * taux_plein +
-            assiette_taux_reduit * taux_reduit
+            assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
 
