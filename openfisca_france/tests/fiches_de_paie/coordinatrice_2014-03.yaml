@@ -93,7 +93,7 @@ output_variables:
   csg_imposable_salaire: -42.44
   crds_salaire: -8.84 # Avec la CSG dans la fiche de paie
   hsup: 0
-  sal: 1456.91
+  salaire_imposable: 1456.91
   depense_cantine_titre_restaurant_employe: 0
 
   salaire_net_a_payer: 1405.62

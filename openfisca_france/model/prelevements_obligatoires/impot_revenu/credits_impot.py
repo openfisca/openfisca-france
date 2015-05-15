@@ -1169,7 +1169,7 @@ class jeunes_ind(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
-        sal = simulation.calculate('sal', period)
+        salaire_imposable =  simulation.calculate('salaire_imposable', period)
         marpac_holder = simulation.compute('marpac', period)
         elig_creimp_jeunes = simulation.calculate('elig_creimp_jeunes', period)
         _P = simulation.legislation_at(period.start)
@@ -1183,7 +1183,10 @@ class jeunes_ind(SimpleFormulaColumn):
 
         elig = (age < P.age) * (rfr < P.rfr_plaf * (marpac * P.rfr_mult + not_(marpac)) + max_(0, nbptr - 2) * .5 *
                 P.rfr_maj + (nbptr == 1.5) * P.rfr_maj)
-        montant = (P.min <= sal) * (sal < P.int) * P.montant + (P.int <= sal) * (sal <= P.max) * (P.max - sal) * P.taux
+        montant = (
+            (P.min <= salaire_imposable) * (salaire_imposable < P.int) * P.montant +
+            (P.int <= salaire_imposable) * (salaire_imposable <= P.max) * (P.max - salaire_imposable) * P.taux
+            )
         return period, elig_creimp_jeunes * elig * max_(25, montant)  # D'après  le document num. 2041 GY
 
 

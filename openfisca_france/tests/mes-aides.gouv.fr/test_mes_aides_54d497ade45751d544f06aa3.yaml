@@ -83,7 +83,7 @@ individus:
       2015-01: 1900
       2015-02: 1900
       year:2014-02: 21999.999999999996
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:

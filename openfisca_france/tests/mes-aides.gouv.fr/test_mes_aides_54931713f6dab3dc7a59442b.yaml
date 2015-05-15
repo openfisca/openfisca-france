@@ -41,7 +41,7 @@ individus:
       2012: 0
     rst:
       2012: 0
-    sal:
+    salaire_imposable:
       2012: 13771
     salaire_de_base:
       2012: 17655.128205128203
@@ -97,7 +97,7 @@ individus:
       2012: 0
     rst:
       2012: 0
-    sal:
+    salaire_imposable:
       2012: 13771
     salaire_de_base:
       2012: 17655.128205128203

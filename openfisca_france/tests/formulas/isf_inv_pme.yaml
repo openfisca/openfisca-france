@@ -3,7 +3,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    sal: 50000
+    salaire_imposable: 50000
     b1bc: 5000
     b1ab: 2500000
     b2nf: 7000

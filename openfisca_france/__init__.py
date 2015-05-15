@@ -30,7 +30,7 @@ COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 CURRENCY = u"€"
 REVENUES_CATEGORIES = {
     'brut': ['salaire_brut', 'chobrut', 'rstbrut', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
-    'imposable': ['sal', 'cho', 'rst', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
+    'imposable': ['salaire_imposable', 'cho', 'rst', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
     'net': ['salaire_net', 'chonet', 'rstnet', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_net', 'fon'],
     'superbrut': ['salsuperbrut', 'chobrut', 'rstbrut', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
     }

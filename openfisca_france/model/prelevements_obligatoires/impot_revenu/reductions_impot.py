@@ -663,7 +663,7 @@ class cotsyn(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'year').period('year')
         f7ac_holder = simulation.compute('f7ac', period)
-        sal_holder = simulation.compute('sal', period)
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         cho_holder = simulation.compute('cho', period)
         rst_holder = simulation.compute('rst', period)
         P = simulation.legislation_at(period.start).ir.reductions_impots.cotsyn
@@ -674,11 +674,11 @@ class cotsyn(SimpleFormulaColumn):
 
         cho = self.split_by_roles(cho_holder)
         rst = self.split_by_roles(rst_holder)
-        sal = self.split_by_roles(sal_holder)
+        salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         tx = P.seuil
 
-        salv, salc, salp = sal[VOUS], sal[CONJ], sal[PAC1]
+        salv, salc, salp = salaire_imposable[VOUS], salaire_imposable[CONJ], salaire_imposable[PAC1]
         chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
         rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
         maxv = (salv + chov + rstv) * tx

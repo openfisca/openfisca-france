@@ -102,7 +102,7 @@ output_variables:
   # csg_imposable_salaire: -59.98
   # crds_salaire: -12.5
   hsup: 0
-  # sal: 1955.78
+  # salaire_imposable: 1955.78
 
   depense_cantine_titre_restaurant_employe: 0
 

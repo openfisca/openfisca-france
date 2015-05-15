@@ -177,7 +177,7 @@ class forfait_social(SimpleFormulaColumn):
 
 
 @reference_formula
-class sal(SimpleFormulaColumn):
+class salaire_imposable(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -226,11 +226,11 @@ class salaire_net(SimpleFormulaColumn):
         # salaire_de_base = simulation.get_array('salaire_de_base', period)
         # if salaire_de_base is None:
         #     return period, zeros(self.holder.entity.count)
-        sal = simulation.calculate('sal', period)
+        salaire_imposable = simulation.calculate('salaire_imposable', period)
         crds_salaire = simulation.calculate_add('crds_salaire', period)
         csg_imposable_salaire = simulation.calculate_add('csg_imposable_salaire', period)
 
-        return period, sal + crds_salaire + csg_imposable_salaire
+        return period, salaire_imposable + crds_salaire + csg_imposable_salaire
 
 
 @reference_formula
