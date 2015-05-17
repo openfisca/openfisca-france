@@ -1,4 +1,4 @@
-IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|test_brut_to_imposable.py|test_net_to_brut.py|taxipp_utils.py|test_plf2015.py)'
+IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|taxipp_utils.py|test_plf2015.py)'
 TESTS_DIR=openfisca_france/tests
 
 all: flake8 test
@@ -19,10 +19,10 @@ flake8: clean-pyc
 	flake8
 
 test: check-syntax-errors
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --stop --with-doctest
+	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-doctest
 
 test-ci: check-syntax-errors
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --with-doctest
+	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --with-doctest
 
 test-with-coverage:
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --stop --with-coverage --cover-package=openfisca_france --cover-erase --cover-branches --cover-html
+	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-coverage --cover-package=openfisca_france --cover-erase --cover-branches --cover-html

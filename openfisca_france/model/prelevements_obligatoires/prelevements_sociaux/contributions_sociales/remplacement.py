@@ -27,7 +27,7 @@ from __future__ import division
 
 import logging
 
-from numpy import maximum as max_
+from numpy import maximum as max_, minimum as min_
 
 
 from ....base import *  # noqa analysis:ignore
@@ -59,7 +59,7 @@ build_column(
 
 
 @reference_formula
-class csgchod(SimpleFormulaColumn):
+class csg_deductible_chomage(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CSG déductible sur les allocations chômage"
@@ -68,7 +68,7 @@ class csgchod(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
-        csgchoi = simulation.calculate('csgchoi', period)
+        csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
         montant_csg = montant_csg_crds(
@@ -80,13 +80,13 @@ class csgchod(SimpleFormulaColumn):
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csgchod = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + csgchoi + montant_csg), 0), 0)
+        csg_deductible_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + montant_csg), 0), 0)
 
-        return period, - csgchod
+        return period, - csg_deductible_chomage
 
 
 @reference_formula
-class csgchoi(SimpleFormulaColumn):
+class csg_imposable_chomage(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CSG imposable sur les allocations chômage"
@@ -104,12 +104,12 @@ class csgchoi(SimpleFormulaColumn):
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csgchoi = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + montant_csg), 0), 0)
-        return period, - csgchoi
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + montant_csg), 0), 0)
+        return period, - csg_imposable_chomage
 
 
 @reference_formula
-class crdscho(SimpleFormulaColumn):
+class crds_chomage(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CRDS sur les allocations chômage"
@@ -118,13 +118,16 @@ class crdscho(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         chobrut = simulation.calculate('chobrut', period)
-        csgchod = simulation.calculate('csgchod', period)
-        csgchoi = simulation.calculate('csgchoi', period)
+        csg_deductible_chomage = simulation.calculate('csg_deductible_chomage', period)
+        csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
-        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        smic_h_b = law.cotsoc.gen.smic_h_b
+        # salaire_mensuel_reference = chobrut / .7
+        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
+        heures_mensuelles = 35 * 52 / 12
+        cho_seuil_exo = law.csg.chomage.min_exo * heures_mensuelles * smic_h_b
 
         montant_crds = montant_csg_crds(
             base_avec_abattement = chobrut,
@@ -132,8 +135,12 @@ class crdscho(SimpleFormulaColumn):
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (2 <= taux_csg_remplacement)
 
-        crdscho = max_(-montant_crds - max_(cho_seuil_exo - (chobrut + csgchoi + csgchod + montant_crds), 0), 0)
-        return period, -crdscho
+        crds_chomage = max_(
+            -montant_crds - max_(
+                cho_seuil_exo - (chobrut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+                ), 0
+            )
+        return period, -crds_chomage
 
 
 @reference_formula
@@ -148,9 +155,9 @@ class cho(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         chobrut = simulation.calculate('chobrut', period)
-        csgchod = simulation.calculate_add('csgchod', period)
+        csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
 
-        return period, chobrut + csgchod
+        return period, chobrut + csg_deductible_chomage
 
 
 @reference_formula
@@ -165,10 +172,10 @@ class chonet(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         cho = simulation.calculate('cho', period)
-        csgchoi = simulation.calculate_add('csgchoi', period)
-        crdscho = simulation.calculate_add('crdscho', period)
+        csg_imposable_chomage = simulation.calculate_add('csg_imposable_chomage', period)
+        crds_chomage = simulation.calculate_add('crds_chomage', period)
 
-        return period, cho + csgchoi + crdscho
+        return period, cho + csg_imposable_chomage + crds_chomage
 
 
 ############################################################################
@@ -176,7 +183,7 @@ class chonet(SimpleFormulaColumn):
 ############################################################################
 
 @reference_formula
-class csgrstd(SimpleFormulaColumn):
+class csg_deductible_retraite(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CSG déductible sur les pensions de retraite"
@@ -199,7 +206,7 @@ class csgrstd(SimpleFormulaColumn):
 
 
 @reference_formula
-class csgrsti(SimpleFormulaColumn):
+class csg_imposable_retraite(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CSG imposable sur les pensions de retraite"
@@ -219,7 +226,7 @@ class csgrsti(SimpleFormulaColumn):
 
 
 @reference_formula
-class crdsrst(SimpleFormulaColumn):
+class crds_retraite(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"CRDS sur les pensions de retraite"
@@ -250,12 +257,14 @@ class casa(DatedFormulaColumn):
     def function_2013(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         rstbrut = simulation.calculate('rstbrut', period)
-        irpp_holder = simulation.compute('irpp', period)
+        rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
-        irpp = self.cast_from_entity_to_roles(irpp_holder)
-        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (irpp > law.ir.recouvrement.seuil)
+        rfr = self.cast_from_entity_to_roles(rfr_holder)
+
+        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (rfr > 13900)
+        # TODO: insert in parameters file and deal with nombre de part fiscales
 
         return period, - casa
 
@@ -272,9 +281,9 @@ class rst(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period
         rstbrut = simulation.calculate_add('rstbrut', period)
-        csgrstd = simulation.calculate_add('csgrstd', period)
+        csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
 
-        return period, rstbrut + csgrstd
+        return period, rstbrut + csg_deductible_retraite
 
 
 @reference_formula
@@ -286,15 +295,15 @@ class rstnet(SimpleFormulaColumn):
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    # def function(self, rst, csgrsti, crdsrst, casa):
-    # return rst + csgrsti + crdsrst + casa
+    # def function(self, rst, csg_imposable_retraite, crds_retraite, casa):
+    # return rst + csg_imposable_retraite + crds_retraite + casa
     def function(self, simulation, period):
         period = period
         rst = simulation.calculate('rst', period)
-        csgrsti = simulation.calculate_add('csgrsti', period)
-        crdsrst = simulation.calculate_add('crdsrst', period)
+        csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
+        crds_retraite = simulation.calculate_add('crds_retraite', period)
 
-        return period, rst + csgrsti + crdsrst
+        return period, rst + csg_imposable_retraite + crds_retraite
 
 
 @reference_formula
@@ -308,7 +317,7 @@ class crds_pfam(SimpleFormulaColumn):
         '''
         Renvoie la CRDS des prestations familiales
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period
         af = simulation.calculate_add('af', period)
         cf = simulation.calculate_add('cf', period)
         asf = simulation.calculate_add('asf', period)

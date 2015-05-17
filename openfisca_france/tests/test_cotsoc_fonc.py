@@ -90,9 +90,9 @@ def test():
                 cotisations_salariales = -(167.80 + 20 + 23.72),
                 # pension, rafp, cotisation exceptionnelle de solidarité
 
-                csgsald = -128.28,
-                csgsali = -60.36,
-                crdssal = -12.58,
+                csg_deductible_salaire = -128.28,
+                csg_imposable_salaire = -60.36,
+                crds_salaire = -12.58,
                 indemnite_residence = 60,
                 salaire_net = 2147.26,
                 salsuperbrut = 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
@@ -142,9 +142,9 @@ def test():
                 cotisations_salariales_non_contributives = - 23.72,
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
-                csgsald = -128.28,
-                csgsali = -60.36,
-                crdssal = -12.58,
+                csg_deductible_salaire = -128.28,
+                csg_imposable_salaire = -60.36,
+                crds_salaire = -12.58,
                 indemnite_residence = 60,
                 salaire_net = 2147.26,
                 salsuperbrut = 3542 + 2000 * (0.0175 - 0.026),
@@ -198,9 +198,9 @@ def test():
 
                 cotisations_salariales = -(167.80 + 20 + 23.72),
 
-                csgsald = -128.28,
-                csgsali = -60.36,
-                crdssal = -12.58,
+                csg_deductible_salaire = -128.28,
+                csg_imposable_salaire = -60.36,
+                crds_salaire = -12.58,
                 indemnite_residence = 60,
                 salaire_net = 2147.26,
                 salsuperbrut = 3562 + 2000 * (0.0175 - 0.026),
@@ -259,9 +259,9 @@ def test():
                 # cotisations_salariales_contributives = -(170.24 + 2.56 + 58.24),
                 # viel_plaf viel_deplaf ircantecA
 
-                csgsald = -128.28,
-                csgsali = -60.36,
-                crdssal = -12.58,
+                csg_deductible_salaire = -128.28,
+                csg_imposable_salaire = -60.36,
+                crds_salaire = -12.58,
                 indemnite_residence = 60,
                 # salaire_net = 2091.20, # TODO: Trouver source extérieur site IPP buggé
                 # salsuperbrut = 3367.36 + 2560 * (0.0175 - 0.026),
@@ -316,9 +316,9 @@ def test():
                 cotisations_salariales_non_contributives = -23.72,
                 cotisations_salariales = -(167.80 + 20 + 23.72),
 
-                crdssal = -12.93,
-                csgsald = -131.94,
-                csgsali = -62.09,
+                crds_salaire = -12.93,
+                csg_deductible_salaire = -131.94,
+                csg_imposable_salaire = -62.09,
                 indemnite_residence = 60,
                 # salaire_net = 2213.83,
                 salsuperbrut = 4401.44 + 2000 * (.0175 - .026),
@@ -382,9 +382,9 @@ def test():
 
                 cotisations_salariales = -422.24,
 
-                crdssal = -12.93 * 2,
-                # csgsald = -131.94 * 2, # TODO: Gérer un seulf sft
-                # csgsali = -62.09 * 2,  # # TODO: Gérer un seulf sft
+                crds_salaire = -12.93 * 2,
+                # csg_deductible_salaire = -131.94 * 2, # TODO: Gérer un seulf sft
+                # csg_imposable_salaire = -62.09 * 2,  # # TODO: Gérer un seulf sft
                 indemnite_residence = 240 * 2 / 12,
                 salsuperbrut = (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
                 supp_familial_traitement = 73.04,

@@ -4,15 +4,13 @@ keywords:
   - points de charge
 description: |
   2 points de charge supplémentaires pour le 3ème enfant à charge
-  Points de charge = 9 + 1 + 2 = 12
-  Plafond pour 3 parts correspondant :  16130 euros
-  RFR = 16100, donc montant = 135,9
+  Points de charge = (9 + 2) + 1 + 2 = 14
+  Plafond pour 3 parts correspondant : 18819 euros
+  RFR = 18800, donc montant = 135,9
 period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -24,9 +22,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -35,8 +35,6 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 415
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -48,9 +46,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -115,14 +115,14 @@ foyers_fiscaux:
   declarants:
     - 550169b2cc1bb4365a5d7269
     - 550169b2cc1bb4365a5d7268
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 550169b2cc1bb4365a5d7267
     - 550169b2cc1bb4365a5d7266
     - 550169b2cc1bb4365a5d7265
   rfr:
-    2013: 16100
+    2013: 18800
 menages:
   conjoint: 550169b2cc1bb4365a5d7268
   depcom: 67482

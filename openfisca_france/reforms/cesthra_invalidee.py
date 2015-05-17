@@ -50,9 +50,9 @@ class cesthra(formulas.SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        sal_holder = simulation.calculate("sal", period)
+        salaire_imposable_holder = simulation.calculate("salaire_imposable", period)
         law_cesthra = simulation.legislation_at(period.start).cesthra
-        sal = self.split_by_roles(sal_holder)
+        salaire_imposable =  self.split_by_roles(salaire_imposable_holder)
 
         cesthra = 0
         for rev in sal.itervalues():
@@ -68,7 +68,7 @@ class irpp(formulas.SimpleFormulaColumn):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         iai = simulation.calculate('iai', period)
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)

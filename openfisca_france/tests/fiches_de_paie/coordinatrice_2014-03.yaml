@@ -5,8 +5,8 @@ input_variables:
   assujettie_taxe_salaires: True
   avantages_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
-  contrat_de_travail_arrivee: "2013-07-02"
-  contrat_de_travail_depart: "2014-12-31"
+  contrat_de_travail_debut: "2013-07-02"
+  contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
   effectif_entreprise: 250
   heures_non_remunerees_volume: 0
@@ -85,15 +85,15 @@ output_variables:
   # cotisations_salariales_non_contributives
   mmid_salarie: -13.5 # regroupée avec vieillesse dans la fiche de paie
   contribution_exceptionnelle_solidarite: 0
-  csgsald: -90.19
+  csg_deductible_salaire: -90.19
   mhsup: 0
   salaire_net: 1405.62
 
   # salaire imposable
-  csgsali: -42.44
-  crdssal: -8.84 # Avec la CSG dans la fiche de paie
+  csg_imposable_salaire: -42.44
+  crds_salaire: -8.84 # Avec la CSG dans la fiche de paie
   hsup: 0
-  sal: 1456.91
+  salaire_imposable: 1456.91
   depense_cantine_titre_restaurant_employe: 0
 
   salaire_net_a_payer: 1405.62

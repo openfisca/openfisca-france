@@ -141,7 +141,6 @@ class paje_nais(SimpleFormulaColumn):
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
         period = period.start.offset('first-of', 'month').period('month')
-
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -159,16 +158,12 @@ class paje_nais(SimpleFormulaColumn):
         # donc les enfants concernés sont les enfants qui ont -2 mois
         nbnais = 0
         for age_m in age_en_mois.itervalues():
-            # nbnais += (age_m == -2) cas mensuel
-            nbnais += (age_m >= -2) * (age_m < 10)
+            nbnais += (age_m == -2) # cas mensuel
+            # nbnais += (age_m >= -2) * (age_m < 10) # cas annuel
 
-        nbaf = 0  # Et on compte le nombre d'enfants AF présents  pour le seul mois de la prime
-        for age_m in age_en_mois.itervalues():
-            nbaf += (age_m >= 10)
+        nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
 
-        nbenf = nbaf + nbnais  # On ajoute l'enfant à  naître;
-
-        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(af_nbenf, 2) + P.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(nbenf, 2) + P.paje.base.plaf_tx2 * max_(nbenf - 2, 0)
         majo = isol | biact
         plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
         elig = (br_pf <= plaf) * (nbnais != 0)
@@ -317,7 +312,7 @@ class paje_clmg(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         etu_holder = simulation.compute('etu', period)
-        sal_holder = simulation.compute('sal', period)
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         hsup_holder = simulation.compute('hsup', period)
         concub = simulation.calculate('concub', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -333,7 +328,7 @@ class paje_clmg(SimpleFormulaColumn):
         age = self.split_by_roles(age_holder, roles = ENFS)
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
-        sal = self.split_by_roles(sal_holder, roles = [CHEF, PART])
+        salaire_imposable =  self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         aah = self.sum_by_entity(aah_holder)
 
@@ -341,7 +336,10 @@ class paje_clmg(SimpleFormulaColumn):
 
         bmaf_n_2 = P_n_2.af.bmaf
         cond_age_enf = (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
-        cond_sal = (sal[CHEF] + sal[PART] + hsup[CHEF] + hsup[PART] > 12 * bmaf_n_2 * (1 + concub))
+        cond_sal = (
+            salaire_imposable[CHEF] + salaire_imposable[PART] + hsup[CHEF] + hsup[PART] >
+            12 * bmaf_n_2 * (1 + concub)
+            )
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
 
@@ -624,7 +622,7 @@ class apje_temp(SimpleFormulaColumn):
                                 + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
 
         # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
-        # Cette allocation est verséE du 5ème mois de grossesse jusqu’au mois précédant le 3ème anniversaire de l’enfant.
+        # Cette allocation est verséE du 5��me mois de grossesse jusqu���au mois précédant le 3ème anniversaire de l’enfant.
 
         # Non cumul APE APJE CF
         #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes.

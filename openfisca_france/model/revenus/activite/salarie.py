@@ -37,7 +37,7 @@ build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"R
 build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
 
 
-build_column('sali', IntCol(label = u"Revenus d'activité imposables",
+build_column('sali', FloatCol(label = u"Revenus d'activité imposables",
                 val_type = "monetary",
                 cerfa_field = {QUIFOY['vous']: u"1AJ",
                                QUIFOY['conj']: u"1BJ",
@@ -211,13 +211,13 @@ reference_input_variable(
     column = DateCol(default = date(1870, 1, 1)),
     entity_class = Individus,
     label = u"Date d'arrivée dans l'entreprise",
-    name = 'contrat_de_travail_arrivee',  # debut
+    name = 'contrat_de_travail_debut',  # debut
     )
 reference_input_variable(
     column = DateCol(default = date(2099, 12, 31)),
     entity_class = Individus,
     label = u"Date de départ de l'entreprise",
-    name = 'contrat_de_travail_depart',   # fin
+    name = 'contrat_de_travail_fin',   # fin
     )
 reference_input_variable(
     column = EnumCol(
@@ -488,7 +488,7 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
     entity_class = Individus
     label = u"Evaluation fofaitaire des avantages en nature "
 
-    # TODO:
+    # TODO: coplete this function
     def function(self, simulation, period):
         period = period
         avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
@@ -537,16 +537,16 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
 
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month'))
         jours_travailles = max_(
             busday_count(
-                max_(contrat_de_travail_arrivee, debut_mois),
-                min_(contrat_de_travail_depart, fin_mois) + timedelta64(1, 'D')
+                max_(contrat_de_travail_debut, debut_mois),
+                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
                 ),
             0,
             )
@@ -646,10 +646,10 @@ class primes_fonction_publique(SimpleFormulaColumn):
 
 @reference_formula
 class af_nbenf_fonc(SimpleFormulaColumn):
-    column = FloatCol  # TODO: shouldn't be an integer ?
+    column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
-    # Hack pour éviter une boucle infinie
+    # Hack pour éviter une boucle infinie
 
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
@@ -777,8 +777,12 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
+        stage_gratification = simulation.calculate('stage_gratification', period)
         salaire_net_a_payer = (
             salaire_net +
+            remuneration_apprenti +
+            stage_gratification +
             depense_cantine_titre_restaurant_employe +
             indemnites_forfaitaires
             )
@@ -795,6 +799,7 @@ class salsuperbrut(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
+        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
@@ -802,9 +807,15 @@ class salsuperbrut(SimpleFormulaColumn):
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
-        exoneration_cotisations_patronales_geographiques = simulation.calculate(
-            'exoneration_cotisations_patronales_geographiques', period)
-        exoneration_cotisations_patronales_jei = simulation.calculate_add('exoneration_cotisations_patronales_jei', period)
+        exoneration_cotisations_employeur_apprenti = simulation.calculate_add(
+            'exoneration_cotisations_employeur_apprenti', period)
+        exoneration_cotisations_employeur_geographiques = simulation.calculate(
+            'exoneration_cotisations_employeur_geographiques', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate_add(
+            'exoneration_cotisations_employeur_jei', period)
+        exoneration_cotisations_employeur_stagiaire = simulation.calculate_add(
+            'exoneration_cotisations_employeur_stagiaire', period)
+
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
@@ -812,15 +823,17 @@ class salsuperbrut(SimpleFormulaColumn):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
 
         tehr = simulation.calculate_divide('tehr', period)
-
         salsuperbrut = (
+            remuneration_apprenti +
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_employeur
             - allegement_fillon
-            - exoneration_cotisations_patronales_geographiques
-            - exoneration_cotisations_patronales_jei
+            - exoneration_cotisations_employeur_geographiques
+            - exoneration_cotisations_employeur_jei
+            - exoneration_cotisations_employeur_apprenti
+            - exoneration_cotisations_employeur_stagiaire
             - credit_impot_competitivite_emploi
             - tehr
             )

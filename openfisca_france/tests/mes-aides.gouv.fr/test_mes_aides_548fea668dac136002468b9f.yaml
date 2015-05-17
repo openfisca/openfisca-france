@@ -1,0 +1,73 @@
+name: Pas d'éligibilité si chômeur indemnisé
+keywords:
+  - ass
+  - eligibilité
+description: L'intéressé doit être en fin de droit ARE pour bénéficier de l'ASS, ici il n'a pas décoché la case "je continuerai à percevoir cette ressource", donc pas droit à l'ASS.
+period: "month:2014-12"
+individus:
+  activite: 1
+  age: 45
+  age_en_mois: 541
+  ass_precondition_remplie: true
+  birth: "1969-10-26"
+  chobrut:
+    2012: 6621.2558867103135
+    2013-12: 551.771323892526
+    2014-01: 551.771323892526
+    2014-02: 551.771323892526
+    2014-03: 551.771323892526
+    2014-04: 551.771323892526
+    2014-05: 551.771323892526
+    2014-06: 551.771323892526
+    2014-07: 551.771323892526
+    2014-08: 551.771323892526
+    2014-09: 551.771323892526
+    2014-09:3: 1655.313971677578
+    2014-10: 551.771323892526
+    2014-11: 551.771323892526
+    2014-12: 551.771323892526
+    year:2013-12: 6621.2558867103135
+  chonet:
+    2012: 6000
+    2013-12: 500
+    2014-01: 500
+    2014-02: 500
+    2014-03: 500
+    2014-04: 500
+    2014-05: 500
+    2014-06: 500
+    2014-07: 500
+    2014-08: 500
+    2014-09: 500
+    2014-09:3: 1500
+    2014-10: 500
+    2014-11: 500
+    2014-12: 500
+    year:2013-12: 6000
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 548fe97840562f54026ef32e
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 548fe97840562f54026ef32e
+  proprietaire_proche_famille: false
+foyers_fiscaux:
+  declarants: 548fe97840562f54026ef32e
+  personnes_a_charge:
+menages:
+  depcom: 77029
+  enfants:
+  loyer: 500
+  personne_de_reference: 548fe97840562f54026ef32e
+  statut_occupation: 4
+output_variables:
+  ass: 0

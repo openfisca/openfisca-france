@@ -3,7 +3,7 @@ period: "2014-11"
 input_variables:
   assujettie_taxe_salaires: True
   contrat_de_travail_duree: 1  # CDD
-  contrat_de_travail_arrivee: "2014-11-02"
+  contrat_de_travail_debut: "2014-11-02"
   effectif_entreprise: 3000
   # exposition_accident: 3
   code_postal_entreprise: "75014"
@@ -63,13 +63,13 @@ output_variables:
   # cotisations_salariales_contributives:
 
   # cotisations_salariales:
-  csgsald: -232.92
-  csgsali: -109.61
-  crdssal: -22.83
+  csg_deductible_salaire: -232.92
+  csg_imposable_salaire: -109.61
+  crds_salaire: -22.83
   reintegration_titre_restaurant_employeur: 0
   depense_cantine_titre_restaurant_employeur: 19 * 4.5
 
-  sal: 3745.19  # salaire imposable
+  salaire_imposable: 3745.19  # salaire imposable
   depense_cantine_titre_restaurant_employe: -19 * 4.5
 
   salaire_net_a_payer: 3527.25

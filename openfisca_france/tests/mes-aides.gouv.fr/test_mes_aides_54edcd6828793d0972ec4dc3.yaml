@@ -29,8 +29,6 @@ relative_error_margin: 0.02
 individus:
   - age: 46
     age_en_mois: 555
-    pensions_alimentaires_percues:
-      2013: 2738
     birth: "1968-11-25"
     cho:
       2013: 2738
@@ -42,9 +40,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 2738
     rst:
       2013: 2738
-    sal:
+    salaire_imposable:
       2013: 2738
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -90,7 +90,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54edcd5028793d0972ec4dc2
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 54edcd5028793d0972ec4dc1

@@ -17,6 +17,10 @@ Please consult http://www.openfisca.fr/documentation
 
 Please consult http://www.openfisca.fr/installation if you want to develop with OpenFisca on your computer.
 
+## Tests
+
+To download tests from [Ludwig](https://mes-aides.gouv.fr/tests/), see [OpenFiscaFrance.jl](https://github.com/openfisca/OpenFiscaFrance.jl)
+
 ## Contribute
 
 OpenFisca is a free software project.

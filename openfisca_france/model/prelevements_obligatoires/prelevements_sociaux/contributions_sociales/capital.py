@@ -44,7 +44,7 @@ log = logging.getLogger(__name__)
 # else :
 #    P.__dict__.update({"prelsoc": {"total": 0} })
 #
-# a = {'sal':sal, 'pat':pat, 'csg':csg, 'crds':crds,
+# a = {'salaire_imposable':sal, 'pat':pat, 'csg':csg, 'crds':crds,
 #      'exo_fillon': P.cotsoc.exo_fillon, 'lps': P.lps,
 #      'ir': P.ir, 'prelsoc': P.prelsoc}
 # return Dicts2Object(**a)
@@ -74,7 +74,7 @@ class csg_cap_bar(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_bar * _P.csg.capital.glob
@@ -98,7 +98,7 @@ class crds_cap_bar(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_bar * _P.crds.capital
@@ -123,7 +123,7 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_2002_2005(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).prelsoc
 
         total = P.base_pat
@@ -132,7 +132,7 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_2006_2008(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).prelsoc
 
         total = P.base_pat + P.add_pat
@@ -141,7 +141,7 @@ class prelsoc_cap_bar(DatedFormulaColumn):
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009_2015(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).prelsoc
 
         total = P.base_pat + P.add_pat + P.rsa
@@ -170,7 +170,7 @@ class csg_pv_mo(SimpleFormulaColumn):
         """
         Calcule la CSG sur les plus-values de cession mobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -188,7 +188,7 @@ class crds_pv_mo(SimpleFormulaColumn):
         """
         Calcule la CRDS sur les plus-values de cession mobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -208,7 +208,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -222,7 +222,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -235,7 +235,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -258,7 +258,7 @@ class csg_pv_immo(SimpleFormulaColumn):
         """
         Calcule la CSG sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -276,7 +276,7 @@ class crds_pv_immo(SimpleFormulaColumn):
         """
         Calcule la CRDS sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -295,7 +295,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -309,7 +309,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -323,7 +323,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -347,7 +347,7 @@ class csg_fon(SimpleFormulaColumn):
         Calcule la CSG sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -366,7 +366,7 @@ class crds_fon(SimpleFormulaColumn):
         Calcule la CRDS sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -386,7 +386,7 @@ class prelsoc_fon(DatedFormulaColumn):
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -401,7 +401,7 @@ class prelsoc_fon(DatedFormulaColumn):
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -416,7 +416,7 @@ class prelsoc_fon(DatedFormulaColumn):
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -438,7 +438,7 @@ class csg_cap_lib(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_lib * _P.csg.capital.glob
@@ -462,7 +462,7 @@ class crds_cap_lib(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
         return period, -rev_cap_lib * _P.crds.capital
@@ -486,7 +486,7 @@ class prelsoc_cap_lib(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         prelsoc = simulation.legislation_at(period.start).prelsoc
 
         start_year = period.start.year

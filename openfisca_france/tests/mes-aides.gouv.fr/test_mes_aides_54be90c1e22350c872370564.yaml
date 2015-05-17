@@ -31,8 +31,6 @@ relative_error_margin: 0.02
 individus:
   - age: 30
     age_en_mois: 369
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1984-04-12"
     cho:
       2013: 0
@@ -44,9 +42,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 2
     valeur_locative_immo_non_loue:
@@ -55,8 +55,6 @@ individus:
       2012-01: 0
   - age: 28
     age_en_mois: 343
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1986-06-15"
     cho:
       2013: 0
@@ -68,9 +66,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     salaire_de_base:
       2013: 5128.166666666668
@@ -120,7 +120,7 @@ foyers_fiscaux:
   declarants:
     - 54be8f6ce22350c872370563
     - 54be8f6ce22350c872370556
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

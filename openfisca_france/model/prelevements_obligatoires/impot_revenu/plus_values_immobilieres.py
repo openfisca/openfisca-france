@@ -106,7 +106,7 @@ class ir_pv_immo(SimpleFormulaColumn):
         """
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         f3vz = simulation.calculate('f3vz', period)
         pv_immo = simulation.legislation_at(period.start).ir.pv_immo
 

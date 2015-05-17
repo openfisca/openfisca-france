@@ -1,4 +1,4 @@
-name: Montant majoré au 1er avril 2015
+name: Montant CF majoré revalorisé au 1er avril 2015
 keywords: cf
 description: |
   BMAF (montant en vigueur au 1er avril 2014) : 406,21 €
@@ -13,8 +13,6 @@ relative_error_margin: 0.02
 individus:
   - age: 35
     age_en_mois: 423
-    pensions_alimentaires_percues:
-      2013: 0
     birth: "1980-01-01"
     cho:
       2013: 0
@@ -26,9 +24,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -90,7 +90,7 @@ familles:
   parents: 550ef43331b367952f71033a
 foyers_fiscaux:
   declarants: 550ef43331b367952f71033a
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 550ef43331b367952f710339

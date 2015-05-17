@@ -512,7 +512,7 @@ def test_check():
             ).new_simulation(debug = True)
 
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
-            output = simulation.calculate(variable)
+            output = simulation.calculate_add(variable)
             yield assert_variable, variable, name, monthly_amount, output
 
 

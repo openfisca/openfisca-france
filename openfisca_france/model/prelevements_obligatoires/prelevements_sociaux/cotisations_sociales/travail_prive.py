@@ -54,8 +54,12 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period(u'month')
         assiette_cotisations_sociales_prive = simulation.calculate('assiette_cotisations_sociales_prive', period)
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        return period, assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public
-
+        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
+        return period, (
+            assiette_cotisations_sociales_prive +
+            assiette_cotisations_sociales_public +
+            stage_gratification_reintegration
+            )
 
 @reference_formula
 class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
@@ -128,7 +132,7 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
 class accident_du_travail(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisations patronales accident du travail et maladie professionelle"
+    label = u"Cotisations employeur accident du travail et maladie professionelle"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
@@ -145,6 +149,7 @@ class agff_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation retraite AGFF tranche A (salarié)"
+    # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -170,6 +175,7 @@ class agff_employeur(SimpleFormulaColumn):
             'assiette_cotisations_sociales', period)
         type_sal = simulation.calculate('type_sal', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+
         law = simulation.legislation_at(period.start)
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
@@ -191,7 +197,7 @@ class agff_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_gmp_employe(SimpleFormulaColumn):
+class agirc_gmp_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
@@ -252,7 +258,7 @@ class agirc_salarie(SimpleFormulaColumn):
             bareme_name = "agirc",
             variable_name = self.__class__.__name__
             )
-        gmp_employe = simulation.calculate_add('agirc_gmp_employe', period)
+        gmp_employe = simulation.calculate_add('agirc_gmp_salarie', period)
         type_sal = simulation.calculate('type_sal', period)
         return period, cotisation + gmp_employe * (cotisation == 0) * (type_sal == 1)
 

@@ -61,7 +61,7 @@ class br_mv_i(SimpleFormulaColumn):
         rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', three_previous_months)
-        rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
+        rto_declarant1 = simulation.calculate_add('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
@@ -80,7 +80,7 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
+        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
         aah = simulation.calculate('aah', three_previous_months)
 
@@ -102,13 +102,15 @@ class br_mv_i(SimpleFormulaColumn):
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
+
         return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
+
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
                # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
-               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
+               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus_net +
                rsa_base_ressources_patrimoine_i + aah
                ) / 3
 

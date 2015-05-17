@@ -57,6 +57,7 @@ from .prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import
     exonerations,
     # penalites,
     # remuneration_public,
+    stage,
     travail_fonction_publique,
     travail_prive,
     travail_totaux,
@@ -106,4 +107,3 @@ from revenus.remplacement import (  # noqa analysis:ignore
     retraite,
     indemnites_journalieres_securite_sociale,
     )
-

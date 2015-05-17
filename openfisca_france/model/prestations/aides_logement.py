@@ -103,12 +103,12 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        sal_holder = simulation.compute('sal', period.offset(-1))
-        sal = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
+        salaire_imposable =  self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
         # Application de l'abattement pour frais professionnels
         params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
-        somme_salaires_mois_precedent = 12 * sal
+        somme_salaires_mois_precedent = 12 * salaire_imposable
         montant_abattement = round(
             min_(
                 max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
@@ -131,7 +131,7 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
         chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
-        revenus_activite_pro = simulation.calculate('sal', two_years_ago)
+        revenus_activite_pro = simulation.calculate('salaire_imposable', two_years_ago)
         taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
@@ -190,8 +190,8 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         age = self.split_by_roles(age_holder, roles = [CHEF, PART])
         smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
-        sal_holder = simulation.compute('sal', period.offset(-1))
-        somme_salaires = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
+        somme_salaires = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 

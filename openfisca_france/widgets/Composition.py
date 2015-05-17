@@ -83,14 +83,14 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     sig_option_changed = Signal(str, object)
     XAXIS_PROPERTIES = {
         'sali': {
-            'name': 'sal',
+            'name': 'salaire_imposable',
             'typ_tot': {
                 'salsuperbrut': 'Salaire super brut',
                 'salbrut': 'Salaire brut',
-                'sal': 'Salaire imposable',
+                'salaire_imposable': 'Salaire imposable',
                 'salaire_net': 'Salaire net'
                 },
-            'typ_tot_default': 'sal',
+            'typ_tot_default': 'salaire_imposable',
             },
         'choi': {
             'name': 'cho',

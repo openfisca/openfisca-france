@@ -31,7 +31,7 @@ from .base import apply_bareme_for_relevant_type_sal
 
 
 reference_input_variable(
-    column = DateCol(),
+    column = DateCol(default = date(2099, 12, 31)),
     entity_class = Individus,
     label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)",
     name = 'jei_date_demande',
@@ -39,10 +39,10 @@ reference_input_variable(
 
 
 @reference_formula
-class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_geographiques(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonérations de cotisations patronales dépendant d'une zone géographique"
+    label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
 
     def function(self, simulation, period):
@@ -60,10 +60,10 @@ class exoneration_cotisations_patronales_geographiques(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_jei(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour une jeune entreprise innovante"
+    label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
     url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
 
     def function(self, simulation, period):
@@ -111,7 +111,7 @@ class exoneration_cotisations_patronales_jei(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone franche urbaine (ZFU)"
+    label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
     url = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
 
 # TODO
@@ -151,7 +151,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
 # Le salarié résident doit être titulaire d'un contrat à durée indéterminée ou d'un contrat à durée déterminée d'au
 # moins 12 mois, conclu pour une durée minimale de 16 heures par semaine.
 # 5 ans +
-# Dans les entreprises de 5 salariés et plus, les cotisations patronales bénéficient d'un abattement sur la base
+# Dans les entreprises de 5 salariés et plus, les cotisations employeur bénéficient d'un abattement sur la base
 # imposable pendant 3 ans de :
 # - 60 % la première année,
 # - 40 % la seconde année,
@@ -170,8 +170,8 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         entreprise_chiffre_affaire = simulation.calculate('entreprise_chiffre_affaire', period)
         entreprise_bilan = simulation.calculate('entreprise_bilan', period)
@@ -184,9 +184,9 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         smic_proratise = simulation.calculate('smic_proratise', period)
         zone_franche_urbaine = simulation.calculate('zone_franche_urbaine', period)
 
-        duree_cdd_eligible = (contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D'))
+        duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D'))
         # TODO: move to legislation parameters file
-        contrat_de_travail_eligible = (contrat_de_travail_arrivee <= datetime64("2014-12-31")) * (
+        contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * (
             (contrat_de_travail_duree == 0) + (
                 (contrat_de_travail_duree == 1) * (duree_cdd_eligible)
                 )
@@ -215,7 +215,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         seuil_min = 1.4
 
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
-        exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_arrivee)
+        exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_debut)
         large_rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -264,7 +264,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone de restructuration de la Défense (ZRD)"
+    label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
     url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
 
     def function(self, simulation, period):
@@ -302,7 +302,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
 class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Exonrérations de cotisations patronales pour l'embauche en zone de revitalisation rurale (ZRR)"
+    label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
     url = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
 
     # Les entreprises et groupements d'employeurs exerçant une activité industrielle, commerciale, artisanale, agricole
@@ -322,13 +322,13 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
         zone_revitalisation_rurale = simulation.calculate('zone_revitalisation_rurale', period)
 
-        duree_cdd_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
+        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to legislation parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
@@ -336,7 +336,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
             )
 
         duree_validite = (
-            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_arrivee).astype('timedelta64[Y]') < 1
+            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut).astype('timedelta64[Y]') < 1
 
         eligible = (
             contrat_de_travail_eligible *
@@ -368,9 +368,9 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         # TODO: MODIFIER avec création d'entreprise
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
 
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
-        duree_eligible = contrat_de_travail_depart > contrat_de_travail_arrivee + timedelta64(365, 'D')
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
+        duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to legislation parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
@@ -382,7 +382,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
             (effectif_entreprise <= 50) *
             zone_revitalisation_rurale
             )
-        exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_arrivee)
+        exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_debut)
         rate_by_year_passed = {
             0: 1,
             1: 1,

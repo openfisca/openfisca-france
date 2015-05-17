@@ -164,7 +164,7 @@ class rev_coll(SimpleFormulaColumn):
         # Quand rev_coll est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
         # correspondante.
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
-        rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
+        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
         # div = simulation.calculate('div', period)  # TODO why is this variable not used ?
         abat_spe_holder = simulation.compute('abat_spe', period)
@@ -238,19 +238,6 @@ def nb_enf(ages, smic55, ag1, ag2):
             res = zeros(len(age), dtype = int32)
         res += (ag1 <= age) & (age <= ag2) & not_(smic55[key])
     return res
-
-
-def age_aine(ages, smic55, ag1, ag2):
-    '''
-    Renvoie un vecteur avec l'âge de l'ainé (au sens des allocations
-    familiales) de chaque famille
-    '''
-    ageaine = -9999
-    for key, age in ages.iteritems():
-        ispacaf = (ag1 <= age) & (age <= ag2) & not_(smic55[key])
-        isaine = ispacaf & (age > ageaine)
-        ageaine = isaine * age + not_(isaine) * ageaine
-    return ageaine
 
 
 def age_en_mois_benjamin(ages_en_mois):

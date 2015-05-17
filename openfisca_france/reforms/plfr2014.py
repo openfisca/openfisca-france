@@ -53,7 +53,7 @@ class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
     label = u"Réduction d'impôt exceptionnelle"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         nb_adult = simulation.calculate('nb_adult')
         nb_par = simulation.calculate('nb_par')
         rfr = simulation.calculate('rfr')
@@ -69,7 +69,7 @@ class reductions(formulas.DatedFormulaColumn):
 
     @base.dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'year').period('year')
         accult = simulation.calculate('accult')
         adhcga = simulation.calculate('adhcga')
         cappme = simulation.calculate('cappme')

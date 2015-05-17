@@ -33,8 +33,6 @@ relative_error_margin: 0.02
 individus:
   - age: 42
     age_en_mois: 515
-    pensions_alimentaires_percues:
-      2012: 0
     birth: "1972-01-09"
     cho:
       2012: 0
@@ -46,9 +44,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2012: 0
     rst:
       2012: 0
-    sal:
+    salaire_imposable:
       2012: 6886
     salaire_de_base:
       2012: 8828.192307692305
@@ -89,8 +89,6 @@ individus:
       2012-01: 0
   - age: 43
     age_en_mois: 524
-    pensions_alimentaires_percues:
-      2012: 0
     birth: "1971-04-02"
     cho:
       2012: 0
@@ -102,9 +100,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2012: 0
     rst:
       2012: 0
-    sal:
+    salaire_imposable:
       2012: 6886
     salaire_de_base:
       2012: 8828.192307692305
@@ -202,7 +202,7 @@ foyers_fiscaux:
   declarants:
     - 54931cd7145ac2e27afc0100
     - 54931cd7145ac2e27afc00f3
-  f6el:
+  pensions_alimentaires_versees:
     2012: 0
   personnes_a_charge:
     - 54931cd7145ac2e27afc00f2

@@ -3,7 +3,7 @@
   period: 2009
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f2dc: 5000
     f2aa: 1000
     f2al: 1000
@@ -18,7 +18,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f2dc: 5000
     f2aa: 1000
     f2al: 1000
@@ -33,7 +33,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f2dc: 5000
     f2aa: 1000
     f2al: 1000
@@ -48,7 +48,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f2dc: 5000
     f2aa: 1000
     f2al: 1000
@@ -63,7 +63,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f2dc: 5000
     f2aa: 1000
     f2al: 1000

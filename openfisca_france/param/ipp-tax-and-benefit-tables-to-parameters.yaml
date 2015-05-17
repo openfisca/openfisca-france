@@ -1,0 +1,16 @@
+baremes-ipp-chomage: chomage
+baremes-ipp-impot-revenu:
+  RENAME: impot_revenu
+  bareme-ir:
+    RENAME: bareme
+    TYPE: BAREME
+    Nombre de tranches: null
+    Seuils inférieurs des tranches: SEUIL
+    Taux marginaux des tranches: TAUX
+baremes-ipp-marche-du-travail: marche_du_travail
+baremes-ipp-prelevements-sociaux: prelevements_sociaux
+baremes-ipp-prestations: prestations
+baremes-ipp-retraite: retraite
+baremes-ipp-taxation-du-capital: taxation_du_capital
+baremes-ipp-taxation-indirecte: taxation_indirecte
+baremes-ipp-taxes-locales: taxes_locales

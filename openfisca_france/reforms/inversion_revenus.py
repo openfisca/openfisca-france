@@ -97,7 +97,7 @@ class salaire_de_base(formulas.SimpleFormulaColumn):
 
         def solve_function(salaire_de_base):
             return brut_to_target(
-                target_name = 'sal',
+                target_name = 'salaire_imposable',
                 period = period,
                 salaire_de_base = salaire_de_base,
                 simulation = simulation,
@@ -105,6 +105,7 @@ class salaire_de_base(formulas.SimpleFormulaColumn):
 
         return period, fsolve(solve_function, sali)
 
+#       TODO: inclure un taux de prime et calculer les primes en même temps que salaire_de_base
 
 #        # Calcule le salaire brut à partir du salaire imposable.
 #        # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
@@ -214,7 +215,7 @@ class chobrut(formulas.SimpleFormulaColumn):
             choi = simulation.calculate_add_divide('choi', period)
 
         # Calcule les allocations chômage brutes à partir des allocations imposables.
-        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
+        # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         if (choi == 0).all():
             # Quick path to avoid fsolve when using default value of input variables.
             return period, choi
@@ -223,7 +224,7 @@ class chobrut(formulas.SimpleFormulaColumn):
         def solve_function(chobrut):
             return brut_to_target(
                 chobrut = chobrut,
-                taux_csg_remplacement = taux_csg_remplacement,
+                # taux_csg_remplacement = taux_csg_remplacement,
                 target_name = 'cho',
                 period = period,
                 simulation = simulation,
@@ -242,7 +243,7 @@ class rstbrut(formulas.SimpleFormulaColumn):
     def function(self, simulation, period):
         """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
         """
-#        period = period.start.offset('first-of', 'month').period('month')
+        # period = period.start.offset('first-of', 'month').period('month')
 
         # Get value for year and divide below.
         rsti = simulation.get_array('rsti', period.start.offset('first-of', 'year').period('year'))

@@ -1,0 +1,105 @@
+name: Personne seule versant une pension alimentaire
+keywords:
+  - ass
+  - pension alimentaire
+description: |
+  Salaire 700 euros / mois
+  Pension alimentaire versée : 100 euros /mois
+  Donc revenus 700 - 100 = 600 euros < 644,4 (plafonds bas ASS)
+  donc la personne a droit a une ASS complète = 487,50 euros
+period: "month:2015-04"
+individus:
+  activite: 1
+  age: 24
+  age_en_mois: 294
+  ass_precondition_remplie: true
+  birth: "1990-10-10"
+  cho:
+    2013: 0
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55364c4bc03d26772db577ac
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  pensions_alimentaires_versees_individu:
+    2013: 1200
+    2014-04: 100
+    2014-05: 100
+    2014-06: 100
+    2014-07: 100
+    2014-08: 100
+    2014-09: 100
+    2014-10: 100
+    2014-11: 100
+    2014-12: 100
+    2015-01: 100
+    2015-01:3: 300
+    2015-02: 100
+    2015-03: 100
+    2015-04: 100
+    year:2014-04: 1200
+  rst:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  salaire_de_base:
+    2013: 10769.23076923077
+    2014-04: 897.4358974358975
+    2014-05: 897.4358974358975
+    2014-06: 897.4358974358975
+    2014-07: 897.4358974358975
+    2014-08: 897.4358974358975
+    2014-09: 897.4358974358975
+    2014-10: 897.4358974358975
+    2014-11: 897.4358974358975
+    2014-12: 897.4358974358975
+    2015-01: 897.4358974358975
+    2015-01:3: 2692.3076923076924
+    2015-02: 897.4358974358975
+    2015-03: 897.4358974358975
+    2015-04: 897.4358974358975
+    year:2014-04: 10769.23076923077
+  salaire_net:
+    2013: 8400
+    2014-04: 700
+    2014-05: 700
+    2014-06: 700
+    2014-07: 700
+    2014-08: 700
+    2014-09: 700
+    2014-10: 700
+    2014-11: 700
+    2014-12: 700
+    2015-01: 700
+    2015-01:3: 2100
+    2015-02: 700
+    2015-03: 700
+    2015-04: 700
+    year:2014-04: 8400
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 55364c4bc03d26772db577ac
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 55364c4bc03d26772db577ac
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+  rfr:
+menages:
+  depcom: 93070
+  enfants:
+  loyer: 600
+  personne_de_reference: 55364c4bc03d26772db577ac
+  statut_occupation: 4
+output_variables:
+  ass: 487.5

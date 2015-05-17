@@ -1,0 +1,152 @@
+name: Foyer 4 enfants > plafond CF
+keywords:
+  - cf
+  - dom
+description: Foyer 4 enfants > plafond CF (41 133)
+period: "month:2015-04"
+individus:
+  - age: 34
+    age_en_mois: 415
+    birth: "1980-09-09"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553122ecf19ad7677b5ea499
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_imposable:
+      2013: 47778
+    salaire_de_base:
+      2013: 55128.20512820513
+      2014-04: 6125.356125356125
+      2014-05: 6125.356125356125
+      2014-06: 6125.356125356125
+      2014-07: 6125.356125356125
+      2014-08: 6125.356125356125
+      2014-09: 6125.356125356125
+      2014-10: 6125.356125356125
+      2014-11: 6125.356125356125
+      2014-12: 6125.356125356125
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 55128.20512820513
+    salaire_net:
+      2013: 43000
+      2014-04: 4777.777777777777
+      2014-05: 4777.777777777777
+      2014-06: 4777.777777777777
+      2014-07: 4777.777777777777
+      2014-08: 4777.777777777777
+      2014-09: 4777.777777777777
+      2014-10: 4777.777777777777
+      2014-11: 4777.777777777777
+      2014-12: 4777.777777777777
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 43000
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 3
+    age_en_mois: 44
+    birth: "2011-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553122ecf19ad7677b5ea498
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    age_en_mois: 56
+    birth: "2010-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553122ecf19ad7677b5ea497
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 5
+    age_en_mois: 68
+    birth: "2009-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553122ecf19ad7677b5ea496
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    age_en_mois: 93
+    birth: "2007-07-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553122ecf19ad7677b5ea495
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 553122ecf19ad7677b5ea498
+    - 553122ecf19ad7677b5ea497
+    - 553122ecf19ad7677b5ea496
+    - 553122ecf19ad7677b5ea495
+  parents: 553122ecf19ad7677b5ea499
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 553122ecf19ad7677b5ea499
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 553122ecf19ad7677b5ea498
+    - 553122ecf19ad7677b5ea497
+    - 553122ecf19ad7677b5ea496
+    - 553122ecf19ad7677b5ea495
+  rfr:
+menages:
+  depcom: 97419
+  enfants:
+    - 553122ecf19ad7677b5ea498
+    - 553122ecf19ad7677b5ea497
+    - 553122ecf19ad7677b5ea496
+    - 553122ecf19ad7677b5ea495
+  loyer: 600
+  personne_de_reference: 553122ecf19ad7677b5ea499
+  statut_occupation: 4
+output_variables:
+  cf: 0

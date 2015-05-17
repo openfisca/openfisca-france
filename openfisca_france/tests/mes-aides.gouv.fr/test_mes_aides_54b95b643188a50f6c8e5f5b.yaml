@@ -32,8 +32,6 @@ relative_error_margin: 0.02
 individus:
   age: 27
   age_en_mois: 331
-  pensions_alimentaires_percues:
-    2013: 0
   birth: "1987-05-17"
   cho:
     2013: 0
@@ -45,9 +43,11 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 0
-  sal:
+  salaire_imposable:
     2013: 9570
   salaire_de_base:
     2013: 6153.846153846153
@@ -93,7 +93,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54b95373955a42106c94b338
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

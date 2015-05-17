@@ -45,7 +45,7 @@ class assiette_allegement(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Assiette des allègements de cotisations sociales patronales"
+    label = u"Assiette des allègements de cotisations sociales employeur"
 
     def function(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
@@ -61,11 +61,13 @@ class assiette_allegement(SimpleFormulaColumn):
 class allegement_fillon(DatedFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Allègement de charges patronales sur les bas et moyens salaires (dit allègement Fillon)"
+    label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
 
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        stagiaire = simulation.calculate('stagiaire', period)
+        apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
         allegement = (
             # en fin d'année
@@ -80,7 +82,7 @@ class allegement_fillon(DatedFormulaColumn):
             allegement_fillon_mode_recouvrement == 2) * (
                 compute_allegement_fillon_progressif(simulation, period)
             )
-        return period, allegement
+        return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
 @reference_formula
@@ -97,8 +99,8 @@ class coefficient_proratisation(SimpleFormulaColumn):
         # u"forfait_heures_annee",
         # u"forfait_jours_annee",
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         forfait_heures_remunerees_volume = simulation.calculate('forfait_heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
         heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
@@ -112,10 +114,10 @@ class coefficient_proratisation(SimpleFormulaColumn):
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
 
-        mois_incomplet = or_(contrat_de_travail_arrivee > debut_mois, contrat_de_travail_depart < fin_mois)
+        mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)
         jours_travailles = busday_count(
-            max_(contrat_de_travail_arrivee, debut_mois),
-            min_(contrat_de_travail_depart, fin_mois)
+            max_(contrat_de_travail_debut, debut_mois),
+            min_(contrat_de_travail_fin, fin_mois)
             )
 
         duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
@@ -161,13 +163,14 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
+        stagiaire = simulation.calculate('stagiaire', period)
         cotsoc = simulation.legislation_at(period.start).cotsoc
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
         credit_impot_competitivite_emploi = (
             taux_cice
             * assiette_allegement
             )
-        non_cumul = jeune_entreprise_innovante == 0
+        non_cumul = (jeune_entreprise_innovante == 0 + stagiaire) > 0 
 
         return period, credit_impot_competitivite_emploi * non_cumul
 

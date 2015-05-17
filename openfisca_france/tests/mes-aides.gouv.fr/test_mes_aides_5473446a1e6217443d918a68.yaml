@@ -27,21 +27,6 @@ individus:
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
-    id: 54734412e1e8823c3da3edef
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 16
-    age_en_mois: 195
-    birth: "1998-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
     id: 54734412e1e8823c3da3edee
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -51,21 +36,37 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
+  - age: 17
+    age_en_mois: 207
+    birth: "1997-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5536711a01d81a812d2dfd1b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
 familles:
   enfants:
-    - 54734412e1e8823c3da3edef
     - 54734412e1e8823c3da3edee
+    - 5536711a01d81a812d2dfd1b
   parents: 54734412e1e8823c3da3edf0
 foyers_fiscaux:
   declarants: 54734412e1e8823c3da3edf0
   personnes_a_charge:
-    - 54734412e1e8823c3da3edef
     - 54734412e1e8823c3da3edee
+    - 5536711a01d81a812d2dfd1b
 menages:
   depcom: 67482
   enfants:
-    - 54734412e1e8823c3da3edef
     - 54734412e1e8823c3da3edee
+    - 5536711a01d81a812d2dfd1b
   personne_de_reference: 54734412e1e8823c3da3edf0
   statut_occupation: 6
 output_variables:
