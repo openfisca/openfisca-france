@@ -25,13 +25,13 @@
 
 from __future__ import division
 
-from numpy import zeros, logical_not as not_, logical_or as or_
+from numpy import maximum as max_, minimum as min_, zeros
 
 from ..base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class apa(SimpleFormulaColumn):
+class apa_domicile(SimpleFormulaColumn):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
     entity_class = Familles
@@ -40,7 +40,56 @@ class apa(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         gir = simulation.calculate('gir', period)
         base_ressources_apa = simulation.calculate('base_ressources_apa', period)
-        tarif_dependance_etablissement = simulation.calculate('tarif_dependance_etablissement', pe)
+        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
+
+        # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
+        montant_mensuel_maximum_by_gir = dict(
+            gir1 = 1312.67,
+            gir2 = 1125.14,
+            gir3 = 843.86,
+            gir4 = 562.57,
+            )
+        seuil_non_versement = 28.83
+        apa_seuil_1 = 2437.81
+        apa_seuil_2 = 3750.48
+
+        dependance_plan_aide_domicile_maximal = zeros(self.holder.entity.count)
+        girs = ['gir' + i for i in rang(1, 5)]
+        for target_gir in girs:
+            dependance_plan_aide_domicile_maximal = dependance_plan_aide_domicile_maximal + (gir == target_gir) * max_(
+                dependance_plan_aide_domicile,
+                montant_mensuel_maximum_by_gir[target_gir]
+                )
+
+        participation_beneficiaire = dependance_plan_aide_domicile_maximal * .9 * (
+            (base_ressources_apa <= apa_seuil_1) +
+            min_(
+                max_(
+                    (base_ressources_apa - apa_seuil_1) / (apa_seuil_2 - apa_seuil_1),
+                    0,
+                    ),
+                1,
+                )
+            )
+        apa = dependance_plan_aide_domicile_maximal - participation_beneficiaire
+        return period, apa * (apa >= seuil_non_versement)
+
+
+@reference_formula
+class apa_etablissement(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Allocation personalisée d'autonomie"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        gir = simulation.calculate('gir', period)
+        base_ressources_apa = simulation.calculate('base_ressources_apa', period)
+        dependance_tarif_etablissement_gir_5_6 = simulation.calculate('dependance_tarif_etablissement_gir_5_6', period)
+        dependance_tarif_etablissement_gir_dependant = simulation.calculate(
+            'dependance_tarif_etablissement_gir_dependant', period)
+
+        # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
         montant_mensuel_maximum_by_gir = dict(
             gir1 = 1312.67,
             gir2 = 1125.14,
@@ -52,11 +101,28 @@ class apa(SimpleFormulaColumn):
         apa_seuil_2 = 3750.48
 
         participation_beneficiaire = (
-            (base_ressources_apa <= apa_seuil_1) * tarif_dependance_etablissement_gir_5_6 +
-            max_((base_ressources_apa - apa_seuil_1) / ( apa_seuil_2 - apa_seuil_1), 0)
+            dependance_tarif_etablissement_gir_5_6 +
+            dependance_tarif_etablissement_gir_dependant * (
+                (base_ressources_apa <= apa_seuil_1) +
+                .8 * min_(
+                    max_(
+                        (base_ressources_apa - apa_seuil_1) / (apa_seuil_2 - apa_seuil_1),
+                        0,
+                        ),
+                    1,
+                    )
+                )
             )
+        apa = zeros(self.holder.entity.count)
+        girs = ['gir' + i for i in rang(1, 5)]
+        for target_gir in girs:
+            apa = apa + (gir == target_gir) * max_(
+                dependance_tarif_etablissement_gir_5_6 + dependance_tarif_etablissement_gir_dependant
+                - participation_beneficiaire,
+                montant_mensuel_maximum_by_gir[target_gir]
+                )
 
-        return period, montant / 12
+        return period, apa * (apa >= seuil_non_versement)
 
 
 @reference_formula
@@ -86,4 +152,26 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Groupe iso-ressources de l'individu",
     name = "gir",
+    )
+
+
+reference_input_variable(
+    column = FloatCol,
+    entity_class = Individus,
+    label = u"Plan d'aide à domicile pour une personne dépendate",
+    name = "dependance_plan_aide_domicile",
+    )
+
+reference_input_variable(
+    column = FloatCol,
+    entity_class = Individus,
+    label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6",
+    name = "dependance_tarif_etablissement_gir_5_6",
+    )
+
+reference_input_variable(
+    column = FloatCol,
+    entity_class = Individus,
+    label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante",
+    name = "dependance_tarif_etablissement_gir_dependant",
     )
