@@ -1092,7 +1092,7 @@ class rni(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu net imposable"
-    url = "http://impotsurlerevenu.orgrg/definitions/115-revenu-net-imposable.php"
+    url = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
 
     def function(self, simulation, period):
         ''' Revenu net imposable ou déficit à reporter'''
