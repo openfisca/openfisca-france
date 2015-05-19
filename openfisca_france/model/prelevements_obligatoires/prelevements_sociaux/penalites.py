@@ -28,17 +28,16 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, maximum as max_, minimum as min_, logical_not as not_, ones, round as round_
-from openfisca_core.enumerations import Enum
-from openfisca_core.columns import EnumCol, FloatCol
+from numpy import logical_not as not_
+
+
 from openfisca_core.formulas import SimpleFormulaColumn
 
 
-from ....base import *  # noqa analysis:ignore
+from ...base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
-taux_versement_transport_by_localisation_entreprise = None
 
 
 # TODO: mettre les seuils entreprises dans les paramètres

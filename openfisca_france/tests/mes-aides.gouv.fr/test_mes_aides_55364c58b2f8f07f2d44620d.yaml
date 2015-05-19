@@ -45,7 +45,7 @@ individus:
     year:2014-04: 1200
   rst:
     2013: 0
-  sal:
+  salaire_imposable:
     2013: 0
   salaire_de_base:
     2013: 10769.23076923077

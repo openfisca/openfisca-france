@@ -47,7 +47,7 @@ individus:
     2013: 0
   rst:
     2013: 0
-  sal:
+  salaire_imposable:
     2013: 15000
   valeur_locative_immo_non_loue:
     2012-01: 0

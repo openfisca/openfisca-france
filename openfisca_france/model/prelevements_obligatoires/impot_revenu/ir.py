@@ -398,10 +398,10 @@ class rev_sal(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        sal = simulation.calculate('sal', period)
+        salaire_imposable =  simulation.calculate('salaire_imposable', period)
         cho = simulation.calculate('cho', period)
 
-        return period, sal + cho
+        return period, salaire_imposable + cho
 
 
 @reference_formula
@@ -431,9 +431,9 @@ class rev_act_sal(SimpleFormulaColumn):
     def function(self, simulation, period):
         ''' Revenus d'activités salariées'''
         period = period.start.offset('first-of', 'year').period('year')
-        sal = simulation.calculate('sal', period)
+        salaire_imposable =  simulation.calculate('salaire_imposable', period)
 
-        return period, sal
+        return period, salaire_imposable
 
 
 @reference_formula
@@ -2842,13 +2842,13 @@ class ppe_rev(SimpleFormulaColumn):
         'ind'
         '''
         period = period.start.offset('first-of', 'year').period('year')
-        sal = simulation.calculate('sal', period)
+        salaire_imposable =  simulation.calculate('salaire_imposable', period)
         hsup = simulation.calculate('hsup', period)
         rpns = simulation.calculate('rpns', period)
         ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
 
         # Revenu d'activité salarié
-        rev_sa = sal + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
+        rev_sa = salaire_imposable + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
         # Revenu d'activité non salarié
         rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns
             #TODO: très bizarre la partie min(0,rpns) - après vérification c'est dans la loi

@@ -41,7 +41,7 @@ def test_cesthra_invalidee():
                 count = 10,
                 max = 30000,
                 min = 0,
-                name = 'sal',
+                name = 'salaire_imposable',
                 ),
             ],
         period = periods.period('year', year),

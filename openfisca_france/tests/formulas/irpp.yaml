@@ -2,21 +2,21 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 50000
+    salaire_imposable: 50000
   output_variables:
     irpp: -7934
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 150000
+    salaire_imposable: 150000
   output_variables:
     irpp: -42338
 
@@ -24,21 +24,21 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 50000
+    salaire_imposable: 50000
   output_variables:
     irpp: -7934
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 150000
+    salaire_imposable: 150000
   output_variables:
     irpp: -42338
 
@@ -46,21 +46,21 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 50000
+    salaire_imposable: 50000
   output_variables:
     irpp: -7934
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 150000
+    salaire_imposable: 150000
   output_variables:
     irpp: -43222
 
@@ -68,21 +68,21 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
   output_variables:
     irpp: -1170
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    sal: 50000
+    salaire_imposable: 50000
   output_variables:
     irpp: -7889
 - name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    sal: 150000
+    salaire_imposable: 150000
   output_variables:
     irpp: -43076
 

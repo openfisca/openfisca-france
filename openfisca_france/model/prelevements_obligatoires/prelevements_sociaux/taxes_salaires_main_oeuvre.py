@@ -131,6 +131,7 @@ class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
         contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         contribution_supplementaire_apprentissage = simulation.calculate(
             'contribution_supplementaire_apprentissage', period)
+        financement_organisations_syndicales = simulation.calculate('financement_organisations_syndicales', period)
         fnal = simulation.calculate('fnal', period)
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
         participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
@@ -143,8 +144,9 @@ class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
             contribution_developpement_apprentissage +
             contribution_solidarite_autonomie +
             contribution_supplementaire_apprentissage +
-            formation_professionnelle +
+            financement_organisations_syndicales +
             fnal +
+            formation_professionnelle +
             participation_effort_construction +
             prevoyance_obligatoire_cadre +
             taxe_apprentissage +
@@ -199,6 +201,25 @@ class fnal_tranche_a_plus_20(SimpleFormulaColumn):
             variable_name = self.__class__.__name__,
             )
         return period, cotisation * (taille_entreprise > 2)
+
+
+@reference_formula
+class financement_organisations_syndicales(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Contribution patronale au financement des organisations syndicales"
+
+    @dated_function(date(2015, 1, 1))
+    def function(self, simulation, period):
+        type_sal = simulation.calculate('type_sal', period)
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'financement_organisations_syndicales',
+            variable_name = self.__class__.__name__,
+            )
+        return period, cotisation * or_(type_sal <= 1, type_sal == 6)
 
 
 @reference_formula

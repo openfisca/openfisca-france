@@ -94,7 +94,7 @@ output_variables:
   # salaire imposable
   IGNORE_crds_salaire: -9.21  # TODO check arrondi crds
   hsup: 0
-  IGNORE_sal: 1603.05
+  IGNORE_salaire_imposable: 1603.05
 
   depense_cantine_titre_restaurant_employe: 0
 

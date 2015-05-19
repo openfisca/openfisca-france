@@ -73,7 +73,7 @@ output_variables:
   contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: -109.7
   mhsup: 0
-  sal: 1726.13 + .01
+  salaire_imposable: 1726.13 + .01
   csg_imposable_salaire: -(2172.9 * .9825 + 16.08)*.024
   crds_salaire: -(2172.9 * .9825 + 16.08)*.005
   salaire_net: 1663.75 +.01  # 25.18 au lieu de 25.17 agirc_gmp

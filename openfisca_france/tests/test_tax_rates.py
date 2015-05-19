@@ -33,7 +33,7 @@ def test_average_tax_rate():
         axes = [
             dict(
                 count = 100,
-                name = 'sal',
+                name = 'salaire_imposable',
                 max = 24000,
                 min = 0,
                 ),
@@ -53,7 +53,7 @@ def test_marginal_tax_rate():
         axes = [
             dict(
                 count = 10000,
-                name = 'sal',
+                name = 'salaire_imposable',
                 max = 1000000,
                 min = 0,
                 ),

@@ -159,10 +159,10 @@ class forfait_social(SimpleFormulaColumn):
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
     def function(self, simulation, period):
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
-        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate(
+        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_prevoyance_complementaire', period)
-        prise_en_charge_employeur_retraite_complementaire = simulation.calculate(
+        prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_retraite_complementaire', period)
 
         taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
@@ -172,13 +172,12 @@ class forfait_social(SimpleFormulaColumn):
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
         assiette_taux_reduit = - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
         return period, - (
-            assiette_taux_plein * taux_plein +
-            assiette_taux_reduit * taux_reduit
+            assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
 
 @reference_formula
-class sal(SimpleFormulaColumn):
+class salaire_imposable(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -227,11 +226,11 @@ class salaire_net(SimpleFormulaColumn):
         # salaire_de_base = simulation.get_array('salaire_de_base', period)
         # if salaire_de_base is None:
         #     return period, zeros(self.holder.entity.count)
-        sal = simulation.calculate('sal', period)
+        salaire_imposable = simulation.calculate('salaire_imposable', period)
         crds_salaire = simulation.calculate_add('crds_salaire', period)
         csg_imposable_salaire = simulation.calculate_add('csg_imposable_salaire', period)
 
-        return period, sal + crds_salaire + csg_imposable_salaire
+        return period, salaire_imposable + crds_salaire + csg_imposable_salaire
 
 
 @reference_formula
