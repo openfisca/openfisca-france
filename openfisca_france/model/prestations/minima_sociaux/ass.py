@@ -40,35 +40,6 @@ class ass(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        '''
-        L’Allocation de Solidarité Spécifique (ASS) est une allocation versée aux
-        personnes ayant épuisé leurs droits à bénéficier de l'assurance chômage.
-
-        Le prétendant doit avoir épuisé ses droits à l’assurance chômage.
-        Il doit être inscrit comme demandeur d’emploi et justifier de recherches actives.
-        Il doit être apte à travailler.
-        Il doit justifier de 5 ans d’activité salariée au cours des 10 ans précédant le chômage.
-        À partir de 60 ans, il doit répondre à des conditions particulières.
-
-        Les ressources prises en compte pour apprécier ces plafonds, comprennent l'allocation de solidarité elle-même
-        ainsi que les autres ressources de l'intéressé, et de son conjoint, partenaire pacsé ou concubin,
-        soumises à impôt sur le revenu.
-        Ne sont pas prises en compte, pour déterminer le droit à ASS :
-          l'allocation d'assurance chômage précédemment perçue,
-          les prestations familiales,
-          l'allocation de logement,
-          la majoration de l'ASS,
-          la prime forfaitaire mensuelle de retour à l'emploi,
-          la pension alimentaire ou la prestation compensatoire due par l'intéressé.
-
-        Conditions de versement de l'ASS majorée
-            Pour les allocataires admis au bénéfice de l'ASS majorée (avant le 1er janvier 2004),
-            le montant de l'ASS majorée est fixé à 22,07 € par jour.
-            Pour mémoire, jusqu'au 31 décembre 2003, pouvaient bénéficier de l'ASS majorée, les allocataires :
-            âgés de 55 ans ou plus et justifiant d'au moins 20 ans d'activité salariée,
-            ou âgés de 57 ans et demi ou plus et justifiant de 10 ans d'activité salariée,
-            ou justifiant d'au moins 160 trimestres de cotisation retraite.
-        '''
         period = period.start.offset('first-of', 'month').period('month')
 
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
@@ -78,13 +49,11 @@ class ass(SimpleFormulaColumn):
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
-        majo = 0  # TODO
+        majo = 0  # Majoration pas encore implémentée aujourd'hui
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
         plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
         montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
-
         revenus = ass_base_ressources / 12 + montant_mensuel
-
         ass = montant_mensuel * (revenus <= plafond_mensuel) + (revenus > plafond_mensuel) * max_(plafond_mensuel + montant_mensuel - revenus, 0)
         ass = ass * elig
         ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
@@ -101,9 +70,12 @@ class ass_base_ressources(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
+        ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
+        ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
+        ass_base_ressources_conjoint = self.filter_role(ass_base_ressources_conjoint_holder, role = PART)
 
-        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
-        return period, ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
+        result = ass_base_ressources_demandeur + ass_base_ressources_conjoint
+        return period, result
 
 
 @reference_formula
@@ -125,7 +97,41 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
-        return period, sali + rstnet + pensions_alimentaires_percues -abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+        return period, sali + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+
+
+@reference_formula
+class ass_base_ressources_conjoint(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        previous_year = period.start.period('year').offset(-1)
+
+        sali = simulation.calculate_add('sali', previous_year)
+        sali_this_month = simulation.calculate('sali', period)
+
+        rstnet = simulation.calculate('rstnet', previous_year)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
+        aah = simulation.calculate('aah', previous_year)
+        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
+        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        chonet = simulation.calculate('chonet', previous_year)
+        indemnites_journalieres = simulation.calculate_add('indemnites_journalieres', previous_year)
+        abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
+        abat_res_interrompues_non_substituees = 1
+        has_ressources_substitution = (rstnet + chonet + indemnites_journalieres) > 0
+        sali_interrompu = (sali > 0) * (sali_this_month == 0)
+
+        # Les ressources interrompues non substituées ne sont pas prises en compte. En cas de substitution, abattement défini dans les paramètres.
+        abat_reel = sali_interrompu * (has_ressources_substitution * abat_res_interrompues_substituees + (
+            1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
+
+        result = (1 - abat_reel) * sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet + indemnites_journalieres
+        return period, result
 
 
 @reference_formula
@@ -136,12 +142,12 @@ class ass_eligibilite_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        
-        #1 si demandeur d'emploi
-        activite = simulation.calculate('activite', period) 
 
-        #Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
-        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period) 
+        # 1 si demandeur d'emploi
+        activite = simulation.calculate('activite', period)
+
+        # Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
+        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
 
         are_perceived_this_month = simulation.calculate('chonet', period)
 
