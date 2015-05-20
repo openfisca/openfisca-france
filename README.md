@@ -19,7 +19,13 @@ Please consult http://www.openfisca.fr/installation if you want to develop with 
 
 ## Tests
 
-To download tests from [Ludwig](https://mes-aides.gouv.fr/tests/), see [OpenFiscaFrance.jl](https://github.com/openfisca/OpenFiscaFrance.jl)
+Before submitting a pull request, please execute tests:
+
+    make test
+
+To download tests from [Ludwig](https://mes-aides.gouv.fr/tests/)
+(the tests tool from [Mes aides](https://mes-aides.gouv.fr/)),
+see [OpenFiscaFrance.jl](https://github.com/openfisca/OpenFiscaFrance.jl)
 
 ## Contribute
 
