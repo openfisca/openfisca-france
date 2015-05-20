@@ -71,7 +71,7 @@ class af_nbenf(SimpleFormulaColumn):
 
 @reference_formula
 class af_eligibilite_base(SimpleFormulaColumn):
-    column = IntCol
+    column = BoolCol
     entity_class = Familles
     label = u"Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
 
@@ -86,7 +86,7 @@ class af_eligibilite_base(SimpleFormulaColumn):
 
 @reference_formula
 class af_eligibilite_dom(SimpleFormulaColumn):
-    column = IntCol
+    column = BoolCol
     entity_class = Familles
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
 
@@ -118,7 +118,6 @@ class af_base(DatedFormulaColumn):
         pfam = simulation.legislation_at(period.start).fam
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
-
         un_seul_enfant = eligibilite_dom * (af_nbenf == 1) * pfam.af.taux.enf_seul
         plus_de_deux_enfants = (af_nbenf >= 2) * pfam.af.taux.enf2
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.af.taux.enf3
@@ -180,7 +179,7 @@ class af_age_aine(SimpleFormulaColumn):
             a_charge = af_enfants_a_charge[key] * (age <= pfam.af.age2)
             aine_potentiel = a_charge * (age > age_aine)
             age_aine = aine_potentiel * age + not_(aine_potentiel) * age_aine
-        
+
         return period, age_aine
 
 
