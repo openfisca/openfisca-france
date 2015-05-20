@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
+from numpy import absolute as abs_, maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -41,12 +41,12 @@ class ass_eligibilite_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        
+
         #1 si demandeur d'emploi
-        activite = simulation.calculate('activite', period) 
+        activite = simulation.calculate('activite', period)
 
         #Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
-        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period) 
+        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
 
         are_perceived_this_month = simulation.calculate('chonet', period)
 
@@ -72,7 +72,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
-        return period, salaire_net + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+        return period, salaire_net + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
 
 
 @reference_formula
