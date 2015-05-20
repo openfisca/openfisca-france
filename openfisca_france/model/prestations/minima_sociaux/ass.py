@@ -34,62 +34,6 @@ build_column('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Élig
 
 
 @reference_formula
-class ass_eligibilite_i(SimpleFormulaColumn):
-    column = BoolCol
-    label = u"Éligibilité individuelle à l'ASS"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-
-        #1 si demandeur d'emploi
-        activite = simulation.calculate('activite', period)
-
-        #Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
-        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
-
-        are_perceived_this_month = simulation.calculate('chonet', period)
-
-        return period, and_(and_(activite == 1, ass_precondition_remplie), are_perceived_this_month == 0)
-
-
-@reference_formula
-class ass_base_ressources_i(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Base de ressources individuelle de l'ASS"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        previous_year = period.start.period('year').offset(-1)
-
-        salaire_net = simulation.calculate_add('salaire_net', previous_year)
-        rstnet = simulation.calculate('rstnet', previous_year)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
-
-        aah = simulation.calculate('aah', previous_year)
-        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
-
-        return period, salaire_net + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
-
-
-@reference_formula
-class ass_base_ressources(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Base de ressources de l'ASS"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
-
-        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
-        return period, ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
-
-
-@reference_formula
 class ass(SimpleFormulaColumn):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
@@ -146,3 +90,59 @@ class ass(SimpleFormulaColumn):
         ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
         return period, ass
+
+
+@reference_formula
+class ass_base_ressources_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources individuelle de l'ASS"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        previous_year = period.start.period('year').offset(-1)
+
+        salaire_net = simulation.calculate_add('salaire_net', previous_year)
+        rstnet = simulation.calculate('rstnet', previous_year)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
+
+        aah = simulation.calculate('aah', previous_year)
+        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
+        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+
+        return period, salaire_net + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+
+
+@reference_formula
+class ass_base_ressources(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources de l'ASS"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
+
+        ass_base_ressources_i = self.split_by_roles(ass_base_ressources_i_holder, roles = [CHEF, PART])
+        return period, ass_base_ressources_i[CHEF] + ass_base_ressources_i[PART]
+
+
+@reference_formula
+class ass_eligibilite_i(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Éligibilité individuelle à l'ASS"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        #1 si demandeur d'emploi
+        activite = simulation.calculate('activite', period)
+
+        #Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
+        ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
+
+        are_perceived_this_month = simulation.calculate('chonet', period)
+
+        return period, and_(and_(activite == 1, ass_precondition_remplie), are_perceived_this_month == 0)
