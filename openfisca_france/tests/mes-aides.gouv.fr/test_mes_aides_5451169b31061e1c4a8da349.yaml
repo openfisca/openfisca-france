@@ -1,0 +1,42 @@
+name: "Micro entreprise Achat-Vente < 720€"
+keywords:
+  - base ressources
+  - "cmu-c/acs"
+  - tns
+description: |
+  Revenu brut mensuel : 4500
+  Brut abattu (71%) : 1305
+  Net abattu : 652.5
+period: "month:2014-10"
+individus:
+  age: 34
+  age_en_mois: 408
+  birth: "1980-10-10"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 5451164431061e1c4a8da348
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  tns_micro_entreprise_chiffre_affaires: 54000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 5451164431061e1c4a8da348
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 5451164431061e1c4a8da348
+  personnes_a_charge:
+menages:
+  depcom: 92050
+  enfants:
+  loyer: 100
+  personne_de_reference: 5451164431061e1c4a8da348
+  statut_occupation: 4
+output_variables:
+  cmu_c: true

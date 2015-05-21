@@ -1,0 +1,41 @@
+name: Pas de RSA pour un entrepreneur qui a au moins un employé
+keywords:
+  - rsa
+  - tns
+description: Case "J'ai au moins un employé" cochée => RSA = 0, même si on est en dessous des plafonds de CA.
+period: "month:2015-05"
+individus:
+  age: 34
+  age_en_mois: 415
+  birth: "1980-10-10"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 555aff415dcb456331928911
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  tns_autres_revenus: 25000
+  tns_autres_revenus_chiffre_affaires: 30000
+  tns_autres_revenus_type_activite: bnc
+  tns_employe: true
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 555aff415dcb456331928911
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 555aff415dcb456331928911
+  personnes_a_charge:
+menages:
+  depcom: 31555
+  enfants:
+  loyer: 700
+  personne_de_reference: 555aff415dcb456331928911
+  statut_occupation: 4
+output_variables:
+  rsa: 0
