@@ -1,3 +1,30 @@
+- name: "Non prise en compte des ARE pour un célibataire"
+  period: "month:2015-04"
+  familles:
+    parents: ["parent1"]
+  individus:
+    - id: "parent1"
+      age: 40
+      ass_precondition_remplie: true
+      activite: 1
+      sali:
+        2015-01: 400
+        2015-02: 400
+        2015-03: 0
+        year:2014-04: 4000
+      chonet:
+        2015-01: 200
+        2015-02: 200
+        2015-03: 0
+        year:2014-04: 2000
+  output_variables:
+    ass_eligibilite_i: true
+    ass_base_ressources_i: 4000
+    ass_base_ressources_conjoint: 4800
+    ass_base_ressources: 4000
+
+
+
 - name: "Abbatement des revenus quand revenu du conjoint interompu"
   period: "month:2015-04"
   familles:
