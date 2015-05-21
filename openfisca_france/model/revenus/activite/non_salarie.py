@@ -1037,6 +1037,37 @@ reference_input_variable(
    set_input = set_input_divide_by_period
    )
 
+reference_input_variable(
+   name ='tns_autres_revenus_chiffre_affaires',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME",
+   set_input = set_input_divide_by_period
+   )
+
+reference_input_variable(
+   name='tns_autres_revenus_type_activite',
+   column = EnumCol(enum = enum_tns_type_activite),
+   entity_class = Individus,
+   is_permanent = True,
+   label = u"Type d'activité de l'entreprise non AE ni ME")
+
+reference_input_variable(
+   name ='tns_employe',
+   column = BoolCol,
+   entity_class = Individus,
+   label = u"Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise",
+   set_input = set_input_dispatch_by_period
+   )
+
+reference_input_variable(
+   name = 'tns_benefice_exploitant_agricole',
+   column = FloatCol,
+   entity_class = Individus,
+   label = u"Dernier bénéfice agricole",
+   set_input = set_input_dispatch_by_period
+   )
+
 
 # Computed variables
 

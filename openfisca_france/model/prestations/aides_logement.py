@@ -511,6 +511,24 @@ class apl(SimpleFormulaColumn):
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
         return period, aide_logement_montant * (statut_occupation == 3)
 
+@reference_formula
+class aide_logement_non_calculable(SimpleFormulaColumn):
+    column = EnumCol(
+        enum = Enum([
+            u"",
+            u"proprietaire",
+            u"locataire_foyer"
+            ]),
+        default = 0
+    )
+    entity_class = Familles
+    label = u"Aide au logement non calculable"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        statut_occupation = simulation.calculate('statut_occupation', period)
+
+        return period, ((statut_occupation == 1) + (statut_occupation == 2)) * 1 + (statut_occupation == 3) * 2
 
 @reference_formula
 class aide_logement(SimpleFormulaColumn):

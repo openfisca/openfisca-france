@@ -1,0 +1,57 @@
+name: "TNS Auto-entrepreneur (BIC)"
+keywords:
+  - rsa
+  - tns
+description: |
+  ((1000+300+100)/3)*50% = 233,33
+  (513,88 + 62%*233,33) - (233,33 + 61,67)
+  =  658,54 - 295
+  = 363,5
+period: "month:2015-04"
+individus:
+  age: 35
+  age_en_mois: 420
+  birth: "1980-04-13"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 553fc12f17d9db60391c3445
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  tns_auto_entrepreneur_chiffre_affaires:
+    2013: 50000
+    2014-04: 5400
+    2014-05: 5400
+    2014-06: 5400
+    2014-07: 5400
+    2014-08: 5400
+    2014-09: 5400
+    2014-10: 5400
+    2014-11: 5400
+    2014-12: 5400
+    2015-01: 1000
+    2015-01:3: 1400
+    2015-02: 300
+    2015-03: 100
+    2015-04: 100
+    year:2014-04: 50000
+  tns_auto_entrepreneur_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 553fc12f17d9db60391c3445
+foyers_fiscaux:
+  declarants: 553fc12f17d9db60391c3445
+  personnes_a_charge:
+menages:
+  depcom: 67482
+  enfants:
+  personne_de_reference: 553fc12f17d9db60391c3445
+  statut_occupation: 6
+output_variables:
+  rsa: 363.55
