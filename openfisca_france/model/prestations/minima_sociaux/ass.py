@@ -63,7 +63,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
 
-        salaire_net = simulation.calculate_add('salaire_net', previous_year)
+        sali = simulation.calculate_add('sali', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
@@ -72,7 +72,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
-        return period, salaire_net + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+        return period, sali + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
 
 
 @reference_formula
