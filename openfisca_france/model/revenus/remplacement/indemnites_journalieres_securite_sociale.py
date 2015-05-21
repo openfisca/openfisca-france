@@ -23,7 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-
 from ...base import *  # noqa analysis:ignore
 
 build_column('indemnites_journalieres_maternite', FloatCol(entity = 'ind', label = u"Indemnités journalières de maternité"))
@@ -33,6 +32,7 @@ build_column('indemnites_journalieres_maladie', FloatCol(entity = 'ind', label =
 build_column('indemnites_journalieres_accident_travail', FloatCol(entity = 'ind', label = u"Indemnités journalières d'accident du travail"))
 build_column('indemnites_journalieres_maladie_professionnelle', FloatCol(entity = 'ind', label = u"Indemnités journalières de maladie professionnelle"))
 
+
 @reference_formula
 class indemnites_journalieres(SimpleFormulaColumn):
     column = FloatCol
@@ -40,7 +40,6 @@ class indemnites_journalieres(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
         indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', period)
         indemnites_journalieres_paternite = simulation.calculate('indemnites_journalieres_paternite', period)
         indemnites_journalieres_adoption = simulation.calculate('indemnites_journalieres_adoption', period)
@@ -50,4 +49,3 @@ class indemnites_journalieres(SimpleFormulaColumn):
         result = indemnites_journalieres_maternite + indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
 
         return period, result
-
