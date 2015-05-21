@@ -109,9 +109,10 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
+        last_month = period.start.period('month').offset(-1)
 
         sali = simulation.calculate_add('sali', previous_year)
-        sali_this_month = simulation.calculate('sali', period)
+        sali_last_month = simulation.calculate('sali', last_month)
 
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
@@ -124,7 +125,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
         abat_res_interrompues_non_substituees = 1
         has_ressources_substitution = (rstnet + chonet + indemnites_journalieres) > 0
-        sali_interrompu = (sali > 0) * (sali_this_month == 0)
+        sali_interrompu = (sali > 0) * (sali_last_month == 0)
 
         # Les ressources interrompues non substituées ne sont pas prises en compte. En cas de substitution, abattement défini dans les paramètres.
         abat_reel = sali_interrompu * (has_ressources_substitution * abat_res_interrompues_substituees + (
