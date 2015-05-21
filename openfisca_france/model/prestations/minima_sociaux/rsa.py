@@ -531,6 +531,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             revenus_locatifs
             )
 
+
 @reference_formula
 class ra_rsa_i(SimpleFormulaColumn):
     column = FloatCol
@@ -584,7 +585,6 @@ class ra_rsa_i(SimpleFormulaColumn):
         tns_micro_entreprise_revenus_net = calcule_type_ressource('tns_micro_entreprise_revenus_net')
         tns_autres_revenus = calcule_type_ressource('tns_autres_revenus')
 
-
         tns_total_revenus_pour_rsa = tns_autres_revenus + tns_micro_entreprise_revenus_net + tns_auto_entrepreneur_revenus_rsa
 
         return period, (
@@ -592,7 +592,7 @@ class ra_rsa_i(SimpleFormulaColumn):
             indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
             indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + bourse_recherche + tns_total_revenus_pour_rsa
-            ) / 3
+        ) / 3
 
 
 @reference_formula
@@ -689,7 +689,7 @@ class rsa_forfait_logement(SimpleFormulaColumn):
             (rmi_nbp == 1) * forf_logement.taux1 +
             (rmi_nbp == 2) * forf_logement.taux2 +
             (rmi_nbp >= 3) * forf_logement.taux3
-            )
+        )
 
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
@@ -781,19 +781,25 @@ class nb_enfant_rsa(SimpleFormulaColumn):
 
         return period, nbenf
 
+
 @reference_formula
 class rsa_eligibilite_tns(SimpleFormulaColumn):
     column = BoolCol
-    entity_class = Individus
+    entity_class = Familles
     label = u"Eligibilité au RSA pour un travailleur non salarié"
 
-    #Pour le moment seulement condition pour agriculteur
-    def function(self, simulation,period):
+    def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole',period)
-        tns_employe = simulation.calculate('tns_employe',period)
-        tns_autres_revenus_chiffre_affaires = simulation.calculate('tns_autres_revenus_chiffre_affaires',period)
-        tns_autres_revenus_type_activite = simulation.calculate('tns_autres_revenus_type_activite',period)
+
+        tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', period)
+        tns_benefice_exploitant_agricole = self.sum_by_entity(tns_benefice_exploitant_agricole_holder)
+        tns_employe_holder = simulation.compute('tns_employe', period)
+        tns_employe = self.any_by_roles(tns_employe_holder)
+        tns_autres_revenus_chiffre_affaires_holder = simulation.compute('tns_autres_revenus_chiffre_affaires', period)
+        tns_autres_revenus_chiffre_affaires = self.split_by_roles(tns_autres_revenus_chiffre_affaires_holder)
+        tns_autres_revenus_type_activite_holder = simulation.compute('tns_autres_revenus_type_activite', period)
+        tns_autres_revenus_type_activite = self.split_by_roles(tns_autres_revenus_type_activite_holder)
+
         has_conjoint = simulation.calculate('nb_par', period) > 1
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
@@ -809,17 +815,20 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
             taux_sans_conjoint = 1 + maj_2p * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
             taux_majoration = has_conjoint * taux_avec_conjoint + (1 - has_conjoint) * taux_sans_conjoint
             plafond_benefice_agricole_majore = taux_majoration * plafond_benefice_agricole
+
             return tns_benefice_exploitant_agricole < plafond_benefice_agricole_majore
 
         def eligibilite_chiffre_affaire(ca, type_activite, P_micro):
             plaf_vente = P_micro.vente.max
             plaf_service = P_micro.servi.max
+
             return ((type_activite == 0) * (ca <= plaf_vente )) + ((type_activite >= 1) * (ca <= plaf_service ))
 
         eligibilite_agricole = eligibilite_agricole(has_conjoint, nb_enfant_rsa, tns_benefice_exploitant_agricole, P_agr)
-        eligibilite_chiffre_affaire = eligibilite_chiffre_affaire(tns_autres_revenus_chiffre_affaires, tns_autres_revenus_type_activite, P_micro)
+        eligibilite_chiffre_affaire = eligibilite_chiffre_affaire(tns_autres_revenus_chiffre_affaires[CHEF], tns_autres_revenus_type_activite[CHEF], P_micro) * eligibilite_chiffre_affaire(tns_autres_revenus_chiffre_affaires[PART], tns_autres_revenus_type_activite[PART], P_micro)
 
         return period, eligibilite_agricole * (1 - tns_employe) * eligibilite_chiffre_affaire
+
 
 @reference_formula
 class rsa_eligibilite(SimpleFormulaColumn):
@@ -833,8 +842,7 @@ class rsa_eligibilite(SimpleFormulaColumn):
         age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
         activite_holder = simulation.compute('activite', period)
         activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
-        eligib_tns_holder = simulation.compute('rsa_eligibilite_tns', period)
-        eligib_tns_parents =  self.split_by_roles(eligib_tns_holder, roles = [CHEF, PART], default=True)
+        rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
 
         rmi = simulation.legislation_at(period.start).minim.rmi
 
@@ -842,12 +850,13 @@ class rsa_eligibilite(SimpleFormulaColumn):
             (age_parents[CHEF] >= rmi.age_pac)
             *
             not_(activite_parents[CHEF] == 2)
-            ) + (
-                (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
-                )
-        eligib = eligib * eligib_tns_parents[CHEF] * eligib_tns_parents[PART]
+        ) + (
+            (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+        )
+        eligib = eligib * rsa_eligibilite_tns
 
         return period, eligib
+
 
 @reference_formula
 class rsa_majore_eligibilite(SimpleFormulaColumn):
@@ -855,16 +864,16 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
     entity_class = Familles
     label = u"Eligibilité au RSA majoré pour parent isolé"
 
-    def function(self, simulation,period):
+    def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         isol = simulation.calculate('isol', period)
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('nb_enfant_rsa', period)
-        eligib_tns_holder = simulation.compute('rsa_eligibilite_tns', period)
-        eligib_tns_demandeur =  self.split_by_roles(eligib_tns_holder, roles = [CHEF])
-        eligib = isol * (enceinte_fam | (nbenf > 0)) * eligib_tns_demandeur[CHEF]
+        rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
+        eligib = isol * (enceinte_fam | (nbenf > 0)) * rsa_eligibilite_tns
 
         return period, eligib
+
 
 @reference_formula
 class rsa_non_calculable_tns_i(SimpleFormulaColumn):
@@ -872,17 +881,14 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
     entity_class = Individus
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
 
-    def function(self,simulation,period):
+    def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole',period)
+        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
         tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        eligible_rsa = simulation.calculate('rsa_eligibilite', period) + simulation.calculate('rsa_majore_eligibilite', period)
 
-        return period, eligible_rsa * (
-                (tns_benefice_exploitant_agricole > 0) +
-                (tns_micro_entreprise_chiffre_affaires > 0) +
-                (tns_autres_revenus > 0))
+        return period, (tns_benefice_exploitant_agricole > 0) + (tns_micro_entreprise_chiffre_affaires > 0) + (tns_autres_revenus > 0)
+
 
 @reference_formula
 class rsa_non_calculable(SimpleFormulaColumn):
@@ -891,19 +897,22 @@ class rsa_non_calculable(SimpleFormulaColumn):
             u"",
             u"tns",
             u"conjoint_tns"
-            ]),
+        ]),
         default = 0
     )
     entity_class = Familles
     label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
 
-    def function(self,simulation,period):
+    def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        eligible_rsa = simulation.calculate('rsa_eligibilite', period) + simulation.calculate('rsa_majore_eligibilite', period)
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
-        non_calculable_tns_parents =  self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
-        non_calculable = (non_calculable_tns_parents[CHEF] > 0) * 1 +(( 1 - non_calculable_tns_parents[CHEF]) * non_calculable_tns_parents[PART] > 0) * 2
+        non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
+        non_calculable = (non_calculable_tns_parents[CHEF] > 0) * 1 + ((1 - non_calculable_tns_parents[CHEF]) * non_calculable_tns_parents[PART] > 0) * 2
+        non_calculable = eligible_rsa * non_calculable
 
         return period, non_calculable
+
 
 @reference_formula
 class rsa_socle(SimpleFormulaColumn):
@@ -913,10 +922,8 @@ class rsa_socle(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
         nb_par = simulation.calculate('nb_par', period)
-        eligib = simulation.calculate('rsa_eligibilite',period)
+        eligib = simulation.calculate('rsa_eligibilite', period)
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
@@ -927,7 +934,7 @@ class rsa_socle(SimpleFormulaColumn):
             (nbp >= 3) * rmi.txp3 +
             (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
             max_(nbp - 4, 0) * rmi.txps
-            )
+        )
         return period, eligib * rmi.rmi * taux
 
 
@@ -953,7 +960,7 @@ class rmi(DatedFormulaColumn):
     entity_class = Familles
     label = u"Revenu Minimum d'Insertion"
 
-    @dated_function(start =  date(1988, 12, 1), stop = date(2009, 5, 31))
+    @dated_function(start = date(1988, 12, 1), stop = date(2009, 5, 31))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         activite = simulation.calculate('activite', period)
