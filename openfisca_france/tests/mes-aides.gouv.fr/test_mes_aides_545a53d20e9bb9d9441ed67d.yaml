@@ -10,7 +10,6 @@ description: |
   CF non majoré (pris en compte pour le RSA) : 169,19 (et non 166)
   => RSA : 656,27
 period: "month:2014-11"
-relative_error_margin: 0.02
 individus:
   - age: 44
     age_en_mois: 538

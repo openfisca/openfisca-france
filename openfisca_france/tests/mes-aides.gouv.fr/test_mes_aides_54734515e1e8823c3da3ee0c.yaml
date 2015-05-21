@@ -7,6 +7,7 @@ description: |
   L'aîné a plus de 14 ans, les deux autres moins de 14 ans
   La majoration de 64,67 euros s'applique sur l’aîné car il y a plus de 2 enfants
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 411
