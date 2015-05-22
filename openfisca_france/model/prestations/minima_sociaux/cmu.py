@@ -205,10 +205,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
         aah = simulation.calculate('aah', previous_year)
-        indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', previous_year)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', previous_year)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', previous_year)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', previous_year)
+        indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
         revenus_stage_formation_pro_dernier_mois = simulation.calculate('revenus_stage_formation_pro', last_month)
@@ -232,8 +229,8 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
 
         return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
-            indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
+            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) +
+            rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle + indemnites_journalieres +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
             tns_total_revenus_net + revenus_stage_formation_pro)
