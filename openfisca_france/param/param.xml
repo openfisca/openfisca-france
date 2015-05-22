@@ -5222,7 +5222,7 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1787.50" />
       </CODE>
       <CODE code="abat_rev_subst_conj" description="Abbatement appliqué aux revenus interompus et substitués du conjoint, en cas de licenciement, départ en retraite, etc.">
-        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.3" />
+        <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.3" />
       </CODE>
     </NODE>
     <NODE code="aspa" description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)">
