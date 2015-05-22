@@ -26,7 +26,7 @@
 from __future__ import division
 
 from functools import partial
-from numpy import (apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, zeros,
+from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, zeros,
     logical_or as or_)
 
 from ...base import *  # noqa analysis:ignore
@@ -229,8 +229,8 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
 
         return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) +
-            rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle + indemnites_journalieres +
+            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -abs_(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
+            indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
             tns_total_revenus_net + revenus_stage_formation_pro)
