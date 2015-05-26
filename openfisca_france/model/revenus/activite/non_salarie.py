@@ -1009,7 +1009,7 @@ reference_input_variable(
    name ='tns_micro_entreprise_chiffre_affaires',
    column = FloatCol,
    entity_class = Individus,
-   label = u"Chiffre d'affaires en de micro-entrepriser",
+   label = u"Chiffre d'affaires en de micro-entreprise",
    set_input = set_input_divide_by_period
    )
 
