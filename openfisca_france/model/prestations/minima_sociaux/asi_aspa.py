@@ -138,7 +138,6 @@ class aspa_elig(SimpleFormulaColumn):
 
         age = simulation.calculate('age', period)
         invalide = simulation.calculate('invalide', period)
-        taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         rstbrut = simulation.calculate('rstbrut', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
@@ -148,7 +147,7 @@ class aspa_elig(SimpleFormulaColumn):
 
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
-        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide # & (taux_invalidite >= 50)
+        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide
 
         condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
         condition_pensionnement = or_((rstbrut + pensions_invalidite) > 0, retraite)
