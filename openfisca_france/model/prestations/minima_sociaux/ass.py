@@ -113,6 +113,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
 
         sali = simulation.calculate_add('sali', previous_year)
         sali_last_month = simulation.calculate('sali', last_month)
+        sali_this_month = simulation.calculate('sali', period)
 
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
@@ -126,12 +127,23 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         abat_res_interrompues_non_substituees = 1
         has_ressources_substitution = (rstnet + chonet + indemnites_journalieres) > 0
         sali_interrompu = (sali > 0) * (sali_last_month == 0)
+        sali_interrompu_this_month = (sali > 0) * (sali_last_month > 0) * (sali_this_month == 0)
 
-        # Les ressources interrompues non substituées ne sont pas prises en compte. En cas de substitution, abattement défini dans les paramètres.
-        abat_reel = sali_interrompu * (has_ressources_substitution * abat_res_interrompues_substituees + (
-            1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
+        # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
+        # Dans le cas de ressources interrompues le mois en cours, on suppose qu'elles sont substitues
+        abat_reel = (
+            sali_interrompu * (
+                has_ressources_substitution * abat_res_interrompues_substituees +
+                (1 - has_ressources_substitution) * abat_res_interrompues_non_substituees
+            ) +
+            sali_interrompu_this_month * abat_res_interrompues_substituees
+        )
 
-        result = (1 - abat_reel) * sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet + indemnites_journalieres
+        result = (
+            (1 - abat_reel) * sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet + indemnites_journalieres
+        )
+
         return period, result
 
 

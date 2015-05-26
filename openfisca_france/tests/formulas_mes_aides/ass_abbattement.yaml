@@ -49,3 +49,26 @@
     ass_base_ressources_i: [0, 11000]
     ass_base_ressources_conjoint: [0, 8000]
     ass_base_ressources: [8000]
+
+- name: "Abbatement des revenus quand revenu du conjoint interompu"
+  period: "month:2015-04"
+  familles:
+    parents: ["parent1", "parent2"]
+  individus:
+    - id: "parent1"
+      age: 40
+      ass_precondition_remplie: true
+      activite: 1
+    - id: "parent2"
+      age: 40
+      sali:
+        2015-01: 1000
+        2015-02: 1000
+        2015-03: 1000
+        2015-04: 0
+        year:2014-04: 10000
+  output_variables:
+    ass_eligibilite_i: [true, false]
+    ass_base_ressources_i: [0, 10000]
+    ass_base_ressources_conjoint: [0, 7000]
+    ass_base_ressources: [7000]
