@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, logical_not as not_
+from numpy import maximum as max_, logical_not as not_, logical_or as or_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -142,6 +142,7 @@ class aspa_elig(SimpleFormulaColumn):
         inapte_travail = simulation.calculate('inapte_travail', period)
         rstbrut = simulation.calculate('rstbrut', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
+        retraite = simulation.calculate('activite', period) == 3
 
         P = simulation.legislation_at(period.start).minim
 
@@ -150,7 +151,7 @@ class aspa_elig(SimpleFormulaColumn):
         condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide # & (taux_invalidite >= 50)
 
         condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+        condition_pensionnement = or_((rstbrut + pensions_invalidite) > 0, retraite)
         return period, condition_age * condition_pensionnement
 
 
