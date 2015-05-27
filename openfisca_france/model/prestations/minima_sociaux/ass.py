@@ -135,7 +135,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
             abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-            abat_res_interrompues_non_substituees = 1
+            abat_res_interrompues_non_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
 
             abat_reel = ressource_interrompue * (
                 has_ressources_substitution * abat_res_interrompues_substituees +
