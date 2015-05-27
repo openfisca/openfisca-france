@@ -50,8 +50,9 @@ class ass(SimpleFormulaColumn):
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
-        plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
-        montant_mensuel = 30 * ass_params.montant_plein
+        montant_journalier = ass_params.montant_plein
+        montant_mensuel = 30 * montant_journalier
+        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub)
         revenus = ass_base_ressources / 12
 
         ass = min_(montant_mensuel, plafond_mensuel - revenus)
