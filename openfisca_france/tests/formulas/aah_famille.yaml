@@ -1,0 +1,108 @@
+- name: "AAH niveau Familles - célibataire, sans enfants, ressources supérieures au plafond"
+  description: Montant AAH au niveau de la famille
+  period: 2015-01
+  absolute_error_margin: 100
+
+  familles:
+    parents: ["parent1"]
+    concub: 0
+    br_aah: 9700
+    af_nbenf: 0
+  individus:
+    - id: "parent1"
+      invalide: 'True'
+      age: 50 # eligible aah
+
+  output_variables:
+    aah_famille: 0
+
+- name: "AAH niveau Familles - célibataire, sans enfants, sans ressources"
+  description: Montant AAH au niveau de la famille
+  period: 2015-01
+  absolute_error_margin: 100
+
+  familles:
+    parents: ["parent1"]
+    concub: 0
+    br_aah: 0
+    af_nbenf: 0
+  individus:
+    - id: "parent1"
+      invalide: 'True'
+      age: 27
+
+  output_variables:
+    aah_famille: 800.45  # l'aah taux plein
+
+- name: "AAH niveau Familles - concubinage, sans enfants, un éligible (chef), ressources inférieures au plafond"
+  description: Montant AAH au niveau de la famille
+  period: 2013-03
+  absolute_error_margin: 100
+  familles:
+    parents: ["parent1", "parent2"]
+    concub: 'True'
+    br_aah: 15000
+    af_nbenf: 0
+  individus:
+    - id: "parent1"
+      aah_eligible: 'True'
+    - id: "parent2"
+      aah_eligible: 'False'
+  output_variables:
+    aah_famille: 3638.16 / 12  # (18638,16 - 15000) / 12
+
+- name: "AAH niveau Familles - concubinage, sans enfants, deux éligibles, ressources inférieures au plafond"
+  description: Montant AAH au niveau de la famille
+  period: 2013-03
+  absolute_error_margin: 100
+  familles:
+    parents: ["parent1", "parent2"]
+    concub: 'True'
+    br_aah: 15000
+    af_nbenf: 0
+  individus:
+    - id: "parent1"
+      aah_eligible: 'True'
+    - id: "parent2"
+      aah_eligible: 'True'
+  output_variables:
+    aah_famille: 3638.16*2 / 12  # (18638,16 - 15000) / 12   # il faut que ce soit ça, ou le double ??
+
+- name: "AAH niveau Familles - concubinage, avec enfants, un seul éligible, ressources inférieures au plafond"
+  description: Montant AAH au niveau de la famille
+  period: 2013-10
+  absolute_error_margin: 100
+  familles:
+    parents: ["parent1", "parent2"]
+    concub: 'True'
+    br_aah: 20000
+    af_nbenf: 1
+  individus:
+    - id: "parent1"
+      aah_eligible: 'False'
+    - id: "parent2"
+      aah_eligible: 'True'
+  output_variables:
+    aah_famille: 3705.4 / 12  # (18964,32 + 4741,08 (= 23705,4) - 20000) / 12
+
+- name: "AAH niveau Familles - concubinage, avec enfant, enfant éligible, ressources inférieures au plafond"
+  description: Montant AAH au niveau de la famille
+  period: 2014-01
+  absolute_error_margin: 100
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    concub: 'True'
+    br_aah: 25000
+    af_nbenf: 2
+  individus:
+    - id: "parent1"
+      aah_eligible: 'False'
+    - id: "parent2"
+      aah_eligible: 'False'
+    - id: "enfant1"
+      aah_eligible: 'True'
+    - id: "enfant2"
+      aah_eligible: 'False'
+  output_variables:
+    aah_famille: 287  # xxxxx.xx (conucub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12

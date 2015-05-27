@@ -1,0 +1,41 @@
+- name: "AAH niveau Individus - Eligible, célibataire, sans enfants"
+  description: Montant AAH au niveau de l individu
+  period: 2014-11
+  absolute_error_margin: 100
+  input_variables:
+    invalide: 'True'
+    age: 22  # eligible aah
+    br_aah: 500
+    concub: 0
+    af_nbenf: 0
+  output_variables:
+    aah: 9100 / 12  # (9605,40 - 500)  / 12
+
+- name: "AAH niveau Individus - Eligible, en concubinage, sans enfants, ressources supérieures au plafond"
+  description: Montant AAH au niveau de l individu
+  period: 2012-03
+  absolute_error_margin: 100
+  input_variables:
+    invalide: 'True'
+    age: 33  # eligible aah
+    br_aah: 15000
+    concub: 1
+    af_nbenf: 0
+  output_variables:
+    aah: 2846.88 / 12  # (743.62 * 24 (17846.88) - 12000)  / 12
+
+- name: "AAH niveau Individus - Eligible, en concubinage, concubin aussi éligible, enfants, ressources inférieures au plafond"
+  description: Montant AAH au niveau de l individu
+  period: 2014-10
+  absolute_error_margin: 100
+  input_variables:
+    invalide: 'True'
+    age: 52
+#    br_aah: 20000
+    concub: 1
+    af_nbenf: 2
+    nb_eligib_aah: 2
+# doivent recevoir au total 8816.2 * 2 / 12
+    aah_famille: 8816.2*2 /12
+  output_variables:
+    aah: 8816.2/12  #  (28816.2 - )/2
