@@ -120,9 +120,9 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         last_month = period.start.period('month').offset(-1)
 
         has_ressources_substitution = (
-            simulation.calculate('chonet', period) +
-            simulation.calculate('indemnites_journalieres', period) +
-            simulation.calculate('rstnet', period)
+            simulation.calculate('chonet', last_month) +
+            simulation.calculate('indemnites_journalieres', last_month) +
+            simulation.calculate('rstnet', last_month)
         ) > 0
 
         def calculateWithAbatement(ressourceName):
