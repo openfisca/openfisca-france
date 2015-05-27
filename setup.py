@@ -57,18 +57,14 @@ setup(
     data_files = [
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
         ],
-    extras_require = dict(
-        tests = [
-            'Biryani >= 0.10.1',
-            # 'pandas >= 0.13',  # Only for taxipp_utils.py which is ignored in Makefile
-            'PyYAML',
-            ],
-        ),
     install_requires = [
         'Babel >= 0.9.4',
+        'Biryani >= 0.10.1',
         'numpy',
         'OpenFisca-Core >= 0.5dev',
+        'PyYAML',
         'scipy >= 0.12',
+        # 'pandas >= 0.13',  # Only for taxipp_utils.py which is ignored in Makefile
         ],
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),
