@@ -15,7 +15,21 @@ Please consult http://www.openfisca.fr/documentation
 
 ## Installation
 
-Please consult http://www.openfisca.fr/installation if you want to develop with OpenFisca on your computer.
+Requirement: [OpenFisca-Core](https://github.com/openfisca/openfisca-core).
+
+Clone the OpenFisca-France Git repository on your machine and install the Python package.
+Assuming you are in your working directory:
+
+```
+git clone https://github.com/openfisca/openfisca-france.git
+cd openfisca-france
+pip install --editable . --user
+python setup.py compile_catalog
+```
+
+For your information, the Tunisian tax-benefit system is also available:
+[OpenFisca-Tunisia](https://github.com/openfisca/openfisca-tunisia).
+
 
 ## Contribute
 
