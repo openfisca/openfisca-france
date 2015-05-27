@@ -128,25 +128,18 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         def calculateWithAbatement(ressourceName):
             ressource_year = simulation.calculate_add(ressourceName, previous_year)
             ressource_last_month = simulation.calculate(ressourceName, last_month)
-            ressource_this_month = simulation.calculate(ressourceName, period)
 
             ressource_interrompue = (ressource_year > 0) * (ressource_last_month == 0)
-            ressource_interrompue_this_month = (ressource_year > 0) * (ressource_last_month > 0) * (ressource_this_month == 0)
 
             # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
-            # Dans le cas de ressources interrompues le mois en cours, on suppose qu'elles sont substitues
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
             abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
             abat_res_interrompues_non_substituees = 1
 
-            abat_reel = (
-                ressource_interrompue * (
-                    has_ressources_substitution * abat_res_interrompues_substituees +
-                    (1 - has_ressources_substitution) * abat_res_interrompues_non_substituees
-                ) +
-                ressource_interrompue_this_month * abat_res_interrompues_substituees
-            )
+            abat_reel = ressource_interrompue * (
+                has_ressources_substitution * abat_res_interrompues_substituees +
+                (1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
 
             return (1 - abat_reel) * ressource_year
 
