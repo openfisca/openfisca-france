@@ -123,7 +123,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', previous_year)
         indemnites_journalieres = simulation.calculate_add('indemnites_journalieres', previous_year)
         abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-        abat_res_interrompues_non_substituees = 1
+        abat_res_interrompues_non_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
         has_ressources_substitution = (rstnet + chonet + indemnites_journalieres) > 0
         sali_interrompu = (sali > 0) * (sali_last_month == 0)
 
