@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import absolute as abs_, maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
+from numpy import absolute as abs_, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_, logical_and as and_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -49,12 +49,13 @@ class ass(SimpleFormulaColumn):
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
-        majo = 0  # Majoration pas encore implémentée aujourd'hui
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
         plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
-        montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
-        revenus = ass_base_ressources / 12 + montant_mensuel
-        ass = montant_mensuel * (revenus <= plafond_mensuel) + (revenus > plafond_mensuel) * max_(plafond_mensuel + montant_mensuel - revenus, 0)
+        montant_mensuel = 30 * ass_params.montant_plein
+        revenus = ass_base_ressources / 12
+
+        ass = min_(montant_mensuel, plafond_mensuel - revenus)
+        ass = max_(ass, 0)
         ass = ass * elig
         ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
