@@ -424,10 +424,10 @@ class alf(SimpleFormulaColumn):
         al_pac = simulation.calculate('al_pac', period)
         statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
-
         statut_occupation = statut_occupation_famille
-        return period, \
-            (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+
+        result = (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+        return period, result
 
 
 @reference_formula
@@ -450,7 +450,7 @@ class als_nonet(SimpleFormulaColumn):
         return period, (
             (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
             not_(etu[CHEF] | etu[PART]) * aide_logement_montant
-            )
+        )
 
 
 @reference_formula
@@ -475,7 +475,7 @@ class alset(SimpleFormulaColumn):
         return period, (
             (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
             (etu[CHEF] | etu[PART]) * aide_logement_montant
-            )
+        )
 
 
 @reference_formula
@@ -495,7 +495,7 @@ class als(SimpleFormulaColumn):
 
 
 @reference_formula
-class apl(SimpleFormulaColumn):
+class apl(SimpleFormulaColumn):  # FIXME (statut_occupation == 3) correspond un foyer, pas un HLM !
     column = FloatCol
     entity_class = Familles
     label = u" Aide personnalisée au logement"
@@ -511,14 +511,15 @@ class apl(SimpleFormulaColumn):
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
         return period, aide_logement_montant * (statut_occupation == 3)
 
+
 @reference_formula
 class aide_logement_non_calculable(SimpleFormulaColumn):
     column = EnumCol(
         enum = Enum([
             u"",
-            u"proprietaire",
+            u"primo_accedant",
             u"locataire_foyer"
-            ]),
+        ]),
         default = 0
     )
     entity_class = Familles
@@ -528,7 +529,8 @@ class aide_logement_non_calculable(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         statut_occupation = simulation.calculate('statut_occupation', period)
 
-        return period, ((statut_occupation == 1) + (statut_occupation == 2)) * 1 + (statut_occupation == 3) * 2
+        return period, (statut_occupation == 1) * 1 + (statut_occupation == 3) * 2
+
 
 @reference_formula
 class aide_logement(SimpleFormulaColumn):
