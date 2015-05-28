@@ -112,6 +112,7 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
         period = period
         accident_du_travail = simulation.calculate_add('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
+        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         famille = simulation.calculate('famille', period)
         mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
@@ -119,6 +120,7 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
         cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
+            contribution_solidarite_autonomie +
             famille +
             mmid_employeur +
             taxe_salaires

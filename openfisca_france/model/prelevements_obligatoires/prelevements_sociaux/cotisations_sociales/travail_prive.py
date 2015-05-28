@@ -525,6 +525,26 @@ class mmid_employeur(SimpleFormulaColumn):
         return period, cotisation
 
 
+# TODO: this formula is used only to check fiche_de_paie from memento
+@reference_formula
+class mmida_employeur(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Cotisation maladie (employeur)"
+
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        cotisation = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'maladie',
+            variable_name = self.__class__.__name__,
+            )
+        contribution_solidarite_autonomie = Simulation.calculate('contribution_solidarite_autonomie', period)
+        return period, cotisation + contribution_solidarite_autonomie
+
+
 @reference_formula
 class mhsup(SimpleFormulaColumn):
     column = FloatCol
