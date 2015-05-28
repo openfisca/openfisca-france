@@ -80,8 +80,7 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
         tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
-        aah = simulation.calculate('aah', three_previous_months)
-
+        aah = simulation.calculate_add('aah', three_previous_months)
         legislation = simulation.legislation_at(period.start)
         leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
 
@@ -100,7 +99,6 @@ class br_mv_i(SimpleFormulaColumn):
         )
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
-
 
         return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
 
@@ -302,20 +300,22 @@ class aspa(SimpleFormulaColumn):
 
         elig = elig1 | elig2 | elig3 | elig4
 
-        montant_max = (elig1 * P.aspa.montant_seul
-            + elig2 * P.aspa.montant_couple
-            + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+        montant_max = (
+            elig1 * P.aspa.montant_seul +
+            elig2 * P.aspa.montant_couple +
+            elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
+            elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)
+            ) / 12
 
         ressources = br_mv + montant_max
 
-        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-            + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub) +
+            (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
+        diff = ((elig1 | elig2) * (montant_max - depassement) +
+            (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_aspa = max_(diff, 0)

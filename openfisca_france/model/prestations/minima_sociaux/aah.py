@@ -230,7 +230,7 @@ class caah(SimpleFormulaColumn):
     '''
 
     @dated_function(start=date(2005, 7, 1))
-    def function(self, simulation period):
+    def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         law = simulation.legislation_at(period.start)
 
