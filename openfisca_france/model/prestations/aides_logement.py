@@ -279,8 +279,10 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         #   statut_occupation==5 : Locataire ou statut_occupationus-locataire d'un logement loué meublé
         #                          ou d'une chambre d'hôtel.
         #   statut_occupation==6 : Logé gratuitement par des parents, des amis ou l'employeur
+        #   statut_occupation==7 : Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de
+        #                          jeune travailleur, résidence sociale...)
 
-        loca = (3 <= statut_occupation) & (5 >= statut_occupation)
+        loca = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
         acce = statut_occupation == 1
 
         # # aides au logement pour les locataires
@@ -495,7 +497,7 @@ class als(SimpleFormulaColumn):
 
 
 @reference_formula
-class apl(SimpleFormulaColumn):  # FIXME (statut_occupation == 3) correspond un foyer, pas un HLM !
+class apl(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
     label = u" Aide personnalisée au logement"
@@ -529,7 +531,7 @@ class aide_logement_non_calculable(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         statut_occupation = simulation.calculate('statut_occupation', period)
 
-        return period, (statut_occupation == 1) * 1 + (statut_occupation == 3) * 2
+        return period, (statut_occupation == 1) * 1 + (statut_occupation == 7) * 2
 
 
 @reference_formula
