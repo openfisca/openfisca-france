@@ -59,7 +59,7 @@ setup(
         ],
     install_requires = [
         'Babel >= 0.9.4',
-        'Biryani >= 0.10.4',
+        'Biryani[datetimeconv] >= 0.10.4',
         'numpy',
         'OpenFisca-Core >= 0.5dev',
         'PyYAML',
