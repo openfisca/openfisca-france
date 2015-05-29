@@ -89,6 +89,7 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
+        # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
         aah = aah * not_(aspa_elig)
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
