@@ -28,55 +28,21 @@
 from __future__ import division
 
 import copy
-from numpy import logical_not as not_, minimum as min_
-
 import logging
 
+from numpy import logical_not as not_, minimum as min_
 from openfisca_core import columns, formulas, reforms
+
 from .. import entities
-from ..model import base
+from ..model.base import PREF
 from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
 log = logging.getLogger(__name__)
 
 
-class charges_deduc(formulas.SimpleFormulaColumn):
-    label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
-    reference = charges_deductibles.charges_deduc
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        cd1 = simulation.calculate('cd1', period)
-        cd2 = simulation.calculate('cd2', period)
-        charge_loyer = simulation.calculate('charge_loyer', period)
-
-        return period, cd1 + cd2 + charge_loyer
-
-
-class charge_loyer(formulas.SimpleFormulaColumn):
-    column = columns.FloatCol
-    entity_class = entities.FoyersFiscaux
-    label = u"Charge déductible pour paiement d'un loyer"
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        loyer_holder = simulation.calculate('loyer', period)
-        nbptr = simulation.calculate('nbptr', period)
-        loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = base.PREF)
-        loyer = self.sum_by_entity(loyer)
-        charge_loyer = simulation.legislation_at(period.start).charge_loyer
-
-        plaf = charge_loyer.plaf
-        plaf_nbp = charge_loyer.plaf_nbp
-        plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
-
-        return period, 12 * min_(loyer / 12, plafond)
-
-
-# Reform legislation
-reform_legislation_subtree = {
-    "charge_loyer": {
+def build_reform(tax_benefit_system):
+    reform_legislation_subtree = {
         "@type": "Node",
         "description": "Charge de loyer",
         "children": {
@@ -101,19 +67,49 @@ reform_legislation_subtree = {
                 },
             },
         }
-    }
+    reform_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
+    reform_legislation_json['children']['charge_loyer'] = reform_legislation_subtree
+    # This validates the modified legislation JSON. But the operation is slow so it is commented. Use in development.
+    # from openfisca_core import conv, legislations
+    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
 
-
-# Build function
-
-def build_reform(tax_benefit_system):
-    reference_legislation_json = tax_benefit_system.legislation_json
-    reform_legislation_json = copy.deepcopy(reference_legislation_json)
-    reform_legislation_json['children'].update(reform_legislation_subtree)
     Reform = reforms.make_reform(
         legislation_json = reform_legislation_json,
         name = u'Loyer comme charge déductible (Trannoy-Wasmer)',
-        new_formulas = (charges_deduc, charge_loyer),
         reference = tax_benefit_system,
         )
+
+    @Reform.formula
+    class charges_deduc(formulas.SimpleFormulaColumn):
+        label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
+        reference = charges_deductibles.charges_deduc
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            cd1 = simulation.calculate('cd1', period)
+            cd2 = simulation.calculate('cd2', period)
+            charge_loyer = simulation.calculate('charge_loyer', period)
+
+            return period, cd1 + cd2 + charge_loyer
+
+    @Reform.formula
+    class charge_loyer(formulas.SimpleFormulaColumn):
+        column = columns.FloatCol
+        entity_class = entities.FoyersFiscaux
+        label = u"Charge déductible pour paiement d'un loyer"
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            loyer_holder = simulation.calculate('loyer', period)
+            nbptr = simulation.calculate('nbptr', period)
+            loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = PREF)
+            loyer = self.sum_by_entity(loyer)
+            charge_loyer = simulation.legislation_at(period.start).charge_loyer
+
+            plaf = charge_loyer.plaf
+            plaf_nbp = charge_loyer.plaf_nbp
+            plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
+
+            return period, 12 * min_(loyer / 12, plafond)
+
     return Reform()
