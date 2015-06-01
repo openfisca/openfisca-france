@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, logical_not as not_
+from numpy import maximum as max_, logical_not as not_, logical_or as or_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -89,6 +89,7 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
+        # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
         aah = aah * not_(aspa_elig)
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
@@ -134,24 +135,18 @@ class aspa_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        last_month = period.start.period('month').offset(-1)
 
         age = simulation.calculate('age', period)
         invalide = simulation.calculate('invalide', period)
-        taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
         P = simulation.legislation_at(period.start).minim
 
         condition_age_base = (age >= P.aspa.age_min)
-        condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
-        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide # & (taux_invalidite >= 50)
+        condition_age_anticipe = (age >= P.aah.age_legal_retraite) * (inapte_travail + invalide)
 
-        condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
-        return period, condition_age * condition_pensionnement
+        condition_age = condition_age_base + condition_age_anticipe
+        return period, condition_age
 
 
 @reference_formula
