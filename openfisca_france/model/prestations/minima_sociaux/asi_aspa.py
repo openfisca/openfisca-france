@@ -137,13 +137,12 @@ class aspa_elig(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
 
         age = simulation.calculate('age', period)
-        invalide = simulation.calculate('invalide', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-
+        taux_invalidite = simulation.calculate('taux_invalidite', period)
         P = simulation.legislation_at(period.start).minim
-
+        condition_invalidite = (taux_invalidite > P.aspa.taux_invalidite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
-        condition_age_anticipe = (age >= P.aah.age_legal_retraite) * (inapte_travail + invalide)
+        condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
 
         condition_age = condition_age_base + condition_age_anticipe
         return period, condition_age
