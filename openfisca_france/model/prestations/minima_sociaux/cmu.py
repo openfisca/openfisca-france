@@ -244,14 +244,15 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        previous_year = period.start.period('year').offset(-1)
         aspa = simulation.calculate('aspa', period)
         ass = simulation.calculate('ass', period)
         asi = simulation.calculate('asi', period)
         af = simulation.calculate('af', period)
         cf = simulation.calculate_divide('cf', period)
         asf = simulation.calculate_divide('asf', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
+        paje_clca = simulation.calculate_add('paje_clca', previous_year)
+        paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
         statut_occupation_holder = simulation.compute('statut_occupation', period)
         aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
@@ -273,7 +274,10 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
-        res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca + paje_prepare)
+        # Prestations calculées, donc valeurs mensuelles. On estime l'annuel en multipliant par 12
+        res += 12 * (aspa + ass + asi + af + cf + asf)
+
+        res += paje_clca + paje_prepare
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
