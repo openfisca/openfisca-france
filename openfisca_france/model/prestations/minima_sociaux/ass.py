@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import absolute as abs_, maximum as max_, logical_not as not_, logical_or as or_, logical_and as and_
+from numpy import absolute as abs_, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_, logical_and as and_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -49,12 +49,14 @@ class ass(SimpleFormulaColumn):
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
-        majo = 0  # Majoration pas encore implémentée aujourd'hui
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
-        plafond_mensuel = ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub
-        montant_mensuel = 30 * (ass_params.montant_plein * not_(majo) + majo * ass_params.montant_maj)
-        revenus = ass_base_ressources / 12 + montant_mensuel
-        ass = montant_mensuel * (revenus <= plafond_mensuel) + (revenus > plafond_mensuel) * max_(plafond_mensuel + montant_mensuel - revenus, 0)
+        montant_journalier = ass_params.montant_plein
+        montant_mensuel = 30 * montant_journalier
+        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub)
+        revenus = ass_base_ressources / 12
+
+        ass = min_(montant_mensuel, plafond_mensuel - revenus)
+        ass = max_(ass, 0)
         ass = ass * elig
         ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
@@ -90,6 +92,10 @@ class ass_base_ressources_i(SimpleFormulaColumn):
 
         sali = simulation.calculate_add('sali', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
+        tns_auto_entrepreneur_benefice = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+        tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
+        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
+        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
 
@@ -97,7 +103,11 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
-        return period, sali + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro
+        return period, (
+            sali + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            aah + indemnites_stage + revenus_stage_formation_pro + tns_auto_entrepreneur_benefice +
+            tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+        )
 
 
 @reference_formula
@@ -111,27 +121,52 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         previous_year = period.start.period('year').offset(-1)
         last_month = period.start.period('month').offset(-1)
 
-        sali = simulation.calculate_add('sali', previous_year)
-        sali_last_month = simulation.calculate('sali', last_month)
+        has_ressources_substitution = (
+            simulation.calculate('chonet', last_month) +
+            simulation.calculate('indemnites_journalieres', last_month) +
+            simulation.calculate('rstnet', last_month)
+        ) > 0
 
-        rstnet = simulation.calculate('rstnet', previous_year)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
-        aah = simulation.calculate('aah', previous_year)
-        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
-        chonet = simulation.calculate('chonet', previous_year)
-        indemnites_journalieres = simulation.calculate_add('indemnites_journalieres', previous_year)
-        abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-        abat_res_interrompues_non_substituees = 1
-        has_ressources_substitution = (rstnet + chonet + indemnites_journalieres) > 0
-        sali_interrompu = (sali > 0) * (sali_last_month == 0)
+        def calculateWithAbatement(ressourceName):
+            ressource_year = simulation.calculate_add(ressourceName, previous_year)
+            ressource_last_month = simulation.calculate(ressourceName, last_month)
 
-        # Les ressources interrompues non substituées ne sont pas prises en compte. En cas de substitution, abattement défini dans les paramètres.
-        abat_reel = sali_interrompu * (has_ressources_substitution * abat_res_interrompues_substituees + (
-            1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
+            ressource_interrompue = (ressource_year > 0) * (ressource_last_month == 0)
 
-        result = (1 - abat_reel) * sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet + indemnites_journalieres
+            # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
+            # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
+
+            abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
+            abat_res_interrompues_non_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
+
+            abat_reel = ressource_interrompue * (
+                has_ressources_substitution * abat_res_interrompues_substituees +
+                (1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
+
+            return (1 - abat_reel) * ressource_year
+
+        sali = calculateWithAbatement('sali')
+        indemnites_stage = calculateWithAbatement('indemnites_stage')
+        revenus_stage_formation_pro = calculateWithAbatement('revenus_stage_formation_pro')
+        chonet = calculateWithAbatement('chonet')
+        indemnites_journalieres = calculateWithAbatement('indemnites_journalieres')
+        aah = calculateWithAbatement('aah')
+        rstnet = calculateWithAbatement('rstnet')
+        pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
+        tns_auto_entrepreneur_benefice = calculateWithAbatement('tns_auto_entrepreneur_benefice')
+
+        tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
+        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
+        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+        pensions_alimentaires_versees_individu = simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year)
+
+        result = (
+            sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet +
+            indemnites_journalieres + tns_auto_entrepreneur_benefice + tns_micro_entreprise_benefice +
+            tns_benefice_exploitant_agricole + tns_autres_revenus
+        )
+
         return period, result
 
 

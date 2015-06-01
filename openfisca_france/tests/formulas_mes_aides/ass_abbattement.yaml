@@ -1,4 +1,4 @@
-- name: "Non prise en compte des ARE pour un célibataire"
+- name: "Non prise en compte des ARE pour un célibataire, mais prise en tant que conjoint"
   period: "month:2015-04"
   familles:
     parents: ["parent1"]
@@ -15,7 +15,7 @@
       chonet:
         2015-01: 200
         2015-02: 200
-        2015-03: 0
+        2015-03: 200
         year:2014-04: 2000
   output_variables:
     ass_eligibilite_i: true
