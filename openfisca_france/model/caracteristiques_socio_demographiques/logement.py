@@ -43,15 +43,15 @@ reference_input_variable(
     label = u'Loyer',
     name = 'loyer',
     set_input = set_input_divide_by_period,
-    )
+)
 
 build_column(
     'proprietaire_proche_famille',
     BoolCol(
         entity = "fam",
         label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint",
-        ),
-    )
+    ),
+)
 
 reference_input_variable(
     column = EnumCol(
@@ -59,16 +59,17 @@ reference_input_variable(
             u"Non renseigné",
             u"Accédant à la propriété",
             u"Propriétaire (non accédant) du logement",
-            u"Locataire d'un logement HLM", #FIXME : Est-ce qu'on parle vraiment d'un HLM et pas d'un foyer ? Incohérence avec mes-aides ? 
+            u"Locataire d'un logement HLM",
             u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
             u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-            u"Logé gratuitement par des parents, des amis ou l'employeur"])
-        ),
+            u"Logé gratuitement par des parents, des amis ou l'employeur",
+            u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"])
+    ),
     entity_class = Menages,
     label = u"Statut d'occupation",
     name = 'statut_occupation',
     set_input = set_input_dispatch_by_period,
-    )
+)
 
 
 @reference_formula
