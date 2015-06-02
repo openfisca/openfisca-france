@@ -272,15 +272,7 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         # loyer
         # coloc (1 si colocation, 0 sinon)
         # statut_occupation : statut d'occupation du logement
-        #   statut_occupation==1 : Accédant à la propriété
-        #   statut_occupation==2 : Propriétaire (non accédant) du logement.
-        #   statut_occupation==3 : Locataire d'un logement HLM
-        #   statut_occupation==4 : Locataire ou statut_occupationus-locataire d'un logement loué vide non-HLM
-        #   statut_occupation==5 : Locataire ou statut_occupationus-locataire d'un logement loué meublé
-        #                          ou d'une chambre d'hôtel.
-        #   statut_occupation==6 : Logé gratuitement par des parents, des amis ou l'employeur
-        #   statut_occupation==7 : Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de
-        #                          jeune travailleur, résidence sociale...)
+        # Voir statut_occupation dans model/caracteristiques_socio_demographiques/logement.py
 
         loca = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
         acce = statut_occupation == 1
