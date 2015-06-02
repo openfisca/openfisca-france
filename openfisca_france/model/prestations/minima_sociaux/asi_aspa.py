@@ -31,17 +31,17 @@ from ...base import *  # noqa analysis:ignore
 
 
 reference_input_variable(
+    name = "inapte_travail",
     column = BoolCol,
     entity_class = Individus,
     label = u"Reconnu inapte au travail",
-    name = "inapte_travail",
     )
 
 reference_input_variable(
-    column = IntCol,
+    name = "taux_invalidite",
+    column = FloatCol,
     entity_class = Individus,
     label = u"Taux d'invalidité",
-    name = "taux_invalidite",
     )
 
 
