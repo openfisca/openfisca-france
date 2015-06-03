@@ -211,7 +211,6 @@ class agirc_gmp_salarie(SimpleFormulaColumn):
         taux = simulation.legislation_at(period.start).cotsoc.cotisations_salarie['prive_cadre']['agirc'].rates[1]
         salaire_charniere = law.salaire_charniere  # annuel
         cotisation_forfaitaire = law.cotisation_salarie
-
         sous_plafond_securite_sociale = (assiette_cotisations_sociales <= plafond_securite_sociale)
         cotisation = - (
             sous_plafond_securite_sociale * cotisation_forfaitaire +
@@ -260,7 +259,7 @@ class agirc_salarie(SimpleFormulaColumn):
             )
         gmp_employe = simulation.calculate_add('agirc_gmp_salarie', period)
         type_sal = simulation.calculate('type_sal', period)
-        return period, cotisation + gmp_employe * (cotisation == 0) * (type_sal == 1)
+        return period, cotisation + gmp_employe * (type_sal == 1)
 
 
 @reference_formula
@@ -541,7 +540,7 @@ class mmida_employeur(SimpleFormulaColumn):
             bareme_name = 'maladie',
             variable_name = self.__class__.__name__,
             )
-        contribution_solidarite_autonomie = Simulation.calculate('contribution_solidarite_autonomie', period)
+        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         return period, cotisation + contribution_solidarite_autonomie
 
 
