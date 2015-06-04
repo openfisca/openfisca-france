@@ -99,7 +99,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
 
-        aah = simulation.calculate('aah', previous_year)
+        aah = simulation.calculate_add('aah', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 

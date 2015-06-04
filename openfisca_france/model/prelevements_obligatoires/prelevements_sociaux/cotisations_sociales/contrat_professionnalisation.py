@@ -44,7 +44,7 @@ class professionnalisation(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         ass = simulation.calculate_add('ass', period)
         rsa = simulation.calculate('rsa', period)
-        aah = simulation.calculate('rsa', period)
+        aah = simulation.calculate('aah', period)
 
         age_condition = (16 <= age) * (age < 25)
         dummy_ass = ass > 0

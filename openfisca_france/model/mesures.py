@@ -398,7 +398,7 @@ class mini(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         aspa = simulation.calculate_add('aspa', period)
         aah_holder = simulation.compute('aah', period)
-        caah_holder = simulation.compute('caah', period)
+        caah_holder = simulation.compute_add('caah', period)
         asi = simulation.calculate_add('asi', period)
         rsa = simulation.calculate_add('rsa', period)
         aefa = simulation.calculate('aefa', period)
