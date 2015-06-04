@@ -4,10 +4,10 @@
   absolute_error_margin: 0
   input_variables:
     br_pf: 100
-    asi:
-     "2013" : 1200
-    aspa:
-     "2013" : 1200
+#    asi:
+#     "2013" : 1200
+#    aspa:
+#     "2013" : 1200
 #    aah:
 #     "2012-10": 0     # forcer valeur -(moins) 2ans -(moins) 3mois à 0
 #     "2012-11": 0     # tant que bug dans simulation.calculate_add dans classe br_mv_i

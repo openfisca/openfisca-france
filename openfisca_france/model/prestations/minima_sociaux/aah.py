@@ -36,17 +36,18 @@ class br_aah(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
+        print 'Base ressources AAH - periode: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
         annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
 
 # inactifs ou travailleurs en ESAT :
         br_pf_n_2 = simulation.calculate_add('br_pf', period)
-        asi_n_2 = simulation.calculate_add('asi', annee_fiscale_n_2)
-        aspa_n_2 = simulation.calculate_add('aspa', annee_fiscale_n_2)
+#        asi_n_2 = simulation.calculate_add('asi', annee_fiscale_n_2)
+#        aspa_n_2 = simulation.calculate_add('aspa', annee_fiscale_n_2)
 # TODO: travailleurs en milieu protégé : les ressources celles des trois derniers mois.
 # toujours la même base ressources ? http://www.guide-familial.fr/actualite-149654--nouvelle-etape-dans-la-reforme-de-l-aah--la-prise-en-compte-trimestrielle-des-ressources.html
 
-        return period, br_pf_n_2 + asi_n_2 + aspa_n_2
+        return period, br_pf_n_2  # + asi_n_2 + aspa_n_2
 
     '''
     Allocation adulte handicapé
@@ -160,6 +161,7 @@ class aah(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
+        print 'aah - periode: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
 
         aah_eligible = simulation.calculate('aah_eligible', period)
@@ -170,13 +172,13 @@ class aah(SimpleFormulaColumn):
         nb_eligib_aah_holder = simulation.compute('nb_eligib_aah', period)
         nb_eligib_aah = self.cast_from_entity_to_role(nb_eligib_aah_holder, role = VOUS)
 
-        if aah_eligible == 'False':
-            return period, 0 * aah_famille
-        else:
-            return period, aah_famille / nb_eligib_aah
+        return period, aah_eligible * (
+            (nb_eligib_aah > 0) * aah_famille / max_(nb_eligib_aah, 1)
+            )
 
 
-class caah(SimpleFormulaColumn):
+@reference_formula
+class caah(DatedFormulaColumn):
     column = FloatCol
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity_class = Individus
@@ -229,40 +231,54 @@ class caah(SimpleFormulaColumn):
     l'autre.
     '''
 
-    @dated_function(start=date(2005, 7, 1))
-    def function(self, simulation, period):
+    @dated_function(start = date(2005, 7, 1))
+    def function_2005_07_01(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        print 'late: {}'.format(period)
         law = simulation.legislation_at(period.start)
 
-        law.minim.caah.grph = simulation.calculate(law.minim.caah.cpltx, period)
-        law.minim.aah.montant = simulation.calculate(law.minim.aah.montant, period)
+        grph = law.minim.caah.grph
+        aah_montant = law.minim.aah.montant
 
-        aah = simulation.calculate(aah, period)
-        asi = simulation.calculate(asi, period)
+        aah = simulation.calculate('aah', period)
+        asi_elig = simulation.calculate('asi_elig', period)
+        asi_holder = simulation.compute('asi', period)  # montant asi de la famille
+        asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
+        benef_asi = (asi_elig * (asi > 0))
+        al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
+        al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
 
-        elig_cpl = ((aah > 0) | (asi > 0))  # TODO: & logement indépendant & inactif 12 derniers mois
-                                            # & capa de travail < 5% & taux d'invalidité >= 80%
-        compl_ress = elig_cpl * max_(law.minim.caah.grph - law.minim.aah.montant / 12, 0)
+        elig_cpl = ((aah > 0) | (benef_asi > 0))
+        # TODO: & logement indépendant & inactif 12 derniers mois
+        # & capa de travail < 5% & taux d'invalidité >= 80%
+        compl_ress = elig_cpl * max_(grph - aah_montant, 0)
 
-        elig_mva = (al > 0) * ((aah > 0) | (asi > 0))  # TODO: & logement indépendant & pas de revenus professionnels
-                                                       # propres & capa de travail < 5% & taux d'invalidité >= 80%
-        mva = 0  # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
+        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
+        # TODO: & logement indépendant & pas de revenus professionnels
+        # propres & capa de travail < 5% & taux d'invalidité >= 80%
+        mva = 0.0 * elig_mva  # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
 
         return period, max_(compl_ress, mva)
 
-    @dated_function(stop=date(2005, 6, 30))
-    def function(self, simulation, period):
+    @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
+    def function_2005_06_30(self, simulation, period):
+        print 'early: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
         law = simulation.legislation_at(period.start)
 
-        law.minim.caah.cpltx = simulation.calculate(law.minim.caah.cpltx, period)
-        law.minim.aah.montant = simulation.calculate(law.minim.aah.montant, period)
+        cpltx = law.minim.caah.cpltx
+        aah_montant = law.minim.aah.montant
 
-        aah = simulation.calculate(aah, period)
-        asi = simulation.calculate(asi, period)
+        aah = simulation.calculate('aah', period)
+        asi_elig = simulation.calculate('asi_elig', period)
+        asi_holder = simulation.compute('asi', period)  # montant asi de la famille
+        asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
+        benef_asi = (asi_elig * (asi > 0))
+        al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
+        al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
 
-        elig_ancien_caah = ((aah > 0) | (asi > 0)) * (al > 0)  # TODO: & invalidité >= 80%  & logement indépendant
-        ancien_caah = law.minim.caah.cpltx * law.minim.aah.montant * elig_ancien_caah
-            # En fait le taux cpltx perdure jusqu'en 2008
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0))  # TODO: & invalidité >= 80%  & logement indépendant
+        ancien_caah = cpltx * aah_montant * elig_ancien_caah
+        # En fait le taux cpltx perdure jusqu'en 2008
 
         return period, ancien_caah
