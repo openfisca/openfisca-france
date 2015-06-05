@@ -320,75 +320,36 @@ class rfon_ms(SimpleFormulaColumn):
         return period, (f4ba + f4be) / 12
 
 
-@reference_formula
-class br_rmi_pf(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Familles
-    label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
-
-    @dated_function(date(2002, 1, 1), date(2003, 12, 31))
-    def function_2002(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate('asf', period)
-        apje = simulation.calculate_divide('apje', period)
-        ape = simulation.calculate_divide('ape', period)
-        P = simulation.legislation_at(period.start).minim
-
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
-
-    @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
-    def function_2003(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate_divide('asf', period)
-        paje_base = simulation.calculate_divide('paje_base', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
-        paje_colca = simulation.calculate_divide('paje_colca', period)
-        P = simulation.legislation_at(period.start).minim
-
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
-
-    @dated_function(start = date(2014, 4, 1))
-    def function_2014(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        af_base = simulation.calculate('af_base', period)
-        cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
-        cf = simulation.calculate('cf', period)
-        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
-        paje_base = simulation.calculate_divide('paje_base', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
-        paje_colca = simulation.calculate_divide('paje_colca', period)
-        P = simulation.legislation_at(period.start).minim
-
-        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
-        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
-
-        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca + paje_prepare + paje_colca)
+# Bases de ressources
+# ===================
 
 
 @reference_formula
-class br_rmi_ms(SimpleFormulaColumn):
+class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
     column = FloatCol
-    label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
-    entity_class = Familles
+    label = u"Base de ressources des revenus du patrimoine du RSA"
+    entity_class = Individus
+    start_date = date(2009, 6, 1)
 
-    def function(self, simulation, period):
+    @dated_function(start = date(2009, 6, 1))
+    def function_2009_(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        three_previous_months = period.start.period('month', 3).offset(-3)
-        aspa = simulation.calculate('aspa', period)
-        asi = simulation.calculate('asi', period)
-        ass = simulation.calculate('ass', period)
-        aah_holder = simulation.compute_add('aah', three_previous_months)
-        caah_holder = simulation.compute_add('caah', three_previous_months)
+        interets_epargne_sur_livrets = simulation.calculate('interets_epargne_sur_livrets', period)
+        epargne_non_remuneree = simulation.calculate('epargne_non_remuneree', period)
+        revenus_capital = simulation.calculate_divide('revenus_capital', period)
+        valeur_locative_immo_non_loue = simulation.calculate('valeur_locative_immo_non_loue', period)
+        valeur_locative_terrains_non_loue = simulation.calculate('valeur_locative_terrains_non_loue', period)
+        revenus_locatifs = simulation.calculate_divide('revenus_locatifs', period)
+        rsa = simulation.legislation_at(period.start).minim.rmi
 
-        aah = self.sum_by_entity(aah_holder)
-        caah = self.sum_by_entity(caah_holder)
-        return period, aspa + asi + ass + aah + caah
+        return period, (
+            interets_epargne_sur_livrets / 12 +
+            epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
+            revenus_capital +
+            valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
+            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
+            revenus_locatifs
+            )
 
 
 @reference_formula
@@ -439,99 +400,6 @@ class br_rmi_i(SimpleFormulaColumn):
             allocation_securisation_professionnelle + prestation_compensatoire +
             rsa_base_ressources_patrimoine_i
             ) / 3
-
-
-@reference_formula
-class br_rmi(DatedFormulaColumn):
-    column = FloatCol
-    label = u"Base ressources du Rmi ou du Rsa"
-    entity_class = Familles
-
-    @dated_function(stop = date(2009, 5, 31))
-    def function_rmi(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
-        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
-        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
-
-        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total
-
-    @dated_function(start = date(2009, 6, 1))
-    def function_rsa(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
-        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
-        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
-        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
-
-        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
-        ra_rsa_i_total = self.sum_by_entity(ra_rsa_i_holder)
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + ra_rsa_i_total
-
-
-@reference_formula
-class psa(DatedFormulaColumn):
-    column = FloatCol
-    entity_class = Familles
-    label = u"Prime de solidarité active"
-    url = u"http://www.service-public.fr/actualites/001077.html"
-
-    @dated_function(start = date(2009, 4, 1), stop = date(2009, 4, 30))
-    def function_2009(self, simulation, period):
-        '''
-        Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
-        Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
-        en janvier, février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour
-        les ex-bénéficiaires du Rmi ou de l’Api), de la prime forfaitaire mensuelle au titre du Rmi ou de l’Api
-        ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et
-        d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
-        La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
-        '''
-        period = period.start.offset('first-of', 'month').period('month')
-        api = simulation.calculate('api', period)
-        rsa = simulation.calculate('rsa', period)
-        activite_holder = simulation.compute('activite', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
-
-        aide_logement = simulation.calculate('aide_logement', period)
-        P = simulation.legislation_at(period.start).minim.rmi
-
-        activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
-        dummy_api = api > 0
-        dummy_rmi = rsa > 0
-        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
-        condition = (dummy_api + dummy_rmi + dummy_al > 0)
-        psa = condition * P.psa
-        return period, psa
-
-
-@reference_formula
-class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
-    column = FloatCol
-    label = u"Base de ressources des revenus du patrimoine du RSA"
-    entity_class = Individus
-    start_date = date(2009, 6, 1)
-
-    @dated_function(start = date(2009, 6, 1))
-    def function_2009_(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        interets_epargne_sur_livrets = simulation.calculate('interets_epargne_sur_livrets', period)
-        epargne_non_remuneree = simulation.calculate('epargne_non_remuneree', period)
-        revenus_capital = simulation.calculate_divide('revenus_capital', period)
-        valeur_locative_immo_non_loue = simulation.calculate('valeur_locative_immo_non_loue', period)
-        valeur_locative_terrains_non_loue = simulation.calculate('valeur_locative_terrains_non_loue', period)
-        revenus_locatifs = simulation.calculate_divide('revenus_locatifs', period)
-        rsa = simulation.legislation_at(period.start).minim.rmi
-
-        return period, (
-            interets_epargne_sur_livrets / 12 +
-            epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
-            revenus_capital +
-            valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
-            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
-            revenus_locatifs
-            )
 
 
 @reference_formula
@@ -610,6 +478,142 @@ class ra_rsa(SimpleFormulaColumn):
 
         ra_rsa = self.sum_by_entity(ra_rsa_i_holder)
         return period, ra_rsa
+
+
+@reference_formula
+class br_rmi_pf(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
+
+    @dated_function(date(2002, 1, 1), date(2003, 12, 31))
+    def function_2002(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        af_base = simulation.calculate('af_base', period)
+        cf = simulation.calculate_divide('cf', period)
+        asf = simulation.calculate('asf', period)
+        apje = simulation.calculate_divide('apje', period)
+        ape = simulation.calculate_divide('ape', period)
+        P = simulation.legislation_at(period.start).minim
+
+        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
+
+    @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
+    def function_2003(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        af_base = simulation.calculate('af_base', period)
+        cf = simulation.calculate_divide('cf', period)
+        asf = simulation.calculate_divide('asf', period)
+        paje_base = simulation.calculate_divide('paje_base', period)
+        paje_clca = simulation.calculate_divide('paje_clca', period)
+        paje_prepare = simulation.calculate_divide('paje_prepare', period)
+        paje_colca = simulation.calculate_divide('paje_colca', period)
+        P = simulation.legislation_at(period.start).minim
+
+        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
+
+    @dated_function(start = date(2014, 4, 1))
+    def function_2014(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        af_base = simulation.calculate('af_base', period)
+        cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
+        cf = simulation.calculate('cf', period)
+        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
+        paje_base = simulation.calculate_divide('paje_base', period)
+        paje_clca = simulation.calculate_divide('paje_clca', period)
+        paje_prepare = simulation.calculate_divide('paje_prepare', period)
+        paje_colca = simulation.calculate_divide('paje_colca', period)
+        P = simulation.legislation_at(period.start).minim
+
+        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
+        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+
+        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca + paje_prepare + paje_colca)
+
+
+@reference_formula
+class br_rmi_ms(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        three_previous_months = period.start.period('month', 3).offset(-3)
+        aspa = simulation.calculate('aspa', period)
+        asi = simulation.calculate('asi', period)
+        ass = simulation.calculate('ass', period)
+        aah_holder = simulation.compute_add('aah', three_previous_months)
+        caah_holder = simulation.compute_add('caah', three_previous_months)
+
+        aah = self.sum_by_entity(aah_holder)
+        caah = self.sum_by_entity(caah_holder)
+        return period, aspa + asi + ass + aah + caah
+
+
+@reference_formula
+class br_rmi(DatedFormulaColumn):
+    column = FloatCol
+    label = u"Base ressources du Rmi ou du Rsa"
+    entity_class = Familles
+
+    @dated_function(stop = date(2009, 5, 31))
+    def function_rmi(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
+        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
+        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
+
+        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
+        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total
+
+    @dated_function(start = date(2009, 6, 1))
+    def function_rsa(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
+        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
+        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
+        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
+
+        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
+        ra_rsa_i_total = self.sum_by_entity(ra_rsa_i_holder)
+        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + ra_rsa_i_total
+
+
+@reference_formula
+class psa(DatedFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Prime de solidarité active"
+    url = u"http://www.service-public.fr/actualites/001077.html"
+
+    @dated_function(start = date(2009, 4, 1), stop = date(2009, 4, 30))
+    def function_2009(self, simulation, period):
+        '''
+        Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
+        Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
+        en janvier, février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour
+        les ex-bénéficiaires du Rmi ou de l’Api), de la prime forfaitaire mensuelle au titre du Rmi ou de l’Api
+        ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et
+        d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
+        La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
+        '''
+        period = period.start.offset('first-of', 'month').period('month')
+        api = simulation.calculate('api', period)
+        rsa = simulation.calculate('rsa', period)
+        activite_holder = simulation.compute('activite', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+
+        aide_logement = simulation.calculate('aide_logement', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+        dummy_api = api > 0
+        dummy_rmi = rsa > 0
+        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
+        condition = (dummy_api + dummy_rmi + dummy_al > 0)
+        psa = condition * P.psa
+        return period, psa
 
 
 @reference_formula
