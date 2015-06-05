@@ -357,15 +357,20 @@ class rsa_ressource_calculator:
     def __init__(self, simulation, period):
         self.period = period
         self.simulation = simulation
+        self.three_previous_months = self.period.start.period('month', 3).offset(-3)
 
     def calcule_ressource(self, variable_name, neutralisable = True, neutral_forfaitaire = False):
         period = self.period
         simulation = self.simulation
-        three_previous_months = self.period.start.period('month', 3).offset(-3)
+        three_previous_months = self.three_previous_months
         ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
-        if neutralisable:
-            ressource_mois_courant = simulation.calculate(variable_name, period)
+        ressource_mois_courant = simulation.calculate(variable_name, period)
+
+        if neutralisable and not neutral_forfaitaire:
             return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
+        elif neutral_forfaitaire:
+            neutral_max = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
+            return max_(0, ressource_trois_derniers_mois - (ressource_mois_courant == 0) * neutral_max)
         else:
             return ressource_trois_derniers_mois
 
@@ -384,10 +389,10 @@ class br_rmi_i(SimpleFormulaColumn):
 
         # Ressources neutralisables
         chonet = r.calcule_ressource('chonet')
-        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues')
+        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues', neutral_forfaitaire = True)
         allocation_aide_retour_emploi = r.calcule_ressource('allocation_aide_retour_emploi')
         allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
-        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
+        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire', neutral_forfaitaire = True)
         rstnet = r.calcule_ressource('rstnet')
 
         # Ressources non neutralisables
