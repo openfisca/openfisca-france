@@ -352,6 +352,24 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             )
 
 
+class rsa_ressource_calculator:
+
+    def __init__(self, simulation, period):
+        self.period = period
+        self.simulation = simulation
+
+    def calcule_ressource(self, variable_name, neutralisable = True, neutral_forfaitaire = False):
+        period = self.period
+        simulation = self.simulation
+        three_previous_months = self.period.start.period('month', 3).offset(-3)
+        ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
+        if neutralisable:
+            ressource_mois_courant = simulation.calculate(variable_name, period)
+            return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
+        else:
+            return ressource_trois_derniers_mois
+
+
 @reference_formula
 class br_rmi_i(SimpleFormulaColumn):
     column = FloatCol
@@ -362,44 +380,39 @@ class br_rmi_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         three_previous_months = period.start.period('month', 3).offset(-3)
 
-        def calcule_type_ressource(variable_name, neutralisable = False):
-            ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
-            if neutralisable:
-                ressource_mois_courant = simulation.calculate(variable_name, period)
-                return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
-            else:
-                return ressource_trois_derniers_mois
+        r = rsa_ressource_calculator(simulation, period)
 
         # Ressources neutralisables
-        chonet = calcule_type_ressource('chonet', neutralisable = True)
-        pensions_alimentaires_percues = calcule_type_ressource('pensions_alimentaires_percues', neutralisable = True)
-        allocation_aide_retour_emploi = calcule_type_ressource('allocation_aide_retour_emploi', neutralisable = True)
-        allocation_securisation_professionnelle = calcule_type_ressource('allocation_securisation_professionnelle',
-            neutralisable = True)
-        prestation_compensatoire = calcule_type_ressource('prestation_compensatoire', neutralisable = True)
+        chonet = r.calcule_ressource('chonet')
+        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues')
+        allocation_aide_retour_emploi = r.calcule_ressource('allocation_aide_retour_emploi')
+        allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
+        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
+        rstnet = r.calcule_ressource('rstnet')
 
-        # Autres ressources
-        rstnet = calcule_type_ressource('rstnet')
-        rto_declarant1 = calcule_type_ressource('rto_declarant1')
-        rfon_ms = calcule_type_ressource('rfon_ms')
-        div_ms = calcule_type_ressource('div_ms')
-        gains_exceptionnels = calcule_type_ressource('gains_exceptionnels')
-        dedommagement_victime_amiante = calcule_type_ressource('dedommagement_victime_amiante')
-        pensions_invalidite = calcule_type_ressource('pensions_invalidite')
-        rsa_base_ressources_patrimoine_i = calcule_type_ressource('rsa_base_ressources_patrimoine_i')
+        # Ressources non neutralisables
+        rto_declarant1 = r.calcule_ressource('rto_declarant1', neutralisable = False)
+        rfon_ms = r.calcule_ressource('rfon_ms', neutralisable = False)
+        div_ms = r.calcule_ressource('div_ms', neutralisable = False)
+        gains_exceptionnels = r.calcule_ressource('gains_exceptionnels', neutralisable = False)
+        dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante', neutralisable = False)
+        pensions_invalidite = r.calcule_ressource('pensions_invalidite', neutralisable = False)
+        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_i', neutralisable = False)
 
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        return period, (
+        result = (
             chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
             rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
             rsa_base_ressources_patrimoine_i
-            ) / 3
+        ) / 3
+
+        return period, result
 
 
 @reference_formula
@@ -411,39 +424,21 @@ class ra_rsa_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        three_previous_months = period.start.period('month', 3).offset(-3)
 
-        def calcule_type_ressource(variable_name, neutralisable = False):
-            ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
-            if neutralisable:
-                ressource_mois_courant = simulation.calculate(variable_name, period)
-                return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
-            else:
-                return ressource_trois_derniers_mois
+        r = rsa_ressource_calculator(simulation, period)
 
         # Ressources neutralisables
-        salaire_net = calcule_type_ressource('salaire_net', neutralisable = True)
-        indemnites_chomage_partiel = calcule_type_ressource('indemnites_chomage_partiel', neutralisable = True)
-        indemnites_journalieres_maternite = calcule_type_ressource('indemnites_journalieres_maternite',
-            neutralisable = True)
-        indemnites_journalieres_paternite = calcule_type_ressource('indemnites_journalieres_paternite',
-            neutralisable = True)
-        indemnites_journalieres_adoption = calcule_type_ressource('indemnites_journalieres_adoption',
-            neutralisable = True)
-        indemnites_journalieres_maladie = calcule_type_ressource('indemnites_journalieres_maladie',
-            neutralisable = True)
-        indemnites_journalieres_accident_travail = calcule_type_ressource('indemnites_journalieres_accident_travail',
-            neutralisable = True)
-        indemnites_journalieres_maladie_professionnelle = calcule_type_ressource(
-            'indemnites_journalieres_maladie_professionnelle', neutralisable = True)
-        indemnites_volontariat = calcule_type_ressource('indemnites_volontariat', neutralisable = True)
-        revenus_stage_formation_pro = calcule_type_ressource('revenus_stage_formation_pro', neutralisable = True)
-        indemnites_stage = calcule_type_ressource('indemnites_stage', neutralisable = True)
-        bourse_recherche = calcule_type_ressource('bourse_recherche', neutralisable = True)
+        salaire_net = r.calcule_ressource('salaire_net')
+        indemnites_journalieres = r.calcule_ressource('indemnites_journalieres')
+        indemnites_chomage_partiel = r.calcule_ressource('indemnites_chomage_partiel')
+        indemnites_volontariat = r.calcule_ressource('indemnites_volontariat')
+        revenus_stage_formation_pro = r.calcule_ressource('revenus_stage_formation_pro')
+        indemnites_stage = r.calcule_ressource('indemnites_stage')
+        bourse_recherche = r.calcule_ressource('bourse_recherche')
 
         # Autres ressources
-        hsup = calcule_type_ressource('hsup')
-        etr = calcule_type_ressource('etr')
+        hsup = r.calcule_ressource('hsup', neutralisable = False)
+        etr = r.calcule_ressource('etr', neutralisable = False)
 
         # Ressources TNS
 
@@ -451,18 +446,15 @@ class ra_rsa_i(SimpleFormulaColumn):
         # standard sur le CA, mais pas les cotisations pour charges sociales. Dans l'attente d'une éventuelle correction, nous
         # implémentons selon leurs instructions. Si changement, il suffira de remplacer le tns_auto_entrepreneur_benefice par
         # tns_auto_entrepreneur_revenus_net
-        tns_auto_entrepreneur_revenus_rsa = calcule_type_ressource('tns_auto_entrepreneur_benefice', neutralisable = True)
-        tns_micro_entreprise_revenus_net = calcule_type_ressource('tns_micro_entreprise_revenus_net')
-        tns_autres_revenus = calcule_type_ressource('tns_autres_revenus')
+        tns_auto_entrepreneur_revenus_rsa = r.calcule_ressource('tns_auto_entrepreneur_benefice')
 
-        tns_total_revenus_pour_rsa = tns_autres_revenus + tns_micro_entreprise_revenus_net + tns_auto_entrepreneur_revenus_rsa
-
-        return period, (
-            salaire_net + hsup + etr + indemnites_chomage_partiel + indemnites_journalieres_maternite +
-            indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie +
-            indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle +
-            indemnites_volontariat + revenus_stage_formation_pro + indemnites_stage + bourse_recherche + tns_total_revenus_pour_rsa
+        result = (
+            salaire_net + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat +
+            revenus_stage_formation_pro + indemnites_stage + bourse_recherche + hsup + etr +
+            tns_auto_entrepreneur_revenus_rsa
         ) / 3
+
+        return period, result
 
 
 @reference_formula
