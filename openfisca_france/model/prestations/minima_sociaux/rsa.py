@@ -538,8 +538,9 @@ class br_rmi_ms(SimpleFormulaColumn):
         aah_holder = simulation.compute_add('aah', three_previous_months)
         caah_holder = simulation.compute_add('caah', three_previous_months)
 
-        aah = self.sum_by_entity(aah_holder)
-        caah = self.sum_by_entity(caah_holder)
+        aah = self.sum_by_entity(aah_holder) / 3
+        caah = self.sum_by_entity(caah_holder) / 3
+
         return period, aspa + asi + ass + aah + caah
 
 
