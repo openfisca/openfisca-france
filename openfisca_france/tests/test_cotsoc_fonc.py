@@ -61,13 +61,13 @@ def test():
 
                 fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
-                contribution_solidarite_autonomie = - 6,
-                cotisations_employeur_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -45,
 
                 allocations_temporaires_invalidite = -6.6,
                 mmid_employeur = -194,
                 famille = -108,
-                cotisations_employeur_non_contributives = -308,
+                contribution_solidarite_autonomie = - 6,
+                cotisations_employeur_non_contributives = -314.6,
                 # mmid_employeur, famille, fnal, versement_transport,
                 # allocations_temporaires_invalidite contribution_solidarite_autonomie
 
@@ -117,13 +117,13 @@ def test():
             expected_values = dict(
                 fnal = -8 -2 ,
                 versement_transport = -2000 * 0.0175,
-                contribution_solidarite_autonomie = - 6,
-                cotisations_employeur_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -45,
 
                 allocations_temporaires_invalidite = -10,
                 mmid_employeur = -230,
                 famille = -108,
-                cotisations_employeur_non_contributives  = -( 230 + 108 + 10),
+                contribution_solidarite_autonomie = - 6,
+                cotisations_employeur_non_contributives  = -( 230 + 108 + 10 + 6),
 
                 pension_civile_employeur = -546,
                 rafp_employeur = -20,
@@ -168,16 +168,15 @@ def test():
             error_margin = 1,
             expected_values = dict(
 
-                fnal = -8 -2,
+                fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,
-                contribution_solidarite_autonomie = - 6,
-
-                cotisations_employeur_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -45,
 
                 allocations_temporaires_invalidite = -10,
                 mmid_employeur = -230,
                 famille = -108,
-                cotisations_employeur_non_contributives = -348,
+                contribution_solidarite_autonomie = - 6,
+                cotisations_employeur_non_contributives = -354,
                 # cotisations_employeur_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
                 # pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
 
@@ -224,19 +223,19 @@ def test():
             error_margin = 1,
             expected_values = dict(
 
-                contribution_solidarite_autonomie = - 7.68,
                 fnal = - 10.24 - 2.56,
                 versement_transport = -2560 * 0.0175,
-                cotisations_employeur_main_d_oeuvre = -65.28,
+                cotisations_employeur_main_d_oeuvre =  - 10.24 - 2.56 - 2560 * 0.0175,
 
                 vieillesse_deplafonnee_employeur = -40.96,
                 vieillesse_plafonnee_employeur = -212.48,
                 pension_civile_employeur = 0,
                 rafp_employeur = 0,
                 ircantec_employeur = -90.24,  # TODO: Trouver source extérieur site IPP buggé
-                cotisations_employeur_contributives = -343.68,
+                contribution_solidarite_autonomie = - 7.68,
+                cotisations_employeur_contributives = -343.68,  # -40.96 -212.48 -90.24 - 7.68
 
-                cotisations_employeur_non_contributives = -465.92,
+                cotisations_employeur_non_contributives = -465.92 - 7.68,
 
                 cotisations_employeur = -(
                     212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68
@@ -291,15 +290,15 @@ def test():
 
             error_margin = 2,
             expected_values = dict(
-                contribution_solidarite_autonomie = - 6,
                 fnal = -8 - 2,
                 versement_transport = -2000 * 0.0175,  # = 35
-                cotisations_employeur_main_d_oeuvre = -51,
+                cotisations_employeur_main_d_oeuvre = -45,
 
                 allocations_temporaires_invalidite = -6.6,
                 mmid_employeur = -194,
                 famille = -108,
-                cotisations_employeur_non_contributives = -308,
+                contribution_solidarite_autonomie = - 6,
+                cotisations_employeur_non_contributives = -314.6,
 
                 pension_civile_employeur = -1371.80,
                 rafp_employeur = -20,
@@ -356,10 +355,9 @@ def test():
             expected_values = dict(
                 # pension,  ati, rafp, maladie, famille, fnal1, fnal2, csa,
 
-                contribution_solidarite_autonomie = - 6 * 2,
                 fnal = - 8 * 2 - 2 * 2,
                 versement_transport = -2000 * 0.0175 * 2,  # = 35
-                cotisations_employeur_main_d_oeuvre = -51 * 2,
+                cotisations_employeur_main_d_oeuvre = -45 * 2,
 
 
                 pension_civile_employeur = -1371.80 * 2,
@@ -369,7 +367,8 @@ def test():
                 allocations_temporaires_invalidite = -6.6 * 2,
                 mmid_employeur = -194 * 2,
                 famille = -108 * 2,
-                cotisations_employeur_non_contributives = -617.2,
+                contribution_solidarite_autonomie = - 6 * 2,
+                cotisations_employeur_non_contributives = -617.2 - 6 * 2,
 
                 cotisations_employeur = -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2,
 

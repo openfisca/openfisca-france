@@ -8,6 +8,8 @@
           <NODE code="cotisations_employeur_contributives" color="249,208,211" desc="Cotisations sociales employeur contributives" shortname="Cotsoc pat contrib" >
             <NODE code="ags" color="249,208,211" desc="AGS" shortname="AGS" />
             <NODE code="agff_employeur" color="249,208,211" desc="AGFF (employeur)" shortname="AGFF" />
+            <NODE code="agirc_employeur" color="249,208,211" desc="AGIRC (employeur)" shortname="AGIRC" />
+            <NODE code="agirc_gmp_employeur" color="249,208,211" desc="AGIRC (employeur)" shortname="AGIRC GMP" />
             <NODE code="apec_employeur" color="249,208,211" desc="APEC (employeur)" shortname="APEC" />
             <NODE code="arrco_employeur" color="249,208,211" desc="ARRCO (employeur)" shortname="ARRCO" />
             <NODE code="chomage_employeur" color="249,208,211" desc="CHÔMAGE (employeur)" shortname="CHÔMAGE" />
@@ -48,6 +50,7 @@
         <NODE code="cotisations_salariales_contributives" color="249,208,211" desc="Cotisations sociales salariales contributives" shortname="Cotsoc sal contrib">
           <NODE code="agff_salarie" color="249,208,211" desc="AGFF (salarié)" shortname="AGFF" />
           <NODE code="agirc_salarie" color="249,208,211" desc="AGIRC" shortname="AGIRC" />
+          <NODE code="agirc_gmp_salarie" color="249,208,211" desc="AGIRC GMP" shortname="AGIRC GMP" />
           <NODE code="apec_salarie" color="249,208,211" desc="APEC" shortname="APEC (salarié)" />
           <NODE code="arrco_salarie" color="249,208,211" desc="ARRCO (salarié)" shortname="ARRCO" />
           <NODE code="chomage_salarie" color="249,208,211" desc="CHÔMAGE (salarié)" shortname="CHÔMAGE" />

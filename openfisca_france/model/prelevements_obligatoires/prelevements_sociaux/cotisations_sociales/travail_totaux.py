@@ -69,6 +69,8 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
         period = period
         ags = simulation.calculate('ags', period)
         agff_employeur = simulation.calculate_add('agff_employeur', period)
+        agirc_employeur = simulation.calculate_add('agirc_employeur', period)
+        agirc_gmp_employeur = simulation.calculate_add('agirc_gmp_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
         chomage_employeur = simulation.calculate('chomage_employeur', period)
@@ -85,6 +87,8 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
             # prive
             ags +
             agff_employeur +
+            agirc_employeur +
+            agirc_gmp_employeur +
             apec_employeur +
             arrco_employeur +
             chomage_employeur +
@@ -140,6 +144,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         period = period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
+        agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
         apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
         chomage_salarie = simulation.calculate_add('chomage_salarie', period)
@@ -155,6 +160,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             # prive
             agff_salarie +
             agirc_salarie +
+            agirc_gmp_salarie +
             apec_salarie +
             arrco_salarie +
             chomage_salarie +
