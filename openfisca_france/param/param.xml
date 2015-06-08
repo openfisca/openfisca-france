@@ -2539,8 +2539,8 @@
         <CODE code="taux" description="Taux" format="percent">
           <VALUE deb="1998-01-01" fin="2006-12-31" valeur="0.25" />
         </CODE>
-        <CODE code="max" description="Maximum">
-          <VALUE deb="2001-01-01" fin="2006-12-31" format="integer" type="monetary" valeur="19000" />
+        <CODE code="max" description="Maximum" format="integer" type="monetary">
+          <VALUE deb="2001-01-01" fin="2006-12-31" valeur="19000" />
         </CODE>
       </NODE>
       <NODE code="cinema" description="Souscription en faveur du cinéma ou de l'audiovisuel (case AA)">
@@ -4253,8 +4253,8 @@
       </CODE>
     </NODE>
     <NODE code="apje" description="Allocation pour jeune enfant (APJE)">
-      <CODE code="age" description="Âge limite inférieur">
-        <VALUE deb="2000-01-01" fin="2006-06-30" format="integer" type="age" valeur="3" />
+      <CODE code="age" description="Âge limite inférieur" format="integer" type="age">
+        <VALUE deb="2000-01-01" fin="2006-06-30" valeur="3" />
       </CODE>
       <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="13421" />
