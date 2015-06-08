@@ -66,7 +66,7 @@ class aefa(DatedFormulaColumn):
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
-        rsa = simulation.calculate('rsa', period)
+        rsa = simulation.calculate_add('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
         af = simulation.legislation_at(period.start).fam.af
 
