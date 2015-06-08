@@ -71,7 +71,7 @@ build_column('f8td_2002_2005', IntCol(entity = 'foy',
                 cerfa_field = u'8TD'))
 
 build_column('f8td', BoolCol(entity = 'foy',
-                start = date(2011, 1, 1), # 2011 ou 2013 ?
+                start = date(2011, 1, 1),  # 2011 ou 2013 ?
                 end = date(2014, 12, 31),
                 label = u"Revenus non imposables dépassent la moitié du RFR",
                 cerfa_field = u'8TD'))
