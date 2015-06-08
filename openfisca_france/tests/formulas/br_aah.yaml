@@ -13,7 +13,7 @@
 #     "2012-11": 0     # tant que bug dans simulation.calculate_add dans classe br_mv_i
 #     "2012-12": 0     # non résolu.
   output_variables:
-    br_aah: 2500
+    br_aah: 100
 
 - name: "Base ressources AAH - cas 2"
   description: Montant de la base ressources annuelle pour calcul AAH
@@ -21,13 +21,13 @@
   absolute_error_margin: 0
   input_variables:
     br_pf: 1110
-    asi:
-     "2012" : 900
-    aspa:
-     "2012" : 1000
+#    asi:
+#     "2012" : 900
+#    aspa:
+#     "2012" : 1000
 #    aah:
 #     "2012-09": 0     # forcer valeur - 2ans - 3mois à 0
 #     "2012-10": 0     # tant que bug dans simulation.calculate_add dans classe br_mv_i
 #     "2012-11": 0     # non résolu.
   output_variables:
-    br_aah: 3010
+    br_aah: 1110
