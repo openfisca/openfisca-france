@@ -50,7 +50,7 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
         period = period.start.offset('first-of', 'month').period('year')
-        aah_holder = simulation.compute('aah', period)
+        aah_holder = simulation.compute_add('aah', period)
         age_holder = simulation.compute('age', period)
         asi_holder = simulation.compute_add('asi', period)
         aspa_holder = simulation.compute_add('aspa', period)
