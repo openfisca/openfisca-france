@@ -156,3 +156,11 @@
     rsa_non_majore: 500
   output_variables:
     rsa: 0
+
+- name: "Non éligiilité TNS par défaut"
+  period: "month:2015-04"
+  input_variables:
+    age: 40
+  output_variables:
+    rsa_eligibilite_tns: False
+
