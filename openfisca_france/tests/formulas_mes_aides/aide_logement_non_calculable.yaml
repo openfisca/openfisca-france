@@ -1,14 +1,14 @@
-- name: "Non calculabiité des AL pour un propriétaire"
+- name: "Non calculabiité des AL pour un propriétaire primo accédant"
   period: "month:2015-04"
   input_variables:
-    statut_occupation: 2
+    statut_occupation: 1
   output_variables:
     aide_logement_non_calculable: 1
 
 - name: "Non calculabiité des AL pour un locataire en foyer"
   period: "month:2015-04"
   input_variables:
-    statut_occupation: 3
+    statut_occupation: 7
   output_variables:
     aide_logement_non_calculable: 2
 
