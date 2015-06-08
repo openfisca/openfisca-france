@@ -54,6 +54,7 @@ class br_mv_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
@@ -101,9 +102,7 @@ class br_mv_i(SimpleFormulaColumn):
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
         return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
-
-               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
-               # max_(0,etr) +
+               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +  # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
                dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
                indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus_net +
@@ -159,11 +158,11 @@ class asi_elig(SimpleFormulaColumn):
 
         aspa_elig = simulation.calculate('aspa_elig', period)
         invalide = simulation.calculate('invalide', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
+        rstnet = simulation.calculate('rstnet', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
         condition_situation = invalide & not_(aspa_elig)
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+        condition_pensionnement = (rstnet + pensions_invalidite) > 0
 
         return period, condition_situation * condition_pensionnement
 
@@ -219,25 +218,25 @@ class asi(SimpleFormulaColumn):
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
-        montant_max = (elig1 * P.asi.montant_seul
-            + elig2 * P.asi.montant_couple
-            + elig3 * 2 * P.asi.montant_seul
-            + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+        montant_max = (elig1 * P.asi.montant_seul +
+            elig2 * P.asi.montant_couple +
+            elig3 * 2 * P.asi.montant_seul +
+            elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
+            elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
 
         ressources = br_mv + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
-            + elig2 * P.asi.plaf_couple
-            + elig3 * P.asi.plaf_couple
-            + elig4 * P.aspa.plaf_couple
-            + elig5 * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub) +
+            elig2 * P.asi.plaf_couple +
+            elig3 * P.asi.plaf_couple +
+            elig4 * P.aspa.plaf_couple +
+            elig5 * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
-            + elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2)
-            + elig5 * (P.asi.montant_seul / 12 - depassement / 2))
+        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement) +
+            elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2) +
+            elig5 * (P.asi.montant_seul / 12 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_asi = max_(diff, 0)
