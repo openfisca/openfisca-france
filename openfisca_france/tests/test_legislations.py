@@ -93,4 +93,4 @@ def test_legislation_xml_file():
 if __name__ == '__main__':
     test_legislation_xml_file()
     import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'legislations_tests:test_legislation_xml_file'])
+    nose.core.runmodule(argv = [__file__, '-v', 'test_legislations:test_legislation_xml_file'])
