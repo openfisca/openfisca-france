@@ -54,6 +54,7 @@ build_column(
 )
 
 reference_input_variable(
+    name = 'statut_occupation',
     column = EnumCol(
         enum = Enum([
             u"Non renseigné",
@@ -63,11 +64,11 @@ reference_input_variable(
             u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
             u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
             u"Logé gratuitement par des parents, des amis ou l'employeur",
-            u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"])
+            u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
+            u"Sans domicile stable"])
     ),
     entity_class = Menages,
     label = u"Statut d'occupation",
-    name = 'statut_occupation',
     set_input = set_input_dispatch_by_period,
 )
 
