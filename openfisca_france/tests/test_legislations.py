@@ -83,6 +83,7 @@ def check_legislation_xml_file(year):
             ).encode('utf-8'))
 
     compact_legislation = legislations.compact_dated_node_json(legislation_json)
+    assert compact_legislation is not None
 
 
 def test_legislation_xml_file():
