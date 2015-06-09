@@ -233,7 +233,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""arrco_tranche_a_taux_employeur""",  # Taux ARRCO tranche A employeur) propre à l'entreprise
                     u"""arrco_tranche_a_taux_salarie""",  # Taux ARRCO tranche A salarié) propre à l'entreprise
                     u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
-                    u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
+                    u"""avantage_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
                     u"""indemnites_compensatrices_conges_payes""",
                     u"""contrat_de_travail""",  # Type contrat de travail
                     u"""contrat_de_travail_debut""",  # Date d'arrivée dans l'entreprise
@@ -435,7 +435,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f6aa',  # Souscriptions en faveur du cinéma ou de l’audiovisuel
                     'f6cc',  # Souscriptions au capital des SOFIPÊCHE
                     'f6eh',
-                    'f6da',  # Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté
+                    'f6da',  # Pertes en capital consécutives à la souscription au capital de soci��tés nouvelles ou de sociétés en difficulté
                     'f6cb',  # Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)
                     'f6hj',  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     'f6gh',  # Sommes à ajouter au revenu imposable
@@ -747,7 +747,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7rv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7rw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise
                     u"""f7rx""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
-                    u"""f7ry""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la r��duction d'impôt dont vous demandez l'imputation en 2012
+                    u"""f7ry""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la r����duction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7nu""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7nv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7nw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise

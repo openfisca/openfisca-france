@@ -5,7 +5,7 @@ input_variables:
   arrco_tranche_a_taux_employeur: .04539
   arrco_tranche_a_taux_salarie: .03024
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2013-01-01"
   contrat_de_travail_fin: "2013-12-31"
@@ -42,7 +42,8 @@ output_variables:
   agff_employeur: -30.15
   apec_employeur: -0.9
   arrco_employeur: -114.06
-  agirc_employeur: -41.13
+  agirc_employeur: 0
+  agirc_gmp_employeur: -41.13
   chomage_employeur: -100.52
   cotisation_exceptionnelle_temporaire_employeur: -5.53
   vieillesse_deplafonnee_employeur: -40.21
@@ -80,7 +81,8 @@ output_variables:
 
   # cotisations_salariales_contributives: 0
   agff_salarie: -20.10
-  agirc_salarie: -25.13
+  agirc_salarie: 0
+  agirc_gmp_salarie: -25.13
   apec_salarie: -0.6
   arrco_salarie: -75.99
   chomage_salarie: -60.31

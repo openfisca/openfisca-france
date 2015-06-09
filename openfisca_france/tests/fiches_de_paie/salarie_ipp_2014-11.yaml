@@ -29,8 +29,9 @@ output_variables:
   ags: -13.80
   apec_employeur: -1.09 - .57
   cotisation_exceptionnelle_temporaire_employeur: -10.12
-  arrco_employeur: -138.53 - 199.75
-  # agirc_employeur: -199.75  # Inclus dans arcco
+  arrco_employeur: -138.53
+  agirc_employeur: -199.75
+  agirc_gmp_employeur: 0
   chomage_employeur: -120.99 - 63.01
   # chomage_tranche_a_employeur: -120.99  # Inclus dans assedic
   # chomage_tranche_b_employeur: -63.01  # Inclus dans assedic
@@ -54,6 +55,7 @@ output_variables:
   apec_salarie: -.73 - .38
   arrco_salarie: -92.25
   agirc_salarie: -122.09
+  agirc_gmp_salarie: 0
   # chomage_tranche_a_employe: -72.59  # Inclus dans assedic
   # chomage_tranche_b_employe: 37.81  # Inclus dans assedic
   chomage_salarie: -72.59 - 37.81

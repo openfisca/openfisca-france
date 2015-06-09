@@ -4,7 +4,7 @@ input_variables:
   apprentissage_contrat_debut: "2013-01-01"
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   birth: "1996-01-01"
   contrat_de_travail: 0  # temps plein
   # contrat_de_travail_debut:
@@ -42,6 +42,7 @@ output_variables:
   ags: -2.14
   agff_employeur: -8.57
   agirc_employeur: 0
+  agirc_gmp_employeur: 0
   apec_employeur: 0
   arrco_employeur: -33.21
   chomage_employeur: -28.57
@@ -91,6 +92,7 @@ output_variables:
   cotisations_salariales_non_contributives: -5.36
   agff_salarie: -5.71
   agirc_salarie: 0
+  agirc_gmp_salarie: 0
   apec_salarie: 0
   arrco_salarie: -22.14
   chomage_salarie: -17.14

@@ -199,7 +199,6 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             zone_franche_urbaine *
             entreprise_eligible
             )
-
         bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
         taux_max = (
             bareme_by_name['vieillessedeplaf'].rates[0] +
@@ -344,7 +343,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
             zone_revitalisation_rurale *
             duree_validite
             )
-        taux_max = .281  # TODO: move to legislation parameters file
+        taux_max = .281 if period.start.year < 2015 else .2655  # TODO: move to legislation parameters file
         seuil_max = 2.4
         seuil_min = 1.5
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)

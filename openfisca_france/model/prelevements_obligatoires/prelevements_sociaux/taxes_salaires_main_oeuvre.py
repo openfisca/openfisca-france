@@ -128,7 +128,6 @@ class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
         conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
         contribution_developpement_apprentissage = simulation.calculate(
             'contribution_developpement_apprentissage', period)
-        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         contribution_supplementaire_apprentissage = simulation.calculate(
             'contribution_supplementaire_apprentissage', period)
         financement_organisations_syndicales = simulation.calculate('financement_organisations_syndicales', period)
@@ -142,7 +141,6 @@ class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
         cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd +
             contribution_developpement_apprentissage +
-            contribution_solidarite_autonomie +
             contribution_supplementaire_apprentissage +
             financement_organisations_syndicales +
             fnal +

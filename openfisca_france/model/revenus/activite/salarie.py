@@ -182,7 +182,7 @@ reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Avantages en nature (Valeur réelle)",
-    name = 'avantages_en_nature_valeur_reelle',
+    name = 'avantage_en_nature_valeur_reelle',
     )
 reference_input_variable(
     column = FloatCol(),
@@ -467,7 +467,7 @@ reference_input_variable(
 
 
 @reference_formula
-class avantages_en_nature(SimpleFormulaColumn):
+class avantage_en_nature(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -475,14 +475,14 @@ class avantages_en_nature(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
-        avantages_en_nature_valeur_forfaitaire = simulation.calculate('avantages_en_nature_valeur_forfaitaire', period)
+        avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
+        avantage_en_nature_valeur_forfaitaire = simulation.calculate('avantage_en_nature_valeur_forfaitaire', period)
 
-        return period, avantages_en_nature_valeur_reelle + avantages_en_nature_valeur_forfaitaire
+        return period, avantage_en_nature_valeur_reelle + avantage_en_nature_valeur_forfaitaire
 
 
 @reference_formula
-class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
+class avantage_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
     # base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -491,9 +491,9 @@ class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
     # TODO: coplete this function
     def function(self, simulation, period):
         period = period
-        avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
+        avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
 
-        return period, avantages_en_nature_valeur_reelle * 0
+        return period, avantage_en_nature_valeur_reelle * 0
 
 
 @reference_formula
@@ -550,6 +550,7 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
                 ),
             0,
             )
+        print jours_travailles
         return period, jours_travailles
 
 

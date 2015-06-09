@@ -110,6 +110,7 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         agirc_employeur = simulation.calculate('agirc_employeur', period)
+        agirc_gmp_employeur = simulation.calculate('agirc_gmp_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
@@ -129,7 +130,7 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
-        exoneration = exoneration + agirc_employeur + arrco_employeur
+        exoneration = exoneration + agirc_employeur + agirc_gmp_employeur + arrco_employeur
         return period, - exoneration * stagiaire
 
 
@@ -143,6 +144,7 @@ class exoneration_cotisations_salarie_stagiaire(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         agirc_salarie = simulation.calculate('agirc_salarie', period)
+        agirc_gmp_salarie = simulation.calculate('agirc_gmp_salarie', period)
         arrco_salarie = simulation.calculate('arrco_salarie', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
@@ -162,6 +164,6 @@ class exoneration_cotisations_salarie_stagiaire(SimpleFormulaColumn):
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
-        exoneration = exoneration + agirc_salarie + arrco_salarie
+        exoneration = exoneration + agirc_salarie + agirc_gmp_salarie + arrco_salarie
 
         return period, - exoneration * stagiaire

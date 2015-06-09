@@ -149,7 +149,7 @@ def preprocess_legislation(legislation_json):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal =  build_sal(legislation_json)
+    sal = build_sal(legislation_json)
     pat = build_pat(legislation_json)
 
     cotsoc = legislation_json["children"]["cotsoc"]

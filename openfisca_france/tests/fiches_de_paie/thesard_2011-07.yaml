@@ -3,7 +3,7 @@ period: "2011-07"
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 1  # temps plein
   contrat_de_travail_debut: "2011-01-01"
   contrat_de_travail_fin: "2011-12-31"
