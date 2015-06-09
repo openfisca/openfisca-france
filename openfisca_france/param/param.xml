@@ -406,7 +406,7 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="24" />
         <VALUE deb="2012-01-01" fin="2014-12-31" valeur="23" />
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="22" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />        
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />
       </CODE>
       <CODE code="smic_h_b" description="SMIC horaire brut" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
