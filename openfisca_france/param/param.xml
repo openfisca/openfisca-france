@@ -5311,8 +5311,8 @@
       <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="65" />
       </CODE>
-      <CODE code="taux_invalidite_aspa_anticipe" description="Taux d'invalidité nécessaire pour percevoir l'ASPA de manière anticipée">
-        <VALUE deb="2002-01-01"  fin="2015-12-31" valeur="50" />
+      <CODE code="taux_invalidite_aspa_anticipe" description="Taux d'invalidité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
+        <VALUE deb="2002-01-01"  fin="2015-12-31" valeur="0.5"/>
       </CODE>
       <CODE code="abattement_forfaitaire_nb_h" description="Nombre d'heures travaillées forfaitaires" format="float">
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
