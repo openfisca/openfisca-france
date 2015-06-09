@@ -22,8 +22,6 @@ individus:
       2013: 0
     rst:
       2013: 0
-    salaire_imposable:
-      2013: 0
     salaire_de_base:
       2012: 3461.538461538462
       2013-12: 384.6153846153846
@@ -40,6 +38,8 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 3461.538461538462
+    salaire_imposable:
+      2013: 0
     salaire_net:
       2012: 2700
       2013-12: 300

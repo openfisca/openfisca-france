@@ -68,6 +68,13 @@ options_by_dir = collections.OrderedDict((
             ),
         ),
     (
+        os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas_mes_aides')),
+        dict(
+            accept_other_period = False,
+            default_absolute_error_margin = 0.005,
+            ),
+        ),
+    (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')),
         dict(
             accept_other_period = True,
