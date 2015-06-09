@@ -71,7 +71,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
         apprenti = simulation.calculate('apprenti', period)
-        avantages_en_nature = simulation.calculate('avantages_en_nature', period)
+        avantage_en_nature = simulation.calculate('avantage_en_nature', period)
         hsup = simulation.calculate('hsup', period)
         indemnites_compensatrices_conges_payes = simulation.calculate('indemnites_compensatrices_conges_payes', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
@@ -88,7 +88,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
         assiette = (
             salaire_de_base +
             primes_salaires +
-            avantages_en_nature +
+            avantage_en_nature +
             hsup +
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +

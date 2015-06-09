@@ -5,7 +5,7 @@ input_variables:
   arrco_tranche_a_taux_employeur: .04539
   arrco_tranche_a_taux_salarie: .03024
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2013-01-01"
   contrat_de_travail_fin: "2013-12-31"

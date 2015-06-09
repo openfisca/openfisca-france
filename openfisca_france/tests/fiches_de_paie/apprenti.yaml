@@ -4,7 +4,7 @@ input_variables:
   apprentissage_contrat_debut: "2013-01-01"
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   birth: "1996-01-01"
   contrat_de_travail: 0  # temps plein
   # contrat_de_travail_debut:

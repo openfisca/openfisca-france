@@ -4,7 +4,7 @@ ignore: true
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   code_postal_entreprise: "75014"
   depcom_entreprise: "75114"
   contrat_de_travail: 0  # temps plein
