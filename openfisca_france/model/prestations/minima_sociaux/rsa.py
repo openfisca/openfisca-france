@@ -358,19 +358,35 @@ class rsa_ressource_calculator:
         self.period = period
         self.simulation = simulation
         self.three_previous_months = self.period.start.period('month', 3).offset(-3)
+        last_month = period.start.period('month').offset(-1)
+        self.has_ressources_substitution = (
+            simulation.calculate('chonet', last_month) +
+            simulation.calculate('indemnites_journalieres', last_month) +
+            simulation.calculate('rstnet', last_month)
+        ) > 0
+        self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
 
-    def calcule_ressource(self, variable_name, neutralisable = True, neutral_forfaitaire = False):
-        period = self.period
-        simulation = self.simulation
-        three_previous_months = self.three_previous_months
-        ressource_trois_derniers_mois = simulation.calculate_add(variable_name, three_previous_months)
-        ressource_mois_courant = simulation.calculate(variable_name, period)
+    def neutral(self, ressource_trois_derniers_mois, ressource_mois_courant, neutral_forfaitaire):
+        revenu_apres_neutral_standard = ressource_trois_derniers_mois * (ressource_mois_courant > 0)
+        revenu_apres_neutral_forfaitaire = max_(0,
+                ressource_trois_derniers_mois - (ressource_mois_courant == 0) * self.neutral_max_forfaitaire)
 
-        if neutralisable and not neutral_forfaitaire:
-            return (ressource_mois_courant > 0) * ressource_trois_derniers_mois
-        elif neutral_forfaitaire:
-            neutral_max = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
-            return max_(0, ressource_trois_derniers_mois - (ressource_mois_courant == 0) * neutral_max)
+        return revenu_apres_neutral_forfaitaire if neutral_forfaitaire else revenu_apres_neutral_standard
+
+    def calcule_ressource(self, variable_name, neutralisable = True, neutral_forfaitaire = False,
+     neutral_si_substitution = True):
+        ressource_trois_derniers_mois = self.simulation.calculate_add(variable_name, self.three_previous_months)
+
+        if neutralisable:
+            ressource_mois_courant = self.simulation.calculate(variable_name, self.period)
+            if not neutral_si_substitution:
+                return (
+                    self.has_ressources_substitution * ressource_trois_derniers_mois +
+                    (1 - self.has_ressources_substitution) * self.neutral(
+                        ressource_trois_derniers_mois, ressource_mois_courant, neutral_forfaitaire)
+                )
+            else:
+                return self.neutral(ressource_trois_derniers_mois, ressource_mois_courant, neutral_forfaitaire)
         else:
             return ressource_trois_derniers_mois
 
