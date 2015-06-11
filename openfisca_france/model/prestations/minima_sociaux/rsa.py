@@ -362,33 +362,22 @@ class rsa_ressource_calculator:
         self.has_ressources_substitution = (
             simulation.calculate('chonet', last_month) +
             simulation.calculate('indemnites_journalieres', last_month) +
-            simulation.calculate('rstnet', last_month)
+            simulation.calculate('rstnet', last_month) +
+            simulation.calculate('ass', last_month)
         ) > 0
         self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
 
-    def neutral(self, ressource_trois_derniers_mois, ressource_mois_courant, neutral_forfaitaire):
-        revenu_apres_neutral_standard = ressource_trois_derniers_mois * (ressource_mois_courant > 0)
-        revenu_apres_neutral_forfaitaire = max_(0,
-                ressource_trois_derniers_mois - (ressource_mois_courant == 0) * self.neutral_max_forfaitaire)
-
-        return revenu_apres_neutral_forfaitaire if neutral_forfaitaire else revenu_apres_neutral_standard
-
-    def calcule_ressource(self, variable_name, neutralisable = True, neutral_forfaitaire = False,
-     neutral_si_substitution = True):
+    def calcule_ressource(self, variable_name, revenu_pro = False):
         ressource_trois_derniers_mois = self.simulation.calculate_add(variable_name, self.three_previous_months)
-
-        if neutralisable:
-            ressource_mois_courant = self.simulation.calculate(variable_name, self.period)
-            if not neutral_si_substitution:
-                return (
-                    self.has_ressources_substitution * ressource_trois_derniers_mois +
-                    (1 - self.has_ressources_substitution) * self.neutral(
-                        ressource_trois_derniers_mois, ressource_mois_courant, neutral_forfaitaire)
-                )
-            else:
-                return self.neutral(ressource_trois_derniers_mois, ressource_mois_courant, neutral_forfaitaire)
+        ressource_mois_courant = self.simulation.calculate(variable_name, self.period)
+        if revenu_pro:
+            return (
+                self.has_ressources_substitution * ressource_trois_derniers_mois +
+                (1 - self.has_ressources_substitution) * ressource_trois_derniers_mois * (ressource_mois_courant > 0)
+            )
         else:
-            return ressource_trois_derniers_mois
+            return max_(0,
+                ressource_trois_derniers_mois - (ressource_mois_courant == 0) * self.neutral_max_forfaitaire)
 
 
 @reference_formula
@@ -403,22 +392,21 @@ class br_rmi_i(SimpleFormulaColumn):
 
         r = rsa_ressource_calculator(simulation, period)
 
-        # Ressources neutralisables
-        chonet = r.calcule_ressource('chonet')
-        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues', neutral_forfaitaire = True)
+        # Ressources professionelles
+        chonet = r.calcule_ressource('chonet', revenu_pro = True)
+        rstnet = r.calcule_ressource('rstnet', revenu_pro = True)
+
+        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues')
         allocation_aide_retour_emploi = r.calcule_ressource('allocation_aide_retour_emploi')
         allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
-        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire', neutral_forfaitaire = True)
-        rstnet = r.calcule_ressource('rstnet')
-
-        # Ressources non neutralisables
-        rto_declarant1 = r.calcule_ressource('rto_declarant1', neutralisable = False)
-        rfon_ms = r.calcule_ressource('rfon_ms', neutralisable = False)
-        div_ms = r.calcule_ressource('div_ms', neutralisable = False)
-        gains_exceptionnels = r.calcule_ressource('gains_exceptionnels', neutralisable = False)
-        dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante', neutralisable = False)
-        pensions_invalidite = r.calcule_ressource('pensions_invalidite', neutralisable = False)
-        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_i', neutralisable = False)
+        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
+        rto_declarant1 = r.calcule_ressource('rto_declarant1')
+        rfon_ms = r.calcule_ressource('rfon_ms')
+        div_ms = r.calcule_ressource('div_ms')
+        gains_exceptionnels = r.calcule_ressource('gains_exceptionnels')
+        dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
+        pensions_invalidite = r.calcule_ressource('pensions_invalidite')
+        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_i')
 
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
@@ -448,18 +436,15 @@ class ra_rsa_i(SimpleFormulaColumn):
 
         r = rsa_ressource_calculator(simulation, period)
 
-        # Ressources neutralisables
-        salaire_net = r.calcule_ressource('salaire_net')
-        indemnites_journalieres = r.calcule_ressource('indemnites_journalieres')
-        indemnites_chomage_partiel = r.calcule_ressource('indemnites_chomage_partiel')
-        indemnites_volontariat = r.calcule_ressource('indemnites_volontariat')
-        revenus_stage_formation_pro = r.calcule_ressource('revenus_stage_formation_pro')
-        indemnites_stage = r.calcule_ressource('indemnites_stage')
-        bourse_recherche = r.calcule_ressource('bourse_recherche')
-
-        # Autres ressources
-        hsup = r.calcule_ressource('hsup', neutralisable = False)
-        etr = r.calcule_ressource('etr', neutralisable = False)
+        salaire_net = r.calcule_ressource('salaire_net', revenu_pro = True)
+        indemnites_journalieres = r.calcule_ressource('indemnites_journalieres', revenu_pro = True)
+        indemnites_chomage_partiel = r.calcule_ressource('indemnites_chomage_partiel', revenu_pro = True)
+        indemnites_volontariat = r.calcule_ressource('indemnites_volontariat', revenu_pro = True)
+        revenus_stage_formation_pro = r.calcule_ressource('revenus_stage_formation_pro', revenu_pro = True)
+        indemnites_stage = r.calcule_ressource('indemnites_stage', revenu_pro = True)
+        bourse_recherche = r.calcule_ressource('bourse_recherche', revenu_pro = True)
+        hsup = r.calcule_ressource('hsup', revenu_pro = True)
+        etr = r.calcule_ressource('etr', revenu_pro = True)
 
         # Ressources TNS
 
@@ -467,7 +452,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         # standard sur le CA, mais pas les cotisations pour charges sociales. Dans l'attente d'une éventuelle correction, nous
         # implémentons selon leurs instructions. Si changement, il suffira de remplacer le tns_auto_entrepreneur_benefice par
         # tns_auto_entrepreneur_revenus_net
-        tns_auto_entrepreneur_revenus_rsa = r.calcule_ressource('tns_auto_entrepreneur_benefice')
+        tns_auto_entrepreneur_revenus_rsa = r.calcule_ressource('tns_auto_entrepreneur_benefice', revenu_pro = True)
 
         result = (
             salaire_net + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat +
@@ -527,6 +512,7 @@ class br_rmi_pf(DatedFormulaColumn):
 
     @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
+        # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
