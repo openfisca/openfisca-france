@@ -845,6 +845,9 @@ class rsa_eligibilite(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        period = period.start.offset('first-of', 'month').period('month')
+        travailleur_non_salarie_holder = simulation.compute('travailleur_non_salarie', period)
+        travailleur_non_salarie = self.any_by_roles(travailleur_non_salarie_holder)
         age_holder = simulation.compute('age', period)
         age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
         activite_holder = simulation.compute('activite', period)
@@ -856,8 +859,8 @@ class rsa_eligibilite(SimpleFormulaColumn):
         eligib = (
             (age_parents[CHEF] >= rmi.age_pac) * not_(activite_parents[CHEF] == 2) +
             (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
-            )
-        eligib = eligib * rsa_eligibilite_tns
+        )
+        eligib = eligib * or_(not_(travailleur_non_salarie), rsa_eligibilite_tns)
 
         return period, eligib
 
@@ -938,9 +941,12 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
         isol = simulation.calculate('isol', period)
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('nb_enfant_rsa', period)
+        travailleur_non_salarie_holder = simulation.compute('travailleur_non_salarie', period)
+        travailleur_non_salarie = self.any_by_roles(travailleur_non_salarie_holder)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
 
-        eligib = isol * (enceinte_fam | (nbenf > 0)) * rsa_eligibilite_tns
+        eligib = isol * (enceinte_fam | (nbenf > 0))
+        eligib = eligib * or_(not_(travailleur_non_salarie), rsa_eligibilite_tns)
         return period, eligib
 
 
