@@ -358,6 +358,7 @@ class rsa_ressource_calculator:
         self.period = period
         self.simulation = simulation
         self.three_previous_months = self.period.start.period('month', 3).offset(-3)
+        self.last_month = period.start.period('month').offset(-1)
         self.has_ressources_substitution = (
             simulation.calculate('chonet', period) +
             simulation.calculate('indemnites_journalieres', period) +
@@ -369,14 +370,22 @@ class rsa_ressource_calculator:
     def calcule_ressource(self, variable_name, revenu_pro = False):
         ressource_trois_derniers_mois = self.simulation.calculate_add(variable_name, self.three_previous_months)
         ressource_mois_courant = self.simulation.calculate(variable_name, self.period)
+        ressource_last_month = self.simulation.calculate(variable_name, self.last_month)
+
         if revenu_pro:
-            return (
-                self.has_ressources_substitution * ressource_trois_derniers_mois +
-                (1 - self.has_ressources_substitution) * ressource_trois_derniers_mois * (ressource_mois_courant > 0)
+            condition = (
+                (ressource_mois_courant == 0) *
+                (ressource_last_month > 0) *
+                not_(self.has_ressources_substitution)
             )
+            return (1 - condition) * ressource_trois_derniers_mois
         else:
+            condition = (
+                (ressource_mois_courant == 0) *
+                (ressource_last_month > 0)
+            )
             return max_(0,
-                ressource_trois_derniers_mois - (ressource_mois_courant == 0) * self.neutral_max_forfaitaire)
+                ressource_trois_derniers_mois - condition * self.neutral_max_forfaitaire)
 
 
 @reference_formula
