@@ -773,7 +773,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
             valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
             revenus_locatifs
-            )
+        )
 
 
 @reference_formula
@@ -784,6 +784,8 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        travailleur_non_salarie_holder = simulation.compute('travailleur_non_salarie', period)
+        travailleur_non_salarie = self.any_by_roles(travailleur_non_salarie_holder)
         tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', period)
         tns_benefice_exploitant_agricole = self.sum_by_entity(tns_benefice_exploitant_agricole_holder)
         tns_employe_holder = simulation.compute('tns_employe', period)
@@ -819,20 +821,20 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
 
         eligibilite_agricole = eligibilite_agricole(
             has_conjoint, nb_enfant_rsa, tns_benefice_exploitant_agricole, P_agr
-            )
+        )
         eligibilite_chiffre_affaire = (
             eligibilite_chiffre_affaire(
                 tns_autres_revenus_chiffre_affaires[CHEF],
                 tns_autres_revenus_type_activite[CHEF],
                 P_micro
-                ) *
+            ) *
             eligibilite_chiffre_affaire(
                 tns_autres_revenus_chiffre_affaires[PART],
                 tns_autres_revenus_type_activite[PART],
                 P_micro
-                )
             )
-        return period, eligibilite_agricole * (1 - tns_employe) * eligibilite_chiffre_affaire
+        )
+        return period, travailleur_non_salarie * eligibilite_agricole * (1 - tns_employe) * eligibilite_chiffre_affaire
 
 
 @reference_formula
