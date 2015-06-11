@@ -358,12 +358,11 @@ class rsa_ressource_calculator:
         self.period = period
         self.simulation = simulation
         self.three_previous_months = self.period.start.period('month', 3).offset(-3)
-        last_month = period.start.period('month').offset(-1)
         self.has_ressources_substitution = (
-            simulation.calculate('chonet', last_month) +
-            simulation.calculate('indemnites_journalieres', last_month) +
-            simulation.calculate('rstnet', last_month) +
-            simulation.calculate('ass', last_month)
+            simulation.calculate('chonet', period) +
+            simulation.calculate('indemnites_journalieres', period) +
+            simulation.calculate('rstnet', period) # +
+            # simulation.calculate('ass', last_month)
         ) > 0
         self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
 
