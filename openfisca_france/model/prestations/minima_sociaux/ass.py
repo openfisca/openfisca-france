@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import absolute as abs_, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_, logical_and as and_
+from numpy import absolute as abs_, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -97,7 +97,9 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
         tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate(
+            'pensions_alimentaires_versees_individu', previous_year
+            )
 
         aah = simulation.calculate_add('aah', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
@@ -158,7 +160,9 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
         tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
         tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        pensions_alimentaires_versees_individu = simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate_add(
+            'pensions_alimentaires_versees_individu', previous_year
+            )
 
         result = (
             sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +

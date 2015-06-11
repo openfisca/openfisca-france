@@ -198,7 +198,8 @@ class revenu_initial_individu(SimpleFormulaColumn):
         rev_cap = simulation.calculate('rev_cap', period)
         rev_trav = simulation.calculate('rev_trav', period)
 
-        return period, rev_trav + pen + rev_cap - cotisations_employeur_contributives - cotisations_salariales_contributives
+        return period, (rev_trav + pen + rev_cap - cotisations_employeur_contributives -
+            cotisations_salariales_contributives)
 
 
 @reference_formula
@@ -272,10 +273,13 @@ class pen(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', period)
         rstnet = simulation.calculate('rstnet', period)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
-        pensions_alimentaires_versees_declarant1 = simulation.calculate('pensions_alimentaires_versees_declarant1', period)
+        pensions_alimentaires_versees_declarant1 = simulation.calculate(
+            'pensions_alimentaires_versees_declarant1', period
+            )
         rto_declarant1 = simulation.calculate_add('rto_declarant1', period)
 
-        return period, chonet + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 + rto_declarant1
+        return period, (chonet + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 +
+                    rto_declarant1)
 
 
 @reference_formula
@@ -511,8 +515,9 @@ class csg(SimpleFormulaColumn):
         csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
         csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
 
-        return period, (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage + csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite +
-                csg_fon + csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
+        return period, (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
+                csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_fon +
+                csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
 
 
 @reference_formula
@@ -556,7 +561,8 @@ class prelsoc_cap(SimpleFormulaColumn):
         prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
         prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
 
-        return period, prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar_declarant1 + prelsoc_pv_mo + prelsoc_pv_immo
+        return period, (prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar_declarant1 + prelsoc_pv_mo +
+                    prelsoc_pv_immo)
 
 
 @reference_formula

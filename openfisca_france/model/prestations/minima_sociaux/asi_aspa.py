@@ -25,8 +25,7 @@
 
 from __future__ import division
 
-
-from numpy import maximum as max_, logical_not as not_, logical_or as or_
+from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -62,7 +61,9 @@ class br_mv_i(SimpleFormulaColumn):
         chonet = simulation.calculate_add('chonet', three_previous_months)
         rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', three_previous_months)
+        pensions_alimentaires_versees_individu = simulation.calculate(
+            'pensions_alimentaires_versees_individu', three_previous_months
+            )
         rto_declarant1 = simulation.calculate_add('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
@@ -70,8 +71,12 @@ class br_mv_i(SimpleFormulaColumn):
         rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
         div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
-        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', three_previous_months)
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', three_previous_months)
+        allocation_securisation_professionnelle = simulation.calculate(
+            'allocation_securisation_professionnelle', three_previous_months
+            )
+        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate(
+            'prime_forfaitaire_mensuelle_reprise_activite', three_previous_months
+            )
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
         prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
         pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
@@ -80,7 +85,9 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
         tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add(
+            'rsa_base_ressources_patrimoine_i', three_previous_months
+            )
         aah = simulation.calculate_add('aah', three_previous_months)
         legislation = simulation.legislation_at(period.start)
         leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
@@ -94,19 +101,22 @@ class br_mv_i(SimpleFormulaColumn):
         aah = aah * not_(aspa_elig)
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
-        abattement_forfaitaire_base = leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+        abattement_forfaitaire_base = (
+            leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+            )
         abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
             not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
         )
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
-        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
+        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues -
+               abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +  # max_(0,etr) +
-               revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
-               dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
-               indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus_net +
-               rsa_base_ressources_patrimoine_i + aah
+               revenus_stage_formation_pro + allocation_securisation_professionnelle +
+               prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
+               pensions_invalidite + gains_exceptionnels + indemnites_journalieres + indemnites_chomage_partiel +
+               indemnites_volontariat + tns_total_revenus_net + rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
 

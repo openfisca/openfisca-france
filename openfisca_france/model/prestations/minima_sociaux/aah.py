@@ -38,7 +38,7 @@ class br_aah(SimpleFormulaColumn):
     def function(self, simulation, period):
         print 'Base ressources AAH - periode: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
-        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+#        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
 
 # inactifs ou travailleurs en ESAT :
         br_pf_n_2 = simulation.calculate_add('br_pf', period)

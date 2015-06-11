@@ -158,7 +158,7 @@ class paje_nais(SimpleFormulaColumn):
         # donc les enfants concernés sont les enfants qui ont -2 mois
         nbnais = 0
         for age_m in age_en_mois.itervalues():
-            nbnais += (age_m == -2) # cas mensuel
+            nbnais += (age_m == -2)  # cas mensuel
             # nbnais += (age_m >= -2) * (age_m < 10) # cas annuel
 
         nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
@@ -191,12 +191,12 @@ class paje_clca(SimpleFormulaColumn):
         af_nbenf : nombre d'enfants aus sens des allocations familiales
         paje_base : allocation de base de la PAJE
         inactif : indicatrice d'inactivité
-        partiel1 : Salarié: Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise pour les salariés
-                   VRP ou non salarié travaillant à temps partiel: Temps de travail ne dépassant pas 76 heures par mois
-                      et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
+        partiel1 : Salarié: Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise pour
+                   les salariés VRP ou non salarié travaillant à temps partiel: Temps de travail ne dépassant pas 76
+                   heures par mois et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
         partiel2 :  Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
-                    VRP ou non salarié travaillant à temps partiel: Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
-                                                                    (smic_8.27*169*136 %)
+                    VRP ou non salarié travaillant à temps partiel: Temps de travail compris entre 77 et 122 heures
+                    par mois et un revenu professionnel mensuel ne dépassant pas (smic_8.27*169*136 %)
 
         http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
         """
@@ -237,12 +237,13 @@ class paje_clca(SimpleFormulaColumn):
         return period, paje_clca
 
 reference_input_variable(
-   name ='paje_prepare',
-   column = FloatCol,
-   entity_class = Familles,
-   label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)",
-   set_input = set_input_divide_by_period
-   )
+    name ='paje_prepare',
+    column = FloatCol,
+    entity_class = Familles,
+    label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)",
+    set_input = set_input_divide_by_period
+    )
+
 
 @reference_formula
 class paje_clca_taux_plein(SimpleFormulaColumn):
@@ -275,7 +276,6 @@ class paje_clca_taux_partiel(SimpleFormulaColumn):
 
         return period, (paje_clca > 0) * partiel1
 
-
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
@@ -307,11 +307,13 @@ class paje_clmg(SimpleFormulaColumn):
 
             bénéficiaire de l'allocation aux adultes handicapés (Aah)
             au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
-            bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par votre Caf, et inscrit dans une démarche d'insertion
-            étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
+            bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par
+            votre Caf, et inscrit dans une démarche d'insertionétudiant (si vous vivez en couple,
+            vous devez être tous les deux étudiants).
 
         Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
-        Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut, soit au max 45,00 €.
+        Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
+        soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
         '''
         period = period.start.offset('first-of', 'month').period('month')
@@ -335,7 +337,7 @@ class paje_clmg(SimpleFormulaColumn):
         age = self.split_by_roles(age_holder, roles = ENFS)
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
-        salaire_imposable =  self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
+        salaire_imposable = self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         aah = self.sum_by_entity(aah_holder)
 
@@ -354,19 +356,21 @@ class paje_clmg(SimpleFormulaColumn):
     #  TODO: RSA insertion, alloc insertion, ass
         elig = cond_age_enf & (cond_act | cond_nonact)
         nbenf = af_nbenf
-        seuil1 = P.paje.clmg.seuil11 * (nbenf == 1) + P.paje.clmg.seuil12 * (nbenf >= 2) + max_(nbenf - 2, 0) * P.paje.clmg.seuil1sup
-        seuil2 = P.paje.clmg.seuil21 * (nbenf == 1) + P.paje.clmg.seuil22 * (nbenf >= 2) + max_(nbenf - 2, 0) * P.paje.clmg.seuil2sup
+        seuil1 = (P.paje.clmg.seuil11 * (nbenf == 1) + P.paje.clmg.seuil12 * (nbenf >= 2) +
+                 max_(nbenf - 2, 0) * P.paje.clmg.seuil1sup)
+        seuil2 = (P.paje.clmg.seuil21 * (nbenf == 1) + P.paje.clmg.seuil22 * (nbenf >= 2) +
+                 max_(nbenf - 2, 0) * P.paje.clmg.seuil2sup)
 
-    #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée dans l'entreprise),
-    #        vous cumulez intégralement le Clca et le Cmg.
+    #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+    #        dans l'entreprise), vous cumulez intégralement le Clca et le Cmg.
     #        Si vous bénéficiez du Clca taux partiel (= vous travaillez à 50% ou moins de la durée
     #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
         seuil1 = seuil1 * (1 - .5 * paje_clca_taux_partiel)
         seuil2 = seuil2 * (1 - .5 * paje_clca_taux_partiel)
 
         clmg = P.af.bmaf * ((nb_enf(age, smic55, 0, P.paje.clmg.age1 - 1) > 0) +
-                               0.5 * (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
-                               ) * (
+                            0.5 * (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+                            ) * (
             empl_dir * (
                 (br_pf < seuil1) * P.paje.clmg.empl_dir1 +
                 ((br_pf >= seuil1) & (br_pf < seuil2)) * P.paje.clmg.empl_dir2 +
@@ -459,7 +463,8 @@ def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
     # Vous devez:
     #    faire garder votre enfant de moins de 6 ans par une assistante maternelle agréée dont vous êtes l'employeur
     #    déclarer son embauche à l'Urssaf
-    #    lui verser un salaire ne dépassant pas par jour de garde et par enfant 5 fois le montant horaire du Smic, soit au max_ 42,20 €
+    #    lui verser un salaire ne dépassant pas par jour de garde et par enfant 5 fois le montant horaire du Smic,
+    #    soit au max_ 42,20 €
     #
     # Si vous cessez de travailler et bénéficiez de l'allocation parentale d'éducation, vous ne recevrez plus l'Afeama.
     # Vos enfants doivent être nés avant le 1er janvier 2004.
@@ -479,14 +484,19 @@ def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
             (br_pf >= seuil2) * P.afeama.taux_maxi)
     return 12 * afeama  # annualisé
 
-    # L'AFEAMA comporte 2 volets complémentaires: l'AFEAMA proprement dit qui consiste à prendre en charge les cotisations sociales sur les salaires, d'une part,
-    # et une allocation complémentaire versée aux parents, la majoration AFEAMA, d'autre part.
+    # L'AFEAMA comporte 2 volets complémentaires: l'AFEAMA proprement dit qui consiste à prendre en charge les
+    # cotisations sociales sur les salaires, d'une part, et une allocation complémentaire versée aux parents,
+    # la majoration AFEAMA, d'autre part.
     # Le système de majoration AFEAMA a été modifié au 1er janvier 2001 :
     # Jusqu'en décembre 2000, son montant ne dépendait que de l'âge de l'enfant.
-    # Depuis janvier 2001, il dépend également de la catégorie de revenus des parents employeurs (fonction de leur base ressources et du nombre d'enfants qu'ils ont à charge).
-    # Parallélement, son plafonnement a été ramené de 100 % à 85 % du salaire net versé à l'assistante maternelle (sauf si ces 85 % sont inférieurs au montant de la majoration la moins élevée, compte tenu de l'âge de l'enfant).
-    # La catégorie de revenus des parents employeurs est déterminée par la CAF en fonction de la base ressources du ménage.
-    # Le tableau suivant récapitule les montants pris en compte depuis le 1er juillet 2007 pour la détermination du montant maximal de la majoration AFEAMA selon les catégories de revenus :
+    # Depuis janvier 2001, il dépend également de la catégorie de revenus des parents employeurs (fonction de leur base
+    # ressources et du nombre d'enfants qu'ils ont à charge).
+    # Parallélement, son plafonnement a été ramené de 100 % à 85 % du salaire net versé à l'assistante maternelle
+    # (sauf si ces 85 % sont inférieurs au montant de la majoration la moins élevée, compte tenu de l'âge de l'enfant).
+    # La catégorie de revenus des parents employeurs est déterminée par la CAF en fonction de la base ressources
+    # du ménage.
+    # Le tableau suivant récapitule les montants pris en compte depuis le 1er juillet 2007 pour la détermination du
+    # montant maximal de la majoration AFEAMA selon les catégories de revenus :
     # Base ressources du ménage
     #                 1 enfant                      2 enfants             par enfant suppémentaire
     # revenus    inférieurs à 17 593 €             inférieurs à 21 653 €          4060 €
@@ -499,8 +509,10 @@ def _aged(self, age_holder, smic55_holder, br_pf, ape_taux_partiel, dep_trim, P 
     '''
     Allocation garde d'enfant à domicile
 
-    les deux conjoints actif et revenu min requis, jusqu'aux 6 ans de l'enfant né avant le 01/01/2004, emploi d'une garde A DOMICILE
-    cette allocation consiste en une prise en charge partielle des charges sociales inhérentes à l'emploi d'une personne à domicile.
+    les deux conjoints actif et revenu min requis, jusqu'aux 6 ans de l'enfant né avant le 01/01/2004, emploi d'une
+    garde A DOMICILE
+    cette allocation consiste en une prise en charge partielle des charges sociales inhérentes à l'emploi d'une personne
+    à domicile.
     Si vous avez au moins un enfant  de moins de 3 ans gardé au domicile, 2 cas :
     Revenus 2005 > 37 241  € : la CAF prend en charge 50% des charges sociales (plafonné à 1 106 € par trimestre),
     Revenus 2005 < 37 341  € : la CAF prend en charge 75% des charges sociales (plafonné à 1 659 € par trimestre).
@@ -516,8 +528,8 @@ def _aged(self, age_holder, smic55_holder, br_pf, ape_taux_partiel, dep_trim, P 
     elig1 = (nbenf > 0)
     elig2 = not_(elig1) * (nbenf2 > 0) * ape_taux_partiel
     depenses = 4 * dep_trim  # gérer les dépenses trimestrielles
-    aged3 = elig1 * (max_(P.aged.remb_plaf1 - P.aged.remb_taux1 * depenses, 0) * (br_pf > P.aged.revenus_plaf)
-       + (br_pf <= P.aged.revenus_plaf) * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf1, 0))
+    aged3 = elig1 * (max_(P.aged.remb_plaf1 - P.aged.remb_taux1 * depenses, 0) * (br_pf > P.aged.revenus_plaf) +
+       (br_pf <= P.aged.revenus_plaf) * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf1, 0))
     aged6 = elig2 * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf2, 0)
     return 12 * (aged3 + aged6)  # annualisé
 
@@ -541,8 +553,9 @@ class ape_temp(SimpleFormulaColumn):
         dans le cadre de la Prestation d’Accueil du Jeune Enfant, les parents peuvent bénéficier
         du « complément de libre choix d’activité. »
 
-        Les personnes en couple peuvent toutes deux bénéficier de l’APE à taux plein, mais pas en même temps. En revanche,
-        elles peuvent cumuler deux taux partiels, à condition que leur total ne dépasse pas le montant du taux plein.
+        Les personnes en couple peuvent toutes deux bénéficier de l’APE à taux plein, mais pas en même temps.
+        En revanche, elles peuvent cumuler deux taux partiels, à condition que leur total ne dépasse pas le montant
+        du taux plein.
 
         TODO: cumul,  adoption, triplés,
         Cumul d'allocations : Cette allocation n'est pas cumulable pour un même ménage avec
@@ -553,11 +566,11 @@ class ape_temp(SimpleFormulaColumn):
         Enfin, il est à noter que cette allocation n’est pas cumulable avec :
         - une pension d’invalidité ou une retraite ;
         - des indemnités journalières de maladie, de maternité ou d’accident du travail ;
-        - des allocations chômage. Il est tout de même possible de demander aux ASSEDIC la suspension de ces dernières pour
-          percevoir l’APE.
+        - des allocations chômage. Il est tout de même possible de demander aux ASSEDIC la suspension de ces dernières
+          pour percevoir l’APE.
 
-        L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour les
-        professions non salariées.
+        L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour
+        les professions non salariées.
         '''
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
@@ -576,7 +589,8 @@ class ape_temp(SimpleFormulaColumn):
         # Salarié:
         # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise
         # VRP ou non salarié travaillant à temps partiel:
-        # Temps de travail ne dépassant pas 76 heures par mois et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
+        # Temps de travail ne dépassant pas 76 heures par mois et un revenu professionnel mensuel inférieur ou égal à
+        # (smic_8.27*169*85 %)
         # partiel1 = zeros((12,self.taille))
 
         # Temps partiel 2
@@ -625,11 +639,12 @@ class apje_temp(SimpleFormulaColumn):
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
 
-        apje = (nbenf >= 1) * ((br_pf <= plaf) * base
-                                + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
+        apje = (nbenf >= 1) * ((br_pf <= plaf) * base + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
 
-        # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
-        # Cette allocation est verséE du 5��me mois de grossesse jusqu���au mois précédant le 3ème anniversaire de l’enfant.
+        # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis
+        # en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
+        # Cette allocation est verséE du 5��me mois de grossesse jusqu���au mois précédant le 3ème anniversaire de
+        # l’enfant.
 
         # Non cumul APE APJE CF
         #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes.
