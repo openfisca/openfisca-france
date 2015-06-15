@@ -23,6 +23,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from ...base import *  # noqa analysis:ignore
+from numpy import vectorize
 
 
 reference_input_variable(
@@ -34,6 +35,29 @@ reference_input_variable(
 
 
 @reference_formula
+class parisien(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Parisien"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        depcom = simulation.calculate('depcom', period)
+        print(depcom)
+
+        def is_parisien(code_insee):
+            prefix = code_insee[0:2]
+            sufix = code_insee[2:5]
+            result = (prefix == "75") and ((int(sufix) in range(101, 121)) or sufix == "056")
+            return result
+
+        is_parisien_vec = vectorize(is_parisien)
+
+        result = is_parisien_vec(depcom)
+
+        return period, result
+
+
+@reference_formula
 class test_paris(SimpleFormulaColumn):
     column = FloatCol
     label = u"Montant de l'aide"
@@ -42,8 +66,9 @@ class test_paris(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        test_precondition_remplie = simulation.calculate('test_precondition_remplie', period)
+        parisien = simulation.calculate('parisien', period)
+        print(parisien)
 
-        result = (1 - test_precondition_remplie) * 1000
+        result = parisien * 1000
 
         return period, result
