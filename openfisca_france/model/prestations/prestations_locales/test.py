@@ -23,21 +23,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from ...base import *  # noqa analysis:ignore
-from numpy import vectorize
+from numpy import vectorize, absolute as abs_
 
 
-reference_input_variable(
-    name ='test_precondition_remplie',
-    column = BoolCol,
-    entity_class = Familles,
-    label = u"Critère d'éligibilité",
-)
+# reference_input_variable(
+#     name ='parisien',
+#     column = BoolCol,
+#     entity_class = Familles,
+#     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
+# )
 
 
 @reference_formula
 class parisien(SimpleFormulaColumn):
-    column = BoolCol
-    label = u"Parisien"
+    column = FloatCol
+    label = u"Résident à Paris"
     entity_class = Familles
 
     def function(self, simulation, period):
@@ -58,17 +58,72 @@ class parisien(SimpleFormulaColumn):
 
 
 @reference_formula
-class test_paris(SimpleFormulaColumn):
+class paris_logement_familles_elig(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Eligibilité à Paris-Logement-Familles"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        parisien = simulation.calculate('parisien', period)
+        af_nbenf = simulation.calculate('af_nbenf', period)
+        invalide_holder = simulation.compute('invalide', period)
+        enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
+
+        result = parisien * ((af_nbenf >= 3) + enfant_handicape)
+
+        return period, result
+
+
+@reference_formula
+class paris_logement_familles_br(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Eligibilité à Paris-Logement-Familles"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        salaire_net = simulation.calculate('salaire_net', period)
+        chonet = simulation.calculate('chonet', period)
+        rstnet = simulation.calculate('rstnet', period)
+        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
+        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', period)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', period)
+        indemnites_journalieres_imposables = simulation.calculate('indemnites_journalieres_imposables', period)
+        indemnites_stage = simulation.calculate('indemnites_stage', period)
+        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', period)
+        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', period)
+        prestation_compensatoire = simulation.calculate('prestation_compensatoire', period)
+        pensions_invalidite = simulation.calculate('pensions_invalidite', period)
+        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
+        bourse_recherche = simulation.calculate('bourse_recherche', period)
+        gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
+        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', period)
+
+        result = (
+            salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
+            pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
+            indemnites_journalieres_imposables + prestation_compensatoire + retraite_combattant +
+            pensions_invalidite + bourse_recherche + gains_exceptionnels + tns_total_revenus_net +
+            revenus_stage_formation_pro
+        )
+
+        return period, result
+
+
+@reference_formula
+class paris_logement_familles(SimpleFormulaColumn):
     column = FloatCol
-    label = u"Montant de l'aide"
+    label = u"Allocation Paris Logement Familles"
     entity_class = Familles
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        parisien = simulation.calculate('parisien', period)
-        print(parisien)
+        paris_logement_familles_elig = simulation.calculate('paris_logement_familles_elig', period)
+        # paris_logement_familles_br = simulation.calculate('paris_logement_familles_br', period)
 
-        result = parisien * 1000
+        result = paris_logement_familles_elig * 1000
+        # print("paris_logement_familles_br", paris_logement_familles_br)
+        print("paris_logement_familles", result)
 
         return period, result
