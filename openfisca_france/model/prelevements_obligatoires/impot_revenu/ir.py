@@ -140,7 +140,7 @@ class age_en_mois(SimpleFormulaColumn):
 class nb_adult(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"nb_adult"
+    label = u"Nombre d'adulte(s) dans le foyer fiscal"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
@@ -155,7 +155,7 @@ class nb_adult(SimpleFormulaColumn):
 class nb_pac(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"nb_pac"
+    label = u"Nombre de personnes à charge dans le foyer fiscal"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
