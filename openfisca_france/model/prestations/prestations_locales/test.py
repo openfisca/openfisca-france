@@ -66,10 +66,18 @@ class paris_logement_familles_elig(SimpleFormulaColumn):
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
+        statut_occupation = simulation.calculate('statut_occupation', period)
+        charge_logement = (
+            (statut_occupation == 1) +
+            (statut_occupation == 3) +
+            (statut_occupation == 4) +
+            (statut_occupation == 5) +
+            (statut_occupation == 7)
+        )
         invalide_holder = simulation.compute('invalide', period)
         enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
 
-        result = parisien * ((af_nbenf >= 3) + enfant_handicape)
+        result = parisien * charge_logement * ((af_nbenf >= 2) + enfant_handicape)
 
         return period, result
 
