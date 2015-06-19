@@ -91,6 +91,10 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         previous_year = period.start.period('year').offset(-1)
 
         sali = simulation.calculate_add('sali', previous_year)
+        sali_this_month = simulation.calculate('sali', period)
+        sali_interrompu = (sali > 0) * (sali_this_month == 0)
+        # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
+        sali = (1 - sali_interrompu) * sali
         rstnet = simulation.calculate('rstnet', previous_year)
         tns_auto_entrepreneur_benefice = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
         tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
