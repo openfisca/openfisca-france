@@ -38,10 +38,10 @@ build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de rés
 build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
 
 reference_input_variable(
-    column = IntCol(),
+    column = FloatCol(),
     entity_class = Menages,
-    label = u'Loyer',
-    name = 'loyer',
+    label = u"Loyer ou mensualité d'emprunt pour un primo-accédant",
+    name = "loyer",
     set_input = set_input_divide_by_period,
 )
 
