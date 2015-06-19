@@ -88,7 +88,7 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     )
 
 from prestations.prestations_locales import (  # noqa analysis:ignore
-    test
+    paris
     )
 
 from revenus import autres
