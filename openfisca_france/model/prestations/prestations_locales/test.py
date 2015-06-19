@@ -23,7 +23,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from ...base import *  # noqa analysis:ignore
-from numpy import vectorize, absolute as abs_
+from numpy import vectorize, absolute as abs_, minimum as min_, maximum as max_
 
 
 # reference_input_variable(
@@ -64,7 +64,6 @@ class paris_logement_familles_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
         statut_occupation = simulation.calculate('statut_occupation', period)
         charge_logement = (
             (statut_occupation == 1) +
@@ -73,10 +72,8 @@ class paris_logement_familles_elig(SimpleFormulaColumn):
             (statut_occupation == 5) +
             (statut_occupation == 7)
         )
-        invalide_holder = simulation.compute('invalide', period)
-        enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
 
-        result = parisien * charge_logement * ((af_nbenf >= 2) + enfant_handicape)
+        result = parisien * charge_logement
 
         return period, result
 
@@ -137,14 +134,34 @@ class paris_logement_familles(SimpleFormulaColumn):
     column = FloatCol
     label = u"Allocation Paris Logement Familles"
     entity_class = Familles
+    url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        paris_logement_familles_elig = simulation.calculate('paris_logement_familles_elig', period)
-        paris_logement_familles_br = simulation.calculate('paris_logement_familles_br', period)
-        # paris_logement_familles_br = simulation.calculate('paris_logement_familles_br', period)
+        elig = simulation.calculate('paris_logement_familles_elig', period)
+        br = simulation.calculate('paris_logement_familles_br', period)
+        nbenf = simulation.calculate('af_nbenf', period)
+        loyer = simulation.calculate('loyer', period)
+        invalide_holder = simulation.compute('invalide', period)
+        enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
 
-        result = paris_logement_familles_elig * 1000
+        result = (
+            (
+                (enfant_handicape * (br <= 5000) + (nbenf >= 3) * (br <= 3000)) *
+                (128 + 41 * max_(nbenf - 3, 0))
+            ) +
+            (
+                ((nbenf >= 3) * (br <= 5000) * (br > 3000)) *
+                (84 + 21 * max_(nbenf - 3, 0))
+            ) +
+            (
+                ((nbenf == 2) * (br <= 2000)) *
+                116
+            )
+        )
+
+        result = elig * result
+        result = min_(result, loyer)
 
         return period, result
