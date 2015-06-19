@@ -550,7 +550,7 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
                 ),
             0,
             )
-        print jours_travailles
+
         return period, jours_travailles
 
 
