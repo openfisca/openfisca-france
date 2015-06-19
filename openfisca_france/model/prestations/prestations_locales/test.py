@@ -145,19 +145,20 @@ class paris_logement_familles(SimpleFormulaColumn):
         loyer = simulation.calculate('loyer', period)
         invalide_holder = simulation.compute('invalide', period)
         enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
+        P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles
 
         result = (
             (
-                (enfant_handicape * (br <= 5000) + (nbenf >= 3) * (br <= 3000)) *
-                (128 + 41 * max_(nbenf - 3, 0))
+                (enfant_handicape * (br <= P.plafond_haut_3enf) + (nbenf >= 3) * (br <= P.plafond_bas_3enf)) *
+                (P.montant_haut_3enf + P.montant_haut_enf_sup * max_(nbenf - 3, 0))
             ) +
             (
-                ((nbenf >= 3) * (br <= 5000) * (br > 3000)) *
-                (84 + 21 * max_(nbenf - 3, 0))
+                ((nbenf >= 3) * (br <= P.plafond_haut_3enf) * (br > P.plafond_bas_3enf)) *
+                (P.montant_bas_3enf + P.montant_bas_enf_sup * max_(nbenf - 3, 0))
             ) +
             (
-                ((nbenf == 2) * (br <= 2000)) *
-                116
+                ((nbenf == 2) * (br <= P.plafond_2enf)) *
+                P.montant_2enf
             )
         )
 
