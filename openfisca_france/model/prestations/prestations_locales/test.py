@@ -42,7 +42,6 @@ class parisien(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        print(depcom)
 
         def is_parisien(code_insee):
             prefix = code_insee[0:2]
@@ -83,10 +82,10 @@ class paris_logement_familles_elig(SimpleFormulaColumn):
 
 
 @reference_formula
-class paris_logement_familles_br(SimpleFormulaColumn):
-    column = BoolCol
-    label = u"Eligibilité à Paris-Logement-Familles"
-    entity_class = Familles
+class paris_logement_familles_br_i(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources individuelle pour Paris Logement Famille"
+    entity_class = Individus
 
     def function(self, simulation, period):
         salaire_net = simulation.calculate('salaire_net', period)
@@ -110,10 +109,25 @@ class paris_logement_familles_br(SimpleFormulaColumn):
             salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
             pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
-            indemnites_journalieres_imposables + prestation_compensatoire + retraite_combattant +
+            indemnites_journalieres_imposables + prestation_compensatoire +
             pensions_invalidite + bourse_recherche + gains_exceptionnels + tns_total_revenus_net +
             revenus_stage_formation_pro
         )
+
+        return period, result
+
+
+@reference_formula
+class paris_logement_familles_br(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressource pour Paris Logement Famille"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        paris_logement_familles_br_i_holder = simulation.compute('paris_logement_familles_br_i', period)
+        paris_logement_familles_br = self.sum_by_entity(paris_logement_familles_br_i_holder)
+        result = paris_logement_familles_br
 
         return period, result
 
@@ -128,10 +142,9 @@ class paris_logement_familles(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
 
         paris_logement_familles_elig = simulation.calculate('paris_logement_familles_elig', period)
+        paris_logement_familles_br = simulation.calculate('paris_logement_familles_br', period)
         # paris_logement_familles_br = simulation.calculate('paris_logement_familles_br', period)
 
         result = paris_logement_familles_elig * 1000
-        # print("paris_logement_familles_br", paris_logement_familles_br)
-        print("paris_logement_familles", result)
 
         return period, result
