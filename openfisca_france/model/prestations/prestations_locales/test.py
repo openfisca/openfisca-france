@@ -26,34 +26,34 @@ from ...base import *  # noqa analysis:ignore
 from numpy import vectorize, absolute as abs_, minimum as min_, maximum as max_
 
 
-# reference_input_variable(
-#     name ='parisien',
-#     column = BoolCol,
-#     entity_class = Familles,
-#     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
-# )
+reference_input_variable(
+    name ='parisien',
+    column = BoolCol,
+    entity_class = Menages,
+    label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
+)
 
 
-@reference_formula
-class parisien(SimpleFormulaColumn):
-    column = FloatCol
-    label = u"Résident à Paris"
-    entity_class = Familles
+# @reference_formula
+# class parisien(SimpleFormulaColumn):
+#     column = BoolCol
+#     label = u"Résident à Paris"
+#     entity_class = Menages
 
-    def function(self, simulation, period):
-        depcom = simulation.calculate('depcom', period)
+#     def function(self, simulation, period):
+#         depcom = simulation.calculate('depcom', period)
 
-        def is_parisien(code_insee):
-            prefix = code_insee[0:2]
-            sufix = code_insee[2:5]
-            result = (prefix == "75") and ((int(sufix) in range(101, 121)) or sufix == "056")
-            return result
+#         def is_parisien(code_insee):
+#             prefix = code_insee[0:2]
+#             sufix = code_insee[2:5]
+#             result = (prefix == "75") and ((int(sufix) in range(101, 121)) or sufix == "056")
+#             return result
 
-        is_parisien_vec = vectorize(is_parisien)
+#         is_parisien_vec = vectorize(is_parisien)
 
-        result = is_parisien_vec(depcom)
+#         result = is_parisien_vec(depcom)
 
-        return period, result
+#         return period, result
 
 
 @reference_formula
