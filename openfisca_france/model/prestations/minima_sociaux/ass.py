@@ -131,7 +131,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             simulation.calculate('rstnet', last_month)
         ) > 0
 
-        def calculateWithAbatement(ressourceName):
+        def calculateWithAbatement(ressourceName, neutral_totale = False):
             ressource_year = simulation.calculate_add(ressourceName, previous_year)
             ressource_last_month = simulation.calculate(ressourceName, last_month)
 
@@ -140,14 +140,15 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-            abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-            abat_res_interrompues_non_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
+            tx_abat_partiel = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
+            tx_abat_total = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
 
-            abat_reel = ressource_interrompue * (
-                has_ressources_substitution * abat_res_interrompues_substituees +
-                (1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
+            abat_partiel = ressource_interrompue * has_ressources_substitution * (1 - neutral_totale)
+            abat_total = ressource_interrompue * (1 - abat_partiel)
 
-            return (1 - abat_reel) * ressource_year
+            tx_abat_applique = abat_partiel * tx_abat_partiel + abat_total * tx_abat_total
+
+            return (1 - tx_abat_applique) * ressource_year
 
         sali = calculateWithAbatement('sali')
         indemnites_stage = calculateWithAbatement('indemnites_stage')
