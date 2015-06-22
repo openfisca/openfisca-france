@@ -151,9 +151,9 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             return (1 - tx_abat_applique) * ressource_year
 
         sali = calculateWithAbatement('sali')
-        indemnites_stage = calculateWithAbatement('indemnites_stage')
+        indemnites_stage = calculateWithAbatement('indemnites_stage', neutral_totale = True)
         revenus_stage_formation_pro = calculateWithAbatement('revenus_stage_formation_pro')
-        chonet = calculateWithAbatement('chonet')
+        chonet = calculateWithAbatement('chonet', neutral_totale = True)
         indemnites_journalieres = calculateWithAbatement('indemnites_journalieres')
         aah = calculateWithAbatement('aah')
         rstnet = calculateWithAbatement('rstnet')
