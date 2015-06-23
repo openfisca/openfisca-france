@@ -45,6 +45,14 @@ reference_input_variable(
     set_input = set_input_divide_by_period,
 )
 
+reference_input_variable(
+    column = FloatCol(),
+    entity_class = Menages,
+    label = u'Charges locatives',
+    name = 'charges_locatives',
+    set_input = set_input_divide_by_period,
+)
+
 build_column(
     'proprietaire_proche_famille',
     BoolCol(
