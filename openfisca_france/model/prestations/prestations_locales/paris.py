@@ -142,7 +142,7 @@ class paris_logement_familles(SimpleFormulaColumn):
         elig = simulation.calculate('paris_logement_familles_elig', period)
         br = simulation.calculate('paris_logement_familles_br', period)
         nbenf = simulation.calculate('af_nbenf', period)
-        loyer = simulation.calculate('loyer', period)
+        loyer = simulation.calculate('loyer', period) + simulation.calculate('charges_locatives', period)
         invalide_holder = simulation.compute('invalide', period)
         enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
         P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles
