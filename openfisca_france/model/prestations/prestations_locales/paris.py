@@ -33,6 +33,27 @@ reference_input_variable(
     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
 )
 
+reference_input_variable(
+    name ='a_charge_fiscale',
+    column = BoolCol,
+    entity_class = Individus,
+    label = u"Enfant à charge fiscale du demandeur",
+)
+
+reference_input_variable(
+    name ='enfant_place',
+    column = BoolCol,
+    entity_class = Individus,
+    label = u"Enfant placé en structure spécialisée ou famille d'accueil",
+)
+
+reference_input_variable(
+    name ='domicile_demandeur',
+    column = BoolCol,
+    entity_class = Individus,
+    label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
+)
+
 
 # @reference_formula
 # class parisien(SimpleFormulaColumn):
@@ -130,6 +151,52 @@ class paris_logement_familles_br(SimpleFormulaColumn):
 
 
 @reference_formula
+class plf_enfant_handicape(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Enfant handicapé au sens de la mairie de Paris"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+
+        invalide = simulation.calculate('invalide', period)
+        plf_enfant = simulation.calculate('plf_enfant', period)
+
+        return period, plf_enfant * invalide
+
+
+@reference_formula
+class plf_enfant(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Enfant pris en compte par la mairie de Paris pour PLF"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
+        enfant_place = simulation.calculate('enfant_place', period)
+        a_charge_fiscale = simulation.calculate('a_charge_fiscale', period)
+        domicile_demandeur = simulation.calculate('domicile_demandeur', period)
+
+        return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale * domicile_demandeur
+
+
+@reference_formula
+class plf_nbenf(SimpleFormulaColumn):
+    column = IntCol
+    entity_class = Familles
+    label = u"Nombre d'enfants dans la famille au sens de la mairie de Paris"
+
+    def function(self, simulation, period):
+        period_mois = period.start.offset('first-of', 'month').period('month')
+
+        plf_enfant_holder = simulation.compute('plf_enfant', period_mois)
+        plf_nbenf = self.sum_by_entity(plf_enfant_holder)
+
+        return period, plf_nbenf
+
+
+@reference_formula
 class paris_logement_familles(SimpleFormulaColumn):
     column = FloatCol
     label = u"Allocation Paris Logement Familles"
@@ -141,10 +208,10 @@ class paris_logement_familles(SimpleFormulaColumn):
 
         elig = simulation.calculate('paris_logement_familles_elig', period)
         br = simulation.calculate('paris_logement_familles_br', period)
-        nbenf = simulation.calculate('af_nbenf', period)
+        nbenf = simulation.calculate('plf_nbenf', period)
         loyer = simulation.calculate('loyer', period) + simulation.calculate('charges_locatives', period)
-        invalide_holder = simulation.compute('invalide', period)
-        enfant_handicape = self.any_by_roles(invalide_holder, roles = ENFS)
+        plf_enfant_handicape_holder = simulation.compute('plf_enfant_handicape', period)
+        enfant_handicape = self.any_by_roles(plf_enfant_handicape_holder, roles = ENFS)
         P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles
 
         result = (
