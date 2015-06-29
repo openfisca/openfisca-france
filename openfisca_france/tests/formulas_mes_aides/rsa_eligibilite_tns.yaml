@@ -158,7 +158,7 @@
   output_variables:
     rsa: 0
 
-- name: "Non éligiilité TNS par défaut"
+- name: "Non éligibilité TNS par défaut"
   period: "month:2015-04"
   input_variables:
     age: 40
