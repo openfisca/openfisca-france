@@ -248,7 +248,7 @@ class af_majo(SimpleFormulaColumn):
 class complement_degressif(DatedFormulaColumn):
     column = FloatCol
     entity_class = Familles
-    label = u"AF - Complément dégressif en cas de déppasement du plafond"
+    label = u"AF - Complément dégressif en cas de dépassement du plafond"
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
@@ -256,15 +256,15 @@ class complement_degressif(DatedFormulaColumn):
         af_nbenf = simulation.calculate('af_nbenf', period)
         br_pf = simulation.calculate('br_pf', period)
         af_base = simulation.calculate('af_base', period)
-        af_forf = simulation.calculate('af_forf', period)
         af_majo = simulation.calculate('af_majo', period)
+        af_forf = simulation.calculate('af_forf', period)
         pfam = simulation.legislation_at(period.start).fam.af
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + (max_(af_nbenf - 2, 0)) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + (max_(af_nbenf - 2, 0)) * modulation.enfant_supp
+        plafond1 = modulation.plafond1 + (max_(0, af_nbenf - 2)) * modulation.enfant_supp
+        plafond2 = modulation.plafond2 + (max_(0, af_nbenf - 2)) * modulation.enfant_supp
 
-        depassement_plafond1 = max_(br_pf - plafond1, 0)
-        depassement_plafond2 = max_(br_pf - plafond2, 0)
+        depassement_plafond1 = max_(0, br_pf - plafond1)
+        depassement_plafond2 = max_(0, br_pf - plafond2)
 
         depassement = (
             (depassement_plafond2 == 0) * depassement_plafond1 +
@@ -272,11 +272,8 @@ class complement_degressif(DatedFormulaColumn):
         )
 
         af_annuel = (af_base + af_majo + af_forf) * 12  # TODO: af_forf est-il inclus ?  cf. dernier paragraphe de http://legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1B4887DFDFBD506B25B643530FD9BA38.tpdila11v_1?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000030680318&dateTexte=20150624&categorieLien=id#LEGIARTI000030680318
-        eligibilite_complement_degressif = depassement < af_annuel
 
-        complement_degressif = ((af_annuel - depassement) / 12) * eligibilite_complement_degressif
-
-        return period, complement_degressif
+        return period, max_(0, (af_annuel - depassement) / 12)
 
 
 @reference_formula
