@@ -1,0 +1,159 @@
+name: Foyer 3 enfants dont un + de 14 ans > plafond dom 89 490
+keywords:
+  - af
+  - barêmes 1er juillet 2015
+  - dom
+  - majoration
+description: |
+  Montant de base pour 3 enfants: 73,76 euros
+  Majoration pour un enfant de plus de 14 ans: 16,17 euros
+  73,76 + 16,17 = 89,93
+period: "month:2015-07"
+individus:
+  - age: 55
+    age_en_mois: 666
+    birth: "1960-01-01"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559149aa9e2a9d0330e7a1a8
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_de_base:
+      2013: 114871.79487179483
+      2014-08: 12763.532763532761
+      2014-09: 12763.532763532761
+      2014-10: 12763.532763532761
+      2014-11: 12763.532763532761
+      2014-12: 12763.532763532761
+      2015-01: 12763.532763532761
+      2015-02: 12763.532763532761
+      2015-03: 12763.532763532761
+      2015-04: 12763.532763532761
+      2015-04:3: 12763.532763532761
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 114871.79487179483
+    salaire_imposable:
+      2013: 89600
+    salaire_net:
+      2013: 89600
+      2014-08: 9955.555555555555
+      2014-09: 9955.555555555555
+      2014-10: 9955.555555555555
+      2014-11: 9955.555555555555
+      2014-12: 9955.555555555555
+      2015-01: 9955.555555555555
+      2015-02: 9955.555555555555
+      2015-03: 9955.555555555555
+      2015-04: 9955.555555555555
+      2015-04:3: 9955.555555555555
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 89600
+    sali:
+      2013: 92872.9846153846
+      2014-08: 10319.220512820511
+      2014-09: 10319.220512820511
+      2014-10: 10319.220512820511
+      2014-11: 10319.220512820511
+      2014-12: 10319.220512820511
+      2015-01: 10319.220512820511
+      2015-02: 10319.220512820511
+      2015-03: 10319.220512820511
+      2015-04: 10319.220512820511
+      2015-04:3: 10319.220512820511
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 92872.9846153846
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 118
+    birth: "2005-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559149aa9e2a9d0330e7a1a7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 8
+    age_en_mois: 106
+    birth: "2006-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559149aa9e2a9d0330e7a1a6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 15
+    age_en_mois: 190
+    birth: "1999-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559149aa9e2a9d0330e7a1a5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 559149aa9e2a9d0330e7a1a7
+    - 559149aa9e2a9d0330e7a1a6
+    - 559149aa9e2a9d0330e7a1a5
+  parents: 559149aa9e2a9d0330e7a1a8
+foyers_fiscaux:
+  declarants: 559149aa9e2a9d0330e7a1a8
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 559149aa9e2a9d0330e7a1a7
+    - 559149aa9e2a9d0330e7a1a6
+    - 559149aa9e2a9d0330e7a1a5
+  rfr:
+    2013: 89600
+menages:
+  depcom: 97415
+  enfants:
+    - 559149aa9e2a9d0330e7a1a7
+    - 559149aa9e2a9d0330e7a1a6
+    - 559149aa9e2a9d0330e7a1a5
+  personne_de_reference: 559149aa9e2a9d0330e7a1a8
+  statut_occupation: 6
+output_variables:
+  af: 89.93
+  asf: 301.73
+  cmu_c: true
+  rsa: 596.42

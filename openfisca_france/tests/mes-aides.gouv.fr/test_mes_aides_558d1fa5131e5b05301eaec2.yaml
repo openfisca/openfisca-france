@@ -1,0 +1,136 @@
+name: Foyer 2 enfants > plafond 67 140
+keywords:
+  - af
+  - barêmes 1er juillet 2015
+description: 
+period: "month:2015-07"
+individus:
+  - age: 55
+    age_en_mois: 660
+    birth: "1960-06-05"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d1f9048433cfe2f436510
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_de_base:
+      2013: 87179.48717948719
+      2014-08: 9686.609686609687
+      2014-09: 9686.609686609687
+      2014-10: 9686.609686609687
+      2014-11: 9686.609686609687
+      2014-12: 9686.609686609687
+      2015-01: 9686.609686609687
+      2015-02: 9686.609686609687
+      2015-03: 9686.609686609687
+      2015-04: 9686.609686609687
+      2015-04:3: 9686.609686609687
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 87179.48717948719
+    salaire_imposable:
+      2013: 68000
+    salaire_net:
+      2013: 68000
+      2014-08: 7555.555555555556
+      2014-09: 7555.555555555556
+      2014-10: 7555.555555555556
+      2014-11: 7555.555555555556
+      2014-12: 7555.555555555556
+      2015-01: 7555.555555555556
+      2015-02: 7555.555555555556
+      2015-03: 7555.555555555556
+      2015-04: 7555.555555555556
+      2015-04:3: 7555.555555555556
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 68000
+    sali:
+      2013: 70483.96153846155
+      2014-08: 7831.551282051282
+      2014-09: 7831.551282051282
+      2014-10: 7831.551282051282
+      2014-11: 7831.551282051282
+      2014-12: 7831.551282051282
+      2015-01: 7831.551282051282
+      2015-02: 7831.551282051282
+      2015-03: 7831.551282051282
+      2015-04: 7831.551282051282
+      2015-04:3: 7831.551282051282
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 70483.96153846155
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 117
+    birth: "2005-09-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d1f9048433cfe2f43650f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 117
+    birth: "2005-09-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d1f9048433cfe2f43650e
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 558d1f9048433cfe2f43650f
+    - 558d1f9048433cfe2f43650e
+  parents: 558d1f9048433cfe2f436510
+foyers_fiscaux:
+  declarants: 558d1f9048433cfe2f436510
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 558d1f9048433cfe2f43650f
+    - 558d1f9048433cfe2f43650e
+  rfr:
+    2013: 68000
+menages:
+  depcom: 76540
+  enfants:
+    - 558d1f9048433cfe2f43650f
+    - 558d1f9048433cfe2f43650e
+  personne_de_reference: 558d1f9048433cfe2f436510
+  statut_occupation: 6
+output_variables:
+  af: 64.67
+  asf: 201.16
+  cmu_c: true
+  rsa: 634.4

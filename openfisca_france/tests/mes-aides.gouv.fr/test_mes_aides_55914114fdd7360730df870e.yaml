@@ -1,0 +1,155 @@
+name: Foyer 3 enfants < plafond dom 89 490
+keywords:
+  - af
+  - barêmes 1er juillet 2015
+  - dom
+description: |
+  Test créé à partir d'un dossier de demande de (RSA, APL…) : 
+  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : 
+  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : 
+period: "month:2015-07"
+individus:
+  - age: 55
+    age_en_mois: 666
+    birth: "1960-01-01"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5591410afdd7360730df8701
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_de_base:
+      2013: 114615.38461538462
+      2014-08: 12735.042735042736
+      2014-09: 12735.042735042736
+      2014-10: 12735.042735042736
+      2014-11: 12735.042735042736
+      2014-12: 12735.042735042736
+      2015-01: 12735.042735042736
+      2015-02: 12735.042735042736
+      2015-03: 12735.042735042736
+      2015-04: 12735.042735042736
+      2015-04:3: 12735.042735042736
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 114615.38461538462
+    salaire_imposable:
+      2013: 89400
+    salaire_net:
+      2013: 89400
+      2014-08: 9933.333333333334
+      2014-09: 9933.333333333334
+      2014-10: 9933.333333333334
+      2014-11: 9933.333333333334
+      2014-12: 9933.333333333334
+      2015-01: 9933.333333333334
+      2015-02: 9933.333333333334
+      2015-03: 9933.333333333334
+      2015-04: 9933.333333333334
+      2015-04:3: 9933.333333333334
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 89400
+    sali:
+      2013: 92665.67884615385
+      2014-08: 10296.18653846154
+      2014-09: 10296.18653846154
+      2014-10: 10296.18653846154
+      2014-11: 10296.18653846154
+      2014-12: 10296.18653846154
+      2015-01: 10296.18653846154
+      2015-02: 10296.18653846154
+      2015-03: 10296.18653846154
+      2015-04: 10296.18653846154
+      2015-04:3: 10296.18653846154
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 92665.67884615385
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    age_en_mois: 93
+    birth: "2007-09-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5591410afdd7360730df8700
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 81
+    birth: "2008-09-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5591410afdd7360730df86ff
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 74
+    birth: "2009-04-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5591410afdd7360730df86fe
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 5591410afdd7360730df8700
+    - 5591410afdd7360730df86ff
+    - 5591410afdd7360730df86fe
+  parents: 5591410afdd7360730df8701
+foyers_fiscaux:
+  declarants: 5591410afdd7360730df8701
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 5591410afdd7360730df8700
+    - 5591410afdd7360730df86ff
+    - 5591410afdd7360730df86fe
+  rfr:
+menages:
+  depcom: 97415
+  enfants:
+    - 5591410afdd7360730df8700
+    - 5591410afdd7360730df86ff
+    - 5591410afdd7360730df86fe
+  personne_de_reference: 5591410afdd7360730df8701
+  statut_occupation: 6
+output_variables:
+  af: 147.53
+  asf: 301.73
+  cmu_c: true
+  rsa: 596.42

@@ -1,0 +1,139 @@
+name: Foyer 2 enfants < plafond dom 67 140
+keywords:
+  - af
+  - barêmes 1er juillet 2015
+  - dom
+description: |
+  Test créé à partir d'un dossier de demande de (RSA, APL…) : 
+  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : 
+  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : 
+period: "month:2015-07"
+individus:
+  - age: 35
+    age_en_mois: 424
+    birth: "1980-03-02"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55913de67ae4c40130761e17
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_de_base:
+      2013: 85897.43589743589
+      2014-08: 9544.159544159544
+      2014-09: 9544.159544159544
+      2014-10: 9544.159544159544
+      2014-11: 9544.159544159544
+      2014-12: 9544.159544159544
+      2015-01: 9544.159544159544
+      2015-02: 9544.159544159544
+      2015-03: 9544.159544159544
+      2015-04: 9544.159544159544
+      2015-04:3: 9544.159544159544
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 85897.43589743589
+    salaire_imposable:
+      2013: 67000
+    salaire_net:
+      2013: 67000
+      2014-08: 7444.444444444444
+      2014-09: 7444.444444444444
+      2014-10: 7444.444444444444
+      2014-11: 7444.444444444444
+      2014-12: 7444.444444444444
+      2015-01: 7444.444444444444
+      2015-02: 7444.444444444444
+      2015-03: 7444.444444444444
+      2015-04: 7444.444444444444
+      2015-04:3: 7444.444444444444
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 67000
+    sali:
+      2013: 69447.43269230767
+      2014-08: 7716.38141025641
+      2014-09: 7716.38141025641
+      2014-10: 7716.38141025641
+      2014-11: 7716.38141025641
+      2014-12: 7716.38141025641
+      2015-01: 7716.38141025641
+      2015-02: 7716.38141025641
+      2015-03: 7716.38141025641
+      2015-04: 7716.38141025641
+      2015-04:3: 7716.38141025641
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      year:2014-07: 69447.43269230767
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    age_en_mois: 57
+    birth: "2010-09-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55913de67ae4c40130761e16
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 10
+    age_en_mois: 123
+    birth: "2005-04-02"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55913de67ae4c40130761e15
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 55913de67ae4c40130761e16
+    - 55913de67ae4c40130761e15
+  parents: 55913de67ae4c40130761e17
+foyers_fiscaux:
+  declarants: 55913de67ae4c40130761e17
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 55913de67ae4c40130761e16
+    - 55913de67ae4c40130761e15
+  rfr:
+    2013: 67000
+menages:
+  depcom: 97415
+  enfants:
+    - 55913de67ae4c40130761e16
+    - 55913de67ae4c40130761e15
+  personne_de_reference: 55913de67ae4c40130761e17
+  statut_occupation: 6
+output_variables:
+  af: 129.35
+  asf: 201.16
+  cmu_c: true
+  rsa: 634.4
