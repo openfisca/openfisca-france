@@ -266,14 +266,14 @@ class complement_degressif(DatedFormulaColumn):
         depassement_plafond1 = max_(0, br_pf - plafond1)
         depassement_plafond2 = max_(0, br_pf - plafond2)
 
-        depassement = (
+        depassement_mensuel = (
             (depassement_plafond2 == 0) * depassement_plafond1 +
             (depassement_plafond2 > 0) * depassement_plafond2
-        )
+        ) / 12
 
-        af_annuel = (af_base + af_majo + af_forf) * 12  # TODO: af_forf est-il inclus ?  cf. dernier paragraphe de http://legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1B4887DFDFBD506B25B643530FD9BA38.tpdila11v_1?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000030680318&dateTexte=20150624&categorieLien=id#LEGIARTI000030680318
+        af = af_base + af_majo + af_forf  # TODO: af_forf est-il inclus ?  cf. dernier paragraphe de http://legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1B4887DFDFBD506B25B643530FD9BA38.tpdila11v_1?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000030680318&dateTexte=20150624&categorieLien=id#LEGIARTI000030680318
 
-        return period, max_(0, (af_annuel - depassement) / 12)
+        return period, max_(0, af - depassement_mensuel)
 
 
 @reference_formula
