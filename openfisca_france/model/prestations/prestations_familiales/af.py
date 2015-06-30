@@ -271,10 +271,12 @@ class complement_degressif(DatedFormulaColumn):
             (depassement_plafond2 > 0) * depassement_plafond2
         )
 
-        complement_af_base_maj = af_base + af_majo - depassement / 12
-        complement_af_forf = af_forf - depassement / 12
+        af_annuel = (af_base + af_majo + af_forf) * 12  # TODO: af_forf est-il inclus ?  cf. dernier paragraphe de http://legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1B4887DFDFBD506B25B643530FD9BA38.tpdila11v_1?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000030680318&dateTexte=20150624&categorieLien=id#LEGIARTI000030680318
+        eligibilite_complement_degressif = depassement < af_annuel
 
-        return period, depassement * (complement_af_base_maj + complement_af_forf)
+        complement_degressif = ((af_annuel - depassement) / 12) * eligibilite_complement_degressif
+
+        return period, complement_degressif
 
 
 @reference_formula
