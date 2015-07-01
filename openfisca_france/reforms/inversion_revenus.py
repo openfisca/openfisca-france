@@ -56,6 +56,7 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Salaire brut ou traitement indiciaire brut"
+        reference = tax_benefit_system.column_by_name["salaire_de_base"]
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
         def function(self, simulation, period):
