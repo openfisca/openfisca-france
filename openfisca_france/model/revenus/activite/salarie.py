@@ -382,9 +382,10 @@ reference_input_variable(
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
-    label = u"Salaire de base (présent sur la fiche de paie, valeur annuelle)",
+    label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie",
     name = 'salaire_de_base',
     set_input = set_input_divide_by_period,
+    url = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm',
     )
 reference_input_variable(
     column = FloatCol(default = 0.5),
