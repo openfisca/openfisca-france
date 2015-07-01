@@ -319,14 +319,14 @@ reference_input_variable(
     )
 reference_input_variable(
     base_function = requested_period_last_value,
-    column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
+    column = FloatCol(default = 0.015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux_employe',
     )
 reference_input_variable(
     base_function = requested_period_last_value,
-    column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
+    column = FloatCol(default = 0.015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux_employeur',
@@ -387,7 +387,7 @@ reference_input_variable(
     set_input = set_input_divide_by_period,
     )
 reference_input_variable(
-    column = FloatCol(default = .5),
+    column = FloatCol(default = 0.5),
     entity_class = Individus,
     label = u"Taux de participation de l'employeur au titre restaurant",
     name = 'titre_restaurant_taux_employeur',
