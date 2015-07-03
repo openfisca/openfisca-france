@@ -403,7 +403,7 @@ class mini(SimpleFormulaColumn):
         rsa = simulation.calculate_add('rsa', period)
         aefa = simulation.calculate('aefa', period)
         api = simulation.calculate('api', period)
-        ass = simulation.calculate('ass', period)
+        ass = simulation.calculate_add('ass', period)
         psa = simulation.calculate_add('psa', period)
 
         aah = self.sum_by_entity(aah_holder)
