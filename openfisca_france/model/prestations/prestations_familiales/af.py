@@ -273,7 +273,7 @@ class complement_degressif(DatedFormulaColumn):
 
         af = af_base + af_majo + af_forf  # TODO: af_forf est-il inclus ?  cf. dernier paragraphe de http://legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1B4887DFDFBD506B25B643530FD9BA38.tpdila11v_1?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000030680318&dateTexte=20150624&categorieLien=id#LEGIARTI000030680318
 
-        return period, max_(0, af - depassement_mensuel)
+        return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 @reference_formula
