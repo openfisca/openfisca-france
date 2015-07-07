@@ -168,8 +168,8 @@ class af_taux_modulation(DatedFormulaColumn):
         pfam = simulation.legislation_at(period.start).fam.af
         br_pf = simulation.calculate('br_pf', period)
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + (max_(af_nbenf - 2, 0)) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + (max_(af_nbenf - 2, 0)) * modulation.enfant_supp
+        plafond1 = modulation.plafond1 + af_nbenf * modulation.enfant_supp
+        plafond2 = modulation.plafond2 + af_nbenf * modulation.enfant_supp
 
         taux = (
             (br_pf <= plafond1) * 1 +
@@ -201,8 +201,8 @@ class af_forf_taux_modulation(DatedFormulaColumn):
         nb_enf_tot = af_nbenf + af_forf_nbenf
         br_pf = simulation.calculate('br_pf', period)
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + (max_(nb_enf_tot - 2, 0)) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + (max_(nb_enf_tot - 2, 0)) * modulation.enfant_supp
+        plafond1 = modulation.plafond1 + nb_enf_tot * modulation.enfant_supp
+        plafond2 = modulation.plafond2 + nb_enf_tot * modulation.enfant_supp
 
         taux = (
             (br_pf <= plafond1) * 1 +
@@ -310,8 +310,8 @@ class af_complement_degressif(DatedFormulaColumn):
         af_majo = simulation.calculate('af_majo', period)
         pfam = simulation.legislation_at(period.start).fam.af
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + (max_(0, af_nbenf - 2)) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + (max_(0, af_nbenf - 2)) * modulation.enfant_supp
+        plafond1 = modulation.plafond1 + af_nbenf * modulation.enfant_supp
+        plafond2 = modulation.plafond2 + af_nbenf * modulation.enfant_supp
 
         depassement_plafond1 = max_(0, br_pf - plafond1)
         depassement_plafond2 = max_(0, br_pf - plafond2)
@@ -341,8 +341,8 @@ class af_forf_complement_degressif(DatedFormulaColumn):
         br_pf = simulation.calculate('br_pf', period)
         af_forf = simulation.calculate('af_forf', period)
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + (max_(0, nb_enf_tot - 2)) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + (max_(0, nb_enf_tot - 2)) * modulation.enfant_supp
+        plafond1 = modulation.plafond1 + nb_enf_tot * modulation.enfant_supp
+        plafond2 = modulation.plafond2 + nb_enf_tot * modulation.enfant_supp
 
         depassement_plafond1 = max_(0, br_pf - plafond1)
         depassement_plafond2 = max_(0, br_pf - plafond2)
