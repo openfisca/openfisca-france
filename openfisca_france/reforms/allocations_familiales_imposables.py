@@ -71,7 +71,7 @@ def build_reform(tax_benefit_system):
 
         def function(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
-            allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables', period)
+            allocations_familiales_imposables = simulation.calculate_add('allocations_familiales_imposables', period)
             deficit_ante = simulation.calculate('deficit_ante', period)
             f6gh = simulation.calculate('f6gh', period)
             nacc_pvce_holder = simulation.calculate('nacc_pvce', period)
@@ -103,7 +103,7 @@ def build_reform(tax_benefit_system):
             rni = simulation.calculate('rni')
             rpns_exon_holder = simulation.calculate('rpns_exon')
             rpns_pvce_holder = simulation.calculate('rpns_pvce')
-            rev_cap_lib = simulation.calculate('rev_cap_lib')
+            rev_cap_lib = simulation.calculate_add('rev_cap_lib')
             microentreprise = simulation.calculate('microentreprise')
 
             f3va = self.sum_by_entity(f3va_holder)
@@ -124,7 +124,7 @@ def build_reform(tax_benefit_system):
 
         def function(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
-            af_holder = simulation.calculate('af')
+            af_holder = simulation.calculate_add('af')
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
 
             af = self.cast_from_entity_to_role(af_holder, entity= "famille", role = QUIFOY['vous'])
