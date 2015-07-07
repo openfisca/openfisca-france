@@ -1,37 +1,39 @@
-name: Couple jeune sans ressources
+name: Couple sans activité sans domicile stable
 keywords:
-  - foyer
+  - forfait logement
+  - recette
   - rsa
-description:
-period: "month:2014-07"
+description: Il ne faut pas appliquer le forfait logement
+period: "month:2015-06"
 individus:
-  - age: 29
-    age_en_mois: 354
-    birth: "1985-01-01"
-    enceinte: false
+  - age: 55
+    age_en_mois: 665
+    birth: "1960-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
-    id: 53d79ed1f6aa390200a6cd3a
+    id: 55929dc4131e5b05301ebc1a
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - age: 24
-    age_en_mois: 294
-    birth: "1990-01-01"
+  - age: 55
+    age_en_mois: 665
+    birth: "1960-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
-    id: 53d79ed1f6aa390200a6cd39
+    id: 55929dc4131e5b05301ebc19
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -39,17 +41,18 @@ individus:
 familles:
   enfants:
   parents:
-    - 53d79ed1f6aa390200a6cd3a
-    - 53d79ed1f6aa390200a6cd39
+    - 55929dc4131e5b05301ebc1a
+    - 55929dc4131e5b05301ebc19
 foyers_fiscaux:
   declarants:
-    - 53d79ed1f6aa390200a6cd3a
-    - 53d79ed1f6aa390200a6cd39
+    - 55929dc4131e5b05301ebc1a
+    - 55929dc4131e5b05301ebc19
   personnes_a_charge:
 menages:
-  conjoint: 53d79ed1f6aa390200a6cd39
+  conjoint: 55929dc4131e5b05301ebc19
+  depcom: 77004
   enfants:
-  personne_de_reference: 53d79ed1f6aa390200a6cd3a
-  statut_occupation: 6
+  personne_de_reference: 55929dc4131e5b05301ebc1a
 output_variables:
-  rsa: 629.13
+  cmu_c: true
+  rsa: 770.82
