@@ -91,6 +91,10 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         previous_year = period.start.period('year').offset(-1)
 
         sali = simulation.calculate_add('sali', previous_year)
+        sali_this_month = simulation.calculate('sali', period)
+        sali_interrompu = (sali > 0) * (sali_this_month == 0)
+        # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
+        sali = (1 - sali_interrompu) * sali
         rstnet = simulation.calculate('rstnet', previous_year)
         tns_auto_entrepreneur_benefice = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
         tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
@@ -129,7 +133,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             simulation.calculate('rstnet', last_month)
         ) > 0
 
-        def calculateWithAbatement(ressourceName):
+        def calculateWithAbatement(ressourceName, neutral_totale = False):
             ressource_year = simulation.calculate_add(ressourceName, previous_year)
             ressource_last_month = simulation.calculate(ressourceName, last_month)
 
@@ -138,19 +142,20 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-            abat_res_interrompues_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-            abat_res_interrompues_non_substituees = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
+            tx_abat_partiel = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
+            tx_abat_total = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
 
-            abat_reel = ressource_interrompue * (
-                has_ressources_substitution * abat_res_interrompues_substituees +
-                (1 - has_ressources_substitution) * abat_res_interrompues_non_substituees)
+            abat_partiel = ressource_interrompue * has_ressources_substitution * (1 - neutral_totale)
+            abat_total = ressource_interrompue * (1 - abat_partiel)
 
-            return (1 - abat_reel) * ressource_year
+            tx_abat_applique = abat_partiel * tx_abat_partiel + abat_total * tx_abat_total
+
+            return (1 - tx_abat_applique) * ressource_year
 
         sali = calculateWithAbatement('sali')
-        indemnites_stage = calculateWithAbatement('indemnites_stage')
+        indemnites_stage = calculateWithAbatement('indemnites_stage', neutral_totale = True)
         revenus_stage_formation_pro = calculateWithAbatement('revenus_stage_formation_pro')
-        chonet = calculateWithAbatement('chonet')
+        chonet = calculateWithAbatement('chonet', neutral_totale = True)
         indemnites_journalieres = calculateWithAbatement('indemnites_journalieres')
         aah = calculateWithAbatement('aah')
         rstnet = calculateWithAbatement('rstnet')
