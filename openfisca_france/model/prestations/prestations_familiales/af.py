@@ -71,6 +71,24 @@ class af_nbenf(SimpleFormulaColumn):
 
 
 @reference_formula
+class af_forf_nbenf(SimpleFormulaColumn):
+    column = IntCol
+    entity_class = Familles
+    label = u"Nombre d'enfants dans la famille éligibles à l'allocation forfaitaire des AF"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age_holder = simulation.compute('age', period)
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        smic55_holder = simulation.compute('smic55', period)
+        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        pfam = simulation.legislation_at(period.start).fam.af
+        af_forf_nbenf = nb_enf(age, smic55, pfam.age3, pfam.age3)
+
+        return period, af_forf_nbenf
+
+
+@reference_formula
 class af_eligibilite_base(SimpleFormulaColumn):
     column = BoolCol
     entity_class = Familles
@@ -177,14 +195,10 @@ class af_forf_taux_modulation(DatedFormulaColumn):
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        age_holder = simulation.compute('age', period)
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55_holder = simulation.compute('smic55', period)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         pfam = simulation.legislation_at(period.start).fam.af
-        nbenf_forf = nb_enf(age, smic55, pfam.age3, pfam.age3)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        nb_enf_tot = af_nbenf + nbenf_forf
+        af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
+        nb_enf_tot = af_nbenf + af_forf_nbenf
         br_pf = simulation.calculate('br_pf', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + (max_(nb_enf_tot - 2, 0)) * modulation.enfant_supp
@@ -322,13 +336,9 @@ class af_forf_complement_degressif(DatedFormulaColumn):
     def function_2015(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_nbenf = simulation.calculate('af_nbenf', period)
-        age_holder = simulation.compute('age', period)
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55_holder = simulation.compute('smic55', period)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam.af
-        nbenf_forf = nb_enf(age, smic55, pfam.age3, pfam.age3)
-        nb_enf_tot = af_nbenf + nbenf_forf
+        nb_enf_tot = af_nbenf + af_forf_nbenf
         br_pf = simulation.calculate('br_pf', period)
         af_forf = simulation.calculate('af_forf', period)
         modulation = pfam.modulation
@@ -354,17 +364,13 @@ class af_forf(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        smic55_holder = simulation.compute('smic55', period)
+        af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
         P = simulation.legislation_at(period.start).fam.af
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
         bmaf = P.bmaf
-        nbenf_forf = nb_enf(age, smic55, P.age3, P.age3)
         af_forfait = round(bmaf * P.taux.forfait, 2)
-        af_forf = ((af_nbenf >= 2) * nbenf_forf) * af_forfait
+        af_forf = ((af_nbenf >= 2) * af_forf_nbenf) * af_forfait
 
         af_forf_taux_modulation = simulation.calculate('af_forf_taux_modulation', period)
         af_forf_module = af_forf * af_forf_taux_modulation
