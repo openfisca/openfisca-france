@@ -42,7 +42,7 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
     simulation.get_or_new_holder(target_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
         simulation.get_or_new_holder(variable_name).set_array(period, array)
-    return simulation.calculate(target_name)
+    return simulation.calculate_add(target_name)
 
 
 def build_reform(tax_benefit_system):

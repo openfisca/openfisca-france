@@ -663,7 +663,7 @@ class cotsyn(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'year').period('year')
         f7ac_holder = simulation.compute('f7ac', period)
-        salaire_imposable_holder = simulation.compute('salaire_imposable', period)
+        salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
         cho_holder = simulation.compute('cho', period)
         rst_holder = simulation.compute('rst', period)
         P = simulation.legislation_at(period.start).ir.reductions_impots.cotsyn

@@ -183,21 +183,17 @@ class salaire_imposable(SimpleFormulaColumn):
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period)
-        primes_salaires = simulation.calculate_add('primes_salaires', period)
-        primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate_add('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
-        csg_deductible_salaire = simulation.calculate_add('csg_deductible_salaire', period)
+        period = period.start.period(u'month').offset('first-of')
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        primes_salaires = simulation.calculate('primes_salaires', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        csg_deductible_salaire = simulation.calculate('csg_deductible_salaire', period)
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         hsup = simulation.calculate('hsup', period)
-        # Quand sal est calculé sur une année glissante, rev_microsocial_declarant1 est calculé sur l'année légale
-        # correspondante. Quand sal est calculé sur un mois, rev_microsocial_declarant1 est calculé par division du
-        # montant pour l'année légale.
-        rev_microsocial_declarant1 = simulation.calculate_add_divide('rev_microsocial_declarant1',
-            period.offset('first-of'))
+        rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
@@ -219,14 +215,14 @@ class salaire_net(SimpleFormulaColumn):
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds
         '''
-        period = period
+        period = period.start.period(u'month').offset('first-of')
 
         # salaire_de_base = simulation.get_array('salaire_de_base', period)
         # if salaire_de_base is None:
         #     return period, zeros(self.holder.entity.count)
         salaire_imposable = simulation.calculate('salaire_imposable', period)
-        crds_salaire = simulation.calculate_add('crds_salaire', period)
-        csg_imposable_salaire = simulation.calculate_add('csg_imposable_salaire', period)
+        crds_salaire = simulation.calculate('crds_salaire', period)
+        csg_imposable_salaire = simulation.calculate('csg_imposable_salaire', period)
 
         return period, salaire_imposable + crds_salaire + csg_imposable_salaire
 

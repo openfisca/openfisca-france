@@ -398,7 +398,7 @@ class rev_sal(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        salaire_imposable =  simulation.calculate('salaire_imposable', period)
+        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
         cho = simulation.calculate('cho', period)
 
         return period, salaire_imposable + cho
@@ -431,7 +431,7 @@ class rev_act_sal(SimpleFormulaColumn):
     def function(self, simulation, period):
         ''' Revenus d'activités salariées'''
         period = period.start.offset('first-of', 'year').period('year')
-        salaire_imposable =  simulation.calculate('salaire_imposable', period)
+        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
 
         return period, salaire_imposable
 
@@ -2841,7 +2841,7 @@ class ppe_rev(SimpleFormulaColumn):
         'ind'
         '''
         period = period.start.offset('first-of', 'year').period('year')
-        salaire_imposable =  simulation.calculate('salaire_imposable', period)
+        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
         hsup = simulation.calculate('hsup', period)
         rpns = simulation.calculate('rpns', period)
         ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe

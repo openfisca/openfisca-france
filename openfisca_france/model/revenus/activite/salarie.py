@@ -775,7 +775,7 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         dues par les salarié avancées par l'employeur
         '''
         period = period
-        salaire_net = simulation.calculate('salaire_net', period)
+        salaire_net = simulation.calculate_add('salaire_net', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)

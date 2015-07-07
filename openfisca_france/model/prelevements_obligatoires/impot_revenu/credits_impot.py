@@ -1169,7 +1169,7 @@ class jeunes_ind(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
-        salaire_imposable =  simulation.calculate('salaire_imposable', period)
+        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
         marpac_holder = simulation.compute('marpac', period)
         elig_creimp_jeunes = simulation.calculate('elig_creimp_jeunes', period)
         _P = simulation.legislation_at(period.start)
