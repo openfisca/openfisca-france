@@ -2660,7 +2660,6 @@ class taux_effectif(SimpleFormulaColumn):
         nbnc_proc_holder = simulation.compute('nbnc_proc', period)
         bareme = simulation.legislation_at(period.start).ir.bareme
         cga = simulation.legislation_at(period.start).ir.rpns.cga_taux2
-        me = simulation.legislation_at(period.start).ir.rpns.microentreprise
 
         abnc_proc = self.sum_by_entity(abnc_proc_holder)
         nbnc_proc = self.sum_by_entity(nbnc_proc_holder)

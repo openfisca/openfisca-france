@@ -28,12 +28,8 @@ import datetime
 from nose.tools import assert_less
 
 from openfisca_core import periods
-import openfisca_france
 from openfisca_france.reforms import plf2015
 from openfisca_france.tests import base
-
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
 
 
 def test(year = 2014):
