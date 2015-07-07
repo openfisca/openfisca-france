@@ -203,7 +203,6 @@ class af_forf_taux_modulation(DatedFormulaColumn):
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + (max_(nb_enf_tot - 2, 0)) * modulation.enfant_supp
         plafond2 = modulation.plafond2 + (max_(nb_enf_tot - 2, 0)) * modulation.enfant_supp
-        print(plafond1)
 
         taux = (
             (br_pf <= plafond1) * 1 +
