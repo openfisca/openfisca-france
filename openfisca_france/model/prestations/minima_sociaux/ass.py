@@ -25,7 +25,8 @@
 
 from __future__ import division
 
-from numpy import absolute as abs_, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_
+from numpy import (absolute as abs_, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_,
+                   minimum as min_)
 
 from ...base import *  # noqa analysis:ignore
 
