@@ -6,6 +6,7 @@ description: |
   Ressources inf à 67 140 euros
   On veut 67000 € de revenus nets, donc on déclare 74444 € de revenus imposables.
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - age: 54
     age_en_mois: 657
