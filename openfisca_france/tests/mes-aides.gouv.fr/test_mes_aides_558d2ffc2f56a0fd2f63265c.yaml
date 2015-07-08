@@ -7,8 +7,13 @@ description: |
   Montant de base pour 3 enfants: 73,76 euros
   Majoration pour un enfant de plus de 14 ans: 16,17 euros
   73,76 + 16,17 = 89,93
+  
+  96 000 + 95 085 = 915
+  CD = 89,93 - (915/12) = 13,68
+  AF = 89,93 + 13,68 = 103,61
   On veut 96000 € de revenus nets, donc on déclare 106667 € de revenus imposables.
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - age: 54
     age_en_mois: 657
@@ -154,4 +159,4 @@ menages:
   personne_de_reference: 558d2fee7ae4c40130761843
   statut_occupation: 6
 output_variables:
-  af: 89.93
+  af: 103.61

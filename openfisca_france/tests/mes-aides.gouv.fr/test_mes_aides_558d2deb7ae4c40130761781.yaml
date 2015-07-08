@@ -8,6 +8,7 @@ description: |
   Majoration pour un enfant de plus de 14 ans: 64,67 euros
   On veut 72000 € de revenus nets, donc on déclare 80000 € de revenus imposables.
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - age: 35
     age_en_mois: 421

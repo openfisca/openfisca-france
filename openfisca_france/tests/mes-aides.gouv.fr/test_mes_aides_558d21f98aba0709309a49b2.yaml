@@ -3,11 +3,12 @@ keywords:
   - af
   - barêmes 1er juillet 2015
 description: |
-  Test créé à partir d'un dossier de demande de (RSA, APL…) : 
-  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : 
-  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : 
+  73 000 - 72 735 = 265
+  CD = 147,53 - (265/12) = 125,45
+  AF= 147,53 + 125,45 = 272,98
   On veut 73000 € de revenus nets, donc on déclare 81111 € de revenus imposables.
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - age: 35
     age_en_mois: 424
@@ -151,4 +152,4 @@ menages:
   personne_de_reference: 558d21e98aba0709309a49a5
   statut_occupation: 6
 output_variables:
-  af: 147.53
+  af: 272.98
