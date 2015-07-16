@@ -47,14 +47,6 @@ reference_input_variable(
     label = u"Enfant placé en structure spécialisée ou famille d'accueil",
 )
 
-reference_input_variable(
-    name ='domicile_demandeur',
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
-)
-
-
 # @reference_formula
 # class parisien(SimpleFormulaColumn):
 #     column = BoolCol
@@ -176,9 +168,8 @@ class plf_enfant(SimpleFormulaColumn):
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         enfant_place = simulation.calculate('enfant_place', period)
         a_charge_fiscale = simulation.calculate('a_charge_fiscale', period)
-        domicile_demandeur = simulation.calculate('domicile_demandeur', period)
 
-        return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale * domicile_demandeur
+        return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
 
 @reference_formula
