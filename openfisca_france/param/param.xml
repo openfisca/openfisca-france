@@ -4086,14 +4086,14 @@
         </CODE>
       </NODE>
       <NODE code="modulation" description="Modulation des allocations familiales en fonction des ressources">
-        <CODE code="plafond1" description="Plafond mensuel de ressources n°1" format="float" type="monetary">
-          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="6000" />
+        <CODE code="plafond1" description="Plafond annuel de ressources n°1" format="float" type="monetary">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="55950" />
         </CODE>
-        <CODE code="plafond2" description="Plafond mensuel de ressources n°2" format="float" type="monetary">
-          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="8000" />
+        <CODE code="plafond2" description="Plafond annuel de ressources n°2" format="float" type="monetary">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="78300" />
         </CODE>
-        <CODE code="enfant_supp" description="Majoration du plafond mensuel de ressources par enfant supplémentaire (à partir du 3e enfant)" format="float" type="monetary">
-          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="500" />
+        <CODE code="enfant_supp" description="Majoration du plafond annuel de ressources par enfant supplémentaire (à partir du 3e enfant)" format="float" type="monetary">
+          <VALUE deb="2015-07-01" fin="2015-12-31" valeur="5595" />
         </CODE>
         <CODE code="taux1" description="Taux de modulation au delà du plafond 1" format="percent">
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="0.5" />

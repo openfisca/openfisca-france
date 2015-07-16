@@ -1,0 +1,173 @@
+name: Foyer 4 enfants > plafond 78 330
+keywords:
+  - af
+  - barêmes 1er juillet 2015
+description: |
+  79 000 - 78 330 = 670
+  CD = 230,39 - (670 / 12) = 174,56
+  AF= 230,39 + 174,56 = 404,95
+  On veut 79000 € de revenus nets, donc on déclare 87778 € de revenus imposables.
+period: "month:2015-07"
+relative_error_margin: 0.02
+individus:
+  - age: 55
+    age_en_mois: 660
+    birth: "1960-06-05"
+    cho:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d24f99e2a9d0330e797f1
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_de_base:
+      2013: 112535.61253561253
+      2014-07: 12503.956948401392
+      2014-08: 12503.956948401392
+      2014-09: 12503.956948401392
+      2014-10: 12503.956948401392
+      2014-11: 12503.956948401392
+      2014-12: 12503.956948401392
+      2015-01: 12503.956948401392
+      2015-02: 12503.956948401392
+      2015-03: 12503.956948401392
+      2015-04: 0
+      2015-04:3: 0
+      2015-05: 0
+      2015-06: 0
+      year:2014-07: 112535.61253561253
+    salaire_imposable:
+      2013: 87777.77777777778
+    salaire_net:
+      2013: 87777.7777777778
+      2014-07: 9753.086419753086
+      2014-08: 9753.086419753086
+      2014-09: 9753.086419753086
+      2014-10: 9753.086419753086
+      2014-11: 9753.086419753086
+      2014-12: 9753.086419753086
+      2015-01: 9753.086419753086
+      2015-02: 9753.086419753086
+      2015-03: 9753.086419753086
+      2015-04: 0
+      2015-04:3: 0
+      2015-05: 0
+      2015-06: 0
+      year:2014-07: 87777.7777777778
+    sali:
+      2013: 90984.19871794872
+      2014-07: 10109.355413105413
+      2014-08: 10109.355413105413
+      2014-09: 10109.355413105413
+      2014-10: 10109.355413105413
+      2014-11: 10109.355413105413
+      2014-12: 10109.355413105413
+      2015-01: 10109.355413105413
+      2015-02: 10109.355413105413
+      2015-03: 10109.355413105413
+      2015-04: 0
+      2015-04:3: 0
+      2015-05: 0
+      2015-06: 0
+      year:2014-07: 90984.19871794872
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 118
+    birth: "2005-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d24f99e2a9d0330e797f0
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 8
+    age_en_mois: 106
+    birth: "2006-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d24f99e2a9d0330e797ef
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 7
+    age_en_mois: 94
+    birth: "2007-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d24f99e2a9d0330e797ee
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 82
+    birth: "2008-08-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 558d24f99e2a9d0330e797ed
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 558d24f99e2a9d0330e797f0
+    - 558d24f99e2a9d0330e797ef
+    - 558d24f99e2a9d0330e797ee
+    - 558d24f99e2a9d0330e797ed
+  parents: 558d24f99e2a9d0330e797f1
+foyers_fiscaux:
+  declarants: 558d24f99e2a9d0330e797f1
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 558d24f99e2a9d0330e797f0
+    - 558d24f99e2a9d0330e797ef
+    - 558d24f99e2a9d0330e797ee
+    - 558d24f99e2a9d0330e797ed
+  rfr:
+    2013: 87777.77777777778
+menages:
+  depcom: 76540
+  enfants:
+    - 558d24f99e2a9d0330e797f0
+    - 558d24f99e2a9d0330e797ef
+    - 558d24f99e2a9d0330e797ee
+    - 558d24f99e2a9d0330e797ed
+  personne_de_reference: 558d24f99e2a9d0330e797f1
+  statut_occupation: 6
+output_variables:
+  af: 404.95
