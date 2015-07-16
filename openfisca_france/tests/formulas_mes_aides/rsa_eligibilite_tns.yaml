@@ -114,6 +114,7 @@
   period: "month:2015-04"
   input_variables:
     rsa_eligibilite_tns: False
+    travailleur_non_salarie: True
     age: 40
     activite: 0
   output_variables:

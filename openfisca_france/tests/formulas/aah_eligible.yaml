@@ -1,0 +1,42 @@
+- name: "Eligibilité AAH - Invalide, âge inférieur à retraite, pas de AEEH"
+  description: Eligible à AAH
+  period: 2015-01
+#  absolute_error_margin:
+  input_variables:
+    invalide: 'True'
+    age: 50
+  output_variables:
+    aah_eligible: 'True'
+
+- name: "Eligibilité AAH - Invalide, âge inférieur à retraite, pas de AEEH - 2"
+  description: Eligible à AAH
+  period: 2013-12
+#  absolute_error_margin:
+  input_variables:
+    age: 28
+    invalide: 'True'
+  output_variables:
+    aah_eligible: 'True'
+
+- name: "Eligibilité AAH - Invalide, âge inférieur à l'âge limite AEEH, pas d'autonomie financière vàv des prestations familiales"
+  description: Eligible à AAH
+  period: 2012-06
+#  absolute_error_margin:
+  input_variables:
+    age: 19
+    invalide: 'True'
+    smic55: 'False'
+  output_variables:
+    aah_eligible: 'False'
+
+
+- name: "Eligibilité AAH -Invalide, âge inférieur à l'âge limite AEEH, autonomie financière vàv des prestations familiales "
+  description: Eligible à AAH
+  period: 2013-07
+#  absolute_error_margin:
+  input_variables:
+    age: 18
+    invalide: 'True'
+    smic55: 'True'
+  output_variables:
+    aah_eligible: 'True'

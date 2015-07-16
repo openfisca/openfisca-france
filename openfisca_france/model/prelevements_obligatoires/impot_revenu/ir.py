@@ -1110,7 +1110,7 @@ class ir_brut(SimpleFormulaColumn):
     label = u"Impot sur le revenu brut avant non imposabilité et plafonnement du quotient"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.start.offset('first-of', 'month').period('year')
         nbptr = simulation.calculate('nbptr', period)
         taux_effectif = simulation.calculate('taux_effectif', period)
         rni = simulation.calculate('rni', period)

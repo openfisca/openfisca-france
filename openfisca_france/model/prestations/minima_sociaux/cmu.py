@@ -26,8 +26,9 @@
 from __future__ import division
 
 from functools import partial
-from numpy import (apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, absolute as abs_, zeros,
-    logical_or as or_)
+
+from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
+                   maximum as max_, minimum as min_, zeros)
 
 from ...base import *  # noqa analysis:ignore
 
@@ -202,15 +203,21 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate(
+            'pensions_alimentaires_versees_individu', previous_year
+            )
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
         aah = simulation.calculate('aah', previous_year)
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
         revenus_stage_formation_pro_dernier_mois = simulation.calculate('revenus_stage_formation_pro', last_month)
-        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', previous_year)
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', previous_year)
+        allocation_securisation_professionnelle = simulation.calculate(
+            'allocation_securisation_professionnelle', previous_year
+            )
+        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate(
+            'prime_forfaitaire_mensuelle_reprise_activite', previous_year
+            )
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', previous_year)
         prestation_compensatoire = simulation.calculate('prestation_compensatoire', previous_year)
         retraite_combattant = simulation.calculate('retraite_combattant', previous_year)
@@ -229,11 +236,12 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
 
         return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle + indemnites_journalieres +
+            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -
+            abs_(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i +
+            allocation_securisation_professionnelle + indemnites_journalieres +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
-            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
-            tns_total_revenus_net + revenus_stage_formation_pro)
+            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche +
+            gains_exceptionnels + tns_total_revenus_net + revenus_stage_formation_pro)
 
 
 @reference_formula

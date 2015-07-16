@@ -1656,7 +1656,7 @@
         <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.10" /> # TODO: update, get more info..
       </CODE>
     </NODE>
-    <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
+    <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
       <CODE code="cotisation_employeur" description="Cotisation forfaitaire mensuelle employeur">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
@@ -9281,7 +9281,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="557.12" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="545.13" />
       </CODE>
-      <CODE code="tx_plaf_supp" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent">
+      <CODE code="tx_plaf_supp" description="Majoration de plafond pour personne à charge (en part du plafond de base)" format="percent">
         <VALUE code="tx_plaf_supp" deb="1998-01-01" fin="2014-12-31" valeur=".5" />
       </CODE>
     </NODE>
