@@ -36,7 +36,6 @@ class br_aah(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        print 'Base ressources AAH - periode: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
 #        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
 
@@ -161,7 +160,6 @@ class aah(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        print 'aah - periode: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
 
         aah_eligible = simulation.calculate('aah_eligible', period)
@@ -234,7 +232,6 @@ class caah(DatedFormulaColumn):
     @dated_function(start = date(2005, 7, 1))
     def function_2005_07_01(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        print 'late: {}'.format(period)
         law = simulation.legislation_at(period.start)
 
         grph = law.minim.caah.grph
@@ -262,7 +259,6 @@ class caah(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
     def function_2005_06_30(self, simulation, period):
-        print 'early: {}'.format(period)
         period = period.start.offset('first-of', 'month').period('month')
         law = simulation.legislation_at(period.start)
 
