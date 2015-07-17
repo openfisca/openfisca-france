@@ -28,8 +28,6 @@ from __future__ import division
 
 import logging
 
-from numpy import zeros
-
 from ....base import *  # noqa analysis:ignore
 from .base import montant_csg_crds
 

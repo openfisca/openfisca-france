@@ -104,7 +104,7 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
-        salaire_imposable =  self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
+        salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
         # Application de l'abattement pour frais professionnels
         params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
