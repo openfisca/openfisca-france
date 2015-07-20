@@ -80,7 +80,10 @@ class csg_deductible_chomage(SimpleFormulaColumn):
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csg_deductible_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + montant_csg), 0), 0)
+        csg_deductible_chomage = max_(
+            - montant_csg - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + montant_csg), 0),
+            0,
+            )
 
         return period, - csg_deductible_chomage
 

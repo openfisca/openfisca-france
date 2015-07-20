@@ -285,7 +285,7 @@ class paje_clmg(SimpleFormulaColumn):
     entity_class = Familles
     label = u"PAJE - Complément de libre choix du mode de garde"
     start_date = date(2004, 1, 1)
-    url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"
+    url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
 
     def function(self, simulation, period):
         '''
@@ -423,8 +423,7 @@ class paje_colca(SimpleFormulaColumn):
         return period, paje_colca
 
 
-    # TODO: cumul avec clca self.colca_tot_m
-
+# TODO: cumul avec clca self.colca_tot_m
 
 @reference_formula
 class paje_base(SimpleFormulaColumn):

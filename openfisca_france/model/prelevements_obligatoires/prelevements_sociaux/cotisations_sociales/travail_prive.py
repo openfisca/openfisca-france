@@ -551,7 +551,7 @@ class mmid_employeur(SimpleFormulaColumn):
         return period, cotisation
 
 
-# TODO: this formula is used only to check fiche_de_paie from memento
+# TODO: this formula is used only to check fiche_de_paie from memento
 @reference_formula
 class mmida_employeur(SimpleFormulaColumn):
     column = FloatCol
