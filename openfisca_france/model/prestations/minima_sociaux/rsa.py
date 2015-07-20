@@ -630,6 +630,7 @@ class rmi_nbp(SimpleFormulaColumn):
 
 @reference_formula
 class rsa(DatedFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Revenu de solidarité active"
     entity_class = Familles

@@ -155,6 +155,7 @@ class aah_famille(SimpleFormulaColumn):
 
 @reference_formula
 class aah(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation adulte handicapé (Individus) mensualisée"
     entity_class = Individus
@@ -177,6 +178,7 @@ class aah(SimpleFormulaColumn):
 
 @reference_formula
 class caah(DatedFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity_class = Individus

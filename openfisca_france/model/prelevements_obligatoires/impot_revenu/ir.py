@@ -562,6 +562,7 @@ class rto(SimpleFormulaColumn):
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     """
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Rentes viagères (rentes à titre onéreux)"
@@ -1791,6 +1792,7 @@ class rev_cap_bar(SimpleFormulaColumn):
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     """
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rev_cap_bar"
@@ -1830,6 +1832,7 @@ class rev_cap_lib(DatedFormulaColumn):
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     '''
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rev_cap_lib"

@@ -86,6 +86,7 @@ class asf_elig(SimpleFormulaColumn):
 
 @reference_formula
 class asf(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial (ASF)"

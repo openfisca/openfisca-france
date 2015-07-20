@@ -130,6 +130,7 @@ class paje_base_temp(SimpleFormulaColumn):
 
 @reference_formula
 class paje_nais(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de naissance de la PAJE"
@@ -173,6 +174,7 @@ class paje_nais(SimpleFormulaColumn):
 
 @reference_formula
 class paje_clca(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"PAJE - Complément de libre choix d'activité"
@@ -281,6 +283,7 @@ class paje_clca_taux_partiel(SimpleFormulaColumn):
 
 @reference_formula
 class paje_clmg(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"PAJE - Complément de libre choix du mode de garde"
@@ -394,6 +397,7 @@ class paje_clmg(SimpleFormulaColumn):
 
 @reference_formula
 class paje_colca(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"PAJE - Complément optionnel de libre choix d'activité"
@@ -427,6 +431,7 @@ class paje_colca(SimpleFormulaColumn):
 
 @reference_formula
 class paje_base(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de base de la PAJE"

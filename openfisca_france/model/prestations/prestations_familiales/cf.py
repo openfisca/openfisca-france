@@ -314,6 +314,7 @@ class cf_temp(SimpleFormulaColumn):
 
 @reference_formula
 class cf(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Complément familial"

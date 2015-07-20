@@ -196,6 +196,7 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
 
 @reference_formula
 class asi(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
     start_date = date(2007, 1, 1)
@@ -280,6 +281,7 @@ class aspa_couple(DatedFormulaColumn):
 
 @reference_formula
 class aspa(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation de solidarité aux personnes agées"

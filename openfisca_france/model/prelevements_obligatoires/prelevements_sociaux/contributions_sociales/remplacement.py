@@ -60,6 +60,7 @@ build_column(
 
 @reference_formula
 class csg_deductible_chomage(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"CSG déductible sur les allocations chômage"
@@ -90,6 +91,7 @@ class csg_deductible_chomage(SimpleFormulaColumn):
 
 @reference_formula
 class csg_imposable_chomage(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"CSG imposable sur les allocations chômage"
@@ -113,6 +115,7 @@ class csg_imposable_chomage(SimpleFormulaColumn):
 
 @reference_formula
 class crds_chomage(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"CRDS sur les allocations chômage"
@@ -187,6 +190,7 @@ class chonet(SimpleFormulaColumn):
 
 @reference_formula
 class csg_deductible_retraite(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"CSG déductible sur les pensions de retraite"
@@ -210,6 +214,7 @@ class csg_deductible_retraite(SimpleFormulaColumn):
 
 @reference_formula
 class csg_imposable_retraite(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"CSG imposable sur les pensions de retraite"
@@ -230,6 +235,7 @@ class csg_imposable_retraite(SimpleFormulaColumn):
 
 @reference_formula
 class crds_retraite(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"CRDS sur les pensions de retraite"

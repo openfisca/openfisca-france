@@ -379,6 +379,7 @@ class af_forf(SimpleFormulaColumn):
 
 @reference_formula
 class af(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - total des allocations"

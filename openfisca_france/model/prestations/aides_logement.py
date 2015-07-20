@@ -407,6 +407,7 @@ class aide_logement_montant(SimpleFormulaColumn):
 
 @reference_formula
 class alf(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement familiale"
@@ -449,6 +450,7 @@ class als_nonet(SimpleFormulaColumn):
 
 @reference_formula
 class alset(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement sociale (étudiante)"
@@ -474,6 +476,7 @@ class alset(SimpleFormulaColumn):
 
 @reference_formula
 class als(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement sociale"
@@ -490,6 +493,7 @@ class als(SimpleFormulaColumn):
 
 @reference_formula
 class apl(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u" Aide personnalisée au logement"
@@ -543,6 +547,7 @@ class aide_logement(SimpleFormulaColumn):
 
 @reference_formula
 class crds_logement(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"CRDS des allocations logement"

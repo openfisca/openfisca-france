@@ -573,6 +573,7 @@ class mmida_employeur(SimpleFormulaColumn):
 
 @reference_formula
 class mhsup(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
     label = u"Heures supplémentaires comptées négativement"

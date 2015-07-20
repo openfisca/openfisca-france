@@ -78,6 +78,7 @@ class assiette_csg_non_abattue(SimpleFormulaColumn):
 
 @reference_formula
 class csg_deductible_salaire(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG déductible sur les salaires"
     entity_class = Individus
@@ -100,6 +101,7 @@ class csg_deductible_salaire(SimpleFormulaColumn):
 
 @reference_formula
 class csg_imposable_salaire(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG imposables sur les salaires"
     entity_class = Individus
@@ -123,6 +125,7 @@ class csg_imposable_salaire(SimpleFormulaColumn):
 
 @reference_formula
 class crds_salaire(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"CRDS sur les salaires"
     entity_class = Individus
