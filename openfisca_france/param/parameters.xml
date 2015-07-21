@@ -4940,9 +4940,12 @@
           <VALUE deb="1984-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
       </NODE>
-      <NODE code="deductions_pour_grosses_reparations">
-        <CODE code="plafond" format="float" type="monetary">
-          <VALUE deb="2009-01-01" valeur="25000" />
+      <NODE code="compte_epargne_codev" description="Compte épargne codéveloppement">
+        <CODE code="plafond" description="Limite de y euros par personne" format="float" type="monetary">
+          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
+        </CODE>
+        <CODE code="plafond_pct_rng" description="Limite de x % du revenu" format="percent">
+          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.25" />
         </CODE>
       </NODE>
       <NODE code="deductions_pour_investissements_en_actions">
@@ -4959,35 +4962,9 @@
           <VALUE deb="1996-01-01" fin="2000-12-31" valeur="500000" />
         </CODE>
       </NODE>
-      <NODE code="deductions_pour_pertes_en_capital_societes_nouvelles">
-        <CODE code="plafond_1" format="float" type="monetary">
-          <VALUE deb="2001-01-01" fin="2006-12-31" valeur="15250" />
-          <VALUE deb="1994-01-01" fin="2000-12-31" valeur="100000" />
-        </CODE>
-        <CODE code="plafond_2" format="float" type="monetary">
-          <VALUE deb="2003-01-01" fin="2006-12-31" valeur="30000" />
-        </CODE>
-      </NODE>
-      <NODE code="deductions_pour_souscription_parts_sofipeche">
-        <CODE code="plafond" format="float" type="monetary">
-          <VALUE deb="2001-01-01" fin="2006-12-31" valeur="19000" />
-          <VALUE deb="1998-01-01" fin="2000-12-31" valeur="125000" />
-        </CODE>
-        <CODE code="plafond_en_du_revenu_net_global" format="percent">
-          <VALUE deb="1998-01-01" fin="2006-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-      <NODE code="ecodev" description="Compte épargne codéveloppement">
-        <CODE code="max" description="Limite de y euros par personne" format="integer" type="monetary">
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
-        </CODE>
-        <CODE code="taux" description="Limite de x % du revenu" format="percent">
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-      <NODE code="grorep" description="Grosses réparations des nus-propriétaires">
-        <CODE code="max" description="Plafond des dépenses" format="integer" type="monetary">
-          <VALUE deb="2009-01-01" fin="2013-12-31" valeur="25000" />
+      <NODE code="grosses_reparations" description="Grosses réparations des nus-propriétaires">
+        <CODE code="plafond" description="Plafond des dépenses" format="float" type="monetary">
+          <VALUE deb="2009-01-01" valeur="25000" />
         </CODE>
       </NODE>
       <NODE code="pensions_alimentaires" description="Pensions alimentaires">
@@ -5034,11 +5011,12 @@
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
       </NODE>
-      <NODE code="percap" description="Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)">
-        <CODE code="max_cb" description="Case CB" format="integer" type="monetary">
+      <NODE code="pertes_en_capital_societes_nouvelles" description="Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)">
+        <CODE code="plafond_cb" description="Case CB" format="float" type="monetary">
           <VALUE deb="2001-01-01" fin="2006-12-31" valeur="15250" />
+          <VALUE deb="1994-01-01" fin="2000-12-31" valeur="100000" />
         </CODE>
-        <CODE code="max_da" description="Case DA" format="integer" type="monetary">
+        <CODE code="plafond_da" description="Case DA" format="float" type="monetary">
           <VALUE deb="2003-01-01" fin="2006-12-31" valeur="30000" />
         </CODE>
       </NODE>
@@ -5051,19 +5029,12 @@
           <VALUE deb="1985-01-01" fin="2005-12-31" valeur="0.25" />
         </CODE>
       </NODE>
-      <NODE code="reduction_pour_versement_compte_epargne_codev">
-        <CODE code="plafond" format="float" type="monetary">
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
-        </CODE>
-        <CODE code="plafond_en_du_revenu_net_global" format="percent">
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-      <NODE code="sofipe" description="Souscription au capital des SOFIPECHE (case CC)">
-        <CODE code="max" description="Maximum" format="integer" type="monetary">
+      <NODE code="sofipeche" description="Souscription au capital des SOFIPECHE (case CC)">
+        <CODE code="plafond" description="Maximum" format="float" type="monetary">
           <VALUE deb="2001-01-01" fin="2006-12-31" valeur="19000" />
+          <VALUE deb="1998-01-01" fin="2000-12-31" valeur="125000" />
         </CODE>
-        <CODE code="taux" description="Taux" format="percent">
+        <CODE code="plafond_pct_rng" description="Taux" format="percent">
           <VALUE deb="1998-01-01" fin="2006-12-31" valeur="0.25" />
         </CODE>
       </NODE>

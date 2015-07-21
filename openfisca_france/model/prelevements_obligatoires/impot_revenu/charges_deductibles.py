@@ -454,10 +454,10 @@ class cd_percap(DatedFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         f6cb = simulation.calculate('f6cb', period)
         marpac = simulation.calculate('marpac', period)
-        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.percap
+        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
 
-        max_cb = percap.max_cb * (1 + marpac)
-        return period, min_(f6cb, max_cb)
+        plafond_cb = percap.plafond_cb * (1 + marpac)
+        return period, min_(f6cb, plafond_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
     def function_20030101_20061231(self, simulation, period):
@@ -470,11 +470,11 @@ class cd_percap(DatedFormulaColumn):
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         marpac = simulation.calculate('marpac', period)
-        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.percap
+        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
 
-        max_cb = percap.max_cb * (1 + marpac)
-        max_da = percap.max_da * (1 + marpac)
-        return period, min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
+        plafond_cb = percap.plafond_cb * (1 + marpac)
+        plafond_da = percap.plafond_da * (1 + marpac)
+        return period, min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
 
 
 @reference_formula
@@ -570,10 +570,10 @@ class cd_sofipe(SimpleFormulaColumn):
         f6cc = simulation.calculate('f6cc', period)
         rbg_int = simulation.calculate('rbg_int', period)
         marpac = simulation.calculate('marpac', period)
-        sofipe = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.sofipe
+        sofipeche = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.sofipeche
 
-        max1 = min_(sofipe.taux * rbg_int, sofipe.max * (1 + marpac))
-        return period, min_(f6cc, max1)
+        plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + marpac))
+        return period, min_(f6cc, plafond)
 
 
 @reference_formula
@@ -616,10 +616,10 @@ class cd_ecodev(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'year').period('year')
         f6eh = simulation.calculate('f6eh', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        ecodev = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.ecodev
+        ecodev = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.compte_epargne_codev
 
-        max1 = min_(ecodev.taux * rbg_int, ecodev.max)
-        return period, min_(f6eh, max1)
+        plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
+        return period, min_(f6eh, plafond)
 
 
 @reference_formula
@@ -639,6 +639,6 @@ class cd_grorep(SimpleFormulaColumn):
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)
         f6hl = simulation.calculate('f6hl', period)
-        grorep = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.grorep
+        grorep = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
 
-        return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.max)
+        return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)
