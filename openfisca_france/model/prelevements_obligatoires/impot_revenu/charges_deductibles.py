@@ -405,9 +405,9 @@ class cd_penali(SimpleFormulaColumn):
         f6el = simulation.calculate('f6el', period)
         f6em = simulation.calculate('f6em', period)
         f6gu = simulation.calculate('f6gu', period)
-        penalim = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.penalim
+        penalim = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pensions_alimentaires
 
-        max1 = penalim.max
+        max1 = penalim.plafond
         taux_jgt_2006 = penalim.taux_jgt_2006
         # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
         # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
