@@ -2495,7 +2495,7 @@
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" /> # TODO : Quel article de loi
         </CODE>
       </NODE>
-      <NODE code="acc75a" description="Frais d'acceuil d'une personne de plus de 75 ans">
+      <NODE code="acc75a" description="Frais d'accueil d'une personne de plus de 75 ans">
         <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2826" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2862" />
