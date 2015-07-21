@@ -4983,20 +4983,8 @@
       </TRANCHE>
     </BAREME>
     <NODE code="charges_deductibles" description="Charges déductibles">
-      <NODE code="accueil_personne_agee" description="Frais d'acceuil d'une personne de plus de 75 ans">
-        <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="3359" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3309" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3296" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3203" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3162" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3051" />
-          <VALUE deb="2003-01-01" fin="2003-12-31" valeur="3000" />
-          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2862" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2826" />
-        </CODE>
-        <CODE code="plafond" format="float" type="monetary">
+      <NODE code="accueil_personne_agee" description="Frais d'accueil d'une personne de plus de 75 ans">
+        <CODE code="plafond" description="Maximum par personne" format="float" type="monetary">
           <VALUE deb="2014-01-01" valeur="3403" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3386" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="3359" />
@@ -5043,30 +5031,6 @@
           <VALUE deb="1984-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
       </NODE>
-      <NODE code="deduc_perp" description="Déduction pour versements sur PERP">
-        <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="29098" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="29097" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="28282" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="27696" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="27446" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="26621" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="25747" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24154" />
-        </CODE>
-        <CODE code="min" description="Minimum par personne" format="integer" type="monetary">
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="3638" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="3637" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3535" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3462" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3431" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3328" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3107" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019" />
-        </CODE>
-      </NODE>
       <NODE code="deduction_pour_pensions_alimentaires">
         <CODE code="plafond" format="float" type="monetary">
           <VALUE deb="2014-01-01" valeur="5726" />
@@ -5106,32 +5070,6 @@
           <VALUE deb="1976-01-01" fin="1976-12-31" valeur="7300" />
           <VALUE deb="1975-01-01" fin="1975-12-31" valeur="6700" />
           <VALUE deb="1974-01-01" fin="1974-12-31" valeur="6000" />
-        </CODE>
-      </NODE>
-      <NODE code="deduction_pour_versements_sur_perp">
-        <CODE code="maximum" format="float" type="monetary">
-          <VALUE deb="2014-01-01" valeur="29626" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="29098" />
-          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="29097" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="28281.6" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="27696" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="27446.4" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="26620.8" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="25747.2" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854.4" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24153.6" />
-        </CODE>
-        <CODE code="minimum" format="float" type="monetary">
-          <VALUE deb="2014-01-01" valeur="3703" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3638" />
-          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="3637.125" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3535.2" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3462" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3430.8" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3327.6" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218.4" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106.8" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019.2" />
         </CODE>
       </NODE>
       <NODE code="deductions_pour_grosses_reparations">
@@ -5233,6 +5171,32 @@
         </CODE>
         <CODE code="taux" description="Taux" format="percent">
           <VALUE deb="1998-01-01" fin="2006-12-31" valeur="0.25" />
+        </CODE>
+      </NODE>
+      <NODE code="versements_perp" description="Déduction pour versements sur PERP">
+        <CODE code="max" description="Maximum par personne" format="float" type="monetary">
+          <VALUE deb="2014-01-01" valeur="29626" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="29098" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="29097" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="28281.6" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="27696" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="27446.4" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="26620.8" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="25747.2" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854.4" />
+          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24153.6" />
+        </CODE>
+        <CODE code="min" description="Minimum par personne" format="float" type="monetary">
+          <VALUE deb="2014-01-01" valeur="3703" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3638" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="3637.125" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3535.2" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3462" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3430.8" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3327.6" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218.4" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106.8" />
+          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019.2" />
         </CODE>
       </NODE>
     </NODE>
