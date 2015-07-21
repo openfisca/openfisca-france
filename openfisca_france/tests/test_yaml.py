@@ -47,7 +47,7 @@ options_by_dir = collections.OrderedDict((
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'calculateur_impots')),
         dict(
-            accept_other_period = False,
+            calculate_output = False,
             default_absolute_error_margin = 0.5,
             ignore = True,  # TODO: Remove
             reform = 'inversion_revenus',
@@ -56,35 +56,35 @@ options_by_dir = collections.OrderedDict((
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'fiches_de_paie')),
         dict(
-            accept_other_period = False,
+            calculate_output = False,
             default_absolute_error_margin = 0.005,
             ),
         ),
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas')),
         dict(
-            accept_other_period = False,
+            calculate_output = False,
             default_absolute_error_margin = 0.005,
             ),
         ),
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas_mes_aides')),
         dict(
-            accept_other_period = False,
+            calculate_output = False,
             default_absolute_error_margin = 0.005,
             ),
         ),
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')),
         dict(
-            accept_other_period = True,
+            calculate_output = True,
             default_absolute_error_margin = 0.007,
             ),
         ),
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'ui.openfisca.fr')),
         dict(
-            accept_other_period = False,
+            calculate_output = False,
             default_absolute_error_margin = 0.005,
             ),
         ),
@@ -134,7 +134,8 @@ yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag
 # Functions
 
 
-def assert_near_any_period(value, target_value, absolute_error_margin = 0, message = '', relative_error_margin = None):
+def assert_near_calculate_output(value, target_value, absolute_error_margin = 0, message = '',
+        relative_error_margin = None):
     # Redefinition of assert_near that accepts to compare monthy values with yearly values.
     assert absolute_error_margin is not None or relative_error_margin is not None
     if isinstance(value, (list, tuple)):
@@ -200,7 +201,7 @@ def check(name, period_str, test, force):
                     )
 
 
-def check_any_period(name, period_str, test, force):
+def check_calculate_output(name, period_str, test, force):
     scenario = test['scenario']
     scenario.suggest()
     simulation = scenario.new_simulation(debug = True)
@@ -212,16 +213,16 @@ def check_any_period(name, period_str, test, force):
                 continue
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
-                    assert_near_any_period(
-                        simulation.calculate(variable_name, requested_period, accept_other_period = True),
+                    assert_near_calculate_output(
+                        simulation.calculate_output(variable_name, requested_period),
                         expected_value_at_period,
                         absolute_error_margin = test.get('absolute_error_margin'),
                         message = u'{}@{}: '.format(variable_name, requested_period),
                         relative_error_margin = test.get('relative_error_margin'),
                         )
             else:
-                assert_near_any_period(
-                    simulation.calculate(variable_name, accept_other_period = True),
+                assert_near_calculate_output(
+                    simulation.calculate_output(variable_name),
                     expected_value,
                     absolute_error_margin = test.get('absolute_error_margin'),
                     message = u'{}@{}: '.format(variable_name, period_str),
@@ -292,7 +293,7 @@ def test(force = False, name_filter = None, options_by_path = None):
                         and name_filter not in (test.get('name', u'')) \
                         and name_filter not in (test.get('keywords', [])):
                     continue
-                checker = check_any_period if options['accept_other_period'] else check
+                checker = check_calculate_output if options['calculate_output'] else check
                 yield checker, test.get('name') or filename_core, unicode(test['scenario'].period), test, force
 
 
@@ -318,7 +319,7 @@ if __name__ == "__main__":
             options = options_by_dir.get(dir)
             if options is None:
                 options = dict(
-                    accept_other_period = False,
+                    calculate_output = False,
                     default_absolute_error_margin = 0.005,
                     )
             options_by_path[path] = options
