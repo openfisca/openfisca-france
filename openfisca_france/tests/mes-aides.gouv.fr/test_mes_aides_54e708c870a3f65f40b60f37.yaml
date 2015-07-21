@@ -1,4 +1,5 @@
 name: 18 Cf Ressources supérieures au plafond
+ignore: true
 keywords:
   - base ressources
   - cf
