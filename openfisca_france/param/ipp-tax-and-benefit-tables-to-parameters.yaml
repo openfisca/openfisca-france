@@ -13,6 +13,10 @@ baremes_ipp_impot_revenu_income_tax:
 baremes_ipp_marche_du_travail_labour_market: marche_du_travail
 baremes_ipp_prelevements_sociaux_social_security_contributions:
   RENAME: prelevements_sociaux
+  deces-ac:
+    Commercants-industriels:
+      Décès: null  # Changement d'unité de FRF à %
+      Invalidité: null  # Changement d'unité de FRF à %
   fillon:
     Ensemble des entreprises:
       Salaire de référence: null  # Value must be a float
@@ -24,6 +28,9 @@ baremes_ipp_prestations_sociales_social_benefits:
   RENAME: prestations
   aa_plaf:
     Plafonds de ressources: null  # Value must be a float
+  aes:
+    Complément d'allocation:
+      3e catégorie: null  # Changement d'unité de FRF à %
   al_charge:
     Cas des colocataires ou des propriétaires (1):
       Isolé ou couple avec un enfant ou une personne à charge: null  # Value must be a float
