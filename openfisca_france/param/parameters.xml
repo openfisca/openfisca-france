@@ -4985,16 +4985,20 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <NODE code="charg_deduc">
-      <NODE code="acquisition_de_navire">
-        <CODE code="plafond" format="float" type="monetary">
-          <VALUE deb="1990-01-01" fin="1999-12-31" valeur="25000" />
+    <NODE code="charges_deductibles">
+      <NODE code="accueil_personne_agee">
+        <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
+          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="3359" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3309" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3296" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3203" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3162" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106" />
+          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3051" />
+          <VALUE deb="2003-01-01" fin="2003-12-31" valeur="3000" />
+          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2862" />
+          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2826" />
         </CODE>
-        <CODE code="taux" format="percent">
-          <VALUE deb="1990-01-01" fin="1999-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-      <NODE code="deduction_pour_frais_d_accueil_d_une_personne_de_plus_de_75_ans">
         <CODE code="plafond" format="float" type="monetary">
           <VALUE deb="2014-01-01" valeur="3403" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3386" />
@@ -5024,6 +5028,46 @@
           <VALUE deb="1986-01-01" fin="1986-12-31" valeur="13620" />
           <VALUE deb="1985-01-01" fin="1985-12-31" valeur="13310" />
           <VALUE deb="1984-01-01" fin="1984-12-31" valeur="12810" />
+        </CODE>
+      </NODE>
+      <NODE code="acquisition_de_navire">
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="1990-01-01" fin="1999-12-31" valeur="25000" />
+        </CODE>
+        <CODE code="taux" format="percent">
+          <VALUE deb="1990-01-01" fin="1999-12-31" valeur="0.25" />
+        </CODE>
+      </NODE>
+      <NODE code="cinema" description="Souscription en faveur du cinéma ou de l'audiovisuel (case AA)">
+        <CODE code="max" description="Maximum" format="integer" type="monetary">
+          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="18000" />
+        </CODE>
+        <CODE code="taux" description="Taux" format="percent">
+          <VALUE deb="1984-01-01" fin="2013-12-31" valeur="0.25" />
+        </CODE>
+      </NODE>
+      <NODE code="deduc_perp" description="Déduction pour versements sur PERP">
+        <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="29098" />
+          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="29097" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="28282" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="27696" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="27446" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="26621" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="25747" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854" />
+          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24154" />
+        </CODE>
+        <CODE code="min" description="Minimum par personne" format="integer" type="monetary">
+          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="3638" />
+          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="3637" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3535" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3462" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3431" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3328" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3107" />
+          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019" />
         </CODE>
       </NODE>
       <NODE code="deduction_pour_pensions_alimentaires">
@@ -5130,71 +5174,6 @@
           <VALUE deb="1998-01-01" fin="2006-12-31" valeur="0.25" />
         </CODE>
       </NODE>
-      <NODE code="reduction_pour_souscriptions_de_parts_de_sofica">
-        <CODE code="plafond_de_la_reduction" format="float" type="monetary">
-          <VALUE deb="2001-01-01" fin="2005-12-31" valeur="18000" />
-          <VALUE deb="1997-01-01" fin="2000-12-31" valeur="120000" />
-        </CODE>
-        <CODE code="plafond_en_du_revenu_net_global" format="percent">
-          <VALUE deb="1985-01-01" fin="2005-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-      <NODE code="reduction_pour_versement_compte_epargne_codev">
-        <CODE code="plafond" format="float" type="monetary">
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
-        </CODE>
-        <CODE code="plafond_en_du_revenu_net_global" format="percent">
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="charges_deductibles" description="Charges déductibles">
-      <NODE code="acc75a" description="Frais d'acceuil d'une personne de plus de 75 ans">
-        <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="3359" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3309" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3296" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3203" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3162" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3051" />
-          <VALUE deb="2003-01-01" fin="2003-12-31" valeur="3000" />
-          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2862" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2826" />
-        </CODE>
-      </NODE>
-      <NODE code="cinema" description="Souscription en faveur du cinéma ou de l'audiovisuel (case AA)">
-        <CODE code="max" description="Maximum" format="integer" type="monetary">
-          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="18000" />
-        </CODE>
-        <CODE code="taux" description="Taux" format="percent">
-          <VALUE deb="1984-01-01" fin="2013-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
-      <NODE code="deduc_perp" description="Déduction pour versements sur PERP">
-        <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="29098" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="29097" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="28282" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="27696" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="27446" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="26621" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="25747" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24154" />
-        </CODE>
-        <CODE code="min" description="Minimum par personne" format="integer" type="monetary">
-          <VALUE deb="2012-01-01" fin="2013-12-31" valeur="3638" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="3637" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3535" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3462" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3431" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3328" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3107" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019" />
-        </CODE>
-      </NODE>
       <NODE code="ecodev" description="Compte épargne codéveloppement">
         <CODE code="max" description="Limite de y euros par personne" format="integer" type="monetary">
           <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
@@ -5232,6 +5211,23 @@
         </CODE>
         <CODE code="max_da" description="Case DA" format="integer" type="monetary">
           <VALUE deb="2003-01-01" fin="2006-12-31" valeur="30000" />
+        </CODE>
+      </NODE>
+      <NODE code="reduction_pour_souscriptions_de_parts_de_sofica">
+        <CODE code="plafond_de_la_reduction" format="float" type="monetary">
+          <VALUE deb="2001-01-01" fin="2005-12-31" valeur="18000" />
+          <VALUE deb="1997-01-01" fin="2000-12-31" valeur="120000" />
+        </CODE>
+        <CODE code="plafond_en_du_revenu_net_global" format="percent">
+          <VALUE deb="1985-01-01" fin="2005-12-31" valeur="0.25" />
+        </CODE>
+      </NODE>
+      <NODE code="reduction_pour_versement_compte_epargne_codev">
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
+        </CODE>
+        <CODE code="plafond_en_du_revenu_net_global" format="percent">
+          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.25" />
         </CODE>
       </NODE>
       <NODE code="sofipe" description="Souscription au capital des SOFIPECHE (case CC)">
