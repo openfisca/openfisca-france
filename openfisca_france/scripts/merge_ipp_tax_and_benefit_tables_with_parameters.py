@@ -16,6 +16,7 @@ from biryani import strings
 import yaml
 
 
+app_name = os.path.splitext(os.path.basename(__file__))[0]
 date_names = (
     # u"Age de départ (AAD=Age d'annulation de la décôte)",
     u"Date",
@@ -23,7 +24,7 @@ date_names = (
     u"Date de perception du salaire",
     u"Date ISF",
     )
-log = logging.getLogger(__name__)
+log = logging.getLogger(app_name)
 note_names = (
     u"Notes",
     u"Notes bis",
