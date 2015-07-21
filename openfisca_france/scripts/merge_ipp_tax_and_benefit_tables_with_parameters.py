@@ -333,6 +333,9 @@ def merge_elements(element, original_element, path = None):
     path.append(element.get('code'))
     assert element.tag == original_element.tag, 'At {}, IPP element "{}"" differs from original element "{}"'.format(
         '.'.join(path), element.tag, original_element.tag)
+    description = original_element.get('description')
+    if description:
+        element.attrib['description'] = description
     if element.tag == 'NODE':
         for original_child in original_element:
             for child in element:
