@@ -1,11 +1,13 @@
+addons:
+  apt:
+    packages:
+    - python-numpy
+    - python-yaml
+install:
+  - pip install flake8  # Not yet available in Ubuntu precise (https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise)
+  - pip install -r requirements.txt
 language: python
 python: "2.7"
+script: make test-ci
 virtualenv:
   system_site_packages: true
-before_install:
-  - sudo apt-get install -qq python-numpy python-yaml
-install:
-  - pip install flake8  # Not yet available in Debian stable
-  - pip install -r requirements.txt
-  # - pip install -e git+https://github.com/openfisca/openfisca-france-data.git#egg=OpenFisca-France-Data  # For test_from_taxipp which is ignored in Makefile
-script: make test-ci
