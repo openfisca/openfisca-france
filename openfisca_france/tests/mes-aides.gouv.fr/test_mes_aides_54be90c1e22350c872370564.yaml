@@ -27,7 +27,7 @@ description: |
   
   Résultat caf.fr = 218,22€
 period: "month:2015-01"
-relative_error_margin: 0.02
+relative_error_margin: 0.05
 individus:
   - age: 30
     age_en_mois: 369
