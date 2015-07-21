@@ -1,2 +1,3 @@
-# ir.bareme: null
 ir: impot_revenu
+# impot_revenu.bareme: null
+impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee

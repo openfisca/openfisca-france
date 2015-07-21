@@ -9,6 +9,8 @@ baremes_ipp_impot_revenu_income_tax:
     Seuils inférieurs des tranches: SEUIL
     Taux marginaux des tranches: TAUX
   charg_deduc:
+    RENAME: charges_deductibles
+    deduction_pour_frais_d_accueil_d_une_personne_de_plus_de_75_ans: accueil_personne_agee
     Déductions investissement DOM_TOM: null  # Value must be a float
 baremes_ipp_marche_du_travail_labour_market: marche_du_travail
 baremes_ipp_prelevements_sociaux_social_security_contributions:
