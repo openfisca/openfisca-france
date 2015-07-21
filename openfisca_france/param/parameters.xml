@@ -4570,7 +4570,7 @@
       <VALUE deb="2009-01-01" fin="2014-12-31" valeur=".08" />
     </CODE>
   </NODE>
-  <NODE code="impot_revenu">
+  <NODE code="impot_revenu" description="Impôt sur le revenu">
     <NODE code="abat_rni">
       <NODE code="abattement_pour_personnes_agees_de_de_65_ans_ou_invalide_4">
         <CODE code="montant_1" format="float" type="monetary">
@@ -4982,8 +4982,8 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <NODE code="charges_deductibles">
-      <NODE code="accueil_personne_agee">
+    <NODE code="charges_deductibles" description="Charges déductibles">
+      <NODE code="accueil_personne_agee" description="Frais d'acceuil d'une personne de plus de 75 ans">
         <CODE code="max" description="Maximum par personne" format="integer" type="monetary">
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="3359" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3309" />
