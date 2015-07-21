@@ -1,3 +1,5 @@
 ir: impot_revenu
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
+impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond
+impot_revenu.charges_deductibles.deduc_perp: impot_revenu.charges_deductibles.versements_perp
