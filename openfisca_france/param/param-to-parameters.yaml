@@ -1,4 +1,9 @@
 ir: impot_revenu
+impot_revenu.abattements_speciaux: impot_revenu.abattements_rni
+impot_revenu.abattements_rni.enf_montant: impot_revenu.abattements_rni.enfant_marie.montant
+impot_revenu.abattements_rni.inv_max1: impot_revenu.abattements_rni.personne_agee_ou_invalide.plafond_de_ressources_1
+impot_revenu.abattements_rni.inv_max2: impot_revenu.abattements_rni.personne_agee_ou_invalide.plafond_de_ressources_2
+impot_revenu.abattements_rni.inv_montant: impot_revenu.abattements_rni.personne_agee_ou_invalide.montant
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond

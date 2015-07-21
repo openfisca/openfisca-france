@@ -2630,7 +2630,8 @@ class abat_spe(SimpleFormulaColumn):
         caseF = simulation.calculate('caseF', period)
         rng = simulation.calculate('rng', period)
         nbN = simulation.calculate('nbN', period)
-        abattements_speciaux = simulation.legislation_at(period.start).impot_revenu.abattements_speciaux
+        abattements_rni = simulation.legislation_at(period.start).impot_revenu.abattements_rni
+        abattements_personne_agee_ou_invalide = abattements_rni.personne_agee_ou_invalide
 
         age = self.split_by_roles(age_holder, roles = [VOUS, CONJ])
 
@@ -2639,10 +2640,14 @@ class abat_spe(SimpleFormulaColumn):
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
                       1 * (((ageC >= 65) | invC) & (ageC > 0))
                       )
-        as_inv = (nb_elig_as * abattements_speciaux.inv_montant * ((rng <= abattements_speciaux.inv_max1)
-                  + ((rng > abattements_speciaux.inv_max1) & (rng <= abattements_speciaux.inv_max2)) * 0.5))
+        as_inv = nb_elig_as * abattements_personne_agee_ou_invalide.montant * (
+            (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_1) +
+            ((rng > abattements_personne_agee_ou_invalide.plafond_de_ressources_1) &
+                (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_2)
+                ) * 0.5
+            )
 
-        as_enf = nbN * abattements_speciaux.enf_montant
+        as_enf = nbN * abattements_rni.enfant_marie.montant
 
         return period, min_(rng, as_inv + as_enf)
 
