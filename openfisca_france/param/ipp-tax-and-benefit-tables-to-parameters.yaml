@@ -2,6 +2,13 @@ baremes_ipp_chomage_unemployment:
   RENAME: chomage
 baremes_ipp_impot_revenu_income_tax:
   RENAME: impot_revenu
+  abat_rni:
+    RENAME: abattements_rni
+    abattement_pour_personnes_agees_de_de_65_ans_ou_invalide_4:
+      RENAME: personne_agee_ou_invalide
+      montant_1: montant
+      montant_2: null  # montant_2 = montant_1 / 2
+    abattement_pour_rattachement_d_enfants_maries: enfant_marie
   bareme_ir:
     RENAME: bareme
     TYPE: BAREME
