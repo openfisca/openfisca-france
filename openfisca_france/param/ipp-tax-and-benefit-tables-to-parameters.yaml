@@ -22,6 +22,7 @@ baremes_ipp_impot_revenu_income_tax:
       RENAME: versements_perp
       maximum: max
       minimum: min
+    deduction_pour_pensions_alimentaires: pensions_alimentaires
     Déductions investissement DOM_TOM: null  # Value must be a float
 baremes_ipp_marche_du_travail_labour_market: marche_du_travail
 baremes_ipp_prelevements_sociaux_social_security_contributions:

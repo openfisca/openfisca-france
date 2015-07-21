@@ -8,3 +8,7 @@ impot_revenu.abattements_rni.inv_montant: impot_revenu.abattements_rni.personne_
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond
 impot_revenu.charges_deductibles.deduc_perp: impot_revenu.charges_deductibles.versements_perp
+impot_revenu.charges_deductibles.penalim: impot_revenu.charges_deductibles.pensions_alimentaires
+impot_revenu.charges_deductibles.pensions_alimentaires.max: impot_revenu.charges_deductibles.pensions_alimentaires.plafond
+
+# cotsoc: prelevements_sociaux

@@ -4943,47 +4943,6 @@
           <VALUE deb="1984-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
       </NODE>
-      <NODE code="deduction_pour_pensions_alimentaires">
-        <CODE code="plafond" format="float" type="monetary">
-          <VALUE deb="2014-01-01" valeur="5726" />
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
-          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
-          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="5568" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="5495" />
-          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="4489" />
-          <VALUE deb="2004-01-01" fin="2004-12-31" valeur="4410" />
-          <VALUE deb="2003-01-01" fin="2003-12-31" valeur="4338" />
-          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="4137" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3824" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="23360" />
-          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="20480" />
-          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="20370" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="30330" />
-          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="30000" />
-          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="27990" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="27500" />
-          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="27120" />
-          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="22730" />
-          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="22100" />
-          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="21450" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="20780" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="20110" />
-          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="19600" />
-          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="18570" />
-          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="16190" />
-          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="15330" />
-          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="14230" />
-          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="13000" />
-          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="12500" />
-          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="8740" />
-          <VALUE deb="1978-01-01" fin="1979-12-31" valeur="8600" />
-          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="7900" />
-          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="7300" />
-          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="6700" />
-          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="6000" />
-        </CODE>
-      </NODE>
       <NODE code="deductions_pour_grosses_reparations">
         <CODE code="plafond" format="float" type="monetary">
           <VALUE deb="2009-01-01" valeur="25000" />
@@ -5034,10 +4993,10 @@
           <VALUE deb="2009-01-01" fin="2013-12-31" valeur="25000" />
         </CODE>
       </NODE>
-      <NODE code="penalim" description="Pensions alimentaires">
-        <CODE code="max" description="Limite par enfant" format="integer" type="monetary">
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" /> # TODO : Quel article de loi
-        <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
+      <NODE code="pensions_alimentaires" description="Pensions alimentaires">
+        <CODE code="plafond" description="Limite par enfant" format="float" type="monetary">
+          <VALUE deb="2014-01-01" valeur="5726" />
+          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="5753" />
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="5729" />
           <VALUE deb="2007-01-01" fin="2007-12-31" valeur="5568" />
@@ -5047,6 +5006,32 @@
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="4338" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="4137" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3824" />
+          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="23360" />
+          <VALUE deb="1999-01-01" fin="1999-12-31" valeur="20480" />
+          <VALUE deb="1998-01-01" fin="1998-12-31" valeur="20370" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="30330" />
+          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="30000" />
+          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="27990" />
+          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="27500" />
+          <VALUE deb="1993-01-01" fin="1993-12-31" valeur="27120" />
+          <VALUE deb="1992-01-01" fin="1992-12-31" valeur="22730" />
+          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="22100" />
+          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="21450" />
+          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="20780" />
+          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="20110" />
+          <VALUE deb="1987-01-01" fin="1987-12-31" valeur="19600" />
+          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="18570" />
+          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="16190" />
+          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="15330" />
+          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="14230" />
+          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="13000" />
+          <VALUE deb="1981-01-01" fin="1981-12-31" valeur="12500" />
+          <VALUE deb="1980-01-01" fin="1980-12-31" valeur="8740" />
+          <VALUE deb="1978-01-01" fin="1979-12-31" valeur="8600" />
+          <VALUE deb="1977-01-01" fin="1977-12-31" valeur="7900" />
+          <VALUE deb="1976-01-01" fin="1976-12-31" valeur="7300" />
+          <VALUE deb="1975-01-01" fin="1975-12-31" valeur="6700" />
+          <VALUE deb="1974-01-01" fin="1974-12-31" valeur="6000" />
         </CODE>
         <CODE code="taux_jgt_2006" description="Majoration (si ouverture du droit) si jugement avant 2006" format="percent">
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
