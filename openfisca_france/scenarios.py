@@ -725,6 +725,7 @@ class Scenario(scenarios.AbstractScenario):
         return json_or_python_to_test_case
 
     def suggest(self):
+        """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""
         test_case = self.test_case
         if test_case is None:
             return None
