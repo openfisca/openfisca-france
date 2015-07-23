@@ -91,11 +91,11 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
 
-        sali = simulation.calculate_add('sali', previous_year)
-        sali_this_month = simulation.calculate('sali', period)
-        sali_interrompu = (sali > 0) * (sali_this_month == 0)
+        salaire_imposable = simulation.calculate_add('salaire_imposable', previous_year)
+        salaire_imposable_this_month = simulation.calculate('salaire_imposable', period)
+        salaire_imposable_interrompu = (salaire_imposable > 0) * (salaire_imposable_this_month == 0)
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
-        sali = (1 - sali_interrompu) * sali
+        salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         rstnet = simulation.calculate('rstnet', previous_year)
         tns_auto_entrepreneur_benefice = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
         tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
@@ -111,7 +111,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
 
         return period, (
-            sali + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            salaire_imposable + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             aah + indemnites_stage + revenus_stage_formation_pro + tns_auto_entrepreneur_benefice +
             tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
         )
@@ -153,7 +153,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
 
             return (1 - tx_abat_applique) * ressource_year
 
-        sali = calculateWithAbatement('sali')
+        salaire_imposable = calculateWithAbatement('salaire_imposable')
         indemnites_stage = calculateWithAbatement('indemnites_stage', neutral_totale = True)
         revenus_stage_formation_pro = calculateWithAbatement('revenus_stage_formation_pro')
         chonet = calculateWithAbatement('chonet', neutral_totale = True)
@@ -171,7 +171,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
             )
 
         result = (
-            sali + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            salaire_imposable + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet +
             indemnites_journalieres + tns_auto_entrepreneur_benefice + tns_micro_entreprise_benefice +
             tns_benefice_exploitant_agricole + tns_autres_revenus

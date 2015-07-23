@@ -27,7 +27,7 @@ description: |
   
   Résultat caf.fr = 218,22€
 period: "month:2015-01"
-relative_error_margin: 0.02
+relative_error_margin: 0.05
 individus:
   - age: 30
     age_en_mois: 369
@@ -86,8 +86,6 @@ individus:
       2014-12: 1282.051282051282
       2015-01: 1282.051282051282
       year:2014-01: 5128.166666666668
-    salaire_imposable:
-      2013: 0
     salaire_net:
       2013: 3999.9699999999993
       2014-01: 333.33
@@ -105,8 +103,8 @@ individus:
       2014-12: 1000
       2015-01: 1000
       year:2014-01: 3999.9699999999993
-    sali:
-      2013: 4146.08428875
+    salaire_imposable:
+      2013: 0
       2014-01: 345.5061602884615
       2014-02: 345.5061602884615
       2014-03: 345.5061602884615

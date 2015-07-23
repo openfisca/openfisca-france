@@ -25,7 +25,7 @@
       age: 40
       ass_precondition_remplie: true
       activite: 1
-      sali:
+      salaire_imposable:
         2015-01: 400
         2015-02: 400
         2015-03: 0
@@ -42,7 +42,7 @@
       age: 40
       ass_precondition_remplie: true
       activite: 1
-      sali:
+      salaire_imposable:
         2015-01: 400
         2015-02: 400
         2015-03: 0
@@ -67,7 +67,7 @@
       activite: 1
     - id: "parent2"
       age: 40
-      sali:
+      salaire_imposable:
         2015-01: 1000
         2015-02: 1000
         2015-03: 0

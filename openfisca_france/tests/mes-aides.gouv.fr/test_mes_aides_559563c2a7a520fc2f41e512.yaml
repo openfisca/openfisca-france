@@ -48,7 +48,7 @@ individus:
     2015-05: 0
     2015-06: 0
     year:2014-07: 7999.999999999999
-  sali:
+  salaire_imposable:
     2013: 8292.23076923077
     2014-07: 921.3589743589744
     2014-08: 921.3589743589744
@@ -82,6 +82,4 @@ menages:
   personne_de_reference: 559563bafdd7360730df8fe7
   statut_occupation: 4
 output_variables:
-  aide_logement: 209.55
   cmu_c: true
-  rsa: 452.21
