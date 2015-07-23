@@ -82,6 +82,4 @@ menages:
   personne_de_reference: 559563bafdd7360730df8fe7
   statut_occupation: 4
 output_variables:
-  aide_logement: 209.55
   cmu_c: true
-  rsa: 452.21
