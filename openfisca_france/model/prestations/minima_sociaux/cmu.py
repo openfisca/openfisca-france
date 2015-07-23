@@ -207,7 +207,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
             'pensions_alimentaires_versees_individu', previous_year
             )
         rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
-        aah = simulation.calculate('aah', previous_year)
+        aah = simulation.calculate_add('aah', previous_year)
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
